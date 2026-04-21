@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Bash(npm run:*)",
+      "Bash(cmd /c \"cd /d c:\\\\Users\\\\49176\\\\OneDrive\\\\Desktop\\\\Nuovasolution && npx tsc --noEmit 2>&1\")",
+      "Bash(dir /s /b \"c:\\\\Users\\\\49176\\\\OneDrive\\\\Desktop\\\\Nuovasolution\\\\public\")",
+      "Bash(powershell -Command \"Get-ChildItem 'C:\\\\Users\\\\49176\\\\OneDrive\\\\Desktop\\\\Nuovasolution\\\\public\\\\images\\\\'\")",
+      "Bash(node -e \"const fs=require\\('fs'\\); fs.unlinkSync\\('c:/Users/49176/OneDrive/Desktop/Nuovasolution/public/images/nuova-logo.png'\\); console.log\\('done'\\);\")",
+      "Bash(dir \"c:\\\\Users\\\\49176\\\\OneDrive\\\\Desktop\\\\Nuovasolution\\\\assets\\\\images\" /b)"
+    ]
+  }
+}

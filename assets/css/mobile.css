@@ -1,0 +1,1063 @@
+/* ============================================================
+   NuovaSolution — Mobile Experience Refinements
+   All rules scoped to max-width: 639px unless noted.
+   Desktop layout is completely untouched.
+   ============================================================ */
+
+
+/* ============================================================
+   NAVIGATION — mobile header with CTA always visible
+   Logo · Lang switch · Book a Demo — all in one row, no overflow.
+   ============================================================ */
+
+/* Desktop: hide mobile CTA */
+@media (min-width: 640px) {
+  .nav-cta-mobile {
+    display: none !important;
+  }
+}
+
+@media (max-width: 639px) {
+  /* nav must be position:fixed (already set in layout.css — confirmed) */
+  /* nav-inner: relative + right padding reserves space for the button */
+  .nav-inner {
+    position: relative;
+    padding-left: 12px;
+    padding-right: 120px;
+    flex-wrap: nowrap;
+    overflow: visible;
+  }
+
+  /* Prevent nav itself from clipping the absolute button */
+  .nav {
+    overflow: visible;
+  }
+
+  /* Logo: compact */
+  .nav-logo {
+    flex: 0 0 auto;
+  }
+
+  .nav-logo-img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+
+  /* Actions: lang-switcher only on mobile */
+  .nav-actions {
+    flex: 0 0 auto;
+    gap: 6px;
+    margin-left: auto;
+  }
+
+  /* Hide desktop CTA on mobile */
+  .nav-cta-desktop {
+    display: none !important;
+  }
+
+  /* Lang buttons — compact */
+  .lang-btn {
+    padding: 3px 5px;
+    font-size: 11px;
+  }
+
+  /* Mobile CTA — exact positioning as specified */
+  .nav-cta-mobile {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    background: #C9A96E;
+    color: #1C2B3A;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 7px 11px;
+    border-radius: 99px;
+    border: 2px solid #C9A96E;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .nav-cta-mobile:active {
+    background: #A8873F;
+    border-color: #A8873F;
+  }
+}
+
+
+/* ============================================================
+   ANIMATION SYSTEM — smoother ease-out on mobile
+   ============================================================ */
+
+@media (max-width: 639px) {
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition-duration: 550ms;
+  }
+
+  /* Tighter lift — less displacement on small screen */
+  .reveal {
+    transform: translateY(18px);
+  }
+
+  /* Collapse horizontal reveals to vertical-only on mobile */
+  .reveal-left,
+  .reveal-right {
+    opacity: 0;
+    transform: translateY(18px);
+    transition-property: opacity, transform;
+  }
+
+  .reveal-left.visible,
+  .reveal-right.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Tighter stagger on single-column — feels sequential, not simultaneous */
+  .stagger > *:nth-child(1) { transition-delay: 0ms; }
+  .stagger > *:nth-child(2) { transition-delay: 100ms; }
+  .stagger > *:nth-child(3) { transition-delay: 200ms; }
+  .stagger > *:nth-child(4) { transition-delay: 300ms; }
+  .stagger > *:nth-child(5) { transition-delay: 400ms; }
+  .stagger > *:nth-child(6) { transition-delay: 500ms; }
+}
+
+
+/* ============================================================
+   SECTION VERTICAL RHYTHM
+   ============================================================ */
+
+@media (max-width: 639px) {
+  /* Hero padding managed separately in the HERO block below */
+
+  .section-pain,
+  .section-speed,
+  .section-how,
+  .section-benefits,
+  .section-channels,
+  .section-hotlead {
+    padding-block: var(--sp-12);
+  }
+
+  .section-demo {
+    padding-block: var(--sp-12);
+  }
+
+  .section-cta {
+    padding-block: var(--sp-12);
+  }
+}
+
+
+/* ============================================================
+   TYPOGRAPHY HIERARCHY — Headlines dominate clearly
+   ============================================================ */
+
+@media (max-width: 639px) {
+  .section-headline {
+    font-size: clamp(1.625rem, 7vw, 2.125rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .section-sub {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+  }
+
+  /* Section headers: tighter on mobile — less dead space before content */
+  .pain-header,
+  .speed-header,
+  .demo-header,
+  .how-header,
+  .benefits-header,
+  .channels-header {
+    margin-bottom: var(--sp-6);
+  }
+
+  .section-header-block {
+    margin-bottom: var(--sp-6);
+  }
+}
+
+
+/* ============================================================
+   HERO — above-the-fold clarity for mobile
+   Goal: headline → short sub → system line → CTA → 2 benefit
+   cards — all understood without a single scroll.
+   ============================================================ */
+
+/* Mobile-only short sub: hidden on desktop */
+.hero-sub-mobile {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  /* Section: tight top padding, content starts just below nav */
+  .section-hero {
+    padding-top: calc(var(--nav-height) + var(--sp-4));
+    padding-bottom: var(--sp-8);
+  }
+
+  /* Hero-visual (flow bubbles) hidden on mobile — saves ~350px */
+  .hero-visual {
+    display: none;
+  }
+
+  /* Single column — gap irrelevant once visual is hidden */
+  .hero-grid {
+    gap: 0;
+  }
+
+  /* Make hero-text a flex column so we can reorder children with order: */
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Eyebrow — compact */
+  .hero-eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--sp-2);
+    gap: var(--sp-2);
+  }
+
+  .hero-eyebrow::before {
+    width: 16px;
+  }
+
+  /* Headline — dominant, tightly spaced */
+  .hero-headline {
+    font-size: clamp(1.5rem, 7vw, 2.1rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--sp-2);
+  }
+
+  /* Hide long desktop sub on mobile */
+  .hero-sub {
+    display: none;
+  }
+
+  /* Short mobile sub — punchy, one line */
+  .hero-sub-mobile {
+    display: block;
+    font-size: var(--text-sm);
+    line-height: 1.45;
+    color: var(--dark-text-2);
+    margin-bottom: var(--sp-2);
+  }
+
+  /* CTAs — stacked full-width; order: 0 keeps them before bullets */
+  .hero-actions {
+    flex-direction: column;
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-3);
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-actions .btn-primary {
+    font-size: var(--text-base);
+    padding: var(--sp-3) var(--sp-6);
+    min-height: 48px;
+  }
+
+  .hero-actions .btn-ghost-dark {
+    font-size: var(--text-sm);
+    padding: var(--sp-3) var(--sp-5);
+    min-height: 42px;
+  }
+
+  /* Benefit cards — reordered after CTA using flex order.
+     Shows only 2 cards in a 2-column grid below the CTA. */
+  .hero-bullets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-2);
+    margin-bottom: 0;
+    order: 1;
+  }
+
+  /* Card styling for each benefit */
+  .hero-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--sp-2);
+    padding: var(--sp-3);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: var(--radius-md);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-snug);
+    color: var(--dark-text-2);
+  }
+
+  /* Show only 2 benefit cards on mobile */
+  .hero-bullets li:nth-child(n+3) {
+    display: none !important;
+  }
+
+  .hero-bullet-check {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+}
+
+/* Extra-small phones (SE, older Android) */
+@media (max-width: 374px) {
+  .section-hero {
+    padding-top: calc(var(--nav-height) + var(--sp-3));
+  }
+
+  .hero-headline {
+    font-size: clamp(1.25rem, 7vw, 1.6rem);
+  }
+}
+
+
+/* ============================================================
+   PAIN TIMELINE — VERTICAL (mobile)
+   Sequential activation via JS (240ms per step ≈ 1.2s total).
+   All selectors namespaced under .section-pain to override
+   layout.css max-width: 767px rules cleanly.
+   ============================================================ */
+
+/* Hide the swipe hint — no longer a swipeable rail */
+.section-pain .swipe-hint {
+  display: none !important;
+}
+
+/* System summary line: hidden on desktop, shown on mobile */
+.pain-flow-summary {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  /* System summary above the timeline */
+  .pain-flow-summary {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: var(--weight-medium);
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    text-align: center;
+    line-height: 1.55;
+    margin-bottom: var(--sp-6);
+    padding: var(--sp-2) var(--sp-5);
+    background: var(--surface-alt);
+    border-radius: var(--radius-full);
+  }
+
+  /* Vertical layout — resets any previous horizontal overrides */
+  .section-pain .pain-timeline {
+    flex-direction: column;
+    overflow-x: visible;
+    overflow-y: visible;
+    scroll-snap-type: none;
+    max-width: 100%;
+    margin-inline: 0;
+    padding: 0;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  /* Each step: row (dot left, content right) */
+  .section-pain .timeline-step {
+    flex: none;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    padding-inline: 0;
+    padding-bottom: var(--sp-6);
+    scroll-snap-align: none;
+    min-width: 0;
+    max-width: none;
+    gap: 0;
+    opacity: 1;
+    transition: none;
+  }
+
+  /* Dot: standard size, positioned left */
+  .section-pain .timeline-dot {
+    width: 40px;
+    height: 40px;
+    font-size: var(--text-sm);
+    flex-shrink: 0;
+    margin-right: var(--sp-4);
+    margin-bottom: 0;
+    transition:
+      background 350ms ease,
+      border-color 350ms ease,
+      box-shadow 350ms ease;
+  }
+
+  /* Vertical connector: always visible in muted tone */
+  .section-pain .timeline-step:not(:last-child)::after {
+    left: 19px;
+    top: 40px;
+    width: 2px;
+    height: calc(100% - 8px);
+    background: var(--surface-alt);
+    transform: none;
+  }
+
+  /* Activated connector — terracotta fill */
+  .section-pain .timeline-step.activated:not(:last-child)::after {
+    background: var(--terracotta);
+    opacity: 0.55;
+  }
+
+  /* Content sits to the right of the dot */
+  .section-pain .timeline-content {
+    padding-left: 0;
+    padding-top: 6px;
+    text-align: left;
+  }
+
+  .section-pain .timeline-time {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--sp-1);
+    transition: color 350ms ease;
+  }
+
+  .section-pain .timeline-label {
+    font-size: var(--text-sm);
+    line-height: 1.45;
+    color: rgba(0, 0, 0, 0.42); /* softer while inactive */
+    transition: color 350ms ease, font-weight 350ms ease;
+  }
+
+  /* Activated step — stronger dot glow + brighter text */
+  .section-pain .timeline-step.activated .timeline-dot {
+    box-shadow:
+      0 0 0 5px rgba(196, 112, 91, 0.14),
+      0 0 0 10px rgba(196, 112, 91, 0.05);
+  }
+
+  .section-pain .timeline-step.activated .timeline-time {
+    color: var(--terracotta);
+  }
+
+  .section-pain .timeline-step.activated .timeline-label {
+    color: var(--text-primary);
+    font-weight: var(--weight-medium);
+  }
+
+  /* Final step — navy accent */
+  .section-pain .timeline-step.final.activated .timeline-dot {
+    box-shadow:
+      0 0 0 5px rgba(28, 43, 58, 0.12),
+      0 0 0 10px rgba(28, 43, 58, 0.05);
+  }
+
+  .section-pain .timeline-step.final.activated .timeline-time {
+    color: var(--navy);
+  }
+
+  .section-pain .timeline-step.final.activated .timeline-label {
+    color: var(--navy);
+    font-weight: var(--weight-semibold);
+  }
+
+  /* Conclusion card — tighter on mobile */
+  .section-pain .pain-conclusion {
+    margin-top: var(--sp-6);
+    padding: var(--sp-5) var(--sp-5);
+  }
+
+  .section-pain .pain-stat {
+    font-size: var(--text-4xl);
+  }
+
+  .section-pain .pain-stat-label {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    margin-top: var(--sp-2);
+  }
+}
+
+
+/* ============================================================
+   SPEED COMPARISON → SWIPE CAROUSEL (mobile only)
+   Before/After cards become a horizontal snap carousel.
+   User swipes from "Without" to "With" — left to right.
+   ============================================================ */
+
+@media (max-width: 639px) {
+  /* Horizontal carousel: extends to screen edges */
+  .speed-grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--sp-4);
+    margin-inline: calc(-1 * var(--sp-6));
+    padding-inline: var(--sp-6);
+    padding-bottom: var(--sp-4);
+    scrollbar-width: none;
+  }
+
+  .speed-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Each card: 84vw = card fills view with small peek of next */
+  .speed-card {
+    flex: 0 0 84vw;
+    max-width: 340px;
+    scroll-snap-align: start;
+    padding: var(--sp-6) var(--sp-5);
+  }
+
+  .speed-card-headline {
+    font-size: var(--text-lg);
+    margin-bottom: var(--sp-5);
+  }
+
+  .speed-steps {
+    gap: var(--sp-4);
+  }
+
+  .speed-step {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    gap: var(--sp-3);
+  }
+
+  .speed-step-icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+  }
+
+  .speed-result {
+    margin-top: var(--sp-5);
+    padding: var(--sp-4);
+    font-size: var(--text-base);
+  }
+}
+
+
+/* ============================================================
+   DEMO SECTION
+   ============================================================ */
+
+@media (max-width: 639px) {
+  .demo-body {
+    padding: var(--sp-5) var(--sp-4);
+    gap: var(--sp-5);
+  }
+
+  .demo-presets {
+    gap: var(--sp-2);
+  }
+
+  .demo-preset {
+    font-size: var(--text-sm);
+    padding: var(--sp-2) var(--sp-3);
+  }
+
+  .demo-textarea {
+    font-size: var(--text-base);
+    min-height: 72px;
+    padding: var(--sp-3) var(--sp-4);
+  }
+
+  .demo-run-btn {
+    margin-top: var(--sp-3);
+  }
+
+  .demo-chat-bubble {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    padding: var(--sp-4);
+  }
+
+  .demo-lead-card {
+    padding: var(--sp-4);
+  }
+
+  .demo-alert-card {
+    padding: var(--sp-4);
+    gap: var(--sp-3);
+  }
+}
+
+
+/* ============================================================
+   HOW IT WORKS
+   ============================================================ */
+
+@media (max-width: 639px) {
+  .how-steps {
+    gap: var(--sp-4);
+  }
+
+  .how-step {
+    padding: var(--sp-6) var(--sp-5);
+    /* Single column — left-align feels more natural */
+    align-items: flex-start;
+    text-align: left;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+  }
+
+  .how-step-num {
+    width: 44px;
+    height: 44px;
+    font-size: var(--text-base);
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .how-step-icon {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+    align-self: center;
+  }
+
+  .how-step-title {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    width: 100%;
+    margin-bottom: var(--sp-1);
+  }
+
+  .how-step-desc {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    width: 100%;
+    color: var(--text-secondary);
+  }
+}
+
+
+/* ============================================================
+   BENEFITS
+   ============================================================ */
+
+@media (max-width: 639px) {
+  .benefits-grid {
+    gap: var(--sp-4);
+  }
+
+  .benefit-card {
+    padding: var(--sp-5) var(--sp-5);
+  }
+
+  .benefit-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: var(--sp-3);
+  }
+
+  .benefit-title {
+    font-size: var(--text-base);
+    margin-bottom: var(--sp-2);
+  }
+
+  .benefit-desc {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+  }
+}
+
+
+/* ============================================================
+   CHANNELS
+   ============================================================ */
+
+@media (max-width: 639px) {
+  .channels-grid {
+    gap: var(--sp-4);
+  }
+
+  .channel-item {
+    padding: var(--sp-5) var(--sp-6);
+    min-width: 120px;
+  }
+
+  .channel-icon {
+    font-size: 1.75rem;
+  }
+
+  .channel-name {
+    font-size: var(--text-base);
+  }
+}
+
+
+/* ============================================================
+   HOT LEAD / PHONE MOCKUP
+   ============================================================ */
+
+@media (max-width: 639px) {
+  .hotlead-grid {
+    gap: var(--sp-10);
+  }
+
+  .hotlead-text .section-label {
+    display: block;
+    margin-bottom: var(--sp-3);
+  }
+
+  .hotlead-points {
+    gap: var(--sp-5);
+    margin-top: var(--sp-6);
+  }
+
+  .hotlead-point {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    gap: var(--sp-3);
+  }
+
+  .hotlead-point-icon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+  }
+}
+
+
+/* ============================================================
+   SYSTEM TRUST
+   ============================================================ */
+
+@media (max-width: 639px) {
+  .trust-grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-3);
+    max-width: 100%;
+  }
+
+  .trust-card {
+    padding: var(--sp-6);
+  }
+
+  .trust-card-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: var(--sp-4);
+  }
+
+  .trust-card-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .trust-card-title {
+    font-size: var(--text-base);
+  }
+
+  .trust-header {
+    margin-bottom: var(--sp-10);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .trust-grid {
+    gap: var(--sp-4);
+  }
+}
+
+
+/* ============================================================
+   FINAL CTA
+   ============================================================ */
+
+@media (max-width: 639px) {
+  .cta-headline {
+    font-size: clamp(1.625rem, 7.5vw, 2.25rem);
+    margin-bottom: var(--sp-4);
+  }
+
+  .cta-sub {
+    font-size: var(--text-base);
+    margin-bottom: var(--sp-8);
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-3);
+  }
+
+  .cta-actions .btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+}
+
+
+/* ============================================================
+   BUTTONS — touch-friendly minimum target
+   ============================================================ */
+
+@media (max-width: 639px) {
+  .btn {
+    min-height: 48px;
+  }
+
+  .btn-sm {
+    min-height: 40px;
+  }
+
+  .btn-lg {
+    min-height: 52px;
+    padding: var(--sp-4) var(--sp-8);
+  }
+
+  .btn-xl {
+    min-height: 56px;
+    padding: var(--sp-4) var(--sp-8);
+  }
+}
+
+
+/* ============================================================
+   CHATBOT — comfortable on small screens
+   ============================================================ */
+
+@media (max-width: 639px) {
+  .chatbot-trigger {
+    bottom: var(--sp-5);
+    right: var(--sp-4);
+  }
+
+  .chatbot-panel {
+    right: var(--sp-4);
+    width: calc(100vw - var(--sp-8));
+    bottom: calc(var(--sp-5) + 56px + var(--sp-3));
+  }
+
+  .chat-messages {
+    max-height: 220px;
+  }
+}
+
+
+/* Timeline active animation — consolidated into PAIN TIMELINE block above */
+
+
+/* ============================================================
+   FLOW BUBBLES — hero visual on mobile
+   ============================================================ */
+
+@media (max-width: 639px) {
+  .flow-bubble {
+    padding: var(--sp-4) var(--sp-5);
+  }
+
+  .flow-bubble-text {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+  }
+
+  .flow-outcome {
+    padding: var(--sp-3);
+  }
+
+  .flow-outcome-label {
+    font-size: var(--text-xs);
+  }
+}
+
+
+/* ============================================================
+   SWIPE HINT — mobile-only touch affordance
+   Hidden globally; displayed on mobile below swipeable sections.
+   ============================================================ */
+
+.swipe-hint {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .swipe-hint {
+    display: block;
+    text-align: center;
+    font-size: var(--text-xs);
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+    margin-top: var(--sp-3);
+    opacity: 0.6;
+    text-transform: uppercase;
+  }
+}
+
+
+/* ============================================================
+   SECTION DIVIDER spacing
+   ============================================================ */
+
+@media (max-width: 639px) {
+  .section-divider {
+    margin-bottom: var(--sp-3);
+  }
+}
+
+
+/* ============================================================
+   HERO SYSTEM LINE — mobile-only product mechanic sentence.
+   Reads as a continuous flow: "Every lead captured → replied
+   instantly → qualified → only serious clients reach you."
+   Hidden on desktop. Bullets are re-shown as cards (see HERO block).
+   ============================================================ */
+
+/* Hidden on desktop */
+.hero-system-preview {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .hero-system-preview {
+    display: flex !important;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 3px 7px;
+    margin-top: 0;
+    margin-bottom: var(--sp-2);
+    padding: var(--sp-3) var(--sp-4);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+  }
+
+  /* Steps read as flowing sentence fragments — muted but legible */
+  .hero-sys-step {
+    font-size: 0.72rem;
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.01em;
+    color: rgba(255, 255, 255, 0.68);
+    white-space: nowrap;
+  }
+
+  /* Final outcome: slightly brighter to feel like the payoff */
+  .hero-sys-step--hot {
+    color: rgba(255, 255, 255, 0.88);
+    font-weight: var(--weight-semibold);
+  }
+
+  .hero-sys-arrow {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.22);
+    flex-shrink: 0;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 374px) {
+  .hero-system-preview {
+    gap: 3px 5px;
+    padding: var(--sp-2) var(--sp-3);
+  }
+
+  .hero-sys-step {
+    font-size: 0.67rem;
+  }
+}
+
+
+/* Timeline stronger active state — consolidated into PAIN TIMELINE block above */
+
+
+/* ============================================================
+   CRM TRUST BADGE — channels section
+   Visible on all screen sizes; slightly more prominent on mobile.
+   ============================================================ */
+
+.channels-crm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-6);
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--white);
+  border: 1px solid var(--surface-alt);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-xs);
+  max-width: 280px;
+  margin-inline: auto;
+}
+
+.channels-crm-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 639px) {
+  .channels-crm {
+    margin-top: var(--sp-5);
+    padding: var(--sp-3) var(--sp-5);
+    font-size: var(--text-base);
+    max-width: 100%;
+    border-radius: var(--radius-lg);
+  }
+}
+
+
+/* ============================================================
+   COMPACT CONTENT RHYTHM — less scrolling, more per screen
+   ============================================================ */
+
+@media (max-width: 639px) {
+  .benefits-grid {
+    gap: var(--sp-3);
+  }
+
+  .how-steps {
+    gap: var(--sp-3);
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-cta-desktop {
+    display: none !important;
+  }
+
+  .nav-cta-mobile {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 13px;
+    border-radius: 999px;
+  }
+}
