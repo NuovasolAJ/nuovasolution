@@ -455,7 +455,9 @@ export function Hero() {
                 </motion.a>
 
                 <a
-                  href="#demo-flow"
+                  href="https://cal.com/nuovasolution/demo"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
                     fontSize: "0.9rem",
                     fontWeight: 500,

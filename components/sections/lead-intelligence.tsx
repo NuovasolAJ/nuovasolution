@@ -18,35 +18,28 @@ const arcOffset = (score: number) => ARC * (1 - score / 100);
    ══════════════════════════════════════════════════════════ */
 function ScoreVisual({ active, t }: { active: boolean; t: (k: string) => string }) {
   const [score, setScore] = useState(30);
+  const hasStarted = useRef(false);
 
   useEffect(() => {
-    if (!active) return;
+    if (!active || hasStarted.current) return;
+    hasStarted.current = true;
     let alive = true;
     const T: ReturnType<typeof setTimeout>[] = [];
 
-    function run() {
+    // Run once: 30 → 84, then stay at 84. No loop, no reset.
+    T.push(setTimeout(() => {
       if (!alive) return;
-      setScore(30);
-      T.push(setTimeout(() => {
+      let cur = 30;
+      function tick() {
         if (!alive) return;
-        let cur = 30;
-        function tick() {
-          if (!alive) return;
-          if (cur >= 84) { setScore(84); return; }
-          cur++;
-          setScore(cur);
-          T.push(setTimeout(tick, 33));
-        }
-        T.push(setTimeout(tick, 33));
-      }, 1200));
-      T.push(setTimeout(() => {
-        if (!alive) return;
-        setScore(30);
-        T.push(setTimeout(run, 600));
-      }, 7600));
-    }
+        if (cur >= 84) { setScore(84); return; }
+        cur++;
+        setScore(cur);
+        T.push(setTimeout(tick, 28));
+      }
+      tick();
+    }, 600));
 
-    run();
     return () => { alive = false; T.forEach(clearTimeout); };
   }, [active]);
 
@@ -122,33 +115,27 @@ function ScoreVisual({ active, t }: { active: boolean; t: (k: string) => string 
         </div>
       </div>
 
-      {/* Zone label */}
+      {/* Zone label — CSS-only transitions, no key remounting */}
       <div style={{ textAlign: "center" }}>
-        <motion.span
-          key={activeZone}
-          initial={{ opacity: 0.5, y: 3 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.28 }}
+        <span
           style={{
             display: "block", marginBottom: 12,
             fontSize: "0.8125rem", fontWeight: 700,
             letterSpacing: "0.10em", textTransform: "uppercase",
             color: isHot ? g(0.92) : isWarm ? g(0.58) : w(0.28),
-            transition: "color 0.40s ease",
+            transition: "color 0.50s ease",
           }}
         >
           {isHot ? t("intel.score.hot") : isWarm ? t("intel.score.warm") : t("intel.score.cold")}
-        </motion.span>
+        </span>
 
         <div style={{ display: "flex", gap: 6, justifyContent: "center" }}>
           {RANGES.map((r) => {
             const on      = activeZone === r.zone;
             const hotPill = r.zone === "hot";
             return (
-              <motion.span
+              <span
                 key={r.zone}
-                animate={{ opacity: on ? 1 : 0.24 }}
-                transition={{ duration: 0.40 }}
                 style={{
                   display: "inline-block",
                   padding: "3px 9px", borderRadius: 999,
@@ -158,11 +145,12 @@ function ScoreVisual({ active, t }: { active: boolean; t: (k: string) => string 
                   background: on ? (hotPill ? g(0.14) : "rgba(255,255,255,0.07)") : "rgba(255,255,255,0.03)",
                   border: `1px solid ${on ? (hotPill ? g(0.42) : w(0.15)) : w(0.06)}`,
                   color: on ? (hotPill ? g(0.92) : w(0.58)) : w(0.20),
-                  transition: "all 0.40s ease",
+                  opacity: on ? 1 : 0.24,
+                  transition: "all 0.50s ease",
                 }}
               >
                 {t(r.key)} {r.range}
-              </motion.span>
+              </span>
             );
           })}
         </div>
@@ -176,9 +164,11 @@ function ScoreVisual({ active, t }: { active: boolean; t: (k: string) => string 
    ══════════════════════════════════════════════════════════ */
 function BuildRows({ active, t }: { active: boolean; t: (k: string) => string }) {
   const [visible, setVisible] = useState(0);
+  const hasStarted = useRef(false);
 
   useEffect(() => {
-    if (!active) return;
+    if (!active || hasStarted.current) return;
+    hasStarted.current = true;
     let alive = true;
     const T: ReturnType<typeof setTimeout>[] = [];
 
@@ -408,7 +398,8 @@ export function LeadIntelligence() {
             {/* Right: CRM note + highlight */}
             <div style={{
               display: "flex", flexDirection: "column",
-              justifyContent: "center", gap: 16,
+              justifyContent: "flex-start", gap: 20,
+              minWidth: 0,
             }}>
               <p style={{
                 fontSize: "clamp(0.875rem, 1.2vw, 0.9375rem)",
@@ -417,20 +408,27 @@ export function LeadIntelligence() {
                 {t("intel.outcome.crm")}
               </p>
               <div style={{
-                display: "inline-flex", alignSelf: "flex-start",
-                alignItems: "center", gap: 8,
-                padding: "8px 16px", borderRadius: 999,
+                display: "flex", alignItems: "flex-start", gap: 10,
+                padding: "10px 18px", borderRadius: 16,
                 background: g(0.10),
                 border: `1px solid ${g(0.32)}`,
+                alignSelf: "flex-start",
+                maxWidth: "100%",
+                boxSizing: "border-box",
+                width: "fit-content",
               }}>
                 <span style={{
                   width: 7, height: 7, borderRadius: "50%",
                   background: g(0.90), flexShrink: 0,
+                  marginTop: 3,
                 }} />
                 <span style={{
                   fontSize: "0.8125rem", fontWeight: 600,
                   color: g(0.88), letterSpacing: "0.01em",
-                  whiteSpace: "nowrap",
+                  flexShrink: 1,
+                  minWidth: 0,
+                  wordBreak: "break-word",
+                  lineHeight: 1.5,
                 }}>
                   {t("intel.outcome.highlight")}
                 </span>

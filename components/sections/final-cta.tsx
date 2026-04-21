@@ -122,34 +122,42 @@ export function FinalCTA() {
             {t("cta.compat2")}
           </p>
 
+          {/* Divider */}
+          <div style={{
+            width: "100%",
+            height: 1,
+            background: w(0.28),
+            margin: "12px 0 20px",
+          }} />
+
           {/* Process steps */}
           <div style={{
-            display: "inline-flex",
+            display: "flex",
             flexDirection: "column",
-            gap: 6,
+            gap: 10,
             textAlign: "left",
+            width: "100%",
           }}>
             {(["cta.process.1", "cta.process.2", "cta.process.3"] as const).map((key, i) => (
               <div key={key} style={{
                 display: "flex",
                 alignItems: "baseline",
-                gap: 0,
+                gap: 8,
               }}>
                 <span style={{
-                  minWidth: "1.5em",
                   flexShrink: 0,
-                  fontSize: "0.6875rem",
+                  fontSize: "0.875rem",
                   lineHeight: 1.6,
-                  color: g(0.28),
-                  letterSpacing: "0.005em",
+                  color: g(0.90),
                   fontVariantNumeric: "tabular-nums",
+                  fontWeight: 700,
                 }}>
                   {i + 1}.
                 </span>
                 <span style={{
-                  fontSize: "0.6875rem",
+                  fontSize: "0.875rem",
                   lineHeight: 1.6,
-                  color: w(0.18),
+                  color: w(0.78),
                   letterSpacing: "0.005em",
                 }}>
                   {t(key)}
