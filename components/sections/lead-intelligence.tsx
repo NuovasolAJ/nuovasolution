@@ -18,28 +18,38 @@ const arcOffset = (score: number) => ARC * (1 - score / 100);
    ══════════════════════════════════════════════════════════ */
 function ScoreVisual({ active, t }: { active: boolean; t: (k: string) => string }) {
   const [score, setScore] = useState(30);
-  const hasStarted = useRef(false);
+  const [resetting, setResetting] = useState(false);
 
   useEffect(() => {
-    if (!active || hasStarted.current) return;
-    hasStarted.current = true;
+    if (!active) return;
     let alive = true;
     const T: ReturnType<typeof setTimeout>[] = [];
 
-    // Run once: 30 → 84, then stay at 84. No loop, no reset.
-    T.push(setTimeout(() => {
+    function runCycle() {
       if (!alive) return;
-      let cur = 30;
-      function tick() {
+      // Snap back to 30 with no CSS transition to avoid backward animation
+      setResetting(true);
+      setScore(30);
+      // After one paint, re-enable transitions and begin counting
+      T.push(setTimeout(() => {
         if (!alive) return;
-        if (cur >= 84) { setScore(84); return; }
-        cur++;
-        setScore(cur);
-        T.push(setTimeout(tick, 28));
-      }
-      tick();
-    }, 600));
+        setResetting(false);
+        T.push(setTimeout(() => {
+          if (!alive) return;
+          let cur = 30;
+          function tick() {
+            if (!alive) return;
+            if (cur >= 84) { setScore(84); T.push(setTimeout(runCycle, 3500)); return; }
+            cur++;
+            setScore(cur);
+            T.push(setTimeout(tick, 28));
+          }
+          tick();
+        }, 80));
+      }, 60));
+    }
 
+    T.push(setTimeout(runCycle, 600));
     return () => { alive = false; T.forEach(clearTimeout); };
   }, [active]);
 
@@ -93,7 +103,7 @@ function ScoreVisual({ active, t }: { active: boolean; t: (k: string) => string 
             style={{
               stroke: arcStroke,
               strokeDashoffset: arcOffset(score),
-              transition: "stroke-dashoffset 0.10s linear, stroke 0.40s ease",
+              transition: resetting ? "none" : "stroke-dashoffset 0.10s linear, stroke 0.40s ease",
             }}
           />
         </svg>
@@ -105,7 +115,7 @@ function ScoreVisual({ active, t }: { active: boolean; t: (k: string) => string 
           <span style={{
             fontSize: 48, fontWeight: 700, letterSpacing: "-0.05em", lineHeight: 1,
             color: isHot ? g(0.96) : isWarm ? g(0.66) : w(0.36),
-            transition: "color 0.35s ease",
+            transition: resetting ? "none" : "color 0.35s ease",
           }}>
             {score}
           </span>
