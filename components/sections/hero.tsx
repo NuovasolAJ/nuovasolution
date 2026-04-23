@@ -66,7 +66,7 @@ function LiveMoment({ t }: { t: (key: string) => string }) {
           {/* Message */}
           <p
             style={{
-              fontSize: "clamp(1rem, 1.55vw, 1.125rem)",
+              fontSize: "clamp(0.9375rem, 1.4vw, 1.0rem)",
               lineHeight: 1.78,
               color: "rgba(255,255,255,0.88)",
               fontStyle: "italic",
