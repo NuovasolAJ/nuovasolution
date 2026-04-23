@@ -29,7 +29,7 @@ export function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.60, ease: [0.25, 0.46, 0.45, 0.94] }}
-          style={{ maxWidth: 560, margin: "0 auto", textAlign: "center" }}
+          style={{ maxWidth: 560 }}
         >
 
           {/* Eyebrow */}
@@ -54,7 +54,7 @@ export function FinalCTA() {
           <p style={{
             fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)",
             lineHeight: 1.72, color: w(0.44),
-            maxWidth: "42ch", margin: "0 auto 28px",
+            maxWidth: "42ch", marginBottom: 28,
           }}>
             {t("cta.sub")}
           </p>

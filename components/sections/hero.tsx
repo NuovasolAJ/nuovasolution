@@ -72,7 +72,7 @@ function LiveMoment({ t }: { t: (key: string) => string }) {
               fontStyle: "italic",
               fontWeight: 300,
               letterSpacing: "0.010em",
-              paddingLeft: 31,
+              textAlign: "left",
             }}
           >
             &ldquo;{t("hero.chat.msg.1")}
