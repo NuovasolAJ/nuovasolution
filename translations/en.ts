@@ -6,12 +6,12 @@ export const en: Record<string, string> = {
 
   /* Hero */
   "hero.label":               "Built for Real Estate Agencies",
-  "hero.headline.line1":      "Respond in seconds.",
+  "hero.headline.line1":      "Respond in seconds",
   "hero.headline.line2":      "Only talk to buyers and sellers who are ready to move forward and worth your time",
   "hero.pain.line1":          "The first agent to reply wins the client.",
   "hero.pain.line2":          "Make sure it is you.",
-  "hero.sub":                 "Every lead gets a reply. The system filters and shows you which buyers and sellers are actually serious",
-  "hero.cta.note":            "Takes 15 minutes. No setup needed.",
+  "hero.sub":                 "Every lead gets a reply. The system filters and shows you which buyers and sellers are actually serious.",
+  "hero.cta.note":            "It takes 15 minutes. No setup needed.",
   "hero.trust.line1":         "Built for real estate agencies in Spain",
   "hero.trust.line2":         "Works with your existing inbox and lead sources",
   "hero.feature.1.title":     "Respond instantly",
@@ -39,7 +39,7 @@ export const en: Record<string, string> = {
 
   /* Always On */
   "always.label":    "Always Running",
-  "always.headline": "Your agency never stops moving.",
+  "always.headline": "Your agency never stops moving",
   "always.sub":      "Replies instantly, follows up automatically and moves conversations toward real opportunities",
   "always.row1":     "New inquiry comes in",
   "always.row2":     "Reply sent instantly",
@@ -87,7 +87,7 @@ export const en: Record<string, string> = {
 
   /* Trust Strip */
   "strip.label":       "Always On",
-  "strip.headline":    "Built to never miss a serious lead.",
+  "strip.headline":    "Built to never miss a serious lead",
   "strip.sub":         "Every inquiry is captured, understood, prioritized, and followed up automatically. No missed messages. No delays. No manual chaos.",
   "strip.item1.label": "Replies instantly",
   "strip.item1.desc":  "Every lead gets an immediate response, day or night.",
@@ -100,8 +100,8 @@ export const en: Record<string, string> = {
 
   /* Lead Lost */
   "lost.label":           "The Hidden Cost",
-  "lost.heading":         "No response = lost money.",
-  "lost.sub":             "Every minute without a reply is a minute your competitor has to win the client.",
+  "lost.heading":         "No response = lost money",
+  "lost.sub":             "Every minute without a reply is a minute your competitor has to win the client",
   "lost.step1.time":      "0 min",
   "lost.step1.label":     "Message arrives",
   "lost.step1.desc":      "Buyer sends inquiry from your website.",
@@ -119,8 +119,8 @@ export const en: Record<string, string> = {
 
   /* Demo Flow */
   "demo.label":           "Live Demo",
-  "demo.heading":         "See it happen in real time.",
-  "demo.sub":             "Scroll through to watch an inquiry arrive, get replied to, scored, and flagged.",
+  "demo.heading":         "See it happen in real time",
+  "demo.sub":             "Scroll through to watch an inquiry arrive, get replied to, scored, and flagged",
   "demo.scroll.hint":     "↓ Keep scrolling",
   "demo.step1.tab":       "Inquiry",
   "demo.step2.tab":       "Reply",
@@ -139,7 +139,7 @@ export const en: Record<string, string> = {
   "demo.reply.text":      "\"Hi! Yes, it's available. I'll send you options shortly. When would you like to schedule a viewing?\"",
   "demo.reply.status":    "Lead engaged instantly",
   "demo.score.title":     "Lead Score",
-  "demo.score.temp":      "HOT Lead",
+  "demo.score.temp":      "HOT LEAD",
   "demo.alert.title":     "Agent notified instantly via WhatsApp",
   "demo.alert.label":     "NuovaSolution",
   "demo.alert.online":    "online",
@@ -154,8 +154,8 @@ export const en: Record<string, string> = {
 
   /* Chat Demo */
   "chat.label":           "Qualification Flow",
-  "chat.heading":         "From first message to qualified lead.",
-  "chat.sub":             "Step by step, the system understands what the client needs. Natural. Automatic.",
+  "chat.heading":         "From first message to qualified lead",
+  "chat.sub":             "Step by step, the system understands what the client needs. Natural. Automatic",
   "chat.live":            "NuovaSolution",
   "chat.conv.m1":         "Hi, I'm in Malaga and looking for an apartment in August.",
   "chat.conv.m2":         "Nice, August is a great time for Malaga.",
@@ -165,8 +165,8 @@ export const en: Record<string, string> = {
 
   /* Speed Compare */
   "speed.label":          "Why Speed Wins",
-  "speed.heading":        "The fastest agency usually wins the client.",
-  "speed.sub":            "Speed is not a nice-to-have. It's what separates closed deals from lost ones.",
+  "speed.heading":        "The fastest agency usually wins the client",
+  "speed.sub":            "Speed is not a nice-to-have. It's what separates closed deals from lost ones",
   "speed.note":           "Most agencies reply in hours. NuovaSolution replies in under a second.",
   "speed.slow.title":     "Without NuovaSolution",
   "speed.slow.t1":        "0:00",
@@ -194,7 +194,7 @@ export const en: Record<string, string> = {
   "scenarios.headline":   "Every lead handled automatically from first message to a qualified opportunity",
   "scenarios.sub":        "From first message to a qualified buyer or seller. Everything runs in the background",
 
-  "scenarios.s1.title":   "The system replies instantly and collects what matters.",
+  "scenarios.s1.title":   "The system replies instantly and collects what matters",
   "scenarios.s1.text":    "Budget, timing and real intent",
   "scenarios.s1.label.client": "Client",
   "scenarios.s1.loop.c1": "Hi, I'm in Málaga and looking for an apartment in August.",
@@ -202,13 +202,13 @@ export const en: Record<string, string> = {
   "scenarios.s1.loop.c2": "Near the beach.",
   "scenarios.s1.loop.a2": "Nice, good choice. And how long are you planning to stay?",
 
-  "scenarios.s2.title":   "Stop wasting time on irrelevant leads.",
+  "scenarios.s2.title":   "Stop wasting time on irrelevant leads",
   "scenarios.s2.text":    "Only serious buyers and sellers reach you",
   "scenarios.filter.cold": "Cold",
   "scenarios.filter.warm": "Warm",
   "scenarios.filter.hot":  "Hot",
 
-  "scenarios.s3.title":   "You instantly see which leads are worth your time.",
+  "scenarios.s3.title":   "You instantly see which leads are worth your time",
   "scenarios.s3.text":    "Every message is evaluated automatically. A lead can be cold, warm, or hot from the start. If the conversation changes, the priority updates.",
   "scenarios.s3.visual.note": "Priority updates automatically",
   "scenarios.s3.detail":  "Ready to move in August",
@@ -236,14 +236,14 @@ export const en: Record<string, string> = {
   "intel.build.r3":          "Real intent detected",
   "intel.build.text":        "Every message adds missing information and improves the quality of the lead",
   "intel.outcome.title":     "You only see real opportunities",
-  "intel.outcome.text":      "Irrelevant or low quality leads are filtered automatically. High quality leads are prioritized and sent to you instantly",
+  "intel.outcome.text":      "Irrelevant or low quality leads are filtered automatically. High quality leads are prioritized and sent to you instantly.",
   "intel.outcome.crm":       "Every lead is saved and updated in your CRM automatically",
   "intel.outcome.highlight": "Leads above 80 are marked as priority instantly",
 
   /* Final CTA */
   "cta.label":      "NEXT STEP",
-  "cta.heading":    "The first agent to reply wins the client.",
-  "cta.sub":        "Every inquiry is answered, qualified and prioritized automatically. You focus only on the ones that matter.",
+  "cta.heading":    "The first agent to reply wins the client",
+  "cta.sub":        "Every inquiry is answered, qualified and prioritized automatically. You focus only on the ones that matter",
   "cta.primary":    "See how it works",
   "cta.secondary":  "Book your demo",
   "cta.microcopy":  "15 minutes. No commitment",

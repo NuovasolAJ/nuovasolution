@@ -60,10 +60,7 @@ export function FinalCTA() {
           </p>
 
           {/* CTA buttons */}
-          <div style={{
-            display: "flex", flexDirection: "row", flexWrap: "wrap",
-            gap: 12, justifyContent: "center", marginBottom: 18,
-          }}>
+          <div style={{ marginBottom: 18 }}>
             <a
               href={CONTACT}
               target="_blank"
@@ -72,31 +69,6 @@ export function FinalCTA() {
               style={{ fontWeight: 700, fontSize: "0.9375rem", letterSpacing: "0.01em" }}
             >
               {t("cta.primary")}
-            </a>
-            <a
-              href={CONTACT}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex", alignItems: "center", justifyContent: "center",
-                padding: "13px 28px", borderRadius: 9999,
-                background: "transparent",
-                border: `1px solid ${w(0.14)}`,
-                fontSize: "0.9375rem", fontWeight: 500,
-                color: w(0.60), letterSpacing: "-0.01em",
-                textDecoration: "none", whiteSpace: "nowrap",
-                transition: "border-color 0.20s ease, color 0.20s ease",
-              }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = w(0.28);
-                (e.currentTarget as HTMLAnchorElement).style.color = w(0.80);
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = w(0.14);
-                (e.currentTarget as HTMLAnchorElement).style.color = w(0.60);
-              }}
-            >
-              {t("cta.secondary")}
             </a>
           </div>
 

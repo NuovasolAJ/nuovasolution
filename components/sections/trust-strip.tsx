@@ -146,7 +146,7 @@ export function TrustStrip() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          style={{ textAlign: "center", marginBottom: "clamp(40px, 5vw, 60px)" }}
+          style={{ marginBottom: "clamp(40px, 5vw, 60px)" }}
         >
           <p style={{
             fontSize:      10,
@@ -168,7 +168,7 @@ export function TrustStrip() {
               letterSpacing: "-0.020em",
               color:         w(0.90),
               maxWidth:      "24ch",
-              margin:        "0 auto 14px",
+              marginBottom:  14,
             }}
           >
             {t("strip.headline")}
@@ -179,7 +179,6 @@ export function TrustStrip() {
             lineHeight: 1.72,
             color:      w(0.46),
             maxWidth:   "52ch",
-            margin:     "0 auto",
           }}>
             {t("strip.sub")}
           </p>

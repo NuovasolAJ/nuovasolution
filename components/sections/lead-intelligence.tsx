@@ -275,7 +275,7 @@ export function LeadIntelligence() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
-          style={{ marginBottom: "clamp(32px, 4vw, 48px)", textAlign: "center" }}
+          style={{ marginBottom: "clamp(32px, 4vw, 48px)" }}
         >
           <p style={{
             fontSize: 10, fontWeight: 600,
@@ -294,7 +294,7 @@ export function LeadIntelligence() {
           <p style={{
             fontSize: "clamp(0.9375rem, 1.3vw, 1rem)",
             lineHeight: 1.70, color: w(0.40),
-            maxWidth: "46ch", margin: "0 auto",
+            maxWidth: "46ch",
           }}>
             {t("intel.sub")}
           </p>

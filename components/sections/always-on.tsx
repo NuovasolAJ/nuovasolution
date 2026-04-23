@@ -1011,6 +1011,7 @@ export function AlwaysOn() {
 
   return (
     <section
+      id="how-it-works"
       style={{
         position:      "relative",
         background:    "#0C0B09",
