@@ -29,6 +29,7 @@ export function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.60, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="final-cta-inner"
           style={{ maxWidth: 560 }}
         >
 
@@ -51,7 +52,7 @@ export function FinalCTA() {
           </h2>
 
           {/* Supporting text */}
-          <p style={{
+          <p className="final-cta-sub" style={{
             fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)",
             lineHeight: 1.72, color: w(0.44),
             maxWidth: "42ch", marginBottom: 28,

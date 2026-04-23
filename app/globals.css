@@ -142,6 +142,19 @@
     cursor: default;
   }
 
+  /* Final CTA — desktop centering only */
+  @media (min-width: 1024px) {
+    .final-cta-inner {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    .final-cta-sub {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
   /* Section label */
   .section-label {
     color: var(--ns-gold);
