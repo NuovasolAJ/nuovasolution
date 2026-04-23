@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider }   from "@/lib/theme-provider";
@@ -26,12 +27,13 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="antialiased overflow-x-hidden">
-        <ThemeProvider>
-          <LanguageProvider>
-            {children}
-          </LanguageProvider>
-        </ThemeProvider>
-      </body>
+  <ThemeProvider>
+    <LanguageProvider>
+      {children}
+    </LanguageProvider>
+  </ThemeProvider>
+  <Analytics />
+</body>
     </html>
   );
 }
