@@ -61,23 +61,35 @@ export function FinalCTA() {
           {/* CTA buttons */}
           <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: 14, alignItems: "center", justifyContent: "center", marginBottom: 18 }}>
             <a
-              href="https://nuovasolution.com/live-demo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-gold btn-lg"
-              style={{ fontWeight: 700, fontSize: "0.9375rem", letterSpacing: "0.01em" }}
-            >
-              {t("cta.primary")}
-            </a>
-            <a
               href="#"
               data-cal-link="nuovasolution/demo"
               data-cal-config='{"layout":"month_view"}'
               onClick={(e) => e.preventDefault()}
               className="btn btn-gold btn-lg"
-              style={{ fontWeight: 700, fontSize: "0.9375rem", letterSpacing: "0.01em" }}
+              style={{
+                fontWeight: 700,
+                fontSize: "0.9375rem",
+                letterSpacing: "0.01em",
+                background: "linear-gradient(135deg, #C9A96E 0%, #D9BC88 50%, #C9A96E 100%)",
+                color: "#1A1A1A",
+              }}
             >
               {t("cta.start.free")}
+            </a>
+            <a
+              href="https://nuovasolution.com/live-demo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-gold btn-lg"
+              style={{
+                fontWeight: 700,
+                fontSize: "0.9375rem",
+                letterSpacing: "0.01em",
+                background: "linear-gradient(135deg, #C9A96E 0%, #D9BC88 50%, #C9A96E 100%)",
+                color: "#1A1A1A",
+              }}
+            >
+              {t("cta.primary")}
             </a>
           </div>
 
