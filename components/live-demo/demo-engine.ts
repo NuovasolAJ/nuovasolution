@@ -26,7 +26,6 @@ export interface DemoResult {
   language: Language;
   languageLabel: string;
   languageFlag: string;
-  languageConfidence: number;
   leadType: LeadType;
   leadTypeLabel: string;
   extracted: ExtractedData;
@@ -38,10 +37,10 @@ export interface DemoResult {
   alertSnippet?: string;
 }
 
-const SP_KW = ['hola', 'busco', 'buscamos', 'quiero', 'queremos', 'alquiler', 'alquilar', 'habitacion', 'habitaciones', 'piso', 'casa', 'villa', 'precio', 'zona', 'dormitorio', 'euros', 'presupuesto', 'mudarnos', 'interesado', 'gracias', 'buenos', 'tardes', 'noches', 'tengo', 'tenemos', 'comprar', 'compra'];
-const DE_KW = ['guten', 'ich', 'wir', 'mein', 'eine', 'immobilien', 'kaufen', 'mieten', 'zimmer', 'interessiere', 'suche', 'suchen', 'schlafzimmer', 'danke', 'möchte', 'wurde', 'bitte', 'haben', 'sind', 'villa', 'euro'];
+const SP_KW = ['hola', 'busco', 'buscamos', 'quiero', 'queremos', 'alquiler', 'alquilar', 'habitacion', 'habitaciones', 'piso', 'casa', 'villa', 'precio', 'zona', 'dormitorio', 'euros', 'presupuesto', 'mudarnos', 'interesado', 'gracias', 'buenos', 'tardes', 'noches', 'tengo', 'tenemos', 'comprar', 'compra', 'tienen', 'disponible', 'llamar', 'semana'];
+const DE_KW = ['guten', 'ich', 'wir', 'mein', 'eine', 'immobilien', 'kaufen', 'mieten', 'zimmer', 'interessiere', 'suche', 'suchen', 'schlafzimmer', 'danke', 'möchte', 'wurde', 'bitte', 'haben', 'sind', 'villa', 'euro', 'budget', 'liegt', 'gegend', 'objekte', 'meerblick'];
 
-const LOCATIONS = ['marbella', 'málaga', 'malaga', 'nerja', 'fuengirola', 'torremolinos', 'benalmádena', 'benalmadena', 'estepona', 'sotogrande', 'puerto banús', 'puerto banus', 'costa del sol', 'mijas', 'la cala', 'benahavís', 'benahavis', 'alhaurin', 'vélez', 'velez', 'manilva', 'casares', 'ronda', 'frigiliana', 'competa', 'torrox'];
+const LOCATIONS = ['marbella', 'málaga', 'malaga', 'nerja', 'fuengirola', 'torremolinos', 'benalmádena', 'benalmadena', 'estepona', 'sotogrande', 'puerto banús', 'puerto banus', 'costa del sol', 'mijas', 'la cala', 'benahavís', 'benahavis', 'alhaurin', 'vélez', 'velez', 'manilva', 'casares', 'ronda', 'frigiliana', 'competa', 'torrox', 'golden mile', 'nueva andalucia', 'sierra blanca'];
 
 export function analyzeInput(message: string, source: string): DemoResult {
   const text = message.trim();
@@ -51,25 +50,21 @@ export function analyzeInput(message: string, source: string): DemoResult {
   const spCount = SP_KW.filter(w => lower.includes(w)).length;
   const deCount = DE_KW.filter(w => lower.includes(w)).length;
 
-  let language: Language, languageLabel: string, languageFlag: string, languageConfidence: number;
+  let language: Language, languageLabel: string, languageFlag: string;
 
   if (deCount >= 2 && deCount >= spCount) {
     language = 'de'; languageLabel = 'German'; languageFlag = '🇩🇪';
-    languageConfidence = Math.min(97, 68 + deCount * 6);
   } else if (spCount >= 2) {
     language = 'es'; languageLabel = 'Spanish'; languageFlag = '🇪🇸';
-    languageConfidence = Math.min(98, 72 + spCount * 5);
   } else if (spCount === 1 && deCount === 1) {
     language = 'mixed'; languageLabel = 'Mixed'; languageFlag = '🌐';
-    languageConfidence = 71;
   } else {
     language = 'en'; languageLabel = 'English'; languageFlag = '🇬🇧';
-    languageConfidence = 96;
   }
 
   // ── Lead Type ──
-  const sellerKw = ['selling', 'sell my', 'want to sell', 'looking to sell', 'vender', 'vendo', 'quiero vender', 'mi propiedad', 'my property', 'my apartment', 'my villa', 'my house', 'meine wohnung', 'mein haus', 'verkaufen', 'valuation', 'appraisal', 'tasacion', 'my flat'];
-  const rentalKw = ['rent', 'rental', 'renting', 'long-term', 'monthly', 'alquiler', 'alquilar', 'en alquiler', 'mieten', 'miete', '/month', 'per month', 'al mes', 'por mes'];
+  const sellerKw = ['selling', 'sell my', 'want to sell', 'looking to sell', 'vender', 'vendo', 'quiero vender', 'mi propiedad', 'my property', 'my apartment', 'my villa', 'my house', 'meine wohnung', 'mein haus', 'verkaufen', 'valuation', 'appraisal', 'tasacion', 'my flat', 'thinking about selling', 'what would', 'what is it worth', 'realistic price'];
+  const rentalKw = ['rent', 'rental', 'renting', 'long-term', 'monthly', 'alquiler', 'alquilar', 'en alquiler', 'mieten', 'miete', '/month', 'per month', 'al mes', 'por mes', '€1,', '€2,', 'month-to-month'];
 
   const isSeller = sellerKw.some(w => lower.includes(w));
   const isRental = rentalKw.some(w => lower.includes(w));
@@ -88,7 +83,9 @@ export function analyzeInput(message: string, source: string): DemoResult {
 
   // ── Extraction ──
   let budget: string | undefined;
-  const bm = text.match(/[€£$]\s*[\d,\.]+\s*(?:m|M|k|K|million|millón|millon)?|[\d,\.]+\s*(?:million|millón|M)\s*euro(?:s)?|[\d,\.]+\s*k\s*euro(?:s)?|[\d,\.]+[,\.]000\s*euro(?:s)?/i);
+  const bm = text.match(
+    /[€£$]\s*[\d,\.]+\s*(?:m(?:illion)?|k|M|K)?(?:\s*[-–]\s*[€£$]?\s*[\d,\.]+\s*(?:m(?:illion)?|k|M|K)?)?|[\d,\.]+\s*(?:million|millón|M)\s*euro(?:s)?|[\d,\.]+\s*k\s*euro(?:s)?|[\d\.]+[,\.][\d]{3}\s*(?:bis\s+[\d\.]+[,\.][\d]{3}\s*)?euro(?:s)?/i
+  );
   if (bm) budget = bm[0].trim().replace(/\s+/g, ' ');
 
   let location: string | undefined;
@@ -107,23 +104,34 @@ export function analyzeInput(message: string, source: string): DemoResult {
   else if (/studio|estudio/i.test(text)) propertyType = 'Studio';
 
   let bedrooms: string | undefined;
-  const bdr = text.match(/(\d+)\s*(?:\+)?\s*(?:bed(?:room)?s?|habitaci[oó]n(?:es)?|schlafzimmer|zimmer)/i);
+  const bdr = text.match(/(\d)\+?\s*(?:bed(?:room)?s?|habitaci[oó]n(?:es)?|schlafzimmer|zimmer)/i);
   if (bdr) bedrooms = `${bdr[1]}+ bed`;
 
   let timeline: string | undefined;
   if (/this week|esta semana/i.test(text)) timeline = 'This week';
   else if (/next week|próxima semana|proxima semana/i.test(text)) timeline = 'Next week';
   else if (/this month|este mes/i.test(text)) timeline = 'This month';
-  else if (/next month|próximo mes|el mes que viene/i.test(text)) timeline = 'Next month';
-  else if (/july|julio/i.test(text)) timeline = 'July';
-  else if (/august|agosto/i.test(text)) timeline = 'August';
-  else if (/september|septiembre/i.test(text)) timeline = 'September';
-  else if (/october|octubre/i.test(text)) timeline = 'October';
+  else if (/next month|próximo mes|el mes que viene|siguiente mes/i.test(text)) timeline = 'Next month';
+  else if (/jan(?:uary)?|enero/i.test(text)) timeline = 'January';
+  else if (/feb(?:ruary)?|febrero/i.test(text)) timeline = 'February';
+  else if (/mar(?:ch)?|marzo/i.test(text)) timeline = 'March';
+  else if (/apr(?:il)?|abril/i.test(text)) timeline = 'April';
+  else if (/may|mayo/i.test(text)) timeline = 'May';
+  else if (/june?|junio/i.test(text)) timeline = 'June';
+  else if (/july?|julio/i.test(text)) timeline = 'July';
+  else if (/aug(?:ust)?|agosto/i.test(text)) timeline = 'August';
+  else if (/sep(?:tember)?|septiembre/i.test(text)) timeline = 'September';
+  else if (/oct(?:ober)?|octubre/i.test(text)) timeline = 'October';
+  else if (/nov(?:ember)?|noviembre/i.test(text)) timeline = 'November';
+  else if (/dec(?:ember)?|diciembre/i.test(text)) timeline = 'December';
   else if (/asap|urgent|urgente|immediately|inmediatamente/i.test(text)) timeline = 'ASAP';
-  else { const mm = text.match(/in\s+(\d+)\s+(?:months?|semanas?)/i); if (mm) timeline = `${mm[1]} months`; }
+  else {
+    const mm = text.match(/in\s+(\d+)\s+(?:months?|semanas?)/i);
+    if (mm) timeline = `${mm[1]} months`;
+  }
 
-  const viewingRequested = /viewing|visita|visitar|ver pisos?|ver la propiedad|appointment|cita|flying in|coming to spain|coming over|visit/i.test(text);
-  const urgency = /urgent|urgente|asap|immediately|this week|esta semana|as soon as possible/i.test(text);
+  const viewingRequested = /viewing|visita|visitar|ver pisos?|ver la propiedad|appointment|cita|flying in|coming to spain|coming over|visit|viewings|arrange a view/i.test(text);
+  const urgency = /urgent|urgente|asap|immediately|this week|esta semana|as soon as possible|can we speak today|hoy/i.test(text);
 
   const extracted: ExtractedData = { budget, location, propertyType, bedrooms, timeline, viewingRequested, urgency };
 
@@ -170,31 +178,35 @@ export function analyzeInput(message: string, source: string): DemoResult {
 
   if (language === 'es') {
     if (leadType === 'seller') {
-      aiResponse = `Muchas gracias por contactarnos. Me encantaría conocer más sobre su propiedad en ${loc} y darle una valoración actualizada del mercado. ¿Le vendría bien una llamada breve esta semana para comentar los detalles?`;
+      aiResponse = `¡Muchas gracias por contactarnos! Las propiedades en ${loc} tienen buena demanda ahora mismo — es un buen momento para conocer sus opciones. ¿Le vendría bien una llamada breve esta semana? En 30 minutos podría darle una valoración clara del mercado actual.`;
     } else if (leadType === 'rental') {
-      aiResponse = `Hola, gracias por escribir. Tenemos opciones de alquiler en ${loc} que pueden encajar con lo que busca. Le preparo una selección esta misma tarde. ¿Tiene disponibilidad para una llamada rápida para ajustar los detalles?`;
+      aiResponse = `¡Hola! Tenemos pisos en alquiler en ${loc} que podrían encajar muy bien con lo que busca${timeline ? ` — para ${timeline.toLowerCase()} hay disponibilidad` : ''}. ¿Le llamo esta semana para hacer una preselección rápida y comentar los detalles?`;
     } else if (temperature === 'hot') {
-      aiResponse = `Muchas gracias por su consulta. Tenemos propiedades en ${loc} que encajan perfectamente con lo que describe${timeline ? ` y con su disponibilidad para ${timeline.toLowerCase()}` : ''}. Me gustaría coordinar los detalles cuanto antes. ¿Cuándo podría hablar unos minutos?`;
+      aiResponse = `¡Hola! Con ese presupuesto en ${loc} tenemos algunas opciones muy buenas ahora mismo${viewingRequested ? ` — y organizarle las visitas no es ningún problema` : ''}. ¿Cuándo podría hablar 10 minutos para afinar los detalles antes de confirmar?`;
     } else {
-      aiResponse = `Gracias por contactarnos. He anotado sus preferencias en ${loc} y le preparo una selección de propiedades. ¿Le va bien recibirla por email o prefiere que le llamemos?`;
+      aiResponse = `¡Hola, gracias por contactarnos! Tenemos propiedades en ${loc} que podrían interesarle. Le preparo una selección adaptada a lo que busca y se la envío. ¿Prefiere que le llame o le mando la información por este medio?`;
     }
   } else if (language === 'de') {
     if (temperature === 'hot') {
-      aiResponse = `Vielen Dank für Ihre Anfrage. Wir haben mehrere Immobilien in ${loc}, die Ihren Anforderungen sehr gut entsprechen${timeline ? ` und für ${timeline.toLowerCase()} verfügbar sind` : ''}. Wäre ein kurzes Gespräch möglich, um die Details abzustimmen?`;
+      aiResponse = `Guten Tag! Vielen Dank für Ihre Anfrage. In ${loc} haben wir aktuell einige sehr attraktive Objekte, die sehr gut zu Ihrem Budget passen. Wäre ein kurzes Telefonat möglich? Ich würde Ihnen gerne die passendsten Optionen direkt vorstellen${timeline ? ` — ${timeline.toLowerCase()} passt uns gut` : ''}.`;
     } else {
-      aiResponse = `Guten Tag, vielen Dank für Ihre Nachricht. Ich stelle gerne eine Auswahl passender Immobilien in ${loc} zusammen und sende sie Ihnen zu. Wäre ein kurzes Telefonat möglich?`;
+      aiResponse = `Guten Tag, vielen Dank für Ihre Nachricht! In ${loc} können wir Ihnen eine interessante Auswahl zeigen. Ich stelle Ihnen gerne einige passende Objekte zusammen — wäre ein kurzes Gespräch möglich, damit ich Ihre Wünsche besser verstehen kann?`;
     }
   } else {
     if (leadType === 'seller') {
-      aiResponse = `Thank you for reaching out. We'd love to arrange a brief appraisal for your property in ${loc} — it's a strong market and it's worth understanding your options. Could we schedule a quick call this week?`;
+      aiResponse = `Hi, thanks for getting in touch! Properties in ${loc} are in decent demand right now — actually a good time to understand your options. It would only take about 20 minutes to walk you through a proper valuation. Does this week work for a quick call?`;
     } else if (leadType === 'rental') {
-      aiResponse = `Thanks for your message. We have rental options in ${loc} that could work well for what you're describing. I'll put together a curated selection and send it across shortly. Would a quick call help to narrow things down?`;
+      aiResponse = `Hi! We have a good selection of rentals in ${loc}${timeline ? ` with availability from ${timeline.toLowerCase()}` : ''}. Can I ask — are you flexible on the exact neighbourhood, or is there a specific area you had in mind? That'll help me narrow it down quickly.`;
     } else if (temperature === 'hot') {
-      aiResponse = `Thank you for reaching out. Based on your requirements, I'm already pulling together the best options in ${loc}${timeline ? ` with your ${timeline.toLowerCase()} visit in mind` : ''}. I'd love a brief call to align on the details before we confirm the viewings — when works best for you?`;
+      if (viewingRequested) {
+        aiResponse = `Hi! Sounds like you have a very clear picture of what you're after — we have some strong options in ${loc} at that level right now${timeline ? `. With ${timeline.toLowerCase()} in mind` : ''}, I'd love to put together a proper shortlist and plan a viewing day for you. What dates are you looking at?`;
+      } else {
+        aiResponse = `Hi! Based on what you've described, we have a few properties in ${loc} that are genuinely worth a look at that budget. This is a great time to be searching — some interesting stock has come to market recently. Worth a quick call this week to go through the best ones?`;
+      }
     } else if (temperature === 'warm') {
-      aiResponse = `Thanks for your message. We have properties in ${loc} that could match what you're looking for. I'll prepare a tailored selection and send it across. Would email work, or would you prefer a quick call to go through what's available?`;
+      aiResponse = `Hi, thanks for reaching out! We have some good properties in ${loc} that could match what you're describing. I'll put together a curated selection and send it over — give me a couple of hours. If anything catches your eye, we can arrange a viewing easily.`;
     } else {
-      aiResponse = `Thank you for your interest. I've noted your criteria and will keep you updated as relevant properties come to market. Feel free to reach out anytime if you'd like more details on what's currently available.`;
+      aiResponse = `Hi there! We do have some options available — happy to point you in the right direction. Can I ask what's drawing you to the area specifically? That'll help me focus the search on what's most relevant for you.`;
     }
   }
 
@@ -209,48 +221,48 @@ export function analyzeInput(message: string, source: string): DemoResult {
     alertSnippet = parts.join(' · ') || 'High-intent lead detected';
   }
 
-  return { language, languageLabel, languageFlag, languageConfidence, leadType, leadTypeLabel, extracted, score, temperature, factors, crmFields, aiResponse, alertSnippet };
+  return { language, languageLabel, languageFlag, leadType, leadTypeLabel, extracted, score, temperature, factors, crmFields, aiResponse, alertSnippet };
 }
 
 export const EXAMPLE_LEADS: Array<{ label: string; source: string; message: string }> = [
   {
-    label: 'Luxury Villa Buyer',
+    label: 'Villa Buyer · Marbella',
     source: 'WhatsApp',
-    message: "Hi, I'm looking for a luxury villa in Marbella — ideally 4+ bedrooms with a pool. Our budget is around €2.5M. We're flying in from London next month specifically to view properties.",
+    message: "Hi, we're looking for a 4-bed villa in Marbella — ideally with a pool and sea views. Our budget is around €2.5M. We're flying in from London next month specifically to view properties. Can you put together a shortlist?",
   },
   {
-    label: 'German Investor',
+    label: 'German Cash Buyer',
     source: 'Email',
-    message: "Guten Tag, ich interessiere mich für Kapitalanlage-Immobilien in der Gegend von Málaga. Mein Budget liegt bei etwa 500.000 bis 700.000 Euro. Haben Sie derzeit interessante Objekte?",
+    message: "Guten Tag, ich suche eine Immobilie zur Eigennutzung in der Gegend von Málaga oder Marbella. Mein Budget liegt bei 600.000 bis 800.000 Euro, Barzahlung ist möglich. Ich interessiere mich für Villen oder größere Apartments mit Meerblick. Wann wäre ein kurzes Gespräch möglich?",
   },
   {
-    label: 'Spanish Family Rental',
+    label: 'Spanish Rental Family',
     source: 'Idealista',
-    message: "Hola, buscamos un piso en alquiler en Nerja para mudarnos en septiembre. Somos una familia de 4 personas, necesitamos al menos 3 habitaciones. Presupuesto máximo 1.200 euros al mes.",
+    message: "Hola, buscamos piso en alquiler en Nerja para mudarnos en septiembre. Somos una familia de 4 personas, necesitamos 3 habitaciones como mínimo. Presupuesto hasta 1.200 euros al mes. ¿Tienen algo disponible?",
   },
   {
     label: 'Urgent Relocation',
     source: 'WhatsApp',
-    message: "URGENT — we need a long-term rental in Fuengirola starting July 1st. Max €2,000/month, 2+ bedrooms minimum. We're relocating from Amsterdam for work. Can we arrange viewings this week?",
+    message: "URGENT — need a long-term rental in Fuengirola starting July 1st. Maximum €1,800/month, must have 2+ bedrooms. Relocating from Amsterdam for work, company covering first 3 months. Can we arrange viewings this week?",
   },
   {
-    label: 'Seller Lead',
+    label: 'Seller · Sea View Apt',
     source: 'Web Form',
-    message: "Hello, I'm thinking about selling my apartment in Torremolinos. It's a 2-bed with sea views, around 85sqm. Not in a rush but curious about current market prices in the area.",
+    message: "Hello, I'm thinking about selling my apartment in Torremolinos — 2-bed, sea views, around 85sqm. Not in a rush but curious what the market looks like right now. What would a realistic price be?",
+  },
+  {
+    label: 'British Retiree',
+    source: 'Email',
+    message: "Good morning, my wife and I are retiring to the Costa del Sol next year and have been looking at Estepona and Mijas. We'd like something quiet — 2 or 3 bedrooms, a garden or large terrace would be ideal. Budget around €450,000. We'll be visiting in August, is it possible to arrange a few viewings then?",
+  },
+  {
+    label: 'Penthouse · Puerto Banús',
+    source: 'WhatsApp',
+    message: "Hi, looking for a penthouse in Marbella — preferably Golden Mile or Puerto Banús. Budget up to €3M. I'm in the area this week and can arrange viewings. Can we speak today?",
   },
   {
     label: 'Cold Inquiry',
     source: 'Fotocasa',
-    message: "Hello, just browsing your listings. What properties do you currently have available under €200k? Looking for something small.",
-  },
-  {
-    label: 'British Buyer',
-    source: 'WhatsApp',
-    message: "Good morning! We've been looking in Estepona for a while. Budget is €650k, looking for a 3-bed villa or townhouse. We have a viewing trip planned for August — can you suggest some options?",
-  },
-  {
-    label: 'Penthouse Buyer',
-    source: 'Email',
-    message: "Hi, I'm searching for a penthouse in Marbella Golden Mile or Puerto Banús area. Budget up to €3M. I'd like to arrange viewings as soon as possible — this week if at all feasible.",
+    message: "Hello, just browsing your listings. What properties do you have available under €180,000? Looking for something small, no particular area in mind yet.",
   },
 ];
