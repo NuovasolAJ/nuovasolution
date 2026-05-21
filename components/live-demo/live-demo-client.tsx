@@ -4,53 +4,124 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { analyzeInput, EXAMPLE_LEADS, type DemoResult, type Temperature } from './demo-engine';
 
-// ─────────────────────────────────────────────────────────
-//  Constants
-// ─────────────────────────────────────────────────────────
-
 const EASE = [0.22, 1, 0.36, 1] as const;
 const g = (a: number) => `rgba(214,180,122,${a})`;
 const w = (a: number) => `rgba(255,255,255,${a})`;
 
-const SOURCES = ['WhatsApp', 'Email', 'Idealista', 'Fotocasa', 'Web Form'];
+const CHANNELS = [
+  { id: 'WhatsApp',        label: 'WhatsApp',        sub: null },
+  { id: 'Email & Portals', label: 'Email & Portals', sub: 'Idealista · Fotocasa · email' },
+  { id: 'Web Forms',       label: 'Web Forms',       sub: 'Contact & website forms' },
+];
 
-// Phase timings (ms from run click)
-const T_TAGS_START = 1000;
-const T_TAG_INTERVAL = 190;
-const T_SCORE = 2500;
-const T_RESPONSE = 2900;
-const T_DONE = 5500;
+const T_TAGS_START  = 900;
+const T_TAG_INTERVAL = 175;
+const T_SCORE       = 2300;
+const T_RESPONSE    = 2700;
+const T_DONE        = 5200;
 
 type Phase = 0 | 1 | 2 | 3 | 4 | 5;
 
-const TEMP_CFG: Record<Temperature, { color: string; glow: string; label: string }> = {
-  hot:  { color: '#FF4848', glow: 'rgba(255,72,72,0.45)',   label: '🔥 HOT LEAD' },
-  warm: { color: '#F59E0B', glow: 'rgba(245,158,11,0.38)',  label: '⚡ WARM LEAD' },
-  cold: { color: '#60A5FA', glow: 'rgba(96,165,250,0.28)',  label: '❄️ COLD LEAD' },
+const TEMP_CFG: Record<Temperature, {
+  color: string; glow: string;
+  label: string; labelES: string; labelDE: string;
+}> = {
+  hot:  { color: '#FF4848', glow: 'rgba(255,72,72,0.45)',   label: '🔥 HOT LEAD',  labelES: '🔥 LEAD URGENTE', labelDE: '🔥 HEISSER LEAD' },
+  warm: { color: '#F59E0B', glow: 'rgba(245,158,11,0.38)',  label: '⚡ WARM LEAD', labelES: '⚡ LEAD ACTIVO',  labelDE: '⚡ WARMER LEAD' },
+  cold: { color: '#60A5FA', glow: 'rgba(96,165,250,0.28)',  label: '❄️ COLD LEAD', labelES: '❄️ LEAD FRÍO',   labelDE: '❄️ KALTER LEAD' },
 };
 
-// ─────────────────────────────────────────────────────────
-//  Insight tag builder
-// ─────────────────────────────────────────────────────────
+function tempLabel(tc: typeof TEMP_CFG['hot'], lang: string) {
+  if (lang === 'es') return tc.labelES;
+  if (lang === 'de') return tc.labelDE;
+  return tc.label;
+}
+
+function getUI(lang?: string) {
+  if (lang === 'es') return {
+    scanText:      'Leyendo consulta…',
+    insightsLabel: 'Información detectada',
+    scoreLabel:    'Puntuación del lead',
+    responseLabel: 'Respuesta del agente',
+    hotAlert:      'LEAD URGENTE — Agente notificado',
+    tagline:       'Cada consulta. Automática. En segundos.',
+    tryAnother:    'Probar otro lead',
+    readyLabel:    '¿Listo para su agencia?',
+    stopLosing:    'Deje de perder leads.',
+    bookDemo:      'Reservar demo',
+    whatsappUs:    'WhatsApp',
+    analysisLabel: 'Análisis IA',
+    tryExample:    'Pruebe un ejemplo:',
+    channelLabel:  'Canal:',
+    minChars:      'Mín. 10 caracteres',
+    analyzing:     'Analizando…',
+    runAgain:      'Repetir →',
+    analyze:       'Analizar lead →',
+  };
+  if (lang === 'de') return {
+    scanText:      'Anfrage wird analysiert…',
+    insightsLabel: 'Erkannte Details',
+    scoreLabel:    'Lead-Bewertung',
+    responseLabel: 'Agenten-Antwort',
+    hotAlert:      'HEISSER LEAD — Agent benachrichtigt',
+    tagline:       'Jede Anfrage. Automatisch. In Sekunden.',
+    tryAnother:    'Anderen Lead testen',
+    readyLabel:    'Bereit für Ihre Agentur?',
+    stopLosing:    'Hören Sie auf, Leads zu verlieren.',
+    bookDemo:      'Demo buchen',
+    whatsappUs:    'WhatsApp',
+    analysisLabel: 'KI-Analyse',
+    tryExample:    'Beispiel ausprobieren:',
+    channelLabel:  'Kanal:',
+    minChars:      'Mind. 10 Zeichen',
+    analyzing:     'Wird analysiert…',
+    runAgain:      'Wiederholen →',
+    analyze:       'Lead analysieren →',
+  };
+  return {
+    scanText:      'Reading inquiry…',
+    insightsLabel: 'Insights Detected',
+    scoreLabel:    'Lead Score',
+    responseLabel: 'Agent Response',
+    hotAlert:      'HOT LEAD — Agent Alerted',
+    tagline:       'Every inquiry. Automatic. In seconds.',
+    tryAnother:    'Try another lead',
+    readyLabel:    'Ready for your agency?',
+    stopLosing:    'Stop losing leads.',
+    bookDemo:      'Book a Demo',
+    whatsappUs:    'WhatsApp Us',
+    analysisLabel: 'AI Analysis',
+    tryExample:    'Try a real example:',
+    channelLabel:  'Channel:',
+    minChars:      'Min. 10 characters',
+    analyzing:     'Analyzing…',
+    runAgain:      'Run Again →',
+    analyze:       'Analyze Lead →',
+  };
+}
 
 function buildTags(result: DemoResult) {
+  const lang = result.language;
   const tags: { icon: string; label: string }[] = [];
   tags.push({ icon: result.languageFlag, label: result.languageLabel });
+  if (result.extracted.name)     tags.push({ icon: '👤', label: result.extracted.name });
   if (result.extracted.location) tags.push({ icon: '📍', label: result.extracted.location });
-  if (result.extracted.budget) tags.push({ icon: '💰', label: result.extracted.budget });
-  const prop = [result.extracted.bedrooms, result.extracted.propertyType].filter(Boolean).join(' ');
+  if (result.extracted.budget)   tags.push({ icon: '💰', label: result.extracted.budget });
+  const prop = [result.extracted.bedrooms, result.extracted.propertyType].filter(Boolean).join(' · ');
   if (prop) tags.push({ icon: '🏠', label: prop });
   if (result.extracted.timeline) tags.push({ icon: '⏳', label: result.extracted.timeline });
-  if (result.extracted.viewingRequested) tags.push({ icon: '👁', label: 'Viewing requested' });
-  if (result.extracted.urgency) tags.push({ icon: '⚡', label: 'Urgent' });
+  if (result.extracted.viewingRequested) tags.push({
+    icon: '👁',
+    label: lang === 'es' ? 'Visita solicitada' : lang === 'de' ? 'Besichtigung gewünscht' : 'Viewing requested',
+  });
+  if (result.extracted.urgency) tags.push({
+    icon: '⚡',
+    label: lang === 'es' ? 'Urgente' : lang === 'de' ? 'Dringend' : 'Urgent',
+  });
   return tags;
 }
 
-// ─────────────────────────────────────────────────────────
-//  Score ring
-// ─────────────────────────────────────────────────────────
-
-function ScoreRing({ score, temperature }: { score: number; temperature: Temperature }) {
+function ScoreRing({ score, temperature, lang }: { score: number; temperature: Temperature; lang: string }) {
   const [display, setDisplay] = useState(0);
   const tc = TEMP_CFG[temperature];
   const R = 52;
@@ -62,15 +133,12 @@ function ScoreRing({ score, temperature }: { score: number; temperature: Tempera
     let raf: number;
     const tick = () => {
       const t = Math.min((Date.now() - start) / dur, 1);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setDisplay(Math.round(eased * score));
+      setDisplay(Math.round((1 - Math.pow(1 - t, 3)) * score));
       if (t < 1) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [score]);
-
-  const dashOffset = circ * (1 - display / 100);
 
   return (
     <motion.div
@@ -81,21 +149,15 @@ function ScoreRing({ score, temperature }: { score: number; temperature: Tempera
     >
       <div className="relative w-44 h-44">
         <svg className="w-full h-full -rotate-90" viewBox="0 0 128 128">
-          {/* Track */}
           <circle cx="64" cy="64" r={R} fill="none" stroke={w(0.06)} strokeWidth="7" />
-          {/* Progress */}
           <circle
-            cx="64" cy="64" r={R}
-            fill="none"
-            stroke={tc.color}
-            strokeWidth="7"
-            strokeLinecap="round"
+            cx="64" cy="64" r={R} fill="none"
+            stroke={tc.color} strokeWidth="7" strokeLinecap="round"
             strokeDasharray={circ}
-            strokeDashoffset={dashOffset}
+            strokeDashoffset={circ * (1 - display / 100)}
             style={{ filter: `drop-shadow(0 0 8px ${tc.color})` }}
           />
         </svg>
-        {/* Center */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span
             className="font-display text-6xl font-bold leading-none"
@@ -106,7 +168,6 @@ function ScoreRing({ score, temperature }: { score: number; temperature: Tempera
           <span className="text-xs mt-1.5" style={{ color: w(0.3) }}>/100</span>
         </div>
       </div>
-
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
@@ -119,17 +180,13 @@ function ScoreRing({ score, temperature }: { score: number; temperature: Tempera
           letterSpacing: '0.10em',
         }}
       >
-        {tc.label}
+        {tempLabel(tc, lang)}
       </motion.div>
     </motion.div>
   );
 }
 
-// ─────────────────────────────────────────────────────────
-//  AI response bubble
-// ─────────────────────────────────────────────────────────
-
-function AIBubble({ response }: { response: string }) {
+function AIBubble({ response, source }: { response: string; source: string }) {
   const [typed, setTyped] = useState('');
   const [done, setDone] = useState(false);
 
@@ -137,6 +194,7 @@ function AIBubble({ response }: { response: string }) {
     setTyped('');
     setDone(false);
     let i = 0;
+    const speed = source === 'WhatsApp' ? 11 : 15;
     const id = setInterval(() => {
       i++;
       if (i <= response.length) {
@@ -145,9 +203,11 @@ function AIBubble({ response }: { response: string }) {
         setDone(true);
         clearInterval(id);
       }
-    }, 14);
+    }, speed);
     return () => clearInterval(id);
-  }, [response]);
+  }, [response, source]);
+
+  const isEmail = !/whatsapp/i.test(source);
 
   return (
     <motion.div
@@ -155,25 +215,22 @@ function AIBubble({ response }: { response: string }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.65, ease: EASE }}
     >
-      {/* Sender row */}
       <div className="flex items-center gap-3 mb-3">
         <div
-          className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
-          style={{ background: g(0.14), color: g(1), border: `1px solid ${g(0.22)}` }}
+          className="w-9 h-9 rounded-full flex items-center justify-center text-sm shrink-0"
+          style={{ background: g(0.13), color: g(1), border: `1px solid ${g(0.2)}` }}
         >
-          NS
+          {isEmail ? '✉' : '💬'}
         </div>
         <div>
-          <p className="text-xs font-medium" style={{ color: w(0.7) }}>NuovaSolution Agent</p>
-          <p className="text-xs" style={{ color: done ? '#25D366' : w(0.3) }}>
+          <p className="text-xs font-semibold" style={{ color: w(0.72) }}>Laura — NuovaSolution</p>
+          <p className="text-xs" style={{ color: done ? '#25D366' : w(0.28) }}>
             {done ? '✓ Sent' : 'Typing…'}
           </p>
         </div>
       </div>
-
-      {/* Message bubble */}
       <div
-        className="rounded-2xl rounded-tl-none p-5 text-sm leading-relaxed"
+        className="rounded-2xl rounded-tl-none p-5 text-sm leading-relaxed whitespace-pre-line"
         style={{
           background: 'rgba(255,255,255,0.05)',
           border: `1px solid ${w(0.08)}`,
@@ -195,22 +252,19 @@ function AIBubble({ response }: { response: string }) {
   );
 }
 
-// ─────────────────────────────────────────────────────────
-//  Main component
-// ─────────────────────────────────────────────────────────
-
 export default function LiveDemoClient() {
-  const [message, setMessage] = useState('');
-  const [source, setSource] = useState('WhatsApp');
-  const [phase, setPhase] = useState<Phase>(0);
-  const [result, setResult] = useState<DemoResult | null>(null);
+  const [message, setMessage]       = useState('');
+  const [source, setSource]         = useState('WhatsApp');
+  const [phase, setPhase]           = useState<Phase>(0);
+  const [result, setResult]         = useState<DemoResult | null>(null);
   const [visibleTags, setVisibleTags] = useState(0);
-  const resultsRef = useRef<HTMLDivElement>(null);
-  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const resultsRef  = useRef<HTMLDivElement>(null);
+  const timersRef   = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const isRunning = phase > 0 && phase < 5;
-  const canRun = message.trim().length >= 10 && !isRunning;
-  const tags = result ? buildTags(result) : [];
+  const canRun    = message.trim().length >= 10 && !isRunning;
+  const tags      = result ? buildTags(result) : [];
+  const ui        = getUI(result?.language);
 
   const clearTimers = useCallback(() => {
     timersRef.current.forEach(clearTimeout);
@@ -218,8 +272,7 @@ export default function LiveDemoClient() {
   }, []);
 
   const schedule = useCallback((fn: () => void, ms: number) => {
-    const t = setTimeout(fn, ms);
-    timersRef.current.push(t);
+    timersRef.current.push(setTimeout(fn, ms));
   }, []);
 
   const reset = useCallback(() => {
@@ -232,26 +285,16 @@ export default function LiveDemoClient() {
   const runDemo = useCallback(() => {
     if (!canRun) return;
     clearTimers();
-
-    const computed = analyzeInput(message, source);
+    const computed     = analyzeInput(message, source);
     const computedTags = buildTags(computed);
-
     setResult(computed);
     setVisibleTags(0);
     setPhase(1);
-
-    schedule(() => {
-      resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 80);
-
-    // Tags
+    schedule(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
     schedule(() => {
       setPhase(2);
-      computedTags.forEach((_, i) => {
-        schedule(() => setVisibleTags(i + 1), i * T_TAG_INTERVAL);
-      });
+      computedTags.forEach((_, i) => schedule(() => setVisibleTags(i + 1), i * T_TAG_INTERVAL));
     }, T_TAGS_START);
-
     schedule(() => setPhase(3), T_SCORE);
     schedule(() => setPhase(4), T_RESPONSE);
     schedule(() => setPhase(5), T_DONE);
@@ -265,16 +308,18 @@ export default function LiveDemoClient() {
 
   useEffect(() => () => clearTimers(), [clearTimers]);
 
+  // UI strings before result available
+  const staticUI = getUI();
+
   return (
-    <div style={{ background: 'linear-gradient(160deg, #0A1118 0%, #060A10 55%, #0A1118 100%)', minHeight: '100vh' }}>
+    <div style={{ background: 'linear-gradient(160deg, #0C1015 0%, #070A0E 55%, #0C1015 100%)', minHeight: '100vh' }}>
 
       {/* ── Hero ── */}
       <section className="relative pt-28 pb-10 px-6 text-center overflow-hidden">
         <div
           className="aurora-blob w-[700px] h-[440px] -top-44 left-1/2 -translate-x-1/2"
-          style={{ background: 'radial-gradient(ellipse, rgba(214,180,122,0.055) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(ellipse, rgba(214,180,122,0.06) 0%, transparent 70%)' }}
         />
-
         <motion.p
           className="section-label mb-4"
           initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
@@ -282,7 +327,6 @@ export default function LiveDemoClient() {
         >
           Live Demo
         </motion.p>
-
         <motion.h1
           className="font-display font-bold leading-tight mb-4 max-w-2xl mx-auto"
           style={{ color: w(0.96), fontSize: 'clamp(2rem, 5vw, 3.25rem)' }}
@@ -290,30 +334,29 @@ export default function LiveDemoClient() {
           transition={{ duration: 0.65, delay: 0.07, ease: EASE }}
         >
           Watch the AI{' '}
-          <span style={{ color: g(1) }}>understand</span>{' '}
+          <span style={{ color: g(1) }}>qualify</span>{' '}
           your lead.
         </motion.h1>
-
         <motion.p
           className="text-base max-w-md mx-auto"
-          style={{ color: w(0.48) }}
+          style={{ color: w(0.44) }}
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.15, ease: EASE }}
         >
-          Paste any real estate inquiry — in any language. See how NuovaSolution qualifies, scores, and responds in seconds.
+          Paste any real estate inquiry — in any language. See how NuovaSolution qualifies, scores, and responds the way a great agent would.
         </motion.p>
       </section>
 
       {/* ── Input ── */}
       <section className="px-6 pb-8 max-w-2xl mx-auto">
 
-        {/* Example presets */}
+        {/* Example chips */}
         <motion.div
           className="mb-5"
           initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2, ease: EASE }}
         >
-          <p className="text-xs mb-3" style={{ color: w(0.28) }}>Try an example:</p>
+          <p className="text-xs mb-3" style={{ color: w(0.24) }}>{staticUI.tryExample}</p>
           <div className="flex flex-wrap gap-2">
             {EXAMPLE_LEADS.map(ex => (
               <button
@@ -322,8 +365,8 @@ export default function LiveDemoClient() {
                 className="text-xs px-3 py-1.5 rounded-full border transition-all duration-150 hover:-translate-y-0.5"
                 style={{
                   background: message === ex.message ? g(0.1) : 'rgba(255,255,255,0.03)',
-                  border: message === ex.message ? `1px solid ${g(0.3)}` : `1px solid ${w(0.07)}`,
-                  color: message === ex.message ? g(1) : w(0.45),
+                  border:     message === ex.message ? `1px solid ${g(0.3)}` : `1px solid ${w(0.07)}`,
+                  color:      message === ex.message ? g(1) : w(0.4),
                 }}
               >
                 {ex.label}
@@ -332,30 +375,41 @@ export default function LiveDemoClient() {
           </div>
         </motion.div>
 
-        {/* Input card */}
+        {/* Card */}
         <motion.div
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25, ease: EASE }}
           className="rounded-2xl p-5"
           style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${w(0.07)}`, backdropFilter: 'blur(16px)' }}
         >
-          {/* Source tabs */}
-          <div className="flex items-center gap-2 mb-4 flex-wrap">
-            <span className="text-xs" style={{ color: w(0.35) }}>Channel:</span>
-            {SOURCES.map(s => (
-              <button
-                key={s}
-                onClick={() => setSource(s)}
-                className="text-xs px-2.5 py-1 rounded-full border transition-all duration-150"
-                style={{
-                  background: source === s ? g(0.1) : 'transparent',
-                  border: source === s ? `1px solid ${g(0.3)}` : `1px solid ${w(0.06)}`,
-                  color: source === s ? g(1) : w(0.38),
-                }}
-              >
-                {s}
-              </button>
-            ))}
+          {/* Channel selector */}
+          <div className="flex items-start gap-3 mb-4 flex-wrap">
+            <span className="text-xs mt-2.5 shrink-0" style={{ color: w(0.3) }}>{staticUI.channelLabel}</span>
+            <div className="flex flex-wrap gap-2">
+              {CHANNELS.map(ch => {
+                const active = source === ch.id;
+                return (
+                  <button
+                    key={ch.id}
+                    onClick={() => setSource(ch.id)}
+                    className="text-left rounded-xl border transition-all duration-150 px-3.5 py-2"
+                    style={{
+                      background: active ? g(0.08) : 'transparent',
+                      border:     active ? `1px solid ${g(0.28)}` : `1px solid ${w(0.06)}`,
+                    }}
+                  >
+                    <span className="text-xs font-medium block" style={{ color: active ? g(1) : w(0.4) }}>
+                      {ch.label}
+                    </span>
+                    {ch.sub && (
+                      <span className="text-xs block leading-tight mt-0.5" style={{ color: active ? g(0.48) : w(0.2) }}>
+                        {ch.sub}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* Textarea */}
@@ -373,12 +427,12 @@ export default function LiveDemoClient() {
               lineHeight: '1.65',
             }}
             onFocus={e => { e.currentTarget.style.borderColor = g(0.35); e.currentTarget.style.boxShadow = `0 0 0 3px ${g(0.05)}`; }}
-            onBlur={e => { e.currentTarget.style.borderColor = w(0.06); e.currentTarget.style.boxShadow = 'none'; }}
+            onBlur={e =>  { e.currentTarget.style.borderColor = w(0.06);  e.currentTarget.style.boxShadow = 'none'; }}
           />
 
           <div className="flex items-center justify-between mt-4">
             <span className="text-xs" style={{ color: w(0.2) }}>
-              {message.trim().length === 0 ? 'Minimum 10 characters' : `${message.trim().length} chars`}
+              {message.trim().length === 0 ? staticUI.minChars : `${message.trim().length} chars`}
             </span>
             <button
               onClick={runDemo}
@@ -394,9 +448,9 @@ export default function LiveDemoClient() {
                     className="w-3.5 h-3.5 rounded-full border-2 border-transparent"
                     style={{ borderTopColor: '#1A1A1A' }}
                   />
-                  Analyzing…
+                  {staticUI.analyzing}
                 </>
-              ) : phase === 5 ? 'Run Again →' : 'Analyze Lead →'}
+              ) : phase === 5 ? staticUI.runAgain : staticUI.analyze}
             </button>
           </div>
         </motion.div>
@@ -415,12 +469,12 @@ export default function LiveDemoClient() {
           >
             {/* Divider */}
             <div className="flex items-center gap-4 mb-8">
-              <div className="flex-1 h-px" style={{ background: w(0.07) }} />
-              <span className="text-xs tracking-widest uppercase" style={{ color: w(0.22) }}>AI Analysis</span>
-              <div className="flex-1 h-px" style={{ background: w(0.07) }} />
+              <div className="flex-1 h-px" style={{ background: w(0.06) }} />
+              <span className="text-xs tracking-widest uppercase" style={{ color: g(0.45) }}>{ui.analysisLabel}</span>
+              <div className="flex-1 h-px" style={{ background: w(0.06) }} />
             </div>
 
-            {/* Scanning state */}
+            {/* Scanning */}
             <AnimatePresence>
               {phase === 1 && (
                 <motion.div
@@ -439,20 +493,20 @@ export default function LiveDemoClient() {
                       />
                     ))}
                   </div>
-                  <p className="text-sm" style={{ color: w(0.38) }}>Reading inquiry…</p>
+                  <p className="text-sm" style={{ color: w(0.32) }}>{getUI().scanText}</p>
                 </motion.div>
               )}
             </AnimatePresence>
 
-            {/* ── Insight tags ── */}
+            {/* Insight tags */}
             {phase >= 2 && (
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 transition={{ duration: 0.4, ease: EASE }}
                 className="mb-10"
               >
-                <p className="text-xs tracking-widest uppercase mb-4" style={{ color: w(0.25) }}>
-                  Insights Detected
+                <p className="text-xs tracking-widest uppercase mb-4" style={{ color: g(0.45) }}>
+                  {ui.insightsLabel}
                 </p>
                 <div className="flex flex-wrap gap-2.5">
                   {tags.slice(0, visibleTags).map((tag, i) => (
@@ -463,8 +517,8 @@ export default function LiveDemoClient() {
                       transition={{ duration: 0.38, ease: EASE }}
                       className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium"
                       style={{
-                        background: 'rgba(255,255,255,0.06)',
-                        border: `1px solid ${w(0.1)}`,
+                        background: 'rgba(255,255,255,0.055)',
+                        border: `1px solid ${w(0.09)}`,
                         color: w(0.88),
                       }}
                     >
@@ -476,27 +530,27 @@ export default function LiveDemoClient() {
               </motion.div>
             )}
 
-            {/* ── Score ── */}
+            {/* Score */}
             {phase >= 3 && (
               <div className="mb-10 flex flex-col items-center">
-                <p className="text-xs tracking-widest uppercase mb-6" style={{ color: w(0.25) }}>
-                  Lead Score
+                <p className="text-xs tracking-widest uppercase mb-6" style={{ color: g(0.45) }}>
+                  {ui.scoreLabel}
                 </p>
-                <ScoreRing score={result.score} temperature={result.temperature} />
+                <ScoreRing score={result.score} temperature={result.temperature} lang={result.language} />
               </div>
             )}
 
-            {/* ── AI Response ── */}
+            {/* AI Response */}
             {phase >= 4 && (
               <div className="mb-10">
-                <p className="text-xs tracking-widest uppercase mb-4" style={{ color: w(0.25) }}>
-                  AI Response
+                <p className="text-xs tracking-widest uppercase mb-4" style={{ color: g(0.45) }}>
+                  {ui.responseLabel}
                 </p>
-                <AIBubble response={result.aiResponse} />
+                <AIBubble response={result.aiResponse} source={source} />
               </div>
             )}
 
-            {/* ── Hot lead alert ── */}
+            {/* Hot alert */}
             {phase >= 5 && result.temperature === 'hot' && result.alertSnippet && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.97, y: 10 }}
@@ -519,9 +573,9 @@ export default function LiveDemoClient() {
                   </motion.span>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-bold mb-0.5" style={{ color: '#FF5555' }}>
-                      HOT LEAD — Agent Alerted
+                      {ui.hotAlert}
                     </p>
-                    <p className="text-sm truncate" style={{ color: w(0.55) }}>
+                    <p className="text-sm truncate" style={{ color: w(0.48) }}>
                       {result.alertSnippet}
                     </p>
                   </div>
@@ -535,45 +589,44 @@ export default function LiveDemoClient() {
               </motion.div>
             )}
 
-            {/* ── Done ── */}
+            {/* Done */}
             {phase === 5 && (
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
               >
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-12 pt-2">
-                  <p className="text-sm text-center sm:text-left" style={{ color: w(0.32) }}>
-                    Every inquiry. Automatic. In seconds.
+                  <p className="text-sm text-center sm:text-left" style={{ color: w(0.28) }}>
+                    {ui.tagline}
                   </p>
                   <button onClick={reset} className="btn btn-ghost btn-sm shrink-0">
-                    Try another lead
+                    {ui.tryAnother}
                   </button>
                 </div>
 
-                {/* Final CTA */}
                 <div
                   className="rounded-2xl p-8 md:p-10 text-center"
                   style={{ background: 'rgba(255,255,255,0.025)', border: `1px solid ${g(0.12)}` }}
                 >
-                  <p className="section-label mb-3">Ready for your agency?</p>
+                  <p className="section-label mb-3">{ui.readyLabel}</p>
                   <h2
                     className="font-display font-bold mb-4"
                     style={{ color: w(0.96), fontSize: 'clamp(1.7rem, 4vw, 2.6rem)' }}
                   >
-                    Stop losing leads.
+                    {ui.stopLosing}
                   </h2>
-                  <p className="text-sm mb-8 max-w-sm mx-auto" style={{ color: w(0.42) }}>
+                  <p className="text-sm mb-8 max-w-sm mx-auto" style={{ color: w(0.38) }}>
                     Book a demo and we'll show you the full system running live — tailored to your agency on the Costa del Sol.
                   </p>
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="/#contact" className="btn btn-gold btn-md">Book a Demo</a>
+                    <a href="/#contact" className="btn btn-gold btn-md">{ui.bookDemo}</a>
                     <a
                       href="https://wa.me/34600000000"
                       className="btn btn-ghost btn-md"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      WhatsApp Us
+                      {ui.whatsappUs}
                     </a>
                   </div>
                 </div>
