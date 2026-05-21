@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "n8n-mcp": {
+      "command": "npx",
+      "args": ["n8n-mcp"],
+      "env": {
+        "MCP_MODE": "stdio",
+        "LOG_LEVEL": "error",
+        "DISABLE_CONSOLE_OUTPUT": "true",
+        "N8N_API_URL": "https://antoniojesus.app.n8n.cloud",
+        "N8N_API_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjkyZDI1My04M2RkLTQ2MTctOGFjYi05NjI0ZjRmZDNiOTUiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwianRpIjoiMzFmYjVhMzgtY2Q4My00YWZkLTkxOTctNmUzZjVlOWJjNmZiIiwiaWF0IjoxNzc2ODU4NDQ2fQ.h3HqaPUn03VYrSjOdELbJkfXQG3n7L7K07iGk7f7fP8"
+      }
+    }
+  }
+}
