@@ -24,6 +24,7 @@ export interface DemoResult {
   languageFlag: string;
   leadType: LeadType;
   leadTypeLabel: string;
+  leadClassLabel: string;
   extracted: ExtractedData;
   score: number;
   temperature: Temperature;
@@ -90,7 +91,6 @@ export function analyzeInput(message: string, source: string): DemoResult {
       'based', 'living', 'moving', 'hoping', 'buscamos', 'somos', 'buscando', 'mirando',
       'interesados', 'tenemos', 'queremos', 'necesitamos', 'suchen', 'wir',
     ];
-    // Require the first character to genuinely be uppercase (not just matched by /i flag)
     if (/^[A-Z]/.test(candidate) && !skip.includes(candidate.toLowerCase())) {
       name = candidate;
     }
@@ -150,7 +150,7 @@ export function analyzeInput(message: string, source: string): DemoResult {
     if (mm) timeline = `${mm[1]} months`;
   }
 
-  const viewingRequested = /\b(?:view(?:ing)?s?|visit|visita|visitar|ver pisos?|ver la propiedad|besichtigung|appointment|cita|flying in|coming to spain|view tomorrow|view on|puedo ver|arrange.*view|come.*view|show.*around)\b/i.test(text);
+  const viewingRequested = /\b(?:view(?:ing)?s?|visit|visita|visitar|ver pisos?|ver la propiedad|besichtigung|appointment|cita|flying in|coming to spain|view tomorrow|view on|puedo ver|podríamos ver|podemos ver|venir a ver|venga a ver|arrange.*view|come.*view|show.*around)\b/i.test(text);
   const urgency = /urgent|urgente|asap|immediately|this week|esta semana|as soon as possible|today|hoy|tomorrow|mañana|sofort|friday|viernes/i.test(text);
 
   const extracted: ExtractedData = { name, budget, location, propertyType, bedrooms, timeline, viewingRequested, urgency };
@@ -175,15 +175,28 @@ export function analyzeInput(message: string, source: string): DemoResult {
   score = Math.min(100, Math.max(8, score));
   const temperature: Temperature = score >= 75 ? 'hot' : score >= 45 ? 'warm' : 'cold';
 
+  // Lead classification label (for email view badge + CRM card)
+  const leadClassLabel = isSeller
+    ? (language === 'es' ? 'Valoración de venta' : 'Seller valuation')
+    : isRental && viewingRequested
+      ? (language === 'es' ? 'Alquiler · visita solicitada' : 'Rental · viewing requested')
+      : isRental
+        ? (language === 'es' ? 'Alquiler de larga duración' : 'Long-term rental')
+        : isInvestor
+          ? (language === 'es' ? 'Comprador inversor' : 'Investment buyer')
+          : viewingRequested
+            ? (language === 'es' ? 'Solicitud de visita' : 'Viewing request')
+            : (language === 'es' ? 'Comprador potencial' : 'Buyer lead');
+
   // AI Response — no em dashes, natural agent voice, asks the one most useful next question
   const loc = location ?? (language === 'es' ? 'la zona' : language === 'de' ? 'der Gegend' : 'the area');
   const isEmailSource = source !== 'WhatsApp';
-  const hi      = name ? `Hi ${name},`          : 'Hi,';
-  const hola    = name ? `Hola ${name},`        : 'Hola,';
-  const hallo   = name ? `Hallo ${name},`       : 'Hallo,';
-  const offEN   = isEmailSource ? '\n\nBest,\nLaura' : '';
-  const offES   = isEmailSource ? '\n\nSaludos,\nLaura' : '';
-  const offDE   = isEmailSource ? '\n\nBeste Grüße,\nLaura' : '';
+  const hi      = name ? `Hi ${name},`    : 'Hi,';
+  const hola    = name ? `Hola ${name},`  : 'Hola,';
+  const hallo   = name ? `Hallo ${name},` : 'Hallo,';
+  const offEN   = isEmailSource ? '\n\nBest regards,\nLaura\nNuovaSolution' : '';
+  const offES   = isEmailSource ? '\n\nSaludos,\nLaura\nNuovaSolution' : '';
+  const offDE   = isEmailSource ? '\n\nBeste Grüße,\nLaura\nNuovaSolution' : '';
 
   let aiResponse: string;
 
@@ -260,47 +273,125 @@ export function analyzeInput(message: string, source: string): DemoResult {
     alertSnippet = parts.join(' · ') || 'High-intent lead detected';
   }
 
-  return { language, languageLabel, languageFlag, leadType, leadTypeLabel, extracted, score, temperature, factors, aiResponse, alertSnippet };
+  return { language, languageLabel, languageFlag, leadType, leadTypeLabel, leadClassLabel, extracted, score, temperature, factors, aiResponse, alertSnippet };
 }
 
-export const EXAMPLE_LEADS: Array<{ label: string; source: string; message: string }> = [
+export function getRecommendedAction(
+  result: DemoResult,
+  lang: 'en' | 'es'
+): { title: string; body: string; urgency: 'immediate' | 'soon' | 'low' } {
+  const { temperature, leadType, extracted } = result;
+  const { budget, timeline, viewingRequested } = extracted;
+
+  if (lang === 'es') {
+    if (temperature === 'hot' && viewingRequested) {
+      return { title: 'Lead prioritario', body: 'Solicitó visita y confirmó presupuesto. Llame en los próximos 15 minutos y proponga dos horarios concretos.', urgency: 'immediate' };
+    }
+    if (temperature === 'hot') {
+      return { title: 'Alta intención detectada', body: 'Presupuesto y ubicación confirmados. Llame hoy y ofrezca organizar una visita.', urgency: 'immediate' };
+    }
+    if (leadType === 'seller') {
+      return { title: 'Oportunidad de captación', body: 'El cliente considera vender. Organice una llamada de valoración en las próximas 24 horas.', urgency: 'soon' };
+    }
+    if (!budget) {
+      return { title: 'Lead activo, falta presupuesto', body: 'Pregunte por el rango de presupuesto antes de enviar listados. El seguimiento continúa automáticamente.', urgency: 'soon' };
+    }
+    if (!timeline) {
+      return { title: 'Lead activo, timing por confirmar', body: 'Confirme cuándo quiere hacer el movimiento antes de priorizar. El sistema hace seguimiento automáticamente.', urgency: 'soon' };
+    }
+    return { title: 'Lead frío en seguimiento', body: 'Señal de intención baja. La secuencia automática está activa. Revíselo si responde.', urgency: 'low' };
+  }
+
+  // English
+  if (temperature === 'hot' && viewingRequested) {
+    return { title: 'Priority lead', body: 'Client requested a viewing and confirmed budget. Call within 15 minutes and propose two specific viewing slots.', urgency: 'immediate' };
+  }
+  if (temperature === 'hot') {
+    return { title: 'High intent detected', body: 'Budget and location confirmed. Reach out today and offer to arrange a viewing.', urgency: 'immediate' };
+  }
+  if (leadType === 'seller') {
+    return { title: 'Listing opportunity', body: 'Client is considering selling. Arrange a valuation call within 24 hours.', urgency: 'soon' };
+  }
+  if (!budget) {
+    return { title: 'Active lead, budget missing', body: 'Ask for a budget range before sending listings. Automated follow-up is running.', urgency: 'soon' };
+  }
+  if (!timeline) {
+    return { title: 'Active lead, timing unclear', body: 'Confirm when they are looking to move before prioritising. The system is following up automatically.', urgency: 'soon' };
+  }
+  return { title: 'Cold lead in follow-up', body: 'Low intent signal. Automated follow-up sequence is active. Review if they respond.', urgency: 'low' };
+}
+
+export function generateFollowUp(followUpMsg: string, original: DemoResult): string {
+  const lower = followUpMsg.toLowerCase();
+  const loc = original.extracted.location ?? 'the area';
+  const { language } = original;
+
+  if (/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec|enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)\w*\b|in \d+ months?|\bnow\b|\basap\b/i.test(lower)) {
+    if (language === 'es') return `Perfecto. ¿Cuántas personas se mudarán? Así le busco las mejores opciones.`;
+    if (language === 'de') return `Gut. Für wie viele Personen suchen Sie? So finde ich die passendsten Objekte.`;
+    return `Perfect. How many people will be moving in? That helps me find exactly the right fit.`;
+  }
+  if (/beach|playa|coast|sea view|meerblick|front|central/i.test(lower)) {
+    if (language === 'es') return `Entendido. ¿Primera línea o a unos minutos a pie? La disponibilidad varía bastante entre las dos opciones.`;
+    if (language === 'de') return `Verstanden. Direkt am Strand oder Gehweg entfernt? Die Verfügbarkeit ist recht unterschiedlich.`;
+    return `Got it. Frontline or a short walk from the beach? Availability is quite different between the two.`;
+  }
+  if (/[€£$\d,]|budget|presupuesto/i.test(lower)) {
+    if (language === 'es') return `Perfecto, con ese rango tenemos buenas opciones en ${loc}. ¿Cuándo podría hablar 10 minutos? Le preparo una selección hoy.`;
+    if (language === 'de') return `Gut, in diesem Preisrahmen haben wir passende Objekte in ${loc}. Wann hätten Sie 10 Minuten Zeit für ein kurzes Gespräch?`;
+    return `Good, that range gives us some strong options in ${loc}. When can you spare 10 minutes for a quick call? I will have a shortlist ready.`;
+  }
+  if (language === 'es') return `Entendido. ¿Cuándo podría hablar 10 minutos? Le cuento exactamente lo que tenemos disponible ahora.`;
+  if (language === 'de') return `Verstanden. Wann hätten Sie kurz Zeit? Ich erkläre Ihnen genau, was wir gerade haben.`;
+  return `Got it. When is a good moment for a quick 10-minute call? I can walk you through exactly what we have available right now.`;
+}
+
+export const EXAMPLE_LEADS: Array<{ label: string; labelES: string; source: string; message: string }> = [
   {
     label: 'Is it still available?',
+    labelES: '¿Sigue disponible?',
     source: 'WhatsApp',
     message: "Hi, I saw the 3-bed apartment in Marbella on Idealista. Is it still available? We are very interested and could come to view it quite soon. Our budget is around €480,000.",
   },
   {
     label: 'Can we view tomorrow?',
+    labelES: '¿Podemos visitar mañana?',
     source: 'WhatsApp',
     message: "Hello, I'm looking for a 2-bedroom apartment in Estepona. Budget between €300,000 and €380,000. We are in the area until Friday. Is it possible to arrange viewings tomorrow or Thursday?",
   },
   {
     label: 'Long-term rental · Marbella',
+    labelES: 'Alquiler larga duración · Marbella',
     source: 'Email & Portals',
     message: "Hola, buscamos alquiler de larga duración en Marbella o Estepona. Somos una pareja con dos hijos pequeños, necesitamos 3 habitaciones. Presupuesto hasta 2.200 euros al mes. ¿Cuándo podríamos ver algo disponible?",
   },
   {
     label: 'Relocating from Germany',
+    labelES: 'Mudanza desde Alemania',
     source: 'Email & Portals',
     message: "Guten Tag, wir ziehen im Herbst nach Málaga um und suchen eine Wohnung oder Villa zur Miete oder zum Kauf. Unser Budget liegt zwischen 450.000 und 600.000 Euro. Wir haben zwei Kinder und einen kleinen Hund. Können Sie uns passende Optionen zeigen?",
   },
   {
     label: 'Villa in Benahavís · €1.8M',
+    labelES: 'Villa en Benahavís · €1.8M',
     source: 'Web Forms',
     message: "Hi, we are interested in villas in the Benahavís or Nueva Andalucía area. 4 bedrooms, private pool, good privacy essential. Budget up to €1.8M. We are planning a trip from London in September specifically to view properties. Can you put together a shortlist?",
   },
   {
     label: 'Thinking of selling',
+    labelES: 'Pensando en vender',
     source: 'Web Forms',
     message: "Hello, I'm considering selling my apartment in Torremolinos. It is a 2-bedroom with sea views, about 85sqm on the 4th floor. Not in a rush but I'm curious what the market looks like. What would be a realistic asking price?",
   },
   {
     label: 'Need apartment by October',
+    labelES: 'Piso antes de octubre',
     source: 'Email & Portals',
     message: "Hola, me llamo Carmen y necesito encontrar un piso antes de octubre. Busco 2 habitaciones en Fuengirola o Torremolinos. Presupuesto hasta 230.000 euros. ¿Tienen algo disponible que se ajuste?",
   },
   {
     label: 'Investor · 2 to 3 units',
+    labelES: 'Inversor · 2 a 3 inmuebles',
     source: 'Email & Portals',
     message: "Hello, I'm looking to acquire 2 or 3 rental units on the Costa del Sol, ideally apartments in high-demand tourist areas. Total budget around €1.2M to €1.5M. Could we set up a call to discuss what is available and projected rental yields?",
   },
