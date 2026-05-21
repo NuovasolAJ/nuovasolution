@@ -246,6 +246,7 @@ export const en: Record<string, string> = {
   "cta.sub":        "Every inquiry is answered, qualified and prioritized automatically. You focus only on the ones that matter",
   "cta.primary":    "See how it works",
   "cta.secondary":  "Book your demo",
+  "cta.start.free": "Start for free",
   "cta.microcopy":  "15 minutes. No commitment",
   "cta.compat":     "Works with your existing inbox, portals and lead sources",
   "cta.compat2":    "No setup needed",

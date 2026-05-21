@@ -437,9 +437,10 @@ export function Hero() {
                 }}
               >
                 <motion.a
-                  href="https://cal.com/nuovasolution/demo"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#"
+                  data-cal-link="nuovasolution/demo"
+                  data-cal-config='{"layout":"month_view"}'
+                  onClick={(e) => e.preventDefault()}
                   className="btn btn-gold btn-lg"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.18, ease: "easeOut" }}
@@ -455,7 +456,9 @@ export function Hero() {
                 </motion.a>
 
                 <a
-                  href="#how-it-works"
+                  href="https://nuovasolution.com/live-demo"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
                     fontSize: "0.9rem",
                     fontWeight: 500,

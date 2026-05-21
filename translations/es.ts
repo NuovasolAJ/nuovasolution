@@ -250,6 +250,7 @@ export const es: Record<string, string> = {
   "cta.sub":        "Cada consulta se responde, cualifica y prioriza automáticamente. Tú solo te centras en las que importan",
   "cta.primary":    "Ver cómo funciona",
   "cta.secondary":  "Reservar demo",
+  "cta.start.free": "Empezar gratis",
   "cta.microcopy":  "15 minutos. Sin compromiso",
   "cta.compat":     "Funciona con tu bandeja de entrada, portales y fuentes de contactos actuales",
   "cta.compat2":    "Sin configuración necesaria",

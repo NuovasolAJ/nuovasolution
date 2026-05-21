@@ -10,8 +10,6 @@ const w = (a: number) => `rgba(255,255,255,${a})`;
 export function FinalCTA() {
   const { t } = useTranslation();
 
-  const CONTACT = "https://cal.com/nuovasolution/demo";
-
   return (
     <section
       id="contact"
@@ -61,15 +59,32 @@ export function FinalCTA() {
           </p>
 
           {/* CTA buttons */}
-          <div style={{ marginBottom: 18 }}>
+          <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: 14, alignItems: "center", justifyContent: "center", marginBottom: 18 }}>
             <a
-              href={CONTACT}
+              href="https://nuovasolution.com/live-demo"
               target="_blank"
               rel="noopener noreferrer"
+              className="btn btn-lg"
+              style={{
+                fontWeight: 600,
+                fontSize: "0.9375rem",
+                letterSpacing: "0.01em",
+                background: "rgba(255,255,255,0.07)",
+                border: "1px solid rgba(255,255,255,0.14)",
+                color: "rgba(255,255,255,0.82)",
+              }}
+            >
+              {t("cta.primary")}
+            </a>
+            <a
+              href="#"
+              data-cal-link="nuovasolution/demo"
+              data-cal-config='{"layout":"month_view"}'
+              onClick={(e) => e.preventDefault()}
               className="btn btn-gold btn-lg"
               style={{ fontWeight: 700, fontSize: "0.9375rem", letterSpacing: "0.01em" }}
             >
-              {t("cta.primary")}
+              {t("cta.start.free")}
             </a>
           </div>
 

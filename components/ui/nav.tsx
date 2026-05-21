@@ -97,9 +97,10 @@ export function Nav() {
             <LangToggle onHero={true} />
 
             <a
-              href="https://cal.com/nuovasolution/demo"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#"
+              data-cal-link="nuovasolution/demo"
+              data-cal-config='{"layout":"month_view"}'
+              onClick={(e) => e.preventDefault()}
               className="btn btn-gold btn-sm nav-cta-btn"
               style={{ fontWeight: 700, fontSize: 13, letterSpacing: "0.01em" }}
             >
