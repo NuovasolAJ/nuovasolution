@@ -64,15 +64,8 @@ export function FinalCTA() {
               href="https://nuovasolution.com/live-demo"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-lg"
-              style={{
-                fontWeight: 600,
-                fontSize: "0.9375rem",
-                letterSpacing: "0.01em",
-                background: "rgba(255,255,255,0.07)",
-                border: "1px solid rgba(255,255,255,0.14)",
-                color: "rgba(255,255,255,0.82)",
-              }}
+              className="btn btn-gold btn-lg"
+              style={{ fontWeight: 700, fontSize: "0.9375rem", letterSpacing: "0.01em" }}
             >
               {t("cta.primary")}
             </a>

@@ -11,9 +11,10 @@ export const metadata: Metadata = {
     "Instant replies. Qualified clients. Real opportunities. AI lead capture and qualification for real estate agencies in Spain.",
   icons: {
     icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/favicon.png", type: "image/png" },
     ],
-    shortcut: "/favicon.png",
+    shortcut: "/favicon.svg",
     apple: "/favicon.png",
   },
   openGraph: {

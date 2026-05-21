@@ -75,7 +75,7 @@ export function Nav() {
         >
 
           {/* ── Logo ── */}
-          <a href="#" aria-label="NuovaSolution Home" className="flex items-center" style={{ flexShrink: 1, minWidth: 0 }}>
+          <a href="/" aria-label="NuovaSolution Home" className="flex items-center" style={{ flexShrink: 1, minWidth: 0 }}>
             <Image
               src="/images/logo-tight.png"
               alt="NuovaSolution"
