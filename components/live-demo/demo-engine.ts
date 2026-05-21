@@ -346,6 +346,98 @@ export function generateFollowUp(followUpMsg: string, original: DemoResult): str
   return `Got it. When is a good moment for a quick 10-minute call? I can walk you through exactly what we have available right now.`;
 }
 
+// Merges a follow-up message into an existing result, recalculating score with combined signals
+export function mergeFollowUp(original: DemoResult, followUpMsg: string): DemoResult {
+  const text  = followUpMsg.trim();
+  const lower = text.toLowerCase();
+
+  const newViewing   = /\b(?:view(?:ing)?s?|visit|visita|visitar|ver pisos?|ver la propiedad|besichtigung|tomorrow|mañana|this week|esta semana|come and see|show.*around|arrange.*view|available.*see)\b/i.test(text);
+  const newUrgency   = /urgent|urgente|asap|immediately|this week|esta semana|today|hoy|tomorrow|mañana|already here|already in|flying in|arriving|we are in|we're in|sofort/i.test(text);
+  const newCashBuyer = /\bcash\b|efectivo|no mortgage|sin hipoteca|cash buyer/i.test(text);
+  const newInvestor  = /invest|units|yield|portfolio|buy-to-let|rental income|projected|acquisitions?/i.test(text);
+  const newMultiUnit = /\b[2-9]\s+(?:units?|properties|apartments?|pisos?|flats?)\b/i.test(text);
+
+  let newBudget: string | undefined;
+  const bm = text.match(/[€£$]\s*[\d,\.]+\s*(?:m(?:illion)?|k|M|K)?(?:\s*(?:[-–]|\band\b|\bto\b|\bbis\b|\ba\b)\s*[€£$]?\s*[\d,\.]+\s*(?:m(?:illion)?|k|M|K)?)?/i);
+  if (bm) newBudget = bm[0].trim().replace(/\s+/g, ' ');
+
+  let newTimeline: string | undefined;
+  if      (/this week|esta semana/i.test(text))                   newTimeline = 'This week';
+  else if (/next week|próxima semana/i.test(text))                newTimeline = 'Next week';
+  else if (/this month|este mes/i.test(text))                     newTimeline = 'This month';
+  else if (/next month|próximo mes/i.test(text))                  newTimeline = 'Next month';
+  else if (/jan(?:uary)?|enero/i.test(text))                      newTimeline = 'January';
+  else if (/feb(?:ruary)?|febrero/i.test(text))                   newTimeline = 'February';
+  else if (/mar(?:ch)?|marzo/i.test(text))                        newTimeline = 'March';
+  else if (/apr(?:il)?|abril/i.test(text))                        newTimeline = 'April';
+  else if (/\bmay\b|mayo/i.test(text))                            newTimeline = 'May';
+  else if (/june?|junio/i.test(text))                             newTimeline = 'June';
+  else if (/july?|julio/i.test(text))                             newTimeline = 'July';
+  else if (/aug(?:ust)?|agosto/i.test(text))                      newTimeline = 'August';
+  else if (/sep(?:tember)?|septiembre/i.test(text))               newTimeline = 'September';
+  else if (/oct(?:ober)?|octubre/i.test(text))                    newTimeline = 'October';
+  else if (/nov(?:ember)?|noviembre/i.test(text))                 newTimeline = 'November';
+  else if (/dec(?:ember)?|diciembre/i.test(text))                 newTimeline = 'December';
+  else if (/asap|urgent|urgente|immediately/i.test(text))         newTimeline = 'ASAP';
+  else { const mm = text.match(/in\s+(\d+)\s+months?/i); if (mm) newTimeline = `${mm[1]} months`; }
+
+  const merged: ExtractedData = {
+    ...original.extracted,
+    budget:           original.extracted.budget           || newBudget,
+    timeline:         original.extracted.timeline         || newTimeline,
+    viewingRequested: original.extracted.viewingRequested || newViewing,
+    urgency:          original.extracted.urgency          || newUrgency,
+  };
+
+  const isSeller      = original.leadType === 'seller';
+  const isInvestorNow = newInvestor || original.factors.some(f => f.label === 'Investment intent');
+
+  let score = 18;
+  const factors: QualificationFactor[] = [];
+  if (merged.budget)           { score += 26; factors.push({ label: 'Budget confirmed',             positive: true }); }
+  else                         {              factors.push({ label: 'No budget specified',           positive: false }); }
+  if (merged.location)         { score += 16; factors.push({ label: `Location: ${merged.location}`, positive: true }); }
+  else                         {              factors.push({ label: 'Location not stated',           positive: false }); }
+  if (merged.timeline)         { score += 20; factors.push({ label: `Timeline: ${merged.timeline}`, positive: true }); }
+  else                         {              factors.push({ label: 'Timeline unclear',              positive: false }); }
+  if (merged.viewingRequested) { score += 18; factors.push({ label: 'Viewing interest confirmed',   positive: true }); }
+  if (merged.bedrooms)         { score +=  6; factors.push({ label: merged.bedrooms,                positive: true }); }
+  if (merged.propertyType)     { score +=  6; factors.push({ label: merged.propertyType + ' specified', positive: true }); }
+  if (merged.urgency)          { score +=  8; factors.push({ label: 'High urgency signal',          positive: true }); }
+  if (isInvestorNow)           { score += 10; factors.push({ label: 'Investment intent',            positive: true }); }
+  if (newCashBuyer)            { score += 12; factors.push({ label: 'Cash buyer',                   positive: true }); }
+  if (newMultiUnit)            { score +=  8; factors.push({ label: 'Multiple units',               positive: true }); }
+  if (isSeller)                { score = Math.max(score, 42); factors.push({ label: 'Listing opportunity', positive: true }); }
+
+  score = Math.min(100, Math.max(8, score));
+  const temperature: Temperature = score >= 75 ? 'hot' : score >= 45 ? 'warm' : 'cold';
+
+  let alertSnippet: string | undefined;
+  if (temperature === 'hot') {
+    const parts: string[] = [];
+    if (merged.budget)           parts.push(merged.budget);
+    if (merged.location)         parts.push(merged.location);
+    if (merged.viewingRequested) parts.push('Viewing requested');
+    if (merged.timeline)         parts.push(merged.timeline);
+    alertSnippet = parts.join(' · ') || 'High-intent lead detected';
+  }
+
+  const isRentalNow = original.leadType === 'rental';
+  const leadClassLabel = isSeller
+    ? (original.language === 'es' ? 'Valoración de venta'         : 'Seller valuation')
+    : isRentalNow && merged.viewingRequested
+      ? (original.language === 'es' ? 'Alquiler · visita solicitada' : 'Rental · viewing requested')
+      : isRentalNow
+        ? (original.language === 'es' ? 'Alquiler de larga duración'   : 'Long-term rental')
+        : isInvestorNow
+          ? (original.language === 'es' ? 'Comprador inversor'           : 'Investment buyer')
+          : merged.viewingRequested
+            ? (original.language === 'es' ? 'Solicitud de visita'           : 'Viewing request')
+            : (original.language === 'es' ? 'Comprador potencial'           : 'Buyer lead');
+
+  return { ...original, extracted: merged, score, temperature, factors, alertSnippet, leadClassLabel };
+}
+
 export const EXAMPLE_LEADS: Array<{ label: string; labelES: string; source: string; message: string }> = [
   {
     label: 'Is it still available?',
