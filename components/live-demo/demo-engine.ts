@@ -34,7 +34,7 @@ export interface DemoResult {
 }
 
 const SP_KW = ['hola', 'busco', 'buscamos', 'quiero', 'queremos', 'alquiler', 'alquilar', 'habitacion', 'habitaciones', 'piso', 'casa', 'villa', 'precio', 'zona', 'dormitorio', 'euros', 'presupuesto', 'mudarnos', 'interesado', 'gracias', 'buenos', 'tardes', 'noches', 'tengo', 'tenemos', 'comprar', 'compra', 'tienen', 'disponible', 'llamar', 'semana', 'necesito', 'necesitamos', 'nombre', 'llamo', 'soy'];
-const DE_KW = ['guten', 'ich', 'wir', 'mein', 'eine', 'immobilien', 'kaufen', 'mieten', 'zimmer', 'interessiere', 'suche', 'suchen', 'schlafzimmer', 'danke', 'möchte', 'wurde', 'bitte', 'haben', 'sind', 'villa', 'euro', 'budget', 'liegt', 'gegend', 'objekte', 'meerblick', 'wohnung', 'betrag', 'preisrahmen', 'umziehen', 'herbst', 'heiße'];
+const DE_KW = ['guten', 'ich', 'wir', 'mein', 'eine', 'immobilien', 'kaufen', 'mieten', 'zimmer', 'interessiere', 'suche', 'suchen', 'schlafzimmer', 'danke', 'möchte', 'wurde', 'bitte', 'liegt', 'gegend', 'objekte', 'meerblick', 'wohnung', 'betrag', 'preisrahmen', 'umziehen', 'herbst', 'heiße'];
 
 const LOCATIONS = ['marbella', 'málaga', 'malaga', 'nerja', 'fuengirola', 'torremolinos', 'benalmádena', 'benalmadena', 'estepona', 'sotogrande', 'puerto banús', 'puerto banus', 'costa del sol', 'mijas', 'la cala', 'benahavís', 'benahavis', 'nueva andalucia', 'nueva andalucía', 'alhaurin', 'vélez', 'velez', 'manilva', 'casares', 'ronda', 'frigiliana', 'competa', 'torrox', 'golden mile', 'sierra blanca'];
 
@@ -112,8 +112,8 @@ export function analyzeInput(message: string, source: string): DemoResult {
       'based', 'living', 'moving', 'hoping', 'buscamos', 'somos', 'buscando', 'mirando',
       'interesados', 'tenemos', 'queremos', 'necesitamos', 'suchen', 'wir',
     ];
-    if (/^[A-Z]/.test(candidate) && !skip.includes(candidate.toLowerCase())) {
-      name = candidate;
+    if (!skip.includes(candidate.toLowerCase())) {
+      name = candidate.charAt(0).toUpperCase() + candidate.slice(1);
     }
   }
 
@@ -343,6 +343,15 @@ export function generateFollowUp(followUpMsg: string, original: DemoResult): str
   const loc = original.extracted.location ?? 'the area';
   const { language } = original;
 
+  // Name introduction — respond personally
+  const nameIntro = followUpMsg.match(/(?:my name is|i'm|i am|name's|me llamo|ich bin|ich heiße)\s+([A-Za-z][a-záéíóúüñ]{1,})/i);
+  if (nameIntro) {
+    const greetName = nameIntro[1].charAt(0).toUpperCase() + nameIntro[1].slice(1);
+    if (language === 'es') return `Un placer, ${greetName}. ¿Cuándo podría hablar 10 minutos? Le cuento exactamente lo que tenemos disponible ahora.`;
+    if (language === 'de') return `Freut mich, ${greetName}. Wann hätten Sie kurz Zeit für ein Gespräch? Ich zeige Ihnen genau, was wir aktuell haben.`;
+    return `Great to meet you, ${greetName}. When's a good time for a quick 10-minute call? I can walk you through everything we have available right now.`;
+  }
+
   if (/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec|enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)\w*\b|in \d+ months?|\bnow\b|\basap\b/i.test(lower)) {
     if (language === 'es') return `Perfecto. ¿Cuántas personas se mudarán? Así le busco las mejores opciones.`;
     if (language === 'de') return `Gut. Für wie viele Personen suchen Sie? So finde ich die passendsten Objekte.`;
@@ -376,6 +385,20 @@ export function mergeFollowUp(original: DemoResult, followUpMsg: string): DemoRe
 
   const newBudget = extractBudget(text);
 
+  // Name extraction — same logic as analyzeInput
+  let newName: string | undefined;
+  const followUpNamePat =
+    text.match(/(?:my name is|i'm|i am|name's|me llamo|ich bin|ich heiße)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
+    text.match(/^(?:hi|hola|hello)[,!]?\s+(?:i'm\s+)?([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
+    text.match(/,\s*([A-Za-z][a-záéíóúüñ]{2,})\s+(?:here|speaking)\b/i);
+  if (followUpNamePat) {
+    const candidate = followUpNamePat[1];
+    const skip = ['looking', 'searching', 'interested', 'buying', 'renting', 'selling', 'planning', 'based', 'living', 'moving', 'hoping', 'buscamos', 'somos', 'buscando', 'mirando', 'interesados', 'tenemos', 'queremos', 'necesitamos', 'suchen', 'wir'];
+    if (!skip.includes(candidate.toLowerCase())) {
+      newName = candidate.charAt(0).toUpperCase() + candidate.slice(1);
+    }
+  }
+
   let newTimeline: string | undefined;
   if      (/this week|esta semana/i.test(text))                   newTimeline = 'This week';
   else if (/next week|próxima semana/i.test(text))                newTimeline = 'Next week';
@@ -398,6 +421,7 @@ export function mergeFollowUp(original: DemoResult, followUpMsg: string): DemoRe
 
   const merged: ExtractedData = {
     ...original.extracted,
+    name:             original.extracted.name             || newName,
     budget:           original.extracted.budget           || newBudget,
     timeline:         original.extracted.timeline         || newTimeline,
     viewingRequested: original.extracted.viewingRequested || newViewing,

@@ -73,7 +73,7 @@ function getUI(lang: string) {
     readyLabel:       '¿Listo para su agencia?',
     stopLosing:       'Deje de perder leads',
     stopLosingBody:   'Reserve una demo y le mostramos el sistema completo en vivo, adaptado a su agencia en la Costa del Sol.',
-    bookDemo:         'Reservar demo',
+    bookDemo:         'Empezar gratis',
     whatsappUs:       'WhatsApp',
     analysisLabel:    'Análisis IA',
     reading:          'Leyendo consulta...',
@@ -153,7 +153,7 @@ function getUI(lang: string) {
     readyLabel:       'Ready for your agency?',
     stopLosing:       'Stop losing leads',
     stopLosingBody:   'Book a demo and we will show you the full system running live, tailored to your agency on the Costa del Sol.',
-    bookDemo:         'Book a Demo',
+    bookDemo:         'Start for free',
     whatsappUs:       'WhatsApp Us',
     analysisLabel:    'AI Analysis',
     reading:          'Reading inquiry...',
@@ -304,7 +304,7 @@ function InsightsGrid({ rows, visibleCount }: { rows: { label: string; value: st
           initial={{ opacity: 0, x: -6 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.28, ease: EASE }}
-          className="flex items-center justify-between px-4 py-2.5"
+          className="flex items-start justify-between gap-2 px-4 py-2.5"
           style={{
             borderBottom: i < visibleCount - 1 && i < rows.length - 1
               ? `1px solid ${w(0.04)}`
@@ -312,8 +312,8 @@ function InsightsGrid({ rows, visibleCount }: { rows: { label: string; value: st
             background: i % 2 === 0 ? 'rgba(255,255,255,0.016)' : 'transparent',
           }}
         >
-          <span className="text-xs tracking-wide" style={{ color: w(0.44) }}>{row.label}</span>
-          <span className="text-xs font-semibold" style={{ color: w(0.9) }}>{row.value}</span>
+          <span className="text-xs tracking-wide shrink-0" style={{ color: w(0.44) }}>{row.label}</span>
+          <span className="text-xs font-semibold text-right break-words min-w-0" style={{ color: w(0.9) }}>{row.value}</span>
         </motion.div>
       ))}
     </div>
@@ -367,10 +367,10 @@ function CrmUpdateCard({
       </div>
       <div className="px-4 py-3 space-y-2">
         {rows.map((row, i) => (
-          <div key={i} className="flex items-center justify-between">
-            <span className="text-xs" style={{ color: w(0.44) }}>{row.label}</span>
+          <div key={i} className="flex items-start justify-between gap-2">
+            <span className="text-xs shrink-0" style={{ color: w(0.44) }}>{row.label}</span>
             <span
-              className="text-xs font-semibold"
+              className="text-xs font-semibold text-right break-words min-w-0"
               style={{ color: row.label === ui.fieldPriority ? tc.color : w(0.88) }}
             >
               {row.value}
@@ -558,7 +558,7 @@ function WebFormInput({
 
       <div className="px-5 py-5 space-y-4">
         {/* Name + Email row */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <p className="mb-1.5" style={labelStyle}>{ui.nameLabel}</p>
             <input
@@ -588,7 +588,7 @@ function WebFormInput({
         </div>
 
         {/* Budget + Location row */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <p className="mb-1.5" style={labelStyle}>{ui.budgetLabel}</p>
             <input
@@ -634,7 +634,7 @@ function WebFormInput({
 
         {/* Submit */}
         <button
-          onClick={onSubmit}
+          onClick={() => onSubmit()}
           disabled={!canSubmit}
           className="w-full btn btn-gold btn-sm"
           style={{ opacity: canSubmit ? 1 : 0.32, cursor: canSubmit ? 'pointer' : 'not-allowed' }}
@@ -671,25 +671,26 @@ function EmailComposeInput({
     >
       {/* Portal selector */}
       <div
-        className="flex items-center gap-3 px-4 py-2.5"
+        className="flex items-start gap-2 px-4 py-2.5 flex-wrap"
         style={{ borderBottom: fieldBorderStyle, background: 'rgba(255,255,255,0.015)' }}
       >
-        <span className="text-xs shrink-0" style={{ color: w(0.42) }}>{ui.viaLabel}</span>
-        <div className="flex gap-1.5">
+        <span className="text-xs shrink-0 mt-1.5" style={{ color: w(0.42) }}>{ui.viaLabel}</span>
+        <div className="flex flex-wrap gap-1.5 flex-1 min-w-0">
           {PORTALS.map(p => (
             <button
               key={p}
               onClick={() => onPortalChange(p)}
               className="text-xs px-2.5 py-1 rounded-md transition-all duration-150"
               style={{
-                background: portal === p ? g(0.1)              : 'rgba(255,255,255,0.03)',
+                background: portal === p ? g(0.1)                : 'rgba(255,255,255,0.03)',
                 border:     portal === p ? `1px solid ${g(0.22)}` : `1px solid ${w(0.05)}`,
-                color:      portal === p ? g(0.9)              : w(0.35),
+                color:      portal === p ? g(0.9)                : w(0.35),
               }}
             >
               {p}
             </button>
           ))}
+          <span className="text-xs self-center" style={{ color: w(0.22) }}>etc.</span>
         </div>
       </div>
 
@@ -744,10 +745,9 @@ function EmailComposeInput({
           {message.trim().length === 0 ? ui.minChars : `${message.trim().length} chars`}
         </span>
         <button
-          onClick={onRun}
+          onClick={() => onRun()}
           disabled={!canRun}
           className="btn btn-gold btn-sm"
-          onKeyDown={e => { if (e.key === 'Enter' && canRun) onRun(); }}
           style={{ opacity: canRun ? 1 : 0.32, cursor: canRun ? 'pointer' : 'not-allowed' }}
         >
           {isRunning ? ui.analyzing : ui.sendEmail}
@@ -781,7 +781,7 @@ function WhatsAppView({
   const showInput = phase === 5 && followUpPhase === 0;
 
   return (
-    <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(37,211,102,0.14)' }}>
+    <div className="rounded-2xl overflow-hidden w-full" style={{ border: '1px solid rgba(37,211,102,0.14)' }}>
       {/* Header */}
       <div
         className="flex items-center gap-3 px-4 py-3"
@@ -808,7 +808,7 @@ function WhatsAppView({
 
       {/* Chat area */}
       <div
-        className="p-4 space-y-3 min-h-[160px]"
+        className="p-3 sm:p-4 space-y-3 min-h-[160px] overflow-x-hidden"
         style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.14) 0%, rgba(0,0,0,0.05) 100%)' }}
       >
         {/* Client message */}
@@ -819,7 +819,7 @@ function WhatsAppView({
           className="flex justify-end"
         >
           <div
-            className="max-w-[88%] rounded-2xl rounded-tr-sm px-4 py-3 text-sm leading-relaxed"
+            className="max-w-[85%] rounded-2xl rounded-tr-sm px-3 sm:px-4 py-3 text-sm leading-relaxed break-words"
             style={{
               background: 'rgba(37,211,102,0.09)',
               border:     '1px solid rgba(37,211,102,0.16)',
@@ -860,7 +860,7 @@ function WhatsAppView({
             className="flex justify-start"
           >
             <div
-              className="max-w-[88%] rounded-2xl rounded-tl-sm px-4 py-3 text-sm leading-relaxed"
+              className="max-w-[85%] rounded-2xl rounded-tl-sm px-3 sm:px-4 py-3 text-sm leading-relaxed break-words"
               style={{ background: 'rgba(255,255,255,0.065)', border: `1px solid ${w(0.08)}`, color: w(0.9) }}
             >
               <Typewriter text={result.aiResponse} speed={11} onDone={onTypingDone} />
@@ -879,7 +879,7 @@ function WhatsAppView({
             className="flex justify-end"
           >
             <div
-              className="max-w-[88%] rounded-2xl rounded-tr-sm px-4 py-3 text-sm leading-relaxed"
+              className="max-w-[85%] rounded-2xl rounded-tr-sm px-3 sm:px-4 py-3 text-sm leading-relaxed break-words"
               style={{
                 background: 'rgba(37,211,102,0.09)',
                 border:     '1px solid rgba(37,211,102,0.16)',
@@ -918,7 +918,7 @@ function WhatsAppView({
             className="flex justify-start"
           >
             <div
-              className="max-w-[88%] rounded-2xl rounded-tl-sm px-4 py-3 text-sm leading-relaxed"
+              className="max-w-[85%] rounded-2xl rounded-tl-sm px-3 sm:px-4 py-3 text-sm leading-relaxed break-words"
               style={{ background: 'rgba(255,255,255,0.065)', border: `1px solid ${w(0.08)}`, color: w(0.9) }}
             >
               <Typewriter text={followUpResp} speed={11} />
@@ -936,7 +936,7 @@ function WhatsAppView({
             exit={{ opacity: 0 }} transition={{ duration: 0.32, ease: EASE }}
             style={{ borderTop: `1px solid ${w(0.06)}` }}
           >
-            <div className="px-4 pt-3 pb-2 flex flex-wrap gap-1.5">
+            <div className="px-3 sm:px-4 pt-3 pb-2 flex flex-wrap gap-1.5">
               {examples.map(ex => (
                 <button
                   key={ex}
@@ -952,7 +952,7 @@ function WhatsAppView({
                 </button>
               ))}
             </div>
-            <div className="flex items-center gap-2 px-4 pb-3">
+            <div className="flex items-center gap-2 px-3 sm:px-4 pb-3">
               <input
                 type="text"
                 value={followUpMsg}
@@ -1076,8 +1076,8 @@ function EmailView({
           </div>
         </div>
 
-        <div className="px-5 py-4">
-          <p className="text-sm leading-relaxed" style={{ color: w(0.65) }}>{message}</p>
+        <div className="px-4 sm:px-5 py-4">
+          <p className="text-sm leading-relaxed break-words" style={{ color: w(0.65) }}>{message}</p>
         </div>
       </div>
 
@@ -1128,8 +1128,8 @@ function EmailView({
               <p className="text-xs" style={{ color: w(0.24) }}>{ui.replyFrom}</p>
             </div>
           </div>
-          <div className="px-5 py-4">
-            <p className="text-sm leading-relaxed" style={{ color: w(0.88) }}>
+          <div className="px-4 sm:px-5 py-4">
+            <p className="text-sm leading-relaxed break-words" style={{ color: w(0.88) }}>
               <Typewriter text={result.aiResponse} speed={14} onDone={onTypingDone} />
             </p>
           </div>
@@ -1186,12 +1186,12 @@ function WebFormView({
           </div>
         </div>
 
-        <div className="px-5 py-4 space-y-3">
+        <div className="px-4 sm:px-5 py-4 space-y-3">
           {formFields.map((f, i) => (
             <div key={i}>
               <p className="text-xs mb-1" style={{ color: w(0.25) }}>{f.label}</p>
               <div
-                className="px-3 py-2 rounded-lg text-sm leading-relaxed"
+                className="px-3 py-2 rounded-lg text-sm leading-relaxed break-words"
                 style={{
                   background: 'rgba(255,255,255,0.028)',
                   border:     `1px solid ${w(0.05)}`,
@@ -1251,8 +1251,8 @@ function WebFormView({
               Laura — NuovaSolution · {ui.formReply}
             </p>
           </div>
-          <div className="px-5 py-4">
-            <p className="text-sm leading-relaxed" style={{ color: w(0.88) }}>
+          <div className="px-4 sm:px-5 py-4">
+            <p className="text-sm leading-relaxed break-words" style={{ color: w(0.88) }}>
               <Typewriter text={result.aiResponse} speed={13} onDone={onTypingDone} />
             </p>
           </div>
@@ -1492,7 +1492,7 @@ export default function LiveDemoClient() {
       </section>
 
       {/* 2-column workspace — always visible on desktop */}
-      <section className="px-4 sm:px-6 pb-24 max-w-5xl mx-auto">
+      <section className="px-4 sm:px-6 pb-24 max-w-5xl mx-auto overflow-x-hidden">
         <div className="grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 lg:items-start">
 
           {/* LEFT — input controls → conversation result */}
@@ -1536,7 +1536,7 @@ export default function LiveDemoClient() {
                             </span>
                             {sub && (
                               <span
-                                className="text-xs block leading-snug mt-1"
+                                className="block leading-snug mt-1 truncate"
                                 style={{ color: active ? g(0.52) : w(0.26), fontSize: '0.6rem' }}
                               >
                                 {sub}
@@ -1611,7 +1611,7 @@ export default function LiveDemoClient() {
                     ) : (
                       /* WhatsApp — plain textarea */
                       <div
-                        className="rounded-2xl p-5"
+                        className="rounded-2xl p-4 sm:p-5"
                         style={{
                           background:     'rgba(255,255,255,0.022)',
                           border:         `1px solid ${w(0.062)}`,
@@ -1632,7 +1632,7 @@ export default function LiveDemoClient() {
                           }}
                           placeholder={ui.placeholder}
                           rows={4}
-                          className="w-full resize-none rounded-xl p-4 text-sm outline-none"
+                          className="w-full resize-none rounded-xl p-3 sm:p-4 text-sm outline-none"
                           style={{
                             background:  'rgba(255,255,255,0.022)',
                             border:      `1px solid ${w(0.055)}`,
@@ -1737,18 +1737,18 @@ export default function LiveDemoClient() {
                       initial={{ opacity: 0, scale: 0.97, y: 8 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       transition={{ duration: 0.45, ease: EASE }}
-                      className="mt-6 rounded-2xl p-5"
+                      className="mt-5 rounded-2xl p-4 sm:p-5"
                       style={{
                         background: 'linear-gradient(135deg, rgba(220,38,38,0.08), rgba(220,38,38,0.025))',
                         border:     '1px solid rgba(220,38,38,0.22)',
                         boxShadow:  '0 0 32px rgba(220,38,38,0.05)',
                       }}
                     >
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-start gap-3">
                         <motion.span
                           animate={{ scale: [1, 1.12, 1] }}
                           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                          className="text-2xl shrink-0"
+                          className="text-xl shrink-0 mt-0.5"
                         >
                           🔥
                         </motion.span>
@@ -1756,19 +1756,19 @@ export default function LiveDemoClient() {
                           <p className="text-sm font-bold mb-0.5" style={{ color: '#F05050' }}>
                             {lang === 'es' ? 'LEAD URGENTE — Agente notificado' : ui.hotAlert}
                           </p>
-                          <p className="text-sm truncate" style={{ color: w(0.38) }}>
+                          <p className="text-xs break-words" style={{ color: w(0.42) }}>
                             {result.alertSnippet}
                           </p>
                         </div>
                         <span
-                          className="shrink-0 text-xs px-3 py-1.5 rounded-full font-medium"
+                          className="shrink-0 text-xs px-2.5 py-1 rounded-full font-medium self-start"
                           style={{
                             background: 'rgba(37,211,102,0.09)',
                             color:      '#22C55E',
                             border:     '1px solid rgba(37,211,102,0.18)',
                           }}
                         >
-                          WhatsApp ✓
+                          WA ✓
                         </span>
                       </div>
                     </motion.div>
@@ -1782,7 +1782,7 @@ export default function LiveDemoClient() {
                       transition={{ delay: 0.4, duration: 0.5 }}
                       className="mt-8"
                     >
-                      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10 pt-2">
+                      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-8 pt-2">
                         <p className="text-sm text-center sm:text-left" style={{ color: w(0.38) }}>
                           {ui.emailTagline}
                         </p>
@@ -1792,17 +1792,17 @@ export default function LiveDemoClient() {
                       </div>
 
                       <div
-                        className="rounded-2xl p-8 md:p-10 text-center"
+                        className="rounded-2xl p-6 sm:p-8 md:p-10 text-center"
                         style={{ background: 'rgba(255,255,255,0.018)', border: `1px solid ${g(0.1)}` }}
                       >
                         <p className="section-label mb-3">{ui.readyLabel}</p>
                         <h2
                           className="font-display font-bold mb-4"
-                          style={{ color: w(0.96), fontSize: 'clamp(1.7rem, 4vw, 2.6rem)' }}
+                          style={{ color: w(0.96), fontSize: 'clamp(1.5rem, 4vw, 2.6rem)' }}
                         >
                           {ui.stopLosing}
                         </h2>
-                        <p className="text-sm mb-8 max-w-sm mx-auto" style={{ color: w(0.48) }}>
+                        <p className="text-sm mb-7 max-w-sm mx-auto" style={{ color: w(0.48) }}>
                           {ui.stopLosingBody}
                         </p>
                         <a
@@ -1822,7 +1822,7 @@ export default function LiveDemoClient() {
           </div>
 
           {/* RIGHT — preview panel → live intelligence panel */}
-          <div className="lg:sticky lg:top-28">
+          <div className="lg:sticky lg:top-28 min-w-0 overflow-x-hidden">
             <AnimatePresence mode="wait">
               {!result ? (
                 <motion.div
