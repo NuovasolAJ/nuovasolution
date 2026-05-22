@@ -1240,6 +1240,63 @@ function WebFormView({
   );
 }
 
+// ─── Preview data (shown in right panel before demo runs) ────────────────────
+
+const PREVIEW_RESULT: DemoResult = {
+  language:      'en',
+  languageLabel: 'English',
+  languageFlag:  '🇬🇧',
+  leadType:      'buyer',
+  leadTypeLabel: 'Buyer Lead',
+  leadClassLabel: 'Buyer Lead',
+  extracted: {
+    name:             'James R.',
+    budget:           '€650,000',
+    location:         'Marbella',
+    timeline:         '3 months',
+    viewingRequested: true,
+    urgency:          true,
+  },
+  score:        87,
+  temperature:  'hot',
+  factors:      [],
+  aiResponse:   '',
+  alertSnippet: 'James R. · €650k · Marbella · Viewing requested',
+};
+
+function PreviewIntelligencePanel({ ui, lang }: { ui: ReturnType<typeof getUI>; lang: string }) {
+  const previewRows = buildInsightRows(PREVIEW_RESULT, ui);
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 12 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.65, delay: 0.5, ease: EASE }}
+      className="space-y-5"
+    >
+      <div className="flex items-center justify-between">
+        <p className="text-xs tracking-widest uppercase font-medium" style={{ color: g(0.38) }}>
+          {ui.insightsLabel}
+        </p>
+        <span
+          className="text-xs px-2 py-0.5 rounded-md"
+          style={{ background: 'rgba(255,255,255,0.035)', border: `1px solid ${w(0.055)}`, color: w(0.2) }}
+        >
+          {lang === 'es' ? 'ejemplo' : 'example'}
+        </span>
+      </div>
+      <InsightsGrid rows={previewRows} visibleCount={previewRows.length} />
+      <div className="flex flex-col items-center py-2">
+        <p className="text-xs tracking-widest uppercase mb-4" style={{ color: g(0.38) }}>{ui.scoreLabel}</p>
+        <ScoreRing score={87} temperature="hot" lang={lang} fromScore={0} />
+      </div>
+      <CrmUpdateCard result={PREVIEW_RESULT} lang={lang} ui={ui} scoreKey={-1} />
+      <p className="text-xs text-center mt-1" style={{ color: w(0.12) }}>
+        {lang === 'es' ? 'Envía tu consulta para ver resultados reales' : 'Submit an inquiry to see live results'}
+      </p>
+    </motion.div>
+  );
+}
+
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export default function LiveDemoClient() {
@@ -1260,7 +1317,6 @@ export default function LiveDemoClient() {
   const [emailPortal,   setEmailPortal]   = useState<PortalOption>('Idealista');
   const [scoreUpdated,  setScoreUpdated]  = useState(false);
 
-  const resultsRef      = useRef<HTMLDivElement>(null);
   const timersRef       = useRef<ReturnType<typeof setTimeout>[]>([]);
   const resultRef       = useRef<DemoResult | null>(null);
   const previousScoreRef = useRef(0);
@@ -1323,7 +1379,6 @@ export default function LiveDemoClient() {
     setResult(computed);
     setVisibleRows(0);
     setPhase(1);
-    schedule(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
     schedule(() => setPhase(2), T_RESPONSE);
   }, [message, source, isRunning, reset, schedule]);
 
@@ -1413,395 +1468,424 @@ export default function LiveDemoClient() {
         </motion.p>
       </section>
 
-      {/* Input area */}
-      <section className="px-6 pb-8 max-w-2xl mx-auto">
+      {/* 2-column workspace — always visible on desktop */}
+      <section className="px-4 sm:px-6 pb-24 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 lg:items-start">
 
-        {/* Channel selector */}
-        <motion.div
-          className="mb-7"
-          initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.18, ease: EASE }}
-        >
-          <p className="text-sm font-medium text-center mb-5" style={{ color: g(0.48) }}>
-            {ui.tagline}
-          </p>
-          <div className="grid grid-cols-3 gap-3">
-            {CHANNELS.map(ch => {
-              const active = source === ch.id;
-              const label  = lang === 'es' ? ch.labelES : ch.label;
-              const sub    = lang === 'es' ? ch.subES   : ch.sub;
-              return (
-                <button
-                  key={ch.id}
-                  onClick={() => { setSource(ch.id); if (phase > 0) reset(); }}
-                  className="rounded-xl border transition-all duration-200 px-3 py-3.5 text-center"
-                  style={{
-                    background: active ? g(0.07)                : 'rgba(255,255,255,0.018)',
-                    border:     active ? `1px solid ${g(0.24)}` : `1px solid ${w(0.055)}`,
-                    boxShadow:  active ? `0 0 16px ${g(0.04)}`  : 'none',
-                  }}
+          {/* LEFT — input controls → conversation result */}
+          <div>
+            <AnimatePresence mode="wait">
+              {phase === 0 ? (
+                <motion.div
+                  key="input"
+                  initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.4, ease: EASE }}
                 >
-                  <span className="text-xl block mb-1.5">{ch.icon}</span>
-                  <span className="text-xs font-semibold block leading-snug" style={{ color: active ? g(1) : w(0.48) }}>
-                    {label}
-                  </span>
-                  {sub && (
-                    <span
-                      className="text-xs block leading-snug mt-1"
-                      style={{ color: active ? g(0.38) : w(0.16), fontSize: '0.6rem' }}
-                    >
-                      {sub}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        </motion.div>
+                  {/* Channel selector */}
+                  <motion.div
+                    className="mb-7"
+                    initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.18, ease: EASE }}
+                  >
+                    <p className="text-sm font-medium text-center mb-5" style={{ color: g(0.48) }}>
+                      {ui.tagline}
+                    </p>
+                    <div className="grid grid-cols-3 gap-3">
+                      {CHANNELS.map(ch => {
+                        const active = source === ch.id;
+                        const label  = lang === 'es' ? ch.labelES : ch.label;
+                        const sub    = lang === 'es' ? ch.subES   : ch.sub;
+                        return (
+                          <button
+                            key={ch.id}
+                            onClick={() => { setSource(ch.id); if (phase > 0) reset(); }}
+                            className="rounded-xl border transition-all duration-200 px-3 py-3.5 text-center"
+                            style={{
+                              background: active ? g(0.07)                : 'rgba(255,255,255,0.018)',
+                              border:     active ? `1px solid ${g(0.24)}` : `1px solid ${w(0.055)}`,
+                              boxShadow:  active ? `0 0 16px ${g(0.04)}`  : 'none',
+                            }}
+                          >
+                            <span className="text-xl block mb-1.5">{ch.icon}</span>
+                            <span className="text-xs font-semibold block leading-snug" style={{ color: active ? g(1) : w(0.48) }}>
+                              {label}
+                            </span>
+                            {sub && (
+                              <span
+                                className="text-xs block leading-snug mt-1"
+                                style={{ color: active ? g(0.38) : w(0.16), fontSize: '0.6rem' }}
+                              >
+                                {sub}
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
 
-        {/* Example chips */}
-        <motion.div
-          className="mb-5"
-          initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.26, ease: EASE }}
-        >
-          <p className="text-xs mb-3" style={{ color: w(0.2) }}>{ui.tryExample}</p>
-          <div className="flex flex-wrap gap-2">
-            {EXAMPLE_LEADS.map(ex => {
-              const active    = message === ex.message;
-              const chipLabel = lang === 'es' ? ex.labelES : ex.label;
-              return (
-                <button
-                  key={ex.label}
-                  onClick={() => loadExample(ex)}
-                  className="text-xs px-3 py-1.5 rounded-full border transition-all duration-150 hover:-translate-y-0.5"
-                  style={{
-                    background: active ? g(0.09)                : 'rgba(255,255,255,0.022)',
-                    border:     active ? `1px solid ${g(0.26)}` : `1px solid ${w(0.06)}`,
-                    color:      active ? g(1)                   : w(0.35),
-                  }}
-                >
-                  {chipLabel}
-                </button>
-              );
-            })}
-          </div>
-        </motion.div>
+                  {/* Example chips */}
+                  <motion.div
+                    className="mb-5"
+                    initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.26, ease: EASE }}
+                  >
+                    <p className="text-xs mb-3" style={{ color: w(0.2) }}>{ui.tryExample}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {EXAMPLE_LEADS.map(ex => {
+                        const active    = message === ex.message;
+                        const chipLabel = lang === 'es' ? ex.labelES : ex.label;
+                        return (
+                          <button
+                            key={ex.label}
+                            onClick={() => loadExample(ex)}
+                            className="text-xs px-3 py-1.5 rounded-full border transition-all duration-150 hover:-translate-y-0.5"
+                            style={{
+                              background: active ? g(0.09)                : 'rgba(255,255,255,0.022)',
+                              border:     active ? `1px solid ${g(0.26)}` : `1px solid ${w(0.06)}`,
+                              color:      active ? g(1)                   : w(0.35),
+                            }}
+                          >
+                            {chipLabel}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
 
-        {/* Input — conditional by channel */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.32, ease: EASE }}
-        >
-          {source === 'Web Forms' ? (
-            <WebFormInput
-              data={webFormData}
-              onChange={(field, value) => {
-                setWebFormData(prev => ({ ...prev, [field]: value }));
-                if (phase > 0 && phase < 5) reset();
-              }}
-              onSubmit={handleWebFormSubmit}
-              ui={ui}
-              isRunning={isRunning}
-            />
-          ) : source === 'Email & Portals' ? (
-            <EmailComposeInput
-              message={message}
-              onMessageChange={v => {
-                setMessage(v);
-                if (phase > 0 && phase < 5) reset();
-              }}
-              portal={emailPortal}
-              onPortalChange={setEmailPortal}
-              onRun={runDemo}
-              canRun={textareaCanRun}
-              isRunning={isRunning}
-              ui={ui}
-              lang={lang}
-            />
-          ) : (
-            /* WhatsApp — plain textarea */
-            <div
-              className="rounded-2xl p-5"
-              style={{
-                background:     'rgba(255,255,255,0.022)',
-                border:         `1px solid ${w(0.062)}`,
-                backdropFilter: 'blur(16px)',
-              }}
-            >
-              <textarea
-                value={message}
-                onChange={e => {
-                  setMessage(e.target.value);
-                  if (phase > 0 && phase < 5) reset();
-                }}
-                placeholder={ui.placeholder}
-                rows={4}
-                className="w-full resize-none rounded-xl p-4 text-sm outline-none"
-                style={{
-                  background:  'rgba(255,255,255,0.022)',
-                  border:      `1px solid ${w(0.055)}`,
-                  color:       w(0.9),
-                  caretColor:  g(1),
-                  lineHeight:  '1.65',
-                }}
-                onFocus={e => {
-                  e.currentTarget.style.borderColor = g(0.3);
-                  e.currentTarget.style.boxShadow   = `0 0 0 3px ${g(0.04)}`;
-                }}
-                onBlur={e => {
-                  e.currentTarget.style.borderColor = w(0.055);
-                  e.currentTarget.style.boxShadow   = 'none';
-                }}
-              />
-              <div className="flex items-center justify-between mt-4">
-                <span className="text-xs" style={{ color: w(0.16) }}>
-                  {message.trim().length === 0 ? ui.minChars : `${message.trim().length} chars`}
-                </span>
-                <button
-                  onClick={() => runDemo()}
-                  disabled={!textareaCanRun}
-                  className="btn btn-gold btn-sm flex items-center gap-2"
-                  style={{ opacity: textareaCanRun ? 1 : 0.32, cursor: textareaCanRun ? 'pointer' : 'not-allowed' }}
-                >
-                  {isRunning ? (
-                    <>
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                        className="w-3.5 h-3.5 rounded-full border-2 border-transparent"
-                        style={{ borderTopColor: '#1A1A1A' }}
+                  {/* Channel-conditional input */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.32, ease: EASE }}
+                  >
+                    {source === 'Web Forms' ? (
+                      <WebFormInput
+                        data={webFormData}
+                        onChange={(field, value) => {
+                          setWebFormData(prev => ({ ...prev, [field]: value }));
+                          if (phase > 0 && phase < 5) reset();
+                        }}
+                        onSubmit={handleWebFormSubmit}
+                        ui={ui}
+                        isRunning={isRunning}
                       />
-                      {ui.analyzing}
-                    </>
-                  ) : phase === 5 ? ui.runAgain : ui.analyze}
-                </button>
-              </div>
-            </div>
-          )}
-        </motion.div>
-      </section>
+                    ) : source === 'Email & Portals' ? (
+                      <EmailComposeInput
+                        message={message}
+                        onMessageChange={v => {
+                          setMessage(v);
+                          if (phase > 0 && phase < 5) reset();
+                        }}
+                        portal={emailPortal}
+                        onPortalChange={setEmailPortal}
+                        onRun={runDemo}
+                        canRun={textareaCanRun}
+                        isRunning={isRunning}
+                        ui={ui}
+                        lang={lang}
+                      />
+                    ) : (
+                      /* WhatsApp — plain textarea */
+                      <div
+                        className="rounded-2xl p-5"
+                        style={{
+                          background:     'rgba(255,255,255,0.022)',
+                          border:         `1px solid ${w(0.062)}`,
+                          backdropFilter: 'blur(16px)',
+                        }}
+                      >
+                        <textarea
+                          value={message}
+                          onChange={e => {
+                            setMessage(e.target.value);
+                            if (phase > 0 && phase < 5) reset();
+                          }}
+                          placeholder={ui.placeholder}
+                          rows={4}
+                          className="w-full resize-none rounded-xl p-4 text-sm outline-none"
+                          style={{
+                            background:  'rgba(255,255,255,0.022)',
+                            border:      `1px solid ${w(0.055)}`,
+                            color:       w(0.9),
+                            caretColor:  g(1),
+                            lineHeight:  '1.65',
+                          }}
+                          onFocus={e => {
+                            e.currentTarget.style.borderColor = g(0.3);
+                            e.currentTarget.style.boxShadow   = `0 0 0 3px ${g(0.04)}`;
+                          }}
+                          onBlur={e => {
+                            e.currentTarget.style.borderColor = w(0.055);
+                            e.currentTarget.style.boxShadow   = 'none';
+                          }}
+                        />
+                        <div className="flex items-center justify-between mt-4">
+                          <span className="text-xs" style={{ color: w(0.16) }}>
+                            {message.trim().length === 0 ? ui.minChars : `${message.trim().length} chars`}
+                          </span>
+                          <button
+                            onClick={() => runDemo()}
+                            disabled={!textareaCanRun}
+                            className="btn btn-gold btn-sm flex items-center gap-2"
+                            style={{ opacity: textareaCanRun ? 1 : 0.32, cursor: textareaCanRun ? 'pointer' : 'not-allowed' }}
+                          >
+                            {isRunning ? (
+                              <>
+                                <motion.div
+                                  animate={{ rotate: 360 }}
+                                  transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                                  className="w-3.5 h-3.5 rounded-full border-2 border-transparent"
+                                  style={{ borderTopColor: '#1A1A1A' }}
+                                />
+                                {ui.analyzing}
+                              </>
+                            ) : ui.analyze}
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
+                </motion.div>
 
-      {/* Results */}
-      <AnimatePresence>
-        {phase >= 1 && result && (
-          <motion.section
-            ref={resultsRef}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, ease: EASE }}
-            className="px-6 pb-24 max-w-5xl mx-auto"
-          >
-            {/* Divider */}
-            <div className="flex items-center gap-4 mb-8">
-              <div className="flex-1 h-px" style={{ background: w(0.05) }} />
-              <span className="text-xs tracking-widest uppercase" style={{ color: g(0.38) }}>
-                {ui.analysisLabel}
-              </span>
-              <div className="flex-1 h-px" style={{ background: w(0.05) }} />
-            </div>
+              ) : result ? (
+                /* Conversation result */
+                <motion.div
+                  key="results"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5, ease: EASE }}
+                >
+                  {/* Divider */}
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="flex-1 h-px" style={{ background: w(0.05) }} />
+                    <span className="text-xs tracking-widest uppercase" style={{ color: g(0.38) }}>
+                      {ui.analysisLabel}
+                    </span>
+                    <div className="flex-1 h-px" style={{ background: w(0.05) }} />
+                  </div>
 
-            {/* Two-column layout: conversation left, intelligence right */}
-            <div className="grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-8 lg:items-start">
+                  {/* Channel conversation */}
+                  {source === 'WhatsApp' && (
+                    <WhatsAppView
+                      message={message}
+                      result={result}
+                      phase={phase}
+                      onTypingDone={handleTypingDone}
+                      ui={ui}
+                      lang={lang}
+                      followUpMsg={followUpMsg}
+                      followUpResp={followUpResp}
+                      followUpPhase={followUpPhase}
+                      onFollowUpChange={setFollowUpMsg}
+                      onFollowUpSend={handleFollowUpSend}
+                    />
+                  )}
+                  {source === 'Email & Portals' && (
+                    <EmailView
+                      message={message}
+                      portal={emailPortal}
+                      result={result}
+                      phase={phase}
+                      onTypingDone={handleTypingDone}
+                      ui={ui}
+                    />
+                  )}
+                  {source === 'Web Forms' && (
+                    <WebFormView
+                      message={message}
+                      result={result}
+                      phase={phase}
+                      onTypingDone={handleTypingDone}
+                      ui={ui}
+                    />
+                  )}
 
-              {/* Left — channel conversation */}
-              <div className="mb-8 lg:mb-0">
-                {source === 'WhatsApp' && (
-                  <WhatsAppView
-                    message={message}
-                    result={result}
-                    phase={phase}
-                    onTypingDone={handleTypingDone}
-                    ui={ui}
-                    lang={lang}
-                    followUpMsg={followUpMsg}
-                    followUpResp={followUpResp}
-                    followUpPhase={followUpPhase}
-                    onFollowUpChange={setFollowUpMsg}
-                    onFollowUpSend={handleFollowUpSend}
-                  />
-                )}
-                {source === 'Email & Portals' && (
-                  <EmailView
-                    message={message}
-                    portal={emailPortal}
-                    result={result}
-                    phase={phase}
-                    onTypingDone={handleTypingDone}
-                    ui={ui}
-                  />
-                )}
-                {source === 'Web Forms' && (
-                  <WebFormView
-                    message={message}
-                    result={result}
-                    phase={phase}
-                    onTypingDone={handleTypingDone}
-                    ui={ui}
-                  />
-                )}
-              </div>
-
-              {/* Right — intelligence panel */}
-              <div className="space-y-4">
-
-                {/* Score updated notice */}
-                <AnimatePresence>
-                  {scoreUpdated && (
+                  {/* Hot alert */}
+                  {phase >= 5 && result.temperature === 'hot' && result.alertSnippet && (
                     <motion.div
-                      key="score-notice"
-                      initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-                      className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs"
+                      initial={{ opacity: 0, scale: 0.97, y: 8 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      transition={{ duration: 0.45, ease: EASE }}
+                      className="mt-6 rounded-2xl p-5"
                       style={{
-                        background: `${g(0.08)}`,
-                        border:     `1px solid ${g(0.18)}`,
-                        color:      g(0.75),
+                        background: 'linear-gradient(135deg, rgba(220,38,38,0.08), rgba(220,38,38,0.025))',
+                        border:     '1px solid rgba(220,38,38,0.22)',
+                        boxShadow:  '0 0 32px rgba(220,38,38,0.05)',
                       }}
                     >
-                      <span>↑</span>
-                      <span>{ui.inquiryUpdated}</span>
+                      <div className="flex items-center gap-4">
+                        <motion.span
+                          animate={{ scale: [1, 1.12, 1] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                          className="text-2xl shrink-0"
+                        >
+                          🔥
+                        </motion.span>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-bold mb-0.5" style={{ color: '#F05050' }}>
+                            {lang === 'es' ? 'LEAD URGENTE — Agente notificado' : ui.hotAlert}
+                          </p>
+                          <p className="text-sm truncate" style={{ color: w(0.38) }}>
+                            {result.alertSnippet}
+                          </p>
+                        </div>
+                        <span
+                          className="shrink-0 text-xs px-3 py-1.5 rounded-full font-medium"
+                          style={{
+                            background: 'rgba(37,211,102,0.09)',
+                            color:      '#22C55E',
+                            border:     '1px solid rgba(37,211,102,0.18)',
+                          }}
+                        >
+                          WhatsApp ✓
+                        </span>
+                      </div>
                     </motion.div>
                   )}
-                </AnimatePresence>
 
-                {/* Insights grid */}
-                {phase >= 3 && (
-                  <div>
-                    <p className="text-xs tracking-widest uppercase mb-2" style={{ color: g(0.38) }}>
-                      {ui.insightsLabel}
-                    </p>
-                    <InsightsGrid rows={insightRows} visibleCount={visibleRows} />
-                  </div>
-                )}
+                  {/* Done state */}
+                  {phase === 5 && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.4, duration: 0.5 }}
+                      className="mt-8"
+                    >
+                      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10 pt-2">
+                        <p className="text-sm text-center sm:text-left" style={{ color: w(0.22) }}>
+                          {ui.emailTagline}
+                        </p>
+                        <button onClick={reset} className="btn btn-ghost btn-sm shrink-0">
+                          {ui.tryAnother}
+                        </button>
+                      </div>
 
-                {/* Score ring */}
-                {phase >= 4 && (
-                  <div className="flex flex-col items-center py-2">
-                    <p className="text-xs tracking-widest uppercase mb-4" style={{ color: g(0.38) }}>
-                      {ui.scoreLabel}
-                    </p>
-                    <ScoreRing
-                      key={result.score}
-                      score={result.score}
-                      temperature={result.temperature}
-                      lang={lang}
-                      fromScore={previousScoreRef.current}
-                    />
-                  </div>
-                )}
+                      <div
+                        className="rounded-2xl p-8 md:p-10 text-center"
+                        style={{ background: 'rgba(255,255,255,0.018)', border: `1px solid ${g(0.1)}` }}
+                      >
+                        <p className="section-label mb-3">{ui.readyLabel}</p>
+                        <h2
+                          className="font-display font-bold mb-4"
+                          style={{ color: w(0.96), fontSize: 'clamp(1.7rem, 4vw, 2.6rem)' }}
+                        >
+                          {ui.stopLosing}
+                        </h2>
+                        <p className="text-sm mb-8 max-w-sm mx-auto" style={{ color: w(0.32) }}>
+                          {ui.stopLosingBody}
+                        </p>
+                        <a
+                          href="/#contact"
+                          className="btn btn-gold btn-md"
+                          data-cal-link="nuovasolution/demo"
+                          data-cal-namespace="demo"
+                        >
+                          {ui.bookDemo}
+                        </a>
+                      </div>
+                    </motion.div>
+                  )}
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
+          </div>
 
-                {/* CRM card */}
-                {showCRM && (
-                  <CrmUpdateCard
-                    result={result}
-                    lang={lang}
-                    ui={ui}
-                    scoreKey={result.score}
-                  />
-                )}
-
-                {/* Recommended action */}
-                {showAction && recAction && (
-                  <div>
-                    <p className="text-xs tracking-widest uppercase mb-2" style={{ color: g(0.38) }}>
-                      {ui.recommendedTitle}
-                    </p>
-                    <RecommendedActionCard action={recAction} ui={ui} />
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Below grid — hot alert */}
-            {phase >= 5 && result.temperature === 'hot' && result.alertSnippet && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.97, y: 8 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.45, ease: EASE }}
-                className="mt-6 rounded-2xl p-5"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(220,38,38,0.08), rgba(220,38,38,0.025))',
-                  border:     '1px solid rgba(220,38,38,0.22)',
-                  boxShadow:  '0 0 32px rgba(220,38,38,0.05)',
-                }}
-              >
-                <div className="flex items-center gap-4">
-                  <motion.span
-                    animate={{ scale: [1, 1.12, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                    className="text-2xl shrink-0"
-                  >
-                    🔥
-                  </motion.span>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold mb-0.5" style={{ color: '#F05050' }}>
-                      {lang === 'es' ? 'LEAD URGENTE — Agente notificado' : ui.hotAlert}
-                    </p>
-                    <p className="text-sm truncate" style={{ color: w(0.38) }}>
-                      {result.alertSnippet}
-                    </p>
-                  </div>
-                  <span
-                    className="shrink-0 text-xs px-3 py-1.5 rounded-full font-medium"
-                    style={{
-                      background: 'rgba(37,211,102,0.09)',
-                      color:      '#22C55E',
-                      border:     '1px solid rgba(37,211,102,0.18)',
-                    }}
-                  >
-                    WhatsApp ✓
-                  </span>
-                </div>
-              </motion.div>
-            )}
-
-            {/* Done state */}
-            {phase === 5 && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-                className="mt-8"
-              >
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10 pt-2">
-                  <p className="text-sm text-center sm:text-left" style={{ color: w(0.22) }}>
-                    {ui.emailTagline}
-                  </p>
-                  <button onClick={reset} className="btn btn-ghost btn-sm shrink-0">
-                    {ui.tryAnother}
-                  </button>
-                </div>
-
-                <div
-                  className="rounded-2xl p-8 md:p-10 text-center"
-                  style={{ background: 'rgba(255,255,255,0.018)', border: `1px solid ${g(0.1)}` }}
+          {/* RIGHT — preview panel → live intelligence panel */}
+          <div className="lg:sticky lg:top-28">
+            <AnimatePresence mode="wait">
+              {!result ? (
+                <motion.div
+                  key="preview"
+                  exit={{ opacity: 0, x: 8 }}
+                  transition={{ duration: 0.3 }}
+                  className="hidden lg:block"
                 >
-                  <p className="section-label mb-3">{ui.readyLabel}</p>
-                  <h2
-                    className="font-display font-bold mb-4"
-                    style={{ color: w(0.96), fontSize: 'clamp(1.7rem, 4vw, 2.6rem)' }}
-                  >
-                    {ui.stopLosing}
-                  </h2>
-                  <p className="text-sm mb-8 max-w-sm mx-auto" style={{ color: w(0.32) }}>
-                    {ui.stopLosingBody}
-                  </p>
-                  <a
-                    href="/#contact"
-                    className="btn btn-gold btn-md"
-                    data-cal-link="nuovasolution/demo"
-                    data-cal-namespace="demo"
-                  >
-                    {ui.bookDemo}
-                  </a>
-                </div>
-              </motion.div>
-            )}
-          </motion.section>
-        )}
-      </AnimatePresence>
+                  <PreviewIntelligencePanel ui={ui} lang={lang} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="live"
+                  initial={{ opacity: 0, x: 8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4, ease: EASE }}
+                  className="space-y-4"
+                >
+                  {/* Score updated notice */}
+                  <AnimatePresence>
+                    {scoreUpdated && (
+                      <motion.div
+                        key="score-notice"
+                        initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
+                        className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs"
+                        style={{
+                          background: `${g(0.08)}`,
+                          border:     `1px solid ${g(0.18)}`,
+                          color:      g(0.75),
+                        }}
+                      >
+                        <span>↑</span>
+                        <span>{ui.inquiryUpdated}</span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Insights grid */}
+                  {phase >= 3 && (
+                    <div>
+                      <p className="text-xs tracking-widest uppercase mb-2" style={{ color: g(0.38) }}>
+                        {ui.insightsLabel}
+                      </p>
+                      <InsightsGrid rows={insightRows} visibleCount={visibleRows} />
+                    </div>
+                  )}
+
+                  {/* Score ring */}
+                  {phase >= 4 && (
+                    <div className="flex flex-col items-center py-2">
+                      <p className="text-xs tracking-widest uppercase mb-4" style={{ color: g(0.38) }}>
+                        {ui.scoreLabel}
+                      </p>
+                      <ScoreRing
+                        key={result.score}
+                        score={result.score}
+                        temperature={result.temperature}
+                        lang={lang}
+                        fromScore={previousScoreRef.current}
+                      />
+                    </div>
+                  )}
+
+                  {/* CRM card */}
+                  {showCRM && (
+                    <CrmUpdateCard
+                      result={result}
+                      lang={lang}
+                      ui={ui}
+                      scoreKey={result.score}
+                    />
+                  )}
+
+                  {/* Recommended action */}
+                  {showAction && recAction && (
+                    <div>
+                      <p className="text-xs tracking-widest uppercase mb-2" style={{ color: g(0.38) }}>
+                        {ui.recommendedTitle}
+                      </p>
+                      <RecommendedActionCard action={recAction} ui={ui} />
+                    </div>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+        </div>
+      </section>
+
     </div>
   );
 }
