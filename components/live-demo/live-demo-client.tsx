@@ -36,7 +36,7 @@ const FOLLOW_UP_EXAMPLES: Record<string, string[]> = {
   es: ['Marzo', 'Cerca de la playa', 'Presupuesto €500k'],
 };
 
-const PORTALS = ['Idealista', 'Fotocasa', 'Kyero', 'Email'] as const;
+const PORTALS = ['Email', 'Idealista', 'Fotocasa', 'Kyero'] as const;
 type PortalOption = typeof PORTALS[number];
 
 interface WebFormData {
@@ -53,10 +53,11 @@ const EMPTY_FORM: WebFormData = { name: '', email: '', budget: '', location: '',
 function getUI(lang: string) {
   if (lang === 'es') return {
     pageLabel:        'Demo en Vivo',
-    headlineA:        'Observa cómo la IA',
-    headlineB:        'califica',
-    headlineC:        'tu consulta.',
-    subheadline:      'Pega cualquier consulta inmobiliaria en cualquier idioma. Observa cómo NuovaSolution entiende, califica y responde como lo haría un buen agente.',
+    headlineA:        'Su agencia',
+    headlineB:        'nunca pierde',
+    headlineC:        'otro lead',
+    subheadline:      'Prueba cualquier consulta inmobiliaria. Respuesta automática, calificación inteligente y puntuación de leads — para que su agencia no pierda ninguna oportunidad.',
+    sendEmail:        'Enviar consulta',
     tagline:          'El canal no importa.',
     channelNote:      'Selecciona una fuente de consulta:',
     tryExample:       'Prueba un ejemplo real:',
@@ -132,10 +133,11 @@ function getUI(lang: string) {
 
   return {
     pageLabel:        'Live Demo',
-    headlineA:        'Watch the AI',
-    headlineB:        'qualify',
-    headlineC:        'your lead.',
-    subheadline:      'Paste any real estate inquiry in any language. Watch NuovaSolution understand, qualify, and respond the way a great agent would.',
+    headlineA:        'Your agency',
+    headlineB:        'never misses',
+    headlineC:        'another lead',
+    subheadline:      'Try any real estate inquiry. See instant replies, automatic qualification, and smart scoring — so your agency stops losing opportunities.',
+    sendEmail:        'Send Inquiry',
     tagline:          'It does not matter where the lead comes from.',
     channelNote:      'Select a lead source:',
     tryExample:       'Try a real example:',
@@ -310,8 +312,8 @@ function InsightsGrid({ rows, visibleCount }: { rows: { label: string; value: st
             background: i % 2 === 0 ? 'rgba(255,255,255,0.016)' : 'transparent',
           }}
         >
-          <span className="text-xs tracking-wide" style={{ color: w(0.28) }}>{row.label}</span>
-          <span className="text-xs font-semibold" style={{ color: w(0.82) }}>{row.value}</span>
+          <span className="text-xs tracking-wide" style={{ color: w(0.44) }}>{row.label}</span>
+          <span className="text-xs font-semibold" style={{ color: w(0.9) }}>{row.value}</span>
         </motion.div>
       ))}
     </div>
@@ -359,17 +361,17 @@ function CrmUpdateCard({
             className="w-1.5 h-1.5 rounded-full"
             style={{ background: '#22C55E' }}
           />
-          <span className="text-xs font-medium" style={{ color: g(0.72) }}>{ui.crmUpdated}</span>
+          <span className="text-xs font-medium" style={{ color: g(0.82) }}>{ui.crmUpdated}</span>
         </div>
-        <span className="text-xs" style={{ color: w(0.2) }}>{ui.crmNow}</span>
+        <span className="text-xs" style={{ color: w(0.35) }}>{ui.crmNow}</span>
       </div>
       <div className="px-4 py-3 space-y-2">
         {rows.map((row, i) => (
           <div key={i} className="flex items-center justify-between">
-            <span className="text-xs" style={{ color: w(0.28) }}>{row.label}</span>
+            <span className="text-xs" style={{ color: w(0.44) }}>{row.label}</span>
             <span
               className="text-xs font-semibold"
-              style={{ color: row.label === ui.fieldPriority ? tc.color : w(0.76) }}
+              style={{ color: row.label === ui.fieldPriority ? tc.color : w(0.88) }}
             >
               {row.value}
             </span>
@@ -415,7 +417,7 @@ function RecommendedActionCard({
               {urgencyLabel}
             </span>
           </div>
-          <p className="text-xs leading-relaxed" style={{ color: w(0.38) }}>{action.body}</p>
+          <p className="text-xs leading-relaxed" style={{ color: w(0.52) }}>{action.body}</p>
         </div>
       </div>
     </motion.div>
@@ -450,41 +452,60 @@ function ScoreRing({ score, temperature, lang, fromScore = 0 }: {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
+      initial={{ opacity: 0, scale: 0.88 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.7, ease: EASE }}
+      transition={{ duration: 0.75, ease: EASE }}
       className="flex flex-col items-center"
     >
-      <div className="relative w-36 h-36">
+      <div className="relative w-40 h-40">
+        {/* Ambient glow behind ring */}
+        <div
+          className="absolute inset-4 rounded-full"
+          style={{ background: `radial-gradient(circle, ${tc.color}12 0%, transparent 70%)` }}
+        />
         <svg className="w-full h-full -rotate-90" viewBox="0 0 128 128">
-          <circle cx="64" cy="64" r={R} fill="none" stroke={w(0.05)} strokeWidth="7" />
+          {/* Track */}
+          <circle cx="64" cy="64" r={R} fill="none" stroke={w(0.055)} strokeWidth="6" />
+          {/* Progress arc */}
           <circle
             cx="64" cy="64" r={R} fill="none"
-            stroke={tc.color} strokeWidth="7" strokeLinecap="round"
+            stroke={tc.color} strokeWidth="6" strokeLinecap="round"
             strokeDasharray={circ}
             strokeDashoffset={circ * (1 - display / 100)}
-            style={{ filter: `drop-shadow(0 0 6px ${tc.color}88)` }}
+            style={{ filter: `drop-shadow(0 0 8px ${tc.color}80) drop-shadow(0 0 18px ${tc.color}30)` }}
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span
-            className="font-display text-5xl font-bold leading-none"
-            style={{ color: tc.color, textShadow: `0 0 22px ${tc.glow}` }}
+            className="font-display font-bold leading-none tabular-nums"
+            style={{
+              color: tc.color,
+              textShadow: `0 0 24px ${tc.glow}, 0 0 48px ${tc.glow}`,
+              fontSize: '3.1rem',
+              letterSpacing: '-0.025em',
+            }}
           >
             {display}
           </span>
-          <span className="text-xs mt-1" style={{ color: w(0.24) }}>/100</span>
+          <span
+            className="tracking-widest mt-1.5"
+            style={{ color: w(0.38), fontSize: '0.65rem' }}
+          >
+            /100
+          </span>
         </div>
       </div>
       <motion.div
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.4, ease: EASE }}
-        className="mt-3 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest"
+        className="mt-3 px-5 py-1.5 rounded-full font-bold"
         style={{
           background: `${tc.color}14`,
           color: tc.color,
-          border: `1px solid ${tc.color}30`,
+          border: `1px solid ${tc.color}2e`,
+          fontSize: '0.65rem',
+          letterSpacing: '0.1em',
         }}
       >
         {badge}
@@ -511,7 +532,7 @@ function WebFormInput({
     caretColor: g(1),
     outline:    'none',
   };
-  const labelStyle = { color: w(0.32), fontSize: '0.7rem', letterSpacing: '0.06em', textTransform: 'uppercase' as const };
+  const labelStyle = { color: w(0.46), fontSize: '0.7rem', letterSpacing: '0.06em', textTransform: 'uppercase' as const };
 
   const canSubmit = data.message.trim().length >= 10 && !isRunning;
 
@@ -653,7 +674,7 @@ function EmailComposeInput({
         className="flex items-center gap-3 px-4 py-2.5"
         style={{ borderBottom: fieldBorderStyle, background: 'rgba(255,255,255,0.015)' }}
       >
-        <span className="text-xs shrink-0" style={{ color: w(0.28) }}>{ui.viaLabel}</span>
+        <span className="text-xs shrink-0" style={{ color: w(0.42) }}>{ui.viaLabel}</span>
         <div className="flex gap-1.5">
           {PORTALS.map(p => (
             <button
@@ -677,8 +698,8 @@ function EmailComposeInput({
         className="flex items-center gap-3 px-4 py-2.5"
         style={{ borderBottom: fieldBorderStyle }}
       >
-        <span className="text-xs shrink-0 w-12" style={{ color: w(0.25) }}>{ui.toLabel}</span>
-        <span className="text-xs" style={{ color: w(0.45) }}>agency@nuovasolution.com</span>
+        <span className="text-xs shrink-0 w-12" style={{ color: w(0.4) }}>{ui.toLabel}</span>
+        <span className="text-xs" style={{ color: w(0.58) }}>agency@nuovasolution.com</span>
       </div>
 
       {/* Subject row */}
@@ -686,8 +707,8 @@ function EmailComposeInput({
         className="flex items-center gap-3 px-4 py-2.5"
         style={{ borderBottom: fieldBorderStyle }}
       >
-        <span className="text-xs shrink-0 w-12" style={{ color: w(0.25) }}>{ui.subjectLabel}</span>
-        <span className="text-xs" style={{ color: w(0.38) }}>
+        <span className="text-xs shrink-0 w-12" style={{ color: w(0.4) }}>{ui.subjectLabel}</span>
+        <span className="text-xs" style={{ color: w(0.52) }}>
           {ui.subjectAuto}
           {portal !== 'Email' ? ` — ${portal}` : ''}
         </span>
@@ -700,7 +721,7 @@ function EmailComposeInput({
           onChange={e => onMessageChange(e.target.value)}
           placeholder={lang === 'es'
             ? 'Escribe o pega el mensaje del cliente aquí...'
-            : 'Paste the client\'s inquiry message here...'
+            : 'Type or paste the client\'s inquiry here...'
           }
           rows={4}
           className="w-full resize-none text-sm outline-none"
@@ -726,9 +747,10 @@ function EmailComposeInput({
           onClick={onRun}
           disabled={!canRun}
           className="btn btn-gold btn-sm"
+          onKeyDown={e => { if (e.key === 'Enter' && canRun) onRun(); }}
           style={{ opacity: canRun ? 1 : 0.32, cursor: canRun ? 'pointer' : 'not-allowed' }}
         >
-          {isRunning ? ui.analyzing : ui.analyze}
+          {isRunning ? ui.analyzing : ui.sendEmail}
         </button>
       </div>
     </div>
@@ -955,7 +977,7 @@ function WhatsAppView({
                   opacity:    followUpMsg.trim() ? 1 : 0.38,
                 }}
               >
-                <span className="text-sm" style={{ color: '#25D366' }}>↑</span>
+                <span className="text-sm" style={{ color: '#25D366' }}>→</span>
               </button>
             </div>
           </motion.div>
@@ -1274,7 +1296,7 @@ function PreviewIntelligencePanel({ ui, lang }: { ui: ReturnType<typeof getUI>; 
       className="space-y-5"
     >
       <div className="flex items-center justify-between">
-        <p className="text-xs tracking-widest uppercase font-medium" style={{ color: g(0.38) }}>
+        <p className="text-xs tracking-widest uppercase font-medium" style={{ color: g(0.55) }}>
           {ui.insightsLabel}
         </p>
         <span
@@ -1286,11 +1308,11 @@ function PreviewIntelligencePanel({ ui, lang }: { ui: ReturnType<typeof getUI>; 
       </div>
       <InsightsGrid rows={previewRows} visibleCount={previewRows.length} />
       <div className="flex flex-col items-center py-2">
-        <p className="text-xs tracking-widest uppercase mb-4" style={{ color: g(0.38) }}>{ui.scoreLabel}</p>
+        <p className="text-xs tracking-widest uppercase mb-4" style={{ color: g(0.55) }}>{ui.scoreLabel}</p>
         <ScoreRing score={87} temperature="hot" lang={lang} fromScore={0} />
       </div>
       <CrmUpdateCard result={PREVIEW_RESULT} lang={lang} ui={ui} scoreKey={-1} />
-      <p className="text-xs text-center mt-1" style={{ color: w(0.12) }}>
+      <p className="text-xs text-center mt-1" style={{ color: w(0.28) }}>
         {lang === 'es' ? 'Envía tu consulta para ver resultados reales' : 'Submit an inquiry to see live results'}
       </p>
     </motion.div>
@@ -1314,7 +1336,7 @@ export default function LiveDemoClient() {
   const [followUpResp,  setFollowUpResp]  = useState<string | null>(null);
   const [followUpPhase, setFollowUpPhase] = useState<0 | 1 | 2>(0);
   const [webFormData,   setWebFormData]   = useState<WebFormData>(EMPTY_FORM);
-  const [emailPortal,   setEmailPortal]   = useState<PortalOption>('Idealista');
+  const [emailPortal,   setEmailPortal]   = useState<PortalOption>('Email');
   const [scoreUpdated,  setScoreUpdated]  = useState(false);
 
   const timersRef       = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -1405,24 +1427,25 @@ export default function LiveDemoClient() {
 
       // Merge follow-up signals and recalculate score
       const merged = mergeFollowUp(current, msg);
-      if (merged.score !== current.score || merged.temperature !== current.temperature) {
+      if (merged.score !== current.score || merged.temperature !== current.temperature
+        || JSON.stringify(merged.extracted) !== JSON.stringify(current.extracted)) {
         previousScoreRef.current = current.score;
         resultRef.current = merged;
         setResult(merged);
+        setVisibleRows(buildInsightRows(merged, ui).length);
         setScoreUpdated(true);
       }
     }, 700 + Math.random() * 250);
 
     timersRef.current.push(id);
-  }, [followUpPhase]);
+  }, [followUpPhase, ui]);
 
   const loadExample = useCallback((ex: typeof EXAMPLE_LEADS[0]) => {
     reset();
     setMessage(ex.message);
     setSource(ex.source);
     if (ex.source === 'Web Forms') {
-      // Pre-fill web form fields if possible (optional enhancement)
-      setWebFormData(EMPTY_FORM);
+      setWebFormData({ ...EMPTY_FORM, message: ex.message });
     }
   }, [reset]);
 
@@ -1433,7 +1456,7 @@ export default function LiveDemoClient() {
     : null;
 
   return (
-    <div style={{ background: BG, minHeight: '100vh' }}>
+    <div style={{ background: BG, minHeight: '100vh', overflowX: 'hidden' }}>
 
       {/* Hero */}
       <section className="relative pt-28 pb-10 px-6 text-center overflow-hidden">
@@ -1460,7 +1483,7 @@ export default function LiveDemoClient() {
         </motion.h1>
         <motion.p
           className="text-base max-w-lg mx-auto"
-          style={{ color: w(0.38) }}
+          style={{ color: w(0.52) }}
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.15, ease: EASE }}
         >
@@ -1488,7 +1511,7 @@ export default function LiveDemoClient() {
                     initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.18, ease: EASE }}
                   >
-                    <p className="text-sm font-medium text-center mb-5" style={{ color: g(0.48) }}>
+                    <p className="text-sm font-medium text-center mb-5" style={{ color: g(0.62) }}>
                       {ui.tagline}
                     </p>
                     <div className="grid grid-cols-3 gap-3">
@@ -1508,13 +1531,13 @@ export default function LiveDemoClient() {
                             }}
                           >
                             <span className="text-xl block mb-1.5">{ch.icon}</span>
-                            <span className="text-xs font-semibold block leading-snug" style={{ color: active ? g(1) : w(0.48) }}>
+                            <span className="text-xs font-semibold block leading-snug" style={{ color: active ? g(1) : w(0.58) }}>
                               {label}
                             </span>
                             {sub && (
                               <span
                                 className="text-xs block leading-snug mt-1"
-                                style={{ color: active ? g(0.38) : w(0.16), fontSize: '0.6rem' }}
+                                style={{ color: active ? g(0.52) : w(0.26), fontSize: '0.6rem' }}
                               >
                                 {sub}
                               </span>
@@ -1531,7 +1554,7 @@ export default function LiveDemoClient() {
                     initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.26, ease: EASE }}
                   >
-                    <p className="text-xs mb-3" style={{ color: w(0.2) }}>{ui.tryExample}</p>
+                    <p className="text-xs mb-3" style={{ color: w(0.36) }}>{ui.tryExample}</p>
                     <div className="flex flex-wrap gap-2">
                       {EXAMPLE_LEADS.map(ex => {
                         const active    = message === ex.message;
@@ -1544,7 +1567,7 @@ export default function LiveDemoClient() {
                             style={{
                               background: active ? g(0.09)                : 'rgba(255,255,255,0.022)',
                               border:     active ? `1px solid ${g(0.26)}` : `1px solid ${w(0.06)}`,
-                              color:      active ? g(1)                   : w(0.35),
+                              color:      active ? g(1)                   : w(0.48),
                             }}
                           >
                             {chipLabel}
@@ -1600,6 +1623,12 @@ export default function LiveDemoClient() {
                           onChange={e => {
                             setMessage(e.target.value);
                             if (phase > 0 && phase < 5) reset();
+                          }}
+                          onKeyDown={e => {
+                            if (e.key === 'Enter' && !e.shiftKey) {
+                              e.preventDefault();
+                              if (textareaCanRun) runDemo();
+                            }
                           }}
                           placeholder={ui.placeholder}
                           rows={4}
@@ -1660,7 +1689,7 @@ export default function LiveDemoClient() {
                   {/* Divider */}
                   <div className="flex items-center gap-4 mb-8">
                     <div className="flex-1 h-px" style={{ background: w(0.05) }} />
-                    <span className="text-xs tracking-widest uppercase" style={{ color: g(0.38) }}>
+                    <span className="text-xs tracking-widest uppercase" style={{ color: g(0.55) }}>
                       {ui.analysisLabel}
                     </span>
                     <div className="flex-1 h-px" style={{ background: w(0.05) }} />
@@ -1754,7 +1783,7 @@ export default function LiveDemoClient() {
                       className="mt-8"
                     >
                       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10 pt-2">
-                        <p className="text-sm text-center sm:text-left" style={{ color: w(0.22) }}>
+                        <p className="text-sm text-center sm:text-left" style={{ color: w(0.38) }}>
                           {ui.emailTagline}
                         </p>
                         <button onClick={reset} className="btn btn-ghost btn-sm shrink-0">
@@ -1773,7 +1802,7 @@ export default function LiveDemoClient() {
                         >
                           {ui.stopLosing}
                         </h2>
-                        <p className="text-sm mb-8 max-w-sm mx-auto" style={{ color: w(0.32) }}>
+                        <p className="text-sm mb-8 max-w-sm mx-auto" style={{ color: w(0.48) }}>
                           {ui.stopLosingBody}
                         </p>
                         <a
@@ -1811,7 +1840,7 @@ export default function LiveDemoClient() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4, ease: EASE }}
-                  className="space-y-4"
+                  className="space-y-4 mt-10 lg:mt-0"
                 >
                   {/* Score updated notice */}
                   <AnimatePresence>
@@ -1836,7 +1865,7 @@ export default function LiveDemoClient() {
                   {/* Insights grid */}
                   {phase >= 3 && (
                     <div>
-                      <p className="text-xs tracking-widest uppercase mb-2" style={{ color: g(0.38) }}>
+                      <p className="text-xs tracking-widest uppercase mb-2" style={{ color: g(0.55) }}>
                         {ui.insightsLabel}
                       </p>
                       <InsightsGrid rows={insightRows} visibleCount={visibleRows} />
@@ -1846,7 +1875,7 @@ export default function LiveDemoClient() {
                   {/* Score ring */}
                   {phase >= 4 && (
                     <div className="flex flex-col items-center py-2">
-                      <p className="text-xs tracking-widest uppercase mb-4" style={{ color: g(0.38) }}>
+                      <p className="text-xs tracking-widest uppercase mb-4" style={{ color: g(0.55) }}>
                         {ui.scoreLabel}
                       </p>
                       <ScoreRing
@@ -1872,7 +1901,7 @@ export default function LiveDemoClient() {
                   {/* Recommended action */}
                   {showAction && recAction && (
                     <div>
-                      <p className="text-xs tracking-widest uppercase mb-2" style={{ color: g(0.38) }}>
+                      <p className="text-xs tracking-widest uppercase mb-2" style={{ color: g(0.55) }}>
                         {ui.recommendedTitle}
                       </p>
                       <RecommendedActionCard action={recAction} ui={ui} />

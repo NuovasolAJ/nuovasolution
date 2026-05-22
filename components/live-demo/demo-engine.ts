@@ -38,6 +38,27 @@ const DE_KW = ['guten', 'ich', 'wir', 'mein', 'eine', 'immobilien', 'kaufen', 'm
 
 const LOCATIONS = ['marbella', 'málaga', 'malaga', 'nerja', 'fuengirola', 'torremolinos', 'benalmádena', 'benalmadena', 'estepona', 'sotogrande', 'puerto banús', 'puerto banus', 'costa del sol', 'mijas', 'la cala', 'benahavís', 'benahavis', 'nueva andalucia', 'nueva andalucía', 'alhaurin', 'vélez', 'velez', 'manilva', 'casares', 'ronda', 'frigiliana', 'competa', 'torrox', 'golden mile', 'sierra blanca'];
 
+function extractBudget(text: string): string | undefined {
+  // With currency symbol: €20k, €300,000, £1.8M, €1.2M–€1.5M
+  let m = text.match(
+    /[€£$]\s*\d[\d,\.]*\s*(?:m(?:illion)?|k|M|K)?(?:\s*[-–]\s*[€£$]?\s*\d[\d,\.]*\s*(?:m(?:illion)?|k|M|K)?)?/i
+  );
+  if (m) return m[0].trim().replace(/\s+/g, ' ');
+  // Standalone k/M suffix (no currency): 20k, 300K, 1.8M, 1,5M, 20k–25k
+  m = text.match(
+    /\b\d+(?:[.,]\d+)?\s*(?:k|K|M|m(?:illion)?)\b(?:\s*[-–]\s*\d+(?:[.,]\d+)?\s*(?:k|K|M|m(?:illion)?)?\b)?/i
+  );
+  if (m) return m[0].trim().replace(/\s+/g, ' ');
+  // European/US 3-digit grouping + euros/€: 1.800.000 euros, 400.000€, 1,800,000 euros
+  m = text.match(/\d{1,3}(?:[.,]\d{3})+(?:[.,]\d{1,2})?\s*(?:euros?|€)/i);
+  if (m) return m[0].trim().replace(/\s+/g, ' ');
+  // million/millones + euro word
+  m = text.match(/[\d,\.]+\s*(?:million|millón|millones?)\s*euro(?:s)?/i)
+    || text.match(/[\d,\.]+\s*k\s*euro(?:s)?/i);
+  if (m) return m[0].trim().replace(/\s+/g, ' ');
+  return undefined;
+}
+
 export function analyzeInput(message: string, source: string): DemoResult {
   const text = message.trim();
   const lower = text.toLowerCase();
@@ -96,12 +117,8 @@ export function analyzeInput(message: string, source: string): DemoResult {
     }
   }
 
-  // Budget — handles ranges with dash, "and", "to", "bis", or "a"
-  let budget: string | undefined;
-  const bm = text.match(
-    /[€£$]\s*[\d,\.]+\s*(?:m(?:illion)?|k|M|K)?(?:\s*(?:[-–]|\band\b|\bto\b|\bbis\b|\ba\b)\s*[€£$]?\s*[\d,\.]+\s*(?:m(?:illion)?|k|M|K)?)?|[\d,\.]+\s*(?:million|millón|M)\s*euro(?:s)?|[\d,\.]+\s*k\s*euro(?:s)?|[\d\.]+[,\.][\d]{3}\s*(?:(?:and|bis|to|a)\s+[\d\.]+[,\.][\d]{3}\s*)?euro(?:s)?/i
-  );
-  if (bm) budget = bm[0].trim().replace(/\s+/g, ' ');
+  // Budget — comprehensive extraction including k/M suffixes, European formats
+  const budget = extractBudget(text);
 
   // Location
   let location: string | undefined;
@@ -170,7 +187,7 @@ export function analyzeInput(message: string, source: string): DemoResult {
   if (propertyType)     { score +=  6; factors.push({ label: propertyType + ' specified', positive: true }); }
   if (urgency)          { score +=  8; factors.push({ label: 'High urgency signal', positive: true }); }
   if (isInvestor)       { score += 10; factors.push({ label: 'Investment intent', positive: true }); }
-  if (leadType === 'seller') { score = Math.max(score, 42); factors.push({ label: 'Listing opportunity', positive: true }); }
+  if (leadType === 'seller') { score = Math.max(score, 52); factors.push({ label: 'Seller intent confirmed', positive: true }); }
 
   score = Math.min(100, Math.max(8, score));
   const temperature: Temperature = score >= 75 ? 'hot' : score >= 45 ? 'warm' : 'cold';
@@ -285,40 +302,40 @@ export function getRecommendedAction(
 
   if (lang === 'es') {
     if (temperature === 'hot' && viewingRequested) {
-      return { title: 'Lead prioritario', body: 'Solicitó visita y confirmó presupuesto. Llame en los próximos 15 minutos y proponga dos horarios concretos.', urgency: 'immediate' };
+      return { title: 'Seguimiento prioritario de comprador', body: 'Solicitó visita y confirmó presupuesto. Llame en los próximos 15 minutos y proponga dos horarios concretos.', urgency: 'immediate' };
     }
     if (temperature === 'hot') {
-      return { title: 'Alta intención detectada', body: 'Presupuesto y ubicación confirmados. Llame hoy y ofrezca organizar una visita.', urgency: 'immediate' };
+      return { title: 'Organizar visita hoy', body: 'Presupuesto y ubicación confirmados. Llame hoy y ofrezca coordinar una visita.', urgency: 'immediate' };
     }
     if (leadType === 'seller') {
-      return { title: 'Oportunidad de captación', body: 'El cliente considera vender. Organice una llamada de valoración en las próximas 24 horas.', urgency: 'soon' };
+      return { title: 'Programar llamada de valoración', body: 'El cliente considera vender. Organice una llamada de valoración en las próximas 24 horas.', urgency: 'soon' };
     }
     if (!budget) {
-      return { title: 'Lead activo, falta presupuesto', body: 'Pregunte por el rango de presupuesto antes de enviar listados. El seguimiento continúa automáticamente.', urgency: 'soon' };
+      return { title: 'Calificar rango de presupuesto', body: 'Pregunte por el rango de presupuesto antes de enviar listados. El seguimiento continúa automáticamente.', urgency: 'soon' };
     }
     if (!timeline) {
-      return { title: 'Lead activo, timing por confirmar', body: 'Confirme cuándo quiere hacer el movimiento antes de priorizar. El sistema hace seguimiento automáticamente.', urgency: 'soon' };
+      return { title: 'Confirmar plazo de compra', body: 'Confirme cuándo quiere hacer el movimiento antes de priorizar. El sistema hace seguimiento automáticamente.', urgency: 'soon' };
     }
-    return { title: 'Lead frío en seguimiento', body: 'Señal de intención baja. La secuencia automática está activa. Revíselo si responde.', urgency: 'low' };
+    return { title: 'Seguimiento automático activo', body: 'Señal de intención baja. La secuencia automática está activa. Revíselo si responde.', urgency: 'low' };
   }
 
   // English
   if (temperature === 'hot' && viewingRequested) {
-    return { title: 'Priority lead', body: 'Client requested a viewing and confirmed budget. Call within 15 minutes and propose two specific viewing slots.', urgency: 'immediate' };
+    return { title: 'Priority buyer follow-up', body: 'Client requested a viewing and confirmed budget. Call within 15 minutes and propose two specific viewing slots.', urgency: 'immediate' };
   }
   if (temperature === 'hot') {
-    return { title: 'High intent detected', body: 'Budget and location confirmed. Reach out today and offer to arrange a viewing.', urgency: 'immediate' };
+    return { title: 'Arrange viewing today', body: 'Budget and location confirmed. Reach out today and offer to coordinate a viewing.', urgency: 'immediate' };
   }
   if (leadType === 'seller') {
-    return { title: 'Listing opportunity', body: 'Client is considering selling. Arrange a valuation call within 24 hours.', urgency: 'soon' };
+    return { title: 'Schedule valuation call', body: 'Client is considering selling. Arrange a valuation call within 24 hours.', urgency: 'soon' };
   }
   if (!budget) {
-    return { title: 'Active lead, budget missing', body: 'Ask for a budget range before sending listings. Automated follow-up is running.', urgency: 'soon' };
+    return { title: 'Qualify budget range', body: 'Ask for a budget range before sending listings. Automated follow-up is running.', urgency: 'soon' };
   }
   if (!timeline) {
-    return { title: 'Active lead, timing unclear', body: 'Confirm when they are looking to move before prioritising. The system is following up automatically.', urgency: 'soon' };
+    return { title: 'Confirm buying timeline', body: 'Confirm when they are looking to move before prioritising. The system is following up automatically.', urgency: 'soon' };
   }
-  return { title: 'Cold lead in follow-up', body: 'Low intent signal. Automated follow-up sequence is active. Review if they respond.', urgency: 'low' };
+  return { title: 'Automated follow-up active', body: 'Low intent signal. Automated sequence is running. Review if they respond.', urgency: 'low' };
 }
 
 export function generateFollowUp(followUpMsg: string, original: DemoResult): string {
@@ -357,9 +374,7 @@ export function mergeFollowUp(original: DemoResult, followUpMsg: string): DemoRe
   const newInvestor  = /invest|units|yield|portfolio|buy-to-let|rental income|projected|acquisitions?/i.test(text);
   const newMultiUnit = /\b[2-9]\s+(?:units?|properties|apartments?|pisos?|flats?)\b/i.test(text);
 
-  let newBudget: string | undefined;
-  const bm = text.match(/[€£$]\s*[\d,\.]+\s*(?:m(?:illion)?|k|M|K)?(?:\s*(?:[-–]|\band\b|\bto\b|\bbis\b|\ba\b)\s*[€£$]?\s*[\d,\.]+\s*(?:m(?:illion)?|k|M|K)?)?/i);
-  if (bm) newBudget = bm[0].trim().replace(/\s+/g, ' ');
+  const newBudget = extractBudget(text);
 
   let newTimeline: string | undefined;
   if      (/this week|esta semana/i.test(text))                   newTimeline = 'This week';
@@ -407,7 +422,7 @@ export function mergeFollowUp(original: DemoResult, followUpMsg: string): DemoRe
   if (isInvestorNow)           { score += 10; factors.push({ label: 'Investment intent',            positive: true }); }
   if (newCashBuyer)            { score += 12; factors.push({ label: 'Cash buyer',                   positive: true }); }
   if (newMultiUnit)            { score +=  8; factors.push({ label: 'Multiple units',               positive: true }); }
-  if (isSeller)                { score = Math.max(score, 42); factors.push({ label: 'Listing opportunity', positive: true }); }
+  if (isSeller)                { score = Math.max(score, 52); factors.push({ label: 'Seller intent confirmed', positive: true }); }
 
   score = Math.min(100, Math.max(8, score));
   const temperature: Temperature = score >= 75 ? 'hot' : score >= 45 ? 'warm' : 'cold';
