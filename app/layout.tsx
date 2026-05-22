@@ -11,11 +11,11 @@ export const metadata: Metadata = {
     "Instant replies. Qualified clients. Real opportunities. AI lead capture and qualification for real estate agencies in Spain.",
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.png", type: "image/png" },
+      { url: "/favicon-v2.svg", type: "image/svg+xml" },
+      { url: "/favicon-v2.png", type: "image/png" },
     ],
-    shortcut: "/favicon.svg",
-    apple: "/favicon.png",
+    shortcut: "/favicon-v2.svg",
+    apple: "/favicon-v2.png",
   },
   openGraph: {
     title: "NuovaSolution — Never Miss a Lead Again",
