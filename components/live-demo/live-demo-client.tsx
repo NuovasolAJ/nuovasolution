@@ -52,163 +52,173 @@ const EMPTY_FORM: WebFormData = { name: '', email: '', budget: '', location: '',
 
 function getUI(lang: string) {
   if (lang === 'es') return {
-    pageLabel:        'Demo en Vivo',
-    headlineA:        'Su agencia',
-    headlineB:        'nunca pierde',
-    headlineC:        'otro lead',
-    subheadline:      'Prueba cualquier consulta inmobiliaria. Respuesta automática, calificación inteligente y puntuación de leads — para que su agencia no pierda ninguna oportunidad.',
-    sendEmail:        'Enviar consulta',
-    tagline:          'El canal no importa.',
-    channelNote:      'Selecciona una fuente de consulta:',
-    tryExample:       'Prueba un ejemplo real:',
-    placeholder:      'Pega aquí un mensaje de WhatsApp, email o formulario...',
-    minChars:         'Mín. 10 caracteres',
-    analyze:          'Analizar lead',
-    analyzing:        'Analizando...',
-    runAgain:         'Repetir',
-    insightsLabel:    'Inteligencia del lead',
-    scoreLabel:       'Puntuación del lead',
-    hotAlert:         'LEAD URGENTE — Agente notificado',
-    tryAnother:       'Probar otro lead',
-    readyLabel:       '¿Listo para su agencia?',
-    stopLosing:       'Deje de perder leads',
-    stopLosingBody:   'Reserve una demo y le mostramos el sistema completo en vivo, adaptado a su agencia en la Costa del Sol.',
-    bookDemo:         'Empezar gratis',
-    whatsappUs:       'WhatsApp',
-    analysisLabel:    'Análisis IA',
-    reading:          'Leyendo consulta...',
-    sent:             'Enviado',
-    newInquiry:       'Nueva consulta',
-    budgetDetected:   'Presupuesto detectado',
-    viewingReq:       'Visita solicitada',
-    replyReady:       'Respuesta lista',
-    formTitle:        'Formulario de contacto',
-    formSubmitted:    'Enviado',
-    formReply:        'Respuesta automática',
-    replyFrom:        'Re: Nueva consulta',
-    portalInquiry:    'Consulta de portal',
-    emailTagline:     'Cada consulta. Automática. En segundos.',
-    fieldLanguage:    'Idioma',
-    fieldLeadType:    'Tipo de lead',
-    fieldName:        'Nombre',
-    fieldBudget:      'Presupuesto',
-    fieldLocation:    'Ubicación',
-    fieldTimeline:    'Plazo',
-    fieldViewing:     'Visita',
-    fieldUrgency:     'Urgencia',
-    requested:        'Solicitada',
-    high:             'Alta',
-    crmUpdated:       'CRM actualizado',
-    crmNow:           'Ahora mismo',
-    fieldPriority:    'Prioridad',
-    fieldScore:       'Puntuación',
-    recommendedTitle: 'Acción recomendada',
-    actNow:           'Actuar ahora',
-    actSoon:          'Pronto',
-    actFollowUp:      'Seguimiento',
-    followUpLabel:    'Continuar la conversación',
-    followUpSend:     'Enviar',
-    followUpHint:     'El cliente responde...',
+    pageLabel:             'Demo en Vivo',
+    headlineA:             'Tu agencia',
+    headlineB:             'no vuelve a perder',
+    headlineC:             'un lead',
+    subheadline:           'Cada consulta recibe respuesta inmediata. Cada lead se califica automáticamente. Tu equipo puede enfocarse en cerrar operaciones mientras NuovaSolution gestiona el seguimiento.',
+    sendEmail:             'Enviar consulta',
+    tagline:               'El canal no importa.',
+    channelNote:           'Selecciona una fuente de consulta:',
+    tryExample:            'Prueba un ejemplo real:',
+    placeholder:           'Pega aquí un mensaje de WhatsApp, email o formulario...',
+    minChars:              'Mín. 10 caracteres',
+    analyze:               'Analizar lead',
+    analyzing:             'Analizando...',
+    runAgain:              'Repetir',
+    insightsLabel:         'Inteligencia del lead',
+    scoreLabel:            'Puntuación del lead',
+    hotAlert:              'LEAD URGENTE · Agente notificado',
+    tryAnother:            'Probar otro lead',
+    readyLabel:            '¿Listo para su agencia?',
+    stopLosing:            'Deje de perder leads',
+    stopLosingBody:        'Reserve una demo y le mostramos el sistema completo en vivo, adaptado a su agencia en la Costa del Sol.',
+    bookDemo:              'Empezar gratis ahora',
+    whatsappUs:            'WhatsApp',
+    analysisLabel:         'Análisis IA',
+    reading:               'Leyendo consulta...',
+    sent:                  'Enviado',
+    newInquiry:            'Nueva consulta',
+    budgetDetected:        'Presupuesto detectado',
+    viewingReq:            'Visita solicitada',
+    replyReady:            'Respuesta lista',
+    formTitle:             'Formulario de contacto',
+    formSubmitted:         'Enviado',
+    formReply:             'Respuesta automática',
+    replyFrom:             'Re: Nueva consulta',
+    portalInquiry:         'Consulta de portal',
+    emailTagline:          'Cada consulta. Automática. En segundos.',
+    fieldLanguage:         'Idioma',
+    fieldLeadType:         'Tipo de lead',
+    fieldName:             'Nombre',
+    fieldBudget:           'Presupuesto',
+    fieldLocation:         'Ubicación',
+    fieldTimeline:         'Plazo',
+    fieldViewing:          'Visita',
+    fieldUrgency:          'Urgencia',
+    requested:             'Solicitada',
+    high:                  'Alta',
+    crmUpdated:            'CRM actualizado',
+    crmNow:                'Ahora mismo',
+    fieldPriority:         'Prioridad',
+    fieldScore:            'Puntuación',
+    recommendedTitle:      'Acción recomendada',
+    actNow:                'Actuar ahora',
+    actSoon:               'Hoy',
+    actFollowUp:           'Seguimiento',
+    followUpLabel:         'Continuar la conversación',
+    followUpSend:          'Enviar',
+    followUpHint:          'El cliente responde...',
     // Email compose
-    fromLabel:        'De',
-    viaLabel:         'Vía',
-    subjectLabel:     'Asunto',
-    subjectAuto:      'Consulta de propiedad',
-    toLabel:          'Para',
+    fromLabel:             'De',
+    viaLabel:              'Vía',
+    subjectLabel:          'Asunto',
+    subjectAuto:           'Consulta de propiedad',
+    toLabel:               'Para',
     // Web form
-    nameLabel:        'Nombre',
-    emailLabel:       'Email',
-    budgetLabel:      'Presupuesto',
-    locationLabel:    'Zona de interés',
-    messageLabel:     'Mensaje',
-    phoneLabel:       'Teléfono (opcional)',
-    submitForm:       'Enviar consulta',
-    formHintName:     'Tu nombre',
-    formHintEmail:    'correo@ejemplo.com',
-    formHintBudget:   'ej. €400,000',
-    formHintLocation: 'ej. Marbella, Estepona',
-    formHintMessage:  'Describe lo que buscas...',
-    inquiryUpdated:   'Señal nueva detectada — puntuación actualizada',
+    nameLabel:             'Nombre',
+    emailLabel:            'Email',
+    budgetLabel:           'Presupuesto',
+    locationLabel:         'Zona de interés',
+    messageLabel:          'Mensaje',
+    phoneLabel:            'Teléfono (opcional)',
+    submitForm:            'Enviar consulta',
+    formHintName:          'Tu nombre',
+    formHintEmail:         'correo@ejemplo.com',
+    formHintBudget:        'ej. €400,000',
+    formHintLocation:      'ej. Marbella, Estepona',
+    formHintMessage:       'Describe lo que buscas...',
+    inquiryUpdated:        'Nueva señal detectada · puntuación actualizada',
+    // Lead type display values (site language)
+    leadTypeBuyer:         'Comprador potencial',
+    leadTypeBuyerInvestor: 'Comprador inversor',
+    leadTypeSeller:        'Propietario vendedor',
+    leadTypeRental:        'Búsqueda de alquiler',
   };
 
   return {
-    pageLabel:        'Live Demo',
-    headlineA:        'Your agency',
-    headlineB:        'never misses',
-    headlineC:        'another lead',
-    subheadline:      'Try any real estate inquiry. See instant replies, automatic qualification, and smart scoring — so your agency stops losing opportunities.',
-    sendEmail:        'Send Inquiry',
-    tagline:          'It does not matter where the lead comes from.',
-    channelNote:      'Select a lead source:',
-    tryExample:       'Try a real example:',
-    placeholder:      'Paste a WhatsApp message, email inquiry, or web form lead here...',
-    minChars:         'Min. 10 characters',
-    analyze:          'Analyze Lead',
-    analyzing:        'Analyzing...',
-    runAgain:         'Run Again',
-    insightsLabel:    'Lead Intelligence',
-    scoreLabel:       'Lead Score',
-    hotAlert:         'HOT LEAD — Agent Alerted',
-    tryAnother:       'Try another lead',
-    readyLabel:       'Ready for your agency?',
-    stopLosing:       'Stop losing leads',
-    stopLosingBody:   'Book a demo and we will show you the full system running live, tailored to your agency on the Costa del Sol.',
-    bookDemo:         'Start for free',
-    whatsappUs:       'WhatsApp Us',
-    analysisLabel:    'AI Analysis',
-    reading:          'Reading inquiry...',
-    sent:             'Sent',
-    newInquiry:       'New inquiry',
-    budgetDetected:   'Budget detected',
-    viewingReq:       'Viewing requested',
-    replyReady:       'Reply ready',
-    formTitle:        'Contact Form Submission',
-    formSubmitted:    'Submitted',
-    formReply:        'Automated Reply',
-    replyFrom:        'Re: New Inquiry',
-    portalInquiry:    'Portal inquiry',
-    emailTagline:     'Every inquiry. Automatic. In seconds.',
-    fieldLanguage:    'Language',
-    fieldLeadType:    'Lead Type',
-    fieldName:        'Name',
-    fieldBudget:      'Budget',
-    fieldLocation:    'Location',
-    fieldTimeline:    'Timeline',
-    fieldViewing:     'Viewing',
-    fieldUrgency:     'Urgency',
-    requested:        'Requested',
-    high:             'High',
-    crmUpdated:       'CRM Updated',
-    crmNow:           'Just now',
-    fieldPriority:    'Priority',
-    fieldScore:       'Score',
-    recommendedTitle: 'Recommended Action',
-    actNow:           'Act now',
-    actSoon:          'Soon',
-    actFollowUp:      'Follow-up',
-    followUpLabel:    'Continue the conversation',
-    followUpSend:     'Send',
-    followUpHint:     'Client replies...',
+    pageLabel:             'Live Demo',
+    headlineA:             'Your agency',
+    headlineB:             'never misses',
+    headlineC:             'another lead',
+    subheadline:           'Every inquiry answered instantly. Every lead qualified automatically. Your team focuses on closing deals while NuovaSolution handles the follow up.',
+    sendEmail:             'Send Inquiry',
+    tagline:               'It does not matter where the lead comes from.',
+    channelNote:           'Select a lead source:',
+    tryExample:            'Try a real example:',
+    placeholder:           'Paste a WhatsApp message, email inquiry, or web form lead here...',
+    minChars:              'Min. 10 characters',
+    analyze:               'Analyze Lead',
+    analyzing:             'Analyzing...',
+    runAgain:              'Run Again',
+    insightsLabel:         'Lead Intelligence',
+    scoreLabel:            'Lead Score',
+    hotAlert:              'HOT LEAD · Agent alerted',
+    tryAnother:            'Try another lead',
+    readyLabel:            'Ready for your agency?',
+    stopLosing:            'Stop losing leads',
+    stopLosingBody:        'Book a demo and we will show you the full system running live, tailored to your agency on the Costa del Sol.',
+    bookDemo:              'Start for free now',
+    whatsappUs:            'WhatsApp Us',
+    analysisLabel:         'AI Analysis',
+    reading:               'Reading inquiry...',
+    sent:                  'Sent',
+    newInquiry:            'New inquiry',
+    budgetDetected:        'Budget detected',
+    viewingReq:            'Viewing requested',
+    replyReady:            'Reply ready',
+    formTitle:             'Contact Form Submission',
+    formSubmitted:         'Submitted',
+    formReply:             'Automated Reply',
+    replyFrom:             'Re: New Inquiry',
+    portalInquiry:         'Portal inquiry',
+    emailTagline:          'Every inquiry. Automatic. In seconds.',
+    fieldLanguage:         'Language',
+    fieldLeadType:         'Lead Type',
+    fieldName:             'Name',
+    fieldBudget:           'Budget',
+    fieldLocation:         'Location',
+    fieldTimeline:         'Timeline',
+    fieldViewing:          'Viewing',
+    fieldUrgency:          'Urgency',
+    requested:             'Requested',
+    high:                  'High',
+    crmUpdated:            'CRM Updated',
+    crmNow:                'Just now',
+    fieldPriority:         'Priority',
+    fieldScore:            'Score',
+    recommendedTitle:      'Recommended Action',
+    actNow:                'Act now',
+    actSoon:               'Today',
+    actFollowUp:           'Follow up',
+    followUpLabel:         'Continue the conversation',
+    followUpSend:          'Send',
+    followUpHint:          'Client replies...',
     // Email compose
-    fromLabel:        'From',
-    viaLabel:         'Via',
-    subjectLabel:     'Subject',
-    subjectAuto:      'Property inquiry',
-    toLabel:          'To',
+    fromLabel:             'From',
+    viaLabel:              'Via',
+    subjectLabel:          'Subject',
+    subjectAuto:           'Property inquiry',
+    toLabel:               'To',
     // Web form
-    nameLabel:        'Name',
-    emailLabel:       'Email',
-    budgetLabel:      'Budget',
-    locationLabel:    'Area of interest',
-    messageLabel:     'Message',
-    phoneLabel:       'Phone (optional)',
-    submitForm:       'Submit Inquiry',
-    formHintName:     'Your name',
-    formHintEmail:    'name@example.com',
-    formHintBudget:   'e.g. €400,000',
-    formHintLocation: 'e.g. Marbella, Estepona',
-    formHintMessage:  'Tell us what you are looking for...',
-    inquiryUpdated:   'New signal detected — score updated',
+    nameLabel:             'Name',
+    emailLabel:            'Email',
+    budgetLabel:           'Budget',
+    locationLabel:         'Area of interest',
+    messageLabel:          'Message',
+    phoneLabel:            'Phone (optional)',
+    submitForm:            'Submit Inquiry',
+    formHintName:          'Your name',
+    formHintEmail:         'name@example.com',
+    formHintBudget:        'e.g. €400,000',
+    formHintLocation:      'e.g. Marbella, Estepona',
+    formHintMessage:       'Tell us what you are looking for...',
+    inquiryUpdated:        'New signal detected · score updated',
+    // Lead type display values (site language)
+    leadTypeBuyer:         'Buyer Lead',
+    leadTypeBuyerInvestor: 'Investment Buyer',
+    leadTypeSeller:        'Seller Lead',
+    leadTypeRental:        'Rental Inquiry',
   };
 }
 
@@ -217,7 +227,12 @@ function getUI(lang: string) {
 function buildInsightRows(result: DemoResult, ui: ReturnType<typeof getUI>) {
   const rows: { label: string; value: string }[] = [];
   rows.push({ label: ui.fieldLanguage, value: `${result.languageFlag} ${result.languageLabel}` });
-  rows.push({ label: ui.fieldLeadType, value: result.leadTypeLabel });
+  const isInvestorResult = result.leadClassLabel.includes('Investment') || result.leadClassLabel.includes('inversor');
+  const leadTypeDisplay = result.leadType === 'seller' ? ui.leadTypeSeller
+    : result.leadType === 'rental' ? ui.leadTypeRental
+    : isInvestorResult ? ui.leadTypeBuyerInvestor
+    : ui.leadTypeBuyer;
+  rows.push({ label: ui.fieldLeadType, value: leadTypeDisplay });
   if (result.extracted.name)             rows.push({ label: ui.fieldName,     value: result.extracted.name });
   if (result.extracted.budget)           rows.push({ label: ui.fieldBudget,   value: result.extracted.budget });
   if (result.extracted.location)         rows.push({ label: ui.fieldLocation, value: result.extracted.location });
@@ -711,7 +726,7 @@ function EmailComposeInput({
         <span className="text-xs shrink-0 w-12" style={{ color: w(0.4) }}>{ui.subjectLabel}</span>
         <span className="text-xs" style={{ color: w(0.52) }}>
           {ui.subjectAuto}
-          {portal !== 'Email' ? ` — ${portal}` : ''}
+          {portal !== 'Email' ? ` · ${portal}` : ''}
         </span>
       </div>
 
@@ -1124,7 +1139,7 @@ function EmailView({
               L
             </div>
             <div>
-              <p className="text-xs font-medium" style={{ color: g(0.85) }}>Laura — NuovaSolution</p>
+              <p className="text-xs font-medium" style={{ color: g(0.85) }}>Laura · NuovaSolution</p>
               <p className="text-xs" style={{ color: w(0.24) }}>{ui.replyFrom}</p>
             </div>
           </div>
@@ -1248,7 +1263,7 @@ function WebFormView({
               L
             </div>
             <p className="text-xs font-medium" style={{ color: g(0.82) }}>
-              Laura — NuovaSolution · {ui.formReply}
+              Laura · NuovaSolution · {ui.formReply}
             </p>
           </div>
           <div className="px-4 sm:px-5 py-4">
@@ -1754,7 +1769,7 @@ export default function LiveDemoClient() {
                         </motion.span>
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-bold mb-0.5" style={{ color: '#F05050' }}>
-                            {lang === 'es' ? 'LEAD URGENTE — Agente notificado' : ui.hotAlert}
+                            {ui.hotAlert}
                           </p>
                           <p className="text-xs break-words" style={{ color: w(0.42) }}>
                             {result.alertSnippet}
@@ -1768,7 +1783,7 @@ export default function LiveDemoClient() {
                             border:     '1px solid rgba(37,211,102,0.18)',
                           }}
                         >
-                          WA ✓
+                          WhatsApp ✓
                         </span>
                       </div>
                     </motion.div>
@@ -1786,7 +1801,11 @@ export default function LiveDemoClient() {
                         <p className="text-sm text-center sm:text-left" style={{ color: w(0.38) }}>
                           {ui.emailTagline}
                         </p>
-                        <button onClick={reset} className="btn btn-ghost btn-sm shrink-0">
+                        <button
+                          onClick={reset}
+                          className="shrink-0 text-xs font-semibold px-4 py-2 rounded-xl transition-all duration-150 hover:opacity-80"
+                          style={{ background: g(0.07), border: `1px solid ${g(0.22)}`, color: g(0.9) }}
+                        >
                           {ui.tryAnother}
                         </button>
                       </div>
@@ -1806,10 +1825,10 @@ export default function LiveDemoClient() {
                           {ui.stopLosingBody}
                         </p>
                         <a
-                          href="/#contact"
+                          href="https://cal.com/nuovasolution/demo"
                           className="btn btn-gold btn-md"
-                          data-cal-link="nuovasolution/demo"
-                          data-cal-namespace="demo"
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
                           {ui.bookDemo}
                         </a>
