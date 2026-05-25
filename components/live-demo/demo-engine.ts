@@ -99,18 +99,18 @@ export function analyzeInput(message: string, source: string): DemoResult {
     leadTypeLabel = language === 'es' ? 'Comprador potencial' : language === 'de' ? 'Kaufinteressent' : isInvestor ? 'Investment Buyer' : 'Buyer Lead';
   }
 
-  // Name extraction — requires candidate to actually start with an uppercase letter
+  // Name extraction
   let name: string | undefined;
   const namePat =
-    text.match(/(?:my name is|i'm|i am|name's|me llamo|ich bin|ich heiße)\s+([A-Z][a-záéíóúüñ]{2,})/i) ||
-    text.match(/^(?:hi|hola|hello)[,!]?\s+(?:i'm\s+)?([A-Z][a-záéíóúüñ]{2,})\b/im) ||
-    text.match(/,\s*([A-Z][a-záéíóúüñ]{2,})\s+(?:here|speaking)\b/i);
+    text.match(/(?:my name is|mein name ist|i'm|i am|name's|me llamo|soy|ich bin|ich heiße)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
+    text.match(/^(?:hi|hola|hello)[,!]?\s+(?:i'm\s+)?([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
+    text.match(/,\s*([A-Za-z][a-záéíóúüñ]{2,})\s+(?:here|speaking)\b/i);
   if (namePat) {
     const candidate = namePat[1];
     const skip = [
       'looking', 'searching', 'interested', 'buying', 'renting', 'selling', 'planning',
       'based', 'living', 'moving', 'hoping', 'buscamos', 'somos', 'buscando', 'mirando',
-      'interesados', 'tenemos', 'queremos', 'necesitamos', 'suchen', 'wir',
+      'interesados', 'tenemos', 'queremos', 'necesitamos', 'suchen', 'wir', 'mein', 'eine', 'suche',
     ];
     if (!skip.includes(candidate.toLowerCase())) {
       name = candidate.charAt(0).toUpperCase() + candidate.slice(1);
@@ -283,6 +283,7 @@ export function analyzeInput(message: string, source: string): DemoResult {
   let alertSnippet: string | undefined;
   if (temperature === 'hot') {
     const parts: string[] = [];
+    if (name) parts.push(name);
     if (budget) parts.push(budget);
     if (location) parts.push(location);
     if (viewingRequested) parts.push('Viewing requested');
@@ -344,7 +345,7 @@ export function generateFollowUp(followUpMsg: string, original: DemoResult): str
   const { language } = original;
 
   // Name introduction — respond personally
-  const nameIntro = followUpMsg.match(/(?:my name is|i'm|i am|name's|me llamo|ich bin|ich heiße)\s+([A-Za-z][a-záéíóúüñ]{1,})/i);
+  const nameIntro = followUpMsg.match(/(?:my name is|mein name ist|i'm|i am|name's|me llamo|soy|ich bin|ich heiße)\s+([A-Za-z][a-záéíóúüñ]{1,})/i);
   if (nameIntro) {
     const greetName = nameIntro[1].charAt(0).toUpperCase() + nameIntro[1].slice(1);
     if (language === 'es') return `Un placer, ${greetName}. ¿Cuándo podría hablar 10 minutos? Le cuento exactamente lo que tenemos disponible ahora.`;
@@ -388,12 +389,12 @@ export function mergeFollowUp(original: DemoResult, followUpMsg: string): DemoRe
   // Name extraction — same logic as analyzeInput
   let newName: string | undefined;
   const followUpNamePat =
-    text.match(/(?:my name is|i'm|i am|name's|me llamo|ich bin|ich heiße)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
+    text.match(/(?:my name is|mein name ist|i'm|i am|name's|me llamo|soy|ich bin|ich heiße)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
     text.match(/^(?:hi|hola|hello)[,!]?\s+(?:i'm\s+)?([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
     text.match(/,\s*([A-Za-z][a-záéíóúüñ]{2,})\s+(?:here|speaking)\b/i);
   if (followUpNamePat) {
     const candidate = followUpNamePat[1];
-    const skip = ['looking', 'searching', 'interested', 'buying', 'renting', 'selling', 'planning', 'based', 'living', 'moving', 'hoping', 'buscamos', 'somos', 'buscando', 'mirando', 'interesados', 'tenemos', 'queremos', 'necesitamos', 'suchen', 'wir'];
+    const skip = ['looking', 'searching', 'interested', 'buying', 'renting', 'selling', 'planning', 'based', 'living', 'moving', 'hoping', 'buscamos', 'somos', 'buscando', 'mirando', 'interesados', 'tenemos', 'queremos', 'necesitamos', 'suchen', 'wir', 'mein', 'eine', 'suche'];
     if (!skip.includes(candidate.toLowerCase())) {
       newName = candidate.charAt(0).toUpperCase() + candidate.slice(1);
     }
@@ -454,6 +455,7 @@ export function mergeFollowUp(original: DemoResult, followUpMsg: string): DemoRe
   let alertSnippet: string | undefined;
   if (temperature === 'hot') {
     const parts: string[] = [];
+    if (merged.name)             parts.push(merged.name);
     if (merged.budget)           parts.push(merged.budget);
     if (merged.location)         parts.push(merged.location);
     if (merged.viewingRequested) parts.push('Viewing requested');

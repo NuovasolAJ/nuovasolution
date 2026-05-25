@@ -327,7 +327,7 @@ function InsightsGrid({ rows, visibleCount }: { rows: { label: string; value: st
             background: i % 2 === 0 ? 'rgba(255,255,255,0.016)' : 'transparent',
           }}
         >
-          <span className="text-xs tracking-wide shrink-0" style={{ color: w(0.44) }}>{row.label}</span>
+          <span className="text-xs tracking-widest shrink-0 uppercase" style={{ color: w(0.38), fontSize: '0.66rem' }}>{row.label}</span>
           <span className="text-xs font-semibold text-right break-words min-w-0" style={{ color: w(0.9) }}>{row.value}</span>
         </motion.div>
       ))}
@@ -383,7 +383,7 @@ function CrmUpdateCard({
       <div className="px-4 py-3 space-y-2">
         {rows.map((row, i) => (
           <div key={i} className="flex items-start justify-between gap-2">
-            <span className="text-xs shrink-0" style={{ color: w(0.44) }}>{row.label}</span>
+            <span className="text-xs tracking-widest uppercase shrink-0" style={{ color: w(0.38), fontSize: '0.66rem' }}>{row.label}</span>
             <span
               className="text-xs font-semibold text-right break-words min-w-0"
               style={{ color: row.label === ui.fieldPriority ? tc.color : w(0.88) }}
@@ -472,7 +472,7 @@ function ScoreRing({ score, temperature, lang, fromScore = 0 }: {
       transition={{ duration: 0.75, ease: EASE }}
       className="flex flex-col items-center"
     >
-      <div className="relative w-40 h-40">
+      <div className="relative w-36 h-36 sm:w-40 sm:h-40">
         {/* Ambient glow behind ring */}
         <div
           className="absolute inset-4 rounded-full"
@@ -1474,7 +1474,7 @@ export default function LiveDemoClient() {
     <div style={{ background: BG, minHeight: '100vh', overflowX: 'hidden' }}>
 
       {/* Hero */}
-      <section className="relative pt-28 pb-10 px-6 text-center overflow-hidden">
+      <section className="relative pt-24 sm:pt-28 pb-8 sm:pb-10 px-5 sm:px-6 text-center overflow-hidden">
         <div
           className="aurora-blob w-[700px] h-[440px] -top-44 left-1/2 -translate-x-1/2"
           style={{ background: 'radial-gradient(ellipse, rgba(210,172,98,0.055) 0%, transparent 70%)' }}
@@ -1487,8 +1487,13 @@ export default function LiveDemoClient() {
           {ui.pageLabel}
         </motion.p>
         <motion.h1
-          className="font-display font-bold leading-tight mb-4 max-w-2xl mx-auto"
-          style={{ color: w(0.96), fontSize: 'clamp(2rem, 5vw, 3.25rem)' }}
+          className="font-bold mb-4 max-w-2xl mx-auto"
+          style={{
+            color:         w(0.97),
+            fontSize:      'clamp(2.25rem, 5.2vw, 3.75rem)',
+            lineHeight:    1.06,
+            letterSpacing: '-0.028em',
+          }}
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.07, ease: EASE }}
         >
@@ -1497,8 +1502,8 @@ export default function LiveDemoClient() {
           {ui.headlineC}
         </motion.h1>
         <motion.p
-          className="text-base max-w-lg mx-auto"
-          style={{ color: w(0.52) }}
+          className="max-w-lg mx-auto"
+          style={{ color: w(0.68), fontSize: 'clamp(0.9375rem, 1.35vw, 1.0rem)', lineHeight: 1.78 }}
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.15, ease: EASE }}
         >
@@ -1529,7 +1534,7 @@ export default function LiveDemoClient() {
                     <p className="text-sm font-medium text-center mb-5" style={{ color: g(0.62) }}>
                       {ui.tagline}
                     </p>
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-3 gap-2 sm:gap-3">
                       {CHANNELS.map(ch => {
                         const active = source === ch.id;
                         const label  = lang === 'es' ? ch.labelES : ch.label;
@@ -1538,7 +1543,7 @@ export default function LiveDemoClient() {
                           <button
                             key={ch.id}
                             onClick={() => { setSource(ch.id); if (phase > 0) reset(); }}
-                            className="rounded-xl border transition-all duration-200 px-3 py-3.5 text-center"
+                            className="rounded-xl border transition-all duration-200 px-2 sm:px-3 py-3 sm:py-3.5 text-center min-h-[76px]"
                             style={{
                               background: active ? g(0.07)                : 'rgba(255,255,255,0.018)',
                               border:     active ? `1px solid ${g(0.24)}` : `1px solid ${w(0.055)}`,
@@ -1797,7 +1802,7 @@ export default function LiveDemoClient() {
                       transition={{ delay: 0.4, duration: 0.5 }}
                       className="mt-8"
                     >
-                      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-8 pt-2">
+                      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-6 sm:mb-8 pt-2">
                         <p className="text-sm text-center sm:text-left" style={{ color: w(0.38) }}>
                           {ui.emailTagline}
                         </p>
@@ -1811,22 +1816,22 @@ export default function LiveDemoClient() {
                       </div>
 
                       <div
-                        className="rounded-2xl p-6 sm:p-8 md:p-10 text-center"
+                        className="rounded-2xl p-5 sm:p-8 md:p-10 text-center"
                         style={{ background: 'rgba(255,255,255,0.018)', border: `1px solid ${g(0.1)}` }}
                       >
                         <p className="section-label mb-3">{ui.readyLabel}</p>
                         <h2
                           className="font-display font-bold mb-4"
-                          style={{ color: w(0.96), fontSize: 'clamp(1.5rem, 4vw, 2.6rem)' }}
+                          style={{ color: w(0.96), fontSize: 'clamp(1.5rem, 4vw, 2.6rem)', letterSpacing: '-0.018em', lineHeight: 1.1 }}
                         >
                           {ui.stopLosing}
                         </h2>
-                        <p className="text-sm mb-7 max-w-sm mx-auto" style={{ color: w(0.48) }}>
+                        <p className="text-sm mb-6 sm:mb-7 max-w-sm mx-auto" style={{ color: w(0.48), lineHeight: 1.7 }}>
                           {ui.stopLosingBody}
                         </p>
                         <a
                           href="https://cal.com/nuovasolution/demo"
-                          className="btn btn-gold btn-md"
+                          className="btn btn-gold btn-sm sm:btn-md"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -1859,7 +1864,7 @@ export default function LiveDemoClient() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4, ease: EASE }}
-                  className="space-y-4 mt-10 lg:mt-0"
+                  className="space-y-4 mt-8 lg:mt-0 w-full min-w-0"
                 >
                   {/* Score updated notice */}
                   <AnimatePresence>
