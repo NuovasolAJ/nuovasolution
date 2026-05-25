@@ -102,7 +102,7 @@ export function analyzeInput(message: string, source: string): DemoResult {
   // Name extraction
   let name: string | undefined;
   const namePat =
-    text.match(/(?:my name is|mein name ist|i'm|i am|name's|me llamo|soy|ich bin|ich heiße)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
+    text.match(/(?:my name is|mein name ist|mi nombre es|i'm|i am|name's|me llamo|soy|ich bin|ich heiße|ich heisse)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
     text.match(/^(?:hi|hola|hello)[,!]?\s+(?:i'm\s+)?([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
     text.match(/,\s*([A-Za-z][a-záéíóúüñ]{2,})\s+(?:here|speaking)\b/i);
   if (namePat) {
@@ -345,7 +345,7 @@ export function generateFollowUp(followUpMsg: string, original: DemoResult): str
   const { language } = original;
 
   // Name introduction — respond personally
-  const nameIntro = followUpMsg.match(/(?:my name is|mein name ist|i'm|i am|name's|me llamo|soy|ich bin|ich heiße)\s+([A-Za-z][a-záéíóúüñ]{1,})/i);
+  const nameIntro = followUpMsg.match(/(?:my name is|mein name ist|mi nombre es|i'm|i am|name's|me llamo|soy|ich bin|ich heiße|ich heisse)\s+([A-Za-z][a-záéíóúüñ]{1,})/i);
   if (nameIntro) {
     const greetName = nameIntro[1].charAt(0).toUpperCase() + nameIntro[1].slice(1);
     if (language === 'es') return `Un placer, ${greetName}. ¿Cuándo podría hablar 10 minutos? Le cuento exactamente lo que tenemos disponible ahora.`;
@@ -389,7 +389,7 @@ export function mergeFollowUp(original: DemoResult, followUpMsg: string): DemoRe
   // Name extraction — same logic as analyzeInput
   let newName: string | undefined;
   const followUpNamePat =
-    text.match(/(?:my name is|mein name ist|i'm|i am|name's|me llamo|soy|ich bin|ich heiße)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
+    text.match(/(?:my name is|mein name ist|mi nombre es|i'm|i am|name's|me llamo|soy|ich bin|ich heiße|ich heisse)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
     text.match(/^(?:hi|hola|hello)[,!]?\s+(?:i'm\s+)?([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
     text.match(/,\s*([A-Za-z][a-záéíóúüñ]{2,})\s+(?:here|speaking)\b/i);
   if (followUpNamePat) {

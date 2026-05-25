@@ -1513,7 +1513,7 @@ export default function LiveDemoClient() {
 
       {/* 2-column workspace — always visible on desktop */}
       <section className="px-4 sm:px-6 pb-24 max-w-5xl mx-auto overflow-x-hidden">
-        <div className="grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 lg:items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 lg:items-start">
 
           {/* LEFT — input controls → conversation result */}
           <div>
