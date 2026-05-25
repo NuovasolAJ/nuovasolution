@@ -38,6 +38,92 @@ const DE_KW = ['guten', 'ich', 'wir', 'mein', 'eine', 'immobilien', 'kaufen', 'm
 
 const LOCATIONS = ['marbella', 'málaga', 'malaga', 'nerja', 'fuengirola', 'torremolinos', 'benalmádena', 'benalmadena', 'estepona', 'sotogrande', 'puerto banús', 'puerto banus', 'costa del sol', 'mijas', 'la cala', 'benahavís', 'benahavis', 'nueva andalucia', 'nueva andalucía', 'alhaurin', 'vélez', 'velez', 'manilva', 'casares', 'ronda', 'frigiliana', 'competa', 'torrox', 'golden mile', 'sierra blanca'];
 
+// ─── Name extraction ──────────────────────────────────────────────────────────
+// Words that must NEVER be treated as a first name.
+const NAME_SKIP = new Set<string>([
+  // German definite articles
+  'der', 'die', 'das', 'dem', 'den', 'des',
+  // German indefinite articles
+  'ein', 'eine', 'einen', 'einem', 'einer', 'eines',
+  // German prepositions and common words that can follow "bin / ich bin"
+  'an', 'in', 'am', 'im', 'auf', 'für', 'zu', 'zum', 'zur', 'aus', 'nach',
+  'bei', 'mit', 'von', 'vom', 'vor', 'über', 'unter', 'um', 'durch', 'seit',
+  'nicht', 'auch', 'aber', 'noch', 'nur', 'schon', 'mal', 'gerne', 'gern', 'sehr',
+  'bin', 'sind', 'und', 'oder', 'wir', 'mein', 'suche', 'kein', 'keine',
+  // German role nouns that follow "ich bin ein/der"
+  'käufer', 'käuferin', 'verkäufer', 'verkäuferin', 'mieter', 'mieterin',
+  'interessent', 'interessentin', 'makler', 'käuferr',
+  // Spanish filler / articles
+  'un', 'una', 'unos', 'unas', 'del', 'los', 'las', 'nos',
+  'soy', 'somos', 'estoy', 'estamos', 'buscamos', 'buscando', 'mirando',
+  'interesados', 'tenemos', 'queremos', 'necesitamos',
+  // English filler
+  'looking', 'searching', 'interested', 'buying', 'renting', 'selling', 'planning',
+  'based', 'living', 'moving', 'hoping',
+  'also', 'here', 'there', 'very', 'just', 'still', 'available', 'currently', 'please',
+  'something', 'anything', 'the', 'this', 'that', 'what', 'where', 'which', 'when',
+  'not', 'from', 'your', 'some', 'our', 'new', 'for',
+  // Property types / location names (safety net for edge-case captures)
+  'villa', 'apartment', 'house', 'studio', 'flat', 'property', 'penthouse', 'townhouse',
+  'marbella', 'malaga', 'nerja', 'fuengirola', 'torremolinos', 'benalmadena', 'estepona',
+  'sotogrande', 'mijas', 'ronda', 'frigiliana', 'casares', 'manilva', 'competa', 'torrox',
+]);
+
+// Optional German article group (article PLUS its required trailing space).
+// Using a non-capturing inner group so the space is consumed together with the article.
+const DE_ART_OPT = '(?:(?:der|die|das|dem|den|des|ein|eine|einen|einem|einer|eines)\\s+)?';
+
+// Shared char class for name characters (covers EN/ES/DE diacritics).
+const NAME_CHARS = '[A-Za-záéíóúüñäöüÄÖÜçàèìòùâêîôûÀÈÌÒÙÂÊÎÔÛ]';
+
+function extractName(text: string, lang: Language): string | undefined {
+  // Patterns are tried in confidence order — first valid match wins.
+  // Each captures group 1 = raw name candidate.
+  const patterns: RegExp[] = [
+    // Tier 1 — explicit named introductions (language-agnostic)
+    new RegExp(`(?:my name is|my name's|mein name ist|mi nombre es?|name's|me llamo)\\s+(${NAME_CHARS}{2,})`, 'i'),
+    // Tier 2 — German "ich bin / ich heiße [optional article] Name"
+    //   DE_ART_OPT ensures the article PLUS its space are consumed before the name.
+    new RegExp(`(?:ich bin|ich heiße|ich heisse)\\s+${DE_ART_OPT}(${NAME_CHARS}{2,})`, 'i'),
+    // Tier 3 — English "I'm / I am" and Spanish "soy"
+    new RegExp(`(?:i'm|i am|soy)\\s+(${NAME_CHARS}{2,})`, 'i'),
+    // Tier 4 — "this is / it's [Name]" — optional hi/hello/hola prefix
+    new RegExp(`^(?:(?:hi|hello|hola)[,!]?\\s+)?(?:this is|it'?s)\\s+(${NAME_CHARS}{2,})`, 'im'),
+    // Tier 5 — "hey [Name] here"
+    new RegExp(`\\bhey\\s+(${NAME_CHARS}{2,})\\s+here\\b`, 'i'),
+    // Tier 6 — "hi / hello / hola [Name]"
+    new RegExp(`^(?:hi|hola|hello)[,!]?\\s+(?:i'm\\s+)?(${NAME_CHARS}{2,})`, 'im'),
+    // Tier 7 — ", [Name] here/speaking"
+    new RegExp(`,\\s*(${NAME_CHARS}{2,})\\s+(?:here|speaking)\\b`, 'i'),
+    // Tier 8 — colloquial "im [Name]"
+    new RegExp(`\\bim\\s+(${NAME_CHARS}{2,})\\b`, 'i'),
+    // Tier 9 — German-only: "bin [optional article] Name" (dropped "ich")
+    //   Only fires when language is already confirmed German to avoid English false positives.
+    ...(lang === 'de'
+      ? [new RegExp(`\\bbin\\s+${DE_ART_OPT}(${NAME_CHARS}{2,})`, 'i')]
+      : []),
+  ];
+
+  for (const pat of patterns) {
+    const m = text.match(pat);
+    if (!m) continue;
+
+    // Normalize: strip anything that's not a letter or hyphen/apostrophe, collapse spaces.
+    const raw = m[1]
+      .replace(/[^A-Za-záéíóúüñäöüÄÖÜçàèìòùâêîôûÀÈÌÒÙÂÊÎÔÛ'-]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    if (raw.length < 2) continue;
+    if (NAME_SKIP.has(raw.toLowerCase())) continue;
+
+    // Title-case: first char upper, rest lower.
+    return raw.charAt(0).toUpperCase() + raw.slice(1).toLowerCase();
+  }
+  return undefined;
+}
+// ─────────────────────────────────────────────────────────────────────────────
+
 function extractBudget(text: string): string | undefined {
   // With currency symbol: €20k, €300,000, £1.8M, €1.2M–€1.5M
   let m = text.match(
@@ -99,45 +185,8 @@ export function analyzeInput(message: string, source: string): DemoResult {
     leadTypeLabel = language === 'es' ? 'Comprador potencial' : language === 'de' ? 'Kaufinteressent' : isInvestor ? 'Investment Buyer' : 'Buyer Lead';
   }
 
-  // Name extraction
-  // Strong patterns first (no "i'm"/"i am"/"soy" which can match non-name words early in the string)
-  let name: string | undefined;
-  const namePat =
-    text.match(/(?:my name is|my name's|my is|mein name ist|mi nombre es|mi nombre|name's|me llamo)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
-    // German "ich bin/heiße" — skip optional article before name (e.g. "Ich bin der Tony")
-    text.match(/(?:ich bin|ich heiße|ich heisse)\s+(?:der|die|das|ein|eine|einen|einem|einer|eines)?\s*([A-Za-z][a-záéíóúüñ]{1,})/i) ||
-    text.match(/\bim\s+([A-Za-z][a-záéíóúüñ]{2,})\b/i) ||
-    text.match(/^(?:hi[,!]?\s+)?(?:this is|it'?s)\s+([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
-    text.match(/\bhey\s+([A-Za-z][a-záéíóúüñ]{2,})\s+here\b/i) ||
-    text.match(/^(?:hi|hola|hello)[,!]?\s+(?:i'm\s+)?([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
-    text.match(/,\s*([A-Za-z][a-záéíóúüñ]{2,})\s+(?:here|speaking)\b/i) ||
-    // Weak patterns as fallback — only if no strong match found above
-    text.match(/(?:i'm|i am|soy)\s+([A-Za-z][a-záéíóúüñ]{1,})/i);
-  if (namePat) {
-    const candidate = namePat[1];
-    const skip = [
-      'looking', 'searching', 'interested', 'buying', 'renting', 'selling', 'planning',
-      'based', 'living', 'moving', 'hoping', 'buscamos', 'somos', 'buscando', 'mirando',
-      'interesados', 'tenemos', 'queremos', 'necesitamos', 'suchen', 'wir', 'mein', 'eine', 'suche',
-      'also', 'here', 'there', 'very', 'just', 'still', 'available', 'currently', 'please',
-      'something', 'anything', 'the', 'this', 'that', 'what', 'where', 'which', 'when',
-      'not', 'from', 'your', 'some', 'our', 'new', 'for',
-      // German definite & indefinite articles — must never become a name
-      'der', 'die', 'das', 'dem', 'den', 'des',
-      'ein', 'einen', 'einem', 'einer', 'eines',
-      // German prepositions / common words that follow "ich bin"
-      'auf', 'vom', 'zum', 'zur', 'mit', 'bei', 'aus', 'nach', 'von', 'nicht', 'auch',
-      'aber', 'noch', 'nur', 'schon', 'mal', 'gerne', 'gern', 'sehr',
-      // Spanish articles that could false-positive
-      'del', 'los', 'las', 'una', 'unos', 'unas', 'nos',
-      'villa', 'apartment', 'house', 'studio', 'flat', 'property', 'penthouse', 'townhouse',
-      'marbella', 'malaga', 'nerja', 'fuengirola', 'torremolinos', 'benalmadena', 'estepona',
-      'sotogrande', 'mijas', 'ronda', 'frigiliana', 'casares', 'manilva', 'competa', 'torrox',
-    ];
-    if (!skip.includes(candidate.toLowerCase())) {
-      name = candidate.charAt(0).toUpperCase() + candidate.slice(1);
-    }
-  }
+  // Name extraction — delegated to shared extractName helper
+  const name = extractName(text, language);
 
   // Budget — comprehensive extraction including k/M suffixes, European formats
   const budget = extractBudget(text);
@@ -366,10 +415,9 @@ export function generateFollowUp(followUpMsg: string, original: DemoResult): str
   const loc = original.extracted.location ?? 'the area';
   const { language } = original;
 
-  // Name introduction — respond personally
-  const nameIntro = followUpMsg.match(/(?:my name is|my name's|my is|mein name ist|mi nombre es|mi nombre|i'm|i am|name's|me llamo|soy|ich bin|ich heiße|ich heisse)\s+([A-Za-z][a-záéíóúüñ]{1,})/i);
-  if (nameIntro) {
-    const greetName = nameIntro[1].charAt(0).toUpperCase() + nameIntro[1].slice(1);
+  // Name introduction — use shared extractName for consistency
+  const greetName = extractName(followUpMsg, language);
+  if (greetName) {
     if (language === 'es') return `Un placer, ${greetName}. ¿Cuándo podría hablar 10 minutos? Le cuento exactamente lo que tenemos disponible ahora.`;
     if (language === 'de') return `Freut mich, ${greetName}. Wann hätten Sie kurz Zeit für ein Gespräch? Ich zeige Ihnen genau, was wir aktuell haben.`;
     return `Great to meet you, ${greetName}. When's a good time for a quick 10-minute call? I can walk you through everything we have available right now.`;
@@ -408,40 +456,8 @@ export function mergeFollowUp(original: DemoResult, followUpMsg: string): DemoRe
 
   const newBudget = extractBudget(text);
 
-  // Name extraction — same logic as analyzeInput (strong patterns before weak)
-  let newName: string | undefined;
-  const followUpNamePat =
-    text.match(/(?:my name is|my name's|my is|mein name ist|mi nombre es|mi nombre|name's|me llamo)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
-    // German "ich bin/heiße" — skip optional article before name
-    text.match(/(?:ich bin|ich heiße|ich heisse)\s+(?:der|die|das|ein|eine|einen|einem|einer|eines)?\s*([A-Za-z][a-záéíóúüñ]{1,})/i) ||
-    text.match(/\bim\s+([A-Za-z][a-záéíóúüñ]{2,})\b/i) ||
-    text.match(/^(?:hi[,!]?\s+)?(?:this is|it'?s)\s+([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
-    text.match(/\bhey\s+([A-Za-z][a-záéíóúüñ]{2,})\s+here\b/i) ||
-    text.match(/^(?:hi|hola|hello)[,!]?\s+(?:i'm\s+)?([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
-    text.match(/,\s*([A-Za-z][a-záéíóúüñ]{2,})\s+(?:here|speaking)\b/i) ||
-    text.match(/(?:i'm|i am|soy)\s+([A-Za-z][a-záéíóúüñ]{1,})/i);
-  if (followUpNamePat) {
-    const candidate = followUpNamePat[1];
-    const skip = [
-      'looking', 'searching', 'interested', 'buying', 'renting', 'selling', 'planning',
-      'based', 'living', 'moving', 'hoping', 'buscamos', 'somos', 'buscando', 'mirando',
-      'interesados', 'tenemos', 'queremos', 'necesitamos', 'suchen', 'wir', 'mein', 'eine', 'suche',
-      'also', 'here', 'there', 'very', 'just', 'still', 'available', 'currently', 'please',
-      'something', 'anything', 'the', 'this', 'that', 'what', 'where', 'which', 'when',
-      'not', 'from', 'your', 'some', 'our', 'new', 'for',
-      'der', 'die', 'das', 'dem', 'den', 'des',
-      'ein', 'einen', 'einem', 'einer', 'eines',
-      'auf', 'vom', 'zum', 'zur', 'mit', 'bei', 'aus', 'nach', 'von', 'nicht', 'auch',
-      'aber', 'noch', 'nur', 'schon', 'mal', 'gerne', 'gern', 'sehr',
-      'del', 'los', 'las', 'una', 'unos', 'unas', 'nos',
-      'villa', 'apartment', 'house', 'studio', 'flat', 'property', 'penthouse', 'townhouse',
-      'marbella', 'malaga', 'nerja', 'fuengirola', 'torremolinos', 'benalmadena', 'estepona',
-      'sotogrande', 'mijas', 'ronda', 'frigiliana', 'casares', 'manilva', 'competa', 'torrox',
-    ];
-    if (!skip.includes(candidate.toLowerCase())) {
-      newName = candidate.charAt(0).toUpperCase() + candidate.slice(1);
-    }
-  }
+  // Name extraction — shared helper, language from original analysis
+  const newName = extractName(text, original.language);
 
   let newTimeline: string | undefined;
   if      (/this week|esta semana/i.test(text))                   newTimeline = 'This week';
