@@ -1036,7 +1036,7 @@ function EmailView({
   const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 w-full overflow-x-hidden">
       {/* Incoming email */}
       <div className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${w(0.07)}` }}>
         <div
@@ -1059,7 +1059,7 @@ function EmailView({
                 <p className="text-xs font-medium" style={{ color: w(0.68) }}>
                   {displayPortal !== 'Email' ? displayPortal : ui.portalInquiry}
                 </p>
-                <p className="text-xs" style={{ color: w(0.25) }}>
+                <p className="text-xs break-all" style={{ color: w(0.25) }}>
                   {displayPortal !== 'Email'
                     ? `inquiry@${displayPortal.toLowerCase()}.com`
                     : 'lead@email.com'}
@@ -1176,7 +1176,7 @@ function WebFormView({
   formFields.push({ label: ui.messageLabel, value: message, faded: true });
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 w-full overflow-x-hidden">
       <div className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${w(0.07)}` }}>
         <div
           className="flex items-center justify-between px-5 py-3"
@@ -1556,7 +1556,7 @@ export default function LiveDemoClient() {
                             </span>
                             {sub && (
                               <span
-                                className="block leading-snug mt-1 truncate"
+                                className="block leading-snug mt-1 break-words"
                                 style={{ color: active ? g(0.52) : w(0.26), fontSize: '0.6rem' }}
                               >
                                 {sub}
@@ -1705,6 +1705,7 @@ export default function LiveDemoClient() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5, ease: EASE }}
+                  className="w-full min-w-0"
                 >
                   {/* Divider */}
                   <div className="flex items-center gap-4 mb-8">

@@ -102,7 +102,10 @@ export function analyzeInput(message: string, source: string): DemoResult {
   // Name extraction
   let name: string | undefined;
   const namePat =
-    text.match(/(?:my name is|mein name ist|mi nombre es|i'm|i am|name's|me llamo|soy|ich bin|ich heiße|ich heisse)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
+    text.match(/(?:my name is|my name's|my is|mein name ist|mi nombre es|mi nombre|i'm|i am|name's|me llamo|soy|ich bin|ich heiße|ich heisse)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
+    text.match(/\bim\s+([A-Za-z][a-záéíóúüñ]{2,})\b/i) ||
+    text.match(/^(?:hi[,!]?\s+)?(?:this is|it'?s)\s+([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
+    text.match(/\bhey\s+([A-Za-z][a-záéíóúüñ]{2,})\s+here\b/i) ||
     text.match(/^(?:hi|hola|hello)[,!]?\s+(?:i'm\s+)?([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
     text.match(/,\s*([A-Za-z][a-záéíóúüñ]{2,})\s+(?:here|speaking)\b/i);
   if (namePat) {
@@ -111,6 +114,11 @@ export function analyzeInput(message: string, source: string): DemoResult {
       'looking', 'searching', 'interested', 'buying', 'renting', 'selling', 'planning',
       'based', 'living', 'moving', 'hoping', 'buscamos', 'somos', 'buscando', 'mirando',
       'interesados', 'tenemos', 'queremos', 'necesitamos', 'suchen', 'wir', 'mein', 'eine', 'suche',
+      'also', 'here', 'there', 'very', 'just', 'still', 'available', 'currently', 'please',
+      'something', 'anything', 'the', 'this', 'that', 'what', 'where', 'which', 'when',
+      'villa', 'apartment', 'house', 'studio', 'flat', 'property', 'penthouse', 'townhouse',
+      'marbella', 'malaga', 'nerja', 'fuengirola', 'torremolinos', 'benalmadena', 'estepona',
+      'sotogrande', 'mijas', 'ronda', 'frigiliana', 'casares', 'manilva', 'competa', 'torrox',
     ];
     if (!skip.includes(candidate.toLowerCase())) {
       name = candidate.charAt(0).toUpperCase() + candidate.slice(1);
@@ -345,7 +353,7 @@ export function generateFollowUp(followUpMsg: string, original: DemoResult): str
   const { language } = original;
 
   // Name introduction — respond personally
-  const nameIntro = followUpMsg.match(/(?:my name is|mein name ist|mi nombre es|i'm|i am|name's|me llamo|soy|ich bin|ich heiße|ich heisse)\s+([A-Za-z][a-záéíóúüñ]{1,})/i);
+  const nameIntro = followUpMsg.match(/(?:my name is|my name's|my is|mein name ist|mi nombre es|mi nombre|i'm|i am|name's|me llamo|soy|ich bin|ich heiße|ich heisse)\s+([A-Za-z][a-záéíóúüñ]{1,})/i);
   if (nameIntro) {
     const greetName = nameIntro[1].charAt(0).toUpperCase() + nameIntro[1].slice(1);
     if (language === 'es') return `Un placer, ${greetName}. ¿Cuándo podría hablar 10 minutos? Le cuento exactamente lo que tenemos disponible ahora.`;
@@ -389,12 +397,24 @@ export function mergeFollowUp(original: DemoResult, followUpMsg: string): DemoRe
   // Name extraction — same logic as analyzeInput
   let newName: string | undefined;
   const followUpNamePat =
-    text.match(/(?:my name is|mein name ist|mi nombre es|i'm|i am|name's|me llamo|soy|ich bin|ich heiße|ich heisse)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
+    text.match(/(?:my name is|my name's|my is|mein name ist|mi nombre es|mi nombre|i'm|i am|name's|me llamo|soy|ich bin|ich heiße|ich heisse)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
+    text.match(/\bim\s+([A-Za-z][a-záéíóúüñ]{2,})\b/i) ||
+    text.match(/^(?:hi[,!]?\s+)?(?:this is|it'?s)\s+([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
+    text.match(/\bhey\s+([A-Za-z][a-záéíóúüñ]{2,})\s+here\b/i) ||
     text.match(/^(?:hi|hola|hello)[,!]?\s+(?:i'm\s+)?([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
     text.match(/,\s*([A-Za-z][a-záéíóúüñ]{2,})\s+(?:here|speaking)\b/i);
   if (followUpNamePat) {
     const candidate = followUpNamePat[1];
-    const skip = ['looking', 'searching', 'interested', 'buying', 'renting', 'selling', 'planning', 'based', 'living', 'moving', 'hoping', 'buscamos', 'somos', 'buscando', 'mirando', 'interesados', 'tenemos', 'queremos', 'necesitamos', 'suchen', 'wir', 'mein', 'eine', 'suche'];
+    const skip = [
+      'looking', 'searching', 'interested', 'buying', 'renting', 'selling', 'planning',
+      'based', 'living', 'moving', 'hoping', 'buscamos', 'somos', 'buscando', 'mirando',
+      'interesados', 'tenemos', 'queremos', 'necesitamos', 'suchen', 'wir', 'mein', 'eine', 'suche',
+      'also', 'here', 'there', 'very', 'just', 'still', 'available', 'currently', 'please',
+      'something', 'anything', 'the', 'this', 'that', 'what', 'where', 'which', 'when',
+      'villa', 'apartment', 'house', 'studio', 'flat', 'property', 'penthouse', 'townhouse',
+      'marbella', 'malaga', 'nerja', 'fuengirola', 'torremolinos', 'benalmadena', 'estepona',
+      'sotogrande', 'mijas', 'ronda', 'frigiliana', 'casares', 'manilva', 'competa', 'torrox',
+    ];
     if (!skip.includes(candidate.toLowerCase())) {
       newName = candidate.charAt(0).toUpperCase() + candidate.slice(1);
     }
