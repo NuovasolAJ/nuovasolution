@@ -139,7 +139,7 @@ function ScoreVisual({ active, t }: { active: boolean; t: (k: string) => string 
           {isHot ? t("intel.score.hot") : isWarm ? t("intel.score.warm") : t("intel.score.cold")}
         </span>
 
-        <div style={{ display: "flex", gap: 6, justifyContent: "center" }}>
+        <div style={{ display: "flex", gap: 6, justifyContent: "center", flexWrap: "wrap" }}>
           {RANGES.map((r) => {
             const on      = activeZone === r.zone;
             const hotPill = r.zone === "hot";
@@ -265,6 +265,7 @@ export function LeadIntelligence() {
         paddingTop: "clamp(44px, 5.5vw, 68px)",
         paddingBottom: "clamp(44px, 5.5vw, 68px)",
         borderTop: `1px solid ${w(0.05)}`,
+        overflowX: "hidden",
       }}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-20">

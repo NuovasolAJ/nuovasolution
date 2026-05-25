@@ -85,6 +85,7 @@ export function Nav() {
               className="w-auto object-contain"
               style={{
                 height: "clamp(28px, 5vw, 40px)",
+                maxWidth: "100%",
                 filter: "brightness(0) invert(1)",
                 opacity: scrolled ? 0.9 : 0.82,
                 transition: "opacity 0.4s ease",

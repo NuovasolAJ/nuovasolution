@@ -34,7 +34,7 @@ export interface DemoResult {
 }
 
 const SP_KW = ['hola', 'busco', 'buscamos', 'quiero', 'queremos', 'alquiler', 'alquilar', 'habitacion', 'habitaciones', 'piso', 'casa', 'villa', 'precio', 'zona', 'dormitorio', 'euros', 'presupuesto', 'mudarnos', 'interesado', 'gracias', 'buenos', 'tardes', 'noches', 'tengo', 'tenemos', 'comprar', 'compra', 'tienen', 'disponible', 'llamar', 'semana', 'necesito', 'necesitamos', 'nombre', 'llamo', 'soy'];
-const DE_KW = ['guten', 'ich', 'wir', 'mein', 'eine', 'immobilien', 'kaufen', 'mieten', 'zimmer', 'interessiere', 'suche', 'suchen', 'schlafzimmer', 'danke', 'möchte', 'wurde', 'bitte', 'liegt', 'gegend', 'objekte', 'meerblick', 'wohnung', 'betrag', 'preisrahmen', 'umziehen', 'herbst', 'heiße'];
+const DE_KW = ['guten', 'ich', 'wir', 'mein', 'eine', 'immobilien', 'kaufen', 'mieten', 'zimmer', 'interessiere', 'suche', 'suchen', 'schlafzimmer', 'danke', 'möchte', 'wurde', 'bitte', 'liegt', 'gegend', 'objekte', 'meerblick', 'wohnung', 'betrag', 'preisrahmen', 'umziehen', 'herbst', 'heiße', 'und', 'bin', 'sind', 'haben', 'oder', 'aber'];
 
 const LOCATIONS = ['marbella', 'málaga', 'malaga', 'nerja', 'fuengirola', 'torremolinos', 'benalmádena', 'benalmadena', 'estepona', 'sotogrande', 'puerto banús', 'puerto banus', 'costa del sol', 'mijas', 'la cala', 'benahavís', 'benahavis', 'nueva andalucia', 'nueva andalucía', 'alhaurin', 'vélez', 'velez', 'manilva', 'casares', 'ronda', 'frigiliana', 'competa', 'torrox', 'golden mile', 'sierra blanca'];
 
@@ -100,14 +100,19 @@ export function analyzeInput(message: string, source: string): DemoResult {
   }
 
   // Name extraction
+  // Strong patterns first (no "i'm"/"i am"/"soy" which can match non-name words early in the string)
   let name: string | undefined;
   const namePat =
-    text.match(/(?:my name is|my name's|my is|mein name ist|mi nombre es|mi nombre|i'm|i am|name's|me llamo|soy|ich bin|ich heiße|ich heisse)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
+    text.match(/(?:my name is|my name's|my is|mein name ist|mi nombre es|mi nombre|name's|me llamo)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
+    // German "ich bin/heiße" — skip optional article before name (e.g. "Ich bin der Tony")
+    text.match(/(?:ich bin|ich heiße|ich heisse)\s+(?:der|die|das|ein|eine|einen|einem|einer|eines)?\s*([A-Za-z][a-záéíóúüñ]{1,})/i) ||
     text.match(/\bim\s+([A-Za-z][a-záéíóúüñ]{2,})\b/i) ||
     text.match(/^(?:hi[,!]?\s+)?(?:this is|it'?s)\s+([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
     text.match(/\bhey\s+([A-Za-z][a-záéíóúüñ]{2,})\s+here\b/i) ||
     text.match(/^(?:hi|hola|hello)[,!]?\s+(?:i'm\s+)?([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
-    text.match(/,\s*([A-Za-z][a-záéíóúüñ]{2,})\s+(?:here|speaking)\b/i);
+    text.match(/,\s*([A-Za-z][a-záéíóúüñ]{2,})\s+(?:here|speaking)\b/i) ||
+    // Weak patterns as fallback — only if no strong match found above
+    text.match(/(?:i'm|i am|soy)\s+([A-Za-z][a-záéíóúüñ]{1,})/i);
   if (namePat) {
     const candidate = namePat[1];
     const skip = [
@@ -116,6 +121,15 @@ export function analyzeInput(message: string, source: string): DemoResult {
       'interesados', 'tenemos', 'queremos', 'necesitamos', 'suchen', 'wir', 'mein', 'eine', 'suche',
       'also', 'here', 'there', 'very', 'just', 'still', 'available', 'currently', 'please',
       'something', 'anything', 'the', 'this', 'that', 'what', 'where', 'which', 'when',
+      'not', 'from', 'your', 'some', 'our', 'new', 'for',
+      // German definite & indefinite articles — must never become a name
+      'der', 'die', 'das', 'dem', 'den', 'des',
+      'ein', 'einen', 'einem', 'einer', 'eines',
+      // German prepositions / common words that follow "ich bin"
+      'auf', 'vom', 'zum', 'zur', 'mit', 'bei', 'aus', 'nach', 'von', 'nicht', 'auch',
+      'aber', 'noch', 'nur', 'schon', 'mal', 'gerne', 'gern', 'sehr',
+      // Spanish articles that could false-positive
+      'del', 'los', 'las', 'una', 'unos', 'unas', 'nos',
       'villa', 'apartment', 'house', 'studio', 'flat', 'property', 'penthouse', 'townhouse',
       'marbella', 'malaga', 'nerja', 'fuengirola', 'torremolinos', 'benalmadena', 'estepona',
       'sotogrande', 'mijas', 'ronda', 'frigiliana', 'casares', 'manilva', 'competa', 'torrox',
@@ -394,15 +408,18 @@ export function mergeFollowUp(original: DemoResult, followUpMsg: string): DemoRe
 
   const newBudget = extractBudget(text);
 
-  // Name extraction — same logic as analyzeInput
+  // Name extraction — same logic as analyzeInput (strong patterns before weak)
   let newName: string | undefined;
   const followUpNamePat =
-    text.match(/(?:my name is|my name's|my is|mein name ist|mi nombre es|mi nombre|i'm|i am|name's|me llamo|soy|ich bin|ich heiße|ich heisse)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
+    text.match(/(?:my name is|my name's|my is|mein name ist|mi nombre es|mi nombre|name's|me llamo)\s+([A-Za-z][a-záéíóúüñ]{1,})/i) ||
+    // German "ich bin/heiße" — skip optional article before name
+    text.match(/(?:ich bin|ich heiße|ich heisse)\s+(?:der|die|das|ein|eine|einen|einem|einer|eines)?\s*([A-Za-z][a-záéíóúüñ]{1,})/i) ||
     text.match(/\bim\s+([A-Za-z][a-záéíóúüñ]{2,})\b/i) ||
     text.match(/^(?:hi[,!]?\s+)?(?:this is|it'?s)\s+([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
     text.match(/\bhey\s+([A-Za-z][a-záéíóúüñ]{2,})\s+here\b/i) ||
     text.match(/^(?:hi|hola|hello)[,!]?\s+(?:i'm\s+)?([A-Za-z][a-záéíóúüñ]{2,})\b/im) ||
-    text.match(/,\s*([A-Za-z][a-záéíóúüñ]{2,})\s+(?:here|speaking)\b/i);
+    text.match(/,\s*([A-Za-z][a-záéíóúüñ]{2,})\s+(?:here|speaking)\b/i) ||
+    text.match(/(?:i'm|i am|soy)\s+([A-Za-z][a-záéíóúüñ]{1,})/i);
   if (followUpNamePat) {
     const candidate = followUpNamePat[1];
     const skip = [
@@ -411,6 +428,12 @@ export function mergeFollowUp(original: DemoResult, followUpMsg: string): DemoRe
       'interesados', 'tenemos', 'queremos', 'necesitamos', 'suchen', 'wir', 'mein', 'eine', 'suche',
       'also', 'here', 'there', 'very', 'just', 'still', 'available', 'currently', 'please',
       'something', 'anything', 'the', 'this', 'that', 'what', 'where', 'which', 'when',
+      'not', 'from', 'your', 'some', 'our', 'new', 'for',
+      'der', 'die', 'das', 'dem', 'den', 'des',
+      'ein', 'einen', 'einem', 'einer', 'eines',
+      'auf', 'vom', 'zum', 'zur', 'mit', 'bei', 'aus', 'nach', 'von', 'nicht', 'auch',
+      'aber', 'noch', 'nur', 'schon', 'mal', 'gerne', 'gern', 'sehr',
+      'del', 'los', 'las', 'una', 'unos', 'unas', 'nos',
       'villa', 'apartment', 'house', 'studio', 'flat', 'property', 'penthouse', 'townhouse',
       'marbella', 'malaga', 'nerja', 'fuengirola', 'torremolinos', 'benalmadena', 'estepona',
       'sotogrande', 'mijas', 'ronda', 'frigiliana', 'casares', 'manilva', 'competa', 'torrox',

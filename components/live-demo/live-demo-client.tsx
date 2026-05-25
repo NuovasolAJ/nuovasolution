@@ -108,7 +108,7 @@ function getUI(lang: string) {
     actFollowUp:           'Seguimiento',
     followUpLabel:         'Continuar la conversación',
     followUpSend:          'Enviar',
-    followUpHint:          'El cliente responde...',
+    followUpHint:          'Envía otro mensaje...',
     // Email compose
     fromLabel:             'De',
     viaLabel:              'Vía',
@@ -193,7 +193,7 @@ function getUI(lang: string) {
     actFollowUp:           'Follow up',
     followUpLabel:         'Continue the conversation',
     followUpSend:          'Send',
-    followUpHint:          'Client replies...',
+    followUpHint:          'Send another message...',
     // Email compose
     fromLabel:             'From',
     viaLabel:              'Via',
@@ -316,8 +316,8 @@ function InsightsGrid({ rows, visibleCount }: { rows: { label: string; value: st
       {rows.slice(0, visibleCount).map((row, i) => (
         <motion.div
           key={row.label}
-          initial={{ opacity: 0, x: -6 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 4 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.28, ease: EASE }}
           className="flex items-start justify-between gap-2 px-4 py-2.5"
           style={{
@@ -546,6 +546,7 @@ function WebFormInput({
     color:      w(0.88),
     caretColor: g(1),
     outline:    'none',
+    fontSize:   '16px',
   };
   const labelStyle = { color: w(0.46), fontSize: '0.7rem', letterSpacing: '0.06em', textTransform: 'uppercase' as const };
 
@@ -740,13 +741,14 @@ function EmailComposeInput({
             : 'Type or paste the client\'s inquiry here...'
           }
           rows={4}
-          className="w-full resize-none text-sm outline-none"
+          className="w-full resize-none outline-none"
           style={{
             background:  'transparent',
             border:      'none',
             color:       w(0.85),
             caretColor:  g(1),
             lineHeight:  '1.65',
+            fontSize:    '16px',
           }}
         />
       </div>
@@ -828,8 +830,8 @@ function WhatsAppView({
       >
         {/* Client message */}
         <motion.div
-          initial={{ opacity: 0, x: 12 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: EASE }}
           className="flex justify-end"
         >
@@ -853,8 +855,8 @@ function WhatsAppView({
           {phase === 1 && (
             <motion.div
               key="typing"
-              initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -8 }} transition={{ duration: 0.28 }}
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }} transition={{ duration: 0.28 }}
               className="flex justify-start"
             >
               <div
@@ -870,7 +872,7 @@ function WhatsAppView({
         {/* Agent reply */}
         {phase >= 2 && (
           <motion.div
-            initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: EASE }}
             className="flex justify-start"
           >
@@ -889,7 +891,7 @@ function WhatsAppView({
         {/* Follow-up: client message */}
         {followUpMsg && followUpPhase >= 1 && (
           <motion.div
-            initial={{ opacity: 0, x: 12 }} animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, ease: EASE }}
             className="flex justify-end"
           >
@@ -911,7 +913,7 @@ function WhatsAppView({
           {followUpPhase === 1 && (
             <motion.div
               key="fup-typing"
-              initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               exit={{ opacity: 0 }} transition={{ duration: 0.28 }}
               className="flex justify-start"
             >
@@ -928,7 +930,7 @@ function WhatsAppView({
         {/* Follow-up: agent reply */}
         {followUpPhase === 2 && followUpResp && (
           <motion.div
-            initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: EASE }}
             className="flex justify-start"
           >
@@ -974,12 +976,13 @@ function WhatsAppView({
                 onChange={e => onFollowUpChange(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && followUpMsg.trim() && onFollowUpSend(followUpMsg)}
                 placeholder={ui.followUpHint}
-                className="flex-1 rounded-xl px-3 py-2 text-sm outline-none"
+                className="flex-1 min-w-0 rounded-xl px-3 py-2 outline-none"
                 style={{
                   background: 'rgba(255,255,255,0.04)',
                   border:     `1px solid ${w(0.07)}`,
                   color:      w(0.85),
                   caretColor: g(1),
+                  fontSize:   '16px',
                 }}
               />
               <button
@@ -1305,8 +1308,8 @@ function PreviewIntelligencePanel({ ui, lang }: { ui: ReturnType<typeof getUI>; 
   const previewRows = buildInsightRows(PREVIEW_RESULT, ui);
   return (
     <motion.div
-      initial={{ opacity: 0, x: 12 }}
-      animate={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.65, delay: 0.5, ease: EASE }}
       className="space-y-5"
     >
@@ -1471,7 +1474,7 @@ export default function LiveDemoClient() {
     : null;
 
   return (
-    <div style={{ background: BG, minHeight: '100vh', overflowX: 'hidden' }}>
+    <div style={{ background: BG, minHeight: '100vh', overflowX: 'hidden', position: 'relative' }}>
 
       {/* Hero */}
       <section className="relative pt-24 sm:pt-28 pb-8 sm:pb-10 px-5 sm:px-6 text-center overflow-hidden">
@@ -1516,8 +1519,8 @@ export default function LiveDemoClient() {
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 lg:items-start">
 
           {/* LEFT — input controls → conversation result */}
-          <div>
-            <AnimatePresence mode="wait">
+          <div className="min-w-0 overflow-x-hidden" style={{ position: 'relative' }}>
+            <AnimatePresence mode="popLayout">
               {phase === 0 ? (
                 <motion.div
                   key="input"
@@ -1652,13 +1655,14 @@ export default function LiveDemoClient() {
                           }}
                           placeholder={ui.placeholder}
                           rows={4}
-                          className="w-full resize-none rounded-xl p-3 sm:p-4 text-sm outline-none"
+                          className="w-full resize-none rounded-xl p-3 sm:p-4 outline-none"
                           style={{
                             background:  'rgba(255,255,255,0.022)',
                             border:      `1px solid ${w(0.055)}`,
                             color:       w(0.9),
                             caretColor:  g(1),
                             lineHeight:  '1.65',
+                            fontSize:    '16px',
                           }}
                           onFocus={e => {
                             e.currentTarget.style.borderColor = g(0.3);
@@ -1705,7 +1709,7 @@ export default function LiveDemoClient() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5, ease: EASE }}
-                  className="w-full min-w-0"
+                  className="w-full min-w-0 overflow-x-hidden"
                 >
                   {/* Divider */}
                   <div className="flex items-center gap-4 mb-8">
@@ -1795,64 +1799,18 @@ export default function LiveDemoClient() {
                     </motion.div>
                   )}
 
-                  {/* Done state */}
-                  {phase === 5 && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.4, duration: 0.5 }}
-                      className="mt-8"
-                    >
-                      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-6 sm:mb-8 pt-2">
-                        <p className="text-sm text-center sm:text-left" style={{ color: w(0.38) }}>
-                          {ui.emailTagline}
-                        </p>
-                        <button
-                          onClick={reset}
-                          className="shrink-0 text-xs font-semibold px-4 py-2 rounded-xl transition-all duration-150 hover:opacity-80"
-                          style={{ background: g(0.07), border: `1px solid ${g(0.22)}`, color: g(0.9) }}
-                        >
-                          {ui.tryAnother}
-                        </button>
-                      </div>
-
-                      <div
-                        className="rounded-2xl p-5 sm:p-8 md:p-10 text-center"
-                        style={{ background: 'rgba(255,255,255,0.018)', border: `1px solid ${g(0.1)}` }}
-                      >
-                        <p className="section-label mb-3">{ui.readyLabel}</p>
-                        <h2
-                          className="font-display font-bold mb-4"
-                          style={{ color: w(0.96), fontSize: 'clamp(1.5rem, 4vw, 2.6rem)', letterSpacing: '-0.018em', lineHeight: 1.1 }}
-                        >
-                          {ui.stopLosing}
-                        </h2>
-                        <p className="text-sm mb-6 sm:mb-7 max-w-sm mx-auto" style={{ color: w(0.48), lineHeight: 1.7 }}>
-                          {ui.stopLosingBody}
-                        </p>
-                        <a
-                          href="https://cal.com/nuovasolution/demo"
-                          className="btn btn-gold btn-sm sm:btn-md"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {ui.bookDemo}
-                        </a>
-                      </div>
-                    </motion.div>
-                  )}
                 </motion.div>
               ) : null}
             </AnimatePresence>
           </div>
 
-          {/* RIGHT — preview panel → live intelligence panel */}
-          <div className="lg:sticky lg:top-28 min-w-0 overflow-x-hidden">
+          {/* RIGHT — preview panel → live intelligence panel (explicit col-2 row-1 placement) */}
+          <div className="lg:col-start-2 lg:row-start-1 lg:sticky lg:top-28 min-w-0 overflow-x-hidden">
             <AnimatePresence mode="wait">
               {!result ? (
                 <motion.div
                   key="preview"
-                  exit={{ opacity: 0, x: 8 }}
+                  exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                   className="hidden lg:block"
                 >
@@ -1861,11 +1819,11 @@ export default function LiveDemoClient() {
               ) : (
                 <motion.div
                   key="live"
-                  initial={{ opacity: 0, x: 8 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4, ease: EASE }}
-                  className="space-y-4 mt-8 lg:mt-0 w-full min-w-0"
+                  className="space-y-4 mt-10 lg:mt-0 w-full min-w-0"
                 >
                   {/* Score updated notice */}
                   <AnimatePresence>
@@ -1936,6 +1894,62 @@ export default function LiveDemoClient() {
               )}
             </AnimatePresence>
           </div>
+
+          {/* CTA — 3rd grid child: col-1 row-2 on desktop (below conversation), last on mobile (after intelligence panel) */}
+          {phase === 5 && result && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9, duration: 0.55 }}
+              className="lg:col-start-1 lg:row-start-2 mt-14 lg:mt-8"
+            >
+              {/* Section separator — visible on mobile only */}
+              <div className="flex items-center gap-4 mb-8 lg:hidden">
+                <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.06)' }} />
+                <span className="text-xs tracking-widest uppercase" style={{ color: 'rgba(210,172,98,0.45)', fontSize: '0.6rem' }}>
+                  {lang === 'es' ? 'siguiente paso' : 'next step'}
+                </span>
+                <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.06)' }} />
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-6 sm:mb-8 pt-2">
+                <p className="text-sm text-center sm:text-left" style={{ color: w(0.38) }}>
+                  {ui.emailTagline}
+                </p>
+                <button
+                  onClick={reset}
+                  className="shrink-0 text-xs font-semibold px-4 py-2 rounded-xl transition-all duration-150 hover:opacity-80"
+                  style={{ background: g(0.07), border: `1px solid ${g(0.22)}`, color: g(0.9) }}
+                >
+                  {ui.tryAnother}
+                </button>
+              </div>
+
+              <div
+                className="rounded-2xl p-5 sm:p-8 md:p-10 text-center"
+                style={{ background: 'rgba(255,255,255,0.018)', border: `1px solid ${g(0.1)}` }}
+              >
+                <p className="section-label mb-3">{ui.readyLabel}</p>
+                <h2
+                  className="font-display font-bold mb-4"
+                  style={{ color: w(0.96), fontSize: 'clamp(1.5rem, 4vw, 2.6rem)', letterSpacing: '-0.018em', lineHeight: 1.1 }}
+                >
+                  {ui.stopLosing}
+                </h2>
+                <p className="text-sm mb-6 sm:mb-7 max-w-sm mx-auto" style={{ color: w(0.48), lineHeight: 1.7 }}>
+                  {ui.stopLosingBody}
+                </p>
+                <a
+                  href="https://cal.com/nuovasolution/demo"
+                  className="btn btn-gold btn-sm sm:btn-md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {ui.bookDemo}
+                </a>
+              </div>
+            </motion.div>
+          )}
 
         </div>
       </section>
