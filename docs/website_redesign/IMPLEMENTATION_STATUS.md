@@ -36,19 +36,32 @@ cross-checked for contradictions.
 | Required document | Present | Author |
 |---|---|---|
 | `docs/website_redesign/PRODUCT_TRUTH.md` | ✅ Present (2026-08-30) | Product Truth Director instance — **independent of implementation** (R1 satisfied) |
-| `docs/website_redesign/CLAIMS_MATRIX.md` | ❌ **Missing** | Claims/compliance instance |
-| `docs/website_redesign/COPY_AND_CONVERSION_MASTER.md` | ❌ **Missing** | Copy & conversion instance |
+| `docs/website_redesign/CLAIMS_MATRIX.md` | ✅ Present (2026-08-30) | Claims/compliance instance — independent (R1 satisfied) |
+| `docs/website_redesign/COPY_AND_CONVERSION_MASTER.md` | ✅ Present (2026-08-30) | Copy & conversion instance — independent (R1 satisfied) |
 | `docs/website_redesign/LUXURY_UX_MEDIA_SYSTEM.md` | ❌ **Missing** | Luxury UX & media instance |
 
-**Gate status: CLOSED.** 1 of 4 present.
+**Gate status: CLOSED.** 3 of 4 present. Blocking document: `LUXURY_UX_MEDIA_SYSTEM.md`.
 
-`PRODUCT_TRUTH.md` arrived from the product truth instance and has **not yet been read in
-full or cross-checked** by the implementation instance. The contradiction check across all
-four documents (per the owner's brief) runs once the remaining three are present — checking
-one document against three absent ones would produce no meaningful result. Its own stated
-central limitation is that no capability could be verified, because verification would have
-required exactly the product-system access that §14 forbids. That constraint is correct and
-is expected to propagate into `CLAIMS_MATRIX.md`.
+Three documents arrived within minutes of each other on 2026-08-30. None has yet been read
+in full or cross-checked by the implementation instance. The contradiction check across all
+four (per the owner's brief) runs once `LUXURY_UX_MEDIA_SYSTEM.md` is present.
+
+`PRODUCT_TRUTH.md` states as its central limitation that **no capability could be verified**,
+because verification would have required exactly the product-system access that §14 forbids.
+That constraint is correct and is expected to constrain `CLAIMS_MATRIX.md` in turn.
+
+### Concurrency hazard (operational)
+
+Multiple instances share this working directory and commit to `website_enterprise_redesign`
+directly. Commit `138a946` was authored by another instance. Consequences adopted here:
+
+- The implementation instance stages **only files it authored**, by explicit path. No
+  directory-wide `git add` — it has twice swept another instance's in-progress file into a
+  commit (`PRODUCT_TRUTH.md` in `75d0bc6`, `COPY_AND_CONVERSION_MASTER.md` in `7ec0010`).
+  No harm resulted, but a half-written file could have been committed.
+- Source-of-truth documents are **never edited** by the implementation instance. Conflicts
+  are logged here and raised with the owner (§4).
+- File state is re-checked immediately before use rather than assumed from an earlier read.
 
 Until the gate opens, this instance is limited to: governance, audit, integration contract,
 non-content infrastructure, and scaffolding that carries no public claims.
