@@ -298,29 +298,25 @@ Every action in `INTEGRATION_CONTRACT.md` needs a defined analytics event; none 
 **In the website runtime: none.** No fetch, no webhook call, no n8n reference in any
 `app/`, `components/` or `lib/` file. The site makes no backend calls of any kind.
 
-**In the repository: a P0 problem.**
+**In the repository: a credential exposure, handled outside this project.**
 
-`.mcp.json` is **tracked in git** and contains:
+`.mcp.json` is **tracked in git** and contains an n8n Cloud API URL and API key for
+developer tooling (a `n8n-mcp` server configuration). The values are deliberately **not
+reproduced in this document**.
 
-- `N8N_API_URL`: `https://antoniojesus.app.n8n.cloud`
-- `N8N_API_KEY`: a full JWT bearer token, in plaintext
+**Status: closed for this project.** The owner has confirmed that the credential is rotated
+and cleaned up separately, outside this chat and outside this repository's workflow.
 
-The GitHub remote is `https://github.com/NuovasolAJ/nuovasolution.git`. If that repository
-is public, or has ever been public, or has any collaborator who should not hold n8n
-production access, this key is compromised.
+Per `MASTER_GOVERNANCE.md` R8 and §14, this project:
 
-> **P0 — ACTION REQUIRED BY THE OWNER**
-> 1. Rotate the n8n API key in the n8n Cloud instance **now**.
-> 2. Remove `.mcp.json` from git tracking and add it to `.gitignore`.
-> 3. Treat the key as leaked in git history — deletion in a new commit does **not** remove
->    it from history. History purge or key rotation is required; rotation is the reliable fix.
->
-> Per governance rule R8, the implementation instance will not touch the n8n instance and
-> will not rotate anything. This is escalated to the owner.
+- does not use, call, test or reference that connection as a live target;
+- does not reproduce, echo, log or quote the credential value anywhere;
+- does not attempt to rotate, verify or clean it.
 
-`.mcp.json` also configures a `n8n-mcp` server for agent tooling. That is a developer-tooling
-concern, not a website runtime dependency, but it does not belong in this repository's
-tracked files with live credentials.
+The **obsolete n8n Cloud connection must not be used** by the new website under any
+circumstances. Separately, `.mcp.json` is developer tooling and does not belong in tracked
+files — that remains a repository-hygiene item under finding A-08 (`.gitignore` scope), not
+a security action for this project.
 
 ---
 
@@ -387,7 +383,7 @@ Per the brief, the existing visual system is **not** a design reference. To be d
 
 | ID | Sev | Finding |
 |---|---|---|
-| A-01 | **P0** | Live n8n Cloud API key committed in tracked `.mcp.json`. Owner must rotate. |
+| A-01 | ~~P0~~ | n8n Cloud credential committed in tracked `.mcp.json`. **Closed for this project** — rotated and cleaned up by the owner outside this chat (2026-08-30). The connection itself is obsolete and must not be used (R8, §14). Remaining hygiene tracked under A-08. |
 | A-02 | **P1** | Primary CTA is `href="#"` + `preventDefault()`; dead if the Cal.com script fails. |
 | A-03 | **P1** | Absolute self-referencing URLs (`https://nuovasolution.com/live-demo`) break preview deployments and client-side navigation. |
 | A-04 | **P1** | Spanish has no URL, no persistence, no `hreflang`, and `<html lang>` is hard-coded `en`. Bilingual requirement not met. |

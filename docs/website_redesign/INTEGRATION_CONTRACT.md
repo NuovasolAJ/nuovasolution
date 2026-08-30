@@ -22,8 +22,20 @@ link, tab or form ships without an entry in this document.
    not happen.
 3. **No dead control.** Every action has a defined behaviour in all five states below.
 4. **No silent failure.** Errors are visible, human, and offer a real alternative path.
-5. **n8n workflows are not created, modified or connected from this project.** Any n8n
-   dependency is recorded here as a request to the workflow main project.
+5. **Absolute isolation from the product and automation project** (`MASTER_GOVERNANCE.md`
+   §14). The separate NuovaSolution product project on NuovaSolution's own n8n server is
+   near completion and must not be touched or put at risk. From this repository there are:
+   **no real webhooks, no workflow changes, no server access, no database changes, no
+   integration tests.** Every n8n dependency is recorded here as a written information
+   request — never as an action.
+6. **The legacy n8n Cloud connection in this repository is obsolete and must not be used**
+   as a target for anything. Its credential is rotated and cleaned up by the owner outside
+   this project and is never reproduced here.
+7. **Product CTA lockdown.** Until the owner grants explicit, per-action release, every
+   product CTA remains a disabled or clearly marked placeholder. Activation is
+   individual, against an owner-confirmed URL or interface, recorded in this document
+   before it is built. The implementation instance never self-authorizes an activation and
+   never treats a plausible-looking or repository-found value as confirmation.
 
 ## Status vocabulary
 
@@ -33,6 +45,13 @@ link, tab or form ships without an entry in this document.
 | `PREPARED` | UI and client boundary built; target system confirmed but not yet connected |
 | `PENDING` | UI built with an honest placeholder state; target system undecided or unavailable |
 | `BLOCKED` | Cannot be built until the owner or the workflow main project supplies information |
+
+A status of `PREPARED` never means connected, and `LIVE` may only be recorded after the
+owner has confirmed that specific target in writing. **Under the CTA lockdown (hard rule 7),
+no product CTA may reach `LIVE` at all until it is individually released.** *Book a demo* is
+scoped as a sales action against an already-active third-party booking tool, not a product
+system, and is therefore outside the lockdown — it is the approved fallback for everything
+that is locked.
 
 **Current reality check:** the existing site has **no API routes, no forms and no backend
 calls of any kind**. Cal.com is the only live third-party integration. Therefore every
@@ -374,25 +393,40 @@ only honest fallback anywhere on the site.
 | 10 | Trial extension | `BLOCKED` | Depends on #1 |
 | 11 | Request access | `PENDING` | Destination |
 
-**Only one of eleven actions has a working target system today.** Every other conversion
-path on the redesigned site will ship in an honest placeholder state until the owner and
-the workflow main project supply the information above.
+**Only one of eleven actions has a working target system today**, and it is the one outside
+the product boundary. Every other conversion path on the redesigned site ships as a disabled
+or clearly marked placeholder, routed to *Book a demo*, and stays that way until the owner
+releases it individually against a confirmed target (hard rule 7 + activation register).
+
+This is now a governance constraint rather than only a practical one: even if a target
+system became available, it would not be wired without an explicit per-action release.
 
 ---
 
-## Requests to the workflow main project
+## Information requests to the product and automation project
 
-The following are needed from outside this project. Nothing here is assumed, and no n8n
-workflow is created or modified from this repository (R8).
+**These are written information requests only.** This project makes no connection, sends no
+request, runs no test and changes nothing on the product side (`MASTER_GOVERNANCE.md` §14).
+The product project is near completion and is not to be disturbed; answers arrive as
+documentation, at whatever time suits that project.
 
 | ID | Request |
 |---|---|
-| W-01 | Confirm whether the n8n Cloud instance will serve the new website at all, or whether a new integration layer is planned. |
-| W-02 | If n8n is used: which workflows should receive website submissions, and what is each one's expected payload contract? |
-| W-03 | Confirm that the leaked API key (audit finding A-01) has been rotated. |
-| W-04 | Confirm the storage destination for every form submission (Supabase table? CRM? email?) so the privacy policy can be made accurate. |
-| W-05 | Confirm whether voice AI has a real, callable public entry point that the website may reference. |
-| W-06 | Confirm the business WhatsApp number and who owns responses. |
+| W-01 | Which integration layer, if any, should serve the public website? The legacy n8n Cloud connection in this repository is retired and will not be used. |
+| W-02 | For each website action that should eventually reach the product: the confirmed target URL or interface, and the expected payload contract — as a written spec, not as access. |
+| W-03 | The storage destination for every form submission, so the privacy policy can be made accurate before any form goes live. |
+| W-04 | Whether voice AI has a real, public entry point the website may reference — and, if so, the confirmed URL or number. |
+| W-05 | The business WhatsApp number, who answers it, in which languages and during which hours. |
+| W-06 | For each action: the point at which the owner considers it releasable, so it can be activated individually under the CTA lockdown. |
+
+## Activation register
+
+Each per-action release is recorded here before the corresponding control is wired. An
+action not listed in this register is, by definition, still a placeholder.
+
+| Action | Released by owner | Date | Confirmed target | Verified by |
+|---|---|---|---|---|
+| *(none)* | — | — | — | — |
 
 ---
 

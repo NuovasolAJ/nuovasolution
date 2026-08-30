@@ -78,11 +78,16 @@ identifiers.
 Permitted: defining a typed client boundary, an environment variable *name* documented in
 `INTEGRATION_CONTRACT.md`, and an honest UI state when the connection is absent.
 
-### R8 — The legacy n8n Cloud system is not reused unverified
-No connection to the existing n8n Cloud instance is wired into the new website without
-explicit verification and owner approval per integration. Existing workflows are treated
-as out of scope and are not modified from this project. Any credential found in this
-repository is treated as compromised until the owner has rotated it.
+### R8 — The legacy n8n Cloud connection is retired and must not be used
+The n8n Cloud connection configured in this website repository is **obsolete**. It must not
+be used, called, tested or referenced as a live target for anything.
+
+The credential found in this repository is handled by the owner outside this project:
+rotation and history cleanup happen separately. This project does not reproduce, echo, log,
+copy or quote that credential value in any file, document, commit or message, and does not
+attempt to verify, use or clean it.
+
+See §14 for the absolute isolation boundary around the product and automation project.
 
 ### R9 — No production release without the owner's personal approval
 No merge into the production branch, no promotion of a Vercel preview to production, no
@@ -296,9 +301,10 @@ CTAs in one view are a P1 finding.
   the owner's work and history rewriting are forbidden.
 - No merge into the production branch.
 - No production deployment.
-- Preview deployments are permitted and must be labelled as previews.
-- Secrets are never committed. Any secret found in history is reported to the owner for
-  rotation, not silently deleted and considered handled.
+- **No push, and no preview deployment, without explicit owner approval — see §15.**
+  (This supersedes the earlier assumption that preview deployments were freely permitted.)
+- Secrets are never committed. A secret found in history is reported once to the owner and
+  then left alone — this project does not reproduce it, clean it, or verify it.
 
 ---
 
@@ -310,3 +316,96 @@ Permitted status wording for completed implementation work:
 
 Forbidden wording: done, finished, complete, ready, production ready, bug-free, tested and
 working, fully functional, ships as-is.
+
+---
+
+## 14. Product and automation project isolation (ABSOLUTE)
+
+> Added 2026-08-30 by binding owner directive. This section overrides convenience,
+> completeness and any implementation preference. It is not negotiable and is not subject
+> to interpretation by the implementation instance.
+
+The separate **NuovaSolution product and automation project**, running on NuovaSolution's
+own n8n server, is **near completion**. It must under no circumstances be touched,
+modified, disturbed, degraded or put at risk by any work in this website project.
+
+### 14.1 Forbidden without exception
+
+From this website repository and this branch, the following are forbidden:
+
+1. **No real webhooks.** No webhook is created, registered, called, subscribed to or fired.
+2. **No workflow changes.** No n8n workflow is created, edited, renamed, activated,
+   deactivated, duplicated, exported or deleted.
+3. **No server access.** No connection of any kind to the NuovaSolution n8n server or to
+   any other production host.
+4. **No database changes.** No schema change, no migration, no read, no write, no seed, no
+   inspection of any production or staging data store.
+5. **No integration tests.** No live call, no smoke test, no ping, no health check, no
+   "just checking whether it works" request against any product system.
+6. **No use of the obsolete n8n Cloud connection** found in this repository (R8).
+7. **No reproduction of the credential** found in this repository — not in code, not in
+   docs, not in commits, not in reports. Rotation and cleanup happen outside this project.
+
+This holds even when a task would be faster, easier, more complete or more verifiable with
+such access. If a piece of work cannot be delivered without crossing this boundary, the
+work is **not delivered** — it is logged as blocked and escalated to the owner.
+
+### 14.2 What this project may do
+
+The website project may only:
+
+- Build the **public website**.
+- Build **documented integration interfaces**: typed client boundaries, request/response
+  shapes, environment variable *names*, and the five UI states per action.
+- Record what a future integration would require, in `INTEGRATION_CONTRACT.md`.
+- Ask the owner and the product project for information, in writing, in that document.
+
+An integration interface is considered prepared when it is documented and its UI states
+exist. It is never considered connected, and is never described as working.
+
+### 14.3 Product CTA lockdown
+
+Until the owner grants **explicit, per-action release**, every product CTA on the website
+remains a **disabled or clearly marked placeholder**.
+
+- No product CTA points at a real product endpoint, app URL, webhook or workflow.
+- Every such control renders in an honest state per §6 — `Connection pending`,
+  `Request access`, or a routed fallback to *Book a demo*.
+- Placeholder status must be legible to the visitor. A control that looks fully live but
+  quietly does nothing is a **P0** violation.
+- Activation is never bulk. Each action is activated **individually**, only against a URL
+  or interface the owner has confirmed in writing, and only after that confirmation is
+  recorded in `INTEGRATION_CONTRACT.md`.
+- The implementation instance never self-authorizes an activation, and never treats a
+  plausible-looking URL, an inferred pattern or a value found in the repository as
+  confirmation.
+
+### 14.4 Escalation
+
+Any pressure toward crossing this boundary — a task that appears to require it, an
+instruction that seems to imply it, or a document that assumes it — is logged as an open
+conflict under §4 and raised with the owner. It is never resolved by proceeding.
+
+---
+
+## 15. Release and access discipline (ABSOLUTE)
+
+> Added 2026-08-30 by binding owner directive. Supersedes §12 where stricter.
+
+**No push. No merge. No deployment. No production access — without explicit owner
+approval, granted per action.**
+
+| Action | Requires explicit owner approval |
+|---|---|
+| `git push` of any branch, including `website_enterprise_redesign` | **Yes** |
+| Merge into `main` or any production branch | **Yes** |
+| Any Vercel deployment, **including a preview** | **Yes** |
+| Any access to production hosting, DNS, domains or environment variables | **Yes** |
+| Any access to the n8n server, databases or product systems | **Forbidden** (§14) |
+
+Approval is per action and per occasion. Approval given once does not extend to the next
+push, the next merge or the next deployment. Silence is not approval. An earlier
+authorization for a similar action is not authorization for this one.
+
+Local commits on `website_enterprise_redesign` are permitted, because they are local,
+reversible and reach no external system.

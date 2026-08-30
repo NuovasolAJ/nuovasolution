@@ -22,7 +22,9 @@
 | **Implementation gate** | **CLOSED** — see below |
 | Pages rebuilt | **None.** No main page has been modified. |
 | Production deployment | None. Forbidden without owner approval (R9). |
-| Preview deployment | Not yet created. Requires owner confirmation before first push. |
+| Preview deployment | None. **Push and preview both require explicit per-occasion owner approval** (§15). |
+| Product system contact | **None, and none permitted** — no webhooks, no workflow changes, no server access, no database changes, no integration tests (§14). |
+| Product CTAs | Locked to disabled / clearly marked placeholders until individually released (§14.3). |
 
 ---
 
@@ -58,7 +60,7 @@ non-content infrastructure, and scaffolding that carries no public claims.
 | 6 | Pricing | Not started | All four + open conflict C-06 |
 | 7 | Onboarding + Security & Governance | Not started | All four |
 | 8 | Media placeholders and animation | Not started | `LUXURY_UX_MEDIA_SYSTEM.md` |
-| 9 | Safe CTA states | Not started | `INTEGRATION_CONTRACT.md` + owner answers |
+| 9 | Safe CTA states | Not started | `INTEGRATION_CONTRACT.md` + owner answers. **Ships fully locked** — every product CTA a disabled or clearly marked placeholder (§14.3). Wiring is a separate, per-action step after individual release. |
 | 10 | English and Spanish | Not started | `COPY_AND_CONVERSION_MASTER.md` (both languages) |
 
 ### Phase close checklist (all nine required — MASTER_GOVERNANCE §7)
@@ -100,7 +102,7 @@ Full detail in `CURRENT_SITE_AUDIT.md`. Reproduced here for tracking.
 
 | ID | Sev | Finding | Owner | State |
 |---|---|---|---|---|
-| A-01 | **P0** | Live n8n Cloud API key committed in tracked `.mcp.json` | **Owner — rotation required** | Open |
+| A-01 | ~~P0~~ | n8n Cloud credential in tracked `.mcp.json` | Owner, outside this project | **Closed** 2026-08-30 — rotated and cleaned up separately. Connection is obsolete and must not be used (R8, §14). |
 | A-02 | P1 | Primary CTA `href="#"` + `preventDefault()`; dead if Cal.com script fails | Implementation (Phase 1) | Open |
 | A-03 | P1 | Absolute self-referencing URLs break preview deployments | Implementation (Phase 1) | Open |
 | A-04 | P1 | Spanish has no URL, no persistence, no `hreflang`; `<html lang>` hard-coded `en` | Implementation (Phase 1/10) | Open |
@@ -195,17 +197,23 @@ Ordered by urgency.
 
 | # | Action | Severity |
 |---|---|---|
-| 1 | **Rotate the n8n Cloud API key.** It is committed in plaintext in tracked `.mcp.json` and present in git history. Deleting the file does not remove it from history. | **P0** |
-| 2 | Confirm whether the GitHub repository `NuovasolAJ/nuovasolution` is public or private. | **P0** |
-| 3 | Answer C-01 (does the 14-day trial exist?) | P0 for the CTA hierarchy |
-| 4 | Answer C-05 (WhatsApp number) | P1 |
-| 5 | Answer C-03 (login / customer app URL) | P1 |
-| 6 | Answer C-06 (pricing reality) | P1 |
-| 7 | Answer C-04 (what "Talk to Nuova" means) | P1 |
-| 8 | Answer C-02 (Experience Nuova: simulated or live) | P1 |
-| 9 | Confirm C-07 (redesign brief supersedes `CLAUDE.md`) | P1 |
-| 10 | Confirm that pushing `website_enterprise_redesign` to GitHub may create a Vercel preview deployment, and that this is acceptable. | P1 |
-| 11 | Supply `PRODUCT_TRUTH.md`, `CLAIMS_MATRIX.md`, `COPY_AND_CONVERSION_MASTER.md`, `LUXURY_UX_MEDIA_SYSTEM.md` from the other instances. | Gate-blocking |
+| 1 | Supply `PRODUCT_TRUTH.md`, `CLAIMS_MATRIX.md`, `COPY_AND_CONVERSION_MASTER.md`, `LUXURY_UX_MEDIA_SYSTEM.md` from the other instances. | Gate-blocking |
+| 2 | Answer C-01 (does the 14-day trial exist?) — determines the site-wide primary CTA | P0 for the CTA hierarchy |
+| 3 | Answer C-05 (WhatsApp number) | P1 |
+| 4 | Answer C-03 (login / customer app URL) | P1 |
+| 5 | Answer C-06 (pricing reality) | P1 |
+| 6 | Answer C-04 (what "Talk to Nuova" means) | P1 |
+| 7 | Answer C-02 (Experience Nuova: simulated or live) | P1 |
+| 8 | Confirm C-07 (redesign brief supersedes `CLAUDE.md`) | P1 |
+| 9 | Decide whether `.mcp.json` should be untracked and git-ignored as part of repository hygiene (finding A-08). No security action — the credential is already handled. | P2 |
+
+**Resolved / withdrawn**
+
+| Former item | Outcome |
+|---|---|
+| Rotate the n8n Cloud API key | Handled by the owner outside this project (2026-08-30). Closed here. |
+| Confirm repository visibility | No longer needed for this project — credential is rotated and the connection is retired. |
+| Approve pushing the branch to create a Vercel preview | **Withdrawn.** Under §15 no push or preview happens by default. This project will not ask again per phase; it will only act on an explicit instruction from the owner at the moment it is wanted. |
 
 ---
 
@@ -217,3 +225,5 @@ Ordered by urgency.
 | 2026-08-30 | Phase 0 governance layer written: `MASTER_GOVERNANCE.md`, `CURRENT_SITE_AUDIT.md`, `INTEGRATION_CONTRACT.md`, `IMPLEMENTATION_STATUS.md`. |
 | 2026-08-30 | 15 audit findings recorded (1× P0, 8× P1, 6× P2). 7 open conflicts logged (C-01 … C-07). |
 | 2026-08-30 | Implementation gate CLOSED — 0 of 4 source-of-truth documents present. No main page modified. |
+| 2026-08-30 | **Binding owner directive received.** The separate NuovaSolution product and automation project on NuovaSolution's own n8n server is near completion and must not be touched or put at risk. Added `MASTER_GOVERNANCE.md` §14 (product and automation project isolation — no real webhooks, no workflow changes, no server access, no database changes, no integration tests; product CTA lockdown with per-action release) and §15 (release and access discipline — no push, merge, deployment or production access without explicit per-occasion owner approval). R8 rewritten: the legacy n8n Cloud connection is retired and must not be used; its credential is rotated and cleaned up by the owner outside this project and is never reproduced here. |
+| 2026-08-30 | A-01 closed for this project and its credential details removed from `CURRENT_SITE_AUDIT.md`. `INTEGRATION_CONTRACT.md` updated: hard rules 5–7 added, status vocabulary constrained, product-project section reframed as written information requests only, activation register added. Owner action list re-prioritized; the preview-deployment request was withdrawn rather than left standing. |
