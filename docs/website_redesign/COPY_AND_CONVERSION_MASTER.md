@@ -12,24 +12,72 @@
 
 ### 0.1 Why this document is a draft
 
-`MASTER_GOVERNANCE.md` §3 places two documents above this one:
+`MASTER_GOVERNANCE.md` §3 places two documents above this one. **Both arrived while this
+document was being written**, in commit `7ec0010`, and this file has been reconciled against
+them in a second pass.
 
 | Document | Present | Consequence for this file |
 |---|---|---|
-| `PRODUCT_TRUTH.md` | **Missing** | No capability statement in this file may be treated as confirmed. |
-| `CLAIMS_MATRIX.md` | **Missing** | No wording in this file is cleared for public use. |
+| `PRODUCT_TRUTH.md` | **Present** | Capability statements follow its status categories. No capability is Category 1. |
+| `CLAIMS_MATRIX.md` | **Present** | Wording follows its verdicts. Its Approved Wording column outranks anything drafted here. |
 
-Under R3 a claim without a matrix entry is not written. This file therefore does two
-things at once:
+**The single fact that governs every line below** (`CLAIMS_MATRIX.md` §0):
+
+> No capability has Status 1. Backend verification was not performed and was not permitted
+> under the owner's system isolation directive. Every capability claim therefore ships
+> qualified, or it does not ship.
+
+Consequently this document is still a draft, but for a different reason than when it was
+started. It is no longer waiting for the truth documents. It is waiting on the **18 owner
+decisions** in `CLAIMS_MATRIX.md` §21 and the **14 legal dependencies** in its §22.
+
+Under R3 a claim without a matrix entry is not written. This file therefore does three
+things:
 
 1. It provides the **complete conversion architecture, structure, hierarchy and voice**,
-   which depend on strategy rather than on product facts and are safe to finalise now.
-2. It provides **body copy in a drafted state**, with every substantive claim carried in a
-   numbered register (§15) that doubles as the intake request to the Product Truth instance.
+   which depend on strategy rather than product facts and are safe to finalise now.
+2. It provides **body copy carrying only `APPROVED` and `APPROVED-Q` wording**, with the
+   required qualifiers attached to the claim rather than hidden in a footer.
+3. It maps every line to its matrix row in §13, so an auditor can check any sentence on the
+   site against a verdict in one step.
 
 **Nothing in this file may be published, deployed or pasted into a component until the
-claim IDs it uses are cleared in `CLAIMS_MATRIX.md`.** Every page block below carries a
-`PUBLICATION GATE` line stating exactly what has to be true before that page can ship.
+matrix rows it depends on are `APPROVED` or `APPROVED-Q` and their owner and legal
+dependencies are closed.** Every page block below carries a `PUBLICATION GATE` line stating
+exactly what has to be true before that page can ship.
+
+### 0.1b What the reconciliation pass changed
+
+Recorded so the change is auditable rather than silent. The first draft of this document was
+written before the truth documents existed, and it was wrong in both directions.
+
+**Wording removed because the matrix rejects it:**
+
+| Removed | Matrix row |
+|---|---|
+| "Works alongside the inbox, portals and CRM you already use" | F-07, F-08. "Works with yours" is explicitly forbidden. |
+| "Every enquiry answered in seconds" as a hero promise | B-04, B-06. Reads as an SLA. |
+| "That took four seconds" | B-06. No numeric response time may be published. |
+| "Three properties", "three homes" | F-03. A fixed count is forbidden until confirmed. |
+| The follow up persistence and revival narrative | E-04, E-05, L-02. The highest risk capability on the site. |
+| "A property listed on Tuesday and the client who described it in March" | E-04, L-02. Reactivation of older contacts. |
+| Voice AI written in the present tense | V-01, V-03. Voice is Category 7 on the public site. |
+| "Every tier runs the whole loop. We do not hold back." | PK-04. Factually wrong. Higher packages do gate capabilities. |
+| "30 minutes" under every demo CTA | CTA-2. A duration promise that is not confirmed. |
+| "Your client data stays yours" | B-15, N-03. A security claim. |
+| "One system instead of five" | P-03. Replaced with the approved wording. |
+
+**Pages upgraded because the truth documents specify them far better than assumed:**
+
+| Page | Was | Now |
+|---|---|---|
+| Property Experience | EMBARGOED, treated as undefined | Specified in detail. `PRODUCT_TRUTH.md` §13 defines twelve capabilities including a deliberate structural navigation boundary. Rewritten as a real page. |
+| Social Growth | EMBARGOED, treated as unknown | `PRODUCT_TRUTH.md` §5 defines nine capabilities and one exclusion. Rewritten as a real page. |
+
+**Confirmed correct by the matrix:** the operating layer positioning (P-02), the decision to
+retire *Talk to Nuova* (CTA-4), Ladder B as the shipping CTA hierarchy (T-01, §16 note), the
+refusal to publish the 1 to 100 score scale (D-04), and the requirement for a pre interaction
+simulation label (S-02).
 
 ### 0.2 What is finalised and what is not
 
@@ -41,9 +89,10 @@ claim IDs it uses are cleared in `CLAIMS_MATRIX.md`.** Every page block below ca
 | CTA system and hierarchy | **Finalised as two ladders.** Which ladder ships depends on C-01. |
 | Hero headline recommendation | **Finalised as a recommendation.** Owner sign off required. |
 | Package names | **Finalised as a recommendation.** Package contents blocked by C-06. |
-| Body copy | **Drafted.** Gated per page. |
-| Spanish | **Strategy and key surfaces finalised. Full ES body copy is a second pass.** |
-| Legal and compliance wording | **Drafted, marked LEGAL PENDING.** A lawyer signs it, not this instance. |
+| Body copy | **Drafted and reconciled against the matrix.** Gated per page and per section. |
+| Spanish | **Strategy, key surfaces and the final qualifier bank finalised. Full ES body copy is a second pass.** |
+| Legal and compliance wording | **Drafted or blocked, per `CLAIMS_MATRIX.md` §22.** A lawyer signs it, not this instance. |
+| Claims register | **Replaced.** Keyed to matrix IDs, not to private ones. |
 
 ### 0.3 Reading conventions used below
 
@@ -119,12 +168,16 @@ their head without a diagram.
 
 | Stage | What it means to the agency | Modules |
 |---|---|---|
-| **Attract** | Enquiries do not only arrive, they are created. | Social Growth, Property Experience |
-| **Answer** | Every enquiry gets a real reply, in its own language, immediately. | AI Sales Agent, Voice AI |
-| **Understand** | The system knows who is serious and why, and writes it down. | Lead Intelligence and CRM |
-| **Advance** | The conversation keeps moving without anyone remembering to move it. | AI Sales Agent follow up, Property Matching |
-| **Hand over** | The system steps back and puts a ready client in an agent's hands. | Daily Assistant |
-| **Learn** | The agency can see the whole operation and what actually worked. | Reporting |
+| **Attract** | Leads arrive from your campaigns and your website carrying the source they came from. | Lead Acquisition, Social Growth |
+| **Answer** | Every enquiry gets an answer, day or night, in the customer's own language. | AI Sales Agent |
+| **Understand** | One customer, one record, with a priority signal so your team knows where to start. | Lead Intelligence, Universal CRM |
+| **Advance** | The conversation continues, and the customer sees a relevant selection rather than a list dump. | Follow up, Property Matching, Property Experience |
+| **Hand over** | The conversation goes to a person when it matters, with the full history. | Daily Assistant |
+| **Learn** | You can see where leads came from, how fast they were answered and what was booked. | Reporting |
+
+**Voice sits outside the loop on the public site.** `CLAIMS_MATRIX.md` §9 rules voice
+Category 7 until the owner answers V-01. It appears only in a visually separated future
+section, never inside a live capability list. See §6.5.
 
 The loop closes: what Reporting learns feeds what Attract does next. Say that explicitly
 once, on the homepage and on Platform Overview, and never again. Repetition of a good idea
@@ -313,17 +366,28 @@ Voice AI, it is renamed to something that says so.
 
 Placed under the primary CTA. One line. Removes the two objections that stop a click.
 
+**CTA-2 forbids a duration or outcome promise that is not confirmed**, and names *15 minutes*
+and *no commitment* as forbidden. Every duration is therefore removed until the owner supplies
+one. The lines below work without a number.
+
 | Context | EN | ES |
 |---|---|---|
-| Demo, homepage and final CTA | 30 minutes. We show you Nuova running on a real enquiry, not a slide deck. | 30 minutos. Te enseñamos Nuova funcionando con una consulta real, no un PowerPoint. |
-| Demo, module pages | 30 minutes, in English or Spanish. No preparation needed. | 30 minutos, en español o en inglés. No hace falta preparar nada. |
-| Demo, pricing page | We will tell you what it costs on the call. | Te decimos lo que cuesta en la llamada. |
-| Trial, Ladder A only | No card. Your data stays yours. | Sin tarjeta. Tus datos siguen siendo tuyos. |
-| Experience Nuova | Two minutes. Nothing to install. | Dos minutos. Sin instalar nada. |
+| Demo, homepage and final CTA | We show you Nuova running on a real enquiry, not a slide deck. | Te enseñamos Nuova funcionando con una consulta real, no un PowerPoint. |
+| Demo, module pages | In English or in Spanish. Nothing to prepare. | En español o en inglés. No hace falta preparar nada. |
+| Demo, pricing page | We tell you what it costs on the call. | Te decimos lo que cuesta en la llamada. |
+| Experience Nuova | Nothing to install. | Sin instalar nada. |
 
-**OWNER DECISION.** The demo length is written as 30 minutes throughout. The current site
-says 15 minutes. Confirm which is true. It is a promise about the owner's own calendar, so
-this instance will not choose.
+**Held, not written.** Trial microcopy is not drafted at all. T-01 forbids *free trial*,
+*start free*, *try free* and *no credit card required* in every wording, so drafting a line
+for a CTA that may not exist only creates something to accidentally ship.
+
+**Removed.** *No card. Your data stays yours.* The second sentence is a security and data
+handling claim, rejected under B-15 and N-03.
+
+**OWNER DECISION.** Supply a real demo duration, or confirm that none is published. The
+current live site says 15 minutes, which CTA-2 names as forbidden wording precisely because
+it is unconfirmed. This instance will not choose a number that describes the owner's own
+calendar.
 
 ---
 
@@ -412,8 +476,9 @@ Scores are 1 to 5.
 
 > ## Your agency, running at full attention.
 >
-> Every enquiry answered in seconds, in the client's language. Every conversation understood
-> and carried forward. Your agents hear about the ones that are ready.
+> Every enquiry gets an answer, day or night, in the customer's own language. Every
+> conversation is understood and carried forward. Your agents hear about the ones that are
+> ready.
 
 Reasoning:
 
@@ -428,7 +493,10 @@ Reasoning:
 **Reserve H6** as the A/B alternate once analytics events exist. It tests the same idea with
 a sharper emotional edge, so the result is readable rather than noise.
 
-**Assign H4** to the Platform Overview hero, where a category first line is correct.
+**Assign H4's headline** to the Platform Overview hero, where a category first line is
+correct. **Its subheadline as scored above does not ship**: *connected in one system instead
+of five* is replaced by P-03's approved wording. The options in §4.2 are preserved as the
+record of what was evaluated, not as shippable copy.
 
 **Retire H5.** It is the current site's positioning and the redesign supersedes it.
 
@@ -485,22 +553,28 @@ Fourteen pages. Each carries the full field set required by the brief.
 
 ### 6.0 Page inventory and routing
 
-| # | Page | Route | Gate |
-|---|---|---|---|
-| 1 | Homepage | `/` | HELD |
-| 2 | Platform Overview | `/platform` | OPEN |
-| 3 | AI Sales Agent | `/platform/ai-sales-agent` | OPEN |
-| 4 | Lead Intelligence and CRM | `/platform/lead-intelligence` | OPEN |
-| 5 | Voice AI | `/platform/voice-ai` | HELD |
-| 6 | Property Matching | `/platform/property-matching` | OPEN |
-| 7 | Daily Assistant | `/platform/daily-assistant` | HELD |
-| 8 | Social Growth | `/platform/social-growth` | EMBARGOED |
-| 9 | Reporting | `/platform/reporting` | HELD |
-| 10 | Property Experience | `/platform/property-experience` | EMBARGOED |
-| 11 | Solutions and Outcomes | `/solutions` | OPEN |
-| 12 | Pricing | `/pricing` | HELD |
-| 13 | Experience Nuova | `/experience` | HELD |
-| 14 | Onboarding and Start | `/start` | HELD |
+Gates below are **after** reconciliation against the truth documents. Two pages moved up, one
+moved down to no page at all.
+
+| # | Page | Route | Gate | Principal blocker |
+|---|---|---|---|---|
+| 1 | Homepage | `/` | HELD | Composed of module sections, so it inherits their gates |
+| 2 | Platform Overview | `/platform` | **OPEN** | Security section held on L-14 |
+| 3 | AI Sales Agent | `/platform/ai-sales-agent` | HELD | Follow up section on L-01, qualification on L-09 |
+| 4 | Lead Intelligence and CRM | `/platform/lead-intelligence` | HELD | L-09 throughout, G-11 positioning |
+| 5 | Voice AI | **no route** | **BLOCKED** | V-01. One future block on Platform Overview instead |
+| 6 | Property Matching | `/platform/property-matching` | **OPEN** | Section 5 removed on L-02 |
+| 7 | Daily Assistant | `/platform/daily-assistant` | HELD | Every row OWNER |
+| 8 | Social Growth | `/platform/social-growth` | **OPEN** ⬆ | Section 5 held on L-07. **Was EMBARGOED** |
+| 9 | Reporting | `/platform/reporting` | **OPEN** | Section on L-11 removed |
+| 10 | Property Experience | `/platform/property-experience` | **OPEN** ⬆ | Square metres on L-12. **Was EMBARGOED** |
+| 11 | Solutions and Outcomes | `/solutions` | **OPEN** | Rows for blocked modules are omitted |
+| 12 | Pricing | `/pricing` | HELD | PK-02, PK-04, PK-05, PK-06 |
+| 13 | Experience Nuova | `/experience` | HELD | S-02 disclosure wording is an owner decision |
+| 14 | Onboarding and Start | `/start` | HELD | O-01 and O-02 OWNER |
+
+**No page carrying a form ships at all.** A-04b and B-03b are P0: this website has no API
+routes, no forms and no submission path. Form copy in §9.4 is prepared, not deployable.
 
 **Routing decision for the implementation instance.** `CURRENT_SITE_AUDIT.md` §3 lists
 *Lead Acquisition* and *Follow up Automation* as separate required routes. Two standalone
@@ -532,13 +606,20 @@ between your tools and your people.
 > Your agency, running at full attention.
 
 **Hero subheadline.**
-> Every enquiry answered in seconds, in the client's language. Every conversation understood
-> and carried forward. Your agents hear about the ones that are ready.
+> Every enquiry gets an answer, day or night, in the customer's own language. Every
+> conversation is understood and carried forward. Your agents hear about the ones that are
+> ready.
 
-**Primary CTA.** Book a demo (Ladder B) or Start your 14 day free trial (Ladder A).
-**Secondary CTA.** Experience Nuova.
-**Hero reassurance line.** `[C01]` Works alongside the inbox, portals and CRM you already
-use.
+**Primary CTA.** Book a demo. Ladder B is the only ladder that ships (`CLAIMS_MATRIX.md`
+T-01, CTA-1).
+**Secondary CTA.** Experience Nuova, with its simulation label.
+**Hero reassurance line.** One system instead of separate tools for messaging, follow up,
+matching and reporting. `[P-03]`
+
+> **Rejected wording, recorded so it is not reintroduced.** The first draft used *Works
+> alongside the inbox, portals and CRM you already use*. F-07 and F-08 forbid *works with
+> yours* and every compatibility claim, because no integration is evidenced. P-03's approved
+> wording above makes the same competitive point without the integration claim.
 
 **Section order.**
 
@@ -592,18 +673,29 @@ Body:
 
 Six stages, one line each:
 
-| Stage | Line |
-|---|---|
-| Attract `[C02]` | Enquiries do not only arrive. Nuova helps create them. |
-| Answer `[C03]` | Every message gets a real reply in seconds, in the language it was written in. |
-| Understand `[C04]` | Nuova works out what the client wants and how serious they are, and writes it down. |
-| Advance `[C05]` | The conversation keeps moving. Follow up happens whether or not anyone remembers. |
-| Hand over `[C06]` | When a client is ready, an agent gets them, with the full history already attached. |
-| Learn `[C07]` | Every outcome is measured, and what worked feeds back into what happens next. |
+| Stage | Line | Matrix |
+|---|---|---|
+| Attract | Leads arrive from your campaigns and your website, each carrying the source it came from. | A-04, A-06 |
+| Answer | Every enquiry gets an answer, day or night, in the customer's own language. | B-04, B-07 |
+| Understand | One customer, one record, with a priority signal so your team knows where to start. | D-01, D-03 |
+| Advance | The conversation continues, and your customer receives a short, relevant selection rather than a list dump. | E-01, F-03 |
+| Hand over | It hands the conversation to a person when it matters, with the full history. | B-12 |
+| Learn | You can see where leads came from, how fast they were answered and what was booked. | R-01, R-02, R-05 |
+
+Qualifier attached directly under the loop, not in a page footer:
+
+> Based on agency permissions and configuration. `[Q-2]`
 
 Closing line:
 
-> The loop closes. What the agency learns on Friday changes what the system does on Monday.
+> One system, one record, one place where the whole thing is visible.
+
+**Removed from the first draft.** *Every outcome is measured, and what worked feeds back
+into what happens next*, and the closing line *What the agency learns on Friday changes what
+the system does on Monday*. Nothing in `PRODUCT_TRUTH.md` §12 describes a feedback loop from
+reporting into system behaviour. It was an attractive idea with no evidence, which is
+precisely what R3 exists to stop. The loop is presented as six things the system does, not as
+a self improving system.
 
 ---
 
@@ -614,22 +706,35 @@ Eyebrow: *The platform*
 
 Body:
 
-> Each part of Nuova does one job properly. Together they behave like one system, because
-> they share the same memory of every client and every property.
+> Each part of Nuova does one job properly. Together they behave like one system, because the
+> customer is one record rather than one record per tool. Nothing starts over.
 
-Module cards. Name, one line, link. **Any module not confirmed in `PRODUCT_TRUTH.md` is
-removed from this grid.** A grid of eight where three are aspirational is a P0 finding.
+Module cards. Name, one line, entitlement label where required, link.
 
-| Module | Homepage line |
-|---|---|
-| AI Sales Agent `[C03]` | Answers every enquiry immediately, in the client's language, and keeps the conversation going. |
-| Lead Intelligence and CRM `[C04]` | Understands who is serious, and keeps one clean record of every client. |
-| Property Matching `[C08]` | Reads what a client wants, looks at what you have, and sends the homes worth their trip. |
-| Voice AI `[C09]` | Picks up the phone when nobody in the office can. |
-| Daily Assistant `[C10]` | Tells each agent what to do first, and why. |
-| Social Growth `[C11]` | Keeps the agency visible where sellers and buyers are already looking. |
-| Reporting `[C12]` | Shows what the operation actually did, by agent, by source, by outcome. |
-| Property Experience `[C13]` | Gives buyers something worth opening, not another PDF. |
+| Module | Homepage line | Matrix | Label |
+|---|---|---|---|
+| AI Sales Agent | Every enquiry gets an answer, day or night, in the customer's own language. | B-04, B-07 | Included in every paid package |
+| Universal CRM | Every message, from every channel, on one record. | G-02 | Included in every paid package |
+| Lead Intelligence | Every enquiry qualified, and a priority signal so your team knows where to start. | D-02, D-03 | Included in every paid package |
+| Property Matching | Understands what each customer is actually looking for, and sends a short, relevant selection. | F-01, F-03 | Included in every paid package |
+| Reporting | See where your leads came from, how fast they were answered and what was booked. | R-01, R-02, R-05 | Included in every paid package |
+| Social Growth | Helps create property and social content in your brand voice, and turns genuine engagement into a tracked lead. | C-01, C-06 | Higher package |
+| Property Experience | A real panorama for every room, with the real floor plan alongside it. | K-01, K-06 | Higher package |
+| Daily Assistant | Ask it who to call today, or why a lead is a priority, and see the reasoning. | I-01, I-06 | Higher package |
+
+**Two rules this grid must obey.**
+
+1. **Voice AI is not in this grid.** V-02 permits voice only in a visually separated future
+   section. Putting it in a live module grid is exactly the placement the matrix forbids.
+2. **The entitlement label is not optional.** `PRODUCT_TRUTH.md` §5.7 and §17.3 require that
+   higher package capabilities are labelled wherever they appear, so no visitor believes
+   Social Growth, Property Experience or the Daily Assistant is in the entry package.
+
+Qualifier under the grid: Based on agency permissions and configuration. `[Q-2]`
+
+Under the grid, a separated future line, styled as a quieter register than the grid itself:
+
+> **Voice, coming next.** `[V-02]`
 
 CTA: Explore the platform.
 
@@ -645,30 +750,38 @@ Body:
 > Most agents spend the first hour of the day working out what happened overnight. Which
 > messages came in, which ones matter, who has gone quiet, what was promised to whom.
 >
-> Nuova has already done that. Each agent opens their day and finds a short, ordered list of
-> the clients who are actually ready, with the context already attached and the next action
-> already obvious. `[C10]`
->
-> The rest is not ignored. It is handled, and it is still moving.
+> Nuova gives them somewhere to ask. Who should I call today. Why is this lead a priority.
+> Which buyers match this villa. On desktop, on mobile, or by speaking.
+> `[I-01]` `[I-05]` `[I-06]` `[I-08]`
+
+Example questions, labelled as examples per the mandatory framing in §6.7. **The first draft
+claimed the assistant hands each agent an ordered list of ready clients, which is close to
+I-09's rejected *runs your day* and is unevidenced.** Higher package label required.
 
 CTA: Read the module. Links to Daily Assistant.
 
 ---
 
 **6. Property experience**
-Eyebrow: *What your client receives*
-**Removed entirely unless C13 clears.**
+Eyebrow: *What your customer receives*
 
-> ### The part of the agency your client actually sees.
+> ### Room by room, through the real doorways.
 
 Body:
 
-> A serious buyer flying in for a weekend does not want a folder of attachments. They want
-> to understand a property before they get on the plane, and to feel that the agency they
-> are dealing with is the professional one. `[C13]`
+> A serious buyer flying in for a weekend does not want a folder of attachments. They want to
+> understand the property before they get on the plane.
 >
-> Nuova turns what you already have into something worth opening, and tells you what the
-> client looked at.
+> A real panorama for every room, floor to ceiling, with the real floor plan alongside it.
+> They always know which room they are in and which way they are facing.
+> `[K-01]` `[K-02]` `[K-06]` `[K-07]` `[K-08]`
+>
+> No joystick, no getting lost. Structured navigation by design. `[K-11]`
+
+Higher package label required. **The first draft ended with *tells you what the client looked
+at*.** R-12 does approve *see how buyers used the property experience*, but engagement
+tracking of a named prospect has a lawful basis question behind it, so the homepage does not
+raise it. The module page handles it.
 
 CTA: Read the module.
 
@@ -681,12 +794,14 @@ Eyebrow: *The whole operation*
 
 Body:
 
-> How many enquiries came in, where from, how quickly they were answered, which ones turned
-> into viewings, which agents are converting and which sources are worth what you pay for
-> them. `[C12]`
+> See where your leads came from, how fast enquiries were answered, how they qualified and
+> what was booked. `[R-01]` `[R-02]` `[R-03]` `[R-05]`
 >
 > Not an analytics product. Just the answer to the question every owner asks on Monday and
 > nobody can currently prove.
+
+**Removed:** *which agents are converting* (R-08, I-07, blocked on **L-11**) and *which
+sources are worth what you pay for them* (R-13, which rejects every spend and ROI reference).
 
 CTA: Read the module.
 
@@ -702,9 +817,9 @@ Body:
 > Type the kind of message your agency gets every day, in any language, and watch Nuova
 > read it, answer it, work out how serious it is and decide whether an agent needs to know.
 >
-> Two minutes. Nothing to install.
+> Nothing to install.
 
-Simulation label is mandatory here. See §11.2. **`[C14]`**
+Simulation label is mandatory here. See §9.2. **`[S-02]`**
 
 CTA: Experience Nuova.
 
@@ -736,7 +851,7 @@ CTA: Talk to us about pricing.
 
 Body:
 
-> The only question is what happens to it. Book 30 minutes and we will show you Nuova
+> The only question is what happens to it. Book a demo and we will show you Nuova
 > handling a real enquiry from your own market, live.
 
 Primary CTA plus microcopy. Secondary CTA. Nothing else in this section. No second
@@ -800,8 +915,11 @@ of it.
 > The operating layer of a modern real estate agency.
 
 **Hero subheadline.**
-> Acquisition, conversation, qualification, follow up, matching, productivity and reporting,
-> connected in one system instead of five.
+> One system instead of separate tools for messaging, follow up, matching and reporting.
+> `[P-03]`
+
+**The count is gone.** The first draft ended *instead of five*. P-03's approved wording avoids
+naming a number of tools, and its forbidden column includes naming the tools it replaces.
 
 **Primary CTA.** Book a demo. **Secondary CTA.** Experience Nuova.
 
@@ -826,12 +944,16 @@ of it.
 > each time. A portal enquiry becomes an email, becomes a note, becomes something someone
 > meant to follow up on.
 >
-> Nuova keeps it all in one place. The system that answers a client at midnight is the same
-> system that remembers her three days later when she writes from a different address, the
-> same one that matches her to a property, and the same one that tells your agent she is
-> ready. `[C15]`
+> Nuova keeps it in one place. One customer, one record, across every channel they use. The
+> system that answers at midnight is the same system that already knows her three days later.
+> Nothing starts over. `[D-01]` `[B-08]`
 >
 > Nothing is handed over, so nothing is dropped.
+
+D-01 forbids *perfect identity resolution* and *never duplicates*. B-08 forbids *remembers
+everything, forever* and *never forgets*. The approved phrasing *nothing starts over* does the
+same emotional work without either. **The first draft's closing clause, *the same one that
+tells your agent she is ready*, is removed**: no matrix row approves an alerting capability.
 
 **3. The loop, expanded**
 
@@ -850,26 +972,37 @@ of what it does, two or three specifics, availability label if applicable, link.
 
 **5. How it fits what you already run**
 
-> ### It goes underneath, not on top.
+**BLOCKED as written in the first draft. Rewritten to what the matrix allows.**
 
-> Nuova is designed to sit behind the tools your agency already uses, so the day it starts
-> nobody has to learn a new place to work. `[C01]` Enquiries keep arriving where they
-> already arrive. Your CRM keeps being your CRM. Your agents keep using their phones.
+> ### One place where the whole relationship lives.
+
+> Every message, from every channel, on one record. Universal across your channels.
+> `[G-02]` `[G-10]`
 >
-> The difference is that everything now passes through one system on the way. `[C16]`
+> Connect your channels, based on the permissions you hold. `[O-03]` `[Q-2]`
 
-**Integration naming is blocked.** No portal, CRM or channel brand name appears until
-`PRODUCT_TRUTH.md` confirms each integration and its state. See claim C16.
+**Removed.** *Nuova sits behind the tools your agency already uses. Your CRM keeps being your
+CRM. Everything passes through one system on the way.* Every sentence there is an integration
+or coexistence claim. F-07 and F-08 reject all of them, G-11 leaves CRM positioning as an
+open owner question, and no integration is evidenced anywhere.
+
+**No portal, CRM or channel brand name and no logo appears on this page or any other**, per
+F-06 and F-07, which require the owner to confirm or reject each name individually. That is
+`CLAIMS_MATRIX.md` §21 item 3 and it blocks the single most persuasive element a platform
+page normally has, which is a logo strip. The page has to earn belief another way, and §2 The
+principle is where it does that.
 
 **6. Languages and channels**
 
 > ### Your clients do not all write in the same language.
 
-> On this coast an agency gets a Spanish seller, a German buyer and a Scandinavian family
-> asking about the same street in the same afternoon. Nuova reads each one in the language it
-> was written in and answers in that language. `[C17]`
->
-> Not translated afterwards. Written in it.
+> On this coast an agency gets a local seller, an international buyer and a family abroad
+> asking about the same street in the same afternoon. Nuova speaks to each customer in their
+> own language. `[B-07]`
+
+B-07 forbids naming a language count or a language list until each is confirmed, so the
+specific nationalities are removed here as they are on the AI Sales Agent page. **OWNER
+DECISION:** supply the confirmed language list and both pages get materially stronger.
 
 **7. Security and data**
 
@@ -914,8 +1047,12 @@ keeps going until there is something for a person to do.
 > Every enquiry answered before it goes cold.
 
 **Hero subheadline.**
-> Nuova replies in seconds, in the client's language, asks the questions your agents would
-> ask, and keeps following up until the conversation is ready for a person.
+> Nuova answers in seconds rather than hours, in the customer's own language, asks the
+> questions your agents would ask, and hands the conversation to a person when it matters.
+
+Matrix: B-05 for the speed framing, B-07 for language, B-12 for the handover. **The first
+draft ended this sentence with *keeps following up until the conversation is ready for a
+person*. E-05 rejects *until they answer* and every persistence framing.**
 
 **Primary CTA.** Experience Nuova. **Secondary CTA.** Book a demo.
 
@@ -944,8 +1081,11 @@ way to sell this module is to let the visitor break it.
 > anyone shops for a home. Whoever answers first is the one who gets to have the
 > conversation.
 >
-> Nuova answers immediately, at any hour, with something specific about the property they
-> asked about rather than a confirmation that their message was received. `[C03]` `[C18]`
+> Nuova answers day or night, in seconds rather than hours, with something specific about the
+> property they asked about rather than a confirmation that their message was received.
+> `[B-04]` `[B-05]`
+>
+> Based on agency permissions and configuration. `[Q-2]`
 
 **3. It asks the right questions**
 
@@ -954,23 +1094,41 @@ way to sell this module is to let the visitor break it.
 > The first reply is not the point. What matters is what comes back. Nuova asks the two or
 > three things your agents would ask, in the order a real conversation would ask them.
 > Budget. Timing. Whether they are already in the country. Whether they want to see it this
-> week. `[C19]`
+> week. `[D-02]`
 >
 > By the time an agent reads the thread, the qualifying is done and the client has not been
 > made to fill in a form.
 
 **4. Follow up automation**
 Anchor: `#follow-up`
+**LEGAL PENDING. This section does not ship until L-01 closes.**
 
-> ### Most deals are not lost. They are forgotten.
+`CLAIMS_MATRIX.md` E-01 is the only follow up row with approved wording, and its verdict is
+`LEGAL`, blocked on L-01 (follow up timing and lawful basis). E-02 advanced follow up, E-03
+nurturing and E-04 reactivation are all blocked. E-05 rejects persistence framing outright.
 
-> A client goes quiet on a Tuesday. Nobody decides to drop them. The week just happens.
+**Approved wording, held until L-01 closes:**
+
+> ### Nobody decides to drop a lead. The week just happens.
+
+> If a lead goes quiet, follow up continues automatically, subject to applicable
+> communication rules and your own permissions. `[E-01]` `[Q-3]`
 >
-> Nuova keeps the thread alive. It comes back at a sensible interval, on a channel the
-> client actually uses, with a reason to reply rather than a reminder that they have not
-> replied. `[C05]` `[C20]`
->
-> The conversation you had already written off is often the one that books a viewing.
+> You can always see what has been sent and what is due next. `[D-08]`
+
+**Removed from the first draft, and recorded so it is not reintroduced:**
+
+| Removed line | Why |
+|---|---|
+| "Nuova keeps the thread alive" | E-05. Persistence framing. |
+| "comes back at a sensible interval" | E-01. A behavioural description of timing, which is exactly what L-01 blocks. |
+| "on a channel the client actually uses" | L-08. Cross channel communication. |
+| "The conversation you had already written off is often the one that books a viewing." | **E-04, L-02. Reactivation of older contacts, named in the matrix as the highest risk single capability on the site.** |
+
+**Note for the owner.** Basic follow up is in the confirmed baseline of every paid package
+(`PRODUCT_TRUTH.md` §17.2), so the *capability name* may be listed on the Pricing page today
+under PK-03. Only its *behavioural description* is blocked. That distinction is worth
+understanding, because it means the Pricing page is less blocked than this page is.
 
 **5. It knows when to stop**
 
@@ -978,7 +1136,7 @@ Anchor: `#follow-up`
 
 > Automation that will not let go is worse than no automation. When a client is ready, or
 > asks something that needs a person, or says something a system should not answer, Nuova
-> steps back and hands the agent a live conversation with the full history attached. `[C06]`
+> steps back and hands the agent a live conversation with the full history attached. `[B-12]`
 >
 > Your agents do not inherit a mess. They inherit a client who is already warm.
 
@@ -986,22 +1144,36 @@ Anchor: `#follow-up`
 
 > ### It answers in the language it was written in.
 
-> Spanish, English, German, Dutch, French and the Scandinavian languages, in the same
-> afternoon, about the same street. `[C17]`
+> On this coast an agency gets a Spanish seller, a northern European buyer and an
+> international family asking about the same street in the same afternoon. Nuova speaks to
+> each customer in their own language. `[B-07]`
 
-**Language list is a claim.** Do not publish the list until each language is confirmed. If
-only some are confirmed, the sentence becomes *in the languages your market actually writes
-in*, with no list.
+**The language list is removed.** B-07 forbids naming a language count or a language list
+until each one is confirmed. The first draft named six. The sentence is stronger without
+them, because it describes the reader's actual afternoon rather than a specification.
+
+**OWNER DECISION.** Supply the confirmed language list. Until then no page names one.
 
 **7. What it will not do**
 
 > ### Where we draw the line.
 
-> Nuova does not negotiate. It does not commit your agency to a price, a date or a
-> condition. It does not invent a property that does not exist, and it does not answer legal
-> or contractual questions. Those go to a person, immediately. `[C21]`
+> Nuova runs with configurable customer handling and human oversight. You decide what it
+> handles on your agency's behalf and what always goes to a person. `[B-13]` `[Q-4]`
 >
 > An assistant that oversteps costs more than one that does less.
+
+**Rewritten from the first draft.** The original listed specific guardrails as facts: it does
+not negotiate, does not commit the agency, does not invent a property, does not answer legal
+questions. Those are safety promises, and B-14 rejects absolute reliability claims while
+B-13 forbids *fully controlled*, *cannot make mistakes* and *guaranteed brand safe*. The
+approved framing puts the control in the agency's hands, which is both compliant and a
+better sales argument.
+
+**OWNER DECISION carried from B-13.** What handling rules exist, and who sets them? Once
+that is answered, this section can name the specific boundaries rather than describe the
+mechanism. It is the section that makes a sceptical agent believe the rest of the page, so it
+is worth unblocking early.
 
 This section is a conversion asset, not a disclaimer. It is the section that makes an owner
 believe the rest of the page.
@@ -1043,8 +1215,8 @@ you can see who is worth an agent's afternoon.
 > Know which clients are ready, and why.
 
 **Hero subheadline.**
-> Every enquiry becomes one clear record that updates itself as the conversation goes on, so
-> your team can tell a serious buyer from a browser without reading forty messages.
+> One customer, one record, across every channel they use, with a priority signal so your
+> team knows where to start. `[D-01]` `[D-03]`
 
 **Primary CTA.** Book a demo. **Secondary CTA.** Experience Nuova.
 
@@ -1069,51 +1241,85 @@ you can see who is worth an agent's afternoon.
 > conversations.
 >
 > In Nuova it is one person, with one history, and everything already known about her still
-> attached. `[C15]` `[C22]`
+> attached. `[D-01]` `[B-08]`
 
 **3. How Nuova reads intent**
 
-> ### What the system is actually looking for.
+**LEGAL PENDING on L-09.**
 
-> Buyer or seller. Buying to live in or to let. Budget, when they said it and whether it
-> moved. Location. Timing. Whether they are already here. Whether they asked for a viewing
-> or a valuation, which is the moment everything changes. `[C04]` `[C19]`
+> ### It comes out of the conversation, not out of a form.
+
+> Every enquiry is qualified automatically, and Nuova remembers what each customer is looking
+> for. `[D-02]` `[D-06]`
+
+**The signal list is removed.** The first draft listed what the system looks for: buyer or
+seller, budget and whether it moved, location, timing, whether they asked for a viewing. That
+is a scoring and profiling description, and **D-09 blocks any scoring description until L-09
+is reviewed**. L-09 covers automated profiling, which under GDPR is a live question when a
+system produces a decision about a person.
+
+The two approved sentences above carry the same commercial message without describing the
+mechanism. The mechanism section returns when L-09 closes, and it will be a strong section
+then, because specificity is this page's best asset.
+
+**4. Priority, so your team knows where to start**
+**LEGAL PENDING on L-09.**
+
+> ### Know where to start.
+
+> Each lead carries a priority signal, so your team knows where to start, and works the most
+> promising leads first. `[D-03]` `[D-05]`
 >
-> None of it is guessed from a form. It comes out of the conversation, the way a good agent
-> would pick it up.
+> You can always see what has been sent and what is due next. `[D-08]`
 
-**4. Priority that changes with the conversation**
+**Every number stays off this page.** D-04 rejects *scored from 1 to 100*, *leads above 80*
+and any threshold or scale, and records that those figures on the live site today come from
+**the website's own simulation, not the product**. D-03 forbids *predicts which leads will
+close* and *deal probability*. D-05 forbids *guarantees you never miss a serious buyer*.
 
-> ### A client who was cold on Tuesday can be the best one you have on Friday.
-
-> Priority is not set once and left. Every new message updates it. A browser who suddenly
-> names a budget and asks about availability this weekend moves up, immediately, without
-> anyone reviewing anything. `[C23]`
-
-**Scoring numbers are blocked.** The current site says *scored from 1 to 100* and *above 80
-is priority*. Neither number ships until `PRODUCT_TRUTH.md` confirms the scale actually
-exists and works that way. Until then, priority is described in words. See claim C23.
+**OWNER DECISION.** Supply the product's real score scale and thresholds, or confirm that
+none is published. It is `CLAIMS_MATRIX.md` §21 item 9.
 
 **5. When your team gets told**
+**BLOCKED. No matrix row approves an alerting capability.**
 
-> ### Interrupt them for the right client, and only then.
+The first draft wrote that the owning agent is told immediately on their phone when a client
+crosses from interested to ready, with the three things they need before replying. Nothing in
+`PRODUCT_TRUTH.md` describes alerting, alert routing or an ownership model, so there is no
+row to clear it against, and `CLAIMS_MATRIX.md` §How to use is explicit: a claim not in the
+matrix is not approved.
 
-> When a client crosses from interested to ready, the agent who owns them gets told
-> immediately, on their phone, with the three things they need to know before they reply.
-> `[C24]`
->
-> Everything else waits for the morning list. An alert that fires for everything is an alert
-> nobody reads.
+This is a gap in the truth documents rather than a rejection. Hot lead alerting is prominent
+in the owner's brief and in `CLAUDE.md`, and it is one of the strongest conversion moments
+available. **Requested from the Product Truth instance:** does alerting exist, on which
+channel, routed to whom, and under what ownership model?
+
+Until then the page ends at section 4, and D-08 carries the *you can see what is due next*
+message.
 
 **6. Works with the CRM you have**
 
-> ### You do not have to move.
+> ### Universal across your channels.
 
-> Nuova keeps its own record because it needs one. It is built to write back into the CRM
-> your agency already runs on, so your reporting, your team and your process stay where they
-> are. `[C16]` `[C25]`
+> Every message, from every channel, on one record. The whole relationship in one place, with
+> the source it came from, who took over and when. `[G-01]` `[G-02]` `[G-03]` `[G-06]`
+>
+> Universal across your channels. `[G-10]`
 
-**CRM names are blocked** until each integration is confirmed. No logo wall.
+**Rewritten. The first draft was rejected wording twice over.** It said *Nuova keeps its own
+record and is built to write back into the CRM your agency already runs on, so your process
+stays where it is*. F-07 and F-08 reject every named CRM integration and every compatibility
+claim including *works with yours*, and G-11 makes CRM replacement positioning an unanswered
+owner question. There is no evidence of any CRM integration.
+
+**G-10 is a precise constraint.** The word *universal* may be used **only** as *universal
+across your channels*. Standing alone it implies compatibility with any external CRM, which
+is exactly the claim that is rejected.
+
+**OWNER DECISION, and it is a positioning question not a copy question.** Is the Universal
+CRM positioned as a replacement for the agency's CRM, or as a layer beside it? Until that is
+answered this page cannot address the single most common objection an agency will raise, which
+is *we already have a CRM*. It is `CLAIMS_MATRIX.md` §21 items 3 and 6.
 
 **7. Final conversion.** Standard block.
 
@@ -1134,10 +1340,9 @@ persuasive line on the page, and drops nothing.
 
 ## 6.5 Voice AI
 
-**Route:** `/platform/voice-ai`
-**GATE: HELD.** `lib/os/copy.ts` marks voice as *coming soon*. `INTEGRATION_CONTRACT.md`
-W-05 asks the owner whether a callable entry point exists at all. **Until that is answered,
-this page ships in Availability State B below, or it does not ship.**
+**Route:** none. **GATE: BLOCKED.** V-01 is an unanswered blocking owner question and every
+row in `CLAIMS_MATRIX.md` §9 is `OWNER`, `LEGAL` or `REJECTED`. V-11 additionally holds call
+recording and transcription under L-05, which is a Spanish consent matter.
 
 **Page goal.** Own the phone call as a category signal without promising a date.
 
@@ -1145,86 +1350,95 @@ this page ships in Availability State B below, or it does not ship.**
 
 **Primary message.** The calls nobody in the office can take are still worth something.
 
-**Hero headline, State A (confirmed live).**
-> The call your agency could not take.
+**Recommendation: do not build this page yet.**
 
-**Hero subheadline, State A.**
-> Nuova answers the phone when the office cannot, understands what the caller wants, and
-> hands your agent a conversation instead of a missed call. `[C09]`
+`CLAIMS_MATRIX.md` §9 rules voice Category 7 on the public website and marks **thirteen of
+thirteen rows** as `OWNER`, `LEGAL` or `REJECTED`. V-01 is a blocking owner question. V-02
+approves exactly one form of words, *Voice, coming next*, and only inside a visually
+separated future section.
 
-**Hero headline, State B (in development, the honest default today).**
-> Nuova is learning to pick up the phone.
+A dedicated page is a poor fit for a capability that may be stated in four words. A page
+implies availability through its own existence, and a visitor who lands on it from search has
+no way to know they are reading about something that is not sold today.
 
-**Hero subheadline, State B.**
-> Voice is in development. Today Nuova tells your agent about the call. Soon it will take
-> it. Here is what we are building and why. `[C26]`
+**Therefore:** voice appears as **one separated future block on Platform Overview**, and
+nowhere else, until V-01 is answered. No route, no navigation entry, no footer link, no
+module card.
 
-**Primary CTA.** State A: Book a demo. State B: Book a demo, with the tertiary *Tell me when
-this is ready* only once a real notify destination exists.
+**The approved block, in full:**
 
-**Section order.**
+> **Voice, coming next.** `[V-02]`
+>
+> Some customers will always ring. It is the enquiry an agency is least able to catch and
+> often the one furthest along. Voice is what we are building next. It is not part of what we
+> sell today, and we would rather tell you that here than in your third week.
 
-1. Hero, with availability label
+The second paragraph carries no capability claim. It is context and an honest statement of
+non availability, which `CLAIMS_MATRIX.md` §0 treats as carrying no capability risk.
+
+**Forbidden here, from the first draft:** *The call your agency could not take*, *Nuova
+answers the phone when the office cannot*, *Nuova is learning to pick up the phone*, and
+*Today Nuova tells your agent about the call*. The first two are V-03. The third and fourth
+are present tense wording, which V-02 forbids, and the fourth also asserts a live alerting
+capability on calls that nothing evidences.
+
+**No date, no quarter, no year, and no notify form**, because CTA-14 has no destination and
+`INTEGRATION_CONTRACT.md` §11 has no target system. A *tell me when this is ready* button
+that posts nowhere is a P0 finding.
+
+**If V-01 comes back as live**, the page below becomes buildable. The structure is kept for
+that case, and every section stays blocked until then.
+
+**Primary CTA (future block only).** Book a demo.
+
+**Section structure, kept only for the case where V-01 comes back live.**
+
+1. Hero, with the future label
 2. Why the phone still matters here
-3. What it will do
+3. What it does
 4. What happens to the call afterwards
 5. Where it stops
-6. Availability and honesty note
+6. Recording, consent and retention
 7. Final conversion
 
-**Section headlines and body copy.**
+**Only one section is drafted, because only one carries no capability claim.**
 
 **2. Why the phone still matters here**
 
-> ### Some clients will always ring.
+> ### Some customers will always ring.
 
-> An international buyer standing outside a property calls. A seller who has decided to move
-> this year calls. The enquiries that come by phone are, on average, the ones furthest along,
-> and they are the ones an agency is least able to catch.
+> A buyer standing outside a property calls. A seller who has decided to move this year
+> calls. The enquiries that arrive by phone tend to be the ones furthest along, and they are
+> the ones an agency is least able to catch.
 
-This section carries no product claim and is safe in both states.
+Safe in every state. It is context about the market, not a claim about the product, and it is
+the paragraph that earns the separated future block on Platform Overview.
 
-**3. What it will do**
+**Sections 3, 4, 5 and 6 are not drafted.** V-03 through V-10 are all `OWNER` and blocked
+behind V-01, so any wording written now would be written against an unknown product. **Section
+6 is additionally `LEGAL` under V-11 and L-05:** whether calls are recorded, whether the caller
+is told, and how long audio is retained are Spanish consent questions, and V-04 separately
+rejects *indistinguishable from a human* and *callers cannot tell*.
 
-State A: present tense, gated on C09.
-State B: written explicitly as intent. Every sentence begins from *is being built to* or
-*will*, never the present tense. No date, no quarter, no year.
+**Removed from the first draft.** *Voice is in development and is not part of what we sell
+today. We would rather tell you that here than in the third week of your trial.* The sentiment
+is right and it survives in the Platform Overview block in §6.5. The wording does not: **it
+refers to a trial, and T-01 forbids trial wording in every form**, including a passing mention
+inside another sentence. That is exactly how blocked claims get onto a site.
 
-**4. What happens to the call afterwards**
+**Objections answered.** Is this real yet, answered by the future block itself rather than by
+a page. Will it sound like a robot, unanswerable in copy and rejected as a claim under V-04.
 
-> ### A call becomes a record like everything else.
+**Trust requirements.** No launch date, quarter or year. No phone number, since V-12 forbids
+inventing one and none exists. No call handling statistic, rejected under V-13.
 
-> The call joins the same client record as the messages, so the next conversation does not
-> start from nothing, whichever channel it arrives on. `[C15]`
+**Cross links.** From the Platform Overview future block only.
 
-**5. Where it stops**
-
-Same discipline as AI Sales Agent §7. Voice hands to a human faster than text does.
-
-**6. Availability and honesty note**
-
-State B, mandatory, visible without interaction:
-
-> Voice is in development and is not part of what we sell today. We would rather tell you
-> that here than in the third week of your trial. `[C26]`
-
-That paragraph is worth more to a serious buyer than the entire page above it.
-
-**Objections answered.** Is this real yet (section 6, answered plainly). Will it sound like
-a robot on the phone (section 3, and honestly, only a live demo settles it). What about
-compliance and call recording (LEGAL PENDING, see §11.6).
-
-**Trust requirements.** Availability label in the hero, not only at the bottom. No launch
-date. **Call recording, consent and retention are a legal matter in Spain and this page does
-not ship any claim about them without counsel.**
-
-**Cross links.** AI Sales Agent, Lead Intelligence, Platform Overview.
-
-**Mobile copy notes.** The availability label is directly under the hero headline on mobile,
-not pushed below the fold. A visitor must not be able to read the whole hero on a phone
-without seeing it.
+**Mobile copy notes.** Not applicable while there is no page. In the Platform Overview future
+block, the label sits with the heading and is never separated from it by a scroll.
 
 ---
+
 
 ## 6.6 Property Matching
 
@@ -1241,11 +1455,19 @@ eleven at night.
 the properties worth their time.
 
 **Hero headline.**
-> Three properties worth the flight.
+> The right ones, not all of them.
 
 **Hero subheadline.**
-> Nuova reads what a client is actually looking for, checks it against your portfolio, and
-> sends a short, personal selection instead of a link to everything you have.
+> Nuova understands what each customer is actually looking for, matches against your own or
+> agency authorised property sources, and sends a short, relevant selection rather than a
+> list dump. `[F-01]` `[F-02]` `[F-03]`
+
+**The number is gone.** The first draft led with *Three properties worth the flight*, and
+repeated *three* in the body. F-03 forbids a fixed count unless the owner confirms the
+selection size is fixed. It is a good headline and it cannot ship as written.
+
+**OWNER DECISION carried from F-03.** Is the selection a fixed count or variable? If it is
+genuinely fixed at three, the original headline is available and it is the stronger line.
 
 **Primary CTA.** Book a demo. **Secondary CTA.** Experience Nuova.
 
@@ -1269,32 +1491,45 @@ the properties worth their time.
 > stretch for the right one.
 >
 > No search filter holds that. A good agent does. Nuova is built to read it the way the
-> agent would. `[C08]` `[C27]`
+> agent would. `[F-01]`
 
 **3. Matching against your portfolio**
 
-> ### Your properties, not a public feed.
+> ### Your properties, not the whole market.
 
-> Matching runs against the portfolio your agency actually has, so what goes out is
-> something you can show on Thursday. `[C28]`
+> Matching runs against your own or agency authorised property sources, so what goes out is
+> something you can actually show. `[F-02]`
+
+F-02 forbids *searches the whole market*, *every listing in Spain* and *all portals*. The
+headline above deliberately says the opposite, and it is a better sales argument than breadth
+would be.
 
 **4. What the client receives**
 
 > ### A short list, and a reason for each one.
 
-> Three properties, each with a line explaining why it is on the list. Serious buyers do not
-> want more options. They want fewer, chosen well, by someone who understood them. `[C27]`
+> Your customer receives a short, relevant selection, not a list dump. Serious buyers do not
+> want more options. They want fewer, chosen well, by someone who understood them. `[F-03]`
+>
+> Your agents see the wider set internally. `[F-04]`
+
+The second line is worth keeping. F-04 approves it, and it answers the objection an agent has
+immediately, which is *what happened to the rest of my stock*.
 
 **5. It keeps matching after the first send**
+**BLOCKED. This section does not ship.**
 
-> ### When something new comes in, it remembers who wanted it.
+The first draft built this section on a property being listed on a Tuesday and matched to a
+customer who described it months earlier, and argued it was the strongest reason to buy the
+platform. It is **E-04, blocked under L-02**, which `CLAIMS_MATRIX.md` names as the highest
+risk single capability on the site. Contacting an older customer about new inventory is
+reactivation, and it carries a lawful basis question that copy cannot answer.
 
-> A property is listed on a Tuesday and the client who described it in March is still in the
-> system. Nuova connects the two without anyone going back through old conversations.
-> `[C29]`
+The section is not softened or requalified. It is removed until L-02 closes, and section 4
+becomes the final content section of the page.
 
-That single behaviour is one of the strongest reasons to buy the whole platform, because it
-is impossible without one memory. Give it its own section, always.
+**OWNER AND LEGAL.** If L-02 clears, this is the section to write first. It is the one
+behaviour on the site that a point tool cannot imitate, and it is worth the legal work.
 
 **6. Final conversion.** Standard block.
 
@@ -1326,14 +1561,30 @@ rather than fear it.
 
 **Audience.** Sales manager first, agent second, owner third.
 
-**Primary message.** Every agent starts the day knowing exactly what to do first and why.
+**Primary message.** An agent can ask the system the questions they would ask a good
+assistant, and get an answer with the reasoning attached.
 
 **Hero headline.**
-> The first hour of the day, already done.
+> Ask it what you would ask a good assistant.
 
 **Hero subheadline.**
-> Nuova hands each agent an ordered list of the clients who need them today, with the
-> context attached and the next step already clear.
+> Who should I call today. Why is this lead a priority. Which buyers match this villa. On
+> desktop, on mobile, or by speaking. `[I-01]` `[I-05]` `[I-06]` `[I-08]`
+
+**Mandatory framing, and this is the whole page.** `CLAIMS_MATRIX.md` §10 note is explicit:
+until the owner confirms which questions genuinely work, the assistant may be presented
+**only as a named capability with illustrative examples**, never as a demonstrated working
+command set. Every example question on this page therefore carries a visible *example* label,
+and the page never implies the set is complete or guaranteed.
+
+**Entitlement label, mandatory:** Higher package.
+
+**Rewritten from the first draft.** The original headline was *The first hour of the day,
+already done*, with a subheadline promising an ordered list of clients handed to each agent.
+That is close to I-09, which rejects *runs your day*, and it presented an unevidenced
+behaviour as fact. The question frame is both compliant and better, because I-06 is a genuine
+strength: asking *why is this lead a priority* and seeing the reasoning is explainability, and
+almost nothing in this category offers it.
 
 **Primary CTA.** Book a demo. **Secondary CTA.** Explore the platform.
 
@@ -1358,27 +1609,55 @@ rather than fear it.
 
 Safe. No product claim.
 
-**3. What the assistant hands over**
+**3. What you can ask it**
 
-> ### A short list, in the right order.
+> ### Questions, not menus.
 
-> The clients who are ready. The ones who went quiet and are worth one more attempt. What
-> was promised yesterday and has not happened. Each one with the history already attached,
-> so nothing has to be looked up. `[C10]`
+Each rendered as an example, with a visible *Example* label per §9.2:
 
-**4. Through the day**
+| Example question | Matrix |
+|---|---|
+| Who should I call today? | I-01 |
+| Prepare me for my next viewing. | I-02 |
+| Which buyers match this villa? | I-05 |
+| Why is this lead a priority? | I-06 |
 
-> ### It keeps the list honest.
+> Ask why a lead is a priority, and see the reasoning. `[I-06]`
+>
+> On desktop, on mobile, and by speaking. `[I-08]`
 
-> When a conversation moves, the list changes. An agent does not have to go back and check
-> whether the priority they were given at nine still holds at three. `[C10]`
+**Removed from the first draft.** *The ones who went quiet and are worth one more attempt.*
+That is **E-04 reactivation of older contacts, blocked under L-02**, and it had slipped onto
+this page as well as onto Property Matching. It is the same claim wearing different clothes,
+which is precisely why the register in §13 lists it against every page it touched.
+
+**4. It drafts, you confirm**
+
+> ### Nothing goes out without you.
+
+> Draft and send, with your confirmation. `[I-03]` `[I-04]`
+
+I-03 forbids *sends on your behalf* without a confirmation step. The confirmation is not a
+caveat here, it is the reason a manager will allow this near their client relationships.
+
+**OWNER DECISION.** Confirm the confirmation step actually exists. If it does not, this
+section is deleted rather than softened.
 
 **5. It is not surveillance**
+**HELD in part. L-11.**
 
 > ### Built for the agent, not against them.
 
-> This is not a monitoring tool and it is not a scoreboard. It is the difference between
-> starting the day with four inboxes and starting it with a list. `[C30]`
+> This is not a monitoring tool and it is not a scoreboard.
+
+That much is a statement about what the product does not do, which carries no capability risk
+under `CLAIMS_MATRIX.md` §0.
+
+**But the page may not go further.** I-07, *how is my team doing*, is `LEGAL` on **L-11**, and
+its forbidden column names *track your agents*, *monitor performance* and *see who is
+underperforming*. The page must not answer the manager's unspoken question by hinting at
+monitoring, and it must not promise the absence of monitoring as a feature of a capability
+that has not been legally reviewed. Two short sentences, then move on.
 
 Keep this section. Agent resistance kills more rollouts of this kind of product than price
 does, and a manager buying it knows that.
@@ -1400,56 +1679,139 @@ collapsed behind an accordion, because it answers the objection the reader is al
 ## 6.8 Social Growth
 
 **Route:** `/platform/social-growth`
-**GATE: EMBARGOED.** `lib/os/copy.ts` marks lead generation as *coming soon* and nothing in
-the repository describes a social capability. **This page is not built until
-`PRODUCT_TRUTH.md` defines what it is.** The copy below is a structural draft so that the
-page can be written quickly once it is defined, and so the Product Truth instance can see
-exactly what is being asked of it.
+**GATE: OPEN for sections 1 to 4 and 6. HELD for section 5** (C-06 lead capture, blocked on
+L-07). **Upgraded from EMBARGOED.** The first draft treated this module as undefined.
+`PRODUCT_TRUTH.md` §5 defines nine capabilities and one explicit exclusion, and
+`CLAIMS_MATRIX.md` §4 approves five of them with qualifiers.
 
-**Page goal.** Extend the story from *handle the enquiries you get* to *get more of them*,
-which is the difference between an operations tool and a growth platform.
+**Page goal.** Extend the story from *handle the enquiries you get* to *be present where they
+start*, without turning Nuova into something an agency owner would not trust with their
+public voice.
 
 **Audience.** Owner and marketing lead.
 
-**Primary message.** The same system that handles your enquiries also helps create them.
+**Primary message.** Your agency stays present and responsive in public, deliberately and
+under your brand, and a genuine enquiry becomes a conversation in the same place as every
+other one.
 
-**Hero headline (draft).**
-> Stop waiting for the portal to send you someone.
+**Hero headline.**
+> Present in public. Deliberately restrained.
 
-**Hero subheadline (draft).**
-> Nuova keeps your agency visible where sellers and buyers are already looking, and every
-> enquiry it creates lands in the same system that answers it. `[C11]`
+**Hero subheadline.**
+> Nuova helps create property and social content in your brand voice, publishes where your
+> permissions allow, and moves a genuine enquiry from a comment into a private conversation.
+> `[C-01]` `[C-02]` `[C-04]`
 
-**Section order (draft).**
+**Primary CTA.** Book a demo. **Secondary CTA.** Explore the platform.
 
-1. Hero, with availability label
-2. The cost of renting your pipeline
-3. What Nuova does here
-4. Every enquiry lands in the same system
-5. What it does not do
-6. Availability note
+**Entitlement label, mandatory wherever this module appears:** Higher package.
+Required by `PRODUCT_TRUTH.md` §5.7 so no visitor believes it is in the entry package.
+
+**Section order.**
+
+1. Hero, with entitlement label
+2. Content in your voice
+3. Comments are where agencies actually lose people
+4. Built to protect your accounts
+5. From engagement to a tracked lead. **HELD, L-07**
+6. What we will not do
 7. Final conversion
 
-**Key strategic point for whoever finishes this page:** the differentiator is not the
-posting. Anyone can post. The differentiator is section 4, that acquisition and handling are
-the same system, so the agency can finally see what a channel is worth all the way to a
-booked viewing. Everything else on this page is commodity. Write section 4 first.
+**Section headlines and body copy.**
 
-**Required from `PRODUCT_TRUTH.md` before this page exists:**
+**2. Content in your voice**
 
-1. What does Social Growth actually do. Content creation, scheduling, paid, organic,
-   responding to comments and DMs, or something else.
-2. Which platforms, and through which access.
-3. Is content generated, assisted or only distributed.
-4. Who approves what goes out under the agency's name. This is the question every owner will
-   ask first.
-5. Is it live, in development or an idea.
+> ### Posts that sound like your agency wrote them.
 
-**Trust requirements.** Nothing about lead volume, reach, cost per lead, engagement or
-follower growth. Not one number. Approval and brand control must be answered on the page,
-because an agency owner will not hand their public voice to a system without it.
+> Nuova helps create property and social content in your brand voice, consistent across the
+> languages your customers use. `[C-01]` `[C-07]`
+>
+> Scheduling and publishing happen where the platform and your own permissions allow it.
+> `[C-02]` `[Q-1]` `[Q-2]`
 
-**Mobile copy notes.** Not applicable until the page exists.
+**OWNER DECISION carried from C-01 and §5.8.** Does content creation produce text only, or
+images and video too, and is there an approval step before anything is published? The second
+question is the first thing an agency owner will ask, and the page is materially weaker until
+it can be answered on the page itself.
+
+**3. Comments are where agencies actually lose people**
+
+> ### A real question, under a post, at nine at night.
+
+> Someone asks whether a property is still available, in a comment, on a Sunday. In most
+> agencies that sits in a notifications tab until it does not matter any more.
+>
+> Nuova replies where permitted, and moves a genuine enquiry from a comment into a private
+> conversation. `[C-03]` `[C-04]` `[Q-1]`
+
+The first paragraph carries no capability claim and is the most recognisable moment on the
+page. Keep it.
+
+**4. Built to protect your accounts**
+
+> ### Deliberately restrained. Built to protect your accounts, not to farm engagement.
+> `[C-08]`
+
+> Automated social behaviour is where most tools in this category get their customers into
+> trouble. Nuova is built the other way round, on purpose.
+>
+> Platform rules change, and they change outside anyone's control. What is permitted is
+> configured per agency, and what is not permitted does not happen.
+
+This section is the strongest one on the page. C-08 is approved wording, it is a genuine
+differentiator, and restraint is exactly what a serious agency owner wants to hear about
+their own brand accounts. **Do not bury it below the feature sections.**
+
+**5. From engagement to a tracked lead**
+**HELD. Does not ship until L-07 closes.**
+
+C-06 approves *social engagement becomes a tracked lead, where permitted*, but its verdict is
+`LEGAL` on L-07, consents and controller and processor roles. C-05, continuing the
+conversation on WhatsApp, is separately blocked on L-08.
+
+Approved wording, held:
+
+> Social engagement becomes a tracked lead, where permitted. `[C-06]` `[Q-1]`
+>
+> Every lead carries the campaign and source it came from. `[A-06]`
+
+**Strategic note.** This section is the reason the module belongs inside Nuova rather than in
+a social tool, because it is the point where acquisition and handling become the same system.
+It is also the most legally exposed section on the page. Write it the day L-07 closes, and
+not before.
+
+**6. What we will not do**
+
+> ### The things we deliberately do not build.
+
+> No mass messaging. No bulk outreach. No cold direct messages. No automated follow requests.
+> Nothing that treats your agency's accounts as something to farm.
+
+Statements about what the product does not do carry no capability risk under
+`CLAIMS_MATRIX.md` §0, so this section is plainly approvable, and it converts. It is also the
+honest reading of C-09 and C-10.
+
+**Never on this page, in any wording:** Facebook Group automation, excluded by the owner and
+`REJECTED` under C-09, including every community engagement euphemism. Advertising budget
+optimisation, excluded under A-07, including *optimises your ad spend*, *improves your
+campaigns* and *reduces cost per lead*. Any reach, follower, engagement or social lead volume
+figure, `REJECTED` under C-11.
+
+**Objections answered.** Something will go out under my brand that I did not approve (section
+2, once the approval question is answered, and section 4). We will get our accounts
+restricted (section 4). This is a growth hacking tool (section 6). Which platforms (blocked,
+§5.8 question 1).
+
+**Trust requirements.** Entitlement label in the hero. Not one number anywhere. No platform
+logos until the owner confirms which platforms and under which account permissions. The
+approval question answered on the page as soon as it is answerable.
+
+**Cross links.** Lead Intelligence, Reporting, Platform Overview.
+
+**Mobile copy notes.** Sections 4 and 6 are the two that must survive on a phone, because
+they are the trust sections and this is the module an owner is most cautious about. The
+feature sections can collapse. The entitlement label sits directly under the hero headline on
+mobile, not below the fold.
 
 ---
 
@@ -1469,8 +1831,8 @@ after month three.
 > The Monday morning answer.
 
 **Hero subheadline.**
-> How many enquiries came in, where from, how fast they were answered, what became a viewing
-> and which agents and sources are actually worth it.
+> See where your leads came from, how fast enquiries were answered, how they qualified and
+> what was booked. `[R-01]` `[R-02]` `[R-03]` `[R-05]`
 
 **Primary CTA.** Book a demo. **Secondary CTA.** Explore the platform.
 
@@ -1499,24 +1861,53 @@ Safe. No product claim, and it is the sharpest section on the page.
 
 **3. What Nuova measures**
 
-Gated. Every metric named here is a separate claim, because naming a metric asserts that it
-is captured. See C12 and C31. Do not write this section until the metric list is confirmed.
+> ### What you can actually see.
 
-**4. By agent, by source, by outcome**
+Only the approved rows, each stated in the matrix's own words:
 
-> ### Three ways to cut the same week.
+| Line | Matrix |
+|---|---|
+| See where your leads come from. | R-01 |
+| See how fast enquiries were answered. | R-02 |
+| See how leads qualified. | R-03, L-09 dependent |
+| See your priority leads. | R-04, L-09 dependent |
+| See what was booked. | R-05 |
+| See how matching performed. | R-07 |
+| **Supported conversions.** | R-06 |
+| See how buyers used the property experience. | R-12 |
 
-> By agent, so you can see who is converting and who needs help rather than who shouts
-> loudest in the meeting. By source, so you know what your portal spend is actually buying.
-> By outcome, so a viewing counts for more than a reply. `[C31]`
+**R-06 is the most important row on this page and the easiest to break.** *Supported
+conversions* is the owner's exact wording and it is preserved exactly. It may **never** be
+shortened to *conversions*, and *conversions we generated* and *deals closed by Nuova* are
+forbidden. Nuova supports a conversion, it does not make one, and the whole credibility of
+this page rests on that distinction being visible.
+
+**4. By source, and by outcome**
+
+> ### Two ways to cut the same week.
+
+> By source, so you can see where your leads came from. By outcome, so a booked viewing
+> counts for more than a reply. `[R-01]` `[R-05]`
+
+**By agent is removed, and this is a legal removal not a stylistic one.** The first draft
+opened with *by agent, so you can see who is converting and who needs help rather than who
+shouts loudest in the meeting*. R-08 team workload is `LEGAL` on **L-11, team performance
+visibility**, and I-07 explicitly forbids *track your agents*, *monitor performance* and *see
+who is underperforming*. Employee monitoring has its own consultation requirements in Spain.
+
+When L-11 closes, the approved wording is R-08's: *see how work is distributed*. That is a
+workload frame, not a ranking frame, and the difference is the entire point.
+
+**Also removed:** *so you know what your portal spend is actually buying*. R-13 rejects every
+spend, CPL, ROAS, ROI, revenue, commission and closing rate reference, in every form.
 
 **5. What you do with it**
+**REMOVED. No evidence.**
 
-> ### The loop closes here.
-
-> What Reporting shows changes what the system does next. Which follow up worked. Which
-> language performed. Which source deserves more. This is the point of running the whole
-> operation in one place instead of five. `[C07]`
+The first draft closed with *what Reporting shows changes what the system does next*, a
+self improving feedback loop. Nothing in `PRODUCT_TRUTH.md` §12 describes one. It was the
+same unevidenced idea that was removed from the homepage loop, and it is removed here for the
+same reason. The page ends at section 4 and then converts.
 
 **Objections answered.** We already have dashboards nobody opens (section 2, these are
 questions not dashboards). Our agents will game it (section 4, outcomes not activity). It
@@ -1537,53 +1928,138 @@ dashboard image.
 ## 6.10 Property Experience
 
 **Route:** `/platform/property-experience`
-**GATE: EMBARGOED.** Nothing in the repository defines this module. It is the least
-specified item in the brief and carries the highest risk of accidentally promising a product
-that does not exist.
+**GATE: OPEN**, except the square metres section, which is `LEGAL` on L-12.
+**Upgraded from EMBARGOED, and this was the largest error in the first draft.**
+`PRODUCT_TRUTH.md` §13 defines twelve capabilities and one deliberate product boundary, and
+`CLAIMS_MATRIX.md` §12 approves eleven of them. This is one of the best specified modules in
+the product, not the least.
 
-**Page goal.** Own the part of the agency the buyer actually sees, and give the brand its
-most visual page.
+**Page goal.** Own the part of the agency the buyer actually sees. This is the most visual
+page on the site and the easiest one to make genuinely beautiful, because the subject matter
+is architecture.
 
-**Audience.** Owner, marketing lead, and indirectly the end buyer.
+**Audience.** Owner and marketing lead, and indirectly the end buyer, who will be shown this
+page by an agency deciding whether to buy.
 
-**Primary message.** What you send a serious buyer says as much about your agency as the
-property does.
+**Primary message.** A buyer moves through the property room by room, always knowing where
+they are, with the real layout beside them.
 
-**Hero headline (draft).**
-> The part of your agency the client actually sees.
+**Hero headline.**
+> Room by room, through the real doorways.
 
-**Hero subheadline (draft).**
-> Nuova turns what you already have into something a serious buyer wants to open, and tells
-> you what they looked at. `[C13]` `[C32]`
+**Hero subheadline.**
+> A real panorama for every room, floor to ceiling, with the real floor plan alongside it.
+> Your buyer always knows which room they are in and which way they are facing.
+> `[K-01]` `[K-02]` `[K-06]` `[K-07]` `[K-08]`
 
-**Section order (draft).**
+**Primary CTA.** Book a demo. **Secondary CTA.** Explore the platform.
 
-1. Hero, with availability label
+**Entitlement label, mandatory:** Higher package. Capacity depends on the package
+(`PRODUCT_TRUTH.md` §13.2). **No quota number is published**, per PK-05.
+
+**Section order.**
+
+1. Hero, with entitlement label
 2. What most agencies send
-3. What Nuova sends instead
-4. What you learn from it
-5. Availability note
-6. Final conversion
+3. A real panorama for every room
+4. You always know where you are
+5. Structured on purpose
+6. The floor plan and the measurements. **HELD in part, L-12**
+7. Final conversion
 
-**Strategic note.** Section 4 is where this becomes a platform feature rather than a
-brochure builder. If Nuova can tell an agent that a buyer opened a property three times and
-spent most of the time on the terrace photos, that signal belongs in Lead Intelligence, and
-the two modules together are worth more than either alone. If it cannot do that, section 4
-is deleted and this page becomes much weaker. That is a product question, not a copy
-question.
+**Section headlines and body copy.**
 
-**Required from `PRODUCT_TRUTH.md` before this page exists:**
+**2. What most agencies send**
 
-1. What is a property experience. A microsite, a shareable page, a PDF, a tour, a video.
-2. Is it generated from existing listing data or built manually.
-3. Is engagement tracked, and if so what exactly, and what is the lawful basis for tracking
-   a named prospect. **This is a GDPR question before it is a copy question.**
-4. Is it live, in development or an idea.
+> ### Twenty photographs in an unclear order.
 
-**Trust requirements.** No claim about buyer behaviour. No engagement statistics. Tracking
-language is LEGAL PENDING in every case.
+> A serious buyer flying in for a weekend gets a gallery. They cannot tell which room is
+> next to which, how the light moves through it, or what they are actually looking at.
 
-**Mobile copy notes.** Not applicable until the page exists.
+No capability claim. Safe, and it sets up everything below.
+
+**3. A real panorama for every room**
+
+> ### Every room, floor to ceiling.
+
+> A real panorama for every room, as standard. Full view, floor to ceiling. Every room named,
+> across multiple floors, with real stair transitions between them.
+> `[K-01]` `[K-02]` `[K-04]` `[K-09]` `[K-10]`
+>
+> Requires your agency to supply the panoramas. `[Q]`
+
+K-01 forbids *unlimited rooms* and *every property, automatically*. The qualifier is not
+optional, and it is also honest about what onboarding involves.
+
+**OWNER DECISION carried from §13.9.** Who produces the panoramas, the agency, NuovaSolution
+or a third party? The answer changes this section from a requirement into a service, and that
+is a materially different sale.
+
+**4. You always know where you are**
+
+> ### Move between rooms through the real doorways.
+
+> Navigation follows the real doors, so the layout you experience is the layout of the
+> building. You always know which room you are in, and which way you are facing.
+> `[K-03]` `[K-07]` `[K-08]`
+
+**5. Structured on purpose**
+
+> ### No joystick. No getting lost.
+
+> Movement is deliberately structured. This is a design decision, not a limitation. Free
+> roam viewers lose people in corridors, and a buyer who gets disoriented closes the tab.
+> `[K-11]`
+
+K-11 is the only plain `APPROVED` row in this section, because it describes a boundary rather
+than a capability. `PRODUCT_TRUTH.md` §13.4 asks explicitly that it be stated as an
+intentional choice. It is also the section that stops this reading as a commodity tour
+product.
+
+**Never on this page:** *virtual tour*, *3D tour*, *walkthrough*, *metaverse*. All four are
+`REJECTED` under K-13 because they imply free movement and directly contradict K-11. This
+matters for SEO too, since those are the obvious keywords and they are not available.
+
+**6. The floor plan and the measurements**
+**Floor plan: OPEN. Square metres: HELD on L-12.**
+
+> ### The real floor plan, alongside the rooms. `[K-06]`
+
+The floor plan line ships. **The square metres line does not.**
+
+K-05 is the sharpest legal exposure in this section. `PRODUCT_TRUTH.md` §13.6 records that
+published property measurements in Spain carry consumer protection consequences and that
+Andalusian regional rules on property marketing apply. Three rules follow:
+
+1. Square metres may be described as *from a verified source* **only if the product actually
+   enforces sourcing**, meaning an agency cannot type an arbitrary number.
+2. The site may **never** state or imply that NuovaSolution verifies, certifies or guarantees
+   any measurement. Forbidden: *verified by NuovaSolution*, *guaranteed accurate*, *certified
+   measurements*.
+3. The word *verified* must be defined on the page, or replaced with the precise mechanism,
+   for example *taken from the agency's official documentation*.
+
+**If sourcing is not technically enforced, K-05 is dropped from public copy entirely.** That
+is an owner answer, not a copy decision, and it is question 11 in `CLAIMS_MATRIX.md` §21.
+
+**Objections answered.** Our photographers do not shoot panoramas (section 3, and the owner
+decision above). Buyers will stop coming to viewings (K-14 forbids claiming it replaces a
+viewing, so the page must not raise the idea at all). It will be disorienting like every
+other tour product (section 5).
+
+**Trust requirements.** Entitlement label in the hero. No quota number, and no visual
+implication of one such as bars, dots or comparative heights, per PK-05. No viewings saved,
+engagement or uplift figure, `REJECTED` under K-15. Any property shown is a real property used
+with written permission, or clearly marked illustrative, per K-16 and §13.8. No named capture
+hardware or service.
+
+**Cross links.** Property Matching, Reporting for R-12, Pricing.
+
+**Mobile copy notes.** This is the most media heavy page on the site and the one most likely
+to break the LCP budget on a phone. The hero carries a poster image with reserved dimensions,
+never an auto playing panorama. Sections 3 to 5 each show one still with its caption rather
+than an embedded viewer. The interactive experience loads on demand, behind an explicit tap,
+never on scroll.
 
 ---
 
@@ -1676,8 +2152,8 @@ what that means takes one conversation.
 > Priced by the size of your operation.
 
 **Hero subheadline, Variant A, prices public.**
-> Three tiers, built around how many offices, agents and enquiries you are running. Every
-> tier includes the whole operating loop.
+> Three packages, built around the size of the operation they run. Every paid package
+> includes the same working baseline. `[PK-01]` `[PK-03]`
 
 **Hero subheadline, Variant B, pricing on request, the honest default today.**
 > Three tiers, built around how many offices, agents and enquiries you are running. We will
@@ -1709,16 +2185,37 @@ them in each card is blocked until C-06 clears.
 
 **3. What every tier includes**
 
-> ### The system is the same. The size of the operation is not.
+> ### Every paid package runs the same working baseline.
 
-> Every tier runs the whole loop. We do not hold back the part that answers your clients and
-> sell it back to you later. What changes between tiers is scale, the number of offices and
-> agents, and how much of the reporting and control layer you need.
+> Every paid package includes: CRM · Lead Engine · Automatic Replies · Basic Follow up ·
+> Property Matching · Core Reporting. `[PK-03]`
 
-**OWNER DECISION.** That paragraph states a pricing philosophy, that no core capability is
-withheld from the entry tier. It is the right philosophy and it is a commitment, so the
-owner confirms it before it is published. If capabilities are in fact tiered, this section
-is rewritten honestly and it is a weaker page.
+That list is the exact approved wording from PK-03 and it may ship today as **names**. What
+each one *does* may only be described within what the matrix approves elsewhere, which is why
+this section lists and does not explain.
+
+**Corrected from the first draft, and this was a factual error.** The original said *Every
+tier runs the whole loop. We do not hold back the part that answers your clients and sell it
+back to you later.* `PRODUCT_TRUTH.md` §17.3 records the opposite: Voice, the Daily
+Assistant, Social Growth, Advanced Follow up, Advanced Reporting, Property Experience and
+Paid Acquisition are higher package capabilities. The original paragraph was an attractive
+pricing philosophy that contradicted the product, and publishing it would have been a P0
+finding under R3.
+
+**4. What changes between tiers**
+**BLOCKED. PK-04 and PK-05.**
+
+Nothing may be placed in a package without an explicit owner mapping, and **no number exists
+for any limit or quota**. PK-05 additionally forbids implying a number through visual devices:
+bars, dots, *up to* phrasing, or comparative column heights. A comparison table that looks
+quantitative without carrying a figure is still a P0 finding.
+
+Until the mapping arrives, the page states only that higher packages add further
+capabilities, and names them individually once the owner has confirmed each mapping.
+
+**OWNER DECISION.** Supply the feature to package mapping (`CLAIMS_MATRIX.md` §21 item 5),
+and confirm whether *Core Reporting* or *Basic Reporting* is the public name for the baseline
+line item.
 
 **5. How we price**
 
@@ -1794,16 +2291,22 @@ vocabulary. Labels in §11.10.
 
 **4. What just happened**
 
-> ### That took four seconds and nobody was in the office.
+> ### Nobody was in the office.
 
-> In a real agency, that message would have arrived at 23:40 on a Sunday, and the reply
-> would have gone out on Monday. `[C33]`
+> In a real agency that message arrives at 23:40 on a Sunday, and the reply goes out on
+> Monday morning.
+
+**The number is gone.** The first draft opened this section with *That took four seconds*.
+B-06 forbids every numeric response time, and S-04 separately forbids publishing a timing
+taken from the website's own simulation, which is exactly where that figure came from. The
+second sentence describes the status quo in an agency without Nuova, so it carries no product
+claim at all and is the more persuasive line.
 
 **5. Conversion block**
 
 > ### That was one enquiry. You get hundreds.
 
-> Book 30 minutes and we will run this on your own market, with the kind of messages your
+> Book a demo and we will run this on your own market, with the kind of messages your
 > agency actually receives.
 
 **6. What this does not show**
@@ -1845,19 +2348,28 @@ much of my time will this cost and what happens if it goes wrong*.
 
 **Primary message.** Starting is a short, defined process with a person on the other end.
 
-**Hero headline, Variant A, trial exists.**
-> Start with your own enquiries.
+**Only one variant is drafted.** The first draft carried a trial variant. **T-01 forbids
+*free trial*, *start free*, *try free*, *start your 14 day free trial* and *no credit card
+required* in every wording**, and T-02 additionally records that the live site's current
+*Start for free* routing to a demo booking is a rejected pattern that must not be carried
+over. Drafting trial copy now only creates something that can be shipped by accident.
 
-**Hero subheadline, Variant A.**
-> Fourteen days, set up in one session, using the enquiries your agency is already getting.
-> `[C34]`
-
-**Hero headline, Variant B, no trial, the honest default today.**
+**Hero headline.**
 > What happens after the call.
 
-**Hero subheadline, Variant B.**
-> Nuova is set up around how your agency already works, so most of the first week is us
-> listening rather than you configuring.
+**Hero subheadline.**
+> You set up your agency yourself. No developers needed. `[O-01]` `[O-08]`
+
+**O-09 is a direct rejection of wording this site publishes today.** *No setup needed* is
+inaccurate for a platform that requires channel, branding and inventory configuration, and it
+is live on the current homepage. O-08's *no developers needed* is the approved claim and it is
+the honest one. O-10 separately rejects every onboarding duration: *live in a day*, *up and
+running in 15 minutes*, and every figure.
+
+**GATE note.** O-01 and O-02 are `OWNER`: it is not confirmed that a self service setup flow
+exists at all, or where it lives. If setup is done by NuovaSolution rather than by the agency,
+this page changes from a self service page into a service page, which is a materially
+different and possibly better sale.
 
 **Section order.**
 
@@ -1881,10 +2393,19 @@ short. A long list here loses deals.
 
 **4. What we do not need**
 
-> ### You are not changing systems.
+> ### No developers needed.
 
-> You do not have to move your CRM, retrain your team on new software or change where your
-> enquiries arrive. `[C01]` `[C16]`
+> Set up your agency yourself. Add your team and set their roles. Connect your channels,
+> based on the permissions you hold. Your branding goes on every message that leaves.
+> `[O-01]` `[O-02]` `[O-03]` `[N-01]` `[Q-2]`
+
+**Removed.** *You do not have to move your CRM, retrain your team or change where your
+enquiries arrive.* Every clause is a coexistence or integration claim, rejected under F-07,
+F-08 and G-11. This was the third place the same rejected idea had appeared, after the
+homepage hero and the Platform Overview.
+
+**OWNER DECISION carried from O-02.** Which roles exist? Naming roles that are not confirmed
+is forbidden, so the sentence stays general until the list arrives.
 
 **5. Who you deal with**
 
@@ -1923,16 +2444,24 @@ Right side: language switch, `Log in`, primary CTA.
 Grouped under the loop stage names, which is how the navigation teaches the positioning
 without a paragraph.
 
-| Stage | Module | Nav descriptor |
-|---|---|---|
-| Answer | AI Sales Agent | Instant multilingual replies |
-| Answer | Voice AI | Calls the office cannot take |
-| Understand | Lead Intelligence and CRM | One record, real priority |
-| Advance | Property Matching | The right homes, chosen |
-| Hand over | Daily Assistant | Each agent's day, ordered |
-| Attract | Social Growth | Enquiries you did not wait for |
-| Attract | Property Experience | What your buyer opens |
-| Learn | Reporting | The whole operation, visible |
+| Stage | Module | Nav descriptor | Label |
+|---|---|---|---|
+| Answer | AI Sales Agent | Answered day or night | Every paid package |
+| Understand | Lead Intelligence | Qualified, and prioritised | Every paid package |
+| Understand | Universal CRM | One record per customer | Every paid package |
+| Advance | Property Matching | A short, relevant selection | Every paid package |
+| Advance | Property Experience | Room by room, real doorways | Higher package |
+| Attract | Social Growth | Present in public, restrained | Higher package |
+| Hand over | Daily Assistant | Ask it, and see the reasoning | Higher package |
+| Learn | Reporting | Sources, speed, what was booked | Every paid package |
+
+**Voice AI is not in the navigation.** V-02 permits it only inside a visually separated
+future section. A navigation entry is the strongest availability signal a site has, and it is
+the placement the matrix forbids most directly.
+
+**The entitlement label belongs in the dropdown**, not only on the page. `PRODUCT_TRUTH.md`
+§5.7 requires it wherever the module appears, and the navigation is where a visitor forms
+their first idea of what they are buying.
 
 Plus a first item: **Platform Overview**, *How the whole system fits together*.
 
@@ -1978,7 +2507,7 @@ an invented link is a governance violation.
 
 | Column | Items |
 |---|---|
-| **Platform** | Platform Overview, AI Sales Agent, Lead Intelligence and CRM, Property Matching, Voice AI, Daily Assistant, Reporting. Gated modules omitted. |
+| **Platform** | Platform Overview, AI Sales Agent, Lead Intelligence, Universal CRM, Property Matching, Property Experience, Social Growth, Daily Assistant, Reporting. **No Voice AI entry** (V-02). Blocked modules omitted rather than linked to a pending page. |
 | **Solutions** | By outcome, By role, By agency size, Pricing |
 | **Get started** | Book a demo, Experience Nuova, Onboarding |
 | **Legal** | Legal notice, Privacy policy, Cookie policy (LEGAL PENDING). ES equivalents on the ES site. |
@@ -2021,7 +2550,7 @@ real alternative action.
 | Context | EN | ES |
 |---|---|---|
 | Homepage product film | The Nuova film is being made. Until it is ready, the fastest way to see the system work is to send it an enquiry yourself. | La película de Nuova está en producción. Mientras tanto, la forma más rápida de ver el sistema es enviarle tú mismo una consulta. |
-| Module page demonstration | We are filming this module properly rather than showing you a mockup. Book 30 minutes and we will walk you through it live. | Estamos grabando este módulo como toca, en lugar de enseñarte un montaje. Reserva 30 minutos y te lo enseñamos en directo. |
+| Module page demonstration | We are filming this module properly rather than showing you a mockup. Book a demo and we will walk you through it live. | Estamos grabando este módulo como toca, en lugar de enseñarte un montaje. Reserva una demo y te lo enseñamos en directo. |
 | Experience Nuova walkthrough | The guided walkthrough is coming. The live simulation below already works. | El recorrido guiado llegará pronto. La simulación de abajo ya funciona. |
 | Video failed to load | The video did not load. You can book a demo and see it live instead. | El vídeo no se ha cargado. Puedes reservar una demo y verlo en directo. |
 | Reduced motion fallback | Motion is off, so here is the same thing in words. | Has desactivado las animaciones, así que aquí lo tienes en texto. |
@@ -2057,17 +2586,30 @@ content carries: `Example` / `Ejemplo`. Applied to every one, without exception.
 
 ### 9.3 Availability labels
 
-| State | EN | ES | When |
-|---|---|---|---|
-| In development | In development | En desarrollo | Confirmed as being built, no date given. |
-| Early access | Early access | Acceso anticipado | Available to some customers only. Requires a real access path. |
-| Planned | Planned | Previsto | Confirmed on the roadmap, not started. |
+Two different label systems are needed and the first draft conflated them.
 
-**Banned:** *Coming soon* with no further information, *Launching Q3*, *Beta* used as a
-badge with no meaning, any date or quarter.
+**A. Future capability label.** Only one form of words is approved, V-02's:
 
-**Rule.** A label is not enough on its own. Any page carrying one also carries a sentence
-saying plainly what is and is not available today. See Voice AI §6 for the pattern.
+| EN | ES | Where |
+|---|---|---|
+| **Voice, coming next** | **Voice, muy pronto** | Only inside a visually separated future section. Never in a live module list. |
+
+**Banned:** *Launching Q3*, *Beta* as a decorative badge, any date, quarter or year, and any
+present tense description of a future capability.
+
+**B. Entitlement label.** Required by `PRODUCT_TRUTH.md` §5.7 and §17.3 wherever a higher
+package capability appears, so no visitor believes it is in the entry package.
+
+| EN | ES | Applies to |
+|---|---|---|
+| Included in every paid package | Incluido en todos los paquetes | CRM, Lead Engine, Automatic Replies, Basic Follow up, Property Matching, Core Reporting `[PK-03]` |
+| Higher package | Paquete superior | Social Growth, Property Experience, Daily Assistant, and anything else the owner maps under PK-04 |
+
+**Rule.** A label is not enough on its own. Any page carrying a future label also carries a
+sentence saying plainly what is and is not available today. See §6.5 for the pattern.
+
+**No entitlement label may imply a number.** PK-05 forbids implying a limit or quota through
+*up to* phrasing or through visual devices such as bars, dots or comparative column heights.
 
 ### 9.4 Form copy
 
@@ -2126,7 +2668,9 @@ write.
 | Privacy link at point of collection | How we handle your data | Cómo tratamos tus datos |
 | Data residency | *(Blocked. Requires confirmation of where data is stored and processed.)* | |
 | Sub processors | *(Blocked. Requires the actual list.)* | |
-| Client data ownership | Your client data stays yours. We process it to run the service, and for nothing else. | Los datos de tus clientes son tuyos. Los tratamos para prestar el servicio, y para nada más. |
+| Client data ownership | *(Blocked. B-15 and X-08 reject every security, encryption, privacy and GDPR claim, and N-03 rejects "your data is separate and secure". L-14 records that the site's privacy policy is itself materially incomplete and launch blocking.)* | |
+| Agency branding on outgoing messages | Every message goes out under your brand: your logo, your banner, your signature. In your agency's voice. `[N-01]` `[N-02]` | Cada mensaje sale con tu marca: tu logotipo, tu firma, tu identidad. Con la voz de tu agencia. |
+| Product invisible to the end customer | Your customers hear from your agency, under your brand. `[P-04]` | Tus clientes reciben la respuesta de tu agencia, con tu marca. |
 | AI disclosure to end clients | *(Blocked. Whether an end client is told they are speaking with an automated assistant is a legal question in the EU and a product decision. It is not a copy decision.)* | |
 | Cookie and analytics notice | *(Blocked. Depends on which analytics ship. Vercel Analytics is cookieless. Anything beyond it requires a consent layer before it loads.)* | |
 | Call recording, Voice AI | *(Blocked. Spanish consent requirements apply.)* | |
@@ -2146,12 +2690,12 @@ Shared across pages. Answers marked `[gated]` do not ship until the relevant cla
 
 | Question EN | Answer EN | Page |
 |---|---|---|
-| Do we have to change our CRM? | No. Nuova is built to work alongside what you already run. `[C16]` | Lead Intelligence, Onboarding |
+| Do we have to change our CRM? | *(Blocked. G-11 leaves CRM replacement positioning as an open owner question, and F-07 rejects every compatibility claim. This is the most common objection an agency will raise and the site currently cannot answer it. Highest value unblock on the page.)* | Lead Intelligence, Onboarding |
 | Will our clients know they are talking to a system? | *(Blocked. Legal and product decision.)* | AI Sales Agent |
-| What happens when a client asks something it should not answer? | It stops and hands the conversation to the agent who owns that client, with the full history. `[C21]` | AI Sales Agent |
+| What happens when a customer asks something it should not answer? | It hands the conversation to a person when it matters, with the full history. `[B-12]` | AI Sales Agent |
 | How long does setup take? | *(Blocked. OWNER DECISION.)* | Onboarding |
 | What does it cost? | It depends on how many offices and agents you are running. We tell you on the call. | Pricing |
-| Does it work in our clients' languages? | It reads and answers in the language the client wrote in. `[C17]` | AI Sales Agent |
+| Does it work in our customers' languages? | It speaks to each customer in their own language. `[B-07]` | AI Sales Agent |
 | Is our data safe? | *(Blocked. LEGAL PENDING.)* | Platform, Pricing |
 | Can we try it before deciding? | *(Blocked by C-01. Until then: you can send it a real enquiry yourself, and we will run it on your own market on the demo call.)* | Pricing, Onboarding |
 
@@ -2177,7 +2721,7 @@ booking URL and this copy only appears if the embed fails after the page has alr
 
 > ### See it on your own enquiries.
 >
-> Book 30 minutes. We will show you Nuova handling the kind of messages your agency actually
+> Book a demo. We will show you Nuova handling the kind of messages your agency actually
 > gets, in your market and your languages.
 
 Primary CTA plus microcopy from §3.5. Secondary CTA: Experience Nuova.
@@ -2292,6 +2836,32 @@ noticed by the audience.
 | Free trial | **prueba gratuita** | |
 | Booking a demo | **reservar una demo** | Established and natural. |
 
+### 11.3b The qualifier bank, final Spanish wording
+
+`CLAIMS_MATRIX.md` §20 supplies five approved qualifiers with Spanish marked *draft, needs
+native review*, and states that **final wording belongs to this document**. Below is that
+final wording.
+
+The matrix's Spanish is structurally correct and reads translated. The problem in every case
+is the same: Spanish legal and commercial register prefers a verb where English uses a noun
+phrase, and the matrix drafts are noun phrases carried over from English.
+
+| # | English | Matrix ES draft | **Final ES** | Why it changed |
+|---|---|---|---|---|
+| Q-1 | Where permitted | Donde esté permitido | **Donde la plataforma lo permita** | *Donde esté permitido* is vague about who permits. Naming the platform is more precise and more honest, since this is exactly what changes outside anyone's control. |
+| Q-2 | Based on agency permissions and configuration | Según los permisos y la configuración de la agencia | **Según los permisos y la configuración de tu agencia** | *Tu* keeps the owner register consistent with the rest of the site. *La agencia* reads like a third party. |
+| Q-3 | Subject to applicable communication rules | Sujeto a las normas de comunicación aplicables | **Conforme a la normativa de comunicación aplicable** | *Normativa* is the standard Spanish term for a regulatory framework. *Normas* reads like house rules. *Conforme a* is the register a Spanish legal reader expects. |
+| Q-4 | With configurable customer handling and human oversight | Con gestión de clientes configurable y supervisión humana | **Con supervisión humana y reglas de atención que defines tú** | The matrix draft is accurate and inert. Making the agency the subject turns a hedge into a selling point, which is what this qualifier actually is. |
+| Q-5 | Availability depends on channel configuration | La disponibilidad depende de la configuración de canales | **Disponible según los canales que tengas conectados** | Positive construction. The Spanish draft leads with *disponibilidad depende*, which reads as a warning before the reader knows what is on offer. |
+
+**Placement rule, both languages.** A qualifier attaches to the claim it qualifies, in the
+same visual block, at readable size. `CLAIMS_MATRIX.md` §20 is explicit that a blanket footer
+disclaimer is not acceptable, and §20's closing line matters as much as the bank itself:
+
+> A qualifier narrows a claim. It does not rescue an unverified one.
+
+Status 6 and 7 capabilities are not made publishable by adding a hedge, in either language.
+
 ### 11.4 Not translated
 
 Nuova. NuovaSolution. Tier names: Studio, Signature, Prime. Module names: AI Sales Agent,
@@ -2402,65 +2972,102 @@ Titles and meta descriptions. Titles are under 60 characters, descriptions under
 
 | Page | EN title | EN description |
 |---|---|---|
-| Homepage | Nuova. The operating layer for real estate agencies | Every enquiry answered in seconds, understood and carried forward by one system, so your agents work on the clients who are ready. |
-| Platform | The Nuova platform for real estate agencies | Acquisition, conversation, qualification, follow up, matching and reporting, connected in one system instead of five. |
-| AI Sales Agent | AI Sales Agent for real estate agencies | Answers every enquiry immediately in the client's language, qualifies it, follows up, and hands your agent a client who is ready. |
-| Lead Intelligence | Lead intelligence and CRM for real estate | One clear record per client that updates itself, so your team knows who is ready and why. |
-| Voice AI | Voice AI for real estate agencies | The calls your office cannot take, answered and turned into a record like everything else. |
-| Property Matching | Property matching for real estate agencies | Reads what a client actually wants, checks it against your portfolio, and sends the homes worth their time. |
-| Daily Assistant | Daily assistant for real estate agents | Every agent starts the day with an ordered list of the clients who need them, context already attached. |
-| Reporting | Reporting for real estate agencies | Enquiries, response times, sources, agents and outcomes. The answer to the question every owner asks on Monday. |
-| Solutions | Nuova by outcome, role and agency size | Start with what is going wrong. Find the part of Nuova that fixes it. |
-| Pricing | Nuova pricing for real estate agencies | Three tiers, priced by the size of the operation. One call, one recommendation, one number. |
-| Experience Nuova | See Nuova handle a real enquiry | Send it the kind of message your agency gets every day and watch what happens. Two minutes, nothing to install. |
-| Onboarding | Getting started with Nuova | What happens after the call, what we need from you, and what you do not have to change. |
+| Homepage | Nuova. The operating layer for real estate agencies | Every enquiry gets an answer, day or night, in the customer's own language, understood and carried forward by one system. |
+| Platform | The Nuova platform for real estate agencies | One system instead of separate tools for messaging, follow up, matching and reporting. |
+| AI Sales Agent | AI Sales Agent for real estate agencies | Every enquiry gets an answer, day or night, in the customer's own language, and goes to a person when it matters. |
+| Lead Intelligence | Lead intelligence for real estate agencies | One customer, one record, across every channel they use, with a priority signal so your team knows where to start. |
+| Universal CRM | Universal CRM for real estate agencies | Every message, from every channel, on one record. The whole relationship in one place. |
+| Property Matching | Property matching for real estate agencies | Understands what each customer is looking for and sends a short, relevant selection instead of a list dump. |
+| Property Experience | Interactive property experience for agencies | A real panorama for every room, floor to ceiling, with the real floor plan alongside it. |
+| Social Growth | Social growth for real estate agencies | Content in your brand voice, published where permitted, and comments that turn into real conversations. |
+| Daily Assistant | The Nuova daily assistant for agents | Ask who to call today, or why a lead is a priority, and see the reasoning. |
+| Reporting | Reporting for real estate agencies | See where your leads came from, how fast enquiries were answered and what was booked. |
+| Solutions | Nuova by outcome, role and agency size | Start with what is going wrong. Find the part of Nuova that addresses it. |
+| Pricing | Nuova pricing for real estate agencies | Three packages, built around the size of the operation they run. One call, one recommendation. |
+| Experience Nuova | See Nuova handle a real enquiry | Send it the kind of message your agency gets every day and watch what happens. Nothing to install. |
+| Onboarding | Getting started with Nuova | What happens after the call, and what setting up your agency actually involves. |
+
+**No Voice AI metadata**, because there is no Voice AI route (V-02).
+
+**Two SEO consequences worth stating plainly to the owner.** K-13 rejects *virtual tour*,
+*3D tour*, *walkthrough* and *metaverse*, which are the obvious high volume keywords for the
+Property Experience page. F-06 and F-07 reject every portal and CRM name, which removes the
+usual *integrates with* long tail across the whole site. Both are correct calls and both cost
+real search traffic. That trade is the owner's to accept, and it should be made knowingly
+rather than discovered later.
 
 ES titles and descriptions are written in the second pass, natively, not translated.
 `hreflang` pairs are an implementation matter recorded in audit finding A-04.
 
 ---
 
-## 13. Claims register
+## 13. Claims compliance register
 
-**This table is the intake request to the Product Truth instance.** Every ID used in this
-document appears here. Nothing ships until its row reads `CLEARED`.
+**Superseded.** The first draft carried its own C01 to C34 claim IDs because no matrix
+existed. `CLAIMS_MATRIX.md` now provides roughly 140 rows with verdicts, so private IDs would
+create a second, competing register. They are replaced by matrix IDs throughout this document.
 
-| ID | The claim being made | What must be confirmed | Status |
+**This table is the audit path.** For any sentence on the site, find its page here, read the
+matrix rows it depends on, and check those rows verdicts. Nothing ships whose rows are not
+`APPROVED` or `APPROVED-Q` with their owner and legal dependencies closed.
+
+| Page | Depends on | Verdict state | Blocked by |
 |---|---|---|---|
-| C01 | Nuova works alongside the inbox, portals and CRM an agency already uses. | Which integrations exist, in which direction, and in what state. | UNVERIFIED |
-| C02 | Nuova helps create enquiries, not only handle them. | Does any acquisition capability exist today. | UNVERIFIED |
-| C03 | Every enquiry gets a reply in seconds. | Is it every enquiry or some. Is *seconds* accurate. Which channels. | UNVERIFIED |
-| C04 | Nuova determines what a client wants and how serious they are, and records it. | How qualification actually works and how reliable it is. | UNVERIFIED |
-| C05 | Follow up happens automatically. | Does automated follow up exist. On which channels. At what cadence. Who controls it. | UNVERIFIED |
-| C06 | When a client is ready, an agent receives them with full history. | Does handover exist as a feature. What is included in the history. | UNVERIFIED |
-| C07 | Outcomes are measured and feed back into the system. | Does any feedback loop exist, or is this aspirational. | UNVERIFIED |
-| C08 | Nuova matches client requirements to the agency's properties. | Does matching exist. Against what data source. | UNVERIFIED |
-| C09 | Voice AI answers calls. | Does it exist at all. `INTEGRATION_CONTRACT.md` W-05. | UNVERIFIED, likely NO |
-| C10 | Daily Assistant gives each agent an ordered list with context. | Does this module exist in any form. | UNVERIFIED |
-| C11 | Social Growth keeps the agency visible and creates enquiries. | Does this module exist. What does it do. Who approves output. | UNVERIFIED, likely NO |
-| C12 | Reporting shows enquiries, sources, response times and outcomes. | Which metrics are actually captured. | UNVERIFIED |
-| C13 | Property Experience produces something a buyer opens. | What is it. Does it exist. | UNVERIFIED, likely NO |
-| C14 | Experience Nuova demonstrates real product behaviour. | Simulated or live. Conflict C-02. | UNVERIFIED |
-| C15 | One memory. The same client recognised across channels, addresses and time. | Is identity resolution real. This is the core differentiator and the highest priority to verify. | UNVERIFIED |
-| C16 | Nuova writes back into the agency's existing CRM. | Which CRMs. Read, write or both. Named integrations. | UNVERIFIED |
-| C17 | Nuova reads and answers in the language the client wrote in. | Which languages, confirmed individually. | UNVERIFIED |
-| C18 | The first reply is specific to the property asked about. | Does the reply reference real listing data. | UNVERIFIED |
-| C19 | Nuova asks qualifying questions in a natural order. | Is the question flow real and configurable. | UNVERIFIED |
-| C20 | Follow up uses a sensible interval and a channel the client uses. | Cadence, channel selection, agency control. | UNVERIFIED |
-| C21 | Nuova does not negotiate, commit the agency, or answer legal questions. | Are these guardrails actually implemented. **This claim is a promise about safety and must be verified before publication, not after.** | UNVERIFIED |
-| C22 | The same person is recognised across portal, WhatsApp and multiple email addresses. | Sub claim of C15. Verify separately, it is the hardest part. | UNVERIFIED |
-| C23 | Priority updates as the conversation changes. | Does re scoring happen. Numeric scale blocked separately. | UNVERIFIED |
-| C24 | The owning agent is alerted when a client becomes ready. | Alert routing, ownership model, channel. | UNVERIFIED |
-| C25 | Nuova keeps its own record and syncs it. | Architecture question with a public consequence. | UNVERIFIED |
-| C26 | Voice is in development. | Is it. If it is not started, *planned* is the honest label. | UNVERIFIED |
-| C27 | Matching handles unstructured requirements, not filter fields. | The strongest matching claim, and the least likely to be fully true. Verify carefully. | UNVERIFIED |
-| C28 | Matching runs against the agency's own portfolio. | Data source. Whether the agency's inventory is connected. | UNVERIFIED |
-| C29 | A new listing is connected to a client who described it months earlier. | Does reverse matching over time exist. | UNVERIFIED |
-| C30 | Daily Assistant is not a monitoring tool. | Product positioning decision with a real consequence for agent adoption. | UNVERIFIED |
-| C31 | Reporting cuts by agent, source and outcome. | Which dimensions exist. | UNVERIFIED |
-| C32 | Property Experience reports what a buyer looked at. | Tracking capability and its lawful basis. Legal before product. | UNVERIFIED |
-| C33 | The Experience Nuova interaction reflects real timing. | Whether *four seconds* is honest for a simulation. | UNVERIFIED |
-| C34 | A 14 day trial runs on the agency's own enquiries. | Conflict C-01. | UNVERIFIED, likely NO |
+| Homepage | P-02, P-03, A-04, A-06, B-04, B-07, D-01, D-03, E-01, F-01, F-03, B-12, R-01, R-02, R-05 | Mixed | E-01 on L-01. Sections gated per module. |
+| Platform Overview | P-01, P-02, P-03, G-02, G-10, O-03, B-07, D-01, B-08 | APPROVED / APPROVED-Q | Security section held on L-14. |
+| AI Sales Agent | B-04, B-05, B-07, B-12, B-13, D-02 | APPROVED-Q | Follow up section on L-01. Qualification on L-09. |
+| Lead Intelligence and CRM | D-01, D-02, D-03, D-05, D-06, D-08, G-01, G-02, G-03, G-06, G-10 | APPROVED-Q | L-09 throughout. Alerting has no matrix row at all. CRM positioning on G-11. |
+| Voice AI | V-02 only | OWNER | V-01 blocking. No page ships. |
+| Property Matching | F-01, F-02, F-03, F-04 | APPROVED-Q | Fixed count on F-03. Reverse matching on E-04 and L-02. |
+| Daily Assistant | I-01, I-02, I-03, I-04, I-05, I-06, I-08 | **OWNER, every row** | Illustrative examples only. I-07 on L-11. |
+| Social Growth | C-01, C-02, C-03, C-04, C-07, C-08, A-06 | APPROVED-Q | Lead capture on L-07. WhatsApp continuation on L-08. |
+| Reporting | R-01, R-02, R-03, R-04, R-05, R-06, R-07, R-12, R-15 | APPROVED-Q | R-08 on L-11. R-03 and R-04 on L-09. |
+| Property Experience | K-01, K-02, K-03, K-04, K-06, K-07, K-08, K-09, K-10, K-11, K-12, K-16 | APPROVED / APPROVED-Q | Square metres K-05 on L-12. |
+| Solutions and Outcomes | Inherits every module row it links to | Mixed | A row may not be offered as an answer while its module is blocked. |
+| Pricing | PK-01, PK-03, PK-07 | APPROVED / APPROVED-Q | PK-02 names, PK-04 mapping, PK-05 limits, PK-06 prices. |
+| Experience Nuova | CTA-3, S-02, S-03, S-05 | OWNER | Disclosure wording is an owner decision. |
+| Onboarding | O-01, O-02, O-03, O-08, N-01 | OWNER / APPROVED-Q | O-09 and O-10 reject the current site wording. |
+| Navigation and footer | CTA-2, CTA-6, P-02 | Mixed | Log in on CTA-6. Voice absent per V-02. |
+| Form library | A-04b, B-03b | **P0 OWNER** | No submission path exists. No form ships. |
+| Trust and compliance | B-15, X-08, L-14 | REJECTED / LEGAL | Privacy policy is materially incomplete and launch blocking. |
+
+### 13.1 Claims this document requested and the matrix does not cover
+
+Gaps rather than rejections. Each is a request to the Product Truth instance.
+
+| Requested claim | Why it matters | Where it was needed |
+|---|---|---|
+| **Hot lead alerting.** Does the product alert an owning agent when a lead becomes ready, on which channel, routed how? | Prominent in the owner brief and in `CLAUDE.md`, and one of the strongest conversion moments available. No matrix row exists, so it cannot be written. | Lead Intelligence §5, homepage, Daily Assistant |
+| **Reply specificity.** Does the first reply reference real listing data, or is it generic? | The difference between an autoresponder and a sales agent. B-04 covers that a reply happens, not what is in it. | AI Sales Agent §2 |
+| **Reporting feeding back into behaviour.** | Was assumed in the first draft and removed twice. Worth knowing whether it is on the roadmap. | Homepage loop, Reporting §5 |
+
+### 13.2 Rejected wording removed from this document during reconciliation
+
+Recorded so no later editor reintroduces it from an earlier draft.
+
+| Removed wording | Matrix row | Pages it had reached |
+|---|---|---|
+| Works alongside the inbox, portals and CRM you already use | F-07, F-08 | Homepage hero, Platform Overview, Lead Intelligence, Onboarding, FAQ bank |
+| Every enquiry answered in seconds | B-04, B-06 | Homepage hero, hero recommendation |
+| That took four seconds | B-06, S-04 | Experience Nuova |
+| Three properties / three homes | F-03 | Property Matching hero and body, homepage module grid |
+| Keeps the thread alive, comes back at a sensible interval | E-01, E-05 | AI Sales Agent |
+| The conversation you had written off books a viewing | **E-04, L-02** | AI Sales Agent |
+| A property listed Tuesday matched to a customer from March | **E-04, L-02** | Property Matching |
+| The ones who went quiet and are worth one more attempt | **E-04, L-02** | Daily Assistant |
+| Voice in the present tense, in any form | V-01, V-03 | Voice AI page, homepage module grid |
+| Every tier runs the whole loop | PK-04 | Pricing, homepage pricing block |
+| 30 minutes, 15 minutes | CTA-2 | Every CTA microcopy line |
+| Your data stays yours | B-15, N-03 | CTA microcopy, trust lines |
+| One system instead of five | P-03 | Platform Overview hero, SEO copy |
+| By agent, who is converting and who needs help | **R-08, I-07, L-11** | Reporting |
+| What your portal spend is buying | R-13 | Reporting |
+| Named languages: Spanish, German, Dutch, French, Scandinavian | B-07 | AI Sales Agent, Platform Overview |
+| The signal list: budget, timing, location, viewing request | **D-09, L-09** | Lead Intelligence |
+| Scored 1 to 100, above 80 is priority | D-04, S-04 | Lead Intelligence (already flagged in draft one) |
+| Tells your agent she is ready | No matrix row | Platform Overview, homepage |
+| Reporting changes what the system does next | No evidence | Homepage loop, Reporting |
+| Trial wording in every form | T-01, T-02 | Onboarding, CTA library, Pricing |
 
 **Retired claims from the current site.** These appear in `translations/en.ts` and
 `translations/es.ts` today and **must not be carried into the redesign** without clearance:
@@ -2483,69 +3090,120 @@ document appears here. Nothing ships until its row reads `CLEARED`.
 
 ## 14. Open decisions for the owner
 
-Ordered by how much they block.
+**The authoritative list is `CLAIMS_MATRIX.md` §21, eighteen decisions, and its §22, fourteen
+legal dependencies. That list is not duplicated here**, because two registers would drift
+apart. This section records only what is specific to copy and conversion, plus which of the
+matrix decisions starve this document most.
+
+### 14.1 Decisions this document needs that the matrix does not carry
 
 | # | Decision | Blocks |
 |---|---|---|
-| 1 | Does the 14 day trial exist? (C-01) | The entire CTA hierarchy, the Onboarding page, the Pricing primary CTA. |
-| 2 | Is Experience Nuova simulated or live, and which label is cleared? (C-02) | The Experience page and the homepage demo section. |
-| 3 | Do prices exist, and are they public? (C-06) | The Pricing page and the homepage pricing block. |
-| 4 | Which modules are live, in development, planned, or not real? | Four module pages, the homepage module grid, the navigation, the footer. |
-| 5 | Approve or reject the positioning in §1.2 and the operating loop in §1.4. | Every page. This is the foundation. |
-| 6 | Approve or reject the hero recommendation in §4.4. | Homepage. |
-| 7 | Approve or reject the package names Studio, Signature, Prime. | Pricing, Solutions. |
-| 8 | Is the demo 15 minutes or 30 minutes? | Every CTA microcopy line on the site. |
-| 9 | Is *Log in* omitted until an application exists? (C-03) | Navigation. |
-| 10 | The real WhatsApp number, and who answers it. (C-05) | Every WhatsApp CTA. Currently none can ship. |
-| 11 | What does *Talk to Nuova* mean, or is it retired? (C-04) | Resolved here by removing the label. Confirm. |
-| 12 | Are module names kept in English on the Spanish site? | The whole Spanish site. |
-| 13 | Is *Built in Spain* accurate? | The footer. |
-| 14 | Does the entry tier include the whole loop, or are capabilities tiered? | The Pricing page's central promise. |
-| 15 | Are *Lead Acquisition* and *Follow up Automation* merged into Social Growth and AI Sales Agent? | Routing and the navigation. |
-| 16 | Confirm `CLAUDE.md` is superseded on positioning and visual direction. (C-07) | This document assumes the enterprise redesign brief wins. |
+| 1 | Approve or reject the positioning in §1.2 and the operating loop in §1.4. | Every page. It is compatible with P-01 and P-02, and sharper than either. |
+| 2 | Approve or reject the hero recommendation in §4.4. | Homepage. |
+| 3 | Approve the public package names **Nuova Studio, Nuova Signature, Nuova Prime**. | Pricing and Solutions. This answers PK-02 directly. |
+| 4 | Supply a real demo duration, or confirm none is published. | Every CTA microcopy line on the site. |
+| 5 | Are module names kept in English on the Spanish site, with Spanish descriptors? | The whole Spanish site. See §11.4. |
+| 6 | Is *Built in Spain* accurate? | The footer brand line. |
+| 7 | Merge *Lead Acquisition* into Social Growth and *Follow up Automation* into AI Sales Agent? | Routing and navigation. |
+| 8 | **Does hot lead alerting exist**, on which channel, routed to whom? | Lead Intelligence, homepage, Daily Assistant. No matrix row covers it, so it cannot be written at all. See §13.1. |
+| 9 | Ratify Ladder B, primary *Book a demo*, as the shipping CTA hierarchy. | Site wide. `MASTER_GOVERNANCE.md` §11 still names the trial as primary and that cannot be implemented. |
 
-**Waiting on counsel, not on the owner:**
+### 14.2 The matrix decisions that block the most copy
 
-1. Cookie and analytics consent wording, and whether a consent layer is required.
-2. Whether end clients must be told they are speaking with an automated assistant.
-3. Lawful basis and disclosure for lead scoring as automated processing.
-4. Call recording consent for Voice AI.
-5. Engagement tracking of a named prospect for Property Experience.
-6. IVA presentation on the Pricing page.
-7. LSSI-CE company identification placement.
-8. Re verification of both privacy pages once the redesign changes what data is collected.
+Ranked by how much of this document they unblock, which is a different order from the
+matrix's own, because copy and engineering are starved by different things.
 
----
+| Matrix ref | Decision | What it unblocks here |
+|---|---|---|
+| §21.3 | Confirm or reject each named integration | The most reused rejected sentence in the first draft. It had reached five pages. Until it is answered the site cannot answer *we already have a CRM*, which is the first objection every agency raises. |
+| §22 L-01 | Follow up timing and lawful basis | A full section of AI Sales Agent and the Advance stage of the loop. |
+| §22 L-09 | Automated profiling | Most of Lead Intelligence and two Reporting rows. |
+| §21.2 | Does the trial exist | The CTA ladder, Onboarding, the Pricing primary action. |
+| §21.4 | Simulation disclosure wording | Experience Nuova, which is the strongest conversion asset available while no social proof exists. |
+| §21.5 | Feature to package mapping, public or on request pricing | The Pricing page beyond its three tier names. |
+| §21.9 | Real score scale, or none | Lead Intelligence. |
+| §21.10 | A measured response time, or none | The hero and every speed line on the site. |
+| §21.13 | Which Daily Assistant questions work | The whole page. Every row is OWNER. |
+| §21.11 | Is the square metres source enforced | One section of Property Experience. |
+| §22 L-11 | Team performance visibility | One Reporting section, one Daily Assistant section. |
+| §22 L-14 | **The privacy policy is materially incomplete** | Launch blocking for the whole site, not only for copy. |
+
+### 14.3 Two conclusions worth stating plainly
+
+**First.** Six of seven conversion paths have no working target system (`CLAIMS_MATRIX.md`
+§17). *Book a demo* is the only one that works, and its current implementation is defective
+(A-02). Fixing that one anchor is worth more to conversion right now than any headline in
+this document.
+
+**Second.** No social proof of any kind is available, and none may be invented. The site
+therefore has to earn belief through demonstration and craft, which is why Experience Nuova
+and the quality of the pages themselves carry disproportionate weight. That is a real
+strategy, not a consolation, but it only works if the demonstration is honest and the disclosure
+in §9.2 is cleared.
+
 
 ## 15. Handover
 
-**To the Product Truth instance.** §13 is your intake list. C15 is the highest priority
-because the entire positioning rests on it. C21 is the second, because it is a safety
-promise. C09, C11 and C13 determine whether four pages exist at all.
+**To the Product Truth instance.** §13.1 is the intake list, and it is short because the
+matrix covers almost everything. Three gaps remain, and **hot lead alerting is the one that
+matters**: it is prominent in the owner's brief, it is one of the strongest conversion moments
+available, and no matrix row exists for it, so it cannot be written in any wording.
 
-**To the Claims instance.** §13 needs a cleared or rejected wording per row. §9.2 needs a
-cleared simulation label. §9.5 needs everything in it either cleared or replaced.
+**To the Claims instance.** §9.2 needs a cleared simulation label; S-02 makes the wording an
+owner decision and §9.2 proposes three options with a recommendation. §11.3b supplies the
+final Spanish for the five approved qualifiers, per your §20 delegation. §9.5 needs every
+remaining trust line either cleared or confirmed as blocked.
 
-**To the Luxury UX instance.** Section orders in §6 are the page architecture. The loop in
-§1.4 is the primary visual system on the homepage and Platform Overview. §9.1 defines every
-media empty state, which need designing rather than hiding. §10 is the mobile copy contract
-that the layout has to hold.
+**To the Luxury UX instance.** Section orders in §6 are the page architecture, and they have
+changed since the first draft: Voice AI has no page, Property Experience and Social Growth are
+now full pages, and three sections were deleted outright rather than restyled. Two constraints
+are yours to hold. First, **R-15 and K-16 require a visible illustrative marker on every
+reporting visual and every sample property**, which is a design problem, not a footnote.
+Second, **PK-05 forbids implying a quota through visual devices**, so no bars, dots or
+comparative column heights on the Pricing page. §9.1 defines every media empty state, which
+need designing rather than hiding. §10 is the mobile copy contract the layout has to hold.
 
-**To the implementation instance.** Do not take copy from this file into a component until
-its claim IDs are cleared. Ladder B in §3.3 is the only CTA ladder that can ship today. Every
-string in §9 is shared and belongs in one place, not repeated per component.
+**To the implementation instance.**
+
+1. Do not take copy from this file into a component until the matrix rows in §13 are
+   `APPROVED` or `APPROVED-Q` with their owner and legal dependencies closed.
+2. Ladder B in §3.3 is the only CTA ladder that can ship. `MASTER_GOVERNANCE.md` §11 still
+   names the trial as primary and that hierarchy cannot be implemented.
+3. **Capability status must be a content property, not hard coded prose.** The matrix asks
+   for this in its §25 and this document assumes it. Qualifiers, entitlement labels and
+   availability labels will change as evidence arrives, and they must change without a
+   rebuild.
+4. Every string in §9 is shared and belongs in one place, not repeated per component.
+5. No form ships. A-04b and B-03b are P0, and there is no submission path.
 
 ---
 
 ## 16. Status
 
-Positioning, message hierarchy, voice, banned language, audience map, CTA system, hero
-options with scoring and a binding recommendation, package names, fourteen page
-specifications with drafted body copy, navigation, footer, the full shared microcopy library,
-the Spanish localisation strategy with its key surfaces, SEO copy, a 34 entry claims register
-and 16 open owner decisions.
+**Delivered.** Positioning and category story, the Nuova Operating Loop, message hierarchy,
+voice and a banned language list, audience map, the two CTA ladders with a full label
+inventory, eight hero options scored against four weighted criteria with a binding
+recommendation, three package names with alternates and a bilingual check, fourteen page
+specifications each carrying the full field set required by the brief, navigation, footer, the
+shared microcopy library covering video empty states, simulation labels, availability and
+entitlement labels, form copy and states, trust lines, an FAQ bank and error states, the
+mobile copy system, the Spanish localisation strategy including register, terminology,
+formatting, the final Spanish qualifier bank and a natively written Spanish hero, SEO copy,
+a matrix keyed compliance register, and the open decisions specific to copy.
 
-**Drafted and awaiting `PRODUCT_TRUTH.md`, `CLAIMS_MATRIX.md`, owner decisions, and
-independent technical and final audit.**
+**Reconciled.** `PRODUCT_TRUTH.md` and `CLAIMS_MATRIX.md` arrived after drafting began. A
+second pass removed twenty one rejected wordings, rewrote two pages that had been wrongly
+embargoed, deleted one page entirely, and replaced the private claim register with a matrix
+keyed one. §0.1b records every change.
 
-**No copy in this document is cleared for publication.**
+**Not delivered, and deliberately so.** Full Spanish body copy for all fourteen pages, which
+is a second pass once the English clears the matrix (§11.9). Trial copy in any wording (T-01).
+Any price, limit, quota, score scale, response time, percentage or count. Any named
+integration. Voice in the present tense.
+
+**Drafted and awaiting owner decisions, legal clearance, and independent technical and final
+audit.**
+
+**No copy in this document is cleared for publication.** The gate condition is not this
+document's completeness. It is `CLAIMS_MATRIX.md` §21 and §22.
