@@ -35,12 +35,20 @@ cross-checked for contradictions.
 
 | Required document | Present | Author |
 |---|---|---|
-| `docs/website_redesign/PRODUCT_TRUTH.md` | ❌ **Missing** | Product truth instance |
+| `docs/website_redesign/PRODUCT_TRUTH.md` | ✅ Present (2026-08-30) | Product Truth Director instance — **independent of implementation** (R1 satisfied) |
 | `docs/website_redesign/CLAIMS_MATRIX.md` | ❌ **Missing** | Claims/compliance instance |
 | `docs/website_redesign/COPY_AND_CONVERSION_MASTER.md` | ❌ **Missing** | Copy & conversion instance |
 | `docs/website_redesign/LUXURY_UX_MEDIA_SYSTEM.md` | ❌ **Missing** | Luxury UX & media instance |
 
-**Gate status: CLOSED.** 0 of 4 present.
+**Gate status: CLOSED.** 1 of 4 present.
+
+`PRODUCT_TRUTH.md` arrived from the product truth instance and has **not yet been read in
+full or cross-checked** by the implementation instance. The contradiction check across all
+four documents (per the owner's brief) runs once the remaining three are present — checking
+one document against three absent ones would produce no meaningful result. Its own stated
+central limitation is that no capability could be verified, because verification would have
+required exactly the product-system access that §14 forbids. That constraint is correct and
+is expected to propagate into `CLAIMS_MATRIX.md`.
 
 Until the gate opens, this instance is limited to: governance, audit, integration contract,
 non-content infrastructure, and scaffolding that carries no public claims.
@@ -197,7 +205,7 @@ Ordered by urgency.
 
 | # | Action | Severity |
 |---|---|---|
-| 1 | Supply `PRODUCT_TRUTH.md`, `CLAIMS_MATRIX.md`, `COPY_AND_CONVERSION_MASTER.md`, `LUXURY_UX_MEDIA_SYSTEM.md` from the other instances. | Gate-blocking |
+| 1 | Supply the remaining three source-of-truth documents: `CLAIMS_MATRIX.md`, `COPY_AND_CONVERSION_MASTER.md`, `LUXURY_UX_MEDIA_SYSTEM.md`. (`PRODUCT_TRUTH.md` received 2026-08-30.) | Gate-blocking |
 | 2 | Answer C-01 (does the 14-day trial exist?) — determines the site-wide primary CTA | P0 for the CTA hierarchy |
 | 3 | Answer C-05 (WhatsApp number) | P1 |
 | 4 | Answer C-03 (login / customer app URL) | P1 |
@@ -226,4 +234,5 @@ Ordered by urgency.
 | 2026-08-30 | 15 audit findings recorded (1× P0, 8× P1, 6× P2). 7 open conflicts logged (C-01 … C-07). |
 | 2026-08-30 | Implementation gate CLOSED — 0 of 4 source-of-truth documents present. No main page modified. |
 | 2026-08-30 | **Binding owner directive received.** The separate NuovaSolution product and automation project on NuovaSolution's own n8n server is near completion and must not be touched or put at risk. Added `MASTER_GOVERNANCE.md` §14 (product and automation project isolation — no real webhooks, no workflow changes, no server access, no database changes, no integration tests; product CTA lockdown with per-action release) and §15 (release and access discipline — no push, merge, deployment or production access without explicit per-occasion owner approval). R8 rewritten: the legacy n8n Cloud connection is retired and must not be used; its credential is rotated and cleaned up by the owner outside this project and is never reproduced here. |
+| 2026-08-30 | `PRODUCT_TRUTH.md` (66 KB) delivered by the product truth instance and swept into commit `75d0bc6` by a directory-wide `git add`. Authorship is independent of implementation, so R1 holds. Gate moves to 1 of 4; not yet read in full or cross-checked. |
 | 2026-08-30 | A-01 closed for this project and its credential details removed from `CURRENT_SITE_AUDIT.md`. `INTEGRATION_CONTRACT.md` updated: hard rules 5–7 added, status vocabulary constrained, product-project section reframed as written information requests only, activation register added. Owner action list re-prioritized; the preview-deployment request was withdrawn rather than left standing. |
