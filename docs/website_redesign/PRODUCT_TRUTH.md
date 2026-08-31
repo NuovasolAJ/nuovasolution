@@ -3,8 +3,12 @@
 **Author:** Product Truth Director / Claims Auditor instance (independent of implementation)
 **Branch:** `website_enterprise_redesign`
 **Created:** 2026-08-30
+**Last reconciled:** 2026-08-31 — Wave A1, against `backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md`
 **Binding under:** `MASTER_GOVERNANCE.md` §3 (document precedence), R3, R6, R7
 **Companion document:** `CLAIMS_MATRIX.md`
+**Technical authority above this document:** `backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md`
+(rank 1 per `FINAL_RECONCILIATION_REPORT.md` §0). This document remains rank 3 and continues to govern
+confirmed product scope and required qualification.
 
 > **Scope of authority.** This document defines what NuovaSolution *is* and *is not* for the
 > purpose of public website statements. It does not approve a design, a page, a release or a
@@ -18,6 +22,10 @@
 
 | Source | What it is | What it can prove |
 |---|---|---|
+| **`backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md`** | **Canonical technical authority.** 28 endpoint contracts, field names, status vocabulary, environment variable names, auth model. Zero secrets. Dated 2026-08-30. | **That a backend contract exists** for a named capability, and that the backend team asserts it is applied and proven on staging. It does **not** prove the website integrates it, nor that anything works end to end from this repository's position. |
+| `FINAL_RECONCILIATION_REPORT.md` | Conflict decisions, C-08 … C-27, MF-01 … MF-12 | Which recorded status the handoff changes, and which it does not |
+| `INTEGRATION_COMPATIBILITY_MATRIX.md` | Per-capability backend / website / publishable mapping | The three-column status of each capability |
+| `FINAL_WEBSITE_INTEGRATION_PLAN.md` | Wave plan and non-deliverables | What this wave cannot deliver and why |
 | `docs/website_redesign/MASTER_GOVERNANCE.md` | Process authority | Rules, not product facts |
 | `docs/website_redesign/CURRENT_SITE_AUDIT.md` | Factual codebase inventory | State of the **website**, not the product |
 | `docs/website_redesign/INTEGRATION_CONTRACT.md` | Action-by-action state machine | Which website actions have a target system |
@@ -44,27 +52,54 @@
 5. **No internal architecture is reproduced here.** Per R8 and the owner's system-isolation
    directive, component names, identifiers, endpoints, hostnames and credentials are not written
    into this document, and no external system was contacted to produce it.
+6. **A backend contract is evidence of a contract, not of a working website feature.** *(Added
+   2026-08-31.)* The handoff satisfies §0.4's third evidence bullet — a written report from an
+   authorised technical instance working inside the product project — for every capability it names.
+   Those capabilities are therefore **`BACKEND CONFIRMED`**. That is a real and substantial upgrade
+   from "owner brief only". It is **not** Category 1, because:
+   - the website has no code against any of these contracts (`WEBSITE INTEGRATION PENDING`), and
+   - nothing has been exercised against a live target (`END TO END VERIFICATION PENDING`), and
+   - under `MASTER_GOVERNANCE.md` §14 this repository may not make that call at all, so the gap
+     cannot currently be closed from here (`FINAL_RECONCILIATION_REPORT.md` C-14).
 
 ### 0.3 The central limitation — read this before using this document
 
-**Verification of the product backend was not performed and was not permitted.**
+*Revised 2026-08-31 after the backend handoff.*
 
-The owner's binding system-isolation directive forbids accessing the product project, the n8n
-server, Supabase, webhooks, credentials and production integrations. Verification of a live
-capability requires exactly that. Therefore:
+**A large part of the platform is now `BACKEND CONFIRMED`. None of it is verified end to end, and
+none of it is on the website.**
+
+The 2026-08-30 handoff removed the evidentiary vacuum this document was originally written into.
+Signup, login, logout, JWT sessions, the 14-day trial, the ten-step onboarding wizard with progress
+and resume, agency details, branding assets, team and roles, CRM selection including Nuova CRM as the
+default, property source including agency website inventory, Property Experience entitlement and
+entry, readiness, entitlements, plans, subscription state, checkout handoff and the testimonial
+submission mechanism all now have a written contract from the backend team.
+
+What has **not** changed:
 
 > **No capability in this document can be placed in Category 1 (Live and confirmed) by this
-> instance.** Category 1 is reserved and can only be entered when the owner supplies evidence
-> (see §0.4) or an authorised technical instance verifies the capability inside the product
-> project.
+> instance.** Category 1 requires end-to-end verification. `MASTER_GOVERNANCE.md` §14 forbids this
+> repository from calling any product system, staging included, so
+> **`END TO END VERIFICATION PENDING` is currently unreachable rather than merely open**
+> (`FINAL_RECONCILIATION_REPORT.md` C-14, owner decision 1).
 
-This is not a judgement that the capabilities are absent. Several are very likely real. It is a
-statement that **the website may not assert them as confirmed until evidence exists**, because
-under R3/R6 an unverified public claim is a P0 finding regardless of whether it happens to be true.
+Three distinct things must never be collapsed into one:
 
-The practical consequence: the new website can be **designed and written in full**, but a large
-share of its claims must ship either (a) with the qualifying wording defined in
-`CLAIMS_MATRIX.md`, or (b) not at all, until the owner closes the evidence gaps.
+| | Means | Does **not** mean |
+|---|---|---|
+| `BACKEND CONFIRMED` | A contract exists and the backend team asserts it is proven on staging | The website has it, or that it may be advertised |
+| `WEBSITE INTEGRATION PENDING` | No website code exists against that contract | The capability is absent |
+| `END TO END VERIFICATION PENDING` | Nothing has been exercised against a real target from here | Anything is broken |
+
+**A backend confirmation never lifts a legal hold.** Every `LEGAL REVIEW PENDING` item in §19 stands
+exactly as written. The testimonial extension is the clearest case: fully confirmed technically,
+still **DISABLED** for public display (§18.3).
+
+The practical consequence is unchanged in shape and much better in substance: the new website can be
+**designed and written in full**, product surfaces can now be **specified against real contracts**,
+and a large share of public claims must still ship either (a) with the qualifying wording defined in
+`CLAIMS_MATRIX.md`, or (b) not at all.
 
 ### 0.4 What counts as sufficient evidence to promote a capability to Category 1
 
@@ -96,8 +131,30 @@ is itself recorded in `CLAIMS_MATRIX.md` as *Approved on owner's assertion*.
 | 6 | **Website prepared, backend not connected** | UI exists or will exist; no target system | No present-tense capability claim; honest pending state only |
 | 7 | **Future capability** | Planned, not built | Only as an explicitly labelled future item, visually separated |
 
-**Current distribution across the capabilities in §3–§16: Category 1 — 0. ** Every other capability
-sits in Category 2 or lower. This is the single most important output of this document.
+**Current distribution across the capabilities in §3–§16: Category 1 is still 0.** This remains the
+single most important output of this document.
+
+### 1.1 The reconciliation status vocabulary (binding, added 2026-08-31)
+
+The seven categories above describe *what a capability is*. They are too coarse to describe *where it
+stands*, now that a backend contract exists. The following ten values are binding from
+`FINAL_RECONCILIATION_REPORT.md` §1 forward, and a capability normally carries **two or more**: one
+backend status, one website status, plus any hold.
+
+| Value | Meaning | May the public site assert it? |
+|---|---|---|
+| `BACKEND CONFIRMED` | The handoff defines a contract. The backend team asserts it is applied and proven on staging. | Not by itself. `CLAIMS_MATRIX.md` decides. |
+| `WEBSITE INTEGRATION PENDING` | Backend confirmed, no website code exists for it. | No present-tense capability claim. |
+| `END TO END VERIFICATION PENDING` | Nothing proven against a real target. **True of every surface.** | No. |
+| `LEGAL REVIEW PENDING` | Held by a §19 legal dependency. | No, in any wording, in either language. |
+| `OWNER DECISION PENDING` | A commercial, naming or process decision only the owner can make. | No. |
+| `RESERVED` | Named in the handoff as reserved for a backend that does not exist. Visual preparation permitted, live behaviour forbidden. | No. |
+| `PROPOSED` | A shape proposed, not backend defined. Never implemented as if real. | No. |
+| `BLOCKED` | A required contract, decision or clearance is missing entirely. | No. |
+| `REJECTED` | May not be stated, in any wording. | No. |
+
+**`LIVE` and `PRODUCTION READY` are removed from the project vocabulary** and may not appear in any
+document, commit message, status line or report on this branch.
 
 ---
 
@@ -136,15 +193,24 @@ are separated deliberately throughout `CLAIMS_MATRIX.md`.
 
 ### 3.1 Capability status
 
-| ID | Capability | Category | Evidence basis |
-|---|---|---|---|
-| A1 | Google Lead Forms intake | **2** | Owner brief only. No website code, no integration record. |
-| A2 | Meta Lead Ads intake | **2** | Owner brief only. |
-| A3 | Click-to-WhatsApp attribution | **2** | Owner brief only. Depends on Meta ad configuration owned by the agency. |
-| A4 | Web lead intake | **2 / 6** | Product side: owner brief. **Website side: Category 6** — the site has zero forms and zero API routes (`CURRENT_SITE_AUDIT.md` §8). |
-| A5 | Social opportunities as a lead source | **2** | Owner brief; overlaps §5. |
-| A6 | Campaign and source attribution | **2** | Owner brief. Indirectly consistent with an inactive cross-channel automation component noted 2026-05-20. |
-| A7 | **Automatic advertising budget optimization** | **Excluded** | **Explicitly excluded by the owner.** Not a capability. Must never appear. |
+*Reconciled 2026-08-31. The connection surfaces are now backend confirmed; the marketing claims are
+unchanged.*
+
+| ID | Capability | Category | Status | Evidence basis |
+|---|---|---|---|---|
+| A1 | Google Lead Forms intake | **2 + 3** | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | Handoff §5 rows 19–20: paid connect and paid status, entitlement gated. |
+| A2 | Meta Lead Ads intake | **2 + 3** | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | Handoff §5 rows 19–20. `externally_pending` while Meta approval is outstanding. |
+| A3 | Click-to-WhatsApp attribution | **2 + 3 + 4** | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` · `LEGAL REVIEW PENDING` (L-08) | Handoff §5 row 19. Still depends on Meta ad configuration owned by the agency. |
+| A4 | Web lead intake (product side) | **2** | `BACKEND CONFIRMED` for onboarding-side lead connection | Handoff §3 step 6. |
+| A4b | Web lead intake (**this website's own forms**) | **6** | `WEBSITE INTEGRATION PENDING` · `OWNER DECISION PENDING` | The site still has zero forms and zero API routes (`CURRENT_SITE_AUDIT.md` §8). A signup contract now exists (§18), a generic marketing-form destination does not. |
+| A5 | Social opportunities as a lead source | **2** | `BACKEND CONFIRMED` (entitlement key only) · unchanged as a claim | Handoff §5 row 10 exposes a `social.publish` entitlement key. **No platform is named anywhere in the handoff.** Overlaps §5. |
+| A6 | Campaign and source attribution | **2** | `BACKEND CONFIRMED` (connection and readiness only) · `WEBSITE INTEGRATION PENDING` | Handoff §5 row 20 returns per-source `connected` / `ready` flags. The attribution *quality* claim is unchanged. |
+| A7 | **Automatic advertising budget optimization** | **Excluded** | `REJECTED` | **Explicitly excluded by the owner.** Not a capability. The handoff adds nothing here. Must never appear. |
+
+**Onboarding step 6 (`lead_acquisition`) states** are `locked_by_plan` when the plan does not include
+paid acquisition, `externally_pending` when connected but the provider has not approved, `optional`
+when not started, and `completed` when a channel is ready. A step in an external-pending state is
+**never** presented as done.
 
 ### 3.2 What the agency experiences
 
@@ -186,11 +252,17 @@ Where paid acquisition is presented as a package feature, it must be labelled as
 
 ### 3.8 What confirmation is missing
 
-1. Which of A1–A6 are actually running for a real agency today, and since when.
-2. Whether ad account connection is self-service or performed by NuovaSolution during onboarding.
+1. Which of A1–A6 are actually running for a real agency today, and since when. *(The handoff proves
+   a contract, not adoption.)*
+2. ~~Whether ad account connection is self-service~~ — **answered.** Handoff §3 step 6 places it
+   inside the self-service onboarding wizard.
 3. Whether Meta/Google app review or a Business verification is required, and whether it is held.
+   The handoff models `externally_pending` for exactly this, but does not say whether approval is
+   held today.
 4. Whether "Paid Acquisition" as a package entitlement means *intake and attribution* or something
-   more. The brief lists it as an entitlement without defining it. **Owner decision required.**
+   more. The brief lists it as an entitlement without defining it, and the handoff does not define
+   it either. **Owner decision required.**
+5. `MF-11` — the provider display-name list needed to render "Pending, waiting on {provider}".
 
 ---
 
@@ -198,20 +270,28 @@ Where paid acquisition is presented as a package feature, it must be labelled as
 
 ### 4.1 Capability status
 
-| ID | Capability | Category | Evidence basis |
-|---|---|---|---|
-| B1 | WhatsApp conversations | **2** | Owner brief; indirectly consistent with active messaging components noted 2026-05-20. **No WhatsApp number exists on the website** (C-05). |
-| B2 | Email conversations | **2** | Owner brief; indirectly consistent with active inbox/reply components noted 2026-05-20. |
-| B3 | Web conversations | **2 / 6** | Product side: owner brief. **Website side: Category 6** — no chat backend (`INTEGRATION_CONTRACT.md` §7). |
-| B4 | Voice conversations | see §9 | Contradictory evidence — see §9.1. |
-| B5 | Automatic responses | **2** | Owner brief. This is the oldest and most consistently asserted capability across all sources. |
-| B6 | Multilingual conversations | **2** | Owner brief. The website's own demo engine handles EN/ES/DE, which shows domain intent but is not product evidence. |
-| B7 | Contextual memory across channels and time | **2** | Owner brief; `/v2` draft marks it `live` (author intent only). |
-| B8 | Images received and understood | **2 + 4** | Owner brief. Storage is legally unconfirmed (§18). |
-| B9 | PDFs and documents received and understood | **2 + 4** | Owner brief. Storage is legally unconfirmed (§18). |
-| B10 | Voice notes understood | **2 + 4** | Owner brief; `/v2` draft marks it `live`. Audio storage is legally unconfirmed (§18). |
-| B11 | Human handoff | **2** | Owner brief; `/v2` draft marks it `live`. |
-| B12 | Governed customer handling | **2 / 3** | Owner brief. Governance rules are agency-configured. |
+*Reconciled 2026-08-31. **The handoff confirms channel connection. It confirms nothing about AI
+conversational behaviour.** That distinction governs this entire section and must not be blurred.*
+
+| ID | Capability | Category | Status | Evidence basis |
+|---|---|---|---|---|
+| B1 | WhatsApp **channel connection (the agency's own)** | **2 + 3** | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | Handoff §3 step 5, §5 rows 17–18. `externally_pending` during Meta/WhatsApp verification. **This is not NuovaSolution's own business number** — that stays `BLOCKED` (§20, C-05 unresolved). |
+| B2 | Email **channel connection** | **2 + 3** | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | Handoff §3 step 5, §5 rows 17–18. Named mailbox providers stay forbidden. |
+| B3 | Web conversations | **2 / 6** | Product side unchanged. **Website chat assistant: `RESERVED`** | Handoff §10 reserves the website concierge endpoint. No chat backend exists (`INTEGRATION_CONTRACT.md` §7). |
+| B4 | Voice conversations | see §9 | Split three ways — see §9.1 | |
+| B5 | Automatic responses | **2** | Unchanged. Not in the handoff. | Owner brief. The oldest and most consistently asserted capability across all sources. |
+| B6 | Multilingual conversations | **2** | Unchanged. Not in the handoff. | Owner brief. The website's demo engine handles EN/ES/DE, which shows domain intent but is not product evidence. |
+| B7 | Contextual memory across channels and time | **2** | Unchanged. Not in the handoff. | Owner brief; `/v2` draft marks it `live` (author intent only). |
+| B8 | Images received and understood | **2 + 4** | Unchanged · `LEGAL REVIEW PENDING` (L-03) | Owner brief. Storage legally unconfirmed (§19). |
+| B9 | PDFs and documents received and understood | **2 + 4** | Unchanged · `LEGAL REVIEW PENDING` (L-04) | Owner brief. Storage legally unconfirmed (§19). |
+| B10 | Voice notes understood | **2 + 4** | Unchanged · `LEGAL REVIEW PENDING` (L-05) | Owner brief; `/v2` draft marks it `live`. Audio storage legally unconfirmed (§19). |
+| B11 | Human handoff | **2** | Unchanged. Not in the handoff. | Owner brief; `/v2` draft marks it `live`. |
+| B12 | Governed customer handling | **2 / 3** | Unchanged. Not in the handoff. | Owner brief. Governance rules are agency-configured. |
+| B13 | Calendar **connection** | **2 + 3** | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | Handoff §3 step 5, §5 row 17. Underpins the appointment qualifier in §10. |
+
+> **The trap in this section.** The handoff proves that an agency can *connect* WhatsApp, email,
+> calendar and voice. It proves nothing about what happens in the conversation afterwards. Using a
+> connection contract to justify a conversational-capability claim is a **P0** violation.
 
 ### 4.2 What the agency experiences
 
@@ -260,13 +340,17 @@ a simulation or rendered in an honest pending state. See §16 and §19.
 
 ### 4.8 What confirmation is missing
 
-1. Which channels are live for which agencies today.
-2. Whether WhatsApp runs on the WhatsApp Business Platform (Cloud API) or otherwise — this
-   determines what may be said about templates, 24-hour windows and opt-in.
-3. Which languages are actually supported, and whether the list is fixed or open.
-4. Whether images, documents and audio are stored, where, and for how long (§18).
+1. Which channels are actually connected for which agencies today. *(A connection contract is not
+   adoption.)*
+2. Whether WhatsApp runs on the WhatsApp Business Platform (Cloud API) or otherwise. This determines
+   what may be said about templates, 24-hour windows and opt-in. The handoff does not say.
+3. Which languages are actually supported, and whether the list is fixed or open. `MF-09` asks the
+   narrower question of which `language` values `POST /signup` accepts.
+4. Whether images, documents and audio are stored, where, and for how long (§19).
 5. What "governed customer handling" concretely means: which rules, set by whom, changeable how.
-6. A defensible response-time figure, if any is to be published.
+6. A defensible response-time figure, if any is to be published. **Still not in any source.**
+7. Any contract at all for **AI conversational behaviour**. The handoff covers connection and
+   onboarding only. B5 to B12 remain owner-brief capabilities.
 
 ---
 
@@ -285,6 +369,13 @@ a simulation or rendered in an honest pending state. See §16 and §19.
 | C7 | Brand and language consistency | **2 / 3** | Owner brief. Depends on agency branding configuration (§13). |
 | C8 | Controlled anti-spam behaviour | **2** | Owner brief. This is a *restraint*, and should be presented as one. |
 | C9 | **Facebook Group automation** | **Excluded** | **Explicitly excluded by the owner.** Must never appear. |
+
+**Reconciliation, 2026-08-31.** The handoff exposes a single `social.publish` entitlement key in
+`GET /entitlements` and a "Social (when entitled)" line in onboarding step 6. That is
+`BACKEND CONFIRMED` **as an entitlement key only**. It confirms that social is plan-gated. It confirms
+no platform, no posting behaviour, no comment handling and no DM routing. **No platform is named
+anywhere in the handoff**, so every social claim in this section keeps its existing verdict and every
+platform name remains unpublishable.
 
 ### 5.2 What the agency experiences
 
@@ -467,13 +558,23 @@ autonomous system persistence.
 
 ### 8.1 Capability status
 
-| ID | Capability | Category | Evidence basis |
-|---|---|---|---|
-| F1 | Understands customer requirements | **2** | Owner brief. |
-| F2 | Uses verified or agency-authorised inventory | **2 + 3** | Owner brief. Depends entirely on the agency connecting a feed or inventory. |
-| F3 | Customer-facing focused matches | **2** | Owner brief; `/v2` draft marks it `live` (author intent only). |
-| F4 | Internal extended options for agents | **2** | Owner brief. |
-| F5 | Property discussion in voice conversations | see §9 | Inherits the voice status. |
+*Reconciled 2026-08-31. **The property source is now backend confirmed. The matching behaviour is
+not.***
+
+| ID | Capability | Category | Status | Evidence basis |
+|---|---|---|---|---|
+| F1 | Understands customer requirements | **2** | Unchanged. Not in the handoff. | Owner brief. |
+| F2 | Uses verified or agency-authorised inventory | **2 + 3** | **`BACKEND CONFIRMED`** · `WEBSITE INTEGRATION PENDING` | Handoff §3 step 8 and §5 rows 25–26. Four source types: agency website, supported feed, CRM inventory, other authorised. |
+| F2b | **Agency website as a first-class inventory source** | **2 + 3** | **`BACKEND CONFIRMED`** · `WEBSITE INTEGRATION PENDING` | Handoff §3 step 8 states agency-owned scraped website inventory is a first-class valid source and is **never blocked for being scraped**. `GET /property-source/status` returns `accepts_scraped_owned_inventory: true`. |
+| F3 | Customer-facing focused matches | **2** | Unchanged. Not in the handoff. | Owner brief; `/v2` draft marks it `live` (author intent only). |
+| F4 | Internal extended options for agents | **2** | Unchanged. Not in the handoff. | Owner brief. |
+| F5 | Property discussion in voice conversations | see §9 | Inherits the voice status. | |
+| F6 | **Named property portals** (Idealista, Fotocasa, any other) | **6** | **`REJECTED`, unchanged** | **The handoff names no portal.** `feed` is a generic supported feed, not a named portal integration. See the asymmetry note below. |
+
+> **The deliberate asymmetry with §10.** External **CRM vendors are named in the handoff**; property
+> **portals are not**. That is why the CRM naming question moved to `OWNER DECISION PENDING` while
+> portals stay `REJECTED`. Conflating the two is a **P0** violation. F2b is a genuine new capability
+> and a real differentiator, and it is a **different claim** from portal integration.
 
 ### 8.2 What the agency experiences
 
@@ -515,11 +616,16 @@ effect — that discipline must be carried forward.
 
 ### 8.8 What confirmation is missing
 
-1. How inventory reaches the product: feed, portal, CRM export, manual, or several.
-2. Which — if any — named portal or CRM integrations genuinely exist. Each needs individual
-   confirmation before it may be named or logo-displayed.
-3. What "verified" means operationally, since the word carries weight.
+1. ~~How inventory reaches the product~~ — **answered.** Four source types, handoff §3 step 8 and
+   §5 row 25.
+2. Which named **portal** integrations exist, if any. **The handoff names none**, so F6 stays
+   `REJECTED`. Named **CRM** integrations are answered separately in §10.
+3. What "verified" means operationally, since the word carries weight. The handoff supplies
+   `other_authorized` and `source_not_authorized` as states but does not define the authorisation
+   test.
 4. Whether the customer-facing match count is fixed (the `/v2` draft says three) or variable.
+5. Any contract for the matching behaviour itself. The handoff covers where inventory comes from,
+   not how it is matched.
 
 ---
 
@@ -536,9 +642,23 @@ This is the clearest evidence conflict in the project.
 | `INTEGRATION_CONTRACT.md` W-05 | Asks the workflow project to *confirm whether voice AI has a real, callable public entry point*. Unanswered. |
 | Local component inventory (2026-05-20) | Contains one **inactive** telephony-vendor test component. No active voice component. |
 | Website codebase | No voice code, no telephony SDK, no vendor dependency. |
+| **Backend handoff (2026-08-30)** | Confirms a **plan-gated voice channel connection surface inside agency onboarding** (§3 step 5 `voice_locked`, §5 row 17 `POST /connect/voice/start` with `403 not_on_plan`, §6 `PROVIDER_VOICE_*` variable names). Confirms **nothing** about voice AI answering calls, qualifying, discussing properties, booking appointments or being multilingual. Separately marks a **website** voice sales concierge as **`RESERVED`**. |
 
-**Three of five sources indicate voice is not live. One source (the brief) states it is a
-capability. The brief is newer, which is why this is a conflict and not a conclusion.**
+**Four of six sources indicate voice AI capability is not established. One source (the brief) states
+it is a capability. The brief is newer, which is why this is a conflict and not a conclusion.**
+
+### 9.1a Three distinct things, reconciled 2026-08-31
+
+The handoff makes an existing ambiguity precise. These must never be conflated:
+
+| # | Thing | Status | Public claim |
+|---|---|---|---|
+| 1 | **Agency voice channel connection** (onboarding step 5) | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING`, entitlement gated | Describable as a connection step inside onboarding. **Not** as voice AI capability. |
+| 2 | **Voice AI capability** (answers calls, qualifies, discusses properties, books) | Unchanged. `OWNER DECISION PENDING`. Interim ruling below stands. | **No present-tense claim.** Future-labelled only. |
+| 3 | **Website voice sales concierge** (a bot that talks to site visitors) | **`RESERVED`** per handoff §10 | Visual preparation permitted. Live behaviour and any availability implication forbidden. |
+
+> **Using (1) to justify (2) in copy is a P0 violation.** A contract that lets an agency plug in a
+> voice channel is not evidence that an AI answers the call well, or at all.
 
 ### 9.2 Capability status
 
@@ -595,12 +715,14 @@ clearly separated section, never mixed into a live feature list.
 
 ### 9.9 What confirmation is missing — *blocking*
 
-1. **Is voice live today? Yes or no.** Everything else depends on this.
-2. If live: for which agencies, in which languages, since when.
+1. **Does voice AI answer and handle calls today? Yes or no.** Everything else depends on this. The
+   handoff does **not** answer it — it confirms only that a voice channel can be connected.
+2. If yes: for which agencies, in which languages, since when.
 3. Is there a callable number the website may reference (R7 forbids inventing one)?
 4. Are calls recorded or transcribed, and is the caller informed?
 5. Is AI disclosure given at the start of a call?
-6. Does appointment booking write to a real calendar?
+6. Does appointment booking write to a real calendar? *(A calendar connection surface is now
+   confirmed — handoff §5 row 17 — but that is the connection, not the booking behaviour.)*
 
 ---
 
@@ -608,19 +730,27 @@ clearly separated section, never mixed into a live feature list.
 
 ### 10.1 Capability status
 
-| ID | Capability | Category | Evidence basis |
-|---|---|---|---|
-| G1 | Customer history | **2** | Owner brief; an inactive CRM-adapter component was noted 2026-05-20 — **inactive**. |
-| G2 | Messages and channels | **2** | Owner brief. |
-| G3 | Source attribution | **2** | Owner brief; see §3. |
-| G4 | Qualification | **2** | See §6. |
-| G5 | Lead score | **2** | See §6. |
-| G6 | Preferences | **2** | See §6. |
-| G7 | Attachments and provenance | **2 + 4** | Owner brief. Storage legally unconfirmed (§18). |
-| G8 | Handoffs | **2** | Owner brief. |
-| G9 | Appointments | **2 + 3** | Owner brief. Requires calendar configuration. |
-| G10 | Matching | **2** | See §8. |
-| G11 | Central agency view | **2** | Owner brief. |
+*Reconciled 2026-08-31. **CRM selection is now backend confirmed. The CRM's internal record model is
+not.***
+
+| ID | Capability | Category | Status | Evidence basis |
+|---|---|---|---|---|
+| G0 | **Nuova universal CRM as the default** | **2** | **`BACKEND CONFIRMED`** · `WEBSITE INTEGRATION PENDING` | Handoff §3 step 7: Nuova universal CRM is the default and is `completed` with no action required. This is a genuine new confirmation. |
+| G0b | **External CRM connection** | **2 + 3** | **`BACKEND CONFIRMED`** · `WEBSITE INTEGRATION PENDING` | Handoff §5 rows 21–24: provider registry, per-provider OAuth start, connection state, health probe, mapping validation with `missing_api_names[]`, and a Salesforce `prod`/`sandbox` switch. `externally_pending` until authorised. |
+| G0c | **Naming the four confirmed CRM vendors publicly** | — | **`OWNER DECISION PENDING`** (was `REJECTED`) | The evidentiary objection is answered by the handoff registry. The commercial and per-tenant readiness question is not. See §10.7. |
+| G0d | **CRM vendor logos** | — | **`BLOCKED`** | A working adapter is not a trademark licence. Unchanged. |
+| G1 | Customer history | **2** | Unchanged. Not in the handoff. | Owner brief. |
+| G2 | Messages and channels | **2** | Unchanged. Not in the handoff. | Owner brief. |
+| G3 | Source attribution | **2** | See §3 — connection surfaces confirmed, attribution quality unchanged. | |
+| G4 | Qualification | **2** | Unchanged. See §6. | |
+| G5 | Lead score | **2** | Unchanged. See §6. | |
+| G6 | Preferences | **2** | Unchanged. See §6. | |
+| G7 | Attachments and provenance | **2 + 4** | Unchanged · `LEGAL REVIEW PENDING` (L-03, L-04, L-05) | Storage legally unconfirmed (§19). |
+| G8 | Handoffs | **2** | Unchanged. Not in the handoff. | Owner brief. |
+| G9 | Appointments | **2 + 3** | Calendar **connection** `BACKEND CONFIRMED`; appointment behaviour unchanged. | Handoff §5 row 17. |
+| G10 | Matching | **2** | See §8. Source confirmed, matching behaviour unchanged. | |
+| G11 | Central agency view | **2** | Unchanged. Not in the handoff. | Owner brief. |
+| G12 | **CRM connector health** | **2** | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` · **no public claim** | Handoff §5 row 24. Agency-facing diagnostics only. States `connected`, `degraded`, `action_required`. Never marketing material. |
 
 ### 10.2 What the agency experiences
 
@@ -648,12 +778,17 @@ visible to the agency.
 
 ### 10.6 What may not be claimed
 
-- **That it syncs with, integrates with, or replaces any named CRM.** The live site's *"Always
-  synced to your CRM"* and the `/v2` draft's named CRM list are **rejected** — see §8.6. This is
-  the most likely place for an invented-integration violation to reappear, because the phrase is
-  already written in the current codebase and will be tempting to reuse.
+- **That it syncs with or integrates with a named CRM — pending the owner's decision.** *(Revised
+  2026-08-31.)* The blanket rejection was grounded on "no integration is evidenced anywhere". That
+  ground no longer holds: the handoff evidences a four-provider adapter registry. **Naming the
+  vendors is therefore `OWNER DECISION PENDING`, not `REJECTED`.** Until the owner decides, no vendor
+  is named. The live site's unqualified *"Always synced to your CRM"* stays **rejected** regardless,
+  because it asserts automatic, universal, always-on sync that no contract supports.
+- **Vendor logos remain forbidden.** A working adapter is not a trademark licence.
 - That it is a full CRM replacement, unless the owner confirms that positioning.
-- Any storage, uptime, retention or security guarantee (§18).
+- Any storage, uptime, retention or security guarantee (§19). **Cross-tenant isolation is confirmed
+  technically and remains forbidden as a marketing claim** — do not convert a security invariant into
+  a selling point.
 
 ### 10.7 Required labelling
 
@@ -663,11 +798,16 @@ trademark permission. Logos of companies NuovaSolution does not integrate with a
 
 ### 10.8 What confirmation is missing
 
-1. Is the CRM a real agency-facing application with a login? This determines the **Log in** CTA
-   (§19.6) and much of the site architecture.
-2. Does any external CRM integration exist?
-3. Where is customer data stored, in which region, for how long (§18)?
+1. ~~Is the CRM a real agency-facing application with a login?~~ — **partly answered.** Authentication
+   exists (§18.0). **Where the application lives after onboarding step 10 is still unknown — `MF-03`,
+   and it is a P0 scope question** (`FINAL_RECONCILIATION_REPORT.md` C-27). Until it is answered the
+   **Log in** CTA cannot render, because it has no destination.
+2. ~~Does any external CRM integration exist?~~ — **answered: yes**, four providers, with health and
+   mapping validation. The remaining question is commercial: **may they be named publicly?**
+3. Where is customer data stored, in which region, for how long (§19)?
 4. Can an agency export or delete its data?
+5. Does connecting an external CRM replace Nuova CRM or run alongside it? The handoff models them as
+   alternatives in one wizard step but does not state the data consequence.
 
 ---
 
@@ -686,9 +826,15 @@ trademark permission. Logos of companies NuovaSolution does not integrate with a
 | I7 | "How is my team doing?" | **2** | Owner brief; depends on §12. |
 | I8 | Desktop, mobile and speech interaction | **2** | Owner brief only. |
 
-**Note:** this is the strongest differentiator in the entire brief — it is what separates an
-"operating system" from a "lead tool". It is also **entirely unevidenced**. That combination makes
-it the highest-value / highest-risk section on the site.
+**Note:** this is the strongest differentiator in the entire brief. It is what separates an
+"operating system" from a "lead tool", and it remains the highest-value and highest-risk section on
+the site.
+
+**Reconciliation, 2026-08-31.** The handoff exposes an `assistant` key in the `GET /entitlements`
+feature map. That is `BACKEND CONFIRMED` **as an entitlement key only**: it confirms the assistant is
+plan-gated and nothing else. No question set, no capability, no interaction surface and no speech
+support is contracted anywhere. **Every row I-01 to I-10 keeps its existing verdict**, and the
+section stays entirely `OWNER DECISION PENDING`.
 
 ### 11.2 What the agency experiences
 
@@ -816,6 +962,15 @@ including hero imagery, product screenshots and OG images.
 | K10 | Stair transitions | **2** | Owner brief. |
 | K11 | **No joystick, no free movement** | **Constraint** | A deliberate product boundary, not a limitation to hide. |
 | K12 | Customer actions **only when genuinely configured** | **3** | Owner's own conditional wording. |
+| K13 | **`px.experience` entitlement and onboarding entry** | **3** | **`BACKEND CONFIRMED`** · `WEBSITE INTEGRATION PENDING`. Handoff §3 step 9 and §5 row 27: `GET /px/entry` returns `{ entitled, state: "available" \| "locked_addon", action }`. Entitled means available; otherwise `locked_by_plan` as an add-on. |
+
+**Reconciliation, 2026-08-31.** The handoff confirms **the entitlement and the onboarding entry
+point only**. It confirms **none** of K1 to K12 — no panorama model, no navigation model, no floor
+plan, no measurement sourcing. Those keep their existing verdicts, and **K5 remains
+`LEGAL REVIEW PENDING`** (L-12).
+
+**Scope boundary, binding:** the 3D room-based 360 capture wizard belongs to the Property Experience
+lane. **The website must not build a second one** (handoff §3 step 9).
 
 ### 13.2 What the agency experiences
 
@@ -887,14 +1042,20 @@ permission, or clearly marked as illustrative.
 
 ### 14.1 Capability status
 
-| ID | Capability | Category |
-|---|---|---|
-| L1 | Agency logo | **3** — configuration-dependent by nature |
-| L2 | Email banner | **3** |
-| L3 | Signatures | **3** |
-| L4 | Brand identity | **3** |
-| L5 | Personalised communication | **3** |
-| L6 | Tenant-specific configuration | **2 + 3** |
+*Reconciled 2026-08-31. Branding asset handling is now backend confirmed end of contract.*
+
+| ID | Capability | Category | Status |
+|---|---|---|---|
+| L1 | Agency logo | **3** | **`BACKEND CONFIRMED`** · `WEBSITE INTEGRATION PENDING`. Handoff §5 rows 13–15: upload init with a signed URL minted in the BFF, commit, preview, remove. |
+| L2 | Email banner | **3** | **`BACKEND CONFIRMED`** · `WEBSITE INTEGRATION PENDING`. Same contract, `kind: "email_banner"`. |
+| L3 | Signatures | **3** | `BACKEND CONFIRMED` as part of onboarding step 3 (footer/signature). |
+| L4 | Brand identity | **3** | `BACKEND CONFIRMED` as an onboarding step; the breadth of "identity" is not contracted. |
+| L5 | Personalised communication | **3** | Unchanged. Not in the handoff. |
+| L6 | Tenant-specific configuration | **2 + 3** | **`BACKEND CONFIRMED`.** Tenant and role are derived server-side from the verified JWT; cross-tenant asset access is refused (`403 cross_tenant_asset`). |
+
+**Upload limits are unspecified** — `MF-07`. The accepted `content_type` values and the `size_bytes`
+ceiling behind `400 unsupported_file_type` / `400 file_too_large` are not in the handoff, so no
+validation copy can be written yet.
 
 ### 14.2 What the agency experiences
 
@@ -917,9 +1078,11 @@ Branding is configured by the agency during onboarding.
 
 ### 14.6 What may not be claimed
 
-- White-label, reseller or agency-partner programme terms — none are confirmed.
+- White-label, reseller or agency-partner programme terms. None are confirmed.
 - Data-isolation, tenancy-security or "your data is separate" **security** guarantees. Tenant
-  separation is a functional statement here, not a security assurance (§18).
+  separation is a functional statement here, not a security assurance (§19). **This holds even
+  though the handoff confirms cross-tenant isolation was proven on staging** — a technical invariant
+  is not a marketing claim, and converting it into one is a P0 violation.
 
 ### 14.7 Required labelling
 
@@ -937,16 +1100,61 @@ None beyond the standard illustrative marker on any branded mockup.
 
 ### 15.1 Capability status
 
-| ID | Capability | Category | Evidence basis |
+*Reconciled 2026-08-31. **This section changed more than any other.** The wizard is fully contracted.*
+
+### 15.0 Authentication and session — new, `BACKEND CONFIRMED`
+
+| ID | Capability | Status | Evidence basis |
 |---|---|---|---|
-| M1 | Agency setup | **2** | Owner brief only. |
-| M2 | Employees and roles | **2** | Owner brief only. |
-| M3 | Channels | **2 + 3** | Owner brief; each channel needs its own permissions. |
-| M4 | Branding | **2** | See §14. |
-| M5 | Property experience setup | **2** | See §13. |
-| M6 | Lead connections | **2 + 3** | See §3. |
-| M7 | Package entitlements | **2** | See §17. |
-| M8 | **Self-service without developers** | **2** | Owner brief only — and it is a strong claim. |
+| M0a | **Signup** with tenant bootstrap and `agency_admin` membership | **`BACKEND CONFIRMED`** · `WEBSITE INTEGRATION PENDING` | Handoff §1 and §5 row 1. Public, captcha-protected, rate-limited. Service-role provisioning happens in the BFF only. Starts the 14-day trial (§18). |
+| M0b | **Login** | **`BACKEND CONFIRMED`** · `WEBSITE INTEGRATION PENDING` | Handoff §1 and §5 row 2. Password grant, browser-safe with the anon key. |
+| M0c | **Logout** | **`BACKEND CONFIRMED`** · `WEBSITE INTEGRATION PENDING` | Handoff §1 and §5 row 3. |
+| M0d | **JWT and session** | **`BACKEND CONFIRMED`** · `WEBSITE INTEGRATION PENDING` | Handoff §1. Short-lived access token; **tenant and role derived server-side from `sub`**; refresh before expiry; on `401` refresh then retry once; httpOnly cookies preferred over `localStorage`. |
+| M0e | Cross-tenant isolation | `BACKEND CONFIRMED` · **`REJECTED` as a public claim** | Handoff §1 states it was proven on staging. It stays a security invariant, never a selling point. |
+| M0f | **Dashboard destination after onboarding** | **`BLOCKED`** — `MF-03` | Not in the handoff. Step 10 says "→ dashboard" with no URL, route or ownership statement. **This blocks the Log in CTA and the entire authenticated route tree.** P0 scope question (C-27). |
+
+### 15.1 The ten onboarding steps — `BACKEND CONFIRMED`
+
+The wizard is driven by one projection, `GET /onboarding/state`, returning `percent_complete`,
+`resume_step`, `completed_steps`, `total_steps`, `activatable`, `legend` and `steps[]`.
+**Progress and resume** are written with `POST /onboarding/touch { step, action: "visit" | "skip" }`,
+which requires the `manage_users` permission.
+
+| # | Step key | Category | Status | Completion rule per the handoff |
+|---|---|---|---|---|
+| 1 | `account` | 3 | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | `completed` when a contact email is present. |
+| 2 | `agency` | 3 | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | Company name, website, address, phone, legal/footer, preferred languages. `completed` when name and timezone are set. |
+| 3 | `branding` | 3 | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | See §14. `completed` when branding is configured. |
+| 4 | `team` | 3 | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | `completed` at one or more active employees. Roles below. |
+| 5 | `communication` | 3 | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | Email, WhatsApp/Meta, Calendar, Voice when entitled. `externally_pending` during verification; `voice_locked` when voice is not entitled. |
+| 6 | `lead_acquisition` | 3 | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | See §3. `locked_by_plan`, `externally_pending`, `optional`, `completed`. |
+| 7 | `crm` | 3 | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | **Nuova CRM is the default and is `completed` with no action.** External CRM is `externally_pending` until authorised. |
+| 8 | `property_source` | 3 | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | See §8. Agency website, feed, CRM inventory, other authorised. |
+| 9 | `property_experience` | 3 | `BACKEND CONFIRMED` (entitlement and entry only) · `WEBSITE INTEGRATION PENDING` | See §13. Entitled means available; otherwise `locked_by_plan`. |
+| 10 | `ready` | 3 | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` · **destination `BLOCKED` (`MF-03`)** | Readiness and health summary. `completed` when the tenant is `activatable`. |
+
+**Binding rule from the handoff:** a step in an `externally_pending` state is **never** presented as
+done. This is a release-blocking invariant, not a preference.
+
+### 15.2 Step state vocabulary — `BACKEND CONFIRMED`
+
+Wizard steps carry exactly one of `completed`, `needs_action`, `externally_pending`,
+`locked_by_plan`, `optional`. Connector health additionally uses `connected`, `degraded`,
+`action_required`. Each must render distinctly. `degraded` is additive: it is neither a hard error
+nor `connected`.
+
+### 15.3 Remaining capability rows
+
+| ID | Capability | Category | Status |
+|---|---|---|---|
+| M1 | Agency setup | **3** | `BACKEND CONFIRMED` — step 2. |
+| M2 | Employees and roles | **3** | **`BACKEND CONFIRMED`.** Four roles: `agent`, `team_lead`, `office_manager`, `agency_admin`. Invite contract at handoff §5 row 16. `agency_admin` is the owner-bootstrap role created at signup. |
+| M3 | Channels | **2 + 3** | `BACKEND CONFIRMED` (connection surfaces) — see §4. Each channel still needs its own permissions. |
+| M4 | Branding | **3** | `BACKEND CONFIRMED` — see §14. |
+| M5 | Property experience setup | **3** | `BACKEND CONFIRMED` (entitlement and entry only) — see §13. |
+| M6 | Lead connections | **2 + 3** | `BACKEND CONFIRMED` (connection surfaces) — see §3. |
+| M7 | Package entitlements | **2** | **`BACKEND CONFIRMED` as technical and per tenant** — see §17.7. |
+| M8 | **Self-service without developers** | **3** | **`BACKEND CONFIRMED` in structure.** A ten-step self-service wizard with progress, resume and role-gated writes now demonstrably exists as a contract. |
 
 ### 15.2 What the agency experiences
 
@@ -984,11 +1192,18 @@ If onboarding is shown as a flow, every screen is illustrative unless it is a re
 
 ### 15.8 What confirmation is missing
 
-1. Does a self-service onboarding flow exist, or is onboarding currently human-led?
-2. Where does it live — inside the product app, or on the website? This determines whether the
-   redesign builds an onboarding page or only a description of onboarding.
-3. Which steps genuinely require no developer.
-4. What roles exist (M2).
+1. ~~Does a self-service onboarding flow exist?~~ — **answered: yes.** Ten steps, one projection,
+   progress and resume, role-gated writes.
+2. ~~Where does it live?~~ — **partly answered.** The wizard is contracted for the website to build.
+   **Where the product continues after step 10 is still unknown — `MF-03`, P0.**
+3. Which steps genuinely require no developer. The contract is self-service in shape; whether a real
+   agency completes it unaided is an adoption question the handoff cannot answer.
+4. ~~What roles exist?~~ — **answered: four.**
+5. `MF-05` — the per-step `detail` shape inside `steps[]`, without which the wizard cannot be
+   rendered.
+6. `MF-04` — the `code` enumeration in the response envelope, without which no error copy exists.
+7. `MF-07` — branding upload limits. `MF-08` — the captcha provider. `MF-09` — accepted `language`
+   values at signup.
 
 ---
 
@@ -1032,10 +1247,23 @@ must be confirmed by the owner in both languages.
 
 ### 17.1 Confirmed package structure
 
-Three internal package IDs, confirmed by the owner: **`essential`**, **`growth`**, **`scale`**.
+Three internal package IDs, confirmed by the owner and now **`BACKEND CONFIRMED`**:
+**`essential`**, **`growth`**, **`scale`**.
 
-**Public names are not confirmed.** The internal IDs may not be assumed to be the marketing names.
-Owner decision required before any pricing page is written.
+`GET /plans` returns `{ code, name, price_display, features_summary }` per plan.
+`GET /subscription/state` returns `{ account_state, plan, cancel_at_period_end }`.
+`POST /checkout/session { plan_code }` returns `{ checkout_url }`; payment secrets and price
+identifiers stay in the BFF.
+
+**Public names are still not confirmed.** The backend *serves* a `name` field, which means the
+website must **render** it rather than author one, and must never contradict it. Whether the served
+`name` is the public marketing name is `MF-10`. Owner decision required before any pricing page is
+written (§17.5).
+
+> **The binding pricing rule, restated with the contract in hand:** the website **renders
+> `price_display`** and **never authors a figure**. This closes the "no billing provider exists"
+> objection without opening the door to a hardcoded price. Currency and tax basis are unspecified
+> (`MF-10`).
 
 ### 17.2 Baseline — included in all paid packages
 
@@ -1080,12 +1308,14 @@ column heights.
 
 ### 17.5 What is explicitly not confirmed
 
-- **Any euro price.** No price, no "from €X", no discount, no currency, no billing period, no
-  setup fee, no minimum term, no per-seat or per-agency model. R6 is absolute.
-- **Any numeric limit or quota.**
-- The public package names.
-- Whether pricing is public or on request.
-- The exact feature-to-package mapping in §17.3.
+- **Any euro price authored by the website.** No price, no "from €X", no discount, no currency, no
+  billing period, no setup fee, no minimum term, no per-seat or per-agency model may be written into
+  the site. R6 is absolute. *(The website may render `price_display` served by `GET /plans`. That is
+  rendering a value, not authoring one.)*
+- **Any numeric limit or quota.** Not in the handoff. `OWNER DECISION PENDING`.
+- The public package names. `OWNER DECISION PENDING` and `MF-10`.
+- Whether pricing is displayed publicly or on request.
+- The exact feature-to-package mapping in §17.3. **Not in the handoff.** `OWNER DECISION PENDING`.
 
 ### 17.6 What may be published today
 
@@ -1100,37 +1330,68 @@ A pricing page may state, without invention:
 Everything else waits. A pricing page with invented figures is a **P0** finding under R6 and
 `INTEGRATION_CONTRACT.md` §9.
 
-### 17.7 Entitlement enforcement
+### 17.7 Entitlement enforcement — **answered 2026-08-31**
 
-Whether the product technically enforces entitlements per tenant is **unconfirmed**. The website
-must not claim that a package "unlocks" a capability if enforcement is manual. This is a Category 2
-item requiring owner confirmation.
+**`BACKEND CONFIRMED` as technical and per tenant.** `GET /entitlements` returns a feature map
+resolving each key to `enabled`, `deferred` or `denied`, and wizard steps carry `locked_by_plan`
+where a plan does not cover them. Provider connect returns `403 not_on_plan` for unentitled channels.
+
+Consequences:
+
+- The word **"unlocks"** becomes defensible wording. The previous prohibition is lifted.
+- Enforcement is **not** manual, so the §14/§15 caveat about manual gating is withdrawn.
+- **Technical entitlement keys are never shown to the agency** (handoff Appendix B invariant 6), and
+  never appear in public copy.
+- What each plan *contains* is still `OWNER DECISION PENDING`. Confirmed enforcement is not a
+  confirmed mapping.
 
 ---
 
 ## 18. The 14-day trial and the extension mechanism
 
-### 18.1 Trial existence — unresolved and blocking
+### 18.0 The trial exists — **resolved 2026-08-31**
 
-| Source | Says |
+**`BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` · `END TO END VERIFICATION PENDING`.**
+
+`IMPLEMENTATION_STATUS.md` C-01 asked whether a 14-day trial exists. **The handoff answers yes.**
+
+| Concern | Contract |
 |---|---|
-| Owner's brief | The 14-day trial is the **central conversion entry point**. |
-| `INTEGRATION_CONTRACT.md` §1 | `BLOCKED` — no signup, no auth, no provisioning, no billing exists. |
-| `IMPLEMENTATION_STATUS.md` C-01 | Open conflict: does the trial exist at all? |
-| Website codebase | No signup path. **But** a gold primary button labelled *"Start for free" / "Empezar gratis"* exists in `final-cta.tsx` and opens the **Cal.com demo booking**. `/live-demo` uses *"Start for free now"* for the same behaviour. |
+| Start | Implicit in signup. The tenant is created with a 14-day trial window. There is no separate call. |
+| Status | `GET /trial/status` returns `{ status, plan, trial_end, days_left, account_state }`, with `status` one of `trialing`, `trial_expired`, `active`, `past_due`, `suspended`, `canceled`. |
+| Remaining time | `days_left` plus `trial_end` as an ISO-8601 timestamp. **The source of truth is server-side and is never computed in the browser.** |
+| Expiry | On `trial_expired`, premium features resolve to `denied`, the UI shows conversion prompts, and **login is never blocked**. |
 
-**Finding — recorded as fact:** the production website already presents a "start for free" promise
-that leads to a sales call. That is a claim/behaviour mismatch and a conversion-honesty problem
-independent of whether the trial exists. It must not be carried into the redesign in that form.
+**Every statement in the previous version of this section claiming the trial does not exist is
+withdrawn.**
 
-**Ruling: the words "14 day free trial", "start free" or "free trial" may not appear anywhere on
-the redesigned site until the owner confirms in writing that the trial exists and states what it
-provisions.** This is Category 6 at best, and the CTA hierarchy in `MASTER_GOVERNANCE.md` §11
-cannot be implemented as written until then.
+### 18.1 What the trial's existence does *not* settle
 
-### 18.2 The extension mechanism — confirmed process, not yet approved for publication
+**The word "free" is still not confirmed.** The handoff never uses it, never states whether a payment
+method is required at signup, and never states the commercial framing.
 
-The owner has specified the mechanism precisely. Recorded verbatim in substance:
+| Wording | Status |
+|---|---|
+| "14-day trial" | `BACKEND CONFIRMED`. Publishable once the surface exists and the CTA is released. |
+| "Free trial", "Start free", "Try free" | **`OWNER DECISION PENDING`.** Each is separately forbidden until confirmed. |
+| "No credit card required" | **`OWNER DECISION PENDING`.** Requires an explicit owner statement about payment at signup. |
+
+**Finding retained as fact:** the production website already presents a "start for free" promise that
+opens a Cal.com sales booking. That remains a claim/behaviour mismatch and must not be carried into
+the redesign in that form, regardless of the trial's confirmed existence.
+
+**Ruling:** *"14 day trial"* is now sayable in principle. *"Free"* is not, until the owner decides.
+The CTA hierarchy in `MASTER_GOVERNANCE.md` §11 still cannot be implemented verbatim, because its
+primary CTA carries the unconfirmed word. `Book a demo` remains the interim primary CTA, pending
+owner ratification.
+
+**Separately and independently:** every product CTA remains under the `MASTER_GOVERNANCE.md` §14.3
+lockdown and requires **explicit, per-action owner release** before it is wired. The arrival of a
+contract is not a release.
+
+### 18.2 The extension mechanism — **now backend confirmed, still legally held**
+
+The owner specified the mechanism precisely. Recorded verbatim in substance:
 
 1. After the 14 days, an extension of **seven days** may be requested **exactly once**.
 2. The customer submits an honest reference or feedback video, or a link to one.
@@ -1139,13 +1400,48 @@ The owner has specified the mechanism precisely. Recorded verbatim in substance:
 5. Seven days are granted **only after manual approval**.
 6. **An upload may never automatically trigger an extension.**
 
-### 18.3 Ruling on publication
+**Reconciliation, 2026-08-31 — `BACKEND CONFIRMED`.** The handoff confirms points 1, 3, 4, 5 and 6
+exactly:
 
-> **This mechanism is marked DISABLED for public display.**
+| Owner's step | Contract |
+|---|---|
+| Submission | `POST /testimonial` with `{ rating, quote, author_name, author_role, consent }`. Stored **pending moderation**. Returns `{ ok, state: "pending" }`. |
+| `pending review` | `GET /testimonial/status` returns `pending`, `approved` or `rejected`. Only owner-approved testimonials are published. |
+| Manual owner approval | A manual-approval gate in the trial subsystem. The extension applies **only while the state is `approved`**. |
+| Exactly once, plus 7 days | Applied by the backend on approval. **The website never grants the extension itself** — it reflects the updated status. |
+| No auto-grant on upload | Confirmed. The submission endpoint returns `pending`, never `approved`. |
 
-It may not appear on the website — not in copy, not in a FAQ, not in a pricing footnote, not in a
-tooltip — until it is **organisationally and legally cleared**. This is the owner's own instruction
-and this document enforces it.
+**Point 2 is the exception and it is `BLOCKED`.** The confirmed payload has **no media field** — no
+`video_url`, no upload pair, no media handling of any kind. The owner's mechanism is video-first; the
+contract accepts a numeric rating and text only. This is `MF-01`, and until it is supplied the
+website **cannot build a submission surface matching the stated mechanism**.
+
+**Binding rendering rule:** the website **never hardcodes the number seven**. It renders the updated
+`trial_end` returned by the trial status endpoint. The handoff's own honesty note makes `trial_end`
+the single source of truth, so that a product change to the extension length does not silently make
+the website lie.
+
+**Also unresolved:** `MF-12` — whether submission is authenticated-only or also public with a
+captcha. The two imply different surfaces in different places on the site.
+
+### 18.3 Ruling on publication — **unchanged by the backend confirmation**
+
+> **This mechanism remains marked DISABLED for public display.**
+> **Status: `BACKEND CONFIRMED` and simultaneously `LEGAL REVIEW PENDING`.**
+
+It may not appear on the public website in copy, in a FAQ, in a pricing footnote or in a tooltip,
+until it is **organisationally and legally cleared**. This is the owner's own instruction and this
+document continues to enforce it.
+
+**This is the clearest case in the entire project of the governing rule: a technical confirmation
+does not lift a legal hold.** The backend now demonstrably implements the mechanism correctly,
+including the manual gate the owner specified. None of that touches L-13 (incentivised testimonials
+under EU unfair-commercial-practices rules), the personal-data question raised by video, or the
+contract-terms question. Those are decided by counsel, not by an endpoint.
+
+**Permitted meanwhile:** the mechanism may be specified and built as an **authenticated product
+surface** behind login, once the privacy policy closes (L-14 / C-22) and the CTA lockdown is
+released for it. **Forbidden:** any appearance in public marketing.
 
 ### 18.4 Why it needs legal clearance before it is published
 
@@ -1198,7 +1494,12 @@ explicit, recorded owner decision to accept the risk.
 | L-11 | **Team performance visibility** | Employee monitoring in Spain engages works-council information duties and data-protection obligations. | §11 (I7) |
 | L-12 | **Property measurement display** | Consumer-protection and Andalusian property-information rules. | §13 (K5) |
 | L-13 | **Incentivised testimonial mechanism** | Unfair-commercial-practices rules on incentivised reviews. | §18 |
-| L-14 | **Website privacy policy is materially incomplete** | The current policy states consent-only basis, "reply to your inquiry", no retention period, no AI processing, no automated decision-making, no image/document/audio storage, no third-country transfers, no sub-processors. It cannot support the platform the redesign will describe. | Site-wide, **blocking** |
+| L-14 | **Website privacy policy is materially incomplete — and the gap grew on 2026-08-31** | The current policy states consent-only basis, "reply to your inquiry", no retention period, no AI processing, no automated decision-making, no image/document/audio storage, no third-country transfers, no sub-processors. **The confirmed integration adds all of the following as new processing:** account creation, password handling, JWT sessions, agency and team personal data, uploaded branding assets, provider OAuth tokens held server-side, testimonial consent and content, and a payment handoff. The policy is now materially further from adequate than when L-14 was written. | Site-wide, **launch-blocking**. **No authenticated surface may ship to a public URL before this closes.** |
+
+> **Reconciliation note, 2026-08-31.** Every legal dependency L-01 to L-14 is **unchanged** by the
+> backend handoff, except L-14 which is **enlarged**. The handoff is a technical document; it makes
+> no legal assertion and clears no legal hold. Where a capability is now `BACKEND CONFIRMED` and also
+> `LEGAL REVIEW PENDING`, **the legal hold governs.**
 
 ### 19.1 Approved cautious formulations
 
@@ -1224,18 +1525,23 @@ Categories 6 and 7 are not rescued by hedging.
 
 ## 20. CTA truth audit
 
+*Reconciled 2026-08-31.*
+
 | CTA | Target system | Status | Verdict |
 |---|---|---|---|
-| **Start your 14 day free trial** | None. No signup, auth, provisioning or billing. | `BLOCKED` | **Blocked.** May not appear until §18.1 is answered. The governance CTA hierarchy cannot be implemented as written. |
-| **Book a demo** | Cal.com, event confirmed in code | `LIVE`, unsafe implementation | **Approved as the primary CTA** in the interim. Implementation defect A-02 (`href="#"` + `preventDefault()`) must be fixed — the anchor must carry the real booking URL. |
-| **Experience Nuova** | Undecided: simulation or real backend | `PENDING` | **Placeholder ready.** Ships only as a labelled simulation (§16) until the owner decides. |
-| **Talk to Nuova** | Undefined — could be voice, assistant, or callback | `BLOCKED` | **Blocked.** The label has no defined behaviour (C-04). It must not appear while ambiguous. If it means voice, §9 blocks it as well. |
-| **Chat with Nuova** | No chat backend | `PENDING` | **Placeholder ready.** A chat window that accepts input and never answers is a P0 violation. Ships as an honest pending state or not at all. |
-| **Log in** | No application, no URL, no auth | `BLOCKED` | **Blocked.** Depends on §10.8 #1 — whether a customer-facing application exists. R7 forbids inventing a URL. |
-| **WhatsApp** *(referenced across the brief)* | No number exists anywhere | `BLOCKED` | **Blocked.** R7 forbids inventing a phone number. |
+| **Start your 14 day trial** | **Signup contract confirmed** (§18.0) | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` · `OWNER DECISION PENDING` on wording · **§14.3 CTA lockdown applies** | **The "does it exist" objection is withdrawn.** The action is real. It may not ship until (a) the owner confirms the commercial wording, in particular the word *free*, and (b) the owner releases the CTA individually under §14.3. |
+| **Book a demo** | Cal.com, an **existing external scheduling tool** | Working external option · defect A-02 open | **Approved as the interim primary CTA.** The anchor must carry the real booking URL with the embed as progressive enhancement. **`POST /demo/book` is `PROPOSED`, not backend-defined — it must not be created, typed as real, or wired.** Demo booking is optional and is never a prerequisite to starting a trial. |
+| **Experience Nuova** | Undecided: simulation or real backend | `OWNER DECISION PENDING` | **Placeholder ready.** Ships only as a labelled simulation (§16) until the owner decides. |
+| **Talk to Nuova** | Undefined | **`BLOCKED`, retired** | The label has no defined behaviour and is withdrawn from the project. It must not be used at all. |
+| **Chat with Nuova** | No chat backend. Website concierge endpoint is reserved. | **`RESERVED`** | A designed pending panel offering *Book a demo*, or omission. **A launcher that accepts input and never answers is a P0 violation.** |
+| **Log in** | **Auth confirmed** (§15.0) — but **no destination** | `BACKEND CONFIRMED` · **destination `BLOCKED` on `MF-03`** | **The "does an app exist" objection is withdrawn — authentication is real.** The nav item still cannot render, because no dashboard URL, route or ownership statement exists anywhere. R7 forbids inventing one. |
+| **WhatsApp** *(NuovaSolution's own number)* | No number exists anywhere | **`BLOCKED`** | Unchanged. The handoff confirms the **agency** connecting its own WhatsApp channel; it says nothing about a NuovaSolution business number. R7 forbids inventing one. |
+| **Website voice / WhatsApp sales concierge** | Reserved endpoint, no backend | **`RESERVED`** | Visual preparation permitted. Any live behaviour, availability implication or present-tense wording is forbidden. |
 
-**Six of seven conversion paths have no working target system.** Only *Book a demo* is live, and its
-current implementation is defective.
+**Position after reconciliation:** two conversion paths now have a confirmed backend contract (trial
+signup, login), and **neither may ship yet** — one waits on commercial wording plus CTA release, the
+other on a destination. *Book a demo* remains the only working path today, through an external
+scheduling tool rather than a product system.
 
 ---
 
@@ -1245,8 +1551,11 @@ current implementation is defective.
 |---|---|---|
 | **PT-C1** | `CLAUDE.md` positioning and visual direction contradict the redesign brief | Owner: update `CLAUDE.md` (confirms C-07) |
 | **PT-C5** | Voice: brief says capability, `/v2` draft says "soon", integration contract unanswered, no active component | **Owner: is voice live today?** |
-| **PT-C6** | Governance §11 mandates the trial as primary CTA; no trial product is confirmed | **Owner: does the trial exist?** (confirms C-01) |
-| **PT-C7** | Named integrations (portals, CRMs) appear in draft copy and live copy with no evidence | **Owner: confirm or reject each name individually** |
+| ~~**PT-C6**~~ | ~~Governance §11 mandates the trial as primary CTA; no trial product is confirmed~~ | **Resolved as to existence, 2026-08-31.** The trial is `BACKEND CONFIRMED` (§18.0). What remains is narrower: **is it free, and is a payment method required at signup?** `OWNER DECISION PENDING`. |
+| **PT-C7** | Named integrations appear in draft copy and live copy | **Split, 2026-08-31.** **CRM vendors:** the evidentiary objection is answered; naming is now `OWNER DECISION PENDING`, logos stay `BLOCKED`. **Portals:** `REJECTED`, unchanged, because the handoff names none. |
+| **PT-C12** | The website does not know where the product ends after onboarding step 10 | **`MF-03`, P0.** Blocks the Log in CTA, the wizard exit and the entire authenticated route tree. Owner must supply a dashboard URL or confirm the website hosts it. |
+| **PT-C13** | `MASTER_GOVERNANCE.md` §14 forbids the staging calls the handoff assumes | **P0 for the wave.** `END TO END VERIFICATION PENDING` cannot be closed from this repository under the current rules. Owner must state whether the website BFF may call a staging target, with production excluded. |
+| **PT-C14** | Hot lead alerting is mandated by `CLAUDE.md` and absent from every source | **`BLOCKED` on `MF-02`.** No endpoint, no channel, no routing, no ownership model. No copy, section, visual or phone mockup may assert it. |
 | **PT-C8** | Live site publishes a 1–100 score scale and an 80 threshold sourced from the website's own simulation | Owner: confirm the product's real scale, or drop it |
 | **PT-C9** | Live site publishes "Start for free" routing to a demo booking, and "No setup needed" for a platform requiring configuration | Owner: acknowledge; must not be carried over |
 | **PT-C10** | `/live-demo` presents deterministic client-side logic as live AI, with no disclosure | Owner + implementation: P0, remediate |
@@ -1256,28 +1565,45 @@ current implementation is defective.
 
 ## 22. Summary for the copy, design and implementation instances
 
+*Revised 2026-08-31 after the backend handoff.*
+
 **What you may build on now**
 
 - The positioning: an AI Operating and Growth Platform for real estate agencies (§2).
-- The full capability architecture in §3–§15 — as *structure*. The site can be designed and written
-  around these domains today.
-- Category 3 claims (configuration-dependent) — these are safe with their qualifier, because the
+- The full capability architecture in §3–§15 as *structure*.
+- Category 3 claims (configuration-dependent). These are safe with their qualifier, because the
   qualifier is the honest description.
+- **The confirmed product spine, new on 2026-08-31:** signup, login, logout, JWT sessions, the
+  14-day trial and its status, the ten-step onboarding wizard with progress and resume, agency
+  details, branding assets, team and four roles, CRM selection with Nuova CRM as the default,
+  property source including agency website inventory, Property Experience entitlement and entry,
+  readiness, entitlements as technically enforced, plans, subscription state and checkout handoff.
+  These may be **specified and designed against real contracts**.
 - The confirmed package baseline (§17.2) and the three-package structure.
-- *Book a demo* as the working primary CTA.
+- *Book a demo* as the interim primary CTA, through an existing external scheduling tool.
 
 **What you may not build on**
 
-- Any present-tense "we do this today" claim without the §19.1 qualifier — because **nothing is in
-  Category 1**.
-- Voice as a live capability (§9).
-- The 14-day trial, in any wording (§18.1).
-- The trial extension mechanism (§18.3).
-- Any number: price, limit, quota, score scale, response time, percentage, count, spend, ROI (§12.6,
-  §17.5).
-- Any named third-party integration or logo (§8.6, §10.6).
-- Any of the six blocked CTAs (§20).
+- Any present-tense "we do this today" capability claim without the §19.1 qualifier. **Nothing is in
+  Category 1**, and `BACKEND CONFIRMED` is not a licence to advertise.
+- Any claim that a confirmed contract means a working website feature. Every surface is
+  `WEBSITE INTEGRATION PENDING` and `END TO END VERIFICATION PENDING`.
+- Voice AI as a live capability (§9). The confirmed **connection** surface does not evidence it.
+- The word **free** attached to the trial (§18.1).
+- The trial extension mechanism in public copy (§18.3), despite its backend confirmation.
+- **Hot lead alerting**, in any form. `BLOCKED` on `MF-02`.
+- Any number the website authors: price, limit, quota, score scale, response time, percentage,
+  count, spend, ROI (§12.6, §17.5). Rendering a served `price_display` is not authoring.
+- Any named portal integration, and any vendor logo (§8, §10.6). CRM vendor **names** await the
+  owner's decision.
+- Any blocked or reserved CTA (§20).
 - Reactivation and advanced follow-up, until legal confirmation (§7, §19).
+
+**The structural recommendation is reinforced, not replaced.** Capability status must be a *content
+property*, not hard-coded prose. Wave A1 moved roughly two dozen capabilities in a single day without
+a line of website code changing. More will move as export-v2 and the owner's decisions arrive. A site
+whose claims can be re-qualified without a rebuild is worth considerably more than one where every
+hedge is baked into a paragraph.
 
 **The one structural recommendation this document makes:** design the site so that a capability's
 status is a *content property*, not hard-coded prose. Categories will move as the owner supplies

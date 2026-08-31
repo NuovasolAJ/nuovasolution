@@ -3,6 +3,7 @@
 **Author:** Product Truth Director / Claims Auditor instance (independent of implementation)
 **Branch:** `website_enterprise_redesign`
 **Created:** 2026-08-30
+**Last reconciled:** 2026-08-31 — Wave A1, against `backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md`
 **Governs:** every public statement on the website — headlines, subheads, feature names, bullets,
 tooltips, alt text, meta descriptions, OG text, microcopy, button labels, image captions, and any
 number rendered anywhere, in **both** languages.
@@ -43,6 +44,34 @@ what the product is; this document wins on what may be said.
 `4` Legally/organizationally restricted · `5` Controlled simulation · `6` Website prepared, backend
 not connected · `7` Future capability · `EXCL` Explicitly excluded by the owner
 
+### Reconciliation status vocabulary (added 2026-08-31, binding)
+
+Rows reconciled against the backend handoff carry these in the **Current Status** column. A row
+normally carries two or more.
+
+`BACKEND CONFIRMED` a contract exists in the handoff · `WEBSITE INTEGRATION PENDING` no website code
+exists for it · `END TO END VERIFICATION PENDING` nothing proven against a real target, **true of
+every row** · `LEGAL REVIEW PENDING` held by a §22 dependency · `OWNER DECISION PENDING` awaiting the
+owner · `RESERVED` reserved in the handoff for a backend that does not exist · `PROPOSED` a shape
+proposed, not backend defined · `BLOCKED` a required contract, decision or clearance is missing ·
+`REJECTED` may not be stated in any wording.
+
+**`LIVE` and `PRODUCTION READY` are removed from the project vocabulary.**
+
+### The rule that governs every reconciled row
+
+> **`BACKEND CONFIRMED` is not permission to publish.** It answers the evidence question and nothing
+> else. It never converts a `LEGAL` or `REJECTED` verdict into an approved one, and it never
+> discharges the §14.3 requirement for a per-action owner release before a product CTA is wired.
+
+### House style, binding on every Approved Wording string (added 2026-08-31)
+
+**No dashes in public website copy**, in either language. Em dash, en dash and the parenthetical
+dash are banned in customer-facing wording per `COPY_AND_CONVERSION_MASTER.md` §0.4 and §1.8. Where a
+previously approved string used one, it has been rewritten with natural sentence structure. **The
+claim never becomes stronger in the rewrite** — only the punctuation changes. Dashes remain
+permissible in this document's own analytical prose and table cells, which are never published.
+
 ### Risk legend (from `MASTER_GOVERNANCE.md` §2)
 
 `P0` False public claim / legal exposure / dead conversion path — blocks everything.
@@ -60,9 +89,15 @@ inventory, 2026-05-20, names only, no functional verification · `NONE` No evide
 
 ## 0. The rule that governs every row
 
-**No capability in this matrix has Status 1.** Verification of the product backend was not
-performed and, under the owner's system-isolation directive, was not permitted
-(`PRODUCT_TRUTH.md` §0.3).
+**No capability in this matrix has Status 1**, and none has been verified end to end. Under
+`MASTER_GOVERNANCE.md` §14 this repository may not call any product system, staging included, so
+`END TO END VERIFICATION PENDING` is currently **unreachable** rather than merely open
+(`FINAL_RECONCILIATION_REPORT.md` C-14).
+
+*Updated 2026-08-31:* the backend handoff moved roughly two dozen capabilities from "owner brief
+only, unevidenced" to `BACKEND CONFIRMED`. **That changed the evidence column. It did not change a
+single legal verdict, and it did not by itself approve a single new public sentence.** Where a row
+below now reads `BACKEND CONFIRMED`, check its Verdict before writing anything.
 
 Consequently the default verdict for a capability claim is `APPROVED-Q`, never `APPROVED`. Plain
 `APPROVED` appears in this document only for:
@@ -70,7 +105,7 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 - statements about **structure and intent** rather than live capability,
 - statements the owner has personally confirmed as commercial fact,
 - statements about what the product **does not** do (which carry no capability risk),
-- the one live integration, *Book a demo*.
+- *Book a demo*, which routes to an existing external scheduling tool.
 
 ---
 
@@ -90,13 +125,14 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 
 | ID | Capability | Status | Evidence | Public? | Approved Wording | Forbidden Wording | Legal Dep | Tech Dep | Owner Decision | Risk | Verdict |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| A-01 | Google Lead Forms intake | 2 | BRIEF | Qualified | "Receives leads from Google Lead Forms, based on agency permissions and configuration." | "Integrates with Google Ads"; "Manages your Google campaigns" | — | Agency's own ad account + permissions | Is it live for a real agency? | P1 | `APPROVED-Q` |
-| A-02 | Meta Lead Ads intake | 2 | BRIEF | Qualified | "Receives leads from Meta Lead Ads, based on agency permissions and configuration." | "Official Meta partner"; "Meta integration" as a badge | — | Meta app permissions; possible app review | Is it live? Is app review held? | P1 | `APPROVED-Q` |
-| A-03 | Click-to-WhatsApp attribution | 2 | BRIEF | Qualified | "Sees which campaign a WhatsApp conversation came from, where the platform provides it." | "Full attribution"; "Exact attribution"; "Tracks every click" | L-08 | Meta ad config | Is it live? | P1 | `APPROVED-Q` |
-| A-04 | Web lead intake (product side) | 2 | BRIEF | Qualified | "Receives leads from your website forms." | "Instant" without the connection qualifier | — | Form connection | — | P1 | `APPROVED-Q` |
-| A-04b | Web lead intake (**this website's own forms**) | 6 | AUDIT, IC | **No** | — | Any working-form implication until a submission path exists | L-07 | **No API routes, no forms** | Where do submissions land? | P0 | `OWNER` |
-| A-05 | Social opportunities as a lead source | 2 | BRIEF | Qualified | "Turns social engagement into tracked leads, where permitted." | "Generates leads from social media" | L-07, L-08 | §5 platform permissions | Is it live? | P1 | `APPROVED-Q` |
-| A-06 | Campaign and source attribution | 2 | BRIEF, INV (inactive) | Qualified | "Every lead carries the campaign and source it came from." | "Complete attribution"; "Never lose a source"; any accuracy figure | — | Per-channel attribution support | Is it live? | P1 | `APPROVED-Q` |
+| A-01 | Google Lead Forms intake | 2 + 3 | **HANDOFF** §5 r19–20 | Qualified | "Receives leads from Google Lead Forms, based on agency permissions and configuration." | "Integrates with Google Ads"; "Manages your Google campaigns" | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | Is it connected for a real agency? | P1 | `APPROVED-Q` |
+| A-02 | Meta Lead Ads intake | 2 + 3 | **HANDOFF** §5 r19–20 | Qualified | "Receives leads from Meta Lead Ads, based on agency permissions and configuration." | "Official Meta partner"; "Meta integration" as a badge | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING`. Meta approval modelled as `externally_pending` | Is app review held? | P1 | `APPROVED-Q` |
+| A-03 | Click-to-WhatsApp attribution | 2 + 3 + 4 | **HANDOFF** §5 r19 | Qualified | "Sees which campaign a WhatsApp conversation came from, where the platform provides it." | "Full attribution"; "Exact attribution"; "Tracks every click" | **L-08** | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | — | P1 | `APPROVED-Q` |
+| A-04 | Web lead intake (product side) | 2 | **HANDOFF** §3 step 6 | Qualified | "Receives leads from your website forms." | "Instant" without the connection qualifier | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | — | P1 | `APPROVED-Q` |
+| A-04b | Web lead intake (**this website's own marketing forms**) | 6 | AUDIT, IC | **No** | — | Any working-form implication until a submission path exists | L-07 | **Still no API routes, no forms.** A signup contract now exists; a generic marketing-form destination does not | Where do marketing-form submissions land? | P0 | `OWNER` |
+| A-05 | Social opportunities as a lead source | 2 | HANDOFF (entitlement key only) | Qualified | "Turns social engagement into tracked leads, where permitted." | "Generates leads from social media" | L-07, L-08 | `social.publish` entitlement key confirmed. **No platform named anywhere** | Is it live? | P1 | `APPROVED-Q` |
+| A-06 | Campaign and source attribution | 2 | **HANDOFF** §5 r20 (connection + readiness flags only) | Qualified | "Every lead carries the campaign and source it came from." | "Complete attribution"; "Never lose a source"; any accuracy figure | — | `BACKEND CONFIRMED` for per-source `connected`/`ready`. Attribution *quality* uncontracted | — | P1 | `APPROVED-Q` |
+| A-10 | Onboarding step states for lead acquisition | 3 | **HANDOFF** §3 step 6 | Qualified | "Shows exactly which sources are connected, which are waiting on the provider, and which your plan does not include." | Presenting an `externally_pending` source as connected. **Release-blocking invariant** | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | `MF-11` provider display names | P1 | `APPROVED-Q` |
 | A-07 | **Advertising budget optimization** | EXCL | Excluded by owner | **No** | — | "Optimises your ad spend"; "Improves your campaigns"; "Reduces cost per lead"; **all variants** | — | — | — | P0 | `REJECTED` |
 | A-08 | Spend / CPL / ROAS / ROI / lead-volume figures | — | NONE | **No** | — | Every figure, including illustrative, sample and mockup values | — | — | — | P0 | `REJECTED` |
 | A-09 | "Paid Acquisition" as a package entitlement | 2 | BRIEF | **No** | — | Any wording, until the entitlement is defined | — | — | **What does it include?** | P1 | `OWNER` |
@@ -107,10 +143,13 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 
 | ID | Capability | Status | Evidence | Public? | Approved Wording | Forbidden Wording | Legal Dep | Tech Dep | Owner Decision | Risk | Verdict |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| B-01 | WhatsApp conversations (product) | 2 | BRIEF, INV | Qualified | "Handles WhatsApp conversations. Availability depends on channel configuration." | "Official WhatsApp Business partner"; template/window claims | L-07, L-08 | WhatsApp Business Platform access | Cloud API or otherwise? | P1 | `APPROVED-Q` |
-| B-02 | Email conversations | 2 | BRIEF, INV | Qualified | "Handles email enquiries end to end. Availability depends on channel configuration." | Named mailbox-provider integrations | L-07 | Mailbox connection | — | P1 | `APPROVED-Q` |
-| B-03 | Web conversations (product) | 2 | BRIEF | Qualified | "Answers enquiries from your website." | — | L-07 | Web channel connection | — | P1 | `APPROVED-Q` |
-| B-03b | Web chat **on this website** | 6 | IC §7 | **No** | Honest pending state only — see C-07 in §11 | Any live-assistant implication | L-07 | **No chat backend** | Is a chat backend planned for launch? | P0 | `OWNER` |
+| B-01 | WhatsApp **channel connection** (the agency's own) | 2 + 3 | **HANDOFF** §3 s5, §5 r17–18 | Qualified | "Connect your own WhatsApp channel. Availability depends on channel configuration." | "Official WhatsApp Business partner"; template/window claims; **using this to imply conversational capability** | L-07, L-08 | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | Cloud API or otherwise? | P1 | `APPROVED-Q` |
+| B-01b | WhatsApp **conversational behaviour** | 2 | BRIEF only | Qualified | "Handles WhatsApp conversations. Availability depends on channel configuration." | Any claim resting on B-01's connection contract | L-07, L-08 | **Not in the handoff** | — | P1 | `APPROVED-Q` |
+| B-02 | Email **channel connection** | 2 + 3 | **HANDOFF** §3 s5, §5 r17–18 | Qualified | "Connect your email. Availability depends on channel configuration." | Named mailbox-provider integrations | L-07 | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | — | P1 | `APPROVED-Q` |
+| B-02b | Email **conversational behaviour** | 2 | BRIEF only | Qualified | "Handles email enquiries end to end. Availability depends on channel configuration." | Any claim resting on B-02's connection contract | L-07 | **Not in the handoff** | — | P1 | `APPROVED-Q` |
+| B-03 | Web conversations (product) | 2 | BRIEF | Qualified | "Answers enquiries from your website." | — | L-07 | **Not in the handoff** | — | P1 | `APPROVED-Q` |
+| B-03b | Web chat assistant **on this website** | 6 | **HANDOFF** §10 | **No** | Honest pending state only, offering *Book a demo* | Any live-assistant implication. **A launcher that accepts input and never answers is a P0 violation** | L-07 | **`RESERVED`.** The website concierge endpoint is reserved for a backend that does not exist | Is a chat backend planned at all? | P0 | `RESERVED` |
+| B-16 | Calendar **connection** | 2 + 3 | **HANDOFF** §3 s5, §5 r17 | Qualified | "Connect your calendar." | Booking-behaviour claims resting on the connection contract | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | — | P2 | `APPROVED-Q` |
 | B-04 | Automatic replies | 2 | BRIEF, INV | Qualified | "Every enquiry gets an answer, day or night, based on agency permissions and configuration." | "Every lead always gets a reply within X seconds"; any SLA | — | Channel connection | — | P1 | `APPROVED-Q` |
 | B-05 | Response speed — **qualitative** | 2 | BRIEF | Qualified | "In seconds, not hours." / "Answered while the enquiry is still warm." | — | — | — | — | P1 | `APPROVED-Q` |
 | B-06 | Response speed — **numeric** | 2 | Contradictory: CODE says "< 1 second", DRAFT says "4 seconds" | **No** | — | "< 1 second"; "4 seconds"; "instantly" as a measured promise; any specific figure | — | Measurement | **Supply a measured figure, or none** | P0 | `OWNER` |
@@ -148,7 +187,7 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 
 | ID | Capability | Status | Evidence | Public? | Approved Wording | Forbidden Wording | Legal Dep | Tech Dep | Owner Decision | Risk | Verdict |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| D-01 | Canonical customer identity | 2 | BRIEF, INV (**inactive**) | Qualified | "One customer, one record — across every channel they use." | "Perfect identity resolution"; "Never duplicates" | L-07 | Cross-channel matching | Is it live? | P1 | `APPROVED-Q` |
+| D-01 | Canonical customer identity | 2 | BRIEF, INV (**inactive**) | Qualified | "One customer, one record, across every channel they use." | "Perfect identity resolution"; "Never duplicates" | L-07 | **Not in the handoff** | Is it live? | P1 | `APPROVED-Q` |
 | D-02 | Qualification | 2 | BRIEF | Qualified | "Every enquiry is qualified automatically." | "Perfectly qualified"; accuracy figures | **L-09** | — | — | P1 | `APPROVED-Q` |
 | D-03 | Hot lead score — **existence** | 2 | BRIEF | Qualified | "Each lead carries a priority signal, so your team knows where to start." | "Predicts which leads will close"; "Deal probability" | **L-09** | — | — | P1 | `APPROVED-Q` |
 | D-04 | Hot lead score — **numeric scale** | 5 | CODE (**the website's own simulation**, not the product) | **No** | — | "Scored from 1 to 100"; "Leads above 80"; any threshold or scale | L-09 | — | **Confirm the product's real scale, or drop it** | P0 | `OWNER` |
@@ -157,6 +196,13 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 | D-07 | Memory | 2 | BRIEF | Qualified | See B-08 | See B-08 | L-06 | — | — | P1 | `APPROVED-Q` |
 | D-08 | Follow-up state | 2 | BRIEF | Qualified | "You can always see what has been sent and what is due next." | — | — | — | — | P2 | `APPROVED-Q` |
 | D-09 | Profiling transparency | 4 | NONE | **No** | — | Any scoring description, until L-09 is reviewed | **L-09** | — | — | P1 | `LEGAL` |
+| D-10 | **Hot lead alerting** | 6 | **NONE.** Not in the handoff, not in any source | **No** | — | **Every wording, every visual.** No copy, no section, no phone mockup, no WhatsApp-alert imagery, no "your agent is notified instantly" | L-08 | **`BLOCKED` on `MF-02`.** No endpoint, no channel, no routing, no ownership model exists anywhere | **Supply a hot lead alerting contract, or declare it out of the website's scope** | P1 | **`BLOCKED`** |
+
+> **D-10 note.** `CLAUDE.md` mandates hot lead alerts as a "MANDATORY SELLING POINT" and
+> `COPY_AND_CONVERSION_MASTER.md` raises it as the single most important gap. **Three documents want
+> it; the one document that should define it does not contain it.** Until a canonical contract
+> exists, no wording exists, and `CLAUDE.md`'s mandate cannot be honoured. This is the highest-value
+> unblock available to the copy chat.
 
 ---
 
@@ -164,7 +210,7 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 
 | ID | Capability | Status | Evidence | Public? | Approved Wording | Forbidden Wording | Legal Dep | Tech Dep | Owner Decision | Risk | Verdict |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| E-01 | Basic follow-up | 2 | BRIEF, INV (inactive) | Qualified | "If a lead goes quiet, follow-up continues automatically — subject to applicable communication rules and your own permissions." | "Follows up until they reply"; "Never gives up" | **L-01** | — | Max count and interval? | P1 | `LEGAL` |
+| E-01 | Basic follow-up | 2 | BRIEF, INV (inactive) | Qualified | "If a lead goes quiet, follow-up continues automatically, subject to applicable communication rules and your own permissions." | "Follows up until they reply"; "Never gives up" | **L-01** | **Not in the handoff** | Max count and interval? | P1 | `LEGAL` |
 | E-02 | Advanced follow-up and automation | 2 | BRIEF | **No** | — | Any wording, until L-01 is closed and the entitlement is defined | **L-01** | — | What separates basic from advanced? | P1 | `LEGAL` |
 | E-03 | Nurturing | 2 + 4 | BRIEF | **No** | — | Any wording, until L-01 is closed | **L-01** | — | — | P1 | `LEGAL` |
 | E-04 | **Reactivation of older contacts** | 4 | BRIEF, DRAFT (marked live) | **No** | — | "Reactivates old leads"; "Wakes up dormant contacts"; "Brings dead deals back"; the `/v2` cross-channel five-day narrative | **L-02, L-08** | Channel-consent handling | **Highest-risk capability on the site** | P0 | `LEGAL` |
@@ -183,13 +229,21 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 | ID | Capability | Status | Evidence | Public? | Approved Wording | Forbidden Wording | Legal Dep | Tech Dep | Owner Decision | Risk | Verdict |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | F-01 | Understands customer requirements | 2 | BRIEF | Qualified | "Understands what each customer is actually looking for." | — | — | — | — | P2 | `APPROVED-Q` |
-| F-02 | Verified / agency-authorised inventory | 2 + 3 | BRIEF | Qualified | "Matches against your own or agency-authorised property sources." | "Searches the whole market"; "Every listing in Spain"; "All portals" | — | Inventory connection | How does inventory arrive? | P1 | `APPROVED-Q` |
-| F-03 | Customer-facing focused matches | 2 | BRIEF, DRAFT | Qualified | "Your customer receives a short, relevant selection — not a list dump." | A fixed number ("three homes"), unless confirmed | — | — | Fixed or variable count? | P1 | `APPROVED-Q` |
+| F-02 | Verified / agency-authorised inventory | 2 + 3 | **HANDOFF** §3 s8, §5 r25–26 | Qualified | "Matches against your own or agency-authorised property sources." | "Searches the whole market"; "Every listing in Spain"; "All portals" | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING`. Four source types | What does "authorised" test? | P1 | `APPROVED-Q` |
+| F-02b | **Your own website as a valid inventory source** | 2 + 3 | **HANDOFF** §3 s8, §5 r26 | Qualified | "Your own agency website works as a property source. Nothing is rejected for being taken from your own site." | Implying access to any inventory the agency does not own or is not authorised to use | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING`. `accepts_scraped_owned_inventory: true` | — | P1 | `APPROVED-Q` |
+| F-03 | Customer-facing focused matches | 2 | BRIEF, DRAFT | Qualified | "Your customer receives a short, relevant selection, not a list dump." | A fixed number ("three homes"), unless confirmed | — | **Not in the handoff** | Fixed or variable count? | P1 | `APPROVED-Q` |
 | F-04 | Internal extended options | 2 | BRIEF | Qualified | "Your agents see the wider set internally." | — | — | — | — | P2 | `APPROVED-Q` |
 | F-05 | Property discussion in voice calls | 7 | Inherits §9 | **No** | — | Any wording while voice is unresolved | — | Voice | See V-01 | P1 | `OWNER` |
-| F-06 | **Named portal integrations** (Idealista, Fotocasa, …) | 6 | DRAFT names them; **NONE** evidences them | **No** | — | Every portal name and logo | — | Integration must exist | **Confirm or reject each name individually** | P0 | `REJECTED` |
-| F-07 | **Named CRM integrations** (HubSpot, Salesforce, Pipedrive, Zoho) | 6 | DRAFT names them; **NONE** evidences them | **No** | — | Every CRM name and logo; "Works with yours"; "Compatible with your CRM" | — | Integration must exist | **Confirm or reject each name individually** | P0 | `REJECTED` |
-| F-08 | "Always synced to your CRM" (**currently live on the site**) | 6 | CODE | **No** | — | This exact claim and every variant | — | No integration evidenced | — | P0 | `REJECTED` |
+| F-06 | **Named portal integrations** (Idealista, Fotocasa, any other) | 6 | DRAFT names them; **the handoff names none** | **No** | — | Every portal name and logo | — | **Not in the handoff.** `feed` is a generic supported feed, not a named portal | **Confirm or reject each name individually** | P0 | **`REJECTED`, unchanged** |
+| F-07 | **Naming the four confirmed CRM vendors as plain text** | 2 + 3 | **HANDOFF** §5 r21–24 + Appendix A | **Not yet** | — | Naming any vendor **before the owner decides** | — | `BACKEND CONFIRMED`: provider registry, per-provider OAuth start, connection state, health probe, mapping validation, Salesforce `prod`/`sandbox` | **May the four vendors be named publicly? Is each tenant-ready?** | P0 if named early | **`OWNER` (was `REJECTED`)** |
+| F-07b | **CRM vendor logos** | — | Adapter evidence does not confer trademark rights | **No** | — | Every vendor logo | Trademark permission | — | Are permissions held for any logo? | P0 | **`BLOCKED`** |
+| F-08 | "Always synced to your CRM" (**currently live on the site**) | 6 | CODE | **No** | — | This exact claim and every variant | — | No contract supports automatic, universal, always-on sync | — | P0 | **`REJECTED`, unchanged** |
+
+> **The asymmetry between F-06 and F-07 is deliberate and must be preserved.** CRM vendors are named
+> in the handoff; property portals are not. F-07's rejection rested on "no integration is evidenced
+> anywhere", and that ground is now gone. F-06's rejection rests on the same ground, and it still
+> holds. **Conflating the two is a P0 violation.** Only this document's owning chat may change
+> either verdict, and F-07 changes only when the owner decides.
 | F-09 | Match accuracy / quality figures | — | NONE | **No** | — | Every figure | — | — | — | P0 | `REJECTED` |
 | F-10 | Matching as advice or valuation | — | NONE | **No** | — | "Recommends"; "Values"; "Appraises"; "Advises" | Consumer/estate-agency rules | — | — | P1 | `REJECTED` |
 
@@ -209,8 +263,11 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 | G-08 | Matching on the record | 2 | BRIEF | Qualified | See F-01 | See F-06, F-07 | — | — | — | P2 | `APPROVED-Q` |
 | G-09 | Central agency view | 2 | BRIEF | Qualified | "One view of the whole agency's pipeline." | — | — | — | — | P2 | `APPROVED-Q` |
 | G-10 | The word **"Universal"** | — | BRIEF | Qualified | Use only as "universal **across your channels**". | "Universal" standing alone, or implying compatibility with any external CRM | — | — | — | P1 | `APPROVED-Q` |
-| G-11 | CRM replacement positioning | 2 | NONE | **No** | — | "Replaces your CRM" | — | — | **Is it positioned as a replacement?** | P1 | `OWNER` |
+| G-11 | CRM replacement positioning | 2 | **HANDOFF** §3 s7 | Qualified | "Nuova CRM is included and works from day one. If you already use another CRM, you can connect it instead." | "Replaces your CRM" as a blanket claim | — | `BACKEND CONFIRMED`: Nuova CRM is the wizard default and `completed` with no action | **Is it positioned as a replacement or an alternative?** | P1 | `OWNER` |
+| G-11b | **Nuova CRM included by default** | 2 | **HANDOFF** §3 s7 | Qualified | "A CRM is included. You do not have to bring your own." | "Better than your CRM"; migration claims | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | — | P1 | `APPROVED-Q` |
 | G-12 | Storage / uptime / retention guarantees | — | NONE | **No** | — | Every guarantee | **L-06, L-14** | — | — | P0 | `REJECTED` |
+| G-13 | **Cross-tenant isolation** | 2 | **HANDOFF** §1 (proven on staging) | **No** | — | "Your data is isolated"; "Secure by design"; every security and isolation claim | L-14 | `BACKEND CONFIRMED` | — | P0 | **`REJECTED` as a public claim** |
+| G-14 | **CRM connector health** (`connected`, `degraded`, `action_required`) | 2 | **HANDOFF** §5 r24 | **No** | — | Any public reliability or monitoring claim | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING`. **Agency-facing diagnostics only** | — | P1 | `APPROVED-Q` **for in-product surfaces only** |
 
 ---
 
@@ -225,8 +282,9 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 
 | ID | Capability | Status | Evidence | Public? | Approved Wording | Forbidden Wording | Legal Dep | Tech Dep | Owner Decision | Risk | Verdict |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| V-01 | **Is voice live?** | 7 (interim) | Contradictory | — | — | — | L-05, L-10 | Telephony | **BLOCKING — owner must answer** | P0 | `OWNER` |
-| V-02 | Voice as a **future** capability | 7 | BRIEF, DRAFT | Qualified | "Voice — coming next." In a visually separated future section. | Any present-tense wording; placement inside a live feature list | — | — | — | P1 | `APPROVED-Q` |
+| V-00 | **Agency voice channel connection** (onboarding step 5) | 2 + 3 | **HANDOFF** §3 s5, §5 r17 | Qualified | "Connect a voice channel, where your plan includes it." | **Using this row to support any claim in V-03 to V-10.** That is a P0 violation | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING`. `voice_locked` when unentitled; `403 not_on_plan` | — | P1 | `APPROVED-Q` |
+| V-01 | **Does voice AI answer and handle calls?** | 7 (interim) | Contradictory. **The handoff does not answer it** | — | — | — | L-05, L-10 | Telephony | **BLOCKING, owner must answer** | P0 | `OWNER` |
+| V-02 | Voice as a **future** capability | 7 | BRIEF, DRAFT | Qualified | "Voice is coming next." In a visually separated future section. | Any present-tense wording; placement inside a live feature list | — | — | — | P1 | `APPROVED-Q` |
 | V-03 | Answers calls | 7 | — | **No** | — | "Answers your calls"; "Never miss a call" | L-05, L-10 | Telephony | V-01 | P0 | `OWNER` |
 | V-04 | Speaks naturally | 7 | — | **No** | — | "Indistinguishable from a human"; "Callers can't tell" | **L-10** | — | V-01 | P0 | `REJECTED` |
 | V-05 | Qualifies by phone | 7 | — | **No** | — | — | L-09 | — | V-01 | P1 | `OWNER` |
@@ -236,8 +294,15 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 | V-09 | Human handoff from a call | 7 | — | **No** | — | — | — | — | V-01 | P1 | `OWNER` |
 | V-10 | Books appointments | 7 + 3 | BRIEF ("when correctly configured") | **No** | — | Unconditional booking claims | — | Calendar | V-01 | P1 | `OWNER` |
 | V-11 | Call recording / transcription | 4 | NONE | **No** | — | Every wording | **L-05** | — | Are calls recorded? Is the caller told? | P0 | `LEGAL` |
-| V-12 | A phone number on the site | 6 | NONE | **No** | — | Any number — R7 forbids inventing one | — | — | Supply a real number | P0 | `OWNER` |
+| V-12 | A phone number on the site | 6 | NONE | **No** | — | Any number. R7 forbids inventing one | — | — | Supply a real number | P0 | `OWNER` |
 | V-13 | Call-handling statistics | — | NONE | **No** | — | Every figure | — | — | — | P0 | `REJECTED` |
+| V-14 | **Website voice sales concierge** (a bot that speaks to site visitors) | 6 | **HANDOFF** §10 | **No** | — | Any live behaviour, any availability implication, any present-tense wording | — | Reserved endpoint. **No backend exists** | — | P0 | **`RESERVED`** |
+| V-15 | **Website WhatsApp sales concierge** | 6 | **HANDOFF** §10 | **No** | — | Same as V-14 | — | Same reserved endpoint | — | P0 | **`RESERVED`** |
+
+> **Three separate things, never conflated.** V-00 is an agency connecting a voice channel and is
+> confirmed. V-01 to V-13 are voice AI capability and are unchanged. V-14 and V-15 are a sales bot on
+> this marketing site and are reserved. A contract for the first is not evidence for the second or
+> the third.
 
 ---
 
@@ -250,16 +315,21 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 | I-03 | "Message Pablo." | 2 + 4 | BRIEF | Qualified | "Draft and send, with your confirmation." | "Sends on your behalf" without a confirmation step | L-07 | — | Confirmation step? | P1 | `OWNER` |
 | I-04 | "Email my colleague." | 2 | BRIEF | Qualified | As I-03 | As I-03 | — | — | — | P1 | `OWNER` |
 | I-05 | "Which buyers match this villa?" | 2 | BRIEF | Qualified | As I-01 | — | — | §7 matching | — | P1 | `OWNER` |
-| I-06 | "Why is this lead a priority?" | 2 | BRIEF | Qualified | "Ask why a lead is a priority, and see the reasoning." — a genuine explainability strength | "Explains its decisions perfectly" | L-09 | §5 scoring | — | P1 | `OWNER` |
+| I-06 | "Why is this lead a priority?" | 2 | BRIEF | Qualified | "Ask why a lead is a priority, and see the reasoning." *(A genuine explainability strength.)* | "Explains its decisions perfectly" | L-09 | §5 scoring | — | P1 | `OWNER` |
 | I-07 | "How is my team doing?" | 2 + 4 | BRIEF | **No** | — | "Track your agents"; "Monitor performance"; "See who is underperforming" | **L-11** | — | — | P1 | `LEGAL` |
 | I-08 | Desktop, mobile and speech interaction | 2 | BRIEF | Qualified | "On desktop, on mobile, and by speaking." | "Works everywhere, always" | — | Device permissions | Is speech real today? | P1 | `OWNER` |
 | I-09 | Assistant autonomy | — | NONE | **No** | — | "Decides for you"; "Acts on its own"; "Runs your day" | — | — | — | P1 | `REJECTED` |
 | I-10 | Time-saved / productivity figures | — | NONE | **No** | — | Every figure | — | — | — | P0 | `REJECTED` |
 
-> **Note.** This section is the strongest differentiator in the brief and carries **zero** evidence.
-> Every row is `OWNER` or `LEGAL`. Until the owner confirms which questions genuinely work, the
-> assistant may be presented **only** as a named capability with illustrative examples — never as a
+> **Note.** This section is the strongest differentiator in the brief and carries almost no evidence.
+> Every row remains `OWNER` or `LEGAL`. Until the owner confirms which questions genuinely work, the
+> assistant may be presented **only** as a named capability with illustrative examples, never as a
 > demonstrated, working command set.
+>
+> **Reconciliation, 2026-08-31.** The handoff exposes an `assistant` key in the entitlement feature
+> map. That is `BACKEND CONFIRMED` **as an entitlement key only**: it confirms the assistant is
+> plan-gated and nothing more. No question set, no capability, no interaction surface and no speech
+> support is contracted anywhere. **No row below changes.**
 
 ---
 
@@ -272,7 +342,7 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 | R-03 | Qualification | 2 | BRIEF | Qualified | "See how leads qualified." | — | L-09 | — | — | P1 | `APPROVED-Q` |
 | R-04 | Hot leads | 2 | BRIEF | Qualified | "See your priority leads." | See D-04 | L-09 | — | — | P1 | `APPROVED-Q` |
 | R-05 | Appointments | 2 | BRIEF | Qualified | "See what was booked." | — | — | Calendar | — | P2 | `APPROVED-Q` |
-| R-06 | **Supported conversions** | 2 | BRIEF | Qualified | **"Supported conversions"** — the owner's exact wording, preserved. | **Never shorten to "conversions"**; "Conversions we generated"; "Deals closed by Nuova" | — | — | — | P1 | `APPROVED-Q` |
+| R-06 | **Supported conversions** | 2 | BRIEF | Qualified | **"Supported conversions"**. The owner's exact wording, preserved. | **Never shorten to "conversions"**; "Conversions we generated"; "Deals closed by Nuova"; any guaranteed conversion statement | — | — | — | P1 | `APPROVED-Q` |
 | R-07 | Property matching | 2 | BRIEF | Qualified | "See how matching performed." | See F-09 | — | — | — | P2 | `APPROVED-Q` |
 | R-08 | Team workload | 2 | BRIEF | Qualified | "See how work is distributed." | Performance-ranking framing (see I-07) | **L-11** | — | — | P1 | `LEGAL` |
 | R-09 | Daily goals | 2 | BRIEF | Qualified | "See progress against the day's goals." | — | L-11 | §10 | — | P2 | `APPROVED-Q` |
@@ -290,7 +360,7 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 | ID | Capability | Status | Evidence | Public? | Approved Wording | Forbidden Wording | Legal Dep | Tech Dep | Owner Decision | Risk | Verdict |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | K-01 | One panorama per room as standard | 2 + 3 | BRIEF | Qualified | "A real panorama for every room, as standard." | "Unlimited rooms"; "Every property, automatically" | — | Agency supplies panoramas | Who produces them? | P1 | `APPROVED-Q` |
-| K-02 | Floor and ceiling | 2 | BRIEF | Qualified | "Full view — floor to ceiling." | — | — | — | — | P2 | `APPROVED-Q` |
+| K-02 | Floor and ceiling | 2 | BRIEF | Qualified | "Every room in full view, floor to ceiling." | — | — | — | — | P2 | `APPROVED-Q` |
 | K-03 | Real door navigation | 2 | BRIEF | Qualified | "Move between rooms through the real doorways." | — | — | — | — | P2 | `APPROVED-Q` |
 | K-04 | Room names | 2 + 3 | BRIEF | Qualified | "Every room named." | — | — | Agency-supplied | — | P2 | `APPROVED-Q` |
 | K-05 | **Square metres from a verified source** | 2+3+4 | BRIEF | **No** | — | "Verified by NuovaSolution"; "Guaranteed accurate"; "Certified measurements" | **L-12** | Source enforcement | **Is the verified source technically enforced?** If not, drop K-05 entirely. | P0 | `LEGAL` |
@@ -299,7 +369,8 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 | K-08 | View direction | 2 | BRIEF | Qualified | "And which way you are facing." | — | — | — | — | P2 | `APPROVED-Q` |
 | K-09 | Multiple floors | 2 | BRIEF | Qualified | "Multiple floors." | — | — | — | — | P2 | `APPROVED-Q` |
 | K-10 | Stair transitions | 2 | BRIEF | Qualified | "With real stair transitions between them." | — | — | — | — | P2 | `APPROVED-Q` |
-| K-11 | **No joystick, no free movement** | Constraint | BRIEF | Yes | "Structured navigation by design — no joystick, no getting lost." State it as a **deliberate choice**. | Hiding it; or contradicting it with free-roam language | — | — | — | P1 | `APPROVED` |
+| K-11 | **No joystick, no free movement** | Constraint | BRIEF | Yes | "Structured navigation by design. No joystick, no getting lost." State it as a **deliberate choice**. | Hiding it; or contradicting it with free-roam language | — | — | — | P1 | `APPROVED` |
+| K-17 | **Property Experience entitlement and onboarding entry** | 3 | **HANDOFF** §3 s9, §5 r27 | Qualified | "Property Experience is available on the plans that include it." | Presenting it as included everywhere; showing technical entitlement keys | — | `BACKEND CONFIRMED` (entitlement and entry only) · `WEBSITE INTEGRATION PENDING` | Which plans include it, and at what quota? | P1 | `APPROVED-Q` |
 | K-12 | Customer actions | 3 | BRIEF ("only when genuinely configured") | Qualified | "Customer actions appear only when your agency has configured them." | Unconditional action claims | — | Configuration | What are the actions? | P1 | `APPROVED-Q` |
 | K-13 | "Virtual tour" / "3D tour" / "walkthrough" / "metaverse" framing | — | — | **No** | — | All four — they imply free movement and contradict K-11 | — | — | — | P1 | `REJECTED` |
 | K-14 | Replaces a physical viewing | — | NONE | **No** | — | "No need to visit"; "Replaces viewings" | — | — | — | P1 | `REJECTED` |
@@ -312,7 +383,7 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 
 | ID | Capability | Status | Evidence | Public? | Approved Wording | Forbidden Wording | Legal Dep | Tech Dep | Owner Decision | Risk | Verdict |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| N-01 | Logo, email banner, signatures, brand identity | 3 | BRIEF | Qualified | "Every message goes out under your brand — your logo, your banner, your signature." | — | — | Onboarding config | Self-service or set up by Nuova? | P2 | `APPROVED-Q` |
+| N-01 | Logo, email banner, signatures, brand identity | 3 | **HANDOFF** §3 s3, §5 r13–15 | Qualified | "Every message goes out under your brand, with your logo, your banner and your signature." | — | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING`. Upload limits unspecified (`MF-07`) | — | P2 | `APPROVED-Q` |
 | N-02 | Personalised communication | 3 | BRIEF | Qualified | "In your agency's voice." | — | — | — | — | P2 | `APPROVED-Q` |
 | N-03 | Tenant-specific configuration | 2 + 3 | BRIEF | Qualified | "Each agency configured separately." | "Isolated"; "Your data is separate and secure" — that is a security claim (B-15) | L-14 | — | — | P1 | `APPROVED-Q` |
 | N-04 | Product invisible to the customer | 3 | BRIEF | Qualified | See P-04 | See P-04 | L-10 | — | — | P1 | `APPROVED-Q` |
@@ -324,14 +395,21 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 
 | ID | Capability | Status | Evidence | Public? | Approved Wording | Forbidden Wording | Legal Dep | Tech Dep | Owner Decision | Risk | Verdict |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| O-01 | Agency setup | 2 | BRIEF | Qualified | "Set up your agency yourself." | — | — | — | Does the flow exist? | P1 | `OWNER` |
-| O-02 | Employees and roles | 2 | BRIEF | Qualified | "Add your team and set their roles." | Naming roles that are not confirmed | — | — | What roles exist? | P1 | `OWNER` |
-| O-03 | Channels | 2 + 3 | BRIEF | Qualified | "Connect your channels, based on the permissions you hold." | "One-click connection for every channel" | L-07 | Platform permissions | — | P1 | `APPROVED-Q` |
+| O-00 | **Signup, login, logout, session** | 2 + 3 | **HANDOFF** §1, §5 r1–3 | Qualified | "Create your agency account and sign in." | Any security, encryption or isolation claim (G-13); any "instant setup" implication | L-07, **L-14** | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING`. **§14.3 CTA lockdown applies** | Release the signup and login CTAs individually | P1 | **`APPROVED-Q` (was `OWNER`)** |
+| O-00b | **A ten-step self-service onboarding wizard exists** | 3 | **HANDOFF** §3 | Qualified | "Set your agency up yourself, one step at a time. You can stop and pick up where you left off." | A completion-time figure; "no configuration needed" | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING`. Per-step `detail` shape unspecified (`MF-05`) | — | P1 | **`APPROVED-Q` (was `OWNER`)** |
+| O-00c | **Progress and resume** | 3 | **HANDOFF** §3, §5 r11–12 | Qualified | "Your progress is saved. Come back and continue where you stopped." | Implying progress survives anything the contract does not cover | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING`. Write requires `manage_users` | — | P2 | **`APPROVED-Q`** |
+| O-00d | **Step state honesty** | 3 | **HANDOFF** §4 | Yes | "Waiting on {provider}" for anything a provider has not yet approved. | **Presenting an `externally_pending` step as done. Release-blocking invariant** | — | `BACKEND CONFIRMED` | `MF-11` provider display names | P0 if breached | `APPROVED-Q` |
+| O-01 | Agency setup | 3 | **HANDOFF** §3 s2 | Qualified | "Set up your agency yourself." | — | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | — | P1 | **`APPROVED-Q` (was `OWNER`)** |
+| O-02 | Employees and roles | 3 | **HANDOFF** §3 s4, §5 r16 | Qualified | "Add your team and set their roles: agent, team lead, office manager, agency admin." | Roles beyond the four confirmed; permission claims per role beyond what is contracted | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING`. **Four roles confirmed** | — | P2 | **`APPROVED-Q` (was `OWNER`)** |
+| O-03 | Channels | 2 + 3 | **HANDOFF** §3 s5 | Qualified | "Connect your channels, based on the permissions you hold." | "One-click connection for every channel" | L-07 | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | — | P1 | `APPROVED-Q` |
+| O-03b | **CRM selection during onboarding** | 3 | **HANDOFF** §3 s7 | Qualified | "A CRM is included from the start. If you already use another one, you can connect it instead." | Naming a vendor before the owner decides (F-07); any sync guarantee (F-08) | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | See F-07 | P1 | `APPROVED-Q` |
+| O-03c | **Property source during onboarding** | 3 | **HANDOFF** §3 s8 | Qualified | "Point it at your own website, a supported feed, or your CRM inventory." | Naming a portal (F-06) | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | — | P1 | `APPROVED-Q` |
+| O-03d | **Readiness summary** | 3 | **HANDOFF** §3 s10 | Qualified | "A clear readiness check before you go live." | Naming a destination that does not exist | — | `BACKEND CONFIRMED` · **destination `BLOCKED` on `MF-03`** | **Where does the product live after step 10?** | P0 | `OWNER` |
 | O-04 | Branding | 2 | BRIEF | Qualified | See N-01 | — | — | — | — | P2 | `APPROVED-Q` |
 | O-05 | Property experience setup | 2 | BRIEF | Qualified | See §12 | — | — | §12 | — | P2 | `APPROVED-Q` |
 | O-06 | Lead connections | 2 + 3 | BRIEF | Qualified | See §2 | See A-07 | — | — | — | P1 | `APPROVED-Q` |
-| O-07 | Package entitlements | 2 | BRIEF | Qualified | "Your package, visible and manageable." | "Unlocks instantly", if enforcement is manual | — | Entitlement enforcement | Is enforcement technical or manual? | P1 | `OWNER` |
-| O-08 | **Self-service without developers** | 2 | BRIEF | Qualified | "No developers needed." | "No setup needed"; "Zero configuration"; "Works out of the box" | — | — | Confirm the claim holds | P1 | `APPROVED-Q` |
+| O-07 | Package entitlements | 2 | **HANDOFF** §5 r10 | Qualified | "Your plan decides what is switched on, and you can see it." | Showing technical entitlement keys to the agency (Appendix B invariant 6) | — | **`BACKEND CONFIRMED` as technical and per tenant.** "Unlocks" is now defensible | Which features sit in which plan (PK-04) | P1 | **`APPROVED-Q` (was `OWNER`)** |
+| O-08 | **Self-service without developers** | 3 | **HANDOFF** §3 | Qualified | "No developers needed." | "No setup needed"; "Zero configuration"; "Works out of the box" | — | `BACKEND CONFIRMED` in structure: ten steps, progress, resume, role-gated writes | — | P1 | `APPROVED-Q` |
 | O-09 | **"No setup needed"** (currently live on the site) | — | CODE | **No** | — | This exact claim — inaccurate for a platform requiring channel, branding and inventory setup | — | — | — | P1 | `REJECTED` |
 | O-10 | Onboarding-duration claims | — | NONE | **No** | — | "Live in a day"; "Up and running in 15 minutes"; every figure | — | — | Supply a measured figure | P1 | `REJECTED` |
 | O-11 | Migration / data import | 6 | NONE | **No** | — | Every wording | — | — | Does it exist? | P1 | `OWNER` |
@@ -347,9 +425,10 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 | PK-03 | Baseline in all paid packages: CRM, Lead Engine, Automatic Replies, Basic Follow-up, Property Matching, Core Reporting | 2 | BRIEF | Yes, as **names** | "Every paid package includes: CRM · Lead Engine · Automatic Replies · Basic Follow-up · Property Matching · Core Reporting." | Describing each one's behaviour beyond what §3–§11 approve | E-01 → **L-01** | — | "Core" or "Basic" Reporting? | P1 | `APPROVED-Q` |
 | PK-04 | Higher packages: Voice, Daily Assistant, Social Growth, Advanced Follow-up, Advanced Reporting, Property Experience, Paid Acquisition | 2 | BRIEF (conditional: *only if confirmed*) | **No** | — | Placing any of these in a named package without an explicit owner mapping | L-01, L-02 | Voice unresolved | **Confirm the feature-to-package mapping** | P0 | `OWNER` |
 | PK-05 | Scale: higher limits, higher Property Experience quota, greater capacity | 2 | BRIEF (conditional) | **No** | — | Every number; and every *visual implication* of a number — bars, dots, "up to", comparative column heights | — | — | **Supply the limits, or confirm none are published** | P0 | `OWNER` |
-| PK-06 | **Any euro price** | 6 | NONE | **No** | — | Every price, "from €X", discount, currency, billing period, setup fee, minimum term, per-seat or per-agency model | — | No billing provider | **Are prices public or on request?** | P0 | `OWNER` |
-| PK-07 | Pricing on request | 6 | NONE | Yes, if chosen | "Pricing on request." → *Book a demo* | — | — | — | Owner chooses public vs on request | P1 | `OWNER` |
-| PK-08 | Entitlement enforcement | 2 | NONE | **No** | — | "Unlocks"; "Activates instantly", if enforcement is manual | — | — | Technical or manual? | P1 | `OWNER` |
+| PK-06 | **Any euro price authored by the website** | 6 | **HANDOFF** §5 r7 | **No** | — | Every hardcoded price, "from €X", discount, currency, billing period, setup fee, minimum term, per-seat or per-agency model | — | `BACKEND CONFIRMED`: `GET /plans` **serves** `price_display`. **The website renders it and never authors a figure.** Currency and tax basis unspecified (`MF-10`) | **Are prices displayed publicly or on request?** | P0 | `OWNER` |
+| PK-07 | Pricing on request | 6 | — | Yes, if chosen | "Pricing on request." routed to *Book a demo* | — | — | — | Owner chooses public vs on request | P1 | `OWNER` |
+| PK-08 | Entitlement enforcement | 2 | **HANDOFF** §5 r10, §3 s6 | Qualified | "Your plan decides what is switched on." | Showing technical entitlement keys | — | **`BACKEND CONFIRMED` as technical and per tenant.** The manual-enforcement caveat is withdrawn | — | P1 | **`APPROVED-Q` (was `OWNER`)** |
+| PK-09 | **Subscription state and checkout handoff** | 2 | **HANDOFF** §5 r8–9 | Qualified | "Choose a plan and continue to checkout." | Naming a payment provider; any billing-term claim | — | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING`. **§14.3 CTA lockdown applies** | Release the checkout CTA individually | P1 | `APPROVED-Q` |
 
 ---
 
@@ -357,18 +436,32 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 
 | ID | Claim | Status | Evidence | Public? | Approved Wording | Forbidden Wording | Legal Dep | Tech Dep | Owner Decision | Risk | Verdict |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| T-01 | **A 14-day free trial exists** | 6 | BRIEF asserts; IC §1 `BLOCKED`; no signup/auth/provisioning/billing | **No** | — | "Start your 14 day free trial"; "Free trial"; "Start free"; "Try free"; "No credit card required" | L-07 (signup data) | **Everything — no signup path exists** | **BLOCKING — does the trial exist?** | P0 | `OWNER` |
-| T-02 | **"Start for free" currently on the live site → opens a demo booking** | — | CODE | **No** | — | This exact pattern — a free-start promise routed to a sales call | — | — | Acknowledge; must not be carried over | P0 | `REJECTED` |
-| T-03 | Trial extension mechanism (7 days, once, feedback video, pending review, manual approval) | 4 | BRIEF | **No — DISABLED** | — | **Every wording.** Not in copy, not in a FAQ, not in a footnote, not in a tooltip. | **L-13** + contract terms | Depends on T-01 | **Owner: organisational and legal clearance** | P0 | `LEGAL` |
-| T-04 | Upload never auto-triggers an extension | 4 | BRIEF | **No** (mechanism disabled) | If ever published: "Received. Pending review." | Any success wording implying the extension is granted | L-13 | — | — | P0 | `LEGAL` |
+| T-00 | **A 14-day trial exists** | 2 + 3 | **HANDOFF** §2, §5 r1 + r4 | Qualified | "A 14 day trial." | The word **free** and every variant, until T-01 resolves | L-07 (signup data), **L-14** | **`BACKEND CONFIRMED`**: created at signup; `GET /trial/status` returns `status`, `plan`, `trial_end`, `days_left`, `account_state` · `WEBSITE INTEGRATION PENDING` | Release the CTA under §14.3 | P1 | **`APPROVED-Q` (was `OWNER`, "does it exist?")** |
+| T-00b | **Trial countdown and remaining days** | 2 | **HANDOFF** §2 | Qualified | Render `days_left` and `trial_end` as served. | **Computing the countdown client-side**; hardcoding any duration | — | `BACKEND CONFIRMED`. **Server-side is the single source of truth** | `MF-06` reminder cadence | P1 | `APPROVED-Q` |
+| T-00c | **Trial expiry behaviour** | 2 | **HANDOFF** §2 | Qualified | "When the trial ends you keep your account and your data. Premium features pause until you choose a plan." | "Your account is deleted"; "You lose access" | — | `BACKEND CONFIRMED`: premium features resolve to `denied`; **login is never blocked** | Confirm the wording | P1 | `APPROVED-Q` |
+| T-01 | **The word "free", and "no credit card required"** | 6 | **Not in the handoff.** It never uses the word | **No** | — | "Free trial"; "Start free"; "Try free"; "No credit card required"; "Start your 14 day free trial" | — | — | **Is the trial free? Is a payment method required at signup?** | P0 | `OWNER` |
+| T-02 | **"Start for free" currently on the live site, opening a demo booking** | — | CODE | **No** | — | This exact pattern. A free-start promise routed to a sales call | — | — | Acknowledge; must not be carried over | P0 | `REJECTED` |
+| T-03 | Trial extension mechanism (7 days, exactly once, pending review, manual owner approval) | 2 + 4 | **HANDOFF** §2, §5 r5–6, Appendix A | **No — DISABLED** | — | **Every wording.** Not in copy, not in a FAQ, not in a footnote, not in a tooltip | **L-13** + contract terms | **`BACKEND CONFIRMED`** and simultaneously **`LEGAL REVIEW PENDING`** | **Owner: organisational and legal clearance** | P0 | **`LEGAL`, unchanged** |
+| T-03b | **The number seven, rendered** | 2 | **HANDOFF** §2 honesty note | **No** (mechanism disabled) | If ever published: render the updated `trial_end` from trial status. | **Hardcoding "7 days" anywhere in the website** | L-13 | `BACKEND CONFIRMED`. `trial_end` is the single source of truth | — | P1 | `LEGAL` |
+| T-03c | **Testimonial video** | 4 | **BLOCKED**: the confirmed payload has **no media field** | **No** | — | Every wording | L-13 | **`BLOCKED` on `MF-01`.** No `video_url`, no upload pair, no media handling | **Supply `MF-01` or declare video out of scope** | P1 | **`BLOCKED`** |
+| T-04 | Upload never auto-triggers an extension | 2 + 4 | **HANDOFF** §2, §5 r5 | **No** (mechanism disabled) | If ever published: "Received. Pending review." | Any success wording implying the extension is granted | L-13 | **`BACKEND CONFIRMED`**: submission returns `state: "pending"`, never `approved` | `MF-12` Bearer-only or public plus captcha | P0 | `LEGAL` |
 | T-05 | Trial-conversion or usage statistics | — | NONE | **No** | — | Every figure | — | — | — | P0 | `REJECTED` |
 
-> **T-03 is marked DISABLED by owner instruction** and stays disabled until organisational and
-> legal clearance exists. Rationale is recorded in `PRODUCT_TRUTH.md` §18.4.
+> **T-03 remains DISABLED by owner instruction** and stays disabled until organisational and legal
+> clearance exists. Rationale is recorded in `PRODUCT_TRUTH.md` §18.4.
 >
-> **Governance consequence.** `MASTER_GOVERNANCE.md` §11 sets the trial as the **primary** CTA. With
-> T-01 blocked, that hierarchy cannot be implemented. Interim hierarchy: **Primary — Book a demo.**
-> This needs owner ratification.
+> **This is the clearest case in the project of the governing rule.** The backend now demonstrably
+> implements the mechanism correctly, including the manual approval gate the owner specified. That
+> changes nothing about L-13, the personal-data question raised by video, or the contract-terms
+> question. **A technical confirmation does not lift a legal hold.**
+>
+> **Permitted meanwhile:** building it as an authenticated product surface, once L-14 closes and the
+> CTA is released. **Forbidden:** any appearance in public marketing.
+>
+> **Governance consequence.** `MASTER_GOVERNANCE.md` §11 sets the trial as the **primary** CTA. The
+> trial now exists, but its primary-CTA wording carries the unconfirmed word *free* (T-01), so the
+> hierarchy still cannot be implemented verbatim. Interim hierarchy: **Primary, Book a demo.** This
+> needs owner ratification.
 
 ---
 
@@ -376,15 +469,19 @@ Consequently the default verdict for a capability claim is `APPROVED-Q`, never `
 
 | ID | CTA | Status | Evidence | Public? | Approved Wording | Forbidden Wording | Legal Dep | Tech Dep | Owner Decision | Risk | Verdict |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| CTA-1 | **Start your 14 day free trial** | `BLOCKED` | IC §1 | **No** | — | Every free-trial wording | — | No signup, auth, provisioning or billing | See T-01 | P0 | `OWNER` |
-| CTA-2 | **Book a demo** | `LIVE` (defective impl.) | CODE, IC §2 | Yes | "Book a demo" / "Reserva una demo" | Any duration or outcome promise not confirmed ("15 minutes", "no commitment") | — | Fix A-02: the anchor must carry the real booking URL, not `href="#"` + `preventDefault()` | Confirm the event and whether a per-language event is needed | P1 | `APPROVED` |
-| CTA-3 | **Experience Nuova** | `PENDING` | IC §3 | Qualified | "Experience Nuova" — **only** with a pre-interaction simulation label | "Live"; "Real time"; "AI analysis"; "See the real system" | — | Simulation vs live backend undecided | Simulated or live? | P0 | `OWNER` |
-| CTA-4 | **Talk to Nuova** | `BLOCKED` | IC §5 | **No** | — | The label itself, while its behaviour is undefined | — | Undefined | **What does it do?** (C-04) | P1 | `OWNER` |
-| CTA-5 | **Chat with Nuova** | `PENDING` | IC §7 | **No** | Honest pending state only, offering *Book a demo* | Any input field that accepts text and never answers — **P0 violation** | L-07 | No chat backend | Chat backend at launch? | P0 | `OWNER` |
-| CTA-6 | **Log in** | `BLOCKED` | IC §4 | **No** | — | Any invented URL (R7); a nav item pointing nowhere | — | No app, no auth, no URL | **Does a customer app exist? At what URL?** | P1 | `OWNER` |
-| CTA-7 | **WhatsApp** | `BLOCKED` | IC §8 | **No** | — | Any invented number (R7) | L-08 | No number exists | **Supply the business number, and who answers it** | P0 | `OWNER` |
+| CTA-1 | **Start your 14 day trial** | `BACKEND CONFIRMED` · `WEBSITE INTEGRATION PENDING` | **HANDOFF** §5 r1 | Not yet | "Start your 14 day trial" **once the owner releases the CTA** | The word **free** (T-01); wiring it before a §14.3 release | L-07, L-14 | Signup contract confirmed. **No website code.** §14.3 lockdown applies | Confirm wording, then release the CTA | P0 | **`OWNER` (existence objection withdrawn)** |
+| CTA-2 | **Book a demo** | Existing **external** scheduling tool | CODE, HANDOFF §10 | Yes | "Book a demo" / "Reserva una demo" | Any duration or outcome promise not confirmed ("15 minutes", "no commitment"); treating it as a product system; making it a prerequisite to a trial | — | Fix A-02: the anchor carries the real booking URL with the embed as progressive enhancement | Confirm the event and whether a per-language event is needed | P1 | `APPROVED` |
+| CTA-2b | **`POST /demo/book` backend endpoint** | **`PROPOSED`** | **HANDOFF** §10 | **No** | — | Implementing it, typing it as real, or wiring it | — | **Not backend-defined.** Documenting the shape is permitted | Backend must define it | P0 if implemented | **`PROPOSED`** |
+| CTA-3 | **Experience Nuova** | `OWNER DECISION PENDING` | IC §3 | Qualified | "Experience Nuova", **only** with a pre-interaction simulation label | "Live"; "Real time"; "AI analysis"; "See the real system" | — | Simulation vs live backend undecided | Simulated or live? | P0 | `OWNER` |
+| CTA-4 | **Talk to Nuova** | **`BLOCKED`, retired** | IC §5 | **No** | — | **Using the label at all** | — | Undefined and withdrawn from the project | — | P1 | **`REJECTED`** |
+| CTA-5 | **Chat with Nuova** | **`RESERVED`** | **HANDOFF** §10 | **No** | Honest pending state only, offering *Book a demo* | Any input field that accepts text and never answers. **P0 violation** | L-07 | Website concierge endpoint reserved. **No backend exists** | Chat backend at all? | P0 | **`RESERVED`** |
+| CTA-6 | **Log in** | `BACKEND CONFIRMED` · **destination `BLOCKED`** | **HANDOFF** §1, §5 r2 | **Not yet** | "Log in" **once a destination exists** | Any invented URL (R7); a nav item pointing nowhere | L-14 | **Auth is confirmed.** The dashboard destination is not (`MF-03`) | **Where does the product live after onboarding step 10?** | P1 | **`OWNER` (app-existence objection withdrawn)** |
+| CTA-7 | **WhatsApp** (NuovaSolution's own number) | **`BLOCKED`** | IC §8 | **No** | — | Any invented number (R7) | L-08 | **No number exists.** The handoff confirms only the *agency* connecting its own channel | **Supply the business number, and who answers it** | P0 | `OWNER` |
 
-**Six of seven conversion paths have no working target system.**
+**Position after reconciliation.** Two conversion paths now have a confirmed backend contract, and
+**neither may ship yet**: the trial waits on commercial wording plus a §14.3 release, and Log in waits
+on a destination. *Book a demo* remains the only working path, through an external scheduling tool
+rather than a product system.
 
 ---
 
@@ -440,26 +537,36 @@ are not made publishable by adding a hedge.
 
 Ordered by what unblocks the most work.
 
+*Reconciled 2026-08-31. Struck-through items were answered by the backend handoff.*
+
 | # | Decision | Unblocks | Risk if wrong |
 |---|---|---|---|
-| 1 | **Is voice AI live today — yes or no?** | §9 entirely, PK-04, CTA-4, R-10, F-05 | P0 |
-| 2 | **Does the 14-day trial exist, and what does it provision?** | T-01, CTA-1, the whole CTA hierarchy, pricing | P0 |
-| 3 | **Confirm or reject each named integration** (Idealista, Fotocasa, HubSpot, Salesforce, Pipedrive, Zoho, and any other) | F-06, F-07, F-08, G-11 | P0 |
+| **A** | **May the website BFF call a staging target?** State the conditions and confirm production is excluded. Without it, `END TO END VERIFICATION PENDING` can never close from this repository. | **The entire integration wave** | **P0** |
+| **B** | **Where does the product live after onboarding step 10?** Supply the dashboard URL, or confirm the website hosts it. (`MF-03`) | CTA-6, the wizard exit, the whole authenticated route tree, the scope of the wave | **P0** |
+| **C** | **Is the 14-day trial free, and is a payment method required at signup?** | T-01, CTA-1, the site-wide primary CTA, the conversion ladder | **P0** |
+| **D** | **May the four confirmed CRM vendors be named as plain text?** Separately: are trademark permissions held for any logo? | F-07, F-07b, G-11, the "we already have a CRM" objection | **P0** if acted on early |
+| **E** | **Release each product CTA individually under §14.3.** A contract is not a release. | Every product CTA | **P0** |
+| 1 | **Does voice AI answer and handle calls today — yes or no?** *(The handoff confirms only a channel connection.)* | §9 entirely, PK-04, R-10, F-05 | P0 |
+| ~~2~~ | ~~Does the 14-day trial exist?~~ **Answered: yes.** Narrowed to decision C. | — | — |
+| 3 | **Confirm or reject each named integration.** *Portals stay rejected; CRM vendors move to decision D.* | F-06, F-07, F-08 | P0 |
 | 4 | **Is `/live-demo` remediated, and what is the simulation disclosure wording in EN and ES?** | S-01, S-02, CTA-3 | P0 |
-| 5 | **The feature-to-package mapping**, and whether prices are public or on request | PK-04, PK-05, PK-06, PK-07 | P0 |
-| 6 | **Does a customer-facing application exist, at what URL?** | CTA-6, G-11, O-01…O-08, onboarding scope | P1 |
-| 7 | **The business WhatsApp number**, who answers it, in which languages, during which hours | CTA-7, C-05 | P0 |
-| 8 | **What does "Talk to Nuova" mean?** | CTA-4 | P1 |
+| 5 | **The feature-to-package mapping and the quotas**, and whether prices are displayed publicly or on request | PK-04, PK-05, PK-06, PK-07 | P0 |
+| ~~6~~ | ~~Does a customer-facing application exist?~~ **Answered: authentication is confirmed.** Narrowed to decision B. | — | — |
+| 7 | **The business WhatsApp number**, who answers it, in which languages, during which hours | CTA-7 | P0 |
+| ~~8~~ | ~~What does "Talk to Nuova" mean?~~ **Resolved: the label is retired.** | — | — |
 | 9 | **The product's real lead-score scale and thresholds**, or confirmation that none is published | D-03, D-04, R-04 | P0 |
 | 10 | **A measured response-time figure**, or confirmation that none is published | B-05, B-06 | P0 |
 | 11 | **Is the "verified source" for square metres technically enforced?** | K-05, K-06 | P0 |
 | 12 | **What does "Paid Acquisition" include as an entitlement?** | A-09, PK-04 | P1 |
-| 13 | **Which Daily Assistant questions actually work today?** | §10 entirely | P1 |
-| 14 | **Property Experience quotas per package** | K-01, PK-05 | P1 |
-| 15 | **Does self-service onboarding exist, and where does it live?** | §14 entirely | P1 |
-| 16 | **Confirm the redesign brief supersedes `CLAUDE.md`**, and update it | PT-C1 / C-07 | P1 |
+| 13 | **Which Daily Assistant questions actually work today?** *(The handoff confirms only an entitlement key.)* | §10 entirely | P1 |
+| 14 | **Property Experience quotas per package** | K-01, K-17, PK-05 | P1 |
+| ~~15~~ | ~~Does self-service onboarding exist?~~ **Answered: yes, ten contracted steps.** | — | — |
+| 16 | **Confirm the redesign brief supersedes `CLAUDE.md`**, and update it. Now also required because `CLAUDE.md`'s mandatory hot lead alerts cannot be honoured (D-10). | PT-C1 / C-07, D-10 | P1 |
 | 17 | **Ratify the interim CTA hierarchy** (Primary: Book a demo) | Site-wide | P1 |
-| 18 | **Rotate the exposed credential** recorded in `CURRENT_SITE_AUDIT.md` A-01 | Security | **P0** |
+| 18 | **Confirm the rotation state of the exposed credential** and the repository's visibility | Security | **P0** if the repository is public and it is not rotated |
+| 19 | **Supply `MF-01` and `MF-02`**, or declare each out of scope | T-03c (testimonial surface), D-10 (all hot lead copy and one homepage section) | P1 |
+| 20 | **Commit `backend_handoff/` to version control.** Confirmed free of secrets by full read. | Reproducibility, diffing export-v2 | P1 |
+| 21 | **Confirm the public plan names** served by the plans endpoint | PK-02, `MF-10` | P1 |
 
 ---
 
@@ -483,21 +590,34 @@ acceptance clears it.
 | **L-11** | Team performance visibility | I-07, R-08 |
 | **L-12** | Property measurement display | K-05, K-06 |
 | **L-13** | Incentivised testimonial mechanism | T-03, T-04 |
-| **L-14** | **The website privacy policy is materially incomplete** — consent-only basis, no retention period, no AI processing, no automated decision-making, no image/document/audio storage, no third-country transfers, no sub-processors | **Site-wide and launch-blocking** |
+| **L-14** | **The website privacy policy is materially incomplete, and the gap grew on 2026-08-31** — consent-only basis, no retention period, no AI processing, no automated decision-making, no image/document/audio storage, no third-country transfers, no sub-processors. **The confirmed integration adds account creation, password handling, JWT sessions, agency and team personal data, uploaded branding assets, provider OAuth tokens held server-side, testimonial consent and content, and a payment handoff — all new processing** | **Site-wide and launch-blocking. No authenticated surface may ship to a public URL before this closes** |
+
+> **Reconciliation, 2026-08-31.** **Every legal dependency L-01 to L-14 is unchanged by the backend
+> handoff, except L-14, which is enlarged.** The handoff is a technical document. It makes no legal
+> assertion and clears no legal hold. Where a row is both `BACKEND CONFIRMED` and
+> `LEGAL REVIEW PENDING`, **the legal hold governs** — T-03 is the worked example.
 
 ---
 
 ## 23. Technically blocked CTAs
 
-| CTA | Missing system | Honest interim state |
+*Reconciled 2026-08-31.*
+
+| CTA | What is missing | Honest interim state |
 |---|---|---|
-| Start your 14 day free trial | Signup, auth, tenant provisioning, billing | Does not appear |
-| Log in | Customer application and its URL | Omitted from the nav, or an explained pending state |
-| Talk to Nuova | A definition | Does not appear |
-| WhatsApp | A real business number | Does not appear |
-| Chat with Nuova | A chat backend | Designed pending panel offering *Book a demo*, or omitted |
+| Start your 14 day trial | **Not a backend gap any more.** Missing: the commercial wording decision (T-01) and a §14.3 CTA release | Does not appear until both land |
+| Log in | **Not an auth gap any more.** Missing: the dashboard **destination** (`MF-03`) | Omitted from the nav, or an explained pending state |
+| Talk to Nuova | A definition. **The label is retired** | Does not appear at all |
+| WhatsApp (NuovaSolution's own) | A real business number | Does not appear |
+| Chat with Nuova | A backend. **`RESERVED`** | Designed pending panel offering *Book a demo*, or omitted |
+| Website voice / WhatsApp concierge | A backend. **`RESERVED`** | Visual preparation only, clearly marked as reserved |
+| `POST /demo/book` | A backend definition. **`PROPOSED`** | Not created, not typed as real, not wired |
 | Experience Nuova | A decision: simulation or live | Labelled simulation |
-| **Book a demo** | — (**live**) | Ships, with the `href="#"` defect fixed |
+| **Book a demo** | Nothing. Works through an **existing external scheduling tool** | Ships, with the `href="#"` defect fixed and the embed as progressive enhancement |
+
+**Every product CTA additionally requires an explicit, per-action owner release under
+`MASTER_GOVERNANCE.md` §14.3 before it is wired. The activation register is empty. The arrival of a
+contract is not a release.**
 
 ---
 
@@ -517,6 +637,45 @@ Recorded so they are not carried into the redesign by reuse.
 | "Yes. Every real inquiry gets a reply. Only spam is ignored." | Absolute guarantee (B-14) |
 | "AI lead automation for real estate agencies in Spain" (footer) | Superseded positioning (P-05) |
 
+**None of these was rescued by the backend handoff.** "Always synced to your CRM" is the one worth
+restating: a four-provider adapter registry now exists, and the claim is *still* rejected, because it
+asserts automatic, universal, always-on synchronisation that no contract supports. Confirming that
+something can be connected is not confirming that it is always in sync.
+
+---
+
+## 24a. Status changes produced by Wave A1 (2026-08-31)
+
+| Capability | Before | After |
+|---|---|---|
+| 14 day trial exists | `OWNER`, "does it exist?" | **`BACKEND CONFIRMED`** · `WEBSITE INTEGRATION PENDING` |
+| The word "free" | `OWNER` | `OWNER DECISION PENDING`, now precisely scoped (T-01) |
+| Signup, login, logout, JWT and session | `BLOCKED`, "does an app exist?" | **`BACKEND CONFIRMED`** · `WEBSITE INTEGRATION PENDING` |
+| Dashboard destination | Not identified | **`BLOCKED` on `MF-03`**, P0 scope question |
+| Self-service onboarding, ten steps | `OWNER`, "does the flow exist?" | **`BACKEND CONFIRMED`**, with progress and resume |
+| Employee roles | `OWNER`, "what roles exist?" | **`BACKEND CONFIRMED`**, four roles |
+| Agency details and branding | Category 3, unevidenced | **`BACKEND CONFIRMED`** · `WEBSITE INTEGRATION PENDING` |
+| Nuova CRM as the default | Unevidenced | **`BACKEND CONFIRMED`** |
+| External CRM connection | `REJECTED` (no evidence) | **`BACKEND CONFIRMED`**; **naming** the four vendors → `OWNER DECISION PENDING`; **logos** → `BLOCKED` |
+| Property source, agency website | Category 2 + 3 | **`BACKEND CONFIRMED`**, explicitly first-class |
+| Property Experience entitlement and entry | Category 2 + 3 | **`BACKEND CONFIRMED`** (entitlement and entry only) |
+| Readiness | Not identified | **`BACKEND CONFIRMED`**; destination `BLOCKED` |
+| Entitlement enforcement | `OWNER`, "technical or manual?" | **`BACKEND CONFIRMED` as technical**; "unlocks" now defensible |
+| Plans, subscription state, checkout handoff | `BLOCKED`, no billing provider | **`BACKEND CONFIRMED`**; values **served, never authored** |
+| Paid acquisition connections | Owner brief only | **`BACKEND CONFIRMED`** (connection surfaces only) |
+| Channel connections: email, WhatsApp, calendar, voice | Owner brief only | **`BACKEND CONFIRMED`** (connection only, **not** conversational capability) |
+| Testimonial submission, pending review, manual approval, once, +7 days | `LEGAL`, DISABLED | **`BACKEND CONFIRMED` *and* `LEGAL REVIEW PENDING`**, still DISABLED |
+| Testimonial video | Assumed part of the mechanism | **`BLOCKED` on `MF-01`** — no media field exists |
+| Named portals | `REJECTED` | **`REJECTED`, unchanged** |
+| Voice AI capability | Category 7 interim | **Unchanged.** Connection surface separately confirmed |
+| Website voice / WhatsApp concierge | Undefined | **`RESERVED`** |
+| Website chat assistant | `OWNER` | **`RESERVED`** |
+| Demo booking backend | Cal.com working | Cal.com unchanged as an external option; `/demo/book` is **`PROPOSED`** |
+| Hot lead alerting | Requested gap | **`BLOCKED` on `MF-02`** |
+| "Talk to Nuova" | `OWNER` | **`REJECTED`, label retired** |
+| Every legal dependency L-01 … L-14 | `LEGAL` | **Unchanged.** L-14 enlarged |
+| End-to-end verification, every surface | Never claimed | `END TO END VERIFICATION PENDING`, currently **unreachable** |
+
 ---
 
 ## 25. Handover to the leading integration chat
@@ -530,35 +689,64 @@ Recorded so they are not carried into the redesign by reuse.
 
 **The one fact that governs everything downstream**
 
-> **Zero capabilities are in Category 1.** Backend verification was not performed and was not
-> permitted under the owner's system-isolation directive. Every capability claim therefore ships
-> qualified, or does not ship.
+> **Zero capabilities are in Category 1, and nothing is verified end to end.** The backend handoff
+> moved roughly two dozen capabilities to `BACKEND CONFIRMED`, which answers the *evidence* question
+> and nothing else. Under `MASTER_GOVERNANCE.md` §14 this repository cannot close
+> `END TO END VERIFICATION PENDING` at all. Every capability claim therefore still ships qualified,
+> or does not ship.
 
 **What the integration chat may proceed with**
 
 - The 13-domain capability architecture as site structure.
 - All `APPROVED` and `APPROVED-Q` rows, with their qualifiers attached to the claim.
+- **The confirmed product spine, new on 2026-08-31:** signup, login, logout, JWT sessions, the
+  14-day trial and its status, the ten-step onboarding wizard with progress and resume, agency
+  details, branding assets, team and four roles, CRM selection with Nuova CRM as the default,
+  property source including agency website inventory, Property Experience entitlement and entry,
+  readiness, technically enforced entitlements, plans, subscription state and checkout handoff.
+  These may be **specified and designed against real contracts** — and none of them may be wired
+  until released under §14.3.
 - The three-package structure and the confirmed baseline (PK-01, PK-03) as **names**.
-- *Book a demo* as the working primary CTA, with the A-02 defect fixed.
+- *Book a demo* as the interim primary CTA, with the A-02 defect fixed.
 
 **What the integration chat must not proceed with**
 
-- Any `OWNER`, `LEGAL` or `REJECTED` row.
-- Six of the seven CTAs (§23).
-- Every number: prices, limits, quotas, score scales, response times, percentages, counts, spend,
-  ROI (§11, §15).
-- Every named third-party integration and logo (F-06, F-07).
-- Voice as present-tense capability (§9).
-- The trial, in any wording, and the extension mechanism (§16).
+- Any `OWNER`, `LEGAL`, `BLOCKED`, `RESERVED`, `PROPOSED` or `REJECTED` row.
+- Any wiring of any product CTA without a per-action §14.3 owner release.
+- **Hot lead alerting**, in any form (D-10, `MF-02`).
+- Every number the website authors: prices, limits, quotas, score scales, response times,
+  percentages, counts, spend, ROI (§11, §15). Rendering a served `price_display` is not authoring.
+- Every named portal (F-06) and every vendor logo (F-07b). CRM vendor **names** await decision D.
+- Voice as a present-tense capability (§9). The confirmed connection surface is not evidence for it.
+- The word **free** attached to the trial (T-01), and the extension mechanism in public copy (T-03).
+- Any guaranteed statement about revenue, ROI, closings, lead volume, market share, response time or
+  conversions. Unchanged and absolute.
 
 **What is needed from the integration chat in return**
 
-1. Confirmation that no page composition begins before `COPY_AND_CONVERSION_MASTER.md` and
-   `LUXURY_UX_MEDIA_SYSTEM.md` exist — the `MASTER_GOVERNANCE.md` §5 gate now stands at **2 of 4**.
-2. A structural commitment that capability status is a **content property**, not hard-coded prose,
-   so claims can be re-qualified as evidence arrives without a rebuild.
-3. Routing of the 18 owner decisions (§21) and the 14 legal dependencies (§22) to the owner and to
-   legal review, as two separate tracks — they unblock different work and move at different speeds.
+1. A structural commitment that capability status is a **content property**, not hard-coded prose,
+   so claims can be re-qualified as evidence arrives without a rebuild. Wave A1 moved roughly two
+   dozen capabilities in a single day with no website code changing; export-v2 and the owner's
+   decisions will move more.
+2. Routing of the owner decisions (§21) and the fourteen legal dependencies (§22) as **two separate
+   tracks**. They unblock different work and move at different speeds, and counsel should start with
+   L-14, which the handoff enlarged.
+3. **Backend handoff export-v2 carrying `MF-01` to `MF-12`.** These fields are simply absent; no
+   amount of reasoning produces them and inventing them is forbidden.
+
+**Missing backend fields, by consequence**
+
+| Blocking a surface entirely | Required before implementation |
+|---|---|
+| `MF-01` testimonial media field (or a statement that video is out of scope) | `MF-04` response `code` enumeration, for all error copy |
+| `MF-02` hot lead alerting contract (or a statement that it is out of scope) | `MF-05` per-step `detail` shape, for the wizard rendering layer |
+| `MF-03` dashboard destination after step 10 | `MF-06` trial reminder cadence and ownership |
+| | `MF-07` branding upload limits |
+| | `MF-08` captcha provider |
+| | `MF-09` accepted `language` values at signup |
+| | `MF-10` currency and tax basis on `price_display`, and whether `name` is the public marketing name |
+| | `MF-11` provider display names for "Pending, waiting on {provider}" |
+| | `MF-12` whether testimonial submission is Bearer-only or also public with a captcha |
 
 **Explicitly not delivered**
 
