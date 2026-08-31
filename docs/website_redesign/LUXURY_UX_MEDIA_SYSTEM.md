@@ -20,6 +20,14 @@ page architecture, and every video and screenshot placeholder.
 Where this document says **BINDING**, implementation follows it exactly. A deviation
 requires a logged conflict in `IMPLEMENTATION_STATUS.md` and owner approval (R5).
 
+**Companion document.** `AUTHENTICATED_SURFACE_SYSTEM.md` extends this one for the
+authenticated customer journey — signup, login, session, trial, the ten step onboarding
+wizard, provider connections, uploads, plans and the testimonial surface. It introduces
+**no new colour, no new token and no second system**; every rule here applies there
+unchanged. Where the two documents overlap, this one wins on foundations (§2 to §4) and on
+component construction (§5); the companion wins on which authenticated surfaces exist and
+what they mean.
+
 ### 0.2 What this document does NOT decide
 
 | Not decided here | Owning document |
@@ -107,6 +115,15 @@ Forbidden as default patterns, in every language and every breakpoint:
 | 16 | Pill-shaped primary buttons | `radius-sm` 4px on all buttons |
 | 17 | Aurora / blurred colour blobs behind content | Removed entirely from the system |
 | 18 | Dark-to-transparent "gradient seam" between sections | Three defined seam types only (§3.5) |
+| 19 | A wizard or setup flow rendered as a grid of cards, tiles or panels | One hairline index of `StatusRow`s (`AUTHENTICATED_SURFACE_SYSTEM.md` §7.1) |
+| 20 | Ring, donut, radial or segmented progress meters; percentage badges on rows | One 1 px hairline progress rule plus one `caption` line |
+| 21 | Celebration: confetti, checkmark animations, trophies, streaks, mascots, emoji | The status changes. Nothing else happens |
+| 22 | Toast stacks, floating notification piles, corner popups | Inline state at the point of action, in one region at reserved height |
+| 23 | Avatar stacks, presence dots, activity feeds, gamified completion counters | Named rows, real status, nothing decorative |
+| 24 | Skeletons whose dimensions do not match the real content | Reserved frames at measured heights |
+
+Items 19 to 24 were added by Wave A3 and apply to authenticated surfaces, where these
+failures actually occur. They are binding everywhere.
 
 ### 1.4 Relationship to the current live site
 
@@ -228,6 +245,68 @@ Computed WCAG 2.x ratios. Every pair below was calculated, not estimated.
 3. A control's boundary uses `--border-interactive`, never `--border-hairline`.
 4. Any new colour pair must be computed and added to this table before use.
 
+#### 2.3.1 Raised-surface pairs (added by Wave A3)
+
+The authenticated surfaces place text and controls on `ink-900`, `ink-850`, `ink-800`,
+`paper` and `ink-50`, which the marketing composition never needed. **No new colour was
+introduced** — only new pairings, all computed below.
+
+| Pair | Ratio | Verdict |
+|---|---|---|
+| `signal-positive` on `ink-900` | **7.08** | AA |
+| `signal-attention` on `ink-900` | **8.09** | AAA |
+| `signal-critical` on `ink-900` | **6.24** | AA |
+| `signal-positive` on `ink-850` | **6.66** | AA |
+| `signal-attention` on `ink-850` | **7.61** | AAA |
+| `signal-critical` on `ink-850` | **5.87** | AA |
+| `signal-positive` on `ink-800` | **6.18** | AA |
+| `signal-attention` on `ink-800` | **7.07** | AA |
+| `signal-critical` on `ink-800` | **5.45** | AA |
+| `ink-300` muted on `ink-900` | **6.58** | AA |
+| `ink-200` secondary on `ink-900` | **9.98** | AAA |
+| `ink-300` muted on `ink-800` | **5.75** | AA |
+| `champagne-400` on `ink-850` | **7.92** | AAA |
+| `ink-950` on `ink-50` | **16.69** | AAA |
+| `ink-600` on `ink-50` | **9.59** | AAA |
+| `ink-500` muted on `ink-50` | **6.48** | AA |
+| `ink-500` muted on `paper` | **7.33** | AAA |
+| `champagne-700` on `paper` | **5.74** | AA |
+| `champagne-700` on `ink-50` | **5.08** | AA |
+| `signal-positive-dk` on `paper` | **5.86** | AA |
+| `signal-attention-dk` on `paper` | **5.65** | AA |
+| `signal-critical-dk` on `paper` | **6.08** | AA |
+| `signal-positive-dk` on `ink-50` | **5.18** | AA |
+| `signal-attention-dk` on `ink-50` | **5.00** | AA |
+| `signal-critical-dk` on `ink-50` | **5.38** | AA |
+| `border-interactive` (`ink-450`) on `ink-900` | **3.31** | AA non-text |
+| `border-interactive` (`ink-450`) on `ink-850` | **3.11** | AA non-text |
+| `border-interactive` (`ink-450`) on `ink-800` | 2.89 | ✗ FAILS |
+| `border-interactive` (`ink-350`) on `paper` | **3.37** | AA non-text |
+| `border-interactive` (`ink-350`) on `ink-50` | 2.98 | ✗ FAILS |
+| `ink-400` dashed upload border on `ink-900` | **4.12** | AA non-text |
+| `champagne-400` progress fill vs `ink-700` track | **6.39** | AA non-text |
+| focus ring on `ink-900` | **13.17** | — |
+| focus ring on `ink-850` | **12.38** | — |
+| focus ring on `paper` | **6.75** | — |
+| focus ring on `ink-50` | **5.97** | — |
+| `ink-900` surface vs `ink-950` canvas | **1.04** | Decorative only |
+| `ink-850` surface vs `ink-950` canvas | **1.11** | Decorative only |
+
+**Three further BINDING rules follow from these numbers**
+
+5. **Interactive controls never sit on `ink-800` or `ink-50`.** `border-interactive`
+   measures 2.89:1 and 2.98:1 there, below the 3:1 floor for a control boundary. Inputs,
+   selects, upload zones and secondary buttons sit on `ink-900`, `ink-850` or `paper`.
+   `ink-800` and `ink-50` are for non-interactive surfaces only — row hover backgrounds,
+   table zebra.
+6. **A surface step is not a boundary.** `ink-900` against `ink-950` is **1.04:1** and
+   `ink-850` against `ink-950` is 1.11:1 — invisible as contrast. The S1 surface-step seam
+   (§3.5) is decorative separation only. Any row boundary, selected state, hover state or
+   focus state must carry a **border, a rule or a glyph**, never a surface change alone.
+7. **The dashed upload border is the one dashed line in the system.** It uses `ink-400`
+   (4.12:1), not `border-interactive`, because a receptacle must read as distinct from a
+   field. Dashed borders appear nowhere else (§5.16).
+
 ### 2.4 Canvas selection (BINDING)
 
 | Page / section type | Canvas |
@@ -235,12 +314,18 @@ Computed WCAG 2.x ratios. Every pair below was calculated, not estimated.
 | Homepage, platform, product, solutions, experience | `ink` |
 | One deliberate contrast band per long page (max 1) | `ivory` |
 | Pricing / access page body | `ivory` |
-| Legal pages, onboarding forms, trial forms | `ivory` |
+| Legal pages | `ivory` |
 | Error pages, 404 | `ink` |
 | Header, footer, mega menu, mobile sheet | `ink` always, on every page |
+| **Signup, login, logout confirmation** | `ivory` |
+| **Wizard shell, index and every step page** | `ink` — fields on `ink-850`, canvas never changes mid page |
+| **Trial banner, trial expired state, readiness** | `ink` |
+| **Plan selection, upgrade, checkout handoff** | `ivory` |
+| **Testimonial surface** | `ivory` |
 
 Canvas is a section property declared in the section spec. It is never toggled by the user.
 There is **no dark-mode toggle**; `components/ui/dark-mode-toggle.tsx` is discarded.
+A canvas never changes inside a page; it changes only between routes.
 
 ---
 
@@ -764,6 +849,7 @@ becomes a centred stack. Footer link rows are 44 px tall on mobile.
 | Attributes | `autocomplete`, `inputmode`, `enterkeyhint` and `type` set correctly on every field. `type="email"` + `inputmode="email"`, phone `inputmode="tel"` |
 | Privacy | A `legal`-sized line at the point of collection, linking to the privacy policy, in the active language. GDPR + LSSI-CE |
 | Honest state | **If the endpoint does not exist, the form is not rendered.** The slot renders the §5.9 pending treatment instead |
+| File inputs | Not covered here. See **§5.16 — File input and upload law** |
 
 ### 5.7 Pricing presentation (BINDING)
 
@@ -1003,6 +1089,71 @@ Pinch-zoom-only is never acceptable.
 
 Every error state is reachable and testable in development via a documented flag.
 
+### 5.16 File input and upload law (BINDING)
+
+Added by Wave A3. §5.6 covers text inputs; this covers file inputs. It is component law and
+applies wherever an upload exists, authenticated or not.
+
+**The precondition.** An upload surface is **never built ahead of its contract**. A drop zone
+that cannot commit is a dead control and a P0 finding under `MASTER_GOVERNANCE.md` §6. Where
+a contract is absent, the slot renders the §5.9 honest state.
+
+| Aspect | Rule |
+|---|---|
+| **Control** | A real `<input type="file">`, visually replaced but focusable, with a `<label>`. A visible, keyboard-reachable **Choose file** Secondary button always exists |
+| **Drag and drop** | An enhancement only, never the sole path (WCAG 2.2 Dragging Movements). Drag-over state: the dashed border becomes solid and the surface steps up. No scaling, no colour wash, no animation |
+| **Zone** | One rectangle, `radius-sm`, 1 px **dashed** `ink-400` on dark (4.12:1) or `ink-350` on ivory. **The only dashed border in the system.** Height fixed at the rendered aspect ratio of the eventual asset, so zone and preview occupy the same box |
+| **Constraints** | Stated **before** selection, as a `caption` line inside the zone. Where the accepted types and size ceiling are not specified by the contract, they are a single named constant and **the client performs no rejection of its own** — inventing a limit produces a client rejection the server would have accepted, which is a fabricated rule |
+| **Progress** | A 1 px hairline rule along the zone's bottom edge, `champagne-400` on `ink-700` (6.39:1). `role="progressbar"`, with a polite live region updating at most every 10 %. **No percentage text on the zone, no circular meter, no per-file card** |
+| **Cancel** | A Tertiary control for the whole upload. Cancelling returns the zone to empty and states that nothing was stored |
+| **Preview** | Replaces the zone **in the same box**: the asset at its true aspect ratio inside a 1 px `border-strong` frame, `radius-0`, no shadow, plus one `caption` line with the file's own name |
+| **Dual-canvas preview** | An asset that will appear on both canvases (a logo, a mark) is previewed on `ink-950` **and** on `ivory`, side by side ≥ 640 px, stacked below. An asset invisible on one canvas is a real failure the owner must see before it ships |
+| **Replace** | A Secondary control beneath the preview. The existing asset stays visible until the new one commits. **There is no intermediate empty state** |
+| **Remove** | A Tertiary control opening one confirmation dialog stating what will stop appearing where. On failure, the asset is still shown — never an optimistic removal |
+| **Multi-phase honesty** | Where a contract separates upload from commit, a completed transfer renders as **in progress**, never as stored, until commit returns. The same principle as `externally_pending` |
+| **Errors** | Field-level on the zone, with the zone still mounted and usable. Every rejected file produces a visible, attributable message. **No file is ever silently dropped** |
+| **Identifiers** | A storage object path, key or identifier is **never displayed** |
+| **Announcements** | Selection, progress milestones, success and failure via one `aria-live="polite"` region per zone. Never `assertive` |
+| **Focus** | After commit, focus moves to the preview's replace control. After removal, back to the zone's button |
+| **Reduced motion** | Progress updates without transition. No drag-over animation |
+| **Performance** | The file uploads directly to its signed destination, never proxied through the page. **No client-side image processing, no canvas resize, no cropping tool** — cropping alters an asset the owner supplied |
+| **Privacy** | The file name is user content: rendered as given, escaped, and never used to construct a displayed path |
+
+### 5.17 Status expression law (BINDING)
+
+Added by Wave A3. *How* a status looks is defined here. *Which* statuses exist and what they
+mean is defined by `AUTHENTICATED_SURFACE_SYSTEM.md` §3, which maps its eight backend values
+onto these primitives.
+
+**The law: every status renders as glyph + text + colour. Colour is never the
+differentiator.** Values may share a colour; they may never share a glyph or a label.
+
+**Glyph set** — inline SVG, 16 px, 1.5 px stroke, `currentColor`, `stroke-linecap: round`,
+no fill except `diamond`, **no circular background, no badge, no shadow**, `aria-hidden="true"`.
+Eight shapes, distinct in silhouette so the set survives greyscale and low vision:
+
+`check` · `arrow-right` · `clock` · `lock` · `rule` · `link` · `triangle` · `diamond`
+
+No glyph in this set is reused for any non-status purpose anywhere on the site.
+
+**Three primitives**
+
+| Primitive | Construction |
+|---|---|
+| **`StatusRow`** | Full container width. Numeral (`caption`, tabular) · title (`heading-s`) · one detail line (`body-s`, `text-muted`) · status cluster (glyph + `caption`) · trailing affordance. 1 px `border-hairline` between rows. Height **72 px** ≥ 1024; below, auto with a **72 px minimum** and `space-4` vertical padding. Where a route exists, **the whole row is the control** — never a separate button inside a row, which would create two tab stops for one destination |
+| **`StatusChip`** | `radius-pill`, 1 px `border-hairline`, 24 px, glyph 12 px + `caption`. **The only pill-shaped element permitted outside §3.9's three exceptions** |
+| **`StatusNote`** | Glyph + `body-s`, `space-2` gap, indented to the title's left edge, beneath the row or field it explains |
+
+**Behaviour**
+
+- Row hover and focus raise the surface **and** add a 1 px `border-interactive` left edge —
+  a surface step alone is 1.04:1 and is not a boundary (§2.3.1 rule 6).
+- A status label never truncates. A detail line clamps at two lines. A title wraps, never
+  truncates.
+- A status change cross-fades glyph and label over `motion-micro` (120 ms), **opacity only**.
+  The row does not move, resize, flash, pulse or highlight. Instantaneous under reduced motion.
+- The change is announced `aria-live="polite"`, never assertive. No sound, no haptics.
+
 ---
 
 ## 6. Responsive breakpoints (BINDING)
@@ -1158,6 +1309,28 @@ The exact product and solution slugs are **not decided here** — they depend on
 
 `/v2` and `/live-demo` are retired; `/live-demo` redirects permanently to `/experience`
 once that page ships.
+
+**Authenticated routes** (added by Wave A3). All **PROPOSED**; none exists. Specified in
+`AUTHENTICATED_SURFACE_SYSTEM.md`.
+
+| Route | Surface | Canvas | Spec |
+|---|---|---|---|
+| `/[locale]/signup` | Signup | ivory | companion §5.1 |
+| `/[locale]/login` | Login | ivory | companion §5.2 |
+| `/[locale]/onboarding` | Wizard index — ten steps | ink | companion §7 |
+| `/[locale]/onboarding/[step]` | Step page | ink | companion §8 |
+| `/[locale]/account/plan` | Plan, subscription, upgrade, checkout handoff | ivory | companion §10 |
+| `/[locale]/account/testimonial` | Testimonial — legally held, not publicly linked | ivory | companion §11 |
+| Dashboard destination | **BLOCKED on MF-03** | — | companion §8.10 |
+
+**Route collision note.** §9.8's public `/[locale]/onboarding` marketing page and the
+authenticated wizard at the same path cannot both exist. The wizard is the confirmed
+product journey and takes the path; §9.8's public content, if it survives owner decision 2,
+moves under a marketing slug to be confirmed with the route naming decision (D-11). Logged
+so implementation does not discover it at build time.
+
+`Log in` is **not rendered** in the public navigation until MF-03 supplies a destination
+(§5.2, `INTEGRATION_CONTRACT.md` §4, conflict C-03).
 
 ### 9.2 Homepage
 
@@ -2036,6 +2209,8 @@ box. First-load JS <= 130KB per route.
 | AS-08 | `docs/website_redesign/ASSET_LICENSES.md` | **Does not exist.** Required by §5.10 and §10.1 | Every image and video |
 | AS-09 | `lib/media-manifest.ts` | Does not exist. Drives the pending→live media swap (§10.3) | Implementation Phase 8 |
 | AS-10 | Demonstration data set / demonstration workspace | Does not exist | Every capture and every video |
+| AS-11 | **Status glyph set** — 8 inline SVGs at 16 px, 1.5 px stroke (§5.17) | Does not exist. Authored in-repo, no icon library is introduced | Every authenticated status surface |
+| AS-12 | **Captcha widget dimensions** and its non-visual alternative | Provider unknown (MF-08). The reserved box is a named constant until supplied | Signup, any public form |
 
 ---
 
@@ -2081,6 +2256,16 @@ raises the following. None can be resolved by invention.
 12. **Accessibility** — WCAG 2.2 AA, 44 px touch targets, focus never obscured.
 13. **Budgets** — §8.4, enforced at phase close.
 
+Added by Wave A3:
+
+14. **Interactive controls never sit on `ink-800` or `ink-50`**, and a surface step is never
+    a boundary (§2.3.1 rules 5 and 6).
+15. **Status is glyph + text + colour**, never colour alone; eight distinct glyphs (§5.17).
+16. **An upload surface is never built ahead of its contract**, and the client invents no
+    file-size or file-type limit (§5.16).
+17. **Anti-patterns 19 to 24** — no card-grid wizard, no ring progress, no celebration, no
+    toasts, no gamification, no mismatched skeletons (§1.3).
+
 ---
 
 ## Status
@@ -2091,6 +2276,15 @@ component law, page architecture for eight page types with a full 13-field speci
 homepage section, eight fully specified video placeholders, a screenshot capture plan, a
 critical `CLAUDE.md` review with a drop-in replacement block, an asset gap register and
 twelve open owner decisions.
+
+**Amended by Wave A3** (Authenticated Experience Design), which added: the companion-document
+reference (§0.1), anti-patterns 19 to 24 (§1.3), thirty-nine computed raised-surface contrast
+pairs and three binding rules derived from them (§2.3.1), the authenticated canvas assignments
+(§2.4), the file input and upload law (§5.16), the status expression law and its three
+primitives (§5.17), the authenticated route map with a logged `/onboarding` path collision
+(§9.1), two further missing assets (§14), and four further binding rules (§16). **No new
+colour, token, type size, radius, shadow or motion value was introduced.** The full
+authenticated specification lives in `AUTHENTICATED_SURFACE_SYSTEM.md`.
 
 No application code has been modified. No integration has been created or connected. No
 external system has been contacted. `CLAUDE.md` has not been edited.
