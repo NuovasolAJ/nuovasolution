@@ -10,11 +10,47 @@
 
 ## 0. Status, scope and how to use this file
 
+### 0.0 Wave A2 revision, 2026-08-31
+
+This document has been revised against the **backend handoff** (`backend_handoff/
+WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md`, the technical authority) and the **updated
+`CLAIMS_MATRIX.md`** (the binding authority for public statements), following the 44 row copy
+audit in `FINAL_RECONCILIATION_REPORT.md` §4.
+
+**What changed at the level of the whole document.**
+
+The backend handoff moved roughly two dozen capabilities from *owner brief only* to
+`BACKEND CONFIRMED`. That is a large change, and it is easy to misread. It answers the
+**evidence** question. It does not answer the **permission** question, the **legal** question
+or the **release** question.
+
+> `BACKEND CONFIRMED` is not permission to publish.
+> `CLAIMS_MATRIX.md` §The rule that governs every reconciled row.
+
+Three consequences run through every page below.
+
+1. **The account tree is now real copy.** Signup, login, the fourteen day trial, the ten step
+   self service wizard, saved progress, agency details, branding, team and roles, CRM
+   selection, property source, entitlements, plans, subscription state and checkout handoff
+   all have contracts. They get written properly here for the first time.
+2. **Nothing about the conversational product moved.** Automatic replies, qualification,
+   follow up, matching behaviour, the assistant's question set and voice capability are
+   exactly where they were. The handoff confirms **channel connections**, not conversational
+   behaviour, and conflating the two is a P0 violation (`CLAIMS_MATRIX.md` §9 note).
+3. **Every legal hold survived.** L-01 to L-13 are unchanged and **L-14 grew**, because
+   account creation, password handling, sessions, team personal data, uploaded assets,
+   provider tokens, testimonial content and a payment handoff are all new processing the
+   privacy policy does not describe. No authenticated surface reaches a public URL before
+   L-14 closes.
+
+**The vocabulary `LIVE` and `PRODUCTION READY` is removed from this document**, per
+`CLAIMS_MATRIX.md`. Nothing here is production ready and this document never says otherwise.
+
 ### 0.1 Why this document is a draft
 
 `MASTER_GOVERNANCE.md` §3 places two documents above this one. **Both arrived while this
 document was being written**, in commit `7ec0010`, and this file has been reconciled against
-them in a second pass.
+them in a second pass, then again in Wave A2 against the backend handoff.
 
 | Document | Present | Consequence for this file |
 |---|---|---|
@@ -75,7 +111,8 @@ written before the truth documents existed, and it was wrong in both directions.
 | Social Growth | EMBARGOED, treated as unknown | `PRODUCT_TRUTH.md` §5 defines nine capabilities and one exclusion. Rewritten as a real page. |
 
 **Confirmed correct by the matrix:** the operating layer positioning (P-02), the decision to
-retire *Talk to Nuova* (CTA-4), Ladder B as the shipping CTA hierarchy (T-01, §16 note), the
+retire *Talk to Nuova* (CTA-4, now `REJECTED` and the label retired), *Book a demo* as the
+shipping primary CTA, the
 refusal to publish the 1 to 100 score scale (D-04), and the requirement for a pre interaction
 simulation label (S-02).
 
@@ -285,90 +322,130 @@ written as an assumption rather than as a boast.
 
 ## 3. CTA system
 
-### 3.1 The blocker
+### 3.1 Two states, and the gate between them
 
-The governance CTA hierarchy is:
+The trial now exists. `CLAIMS_MATRIX.md` T-00 records it as `BACKEND CONFIRMED`: the tenant
+is created with a fourteen day trial window at signup, and `GET /trial/status` serves
+`status`, `plan`, `trial_end`, `days_left` and `account_state`.
 
-| Level | Action |
-|---|---|
-| Primary | Start your 14 day free trial |
-| Secondary | Book a demo |
-| Tertiary | Experience Nuova |
+That does not make the trial CTA shippable. Three separate things still stand between the
+contract and a button a visitor can press:
 
-`INTEGRATION_CONTRACT.md` §1 records the trial as `BLOCKED`: no signup, no auth, no
-provisioning, no billing. Open conflict **C-01** states the phrase may not appear on the
-site until `PRODUCT_TRUTH.md` confirms the trial exists.
-
-This document therefore specifies **two complete ladders**. Implementation switches between
-them with a single flag and invents nothing.
-
-### 3.2 Ladder A. Ships only after C-01 is answered yes
-
-| Level | EN | ES |
+| Gate | What is missing | Who closes it |
 |---|---|---|
-| Primary | Start your 14 day free trial | Empieza tu prueba gratuita de 14 días |
-| Secondary | Book a demo | Reserva una demo |
-| Tertiary | Experience Nuova | Descubre Nuova |
+| Commercial wording | The word **free**, and whether a payment method is required at signup (T-01) | Owner |
+| Website integration | No signup surface, no BFF, no route exists (`WEBSITE INTEGRATION PENDING`) | The integration wave |
+| Per action release | `MASTER_GOVERNANCE.md` §14.3 requires an explicit, individually recorded owner release per CTA. **The activation register is empty** | Owner |
 
-Short forms for tight surfaces such as sticky mobile bars and nav:
+> **The arrival of a backend contract is not a release.** `MASTER_GOVERNANCE.md` §14.3.
 
-| Level | EN short | ES short |
-|---|---|---|
-| Primary | Start free trial | Prueba gratis |
-| Secondary | Book a demo | Reserva una demo |
-| Tertiary | Experience Nuova | Descubre Nuova |
+The CTA system is therefore specified as **two states**. Implementation ships state one and
+holds state two behind the gate. Nothing is invented in either.
 
-### 3.3 Ladder B. Ships today. Honest, complete, no dead ends
+### 3.2 State one: INTEGRATION PENDING
 
-| Level | EN | ES |
-|---|---|---|
-| Primary | Book a demo | Reserva una demo |
-| Secondary | Experience Nuova | Descubre Nuova |
-| Tertiary | Request early access | Solicita acceso anticipado |
+**This is what ships.** It is complete, honest, and has no dead ends.
 
-Ladder B is not a downgrade if it is written with confidence. A demo led ladder is normal
-for a product sold to agencies, and Cal.com is the only integration verified as live, which
-makes it the only path that cannot fail.
-
-**Tertiary caution.** *Request early access* only ships once `INTEGRATION_CONTRACT.md` §11
-resolves to a real destination. Until then the tertiary slot is left empty rather than
-filled with something that goes nowhere. An empty slot is not a dead end. A form that
-posts into nothing is a P0 finding.
-
-### 3.4 Full CTA label inventory
-
-| ID | EN label | ES label | Target | Status |
+| Level | EN | ES | Target | Note |
 |---|---|---|---|---|
-| CTA-01 | Book a demo | Reserva una demo | Cal.com | `LIVE` |
-| CTA-02 | Start your 14 day free trial | Empieza tu prueba gratuita de 14 días | Trial signup | `BLOCKED` C-01 |
-| CTA-03 | Experience Nuova | Descubre Nuova | /experience | `PENDING` C-02 |
-| CTA-04 | See how Nuova handles a real enquiry | Mira cómo Nuova gestiona una consulta real | /experience | `PENDING` C-02 |
-| CTA-05 | Explore the platform | Descubre la plataforma | /platform | Safe |
-| CTA-06 | See the whole system | Ver el sistema completo | /platform | Safe |
-| CTA-07 | Talk to us on WhatsApp | Escríbenos por WhatsApp | wa.me | `BLOCKED` C-05 |
-| CTA-08 | Request early access | Solicita acceso anticipado | Access request | `PENDING` |
-| CTA-09 | Log in | Iniciar sesión | Customer app | `BLOCKED` C-03 |
-| CTA-10 | See pricing | Ver precios | /pricing | `PENDING` C-06 |
-| CTA-11 | Talk to us about pricing | Hablemos de precios | Cal.com | `LIVE` |
-| CTA-12 | Request a call | Solicita una llamada | Callback | `PENDING` |
-| CTA-13 | Read the module | Ver el módulo | Module page | Safe |
-| CTA-14 | Tell me when this is ready | Avísame cuando esté listo | Notify request | `PENDING` |
+| Primary | **Book a demo** | **Reserva una demo** | Existing external scheduling tool | The only working conversion path. Outside the product boundary. |
+| Secondary | **Experience Nuova** | **Descubre Nuova** | `/experience` | Ships only with a cleared pre interaction simulation label (S-02). |
 
-**Never used:** *Talk to Nuova*. Conflict C-04 records that the label maps to no defined
-behaviour. An ambiguous CTA in a three level ladder is a conversion defect, not a nice extra.
-It is removed from the vocabulary until the owner defines it, and if it turns out to mean the
-Voice AI, it is renamed to something that says so.
+**The trial entry does not render as a working control in this state.** It may appear only as
+a marked placeholder under §14.3, and only if the owner has ratified its wording. If the
+wording is unratified it does not appear at all. A placeholder beats nothing only when the
+visitor can tell it is one.
 
-**Never used:** *Get started*, *Learn more*, *Discover more*, *Find out more*, *Submit*,
-*Click here*. Every CTA on the site names the thing that happens next.
+**Not in this state, at all:** WhatsApp (CTA-7, no number exists), a chat launcher (CTA-5,
+`RESERVED`), *Talk to Nuova* (CTA-4, retired), *Log in* as a live link (CTA-6, no
+destination, `MF-03`).
 
-### 3.5 CTA microcopy
+### 3.3 State two: POST INTEGRATION CANDIDATE
 
-Placed under the primary CTA. One line. Removes the two objections that stop a click.
+**Candidate only. Not approved. Activation is owner and integration gate dependent.**
 
-**CTA-2 forbids a duration or outcome promise that is not confirmed**, and names *15 minutes*
-and *no commitment* as forbidden. Every duration is therefore removed until the owner supplies
-one. The lines below work without a number.
+| Level | EN | ES | Target |
+|---|---|---|---|
+| Primary | **Start your 14 day trial** | **Empieza tu prueba de 14 días** | `POST /signup` through the BFF |
+| Secondary | **Book a demo** | **Reserva una demo** | External scheduling tool |
+| Tertiary | **Experience Nuova** | **Descubre Nuova** | `/experience` |
+
+**Book a demo stays in the ladder and never leaves it.** `MASTER_GOVERNANCE.md` §11.4 is
+explicit: booking a demo is optional and is **never a prerequisite to starting a trial**. No
+step in any journey may route a trial signup through a sales call. That rule exists because
+the live site does exactly that today, and T-02 rejects the pattern by name.
+
+### 3.4 The trial wording, Variant A and Variant B
+
+T-01 blocks the word **free** and every variant of it. The duration is confirmed; the price is
+not. Both variants are drafted so the owner ratifies wording rather than briefing it.
+
+**VARIANT A. No claim about price. Shippable the moment the owner ratifies it.**
+
+| Surface | EN | ES |
+|---|---|---|
+| Primary CTA | Start your 14 day trial | Empieza tu prueba de 14 días |
+| Short form, mobile and nav | Start your trial | Empieza tu prueba |
+| Supporting line | Fourteen days to set your agency up and see it working. | Catorce días para configurar tu agencia y verla funcionando. |
+| Pricing page entry | Start with the 14 day trial, or talk to us first. | Empieza con la prueba de 14 días, o hablamos antes. |
+
+Variant A carries **no price claim of any kind**, so T-01 does not reach it. It stays honest
+whether the trial turns out to be free, card required, or neither. **This is the recommended
+variant, and every page below is built around it.**
+
+**VARIANT B. Contains the word free. NOT APPROVED. NOT RELEASED.**
+
+> ⚠ **Variant B may not be implemented, staged, previewed or pasted into a component.** It is
+> drafted here so the owner can ratify wording in one step rather than two, and for no other
+> reason. It becomes usable only when T-01 is answered **yes, the trial is free**, and the
+> §14.3 release is recorded. Until both happen this block is reference material.
+
+| Surface | EN | ES |
+|---|---|---|
+| Primary CTA | Start your 14 day free trial | Empieza tu prueba gratuita de 14 días |
+| Short form | Start free | Empieza gratis |
+| Supporting line | Fourteen days, free, to set your agency up and see it working. | Catorce días, gratis, para configurar tu agencia y verla funcionando. |
+
+**Not drafted in either variant:** *No credit card required*.
+`FINAL_RECONCILIATION_REPORT.md` §4 row 3 marks it `REMOVE`, T-01 forbids it by name, and
+nothing in the handoff says whether a payment method is taken at signup. It was correctly
+never drafted and it stays undrafted. Writing it now would create a sentence that could ship
+by accident.
+
+### 3.5 Full CTA label inventory
+
+| ID | EN label | ES label | Target | State |
+|---|---|---|---|---|
+| CTA-01 | Book a demo | Reserva una demo | External scheduling tool | **Ships.** Fix A-02: real `href`, embed as progressive enhancement |
+| CTA-02 | Start your 14 day trial | Empieza tu prueba de 14 días | `POST /signup` | `INTEGRATION PENDING` + §14.3 release + T-01 wording |
+| CTA-03 | Experience Nuova | Descubre Nuova | `/experience` | Ships with a cleared simulation label (S-02) |
+| CTA-04 | Explore the platform | Descubre la plataforma | `/platform` | Ships. Navigation, no claim |
+| CTA-05 | See pricing | Ver precios | `/pricing` | Owner decision PK-07: public or on request |
+| CTA-06 | Talk to us about pricing | Hablemos de precios | External scheduling tool | Ships |
+| CTA-07 | Read the module | Ver el módulo | Module page | Ships |
+| CTA-08 | Log in | Iniciar sesión | Destination unknown | `BLOCKED` on `MF-03`. Does not render |
+| CTA-09 | Create your account | Crea tu cuenta | `POST /signup` | Same gate as CTA-02 |
+| CTA-10 | Continue where you left off | Continúa donde lo dejaste | `resume_step` | `INTEGRATION PENDING` |
+| CTA-11 | Choose a plan | Elige un plan | `GET /plans` then checkout | `INTEGRATION PENDING`, PK-09 |
+| CTA-12 | Continue to checkout | Continuar al pago | `POST /checkout/session` | `INTEGRATION PENDING` + §14.3 release |
+
+**Retired, and never reintroduced:**
+
+| Label | Why |
+|---|---|
+| Talk to Nuova | CTA-4 `REJECTED`. The label is retired from the project |
+| Talk to us on WhatsApp | CTA-7. No number exists and R7 forbids inventing one |
+| Chat with Nuova | CTA-5 `RESERVED`. A launcher that accepts input and never answers is a P0 violation |
+| Start for free, routed to a demo booking | T-02. The exact pattern live on the site today |
+| Request early access | Superseded. A trial signup contract exists, so a request queue is the wrong shape |
+
+**Never used as a label anywhere:** *Get started*, *Learn more*, *Discover more*, *Find out
+more*, *Submit*, *Click here*. Every CTA on this site names the thing that happens next.
+
+### 3.6 CTA microcopy
+
+CTA-2 forbids a duration or outcome promise that is not confirmed, and names *15 minutes* and
+*no commitment* as forbidden. **Every duration is removed.** The lines work without one.
 
 | Context | EN | ES |
 |---|---|---|
@@ -376,20 +453,16 @@ one. The lines below work without a number.
 | Demo, module pages | In English or in Spanish. Nothing to prepare. | En español o en inglés. No hace falta preparar nada. |
 | Demo, pricing page | We tell you what it costs on the call. | Te decimos lo que cuesta en la llamada. |
 | Experience Nuova | Nothing to install. | Sin instalar nada. |
+| Trial, Variant A only | You set your agency up yourself. No developers needed. | Configuras tu agencia tú mismo. Sin desarrolladores. |
 
-**Held, not written.** Trial microcopy is not drafted at all. T-01 forbids *free trial*,
-*start free*, *try free* and *no credit card required* in every wording, so drafting a line
-for a CTA that may not exist only creates something to accidentally ship.
+The trial line uses O-08's approved wording, which is `BACKEND CONFIRMED` in structure: ten
+steps, saved progress, resume, role gated writes. It carries no price claim, so it holds under
+Variant A.
 
-**Removed.** *No card. Your data stays yours.* The second sentence is a security and data
-handling claim, rejected under B-15 and N-03.
+**OWNER DECISION.** Supply a real demo duration, or confirm none is published. The live site
+says 15 minutes today, which CTA-2 names as forbidden precisely because it is unconfirmed.
+This instance does not choose a number that describes the owner's own calendar.
 
-**OWNER DECISION.** Supply a real demo duration, or confirm that none is published. The
-current live site says 15 minutes, which CTA-2 names as forbidden wording precisely because
-it is unconfirmed. This instance will not choose a number that describes the owner's own
-calendar.
-
----
 
 ## 4. Hero headline options and recommendation
 
@@ -553,37 +626,51 @@ Fourteen pages. Each carries the full field set required by the brief.
 
 ### 6.0 Page inventory and routing
 
-Gates below are **after** reconciliation against the truth documents. Two pages moved up, one
-moved down to no page at all.
+Gates below are **after** Wave A2 reconciliation against the backend handoff and the updated
+matrix. The site is now two trees, not one, and they have different gates.
+
+**The public marketing tree.**
 
 | # | Page | Route | Gate | Principal blocker |
 |---|---|---|---|---|
 | 1 | Homepage | `/` | HELD | Composed of module sections, so it inherits their gates |
 | 2 | Platform Overview | `/platform` | **OPEN** | Security section held on L-14 |
 | 3 | AI Sales Agent | `/platform/ai-sales-agent` | HELD | Follow up section on L-01, qualification on L-09 |
-| 4 | Lead Intelligence and CRM | `/platform/lead-intelligence` | HELD | L-09 throughout, G-11 positioning |
+| 4 | Lead Intelligence and CRM | `/platform/lead-intelligence` | HELD | L-09 throughout. CRM section improved, F-07 naming is owner decision D |
 | 5 | Voice AI | **no route** | **BLOCKED** | V-01. One future block on Platform Overview instead |
-| 6 | Property Matching | `/platform/property-matching` | **OPEN** | Section 5 removed on L-02 |
-| 7 | Daily Assistant | `/platform/daily-assistant` | HELD | Every row OWNER |
-| 8 | Social Growth | `/platform/social-growth` | **OPEN** ⬆ | Section 5 held on L-07. **Was EMBARGOED** |
+| 6 | Property Matching | `/platform/property-matching` | **OPEN** | Strengthened by F-02b. Section 5 removed on L-02 |
+| 7 | Daily Assistant | `/platform/daily-assistant` | HELD | Every row still OWNER. The `assistant` entitlement key changes nothing |
+| 8 | Social Growth | `/platform/social-growth` | **OPEN** | Section 5 held on L-07 |
 | 9 | Reporting | `/platform/reporting` | **OPEN** | Section on L-11 removed |
-| 10 | Property Experience | `/platform/property-experience` | **OPEN** ⬆ | Square metres on L-12. **Was EMBARGOED** |
+| 10 | Property Experience | `/platform/property-experience` | **OPEN** | Square metres on L-12. Entitlement copy now confirmed (K-17) |
 | 11 | Solutions and Outcomes | `/solutions` | **OPEN** | Rows for blocked modules are omitted |
-| 12 | Pricing | `/pricing` | HELD | PK-02, PK-04, PK-05, PK-06 |
+| 12 | Pricing | `/pricing` | HELD | PK-07 public or on request. Prices are served, never authored |
 | 13 | Experience Nuova | `/experience` | HELD | S-02 disclosure wording is an owner decision |
-| 14 | Onboarding and Start | `/start` | HELD | O-01 and O-02 OWNER |
+| 14 | Onboarding and Start | `/start` | **OPEN** ⬆ | Public page unblocked by O-00b, O-01, O-02 |
 
-**No page carrying a form ships at all.** A-04b and B-03b are P0: this website has no API
-routes, no forms and no submission path. Form copy in §9.4 is prepared, not deployable.
+**The authenticated tree. New in Wave A2.**
 
-**Routing decision for the implementation instance.** `CURRENT_SITE_AUDIT.md` §3 lists
-*Lead Acquisition* and *Follow up Automation* as separate required routes. Two standalone
-pages for those would be thin and would repeat Social Growth and AI Sales Agent almost word
-for word. Recommendation: **Lead Acquisition** becomes the top section of Social Growth, and
-**Follow up Automation** becomes a full named section of AI Sales Agent, both with anchor
-links so any existing reference still resolves. Logged as an OWNER DECISION.
+| # | Surface | Route | Gate | Principal blocker |
+|---|---|---|---|---|
+| 15 | Signup | `/signup` | `INTEGRATION PENDING` | **L-14.** Plus `MF-08` captcha, `MF-09` language values |
+| 16 | Login | `/login` | `INTEGRATION PENDING` | **L-14.** Destination `BLOCKED` on `MF-03` |
+| 17 | Trial status | authenticated shell | `INTEGRATION PENDING` | **L-14.** Reminder cadence `MF-06` |
+| 18 | Trial expiry | authenticated shell | `INTEGRATION PENDING` | **L-14.** Day fifteen wording is an owner decision |
+| 19 | Plan selection | authenticated shell | `INTEGRATION PENDING` | **L-14.** PK-04, PK-05, PK-07, `MF-10` |
 
----
+> **No authenticated surface reaches a public URL before L-14 closes.**
+> `CLAIMS_MATRIX.md` L-14, enlarged on 2026-08-31. The confirmed integration adds account
+> creation, password handling, JWT sessions, agency and team personal data, uploaded branding
+> assets, provider OAuth tokens held server side, testimonial consent and content, and a
+> payment handoff. **All of it is new processing the privacy policy does not describe.** This
+> is site wide and launch blocking, and it is not a copy problem that copy can solve.
+
+**Every product CTA additionally needs an individual §14.3 owner release.** The activation
+register in `INTEGRATION_CONTRACT.md` is empty. A contract is not a release.
+
+**The public marketing forms still have nowhere to go.** A-04b is unchanged and P0: a signup
+contract now exists, but a **generic marketing form destination does not**. The form library in
+§9.4 is prepared, not deployable, and no contact or callback form ships.
 
 ## 6.1 Homepage
 
@@ -610,9 +697,9 @@ between your tools and your people.
 > conversation is understood and carried forward. Your agents hear about the ones that are
 > ready.
 
-**Primary CTA.** Book a demo. Ladder B is the only ladder that ships (`CLAIMS_MATRIX.md`
-T-01, CTA-1).
-**Secondary CTA.** Experience Nuova, with its simulation label.
+**Primary CTA.** Book a demo. State one, INTEGRATION PENDING (§3.2). The trial entry becomes
+primary only in state two, after T-01 wording and a §14.3 release.
+**Secondary CTA.** Experience Nuova, with its pre interaction simulation label.
 **Hero reassurance line.** One system instead of separate tools for messaging, follow up,
 matching and reporting. `[P-03]`
 
@@ -839,7 +926,7 @@ Body copy for that variant lives on the Pricing page and is repeated here in sho
 
 > Nuova is set up around how an agency actually operates, so we quote it after we have seen
 > yours. Three tiers, Studio, Signature and Prime. We will tell you which one fits and what
-> it costs on a 30 minute call, without a proposal process.
+> it costs on the call, without a proposal process.
 
 CTA: Talk to us about pricing.
 
@@ -1297,29 +1384,56 @@ channel, routed to whom, and under what ownership model?
 Until then the page ends at section 4, and D-08 carries the *you can see what is due next*
 message.
 
-**6. Works with the CRM you have**
+**6. A CRM is included. You do not have to bring your own.**
 
-> ### Universal across your channels.
+**Rewritten again in Wave A2, and this is the largest single copy unblock the handoff
+produced.** The previous pass could not answer *we already have a CRM* at all. It can now.
 
+> ### A CRM is included from the start.
+
+> A CRM is included. You do not have to bring your own. `[G-11b]`
+>
 > Every message, from every channel, on one record. The whole relationship in one place, with
 > the source it came from, who took over and when. `[G-01]` `[G-02]` `[G-03]` `[G-06]`
 >
 > Universal across your channels. `[G-10]`
+>
+> If you already use another CRM, you can connect it instead. `[G-11]`
 
-**Rewritten. The first draft was rejected wording twice over.** It said *Nuova keeps its own
-record and is built to write back into the CRM your agency already runs on, so your process
-stays where it is*. F-07 and F-08 reject every named CRM integration and every compatibility
-claim including *works with yours*, and G-11 makes CRM replacement positioning an unanswered
-owner question. There is no evidence of any CRM integration.
+**Why this is now defensible.** Backend handoff §3 step 7: *Nuova universal CRM is the default
+and completes with no action. External CRM becomes `externally_pending` until authorized, then
+`completed`.* `CLAIMS_MATRIX.md` records G-11b as `BACKEND CONFIRMED`. The claim is no longer
+that Nuova works with your CRM. It is that Nuova brings one, and yours is an alternative.
+
+That is a better sales position than the one the first draft was reaching for, and it happens
+to be the one that is true.
+
+**Three constraints that still bind.**
+
+1. **No CRM vendor is named on this page.** F-07 moved from `REJECTED` to `OWNER`: the four
+   vendors are in the handoff, so the evidence objection is gone, but **naming them publicly
+   is a commercial decision the owner has not made** (`CLAIMS_MATRIX.md` §21 decision D).
+   Until it is made, the page says *another CRM*, never a brand.
+2. **No CRM logo, in any circumstance.** F-07b is `BLOCKED` on trademark permission. Adapter
+   evidence does not confer the right to display a mark.
+3. **No sync claim.** F-08 rejects *always synced to your CRM* and every variant, and it was
+   **not** rescued by the handoff. The confirmed contract is connection, connection state and
+   a health probe. None of that is a promise of continuous synchronisation, and *always* is an
+   absolute.
 
 **G-10 is a precise constraint.** The word *universal* may be used **only** as *universal
-across your channels*. Standing alone it implies compatibility with any external CRM, which
-is exactly the claim that is rejected.
+across your channels*. Standing alone it implies compatibility with any external CRM, which is
+the claim that is rejected.
 
-**OWNER DECISION, and it is a positioning question not a copy question.** Is the Universal
-CRM positioned as a replacement for the agency's CRM, or as a layer beside it? Until that is
-answered this page cannot address the single most common objection an agency will raise, which
-is *we already have a CRM*. It is `CLAIMS_MATRIX.md` §21 items 3 and 6.
+**OWNER DECISION, now narrower and worth making.** G-11 asks whether the Nuova CRM is
+positioned as a **replacement** or an **alternative**. The handoff makes *default in, external
+optional* the accurate description, and the wording above is written to that. Confirming it
+lets this section state the position outright instead of describing a mechanism.
+
+**Connection honesty on this page.** If the agency connects an external CRM, that connection
+passes through `externally_pending` before it is done, and O-00d forbids showing it as
+complete. The public page does not need to explain that, but it must not promise anything the
+authenticated surface will then contradict. See §9.7b.
 
 **7. Final conversion.** Standard block.
 
@@ -1499,10 +1613,32 @@ genuinely fixed at three, the original headline is available and it is the stron
 
 > Matching runs against your own or agency authorised property sources, so what goes out is
 > something you can actually show. `[F-02]`
+>
+> Your own agency website works as a property source. Nothing is rejected for being taken from
+> your own site. `[F-02b]`
+
+**F-02b is new in Wave A2 and it removes a real objection.** Backend handoff §3 step 8 makes
+agency owned scraped website inventory a **first class valid source**, and
+`GET /property-source/status` returns `accepts_scraped_owned_inventory: true`. The four
+accepted source types are the agency website, a supported feed, CRM inventory, or another
+authorised source.
+
+Most small and mid sized agencies on this coast keep their listings in exactly one place:
+their own website. Before this, the honest answer to *how does it get our properties* was a
+shrug. Now it is a sentence, and it is `BACKEND CONFIRMED`.
 
 F-02 forbids *searches the whole market*, *every listing in Spain* and *all portals*. The
-headline above deliberately says the opposite, and it is a better sales argument than breadth
-would be.
+headline deliberately says the opposite, and restraint is the better sales argument here.
+
+**No portal is named, and this has not changed.** F-06 stays `REJECTED`. The handoff's `feed`
+type is a **generic supported feed**, not a named portal, and reading it as permission to name
+Idealista or Fotocasa would be a P0 violation. `CLAIMS_MATRIX.md` §7 states the asymmetry
+between F-06 and F-07 explicitly and requires it to be preserved: **CRM vendors appear in the
+handoff, property portals do not.**
+
+**OWNER DECISION carried from F-02.** What does *authorised* actually test? The word is doing
+load bearing work in a sentence about someone else's property data, and it should mean
+something specific before it ships.
 
 **4. What the client receives**
 
@@ -1954,8 +2090,30 @@ they are, with the real layout beside them.
 
 **Primary CTA.** Book a demo. **Secondary CTA.** Explore the platform.
 
-**Entitlement label, mandatory:** Higher package. Capacity depends on the package
-(`PRODUCT_TRUTH.md` §13.2). **No quota number is published**, per PK-05.
+**Entitlement label, mandatory.** Approved wording, K-17:
+
+> Property Experience is available on the plans that include it.
+
+**What Wave A2 changed, and what it did not.** The **entitlement and the onboarding entry
+point** are `BACKEND CONFIRMED`: the canonical `px.experience` key resolves through
+`GET /entitlements`, and `GET /px/entry` returns `available` or `locked_addon`. **The twelve
+capture capabilities K-01 to K-12 are not in the handoff** and keep their `PRODUCT_TRUTH.md`
+§13 status. So the page may now state confidently *which plans this is on*, and states
+everything about *what it does* exactly as carefully as before.
+
+**Three hard constraints.**
+
+1. **No quota number, and no visual implication of one.** PK-05 names the devices: bars, dots,
+   *up to* phrasing, comparative column heights. Per package capacity is `CLAIMS_MATRIX.md`
+   §21 decision 14 and is unanswered.
+2. **Never show the entitlement key.** `px.experience` is a technical identifier and Appendix
+   B invariant 6 forbids it reaching the agency. The visitor sees a plan name, never a key.
+3. **The website does not build a capture wizard.** The backend handoff §3 step 9 assigns the
+   3D room based 360 capture wizard to the PX lane and says explicitly not to build a second
+   one. This document specifies the marketing page and the entitlement copy, nothing more.
+
+**`locked_addon` is rendered as `locked_by_plan`**, per §9.7b: an upgrade path, never an
+error, never an apology.
 
 **Section order.**
 
@@ -2151,16 +2309,49 @@ what that means takes one conversation.
 **Hero headline.**
 > Priced by the size of your operation.
 
-**Hero subheadline, Variant A, prices public.**
+Two layouts. **They are called Layout A and Layout B to keep them distinct from the trial
+wording Variant A and Variant B in §3.4**, which are a different decision entirely.
+
+**Hero subheadline, Layout A, prices displayed.**
 > Three packages, built around the size of the operation they run. Every paid package
 > includes the same working baseline. `[PK-01]` `[PK-03]`
 
-**Hero subheadline, Variant B, pricing on request, the honest default today.**
-> Three tiers, built around how many offices, agents and enquiries you are running. We will
-> tell you which one fits and what it costs on a 30 minute call.
+**Hero subheadline, Layout B, pricing on request. The default until PK-07 is answered.**
+> Three packages, built around the size of the operation they run. We tell you which one fits
+> and what it costs on the call. `[PK-01]` `[PK-07]`
 
-**Primary CTA.** Variant A: Start your 14 day free trial, if C-01 clears, otherwise Book a
-demo. Variant B: Talk to us about pricing.
+**Primary CTA.** Layout A: Choose a plan `[CTA-11]`, which is `INTEGRATION PENDING`. Layout B:
+Talk to us about pricing `[CTA-06]`, which ships. In state two the trial entry (§3.4 Variant A)
+becomes primary on this page and *Talk to us about pricing* moves to secondary.
+
+**The pricing mechanism changed in Wave A2, and this is the most important line on the page.**
+
+`GET /plans` is `BACKEND CONFIRMED` and returns `{ code, name, price_display,
+features_summary }`. PK-06's rule is therefore no longer *no price may be displayed*. It is:
+
+> **The website renders `price_display` as served. It never authors a figure.**
+
+That distinction is the whole compliance position for this page. A price on the page is not an
+invented statistic if it came from the endpoint at request time. A price typed into a
+component is a P0 finding whether or not it happens to be correct today.
+
+Consequences the implementation instance must hold:
+
+1. No price, currency, billing period, discount, setup fee or minimum term is ever written
+   into markup, a constant, a CMS field or a translation string.
+2. Plan **names** also come from the endpoint. `PRODUCT_TRUTH.md` records internal IDs
+   `essential`, `growth`, `scale`; the public names are whatever `/plans` serves.
+3. **Whether the public marketing site shows prices at all is still PK-07, an owner
+   decision.** Layout A may not be built until that answer exists.
+
+**OWNER DECISION, and it is new.** §5.2 of this document recommends the public names **Nuova
+Studio, Nuova Signature, Nuova Prime**. Those names must be the ones configured in `/plans`,
+or the site and the backend will display different names for the same package. Confirming the
+names is now a backend configuration task, not only a marketing one.
+
+**Blocked on `MF-10`:** the currency and tax basis carried by `price_display`, and whether
+`name` is the public marketing name. Spanish buyers expect IVA handling to be explicit, and
+that cannot be written until `MF-10` lands.
 
 **Section order.**
 
@@ -2338,91 +2529,372 @@ the full prompt text is inserted into the field, not shown on the chip.
 ## 6.14 Onboarding and Start
 
 **Route:** `/start`
-**GATE: HELD.** Content depends entirely on C-01. If a trial exists this is the signup page.
-If it does not, it is the *what happens after you book* page, which is still worth having.
+**GATE: OPEN for the public page. `INTEGRATION PENDING` for the wizard itself.**
+**Upgraded in Wave A2.** O-01, O-00b and O-02 moved from `OWNER` to `APPROVED-Q`. The ten
+step self service wizard is `BACKEND CONFIRMED`, with `percent_complete`, `resume_step`,
+`completed_steps` and role gated writes. The question *does the flow exist* is answered yes.
 
-**Page goal.** Remove the last fear before a commitment, which is never price. It is *how
-much of my time will this cost and what happens if it goes wrong*.
+**Page goal.** Remove the last fear before a commitment, which is never price. It is *how much
+of my time does this cost, and what happens if it goes wrong*.
 
 **Audience.** Owner who has already decided in principle.
 
-**Primary message.** Starting is a short, defined process with a person on the other end.
-
-**Only one variant is drafted.** The first draft carried a trial variant. **T-01 forbids
-*free trial*, *start free*, *try free*, *start your 14 day free trial* and *no credit card
-required* in every wording**, and T-02 additionally records that the live site's current
-*Start for free* routing to a demo booking is a rejected pattern that must not be carried
-over. Drafting trial copy now only creates something that can be shipped by accident.
+**Primary message.** You set your agency up yourself, one step at a time, and you can stop and
+come back.
 
 **Hero headline.**
-> What happens after the call.
+> Set your agency up yourself.
 
 **Hero subheadline.**
-> You set up your agency yourself. No developers needed. `[O-01]` `[O-08]`
+> Ten steps, in your own time. Your progress is saved, so you can stop and pick up where you
+> left off. No developers needed. `[O-00b]` `[O-00c]` `[O-08]`
 
-**O-09 is a direct rejection of wording this site publishes today.** *No setup needed* is
-inaccurate for a platform that requires channel, branding and inventory configuration, and it
-is live on the current homepage. O-08's *no developers needed* is the approved claim and it is
-the honest one. O-10 separately rejects every onboarding duration: *live in a day*, *up and
-running in 15 minutes*, and every figure.
-
-**GATE note.** O-01 and O-02 are `OWNER`: it is not confirmed that a self service setup flow
-exists at all, or where it lives. If setup is done by NuovaSolution rather than by the agency,
-this page changes from a self service page into a service page, which is a materially
-different and possibly better sale.
+**Primary CTA.** State one: Book a demo. State two: Start your 14 day trial (§3.4 Variant A).
+**Secondary CTA.** Explore the platform.
 
 **Section order.**
 
 1. Hero
-2. The steps
-3. What we need from you
-4. What we do not need
-5. Who you deal with
+2. The ten steps
+3. Your progress is saved
+4. What is honest about the status
+5. What you do not have to do
 6. Final conversion
 
-**2. The steps.** Numbered, four steps maximum, each with a realistic time. **Every time
-estimate is a commitment about the owner's own delivery and is an OWNER DECISION.** This
-instance writes the structure and leaves the durations blank rather than inventing them.
+**Section headlines and body copy.**
 
-**3. What we need from you**
+**2. The ten steps**
 
-> ### Less than you think.
+> ### Everything it needs, in order.
 
-Gated on the real onboarding process. The strategic point is that this section should be
-short. A long list here loses deals.
+The step **names** are `APPROVED` (reconciliation report row 9). The behavioural descriptions
+inherit their own capability verdicts, which is why several lines below are deliberately
+short.
 
-**4. What we do not need**
+| # | Step | Public line | Matrix |
+|---|---|---|---|
+| 1 | Account | Your name, your email, your language. | O-00 |
+| 2 | Agency details | Company name, address, contact details and the languages you work in. | O-01 |
+| 3 | Branding | Your logo, your email banner, your signature. Every message goes out under your brand. | N-01 |
+| 4 | Team | Add your team and set their roles: agent, team lead, office manager, agency admin. | O-02 |
+| 5 | Channels | Connect your channels, based on the permissions you hold. | O-03, Q-2 |
+| 6 | Lead sources | Connect the places your leads already come from. | O-06, A-10 |
+| 7 | CRM | A CRM is included from the start. If you already use another one, you can connect it instead. | O-03b, G-11b |
+| 8 | Property source | Point it at your own website, a supported feed, or your CRM inventory. | O-03c, F-02b |
+| 9 | Property Experience | Available on the plans that include it. | K-17 |
+| 10 | Readiness | A clear readiness check before you go live. | O-03d |
 
-> ### No developers needed.
+**The four roles in step 4 are exact.** O-02 confirms agent, team lead, office manager and
+agency admin, and forbids naming a fifth or claiming per role permissions beyond what is
+contracted. Do not invent a *viewer* or an *owner* role to round the list out.
 
-> Set up your agency yourself. Add your team and set their roles. Connect your channels,
-> based on the permissions you hold. Your branding goes on every message that leaves.
-> `[O-01]` `[O-02]` `[O-03]` `[N-01]` `[Q-2]`
+**Step 8 carries a genuinely good sentence that is now defensible.** See section 5 below.
 
-**Removed.** *You do not have to move your CRM, retrain your team or change where your
-enquiries arrive.* Every clause is a coexistence or integration claim, rejected under F-07,
-F-08 and G-11. This was the third place the same rejected idea had appeared, after the
-homepage hero and the Platform Overview.
+**Step 9 is entitlement gated.** K-17 approves *available on the plans that include it* and
+forbids presenting it as included everywhere. It also forbids showing the technical
+entitlement key, which is an Appendix B invariant, so the page never displays `px.experience`.
 
-**OWNER DECISION carried from O-02.** Which roles exist? Naming roles that are not confirmed
-is forbidden, so the sentence stays general until the list arrives.
+**3. Your progress is saved**
 
-**5. Who you deal with**
+> ### Stop whenever you need to.
 
-> ### A person, not a ticket queue.
+> Your progress is saved. Come back and continue where you stopped. `[O-00c]`
 
-LEGAL PENDING and OWNER DECISION. Any statement about support hours, response times or
-named contacts is a commitment. Blank until confirmed.
+Short, and worth its own section. Agency owners abandon setup flows because they get
+interrupted by the job they actually do, and this is the sentence that answers that fear.
+`resume_step` is `BACKEND CONFIRMED`, so the claim is accurate rather than aspirational.
 
-**Objections answered.** This will eat a month of my time (section 2, real durations). We
-will have to change everything (section 4). We will be handed to a support portal (section 5).
+**Do not add a completion time.** O-10 rejects *live in a day*, *up and running in 15 minutes*
+and every figure. `percent_complete` exists in the contract, but a percentage of steps is not
+a duration, and rendering it as one would be an invented statistic.
 
-**Trust requirements.** No invented setup duration. No support SLA. No *go live in 24 hours*.
+**4. What is honest about the status**
 
-**Cross links.** Pricing, Platform Overview, Book a demo.
+> ### You always know what is actually done.
 
-**Mobile copy notes.** Section 2 is the whole page on mobile. Steps are vertical with the
-duration on its own line under each step title, not inline, where it wraps badly.
+> Some steps wait on someone else. When a provider has not approved a connection yet, it says
+> so, and it does not pretend to be finished. `[O-00d]`
+
+**This is a release blocking invariant, not a nicety.** `CLAIMS_MATRIX.md` O-00d and the
+backend handoff §3 both state it: a step in an external pending state is **never** presented
+as done. Breaching it is P0.
+
+It is also, unusually, a section where compliance and conversion point the same way. Every
+agency owner has been burned by a setup flow that showed green while nothing worked.
+
+**5. What you do not have to do**
+
+> ### Your own website already counts.
+
+> Your own agency website works as a property source. Nothing is rejected for being taken from
+> your own site. `[F-02b]`
+>
+> A CRM is included. You do not have to bring your own. `[G-11b]`
+>
+> No developers needed. `[O-08]`
+
+**Both of the first two sentences are new in Wave A2 and both are strong.** F-02b is
+`BACKEND CONFIRMED` with `accepts_scraped_owned_inventory: true`, and G-11b is
+`BACKEND CONFIRMED` because Nuova CRM is the wizard default and completes with no action.
+Together they remove the two objections that most often stop a small agency at the door: *our
+listings are only on our website* and *we already have a CRM*.
+
+**Removed, and it must stay removed.** *No setup needed*, live on the site today, is
+`REJECTED` under O-09 and the handoff makes it more clearly false, not less: ten configured
+steps, provider OAuth, branding upload and an inventory source. O-08's *no developers needed*
+is the approved claim and it is the honest one.
+
+**6. Final conversion.** Standard block.
+
+**Objections answered.** This will eat a month of my time (sections 2 and 3, and no invented
+duration). We will have to change everything (section 5). Our listings only live on our own
+website (section 5, F-02b). We already have a CRM (section 5, G-11b).
+
+**Trust requirements.** No setup duration. No support SLA. No *go live in 24 hours*. No
+technical entitlement key, tenant ID, storage object ID or workflow identifier visible
+anywhere, per Appendix B invariant 6. No security or encryption claim, per B-15.
+
+**Cross links.** Pricing, Platform Overview, Signup.
+
+**Mobile copy notes.** Section 2 is the whole page on a phone. The ten steps render as a
+vertical list with the step name on its own line and the description beneath, never as a two
+column table. Section 3 sits directly under it, because *your progress is saved* is what makes
+a ten step list feel survivable on a small screen.
+
+---
+
+## 6.15 Signup
+
+**Route:** `/signup`
+**GATE: `INTEGRATION PENDING`.** The contract is `BACKEND CONFIRMED`: `POST /signup`, public
+plus captcha, `{ name, email, password, language, agency_name }`, `409` on an existing email.
+**No signup surface may ship before L-14 closes**, because this is the page that starts
+collecting personal data, and the privacy policy does not describe the processing.
+
+**Page goal.** Get an agency owner from decision to account with nothing in the way.
+
+**Audience.** An owner who has decided. This page persuades nobody; it only removes friction.
+
+**Primary message.** Create your agency account and start the fourteen day trial.
+
+**Hero headline.**
+> Create your agency account.
+
+**Hero subheadline.**
+> Fourteen days to set your agency up and see it working. `[T-00]` `[Variant A]`
+
+**Under Variant B this becomes** *Fourteen days, free, to set your agency up and see it
+working*. **Variant B is not approved.** See §3.4.
+
+**Form fields.** Exactly the contracted set. The five field maximum in §9.4 holds exactly,
+which is a good sign the contract and the conversion discipline agree.
+
+| Field | EN label | EN placeholder | ES label | ES placeholder |
+|---|---|---|---|---|
+| `name` | Your name | | Tu nombre | |
+| `agency_name` | Agency name | | Nombre de la agencia | |
+| `email` | Work email | you@agency.com | Email de trabajo | tu@agencia.com |
+| `password` | Password | | Contraseña | |
+| `language` | Language | | Idioma | |
+
+**Blocked on `MF-09`:** the accepted values for `language`. The field cannot be built as a
+select until the enumeration exists, and it must not be guessed from the site's own locale
+list.
+
+**Blocked on `MF-08`:** the captcha provider. The widget, its copy and its failure state
+cannot be written until it is named.
+
+**Success.** The contract returns `{ ok, next: "onboarding", session? }`, so the success state
+is a navigation, not a message. If a session comes back the visitor lands in the wizard. If
+only a login hint comes back they land on Login with the email prefilled.
+
+> Account created. Let us set your agency up. / Cuenta creada. Vamos a configurar tu agencia.
+
+**Errors.** Written against the contracted codes. **Blocked on `MF-04`** for the full `code`
+enumeration; the three below are the ones the handoff names explicitly.
+
+| Case | EN | ES |
+|---|---|---|
+| `409` email exists | That email already has an account. Log in instead. | Ese email ya tiene una cuenta. Inicia sesión. |
+| `400` invalid input | Something in the form is not right. Check the highlighted fields. | Hay algo que no cuadra. Revisa los campos marcados. |
+| `429` rate limited | Too many attempts. Wait a moment and try again. | Demasiados intentos. Espera un momento e inténtalo otra vez. |
+| Captcha failed | That check did not pass. Try it once more. | Esa verificación no ha pasado. Inténtalo otra vez. |
+| `5xx` | Something broke on our side. Try again, or book a demo and we will set you up together. | Algo ha fallado por nuestra parte. Inténtalo otra vez, o reserva una demo y lo configuramos juntos. |
+
+The `5xx` line offers the one path that always works, which is the honest states rule doing
+real conversion work.
+
+**Never on this page:** any security, encryption, isolation or GDPR claim (B-15, G-13, X-08).
+The temptation is strong on a signup form and it is a P0 violation. A privacy link at the
+point of collection is required; a security badge is forbidden.
+
+**Trust requirements.** Privacy link beside the submit control, per §9.5. No *no credit card
+required* (T-01). No *instant setup* implication (O-00). No count of agencies already signed
+up (X-04).
+
+**Mobile copy notes.** Five fields, one column, labels always visible. The trial line sits
+above the form, not below it, because on a phone the reason to fill in a form must precede the
+form.
+
+---
+
+## 6.16 Login
+
+**Route:** `/login`
+**GATE: `INTEGRATION PENDING`, and the destination is `BLOCKED` on `MF-03`.**
+Authentication itself is `BACKEND CONFIRMED`: Supabase GoTrue password grant, logout, refresh.
+What does not exist is the answer to *where does the product live after the wizard finishes*.
+
+**Page goal.** Get a returning user in, with no decoration.
+
+**Hero headline.**
+> Log in.
+
+**Hero subheadline.**
+> Continue where you left off. `[O-00c]`
+
+**Fields.** Email, password. Nothing else.
+
+**Copy.**
+
+| Element | EN | ES |
+|---|---|---|
+| Submit | Log in | Iniciar sesión |
+| Forgot password | Forgot your password? | ¿Has olvidado la contraseña? |
+| No account | No account yet? Create one. | ¿Todavía no tienes cuenta? Crea una. |
+| `400 invalid_grant` | That email and password do not match. | Ese email y esa contraseña no coinciden. |
+| Session expired | Your session ended. Log in again to continue. | Tu sesión ha terminado. Inicia sesión otra vez para continuar. |
+| Refresh failed | We could not keep you signed in. Log in again. | No hemos podido mantener la sesión. Inicia sesión otra vez. |
+| `429` | Too many attempts. Wait a moment. | Demasiados intentos. Espera un momento. |
+
+**One deliberate wording choice.** The failed login line does not say which of the two was
+wrong. That is standard practice and it is also the honest thing, because the site does not
+know.
+
+**`Log in` does not render in the navigation until `MF-03` is answered.** `MASTER_GOVERNANCE.md`
+§11.4 and CTA-6 both say so. A nav item pointing nowhere is worse than an absent one, and R7
+forbids inventing the URL.
+
+**Forgot password is not drafted beyond the link label.** No reset contract appears in the
+handoff. The flow cannot be written from nothing.
+
+---
+
+## 6.17 Trial status
+
+**Route:** authenticated surface, inside the product shell
+**GATE: `INTEGRATION PENDING`.** `GET /trial/status` is `BACKEND CONFIRMED` and returns
+`status`, `plan`, `trial_end`, `days_left`, `account_state`.
+
+**Page goal.** Tell the agency where they stand without nagging them.
+
+**Primary message.** You have this long left, and here is what happens next.
+
+**The binding rule for every string here.** T-00b: render `days_left` and `trial_end` **as
+served**. **Never compute the countdown client side, and never hardcode fourteen anywhere.**
+The backend is the single source of truth, and if the trial is extended the number changes
+underneath the copy.
+
+**Copy by `status` value.** The seven values are contracted, so the copy is written per value
+rather than invented.
+
+| `status` | EN | ES |
+|---|---|---|
+| `trialing` | {days_left} days left in your trial. | Te quedan {days_left} días de prueba. |
+| `trialing`, one day | Last day of your trial. | Último día de prueba. |
+| `trial_expired` | Your trial has ended. | Tu prueba ha terminado. |
+| `active` | Your plan is active. | Tu plan está activo. |
+| `past_due` | There is a problem with your payment. | Hay un problema con el pago. |
+| `suspended` | Your account is suspended. Talk to us and we will sort it out. | Tu cuenta está suspendida. Habla con nosotros y lo resolvemos. |
+| `canceled` | Your subscription has ended. | Tu suscripción ha terminado. |
+
+**Blocked on `MF-06`:** the reminder cadence, and whether reminders are sent by the backend or
+rendered by the website. Until that lands there is no reminder copy, because a reminder the
+website invents could contradict an email the backend sends.
+
+**Never on this surface:** the plus seven day extension, in any wording. T-03 is DISABLED and
+`LEGAL REVIEW PENDING` on L-13, and T-03b separately forbids hardcoding the number seven
+anywhere in the website. The testimonial mechanism that triggers it is `LEGAL HOLD` and
+`BLOCKED` on `MF-01`. **It is not mentioned, not hinted at, not placed in a tooltip.**
+
+---
+
+## 6.18 Trial expiry
+
+**Route:** authenticated surface
+**GATE: `INTEGRATION PENDING` + `OWNER DECISION` on the day fifteen commercial wording.**
+
+**Page goal.** Convert without threatening. The contract makes this unusually easy, and the
+copy should not waste it.
+
+**The contracted behaviour, which is better than most trials.** When `status = trial_expired`,
+premium features resolve to `denied`, and **login is never blocked**. The account and the data
+stay. That is a genuinely reassuring fact and it is `BACKEND CONFIRMED`.
+
+**Headline.**
+> Your trial has ended. Your account has not.
+
+**Body.**
+
+> You keep your account and everything in it. Premium features pause until you choose a plan.
+> `[T-00c]`
+
+**Primary CTA.** Choose a plan `[CTA-11]`. **Secondary CTA.** Talk to us about pricing.
+
+**Forbidden here, and named in T-00c:** *your account is deleted*, *you lose access*, and every
+variant. They are false against the contract, and false in the direction that destroys trust.
+
+**Forbidden generally:** any countdown to deletion, any artificial urgency, any *last chance*
+framing, any discount that has not been confirmed (PK-06). Manufactured scarcity on an expiry
+screen is the cheapest trick in this category and it is beneath the positioning.
+
+**OWNER DECISION.** The day fifteen commercial wording. What exactly is offered, at what
+point, and whether anything changes about the account after a further period. The copy above
+is deliberately written to be true regardless of that answer, so it can ship first and be
+extended later.
+
+---
+
+## 6.19 Plan selection
+
+**Route:** authenticated surface, and the public `/pricing` page shares its logic
+**GATE: `INTEGRATION PENDING` + `OWNER DECISION` (PK-04, PK-05, PK-07).**
+
+**Page goal.** Let an agency pick the plan that fits and continue to checkout.
+
+**Primary message.** Three packages, one baseline, and the size of your operation decides.
+
+**Everything displayed comes from `GET /plans`.** `{ code, name, price_display,
+features_summary }`. The website renders. It never authors. See §6.12 for the full rule.
+
+**Copy.**
+
+| Element | EN | ES |
+|---|---|---|
+| Heading | Choose your plan | Elige tu plan |
+| Baseline line | Every paid package includes: CRM · Lead Engine · Automatic Replies · Basic Follow up · Property Matching · Core Reporting `[PK-03]` | Todos los paquetes incluyen: CRM · Lead Engine · Respuestas automáticas · Seguimiento básico · Property Matching · Core Reporting |
+| Select | Choose this plan | Elegir este plan |
+| Continue | Continue to checkout `[CTA-12]` | Continuar al pago |
+| Current plan | Your current plan | Tu plan actual |
+| `403 not_allowed` | This plan is not available for your account. Talk to us. | Este plan no está disponible para tu cuenta. Habla con nosotros. |
+| `409 already_subscribed` | You are already on this plan. | Ya tienes este plan. |
+
+**The baseline line ships as names only.** PK-03 approves the list as **capability names** and
+forbids describing each one's behaviour beyond what §3 to §11 of the matrix approve. In
+particular *Basic Follow up* may be named and may **not** be described, because E-01 is
+`LEGAL` on L-01.
+
+**What may not appear until PK-04 and PK-05 are answered:** which capabilities sit in which
+package, any limit, any quota, and **any visual implication of a number**. PK-05 names the
+devices explicitly: bars, dots, *up to* phrasing, comparative column heights. A comparison
+column that looks quantitative without carrying a figure is still a P0 finding.
+
+**Checkout handoff.** `POST /checkout/session` returns `{ checkout_url }`. The website
+navigates. **No payment provider is ever named** (PK-09 forbidden wording), and no billing
+term, renewal term or refund term is authored anywhere.
+
+**Never here:** a *most popular* badge unless the owner confirms it is true, a crossed out
+price, a countdown, or a discount. PK-06 covers the last two and R6 covers the first.
 
 ---
 
@@ -2465,16 +2937,29 @@ their first idea of what they are buying.
 
 Plus a first item: **Platform Overview**, *How the whole system fits together*.
 
-**Gated modules in the nav.** A module that is not confirmed live carries a small
-availability label in the dropdown, per §11.3. A module that is embargoed does not appear in
-the navigation at all.
+**Gated modules in the nav.** A module carries its entitlement label in the dropdown, per
+§9.3. A module that is blocked does not appear in the navigation at all.
 
-**Log in. BLOCKED by C-03.** Options, in order of preference:
+**Log in. The objection changed in Wave A2, and the answer did not.**
 
-1. **Omit it.** If there is no customer application, a login link is a lie about product
-   maturity. Recommended until C-03 is answered.
-2. If an application exists, link to it, full stop.
-3. Never a login link that opens a *coming soon* panel. That is worse than omitting it.
+Authentication is `BACKEND CONFIRMED`: Supabase GoTrue password grant, logout, refresh. The
+old question, *does a customer application exist*, is answered yes. **What is still missing is
+the destination**: where the product lives after wizard step 10 (`MF-03`, `CLAIMS_MATRIX.md`
+§21 decision B, a P0 scope question).
+
+So the label is cleared in principle and the link still cannot render.
+
+1. **Omit it until `MF-03` is answered.** Recommended. `MASTER_GOVERNANCE.md` §11.4: *Log in
+   does not render as a link until its destination exists.*
+2. Once the destination exists, link to it, full stop, after a §14.3 release.
+3. Never a login link that opens a *coming soon* panel. That is worse than omitting it, and it
+   is the pattern §14.3 calls a P0 violation.
+
+R7 still forbids inventing the URL, and a plausible looking subdomain is not confirmation.
+
+**The trial CTA in the nav.** In state one the nav utility cluster carries *Book a demo* only.
+In state two it carries the trial entry as primary, in Variant A wording, and *Book a demo*
+moves beside it. There is never a third control in that cluster.
 
 **Mobile navigation.** Full screen panel. Order: primary CTA at the top, then Platform
 expanded by loop stage, Solutions, Pricing, Experience Nuova, language switch at the bottom.
@@ -2715,6 +3200,108 @@ marketing would.
 The booking fallback is the wording for audit finding A-02. The anchor navigates to the real
 booking URL and this copy only appears if the embed fails after the page has already loaded.
 
+### 9.7b Connection states, the eight contracted status values
+
+**Added in Wave A2.** The backend handoff §4 defines the exact status vocabulary carried by
+every wizard step and every provider surface. It is contracted, so the copy is written **per
+value** rather than invented, and the same string is used everywhere that value appears.
+
+`AUTHENTICATED_SURFACE_SYSTEM.md` §3 owns the visual specification for these eight. This
+section owns their wording. The two must not drift.
+
+| Status | EN label | EN explanation | ES label | ES explanation |
+|---|---|---|---|---|
+| `completed` | Done | Set up and confirmed. | Hecho | Configurado y confirmado. |
+| `needs_action` | Needs you | Something here is waiting on you. | Te toca a ti | Aquí hay algo esperándote. |
+| `externally_pending` | Waiting on {provider} | Sent. {provider} has not approved it yet. Nothing more for you to do right now. | Esperando a {provider} | Enviado. {provider} todavía no lo ha aprobado. Por ahora no tienes que hacer nada más. |
+| `locked_by_plan` | Not on your plan | Available on the plans that include it. | No está en tu plan | Disponible en los planes que lo incluyen. |
+| `optional` | Optional | Not needed to go live. You can come back to it. | Opcional | No hace falta para empezar. Puedes volver más tarde. |
+| `connected` | Connected | Working. | Conectado | Funcionando. |
+| `degraded` | Needs a look | Still working, but something has changed on the provider's side. Worth checking. | Conviene revisarlo | Sigue funcionando, pero algo ha cambiado en el proveedor. Merece la pena revisarlo. |
+| `action_required` | Action needed | Something on the provider's side has changed and this has stopped working properly. | Requiere acción | Algo ha cambiado en el proveedor y esto ha dejado de funcionar bien. |
+
+**Four rules that are release blocking, not stylistic.**
+
+1. **`externally_pending` is never rendered as done.** Backend handoff §3 and Appendix B
+   invariant 5, and `CLAIMS_MATRIX.md` O-00d. This is the single most likely place for the
+   site to tell a lie by accident, because a pending state looks like progress.
+2. **`locked_by_plan` is an upgrade path, not an error.** It never uses error colour, error
+   wording or an apology. The agency has not done anything wrong.
+3. **`degraded` is not `connected` and it is not an error.** It is additive. The wording above
+   deliberately says *still working*, because that is what the contract means.
+4. **No technical identifier is ever shown.** Appendix B invariant 6: no workflow ID, webhook
+   ID, storage object ID, tenant UUID or entitlement key reaches the agency. `px.experience`
+   is never printed on a screen.
+
+**Blocked on `MF-11`:** the provider display name list that fills `{provider}`. Until it
+lands, the fallback string is *Waiting on the provider* / *Esperando al proveedor*, with no
+name. **Do not guess a display name from a vendor's marketing.**
+
+**Blocked on the `missing_api_names[]` presentation decision:** what `action_required` shows
+beyond the sentence above. `GET /crm/health` returns the specifics, and how much of that an
+agency admin should see is a product decision, not a copy one.
+
+### 9.7c Loading states
+
+**Added in Wave A2.** `INTEGRATION_CONTRACT.md` requires a loading state for every action.
+The rules matter more than the strings, because most loading copy is never read.
+
+| Rule | Detail |
+|---|---|
+| Nothing appears before 300 ms | A flash of loading copy on a fast response reads as jank. |
+| The control keeps its dimensions | No layout shift. `aria-busy="true"` on the control. |
+| The label changes, the button does not move | Fixed width, so the swap does not reflow the row. |
+| Never resubmittable while in flight | The most common duplicate signup cause. |
+| A skeleton reserves the real height | Never a spinner where content will land. |
+
+| Context | EN | ES |
+|---|---|---|
+| Generic submit | Sending | Enviando |
+| Signup submit | Creating your account | Creando tu cuenta |
+| Login submit | Logging you in | Iniciando sesión |
+| Wizard step save | Saving | Guardando |
+| Branding upload | Uploading | Subiendo |
+| Provider connect redirect | Taking you to {provider} | Te llevamos a {provider} |
+| Checkout redirect | Taking you to checkout | Te llevamos al pago |
+| Loading a surface | Loading | Cargando |
+| Slow response, after 10 seconds | Still working on it. | Seguimos con ello. |
+
+**The ten second line is the one that earns its place.** A response that is merely slow and a
+response that has failed feel identical to a user, and saying so is cheaper than a spinner
+that spins forever.
+
+### 9.7d The uniform response envelope, and what the visitor sees
+
+Every BFF endpoint returns `{ ok, code, message, details, request_id }`. Three rules follow.
+
+1. **`message` is documented as display safe, and it is still not displayed raw.** Copy is
+   written per `code` in this document. A backend string rendered directly into a premium
+   page is a category error, and it will not be in the visitor's language.
+2. **`request_id` is shown only in the `5xx` state**, quietly, so a visitor can quote it if
+   they contact us. It is a support affordance, not decoration.
+3. **No internal detail is ever surfaced.** Not a stack, not a table name, not a provider
+   error verbatim.
+
+| HTTP | Meaning | EN | ES |
+|---|---|---|---|
+| `202` | Accepted, awaiting external approval | Render the `externally_pending` state from §9.7b, never a success | |
+| `400` | Invalid input | Something in the form is not right. Check the highlighted fields. | Hay algo que no cuadra. Revisa los campos marcados. |
+| `401` | No session or expired token | Your session ended. Log in again to continue. | Tu sesión ha terminado. Inicia sesión otra vez para continuar. |
+| `403` | Forbidden, cross tenant, not on plan | Render `locked_by_plan` for `not_on_plan`. Otherwise: You do not have access to this. | Para `not_on_plan`, usa el estado del plan. Si no: No tienes acceso a esto. |
+| `409` | Conflict | Depends on the surface. Signup: that email already has an account. | Depende de la pantalla. Registro: ese email ya tiene una cuenta. |
+| `422` | Unprocessable | We could not use that. Check the details and try again. | No hemos podido procesarlo. Revisa los datos e inténtalo otra vez. |
+| `424` | Degraded | Render the `degraded` state from §9.7b. | |
+| `429` | Rate limited | Too many attempts. Wait a moment and try again. | Demasiados intentos. Espera un momento e inténtalo otra vez. |
+| `5xx` | Server error | Something broke on our side. Try again, or book a demo and we will help directly. | Algo ha fallado por nuestra parte. Inténtalo otra vez, o reserva una demo y te ayudamos directamente. |
+
+**`202` is the one to get right.** It is an acceptance, not a success. Rendering it as a green
+tick is the `externally_pending` violation wearing a different hat.
+
+**Blocked on `MF-04`:** the enumeration of `code` values. The table above is keyed to HTTP
+status because that is all the handoff lists. Per code copy cannot be written until the
+enumeration exists, and this is the largest single blocker on the authenticated error surface.
+
+
 ### 9.8 Reusable blocks
 
 **Standard final conversion block**, used on every module page.
@@ -2761,6 +3348,108 @@ rol / Por tamaño.
 Responder, Entender, Avanzar, Traspasar, Aprender.
 
 ---
+
+### 9.9 Connection and status states
+
+**New in Wave A2.** The backend handoff §4 defines **eight status values** as an exact
+vocabulary, and requires each to render distinctly. This is the copy for them. Implementation
+takes these strings and does not write its own, because two of them are release blocking if
+worded loosely.
+
+**The five wizard step states.**
+
+| Status | EN | ES | Intent |
+|---|---|---|---|
+| `completed` | Done | Hecho | Verified server side. |
+| `needs_action` | Your turn | Te toca | The agency must do something. |
+| `externally_pending` | Waiting on {provider} | Esperando a {provider} | **Never rendered as done.** |
+| `locked_by_plan` | Included on a higher plan | Incluido en un plan superior | An upgrade path, never an error. |
+| `optional` | Optional | Opcional | Not required to launch. |
+
+**The three connector health states.**
+
+| Status | EN | ES | Intent |
+|---|---|---|---|
+| `connected` | Connected | Conectado | Live and healthy. |
+| `degraded` | Connected, needs attention | Conectado, requiere atención | Impaired. **Not an error and not `connected`.** |
+| `action_required` | Action needed | Requiere acción | A real problem the owner must resolve. |
+
+**Three rules that are not stylistic.**
+
+1. **`externally_pending` is never presented as done.** Backend handoff §3 and Appendix B
+   invariant 5, and `CLAIMS_MATRIX.md` O-00d. Breaching it is P0. The word *pending* alone is
+   not enough: it must name who is being waited on, which is why the string carries
+   `{provider}`.
+2. **`degraded` is a third state, not a shade of one of the others.** Writing it as *connected*
+   hides a real problem; writing it as *error* triggers support calls for something still
+   working. The two part label is deliberate.
+3. **`locked_by_plan` is never phrased as a failure.** It is the one status on this list that
+   is also a conversion moment, and *not available on your plan* wastes it.
+
+**Blocked on `MF-11`:** the provider display name list. Until it lands, `{provider}` has no
+approved values, and the string cannot be rendered for a real connection. Do not substitute a
+vendor name inferred from the endpoint path.
+
+**Blocked on `MF-07`:** branding upload limits. `400 unsupported_file_type` and
+`400 file_too_large` are contracted, but the accepted content types and the size ceiling are
+not, so the validation copy cannot state what is allowed. A validation message that cannot
+name the limit is a bad validation message.
+
+**Never rendered to the agency**, per Appendix B invariant 6: n8n or workflow identifiers,
+webhook IDs, storage object IDs, tenant UUIDs, and technical entitlement keys such as
+`px.experience`. The agency sees plain language and nothing else. This is also the
+`CLAUDE.md` architecture rule, and the two agree.
+
+### 9.10 Loading states
+
+| Context | EN | ES |
+|---|---|---|
+| Button in flight | Sending | Enviando |
+| Signup in flight | Creating your account | Creando tu cuenta |
+| Login in flight | Signing you in | Iniciando sesión |
+| Wizard step saving | Saving | Guardando |
+| Upload in flight | Uploading | Subiendo |
+| Checkout redirect | Taking you to checkout | Te llevamos al pago |
+| Reading status | Checking | Comprobando |
+
+**Rules.** The control stays mounted at fixed dimensions, so nothing shifts. A spinner appears
+only after 300ms, because a faster response with a flashed spinner reads as slower than one
+without. `aria-busy="true"`. The control cannot be resubmitted while in flight. No progress
+percentage is invented for an operation whose duration is unknown.
+
+### 9.11 Error states
+
+Written against the contracted envelope `{ ok, code, message, details, request_id }` and the
+contracted HTTP statuses.
+
+| Status | EN | ES |
+|---|---|---|
+| `400 invalid_input` | Something in the form is not right. Check the highlighted fields. | Hay algo que no cuadra. Revisa los campos marcados. |
+| `401 no_session` | You are not signed in. | No has iniciado sesión. |
+| `401 token_expired` | Your session ended. Log in again to continue. | Tu sesión ha terminado. Inicia sesión otra vez para continuar. |
+| `403 forbidden` | You do not have permission for this. | No tienes permiso para esto. |
+| `403 not_on_plan` | Included on a higher plan. | Incluido en un plan superior. |
+| `409 conflict` | That has already been done. | Eso ya se ha hecho. |
+| `422 unprocessable` | We could not process that. Check what you entered. | No hemos podido procesarlo. Revisa lo que has introducido. |
+| `424 degraded` | The connection is working but needs attention. | La conexión funciona pero requiere atención. |
+| `429 rate_limited` | Too many attempts. Wait a moment and try again. | Demasiados intentos. Espera un momento e inténtalo otra vez. |
+| `5xx server_error` | Something broke on our side. Not on yours. Try again in a moment. | Algo ha fallado por nuestra parte. No por la tuya. Inténtalo en un momento. |
+
+**Rules.**
+
+1. **Never show a raw error code, a stack trace or an internal message.** The envelope's
+   `message` field is documented as display safe, but the site does not rely on that: it maps
+   `code` to its own approved string and falls back to the `5xx` line for anything unmapped.
+2. **`request_id` is shown only in the `5xx` case**, as small print, so a visitor can quote it
+   to support. It is a reference, never an explanation.
+3. **Every error offers a real alternative path.** For anything blocking, that is *Book a
+   demo*, because it is the one path that works.
+4. **`403 not_on_plan` is not an error to the reader.** It uses the `locked_by_plan` wording
+   and routes to plan selection.
+
+**Blocked on `MF-04`:** the enumeration of `code` values. The mapping above is keyed to HTTP
+status because that is all the handoff specifies. When `MF-04` lands, the mapping becomes code
+first and this table becomes the fallback layer.
 
 ## 10. Mobile copy system
 
@@ -2828,7 +3517,8 @@ noticed by the audience.
 | Agency | **agencia** or **inmobiliaria** | *Inmobiliaria* is what agencies call themselves. Prefer it in headlines. |
 | Agent | **agente** or **asesor** | *Asesor inmobiliario* is the premium self description in Spain. Use *asesor* where the tone is elevated. |
 | Follow up | **seguimiento** | |
-| Hot lead | **oportunidad prioritaria** | Never *lead caliente* in headline copy. It reads cheap. The current site's *prioritario* is a good choice. Keep it. |
+| Hot lead | **Not used. No Spanish term is needed.** | D-10 is `BLOCKED` on `MF-02`. There is no hot lead copy in either language, so there is nothing to translate. If a contract ever arrives, *oportunidad prioritaria* is the recommendation and *lead caliente* stays forbidden, because it reads cheap in a premium register. |
+| Priority signal | **prioridad** | D-03's approved wording. Avoid *puntuación* entirely while L-09 is open. |
 | Score | **prioridad** | Avoid *puntuación* until the scoring claim clears. |
 | Dashboard | **panel** | |
 | Pipeline | **cartera de oportunidades** or rewrite the sentence | *Pipeline* is understood but ugly in Spanish copy. |
@@ -2958,11 +3648,35 @@ Before any Spanish page ships:
 
 ### 11.9 Scope note
 
-This document delivers the Spanish strategy, register, terminology, formatting rules, the
-full Spanish CTA and microcopy library, the Spanish navigation and footer, and the Spanish
-hero. **Full Spanish body copy for all fourteen pages is the second pass of this document**
-and is written once the English body copy clears `CLAIMS_MATRIX.md`. Translating body copy
-that is still gated would produce two sets of claims to re verify instead of one.
+**Delivered in Spanish.** Strategy, register, terminology, formatting rules, the final
+qualifier bank (§11.3b), the Spanish hero, navigation, footer, the full CTA library including
+both trial variants, form field labels and validation, **the eight connection states (§9.7b),
+the loading states (§9.7c), the response envelope states (§9.7d)**, and every string on the
+five authenticated surfaces in §6.15 to §6.19.
+
+The authenticated strings were written natively in Wave A2 rather than deferred, for one
+reason: they are short, high frequency, and a visitor meets them at the moment they are handing
+over a password. A translated approximation is most damaging exactly there.
+
+**Still outstanding in Spanish.**
+
+| Missing | Why it waits |
+|---|---|
+| Full ES body copy for the fourteen public pages | Written once the English clears the matrix. Translating gated body copy produces two sets of claims to re verify instead of one |
+| ES titles and meta descriptions | §12 notes these are written natively, not translated. They depend on the body copy above |
+| Wizard step titles and per step descriptions in ES | `INTEGRATION PENDING` on `MF-05`, the per step `detail` shape. The step **names** in §6.14 are settled; the descriptions are not |
+| `externally_pending` provider names in ES | `MF-11`. The fallback *Esperando al proveedor* ships until then |
+| Trial reminder copy in ES | `MF-06` cadence, and it does not exist in English either |
+| Branding upload errors in ES | `MF-07` file type and size limits, and it does not exist in English either |
+| Captcha copy in ES | `MF-08` provider not named |
+| Day fifteen commercial wording in ES | Owner decision, and it does not exist in English either |
+
+**Four of those eight do not exist in English yet.** They are listed here so the Spanish gap
+is not mistaken for a translation backlog when it is actually a source copy backlog.
+
+**A native Spanish review of §9.7b is the highest value item on this list.** Those eight
+strings appear on every wizard step and every provider surface, so a stiff translation there
+is repeated dozens of times across the product.
 
 ---
 
@@ -3003,207 +3717,216 @@ ES titles and descriptions are written in the second pass, natively, not transla
 
 ## 13. Claims compliance register
 
-**Superseded.** The first draft carried its own C01 to C34 claim IDs because no matrix
-existed. `CLAIMS_MATRIX.md` now provides roughly 140 rows with verdicts, so private IDs would
-create a second, competing register. They are replaced by matrix IDs throughout this document.
-
-**This table is the audit path.** For any sentence on the site, find its page here, read the
-matrix rows it depends on, and check those rows verdicts. Nothing ships whose rows are not
+**This table is the audit path.** For any sentence on the site, find its surface here, read
+the matrix rows it depends on, and check those verdicts. Nothing ships whose rows are not
 `APPROVED` or `APPROVED-Q` with their owner and legal dependencies closed.
+
+Private claim IDs are not used. The matrix carries roughly 140 rows with verdicts, and a
+second register would only drift from it.
+
+### 13.1 Public marketing tree
 
 | Page | Depends on | Verdict state | Blocked by |
 |---|---|---|---|
-| Homepage | P-02, P-03, A-04, A-06, B-04, B-07, D-01, D-03, E-01, F-01, F-03, B-12, R-01, R-02, R-05 | Mixed | E-01 on L-01. Sections gated per module. |
-| Platform Overview | P-01, P-02, P-03, G-02, G-10, O-03, B-07, D-01, B-08 | APPROVED / APPROVED-Q | Security section held on L-14. |
-| AI Sales Agent | B-04, B-05, B-07, B-12, B-13, D-02 | APPROVED-Q | Follow up section on L-01. Qualification on L-09. |
-| Lead Intelligence and CRM | D-01, D-02, D-03, D-05, D-06, D-08, G-01, G-02, G-03, G-06, G-10 | APPROVED-Q | L-09 throughout. Alerting has no matrix row at all. CRM positioning on G-11. |
-| Voice AI | V-02 only | OWNER | V-01 blocking. No page ships. |
-| Property Matching | F-01, F-02, F-03, F-04 | APPROVED-Q | Fixed count on F-03. Reverse matching on E-04 and L-02. |
-| Daily Assistant | I-01, I-02, I-03, I-04, I-05, I-06, I-08 | **OWNER, every row** | Illustrative examples only. I-07 on L-11. |
-| Social Growth | C-01, C-02, C-03, C-04, C-07, C-08, A-06 | APPROVED-Q | Lead capture on L-07. WhatsApp continuation on L-08. |
-| Reporting | R-01, R-02, R-03, R-04, R-05, R-06, R-07, R-12, R-15 | APPROVED-Q | R-08 on L-11. R-03 and R-04 on L-09. |
-| Property Experience | K-01, K-02, K-03, K-04, K-06, K-07, K-08, K-09, K-10, K-11, K-12, K-16 | APPROVED / APPROVED-Q | Square metres K-05 on L-12. |
-| Solutions and Outcomes | Inherits every module row it links to | Mixed | A row may not be offered as an answer while its module is blocked. |
-| Pricing | PK-01, PK-03, PK-07 | APPROVED / APPROVED-Q | PK-02 names, PK-04 mapping, PK-05 limits, PK-06 prices. |
-| Experience Nuova | CTA-3, S-02, S-03, S-05 | OWNER | Disclosure wording is an owner decision. |
-| Onboarding | O-01, O-02, O-03, O-08, N-01 | OWNER / APPROVED-Q | O-09 and O-10 reject the current site wording. |
-| Navigation and footer | CTA-2, CTA-6, P-02 | Mixed | Log in on CTA-6. Voice absent per V-02. |
-| Form library | A-04b, B-03b | **P0 OWNER** | No submission path exists. No form ships. |
-| Trust and compliance | B-15, X-08, L-14 | REJECTED / LEGAL | Privacy policy is materially incomplete and launch blocking. |
+| Homepage | P-02, P-03, A-04, A-06, B-04, B-05, B-07, D-01, D-03, E-01, F-01, F-03, B-12, R-01, R-02, R-05, K-01, K-11 | Mixed | E-01 on L-01. Sections gated per module |
+| Platform Overview | P-01, P-02, P-03, G-02, G-10, O-03, B-07, D-01, B-08, V-02 | APPROVED / APPROVED-Q | Security section on L-14 |
+| AI Sales Agent | B-04, B-05, B-07, B-12, B-13, D-02 | APPROVED-Q | Follow up on L-01. Qualification on L-09 |
+| Lead Intelligence and CRM | D-01, D-02, D-03, D-05, D-06, D-08, G-01, G-02, G-03, G-06, G-10, **G-11, G-11b** | APPROVED-Q | L-09 throughout. Vendor naming on owner decision D. **D-10 alerting BLOCKED** |
+| Voice AI | V-02 only | OWNER | V-01 blocking. No page |
+| Property Matching | F-01, F-02, **F-02b**, F-03, F-04 | APPROVED-Q | Fixed count F-03. Reverse matching E-04 on L-02. Portals F-06 REJECTED |
+| Daily Assistant | I-01, I-02, I-03, I-04, I-05, I-06, I-08 | **OWNER, every row** | Illustrative examples only. I-07 on L-11 |
+| Social Growth | C-01, C-02, C-03, C-04, C-07, C-08, A-06 | APPROVED-Q | Lead capture on L-07. WhatsApp continuation on L-08 |
+| Reporting | R-01 … R-07, R-09, R-11, R-12, R-15 | APPROVED-Q | R-08 on L-11. R-03 and R-04 on L-09 |
+| Property Experience | K-01 … K-04, K-06 … K-12, **K-17**, K-16 | APPROVED / APPROVED-Q | K-05 square metres on L-12. Quotas on PK-05 |
+| Solutions and Outcomes | Inherits every module row it links to | Mixed | A row is never offered as an answer while its module is blocked |
+| Pricing | PK-01, PK-03, **PK-06, PK-07, PK-09** | APPROVED / OWNER | PK-07 public or on request. `MF-10` currency and tax |
+| Experience Nuova | CTA-3, S-02, S-03, S-05 | OWNER | Disclosure wording |
+| Onboarding and Start | **O-00b, O-00c, O-00d, O-01, O-02, O-03, O-03b, O-03c, O-08, N-01, F-02b, G-11b, K-17** | **APPROVED-Q** | O-03d readiness destination on `MF-03` |
 
-### 13.1 Claims this document requested and the matrix does not cover
+### 13.2 Authenticated tree, new in Wave A2
 
-Gaps rather than rejections. Each is a request to the Product Truth instance.
+| Surface | Depends on | Verdict state | Blocked by |
+|---|---|---|---|
+| Signup | O-00, T-00, CTA-1 | APPROVED-Q wording, `INTEGRATION PENDING` | **L-14.** `MF-04`, `MF-08`, `MF-09`. §14.3 release |
+| Login | O-00, CTA-6 | APPROVED-Q wording, `INTEGRATION PENDING` | **L-14.** Destination on `MF-03` |
+| Trial status | T-00, T-00b | APPROVED-Q | **L-14.** `MF-06`. T-03 and T-03b never appear |
+| Trial expiry | T-00c | APPROVED-Q | **L-14.** Day fifteen wording is an owner decision |
+| Plan selection | PK-03, PK-06, PK-09 | APPROVED-Q | **L-14.** PK-04, PK-05, PK-07, `MF-10` |
+| Connection states §9.7b | O-00d, G-14, A-10 | APPROVED-Q | `MF-11` provider names |
+| Error states §9.7d | Uniform envelope | Structure approved | **`MF-04` code enumeration** |
 
-| Requested claim | Why it matters | Where it was needed |
+### 13.3 Claims requested that no document supplies
+
+Gaps, not rejections. Each is now a named missing field rather than an open question, which is
+progress even though none is closed.
+
+| Requested | Status | Where it was needed |
 |---|---|---|
-| **Hot lead alerting.** Does the product alert an owning agent when a lead becomes ready, on which channel, routed how? | Prominent in the owner brief and in `CLAUDE.md`, and one of the strongest conversion moments available. No matrix row exists, so it cannot be written. | Lead Intelligence §5, homepage, Daily Assistant |
-| **Reply specificity.** Does the first reply reference real listing data, or is it generic? | The difference between an autoresponder and a sales agent. B-04 covers that a reply happens, not what is in it. | AI Sales Agent §2 |
-| **Reporting feeding back into behaviour.** | Was assumed in the first draft and removed twice. Worth knowing whether it is on the roadmap. | Homepage loop, Reporting §5 |
+| **Hot lead alerting** | **`BLOCKED` on `MF-02`.** Not in the handoff, no matrix row, D-10 forbids every wording and every visual | Lead Intelligence §5, homepage, Daily Assistant, any phone mockup |
+| **Testimonial video** | **`BLOCKED` on `MF-01`.** The confirmed payload has no media field | Testimonial surface, which is `LEGAL HOLD` regardless |
+| **Dashboard destination** | **`BLOCKED` on `MF-03`.** P0 scope question | `Log in`, the wizard exit, the whole authenticated route tree |
+| Reply specificity | Not contracted. B-04 covers that a reply happens, not what is in it | AI Sales Agent §2 |
+| Reporting feeding back into behaviour | No evidence. Removed twice | Homepage loop, Reporting §5 |
 
-### 13.2 Rejected wording removed from this document during reconciliation
+**D-10 deserves a sentence of its own.** `CLAUDE.md` mandates hot lead alerts as a mandatory
+selling point. The matrix forbids every wording and every visual, including a phone mockup,
+because no endpoint, channel, routing or ownership model exists anywhere. **Three documents
+want this capability and the one document that should define it does not contain it.** Until
+`MF-02` lands, `CLAUDE.md`'s mandate cannot be honoured, and that is owner decision 16.
 
-Recorded so no later editor reintroduces it from an earlier draft.
+### 13.4 Rejected wording removed from this document
 
-| Removed wording | Matrix row | Pages it had reached |
+Cumulative across both reconciliation passes, so no later editor reintroduces any of it from
+an earlier draft.
+
+| Removed wording | Matrix row | Where it had reached |
 |---|---|---|
-| Works alongside the inbox, portals and CRM you already use | F-07, F-08 | Homepage hero, Platform Overview, Lead Intelligence, Onboarding, FAQ bank |
+| No setup needed | O-09 | Live site. Never entered this document |
+| Always synced to your CRM | F-08 | Live site. Never entered this document |
+| Works alongside the inbox, portals and CRM you already use | F-07, F-08 | Five pages in draft one |
+| Scored 1 to 100, leads above 80 | D-04, S-04 | Live site, and draft one |
 | Every enquiry answered in seconds | B-04, B-06 | Homepage hero, hero recommendation |
-| That took four seconds | B-06, S-04 | Experience Nuova |
-| Three properties / three homes | F-03 | Property Matching hero and body, homepage module grid |
-| Keeps the thread alive, comes back at a sensible interval | E-01, E-05 | AI Sales Agent |
-| The conversation you had written off books a viewing | **E-04, L-02** | AI Sales Agent |
-| A property listed Tuesday matched to a customer from March | **E-04, L-02** | Property Matching |
-| The ones who went quiet and are worth one more attempt | **E-04, L-02** | Daily Assistant |
-| Voice in the present tense, in any form | V-01, V-03 | Voice AI page, homepage module grid |
-| Every tier runs the whole loop | PK-04 | Pricing, homepage pricing block |
-| 30 minutes, 15 minutes | CTA-2 | Every CTA microcopy line |
+| Replied in under a second, replied in four seconds | B-06, S-04 | Live site, `/v2` draft, Experience Nuova |
+| Every hot lead alerting statement and visual | **D-10** | Removed from three pages and never rewritten |
+| Talk to Nuova | CTA-4 | Retired from the CTA vocabulary |
+| WhatsApp public CTA | CTA-7 | Removed. No number exists |
+| Chat launcher as a working control | CTA-5 `RESERVED` | Removed. A launcher that never answers is P0 |
+| Website voice and WhatsApp sales concierge | V-14, V-15 `RESERVED` | Never drafted as live behaviour |
+| Voice in the present tense | V-01, V-03 | Page deleted. One future block remains |
+| Idealista, Fotocasa, any portal name | **F-06, unchanged** | Never entered this document |
+| Three properties, three homes | F-03 | Property Matching hero and body |
+| Keeps the thread alive, until they answer | E-01, E-05 | AI Sales Agent |
+| Reactivation, in three phrasings | **E-04, L-02** | AI Sales Agent, Property Matching, Daily Assistant |
+| Every tier runs the whole loop | PK-04 | Pricing, homepage |
+| 30 minutes, 15 minutes | CTA-2 | Every CTA microcopy line, and two page bodies |
 | Your data stays yours | B-15, N-03 | CTA microcopy, trust lines |
 | One system instead of five | P-03 | Platform Overview hero, SEO copy |
-| By agent, who is converting and who needs help | **R-08, I-07, L-11** | Reporting |
+| By agent, who is converting | **R-08, I-07, L-11** | Reporting |
 | What your portal spend is buying | R-13 | Reporting |
-| Named languages: Spanish, German, Dutch, French, Scandinavian | B-07 | AI Sales Agent, Platform Overview |
-| The signal list: budget, timing, location, viewing request | **D-09, L-09** | Lead Intelligence |
-| Scored 1 to 100, above 80 is priority | D-04, S-04 | Lead Intelligence (already flagged in draft one) |
-| Tells your agent she is ready | No matrix row | Platform Overview, homepage |
-| Reporting changes what the system does next | No evidence | Homepage loop, Reporting |
-| Trial wording in every form | T-01, T-02 | Onboarding, CTA library, Pricing |
-
-**Retired claims from the current site.** These appear in `translations/en.ts` and
-`translations/es.ts` today and **must not be carried into the redesign** without clearance:
-
-| Existing string | Problem |
-|---|---|
-| "scored from 1 to 100" | A specific mechanism. Unverified. |
-| "Leads above 80 are marked as priority instantly" | A specific threshold. Unverified. |
-| "Replied in < 1 second" | A performance figure. Unverified. |
-| "Most agencies reply in hours" | A claim about third parties with no source. |
-| "1 hr 45 min", "2 hr 10 min" in the slow agency timeline | Invented figures presented as typical. |
-| "Every real inquiry gets a reply. Only spam is ignored." | An absolute guarantee. |
-| "It takes 15 minutes. No setup needed." | Two commitments about the owner's delivery. |
-| "Always synced to your CRM" | An integration claim. |
-| "Replied in 4 seconds" (`lib/os/copy.ts`) | A performance figure. |
-| "200 overnight · 3 for you" (`lib/os/copy.ts`) | Invented volume. |
-| CRM and portal names in `lib/os/copy.ts` | Named third party integrations, unverified. |
+| Named languages | B-07 | AI Sales Agent, Platform Overview |
+| The lead signal list | **D-09, L-09** | Lead Intelligence |
+| Free, start free, no credit card required | **T-01** | Held in Variant B, marked not approved. Never in page copy |
+| Plus seven day extension, the number seven | **T-03, T-03b, L-13** | Never drafted. Explicitly excluded from Trial status |
+| Testimonial mechanism in public copy | **T-03, L-13** | Never drafted |
+| Every guarantee of revenue, ROI, closings, lead volume, market share, conversions, response time | A-08, B-06, B-14, C-11, E-06, F-09, I-10, K-15, R-13, R-14, V-13, X-04, X-07 | Never drafted, and now enumerated in one place |
 
 ---
 
 ## 14. Open decisions for the owner
 
-**The authoritative list is `CLAIMS_MATRIX.md` §21, eighteen decisions, and its §22, fourteen
-legal dependencies. That list is not duplicated here**, because two registers would drift
-apart. This section records only what is specific to copy and conversion, plus which of the
-matrix decisions starve this document most.
+**The authoritative list is `CLAIMS_MATRIX.md` §21**, which now carries five lettered P0
+decisions plus the numbered set, and its §22 carries fourteen legal dependencies. That list is
+not duplicated here.
 
-### 14.1 Decisions this document needs that the matrix does not carry
+### 14.1 The five that block the most copy
+
+| Matrix | Decision | What it unblocks in this document |
+|---|---|---|
+| **C** | **Is the 14 day trial free, and is a payment method required at signup?** | §3.4. Variant A ships without this answer; Variant B needs it. **Variant A is recommended precisely so the copy does not wait.** |
+| **E** | **Release each product CTA individually under §14.3.** | Every product CTA. The activation register is empty, so nothing is wired regardless of how good the copy is |
+| **B** | **Where does the product live after wizard step 10?** (`MF-03`) | `Log in`, the wizard exit, and whether §6.15 to §6.19 are pages on this site or somewhere else |
+| **D** | **May the four confirmed CRM vendors be named? Are logo permissions held?** | Lead Intelligence §6, Onboarding step 7. Logos stay blocked either way |
+| **A** | **May the website call a staging target?** | Not a copy question, but it decides whether any of this can ever be verified |
+
+### 14.2 Decisions specific to copy and conversion
 
 | # | Decision | Blocks |
 |---|---|---|
-| 1 | Approve or reject the positioning in §1.2 and the operating loop in §1.4. | Every page. It is compatible with P-01 and P-02, and sharper than either. |
-| 2 | Approve or reject the hero recommendation in §4.4. | Homepage. |
-| 3 | Approve the public package names **Nuova Studio, Nuova Signature, Nuova Prime**. | Pricing and Solutions. This answers PK-02 directly. |
-| 4 | Supply a real demo duration, or confirm none is published. | Every CTA microcopy line on the site. |
-| 5 | Are module names kept in English on the Spanish site, with Spanish descriptors? | The whole Spanish site. See §11.4. |
-| 6 | Is *Built in Spain* accurate? | The footer brand line. |
-| 7 | Merge *Lead Acquisition* into Social Growth and *Follow up Automation* into AI Sales Agent? | Routing and navigation. |
-| 8 | **Does hot lead alerting exist**, on which channel, routed to whom? | Lead Intelligence, homepage, Daily Assistant. No matrix row covers it, so it cannot be written at all. See §13.1. |
-| 9 | Ratify Ladder B, primary *Book a demo*, as the shipping CTA hierarchy. | Site wide. `MASTER_GOVERNANCE.md` §11 still names the trial as primary and that cannot be implemented. |
+| 1 | Approve the positioning in §1.2 and the operating loop in §1.4 | Every page |
+| 2 | Approve the hero recommendation in §4.4 | Homepage |
+| 3 | **Approve the public plan names, and confirm they are the names configured in `GET /plans`** | Pricing and plan selection. **New in Wave A2:** names are backend served at runtime, so a marketing decision alone is not enough. The site and the backend will otherwise display different names |
+| 4 | Supply a real demo duration, or confirm none is published | Every CTA microcopy line |
+| 5 | Are module names kept in English on the Spanish site, with Spanish descriptors? | The whole Spanish site |
+| 6 | Is *Built in Spain* accurate? | The footer brand line |
+| 7 | Merge *Lead Acquisition* into Social Growth and *Follow up Automation* into AI Sales Agent? | Routing and navigation |
+| 8 | **Supply `MF-02`, or declare hot lead alerting out of the website's scope** | All hot lead copy, one homepage section, and `CLAUDE.md`'s mandatory selling point |
+| 9 | **Ratify the trial CTA wording: Variant A or Variant B** (§3.4), and ratify state one as the shipping hierarchy | Site wide |
+| 10 | The day fifteen commercial wording | Trial expiry §6.18 |
+| 11 | Whether prices appear on the public marketing site at all (PK-07) | Whether Pricing ships as Layout A or Layout B |
 
-### 14.2 The matrix decisions that block the most copy
+### 14.3 Waiting on counsel, not on the owner
 
-Ranked by how much of this document they unblock, which is a different order from the
-matrix's own, because copy and engineering are starved by different things.
+**L-14 is the one that matters most, and it grew on 2026-08-31.** Account creation, password
+handling, JWT sessions, agency and team personal data, uploaded branding assets, provider OAuth
+tokens held server side, testimonial consent and content, and a payment handoff are **all new
+processing that the current privacy policy does not describe**. No authenticated surface
+reaches a public URL before it closes. That is site wide and launch blocking.
 
-| Matrix ref | Decision | What it unblocks here |
-|---|---|---|
-| §21.3 | Confirm or reject each named integration | The most reused rejected sentence in the first draft. It had reached five pages. Until it is answered the site cannot answer *we already have a CRM*, which is the first objection every agency raises. |
-| §22 L-01 | Follow up timing and lawful basis | A full section of AI Sales Agent and the Advance stage of the loop. |
-| §22 L-09 | Automated profiling | Most of Lead Intelligence and two Reporting rows. |
-| §21.2 | Does the trial exist | The CTA ladder, Onboarding, the Pricing primary action. |
-| §21.4 | Simulation disclosure wording | Experience Nuova, which is the strongest conversion asset available while no social proof exists. |
-| §21.5 | Feature to package mapping, public or on request pricing | The Pricing page beyond its three tier names. |
-| §21.9 | Real score scale, or none | Lead Intelligence. |
-| §21.10 | A measured response time, or none | The hero and every speed line on the site. |
-| §21.13 | Which Daily Assistant questions work | The whole page. Every row is OWNER. |
-| §21.11 | Is the square metres source enforced | One section of Property Experience. |
-| §22 L-11 | Team performance visibility | One Reporting section, one Daily Assistant section. |
-| §22 L-14 | **The privacy policy is materially incomplete** | Launch blocking for the whole site, not only for copy. |
+The other thirteen are unchanged: L-01 follow up, L-02 reactivation, L-03 image storage, L-04
+document storage, L-05 audio storage, L-06 retention, L-07 consents and controller roles, L-08
+cross channel, L-09 automated profiling, L-10 AI disclosure, L-11 team performance visibility,
+L-12 property measurement, L-13 incentivised testimonials.
 
-### 14.3 Two conclusions worth stating plainly
+> **A technical confirmation does not lift a legal hold.** T-03 is the worked example: the
+> backend demonstrably implements the testimonial extension correctly, including the manual
+> approval gate the owner specified, and it stays legally held and publicly forbidden.
 
-**First.** Six of seven conversion paths have no working target system (`CLAIMS_MATRIX.md`
-§17). *Book a demo* is the only one that works, and its current implementation is defective
-(A-02). Fixing that one anchor is worth more to conversion right now than any headline in
-this document.
-
-**Second.** No social proof of any kind is available, and none may be invented. The site
-therefore has to earn belief through demonstration and craft, which is why Experience Nuova
-and the quality of the pages themselves carry disproportionate weight. That is a real
-strategy, not a consolation, but it only works if the demonstration is honest and the disclosure
-in §9.2 is cleared.
-
+---
 
 ## 15. Handover
 
-**To the Product Truth instance.** §13.1 is the intake list, and it is short because the
-matrix covers almost everything. Three gaps remain, and **hot lead alerting is the one that
-matters**: it is prominent in the owner's brief, it is one of the strongest conversion moments
-available, and no matrix row exists for it, so it cannot be written in any wording.
+**To the Product Truth and Claims instance.** §13.3 is the intake list, and it is now three
+named missing fields rather than open questions. **`MF-02` is the one to chase**: it blocks a
+capability `CLAUDE.md` calls mandatory, and no wording can exist without it. §9.2 still needs a
+cleared simulation label; S-02 makes the wording an owner decision and §9.2 proposes three
+options with a recommendation.
 
-**To the Claims instance.** §9.2 needs a cleared simulation label; S-02 makes the wording an
-owner decision and §9.2 proposes three options with a recommendation. §11.3b supplies the
-final Spanish for the five approved qualifiers, per your §20 delegation. §9.5 needs every
-remaining trust line either cleared or confirmed as blocked.
-
-**To the Luxury UX instance.** Section orders in §6 are the page architecture, and they have
-changed since the first draft: Voice AI has no page, Property Experience and Social Growth are
-now full pages, and three sections were deleted outright rather than restyled. Two constraints
-are yours to hold. First, **R-15 and K-16 require a visible illustrative marker on every
-reporting visual and every sample property**, which is a design problem, not a footnote.
-Second, **PK-05 forbids implying a quota through visual devices**, so no bars, dots or
-comparative column heights on the Pricing page. §9.1 defines every media empty state, which
-need designing rather than hiding. §10 is the mobile copy contract the layout has to hold.
+**To the Luxury UX and Authenticated Surface instances.** §9.7b owns the **wording** of the
+eight contracted status values; `AUTHENTICATED_SURFACE_SYSTEM.md` §3 owns their **visual
+specification**. The two must not drift, and `externally_pending` must never render as done in
+either. Two further constraints are yours to hold: R-15 and K-16 require a visible illustrative
+marker on every reporting visual and every sample property, and PK-05 forbids implying a quota
+through bars, dots or comparative column heights.
 
 **To the implementation instance.**
 
-1. Do not take copy from this file into a component until the matrix rows in §13 are
-   `APPROVED` or `APPROVED-Q` with their owner and legal dependencies closed.
-2. Ladder B in §3.3 is the only CTA ladder that can ship. `MASTER_GOVERNANCE.md` §11 still
-   names the trial as primary and that hierarchy cannot be implemented.
-3. **Capability status must be a content property, not hard coded prose.** The matrix asks
-   for this in its §25 and this document assumes it. Qualifiers, entitlement labels and
-   availability labels will change as evidence arrives, and they must change without a
-   rebuild.
-4. Every string in §9 is shared and belongs in one place, not repeated per component.
-5. No form ships. A-04b and B-03b are P0, and there is no submission path.
+1. Do not take copy from this file into a component until its matrix rows are `APPROVED` or
+   `APPROVED-Q` with owner and legal dependencies closed.
+2. State one in §3.2 is the only CTA hierarchy that can ship. **Variant B in §3.4 may not be
+   implemented, staged or previewed.**
+3. **Capability status is a content property, not hard coded prose.** Qualifiers, entitlement
+   labels and status strings change as evidence arrives, and must change without a rebuild.
+4. **Prices, plan names and feature summaries are rendered from `GET /plans`, never authored.**
+   A figure typed into a component is a P0 finding even when it is correct.
+5. **Never render `message` from the response envelope directly.** Copy is written per code in
+   §9.7d, in the visitor's language.
+6. No technical identifier reaches the agency: no entitlement key, tenant UUID, storage object
+   ID or workflow ID. Appendix B invariant 6.
+7. No marketing form ships. A-04b is unchanged and there is no destination.
+8. Every string in §9 is shared and belongs in one place, not repeated per component.
 
 ---
 
 ## 16. Status
 
-**Delivered.** Positioning and category story, the Nuova Operating Loop, message hierarchy,
-voice and a banned language list, audience map, the two CTA ladders with a full label
-inventory, eight hero options scored against four weighted criteria with a binding
-recommendation, three package names with alternates and a bilingual check, fourteen page
-specifications each carrying the full field set required by the brief, navigation, footer, the
-shared microcopy library covering video empty states, simulation labels, availability and
-entitlement labels, form copy and states, trust lines, an FAQ bank and error states, the
-mobile copy system, the Spanish localisation strategy including register, terminology,
-formatting, the final Spanish qualifier bank and a natively written Spanish hero, SEO copy,
-a matrix keyed compliance register, and the open decisions specific to copy.
+**Delivered.** Positioning and the Nuova Operating Loop, message hierarchy, voice and banned
+language, audience map, **a two state CTA system with the trial wording drafted as Variant A
+and Variant B**, eight scored hero options with a binding recommendation, three package names,
+**nineteen surfaces**: fourteen public pages each with the full field set required by the
+brief, and five authenticated surfaces written for the first time in Wave A2. Navigation,
+footer, and a shared microcopy library that now covers video empty states, simulation labels,
+availability and entitlement labels, form copy, **the eight contracted connection states, the
+loading states and the response envelope states**, trust lines, an FAQ bank and error states.
+Mobile copy system, Spanish localisation strategy with the final qualifier bank and every
+authenticated string written natively, SEO copy, a matrix keyed compliance register and the
+open decisions specific to copy.
 
-**Reconciled.** `PRODUCT_TRUTH.md` and `CLAIMS_MATRIX.md` arrived after drafting began. A
-second pass removed twenty one rejected wordings, rewrote two pages that had been wrongly
-embargoed, deleted one page entirely, and replaced the private claim register with a matrix
-keyed one. §0.1b records every change.
+**Reconciled twice.** Against `PRODUCT_TRUTH.md` and `CLAIMS_MATRIX.md` when they arrived, and
+again in Wave A2 against the backend handoff and the 44 row copy audit in
+`FINAL_RECONCILIATION_REPORT.md` §4. §0.1b and §13.4 record every removal.
 
-**Not delivered, and deliberately so.** Full Spanish body copy for all fourteen pages, which
-is a second pass once the English clears the matrix (§11.9). Trial copy in any wording (T-01).
-Any price, limit, quota, score scale, response time, percentage or count. Any named
-integration. Voice in the present tense.
+**Not delivered, deliberately.** Full Spanish body copy for the fourteen public pages, which
+waits on the English clearing the matrix. Any wording for hot lead alerting, the testimonial
+mechanism, the plus seven day extension, reactivation, follow up behaviour, voice capability,
+a chat launcher, a WhatsApp CTA, a named portal, or a price authored by the website.
+
+**The state of the work, stated plainly.** Copy exists for nineteen surfaces. **One conversion
+path works**, *Book a demo*, through an external scheduling tool, and its current
+implementation is defective (A-02). Everything else waits on an owner decision, a legal
+clearance, a missing field, a §14.3 release, or website integration that does not exist yet.
 
 **Drafted and awaiting owner decisions, legal clearance, and independent technical and final
 audit.**
 
-**No copy in this document is cleared for publication.** The gate condition is not this
-document's completeness. It is `CLAIMS_MATRIX.md` §21 and §22.
+**No copy in this document is cleared for publication.** The gate is not this document's
+completeness. It is `CLAIMS_MATRIX.md` §21 and §22, and `MASTER_GOVERNANCE.md` §14.3.
