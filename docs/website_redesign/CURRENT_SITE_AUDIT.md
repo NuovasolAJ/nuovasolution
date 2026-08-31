@@ -2,12 +2,19 @@
 
 **Audited by:** Master Website Director (implementation instance)
 **Audit date:** 2026-08-30
+**Amended:** 2026-08-31 — Wave A4. Corrections to §4 (incomplete `/v2` inventory) and §15
+(A-01 disagreement between documents); new §19 (legacy risk register).
 **Branch at audit time:** `website_enterprise_redesign` (forked from `main` @ `9943660`)
 **Scope:** Factual inventory of the existing codebase. No judgement of copy truthfulness —
 that belongs to `PRODUCT_TRUTH.md` / `CLAIMS_MATRIX.md`.
 
 > Governance note (R1/R2): this document is a factual inventory produced by the
 > implementation instance. It is itself subject to independent review.
+>
+> **No remediation is performed by this wave.** Every hygiene item below is documented and
+> left in place. Cleanup is a separate, isolated repository-hygiene wave that runs alone,
+> because untracking operates on the whole index and would collide with any concurrent
+> commit. Nothing here is fixed, deleted, untracked, rotated or moved.
 
 ---
 
@@ -77,11 +84,36 @@ No `robots.ts`. No `opengraph-image`.
 `components/live-demo/live-demo-client.tsx` (**80.5 KB, single file**) and
 `components/live-demo/demo-engine.ts` (37.5 KB).
 
-### Active — `/v2` only
-`components/v2/nav.tsx`, `presence.tsx`, `atmosphere.tsx`, `film.tsx` (18 KB), plus
-`lib/os/copy.ts` (15 KB) and `lib/os/motion.ts`.
+### `/v2` — the owner's uncommitted concept (CORRECTED 2026-08-31)
 
-### Dead code — imported by nothing
+> The original audit was **incomplete and mis-scoped** here. Two corrections.
+
+**Correction 1 — the file list was short by one.** `components/v2/` contains **seven** files,
+not the four listed originally plus two in the dead-code list:
+
+| File | Imported by |
+|---|---|
+| `nav.tsx` | `app/v2/page.tsx` |
+| `presence.tsx` | `app/v2/page.tsx` |
+| `atmosphere.tsx` | `app/v2/page.tsx` |
+| `film.tsx` (18 KB) | `app/v2/page.tsx` |
+| `hero.tsx` (18 KB) | **Nothing. Omitted from the original audit entirely.** |
+| `journey.tsx` (12 KB) | Nothing |
+| `closing.tsx` (13 KB) | Nothing |
+
+Plus `lib/os/copy.ts` (15 KB) and `lib/os/motion.ts`.
+
+**Correction 2 — none of it is tracked in git.** `app/v2/`, `components/v2/` (all seven
+files) and `lib/os/` are **untracked working-tree files: the owner's uncommitted work**.
+Verified 2026-08-31. The original audit listed them as if they were part of the committed
+codebase.
+
+**Handling:** preserved, untouched, not deleted, not moved, not staged by any chat.
+`lib/os/copy.ts` is the marketing draft whose capability status flags are cited throughout
+`PRODUCT_TRUTH.md`, so it is **reference material that must be harvested before any future
+cleanup**, not merely dead weight.
+
+### Dead code — tracked, and imported by nothing
 - `components/sections/chat-demo.tsx`
 - `components/sections/demo-flow.tsx` (16 KB)
 - `components/sections/speed-compare.tsx` (10 KB)
@@ -92,8 +124,6 @@ No `robots.ts`. No `opengraph-image`.
 - `components/ui/dark-mode-toggle.tsx`
 - `components/ui/prompt-input.tsx`
 - `components/ui/typewriter-effect.tsx`
-- `components/v2/journey.tsx` (12 KB)
-- `components/v2/closing.tsx` (13 KB)
 
 **Structural observations**
 
@@ -288,8 +318,13 @@ Every action in `INTEGRATION_CONTRACT.md` needs a defined analytics event; none 
 - `.vercel` is git-ignored (correct).
 - `next.config.js` is nearly empty: `images: { domains: [] }`. No `remotePatterns`, no
   image format configuration, no compiler options, no headers.
-- Branch pushes should produce preview deployments automatically — **to be confirmed with
-  the owner before the first push.**
+- Branch pushes would normally produce preview deployments automatically. **Under
+  `MASTER_GOVERNANCE.md` §15 no push and no deployment happens, preview included, without
+  explicit per-occasion owner approval.** No push has occurred on this branch.
+- **No environment variable of any kind exists** in this repository: no `.env`, no
+  `.env.local`, no `.env.example`, and `process.env` appears nowhere in `app/`, `components/`
+  or `lib/`. There is no environment plumbing at all, which is why legacy risks L-R3 and L-R4
+  must be closed **before** any is introduced (§19.2).
 
 ---
 
@@ -298,25 +333,51 @@ Every action in `INTEGRATION_CONTRACT.md` needs a defined analytics event; none 
 **In the website runtime: none.** No fetch, no webhook call, no n8n reference in any
 `app/`, `components/` or `lib/` file. The site makes no backend calls of any kind.
 
-**In the repository: a credential exposure, handled outside this project.**
+**In the repository: a retired tooling configuration, still physically present.**
 
-`.mcp.json` is **tracked in git** and contains an n8n Cloud API URL and API key for
-developer tooling (a `n8n-mcp` server configuration). The values are deliberately **not
-reproduced in this document**.
-
-**Status: closed for this project.** The owner has confirmed that the credential is rotated
-and cleaned up separately, outside this chat and outside this repository's workflow.
+`.mcp.json` is **tracked in git** and contains an n8n Cloud API URL and API key for developer
+tooling (an `n8n-mcp` server configuration). The values are deliberately **not reproduced in
+this document**, and are not reproduced in any document on this branch.
 
 Per `MASTER_GOVERNANCE.md` R8 and §14, this project:
 
-- does not use, call, test or reference that connection as a live target;
+- does not use, call, test, repair or repoint that connection;
 - does not reproduce, echo, log or quote the credential value anywhere;
 - does not attempt to rotate, verify or clean it.
 
-The **obsolete n8n Cloud connection must not be used** by the new website under any
-circumstances. Separately, `.mcp.json` is developer tooling and does not belong in tracked
-files — that remains a repository-hygiene item under finding A-08 (`.gitignore` scope), not
-a security action for this project.
+**The obsolete n8n Cloud connection must not be used by the new website under any
+circumstances, and no legacy n8n hardcoding may enter the new implementation** (§17.4).
+The connection is **deleted, not migrated**, when the hygiene wave runs.
+
+### 15.1 A-01 — a documentary disagreement between three documents (CORRECTED 2026-08-31)
+
+Three documents on this branch state three different things about the same item:
+
+| Document | States |
+|---|---|
+| `CURRENT_SITE_AUDIT.md` (this file, 2026-08-30) | A-01 closed — rotated and cleaned up |
+| `IMPLEMENTATION_STATUS.md` (2026-08-30) | A-01 closed, severity struck through |
+| `CLAIMS_MATRIX.md` §21 item 18 | "Rotate the exposed credential" — still listed as an **open owner decision, P0** |
+
+**The correction.** The earlier "closed" wording overstated what this project can know.
+What is actually true, and all that is actually true:
+
+1. The owner stated that the credential is rotated and that cleanup happens separately,
+   outside this chat.
+2. **This project neither verified that, nor can it** — verification would require exactly
+   the access §14 forbids.
+3. **The file and its value are still physically present** in the working tree and in the
+   index, and have been in every commit since they were introduced, on `main`, before this
+   branch existed.
+
+**Correct status:** the **security** action is owner-side and closed by the owner's own
+statement, which this project accepts and does not re-litigate. The **hygiene** action —
+untracking the file and removing the retired configuration — is **open**, and is tracked as
+legacy risk L-R1 in §19.
+
+**This document does not change `CLAIMS_MATRIX.md`'s verdict.** Only its owning instance may.
+The disagreement is recorded here so that no future reader assumes one document speaks for
+all three.
 
 ---
 
@@ -379,29 +440,81 @@ Per the brief, the existing visual system is **not** a design reference. To be d
 
 ---
 
+## 19. Legacy risk register (added 2026-08-31)
+
+> **No secret value, token value, key fragment or complete sensitive URL is reproduced in
+> this register.** Nothing here was accessed, called, tested or verified. **No cleanup is
+> performed by this wave.** Remediation runs later, as an isolated repository-hygiene wave,
+> alone, because untracking operates on the whole index.
+
+| ID | Legacy risk | Verified state | Why it matters | Remediation (later wave, not now) |
+|---|---|---|---|---|
+| **L-R1** | **Tracked retired MCP configuration.** `.mcp.json` is tracked and carries a retired n8n Cloud host and a credential for developer tooling. | Tracked. Present in the working tree and the index. | It is the one file in the repository that holds a credential-shaped value. It is developer tooling and has no place in version control. The connection it points at is retired (R8). | Untrack, ignore, and **delete the retired connection rather than repairing it**. |
+| **L-R2** | **Possible git history burden.** The file above has been present in every commit since it was introduced, on `main`, before this branch existed. | Not audited in depth by this wave. History was read, not rewritten. | Removing a file in a new commit does not remove it from history. Anyone with clone access to the repository, at any point in its history, can read it. Its practical severity depends entirely on **repository visibility**, which this project has not checked and must not assume. | **No history rewrite** (§12). The owner decides on visibility and on whether any further action is warranted. This project performs none. |
+| **L-R3** | **Insufficient ignore rules.** `.gitignore` contains exactly two entries. | Verified. | This is the **root cause** of L-R1, L-R4, L-R5 and L-R6. It is also why directory-wide staging has repeatedly swept foreign files into commits. | Extend to cover dependencies, build output, deployment state, build info, environment files (with an example file carrying names only as the sole exception), the tooling configuration, local settings and OS artefacts. |
+| **L-R4** | **Tracked build output.** `.next/` is tracked: **180 files in the index**, verified 2026-08-31. | Verified. | Build output under version control. **The decisive risk is forward-looking:** the moment any environment value is introduced, a build that inlines it would commit it. This makes L-R4 a **hard precondition** for introducing any environment variable at all. | `git rm -r --cached`, then ignore. **Before** any environment plumbing exists. |
+| **L-R5** | **Tracked local settings.** `.claude/settings.local.json` is tracked. | Verified. | Per-developer local tool state, containing permission allowlists and absolute local filesystem paths. No secrets. It does not belong in a shared repository and leaks local machine structure. | Untrack, ignore. Hygiene only. |
+| **L-R6** | **Tracked build information.** `tsconfig.tsbuildinfo` is tracked and shows as modified on almost every operation. | Verified. | A build artefact. Contributes constant working-tree noise, which is the condition under which a directory-wide stage sweeps up something unintended. | Untrack, ignore. |
+| **L-R7** | **Absolute production self-links.** Two anchors in source point at the production origin for a route on the same site: `components/sections/hero.tsx:459` and `components/sections/final-cta.tsx:80`. | Verified. | Two distinct defects. **Navigation:** a full page reload instead of client-side navigation. **Preview safety:** every non-production deployment links its visitor **back into production**, which silently defeats the point of a preview and can send a reviewer's actions to the live site. Recorded as A-03. | Replace with relative internal paths. **No target is hardcoded in source** (§17.5). |
+
+### 19.1 What this register does not claim
+
+- It does not claim any credential is or is not currently valid.
+- It does not claim the repository is or is not public.
+- It does not claim that history is or is not compromised.
+- It performs no rotation, no untracking, no deletion and no history change.
+
+Each of those is either an owner decision or a later wave. Stating them as facts here would
+be exactly the kind of unverified assertion this project's governance exists to prevent.
+
+### 19.2 The one sequencing rule that matters
+
+**L-R3 and L-R4 are preconditions for introducing any environment variable into this
+repository.** Introducing a server-only secret-bearing variable while build output is tracked
+and the ignore file is two lines long is unsafe by construction, regardless of how carefully
+the variable itself is handled.
+
+---
+
 ## Consolidated findings
 
-| ID | Sev | Finding |
-|---|---|---|
-| A-01 | ~~P0~~ | n8n Cloud credential committed in tracked `.mcp.json`. **Closed for this project** — rotated and cleaned up by the owner outside this chat (2026-08-30). The connection itself is obsolete and must not be used (R8, §14). Remaining hygiene tracked under A-08. |
-| A-02 | **P1** | Primary CTA is `href="#"` + `preventDefault()`; dead if the Cal.com script fails. |
-| A-03 | **P1** | Absolute self-referencing URLs (`https://nuovasolution.com/live-demo`) break preview deployments and client-side navigation. |
-| A-04 | **P1** | Spanish has no URL, no persistence, no `hreflang`, and `<html lang>` is hard-coded `en`. Bilingual requirement not met. |
-| A-05 | **P1** | Render-blocking Google Fonts `@import` in `globals.css`; `next/font` unused. LCP/CLS risk. |
-| A-06 | **P1** | 15 of ~17 required routes do not exist. No trial, pricing, login or onboarding path. |
-| A-07 | **P1** | No API routes, no forms, no submission path for any conversion action. |
-| A-08 | **P1** | `.next/` (180 files) and build artefacts tracked in git; `.gitignore` has 2 lines. |
-| A-09 | **P1** | No security headers, no `vercel.json`, no CSP. |
-| A-10 | **P2** | Three competing colour systems; no spacing/type/motion token layer. |
-| A-11 | **P2** | ~285 KB of dead code and a fully redundant legacy static site tracked in the repo. |
-| A-12 | **P2** | No custom analytics events; no conversion instrumentation. |
-| A-13 | **P2** | No `metadataBase`, canonicals, sitemap, robots, OG image or structured data. |
-| A-14 | **P2** | No `not-found.tsx`, `error.tsx` or `loading.tsx`. |
-| A-15 | **P2** | Monolithic components (80 KB / 43 KB single files); no shared primitive layer. |
+| ID | Sev | Finding | State |
+|---|---|---|---|
+| A-01 | P1 (hygiene) | Retired n8n Cloud tooling configuration tracked in `.mcp.json`. **Security action is owner-side and closed by the owner's own statement, which this project cannot verify. Hygiene action is open.** Three documents disagree — see §15.1. Tracked as **L-R1**. | Open (hygiene) |
+| A-02 | **P1** | Primary CTA is `href="#"` + `preventDefault()`; dead if the scheduling script is blocked or fails. | Open |
+| A-03 | **P1** | Absolute self-referencing production URLs break client-side navigation **and point every preview back into production**. Tracked as **L-R7**. | Open |
+| A-04 | **P1** | Spanish has no URL, no persistence, no `hreflang`, and `<html lang>` is hard-coded `en`. Bilingual requirement not met. | Open |
+| A-05 | **P1** | Render-blocking Google Fonts `@import` in `globals.css`; `next/font` unused. LCP/CLS risk. | Open |
+| A-06 | **P1** | The required route tree does not exist. **Revised 2026-08-31:** the target is now larger than originally stated — the public marketing tree *plus* a locale-routed structure *plus* an authenticated tree (signup, login, a ten-step wizard, readiness, plan selection). Its outer boundary is unresolved (MF-03). | Open |
+| A-07 | **P1** | No API routes, no forms, no submission path, no environment plumbing. **Revised 2026-08-31:** the blocking cause has changed. It was "no contract exists". A contract now exists for 27 implementable surfaces. What blocks execution is `MASTER_GOVERNANCE.md` §14 plus the empty activation register — not missing information. | Open, cause changed |
+| A-08 | **P1** | Build output and artefacts tracked; ignore file has two entries. Split into **L-R3** (ignore rules), **L-R4** (build output, 180 files), **L-R6** (build info). **Precondition for any environment variable.** | Open |
+| A-09 | **P1** | No deployment configuration, no security headers, no content security policy. | Open |
+| A-10 | **P2** | Three competing colour systems; no spacing, type or motion token layer. | Open |
+| A-11 | **P2** | ~285 KB of dead code and a fully redundant legacy static site tracked in the repo. | Open |
+| A-12 | **P2** | No custom analytics events; no conversion instrumentation. Every action in `INTEGRATION_CONTRACT.md` names events that do not exist. | Open |
+| A-13 | **P2** | No `metadataBase`, canonicals, sitemap, robots, OG image or structured data. | Open |
+| A-14 | **P2** | No `not-found.tsx`, `error.tsx` or `loading.tsx`. | Open |
+| A-15 | **P2** | Monolithic components (80 KB / 43 KB single files); no shared primitive layer. | Open |
+| **A-16** | **P2** | **New 2026-08-31.** `.claude/settings.local.json` is tracked. Per-developer local tool state with absolute local filesystem paths. No secrets. Tracked as **L-R5**. | Open |
+| **A-17** | **P2** | **New 2026-08-31.** The original `/v2` inventory in §4 was incomplete — one component omitted, and the whole concept mis-recorded as committed code when it is the owner's untracked work. Corrected in §4. | Corrected |
+
+**Totals:** 17 findings — 0 P0, 9 P1, 8 P2. One correction closed (A-17).
+
+The previous P0 (A-01) is re-graded to P1 hygiene, because its security half is owner-side
+and closed by the owner's own statement, and its remaining half is a repository-hygiene
+action. **This is a re-grading, not a dismissal:** the file and its value are still
+physically present, and §15.1 records exactly what this project does and does not know.
 
 ---
 
 ## Status
 
-Audit complete for the pre-redesign codebase.
+Audit amended against the canonical technical handoff and the final reconciliation: the
+`/v2` inventory corrected, the A-01 disagreement between three documents recorded rather than
+papered over, a seven-item legacy risk register added with no secret content and no
+remediation performed, and the consolidated findings re-graded.
+
+No file outside the four documents owned by this wave was changed. No cleanup was performed.
+No secret value was reproduced. **No production readiness claim is made.**
+
 **Implemented and awaiting independent technical and final audit.**
