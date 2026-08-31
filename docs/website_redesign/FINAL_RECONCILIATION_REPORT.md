@@ -8,17 +8,399 @@ no production flow was changed, no backend, n8n, Supabase or Vercel system was a
 pushed, merged or deployed, no git history was rewritten, and no uncommitted owner change was
 overwritten.
 
-**Canonical technical source:** `docs/website_redesign/backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md`
-(present, read in full, 279 lines, export-v1, dated 2026-08-30).
+**Last updated:** 2026-08-31 — **export-v2 + AF addendum reconciliation** (see §0V).
+
+**Canonical technical source (CURRENT):**
+`backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2.md`, extended for AF-01, AF-04 and AF-07 by
+`backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2_AF_ADDENDUM_v1.md`.
+**`WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md` is HISTORICAL. Do not implement against it.**
 
 > **No statement in this document declares anything production ready.** Every status below is a
 > verifiable statement about what a named document says or about what was observed in the local
-> repository. Nothing was verified end to end, because end to end verification requires exactly the
-> access that `MASTER_GOVERNANCE.md` §14 forbids.
+> repository. Nothing was verified end to end.
+
+> **READ §0V FIRST.** Sections §0 to §11 were written against export-v1. **§0V supersedes every
+> statement in this document wherever the two differ**, and enumerates each supersession explicitly.
+> The v1-era text is retained deliberately, not by oversight: this project records superseded
+> reasoning so it cannot be reintroduced by a later editor.
 
 ---
 
-## 0. Authority ranking (binding, resolves all downstream conflicts)
+## 0V. Export-v2 and AF addendum supersession layer (BINDING, 2026-08-31)
+
+### 0V.0 Integrity verification
+
+Both files were hash-verified before a single character of this document was changed.
+
+| File | Expected SHA256 | Computed | Result |
+|---|---|---|---|
+| `WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2.md` | `493c9e15…bf410` | `493c9e15643cbf277b6b2bde68b6a5b1b4c9458ccc7a2442f0f47d538cbbf410` | **MATCH** |
+| `WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2_AF_ADDENDUM_v1.md` | `e22f0978…7739e` | `e22f097814d8b0cac69dbe85e4f64dd6be6eaeeaa7b460cee23525b55937739e` | **MATCH** |
+
+Full 64-character digests were compared, not prefixes. Had either differed, this reconciliation would
+have stopped and nothing would have been changed.
+
+### 0V.1 Corrected authority ranking
+
+Rank 1 changes. Everything else in §0 stands.
+
+| # | Document | Authority |
+|---|---|---|
+| **1a** | `WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2.md` | **Technical truth.** Supersedes v1 entirely. |
+| **1b** | `WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2_AF_ADDENDUM_v1.md` | **Technical truth for AF-01, AF-04, AF-07 only.** Extends 1a; does not modify it. |
+| — | `WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md` | **HISTORICAL.** No status may be derived from it. |
+| — | `WEBSITE_UX_AF_REQUIREMENTS_EXPORT_v1.md` | Website-authored requirement register. **Not** a technical authority; it states what was asked, not what is true. |
+
+Ranks 2 to 6 and the standing of `MASTER_GOVERNANCE.md` and `CLAUDE.md` are unchanged.
+**v2 §A item 9 and the AF addendum clear provider names for the authenticated tree only. Backend
+confirmation still never converts a `CLAIMS_MATRIX.md` `LEGAL` or `REJECTED` verdict for the public
+marketing tree.**
+
+### 0V.2 The binding decisions v2 fixes (owner/product, §A)
+
+Nine decisions are now fixed and are not reopened by any chat.
+
+1. The website BFF may later test **only against an explicitly approved STAGING target. No production
+   calls, ever.**
+2. No secrets in the browser. No frontend-owned backend authority.
+3. **Trial = 14 days free. No payment method at signup.**
+4. **Start Trial is the primary CTA after integration. Book a Demo is optional. No sales call is
+   required to start a trial.**
+5. The wizard is **not forced linear**. Steps evaluate independently; `resume_step` is a convenience
+   pointer only.
+6. **No invented polling.**
+7. **Checkout is a server-determined handoff**, not a marketing-site payment form.
+8. English and Spanish use **separate locale routes** (`/en`, `/es`).
+9. CRM providers may render **text-only initially**; logos remain blocked until brand approval.
+
+### 0V.3 The twelve corrections, in order of consequence
+
+---
+
+**V2-01 — There is no backend price. `price_display` does not exist.**
+
+**This is the largest correction in this reconciliation and it reverses a statement this document
+made in §4 row 14, §11 and matrix §2.5.**
+
+v1 §5 row 7 described `GET /plans` as returning `{ code, name, price_display, features_summary }`.
+On that basis this document concluded that "prices are served by the endpoint, never authored by the
+website". **That conclusion is now void.** v2 §F defines the response as
+`{ plans:[{ code, display_name, entitlements_summary }] }` — **explicitly "(no price)"** — and v2
+MF-10 states that `billing_plan` has **no price and no currency column** and that **there is no
+backend pricing, currency or tax authority at all**.
+
+*Consequences, binding:*
+- The website may display **plan names and entitlement summaries. It may not display a price**, from
+  any source, because no source exists.
+- `LUXURY_UX_MEDIA_SYSTEM.md` §5.7 **Layout A (public pricing) cannot be built.** Layout B, the
+  access model, is the only pricing presentation available.
+- `AUTHENTICATED_SURFACE_SYSTEM.md` §10's "**Prices:** `price_display` is rendered exactly as served"
+  is superseded. There is nothing to render.
+- The field renames matter for the typed client: `name` → `display_name`,
+  `features_summary` → `entitlements_summary`.
+- `CLAIMS_MATRIX.md` PK-06 must be restated: it is no longer "the website must not author a price
+  while the endpoint serves one", it is "**no price exists anywhere, so none is displayed**".
+- Currency, tax basis and Spanish IVA remain **`OWNER DECISION PENDING` + `LEGAL REVIEW PENDING`**
+  (MF-10). They are not a formatting question; they are a missing authority.
+
+---
+
+**V2-02 — The trial is free and takes no payment method. T-01's factual objection is withdrawn.**
+
+v2 §A item 3 and §C1 state it as backend truth: `trial_lifecycle` creates a **free** 14-day trial,
+`trial_conversion_options.auto_charge = false`, `trial_convert` requires explicit customer
+authorisation, and `billing_subscription` has no payment-instrument column in its required set. **No
+card is collected at signup.**
+
+*Consequences:*
+- The blocking question this document listed as owner decision 4, and which
+  `PRODUCT_TRUTH.md` §18.1, `CLAIMS_MATRIX.md` T-01, `COPY_AND_CONVERSION_MASTER.md` §3.4,
+  `INTEGRATION_CONTRACT.md` §A1 and `IMPLEMENTATION_STATUS.md` all carry as open, **is answered.**
+- The **factual** basis for "free" and for "no payment method at signup" now exists.
+- **The wording is still a claims decision, not an automatic approval.** `CLAIMS_MATRIX.md` T-01 must
+  be moved from `OWNER` to `APPROVED-Q` by **its owning chat**, not by this one. Until it is, no page
+  ships the word.
+- `COPY_AND_CONVERSION_MASTER.md` §3.4 **Variant B becomes the releasable variant**, and Variant A
+  becomes the fallback rather than the recommendation.
+- **"No credit card required" is a separate marketing sentence.** The fact is confirmed; whether that
+  particular phrasing is used is a copy and claims choice, and T-01 lists it as its own forbidden item.
+
+---
+
+**V2-03 — Start Trial becomes the primary CTA. Ladder A is unblocked.**
+
+v2 §A item 4 fixes the hierarchy: **Start Trial primary after integration, Book a Demo optional, no
+sales call required to start a trial.**
+
+*Consequences:*
+- `MASTER_GOVERNANCE.md` §11's original hierarchy becomes implementable, subject to T-01's wording
+  ratification and to the §14.3 per-action CTA release.
+- **Ladder B remains the shipping ladder until the signup surface exists**, because a primary CTA
+  must have a destination. The change is that Ladder A is now a *scheduled* outcome rather than a
+  blocked one.
+- `CLAIMS_MATRIX.md` T-02's rejection stands and becomes sharper: a free-start promise routed to a
+  sales call is now demonstrably wrong, because the trial genuinely does not need one.
+
+---
+
+**V2-04 — Hot lead alerting is OUT OF SCOPE for the website, not BLOCKED.**
+
+v2 MF-02 and §C3: hot-lead surfacing is **internal**. The agency is notified through the existing
+agent-notification channel and through CRM and dashboard surfacing. **There is no public website or
+onboarding endpoint and none is required.**
+
+*Consequences:*
+- This document's C-21, `CLAIMS_MATRIX.md` D-10, `PRODUCT_TRUTH.md` PT-C14,
+  `INTEGRATION_CONTRACT.md` C7 and `COPY_AND_CONVERSION_MASTER.md` §13.1 all carry it as
+  **`BLOCKED` on a missing field**. That is wrong. It is **`OUT OF SCOPE (website surface)`** and the
+  missing-field register loses MF-02.
+- **The website builds nothing for it.** No section, no phone mockup, no alert imagery, no endpoint.
+- **No marketing claim is authorised by this.** A mechanism existing internally is not a cleared
+  public claim; there is still no `CLAIMS_MATRIX.md` approved wording. Any future claim is a fresh
+  claims decision with a fresh legal check (L-08 cross-channel).
+- `CLAUDE.md`'s "HOT LEAD ALERTS (MANDATORY SELLING POINT)" section **cannot be honoured as written**
+  and this is now settled rather than pending. It strengthens owner decision 10.
+
+---
+
+**V2-05 — Six missing fields are confirmed. The register shrinks from twelve to three.**
+
+| Field | v1 state | v2 state |
+|---|---|---|
+| **MF-04** error code enumeration | BLOCKED | **CONFIRMED.** Full per-endpoint table, v2 §F, plus ten global codes. |
+| **MF-05** step detail shape | BLOCKED | **CONFIRMED.** Exact projection, v2 §G, including `legend`'s five keys and `needs_action_steps`. |
+| **MF-06** trial reminder cadence | BLOCKED | **CONFIRMED.** `reminder_3d`, `reminder_1d`, `testimonial_invite`. Backend-driven; the website sends nothing. |
+| **MF-07** upload limits | BLOCKED | **CONFIRMED (branding).** `image/png, image/jpeg, image/webp, image/gif`, max **5 MB**, kinds `logo` and `email_banner` only. Not defined for anything else. |
+| **MF-09** language values | BLOCKED | **CONFIRMED.** Website locale `{en, es}`. Three concepts must not be mixed: website locale, customer communication language (free text, backend default `es`), and certified AI runtime languages (12, a runtime concern). |
+| **MF-11** provider display names | BLOCKED | **CONFIRMED** for CRM and paid; the AF addendum adds communication. See V2-10. |
+| **MF-12** testimonial auth model | BLOCKED | **CONFIRMED.** Authenticated agency user via the BFF. All `trial_testimonial_*` functions are service-role only. **Not a public one-time link.** |
+| **MF-03** dashboard destination | BLOCKED, "the largest open question" | **PROPOSED and website-owned.** The backend provides `activatable` and `tenant_activate`; it does not own a route. Recommended target `/{locale}/app`. **De-escalated from a backend gap to a website decision (AD-01).** |
+| **MF-02** hot lead alerting | BLOCKED | **OUT OF SCOPE.** Removed from the register. See V2-04. |
+| **MF-01** testimonial media | BLOCKED | **BACKEND IMPLEMENTATION REQUIRED.** `trial_testimonial_submit` accepts a `media_ref` **string reference** only; there is **no file upload or storage pipeline**. Written testimonial, manual approval and the one-time +7 are fully defined. **Do not fake a video upload field.** |
+| **MF-08** captcha provider | OWNER | **OWNER DECISION REQUIRED**, unchanged. No backend captcha contract exists; the BFF verifies server-side. |
+| **MF-10** currency and tax basis | OWNER | **LEGAL REVIEW REQUIRED + OWNER DECISION REQUIRED**, and worse than recorded: there is no backend pricing authority at all. See V2-01. |
+
+**Remaining open: MF-01, MF-08, MF-10.** Nine of twelve are closed or reclassified.
+
+---
+
+**V2-06 — Footer and signature are text fields. The third upload block is void.**
+
+v2 §B and §E: only `logo` and `email_banner` are uploaded assets. Footer is localized legal text
+(`legal_footer` / `footer_by_locale`). Signature is a **`signature_mode` selection** — one of
+`logo_only | compact | banner_signature | legal_only` — plus text. The server sanitizes and renders
+both into responsive HTML and plaintext. **The website submits plain text only and never injects raw
+HTML.** v2 §F adds `invalid_asset_kind` (400), which is exactly the error a guessed `kind` would have
+produced.
+
+*Consequences:* `AUTHENTICATED_SURFACE_SYSTEM.md` §8.3's third **upload** block and §9.1's
+"Footer or signature — BLOCKED on AF-03" row are **void as a premise**, not merely unblocked. The
+surface is a text and mode-selection group. The four `signature_mode` values are backend enumeration
+tokens and are rendered through the §1.4 redaction boundary as agency-facing labels, never raw.
+
+---
+
+**V2-07 — Property upload is out of scope. Properties arrive by source connect.**
+
+v2 §B and §E. Property is ingested via source connect: agency website scrape, supported feed, or CRM
+inventory. There is **no website or onboarding file-upload contract for property data**. A direct
+property-file upload, if ever wanted, is **BACKEND IMPLEMENTATION REQUIRED** and is explicitly
+distinct from the PX panorama capture flow. **PX asset ownership is confirmed under PX-lane
+authority:** assets are owned by (tenant, property) and publish **fails closed** on a cross-property
+reference.
+
+*Consequences:* `AUTHENTICATED_SURFACE_SYSTEM.md` §8.9 and §9.1's decision to build **no** upload
+surface is confirmed correct in both halves. The website consumes `px_onboarding_entry` and nothing
+else. **It must not build a second capture wizard.**
+
+---
+
+**V2-08 — The offices endpoint exists. The team invite office control is unblocked.**
+
+v2 §E and §F: `GET /offices → { offices:[{ office_id, name, is_default }] }`, error `no_session`
+(401, retryable). `office_id` is an **opaque handle, never rendered**; the field is **optional** and
+`null` means tenant level. Role gating: `office_manager` may invite only into their own office,
+`agency_admin` into any. `POST /team/invite` adds `office_out_of_scope` (403, not retryable).
+
+*Consequences:* `AUTHENTICATED_SURFACE_SYSTEM.md` §8.4's omission of the control is **liftable**. The
+control gains two things the earlier design did not know about: role gating, and a new error.
+
+---
+
+**V2-09 — No polling, confirmed as a contract-level fact.**
+
+v2 §A item 6 and §D: **there is no backend polling contract and no push channel.** After the OAuth
+callback, or on an explicit user refresh, the website calls the status endpoint **once**. A
+conservative website-side auto-refresh is **permitted as an explicitly website-owned decision**,
+provided it is never presented as a backend contract and it stops on a terminal state
+(`connected | error | degraded`) or when the user leaves the step.
+
+*Consequences:* AF-02 is closed and AD-02 is answered. `AUTHENTICATED_SURFACE_SYSTEM.md` §7.7's no-
+polling rule is confirmed correct and gains a permitted, bounded extension. **The rule stays the
+default**; any auto-refresh is opt-in, conservative, and never described as guaranteed.
+
+---
+
+**V2-10 — The OAuth return contract, and the cancellation distinction (AF-01, addendum).**
+
+*Route:* the BFF redirects to a **single shared callback route**,
+`{FRONTEND}/{locale}/connect/callback`, carrying `provider`, `status`, `correlation` and `reason`.
+`status ∈ success | error`. `correlation` is the opaque server-issued state and is **never a token**.
+The website never receives a token.
+
+*Classification, per the addendum, using the OAuth2 standard and requiring no backend change:*
+
+| Provider callback | BFF → website | Website treatment |
+|---|---|---|
+| valid `code`, exchange succeeds | `status=success` | `connected`, or `externally_pending` on `202` |
+| `error=access_denied` | `status=error&reason=user_cancelled` | **The row returns to its previous status unchanged. Neutral, resumable. Never `signal-critical`, never an error treatment.** |
+| any other `error`, or exchange failure | `status=error&reason=provider_error` | `action_required` |
+| unrecognised, missing params, or state mismatch | `status=error&reason=provider_error` | `action_required` |
+
+*Fail-safe, required:* anything that is not an explicit successful code exchange is `status=error`;
+an unknown outcome maps to `provider_error` and **never** to `success`.
+
+*Consequences:*
+- `AUTHENTICATED_SURFACE_SYSTEM.md` §7.7's assumption that the BFF redirects **back to the step
+  route** is superseded. One shared callback route reads the parameters and routes onward.
+- Its four-outcome state machine is now fully wireable; the parameter constant is filled.
+- **A persisted, queryable cancellation state is BACKEND HARDENING and is explicitly not a website
+  launch blocker.** The connection record's status CHECK has no `cancelled` value, so a cancellation
+  collapses to `error` after the fact. The live callback semantics are fully satisfied at the BFF.
+
+---
+
+**V2-11 — Communication provider display names (AF-04, addendum).**
+
+| Channel | Authenticated-UX display name, text only |
+|---|---|
+| email | **Gmail** |
+| whatsapp | **WhatsApp** |
+| calendar | **Google Calendar** · **Microsoft Outlook** |
+| voice | **generically "Voice" or "Phone" only** |
+
+**Voice stays generic, and this is binding.** The voice registry's `display_name` values are internal
+engineering and carrier descriptions (BYO-SIP carriers, SBC, PBX, PoP and site details). Rendering
+them would disclose the internal telephony vendor stack. **No internal carrier name is ever
+rendered.** No logos for any provider until brand approval.
+
+*Consequences:* `AUTHENTICATED_SURFACE_SYSTEM.md` §7.7's "without naming a party it cannot name" and
+§8.5's deferral are superseded for email, WhatsApp and calendar. `externally_pending` notes can now
+name the party the agency is actually waiting on, which is the entire point of that state. **This
+clearance is for the authenticated tree only. Public marketing naming remains `CLAIMS_MATRIX.md` and
+owner decision 5.**
+
+---
+
+**V2-12 — `GET /branding/preview` shape confirmed (AF-07, addendum).**
+
+```json
+{
+  "logo":                 "string | null",
+  "logo_present":         true,
+  "email_banner":         "string | null",
+  "email_banner_present": true,
+  "fallback_note":        "string"
+}
+```
+
+`logo` and `email_banner` are durable **public** URLs, safe to render directly; `email_banner` is
+non-null **only when the asset validates**. The present flags are booleans. `fallback_note` is a
+human-safe string stating that missing or invalid assets are omitted, so no broken image is ever
+rendered. **No storage internals are exposed** — no bucket, no object ID, no signed URL. The canonical
+shape is `preview`; `POST /branding/commit` returns `{ ok, kind, stored_url, preview }` where
+`preview` is this same object, and the shape is **not** derived from `commit`.
+
+*Consequences:* the branding step's preview, replace and remove states are unblocked. An agency
+returning to the step renders its committed assets from a durable public URL, never from a stale
+browser object URL. **AF-07 was the only AF that v2 alone did not advance; the addendum closes it.**
+
+### 0V.4 Smaller corrections, recorded so they are not missed
+
+| # | Item | Correction |
+|---|---|---|
+| a | **Testimonial state vocabulary** | v1 had `pending \| approved \| rejected`. v2 §F has **six**: `invited \| submitted \| pending_review \| approved \| rejected \| withdrawn`. `POST /testimonial` returns `{ ok, status:"pending_review" }`, not `{ ok, state:"pending" }`. Every surface and type that used the three-value set is wrong. |
+| b | **Testimonial error codes** | New and specific: `submission_already_pending` (409), `extension_already_granted` (409), `submission_id_required` (400), `consent_required` (422). `extension_already_granted` is the contract's expression of "exactly once" and must render as a plain statement of fact, never as an error the agency did something wrong. |
+| c | **New error codes across surfaces** | `email_exists`, `captcha_failed`, `email_not_confirmed`, `invalid_wizard_action`, `invalid_asset_kind`, `office_out_of_scope`, `invalid_role`, `invalid_provider`. |
+| d | **`email_not_confirmed` (400)** | v1 said signup creates a **confirmed** GoTrue user; v2 enumerates this error on the token grant. Whether signup auto-confirms, or a confirmation step exists, is **not stated**. Logged as **RS-01** in §0V.6. |
+| e | **`needs_action_steps`** | A projection field that did not appear in v1. Available for the readiness summary. |
+| f | **`legend` shape** | Now known: five keys, `completed`, `needs_action`, `externally_pending`, `optional`, `locked_by_plan`, each a string. `AUTHENTICATED_SURFACE_SYSTEM.md` §7.8's "shape not specified" is superseded. |
+| g | **Step `status` enum in the projection** | Five values only. The other three (`connected`, `degraded`, `action_required`) are connector-health values and never appear on a wizard step row. This confirms the eight-value split rather than changing it. |
+| h | **Certified AI runtime languages = 12** | A backend-stated count, explicitly a runtime concern separate from the website. It is **not** an authorisation to publish "12 languages": `CLAIMS_MATRIX.md` B-07 forbids naming a count, and this figure describes the AI runtime, not the website's language coverage. Logged as **RS-02**. |
+| i | **`GET /plans` field names** | `name` → `display_name`, `features_summary` → `entitlements_summary`. A typed-client change. |
+| j | **Locale routes** | `/en` and `/es` separate routes are now a fixed decision, not a proposal. Half of owner decision 11 is closed; route *naming* remains open. |
+
+### 0V.5 Superseded website assumptions, consolidated
+
+Every one is a follow-up owned by the document's own chat. **This chat edited none of them.**
+
+| # | Assumption | Document and section | Replaced by |
+|---|---|---|---|
+| 1 | `price_display` is served and the website renders it | `PRODUCT_TRUTH.md` §17/§18 area, `CLAIMS_MATRIX.md` PK-06, `COPY_AND_CONVERSION_MASTER.md` §6.12 and §12, `AUTHENTICATED_SURFACE_SYSTEM.md` §10 | **V2-01.** No price exists. Names and entitlement summaries only |
+| 2 | "Free" and "no payment method" are unconfirmed | `PRODUCT_TRUTH.md` §18.1, `CLAIMS_MATRIX.md` T-01, `COPY_AND_CONVERSION_MASTER.md` §3.4, `INTEGRATION_CONTRACT.md` §A1, `MASTER_GOVERNANCE.md` §11, `IMPLEMENTATION_STATUS.md` | **V2-02.** Both confirmed. Wording ratification still owed |
+| 3 | Ladder B is the only implementable ladder | `MASTER_GOVERNANCE.md` §11.2, `COPY_AND_CONVERSION_MASTER.md` §3.3 | **V2-03.** Ladder A is scheduled, not blocked |
+| 4 | Hot lead alerting is BLOCKED on a missing field | `CLAIMS_MATRIX.md` D-10, `PRODUCT_TRUTH.md` PT-C14, `INTEGRATION_CONTRACT.md` C7, `COPY_AND_CONVERSION_MASTER.md` §13.1 | **V2-04.** Out of scope for the website |
+| 5 | Error copy is written per HTTP status because `code` is unknown | `AUTHENTICATED_SURFACE_SYSTEM.md` §4.3 | **V2-05.** MF-04 confirmed; per-`code` copy replaces per-status copy |
+| 6 | The `legend` and per-step `detail` shapes are unknown | `AUTHENTICATED_SURFACE_SYSTEM.md` §7.8, §7.10 | **V2-05.** MF-05 confirmed |
+| 7 | Reminder thresholds are unknown | `AUTHENTICATED_SURFACE_SYSTEM.md` §6.2 | **V2-05.** 3 days and 1 day; backend-sent |
+| 8 | The client performs no upload type or size validation | `AUTHENTICATED_SURFACE_SYSTEM.md` §9.5 | **V2-05.** MF-07 confirmed. `accept` and the constraint line carry real values; the size ceiling may be stated before selection |
+| 9 | The signup `language` control cannot be rendered | `AUTHENTICATED_SURFACE_SYSTEM.md` §5.1, §8.1 | **V2-05.** MF-09 confirmed. Constrain to `{en, es}` and pass the route locale |
+| 10 | Footer or signature is a third upload block | `AUTHENTICATED_SURFACE_SYSTEM.md` §8.3, §9.1 | **V2-06.** Text fields plus `signature_mode`. Premise void |
+| 11 | The office control cannot be rendered | `AUTHENTICATED_SURFACE_SYSTEM.md` §8.4 | **V2-08.** Endpoint exists; add role gating and `office_out_of_scope` |
+| 12 | The BFF redirects back to the step route | `AUTHENTICATED_SURFACE_SYSTEM.md` §7.7 | **V2-10.** One shared callback route |
+| 13 | No provider may be named | `AUTHENTICATED_SURFACE_SYSTEM.md` §7.7, §8.5 | **V2-11.** Email, WhatsApp and calendar named; voice generic |
+| 14 | `GET /branding/preview` shape is unknown | `AUTHENTICATED_SURFACE_SYSTEM.md` §9.4, §8.3 | **V2-12.** Confirmed |
+| 15 | Testimonial state has three values | `AUTHENTICATED_SURFACE_SYSTEM.md` §11, matrix §2.2 | **0V.4 a.** Six values |
+| 16 | The dashboard destination is the largest open question and is BLOCKED | this document C-27, §9.1 MF-03, `AUTHENTICATED_SURFACE_SYSTEM.md` §15 | **V2-05.** Website-owned decision (AD-01), recommended `/{locale}/app` |
+| 17 | Staging calls can never be authorised, so end-to-end verification is unreachable | this document C-14, §7 note, §10 decision 1 | **0V.6 C-14.** Resolved in principle by v2 §A item 1; one line of owner ratification into `MASTER_GOVERNANCE.md` §14 makes it operative |
+
+### 0V.6 Conflict status after v2
+
+| ID | Subject | Status now |
+|---|---|---|
+| **C-08** | Trial exists; "free" unconfirmed | **CLOSED.** V2-02 |
+| **C-09** | Testimonial confirmed but legally held | **UNCHANGED.** Backend confirmation does not lift L-13. Still DISABLED for public display |
+| **C-10** | No testimonial media field | **RECLASSIFIED.** `media_ref` string exists; no upload pipeline. **BACKEND IMPLEMENTATION REQUIRED** + `LEGAL REVIEW PENDING` |
+| **C-11** | CRM vendor names | **PARTIALLY CLOSED.** Text-only cleared for the authenticated tree (v2 §A9). Public marketing and all logos remain open |
+| **C-12** | Named portals rejected | **UNCHANGED.** v2 names no portal. `REJECTED` stands |
+| **C-13** | Handoff untracked | **OPEN, and now larger:** four backend files are untracked, one of which is the current technical authority. See §0V.7 |
+| **C-14** | §14 versus staging | **RESOLVED IN PRINCIPLE.** v2 §A item 1 records staging testing under explicit approval, production never. Needs one ratifying line in `MASTER_GOVERNANCE.md` §14 by its owning chat |
+| **C-15** | CTA lockdown | **UNCHANGED.** The activation register is still empty. v2 fixing the CTA hierarchy is not a per-action release |
+| **C-16** | Voice: three things conflated | **UNCHANGED, and reinforced.** The addendum requires voice to stay generically named for the internal reason that carrier identity is internal. Voice AI capability claims are untouched |
+| **C-17** | WhatsApp: agency channel versus own number | **UNCHANGED.** v2 names no NuovaSolution number. C-05 stays open |
+| **C-18** | Demo booking | **UNCHANGED.** v2 §J: still **PROPOSED**. Cal.com remains an existing external option, optional, never a trial prerequisite |
+| **C-19** | Entitlement enforcement technical | **UNCHANGED, confirmed** |
+| **C-20** | Roles confirmed | **UNCHANGED, confirmed** |
+| **C-21** | Hot lead alerting | **CLOSED as a blocker.** Out of scope. V2-04 |
+| **C-22** | Privacy policy | **UNCHANGED, launch blocking.** v2 adds nothing that reduces it |
+| **C-23** | Credential recorded closed but still present | **UNCHANGED.** Untouched by v2 |
+| **C-24** | Em dashes in approved wording | **UNCHANGED.** A copy-side rule |
+| **C-25** | `IMPLEMENTATION_STATUS.md` stale | **CLOSED** by Wave A4 |
+| **C-27** | The website does not know where the product ends | **DE-ESCALATED.** No longer a backend gap. It is AD-01, a website and owner decision, with a recommended target |
+| **RS-01** | Does signup auto-confirm the GoTrue user, or is there a confirmation step? v1 said confirmed; v2 enumerates `email_not_confirmed` | **NEW, minor.** Affects one signup success path. Not blocking |
+| **RS-02** | 12 certified AI runtime languages | **NEW.** A backend fact about the AI runtime. **Not** an authorisation to publish a language count. B-07 unchanged |
+
+### 0V.7 Repository state of the backend exports
+
+Four files sit in `backend_handoff/`. **Three are untracked**, including the current technical
+authority and its addendum. `WEBSITE_UX_AF_REQUIREMENTS_EXPORT_v1.md` is tracked (commit `0205a97`).
+
+| File | Tracked |
+|---|---|
+| `WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md` | No |
+| `WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2.md` | **No** |
+| `WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2_AF_ADDENDUM_v1.md` | **No** |
+| `WEBSITE_UX_AF_REQUIREMENTS_EXPORT_v1.md` | Yes |
+
+All four were read in full and confirmed to contain **no secret, key, token, credential, environment
+value, host or customer record**. They are safe to commit. **This chat does not commit them** — they
+are the owner's files and the owner may intend a different location or repository visibility.
+Recommended as the first action of the hygiene wave, together with recording both SHA256 digests so
+a future export can be diffed against a verified baseline.
+
+---
+
+## 0. Authority ranking (binding, resolves all downstream conflicts) — *v1 era, see §0V.1*
 
 This ranking is fixed for the remainder of the project. No implementation chat may override it.
 

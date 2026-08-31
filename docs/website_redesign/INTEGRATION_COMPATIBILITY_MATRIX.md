@@ -5,17 +5,149 @@
 **Created:** 2026-08-31
 **Companion documents:** `FINAL_RECONCILIATION_REPORT.md` (conflicts and decisions),
 `FINAL_WEBSITE_INTEGRATION_PLAN.md` (the next wave)
-**Canonical technical source:** `backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md`
+**Last updated:** 2026-08-31 — **export-v2 + AF addendum** (see §0V).
+
+**Canonical technical source (CURRENT):** `backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2.md`
+plus `…_v2_AF_ADDENDUM_v1.md` for AF-01, AF-04 and AF-07.
+**`…_EXPORT_v1.md` is HISTORICAL.** Both current files were SHA256-verified before this update
+(`FINAL_RECONCILIATION_REPORT.md` §0V.0: two matches on full digests).
 
 > **Nothing in this document is production ready and nothing here has been verified end to end.**
 > Every backend status is a statement about what the canonical handoff says. Every website status is a
-> statement about what exists in this repository, which today is: nothing. No endpoint, payload,
-> status value or capability outside the handoff appears here. No frontend route below exists; every
-> one is `PROPOSED`.
+> statement about what exists in this repository, which today is: nothing. No frontend route below
+> exists; every one is `PROPOSED`.
+
+> **READ §0V FIRST.** §§1 to 6 were written against export-v1. **§0V supersedes them wherever they
+> differ.** The v1-era text is retained deliberately so a superseded status cannot be reintroduced.
 
 ---
 
-## 1. How to read this document
+## 0V. Export-v2 corrections to this matrix (BINDING)
+
+Rationale for each correction is in `FINAL_RECONCILIATION_REPORT.md` §0V.3. This section carries only
+what changes in the tables below.
+
+### 0V.1 Capability status corrections
+
+| Ref | Row | Was (v1) | **Is now (v2 + addendum)** |
+|---|---|---|---|
+| §2.2 2.1 | 14 day trial | BACKEND CONFIRMED; publishable OWNER DECISION PENDING | **BACKEND CONFIRMED, and the trial is confirmed FREE.** v2 §A3, §C1 |
+| §2.2 2.2 | The word "free"; "no credit card required" | not in the handoff; OWNER DECISION PENDING | **BACKEND CONFIRMED as fact:** 14 days free, **no payment method at signup**. The *wording* still needs `CLAIMS_MATRIX.md` T-01 ratification by its owning chat |
+| §2.2 2.5 | Trial reminders | blocked on MF-06 | **BACKEND CONFIRMED.** `reminder_3d`, `reminder_1d`, `testimonial_invite`. Backend-sent; the website reflects `trial_end` and `days_left` and sends nothing |
+| §2.2 2.6–2.7 | Testimonial state | `pending \| approved \| rejected` | **Six values:** `invited \| submitted \| pending_review \| approved \| rejected \| withdrawn`. `POST /testimonial` returns `{ ok, status:"pending_review" }` |
+| §2.2 2.10 | Testimonial video | BLOCKED, no media field | **BACKEND IMPLEMENTATION REQUIRED.** `media_ref` is a **string reference**; there is no upload or storage pipeline. Written testimonial is fully confirmed. **Do not fake a video upload field.** Still `LEGAL REVIEW PENDING` (L-13) |
+| §2.3 3.0 | Wizard projection | shape blocked on MF-05 | **BACKEND CONFIRMED.** Exact shape in v2 §G, including `needs_action_steps` and `legend`'s five keys |
+| §2.3 3.0 | Wizard ordering | not stated | **BACKEND CONFIRMED: not forced linear.** Each step's status is computed independently; `resume_step` is a convenience pointer only |
+| §2.3 3.3 | `branding` footer or signature | third upload block, blocked on AF-03 | **Premise void. Text fields, not uploads.** Footer is localized legal text; signature is `signature_mode` ∈ `logo_only \| compact \| banner_signature \| legal_only` plus text. Website submits **plain text only**, never raw HTML |
+| §2.3 3.4 | `team` office | no office source | **BACKEND CONFIRMED.** `GET /offices`; `office_id` opaque, optional, `null` ⇒ tenant level; role-gated; new error `office_out_of_scope` (403) |
+| §2.4 4.13 | Branding upload limits | blocked on MF-07 | **BACKEND CONFIRMED.** `image/png, image/jpeg, image/webp, image/gif`, **max 5 MB**, kinds `logo` and `email_banner` only. Bucket `agency-branding` |
+| §2.4 4.13 | `GET /branding/preview` | shape elided (AF-07) | **BACKEND CONFIRMED.** See §0V.3 |
+| §2.4 4.1–4.4 | Provider display names | blocked | **BACKEND CONFIRMED.** email → **Gmail**; whatsapp → **WhatsApp**; calendar → **Google Calendar** · **Microsoft Outlook**; **voice → generically "Voice" or "Phone" only.** No internal carrier name, ever. No logos until brand approval |
+| §2.5 5.3 | Plans | `{ code, name, price_display, features_summary }` | **`{ code, display_name, entitlements_summary }` — no price.** Field renames are a typed-client change |
+| §2.5 5.4 | Prices | "served, never authored" | **VOID. No price exists.** `billing_plan` has no price and no currency column. There is **no backend pricing, currency or tax authority**. The website displays plan names and entitlement summaries and **no figure from any source** |
+| §2.7 | Hot lead alerting | **BLOCKED on MF-02** | **OUT OF SCOPE (website).** Internal agent notification plus CRM and dashboard surfacing. No public endpoint exists and none is required. **The website builds nothing. No marketing claim is authorised by this** — that remains a `CLAIMS_MATRIX.md` decision with no approved wording |
+| §4 step 7 | Dashboard destination | BLOCKED on MF-03 | **PROPOSED and website-owned.** Backend signal is `activatable` plus `tenant_activate`; the backend owns no route. Recommended `/{locale}/app`. Now owner decision AD-01, not a backend gap |
+
+### 0V.2 Endpoint contract deltas against §3
+
+| Surface | Change |
+|---|---|
+| `GET /plans` | `{ plans:[{ code, display_name, entitlements_summary }] }`. **No price field.** Error `server_error` (500, retryable) |
+| `POST /testimonial` | Returns `{ ok, status:"pending_review" }`. Errors `submission_already_pending` (409), `extension_already_granted` (409), `submission_id_required` (400), `consent_required` (422), `forbidden` (403) |
+| `GET /testimonial/status` | `{ state }` over **six** values |
+| `POST /signup` | Adds `captcha_failed` (400) and `email_exists` (409) |
+| GoTrue token | Adds `email_not_confirmed` (400). **RS-01:** v1 said signup creates a *confirmed* user; whether a confirmation step exists is not stated |
+| `POST /onboarding/touch` | Adds `invalid_wizard_action` (400) |
+| `POST /branding/upload-init` | Adds `invalid_asset_kind` (400) |
+| **`GET /offices`** | **New surface.** `{ offices:[{ office_id, name, is_default }] }`, `no_session` (401, retryable). BFF only |
+| `POST /team/invite` | Adds `office_out_of_scope` (403) and `invalid_role` (400) |
+| `POST /connect/{provider}/start`, `POST /crm/connect/{provider}/start` | Add `invalid_provider` (400) |
+| **`{FRONTEND}/{locale}/connect/callback`** | **New website route.** One shared OAuth return route. See §0V.4 |
+| `POST /demo/book` | **Still PROPOSED.** Not implemented, not typed as real, not wired |
+
+**Global codes (v2 §F), all confirmed:** `no_session` (401, retry after refresh), `token_expired`
+(401, retryable), `forbidden` (403), `cross_tenant` (403), `not_on_plan` (403), `invalid_input`
+(400), `unprocessable` (422), `rate_limited` (429, retryable after `Retry-After`), `server_error`
+(500, retryable), `externally_pending` (202 — **not an error, render pending**).
+
+**MF-04 is closed.** Error copy is written per `code`, not per HTTP status.
+
+### 0V.3 `GET /branding/preview` — confirmed shape
+
+```json
+{
+  "logo": "string | null",
+  "logo_present": true,
+  "email_banner": "string | null",
+  "email_banner_present": true,
+  "fallback_note": "string"
+}
+```
+
+URLs are durable **public** URLs, safe to render directly. `email_banner` is non-null **only when the
+asset validates**. No bucket, object ID, signed URL or credential is exposed. The canonical shape is
+`preview`; `POST /branding/commit` returns `{ ok, kind, stored_url, preview }` carrying the same
+object, and the shape is **never derived from `commit`**.
+
+### 0V.4 OAuth return contract — confirmed
+
+```
+BFF /connect/{provider}/start    → { authorize_url }        (state minted server-side)
+provider → BFF /connect/{provider}/callback?code=…&state=…  (server exchanges code → token)
+BFF → 302 {FRONTEND}/{locale}/connect/callback
+        ?provider={p}&status=success|error&correlation={state}&reason={code?}
+```
+
+`correlation` is the opaque server-issued state and is **never a token**. The website never receives
+a token.
+
+| Provider outcome | `status` / `reason` | Website treatment |
+|---|---|---|
+| valid `code`, exchange succeeds | `success` | `connected`, or `externally_pending` on `202` |
+| `error=access_denied` | `error` / **`user_cancelled`** | **Row returns to its previous status. Neutral and resumable. Never an error treatment, never `signal-critical`** |
+| any other `error`, or exchange failure | `error` / `provider_error` | `action_required` |
+| unrecognised, missing params, state mismatch | `error` / `provider_error` | `action_required` |
+
+**Fail-safe, required:** anything that is not an explicit successful code exchange is `error`; an
+unknown outcome maps to `provider_error` and **never** to `success`.
+
+**A persisted, queryable cancellation state is BACKEND HARDENING and is explicitly not a website
+launch blocker.** The connection record has no `cancelled` value, so after the fact a cancellation
+collapses to `error`. The live callback semantics are fully satisfied at the BFF.
+
+### 0V.5 Polling — confirmed, and bounded
+
+**There is no backend polling contract and no push channel.** Status is read once after the OAuth
+callback, and once on an explicit user refresh. A **conservative website-side auto-refresh is
+permitted as an explicitly website-owned decision**, provided it is never presented as a backend
+contract and it stops on a terminal state (`connected | error | degraded`) or when the user leaves
+the step. The no-polling default stands; any refresh is opt-in and never described as guaranteed.
+
+### 0V.6 Missing field register after v2
+
+| Open | Classification |
+|---|---|
+| **MF-01** testimonial media | BACKEND IMPLEMENTATION REQUIRED · LEGAL REVIEW PENDING |
+| **MF-08** captcha provider | OWNER DECISION REQUIRED |
+| **MF-10** currency, tax basis, IVA | OWNER DECISION REQUIRED · LEGAL REVIEW REQUIRED. **No backend pricing authority exists at all** |
+
+**Closed or reclassified:** MF-02 (out of scope), MF-03 (website-owned, PROPOSED), MF-04, MF-05,
+MF-06, MF-07, MF-09, MF-11, MF-12 (all CONFIRMED). **AF-01, AF-02, AF-03, AF-04, AF-05, AF-06, AF-07
+all closed**; AF-01 leaves a non-blocking backend hardening item.
+
+### 0V.7 Release blocking invariants — additions to §6
+
+9. **No price is displayed anywhere**, because none exists in any contract (V2-01).
+10. **`reason=user_cancelled` is never rendered as a provider failure** (V2-10).
+11. **No internal telephony carrier or vendor name is ever rendered.** Voice is generically named
+    (V2-11).
+12. **The website submits footer and signature as plain text and never injects raw HTML**; the server
+    sanitizes and renders (V2-06).
+13. **The website builds no hot lead alerting surface**, and asserts no alerting claim (V2-04).
+
+---
+
+## 1. How to read this document — *v1 era, corrected by §0V*
 
 Status vocabulary is defined in `FINAL_RECONCILIATION_REPORT.md` §1 and is binding:
 

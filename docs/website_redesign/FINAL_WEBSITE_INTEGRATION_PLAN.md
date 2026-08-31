@@ -2,399 +2,427 @@
 
 **Author:** Final Website Reconciliation Director (Chat 5)
 **Branch:** `website_enterprise_redesign`
-**Created:** 2026-08-31
-**Inputs:** `FINAL_RECONCILIATION_REPORT.md`, `INTEGRATION_COMPATIBILITY_MATRIX.md`,
-`backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md`, and the six existing governance documents.
+**Created:** 2026-08-31 · **Rewritten:** 2026-08-31 for **export-v2 + AF addendum**
+**Supersedes:** the export-v1 era plan (nine chats, five waves). The rationale for every change is in
+`FINAL_RECONCILIATION_REPORT.md` §0V.
+
+**Inputs:** `FINAL_RECONCILIATION_REPORT.md` (§0V especially),
+`INTEGRATION_COMPATIBILITY_MATRIX.md` (§0V especially),
+`backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2.md` (**hash verified**),
+`backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2_AF_ADDENDUM_v1.md` (**hash verified**),
+`AUTHENTICATED_SURFACE_SYSTEM.md`, and the eight other governance documents.
 
 > This is a plan. Nothing in it has been executed. It authorises no push, no merge, no deployment, no
 > preview, and no contact with any product system. It makes no production readiness claim.
 
 ---
 
-## 1. Authority ranking (binding for every chat in this wave)
+## 1. Authority ranking (binding for every chat)
 
 | # | Document | Authority |
 |---|---|---|
-| 1 | `backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md` | **Technical.** Endpoints, payloads, status values, environment variable names, auth, routing, legacy removal. |
+| **1a** | `WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2.md` | **Technical truth.** |
+| **1b** | `…_v2_AF_ADDENDUM_v1.md` | Technical truth for **AF-01, AF-04, AF-07** only. |
+| — | `…_EXPORT_v1.md` | **HISTORICAL.** No status may be derived from it. |
 | 2 | `CLAIMS_MATRIX.md` | **Public claims.** Backend confirmation never converts a `LEGAL` or `REJECTED` verdict. |
-| 3 | `PRODUCT_TRUTH.md` | **Confirmed product scope** and required qualification. |
-| 4 | `COPY_AND_CONVERSION_MASTER.md` | **Copy.** Must be adapted to 1, 2 and 3. |
-| 5 | `LUXURY_UX_MEDIA_SYSTEM.md` | **Visual and structural authority.** |
-| 6 | `FINAL_RECONCILIATION_REPORT.md` | **Conflict decisions.** |
-| — | `MASTER_GOVERNANCE.md` | **Process, severity, release and access discipline.** Not displaced by the handoff. §14 and §15 remain absolute. |
-| — | `CLAUDE.md` | Stale on visual direction and positioning. Not edited without owner approval. |
-
-**No single implementation chat may override this ranking.** A chat that believes the ranking produces
-a wrong result logs a conflict and stops on that item only.
+| 3 | `PRODUCT_TRUTH.md` | Confirmed product scope and required qualification. |
+| 4 | `COPY_AND_CONVERSION_MASTER.md` | Copy. Adapted to 1, 2 and 3. |
+| 5 | `LUXURY_UX_MEDIA_SYSTEM.md` + `AUTHENTICATED_SURFACE_SYSTEM.md` | Visual and structural authority. |
+| 6 | `FINAL_RECONCILIATION_REPORT.md` | Conflict decisions. **§0V outranks §§0 to 11 of the same file.** |
+| — | `MASTER_GOVERNANCE.md` | **Process, severity, release and access.** §14 and §15 remain absolute. |
+| — | `CLAUDE.md` | Stale. Not edited without owner approval. |
 
 ---
 
-## 2. Non negotiable rules for every chat in this wave
+## 2. The binding facts every chat implements against
 
-1. **No `git add .`. No `git add -A`. No `git add <directory>`.** Every chat stages explicitly named
-   file paths, and only paths it owns.
-2. **Before staging:** run `git status --porcelain` and confirm nothing foreign is in the working tree
-   that could be swept. **After staging, before committing:** run `git diff --cached --name-only` and
-   confirm the list matches the intended paths exactly. If it does not, unstage and start again.
-3. **No two chats in the same wave touch the same file.** Ownership below is exclusive.
-4. **No push, no merge, no deployment, no preview** without explicit per occasion owner approval
-   (`MASTER_GOVERNANCE.md` §15). Local commits only.
-5. **No contact with any product system.** No webhook, no workflow change, no server access, no
-   database access, no integration test, no health check, no ping (`MASTER_GOVERNANCE.md` §14.1).
-   This includes staging until owner decision 1 in the report §10 is answered.
-6. **No invention.** No endpoint, payload field, status value, capability, URL, price, number, phone
-   number or environment variable value outside the handoff. Environment variable **names** only.
-7. **No secret value is ever written, echoed, logged, quoted or committed**, including in a commit
-   message or a report.
-8. **Product CTA lockdown holds.** Every product CTA is a disabled or clearly marked placeholder until
-   the owner grants an explicit per action release recorded in the activation register.
-9. **No chat declares its own work acceptable** (R1). Completion wording is exactly: *Implemented and
-   awaiting independent technical and final audit.*
-10. **`LIVE` and `PRODUCTION READY` are not used** in any document, commit message or report.
-11. **No em dash, en dash or parenthetical dash in public website copy**, in either language.
-12. **Uncommitted owner changes are preserved.** `app/v2/`, `components/v2/`, `lib/os/`, the root
-    `.mp4` and `backend_handoff/` are not deleted, moved or overwritten by any chat that does not own
-    them.
+From v2 §A, §C and the addendum. **These are fixed and are not reopened.**
 
----
-
-## 3. TASK 8 — Skills and access assessment
-
-Nothing is installed. Nothing is downloaded from GitHub. No general n8n access is requested. Where
-information is missing, the **exact missing field** is named (report §9), never a request for server
-access.
-
-| Skill or access | Needed for | Why existing capability is insufficient | Risk | Recommendation | When required |
-|---|---|---|---|---|---|
-| **General n8n access / `n8n-mcp` server** | Nothing in this wave | The handoff is self contained and states that no other Nuova file is required to implement against it. n8n is hidden internal infrastructure that the public website never touches. The configured server also failed to connect this session, and it points at the **retired** cloud instance. | High. Would breach `MASTER_GOVERNANCE.md` §14.1 items 3 and 6 | **NICHT ERFORDERLICH.** The configuration is removed as a hygiene item, not repaired | Never |
-| **Supabase or database access** | Nothing in this wave | Handoff §5 and Appendix A give the full contract and the backend function map. The website calls the BFF, not the database | High. Breaches §14.1 item 4 | **NICHT ERFORDERLICH** | Never |
-| **Production hosting, DNS, domains, production environment variables** | Nothing in this wave | The website is built locally against typed contracts | High. Breaches §14.1 and §15 | **NICHT ERFORDERLICH** | Never |
-| **Backend handoff export-v2** carrying MF-01 … MF-12 | Testimonial surface, hot lead copy, dashboard destination, all error copy, wizard rendering, upload validation, captcha, plan display, provider names | The fields are simply absent from export-v1. No amount of reasoning produces them, and inventing them is forbidden | None | **VOR IMPLEMENTIERUNG ERFORDERLICH** for the surfaces each field blocks. Other surfaces proceed without it | Before Wave D3 and D4 |
-| **Written owner ruling on §14 versus staging calls** (report §10 decision 1) | Any execution of any BFF route against a real host | §14 currently forbids it in plain text, and §14.4 forbids resolving it by proceeding | Critical if assumed rather than granted | **OWNER MUSS BEREITSTELLEN.** Until then every BFF route is written and typed but never executed | Before any `END TO END VERIFICATION` |
-| **Staging environment values** (names in matrix §5) | Wiring the BFF against staging | Values cannot be invented (R7) | Medium. Must never enter the repository | **OWNER MUSS BEREITSTELLEN**, in Vercel environment settings, never in a file | Before Wave D3 execution, not before D3 scaffolding |
-| **Vercel project access / deployment token** | Setting encrypted environment scoping, preview environment separation | The website chat has no Vercel access and must not have it by default | Medium | **NUR FÜR FINALEN STAGING TEST**, and only with per occasion approval under §15 | Wave E only |
-| **Captcha provider account and keys** (MF-08) | Signup and any public form | `NEXT_PUBLIC_CAPTCHA_SITE_KEY` and `CAPTCHA_SECRET_KEY` are names only; the provider is not named | Low | **OWNER MUSS BEREITSTELLEN** | Before Wave D3 signup route |
-| **Browser automation for visual and accessibility verification** (e.g. an axe pass at 320, 375, 768, 1024, 1440, 1920) | `MASTER_GOVERNANCE.md` §7 phase close steps 4 to 8, and `LUXURY_UX_MEDIA_SYSTEM.md` §7's "verified, not assumed" WCAG 2.2 AA target | Build, type check and lint can be run today. Contrast, focus order, reflow at 400 % zoom, text spacing overrides and screen reader behaviour cannot be verified by reading code | Low. Local only, no external system | **VOR IMPLEMENTIERUNG ERFORDERLICH** for the Wave D phase close. **OPTIONAL** for Waves A to C, which produce no rendered surface | Wave D phase close |
-| **Font files** (Inter variable, Newsreader, woff2, `latin` + `latin-ext`) — AS-02 | Self hosting via `next/font/local`, deleting the render blocking Google Fonts `@import` (audit A-05) | Both faces are SIL OFL 1.1 and self hostable, but this wave downloads nothing | Low | **OWNER MUSS BEREITSTELLEN** the files, or approve a specific acquisition route | Wave C1 |
-| **Logo as SVG**, ivory and `ink-950` versions — AS-01 | Header, footer, mobile sheet, OG images. Replaces the `filter: brightness(0) invert(1)` hack | Only five pure black PNGs exist, two duplicated. Redesigning the logo is forbidden | Low | **OWNER MUSS BEREITSTELLEN** | Wave D1 |
-| **Photography, product captures, videos** — AS-05, AS-06, AS-07 | `H-09`, every `PD-03`, `ON-02`, every product surface | None exists. Fabricating any of it is a P0 violation (R6, LUXURY §5.11) | High if fabricated | **OWNER MUSS BEREITSTELLEN**, and LUXURY D-04 (demonstration workspace) must be approved first. Until then every surface ships as a `ProductSurface` `pending` frame, which is honest and causes zero layout shift | Wave D2 and later; not blocking |
-| **Legal counsel review** of the fourteen L-dependencies, with the enlarged L-14 first | Site wide launch | Not a capability question. No chat may clear a legal hold | Critical | **OWNER MUSS BEREITSTELLEN**, as a track running in parallel from now | Continuous; launch blocking |
-| **Cal.com event confirmation** (`nuovasolution/demo`, per language?) | Fixing audit A-02 correctly | The event exists in code but was never confirmed as current | Low | **OWNER MUSS BEREITSTELLEN** | Wave D2 |
-| **GitHub Actions enablement** for the handoff §8 CI guard as a required check | Preventing reintroduction of a retired host or a secret shaped literal | The script can be written locally; making it a required check is a repository setting | Low | **OWNER MUSS BEREITSTELLEN** | Wave B |
-| **Additional AI or design skills** (workflow orchestration, artifact publishing, research skills) | Nothing in this wave | The work is document reconciliation and Next.js implementation against a written contract. No skill adds measurable value and each adds a surface for invention | Low, but non zero: an unconstrained generative skill is exactly how invented claims enter a governed project | **NICHT ERFORDERLICH** | Never |
-
-**Summary.** Nothing needs to be installed. The wave is gated by **owner supplied information and one
-governance ruling**, not by tooling. The single highest value item is a written answer on staging calls
-(report §10 decision 1); without it the wave can build everything and verify nothing.
+1. **Trial is 14 days free. No payment method at signup.**
+2. **Start Trial becomes the primary CTA after integration. Book a Demo is optional. No call is ever
+   required to start a trial.**
+3. **No price exists anywhere.** `GET /plans` returns `{ code, display_name, entitlements_summary }`.
+   `billing_plan` has no price and no currency column. **No figure is displayed, from any source.**
+4. **No provider polling is invented.** One status call after the OAuth callback or on explicit
+   refresh. Any auto-refresh is a website-owned, conservative, terminal-stopping decision and is
+   never presented as a backend contract.
+5. **Footer and signature are text fields**, not uploads. Signature is `signature_mode` ∈
+   `logo_only | compact | banner_signature | legal_only` plus text. **Plain text only; never raw HTML.**
+6. **Logo and email banner are the only uploads.** `image/png, image/jpeg, image/webp, image/gif`,
+   max **5 MB**.
+7. **Property upload is out of scope in onboarding.** Properties arrive by source connect: agency
+   website scrape, feed, or CRM inventory. The agency's own website is a **first class** source.
+8. **Hot lead alerting is out of scope for the marketing website.** No surface, no section, no phone
+   mockup, no claim.
+9. **Demo booking backend stays PROPOSED.** Not implemented, not typed as real, not wired.
+10. **Voice and WhatsApp website sales concierges stay RESERVED.** No surface, no launcher.
+11. **Captcha provider stays OWNER DECISION REQUIRED** (MF-08).
+12. **Currency, tax and IVA stay OWNER DECISION REQUIRED and LEGAL REVIEW REQUIRED** (MF-10).
+13. **Testimonial video stays BACKEND IMPLEMENTATION REQUIRED and LEGAL REVIEW PENDING** (MF-01,
+    L-13). `media_ref` is a string reference; there is no upload pipeline. **Never fake a video field.**
+14. **OAuth return:** one shared route `{FRONTEND}/{locale}/connect/callback` with `provider`,
+    `status`, `correlation`, `reason`. `error=access_denied` → `reason=user_cancelled` →
+    **neutral, resumable, never a provider failure**. Everything unrecognised → `provider_error`.
+    A persisted cancellation state is **backend hardening, not a launch blocker**.
+15. **Provider display names:** Gmail · WhatsApp · Google Calendar · Microsoft Outlook · **Voice or
+    Phone, generic only.** No internal carrier name. No logos until brand approval.
+16. **`GET /branding/preview`** returns `logo`, `logo_present`, `email_banner`,
+    `email_banner_present`, `fallback_note`.
+17. **Separate locale routes `/en` and `/es`.**
+18. **The wizard is not linear.** Steps evaluate independently; `resume_step` is a pointer.
+19. **Checkout is a full page handoff.** No payment form, no payment iframe, no card collection.
+20. **Staging only, under explicit owner approval. No production call, ever.**
 
 ---
 
-## 4. TASK 9 — The Final Website Integration Wave
+## 3. Non negotiable rules for every chat
 
-Nine chats across five waves plus one standing audit role. Ownership is exclusive: **no file appears in
-two chats' allowed lists.**
+1. **No `git add .`, no `git add -A`, no `git add <directory>`.** Explicitly named paths only.
+2. **Before staging:** `git status --porcelain`. **After staging, before committing:**
+   `git diff --cached --name-only` must match the intended paths exactly.
+3. **No two chats in the same wave touch the same file.** Ownership in §5 is exclusive.
+4. **No push, merge, deployment or preview** without explicit per occasion owner approval (§15).
+5. **No contact with any product system** — no n8n, no Supabase, no provider, no webhook, no API
+   call, no health check. **Staging execution requires the owner's ratifying line in §14 first.**
+6. **No invention.** Nothing outside v2 and the addendum. Environment variable **names** only.
+7. **No secret value** is written, echoed, logged, quoted or committed, including in a commit message.
+8. **Product CTA lockdown holds.** The activation register is empty. v2 fixing the CTA hierarchy is
+   **not** a per-action release.
+9. **No chat releases its own work** (R1). Completion wording is exactly *Implemented and awaiting
+   independent technical and final audit.*
+10. **`LIVE` and `PRODUCTION READY` are not used** anywhere.
+11. **No em dash, en dash or parenthetical dash in public website copy**, either language.
+12. **No number is hardcoded** — not 14, not 7, not 10, not a price, not a quota.
+13. **No technical identifier reaches the DOM.** One redaction boundary, enforced by a build check.
+14. **Uncommitted owner work is preserved**: `app/v2/`, `components/v2/`, `lib/os/`, the root `.mp4`.
 
-### 4.0 Wave overview
+---
 
-| Wave | Chats | Runs in parallel | Gate to enter |
+## 4. Wave map
+
+| Wave | Chats | Parallel | Entry gate |
 |---|---|---|---|
-| **A — Document reconciliation** | A1, A2, A3, A4 | A1, A3, A4 in parallel. A2 after A1 | None. **Can start immediately.** |
-| **B — Repository safety** | B1 | Alone | Owner decision 8 (hygiene and rotation state) |
-| **C — Foundation** | C1, C2 | In parallel | B1 complete; A3 and A4 complete; AS-02 supplied |
-| **D — Surfaces** | D1, D2, D3, D4 | D1 first, then D2/D3/D4 in parallel | C1 and C2 complete; A1 and A2 complete; export-v2 for D3/D4 |
-| **E — Verification** | E1 | Alone, read only | Any wave close |
+| **H — Hygiene** | H1 | **Alone** | Owner decision on rotation state and repository visibility |
+| **V — Document updates after v2** | V1, V2, V3, V4 | **V1 ∥ V3 ∥ V4**; V2 after V1 | None. **Can start immediately** |
+| **F — Foundation** | F1, F2 | **F1 ∥ F2** | H1 complete; V3 complete; fonts supplied |
+| **L — Locale and content** | L1, L2 | **L1 ∥ L2** | F1, F2 complete; V2 complete for L2 |
+| **B — BFF** | B1 | ∥ with S1 | F2, H1 complete. **Execution additionally needs the §14 staging ratification** |
+| **S — Surfaces** | S1, S2, S3, S4 | **S1 ∥ S2 ∥ S3 ∥ S4** | L1, L2 complete. S2, S3, S4 additionally need B1 |
+| **T — Tests** | T1 | Alone | Any surface chat complete |
+| **A — Audit** | AU1 | Read only, any time | Any wave close |
 
 ---
 
-### A1 — Truth and Claims Reconciliation Chat
-
-| | |
-|---|---|
-| **Name** | Truth and Claims Reconciliation |
-| **Responsibility** | Apply `FINAL_RECONCILIATION_REPORT.md` §3 to the two truth documents. Update capability status categories where the handoff supplies evidence. Update every affected verdict. Add the new status vocabulary. Do not soften a single legal hold. |
-| **Allowed files** | `docs/website_redesign/PRODUCT_TRUTH.md`, `docs/website_redesign/CLAIMS_MATRIX.md` |
-| **Forbidden files** | Everything else in the repository, without exception. Especially `COPY_AND_CONVERSION_MASTER.md`, `LUXURY_UX_MEDIA_SYSTEM.md`, `CLAUDE.md`, the three Chat 5 documents, and all application code. |
-| **Dependencies** | None. Can start immediately. |
-| **Input documents** | The handoff, `FINAL_RECONCILIATION_REPORT.md` §3 and §4, `INTEGRATION_COMPATIBILITY_MATRIX.md` §2 |
-| **Output** | `PRODUCT_TRUTH.md` with Category 1 still empty but a new **"Backend confirmed, not end to end verified"** classification applied to the surfaces in matrix §2. `CLAIMS_MATRIX.md` with F-07 moved to `OWNER` (text) and logos held, O-01 and O-02 resolved, PK-08 and O-07's technical half answered, T-01 scoped precisely to "free", and every L-dependency **unchanged**. A short changelog section listing every verdict that moved and why. |
-| **Commit strategy** | Two commits, one per file. `git add docs/website_redesign/PRODUCT_TRUTH.md` then commit; then `git add docs/website_redesign/CLAIMS_MATRIX.md` then commit. Message names the file and the conflict IDs applied. |
-| **Acceptance criteria** | (a) Every conflict C-08 to C-25 is either applied or explicitly declined with a reason. (b) No legal hold weakened. (c) No new claim invented. (d) `git diff --cached --name-only` showed exactly one path per commit. (e) Report §11's status change table reconciles line by line against the result. |
+## 5. The chats
 
 ---
 
-### A2 — Copy Reconciliation Chat
+### H1 · Repository Hygiene, Handoff Custody and Deployment Safety
 
 | | |
 |---|---|
-| **Name** | Copy Reconciliation |
-| **Responsibility** | Apply `FINAL_RECONCILIATION_REPORT.md` §4's 44 verdicts to the copy master. Remove what must be removed, rewrite what must be rewritten, mark what is integration pending, and draft nothing that is legally held. Strip every em dash from every quoted matrix string per conflict C-24. |
+| **Responsibility** | Make the repository safe to hold an environment variable. Untrack build output and tooling state. Delete the retired n8n Cloud configuration. Bring the four backend exports under version control with their verified digests. Write the CI guard and the deployment configuration. Fix nothing else. |
+| **Allowed files** | `.gitignore` · `.mcp.json` (**removal only**) · `.claude/settings.local.json` (**untrack only**) · `tsconfig.tsbuildinfo` (untrack) · `.next/` (untrack) · `vercel.json` (new) · `next.config.js` · `.env.example` (new) · `package.json` (**pre-build script only, this wave**) · `scripts/ci-guard.sh` (new) · `.github/workflows/ci-guard.yml` (new) · `docs/website_redesign/backend_handoff/**` (**commit the four exports** plus a new `HASHES.md` recording both verified SHA256 digests) |
+| **Forbidden files** | Everything under `app/`, `components/`, `lib/`, `translations/`, `content/`, `public/`, `tests/`, and every file in `docs/website_redesign/` outside `backend_handoff/`. `CLAUDE.md`. |
+| **Dependencies** | Owner: confirm the rotation state of the credential in `.mcp.json` and the repository's visibility. **Runs alone** — `git rm --cached` operates on the whole index, so no other chat commits while this one stages. |
+| **Tests** | `git ls-files .next \| wc -l` returns **0**. `git ls-files .mcp.json` returns nothing. `sha256sum` of both current exports matches `HASHES.md`. The CI guard **fails** on a deliberately introduced test string and **passes** on the clean tree. `npm run build` still succeeds. A grep of every committed file for the retired host patterns and secret shapes returns nothing outside `docs/`. |
+| **Commit strategy** | Four commits, explicit paths each: (1) untracking plus `.gitignore`; (2) `backend_handoff/**` plus `HASHES.md`; (3) `vercel.json next.config.js .env.example`; (4) `scripts/ci-guard.sh .github/workflows/ci-guard.yml package.json`. |
+| **Acceptance criteria** | `.next` untracked. `.mcp.json` untracked and the retired connection deleted, **not repaired**. No secret value in any committed file, `.env.example` included. The CI guard is scoped to `./app ./components ./lib ./.next` and **not** to `docs/`, which legitimately contains the pattern list. The four exports are committed with verified digests. No rotation performed. No history rewritten. No file outside the allowed list changed. |
+
+---
+
+### V1 · Truth and Claims v2 Update
+
+| | |
+|---|---|
+| **Responsibility** | Apply `FINAL_RECONCILIATION_REPORT.md` §0V to the two truth documents. Move T-01 to approved-with-qualifier on the confirmed facts. **Restate PK-06 as "no price exists anywhere".** Reclassify hot lead alerting from blocked to out of scope. Close nine missing fields. Lift **no** legal hold. |
+| **Allowed files** | `docs/website_redesign/PRODUCT_TRUTH.md` · `docs/website_redesign/CLAIMS_MATRIX.md` |
+| **Forbidden files** | Everything else, without exception. |
+| **Dependencies** | None. **Can start immediately.** |
+| **Tests** | A grep for `price_display` returns no surviving assertion that the website renders a served price. A grep for `MF-02` returns only historical, struck references. T-01, T-00, CTA-1, PK-06, D-10 each carry a dated v2 changelog line. Every one of the fourteen L-dependencies is byte-for-byte unchanged in force. |
+| **Commit strategy** | Two commits, one path each. |
+| **Acceptance criteria** | All twelve V2 corrections and the ten smaller corrections applied or explicitly declined with a reason. **No legal hold weakened.** No new claim invented. RS-02 recorded: the twelve certified AI runtime languages are **not** an authorisation to publish a language count; B-07 unchanged. The testimonial state vocabulary updated to six values. |
+
+---
+
+### V2 · Copy and Conversion v2 Update
+
+| | |
+|---|---|
+| **Responsibility** | Release Variant B of the CTA ladder on the confirmed facts. **Delete every price-rendering assumption.** Remove the hot lead blocked-copy scaffolding and record it as out of scope. Write the authenticated copy that v2 unblocks: per-`code` error strings, the six testimonial states, the wizard step and status labels, the OAuth return states including **user cancelled**, the provider display names, and the branding text-field group. EN and ES. |
 | **Allowed files** | `docs/website_redesign/COPY_AND_CONVERSION_MASTER.md` |
-| **Forbidden files** | Everything else. Especially `CLAIMS_MATRIX.md` and `PRODUCT_TRUTH.md`, which A1 owns. |
-| **Dependencies** | **A1 must complete first.** Copy verdicts derive from matrix verdicts, and running these two in parallel produces two divergent registers, which is the failure `COPY_AND_CONVERSION_MASTER.md` §13 already warns about. |
-| **Input documents** | A1's output, `FINAL_RECONCILIATION_REPORT.md` §4 and §4.1, `INTEGRATION_COMPATIBILITY_MATRIX.md` §4 |
-| **Output** | The copy master reconciled a third time. New sections for the authenticated journey copy that **can** be written (step names, status labels, resume prompt), and a clearly marked list of the ten passages in report §4.1 that cannot. The two remaining "30 minute call" occurrences removed. |
-| **Commit strategy** | One commit, one path: `git add docs/website_redesign/COPY_AND_CONVERSION_MASTER.md`. |
-| **Acceptance criteria** | (a) All 44 verdicts applied or declined with a reason. (b) Zero dashes in any customer facing string in either language. (c) No trial "free" wording, no hot lead wording, no reactivation wording, no numeric response time, no score scale, no portal or CRM logo, no invented statistic. (d) Every new string carries its matrix ID. (e) Spanish strings written natively, not translated. |
+| **Forbidden files** | Everything else. Especially the two files V1 owns. |
+| **Dependencies** | **V1 must complete first.** Copy verdicts derive from matrix verdicts; running them together produces two divergent registers. |
+| **Tests** | Zero dashes in any customer-facing string, either language. No price, no quota, no percentage, no response-time figure, no score scale, no hot lead wording, no invented statistic. Every new string carries its matrix ID. Every EN string has an ES string. Spanish read aloud by a native speaker from Spain. |
+| **Commit strategy** | One commit, one path. |
+| **Acceptance criteria** | Variant B released and Variant A demoted to fallback. `user_cancelled` copy reads as neutral and resumable and **never** as a failure. Voice is named generically; no carrier name appears. Footer and signature copy is a text-field group, not an upload. The two remaining "30 minute call" occurrences removed. |
 
 ---
 
-### A3 — Authenticated Experience Design Chat
+### V3 · Authenticated and Visual System v2 Update
 
 | | |
 |---|---|
-| **Name** | Authenticated Experience Design |
-| **Responsibility** | Close the seventeen gaps in `FINAL_RECONCILIATION_REPORT.md` §5.2 by **extending** the existing system, never by starting a second one. Specify: signup and login page architecture, the trial banner, the ten step wizard shell, progress and resume, readiness, the eight status values as visual specifications, provider failure and OAuth return states, the file upload law, the authenticated upgrade surface, the API envelope error treatments, and mobile onboarding. |
-| **Allowed files** | `docs/website_redesign/LUXURY_UX_MEDIA_SYSTEM.md`, and one new file `docs/website_redesign/AUTHENTICATED_SURFACE_SYSTEM.md` |
-| **Forbidden files** | Everything else. All application code. `CLAUDE.md`. |
-| **Dependencies** | None. Can start immediately, in parallel with A1 and A4. |
-| **Input documents** | `FINAL_RECONCILIATION_REPORT.md` §5, `INTEGRATION_COMPATIBILITY_MATRIX.md` §2, §3.3, §3.4, §4 |
-| **Output** | The seventeen gaps closed, each obeying report §5.3's ten binding constraints. Every new surface uses the existing tokens, type scale, alignment law, radius law, motion budget and anti pattern list. No new colour ships without a computed contrast ratio added to §2.3. |
-| **Commit strategy** | Two commits: the new file first, then the amendment to `LUXURY_UX_MEDIA_SYSTEM.md`. Explicit paths only. |
-| **Acceptance criteria** | (a) All seventeen gaps closed. (b) The wizard is specified as a hairline index, not a card grid. (c) All eight status values have icon + text + colour specifications on both canvases with computed ratios. (d) `externally_pending` cannot render as complete. (e) `locked_by_plan` uses the honest state treatment, not an error treatment. (f) No technical identifier is ever rendered. (g) The §1.3 anti pattern list still passes against every new surface. (h) File upload law exists. (i) Mobile composition specified at 375 px, not inferred. |
+| **Responsibility** | Apply the seventeen superseded assumptions in report §0V.5 to the design system. **Delete the third upload block.** Specify the branding text-field group and `signature_mode`. Wire the OAuth callback route and the four outcomes including cancellation. Add the office control with role gating. Add the confirmed preview shape. Replace per-status error treatment with per-`code`. Add the reminder thresholds. Restore the `language` control and the client-side upload constraints. **Remove the price row from the plan surface.** |
+| **Allowed files** | `docs/website_redesign/AUTHENTICATED_SURFACE_SYSTEM.md` · `docs/website_redesign/LUXURY_UX_MEDIA_SYSTEM.md` |
+| **Forbidden files** | Everything else. All application code. |
+| **Dependencies** | None. **Can start immediately**, in parallel with V1 and V4. |
+| **Tests** | The eight status values still render as glyph plus text plus colour with computed contrast on both canvases. `externally_pending` still cannot render as complete. `locked_by_plan` still is not an error. The anti-pattern lists still pass against every revised surface. No new colour without a computed ratio. |
+| **Commit strategy** | Two commits, one path each. |
+| **Acceptance criteria** | All seventeen supersessions applied. §10's price row deleted, not softened. §9.1's footer-or-signature upload row deleted as a premise. §4.3's MF-04 block lifted. §7.7 rewritten for the shared callback route. AF-01's cancellation outcome specified as neutral. Voice generically named with the reason recorded. |
 
 ---
 
-### A4 — Governance and Contract Update Chat
+### V4 · Governance and Contract v2 Update
 
 | | |
 |---|---|
-| **Name** | Governance and Contract Update |
-| **Responsibility** | Adopt the ten value status vocabulary into the governance layer. Replace `INTEGRATION_CONTRACT.md`'s four value vocabulary. Correct `IMPLEMENTATION_STATUS.md`'s stale gate (4 of 4, not 3 of 4) and its conflict register. Record the three commit collisions of report §2.4 as a documentary correction, without rewriting history. Correct `CURRENT_SITE_AUDIT.md`'s incomplete `/v2` inventory and its A-01 disagreement with `CLAIMS_MATRIX.md` §21 item 18. Add the eleven actions of the handoff, plus the reserved and proposed items, to the contract. |
-| **Allowed files** | `docs/website_redesign/MASTER_GOVERNANCE.md`, `docs/website_redesign/INTEGRATION_CONTRACT.md`, `docs/website_redesign/IMPLEMENTATION_STATUS.md`, `docs/website_redesign/CURRENT_SITE_AUDIT.md` |
-| **Forbidden files** | The four source of truth documents. The three Chat 5 documents. `CLAUDE.md`. All application code. |
-| **Dependencies** | None. Can start immediately, in parallel with A1 and A3. |
-| **Input documents** | `FINAL_RECONCILIATION_REPORT.md` in full |
-| **Output** | Governance carrying the new vocabulary; a contract covering every handoff surface with its five UI states; a status file that tells the truth about the gate and the collisions; an audit whose findings agree with the other documents. §14 is **not** relaxed. The staging question (report C-14) is added as an escalation under §14.4, not resolved. |
-| **Commit strategy** | Up to four commits, one per file, explicit paths. Never two files in one `git add`. |
-| **Acceptance criteria** | (a) `LIVE` and `PRODUCTION READY` no longer appear in any of the four files. (b) The gate reads 4 of 4. (c) All three commit collisions recorded. (d) The activation register is still empty and the lockdown is still absolute. (e) §14 and §15 unchanged in force. (f) No history rewritten. |
+| **Responsibility** | Ratify the v2 authority in governance. **Add the staging clause to §14** so end-to-end verification becomes reachable. Update §11's CTA ladder on the confirmed facts. Rewrite the contract's action register against v2: the new `GET /offices` surface, the shared OAuth callback route, the six testimonial states, the full error enumeration, hot lead alerting as out of scope. Update the status file and the audit. |
+| **Allowed files** | `docs/website_redesign/MASTER_GOVERNANCE.md` · `docs/website_redesign/INTEGRATION_CONTRACT.md` · `docs/website_redesign/IMPLEMENTATION_STATUS.md` · `docs/website_redesign/CURRENT_SITE_AUDIT.md` |
+| **Forbidden files** | The source-of-truth documents. The three Chat 5 documents. `CLAUDE.md`. All application code. |
+| **Dependencies** | None. **Can start immediately.** The §14 staging clause additionally needs the owner's written ratification before it becomes operative. |
+| **Tests** | `LIVE` and `PRODUCTION READY` appear in none of the four files. Every v2-affected action carries its new status pair. The activation register is still empty. §14.3's lockdown is unchanged in force. |
+| **Acceptance criteria** | The staging clause is written as **conditional on the owner's explicit approval per target, production permanently excluded** — never as a general permission. C-14 recorded as resolved in principle. C-21 recorded as closed by scope. C-13 recorded as closed once H1 commits the exports. §14 not relaxed in any other respect. |
+| **Commit strategy** | Up to four commits, one path each. |
 
 ---
 
-### B1 — Repository Hygiene, Secret Containment and Deployment Safety Chat
+### F1 · Design Tokens and Global Foundation
 
 | | |
 |---|---|
-| **Name** | Repository Hygiene and Deployment Safety |
-| **Responsibility** | Make the repository safe to hold an environment variable. Untrack build output and tooling state. Remove the retired n8n Cloud configuration. Write the CI guard. Write deployment configuration and the example environment file. Fix nothing else. |
-| **Allowed files** | `.gitignore`, `.mcp.json` (**removal only**), `.claude/settings.local.json` (**untrack only**), `tsconfig.tsbuildinfo` (untrack), `.next/` (untrack), `vercel.json` (new), `next.config.js`, `.env.example` (new), `scripts/ci-guard.sh` (new), `.github/workflows/ci-guard.yml` (new) |
-| **Forbidden files** | Everything under `app/`, `components/`, `lib/`, `translations/`, `public/`, `docs/`, and `package.json`. `CLAUDE.md`. |
-| **Dependencies** | Owner decision 8 (report §10): confirm the rotation state of the credential in `.mcp.json` and the repository's visibility. **Runs alone. No other chat commits while this one is staging**, because `git rm --cached` operates on the whole index. |
-| **Input documents** | `FINAL_RECONCILIATION_REPORT.md` §6 and §7, handoff §6, §8, §9 |
-| **Output** | `.gitignore` covering `node_modules`, `.next`, `.vercel`, `*.tsbuildinfo`, `.env*` (except `.env.example`), `.mcp.json`, `.claude/settings.local.json`, OS artefacts. 180 `.next` files plus three others untracked. The retired n8n configuration deleted. `.env.example` carrying **names only**, exactly as classified in matrix §5. `vercel.json` with security headers and immutable media cache headers. `next.config.js` with `images.formats` AVIF and WebP. The §8 CI guard scoped to `./app ./components ./lib ./.next`, wired as a pre build script and a required GitHub Actions check. |
-| **Commit strategy** | Three commits: (1) untracking, `git add .gitignore` plus the explicit `git rm --cached` paths; (2) deployment configuration, `git add vercel.json next.config.js .env.example`; (3) CI guard, `git add scripts/ci-guard.sh .github/workflows/ci-guard.yml`. Each commit verified with `git diff --cached --name-only` first. |
-| **Acceptance criteria** | (a) `git ls-files .next \| wc -l` returns 0. (b) `.mcp.json` no longer tracked and the retired connection gone. (c) No secret value appears in any committed file, including `.env.example`. (d) The CI guard fails on a deliberately introduced test string and passes on the clean tree. (e) The guard is not pointed at `docs/`, which legitimately contains the pattern list. (f) No file outside the allowed list changed. (g) No rotation performed and no history rewritten. |
+| **Responsibility** | Replace the three competing colour systems with one token layer. Self-host fonts. Establish spacing, type, radius, shadow and motion tokens. Build the shared primitives: `Reveal` with the no-JS safety pattern, `Button`, `Section`, `Container`, the eight status glyphs, `StatusRow`, `StatusChip`, `StatusNote`, and the `<AgencyText>` redaction boundary. |
+| **Allowed files** | `app/globals.css` · `tailwind.config.ts` · `postcss.config.js` · `app/layout.tsx` · `lib/tokens/**` · `lib/motion/**` · `lib/redaction/**` · `components/primitives/**` · `public/fonts/**` |
+| **Forbidden files** | `lib/env/**`, `lib/api/**`, `types/**`, `app/api/**`, `app/[locale]/**`, `components/layout/**`, `components/marketing/**`, `components/auth/**`, `components/onboarding/**`, `components/pricing/**`, `components/trial/**`, `content/**`, `translations/**`, all docs. |
+| **Dependencies** | H1 and V3 complete. Font files supplied (AS-02). |
+| **Tests** | `npm run build`, `npx tsc --noEmit`, `npm run lint`. Content fully legible with JavaScript disabled. Reduced motion honoured. Every colour pair in use present in the computed contrast table. No radius above 8 px. No pill button except the three permitted. The eight glyphs distinguishable in greyscale. First-load JS measured and recorded. |
+| **Commit strategy** | Grouped by concern — tokens, fonts, motion, status primitives, redaction boundary — explicit paths per commit. |
+| **Acceptance criteria** | `--ns-*`, `brand.*` and inline hex removed. Google Fonts `@import` deleted; exactly one preload. Blanket `overflow-x: hidden` removed. `100vh` removed. `<AgencyText>` renders **nothing** for an unrecognised key, and a build check greps for direct interpolation outside the boundary. |
 
 ---
 
-### C1 — Design Tokens and Global Foundation Chat
+### F2 · Typed Contract and Environment Module
 
 | | |
 |---|---|
-| **Name** | Design Tokens and Global Foundation |
-| **Responsibility** | Replace the three competing colour systems with the single token layer. Self host fonts. Establish the spacing, type, radius, shadow and motion tokens. Build the `Reveal` primitive with the no-JS safety pattern. Nothing else. |
-| **Allowed files** | `app/globals.css`, `tailwind.config.ts`, `postcss.config.js`, `app/layout.tsx`, `lib/tokens/**`, `lib/motion/**`, `public/fonts/**` |
-| **Forbidden files** | Everything under `components/`, `app/[locale]/**`, `app/api/**`, `lib/api/**`, `lib/env/**`, `translations/`, `docs/`. |
-| **Dependencies** | B1 complete. A3 complete. AS-02 font files supplied. |
-| **Input documents** | `LUXURY_UX_MEDIA_SYSTEM.md` §2, §3, §4; A3's output |
-| **Output** | One token source. `--ns-*`, `brand.*` and inline hex removed. Google Fonts `@import` deleted, `next/font/local` with exactly one preload. Blanket `overflow-x: hidden` removed. `100vh` removed. The `Reveal` primitive renders content at full opacity with JavaScript disabled. |
-| **Commit strategy** | Grouped commits by concern (tokens, fonts, motion primitive), explicit paths per commit. |
-| **Acceptance criteria** | Build, type check and lint executed. Every colour pair in use appears in the §2.3 computed table. No radius above 8 px. No pill button. Content fully legible with JavaScript disabled. Reduced motion honoured. First load JS measured and recorded. |
-
----
-
-### C2 — Typed API Boundary Chat (no execution)
-
-| | |
-|---|---|
-| **Name** | Typed API Boundary and Environment Module |
-| **Responsibility** | Express the handoff contract as types and a client boundary that **is never executed**. Build the server only environment module. Define the error envelope mapping and the eight status value union. No route handler, no network call, no test against any host. |
-| **Allowed files** | `lib/env/**`, `lib/api/**`, `types/**` |
-| **Forbidden files** | `app/api/**` (D3 owns it), `app/globals.css`, `tailwind.config.ts`, `app/layout.tsx`, all components, all docs. |
-| **Dependencies** | B1 complete. Can run in parallel with C1. |
-| **Input documents** | Handoff §1, §5, §6; `INTEGRATION_COMPATIBILITY_MATRIX.md` §3 and §5 |
-| **Output** | Typed request and response shapes for all 27 implementable surfaces (28 minus the `PROPOSED` demo booking, which is **not** typed as real). A server only environment accessor that throws at module load if a server variable is read in a client context. The `{ ok, code, message, details, request_id }` envelope type. The status unions. Every value read from an environment variable; **no target string anywhere in source**. |
+| **Responsibility** | Express v2 and the addendum as types and a client boundary that **is never executed**. The server-only environment module. The per-`code` error union. The eight status unions. The OAuth callback parameter contract. **No route handler, no network call, no test against any host.** |
+| **Allowed files** | `lib/env/**` · `lib/api/**` · `types/**` |
+| **Forbidden files** | `app/api/**` (B1 owns it), `app/globals.css`, `tailwind.config.ts`, `app/layout.tsx`, `components/**`, `content/**`, all docs. |
+| **Dependencies** | H1 complete. Parallel with F1. |
+| **Tests** | `npx tsc --noEmit` passes. A grep for `fetch(`, `XMLHttpRequest` and `axios` in `lib/api/**` returns **nothing**. A grep for any host literal, path prefix or origin returns nothing. A grep for `price` in the plans type returns nothing. Reading a server-only variable from a client context throws at module load, proven by a unit test. |
 | **Commit strategy** | Grouped by concern, explicit paths. |
-| **Acceptance criteria** | (a) Type check passes. (b) Zero network calls exist in the module. (c) `POST /demo/book` is present only as a commented `PROPOSED` note, not as a typed client method. (d) No `NEXT_PUBLIC_` name carries a server only value. (e) No hardcoded host, path prefix or origin. (f) A grep for the retired host patterns returns nothing. |
+| **Acceptance criteria** | All 28 surfaces typed except `POST /demo/book`, which exists **only as a commented `PROPOSED` note**. `GET /plans` typed as `{ code, display_name, entitlements_summary }` with **no price field**. `GET /offices` typed. Testimonial state typed as six values. The OAuth callback typed with `reason ∈ user_cancelled | provider_error`. Every target read from an environment variable. No `NEXT_PUBLIC_` name carries a server-only value. |
 
 ---
 
-### D1 — Locale Routing and Global Shell Chat
+### L1 · Locale Routing, Shell and Site Infrastructure
 
 | | |
 |---|---|
-| **Name** | Locale Routing and Global Shell |
-| **Responsibility** | Route based locales, the header, the mega menu, the mobile sheet, the footer, the language switcher, `metadataBase`, canonicals, `hreflang`, `sitemap.ts`, `robots.ts`, `not-found.tsx`, `error.tsx`, `loading.tsx`. |
-| **Allowed files** | `app/[locale]/layout.tsx`, `app/[locale]/not-found.tsx`, `app/[locale]/error.tsx`, `app/[locale]/loading.tsx`, `app/sitemap.ts`, `app/robots.ts`, `middleware.ts`, `components/layout/**`, `lib/i18n/**`, `translations/**` |
-| **Forbidden files** | `app/[locale]/(marketing)/**`, `app/[locale]/(app)/**`, `app/api/**`, `lib/api/**`, `lib/env/**`, `app/globals.css`, `tailwind.config.ts`, all docs. |
-| **Dependencies** | C1 complete. Owner decisions 10 and 11 (locale strategy and route naming). AS-01 logo SVG supplied. |
-| **Input documents** | `LUXURY_UX_MEDIA_SYSTEM.md` §5.2 … §5.5, §5.12, §9.1; A2's navigation and footer copy |
-| **Output** | Spanish becomes linkable, shareable and indexable. `<html lang>` correct per route. Audit A-04 and A-13 closed. `Log in` **not rendered** until the destination exists (MF-03). |
+| **Responsibility** | `/en` and `/es` route-based locales. The header, mega menu, mobile sheet, footer, language switcher. `metadataBase`, canonicals, `hreflang`, `sitemap.ts`, `robots.ts`, `not-found.tsx`, `error.tsx`, `loading.tsx`. **The `{FRONTEND}/{locale}/connect/callback` route lives here**, because it is shared infrastructure across three wizard steps. |
+| **Allowed files** | `app/[locale]/layout.tsx` · `app/[locale]/not-found.tsx` · `app/[locale]/error.tsx` · `app/[locale]/loading.tsx` · `app/[locale]/connect/callback/**` · `app/sitemap.ts` · `app/robots.ts` · `middleware.ts` · `components/layout/**` · `lib/i18n/**` |
+| **Forbidden files** | `app/[locale]/(marketing)/**`, `app/[locale]/(auth)/**`, `app/[locale]/(app)/**`, `app/api/**`, `lib/api/**`, `lib/env/**`, `content/**`, `translations/**`, `components/primitives/**`, all docs. |
+| **Dependencies** | F1 and F2 complete. Owner decision on route naming. **AD-01:** the authenticated tree, `Log in` included, is **omitted from public navigation** until the dashboard destination is settled. |
+| **Tests** | Verified at 320, 375, 768, 1024, 1440 and 1920 px. `<html lang>` correct per route. `hreflang` pairs resolve both ways. No `!important`. Header identical on every page. The callback route classifies all four outcomes correctly against a local fixture, with **no network call**. Lighthouse LCP is the headline text. |
 | **Commit strategy** | Grouped by concern, explicit paths. |
-| **Acceptance criteria** | Phase close checklist all nine steps. Verified at 320, 375, 768, 1024, 1440 and 1920 px. No `!important`. Header identical on every page. No WhatsApp CTA, no chat launcher, no `Log in` link to nowhere. |
+| **Acceptance criteria** | Spanish is linkable, shareable and indexable. Audit A-04 and A-13 closed. **No `Log in` link, no WhatsApp CTA, no chat launcher.** The callback route never renders `success` for an unrecognised outcome, and renders `user_cancelled` as neutral. |
 
 ---
 
-### D2 — Public Marketing Pages Chat
+### L2 · Bilingual Content Layer
 
 | | |
 |---|---|
-| **Name** | Public Marketing Pages |
-| **Responsibility** | Compose the homepage and every public page from A2's cleared copy and A3's page architecture. Fix audit A-02 (real `href` with progressive enhancement) and A-03 (relative internal links). Every product surface ships as a `ProductSurface` `pending` frame. |
-| **Allowed files** | `app/[locale]/(marketing)/**`, `components/marketing/**`, `components/product-surface/**`, `lib/media-manifest.ts`, `public/media/**` |
-| **Forbidden files** | `app/[locale]/layout.tsx`, `components/layout/**`, `app/[locale]/(app)/**`, `app/api/**`, `lib/api/**`, `lib/env/**`, `lib/i18n/**`, `translations/**`, all docs. |
-| **Dependencies** | D1 complete. A2 complete. |
-| **Input documents** | A2's output, `LUXURY_UX_MEDIA_SYSTEM.md` §9.2 … §9.10 |
-| **Output** | The public site, with no fabricated dashboard, no invented number, no named portal, no vendor logo, no hot lead claim, no voice present tense, no trial "free" wording, no WhatsApp CTA and no chat launcher. Voice appears only as V-02's one separated future block. |
-| **Commit strategy** | One commit per page or per section group, explicit paths. |
-| **Acceptance criteria** | Phase close checklist all nine steps. Every claim traceable to a matrix ID. Every `ProductSurface` in a declared state. LCP is text on every page. One video per route at most, poster first, never autoplaying above the fold. Mobile verified separately. |
+| **Responsibility** | Move every string out of components into one content source, EN and ES, taken verbatim from the copy master. Retire the legacy flat dictionaries. Provide the label maps the redaction boundary resolves: entitlement keys, provider identifiers, step keys, error `code`s, `signature_mode` values, roles. |
+| **Allowed files** | `content/**` · `translations/**` (**retirement only**) |
+| **Forbidden files** | Everything under `app/`, `components/`, `lib/`, `public/`, `tests/`, all docs. |
+| **Dependencies** | V2 complete. Parallel with L1. |
+| **Tests** | Every EN key has an ES key; the counts match and a test fails on any gap. **No English fallback renders on an ES route** — the current silent fallback chain is removed. No string contains a dash. Every `code` in the v2 enumeration has copy in both languages. Every provider identifier resolves to its confirmed display name, and **voice resolves to the generic label**. |
+| **Commit strategy** | One commit per content domain, explicit paths. |
+| **Acceptance criteria** | No component authors a string. Spanish written natively, not translated. `usted` in every simulated client message, `tú` to the agency owner, no mixing. Title case has not leaked into any Spanish heading. |
 
 ---
 
-### D3 — BFF Route Chat (written, not executed)
+### B1 · BFF Route Implementation (written, not executed)
 
 | | |
 |---|---|
-| **Name** | BFF Routes |
-| **Responsibility** | Implement the 26 BFF route handlers from `INTEGRATION_COMPATIBILITY_MATRIX.md` §3.2 against C2's typed boundary, plus provider OAuth callback and checkout webhook routes. **Executes nothing against any host.** |
+| **Responsibility** | Implement the BFF-only surfaces from matrix §3.2 plus the new `GET /offices`, the provider OAuth callbacks with the AF-01 classification, and the checkout webhook. Server-side captcha verification on public forms. **Executes nothing against any host.** |
 | **Allowed files** | `app/api/**` |
-| **Forbidden files** | Everything else. Including `lib/api/**` and `lib/env/**`, which C2 owns and this chat only imports. |
-| **Dependencies** | C2 complete. B1 complete. Export-v2 for MF-04 (error codes), MF-07, MF-08, MF-09, MF-12. **Owner decision 1 before any execution.** |
-| **Input documents** | Handoff §1, §5, §6, §7, §9; matrix §3 and §6 |
-| **Output** | Route handlers that read every target from an environment variable, hold every privileged secret server side, verify webhook signatures server side, set CORS to the exact allowed origin, and return the uniform envelope. `POST /demo/book` is **not** implemented. |
+| **Forbidden files** | Everything else, `lib/api/**` and `lib/env/**` included — this chat imports them and never edits them. |
+| **Dependencies** | F2 and H1 complete. Captcha provider (MF-08) for the signup route. **Execution against staging additionally requires the owner's §14 ratification and an explicitly approved target.** |
+| **Tests** | `npx tsc --noEmit`, `npm run build`, the CI guard. A route-by-route read of every return path proving no provider token, client secret or service key can appear in a response body. A unit test that a server-only variable is not importable from a client component. **A test asserting `/api/**` contains no `demo/book` handler.** The OAuth callback classifier unit-tested across all four outcomes plus a state mismatch. |
 | **Commit strategy** | One commit per surface group, explicit paths. |
-| **Acceptance criteria** | (a) Type check and build pass. (b) The CI guard passes. (c) No server only variable is importable from a client component. (d) No provider token, client secret or service key can appear in a response body, verified by reading every return path. (e) No route was executed against any host. (f) No `/demo/book`. (g) Every route documented in `INTEGRATION_CONTRACT.md` by A4 before it is written. |
+| **Acceptance criteria** | Every target read from an environment variable; no host literal. CORS set to the exact allowed origin, never `*` with credentials. Webhook signatures verified server-side. The uniform envelope returned everywhere. `202` returned as pending, not as an error. **No `/demo/book`.** No route executed against any host. Every route documented in `INTEGRATION_CONTRACT.md` by V4 before it is written. |
 
 ---
 
-### D4 — Authenticated Surfaces Chat
+### S1 · Public Marketing Pages
 
 | | |
 |---|---|
-| **Name** | Authenticated Surfaces |
-| **Responsibility** | Signup, login, the trial banner, the ten step wizard with resume, readiness, trial expiry, the testimonial surface (built but not publicly linked, and legally held), plan selection and upgrade. Every product CTA remains a marked placeholder until individually released. |
-| **Allowed files** | `app/[locale]/(app)/**`, `components/app/**`, `components/forms/**` |
-| **Forbidden files** | `app/api/**`, `lib/api/**`, `lib/env/**`, `app/[locale]/(marketing)/**`, `components/marketing/**`, `components/layout/**`, `lib/i18n/**`, `translations/**`, all docs. |
-| **Dependencies** | D1, C2 and A3 complete. Export-v2 for MF-01, MF-03, MF-05, MF-06, MF-07. Owner decision 2 (dashboard destination). |
-| **Input documents** | A3's output, matrix §4 steps 3 to 13, A2's authenticated copy |
-| **Output** | The confirmed journey, rendered honestly, gated. `externally_pending` never shown as done. `locked_by_plan` as an upgrade path. No technical identifier visible. No hardcoded 7 and no hardcoded 14. Progress rendered from `percent_complete`. Resume lands on `resume_step`. |
-| **Commit strategy** | One commit per journey step group, explicit paths. |
-| **Acceptance criteria** | Phase close checklist all nine steps, with mobile verified separately at 375 px for the wizard specifically. All eight status values render as icon + text + colour. Every form obeys `LUXURY_UX_MEDIA_SYSTEM.md` §5.6 including the reserved height rule. No surface publicly reachable before C-22 (privacy policy) closes. The testimonial surface is present, marked legally held, and not linked from any public page. |
+| **Responsibility** | Compose the homepage and every public page except pricing, from L2's content and the design system. Fix audit A-02 (real `href` with progressive enhancement) and A-03 (relative internal links). Every product surface ships as a `ProductSurface` `pending` frame. |
+| **Allowed files** | `app/[locale]/(marketing)/**` **except `pricing/`** · `components/marketing/**` · `components/product-surface/**` · `lib/media-manifest.ts` · `public/media/**` |
+| **Forbidden files** | `app/[locale]/(marketing)/pricing/**` (S4 owns it) · `app/[locale]/layout.tsx` · `components/layout/**` · `app/[locale]/(auth)/**` · `app/[locale]/(app)/**` · `app/api/**` · `lib/api/**` · `lib/env/**` · `lib/i18n/**` · `content/**` · all docs. |
+| **Dependencies** | L1 and L2 complete. Parallel with B1. |
+| **Tests** | `MASTER_GOVERNANCE.md` §7's nine steps. Mobile verified separately. Every claim traced to a matrix ID. A grep for forbidden wording — hot lead, portal names, vendor logos, numeric response times, score scales, "always synced" — returns nothing. One video per route at most, poster first, never autoplaying above the fold. |
+| **Commit strategy** | One commit per page or section group, explicit paths. |
+| **Acceptance criteria** | No fabricated dashboard, number, logo or testimonial. **No hot lead section and no phone mockup asserting alerting.** Voice appears only as one separated future block. No WhatsApp CTA, no chat launcher. LCP is text on every page. Cal.com anchors carry the real booking URL. |
 
 ---
 
-### E1 — Independent Technical and Final Audit Chat
+### S2 · Signup, Login and Session
 
 | | |
 |---|---|
-| **Name** | Independent Audit |
-| **Responsibility** | Verify the work of every other chat. Authored nothing, so it may release nothing of its own (R1). Re-verify every P0 and P1 fix (R10). |
-| **Allowed files** | **None. Read only**, except one new file `docs/website_redesign/AUDIT_LOG.md`. |
+| **Responsibility** | The signup surface on the confirmed facts, the login surface, sign out, and session behaviour including the expired state. The captcha reservation. |
+| **Allowed files** | `app/[locale]/(auth)/**` · `components/auth/**` · `components/forms/**` |
+| **Forbidden files** | `app/api/**` · `lib/api/**` · `lib/env/**` · `app/[locale]/(marketing)/**` · `app/[locale]/(app)/**` · `components/layout/**` · `components/marketing/**` · `content/**` · all docs. |
+| **Dependencies** | L1, L2, B1 complete. MF-08 for the captcha widget. |
+| **Tests** | Form law verified: labels always visible, reserved heights across idle, error and success, `aria-busy`, `autocomplete`, `inputmode`. `409 email_exists` routes to login with the address preserved. `400 invalid_grant` renders **one non-enumerating message** and never confirms an account exists. Session expiry captures the route and returns to it after login. **The JWT is not in `localStorage`** — verified by inspecting storage. Keyboard and screen-reader pass on both forms. |
+| **Commit strategy** | One commit per surface, explicit paths. |
+| **Acceptance criteria** | The trial CTA wording matches whatever `CLAIMS_MATRIX.md` T-01 approves after V1, and **not a word beyond it**. The `language` control constrained to `{en, es}` and bound to the route locale. The captcha has an accessible non-visual alternative, or the provider is rejected. Privacy line at the point of collection. **The surface is not publicly reachable until L-14 closes.** |
+
+---
+
+### S3 · Onboarding Wizard and Authenticated Shell
+
+| | |
+|---|---|
+| **Responsibility** | The authenticated shell, the trial status band, the reminder escalation, the trial expiry plane, the wizard index and all ten step pages, progress, resume, readiness, the OAuth return handling inside a step, and the branding upload and text-field group. |
+| **Allowed files** | `app/[locale]/(app)/layout.tsx` · `app/[locale]/(app)/onboarding/**` · `components/onboarding/**` · `components/status/**` · `components/trial/**` · `components/upload/**` |
+| **Forbidden files** | `app/[locale]/(app)/account/**` (S4 owns it) · `app/api/**` · `lib/api/**` · `lib/env/**` · `app/[locale]/(marketing)/**` · `app/[locale]/(auth)/**` · `components/layout/**` · `components/primitives/**` · `content/**` · all docs. |
+| **Dependencies** | L1, L2, B1 complete. V3 complete for the revised specification. |
+| **Tests** | The seventeen items of `AUTHENTICATED_SURFACE_SYSTEM.md` §14, plus: the literals `7`, `10` and `14` do not appear as trial length, step count or extension length anywhere in source. `percent_complete` is rendered, never computed. Resume lands on `resume_step`. `externally_pending` never renders with a check or positive colour. `403 not_on_plan` renders as an upgrade path. **`reason=user_cancelled` returns the row to its previous status and renders nothing red.** CLS measured at 375 px and 1440 px. Mobile verified at 375 px and 320 px **with the keyboard open** on the longest Spanish strings. |
+| **Commit strategy** | One commit per step group, explicit paths. |
+| **Acceptance criteria** | The wizard is one hairline index; no card, tile or panel per step. **No third upload block** — footer and signature are a text and mode-selection group submitting plain text. Uploads accept only the four confirmed image types with the 5 MB ceiling stated before selection. The preview renders from the confirmed `preview` shape, never from a stale object URL. **No polling.** Provider names rendered from the confirmed list; **voice generic**. `missing_api_names[]` never reaches the DOM. The dashboard handoff renders an honest state until the destination is settled. |
+
+---
+
+### S4 · Pricing, Plan and Trial Conversion
+
+| | |
+|---|---|
+| **Responsibility** | The public pricing page as **Layout B, the access model**, and the authenticated plan surface with the checkout handoff. **No price is displayed, because none exists.** |
+| **Allowed files** | `app/[locale]/(marketing)/pricing/**` · `app/[locale]/(app)/account/**` · `components/pricing/**` |
+| **Forbidden files** | Everything else, including all of S1's and S3's paths. |
+| **Dependencies** | L1, L2, B1 complete. MF-10 for the tax line. PK-02, PK-04 and PK-05 for anything beyond plan names. |
+| **Tests** | A grep for a currency symbol, a digit adjacent to one, "from €", "up to", or a comparison bar returns **nothing**. `409 already_subscribed` routes to the current plan and is not an error. `403 not_allowed` renders an honest state. Return from checkout re-reads `GET /subscription/state` and never infers success from a return URL. Mobile renders a vertical stack, never a horizontally scrolling table. |
+| **Commit strategy** | One commit per surface, explicit paths. |
+| **Acceptance criteria** | **Layout A is not built.** Plan names and entitlement summaries only. **No quota number and no visual implication of one** — no bars, no dots, no "up to", no comparative column heights. Checkout is a full page handoff; **no payment form, no card field, no payment iframe**. The tax line is a single constant until MF-10 resolves. |
+
+---
+
+### T1 · Test Harness, Contract and Accessibility Tests
+
+| | |
+|---|---|
+| **Responsibility** | The test infrastructure and the tests that no surface chat can write about itself: contract conformance against the typed boundary, the forbidden-content greps as executable tests, accessibility at six breakpoints, and CLS measurement. |
+| **Allowed files** | `tests/**` · `playwright.config.ts` · `vitest.config.ts` · `package.json` (**test scripts only, this wave**) |
+| **Forbidden files** | Everything under `app/`, `components/`, `lib/`, `content/`, `public/`, `docs/`. |
+| **Dependencies** | At least one surface chat complete. **`package.json` is owned by H1 in Wave H and by T1 in Wave T, never concurrently.** |
+| **Tests** | Its own suite runs green, and each guard test is proven by deliberately introducing the violation it catches and observing a failure. |
+| **Commit strategy** | One commit per suite, explicit paths. |
+| **Acceptance criteria** | Executable guards for: no hardcoded `7`, `10` or `14`; no currency symbol; no technical identifier reaching the DOM; no retired host or secret shape; no `demo/book` handler; no `localStorage` JWT; no polling interval against a status endpoint; every EN key having an ES key. Axe passes at 320, 375, 768, 1024, 1440 and 1920 px. **No test performs a network call to any real host**; every contract test runs against fixtures. |
+
+---
+
+### AU1 · Independent Technical and Final Audit
+
+| | |
+|---|---|
+| **Responsibility** | Verify every other chat's work. Authored nothing, so it releases nothing of its own (R1). Re-verify every P0 and P1 fix (R10). |
+| **Allowed files** | **None. Read only**, except `docs/website_redesign/AUDIT_LOG.md`. |
 | **Forbidden files** | Everything else. |
-| **Dependencies** | Runs at the close of each wave. |
-| **Input documents** | All of them |
-| **Output** | Findings triaged P0 to P3, with the specific file and line, and a re-verification record for every P0 and P1 fixed by its author. |
-| **Acceptance criteria** | Every claim on every built page traced to a matrix ID. Every environment variable classified correctly. A grep for retired hosts and secret shaped literals over source and build output returns nothing. No fabricated dashboard, number, logo, testimonial or badge anywhere, including inside images. No control that looks active and does nothing. |
+| **Dependencies** | Runs at every wave close. |
+| **Tests** | Independently re-runs every other chat's stated tests rather than accepting the reported result. |
+| **Commit strategy** | One commit, one path. |
+| **Acceptance criteria** | Every claim on every built page traced to a matrix ID. Every environment variable correctly classified. No fabricated dashboard, number, logo, testimonial or badge anywhere, images included. No control that looks active and does nothing. **No price anywhere.** No hot lead surface. `externally_pending` never rendered as complete. The twenty binding facts of §2 each verified individually. |
 
 ---
 
-### 4.1 File ownership map (collision proof)
+## 6. Parallel safety map
 
-| Path | Owned by | Wave |
+**Can start immediately, in parallel, no shared file, no open dependency:**
+
+> **V1** · **V3** · **V4**
+
+**V2** starts when V1 finishes. **H1 runs alone**, before any environment variable exists, and no
+other chat commits while it stages.
+
+| Wave | Safe in parallel | Must be sequential |
 |---|---|---|
-| `docs/website_redesign/PRODUCT_TRUTH.md`, `CLAIMS_MATRIX.md` | A1 | A |
-| `docs/website_redesign/COPY_AND_CONVERSION_MASTER.md` | A2 | A |
-| `docs/website_redesign/LUXURY_UX_MEDIA_SYSTEM.md`, `AUTHENTICATED_SURFACE_SYSTEM.md` | A3 | A |
-| `docs/website_redesign/MASTER_GOVERNANCE.md`, `INTEGRATION_CONTRACT.md`, `IMPLEMENTATION_STATUS.md`, `CURRENT_SITE_AUDIT.md` | A4 | A |
-| `docs/website_redesign/FINAL_RECONCILIATION_REPORT.md`, `INTEGRATION_COMPATIBILITY_MATRIX.md`, `FINAL_WEBSITE_INTEGRATION_PLAN.md` | **Chat 5 only. Frozen for this wave.** | — |
-| `docs/website_redesign/AUDIT_LOG.md` | E1 | E |
-| `docs/website_redesign/backend_handoff/**` | **Owner only. No chat edits it.** | — |
-| `.gitignore`, `.mcp.json`, `vercel.json`, `next.config.js`, `.env.example`, `scripts/**`, `.github/**`, `.claude/settings.local.json` | B1 | B |
-| `app/globals.css`, `tailwind.config.ts`, `postcss.config.js`, `app/layout.tsx`, `lib/tokens/**`, `lib/motion/**`, `public/fonts/**` | C1 | C |
-| `lib/env/**`, `lib/api/**`, `types/**` | C2 | C |
-| `app/[locale]/layout.tsx`, `not-found.tsx`, `error.tsx`, `loading.tsx`, `app/sitemap.ts`, `app/robots.ts`, `middleware.ts`, `components/layout/**`, `lib/i18n/**`, `translations/**` | D1 | D |
-| `app/[locale]/(marketing)/**`, `components/marketing/**`, `components/product-surface/**`, `lib/media-manifest.ts`, `public/media/**` | D2 | D |
-| `app/api/**` | D3 | D |
-| `app/[locale]/(app)/**`, `components/app/**`, `components/forms/**` | D4 | D |
-| `CLAUDE.md` | **Nobody, until owner decision 10.** Then A4. | — |
-| `app/v2/**`, `components/v2/**`, `lib/os/**`, the root `.mp4` | **Nobody. Owner's uncommitted work, preserved.** A separate cleanup chat is proposed after the wave, once `lib/os/copy.ts` has been harvested. | — |
-| `index.html`, `assets/**`, the twelve dead components, `components/live-demo/**` | **Nobody in this wave.** Removal is a separate cleanup chat, sequenced last so no chat loses reference material mid wave. | — |
+| V | V1, V3, V4 | V2 after V1 |
+| F | F1, F2 | — |
+| L | L1, L2 | L2 after V2 |
+| B / S | B1, S1 | S2, S3, S4 after B1 |
+| S | S1, S2, S3, S4 | — (all four disjoint) |
+| T / A | T1, AU1 | T1 after one surface chat |
+
+**File-level proof of disjointness at the widest point** — S1, S2, S3, S4 and B1 running together:
+
+| Chat | Exclusive roots |
+|---|---|
+| B1 | `app/api/**` |
+| S1 | `app/[locale]/(marketing)/**` minus `pricing/`, `components/marketing/**`, `components/product-surface/**`, `lib/media-manifest.ts`, `public/media/**` |
+| S2 | `app/[locale]/(auth)/**`, `components/auth/**`, `components/forms/**` |
+| S3 | `app/[locale]/(app)/layout.tsx`, `app/[locale]/(app)/onboarding/**`, `components/onboarding/**`, `components/status/**`, `components/trial/**`, `components/upload/**` |
+| S4 | `app/[locale]/(marketing)/pricing/**`, `app/[locale]/(app)/account/**`, `components/pricing/**` |
+
+No root appears twice. The one carve-out — `pricing/` out of S1 and into S4 — is stated in both
+chats' forbidden lists so neither can drift into it.
 
 ---
 
-## 5. Chats that can be started safely, right now, in parallel
-
-**A1, A3 and A4.** They share no file, they depend on no owner decision, and their inputs all exist.
-
-- **A1** Truth and Claims Reconciliation → `PRODUCT_TRUTH.md`, `CLAIMS_MATRIX.md`
-- **A3** Authenticated Experience Design → `LUXURY_UX_MEDIA_SYSTEM.md`, `AUTHENTICATED_SURFACE_SYSTEM.md`
-- **A4** Governance and Contract Update → `MASTER_GOVERNANCE.md`, `INTEGRATION_CONTRACT.md`, `IMPLEMENTATION_STATUS.md`, `CURRENT_SITE_AUDIT.md`
-
-**A2** starts when A1 finishes. **B1** starts when owner decision 8 is answered, and runs alone.
-Everything else waits on the gates in §4.0.
-
----
-
-## 6. Commit strategy, stated once for the whole wave
+## 7. Commit procedure, for every chat
 
 ```
-# 1. inspect before touching the index
-git status --porcelain
-
-# 2. stage explicit paths only, never a directory, never a dot
-git add <exact/path/one> <exact/path/two>
-
-# 3. verify what is actually staged, before committing
-git diff --cached --name-only
-
-# 4. commit with a message that names the files and the reason
-git commit -m "docs(claims): apply handoff conflicts C-08..C-25 to CLAIMS_MATRIX.md"
+git status --porcelain                       # 1. inspect before touching the index
+git add <exact/path/one> <exact/path/two>    # 2. explicit paths only, never a dot, never a directory
+git diff --cached --name-only                # 3. verify what is staged, before committing
+git commit -m "docs(claims): apply v2 corrections V2-01..V2-12 to CLAIMS_MATRIX.md"
 ```
 
-Forbidden in every chat: `git add .`, `git add -A`, `git add <directory>`, `git commit -a`,
-`git push`, `git merge`, `git rebase`, `git reset --hard`, any history rewrite, any force operation,
-and any deployment.
+Forbidden everywhere: `git add .`, `git add -A`, `git add <directory>`, `git commit -a`, `git push`,
+`git merge`, `git rebase`, `git reset --hard`, any history rewrite, any force operation, any deployment.
 
-Commit message prefixes, so the log is readable per chat: `docs(truth)`, `docs(claims)`, `docs(copy)`,
-`docs(design)`, `docs(governance)`, `chore(repo)`, `feat(tokens)`, `feat(api-types)`, `feat(shell)`,
-`feat(marketing)`, `feat(bff)`, `feat(app)`, `docs(audit)`.
+Prefixes: `docs(truth)`, `docs(claims)`, `docs(copy)`, `docs(design)`, `docs(governance)`,
+`docs(audit)`, `chore(repo)`, `feat(tokens)`, `feat(contract)`, `feat(shell)`, `feat(i18n)`,
+`feat(marketing)`, `feat(bff)`, `feat(auth)`, `feat(onboarding)`, `feat(pricing)`, `test(...)`.
 
-**Completion wording, in every commit message and every report:** *Implemented and awaiting
-independent technical and final audit.* The words done, finished, complete, ready, production ready,
-bug free, tested and working, fully functional, ships as-is, `LIVE` and `PRODUCTION READY` are
-forbidden.
+Completion wording, always: *Implemented and awaiting independent technical and final audit.*
 
 ---
 
-## 7. What this wave cannot deliver, and why
-
-Recorded so nobody plans around a promise that cannot be kept.
+## 8. What this wave still cannot deliver
 
 | Not deliverable | Reason |
 |---|---|
-| Any end to end verification | `MASTER_GOVERNANCE.md` §14 forbids calling any product system, staging included. Report C-14, owner decision 1. |
-| The authenticated tree behind a public URL | C-22, the privacy policy, is launch blocking and now materially larger than L-14 was written to cover. |
-| A testimonial submission surface matching the owner's stated mechanism | MF-01. The confirmed contract has no video field. |
-| Any hot lead alerting section, copy or visual | MF-02. No contract, no matrix row, no evidence. `CLAUDE.md`'s mandate cannot be honoured. |
-| A decision on how much of the product the website hosts | MF-03. Report C-27. |
-| Any price, quota or feature to package mapping authored in the website | PK-04, PK-05, PK-06. Prices are served by `GET /plans`, never authored. |
-| Any named portal integration | F-06, unchanged. Not in the handoff. |
-| Any vendor logo | Trademark permission, not evidence. Report C-11. |
-| Voice as a present tense capability | V-01 unchanged. Report C-16. |
-| A working chat, voice or WhatsApp concierge on the website | `RESERVED` (handoff §10). |
-| A demo booking backend | `PROPOSED` (handoff §10). Cal.com remains an existing external option. |
-| Photography, videos or product captures | AS-05 to AS-07 do not exist, and LUXURY D-04 is unanswered. Every surface ships as a `pending` frame, which is honest. |
-| Clearance of any of the fourteen legal dependencies | No chat may clear a legal hold. Counsel track, running in parallel from now. |
+| Any end-to-end verification | Needs the owner's §14 staging ratification **and** an explicitly approved target. v2 §A item 1 permits it in principle; governance has not yet been amended |
+| The authenticated tree behind a public URL | **L-14, launch blocking**, and materially enlarged by signup, sessions, team data, uploads and checkout |
+| Any price, anywhere | **No pricing authority exists in the backend.** MF-10 is an owner and legal question, not a formatting one |
+| A testimonial video field | MF-01. `media_ref` is a string; there is no upload pipeline. **BACKEND IMPLEMENTATION REQUIRED** |
+| Any hot lead surface or claim | Out of scope for the website. `CLAUDE.md`'s mandate cannot be honoured |
+| A dashboard | AD-01. A website and owner decision, with `/{locale}/app` recommended |
+| A demo booking backend | **PROPOSED.** Cal.com remains an existing external option |
+| A chat, voice or WhatsApp concierge | **RESERVED** |
+| A public WhatsApp CTA | No number exists. R7 forbids inventing one |
+| Any vendor logo | Trademark permission, not technical evidence |
+| Named portal integrations | Not in v2. `REJECTED` unchanged |
+| Voice as a present-tense capability | V-01 unchanged. Connecting a voice channel is not evidence of voice AI |
+| A published language count | The twelve certified AI runtime languages describe the AI runtime, not the website. B-07 unchanged |
+| Photography, videos, product captures | None exist. Every surface ships as a `pending` frame, which is honest |
+| Clearance of any legal dependency | No chat may clear a legal hold |
 
 ---
 
 ## Status
 
-Integration wave planned: authority ranking fixed, twelve non negotiable rules, a fifteen row skills
-and access assessment with no installation and no general n8n access requested, nine chats plus a
-standing audit role across five waves with exclusive and collision proof file ownership, per chat
-responsibility, allowed and forbidden files, dependencies, inputs, outputs, commit strategy and
-acceptance criteria, a single commit procedure for the whole wave, the three chats that can start
-safely in parallel right now, and an explicit list of what this wave cannot deliver.
+Wave replanned against export-v2 and the AF addendum, both SHA256 verified. Twenty binding facts
+fixed. Thirteen chats across eight waves, with exclusive and provably disjoint file ownership, per
+chat responsibility, allowed and forbidden files, dependencies, tests, commit strategy and acceptance
+criteria. Three chats can start immediately in parallel. Repository hygiene is a hard precondition
+for every chat that touches an environment variable.
 
 No page implemented. No API built. No system contacted. Nothing pushed, merged or deployed.
 **No production readiness claim made.**
