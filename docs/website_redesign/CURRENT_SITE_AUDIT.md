@@ -4,6 +4,8 @@
 **Audit date:** 2026-08-30
 **Amended:** 2026-08-31 — Wave A4. Corrections to §4 (incomplete `/v2` inventory) and §15
 (A-01 disagreement between documents); new §19 (legacy risk register).
+**Amended:** 2026-09-01 — Wave V4. New §19.3 (backend export tracking state) and §19.4
+(the owner-ratified hygiene sequence). Still **no remediation performed**.
 **Branch at audit time:** `website_enterprise_redesign` (forked from `main` @ `9943660`)
 **Scope:** Factual inventory of the existing codebase. No judgement of copy truthfulness —
 that belongs to `PRODUCT_TRUTH.md` / `CLAIMS_MATRIX.md`.
@@ -474,6 +476,65 @@ repository.** Introducing a server-only secret-bearing variable while build outp
 and the ignore file is two lines long is unsafe by construction, regardless of how carefully
 the variable itself is handled.
 
+**This is now owner-ratified as binding** (`MASTER_GOVERNANCE.md` §14.6), not merely
+recommended. See §19.4.
+
+### 19.3 Backend export tracking state (added 2026-09-01)
+
+Four backend export files sit in `docs/website_redesign/backend_handoff/`. **Three are
+untracked, including the current technical authority and its addendum.** Verified 2026-09-01.
+
+| File | Tracked | Role |
+|---|---|---|
+| `WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2.md` | **No** | **Rank 1a — the current technical authority** |
+| `WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2_AF_ADDENDUM_v1.md` | **No** | Rank 1b — AF-01, AF-04, AF-07 only |
+| `WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md` | **No** | **HISTORICAL.** Superseded; no status is derived from it |
+| `WEBSITE_UX_AF_REQUIREMENTS_EXPORT_v1.md` | Yes | **Not** a technical authority — a website-authored requirement register |
+
+**Why this matters.** The document the entire integration wave now depends on is not under
+version control. It can be lost by a routine clean, is invisible to any other clone, and
+cannot be diffed when a later export arrives. The two current exports were hash-verified by
+the reconciliation instance before being relied upon, and both digests are recorded there, so
+a verified baseline exists — but only outside version control.
+
+**Both current exports were read in full by this wave and contain no secret, key, token,
+credential, environment value or customer record.** They carry endpoint contracts, field
+names, status vocabulary and environment variable **names** only. They are safe to commit.
+
+**Owner-ratified:** the handoffs **may be versioned after a successful hygiene and secrets
+check** (`MASTER_GOVERNANCE.md` §14.7). **This wave commits none of them.** They are the
+owner's files, and versioning them is the hygiene wave's first action, not this one's — after
+the ignore rules exist, so that the commit lands in a repository that is safe to hold them.
+
+One incidental note, recorded because it affects the guard: the exports legitimately contain
+the retired-host **pattern list** and secret-shaped **variable names**, as a search-and-
+eliminate instruction. The build guard must therefore be scoped to application source and
+build output, and **never pointed at the documentation directory**, or it will fail on its own
+specification.
+
+### 19.4 The owner-ratified hygiene sequence (added 2026-09-01)
+
+> **Ratified:** repository hygiene is **mandatory before any secret or server-boundary
+> configuration is introduced.**
+
+| Order | Step | Covers |
+|---|---|---|
+| **1** | Untrack build output, build information, the retired tooling configuration and local developer settings. Extend the ignore rules. | L-R1, L-R3, L-R4, L-R5, L-R6 |
+| **2** | Add the build guard that fails on a retired host or a secret-shaped literal, scoped to application source and build output only. | R8, §17.4 |
+| **3** | Version the backend exports, after re-reading each in full for secrets. | §19.3, §14.7 |
+| **4** | **Only then:** any environment variable, any server-boundary configuration, any staging target. | §14.5, §14.6 |
+| — | Separately, at implementation time: replace the absolute production self-links with relative paths. | L-R7 |
+
+**No wave may reorder this.** Step 4 before step 1 is the failure mode the whole register
+exists to prevent.
+
+**The hygiene wave runs alone.** Untracking operates on the whole index, so any concurrent
+commit from another chat would be swept into it. That is the same mechanism that produced the
+three recorded commit collisions.
+
+**This wave performs none of it.** Nothing is untracked, ignored, deleted, rotated, moved or
+committed beyond the four documents it owns.
+
 ---
 
 ## Consolidated findings
@@ -509,12 +570,19 @@ physically present, and §15.1 records exactly what this project does and does n
 
 ## Status
 
-Audit amended against the canonical technical handoff and the final reconciliation: the
-`/v2` inventory corrected, the A-01 disagreement between three documents recorded rather than
-papered over, a seven-item legacy risk register added with no secret content and no
-remediation performed, and the consolidated findings re-graded.
+Audit amended twice.
 
-No file outside the four documents owned by this wave was changed. No cleanup was performed.
-No secret value was reproduced. **No production readiness claim is made.**
+**2026-08-31 (Wave A4):** the `/v2` inventory corrected, the A-01 disagreement between three
+documents recorded rather than papered over, a seven-item legacy risk register added with no
+secret content, and the consolidated findings re-graded to 17 — 0 P0, 9 P1, 8 P2.
+
+**2026-09-01 (Wave V4):** the backend export tracking state recorded — three of four files
+untracked, including the current technical authority — and the owner-ratified hygiene sequence
+written down as a four-step order that no wave may reorder. The finding count is unchanged;
+export-v2 corrected contract facts, not the state of this repository.
+
+**No remediation was performed in either amendment.** Nothing was untracked, ignored, deleted,
+rotated or moved. No file outside the four documents owned by this wave was changed. No secret
+value was reproduced. No system was contacted. **No production readiness claim is made.**
 
 **Implemented and awaiting independent technical and final audit.**
