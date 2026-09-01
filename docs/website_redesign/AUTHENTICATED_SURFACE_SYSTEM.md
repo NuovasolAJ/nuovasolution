@@ -221,11 +221,14 @@ All routes are **PROPOSED**. None exists. `[locale]` is `en` or `es`, pending ow
 | `/[locale]/login` | Login | §5.2 |
 | `/[locale]/onboarding` | Wizard index | §7 |
 | `/[locale]/onboarding/[step]` | Step page, ten keys | §8 |
-| `/[locale]/account/plan` | Plan, subscription, upgrade, checkout handoff | §10 |
+| `/[locale]/connect/callback` | **Shared OAuth return route**, all providers | §7.7 |
+| `/[locale]/account/plan` | Plan access, subscription, upgrade, checkout handoff — **price free** | §10 |
 | `/[locale]/account/testimonial` | Testimonial, legally held, not publicly linked | §11 |
-| Dashboard destination | **BLOCKED on MF-03** | §9.3 |
+| Dashboard destination | Route is **website owned**; the backend supplies the readiness signal only. Owner decision outstanding | §8.10 |
 
-`Log in` is not rendered in the public navigation until MF-03 is answered
+`Log in` is not rendered in the public navigation until the owner confirms the destination
+route. The backend half is resolved — the readiness signal is confirmed and the route is
+website owned — so this is an owner decision, not a missing backend field
 (`LUXURY_UX_MEDIA_SYSTEM.md` §5.2, `INTEGRATION_CONTRACT.md` §4, conflict C-03).
 
 ---
@@ -263,6 +266,27 @@ Eight distinct inline SVG glyphs, 16 px, 1.5 px stroke, `currentColor`, no fill 
 
 They are distinct in **shape**, so the set survives greyscale, low vision and monochrome printing.
 No glyph from this set is reused for any non status purpose anywhere on the site.
+
+### 3.3.1 Wire values to UI states (added by V3)
+
+The eight values above are **UI states**. Export v2's endpoints do not all return those names,
+so the mapping is fixed here rather than left to each surface.
+
+| Source | Wire value | UI state |
+|---|---|---|
+| `GET /onboarding/state` → `steps[].status` | `completed` · `needs_action` · `externally_pending` · `optional` · `locked_by_plan` | Same names. These five are the wizard-step vocabulary and map one to one |
+| `GET /connect/{provider}/status` | `connected` | `connected` |
+| | `pending` | **`externally_pending`** — pending means waiting on the provider, and must carry the left rule |
+| | `error` | **`action_required`** |
+| | `locked_by_plan` | `locked_by_plan` |
+| `GET /crm/status` | `connected` · `pending` · `error` | As above |
+| | `degraded` (also HTTP `424`) | `degraded` — the row states connected **and** degraded |
+| `GET /crm/health` → `mapping_validation.ok = false` | — | **`action_required`**, derived. This is the health signal, not a transport status, and it is the only place `action_required` is produced by inspection rather than by a returned value |
+| `GET /paid/status` | `connected` and `ready` are **two separate booleans** | `connected && ready` → `connected`. `connected && !ready` → **`externally_pending`**. Never `connected` on `connected` alone (§8.6) |
+
+**BINDING.** A wire value with no mapping above is **never rendered**. It resolves to the
+generic failure state for its HTTP status and is reported as a defect. Inventing a UI state for
+an unmapped value is how `externally_pending` gets shown as done.
 
 ### 3.4 Verified contrast
 
@@ -317,7 +341,7 @@ This closes gap 12. Envelope: `{ ok, code, message, details, request_id }` (hand
 | HTTP | Meaning | Treatment |
 |---|---|---|
 | `200` / `201` | ok | Success state naming what happened and what happens next. `role="status"`, focus moved to it. Never a generic acknowledgement |
-| `202` | `externally_pending` | **Pending, never done.** The surface adopts the `externally_pending` row treatment (§3.2) and a `StatusNote` naming the provider (blocked on AF-04) |
+| `202` | `externally_pending` | **Pending, never done.** The surface adopts the `externally_pending` row treatment (§3.2) and a `StatusNote` naming the provider (§7.7 names table) |
 | `400` | `invalid_input` | Field level. `aria-invalid`, `aria-describedby`, error summary above the form with focus moved to it |
 | `401` | `no_session` / `token_expired` | §5.4. Silent refresh, one retry, then the session expired surface. **Never** a raw error |
 | `403 forbidden` | insufficient role | The control renders read only with a one line reason. Not an error banner |
@@ -340,14 +364,33 @@ This closes gap 12. Envelope: `{ ok, code, message, details, request_id }` (hand
 
 ### 4.3 The `code` field
 
-**BLOCKED on MF-04.** The enumeration is not in the handoff. Until it is supplied:
+> **Corrected by V3.** MF-04 is **CONFIRMED** by export v2 §F, which enumerates a
+> website-safe `code` for every exported surface. The earlier "blocked, write copy per HTTP
+> status" rule is void.
 
-- Error copy is written per **HTTP status**, not per `code`.
-- `message` from the envelope is described by the contract as display safe, but this system
-  **does not render it as the primary error text** — an unenumerated server string cannot be
-  guaranteed to be in the active language or free of technical identifiers. It is rendered only
-  in the support affordance, beneath `request_id`, at `caption`.
-- When MF-04 arrives, per `code` copy replaces per status copy without a layout change.
+- **Error copy is written per `code`**, not per HTTP status. Each code carries one authored
+  sentence in EN and ES, owned by `COPY_AND_CONVERSION_MASTER.md`.
+- **Global codes**, valid on any endpoint: `no_session`, `token_expired`, `forbidden`,
+  `cross_tenant`, `not_on_plan`, `invalid_input`, `unprocessable`, `rate_limited`,
+  `server_error`, and `externally_pending` — which is **not an error** and renders as pending.
+- **Surface-specific codes** are listed with their flows: `email_exists`, `captcha_failed`,
+  `invalid_grant`, `email_not_confirmed`, `submission_already_pending`,
+  `extension_already_granted`, `submission_id_required`, `consent_required`, `not_allowed`,
+  `already_subscribed`, `invalid_wizard_action`, `unsupported_file_type`, `file_too_large`,
+  `invalid_asset_kind`, `cross_tenant_asset`, `upload_not_found`, `employee_cross_tenant`,
+  `office_out_of_scope`, `invalid_role`, `conflict`, `invalid_provider`, `degraded`,
+  `invalid_source`, `source_not_authorized`, and the two OAuth return reasons in §7.7,
+  `user_cancelled` and `provider_error`.
+- **Retryability is a property of the code**, supplied by the contract, and drives whether a
+  retry affordance is offered. `rate_limited` retries only after the interval the response
+  states; the website never invents one.
+- **The code itself is never rendered.** It selects a sentence; it is not the sentence, and it
+  never appears in the interface (§1.4).
+- `message` from the envelope is **not** rendered as the primary error text. A server string
+  cannot be guaranteed to be in the active language. It is rendered only in the support
+  affordance, beneath `request_id`, at `caption`.
+- **An unrecognised code** falls back to the generic failure state for its HTTP status. It is
+  never rendered raw, and never treated as success.
 
 ### 4.4 Where errors appear (BINDING)
 
@@ -414,12 +457,12 @@ Contract: `POST {NUOVA_API_BASE}/signup { name, email, password, language, agenc
 | **Desktop Behavior** | 7 / 5 split. Submit is auto width, left aligned. The right column is `position: sticky` from `--shell-h` + 32 px only if the form exceeds the viewport |
 | **Tablet Behavior** | Single column, `container-narrow`, form first. Right column becomes a hairline separated block beneath the form, above the footer |
 | **Mobile Behavior** | Single column, page gutter 20 px. Fields 52 px tall. Submit full width, in flow at the end of the form — **not sticky**, so the keyboard never covers it. Right column content retained beneath, never dropped |
-| **Loading State** | Shared §5.0. Submit label swaps at locked width. The captcha widget occupies a reserved box from first paint, sized to its provider's dimensions — **blocked on MF-08**, so the reservation is a named constant to be set when the provider is known |
+| **Loading State** | Shared §5.0. Submit label swaps at locked width. The captcha widget occupies a reserved box from first paint, sized to its provider's dimensions — the provider is an **owner decision (MF-08)**, so the reservation is a named constant to be set once it is chosen |
 | **Empty State** | n/a. The form is the initial state |
 | **Error State** | `409` email exists: a form level message that routes to login, with the entered address preserved. `400`: field level. `429`: human message plus retry, submit stays mounted. `5xx`: generic plus support affordance. Password rules are stated **before** submission, never revealed only on failure |
 | **Success State** | If `session` is returned, navigate to the wizard at `resume_step`. If only a login hint, route to login with a `role="status"` message stating the account exists and what to do next. **These two outcomes must not share one message** |
 | **Resume State** | No draft persistence. A returning visitor with a session is redirected away from signup to the wizard |
-| **Blocked State** | Until the owner releases the action (activation register), the submit renders as the §5.9 honest state and offers *Book a demo*. **The word "free" and "no credit card required" do not appear** until T-01 and owner decision 4 resolve |
+| **Blocked State** | Until the owner releases the action (activation register), the submit renders as the §5.9 honest state and offers *Book a demo*. **No payment control, no card field and no billing step exists on this surface** — export v2 §C1 confirms no payment method is collected at signup. The *wording* that describes the trial remains owned by `COPY_AND_CONVERSION_MASTER.md` and cleared by `CLAIMS_MATRIX.md`; this document authors none of it |
 | **Connection State** | n/a. The BFF is either reachable or the error mapping applies |
 | **Accessibility** | Shared §5.0, plus: `autocomplete` `name`, `email`, `new-password`, `organization`. `type="email"` with `inputmode="email"`. Password field has a visibility toggle that is a real button with an accessible name and `aria-pressed`. The captcha must have an accessible non visual alternative; a provider without one is rejected at MF-08 |
 | **Keyboard Behavior** | Shared §5.0. `Enter` in any field submits. Tab reaches the captcha before the submit |
@@ -427,9 +470,9 @@ Contract: `POST {NUOVA_API_BASE}/signup { name, email, password, language, agenc
 | **Reduced Motion** | Shared §5.0 |
 | **Performance** | The captcha script is the only third party asset on the route and loads **after** the form is interactive, never render blocking. LCP is the `h1` |
 | **Responsive Spacing** | Shared §5.0. Form to privacy line `space-6`. Privacy line to login link `space-8` |
-| **Validation Presentation** | Shared §5.0. `language` values are **blocked on MF-09**; until supplied, the control is not rendered and the locale is taken from the route. Password requirements displayed as a static `caption` list, not as a live strength meter |
+| **Validation Presentation** | Shared §5.0. `language` is **confirmed** by export v2 §C7: the website locale set is `{en, es}` and the field is not backend-enum-enforced. The website therefore **constrains its own UI to `{en, es}` and passes the active route locale** — it does not render a free-text language control, and it does not offer a language it has no locale for. Customer communication language and AI runtime languages are separate concepts and are **not** collected on this surface. Password requirements are a static `caption` list, never a live strength meter |
 | **Legal** | L-07 consents and controller/processor roles. **L-14 privacy policy, launch blocking.** The privacy line sits at the point of collection with a real link |
-| **Status** | BACKEND CONFIRMED · WEBSITE INTEGRATION PENDING · LEGAL REVIEW PENDING · blocked on MF-08, MF-09 · CTA wording OWNER DECISION PENDING |
+| **Status** | BACKEND CONFIRMED · WEBSITE INTEGRATION PENDING · LEGAL REVIEW PENDING · captcha provider **OWNER DECISION REQUIRED** (MF-08) · CTA wording OWNER DECISION PENDING |
 
 ### 5.2 Login
 
@@ -553,11 +596,17 @@ client side**.
 
 ### 6.2 Trial reminder
 
-Closes part of gap 4. **No reminder contract exists (MF-06).**
+Closes part of gap 4.
+
+> **Corrected by V3.** MF-06 is **CONFIRMED** by export v2 §C5. Reminders are **backend
+> driven and backend sent**: the stages are `reminder_3d` (three days before the trial ends),
+> `reminder_1d` (one day before), plus a separate `testimonial_invite` stage. The website does
+> **not** send reminders; it reflects trial status. The earlier "no reminder contract exists"
+> statement is void.
 
 | Field | Specification |
 |---|---|
-| **Page Purpose** | Raise the banner's emphasis as the trial nears its end, without inventing a cadence |
+| **Page Purpose** | Raise the banner's emphasis as the trial nears its end, matching the cadence the backend already uses |
 | **Layout** | The §6.1 band, unchanged in structure |
 | **Information Hierarchy** | Identical. Only the statement's wording and the affordance's level change |
 | **Desktop / Tablet / Mobile Behavior** | Identical to §6.1 |
@@ -565,8 +614,10 @@ Closes part of gap 4. **No reminder contract exists (MF-06).**
 | **Accessibility** | Identical. **The band's `role="status"` does not re announce on every navigation** — it announces on change of `status`, not on re render |
 | **Keyboard / Focus / Reduced Motion / Performance / Spacing / Validation** | Identical to §6.1 |
 | **The only permitted escalation** | The affordance rises from Tertiary to Secondary, and the statement's leading glyph changes to `clock` in `signal-attention`. **The band never changes colour, never becomes a full width alert, never becomes a modal, never becomes a repeated interstitial, and never blocks the page** |
-| **What is NOT specified** | The threshold at which escalation occurs, and whether reminders are sent by the backend. **Blocked on MF-06.** Until supplied, the escalation exists in the design system but is not wired to any threshold, and no reminder is claimed to be sent |
-| **Status** | Partially BACKEND CONFIRMED · **blocked on MF-06** |
+| **Escalation thresholds** | The band's emphasis rises at the **same two points the backend already uses** — three days and one day before the trial ends — so the interface and the outgoing reminders agree. **Both thresholds are still derived from `trial_end` and `days_left` as served**; the numbers 3 and 1 are configuration constants named once, never conditions scattered through the surfaces, and never a countdown the website computes independently |
+| **What the website never claims** | That it sent a reminder. Reminders are backend driven. No surface states or implies that a message was delivered, when, or to whom |
+| **`testimonial_invite`** | A separate backend stage. It is **not** rendered by the trial band, and it does not alter the band's escalation. The testimonial surface remains legally held (§11) |
+| **Status** | BACKEND CONFIRMED (export v2 §C5) · WEBSITE INTEGRATION PENDING |
 
 ### 6.3 Trial expiry
 
@@ -764,40 +815,102 @@ Closes gap 15. This is the specification the report names as missing: the OAuth 
 
 **The inbound leg**
 
-The provider returns to the **BFF callback** (handoff §5), which redirects the browser back to
-the step. **The query parameter contract for that redirect is not specified in the handoff — see
-AF-01.** Until it is supplied, the step's return handling is specified as a state machine over
-four outcomes, and the parameter names are a single constant to be set when AF-01 arrives:
+> **Corrected by V3.** AF-01 is answered. Two earlier assumptions are void: the BFF does
+> **not** redirect back to the step route, and the return is **not** a four-value state
+> machine on the wire.
 
-| Return outcome | Treatment |
+The provider returns to the **BFF callback**, which redirects the browser to **one shared
+website route** for every provider:
+
+```
+/[locale]/connect/callback?provider={p}&status={success|error}&correlation={state}[&reason={code}]
+```
+
+| Parameter | Contract |
 |---|---|
-| **Returned, connected** | The row re reads `GET /connect/{provider}/status`. On `connected` the row adopts the `connected` treatment and a `role="status"` message states what is now connected |
-| **Returned, externally pending** (`202`) | `externally_pending` treatment with the left rule. A `StatusNote` names the provider being waited on — **provider display names are blocked on AF-04 / MF-11**. Until supplied the note states that an external approval is outstanding, without naming a party it cannot name |
-| **Cancelled at the provider** | The row returns to its **previous** status unchanged. A `body-s` note states that nothing was connected and offers the control again. **Not an error.** No red, no `signal-critical` |
-| **Provider returned an error** | `action_required` treatment. A `StatusNote` states that the provider refused, offers reconnect as a Secondary control, and offers the support affordance. **No provider error string is rendered** — it is unenumerated, may be in the wrong language, and may carry technical identifiers (§1.4) |
+| `provider` | The provider the agency was connecting. Used to resolve the display name (§7.7 names table) and the step to return to |
+| `status` | **`success \| error` only.** There is no third value |
+| `correlation` | The opaque server-issued state. **Never a token.** It is not rendered (§1.4) |
+| `reason` | Present when `status=error`. **`user_cancelled`** or **`provider_error`** |
+
+**The shared callback route.** `/[locale]/connect/callback` is a thin transitional surface, not
+a destination. It reads the parameters, resolves the originating step from `provider`, and
+navigates there, carrying the outcome. It renders only a reserved-height region at the shell's
+standard dimensions so the transition costs no layout shift, and it is **never** a page the
+agency is left sitting on. If a parameter set is unusable, it navigates to the wizard index and
+surfaces the outcome there rather than dead-ending.
+
+**The four UI outcomes, resolved from two parameters**
+
+| Wire | UI outcome | Treatment |
+|---|---|---|
+| `status=success` | **Connected** | The row re reads `GET /connect/{provider}/status`. On `connected` it adopts the `connected` treatment and a `role="status"` message states what is now connected |
+| `status=success`, status read returns `202` / `pending` | **Externally pending** | `externally_pending` treatment with the left rule, plus a `StatusNote` naming the provider being waited on. **Never a check, never positive colour** |
+| `status=error&reason=user_cancelled` | **Cancelled — neutral and resumable** | The row returns to its **previous** status, unchanged. A `body-s` note states that nothing was connected and offers the control again. **Not an error: no `signal-critical`, no `action_required`, no error copy, no support affordance, no retry framing.** The step remains fully usable |
+| `status=error&reason=provider_error` | **Provider error** | `action_required` treatment. A `StatusNote` states that the connection did not complete, offers reconnect as a Secondary control, and offers the support affordance. **No provider error string is rendered** — it is unenumerated and may carry technical identifiers (§1.4) |
+
+**Fail-safe (BINDING).** Anything that is not an explicit `status=success` is an error. An
+absent, unrecognised or malformed parameter set, and a `correlation` that does not match, all
+resolve to **`provider_error`** — never to success, and **never to `user_cancelled`**.
+Cancellation is rendered only when the contract explicitly says so, because silently treating an
+unknown failure as a cancellation would hide a real fault behind a neutral message.
+
+**Not persisted.** The cancellation distinction lives in the redirect only. `GET
+/connect/{provider}/status` has no cancellation state, so a cancelled attempt is
+indistinguishable from never having started once the redirect is consumed — which is the correct
+outcome, since nothing was connected. The website therefore renders the neutral note from the
+return, and **does not** try to recover it later. A persisted, queryable cancellation outcome is
+recorded as backend work in §15.1; it is not required for this behaviour.
 
 **Status refresh: the no polling rule (BINDING)**
 
-The handoff does not define whether `GET /connect/{provider}/status` may be polled or at what
-interval (**AF-02**). Inventing a cadence would put avoidable load on a production provider
-integration, which the systems isolation directive forbids by intent.
+> **Confirmed by V3.** AF-02 is answered: export v2 §D states there is **no polling contract**
+> and no push channel, and §A item 6 records "No invented polling" as binding.
 
-Therefore:
-
-- Status is read **on step entry** and **on return from the provider**. Nothing else.
+- Status is read **after the callback**, **on entry to the surface**, and **on an explicit
+  refresh**. Nothing else.
 - An explicit **Check again** Tertiary control re reads status on demand. It is rate limited
   client side to one call every 10 seconds, purely to prevent a stuck key repeat, and it states
   when it last checked.
-- **No background polling. No interval. No websocket. No optimistic status.**
-- When AF-02 supplies a supported cadence or a push channel, this rule is replaced without a
-  layout change, because the row already reserves its dimensions.
+- **No background polling by default. No websocket. No optimistic status.**
+- Export v2 permits a bounded, website-owned auto-refresh of a pending connection. If it is ever
+  enabled it must: stop on a terminal state (`connected`, `error`, `degraded`), stop when the
+  agency leaves the surface, stop when the tab is hidden, use a conservative interval, and
+  **never be presented as a backend guarantee**. It is off unless the owner enables it.
+- **The backend guarantees nothing about refresh.** No surface may promise that a pending
+  connection will update on its own.
+
+**Provider display names (BINDING)**
+
+> **Confirmed by V3.** AF-04 is answered by the AF addendum. Text only. **No logo until brand
+> approval.** No internal identifier, adapter key, vendor or carrier name is ever rendered.
+
+| Channel | Display name |
+|---|---|
+| Email | **Gmail** — the account the agency connects |
+| WhatsApp | **WhatsApp** |
+| Calendar | **Google Calendar** · **Microsoft Outlook** |
+| Voice | **Voice** or **Phone**, generically |
+| CRM | **HubSpot** · **Pipedrive** · **Zoho CRM** · **Salesforce** |
+| Paid acquisition | **Google Lead Forms** · **Meta Lead Ads** · **Click-to-WhatsApp** |
+
+**Voice stays generic (BINDING).** The voice layer's internal registry holds engineering and
+carrier descriptions, not customer-facing product names. Rendering one would disclose the
+internal telephony stack. Voice is named **Voice** or **Phone** and nothing else, in every
+state, on every surface, until an explicit owner and brand decision says otherwise. Technical
+existence is never inferred as branding permission.
+
+**Scope.** These names are cleared for the **authenticated product interface**. Naming any
+provider on the public marketing tree is a separate question governed by `CLAIMS_MATRIX.md`,
+and backend confirmation does not convert a claims verdict.
 
 **The five connection situations named in the brief**
 
 | Situation | Status value | Treatment |
 |---|---|---|
-| **Connection pending** | `externally_pending` | §3.2 plus the left rule plus a `StatusNote` naming the provider when AF-04 allows |
+| **Connection pending** | `externally_pending` | §3.2 plus the left rule plus a `StatusNote` naming the provider from the table above |
 | **Connection failed** | `action_required` | §3.2. Reconnect as a Secondary control. The support affordance. No raw provider string |
+| **Cancelled by the agency** | previous status, unchanged | Neutral resumable note. **Not a failure state**, and not one of the eight status values — nothing was connected, so nothing changed |
 | **Reconnect** | — | A Secondary control on a row that is `degraded`, `action_required`, or previously connected. It repeats the outbound leg. It never silently reuses a stale authorisation |
 | **Permission required** | `needs_action` when the agency's own role is insufficient (`403 forbidden`), rendered read only with a one line reason and the role that is required, in agency language |
 | **Provider action required** | `action_required` | The action lives at the provider, not here. The `StatusNote` states that the agency must act in the provider's own interface, and offers **Check again**. The website never links to an invented provider URL (R7) |
@@ -812,13 +925,14 @@ Closes gap 7. Contract: the projection's `activatable` and `legend`; step 10 `re
 | **Layout** | The `ready` step's plane. `heading-l` summary line → a hairline separated list of **outstanding items only** → the handoff action |
 | **Readiness blocker** | Every row that prevents `activatable` renders as a `StatusRow` with its real status, its detail line and a route back to its step. **Blockers are the same rows as the index, filtered — not a second list with different wording** |
 | **Partial completion** | When `activatable` is false, the summary states that setup is incomplete and lists what is outstanding. It never states a percentage, never a score, never "almost there", and never implies a deadline that does not exist |
-| **`legend`** | The projection carries a `legend`. Its shape is **not specified (MF-05)**. It is rendered, when present, as a hairline separated `caption` list beneath the readiness list, one line per entry, using the §3 glyph set. When absent, nothing renders — no fallback legend is invented |
+| **`legend`** | **Confirmed by V3** (export v2 §G). The projection's `legend` is an object keyed by the five wizard-step statuses — `completed`, `needs_action`, `externally_pending`, `optional`, `locked_by_plan` — each carrying a description string. It is rendered as a hairline separated `caption` list beneath the readiness list, one line per entry, each line pairing the §3 glyph for that status with the served description. Keys are never rendered; the glyph and the description carry the meaning. When a key is absent, its line is omitted — no fallback legend is invented |
+| **`readiness` detail** | The `ready` step carries `readiness: { activatable, blocked_mandatory[], blocked_features[] }`. **`blocked_mandatory` produces the blocker list; `blocked_features` produces the separate `locked_by_plan` list beneath it.** The two are never merged — a missing prerequisite and an unentitled capability are different situations with different routes |
 | **`optional` rows** | Never counted as blockers, never listed under readiness, and never presented as reducing completeness |
 | **`externally_pending` rows** | Listed as outstanding. **Never as done.** The agency is told the item is waiting on an external party, so it does not read as their own inaction |
 | **`locked_by_plan` rows** | Listed separately, beneath the blockers, under their own hairline, with the upgrade route. They are not failures |
 | **Empty state** | When `activatable` is true and nothing is outstanding, the list is replaced by one `heading-m` line and the handoff action. **No celebration, no illustration, no badge** |
 | **Everything else** | Shared §5.0 |
-| **Status** | BACKEND CONFIRMED · WEBSITE INTEGRATION PENDING · `legend` blocked on MF-05 |
+| **Status** | BACKEND CONFIRMED · WEBSITE INTEGRATION PENDING |
 
 ### 7.9 Mobile wizard at 375 px (BINDING — closes gap 17)
 
@@ -876,7 +990,7 @@ overlaps a form field.
 | **Performance** | Server rendered from one projection fetch. The rail and the index share one component. The step routes share one client chunk. `content-visibility` is **not** used on the index, because every row is above the fold on desktop and the reserved heights are small |
 | **Responsive Spacing** | h1 to progress `space-6`; progress to caption `space-3`; caption to list `space-10`; list to page end `section-y-default` |
 | **Validation Presentation** | Shell level: none. Per step: shared §5.0 |
-| **Status** | BACKEND CONFIRMED · WEBSITE INTEGRATION PENDING · blocked on MF-05 |
+| **Status** | BACKEND CONFIRMED · WEBSITE INTEGRATION PENDING · step detail shapes confirmed (export v2 §G) |
 
 ---
 
@@ -898,7 +1012,7 @@ L-07 and L-14 throughout.
 | **Page Purpose** | Confirm the owner's own contact identity. `completed` when a contact email is present |
 | **Information Hierarchy** | h1 → lead → three fields → action row |
 | **Empty State** | Pre populated from signup. A blank state means the projection disagrees with signup and is surfaced as such, not silently blanked |
-| **Validation Presentation** | Email format on blur. Language selection blocked on MF-09 (§5.1) |
+| **Validation Presentation** | Email format on blur. Language is the route locale, constrained to {en, es} (§5.1) |
 | **Performance** | No fetch beyond the projection |
 
 ### 8.2 `agency`
@@ -914,18 +1028,29 @@ L-07 and L-14 throughout.
 
 ### 8.3 `branding`
 
-Uploads. See §9 for the full upload law.
+> **Corrected by V3.** AF-03 is answered. **Footer and signature are text, not uploads.** The
+> earlier "three upload blocks" structure is void. Only **logo** and **email banner** are
+> uploaded assets. Export v2 §E: footer is localized legal text; signature is a mode selection
+> plus text; the server sanitizes and renders both. MF-07 is also confirmed, so the upload
+> constraints are now known and stated before selection.
+
+**Two zones, hairline separated.** Zone A is uploads. Zone B is text. They are visually
+distinct — a text field never looks like a receptacle, and the dashed upload border appears
+only in Zone A (`LUXURY_UX_MEDIA_SYSTEM.md` §5.16).
 
 | Field | Specification |
 |---|---|
-| **Page Purpose** | Logo, email banner, and footer or signature. `completed` when branding is configured |
-| **Information Hierarchy** | h1 → lead → three upload blocks separated by hairlines, each: `heading-s` label, one `body-s` line stating where the asset appears, the upload zone or the current asset, and the replace and remove controls |
-| **Empty State** | Each block shows its upload zone. **No placeholder logo, no sample banner, no preview of a fictional email** (§1.3 rule 1) |
-| **Error State** | `400 unsupported_file_type`, `400 file_too_large`, `403 cross_tenant_asset`, `422 upload_not_found` per §9.6. Limits are **blocked on MF-07**, so the stated constraint text is a single constant, and client side pre validation is **not** performed against invented limits |
-| **Blocked State** | **The `kind` value for footer or signature is absent from the contract (AF-03).** `POST /branding/upload-init` enumerates `"logo" \| "email_banner"` only. The footer or signature block is therefore specified in full and rendered in the §5.9 honest state until AF-03 is supplied. It is not wired to a guessed `kind` |
-| **Validation Presentation** | §9.5 |
-| **Performance** | The signed upload URL is minted by the BFF; the browser uploads directly to it. Previews are rendered from the committed `stored_url`, never from a client side object URL after commit |
-| **Status** | BACKEND CONFIRMED for logo and banner · **footer or signature BLOCKED on AF-03** · limits blocked on MF-07 |
+| **Page Purpose** | Logo and email banner as uploads; footer and signature as text. `completed` when branding is configured |
+| **Information Hierarchy** | h1 → lead → **Zone A: two upload blocks** (logo, email banner), each `heading-s` label + one `body-s` line stating where the asset appears + the zone or the current asset + replace and remove → hairline → **Zone B: footer and signature**, as text fields |
+| **Zone B — footer** | Localized legal footer text, one field **per active locale**, each labelled with its locale, `<textarea>` at a reserved height. **Plain text only.** The website never accepts, renders or submits raw HTML, and never offers a rich text editor. The server sanitizes and renders the responsive HTML and plaintext forms |
+| **Zone B — signature** | A **mode selection** followed by its text. The mode is a native `<select>` of four options, rendered as agency facing labels from the copy document — **never the raw mode tokens** (§1.4). Changing the mode does not clear entered text, and does not change the zone's height: all four modes reserve the same box |
+| **Preview** | Footer and signature are **server rendered**. The website does **not** simulate the outgoing email, does not compose a mock message, and does not display a fabricated email frame — that would be a fabricated product surface (§1.3 rule 1). Where a rendered preview is offered, it is the server's own output or it is absent |
+| **Empty State** | Zone A shows two upload zones. Zone B shows empty fields with their constraints. **No placeholder logo, no sample banner, no specimen signature, no mock email** |
+| **Error State** | Per `code` (§4.3): `unsupported_file_type`, `file_too_large`, `invalid_asset_kind`, `cross_tenant_asset`, `upload_not_found`, `forbidden`. Field level on the zone or field that caused them |
+| **Blocked State** | None remaining in this step. Both upload kinds and the text contract are confirmed |
+| **Validation Presentation** | §9.5. Upload constraints stated before selection. Footer and signature are length validated only where the contract states a limit; none is stated, so the website enforces none |
+| **Performance** | The signed upload URL is minted by the BFF; the browser uploads directly to it. Previews render from the URLs returned by `GET /branding/preview` (§9.4), never from a client side object URL after commit |
+| **Status** | BACKEND CONFIRMED — uploads (export v2 §C6), text contract (§E), preview shape (AF addendum) · WEBSITE INTEGRATION PENDING |
 
 ### 8.4 `team`
 
@@ -935,9 +1060,11 @@ Uploads. See §9 for the full upload law.
 | **Information Hierarchy** | h1 → lead → the invited list → the invite form → action row. **The list comes first** so a returning agency sees state before a form |
 | **Roles** | Four, from the contract: `agent`, `team_lead`, `office_manager`, `agency_admin`. Rendered as a native `<select>` with agency facing names from the copy document and one `caption` line describing the selected role's scope. **Never the raw token** (§1.4) |
 | **Empty State** | One `heading-m` line and the invite form. No sample teammate, no placeholder avatar row |
-| **Error State** | `403 forbidden` renders the whole step read only with the reason. `403 employee_cross_tenant` is treated as a defect per §4.1 with no detail echoed. `409` states that the address is already invited and offers no destructive action |
+| **Error State** | Per `code`: `forbidden` renders the whole step read only with the reason. `employee_cross_tenant` is treated as a defect per §4.1 with no detail echoed. `office_out_of_scope` is a **field level** error on the office control, stating that the selected office is outside the inviter's scope. `invalid_role` is field level on the role control. `conflict` states that the address is already invited and offers no destructive action |
 | **Success State** | The invited row appears in the list with status `externally_pending` until the projection reports an active employee. **An invitation is not a member** |
-| **Blocked State** | `office_id` is optional in the contract, but **no endpoint returns the agency's offices (AF-05)**. The office control is therefore not rendered until AF-05 is supplied; the field is omitted rather than shown empty |
+| **Office control** | **Unblocked by V3** (AF-05 confirmed). Populated from `GET /offices` → `{ offices:[{ office_id, name, is_default }] }`. A native `<select>` showing `name` only; `is_default` marks the preselected option. **`office_id` is an opaque handle and is never rendered** (§1.4) — it is submitted, never shown. The field is **optional**: an explicit "no specific office" option is offered and means tenant level. When the list returns empty, the control is omitted rather than shown empty |
+| **Role gating** | An `office_manager` may invite only into their own office; an `agency_admin` into any. The control renders **only the offices in the inviter's scope**, so the server's `office_out_of_scope` becomes a defence rather than the primary path. Role names are agency facing labels, never the raw tokens |
+| **Blocked State** | None remaining in this step |
 | **Accessibility** | The list is a `<table>` with a caption, or an `<ul>` of `StatusRow`s. Role is announced with the name, never the token |
 | **Validation Presentation** | Email format on blur. Duplicate detection is server side only; the client does not pre check against a list it cannot see |
 
@@ -946,11 +1073,12 @@ Uploads. See §9 for the full upload law.
 | Field | Specification |
 |---|---|
 | **Page Purpose** | Connect email, WhatsApp and Meta, calendar, and voice where entitled |
-| **Information Hierarchy** | h1 → lead → four provider `StatusRow`s, hairline separated, each with its status, one detail line and its control |
-| **Connection State** | §7.7 in full. `externally_pending` during WhatsApp and Meta verification, with the left rule |
-| **Blocked State** | Voice unentitled renders `locked_by_plan` with the upgrade route. `403 not_on_plan` is **never** an error (§4.1). **Connecting a voice channel is not evidence of voice AI capability**; no wording on this surface may imply one (matrix 4.4, V-01 unchanged) |
+| **Information Hierarchy** | h1 → lead → four provider `StatusRow`s, hairline separated, each with its status, one detail line and its control. Rows are named **Gmail**, **WhatsApp**, **Google Calendar** or **Microsoft Outlook**, and **Voice** (§7.7 names table) |
+| **Connection State** | §7.7 in full. `externally_pending` during WhatsApp and Meta verification, with the left rule and a `StatusNote` naming the provider |
+| **Blocked State** | Voice unentitled renders `locked_by_plan` with the upgrade route. `not_on_plan` is **never** an error (§4.1). **Connecting a voice channel is not evidence of voice AI capability**; no wording on this surface may imply one (matrix 4.4, V-01 unchanged) |
+| **Voice naming (BINDING)** | The voice row is labelled **Voice** or **Phone**, generically. **No carrier, vendor, adapter or telephony provider name is ever rendered**, in any state, including errors and the support affordance. Technical existence is not branding permission (AF addendum) |
 | **Empty State** | Four rows, all `needs_action`. That is a full state, not an empty one |
-| **Error State** | §7.7 provider error handling. Named mailbox providers remain forbidden in public claims; inside the authenticated tree the provider name is rendered only when AF-04 supplies the display list |
+| **Error State** | §7.7 provider error handling. Display names are text only; **no provider logo until brand approval**. Public marketing naming remains a `CLAIMS_MATRIX.md` question and is not settled by this surface |
 | **Accessibility** | Each row's accessible name carries provider, status and detail in that order |
 | **Performance** | One status read per provider on entry. **No polling** (§7.7) |
 
@@ -1001,7 +1129,7 @@ Uploads. See §9 for the full upload law.
 | **BINDING scope limit** | **The 3D room based capture wizard belongs to the PX lane. This website links to it and must not rebuild it** (handoff §3 step 9, matrix 2.6 item 6.4). No capture interface, no panorama viewer, no floor plan editor and no asset pipeline is specified here or built here |
 | **Blocked State** | `locked_addon` renders `locked_by_plan` with the upgrade route. **Never an error, never a crossed out row** |
 | **Empty State** | One row. There is no list to be empty |
-| **Uploads** | **No Property Experience asset upload is specified in the contract (AF-06).** Any such upload belongs to the PX lane. The website specifies no upload surface for it. §9 applies only if and when a contract exists |
+| **Uploads** | **Confirmed out of scope by V3** (AF-06, export v2 §E). Property Experience assets are owned by the PX lane and are scoped to a tenant and a property; a publish referencing an asset it does not own **fails closed**. Capture and authoring are PX-lane surfaces. **The website builds no upload surface, no second capture wizard and no asset manager for Property Experience** — it reads the entry state and links out |
 | **Claims** | K-01 to K-12 keep their existing verdicts; **K-05 is LEGAL REVIEW PENDING**. No capability wording on this surface beyond the entry state |
 
 ### 8.10 `ready`
@@ -1012,7 +1140,8 @@ Specified in full at §7.8.
 |---|---|
 | **Page Purpose** | State readiness and hand off |
 | **Success State** | When `activatable` is true, one `heading-m` line and the handoff action. No celebration (§1.2 item 21) |
-| **Blocked State** | **The dashboard destination is BLOCKED on MF-03.** Until the owner supplies a URL, a route, or a statement that the dashboard is inside this website, the handoff action renders in the §5.9 honest state, states that the next step is being prepared, and offers a real alternative path. **No invented destination, no placeholder URL, no dead control** (R7) |
+| **Handoff signal** | **Confirmed by V3.** The backend signal is the projection's `activatable` plus a successful tenant activation. **The backend owns no route.** The destination is website owned |
+| **Blocked State** | The **route** is an outstanding owner decision, not a missing backend field. Until the owner confirms it, the handoff action renders in the §5.9 honest state, states that the next step is being prepared, and offers a real alternative path. **No invented destination, no placeholder URL, no dead control** (R7). Export v2 §C4 records a recommended target; a recommendation is not a confirmation, and this document does not adopt one on the owner's behalf |
 
 ---
 
@@ -1025,12 +1154,12 @@ applies, and where it may not be used at all.
 
 | Asset | Contract | Status |
 |---|---|---|
-| **Logo** | `kind:"logo"` | BACKEND CONFIRMED · limits blocked on MF-07 |
-| **Email banner** | `kind:"email_banner"` | BACKEND CONFIRMED · limits blocked on MF-07 |
-| **Footer or signature** | **no `kind` value in the contract** | **BLOCKED on AF-03.** Surface specified, rendered as an honest state, not wired |
-| **Property files** | **no upload contract exists** | **BLOCKED on AF-06.** No surface is built |
-| **Property Experience assets** | owned by the PX lane | **Out of scope.** No surface is built (§8.9) |
-| **Testimonial files** | **no media field in the contract (MF-01)** | **BLOCKED · LEGAL REVIEW PENDING (L-13).** See §11 |
+| **Logo** | `kind:"logo"` | **BACKEND CONFIRMED**, constraints known (§9.5) |
+| **Email banner** | `kind:"email_banner"` | **BACKEND CONFIRMED**, constraints known (§9.5) |
+| **Footer or signature** | **not an upload** | **RESOLVED — text fields.** Specified as text in §8.3 Zone B. No upload surface exists for either |
+| **Property files** | **not a website upload** | **OUT OF SCOPE.** Property is ingested via source connect (§8.8). A direct upload would require backend work that does not exist. No surface is built |
+| **Property Experience assets** | owned by the PX lane | **OUT OF SCOPE.** Tenant and property scoped, publish fails closed on a foreign asset. No surface is built (§8.9) |
+| **Testimonial files** | **no upload pipeline exists** | **BLOCKED · LEGAL REVIEW PENDING (L-13).** The contract accepts a string reference only, with no storage pipeline behind it. No file input is rendered. See §11 |
 
 **BINDING:** an upload surface is never built ahead of its contract. A drop zone that cannot
 commit is a dead control and a P0 finding under `MASTER_GOVERNANCE.md` §6.
@@ -1047,6 +1176,35 @@ The contract is a three call sequence, and the UI mirrors it exactly:
 **Binding:** the asset is not shown as stored until phase 3 returns. A completed phase 2 renders
 as in progress, never as done — the same principle as `externally_pending`. `object_path` is a
 storage identifier and is **never displayed** (§1.4).
+
+**On entry to the step**, and after every replace or remove, the current state is read from
+`GET /branding/preview`, whose shape is confirmed (AF addendum):
+
+| Key | Type | Meaning for the UI |
+|---|---|---|
+| `logo` | string or **null** | Durable public URL. Rendered directly when present |
+| `logo_present` | boolean | `true` ⇒ a valid logo exists |
+| `email_banner` | string or **null** | Durable public URL, non-null **only** when the asset validates |
+| `email_banner_present` | boolean | `true` ⇒ a valid banner exists |
+| `fallback_note` | string | Server statement that missing or invalid assets are omitted rather than rendered broken |
+
+**BINDING rules from this shape**
+
+1. **The boolean decides the branch; the URL decides the render.** `*_present = false` → the
+   empty upload zone. `*_present = true` with a non-null URL → the preview.
+2. **`*_present = true` with a null URL is a defect, not a preview.** The zone renders its
+   empty state and the surface reports the inconsistency. It never renders a broken image and
+   never fabricates a placeholder in its place.
+3. **The commit response is not the source of truth for the preview.** `POST /branding/commit`
+   returns a `preview` object of this same shape; that object, or a fresh read, is used — never
+   a shape inferred from `stored_url` alone.
+4. **No client side object URL survives commit.** Once committed, the rendered image is the
+   returned public URL, which is durable and reload-safe.
+5. `fallback_note` is a server statement about server behaviour. It is **not rendered as
+   agency-facing copy** and never replaces an authored sentence; it may appear only in the
+   support affordance.
+6. The URLs are public render URLs. No bucket name, object identifier or signed URL is exposed,
+   and none is ever displayed (§1.4).
 
 ### 9.3 Upload zone
 
@@ -1067,7 +1225,7 @@ storage identifier and is **never displayed** (§1.4).
 |---|---|
 | **Upload progress** | A 1 px hairline progress rule along the **bottom edge of the zone**, `champagne-400` on `ink-700` — the same progress language as the wizard (§7.2). `role="progressbar"` with a live percentage in an `aria-live="polite"` region that updates at most every 10 %. **No percentage text on the zone**, no circular meter, no per file card |
 | **Cancel** | A Tertiary cancel is available for the whole upload. Cancelling returns the zone to its empty state and states that nothing was stored |
-| **Preview** | After commit, the zone is replaced **in the same box** by the asset rendered from `stored_url` at its true aspect ratio, inside a 1 px `border-strong` frame, `radius-0`, no shadow. Beneath it: one `caption` line with the file's own name as supplied by the agency |
+| **Preview** | After commit, the zone is replaced **in the same box** by the asset rendered from the URL returned by `GET /branding/preview` (§9.2) at its true aspect ratio, inside a 1 px `border-strong` frame, `radius-0`, no shadow. Beneath it: one `caption` line with the file's own name as supplied by the agency |
 | **Contrast preview** | A logo will be placed on both canvases. The preview therefore shows the asset on `ink-950` **and** on `ivory`, side by side ≥ 640 px and stacked below, each 1 px framed. This is the one preview affordance that earns its space, because a logo that is invisible on one canvas is a real failure the agency must see |
 | **Replace** | A Secondary control beneath the preview. It reopens the same three phase sequence. The existing asset stays visible until the new one commits — **there is no intermediate empty state** |
 | **Remove** | A Tertiary control. It opens the wizard's single permitted confirmation dialog (§7.5) stating what will stop appearing where. On confirm, `POST /branding/remove { kind }`. On success the zone returns to empty in the same box |
@@ -1076,16 +1234,25 @@ storage identifier and is **never displayed** (§1.4).
 ### 9.5 Validation presentation
 
 - Constraints are stated **before** selection, in the zone's `caption` line.
-- **Accepted types and the size ceiling are blocked on MF-07.** Until supplied: the `accept`
-  attribute and the constraint line are a single named constant, and the client performs **no
-  size or type rejection of its own**. Inventing a limit would produce a client rejection the
-  server would have accepted, which is a fabricated rule.
-- Server rejections map per §4: `400 unsupported_file_type` and `400 file_too_large` are field
-  level errors on the zone, stating the real constraint from the response, with the zone still
-  mounted and the control still usable.
-- `403 cross_tenant_asset` is treated as a defect (§4.1): a generic failure plus the support
+- **Constraints are confirmed** (V3, export v2 §C6) and apply to the two branding uploads:
+  **images only — PNG, JPEG, WebP, GIF — and at most 5 MB.**
+- These values are declared **once**, as named constants, and drive three things from that one
+  place: the `accept` attribute, the `caption` constraint line stated before selection, and the
+  client side pre check. They are never re-typed per surface.
+- **Client side pre validation is now permitted**, because the constraint is contractual rather
+  than invented. It is an early, courteous rejection only — **the server remains the
+  authority**, and a file the client accepts may still be rejected server side without that
+  being an inconsistency.
+- **No constraint is ever widened by the website.** Where a future upload contract states no
+  limit, the earlier rule stands: the client performs no rejection of its own, because
+  inventing a limit produces a client rejection the server would have accepted.
+- Server rejections map per `code` (§4.3): `unsupported_file_type` and `file_too_large` are
+  field level errors on the zone, stating the real constraint, with the zone still mounted and
+  the control still usable. `invalid_asset_kind` is a defect, not user error — the website
+  submits only the two contractual kinds.
+- `cross_tenant_asset` is treated as a defect (§4.1): a generic failure plus the support
   affordance, with no detail echoed.
-- `422 upload_not_found` states that the transfer did not complete and offers the upload again.
+- `upload_not_found` states that the transfer did not complete and offers the upload again.
 - **No file is ever silently dropped.** Every rejected file produces a visible, attributable
   message.
 
@@ -1112,30 +1279,31 @@ Closes gap 11. Route `/[locale]/account/plan` — **PROPOSED**. Contracts: `GET 
 |---|---|
 | **Page Purpose** | Show the current standing and, where a change is possible, route to checkout. This is **not** the public pricing page and does not repeat its argument |
 | **Layout** | `ivory`. `container-default`. **Two zones, hairline separated**: current standing first, then available plans |
-| **Information Hierarchy** | `display-m` h1 → current standing block → the plans plane → a `caption` line on tax basis |
+| **Information Hierarchy** | `display-m` h1 → current standing block → the plans plane. **No price line, no tax line, no billing line** |
 | **Current standing** | A single bordered block, `radius-md`, `paper`: current plan name from `subscription/state`, its state as a `StatusChip`, and — when `cancel_at_period_end` is true — one plain line stating that fact. **No countdown, no urgency device, no retention interstitial** |
-| **Plans plane** | `LUXURY_UX_MEDIA_SYSTEM.md` §5.7 **Layout A**: one bordered plane, `radius-0`, divided by vertical hairlines. The current plan's column is marked by a 2 px `champagne-400` top rule and `aria-current`. **Not three cards** |
-| **Prices** | `price_display` is **rendered exactly as served**. The website never formats, converts, rounds, abbreviates or recomputes it, and never authors a figure. Currency and tax basis are **blocked on MF-10**; until supplied, the tax line is a single constant and no assumption is printed |
-| **Quotas and limits** | **Nothing.** PK-05 is unresolved and matrix 5.6 forbids not only numbers but any visual implication of one: no bars, no dots, no "up to", no comparative column heights |
+| **Plans plane** | `LUXURY_UX_MEDIA_SYSTEM.md` §5.7 **Layout A, the plan access plane**: one bordered plane, `radius-0`, divided by vertical hairlines. The current plan's column is marked by a 2 px `champagne-400` top rule and `aria-current`. **Not three cards** |
+| **Prices — BINDING** | **There is no price.** Export v2 (MF-10, §C8, §F) records that the plan record carries no price and no currency column, that no backend pricing, currency or tax authority exists, and that `GET /plans` returns `{ code, display_name, entitlements_summary }` with **no price field**. The earlier `price_display` assumption is void. **No amount, currency symbol, currency code, tax basis, billing period, discount or contract term is rendered on this surface, in any state, in either language.** No space is reserved for one |
+| **What is rendered** | `display_name` as served, and `entitlements_summary` as served. **The internal plan `code` is never rendered** (§1.4). The website never authors, translates, abbreviates or reorders a plan name |
+| **Quotas and limits** | **Nothing.** Matrix 5.6 forbids not only numbers but any visual implication of one: no bars, no dots, no meters, no "up to", no comparative column heights |
 | **Desktop Behavior** | Standing block full width; plans plane full `container-default` width, columns equal in width and **equal in height by grid, not by content** |
 | **Tablet Behavior** | Same, columns may reduce to two per row with a hairline between rows |
-| **Mobile Behavior** | **Never a horizontally scrolling price table.** The plane becomes a vertical stack of plan sections, each with its own inclusion list, hairline separated. The current plan's section is first |
-| **Loading State** | Price cells have reserved height so nothing shifts when `/plans` resolves. The standing block reserves its height |
+| **Mobile Behavior** | **Never a horizontally scrolling comparison table.** The plane becomes a vertical stack of plan sections, each with its own entitlement list, hairline separated. The current plan's section is first |
+| **Loading State** | The plane reserves the height of its tallest resolved state so nothing shifts when `/plans` resolves. The standing block reserves its height |
 | **Empty State** | If `/plans` returns none, the surface states that plan information is unavailable and routes to a conversation. It does not render an empty plane |
-| **Error State** | `403 not_allowed` renders the honest state, not an error. **`409 already_subscribed` routes to the current plan and is not an error** (matrix step 13). `5xx` per §4 |
-| **Success State** | Checkout is a **handoff**: on `{ checkout_url }` the browser navigates away, full page. Before navigating, the control states that the agency is leaving to complete payment. **The website never renders a payment form, never collects a card, and never embeds a payment iframe** |
+| **Error State** | Per `code`: `not_allowed` renders the honest state, not an error. **`already_subscribed` routes to the current plan and is not an error** (matrix step 13). `server_error` per §4 |
+| **Success State** | Checkout is a **full page handoff**: on `{ checkout_url }` the browser navigates away. Before navigating, the control states that the agency is leaving to complete the change. **The website never renders a payment form, never collects a card, never displays an amount, and never embeds a payment iframe** (export v2 §A item 7) |
 | **Resume State** | Returning from checkout re reads `GET /subscription/state`. **The website never infers success from the return URL.** Until the state changes server side, the standing block shows the previous state, with no optimistic upgrade |
 | **Blocked State** | Until the owner releases the action, the plan controls render as §5.9 honest states routing to a conversation |
 | **Connection State** | n/a |
-| **Accessibility** | The plane is a `<table>` with real headers, or a list of `<section>`s with headings — never a div grid. `aria-current="true"` on the current plan. The tax line is associated with the plane via `aria-describedby` |
+| **Accessibility** | The plane is a `<table>` with real headers, or a list of `<section>`s with headings — never a div grid. `aria-current="true"` on the current plan. Entitlement presence is glyph plus text, never a bare tick (§5.17) |
 | **Keyboard Behavior** | One tab stop per plan action. No roving grid |
 | **Focus Behavior** | Shared §5.0 |
 | **Reduced Motion** | No plan comparison animation exists in any state |
 | **Performance** | `GET /plans` is public and cacheable; the two authenticated reads are not |
-| **Responsive Spacing** | Standing block to plane `space-16`; plane to tax line `space-6` |
+| **Responsive Spacing** | Standing block to plane `space-16`; plane to page end `section-y-default` |
 | **Validation Presentation** | Selection is a single control per plan. No form, no validation |
 | **Upgrade entry points** | Exactly three, all routing here: the `locked_by_plan` row affordance, the `denied` feature treatment, and the trial expired plane. **No upsell appears anywhere else** — not in the wizard header, not in the banner, not between steps |
-| **Status** | BACKEND CONFIRMED · WEBSITE INTEGRATION PENDING · OWNER DECISION PENDING on PK-02, PK-04, PK-05, PK-07 and MF-10 |
+| **Status** | BACKEND CONFIRMED (plans, subscription state, checkout handoff) · WEBSITE INTEGRATION PENDING · **no pricing authority exists** (MF-10 · LEGAL REVIEW REQUIRED and OWNER DECISION REQUIRED) · public plan names OWNER DECISION PENDING (PK-02) |
 
 ---
 
@@ -1144,10 +1312,13 @@ Closes gap 11. Route `/[locale]/account/plan` — **PROPOSED**. Contracts: `GET 
 Closes gap 10. Route `/[locale]/account/testimonial` — **PROPOSED**, authenticated only.
 
 > **LEGAL REVIEW PENDING (L-13). DISABLED FOR PUBLIC DISPLAY.**
-> **BLOCKED on MF-01** (no media field in the contract) **and MF-12** (Bearer only, or also
-> public plus captcha). This surface is specified so it can be built once cleared. **It is not
-> linked from any public page, it is not linked from the marketing navigation, and no testimonial
-> mechanic is released publicly in this wave.**
+> **Corrected by V3.** MF-12 is **CONFIRMED**: the surface is **authenticated only**, reached by
+> a signed in agency user through the BFF. It is not a public link and carries no captcha.
+> MF-01 is **BACKEND IMPLEMENTATION REQUIRED**: the written testimonial, the manual owner
+> approval and the one time extension are backend defined, but **no media upload pipeline
+> exists** — the contract accepts a string reference only. This surface is specified so it can
+> be built once cleared. **It is not linked from any public page, it is not linked from the
+> marketing navigation, and no testimonial mechanic is released publicly in this wave.**
 
 | Field | Specification |
 |---|---|
@@ -1157,12 +1328,12 @@ Closes gap 10. Route `/[locale]/account/testimonial` — **PROPOSED**, authentic
 | **Desktop / Tablet / Mobile Behavior** | Single column at every breakpoint; 52 px fields below 640 |
 | **Loading State** | Shared §5.0. `GET /testimonial/status` resolves before the form renders, so a submitted agency never sees a blank form first |
 | **Empty State** | The form, with no state block above it |
-| **Error State** | **`422 consent_required` is a field level error on an explicit consent control.** The consent control is never pre ticked, never a soft opt out, and never bundled with another agreement. `429` per §4 |
+| **Error State** | Per `code`: **`consent_required` is a field level error on an explicit consent control.** The consent control is never pre ticked, never a soft opt out, and never bundled with another agreement. **`submission_already_pending`** routes to the existing submission state rather than erroring. **`extension_already_granted`** states plainly that the one time extension has already been applied, and is not framed as a failure. `submission_id_required` is a defect, not user error. `rate_limited` per §4 |
 | **Success State** | **Only: received, pending review.** No wording, in either language, may imply that an extension has been granted, is likely, or is automatic (`PRODUCT_TRUTH.md` §18.5, matrix step 11) |
-| **Resume State** | Re entry shows the current `state`, never a blank form. `pending` renders the `externally_pending` treatment. `approved` and `rejected` render their own states, and **neither states a consequence the website is not authorised to state** |
+| **Resume State** | Re entry shows the current `state`, never a blank form. **The state set is confirmed as six values**: `invited`, `submitted`, `pending_review`, `approved`, `rejected`, `withdrawn` — the earlier three value assumption is void. `submitted` and `pending_review` render the `externally_pending` treatment. `invited` renders the form. `approved`, `rejected` and `withdrawn` render their own states, and **none states a consequence the website is not authorised to state** |
 | **Blocked State** | Until L-13 clears and the owner releases the action, the submit renders in the §5.9 honest state |
-| **Connection State** | `pending` uses `externally_pending` (§3.2) — waiting on a human review, which is exactly what that value means |
-| **Media** | **No file input is rendered.** MF-01: the contract has no media field. A video upload control without a contract is a dead control. §9.1 applies |
+| **Connection State** | `pending_review` uses `externally_pending` (§3.2) — waiting on a human review, which is exactly what that value means |
+| **Media** | **No file input is rendered.** The contract accepts a string reference only and **no upload or storage pipeline exists behind it**. A video upload control without a pipeline is a dead control. If the owner requires video before approval, that is backend work, not a website surface. §9.1 applies |
 | **Accessibility** | Rating is a real `<fieldset>` of radio inputs with visible labels, never a star widget without text. Consent is a single checkbox with a full sentence label |
 | **Keyboard / Focus / Reduced Motion** | Shared §5.0 |
 | **Performance** | One read, one write |
@@ -1170,7 +1341,7 @@ Closes gap 10. Route `/[locale]/account/testimonial` — **PROPOSED**, authentic
 | **Validation Presentation** | Consent is required and stated as such. Quote length limits are not enforced client side, because none is specified |
 | **The plus 7 days** | **The website has no approval surface and must not build one** (matrix step 12). It never grants, never computes and **never hardcodes 7**. When approval happens, the agency sees the new `trial_end` through the §6.1 band, and nowhere else. There is no "extension granted" screen, because the website is not the system that granted it |
 | **Legal** | L-13. Incentivised testimonials, personal data, purpose limitation, retention and later marketing use are separate consents. Contract terms belong in terms and conditions, not in this surface's copy |
-| **Status** | BACKEND CONFIRMED · **LEGAL REVIEW PENDING, DISABLED** · BLOCKED on MF-01, MF-12 |
+| **Status** | BACKEND CONFIRMED — written submission, six state model, authenticated only (MF-12) · **LEGAL REVIEW PENDING, DISABLED** · **media BACKEND IMPLEMENTATION REQUIRED** (MF-01) |
 
 ---
 
@@ -1212,7 +1383,8 @@ requires a consent layer first (audit §13).
 
 **No event payload carries a technical identifier, an email address, a file name, an agency
 identifier or any provider reference.** `connect_status_poll` is named in the matrix; under the no
-polling rule (§7.7) it fires only on an explicit **Check again**.
+polling rule (§7.7) it fires only on an explicit **Check again** or on a return from the shared
+callback route. A `connect_return` event carries `provider` and the outcome, never `correlation`.
 
 ---
 
@@ -1239,11 +1411,26 @@ authenticated phase closes.
     longest Spanish strings.
 12. Every form obeys `LUXURY_UX_MEDIA_SYSTEM.md` §5.6 including the reserved height rule.
 13. No control that looks active and does nothing.
-14. No polling of any provider status endpoint.
+14. No background polling of any provider status endpoint. Status is read after the callback,
+    on entry to the surface, or on an explicit refresh.
 15. No surface is publicly reachable, and the testimonial surface is not linked from any public
     page.
 16. Focus never obscured by `--shell-h`; verified at every breakpoint.
 17. The §1.3 and §1.2 anti pattern lists pass against every new surface.
+
+Added by V3:
+
+18. **No price, currency symbol, currency code, tax basis, billing period, discount or contract
+    term appears on any surface**, and no space is reserved for one.
+19. An OAuth cancellation renders **neutrally and resumably**, never as a provider failure, and
+    an unrecognised outcome never renders as a cancellation.
+20. Footer and signature render as **text fields**, never as upload zones. Only logo and email
+    banner are uploads.
+21. **No carrier, vendor or adapter name appears on the voice surface** — it is named Voice or
+    Phone, generically, in every state.
+22. Every wire status value has a mapping in §3.3.1, and an unmapped value is never rendered.
+23. `logo_present` true with a null URL renders the empty state and is reported as a defect —
+    never a broken image, never a fabricated placeholder.
 
 ---
 
@@ -1251,36 +1438,45 @@ authenticated phase closes.
 
 | # | Item | Reason |
 |---|---|---|
-| 1 | The dashboard, and everything after the wizard | **MF-03 / C-27.** The website does not know whether it is building a marketing site plus a wizard that hands off, or the whole authenticated application. This is the largest open question in the project |
-| 2 | Error copy per `code` | **MF-04.** Only HTTP statuses exist, so error treatment is specified per status |
-| 3 | The per step content of `steps[].detail` and the `legend` | **MF-05.** The rendering shell is specified; what fills each row's detail line is not |
-| 4 | Trial reminder thresholds | **MF-06.** The escalation is specified; the trigger is not |
-| 5 | Upload accepted types and size ceiling | **MF-07.** The upload law is specified; client side pre validation is deliberately absent |
-| 6 | The captcha widget's dimensions and its non visual alternative | **MF-08.** The reservation is a named constant |
-| 7 | The `language` control on signup | **MF-09.** Not rendered; the route's locale is used |
-| 8 | Currency, tax basis, and whether `name` is the public plan name | **MF-10.** `price_display` is rendered verbatim |
-| 9 | Provider display names for pending copy | **MF-11 / AF-04** |
-| 10 | Testimonial media, and whether the surface is authenticated only | **MF-01, MF-12** |
-| 11 | The OAuth return parameter contract | **AF-01** |
-| 12 | Whether provider status may be polled, and how | **AF-02.** The no polling rule is the safe interim |
-| 13 | The `kind` value for footer or signature | **AF-03** |
-| 14 | The office list for team invites | **AF-05** |
-| 15 | Property file and Property Experience asset uploads | **AF-06.** No contract; PX capture belongs to the PX lane |
+**Updated by V3** against backend export v2 and its AF addendum.
 
-### 15.1 New missing fields found by this chat
-
-Named precisely, for the backend export-v2. Prefixed `AF` so they do not collide with the frozen
-`MF` register in `FINAL_RECONCILIATION_REPORT.md` §9.
-
-| ID | Missing field | Blocks |
+| # | Item | State |
 |---|---|---|
-| **AF-01** | The query parameter contract the BFF OAuth callback appends when it redirects the browser back to the step: the parameter names and the value set for returned, cancelled and provider error. | Every provider connection return state (§7.7) |
-| **AF-02** | Whether `GET /connect/{provider}/status` and `GET /crm/status` may be polled, at what minimum interval, or whether a push channel exists. | Any status refresh beyond step entry. The no polling rule stands until answered |
-| **AF-03** | The `kind` value for the footer or signature branding asset. `POST /branding/upload-init` enumerates `"logo" \| "email_banner"` only, while handoff §3 step 3 describes a footer or signature asset. | The third branding upload block (§8.3) |
-| **AF-04** | The provider display name list, and whether the website may render a provider's name inside the authenticated tree at all. Related to MF-11 and to owner decision 5 on CRM vendor names. | `externally_pending` notes, provider rows |
-| **AF-05** | An endpoint returning the agency's offices, to populate the optional `office_id` on `POST /team/invite`. | The office control on team invite (§8.4) |
-| **AF-06** | Whether any property file or Property Experience asset upload is in the website's scope, and if so its contract. | §9.1. No surface is built until answered |
-| **AF-07** | The full response shape of `GET /branding/preview`. The contract states `{ logo, email_banner, …present flags }`; the elision is unresolved. | Rendering existing assets on step entry |
+| 1 | The dashboard route after the wizard | **OWNER DECISION.** The backend signal is confirmed and the route is website owned. No longer a missing backend field |
+| 2 | Error copy per `code` | **RESOLVED.** The enumeration is confirmed; copy is written per code (§4.3) |
+| 3 | The per step `detail` shapes and the `legend` | **RESOLVED.** Confirmed shapes (§7.8, §8) |
+| 4 | Trial reminder cadence | **RESOLVED.** Backend driven, three days and one day before the end, plus a separate testimonial invite stage (§6.2) |
+| 5 | Upload accepted types and size ceiling | **RESOLVED.** Images only, five megabytes, two kinds (§9.5) |
+| 6 | The captcha provider, its widget dimensions and its non visual alternative | **STILL OPEN — OWNER DECISION REQUIRED (MF-08).** The reservation stays a named constant |
+| 7 | The `language` control on signup | **RESOLVED.** Website locale set confirmed; the route locale is passed (§5.1) |
+| 8 | Currency, tax basis, plan naming | **RESOLVED IN THE NEGATIVE.** No pricing, currency or tax authority exists, so **no price surface exists** (§10). Public plan naming remains an owner decision |
+| 9 | Provider display names | **RESOLVED**, with voice deliberately generic (§7.7) |
+| 10 | Testimonial media and surface placement | Placement **RESOLVED** — authenticated only. Media **BACKEND IMPLEMENTATION REQUIRED**; no pipeline exists (§11) |
+| 11 | The OAuth return contract | **RESOLVED** (§7.7) |
+| 12 | Provider status polling | **RESOLVED.** No polling contract, no push channel (§7.7) |
+| 13 | Footer and signature | **RESOLVED.** They are text, not uploads (§8.3) |
+| 14 | The office list for team invites | **RESOLVED**, with role gating (§8.4) |
+| 15 | Property file and Property Experience asset uploads | **RESOLVED.** Out of scope for the website (§8.9, §9.1) |
+
+### 15.1 AF register — status after export v2 and the AF addendum
+
+The seven fields this document raised were transferred to the backend in
+`backend_handoff/WEBSITE_UX_AF_REQUIREMENTS_EXPORT_v1.md` and are now answered. The register is
+kept for traceability.
+
+| ID | Requirement | Status | Applied at |
+|---|---|---|---|
+| **AF-01** | OAuth return parameter contract, including a cancellation outcome | **RESOLVED.** Shared callback route; `status` stays `success \| error`; cancellation is carried as `reason=user_cancelled`, provider failure as `reason=provider_error`; unknown outcomes fail safe to provider error | §7.7 |
+| **AF-02** | Whether provider status may be polled | **RESOLVED.** No polling contract and no push channel. Read after callback, on entry, or on explicit refresh | §7.7 |
+| **AF-03** | The `kind` value for footer or signature | **RESOLVED by negation.** They are text fields, not uploads | §8.3, §9.1 |
+| **AF-04** | Provider display names | **RESOLVED.** Gmail, WhatsApp, Google Calendar, Microsoft Outlook, and Voice or Phone generically. Text only, no logos, no carrier names | §7.7, §8.5 |
+| **AF-05** | An endpoint returning the agency's offices | **RESOLVED.** Offices list with opaque handle, optional, role gated | §8.4 |
+| **AF-06** | Property file and PX asset upload scope | **RESOLVED.** Out of scope for the website; PX assets are PX lane owned and fail closed across properties | §8.9, §9.1 |
+| **AF-07** | The `GET /branding/preview` response shape | **RESOLVED.** Two URL fields, two boolean present flags, one fallback note | §9.2 |
+
+**One backend item remains open**, reported and not built: a **persisted, queryable**
+cancellation outcome on the connection record. The live callback semantics do not need it —
+§7.7 works without it — so it is scheduling work for the backend, not a website blocker.
 
 ---
 
@@ -1291,14 +1487,16 @@ remain live and are not duplicated. These are additional.
 
 | ID | Decision | Unblocks |
 |---|---|---|
-| **AD-01** | Confirm that the authenticated tree is **omitted entirely** from the public navigation until MF-03 is answered, including `Log in`. This document assumes omission. | The global header, D1 |
-| **AD-02** | Confirm the **no polling** rule for provider status (§7.7) is acceptable, or supply AF-02. Polling a production provider integration without a stated cadence is exactly the class of action the systems isolation directive forbids. | Provider connection surfaces |
+| **AD-01** | **Still open.** Confirm the dashboard route, and that the authenticated tree including `Log in` stays omitted from public navigation until then. The backend signal is confirmed and the route is website owned, so this is now purely an owner decision. | The global header, the wizard exit, D1 |
+| **AD-02** | **Answered** by export v2 §A item 6 and §D: no polling contract exists and no invented polling is permitted. One residual choice remains: whether to enable the bounded, website owned auto refresh that v2 allows for a pending connection. **Default is off.** | Provider connection surfaces |
 | **AD-03** | Confirm that **sign out requires no confirmation dialog** (§5.3). | Account panel |
-| **AD-04** | Confirm the **wizard is non linear** (§7.5): back returns to the index, and there is no previous/next pair. The backend model carries no ordering constraint, but the owner may want an enforced sequence. | Wizard navigation, mobile composition |
+| **AD-04** | **Answered** by export v2 §A item 5 and §G: the wizard is not forced linear, each step is evaluated independently, and `resume_step` is a convenience pointer. The non linear composition stands. | Wizard navigation, mobile composition |
 | **AD-05** | Confirm that **CRM `missing_api_names[]` is never shown to the agency** and is available only inside the support affordance (§8.7). | CRM health surface |
-| **AD-06** | Confirm that the **website renders no payment form and no embedded payment iframe** (§10) — checkout is always a full page handoff. | Checkout surface |
+| **AD-06** | **Answered** by export v2 §A item 7: checkout is a server determined full page handoff, never a marketing site payment form. | Checkout surface |
 | **AD-07** | Confirm the **chat assistant is omitted**, not rendered as a pending panel (§12). | Every page |
 | **AD-08** | Confirm whether a signed in agency may reach the **public marketing tree** with the authenticated header, or whether the two trees are fully separate shells. | Shell architecture, D1 and D2 boundary |
+| **AD-09** | **New.** Confirm the captcha provider (MF-08). It is the last unresolved dependency on the signup surface, and its widget dimensions and non visual alternative both depend on it. | Signup, any public form |
+| **AD-10** | **New.** Confirm that public plan names may be rendered as served by the plans endpoint. Until then the plan access plane cannot show a plan column at all, and only the access model layout is available. | Plan surfaces, pricing page |
 
 ---
 
@@ -1311,11 +1509,11 @@ remain live and are not duplicated. These are additional.
 4. **`externally_pending` never renders as complete** (§3.2, §7.8).
 5. **`locked_by_plan` and `403 not_on_plan` render as honest states, never as errors** (§3.2, §4.1).
 6. **No technical identifier reaches the DOM**, enforced by the §1.4 rendering boundary.
-7. **No number is hardcoded** — not 7, not 10, not 14, not a price, not a quota (§1.3 rule 4).
+7. **No number is hardcoded** — not 7, not 10, not 14, not a quota (§1.3 rule 4). **And no price exists to render at all** (§10).
 8. **No fabricated agency data**, in any state, including empty states (§1.3 rule 1).
 9. **Resume lands on `resume_step`** (§7.3).
 10. **Saving is explicit; there is no autosave and no autosave indicator** (§7.6).
-11. **No polling of provider status** until AF-02 is answered (§7.7).
+11. **No background polling of provider status** (§7.7). Status is read after the callback, on entry to the surface, or on an explicit refresh.
 12. **Interactive controls never sit on `ink-800` or `ink-50`**, and a surface step is never a
     boundary (§2.1).
 13. **An upload surface is never built ahead of its contract** (§9.1).
@@ -1326,18 +1524,60 @@ remain live and are not duplicated. These are additional.
     (§7.9).
 18. **Errors are never toasts**; one region, reserved height, no timers (§4.4).
 
+Added by V3:
+
+19. **No price surface exists.** No amount, currency, tax basis, billing period, discount or
+    contract term, and no space reserved for one. There is no pricing authority (§10).
+20. **Plan surfaces render served names and entitlements only**, never the internal plan code.
+21. **Footer and signature are text fields, never uploads** (§8.3). Only logo and email banner
+    are uploads, images only, at most five megabytes.
+22. **OAuth returns through one shared callback route**, and a cancellation renders neutrally
+    and resumably, never as a provider failure. Unknown outcomes fail safe to provider error,
+    never to cancellation and never to success (§7.7).
+23. **Voice is named generically.** No carrier, vendor or adapter name is ever rendered (§7.7).
+24. **Every wire status value has a mapping in §3.3.1.** An unmapped value is never rendered.
+
+---
+
+## 18. Reconciliation of the seventeen gaps after export v2
+
+`FINAL_RECONCILIATION_REPORT.md` §5.2 listed seventeen gaps. All were closed by the first
+version of this document. This table records that none of them still carries an assumption
+superseded by export v2 or the AF addendum.
+
+| # | Gap | State after V3 |
+|---|---|---|
+| 1 | Signup | Closed. Language control corrected; no payment control; captcha still owner dependent (§5.1) |
+| 2 | Login | Closed. Unchanged by v2 (§5.2) |
+| 3 | Logout | Closed. Unchanged by v2 (§5.3) |
+| 4 | Trial status surface | Closed. Reminder cadence corrected from "no contract" to backend driven (§6.1, §6.2) |
+| 5 | Ten step wizard shell | Closed. Non linearity confirmed by v2 (§7) |
+| 6 | Progress and resume | Closed. Projection shape confirmed (§7.2, §7.3) |
+| 7 | Readiness and `activatable` | Closed. `legend` and `readiness` shapes confirmed (§7.8) |
+| 8 | Dashboard handoff | Closed as far as the website can. Signal confirmed, route is an owner decision (§8.10) |
+| 9 | Trial expiry | Closed. Unchanged by v2 (§6.3, §6.4) |
+| 10 | Testimonial pending review | Closed. Six state model and authenticated placement corrected; media reported as backend work (§11) |
+| 11 | Plan selection and upgrade | Closed and **materially corrected** — every price surface removed (§10) |
+| 12 | API envelope error states | Closed and corrected — copy is now written per `code` (§4.3) |
+| 13 | Loading states for authenticated data | Closed. Unchanged by v2 (§2.3, §5.0) |
+| 14 | The eight connection states | Closed, plus a wire to UI mapping added (§3, §3.3.1) |
+| 15 | Provider failures | Closed and corrected — shared callback route, neutral cancellation (§7.7) |
+| 16 | File upload law | Closed and corrected — footer and signature are text; constraints confirmed (§8.3, §9) |
+| 17 | Mobile onboarding | Closed. Unchanged by v2 (§7.9) |
+
 ---
 
 ## Status
 
-Seventeen gaps closed. Eight status values specified with distinct glyphs, dual canvas colour and
-computed contrast. The API envelope mapped to UI treatments across twelve HTTP outcomes. The ten
-step wizard specified as a hairline index with server driven progress, resume, non linear
-navigation, explicit save, a full OAuth round trip state machine and a 375 px composition. The
-file upload law applied across six asset classes, three of which are blocked and are therefore not
-built. Plans, subscription, checkout handoff and upgrade specified. The testimonial surface
-specified and held. Three reserved surfaces documented and omitted. Seven new missing backend
-fields named. Eight owner decisions raised.
+Seventeen gaps closed and reconciled against backend export v2 and its AF addendum. Eight status
+values specified with distinct glyphs, dual canvas colour and computed contrast, plus a wire to UI
+mapping. Error treatment written per confirmed `code`. The ten step wizard specified as a hairline
+index with server driven progress, resume, non linear navigation, explicit save, a shared OAuth
+callback with a neutral cancellation state, and a 375 px composition. The upload law applied
+across six asset classes: two are uploads with confirmed constraints, two are text, and two are
+out of scope. Plans, subscription and checkout specified **without any price surface**, because no
+pricing authority exists. The testimonial surface specified and held. Three reserved surfaces
+documented and omitted. All seven AF fields resolved; one backend item reported for scheduling.
 
 No page implemented. No component written. No system contacted. No integration wired. Every
 surface disabled by default. No production readiness claim made.

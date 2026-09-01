@@ -851,13 +851,25 @@ becomes a centred stack. Footer link rows are 44 px tall on mobile.
 | Honest state | **If the endpoint does not exist, the form is not rendered.** The slot renders the §5.9 pending treatment instead |
 | File inputs | Not covered here. See **§5.16 — File input and upload law** |
 
-### 5.7 Pricing presentation (BINDING)
+### 5.7 Plan presentation (BINDING)
 
-Conflict **C-06** is open: no confirmed prices exist. R6 forbids invented prices, tiers,
-inclusion lists, discounts, terms and "from €X" figures. Therefore **two layouts** are
-specified, and only Layout B may ship today.
+> **Corrected by V3.** This section previously specified a price table as a future layout.
+> **There is no pricing authority.** Backend export v2 (MF-10 and §C8) records that the plan
+> record carries **no price and no currency column**, that no backend pricing, currency or tax
+> authority exists, and that Spanish IVA handling is an external legal and owner matter.
+> `GET /plans` returns `{ code, display_name, entitlements_summary }` and **no price field of
+> any kind**. The earlier `price_display` assumption is void.
 
-**Layout B — Access model (ships now)**
+**BINDING: nothing on this site displays a price.** No amount, no figure, no currency symbol,
+no currency code, no tax basis, no billing period, no "from", no discount, no contract term,
+and no visual implication of a quantity — no bars, no dots, no meters, no "up to", no
+comparative column heights (matrix 5.6). This holds until a pricing authority exists **and**
+`PRODUCT_TRUTH.md` and `CLAIMS_MATRIX.md` clear it. A price surface is not designed
+speculatively, because designing one invites it to be filled.
+
+Two layouts exist. Both are price-free.
+
+**Layout B — Access model**
 
 - Canvas `ivory`, `container-default`.
 - Opening: left-aligned `display-m` + `body-l` lead `[COPY: pricing.lead]`.
@@ -866,27 +878,33 @@ specified, and only Layout B may ship today.
 - A **Fit criteria** list: 4–6 rows, hairline-separated, each row = `heading-s` + one
   `body-s` line. This is a qualification device, not a feature grid.
 - One CTA row: Primary (per the resolved ladder) + Secondary *Book a demo*.
-- **No numbers. No tier names. No currency. No comparison table.**
+- **No numbers, no plan names, no currency, no comparison.**
 
-**Layout A — Public pricing (only after `PRODUCT_TRUTH.md` confirms real prices)**
+**Layout A — Plan access plane** (permitted once plan names are cleared; still price-free)
+
+Shows **what a plan gives access to**, never what it costs.
 
 - **Not three rounded cards.** One bordered plane, `radius-0`, divided by vertical 1 px
-  hairlines into 2–4 columns.
-- The recommended column is marked by a 2 px `champagne-400` rule along its **top edge**
-  and a slightly raised surface — never a coloured card, never a floating badge.
-- Column head: tier name (`heading-l`) → price (`display-m`, tabular numerals) → billing
-  basis (`caption`) → CTA.
-- Inclusion rows are a shared-baseline table: one row per capability across all columns,
-  hairline-separated, so rows align horizontally across the whole plane.
-- Period toggle appears **only** if both periods are confirmed real. It is a segmented
-  control (`radius-pill`), `aria-pressed`, and it must not change the plane's height —
-  price cells have a reserved height.
-- Mobile: the plane becomes a vertical stack of tier sections, each with its own inclusion
-  list. **Never** a horizontally scrolling price table on mobile.
-- Every price carries the tax basis and currency in `caption` beneath it.
+  hairlines into 2–4 columns, one per plan.
+- Column head: plan `display_name` as served by `GET /plans` (`heading-l`) → one `body-s`
+  line from `entitlements_summary` → CTA. **There is no price cell, and no reserved space
+  for one.**
+- Entitlement rows are a shared-baseline table: one row per capability across all columns,
+  hairline-separated, so rows align horizontally across the plane. A capability is present
+  or absent — rendered as the §5.17 status expression, glyph plus text, never a bare tick.
+- A recommended column, **if** the owner designates one, is marked by a 2 px `champagne-400`
+  rule along its **top edge** — never a coloured card, never a floating badge.
+- **No period toggle.** Billing periods are a pricing concept and no pricing authority
+  exists. The segmented toggle previously specified here is removed.
+- Mobile: the plane becomes a vertical stack of plan sections, each with its own entitlement
+  list. **Never** a horizontally scrolling comparison table on mobile.
+- Plan names are rendered **as served**. The website never authors, translates, abbreviates
+  or reorders them, and never renders the internal plan `code`.
 
 **Under both layouts:** any control whose target system is absent routes to *Book a demo*
-per `INTEGRATION_CONTRACT.md` §9.
+per `INTEGRATION_CONTRACT.md`. Checkout, where it exists, is a **full-page handoff** — the
+website never renders a payment form and never embeds a payment iframe
+(`AUTHENTICATED_SURFACE_SYSTEM.md` §10).
 
 ### 5.8 Trust treatment (BINDING)
 
@@ -1103,7 +1121,8 @@ a contract is absent, the slot renders the §5.9 honest state.
 | **Control** | A real `<input type="file">`, visually replaced but focusable, with a `<label>`. A visible, keyboard-reachable **Choose file** Secondary button always exists |
 | **Drag and drop** | An enhancement only, never the sole path (WCAG 2.2 Dragging Movements). Drag-over state: the dashed border becomes solid and the surface steps up. No scaling, no colour wash, no animation |
 | **Zone** | One rectangle, `radius-sm`, 1 px **dashed** `ink-400` on dark (4.12:1) or `ink-350` on ivory. **The only dashed border in the system.** Height fixed at the rendered aspect ratio of the eventual asset, so zone and preview occupy the same box |
-| **Constraints** | Stated **before** selection, as a `caption` line inside the zone. Where the accepted types and size ceiling are not specified by the contract, they are a single named constant and **the client performs no rejection of its own** — inventing a limit produces a client rejection the server would have accepted, which is a fabricated rule |
+| **Constraints** | Stated **before** selection, as a `caption` line inside the zone, and mirrored in the input's `accept` attribute. Constraints come from the contract, never from the designer. Where a contract states none, they are a single named constant and **the client performs no rejection of its own** — inventing a limit produces a client rejection the server would have accepted, which is a fabricated rule. Branding constraints are confirmed by export v2 §C6 and applied in `AUTHENTICATED_SURFACE_SYSTEM.md` §9 |
+| **Text is not an upload** | A branding element that the contract defines as text is a text field, never a drop zone. Footer and signature are text (export v2 §E) |
 | **Progress** | A 1 px hairline rule along the zone's bottom edge, `champagne-400` on `ink-700` (6.39:1). `role="progressbar"`, with a polite live region updating at most every 10 %. **No percentage text on the zone, no circular meter, no per-file card** |
 | **Cancel** | A Tertiary control for the whole upload. Cancelling returns the zone to empty and states that nothing was stored |
 | **Preview** | Replaces the zone **in the same box**: the asset at its true aspect ratio inside a 1 px `border-strong` frame, `radius-0`, no shadow, plus one `caption` line with the file's own name |
@@ -1319,9 +1338,10 @@ once that page ships.
 | `/[locale]/login` | Login | ivory | companion §5.2 |
 | `/[locale]/onboarding` | Wizard index — ten steps | ink | companion §7 |
 | `/[locale]/onboarding/[step]` | Step page | ink | companion §8 |
-| `/[locale]/account/plan` | Plan, subscription, upgrade, checkout handoff | ivory | companion §10 |
+| `/[locale]/connect/callback` | **Shared OAuth return route**, all providers | ink | companion §7.7 |
+| `/[locale]/account/plan` | Plan access, subscription, upgrade, checkout handoff — **price-free** | ivory | companion §10 |
 | `/[locale]/account/testimonial` | Testimonial — legally held, not publicly linked | ivory | companion §11 |
-| Dashboard destination | **BLOCKED on MF-03** | — | companion §8.10 |
+| Dashboard destination | Route is **website-owned**; the backend supplies the readiness signal only. Owner decision outstanding | — | companion §8.10 |
 
 **Route collision note.** §9.8's public `/[locale]/onboarding` marketing page and the
 authenticated wizard at the same path cannot both exist. The wizard is the confirmed
@@ -1329,7 +1349,9 @@ product journey and takes the path; §9.8's public content, if it survives owner
 moves under a marketing slug to be confirmed with the route naming decision (D-11). Logged
 so implementation does not discover it at build time.
 
-`Log in` is **not rendered** in the public navigation until MF-03 supplies a destination
+`Log in` is **not rendered** in the public navigation until the owner confirms the destination
+route. Export v2 resolves the backend half — the readiness signal is confirmed and the route is
+**website-owned** — so this is now an owner decision, not a missing backend field
 (§5.2, `INTEGRATION_CONTRACT.md` §4, conflict C-03).
 
 ### 9.2 Homepage
@@ -1563,8 +1585,10 @@ Identical to H-06 (media right, `7 / 5`), with:
 | **Accessibility** | `<ol>` — the order is meaningful. |
 | **Performance** | Text only. |
 
-> **Blocked content:** no price, no tier, no trial duration and no billing term appears here
-> until `PRODUCT_TRUTH.md` confirms them (C-01, C-06).
+> **Blocked content:** **no price, no currency, no tax basis, no billing term and no plan
+> figure appears here, ever** — there is no pricing authority (§5.7). The trial's existence
+> and length are backend-confirmed, but the wording that describes them is owned by
+> `COPY_AND_CONVERSION_MASTER.md` and cleared by `CLAIMS_MATRIX.md`, not authored here.
 
 ---
 
@@ -1640,17 +1664,17 @@ kind of agency's problem.
 | **Images** | At most one photograph, in `SO-02`, treated per §5.10. |
 | **Index page** | `/solutions` is a hairline index identical in construction to `PO-03`. |
 
-### 9.6 Pricing / Access
+### 9.6 Plans / Access
 
-Canvas `ivory`. Layout B ships now; Layout A only after prices are confirmed. Full
-specification in §5.7.
+Canvas `ivory`. **Price-free at every stage** — see §5.7. Layout B ships; Layout A becomes
+available once plan names are cleared, and is still price-free.
 
 | Section | Specification |
 |---|---|
 | `PR-01` Opening | `container-default`, `--header-h` + `section-y-feature`, left-aligned `display-xl` h1 + `body-l` lead. No image, no product surface. |
-| `PR-02` Model | The access statement (Layout B) or the pricing plane (Layout A). |
+| `PR-02` Model | The access statement (Layout B) or the plan access plane (Layout A). **No price cell in either.** |
 | `PR-03` Fit criteria | 4–6 hairline rows. |
-| `PR-04` What is included | Only after `PRODUCT_TRUTH.md` confirms. Until then this section does not render — **the page is shorter, not padded**. |
+| `PR-04` What is included | Entitlements only, rendered from `entitlements_summary` as served. No quantity, no quota, no limit, no figure. Where nothing is cleared, this section does not render — **the page is shorter, not padded**. |
 | `PR-05` FAQ | `container-text`, accordion, `heading-s` triggers, hairline-separated, one open at a time not enforced (multiple may open), `aria-expanded`, full keyboard support. |
 | `PR-06` Closing | Centred CTA on an `ink` band (S3 seam into the footer). |
 | **Performance** | Ivory canvas, text only, no media. Fastest page on the site. |
@@ -2266,6 +2290,17 @@ Added by Wave A3:
 17. **Anti-patterns 19 to 24** — no card-grid wizard, no ring progress, no celebration, no
     toasts, no gamification, no mismatched skeletons (§1.3).
 
+Added by V3:
+
+18. **No price surface exists anywhere on the site** — no amount, currency, tax basis, billing
+    period, discount or contract term, and no visual implication of a quantity. There is no
+    pricing authority (§5.7).
+19. **Plan surfaces render names and entitlements only**, as served, never the internal plan
+    code, and never a figure.
+20. **A branding element the contract defines as text is a text field, never an upload**
+    (§5.16). Footer and signature are text; logo and email banner are uploads.
+21. **Checkout is a full-page handoff.** No payment form, no embedded payment iframe (§5.7).
+
 ---
 
 ## Status
@@ -2285,6 +2320,16 @@ primitives (§5.17), the authenticated route map with a logged `/onboarding` pat
 (§9.1), two further missing assets (§14), and four further binding rules (§16). **No new
 colour, token, type size, radius, shadow or motion value was introduced.** The full
 authenticated specification lives in `AUTHENTICATED_SURFACE_SYSTEM.md`.
+
+**Amended by V3** (Authenticated and Visual System v2 Update), reconciling this document
+against backend export v2 and its AF addendum. §5.7 was rewritten: the future price-table
+layout is **removed** and replaced by a price-free plan access plane, because export v2
+records that **no pricing, currency or tax authority exists** and that the plans endpoint
+serves no price field. §9.6 and the `H-11` blocked-content note follow. §5.16 gained the
+rule that a branding element defined as text is never an upload. §9.1 gained the shared
+OAuth callback route and a corrected dashboard row. §16 gained four binding rules. The
+visual system itself is unchanged — no token, scale, radius, shadow, motion value or
+anti-pattern was altered or relaxed.
 
 No application code has been modified. No integration has been created or connected. No
 external system has been contacted. `CLAUDE.md` has not been edited.
