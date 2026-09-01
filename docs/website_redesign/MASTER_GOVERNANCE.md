@@ -5,8 +5,10 @@
 **Owner:** Antonio Jesus (NuovaSolution)
 **Implementation role:** Master Website Director / sole frontend implementation instance
 **Created:** 2026-08-30
-**Last amended:** 2026-08-31 — Wave A4 (Governance and Contract Update), against
-`backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md` and `FINAL_RECONCILIATION_REPORT.md`
+**Last amended:** 2026-09-01 — Wave V4 (Governance and Contract v2 Update), against
+`backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2.md`, its AF addendum, and
+`FINAL_RECONCILIATION_REPORT.md` §0V
+**Previously amended:** 2026-08-31 — Wave A4, against export-v1 (now **HISTORICAL**)
 
 This document is binding for every contributor, chat, agent and auditor working on the
 NuovaSolution website redesign. It outranks convenience, speed and personal preference.
@@ -82,14 +84,32 @@ placeholder, mockup, demo and screenshot content:
 
 Demo and sample data must be visibly and honestly marked as illustrative.
 
-**Prices are served, never authored.** Where a price, plan name or feature summary is
-displayed, it is rendered from the confirmed plans endpoint at runtime. The website never
-hardcodes a figure, a currency, a tier name or a quota. Whether prices are displayed
-publicly at all remains an owner decision.
+**There is no price authority. No price is displayed, anywhere, from any source.**
+
+> **Corrected 2026-09-01.** This rule previously read "prices are served, never authored",
+> on the basis that the plans endpoint returned a display price. **That premise is void.**
+> Export-v2 defines the plans response as `{ code, display_name, entitlements_summary }`,
+> explicitly with no price, and states that the plan record carries **no price and no
+> currency column**. There is **no backend pricing, currency or tax authority at all.**
+
+Binding consequences:
+
+- The website may display **plan names and entitlement summaries. It may not display a
+  price**, because no price exists in any contract to render.
+- No currency symbol, no figure, no "from", no range, no per-seat or per-month rate, and no
+  visual implication of a price — no comparative column heights, no bars, no dots, no
+  "up to".
+- **Currency, tax basis and Spanish IVA are a missing authority, not a formatting question.**
+  They remain an owner decision **and** a legal review item. Nothing about them is inferred.
+- A public price table cannot be built. The access-model presentation is the only pricing
+  presentation available until a pricing authority exists.
 
 **Durations are rendered, never hardcoded.** The website never hardcodes a trial length and
 never hardcodes an extension length. It renders the authoritative value returned by the
 backend.
+
+**Quotas and feature-to-package mappings are not authored either.** Neither exists in any
+contract.
 
 ### R7 — Backend connections are prepared, never invented
 The website may prepare integration points. It may not fabricate them.
@@ -147,12 +167,16 @@ by its author.
 
 ## 3. Authority ranking (BINDING)
 
-> Adopted 2026-08-31 from `FINAL_RECONCILIATION_REPORT.md` §0. This ranking is fixed for the
+> Adopted 2026-08-31. **Rank 1 corrected 2026-09-01** from `FINAL_RECONCILIATION_REPORT.md`
+> §0V.1, on the arrival of export-v2 and its AF addendum. This ranking is fixed for the
 > remainder of the project.
 
 | # | Document | Authority over |
 |---|---|---|
-| **1** | `backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md` | **Technical authority.** Endpoints, payload fields, status vocabulary, environment variable names, the auth model, staging and production routing, legacy removal. Nothing technical may be invented outside it. |
+| **1a** | `backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2.md` | **Technical authority. Supersedes v1 entirely.** Endpoints, payload fields, status vocabulary, environment variable names, the auth model, staging and production routing, legacy removal. Nothing technical may be invented outside it. |
+| **1b** | `backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v2_AF_ADDENDUM_v1.md` | **Technical authority for AF-01, AF-04 and AF-07 only.** Extends 1a; does not modify it. |
+| — | `backend_handoff/WEBSITE_INTEGRATION_HANDOFF_EXPORT_v1.md` | **HISTORICAL.** Kept for reference. **No status may be derived from it, and nothing is implemented against it.** |
+| — | `backend_handoff/WEBSITE_UX_AF_REQUIREMENTS_EXPORT_v1.md` | **Not a technical authority.** A website-authored requirement register: it states what was asked, never what is true. |
 | **2** | `CLAIMS_MATRIX.md` | **Authority for public claims.** Which statement may be made, in which wording, with which qualifier. A backend confirmation never converts a `LEGAL REVIEW PENDING` or `REJECTED` verdict into an approved one. |
 | **3** | `PRODUCT_TRUTH.md` | **Confirmed product scope.** What the product is and is not, and the qualification required per capability. |
 | **4** | `COPY_AND_CONVERSION_MASTER.md` | **Copy foundation.** Must agree with ranks 1, 2 and 3. Within those limits it governs wording form and house style. |
@@ -373,34 +397,47 @@ including every state label on authenticated surfaces.
 
 ## 11. CTA hierarchy
 
-> Amended 2026-08-31. The previous hierarchy named a primary CTA whose wording is not
-> cleared. It could not be implemented verbatim and has been replaced with a two-ladder
-> model.
+> Amended 2026-09-01. The factual objections that blocked the original hierarchy are
+> withdrawn. Export-v2 confirms the trial is free and takes no payment method, and the owner
+> has ratified Start Trial as the primary CTA after integration.
 
-### 11.1 The trial exists. Its commercial wording does not yet.
+### 11.1 The trial facts, confirmed
 
-The 14-day trial is `BACKEND CONFIRMED`: it is created with the account at signup, and its
-status, end date and remaining days are served by the backend. What is **not** confirmed
-anywhere is the word **free**, whether a payment method is required at signup, and the day-15
-commercial wording. Those are `OWNER DECISION PENDING`.
+| Fact | Status |
+|---|---|
+| The trial is **14 days** | **`BACKEND CONFIRMED`** |
+| The trial is **free** | **`BACKEND CONFIRMED`** — the trial subsystem creates a free trial, auto-charge is off, and conversion requires explicit customer authorisation |
+| **No payment method is required at signup** | **`BACKEND CONFIRMED`** — no card is collected; payment happens only at the later, server-determined checkout handoff |
+| **Book a demo is optional** | **Owner-ratified** |
+| **No sales call is required to start a trial** | **Owner-ratified**, and now demonstrably true rather than merely asserted |
 
-Therefore the phrase *"Start your 14 day free trial"* **may not be implemented as written**.
+**One distinction remains, and it matters.** The *facts* are confirmed. The *wording* is
+still a claims decision: `CLAIMS_MATRIX.md` lists "Free trial", "Start free", "Try free" and
+"No credit card required" as separately governed phrases. **Only that document's owning
+instance may clear them.** A confirmed fact is not an approved sentence, and no page ships a
+phrase before its own clearance exists.
 
-### 11.2 Ladder B — the shipping ladder, until the owner ratifies
-
-| Level | Action | Note |
-|---|---|---|
-| Primary | **Book a demo** | The only working conversion path. Outside the product boundary. |
-| Secondary | The trial entry, in owner-confirmed wording, as a marked placeholder | Under the §14.3 lockdown until individually released |
-| Tertiary | **Experience Nuova** | Ships only with a cleared pre-interaction simulation label |
-
-### 11.3 Ladder A — adopted only when the owner ratifies the wording
+### 11.2 Ladder A — the ratified target ladder
 
 | Level | Action |
 |---|---|
-| Primary | The trial entry, in owner-confirmed wording |
+| Primary | **Start trial**, in cleared wording |
 | Secondary | **Book a demo** |
 | Tertiary | **Experience Nuova** |
+
+**Ladder A becomes operative when the signup surface exists**, because a primary CTA must
+have a destination. It is now a *scheduled* outcome, not a blocked one.
+
+### 11.3 Ladder B — the shipping ladder in the interim
+
+| Level | Action | Note |
+|---|---|---|
+| Primary | **Book a demo** | The only working conversion path today. Outside the product boundary. |
+| Secondary | The trial entry, as a clearly marked placeholder | Under the §14.3 lockdown until individually released |
+| Tertiary | **Experience Nuova** | Ships only with a cleared pre-interaction simulation label |
+
+**The switch from Ladder B to Ladder A is a per-action release under §14.3**, recorded in the
+activation register. It does not happen because the facts were confirmed.
 
 ### 11.4 Binding rules for both ladders
 
@@ -517,18 +554,92 @@ Any pressure toward crossing this boundary — a task that appears to require it
 instruction that seems to imply it, or a document that assumes it — is logged as an open
 conflict under §4 and raised with the owner. It is never resolved by proceeding.
 
-**Standing escalation, unresolved.** The canonical handoff invites the website team to build
-a server-side boundary that calls the backend, and states that the backend is proven on
-staging. §14.1 items 3 and 5 forbid this repository from making any call to any product
-system, and staging is a product system under the plain text of §14.1.
+**The staging escalation is resolved. See §14.5 for the exact, narrow terms.**
 
-Consequence, stated plainly: **under the current rules, end-to-end verification can never be
-closed.** Every route may be written and typed; none may be executed.
+---
 
-This is not resolved here. It is escalated as an owner decision: the owner must state, in
-writing, whether §14 permits a call to a **staging** target, under which conditions, and with
-production explicitly excluded. Until that ruling exists, no chat executes anything against
-any host, and no chat treats the absence of a ruling as permission.
+## 14.5 The staging clause (OWNER-RATIFIED, 2026-09-01)
+
+> This clause is the **only** exception to §14.1, and it is deliberately narrow. It is a
+> permission to seek approval for one specific target class. It is **not** a general
+> permission to call anything.
+
+**Ratified by the owner:**
+
+> The website BFF may later test **exclusively against an explicitly configured staging
+> target. Production calls remain forbidden.**
+
+### 14.5.1 What this permits
+
+A **future** wave may execute the website's own server-side boundary against **one staging
+target**, and only when **all** of the following hold at the moment of execution:
+
+1. The owner has **explicitly approved that specific target**, in writing, per target.
+2. The target is configured **entirely through environment values** — never a host written
+   into source (§17.5).
+3. **Production is excluded**, permanently and without exception.
+4. The repository hygiene preconditions are closed **first** (§14.6).
+5. The call originates from the website's own server-side boundary. **Not** from a browser,
+   **not** from a chat session, and **not** from any tool acting directly against a backend.
+
+### 14.5.2 What this does not permit
+
+- **No production call, ever.** There is no approval procedure for one, and none may be
+  requested. This is not a severity rating; it is a prohibition.
+- **No n8n access, no database access, no workflow change, no schema change.** §14.1 items
+  1, 2 and 4 are untouched.
+- **No call before an explicit per-target approval.** The clause's existence is not the
+  approval. Silence is not approval. Approval for one target is not approval for another.
+- **No approval is implied by a documented contract**, a configured variable, or a working
+  staging environment being known to exist.
+
+### 14.5.3 Present state
+
+**No staging target is approved. No call has been made or may be made today.** Nothing in
+this repository executes against any host. Every route is written and typed only.
+
+The practical effect of ratification is that `END TO END VERIFICATION PENDING` is now
+**reachable in principle** rather than permanently unreachable. It is not closed, and it does
+not close until a real verification actually runs under §14.5.1.
+
+---
+
+## 14.6 Repository hygiene is a precondition (OWNER-RATIFIED, 2026-09-01)
+
+**Ratified by the owner:** repository hygiene is **mandatory before any secret or any
+server-boundary configuration is introduced.**
+
+Binding sequence, in this order, with no step skipped:
+
+1. **Hygiene first.** Build output, build information, the retired tooling configuration and
+   local developer settings are untracked, and the ignore rules are extended.
+   `CURRENT_SITE_AUDIT.md` §19 holds the register.
+2. **Then** the guard that fails a build on a retired host or a secret-shaped literal.
+3. **Then, and only then**, any environment variable, any server-boundary configuration, and
+   any staging target.
+
+Introducing a secret-bearing variable while build output is tracked is **unsafe by
+construction**: the next build that inlines a value commits it. No wave may reorder this.
+
+**This wave performs no hygiene work.** It documents the requirement. Remediation is a
+separate wave that runs **alone**, because untracking operates on the whole index.
+
+---
+
+## 14.7 Versioning the backend exports (OWNER-RATIFIED, 2026-09-01)
+
+**Ratified by the owner:** the backend handoffs v1, v2 and the AF addendum **may be placed
+under version control after a successful hygiene and secrets check.**
+
+Conditions:
+
+- The hygiene work of §14.6 is closed first.
+- Each file is re-read in full and confirmed to contain no secret, key, token, credential,
+  environment value or customer record immediately before it is staged.
+- Both current digests are recorded alongside them, so a later export can be diffed against a
+  verified baseline.
+- **This wave commits none of them.** They are the owner's files, they sit in an untracked
+  directory, and versioning them is the hygiene wave's first action, not this one's.
 
 ---
 
@@ -609,10 +720,15 @@ describing the website, and where applicable one describing publication.
   inferred, cached as truth, or reconstructed client-side.
 - The website **never grants** an entitlement, a trial extension, a plan change or a
   completion state. It reflects what the backend reports.
-- The website never hardcodes a trial length, an extension length, a price, a quota or a
-  plan name. Those are served values.
+- The website never hardcodes a trial length, an extension length, a quota or a plan name.
+  Those are served values. **A price is not a served value — none exists** (R6).
 - Where the backend reports a state the website did not expect, the website renders nothing
   rather than a guess.
+- **The wizard is not forced linear.** Each step's status is evaluated independently by the
+  backend. The website renders steps in any order it chooses and drives completion from live
+  status. The resume pointer is a convenience, not a sequence.
+- **Progress is read, never counted.** The completion percentage and the completed-step count
+  come from the backend projection. The website does not derive them from what it can see.
 
 ### 17.2 No secrets may reach the browser
 
@@ -661,6 +777,37 @@ describing the website, and where applicable one describing publication.
   preview origin is allowed for staging only.
 - Self-referencing absolute production URLs are forbidden in source. Internal links are
   relative, otherwise every preview links back into production.
+- **Locale routes are `/en` and `/es`**, separate routes, fixed by owner ratification
+  (§19 item 9). This is not a proposal and is not reopened.
+
+### 17.6 Additional release-blocking invariants from export-v2
+
+Each is a **P0** finding if breached.
+
+1. **No price is displayed anywhere**, from any source, because none exists in any contract
+   (R6).
+2. **There is no polling contract, and none may be invented.** Connection status is read
+   **once** after the OAuth return, and **once** on an explicit user refresh. A conservative
+   auto-refresh is permitted only as an openly **website-owned** decision: it must stop on a
+   terminal state or when the user leaves the step, and it must never be presented, typed or
+   documented as a backend guarantee.
+3. **A user cancelling an authorisation is never rendered as a provider failure.** The
+   cancellation outcome returns the row to its previous status as a neutral, resumable state.
+   It is never an error treatment and never a critical signal.
+4. **No internal telephony carrier or vendor name is ever rendered.** Voice is named
+   generically. The internal registry's display values are engineering and carrier
+   descriptions, and exposing them would disclose the internal telephony stack.
+5. **Footer and signature are submitted as plain text.** The website never injects raw HTML;
+   the server sanitizes and renders. Only the logo and the email banner are uploads.
+6. **The website builds no hot lead alerting surface** and asserts no alerting claim. The
+   mechanism is internal and needs no website endpoint. **A mechanism existing internally is
+   not a cleared public claim.**
+7. **The opaque office handle is never rendered.** Offices are shown by display name only.
+8. **The correlation value returned to the OAuth callback route is never a token**, and the
+   website never receives one.
+9. **Provider display names are cleared for the authenticated tree only.** Public marketing
+   naming remains a claims decision. Logos remain blocked for every provider until brand
+   approval.
 
 ---
 
@@ -750,7 +897,78 @@ host or reach either.
 
 ### 18.3 Conditions on adopting it
 
-1. The owner approves the replacement explicitly.
-2. The A4 chat, and no other, performs the edit, in a commit that touches `CLAUDE.md` alone.
+1. The owner approves the replacement explicitly. **Ratified 2026-09-01:** `CLAUDE.md` **may
+   be updated later, under control** (§19 item 12).
+2. The governance-owning chat, and no other, performs the edit, in a commit that touches
+   `CLAUDE.md` alone.
 3. Until then `CLAUDE.md` stays exactly as it is, and every chat treats its visual direction,
    positioning, hot-lead mandate and chatbot section as **superseded** per §3.
+
+### 18.4 The hot lead mandate is settled, and must not be carried over
+
+> **Owner-ratified 2026-09-01:** the old mandatory hot-lead mandate **must not be carried
+> into the new website.**
+
+`CLAUDE.md` currently mandates hot lead alerts as a "MANDATORY SELLING POINT" with a required
+phone-mockup treatment. That mandate is **withdrawn** and does not enter the rebuild.
+
+The reason is now settled rather than pending. Hot-lead surfacing is an **internal**
+mechanism: the agency is notified through the existing agent-notification channel and through
+CRM and dashboard surfacing. There is **no public website or onboarding endpoint, and none is
+required**. It is therefore **out of scope for the website**, not blocked awaiting a contract.
+
+Binding consequences:
+
+- **The website builds nothing for it.** No section, no phone mockup, no alert imagery, no
+  endpoint, no copy.
+- **The internal mechanism authorises no public claim.** A mechanism existing internally is
+  not cleared wording. Any future claim is a fresh claims decision with a fresh legal check.
+- The previous record of this as `BLOCKED` on a missing backend field was **wrong** and is
+  corrected wherever it appears.
+
+---
+
+## 19. Owner ratification register (2026-09-01)
+
+Decisions ratified by the owner in writing. **Each is fixed and is not reopened by any chat.**
+A ratification settles a *decision*; it never releases a *control* — that is §14.3, and the
+activation register is still empty.
+
+| # | Ratified decision | Where it binds |
+|---|---|---|
+| 1 | The website BFF may later test **exclusively against an explicitly configured staging target**. | §14.5 |
+| 2 | **Production calls remain forbidden.** No approval procedure exists for one. | §14.5.2 |
+| 3 | Staging and production are **separated config-driven**. | §17.5 |
+| 4 | **Start Trial becomes the primary CTA after successful integration.** | §11.2 |
+| 5 | **The trial is 14 days free.** | §11.1 |
+| 6 | **No payment method is required at signup.** | §11.1 |
+| 7 | **Book a demo remains optional.** | §11.1, §11.4 |
+| 8 | **No phone call is a prerequisite for the trial.** | §11.1, §11.4 |
+| 9 | **Locale routes are `/en` and `/es`.** | §17.5 |
+| 10 | **`/{locale}/app` is documented as the provisional website-owned destination after onboarding**, until the product scope is finally confirmed. | §19.1 |
+| 11 | The backend handoffs v1, v2 and the addendum **may be versioned after a successful hygiene and secrets check**. | §14.7 |
+| 12 | **Repository hygiene is mandatory before any secret or server-boundary configuration is introduced.** | §14.6 |
+| 13 | **`CLAUDE.md` may be updated later, under control.** The old mandatory hot-lead mandate **must not be carried into the new website.** | §18.3, §18.4 |
+
+### 19.1 The provisional destination after onboarding
+
+> **Owner-ratified:** `/{locale}/app` is documented as the **provisional, website-owned**
+> destination after onboarding, **until the product scope is finally confirmed.**
+
+This closes what was previously recorded as the project's largest open question, and it
+closes it correctly: the backend never owned this route. The backend owns the **signal** —
+whether the tenant is activatable, and the activation call. The **destination is a website
+decision**, and the owner has now made it provisionally.
+
+What this does and does not settle:
+
+- **Settled:** the route the website targets on completion, so the onboarding exit, the
+  authenticated route tree and the login destination are no longer blocked on an unknown.
+- **Not settled:** how much of the product the website ultimately hosts. `/{locale}/app` is a
+  **placeholder destination under a website-owned route**, not a decision that the website
+  builds the full authenticated application.
+- **Consequence for `Log in`:** the destination now exists as a website route, so the nav item
+  is no longer blocked on a missing field. It still does not render as a live link until that
+  route exists and the control is released per §14.3.
+- The word **provisional** is load-bearing. When the product scope is confirmed, this is
+  revisited rather than inherited by default.
