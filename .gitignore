@@ -1,2 +1,33 @@
+# dependencies
 node_modules
+
+# next.js build output (never committed)
+.next
+out
+tsconfig.tsbuildinfo
+next-env.d.ts
+
+# vercel
 .vercel
+
+# environment values (names live in .env.example only)
+.env
+.env.*
+!.env.example
+
+# local tooling and agent configuration (never committed; may contain credentials)
+.mcp.json
+.claude/settings.local.json
+
+# owner's archived, untracked concept files (preserved locally, not part of the build)
+_archive/
+
+# stray media at repo root
+/*.mp4
+
+# os / editor
+.DS_Store
+Thumbs.db
+
+# local screenshots produced by the review script
+/screenshots/
