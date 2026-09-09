@@ -1,74 +1,100 @@
 import type { Config } from "tailwindcss";
 
+/**
+ * Tailwind is bound to the CSS custom properties in app/globals.css.
+ * No colour, radius or shadow exists here that is not a token there.
+ */
 const config: Config = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./translations/**/*.{ts}",
-  ],
-  darkMode: "class",
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}"],
   theme: {
+    screens: {
+      sm: "375px",
+      md: "640px",
+      lg: "768px",
+      xl: "1024px",
+      "2xl": "1280px",
+      max: "1440px",
+    },
     extend: {
       colors: {
-        brand: {
-          /* Light mode */
-          bg:          "#FAFAF8",
-          sand:        "#F2EDE5",
-          sandDark:    "#E8E1D6",
-          navy:        "#1C2B3A",
-          navyLight:   "#2D3F52",
-          gold:        "#D6B47A",
-          goldLight:   "#E2C48F",
-          goldDark:    "#C49A60",
-          stone:       "#6B6659",
-          stoneLight:  "#9A9589",
-          terra:       "#C4705B",
-          terraLight:  "#D4907D",
-          olive:       "#7A8C6E",
-          /* Dark mode surfaces */
-          darkBg:      "#0D1620",
-          darkSurface: "#162232",
-          darkCard:    "#1C2B3A",
+        ink: {
+          1000: "var(--ink-1000)",
+          950: "var(--ink-950)",
+          900: "var(--ink-900)",
+          850: "var(--ink-850)",
+          800: "var(--ink-800)",
+          700: "var(--ink-700)",
+          600: "var(--ink-600)",
+          500: "var(--ink-500)",
+          450: "var(--ink-450)",
+          400: "var(--ink-400)",
+          350: "var(--ink-350)",
+          300: "var(--ink-300)",
+          200: "var(--ink-200)",
+          100: "var(--ink-100)",
+          50: "var(--ink-50)",
         },
-        hot:      "#DC2626",
-        warm:     "#D97706",
-        cold:     "#2563EB",
-        whatsapp: "#25D366",
+        ivory: "var(--ivory)",
+        paper: "var(--paper)",
+        champagne: {
+          200: "var(--champagne-200)",
+          300: "var(--champagne-300)",
+          400: "var(--champagne-400)",
+          700: "var(--champagne-700)",
+          850: "var(--champagne-850)",
+        },
+        surface: {
+          canvas: "var(--surface-canvas)",
+          raised: "var(--surface-raised)",
+          sunken: "var(--surface-sunken)",
+          hover: "var(--surface-hover)",
+        },
+        text: {
+          primary: "var(--text-primary)",
+          secondary: "var(--text-secondary)",
+          muted: "var(--text-muted)",
+          accent: "var(--text-accent)",
+        },
+        line: {
+          hairline: "var(--border-hairline)",
+          strong: "var(--border-strong)",
+          interactive: "var(--border-interactive)",
+        },
+        signal: {
+          positive: "var(--signal-positive)",
+          attention: "var(--signal-attention)",
+          critical: "var(--signal-critical)",
+        },
+      },
+      borderRadius: {
+        none: "0",
+        sm: "4px",
+        md: "8px",
+        pill: "999px",
+      },
+      boxShadow: {
+        overlay: "var(--shadow-overlay)",
+        lift: "0 1px 2px rgba(0,0,0,.40), 0 8px 24px -8px rgba(0,0,0,.50)",
+        none: "none",
+      },
+      transitionTimingFunction: {
+        standard: "cubic-bezier(.2,0,0,1)",
+        out: "cubic-bezier(.22,1,.36,1)",
+      },
+      transitionDuration: {
+        micro: "120ms",
+        control: "200ms",
+        element: "320ms",
+        scene: "520ms",
       },
       fontFamily: {
-        sans:    ["Inter", "system-ui", "sans-serif"],
-        display: ["Playfair Display", "Georgia", "serif"],
+        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
-      animation: {
-        "aurora-1": "aurora-1 10s ease-in-out infinite",
-        "aurora-2": "aurora-2 13s ease-in-out infinite",
-        "aurora-3": "aurora-3 16s ease-in-out infinite",
-        "fade-up":  "fade-up 0.6s ease forwards",
-      },
-      keyframes: {
-        "aurora-1": {
-          "0%,100%": { transform: "translate(0%, 0%) scale(1)" },
-          "33%":     { transform: "translate(5%, -8%) scale(1.08)" },
-          "66%":     { transform: "translate(-4%, 5%) scale(0.96)" },
-        },
-        "aurora-2": {
-          "0%,100%": { transform: "translate(0%, 0%) scale(1)" },
-          "40%":     { transform: "translate(-6%, 6%) scale(1.06)" },
-          "70%":     { transform: "translate(5%, -4%) scale(0.97)" },
-        },
-        "aurora-3": {
-          "0%,100%": { transform: "translate(0%, 0%) scale(1)" },
-          "25%":     { transform: "translate(4%, 4%) scale(1.04)" },
-          "75%":     { transform: "translate(-5%, -5%) scale(1.02)" },
-        },
-        "fade-up": {
-          "0%":   { opacity: "0", transform: "translateY(20px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-      },
-      transitionProperty: {
-        "colors-shadow": "color, background-color, border-color, box-shadow",
+      maxWidth: {
+        text: "720px",
+        narrow: "640px",
+        default: "1240px",
+        wide: "1440px",
       },
     },
   },
