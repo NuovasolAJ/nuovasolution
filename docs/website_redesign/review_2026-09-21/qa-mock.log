@@ -1,0 +1,2 @@
+qa-mock listening 127.0.0.1:3999
+{"at":"2026-09-21T13:02:36.678Z","received_header_names":["x-nuova-tenant","x-nuova-timestamp","x-nuova-nonce","x-nuova-body-sha256","x-nuova-signature"],"received_body_keys":["tenant_id","question","locale","ts","nonce"],"checks":{"path":true,"headers_present":true,"fresh":true,"nonce_format":true,"nonce_unused":true,"signature_over_raw_bytes":true,"body_json_object":true,"body_size_ok":true,"question_1_4000":true,"session_id_required":false},"verdict":"401"}

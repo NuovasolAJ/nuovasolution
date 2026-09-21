@@ -1,0 +1,21 @@
+import { spawn } from "node:child_process"; import { rmSync, writeFileSync } from "node:fs";
+const SP = process.env.SP, prof = `${SP}/edgeprof/cdp2`; rmSync(prof, { recursive: true, force: true });
+const edge = spawn("C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe", ["--headless=new","--disable-gpu","--no-first-run",`--user-data-dir=${prof}`,"--remote-debugging-port=9334","about:blank"], { stdio: "ignore" });
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+let list; for (let i=0;i<60;i++){ try { list = await (await fetch("http://127.0.0.1:9334/json")).json(); break; } catch { await sleep(500); } }
+const ws = new WebSocket(list.find(t=>t.type==="page").webSocketDebuggerUrl); await new Promise(r=>ws.addEventListener("open",r));
+let id=0; const p=new Map(); ws.addEventListener("message",e=>{const m=JSON.parse(e.data); if(m.id&&p.has(m.id)){p.get(m.id)(m);p.delete(m.id);}});
+const send=(method,params={})=>new Promise(r=>{const i=++id;p.set(i,r);ws.send(JSON.stringify({id:i,method,params}));});
+const ev=async(x)=>(await send("Runtime.evaluate",{expression:x,returnByValue:true,awaitPromise:true})).result?.result?.value;
+await send("Page.enable");
+await send("Emulation.setDeviceMetricsOverride",{width:360,height:800,deviceScaleFactor:2,mobile:true});
+await send("Page.navigate",{url:"http://localhost:3107/es/platform/crm"}); await sleep(3500);
+const out = {};
+out.crm360 = await ev(`(()=>{const L=360,r=[];for(const el of document.querySelectorAll('body *')){const b=el.getBoundingClientRect();if(b.width&&b.right>L+1){r.push({tag:el.tagName,cls:(el.className?.toString?.()||'').slice(0,70),text:(el.innerText||'').replace(/\s+/g,' ').slice(0,60),right:Math.round(b.right),w:Math.round(b.width)});}}return {innerWidth,scrollWidth:document.documentElement.scrollWidth,widest:r.sort((a,b)=>a.w-b.w).slice(0,5)};})()`);
+const s = await send("Page.captureScreenshot",{format:"png"}); writeFileSync(`${SP}/shots-cdp/m360-es-platform-crm.png`, Buffer.from(s.result.data,"base64"));
+await send("Emulation.setDeviceMetricsOverride",{width:390,height:844,deviceScaleFactor:2,mobile:true});
+await send("Page.navigate",{url:"http://localhost:3107/en"}); await sleep(3000);
+out.onePx = await ev(`[...document.querySelectorAll('a[href]')].filter(a=>{const b=a.getBoundingClientRect();return b.width<=2&&b.height<=2}).map(a=>({text:a.innerText.trim().slice(0,40),href:a.getAttribute('href'),cls:a.className.toString().slice(0,90),parentCls:a.parentElement.className.toString().slice(0,90)}))`);
+await send("Page.navigate",{url:"http://localhost:3107/es/signup"}); await sleep(3000);
+out.signupHeadings = await ev(`[...document.querySelectorAll('h1,h2,h3,[role=heading]')].map(h=>h.tagName+': '+h.innerText.slice(0,50))`);
+console.log(JSON.stringify(out,null,1)); ws.close(); edge.kill();

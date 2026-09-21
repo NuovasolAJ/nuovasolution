@@ -1,0 +1,125 @@
+UTC 2026-09-21T13:11:33Z  base=http://localhost:3107
+
+=== P01 security headers on /en
+HTTP/1.1 200 OK
+Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com https://app.cal.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://vitals.vercel-insights.com https://app.cal.com https://cal.com; frame-src https://app.cal.com https://cal.com; media-src 'self'; upgrade-insecure-requests
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
+
+=== P02 root locale negotiation
+HTTP/1.1 307 Temporary Redirect
+location: /es
+HTTP/1.1 307 Temporary Redirect
+location: /en
+
+=== P03 onboarding without session
+HTTP/1.1 307 Temporary Redirect
+Location: /en/login
+
+=== P04 stub session backdoor GET /api/bff/auth/login?stub=1 (no credentials)
+HTTP/1.1 303 See Other
+location: http://localhost:3107/en/onboarding
+set-cookie: nuova_session=stub; Path=/; Expires=Mon, 21 Sep 2026 21:11:34 GMT; Max-Age=28800; HttpOnly; SameSite=lax
+set-cookie: nuova_stub_case=3; Path=/; Expires=Mon, 21 Sep 2026 21:11:34 GMT; Max-Age=28800; HttpOnly; SameSite=lax
+
+=== P05 open redirect via backslash in next
+HTTP/1.1 303 See Other
+location: http://evil.example/x
+HTTP/1.1 303 See Other
+location: http://evil.example/
+
+=== P06 POST login with arbitrary credentials
+HTTP/1.1 200 OK
+set-cookie: nuova_session=stub; Path=/; Expires=Mon, 21 Sep 2026 21:11:34 GMT; Max-Age=28800; Secure; HttpOnly; SameSite=lax
+set-cookie: nuova_stub_case=2; Path=/; Expires=Mon, 21 Sep 2026 21:11:34 GMT; Max-Age=28800; HttpOnly; SameSite=lax
+x-nuova-stub: 1
+{"request_id":"8b9e865e-7a8f-4a5e-88a1-e1728d18c1c7","ok":true,"code":"ok","message":"stub","stub":true}
+
+=== P07 POST signup arbitrary -> claims created
+HTTP/1.1 201 Created
+set-cookie: nuova_session=stub; Path=/; Expires=Mon, 21 Sep 2026 21:11:34 GMT; Max-Age=28800; Secure; HttpOnly; SameSite=lax
+set-cookie: nuova_stub_case=1; Path=/; Expires=Mon, 21 Sep 2026 21:11:34 GMT; Max-Age=28800; HttpOnly; SameSite=lax
+x-nuova-stub: 1
+{"request_id":"26afd70c-351a-46df-a26f-3c8afb5fce9f","ok":true,"code":"ok","message":"stub","details":{"next":"onboarding","session":true},"stub":true}
+
+=== P08 cross-site text/plain POST login (login CSRF shape)
+HTTP/1.1 200 OK
+set-cookie: nuova_session=stub; Path=/; Expires=Mon, 21 Sep 2026 21:11:34 GMT; Max-Age=28800; Secure; HttpOnly; SameSite=lax
+set-cookie: nuova_stub_case=2; Path=/; Expires=Mon, 21 Sep 2026 21:11:34 GMT; Max-Age=28800; HttpOnly; SameSite=lax
+
+=== P09 logout cookie deletion attributes
+HTTP/1.1 200 OK
+set-cookie: nuova_stub_case=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT
+set-cookie: nuova_session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT
+set-cookie: nuova_refresh=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT
+
+=== P10 onboarding with stub session: form controls present?
+bytes: 75574
+input elements:    0
+select elements:   0
+textarea elements: 0
+file inputs:       0
+links to /onboarding/<step>: 0
+HubSpot mentions:  3
+Google Sheets:     0
+stub notice:       1
+percent text:      
+
+=== P11 forged OAuth success (no server confirmation)
+      2 Connected. You can go back to the step.
+      2 HubSpot
+
+=== P11b unknown outcome
+      2 could not complete the connection
+      2 the provider
+
+=== P11c cancelled
+      2 Gmail
+      2 You cancelled the connection. Nothing has changed.
+
+=== P12 Q&A with no target configured
+HTTP/1.1 200 OK
+{"request_id":"830f405d-56e7-41dc-8c2c-239c5663d9d6","ok":false,"code":"not_configured","message":"not_configured"}
+
+=== P13 legacy redirects
+/legal-notice          HTTP/1.1 308 Permanent Redirect location: /en/legal/notice 
+/privacy-policy        HTTP/1.1 308 Permanent Redirect location: /en/legal/privacy 
+/aviso-legal           HTTP/1.1 308 Permanent Redirect location: /es/legal/notice 
+/politica-privacidad   HTTP/1.1 308 Permanent Redirect location: /es/legal/privacy 
+/live-demo             HTTP/1.1 308 Permanent Redirect location: /en 
+/v2                    HTTP/1.1 308 Permanent Redirect location: /en 
+
+=== P14 sitemap / robots
+36
+<loc>https://nuovasolution.com/en/legal/privacy
+<loc>https://nuovasolution.com/es/legal/privacy
+<loc>https://nuovasolution.com/en/legal/terms
+<loc>https://nuovasolution.com/es/legal/terms
+<loc>https://nuovasolution.com/en/legal/data-deletion
+<loc>https://nuovasolution.com/es/legal/data-deletion
+<loc>https://nuovasolution.com/en/legal/notice
+<loc>https://nuovasolution.com/es/legal/notice
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /en/onboarding
+Disallow: /es/onboarding
+Disallow: /en/connect/
+Disallow: /es/connect/
+
+Sitemap: https://nuovasolution.com/sitemap.xml
+
+=== P15 stub-only endpoints and html lang
+<html lang="es"
+<html lang="en"
+h1 count /en: 1   /es/trial: 1
+skip link /en: 1
+
+=== P16 rate limit login (8/min)
+200 200 200 200 200 200 200 200 429 429 
+spoofed XFF rotation:
+200 200 200 200 200 200 200 200 200 200 
