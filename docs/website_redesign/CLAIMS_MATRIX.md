@@ -1,5 +1,35 @@
 # CLAIMS MATRIX — NuovaSolution Website
 
+> ## ⚠ STATE 2026-09-21 — read this block before any row below
+>
+> **Last row-level reconciliation: 2026-08-31 (export v2).** The rows below still govern **wording**
+> (what may be said and with which qualifier). They do not say what runs today. The per claim
+> evidence status for every sentence on the rebuilt website is in `WEBSITE_CLAIM_REGISTER_v1.md`
+> (canonical state `2026-09-21_SYNC_1215Z`).
+>
+> **No verdict in this document was loosened on 2026-09-21.** The review found the rebuilt website
+> in breach of five existing rows; the website is corrected, not the matrix:
+>
+> | Row | Verdict (unchanged) | What the website says today | Action |
+> |---|---|---|---|
+> | D-10 hot lead alerting | `BLOCKED` | "Hot lead alerts to your agents", status `live`, on eleven surfaces | register WCR-002, 012, 018, 020, 021, 060 to 067, 075: `in_implementation`; the hero and h1 no longer promise alerts |
+> | T-03, T-03b, T-03c extension | `LEGAL`; every public wording forbidden; video pipeline missing | "Try free for up to 21 days", the review and extension mechanism on the trial page, home, contact and terms | **CONFLICT** with owner supplied copy (`WEBSITE_REBUILD_STATUS.md` §2). Owner decision D1 in the register §4, recommendation: publish "14 days" only until L-13 and MF-01 clear |
+> | V-07 multilingual voice | `OWNER`; language counts forbidden | "Nine languages certified internally" in four places | register WCR-026, 100: number removed |
+> | F-03 fixed selection count | `APPROVED-Q`; a fixed number forbidden | "Nuova sends three properties" | register WCR-083 |
+> | F-07 naming CRM vendors | `OWNER` (decision D) | HubSpot, Pipedrive, Zoho, Salesforce named as text, status correctly "not offered" | owner decision D2 in the register, recommendation: approve text naming, no logos |
+>
+> **Every corrected sentence in the register is equal to or narrower than an existing `APPROVED` or
+> `APPROVED-Q` row** (B-04, B-05, D-03, D-05, G-10, G-11b, P-04, F-01 to F-04, O-02, O-08, T-01,
+> T-01b, T-01d, N-01) or is a statement of what the product does **not** yet do, which §0 treats as
+> carrying no capability risk. Two new texts are not wording approvals and stay drafts: the pre
+> connection notice (`CONNECT_NOTICE_DRAFT_v1.md`, LEGAL) and the AI disclosure equivalents
+> (`SIGNATURE_COPY_READY_v1.md` Part B, LEGAL, C-Q8).
+>
+> **Row facts that are stale, not wrong:** G-11 and the §8 tech column describe external CRM
+> connection as `BACKEND CONFIRMED`; the onboarding catalogue (`CRM_ONBOARDING_DROPDOWN_CONTRACT_v1.md`)
+> offers them as `coming_soon`, interest only, sync fenced. O-00 to O-03d: the wizard exists in
+> staging only, and the `ai_disclosure` gate is counsel pending, so no agency can be activated.
+
 **Author:** Product Truth Director / Claims Auditor instance (independent of implementation)
 **Branch:** `website_enterprise_redesign`
 **Created:** 2026-08-30

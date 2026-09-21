@@ -1,5 +1,30 @@
 # IMPLEMENTATION STATUS — NuovaSolution Website Enterprise Redesign
 
+> ## ⚠ STATE 2026-09-21 — corrected current state. §1 below is HISTORICAL (2026-09-01)
+>
+> Added by the Website Copy / Product Truth / Director lane under the owner's instruction of
+> 2026-09-21 (C5) so that no stale header is read as current. The Implementer's own build record
+> is `WEBSITE_REBUILD_STATUS.md` and remains theirs. This block states the current state; it does
+> not certify any of it.
+>
+> | | State on 2026-09-21 | Source |
+> |---|---|---|
+> | Branch | `website_enterprise_redesign`, HEAD `f4416fe`, **never pushed**; push to the private remote is an open owner decision | `git log`; dispatch PROMPT_10 |
+> | Application code | **Rebuilt** in `8e782f9`: 62 statically generated pages from 21 route templates in `/en` and `/es`, 11 BFF routes, stub mode by default. §1 "Pages rebuilt: None" and "Application code changed: None" are **no longer true** | `WEBSITE_REBUILD_STATUS.md` |
+> | Work in progress | The Implementer is working in the tree now (uncommitted changes under `lib/contracts/`) | `git status` 2026-09-21 |
+> | Integration mode | **Stub** everywhere. Staging code path exists behind a three variable gate and has never been exercised. No production code path | `lib/contracts/mode.ts` |
+> | Staging handoff | `governance/WEBSITE_HANDOFF_v1.md` **not delivered** (API) | dispatch PROMPT_01 A5 |
+> | Independent website review | **Not delivered.** `REVIEW_2026-09-21.md` does not exist yet | file absent 2026-09-21 |
+> | Public deployment state | **UNKNOWN.** Not read by any lane in this repository. Only the Reviewer's `WEBSITE_DEPLOYED_READOUT` may state it. "Website paused" is not evidence | dispatch PROMPT_09 R2 |
+> | Live, in this document's vocabulary | **Nothing.** No page is recorded as live until the Reviewer's readout and acceptance exist | owner instruction C5 |
+> | Claims on the built pages | 106 statements registered; corrections pending (hot lead alerts, property matching, native CRM plus Sheets, trial extension, Spanish Daily Assistant availability, voice language count, social progress figure) | `WEBSITE_CLAIM_REGISTER_v1.md` |
+> | Product CTAs | All still under the §14.3 lockdown; activation register empty | `INTEGRATION_CONTRACT.md` |
+> | Legal routes | Four PLACEHOLDER routes; counsel package prepared | `CONNECT_NOTICE_DRAFT_v1.md` §C |
+>
+> Sections §4 to §9 below describe the gate model of 2026-09-01 and remain useful as history. The
+> open decisions they list are superseded by `CLAIMS_MATRIX.md` §21 (as annotated) and the register
+> §4.
+
 **Branch:** `website_enterprise_redesign` (forked from `main` @ `9943660`)
 **Maintained by:** Master Website Director (implementation instance)
 **Last updated:** 2026-09-01 — Wave V4 (Governance and Contract v2 Update)

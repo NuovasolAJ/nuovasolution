@@ -1,5 +1,37 @@
 # COPY AND CONVERSION MASTER — NuovaSolution Website
 
+> ## ⚠ STATE 2026-09-21 — read this block before any section below
+>
+> This master was written on 2026-08-30 and 2026-08-31, **before the website was rebuilt**
+> (`8e782f9`). Since then:
+>
+> 1. **The operative customer copy lives in code**: `lib/i18n/dictionaries/{en,es}.ts`,
+>    `lib/content/capabilities.ts`, `statuses.ts`, `legal.ts`. This master remains the reference for
+>    positioning, voice, banned language, CTA logic and the Spanish register. It is **not** the
+>    copy the site renders.
+> 2. **Per claim truth is in `WEBSITE_CLAIM_REGISTER_v1.md`** (canonical state
+>    `2026-09-21_SYNC_1215Z`). Where the register and a section below disagree about availability,
+>    the register wins.
+> 3. **Superseded sections:**
+>    - §3.4 "Variant B contains the word free, NOT APPROVED": **overtaken**. "Start your 14 day free
+>      trial" and "No payment method required" were approved on 2026-09-01 (`CLAIMS_MATRIX.md`
+>      T-01, T-01b; owner closed decision C). Variant A remains valid wording.
+>    - §3.2 and §3.3: the trial becomes the primary CTA once signup is released (CTA-1b); Book a
+>      demo stays optional and never a prerequisite. Unchanged in principle.
+>    - The trial extension remains held (T-03 `LEGAL`, video pipeline missing). **The rebuilt site
+>      publishes it anyway, from owner supplied copy.** Recorded as a conflict with a recommendation
+>      in the register §4 decision D1.
+>    - §6.15 to §6.19 (signup, login, trial status, trial expiry, plan selection): the built pages
+>      and `PRODUCT_TEXTS_C2_v1.md` supersede the draft strings here.
+>    - §9.7b status strings: identical to the dictionaries; no change.
+> 4. **New texts from this lane, 2026-09-21:** `PRODUCT_TEXTS_C2_v1.md` (CRM choice incl. "No
+>    external CRM", connection outcomes, branding incl. dark backgrounds, readiness, Q&A, DSAR,
+>    stub and sandbox marking), `CONNECT_NOTICE_DRAFT_v1.md` (DRAFT, not legally reviewed),
+>    `SIGNATURE_COPY_READY_v1.md` (sign-off ready; disclosure drafts for counsel).
+> 5. Unchanged and still binding: no dashes in public copy, no invented numbers, no guaranteed
+>    outcomes, no price authored by the website, hot lead alerting has no permitted wording while
+>    `MF-02` is open (`CLAIMS_MATRIX.md` D-10).
+
 **Owner of this document:** Lead Product Marketing Writer / Conversion Strategist
 **Branch:** `website_enterprise_redesign`
 **Created:** 2026-08-30

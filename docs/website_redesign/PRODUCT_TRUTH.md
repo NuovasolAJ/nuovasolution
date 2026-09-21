@@ -1,5 +1,55 @@
 # PRODUCT TRUTH — NuovaSolution
 
+> ## ⚠ STATE 2026-09-21 — read this block before any section below
+>
+> **This document was last reconciled on 2026-08-31 against backend contracts (export v2). Since
+> then three things changed that its body does not reflect:** the website was rebuilt
+> (`8e782f9`, 62 pages, stub mode); the owner's canonical audit of 2026-09-08 set website
+> statuses; and the evidence index now records real prod runs (canonical state
+> `2026-09-21_SYNC_1215Z`). **Its sections describe contracted scope and required qualification;
+> they are not a statement of what runs today.** For what runs today, per claim and per page, the
+> current source is `WEBSITE_CLAIM_REGISTER_v1.md`, built from
+> `NuovaSolution-n8n-system/governance/CLOSEOUT_EVIDENCE_INDEX_v1.md`.
+>
+> **Product chains, seven stages, as evidenced on 2026-09-21** (1 implemented · 2 internally
+> tested · 3 staging · 4 real provider transport · 5 in prod · 6 owner visibly tested ·
+> 7 independently accepted; LV = re-read by the Audit, RO = lane report):
+>
+> | Chain | Highest stages evidenced | Public status | Key record |
+> |---|---|---|---|
+> | WhatsApp text dialog with reply | 1 to 7 | prod proven | `WA-PROD-E2E-1` LV |
+> | Gmail enquiry answered | 1 to 6; data effect open | prod partial | `GMAIL-REGRESSION-0920` LV; `GMAIL_REGRESSION_PASS = NO` (Lead return 09-21) |
+> | Lead capture and scoring | 1 to 6 | prod proven | leads row `9252f3b8…` LV |
+> | Viewing request becomes a task | 1 to 5 for task creation | prod proven (creation); agent side open | `WA-PROD-E2E-1` task `32711087…` |
+> | Native CRM | prod stores `leads`, `lead_memory`; no `contacts`, no CRM screen, no catalogue functions | prod partial | `CRM_ONBOARDING_DROPDOWN_CONTRACT_v1.md` |
+> | Google Sheets per agency | 1 to 3 | staging only (prod: NuovaSolution's own sheet, RO) | same |
+> | External CRMs | 1 to 4 in staging, `coming_soon`, sync fenced | staging only | same |
+> | Hot lead alert to an agent | 1 to 3 at RPC level | **not evidenced in prod** | run 36718 hot, no alert |
+> | Follow up | 1 to 3; automatic sending off in prod | staging only | brief §6 |
+> | Media analysis | 1 to 3 | staging only; prod media plane absent | `MM-0730Z-1` LV |
+> | Property matching to customers | 1 to 3 on fixtures | staging only; decision M1 open | F5 |
+> | Voice | 1 to 3 | staging only | real call did not reach the pipeline |
+> | Social growth | 1 to 3 | staging only; Meta review not submitted | PROMPT_08 |
+> | Daily Goals and assistant | 1 to 3 | staging only; prod walk blocked | `DAILY-UI-WALK-STG-1` |
+> | Trial lifecycle | 1 to 3 | staging only | export v2 §C |
+> | Customer self onboarding | wizard 1 to 3; owner bootstrap in prod by operator action | staging only for self service | `API_OWNER_BOOTSTRAP_PROD_2026-09-21_v1.md` RO |
+> | AI disclosure in messages | 1 to 3 | staging only; table missing in prod | F3 |
+> | Email branding | 1 to 6 | prod partial (one black logo, no dark mode protection) | F6 |
+> | DSAR and deletion | 1 to 3 | staging only; prod not certified | brief §5 |
+> | Website Q&A | 1 to 3, answer simulated | staging only | `SYNC_0730Z_HOSTING_ROUND_v1.md` |
+> | 3D Property Experience | toolchain only | premium on request; no delivery yet | `PX-TOOLCHAIN-1` |
+>
+> **Contradictions resolved by this block:** §10 and `INTEGRATION_COMPATIBILITY_MATRIX.md` call
+> external CRMs `BACKEND CONFIRMED`; that means a contract exists, **not** that an agency can
+> connect one. The onboarding catalogue offers them as `coming_soon`, interest only.
+> `CLAIMS_MATRIX.md` D-10 (hot lead alerting `BLOCKED`) still holds; the website contradicts it and
+> is being corrected, not the matrix.
+>
+> **Owner-level facts added since 2026-08-31:** the trial is free with no payment method at signup
+> (closed decision C, `CLAIMS_MATRIX.md` T-01, T-01b); the four employee roles are confirmed; the
+> mandatory onboarding gate `ai_disclosure` is counsel pending, so **no agency can currently be
+> activated**.
+
 **Author:** Product Truth Director / Claims Auditor instance (independent of implementation)
 **Branch:** `website_enterprise_redesign`
 **Created:** 2026-08-30
