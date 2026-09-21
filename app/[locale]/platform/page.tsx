@@ -40,7 +40,7 @@ export default function PlatformPage({ params }: { params: { locale: string } })
           <Reveal><SectionHead eyebrow={d.home.picture.eyebrow} title={d.home.picture.h2} id="po-map" /></Reveal>
           <Reveal delay={120} mode="opacity" className="mt-12 border border-line-hairline p-6 xl:p-10 max-w-wide">
             <span className="inline-flex h-6 items-center rounded-sm border border-line-interactive px-2 t-caption text-text-secondary mb-6">{d.common.illustrative}</span>
-            <OperatingMap nodes={[...d.home.picture.nodes]} label={d.home.picture.pathLabel} />
+            <OperatingMap nodes={d.home.picture.nodes} label={d.home.picture.pathLabel} nextFrom={d.home.picture.nextFrom} legend={d.home.picture.legend} />
           </Reveal>
         </div>
       </Section>

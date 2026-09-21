@@ -3,8 +3,11 @@ import type { CapabilityStatus } from "./statuses";
 
 /**
  * The capability registry. Every product page renders from one entry here.
- * Statuses are the owner's canonical audit of 2026-09-08 and are content,
+ * Statuses and wording follow docs/website_redesign/WEBSITE_CLAIM_REGISTER_v1.md
+ * (state 2026-09-21_SYNC_1215Z; WCR row ids noted inline). Statuses are content,
  * not code: changing a status changes every page that shows it.
+ * Hot lead alerting is not mentioned anywhere: CLAIMS_MATRIX D-10 forbids every
+ * wording and export v2 puts it out of scope for the website.
  *
  * House rules for every string: no dashes, no invented numbers, no guaranteed
  * outcomes, present tense only where the canonical status permits it.
@@ -57,19 +60,19 @@ export const capabilities: Capability[] = [
     points: [
       { text: { en: "Gmail text intake and reply.", es: "Recepción y respuesta de texto por Gmail." }, status: "live" },
       { text: { en: "WhatsApp text intake and reply.", es: "Recepción y respuesta de texto por WhatsApp." }, status: "live" },
-      { text: { en: "The conversation becomes part of one customer record.", es: "La conversación pasa a formar parte de una única ficha de cliente." }, status: "live" },
+      { text: { en: "Each conversation is recorded against the customer.", es: "Cada conversación queda registrada en la ficha del cliente." }, status: "live" }, // WCR-053
       { text: { en: "Email attachments.", es: "Adjuntos de email." }, status: "in_implementation" },
       { text: { en: "WhatsApp media understanding.", es: "Comprensión de archivos de WhatsApp." }, status: "in_implementation" },
       { text: { en: "Outlook and Microsoft 365.", es: "Outlook y Microsoft 365." }, status: "in_implementation" },
     ],
     scenario: {
-      en: "A buyer writes on WhatsApp on a Sunday evening asking whether the apartment in Estepona is still available. The message is answered on WhatsApp, the conversation is recorded against the buyer, and the agent sees it on Monday as one thread rather than a notification.",
-      es: "Un comprador escribe por WhatsApp un domingo por la tarde para preguntar si el piso de Estepona sigue disponible. El mensaje se responde por WhatsApp, la conversación queda registrada en la ficha del comprador y el agente la ve el lunes como un solo hilo y no como una notificación.",
+      en: "A buyer writes on WhatsApp on a Sunday evening asking whether the apartment in Estepona is still available. The message is answered on WhatsApp, and the conversation is recorded against the buyer for the agent on Monday.", // WCR-055
+      es: "Un comprador escribe por WhatsApp un domingo por la tarde para preguntar si el piso de Estepona sigue disponible. El mensaje se responde por WhatsApp, y la conversación queda registrada en la ficha del comprador para el agente el lunes.",
     },
     fits: [
       { en: "Gmail", es: "Gmail" },
       { en: "WhatsApp", es: "WhatsApp" },
-      { en: "Your own branded environment. Customers hear from your agency, not from Nuova.", es: "Tu propio entorno con tu marca. Los clientes hablan con tu agencia, no con Nuova." },
+      { en: "Your customers hear from your agency, under your brand (in development).", es: "Tus clientes reciben la respuesta de tu agencia, con tu marca (en desarrollo)." }, // WCR-041, WCR-056
     ],
     notAvailable: [],
     video: "V-01",
@@ -80,21 +83,22 @@ export const capabilities: Capability[] = [
     stage: "understand",
     status: "live",
     name: { en: "Lead Intelligence", es: "Lead Intelligence" },
-    navLine: { en: "Qualified, and your agents told", es: "Cualificado, y tus agentes avisados" },
-    h1: { en: "One customer, one record, and your agents hear about the ones that are ready.", es: "Un cliente, una ficha, y tus agentes se enteran de los que están listos." },
+    navLine: { en: "Qualified and prioritised", es: "Cualificado y priorizado" }, // WCR-060
+    h1: { en: "One customer, one record, and a clear priority on every enquiry.", es: "Un cliente, una ficha, y una prioridad clara en cada consulta." }, // WCR-061
     lead: {
-      en: "A client who emails on Tuesday and writes on WhatsApp on Friday is one person in Nuova. Every enquiry is qualified, and a hot lead alert reaches your agents when it matters.",
-      es: "Un cliente que manda un email el martes y escribe por WhatsApp el viernes es una sola persona en Nuova. Cada consulta se cualifica, y un aviso de lead caliente llega a tus agentes cuando importa.",
+      // WCR-062 = WCR-020
+      en: "A client who writes twice on the same channel stays one person in Nuova, and every enquiry is qualified and prioritised. Recognising the same client across email and WhatsApp is being built.",
+      es: "Un cliente que escribe dos veces por el mismo canal sigue siendo una sola persona en Nuova, y cada consulta se cualifica y se prioriza. Reconocer al mismo cliente entre email y WhatsApp se está construyendo.",
     },
     points: [
-      { text: { en: "One canonical customer identity across channels.", es: "Una identidad de cliente única en todos los canales." }, status: "live" },
-      { text: { en: "Qualification on every enquiry.", es: "Cualificación en cada consulta." }, status: "live" },
-      { text: { en: "Hot lead alerts to your agents.", es: "Avisos de lead caliente a tus agentes." }, status: "live" },
+      { text: { en: "One canonical customer identity across channels.", es: "Una identidad de cliente única en todos los canales." }, status: "in_implementation" }, // WCR-063
+      { text: { en: "Qualification on every answered enquiry.", es: "Cualificación en cada consulta respondida." }, status: "live" }, // WCR-064
+      // WCR-065 removed rather than retensed: CLAIMS_MATRIX D-10 forbids every hot lead wording.
       { text: { en: "A priority signal so your team knows where to start.", es: "Una señal de prioridad para que tu equipo sepa por dónde empezar." }, status: "live" },
     ],
     scenario: {
-      en: "The buyer from Sunday confirms a budget and asks for a viewing this week. The record is qualified, the priority rises, and the agent responsible receives a hot lead alert with the conversation attached.",
-      es: "El comprador del domingo confirma un presupuesto y pide una visita esta semana. La ficha se cualifica, la prioridad sube y el agente responsable recibe un aviso de lead caliente con la conversación adjunta.",
+      en: "The buyer from Sunday confirms a budget and asks for a viewing this week. The record is qualified and its priority rises, so the agent responsible starts there.", // WCR-067
+      es: "El comprador del domingo confirma un presupuesto y pide una visita esta semana. La ficha se cualifica y su prioridad sube, así que el agente responsable empieza por ahí.",
     },
     fits: [
       { en: "Gmail and WhatsApp conversations", es: "Conversaciones de Gmail y WhatsApp" },
@@ -110,49 +114,54 @@ export const capabilities: Capability[] = [
     navLine: { en: "One record per customer", es: "Una ficha por cliente" },
     h1: { en: "Every message, from every channel, on one record.", es: "Cada mensaje, de cada canal, en una sola ficha." },
     lead: {
-      en: "A CRM is included from the start, with Google Sheets alongside it. If your agency already runs on another CRM, connecting it is certified on our side and waits on the current consent.",
-      es: "Hay un CRM incluido desde el principio, con Google Sheets al lado. Si tu agencia ya funciona con otro CRM, conectarlo está certificado por nuestra parte y espera el consentimiento actual.",
+      // WCR-070
+      en: "A CRM is included from the start: every enquiry is recorded as a lead with its qualification and history. The CRM view for your team and Google Sheets per agency are being built. Connecting HubSpot, Pipedrive, Zoho or Salesforce is not offered yet.",
+      es: "Hay un CRM incluido desde el principio: cada consulta queda registrada como lead con su cualificación y su historial. La vista de CRM para tu equipo y Google Sheets por agencia se están construyendo. La conexión con HubSpot, Pipedrive, Zoho o Salesforce todavía no se ofrece.",
     },
     points: [
-      { text: { en: "Native CRM, included.", es: "CRM propio, incluido." }, status: "live" },
-      { text: { en: "Google Sheets.", es: "Google Sheets." }, status: "live" },
-      { text: { en: "The whole conversation history on one customer record.", es: "Todo el historial de conversación en una única ficha de cliente." }, status: "live" },
+      { text: { en: "Leads recorded with their qualification, included.", es: "Leads registrados con su cualificación, incluido." }, status: "live" }, // WCR-071
+      { text: { en: "Google Sheets.", es: "Google Sheets." }, status: "in_implementation" }, // WCR-072
+      { text: { en: "The conversation history on the customer record.", es: "El historial de conversación en la ficha del cliente." }, status: "live" }, // WCR-073
       { text: { en: "HubSpot, Pipedrive, Zoho CRM and Salesforce.", es: "HubSpot, Pipedrive, Zoho CRM y Salesforce." }, status: "certified_gate_pending" },
     ],
     scenario: {
-      en: "The office manager opens one record and sees the email from last week, the WhatsApp thread from the weekend, the qualification, the hot lead alert and the property selection that was sent. Nothing has to be reconstructed.",
-      es: "La responsable de oficina abre una ficha y ve el email de la semana pasada, el hilo de WhatsApp del fin de semana, la cualificación, el aviso de lead caliente y la selección de propiedades enviada. No hay que reconstruir nada.",
+      // WCR-075
+      en: "The office manager opens one record and sees the email from last week, the qualification and the viewing request that became a task. Nothing has to be reconstructed.",
+      es: "La responsable de oficina abre una ficha y ve el email de la semana pasada, la cualificación y la petición de visita que pasó a ser una tarea. No hay que reconstruir nada.",
     },
     fits: [
       { en: "Native CRM", es: "CRM propio" },
       { en: "Google Sheets", es: "Google Sheets" },
     ],
     bothHalves: {
-      certified: { en: "External CRM connections for HubSpot, Pipedrive, Zoho CRM and Salesforce were certified with real authorisation in August.", es: "Las conexiones con CRM externos para HubSpot, Pipedrive, Zoho CRM y Salesforce se certificaron con autorización real en agosto." },
-      pending: { en: "The current consent is pending. Until it clears, external CRM connection is not offered.", es: "El consentimiento actual está pendiente. Hasta que se resuelva, la conexión con CRM externos no se ofrece." },
+      // WCR-076, WCR-077
+      certified: { en: "External CRM connections for HubSpot, Pipedrive, Zoho CRM and Salesforce were connected with real authorisation in our staging tests in August.", es: "Las conexiones con CRM externos para HubSpot, Pipedrive, Zoho CRM y Salesforce se conectaron con autorización real en nuestras pruebas de agosto." },
+      pending: { en: "Not offered yet. Each provider is released on its own after a final check. Until then you stay on the built in CRM, and choosing one during setup only records your interest.", es: "Todavía no se ofrece. Cada proveedor se activa por separado tras una comprobación final. Hasta entonces sigues con el CRM incluido, y elegir uno durante la configuración solo registra tu interés." },
     },
     related: ["lead-intelligence", "ai-sales-agent", "property-matching"],
   },
   {
     slug: "property-matching",
     stage: "advance",
-    status: "live",
+    status: "in_implementation", // WCR-080
     name: { en: "Property Matching", es: "Property Matching" },
     navLine: { en: "A short, honest selection", es: "Una selección corta y honesta" },
     h1: { en: "A short, relevant selection, with availability the agency can stand behind.", es: "Una selección corta y relevante, con una disponibilidad que la agencia puede defender." },
     lead: {
-      en: "Nuova understands what the customer is looking for and matches it against your own authorised inventory. The customer receives a short selection. Your agent sees the wider set.",
-      es: "Nuova entiende qué busca el cliente y lo cruza con tu propio inventario autorizado. El cliente recibe una selección corta. Tu agente ve el conjunto completo.",
+      // WCR-081
+      en: "Being built. Not offered yet. Nuova understands what the customer is looking for and matches it against your own authorised inventory. The customer receives a short selection. Your agent sees the wider set.",
+      es: "En construcción. Todavía no se ofrece. Nuova entiende qué busca el cliente y lo cruza con tu propio inventario autorizado. El cliente recibe una selección corta. Tu agente ve el conjunto completo.",
     },
     points: [
-      { text: { en: "Understands what the customer is actually looking for.", es: "Entiende qué busca realmente el cliente." }, status: "live" },
-      { text: { en: "Matches against your own or agency authorised property sources.", es: "Cruza con tus propias fuentes de propiedades o fuentes autorizadas por la agencia." }, status: "live" },
-      { text: { en: "Honest availability. Nothing is shown as available that the agency cannot stand behind.", es: "Disponibilidad honesta. No se muestra como disponible nada que la agencia no pueda defender." }, status: "live" },
+      { text: { en: "Understands what the customer is actually looking for.", es: "Entiende qué busca realmente el cliente." }, status: "in_implementation" }, // WCR-080
+      { text: { en: "Matches against your own or agency authorised property sources.", es: "Cruza con tus propias fuentes de propiedades o fuentes autorizadas por la agencia." }, status: "in_implementation" },
+      { text: { en: "Honest availability. Nothing is shown as available that the agency cannot stand behind.", es: "Disponibilidad honesta. No se muestra como disponible nada que la agencia no pueda defender." }, status: "in_implementation" },
       { text: { en: "A viewing request becomes a staff task.", es: "Una petición de visita pasa a ser una tarea del equipo." }, status: "final_acceptance" },
     ],
     scenario: {
-      en: "A buyer asks for a two bedroom apartment near the beach with a terrace. Nuova sends three properties from the agency's own inventory that match, marks the one whose availability could not be confirmed, and the viewing request lands with the agent as a task.",
-      es: "Un comprador pide un piso de dos dormitorios cerca de la playa con terraza. Nuova envía tres propiedades del inventario propio de la agencia que encajan, marca la que no pudo confirmar como disponible y la petición de visita llega al agente como una tarea.",
+      // WCR-083 (F-03: no fixed count)
+      en: "A buyer asks for a two bedroom apartment near the beach with a terrace. Nuova sends a short selection from the agency's own inventory that matches, marks the one whose availability could not be confirmed, and the viewing request lands with the agent as a task.",
+      es: "Un comprador pide un piso de dos dormitorios cerca de la playa con terraza. Nuova envía una selección corta del inventario propio de la agencia que encaja, marca la que no pudo confirmar como disponible y la petición de visita llega al agente como una tarea.",
     },
     fits: [
       { en: "Your agency website as a property source", es: "La web de tu agencia como fuente de propiedades" },
@@ -171,7 +180,7 @@ export const capabilities: Capability[] = [
     h1: { en: "Your agents stop administering the pipeline.", es: "Tus agentes dejan de administrar el pipeline." },
     lead: {
       en: "Daily Goals and the assistant tell your team what to do first, and why. Built, with the final owner test still pending before it is offered.",
-      es: "Daily Goals y la asistente le dicen a tu equipo qué hacer primero, y por qué. Disponible ahora. La prueba final del propietario está en curso.",
+      es: "Daily Goals y la asistente le dicen a tu equipo qué hacer primero, y por qué. Construido, con la prueba final del propietario todavía pendiente antes de ofrecerlo.", // WCR-090
     },
     points: [
       { text: { en: "Daily Goals for each agent.", es: "Daily Goals para cada agente." }, status: "final_acceptance" },
@@ -198,12 +207,13 @@ export const capabilities: Capability[] = [
     navLine: { en: "Certified internally, gate pending", es: "Certificado internamente, puerta pendiente" },
     h1: { en: "Voice: certified on our side, waiting on the gates.", es: "Voz: certificado por nuestra parte, a la espera de las puertas." },
     lead: {
-      en: "Voice handling is certified internally in nine languages. It is not offered until the legal disclosure and the provider gates clear. We say both halves, so nobody has to guess.",
-      es: "La atención por voz está certificada internamente en nueve idiomas. No se ofrece hasta que se resuelvan la información legal y las puertas del proveedor. Decimos las dos mitades, para que nadie tenga que adivinar.",
+      // WCR-100 (V-07: no language count)
+      en: "Voice handling is certified in our own testing. It is not offered until the legal disclosure and the provider gates clear.",
+      es: "La atención por voz está certificada en nuestras propias pruebas. No se ofrece hasta que se resuelvan la información legal y las puertas del proveedor.",
     },
     points: [
       { text: { en: "Answers a call and speaks with the caller.", es: "Atiende una llamada y habla con quien llama." }, status: "certified_gate_pending" },
-      { text: { en: "Nine languages, certified internally.", es: "Nueve idiomas, certificados internamente." }, status: "certified_gate_pending" },
+      { text: { en: "Multilingual calls, certified internally.", es: "Llamadas en varios idiomas, certificadas internamente." }, status: "certified_gate_pending" }, // WCR-100
       { text: { en: "What the call produced lands on the same customer record.", es: "Lo que produjo la llamada aterriza en la misma ficha de cliente." }, status: "certified_gate_pending" },
     ],
     scenario: {
@@ -212,7 +222,7 @@ export const capabilities: Capability[] = [
     },
     fits: [{ en: "Phone", es: "Teléfono" }],
     bothHalves: {
-      certified: { en: "Certified internally in nine languages.", es: "Certificado internamente en nueve idiomas." },
+      certified: { en: "Certified internally.", es: "Certificado internamente." }, // WCR-100
       pending: { en: "The legal disclosure and the provider gates are pending. Until both clear, Voice is not offered to any agency.", es: "La información legal y las puertas del proveedor están pendientes. Hasta que ambas se resuelvan, Voz no se ofrece a ninguna agencia." },
     },
     video: "V-02",
@@ -223,11 +233,12 @@ export const capabilities: Capability[] = [
     stage: "attract",
     status: "certified_gate_pending",
     name: { en: "Social Growth", es: "Social Growth" },
-    navLine: { en: "Built, Meta review pending", es: "Construido, revisión de Meta pendiente" },
+    navLine: { en: "Built, Meta review not yet submitted", es: "Construido, revisión de Meta aún no solicitada" }, // WCR-110
     h1: { en: "Present in public, restrained by design.", es: "Presente en público, contenido por diseño." },
     lead: {
-      en: "Sixteen of twenty steps are built. The Meta review is pending. Until it clears, Social Growth is not offered.",
-      es: "Dieciséis de veinte pasos están construidos. La revisión de Meta está pendiente. Hasta que se resuelva, Social Growth no se ofrece.",
+      // WCR-110
+      en: "Built and tested internally. The Meta review has not been submitted yet. Until it clears, Social Growth is not offered.",
+      es: "Construido y probado internamente. La revisión de Meta todavía no se ha solicitado. Hasta que se resuelva, Social Growth no se ofrece.",
     },
     points: [
       { text: { en: "Content help for property and social posts in your brand voice.", es: "Ayuda con el contenido de propiedades y publicaciones en la voz de tu marca." }, status: "certified_gate_pending" },
@@ -240,8 +251,9 @@ export const capabilities: Capability[] = [
     },
     fits: [{ en: "WhatsApp, as the continuation channel", es: "WhatsApp, como canal de continuación" }],
     bothHalves: {
-      certified: { en: "Sixteen of twenty steps built and tested internally.", es: "Dieciséis de veinte pasos construidos y probados internamente." },
-      pending: { en: "The Meta review is pending. Until it clears, nothing is offered.", es: "La revisión de Meta está pendiente. Hasta que se resuelva, no se ofrece nada." },
+      // WCR-110
+      certified: { en: "Built and tested internally.", es: "Construido y probado internamente." },
+      pending: { en: "The Meta review has not been submitted yet. Until it clears, nothing is offered.", es: "La revisión de Meta todavía no se ha solicitado. Hasta que se resuelva, no se ofrece nada." },
     },
     notAvailable: [
       { en: "TikTok.", es: "TikTok." },

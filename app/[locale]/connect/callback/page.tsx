@@ -14,41 +14,41 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return { title: getDictionary(params.locale).callback.h1, robots: { index: false, follow: false } };
 }
 
+/** Error reasons that have their own wording (PRODUCT_TEXTS_C2_v1 §2.2). Everything else is "unknown". */
+const REASONS = ["user_cancelled", "access_denied", "state_expired", "state_mismatch", "state_invalid", "wrong_account", "provider_error"] as const;
+type Reason = (typeof REASONS)[number];
+
 /**
- * Shared OAuth return route (export v2 §D, AF-01). Reads only provider, status,
- * correlation and reason. Never a token. Fail-safe: anything that is not
- * status=success renders as error; reason=user_cancelled renders neutrally.
+ * Shared OAuth return route (export v2 §D, AF-01).
+ *
+ * The query string is a HINT, never proof. Anyone can type status=success into a
+ * URL, so this page never renders "connected" from the query (review WR-09). A
+ * connection is shown as connected only on the onboarding page, from the server's
+ * own status read. Today no external provider is connectable at all (CRM catalog:
+ * coming_soon, fenced), so a "success" hint renders the honest unknown outcome.
+ *
+ * Reads only provider, status and reason. Never a token. Unknown provider names are
+ * never echoed back: only catalogued display names render.
  */
 export default function ConnectCallback({ params, searchParams }: { params: { locale: string }; searchParams: Record<string, string | undefined> }) {
   const locale = params.locale as Locale;
   const d = getDictionary(locale).callback;
-  const provider = providerDisplayNames[searchParams.provider ?? ""] ?? (locale === "es" ? "el proveedor" : "the provider");
-  const status = searchParams.status === "success" ? "success" : "error";
-  const reason = searchParams.reason;
+  const provider = providerDisplayNames[searchParams.provider ?? ""] ?? d.providerFallback;
+  const raw = searchParams.reason === "state_replay" ? "state_invalid" : searchParams.reason;
+  const reason: Reason | "unknown" =
+    searchParams.status === "error" && raw && (REASONS as readonly string[]).includes(raw) ? (raw as Reason) : "unknown";
 
-  let glyph: "check" | "clock" | "rule" | "triangle" = "triangle";
-  let text = d.error;
-  let tone = "text-signal-critical";
-  if (status === "success") {
-    glyph = "check";
-    text = d.success;
-    tone = "text-signal-positive";
-  } else if (reason === "user_cancelled") {
-    glyph = "rule";
-    text = d.cancelled;
-    tone = "text-text-secondary";
-  } else if (reason === "externally_pending") {
-    glyph = "clock";
-    text = d.pending;
-    tone = "text-signal-attention";
-  }
+  const neutral = reason === "user_cancelled" || reason === "state_expired";
+  const glyph = neutral ? "rule" : "triangle";
+  const tone = neutral ? "text-text-secondary" : reason === "unknown" ? "text-signal-attention" : "text-signal-critical";
+  const text = d[reason].replaceAll("{provider}", provider);
 
   return (
     <Section rhythm="opening" labelledBy="cb-h1">
       <div className="container-narrow !mx-0 xl:!mx-auto">
         <Eyebrow className="mb-4">{provider}</Eyebrow>
-        <Display size="l" id="cb-h1">{d.h1}</Display>
-        <p role="status" className={`mt-6 flex items-start gap-3 t-body-l ${tone}`}>
+        <Display size="l" as="h1" id="cb-h1">{d.h1}</Display>
+        <p role="status" data-callback-reason={reason} className={`mt-6 flex items-start gap-3 t-body-l ${tone}`}>
           <StatusGlyph glyph={glyph} className="mt-1.5 shrink-0" />
           {text}
         </p>

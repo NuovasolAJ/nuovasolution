@@ -43,7 +43,9 @@ export interface StepDetail {
   connected?: boolean;
   crm_provider?: "hubspot" | "pipedrive" | "zoho" | "salesforce";
   accepts_scraped_owned_inventory?: boolean;
-  entry?: { entitled: boolean; state: "available" | "locked_addon"; action?: string };
+  entry?: { entitled: boolean; state: "available" | "locked_addon"; action?: string; tours?: { used: number; quota: number; remaining: number; entitled: boolean } };
+  /** Backend-authored notices for the branding step (seen on staging 2026-09-21). Rendered in the active language. */
+  disclosures?: { key: string; title: string; body: string; body_es?: string; applies: boolean; severity?: string; shown_in_customer_emails?: boolean }[];
   readiness?: { activatable: boolean; blocked_mandatory: string[]; blocked_features: string[] };
 }
 
@@ -107,12 +109,52 @@ export interface SignupResponse {
   session?: boolean;
 }
 
+/**
+ * CRM catalog entry, exactly as crm_provider_catalog() returns it on staging
+ * (read 2026-09-21T12:49:30Z). The backend `note` is English only and carries
+ * dashes, so it is never rendered: the website renders its own EN/ES line per
+ * availability. Contract: governance/CRM_ONBOARDING_DROPDOWN_CONTRACT_v1.md.
+ */
+export type CrmAvailability = "available" | "coming_soon" | "unavailable";
+export interface CrmCatalogEntry {
+  provider: string;
+  display_name: string;
+  availability: CrmAvailability;
+  selectable: boolean;
+  is_default: boolean;
+  live_wired: boolean;
+  sort: number;
+  note?: string;
+}
+
+/**
+ * What the website can honestly say about the current CRM choice.
+ * `source` says where the statement comes from, so the UI never claims more
+ * than was actually read back.
+ */
+export interface CrmSelection {
+  /** Provider the tenant is on as CRM of record, when known. */
+  of_record: "nuovasolution" | null;
+  /** Additional selection known to the website (e.g. google_sheets), or null when it cannot be read back. */
+  selected: string | null;
+  /** Interest recorded for an external CRM that is not live yet. */
+  interest: string | null;
+  source: "stub" | "wizard_state" | "select_response";
+  /** True when the backend offers no read of the additional selection (see IMPLEMENTATION record, interface question CRM-READ-1). */
+  selection_not_readable: boolean;
+}
+
 /** Display names, MF-11 and AF-04. Internal identifiers are never rendered. */
 export const providerDisplayNames: Record<string, string> = {
+  nuovasolution: "Nuova CRM",
+  google_sheets: "Google Sheets",
   hubspot: "HubSpot",
   pipedrive: "Pipedrive",
   zoho: "Zoho CRM",
   salesforce: "Salesforce",
+  gohighlevel: "GoHighLevel",
+  dynamics: "Microsoft Dynamics",
+  airtable: "Airtable",
   google_lead_forms: "Google Lead Forms",
   google_lead_form: "Google Lead Forms",
   meta_lead_ads: "Meta Lead Ads",

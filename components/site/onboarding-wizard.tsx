@@ -5,10 +5,11 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import type { Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import type { OnboardingState, StepStatus, TrialState, WizardStep } from "@/lib/contracts/types";
+import type { CrmCatalogEntry, CrmSelection, OnboardingState, StepStatus, TrialState, WizardStep } from "@/lib/contracts/types";
 import { providerDisplayNames } from "@/lib/contracts/types";
 import { Button } from "@/components/ui/button";
 import { StatusGlyph, LabelChip, type Glyph } from "@/components/ui/status";
+import { CrmChoice } from "@/components/site/crm-choice";
 
 const glyphFor: Record<StepStatus, Glyph> = {
   completed: "check",
@@ -41,8 +42,10 @@ function providerFor(step: WizardStep, fallback: string): string {
  * shown. A gate not returned is not enforced. Disabled features never block
  * readiness. The browser never grants anything: Go live only sends a request.
  */
-export function OnboardingWizard({ locale, state, trial, stub }: { locale: Locale; state: OnboardingState; trial: TrialState | null; stub: boolean }) {
-  const d = getDictionary(locale).onboarding;
+export function OnboardingWizard({ locale, state, trial, stub, crm }: { locale: Locale; state: OnboardingState; trial: TrialState | null; stub: boolean; crm?: { catalog: CrmCatalogEntry[]; selection: CrmSelection } }) {
+  const dict = getDictionary(locale);
+  const d = dict.onboarding;
+  const errorText = (code: string) => (dict.common.errors as Record<string, string>)[code] ?? dict.common.errors.generic;
   const router = useRouter();
   const [busy, setBusy] = useState<string | null>(null);
   const [note, setNote] = useState<string | null>(null);
@@ -55,31 +58,55 @@ export function OnboardingWizard({ locale, state, trial, stub }: { locale: Local
   }
   async function touch(step: string, action: "visit" | "skip") {
     setBusy(step);
-    await fetch("/api/bff/onboarding/touch", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ step, action }) });
-    setBusy(null);
+    setNote(null);
+    try {
+      const res = await fetch("/api/bff/onboarding/touch", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ step, action }) });
+      const json = (await res.json().catch(() => ({ ok: false, code: "generic" }))) as { ok: boolean; code: string };
+      if (!json.ok) setNote(errorText(json.code));
+    } catch {
+      setNote(dict.common.errors.generic);
+    } finally {
+      setBusy(null);
+    }
   }
   async function goLive() {
     setBusy("activate");
-    const res = await fetch("/api/bff/tenant/activate", { method: "POST" });
-    const json = (await res.json()) as { ok: boolean; stub?: true };
-    setNote(json.stub ? d.goLiveNote : json.ok ? d.activatable : d.notActivatable);
-    setBusy(null);
+    try {
+      const res = await fetch("/api/bff/tenant/activate", { method: "POST" });
+      const json = (await res.json().catch(() => ({ ok: false, code: "generic" }))) as { ok: boolean; code: string; stub?: true };
+      setNote(json.stub ? d.goLiveNote : json.ok ? d.activatable : errorText(json.code));
+      if (json.ok && !json.stub) router.refresh();
+    } catch {
+      setNote(dict.common.errors.generic);
+    } finally {
+      setBusy(null);
+    }
   }
 
   const ready = state.steps.find((s) => s.key === "ready");
+  // Redaction boundary: a server key reaches the page only through this label map. Unknown keys render nothing.
+  const gateLabel = (k: string): string | null => {
+    const stepTitle = (d.steps as Record<string, string>)[k];
+    return (d.gates as Record<string, string>)[k] ?? stepTitle ?? null;
+  };
+  const labels = (keys: string[] | undefined) => Array.from(new Set((keys ?? []).map(gateLabel).filter((x): x is string => Boolean(x))));
+  const blockedMandatory = labels(ready?.readiness?.blocked_mandatory);
+  const blockedFeatures = labels(ready?.readiness?.blocked_features);
   const trialLine = trial
     ? trial.status === "trialing"
       ? trial.days_left <= 1
         ? d.trial.lastDay
         : d.trial.trialing.replace("{days}", String(trial.days_left))
       : d.trial[trial.status]
-    : null;
+    : state.trial_end
+      ? d.trialEnd.replace("{date}", new Date(state.trial_end).toLocaleDateString(locale === "es" ? "es-ES" : "en-GB", { day: "numeric", month: "long", year: "numeric" }))
+      : null;
 
   return (
     <div className="space-y-10">
       {stub && (
         <div className="border border-line-strong bg-surface-raised p-4">
-          <p className="flex items-start gap-3 t-body-s text-text-secondary"><LabelChip tone="attention">stub</LabelChip>{d.stubNotice}</p>
+          <p className="t-body-s text-text-secondary">{d.stubNotice}</p>
           <div className="mt-4 flex flex-wrap gap-2" role="group" aria-label={d.stubCases}>
             {d.caseLabels.map((label, i) => (
               <Button key={label} type="button" size="sm" variant="secondary" disabled={busy === "case"} onClick={() => selectCase(i + 1)}>
@@ -93,7 +120,7 @@ export function OnboardingWizard({ locale, state, trial, stub }: { locale: Local
       <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-end">
         <div>
           <p className="t-caption text-text-muted">{state.agency_name}</p>
-          <p className="mt-1 t-heading-l text-text-primary tnum">{state.percent_complete}% {d.progress}</p>
+          <p className="mt-1 t-heading-l text-text-primary tnum">{d.progressSteps.replace("{done}", String(state.completed_steps)).replace("{total}", String(state.total_steps))}</p>
           {trialLine && <p className="mt-2 t-body-s text-text-secondary">{trialLine}</p>}
           {trial?.status === "trial_expired" && <p className="mt-1 t-body-s text-text-secondary">{d.trial.expiredBody}</p>}
         </div>
@@ -111,20 +138,18 @@ export function OnboardingWizard({ locale, state, trial, stub }: { locale: Local
             <li key={s.key} id={`step-${s.key}`} className={cn("grid grid-cols-[2.5rem_1fr] md:grid-cols-[2.5rem_1fr_auto] gap-x-4 gap-y-2 py-5 min-h-[72px] items-start -mx-4 px-4 transition-colors duration-micro", isResume && "border-l border-line-interactive")}>
               <span className="t-caption tnum text-text-muted pt-1">{String(s.step).padStart(2, "0")}</span>
               <div className="min-w-0">
-                <p className={cn("t-heading-s", s.status === "locked_by_plan" ? "text-text-secondary" : "text-text-primary")}>{s.title}</p>
+                <p className={cn("t-heading-s", s.status === "locked_by_plan" ? "text-text-secondary" : "text-text-primary")}>{(d.steps as Record<string, string>)[s.key] ?? s.title}</p>
                 <p className="mt-1 t-body-s text-text-muted">{line}</p>
                 <Detail step={s} locale={locale} />
+                {s.key === "crm" && crm && <CrmChoice locale={locale} catalog={crm.catalog} selection={crm.selection} />}
               </div>
               <div className="col-start-2 md:col-start-3 flex flex-wrap items-center gap-3 md:justify-end">
                 <span className={cn("inline-flex items-center gap-1.5 t-caption", toneFor[s.status])}>
                   <StatusGlyph glyph={glyphFor[s.status]} size={14} />
                   {label}
                 </span>
-                {s.status === "needs_action" && (
-                  <Button type="button" size="sm" variant="secondary" busy={busy === s.key} disabled={busy === s.key} onClick={() => touch(s.key, "visit")}>{d.resume.split(" ")[0]}</Button>
-                )}
                 {s.status === "optional" && (
-                  <Button type="button" size="sm" variant="tertiary" disabled={busy === s.key} onClick={() => touch(s.key, "skip")}>{d.stepStatus.optional.label}</Button>
+                  <Button type="button" size="sm" variant="tertiary" busy={busy === s.key} disabled={busy === s.key} onClick={() => touch(s.key, "skip")}>{d.skip}</Button>
                 )}
               </div>
             </li>
@@ -134,17 +159,17 @@ export function OnboardingWizard({ locale, state, trial, stub }: { locale: Local
 
       <div className="border border-line-strong bg-surface-raised p-6">
         <p className={cn("t-heading-m", state.activatable ? "text-signal-positive" : "text-text-primary")}>{state.activatable ? d.activatable : d.notActivatable}</p>
-        {ready?.readiness && ready.readiness.blocked_mandatory.length > 0 && (
-          <p className="mt-2 t-body-s text-text-secondary">
-            {d.blockedMandatory}: {ready.readiness.blocked_mandatory.map((k) => state.steps.find((s) => s.key === k)?.title ?? k).join(", ")}
-          </p>
+        {blockedMandatory.length > 0 && (
+          <div className="mt-2">
+            <p className="t-body-s text-text-secondary">{d.blockedMandatory}: {blockedMandatory.join(", ")}</p>
+            {ready?.readiness?.blocked_mandatory.includes("white_label_legal") && <p className="mt-1 t-caption text-text-muted">{d.gateDetail.white_label_legal}</p>}
+            {ready?.readiness?.blocked_mandatory.includes("ai_disclosure") && <p className="mt-1 t-caption text-text-muted">{d.aiDisclosurePending}</p>}
+          </div>
         )}
-        {ready?.readiness && ready.readiness.blocked_features.length > 0 && (
-          <p className="mt-2 t-caption text-text-muted">{d.blockedFeatures}: {ready.readiness.blocked_features.map((k) => state.steps.find((s) => s.key === k)?.title ?? k).join(", ")}</p>
-        )}
+        {blockedFeatures.length > 0 && <p className="mt-2 t-caption text-text-muted">{d.blockedFeatures}: {blockedFeatures.join(", ")}</p>}
         <div className="mt-6 flex flex-col gap-3 md:flex-row md:items-center">
-          <Button type="button" onClick={goLive} disabled={!state.activatable || busy === "activate"} busy={busy === "activate"} aria-disabled={!state.activatable}>{d.goLive}</Button>
-          <p className="t-caption text-text-muted">{d.goLiveNote}</p>
+          <Button type="button" onClick={() => (state.activatable ? goLive() : setNote(d.notActivatable))} disabled={busy === "activate"} busy={busy === "activate"} aria-disabled={!state.activatable} aria-describedby="go-live-note">{d.goLive}</Button>
+          <p id="go-live-note" className="t-caption text-text-muted">{d.goLiveNote}</p>
         </div>
         {note && <p role="status" className="mt-4 t-body-s text-text-secondary">{note}</p>}
       </div>
@@ -173,12 +198,24 @@ function Detail({ step, locale }: { step: WizardStep; locale: Locale }) {
   if (step.key === "crm" && step.crm_provider) items.push(providerDisplayNames[step.crm_provider]);
   if (step.accepts_scraped_owned_inventory) items.push(locale === "es" ? "Tu propia web es una fuente válida" : "Your own website is a valid source");
   if (step.entry) items.push(step.entry.entitled ? (locale === "es" ? "Disponible" : "Available") : d.stepStatus.locked_by_plan.line);
-  if (!items.length) return null;
+  const notices = (step.disclosures ?? []).filter((n) => n.applies);
+  if (!items.length && !notices.length) return null;
   return (
-    <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
-      {items.map((it) => (
-        <li key={it} className="t-caption text-text-secondary">{it}</li>
+    <>
+      {items.length > 0 && (
+        <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+          {items.map((it) => (
+            <li key={it} className="t-caption text-text-secondary">{it}</li>
+          ))}
+        </ul>
+      )}
+      {notices.map((n) => (
+        <div key={n.key} className="mt-3 border-l border-line-interactive pl-3" data-disclosure={n.key}>
+          <p className="t-caption text-text-muted">{d.notice}</p>
+          {/* Backend-authored notice. Spanish body when the backend provides one; otherwise the English body, never an invented translation. */}
+          <p className="mt-1 t-body-s text-text-secondary">{locale === "es" && n.body_es ? n.body_es : n.body}</p>
+        </div>
       ))}
-    </ul>
+    </>
   );
 }

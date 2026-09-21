@@ -56,7 +56,7 @@ export function SignupForm({ locale }: { locale: Locale }) {
         router.push(localePath(locale, r.details?.session ? "/onboarding" : "/login"));
         return;
       }
-      const msg = (d.errors as Record<string, string>)[r.code] ?? d.errors.server_error;
+      const msg = (d.errors as Record<string, string>)[r.code] ?? (getDictionary(locale).common.errors as Record<string, string>)[r.code] ?? d.errors.server_error;
       setError(msg);
     } catch {
       setError(d.errors.server_error);
@@ -94,7 +94,7 @@ export function SignupForm({ locale }: { locale: Locale }) {
           <Link href={localePath(locale, "/legal/privacy")} className="text-text-accent underline underline-offset-4">{locale === "es" ? "Aviso de privacidad" : "Privacy notice"}</Link>
         </p>
       </div>
-      {stub && <p className="t-caption text-text-muted"><LabelChip tone="attention">stub</LabelChip> {d.stubNotice}</p>}
+      {stub && <p className="t-caption text-text-muted"><LabelChip tone="attention">{getDictionary(locale).common.env.stub.label}</LabelChip> {d.stubNotice}</p>}
       <p className="t-body-s text-text-secondary">
         {d.haveAccount} <Link href={localePath(locale, "/login")} className="text-text-accent underline underline-offset-4">{d.loginLink}</Link>
       </p>
@@ -127,7 +127,7 @@ export function LoginForm({ locale }: { locale: Locale }) {
         router.push(localePath(locale, "/onboarding"));
         return;
       }
-      setError((d.errors as Record<string, string>)[r.code] ?? d.errors.server_error);
+      setError((d.errors as Record<string, string>)[r.code] ?? (getDictionary(locale).common.errors as Record<string, string>)[r.code] ?? d.errors.server_error);
     } catch {
       setError(d.errors.server_error);
     } finally {

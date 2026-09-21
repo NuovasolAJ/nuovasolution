@@ -40,7 +40,8 @@ const toneCls = {
 export function StatusChip({ status, locale, className }: { status: CapabilityStatus; locale: Locale; className?: string }) {
   const p = statusPresentation(status, locale);
   return (
-    <span className={cn("inline-flex h-6 items-center gap-1.5 rounded-pill border border-line-hairline px-2.5 t-caption whitespace-nowrap", toneCls[p.tone], className)}>
+    // Wraps below ~400 px instead of widening the layout viewport (review WR-15: the Spanish label is 350 px wide).
+    <span className={cn("inline-flex min-h-6 max-w-full items-center gap-1.5 rounded-pill border border-line-hairline px-2.5 py-0.5 t-caption sm:whitespace-nowrap", toneCls[p.tone], className)}>
       <StatusGlyph glyph={p.glyph} size={12} />
       <span>{p.label}</span>
     </span>
@@ -62,7 +63,7 @@ export function StatusNote({ status, locale, className }: { status: CapabilitySt
 /** A generic chip for labels such as Illustrative, Example, Placeholder. */
 export function LabelChip({ children, tone = "neutral", className }: { children: ReactNode; tone?: "neutral" | "attention"; className?: string }) {
   return (
-    <span className={cn("inline-flex h-6 items-center rounded-sm border border-line-interactive bg-surface-canvas px-2 t-caption", tone === "attention" ? "text-signal-attention" : "text-text-secondary", className)}>
+    <span className={cn("inline-flex h-6 shrink-0 items-center whitespace-nowrap rounded-sm border border-line-interactive bg-surface-canvas px-2 t-caption", tone === "attention" ? "text-signal-attention" : "text-text-secondary", className)}>
       {children}
     </span>
   );

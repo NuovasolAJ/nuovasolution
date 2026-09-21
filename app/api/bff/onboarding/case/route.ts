@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { envelope, fail, isStub } from "@/lib/contracts/bff";
+import { envelope, fail, isStub, sameOrigin, stubRefused } from "@/lib/contracts/bff";
 import { STUB_CASE_COOKIE } from "@/lib/contracts/server";
 
 export const runtime = "nodejs";
@@ -10,7 +10,7 @@ export const runtime = "nodejs";
  * visually. Returns 404 in staging mode: it does not exist there.
  */
 export async function POST(req: Request) {
-  if (!isStub()) return fail("not_found", 404);
+  if (!isStub() || stubRefused() || !sameOrigin(req)) return fail("not_found", 404);
   let body: { case?: number };
   try {
     body = await req.json();

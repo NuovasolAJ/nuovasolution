@@ -7,6 +7,7 @@ import { SectionHead, Display, Eyebrow, Lead, Caption, Heading } from "@/compone
 import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { LabelChip, StatusGlyph } from "@/components/ui/status";
+import { EnvironmentRibbon } from "@/components/site/environment-ribbon";
 
 export const dynamic = "force-dynamic";
 
@@ -25,11 +26,14 @@ export default async function PackagesPage({ params }: { params: { locale: strin
   const locale = params.locale as Locale;
   const d = getDictionary(locale);
   const p = (path: string) => localePath(locale, path);
-  const { data: plans, stub } = await getPlans();
+  const result = await getPlans();
+  const stub = result.kind === "stub";
+  const plans = result.kind === "awaiting_contract" ? [] : result.plans;
 
   return (
     <>
       <Section surface="ivory" rhythm="opening" labelledBy="pk-h1">
+        <EnvironmentRibbon locale={locale} scope="form" />
         <div className="container-default">
           <Reveal className="xl:max-w-[62%]">
             <Eyebrow className="mb-4">{d.packages.eyebrow}</Eyebrow>
@@ -45,7 +49,10 @@ export default async function PackagesPage({ params }: { params: { locale: strin
             <Eyebrow as="h2" id="pk-plans">{d.packages.plansEyebrow}</Eyebrow>
             {stub && <LabelChip tone="attention">{d.common.stubData}</LabelChip>}
           </div>
-          <ul className="mt-8 hairline-list border-y border-line-hairline">
+          {result.kind === "awaiting_contract" && (
+            <p className="mt-8 flex items-center gap-2 t-body-m text-text-secondary"><StatusGlyph glyph="clock" size={14} />{d.packages.plansAwaiting}</p>
+          )}
+          <ul className={plans.length ? "mt-8 hairline-list border-y border-line-hairline" : "hidden"}>
             {plans.map((plan) => (
               <li key={plan.code} className="grid grid-cols-1 xl:grid-cols-12 gap-4 xl:gap-8 py-8">
                 <div className="xl:col-span-4">

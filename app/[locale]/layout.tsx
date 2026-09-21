@@ -8,6 +8,7 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { QaWidget } from "@/components/site/qa-widget";
+import { EnvironmentRibbon } from "@/components/site/environment-ribbon";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -60,7 +61,10 @@ export default function LocaleLayout({ children, params }: { children: ReactNode
           {d.common.skip}
         </a>
         <Header locale={locale} />
-        <main id="main">{children}</main>
+        <main id="main">
+          <EnvironmentRibbon locale={locale} scope="site" />
+          {children}
+        </main>
         <Footer locale={locale} />
         <QaWidget locale={locale} />
         <Analytics />

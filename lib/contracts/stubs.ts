@@ -1,4 +1,21 @@
-import type { EntitlementSnapshot, OnboardingState, Plan, StepStatus, TrialState, WizardStep } from "./types";
+import type { CrmCatalogEntry, EntitlementSnapshot, OnboardingState, Plan, StepStatus, TrialState, WizardStep } from "./types";
+
+/**
+ * CRM catalog stub: a copy of what crm_provider_catalog() returned on staging at
+ * 2026-09-21T12:49:30Z, without the backend's English note (never rendered).
+ * Kept identical in shape so stub and sandbox exercise the same UI.
+ */
+export const crmCatalogStub: CrmCatalogEntry[] = [
+  { sort: 1, provider: "nuovasolution", display_name: "Nuova CRM (built-in)", availability: "available", selectable: true, is_default: true, live_wired: true },
+  { sort: 2, provider: "google_sheets", display_name: "Google Sheets", availability: "available", selectable: true, is_default: false, live_wired: true },
+  { sort: 3, provider: "hubspot", display_name: "HubSpot", availability: "coming_soon", selectable: false, is_default: false, live_wired: false },
+  { sort: 4, provider: "pipedrive", display_name: "Pipedrive", availability: "coming_soon", selectable: false, is_default: false, live_wired: false },
+  { sort: 5, provider: "zoho", display_name: "Zoho CRM", availability: "coming_soon", selectable: false, is_default: false, live_wired: false },
+  { sort: 6, provider: "salesforce", display_name: "Salesforce", availability: "coming_soon", selectable: false, is_default: false, live_wired: false },
+  { sort: 7, provider: "gohighlevel", display_name: "GoHighLevel", availability: "unavailable", selectable: false, is_default: false, live_wired: false },
+  { sort: 8, provider: "dynamics", display_name: "Microsoft Dynamics", availability: "unavailable", selectable: false, is_default: false, live_wired: false },
+  { sort: 9, provider: "airtable", display_name: "Airtable", availability: "unavailable", selectable: false, is_default: false, live_wired: false },
+];
 
 /**
  * LOCAL STUBS. Clearly labelled, never a backend response.
@@ -89,11 +106,27 @@ export const onboardingCases: OnboardingState[] = [
   build({
     account: { status: "completed" },
     agency: { status: "completed" },
-    branding: { status: "completed" },
+    branding: {
+      status: "completed",
+      // Same notice the staging backend returns for trial tenants (read 2026-09-21).
+      disclosures: [
+        {
+          key: "trial_email_branding",
+          title: 'Emails on the trial plan show "Powered by NuovaSolution"',
+          body: 'While your account is on the trial plan, every customer email the assistant sends carries a small "Powered by NuovaSolution" line in the footer. It is shown to your customers. Moving to a paid plan removes the line and hands this setting to you.',
+          body_es: 'Mientras su cuenta esté en el plan trial, todos los correos que el asistente envía a sus clientes incluyen una línea "Powered by NuovaSolution" en el pie. Sus clientes la ven. Al pasar a un plan de pago la línea desaparece y usted controla este ajuste.',
+          applies: true,
+          severity: "info",
+          shown_in_customer_emails: true,
+        },
+      ],
+    },
     team: { status: "completed", active_employees: 3 },
     communication: { status: "externally_pending", classification: "PROVIDER_ACTION", channels: { email: true, whatsapp: false, whatsapp_pending: true, voice_locked: true } },
     lead_acquisition: { status: "externally_pending", classification: "PROVIDER_ACTION", paid: { plan: { entitled: true }, meta_lead_ads: { connected: true, ready: false }, google_lead_forms: { connected: false, ready: false } } },
-    crm: { status: "externally_pending", classification: "PROVIDER_ACTION", external_crm: true, connected: false, crm_provider: "hubspot" },
+    // External CRMs are fenced (coming_soon) on the backend, so an external CRM can never be
+    // "waiting on a provider" today. The built-in CRM stays of record. See CRM contract §1.
+    crm: { status: "completed", classification: "PROVIDER_ACTION", external_crm: false, connected: false },
     property_source: { status: "completed", accepts_scraped_owned_inventory: true },
     property_experience: { status: "locked_by_plan", locked: true, entry: { entitled: false, state: "locked_addon" }, classification: "AUTOMATED" },
     ready: { readiness: { activatable: false, blocked_mandatory: ["communication"], blocked_features: ["property_experience"] } },

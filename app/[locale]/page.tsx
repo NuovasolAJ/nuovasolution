@@ -118,7 +118,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
             media={
               <Reveal delay={120} mode="opacity" className="border border-line-hairline p-6 xl:p-10 bg-surface-canvas">
                 <span className="inline-flex h-6 items-center rounded-sm border border-line-interactive px-2 t-caption text-text-secondary mb-6">{d.common.illustrative}</span>
-                <OperatingMap nodes={[...h.picture.nodes]} label={h.picture.pathLabel} />
+                <OperatingMap nodes={h.picture.nodes} label={h.picture.pathLabel} nextFrom={h.picture.nextFrom} legend={h.picture.legend} />
               </Reveal>
             }
           />

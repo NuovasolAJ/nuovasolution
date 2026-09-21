@@ -1,9 +1,9 @@
 import type { Locale } from "@/lib/i18n/config";
 
 /**
- * Canonical capability statuses, from the owner's audit of 2026-09-08
- * (CANONICAL_STATE_ID 2026-09-08_CLOSEOUT_1220Z). The website renders these as
- * content. It never upgrades a status on its own.
+ * Capability statuses. Wording corrected per docs/website_redesign/WEBSITE_CLAIM_REGISTER_v1.md
+ * (state 2026-09-21_SYNC_1215Z), which supersedes the 2026-09-08 audit for status. The website
+ * renders these as content. It never upgrades a status on its own.
  */
 export type CapabilityStatus =
   | "live"
@@ -27,7 +27,7 @@ export interface StatusPresentation {
 const EN: Record<CapabilityStatus, StatusPresentation> = {
   live: {
     label: "In use today",
-    sentence: "Running for a first agency on real channels.",
+    sentence: "In use today on real WhatsApp and email traffic, in our own agency environment.", // WCR-003
     publiclyAvailable: true,
     glyph: "check",
     tone: "positive",
@@ -55,7 +55,7 @@ const EN: Record<CapabilityStatus, StatusPresentation> = {
   },
   premium_on_request: {
     label: "Premium, on request",
-    sentence: "A premium service we prepare for you. Requested, then delivered once accepted.",
+    sentence: "A premium service we prepare for you on request. The first deliveries are in preparation.", // WCR-004
     publiclyAvailable: true,
     glyph: "diamond",
     tone: "neutral",
@@ -72,7 +72,7 @@ const EN: Record<CapabilityStatus, StatusPresentation> = {
 const ES: Record<CapabilityStatus, StatusPresentation> = {
   live: {
     label: "En uso hoy",
-    sentence: "Funcionando para una primera agencia en canales reales.",
+    sentence: "En uso hoy con tráfico real de WhatsApp y email, en nuestro propio entorno de agencia.", // WCR-003
     publiclyAvailable: true,
     glyph: "check",
     tone: "positive",
@@ -100,7 +100,7 @@ const ES: Record<CapabilityStatus, StatusPresentation> = {
   },
   premium_on_request: {
     label: "Premium, bajo petición",
-    sentence: "Un servicio premium que preparamos para ti. Se solicita y se entrega una vez aceptado.",
+    sentence: "Un servicio premium que preparamos para ti bajo petición. Las primeras entregas están en preparación.", // WCR-004
     publiclyAvailable: true,
     glyph: "diamond",
     tone: "neutral",

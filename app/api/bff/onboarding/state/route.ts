@@ -1,21 +1,20 @@
-import { cookies } from "next/headers";
-import { envelope, fail, isStub, proxy } from "@/lib/contracts/bff";
-import { onboardingCase } from "@/lib/contracts/stubs";
-import { SESSION_COOKIE, STUB_CASE_COOKIE } from "@/lib/contracts/server";
+import { envelope, fail, refusal } from "@/lib/contracts/bff";
+import { getOnboardingState, sessionToken } from "@/lib/contracts/server";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
-/** GET /api/bff/onboarding/state. Wraps backend GET /onboarding/state (Bearer). */
+/**
+ * GET /api/bff/onboarding/state. Stub: the selected labelled fixture.
+ * Sandbox and live: verified session -> tenant resolved on the server ->
+ * onboarding_wizard_state(p_client_id). The projection is returned unchanged.
+ */
 export async function GET() {
-  const token = cookies().get(SESSION_COOKIE)?.value;
-  if (!token) return fail("no_session", 401);
-  if (isStub()) {
-    const n = Number(cookies().get(STUB_CASE_COOKIE)?.value ?? "1");
-    return envelope({ ok: true, code: "ok", message: "stub", details: onboardingCase(n) }, 200, true);
+  if (!sessionToken()) return fail("no_session", 401);
+  try {
+    const { data, stub } = await getOnboardingState();
+    return envelope({ ok: true, code: "ok", message: stub ? "stub" : "ok", details: data }, 200, stub);
+  } catch (e) {
+    return refusal(e);
   }
-  const { status, json } = await proxy("/onboarding/state", { bearer: token });
-  if (status === 401) return fail("no_session", 401);
-  if (status === 403) return fail("forbidden", 403);
-  if (!json) return fail("server_error", 502);
-  return envelope({ ok: true, code: "ok", message: "ok", details: json });
 }

@@ -2,6 +2,21 @@
 
 const isProd = process.env.NODE_ENV === "production";
 
+// ---- Integration mode: fixed at build time (see lib/contracts/mode.ts) ----
+// stub (default) | staging (sandbox, one pinned staging target) | live (production).
+// A live build is refused unless the owner's explicit release variable is set.
+const MODES = ["stub", "staging", "live"];
+const buildMode = process.env.NUOVA_INTEGRATION_MODE || "stub";
+if (!MODES.includes(buildMode)) {
+  throw new Error(`NUOVA_INTEGRATION_MODE must be one of ${MODES.join(", ")}; got "${buildMode}".`);
+}
+if (buildMode === "live" && process.env.NUOVA_LIVE_RELEASE !== "OWNER_RELEASED_PRODUCTION") {
+  throw new Error(
+    "Refusing a live build: NUOVA_LIVE_RELEASE is not set to the owner's release value. " +
+      "Production is an explicit owner release, never a default.",
+  );
+}
+
 // Content Security Policy. Self plus the two external services the site may use:
 // Vercel Analytics (cookieless page views) and the optional scheduling embed.
 // No backend host is listed here: the browser only ever talks to this site's own BFF routes.
@@ -33,6 +48,9 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Inlined at build into server and client code. Not a secret: it only says which
+  // environment this build is, so the visible ribbon always matches the server.
+  env: { NUOVA_BUILD_MODE: buildMode },
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [],

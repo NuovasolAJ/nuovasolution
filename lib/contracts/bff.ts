@@ -1,6 +1,7 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { apiBase, integrationMode, STUB_HEADER } from "./mode";
+import { integrationMode, MODE_HEADER, STUB_HEADER, stubSurfacesAllowed } from "./mode";
+import { BackendRefusal } from "./supabase";
 import type { Envelope } from "./types";
 
 /** Helpers shared by every BFF route. Uniform envelope, no internals leaked. */
@@ -8,6 +9,7 @@ import type { Envelope } from "./types";
 export function envelope<T>(body: Omit<Envelope<T>, "request_id"> & { request_id?: string }, status = 200, stub = false) {
   const res = NextResponse.json({ request_id: crypto.randomUUID(), ...body, ...(stub ? { stub: true } : {}) }, { status });
   if (stub) res.headers.set(STUB_HEADER, "1");
+  res.headers.set(MODE_HEADER, integrationMode());
   res.headers.set("Cache-Control", "no-store");
   return res;
 }
@@ -20,21 +22,41 @@ export function isStub() {
   return integrationMode() === "stub";
 }
 
-/** Proxy a call to the BFF target in staging mode. Never used in stub mode. */
-export async function proxy(path: string, init: RequestInit & { bearer?: string } = {}) {
-  const { bearer, ...rest } = init;
-  const headers = new Headers(rest.headers);
-  headers.set("Content-Type", "application/json");
-  headers.set("apikey", process.env.SUPABASE_ANON_KEY ?? "");
-  if (bearer) headers.set("Authorization", `Bearer ${bearer}`);
-  const res = await fetch(`${apiBase()}${path}`, { ...rest, headers, cache: "no-store" });
-  let json: unknown = null;
+/** A stub account surface in a public production deployment: refuse, never fake (review WR-06). */
+export function stubRefused(): boolean {
+  return isStub() && !stubSurfacesAllowed();
+}
+
+/**
+ * Resolve a post-login destination safely (review WR-05). Only same-origin paths
+ * under a locale prefix are accepted; backslash, tab and protocol-relative tricks
+ * are normalised by the URL parser first and then rejected on origin.
+ */
+export function safeNextPath(next: string | null, origin: string, fallback: string): string {
+  if (!next) return fallback;
   try {
-    json = await res.json();
+    const u = new URL(next, origin);
+    if (u.origin !== origin) return fallback;
+    if (!/^\/(en|es)(\/|$)/.test(u.pathname)) return fallback;
+    return `${u.pathname}${u.search}`;
   } catch {
-    json = null;
+    return fallback;
   }
-  return { status: res.status, json };
+}
+
+/**
+ * The surface exists and is wired as far as a written contract reaches, but
+ * the backend contract for this call has not been delivered yet
+ * (governance/WEBSITE_HANDOFF_v1.md). Honest, never a fake success.
+ */
+export function awaitingContract(contract: string) {
+  return envelope({ ok: false, code: "awaiting_contract", message: "awaiting_contract", details: { contract } }, 501);
+}
+
+/** Map a thrown backend refusal to the uniform envelope. Anything else is a server_error. */
+export function refusal(e: unknown) {
+  if (e instanceof BackendRefusal) return fail(e.code, e.status);
+  return fail("server_error", 500);
 }
 
 const buckets = new Map<string, { n: number; reset: number }>();
@@ -56,4 +78,15 @@ export function rateLimited(key: string, max = 10, windowMs = 60_000): boolean {
 
 export function clientKey(req: Request): string {
   return req.headers.get("x-forwarded-for")?.split(",")[0].trim() || req.headers.get("x-real-ip") || "local";
+}
+
+/** Same-origin check for state-changing BFF calls (defence in depth next to SameSite cookies). */
+export function sameOrigin(req: Request): boolean {
+  const origin = req.headers.get("origin");
+  if (!origin) return true; // same-origin fetches from older browsers and server-side calls
+  try {
+    return new URL(origin).host === new URL(req.url).host;
+  } catch {
+    return false;
+  }
 }
