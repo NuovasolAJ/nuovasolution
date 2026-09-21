@@ -77,10 +77,12 @@ export function CrmChoice({ locale, catalog, selection }: { locale: Locale; cata
       <p className="mt-2 t-body-s text-text-secondary measure-body">{d.lead}</p>
 
       {selection.of_record === "nuovasolution" && (
-        <p className="mt-4 flex items-center gap-2 t-body-s text-text-primary" data-crm-of-record="nuovasolution">
-          <StatusGlyph glyph="check" size={14} className="text-signal-positive" />
-          {d.done}
-          {selection.selected === "google_sheets" && <span className="text-text-secondary"> · {d.sheetsTitle}</span>}
+        <p className="mt-4 flex items-start gap-2 t-body-s text-text-primary" data-crm-of-record="nuovasolution">
+          <StatusGlyph glyph="check" size={14} className="mt-1 shrink-0 text-signal-positive" />
+          <span>
+            {d.done}
+            {selection.selected === "google_sheets" && <span className="text-text-secondary"> {d.sheetsTitle}.</span>}
+          </span>
         </p>
       )}
       {selection.selection_not_readable && <p className="mt-1 t-caption text-text-muted">{d.notReadable}</p>}
