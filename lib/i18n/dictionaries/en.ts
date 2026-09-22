@@ -453,6 +453,7 @@ export const en = {
       saved: "Saved. This is what the backend now holds for your agency.",
       sheetsNext: "Connecting the Google Sheet itself is a separate step that is not available on this site yet.",
       notReadable: "The Google Sheets choice cannot be read back in this environment yet, so it is not shown here.",
+      savedStub: "Saved in this demonstration only. Nothing reached a backend.",
       sheetsChosen: "Chosen, not connected",
       sheetsConnected: "Connected",
       sheetsOffUnavailable: "Turning the Google Sheets copy off is not available on this site yet. Your leads stay in the CRM included in Nuova either way.",

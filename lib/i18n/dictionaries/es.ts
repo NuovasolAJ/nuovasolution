@@ -451,6 +451,7 @@ export const es: Dictionary = {
       saved: "Guardado. Esto es lo que el backend tiene ahora para tu agencia.",
       sheetsNext: "Conectar la hoja de Google es un paso aparte que todavía no está disponible en este sitio.",
       notReadable: "En este entorno todavía no se puede leer la elección de Google Sheets, así que no se muestra aquí.",
+      savedStub: "Guardado solo en esta demostración. No ha llegado nada a ningún backend.",
       sheetsChosen: "Elegido, sin conectar",
       sheetsConnected: "Conectado",
       sheetsOffUnavailable: "Desactivar la copia en Google Sheets todavía no está disponible en este sitio. Tus leads siguen en el CRM incluido en Nuova en cualquier caso.",

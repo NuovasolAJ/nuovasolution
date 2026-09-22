@@ -72,13 +72,15 @@ export function CrmChoice({ locale, catalog, selection, noticeAllowed }: { local
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ provider, intent }),
       });
-      const json = (await res.json().catch(() => ({ ok: false, code: "generic" }))) as { ok: boolean; code: string };
+      const json = (await res.json().catch(() => ({ ok: false, code: "generic" }))) as { ok: boolean; code: string; stub?: true };
       if (!json.ok) {
         setMsg({ tone: "error", text: errors[json.code] ?? errors.generic });
         return;
       }
+      // Review WR-29: a stub save never claims the backend holds anything.
+      const saved = json.stub ? d.savedStub : d.saved;
       if (intent === "interest") setMsg({ tone: "ok", text: d.interestSaved.replace("{provider}", nameOf(provider)) });
-      else setMsg({ tone: "ok", text: provider === "google_sheets" ? `${d.saved} ${d.sheetsNext}` : d.saved });
+      else setMsg({ tone: "ok", text: provider === "google_sheets" ? `${saved} ${d.sheetsNext}` : saved });
       router.refresh();
     } catch {
       setMsg({ tone: "error", text: errors.generic });
