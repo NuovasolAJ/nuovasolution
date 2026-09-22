@@ -1,0 +1,6 @@
+{"at":"2026-09-22T07:56:22.237Z","listening":"127.0.0.1:3997"}
+{"at":"2026-09-22T07:56:44.112Z","route":"accept","body_keys":["question","session_id","message_id","locale","email"],"checks":{"headers_present":true,"fresh":true,"nonce_format":true,"nonce_unused":true,"signature":true,"body_object":true,"question_1_4000":true,"session_id":true,"only_contract_fields":true,"page_url_https_or_absent":true},"verdict":202}
+{"at":"2026-09-22T07:56:44.405Z","route":"result","query_shape":"conversation_id=…&message_id=…","checks":{"headers_present":true,"fresh":true,"nonce_format":true,"nonce_unused":true,"signature":true,"query_canonical":true},"known":true}
+{"at":"2026-09-22T07:56:45.635Z","route":"result","query_shape":"conversation_id=…&message_id=…","checks":{"headers_present":true,"fresh":true,"nonce_format":true,"nonce_unused":true,"signature":true,"query_canonical":true},"known":true}
+{"at":"2026-09-22T07:56:46.751Z","route":"result","query_shape":"conversation_id=…&message_id=…","checks":{"headers_present":true,"fresh":true,"nonce_format":true,"nonce_unused":true,"signature":true,"query_canonical":true},"known":true}
+{"at":"2026-09-22T07:56:47.905Z","route":"result","query_shape":"conversation_id=…&message_id=…","checks":{"headers_present":true,"fresh":true,"nonce_format":true,"nonce_unused":true,"signature":true,"query_canonical":true},"known":false}

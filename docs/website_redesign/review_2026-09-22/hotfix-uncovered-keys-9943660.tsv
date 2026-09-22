@@ -1,0 +1,59 @@
+key	in_live_ssr_html	EN@9943660	ES@9943660
+always.cls.1	1	Buyer · Seller	Comprador · Vendedor
+always.cls.2	1	Short · Long term	Corto · Largo plazo
+always.headline	1	Your agency never stops moving	Tu agencia nunca para
+always.label	1	Always Running	Siempre Activo
+always.left.1.desc	1	Email, WhatsApp, forms and portals	Email, WhatsApp, formularios
+always.left.1.title	1	New lead	Nueva consulta
+always.left.2.desc1	1	Buyer or seller	Comprador · Vendedor
+always.left.2.desc2	1	Short or long-term	Corto · Largo plazo
+always.left.2.title	1	Detect intent	Detecta la intención
+always.left.3.desc1	1	Cold, warm or hot	Frío · Interesado · Prioritario
+always.left.3.title	1	Prioritize clients	Prioriza clientes
+always.row1	0	New inquiry comes in	Llega una nueva consulta
+always.row4	0	Serious clients identified	Clientes serios identificados
+always.row6	0	Conversation continues naturally	La conversación sigue de forma natural
+always.score.cold	1	Cold	Frío
+always.score.hot	1	Hot	Prioritario
+always.score.warm	1	Warm	Interesado
+always.step.1	1	New inquiry	Nueva consulta
+always.step.2	1	Analyzed	Analizado
+always.step.3	1	Classified	Clasificado
+always.step.4	1	Scored	Evaluado
+always.step.6	1	Hot	Prioritario
+always.time.1	0	Now	Ahora
+always.time.4	0	Continuous	Continuo
+cta.sub	1	Every inquiry is answered, qualified and prioritized automatically. You focus only on the ones that matter	Cada consulta se responde, cualifica y prioriza automáticamente. Tú solo te centras en las que importan
+demo.alert.budget	0	€900–1,200 / month	€900–1.200 / mes
+demo.alert.buyer	0	Buyer – Nerja	Comprador – Nerja
+demo.alert.cta	0	→ Call now	→ Llamar ahora
+demo.alert.label	3	NuovaSolution	NuovaSolution
+demo.alert.movein	0	Move-in: June	Entrada: Junio
+demo.alert.online	0	online	en línea
+demo.alert.people	0	2 people	2 personas
+demo.alert.viewing	0	Viewing interest:	Interés en visita:
+demo.alert.yes	0	Yes	Sí
+demo.step2.label	0	Instant system reply	Respuesta instantánea
+demo.step4.label	0	Agent WhatsApp alert	Alerta WhatsApp al agente
+demo.step4.tab	0	Alert	Alerta
+faq.headline	1	Everything you need to know	Todo lo que necesitas saber
+faq.q3.q	1	Will every lead get a reply?	¿Todos los clientes reciben respuesta?
+faq.q5.a	0	The lead is updated in your system and you are notified when it is ready to move forward.	Se actualiza en tu sistema y se te avisa cuando está listo para avanzar.
+hero.chat.alert.line1	1	Serious buyer · Marbella	Comprador serio · Marbella
+hero.chat.alert.line2	1	Requested viewing tomorrow	Solicita visita mañana
+hero.chat.alert.title	1	New enquiry	NUEVA CONSULTA
+hero.feature.2.title	1	Qualify automatically	Calificación automática
+hero.feature.3.title	1	Never miss opportunities	Sin oportunidades perdidas
+hero.sub	1	Every lead gets a reply. The system filters and shows you which buyers and sellers are actually serious.	Cada consulta recibe respuesta. El sistema filtra y te muestra qué clientes realmente van en serio.
+intel.build.text	1	Every message adds missing information and improves the quality of the lead	Cada mensaje añade la información que falta y mejora la calidad de la oportunidad
+lost.conclusion.sub	0	This happens every day. It doesn't have to.	Esto ocurre cada día. No tiene por qué ser así.
+lost.step4.desc	0	Another agency replied faster. You never knew.	Otra agencia respondió antes. Nunca lo supiste.
+lost.sub	0	Every minute without a reply is a minute your competitor has to win the client	Cada minuto sin respuesta es un minuto que tu competidor tiene para ganar al cliente
+scenarios.headline	1	Every lead handled automatically from first message to a qualified opportunity	Cada consulta gestionada automáticamente desde el primer mensaje hasta una oportunidad cualificada
+scenarios.s3.text	1	Every message is evaluated automatically. A lead can be cold, warm, or hot from the start. If the conversation changes, the priority updates.	Cada mensaje se evalúa automáticamente. Un cliente puede ser frío, interesado o prioritario desde el inicio. Si la conversación cambia, la prioridad también.
+scenarios.s3.visual.note	1	Priority updates automatically	Prioridad actualizada automáticamente
+scenarios.sub	1	From first message to a qualified buyer or seller. Everything runs in the background	Desde el primer mensaje hasta un cliente cualificado. Todo funciona en segundo plano
+strip.headline	0	Built to never miss a serious lead	Diseñado para no perder nunca un cliente serio
+strip.item2.desc	0	Buyer, seller, long-term, short-term — classified automatically.	Comprador, vendedor, largo plazo, corto plazo — clasificado automáticamente.
+strip.label	0	Always On	Siempre Activo
+strip.sub	0	Every inquiry is captured, understood, prioritized, and followed up automatically. No missed messages. No delays. No manual chaos.	Cada consulta se captura, comprende, prioriza y gestiona automáticamente. Sin mensajes perdidos. Sin retrasos. Sin caos manual.

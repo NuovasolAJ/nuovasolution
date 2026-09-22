@@ -1,0 +1,127 @@
+UTC 2026-09-22T07:56:30Z
+
+=== WR-05 open redirect (original inputs + variants), expect same-origin locale path only
+/%5Cevil.example/x       -> location: http://localhost:3107/en/onboarding
+/%09/evil.example        -> location: http://localhost:3107/en/onboarding
+//evil.example           -> location: http://localhost:3107/en/onboarding
+https://evil.example/    -> location: http://localhost:3107/en/onboarding
+/en/../../evil           -> location: http://localhost:3107/en/onboarding
+/es/onboarding?x=1       -> location: http://localhost:3107/es/onboarding?x=1
+
+=== WR-06 stub account surfaces with VERCEL_ENV=production (:3108)
+GET ?stub=1        404
+POST login any     {"request_id":"d5e67551-8a56-4e7f-8628-fc21368aa4ee","ok":false,"code":"not_available","message":"not_available"} 404
+POST signup        {"request_id":"913c4bb2-b50c-4a88-84de-31b9ba8c759d","ok":false,"code":"not_available","message":"not_available"} 404
+POST case          404
+signup page notice       2 Demonstration only       6 stub 
+control (:3107 default stub, preview-like):
+POST login any     200
+
+=== WR-19 cross-origin state-changing POSTs, expect 403
+auth/login         403
+auth/logout        403
+signup             403
+crm/select         403
+onboarding/touch   403
+tenant/activate    403
+qa                 403
+
+=== WR-12 logout clears refresh cookie on its own path; login stores no refresh token
+set-cookie: nuova_session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT
+set-cookie: nuova_stub_case=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT
+set-cookie: nuova_stub_crm=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT
+set-cookie: nuova_refresh=; Path=/api/bff/auth; Max-Age=0; Secure; HttpOnly; SameSite=lax
+refresh cookies set on login: 0
+
+=== WR-09 forged OAuth success, expect no success claim
+Connected-claim: 0  HubSpot echoed: 2
+
+You cancelled the connection. Nothing has changed.
+
+=== WR-10 / WR-01 onboarding (stub case 3): controls and CRM catalog states
+bytes 87433  input:2 select:0 file:0 radio:2 button:16
+Google Sheets        2
+Coming soon          4
+HubSpot              5
+GoHighLevel          2
+Airtable             2
+Connect HubSpot      0
+Waiting on HubSpot   0
+Demonstration only   2
+{"request_id":"da131462-0fef-430e-af06-f73d5a00299d","ok":true,"code":"ok","message":"stub","details":{"providers":[{"sort":1,"provider":"nuovasolution","display_name":"Nuova CRM (built-in)","availability":"available","selectable":true,"is_default":true,"live_wired":true},{"sort":2,"provider":"google_sheets","display_name":"Google Sheets","availability":"available","selectable":true,"is_default":false,"live_wired":true},{"sort":3,"provider":"hubspot","display_name":"HubSpot","availability":"coming_soon","selectable":false,"is_default":false,"live_wired":false},{"sort":4,"provider":"pipedrive","display_name":"Pipedrive","availability":"coming_soon","selectable":false,"is_default":false,"live_wired":false},{"sort":5,"provider":"zoho","display_name":"Zoho CRM","availability":"coming_soon","selectable":false,"is_default":false,"live_wired":false},{"sort":6,"provider":"salesforce","display_na
+select coming_soon as 'select' (expect 409): 409
+interest unavailable (expect 409):          409
+select without session (expect 401):        401
+client_id smuggled in body (field ignored?): {"request_id":"298fbd89-69ec-4b5b-8375-2ea16caa9103","ok":true,"code":"ok","message":"stub","details":{"selection":{"of_record":"nuovasolution","selected":"google_sheets","interest":null,"source":"stu
+
+=== WR-11 raw gate keys in rendered onboarding (all six stub cases, EN+ES)
+case 1 en: 8  case 1 es: 8  
+case 2 en: 8  case 2 es: 8  
+case 3 en: 7  case 3 es: 7  
+case 4 en: 8  case 4 es: 8  
+case 5 en: 6  case 5 es: 6  
+case 6 en: 6  case 6 es: 6  
+(counts include HTML attributes such as id=step-...; see visible-text check below)
+
+=== WR-22 percentage number on onboarding
+(empty = none)
+
+=== WR-02 Q&A disclosure strings in built output
+old sentence files: 0
+
+=== WR-04 forbidden claims on built pages (EN + ES, all routes in sitemap)
+21 days                0
+21 días               0
+hot lead               0
+Hot lead               0
+lead caliente          0
+Nine languages         0
+nine languages         0
+nueve idiomas          0
+Nueve idiomas          0
+three properties       0
+tres propiedades       0
+Always synced          0
+No setup needed        0
+scored from 1 to 100   0
+pages scanned: 28
+
+=== WR-21 sitemap
+(legal/auth entries above; empty = none)
+<loc>https://nuovasolution.com
+
+=== WR-07 / WR-08 Q&A transport against reviewer mock (:3997)
+{"request_id":"6c5c5ee7-df80-4a73-b768-8b0cb825a181","ok":true,"code":"ok","message":"pending","details":{"status":"pending","retry_after_ms":1500,"message_id":"web_0b40a9f9271f09d1baa1e3e5"}}
+{"request_id":"1b08e6f7-77c2-4107-b961-fc16d906b97f","ok":true,"code":"ok","message":"pending","details":{"status":"pending","retry_after_ms":1500}}
+{"request_id":"9ab0cdde-edc2-4fbb-b2ae-c7b6d71d1e63","ok":true,"code":"ok","message":"answered","details":{"status":"answered","text":"MOCK ANSWER from reviewer mock","language":"en"}}
+{"request_id":"ff233293-f5ce-49a4-a6dc-c25d7214544e","ok":true,"code":"ok","message":"answered","details":{"status":"answered","text":"MOCK ANSWER from reviewer mock","language":"en"}}
+other visitor (no cookie) reads same id: 401
+foreign session cookie reads same id:    {"request_id":"010c5804-c031-4bbc-8ee8-a58d4311c64e","ok":true,"code":"ok","message":"unknown","details":{"status":"unknown"}}
+
+=== WR-25 test script / WR-28 stray files
+"test:e2e": "node scripts/e2e/website-e2e.mjs"
+stray PNGs in main repo root: 0
+
+=== Security headers + client bundle secret scan (build 2089094)
+Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; object-src 'no
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+client chunks: 31
+QA_TENANT                        0
+HMAC_SECRET                      0
+SUPABASE_ANON_KEY                0
+SUPABASE_SERVICE_ROLE            0
+service_role                     0
+SUPABASE_URL                     0
+sb_secret_                       0
+sb_publishable_                  0
+eyJhbGciOi                       0
+fflmmzapksycjfdcjdtd             0
+ckxqzfoukcacvqzpagcm             0
+OWNER_RELEASED_PRODUCTION        0
+NUOVA_STAGING_TARGET_APPROVED    0
+createHmac                       0
+x-nuova-signature                0
+n8n.cloud                        0
+/webhook/                        0

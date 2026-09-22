@@ -1,0 +1,1952 @@
+{
+ "html_files": 42,
+ "en_chars": 909230,
+ "es_chars": 924519,
+ "summary": {
+  "applied": 31,
+  "keep": 48,
+  "manual": 19,
+  "check": 5,
+  "text_still_present(status label decides)": 2,
+  "text_gone": 1
+ },
+ "rows": [
+  {
+   "id": "WCR-001",
+   "route": "all · meta description",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Enquiries answered, understood and carried forward in one system, with one record of each ",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Consultas respondidas, entendidas y llevadas hacia adelante en un solo sistema, con una so",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Every enquiry answered, understood and carried forward in one system with one memory of th",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-002",
+   "route": "`/` hero lead",
+   "action": "keep",
+   "en_expected": [
+    {
+     "s": "Your agents start from the ones that are ready.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Tus agentes empiezan por las que están listas.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Every enquiry gets an answer, day or night. Every conversation is understood and carried f",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-003",
+   "route": "`lib/content/statuses.ts` `live.sentence`",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "In use today on real WhatsApp and email traffic, in our own agency environment.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "En uso hoy con tráfico real de WhatsApp y email, en nuestro propio entorno de agencia.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Running for a first agency on real channels.",
+     "still_en": false,
+     "still_es": false
+    },
+    {
+     "s": "Funcionando para una primera agencia en canales reales.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-004",
+   "route": "`statuses.ts` `premium_on_request`",
+   "action": "keep",
+   "en_expected": [
+    {
+     "s": "A premium service we prepare for you on request. The first deliveries are in preparation.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Un servicio premium que preparamos para ti bajo petición. Las primeras entregas están en p",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Requested, then delivered once accepted.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-005",
+   "route": "header CTA, many CTAs",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Start free",
+     "still_en": true,
+     "still_es": false
+    },
+    {
+     "s": "Empieza gratis",
+     "still_en": false,
+     "still_es": true
+    }
+   ],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-010",
+   "route": "hero note, closing caption, contact",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Try free for 14 days. No payment method required.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Prueba gratis durante 14 días. Sin método de pago.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Try free for up to 21 days. No payment method required.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-011",
+   "route": "rail \"Answer\"",
+   "action": "keep",
+   "en_expected": [
+    {
+     "s": "Gmail and WhatsApp text enquiries…",
+     "present": false
+    }
+   ],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Gmail and WhatsApp enquiries answered and carried forward.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-012",
+   "route": "rail \"Understand\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "One record per customer, qualified and prioritised.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Una ficha por cliente, cualificada y priorizada.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "One customer record, qualified, with a hot lead alert to your agents.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-013",
+   "route": "rail \"Advance\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Coming next: a short property selection with availability you can stand behind.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Lo siguiente: una selección corta de propiedades con una disponibilidad que puedes defende",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "A short property selection with availability you can stand behind.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-014",
+   "route": "rail \"Hand over\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Daily Goals and an assistant, built and in final testing.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Daily Goals y una asistente, construidos y en la prueba final.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Daily Goals and an assistant that tells you what to do first.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-015",
+   "route": "rail \"Your environment\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Each agency is set up as its own environment: its brand, configuration, team and roles.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Cada agencia se configura como su propio entorno: su marca, su configuración, su equipo y ",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Each agency has its own branded environment, configuration, team and roles.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-016",
+   "route": "gap section",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-017",
+   "route": "film section",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "An enquiry arrives, is answered, becomes a customer record, reaches an agent, and turns in",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-018",
+   "route": "operating picture nodes",
+   "action": "keep",
+   "en_expected": [
+    {
+     "s": "Solid steps run today. Outlined steps are being built.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Los pasos sólidos funcionan hoy. Los pasos en contorno se están construyendo.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Gmail and WhatsApp → Answered → One customer record → Qualified → Hot lead alert → Propert",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-019",
+   "route": "chapter I points",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Gmail text enquiries: answered and replied to in use today.",
+     "still_en": true,
+     "still_es": false
+    },
+    {
+     "s": "Attachments, WhatsApp media and Outlook are in development and not offered yet.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-020",
+   "route": "chapter II lead",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "A client who writes twice on the same channel stays one person in Nuova, and every enquiry",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Un cliente que escribe dos veces por el mismo canal sigue siendo una sola persona en Nuova",
+     "present": true
+    }
+   ],
+   "old_text": [],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-021",
+   "route": "chapter II points",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "One customer identity across channels, being built.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Una identidad de cliente única en todos los canales, en construcción.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "One canonical customer identity across channels.",
+     "still_en": true,
+     "still_es": false
+    },
+    {
+     "s": "Qualification on every enquiry.",
+     "still_en": false,
+     "still_es": false
+    },
+    {
+     "s": "Hot lead alerts to your agents.",
+     "still_en": false,
+     "still_es": false
+    },
+    {
+     "s": "Native CRM plus Google Sheets, in use today.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "check"
+  },
+  {
+   "id": "WCR-022",
+   "route": "chapter III points",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Property matching with honest availability, being built.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Property matching con disponibilidad honesta, en construcción.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Property matching with honest availability, in use today.",
+     "still_en": false,
+     "still_es": false
+    },
+    {
+     "s": "A viewing request becomes a staff task. Built, with final acceptance still pending.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "check"
+  },
+  {
+   "id": "WCR-023",
+   "route": "context items",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Your own inventory: your agency website, a supported feed or your CRM inventory, once prop",
+     "present": false
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Tu propio inventario: la web de tu agencia, un feed compatible o el inventario de tu CRM, ",
+     "present": false
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Your own inventory: your agency website, a supported feed or your CRM inventory as the pro",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "check"
+  },
+  {
+   "id": "WCR-024",
+   "route": "context \"Your own environment\"",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Your own environment",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-025",
+   "route": "assistant section",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Built, with the final owner test still pending before it is offered.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-026",
+   "route": "\"next\" items",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Certified internally. Legal disclosure and provider gates pending.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Certificado internamente. Información legal y puertas del proveedor pendientes.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Nine languages certified internally. Legal disclosure and provider gates pending.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-027",
+   "route": "\"next\" items",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Built and tested internally. The Meta review has not been submitted yet.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Construido y probado internamente. La revisión de Meta todavía no se ha solicitado.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Sixteen of twenty steps built. Meta review pending.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-028",
+   "route": "\"next\" items",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "HubSpot, Pipedrive, Zoho and Salesforce connected with real authorisation in our August te",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "HubSpot, Pipedrive, Zoho y Salesforce se conectaron con autorización real en nuestras prue",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "HubSpot, Pipedrive, Zoho and Salesforce certified in August. Current consent pending.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-029",
+   "route": "\"next\" items",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Certified on our internal harness. Provider test pending.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-030",
+   "route": "access step 1",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Create your agency account. No payment method required, no sales call required.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-031",
+   "route": "access step 2",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Your brand, your team and roles, your channels, your property source. Your progress is sav",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-032",
+   "route": "access step 3",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Fourteen days free",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Catorce días gratis",
+     "present": true
+    }
+   ],
+   "old_text": [],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-033",
+   "route": "closing body",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Start free and see Nuova handle a real enquiry from your own agency.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-040",
+   "route": "platform lead",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-041",
+   "route": "tenant section",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Your customers hear from your agency, under your brand.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Tus clientes reciben la respuesta de tu agencia, con tu marca.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Your logo, your email branding, your configuration, your team and your roles. Nuova is inv",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-050",
+   "route": "h1 \"Every enquiry gets an answer, and the conversation carries on.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Every enquiry gets an answer, and the conversation carries on.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-051",
+   "route": "point \"Gmail text intake and reply.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Gmail text intake and reply.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-052",
+   "route": "point \"WhatsApp text intake and reply.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "WhatsApp text intake and reply.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-053",
+   "route": "point \"The conversation becomes part of one customer record.\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Each conversation is recorded against the customer.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Cada conversación queda registrada en la ficha del cliente.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "The conversation becomes part of one customer record.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-054",
+   "route": "points attachments, WhatsApp media, Outlook",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-055",
+   "route": "scenario \"…the agent sees it on Monday as one thread rather than a notification.\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "…and the conversation is recorded against the buyer for the agent on Monday.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "…y la conversación queda registrada en la ficha del comprador para el agente el lunes.",
+     "present": true
+    }
+   ],
+   "old_text": [],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-056",
+   "route": "fits \"Your own branded environment. Customers hear from your agency, not from Nuova.\"",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Your own branded environment. Customers hear from your agency, not from Nuova.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-060",
+   "route": "navLine \"Qualified, and your agents told\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Qualified and prioritised",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Cualificado y priorizado",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Qualified, and your agents told",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-061",
+   "route": "h1 \"One customer, one record, and your agents hear about the ones that are ready.\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "One customer, one record, and a clear priority on every enquiry.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Un cliente, una ficha, y una prioridad clara en cada consulta.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "One customer, one record, and your agents hear about the ones that are ready.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-062",
+   "route": "lead \"…is one person in Nuova. Every enquiry is qualified, and a hot lead alert reaches your agents when it matters.\"",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-063",
+   "route": "point \"One canonical customer identity across channels.\"",
+   "action": "status_change",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "One canonical customer identity across channels.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "text_still_present(status label decides)"
+  },
+  {
+   "id": "WCR-064",
+   "route": "point \"Qualification on every enquiry.\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Qualification on every answered enquiry.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Cualificación en cada consulta respondida.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Qualification on every enquiry.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-065",
+   "route": "point \"Hot lead alerts to your agents.\"",
+   "action": "status_change",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Hot lead alerts to your agents.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "text_gone"
+  },
+  {
+   "id": "WCR-066",
+   "route": "point \"A priority signal so your team knows where to start.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "A priority signal so your team knows where to start.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-067",
+   "route": "scenario \"…the agent responsible receives a hot lead alert with the conversation attached.\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "…the record is qualified and its priority rises, so the agent responsible starts there.",
+     "present": false
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "…la ficha se cualifica y su prioridad sube, así que el agente responsable empieza por ahí.",
+     "present": false
+    }
+   ],
+   "old_text": [],
+   "verdict": "check"
+  },
+  {
+   "id": "WCR-068",
+   "route": "overall status `live`",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-070",
+   "route": "lead \"A CRM is included from the start, with Google Sheets alongside it. If your agency already runs on another CRM, connecting it is certified on our side and waits on the current consent.\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "A CRM is included from the start: every enquiry is recorded as a lead with its qualificati",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Hay un CRM incluido desde el principio: cada consulta queda registrada como lead con su cu",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "A CRM is included from the start, with Google Sheets alongside it. If your agency already ",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-071",
+   "route": "point \"Native CRM, included.\"",
+   "action": "keep",
+   "en_expected": [
+    {
+     "s": "Leads recorded with their qualification, included.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Leads registrados con su cualificación, incluido.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Native CRM, included.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-072",
+   "route": "point \"Google Sheets.\"",
+   "action": "status_change",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Google Sheets.",
+     "still_en": true,
+     "still_es": true
+    }
+   ],
+   "verdict": "text_still_present(status label decides)"
+  },
+  {
+   "id": "WCR-073",
+   "route": "point \"The whole conversation history on one customer record.\"",
+   "action": "keep",
+   "en_expected": [
+    {
+     "s": "The conversation history on the customer record.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "El historial de conversación en la ficha del cliente.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "The whole conversation history on one customer record.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-074",
+   "route": "point \"HubSpot, Pipedrive, Zoho CRM and Salesforce.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "HubSpot, Pipedrive, Zoho CRM and Salesforce.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-075",
+   "route": "scenario \"…sees the email, the WhatsApp thread, the qualification, **the hot lead alert and the property selection that was sent**.\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "The office manager opens one record and sees the email from last week, the qualification a",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "La responsable de oficina abre una ficha y ve el email de la semana pasada, la cualificaci",
+     "present": true
+    }
+   ],
+   "old_text": [],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-076",
+   "route": "bothHalves certified \"…certified with real authorisation in August.\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "…connected with real authorisation in our staging tests in August.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "…se conectaron con autorización real en nuestras pruebas de agosto.",
+     "present": true
+    }
+   ],
+   "old_text": [],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-077",
+   "route": "bothHalves pending \"The current consent is pending. Until it clears, external CRM connection is not offered.\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Not offered yet. Each provider is released on its own after a final check. Until then you ",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Todavía no se ofrece. Cada proveedor se activa por separado tras una comprobación final. H",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "The current consent is pending. Until it clears, external CRM connection is not offered.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-080",
+   "route": "overall status and first three points",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-081",
+   "route": "lead \"Nuova understands… matches… The customer receives a short selection.\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Being built. Not offered yet.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "En construcción. Todavía no se ofrece.",
+     "present": true
+    }
+   ],
+   "old_text": [],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-082",
+   "route": "point \"A viewing request becomes a staff task.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "A viewing request becomes a staff task.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-083",
+   "route": "scenario \"Nuova **sends three properties** from the agency's own inventory…\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Nuova sends a short selection from the agency's own inventory that matches, marks the one ",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Nuova envía una selección corta del inventario propio de la agencia que encaja, marca la q",
+     "present": true
+    }
+   ],
+   "old_text": [],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-084",
+   "route": "fits \"Your agency website as a property source\" etc.",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Your agency website as a property source",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-090",
+   "route": "ES lead \"…**Disponible ahora.** La prueba final del propietario está en curso.\"",
+   "action": "reword",
+   "en_expected": [],
+   "es_expected": [
+    {
+     "s": "Daily Goals y la asistente le dicen a tu equipo qué hacer primero, y por qué. Construido, ",
+     "present": true
+    }
+   ],
+   "old_text": [],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-091",
+   "route": "points Daily Goals, assistant, branded email",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-092",
+   "route": "point \"An employee assistant for internal tasks.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "An employee assistant for internal tasks.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-093",
+   "route": "examples (\"Who should I call today?\" …)",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Who should I call today?",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-100",
+   "route": "lead and points \"certified internally **in nine languages**\" (three places)",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Voice handling is certified in our own testing. It is not offered until the legal disclosu",
+     "present": true
+    },
+    {
+     "s": "Multilingual calls, certified internally.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "La atención por voz está certificada en nuestras propias pruebas. No se ofrece hasta que s",
+     "present": true
+    },
+    {
+     "s": "Llamadas en varios idiomas, certificadas internamente.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "certified internally in nine languages",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-101",
+   "route": "point \"What the call produced lands on the same customer record.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "What the call produced lands on the same customer record.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-110",
+   "route": "navLine \"Built, Meta review pending\" · lead \"Sixteen of twenty steps are built. The Meta review is pending.\" · bothHalves \"Sixteen of twenty steps built and tested internally.\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Built, Meta review not yet submitted",
+     "present": true
+    },
+    {
+     "s": "Built and tested internally. The Meta review has not been submitted yet. Until it clears, ",
+     "present": true
+    },
+    {
+     "s": "Built and tested internally.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Construido, revisión de Meta aún no solicitada",
+     "present": true
+    },
+    {
+     "s": "Construido y probado internamente. La revisión de Meta todavía no se ha solicitado. Hasta ",
+     "present": true
+    },
+    {
+     "s": "Construido y probado internamente.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Built, Meta review pending",
+     "still_en": false,
+     "still_es": false
+    },
+    {
+     "s": "Sixteen of twenty steps are built. The Meta review is pending.",
+     "still_en": false,
+     "still_es": false
+    },
+    {
+     "s": "Sixteen of twenty steps built and tested internally.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-111",
+   "route": "notAvailable TikTok, Facebook Groups",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-120",
+   "route": "Lead Acquisition, all points and both halves",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-121",
+   "route": "Property Experience lead \"A finished property experience, created by Nuova and checked by a person before it reaches a buyer. A premium service, on request, in preparation.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "A finished property experience, created by Nuova and checked by a person before it reaches",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-122",
+   "route": "PX scenario \"…the accepted delivery reaches the agency. The buyer walks through it…\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-130",
+   "route": "\"Every paid package includes the core: CRM, Lead Engine, automatic replies, basic follow up, property matching and core reporting.\"",
+   "action": "keep",
+   "en_expected": [
+    {
+     "s": "Each module's page shows what runs today and what is being built.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "La página de cada módulo muestra lo que funciona hoy y lo que se está construyendo.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Every paid package includes the core: CRM, Lead Engine, automatic replies, basic follow up",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-131",
+   "route": "stub plan contents \"Daily Assistant, Advanced reporting\" in Growth; \"Higher limits, Property Experience quota\" in Scale",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Daily Assistant, Advanced reporting",
+     "still_en": false,
+     "still_es": false
+    },
+    {
+     "s": "Higher limits, Property Experience quota",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-132",
+   "route": "\"There is no self-service billing.\" / \"Can I pay online? Not yet.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "There is no self-service billing.",
+     "still_en": true,
+     "still_es": false
+    },
+    {
+     "s": "Can I pay online? Not yet.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-133",
+   "route": "\"We tell you what it costs once we have seen yours.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "We tell you what it costs once we have seen yours.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-134",
+   "route": "FAQ \"No payment method is required at signup.\" · \"A demo is optional.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "No payment method is required at signup.",
+     "still_en": true,
+     "still_es": false
+    },
+    {
+     "s": "A demo is optional.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-140",
+   "route": "h1 \"Try free for up to 21 days.\"",
+   "action": "reword",
+   "en_expected": [],
+   "es_expected": [
+    {
+     "s": "Prueba gratis durante 14 días.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Try free for up to 21 days.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-141",
+   "route": "lead and \"how\" items 2 to 4 (extension, review, consent for public use)",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-142",
+   "route": "\"how\" item 1 \"Fourteen days free… No payment method required. No sales call required.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": " item 1 ",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-143",
+   "route": "honesty lines \"The browser never grants…\", \"A submitted review is stored as pending review…\", \"remaining days… come from the server\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-144",
+   "route": "steps \"Your progress is saved…\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-145",
+   "route": "step Branding \"Every message goes out under your brand.\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Your logo and your email banner, for the messages that go out under your brand.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Tu logo y el banner de tus emails, para los mensajes que salen con tu marca.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Every message goes out under your brand.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-146",
+   "route": "step Team \"…roles: agent, team lead, office manager, agency admin.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-147",
+   "route": "step CRM \"A CRM is included from the start. If you already use another one, **you can connect it instead**.\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "A CRM is included from the start. If you use another one, tell us which: connecting it is ",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Hay un CRM incluido desde el principio. Si usas otro, dinos cuál: conectarlo todavía no se",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "A CRM is included from the start. If you already use another one, you can connect it inste",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-148",
+   "route": "step Readiness \"A clear readiness check before you go live. A step waiting on a provider is never shown as done.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "A clear readiness check before you go live. A step waiting on a provider is never shown as",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-150",
+   "route": "signup lead \"Fourteen days free to set your agency up and see it working. No payment method required.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Fourteen days free to set your agency up and see it working. No payment method required.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-151",
+   "route": "signup privacy line \"Your details are used to create your agency account. Read the privacy notice.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Your details are used to create your agency account. Read the privacy notice.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-152",
+   "route": "stub notices (signup, login, onboarding, packages)",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-153",
+   "route": "onboarding lead \"Every step below comes from the readiness contract. A field not returned is not shown. A gate not returned is not enforced.\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "Each step shows its real status. Anything waiting on someone else says so.",
+     "present": true
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Cada paso muestra su estado real. Lo que depende de otra persona lo indica.",
+     "present": true
+    }
+   ],
+   "old_text": [
+    {
+     "s": "Every step below comes from the readiness contract. A field not returned is not shown. A g",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "applied"
+  },
+  {
+   "id": "WCR-154",
+   "route": "onboarding \"Disabled features never block readiness\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Disabled features never block readiness",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-155",
+   "route": "onboarding branding constraints \"PNG, JPEG, WebP or GIF. Up to 5 MB.\"",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "PNG, JPEG, WebP or GIF. Up to 5 MB.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-156",
+   "route": "inline \"Native CRM\" / \"Your own website is a valid source\" / \"Available\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Native CRM",
+     "still_en": true,
+     "still_es": false
+    },
+    {
+     "s": "Your own website is a valid source",
+     "still_en": true,
+     "still_es": false
+    },
+    {
+     "s": "Available",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-157",
+   "route": "callback states success, pending, cancelled, error",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-158",
+   "route": "login \"Password reset is not available yet.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Password reset is not available yet.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-160",
+   "route": "contact \"Direct human reach, in English or in Spanish.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Direct human reach, in English or in Spanish.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-161",
+   "route": "contact demo \"We show you Nuova running on a real enquiry, not a slide deck.\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "We show you Nuova running on a real enquiry, not a slide deck.",
+     "still_en": true,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  },
+  {
+   "id": "WCR-162",
+   "route": "WhatsApp CTA renders only when a number is configured",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-163",
+   "route": "Q&A intro \"Answered from what we can actually confirm.\"",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Answered from what we can actually confirm.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-164",
+   "route": "Q&A disclosure \"Nothing you type here is stored with a client record.\"",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Nothing you type here is stored with a client record.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-165",
+   "route": "Q&A \"Write on WhatsApp\" CTA",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Write on WhatsApp",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-170",
+   "route": "privacy \"Service providers that process data on our behalf will be listed here after legal review.\"",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Service providers that process data on our behalf will be listed here after legal review.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-171",
+   "route": "privacy \"Legal basis: Your consent when you contact us…\"",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-172",
+   "route": "privacy \"This site uses cookieless page view analytics.\"",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "This site uses cookieless page view analytics.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-173",
+   "route": "terms \"The trial\" paragraph with the extension",
+   "action": "other",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "The trial",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "manual"
+  },
+  {
+   "id": "WCR-174",
+   "route": "data deletion \"We confirm receipt by email and tell you what was deleted and when.\"",
+   "action": "reword",
+   "en_expected": [
+    {
+     "s": "We confirm receipt by email. A person handles the request and tells you the outcome, inclu",
+     "present": false
+    }
+   ],
+   "es_expected": [
+    {
+     "s": "Confirmamos la recepción por email. Una persona gestiona la solicitud y te comunica el res",
+     "present": false
+    }
+   ],
+   "old_text": [
+    {
+     "s": "We confirm receipt by email and tell you what was deleted and when.",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "check"
+  },
+  {
+   "id": "WCR-175",
+   "route": "legal notice \"Activity\"",
+   "action": "keep",
+   "en_expected": [],
+   "es_expected": [],
+   "old_text": [
+    {
+     "s": "Activity",
+     "still_en": false,
+     "still_es": false
+    }
+   ],
+   "verdict": "keep"
+  }
+ ]
+}

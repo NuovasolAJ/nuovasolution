@@ -1,0 +1,97 @@
+{
+ "h1": {
+  "/en/signup": [
+   "Create your agency account."
+  ],
+  "/es/signup": [
+   "Crea la cuenta de tu agencia."
+  ],
+  "/en/login": [
+   "Log in."
+  ],
+  "/es/login": [
+   "Inicia sesión."
+  ],
+  "/en/onboarding": [
+   "Set your agency up."
+  ],
+  "/es/onboarding": [
+   "Configura tu agencia."
+  ],
+  "/en/connect/callback?provider=hubspot&status=success": [
+   "Connection result"
+  ],
+  "/es/connect/callback?provider=email&status=error&reason=user_cancelled": [
+   "Resultado de la conexión"
+  ]
+ },
+ "callbackVisible": "HUBSPOT Connection result We could not confirm the connection. Nothing has been marked as connected. Try again or contact us. Back to onboarding",
+ "rawKeys": {
+  "case1-en": "none",
+  "case1-es": "none",
+  "case2-en": "none",
+  "case2-es": "none",
+  "case3-en": "none",
+  "case3-es": "none",
+  "case4-en": "none",
+  "case4-es": "none",
+  "case5-en": "none",
+  "case5-es": "none",
+  "case6-en": "none",
+  "case6-es": "none"
+ },
+ "crm": {
+  "before": "nuovasolution:true google_sheets:false",
+  "pick": "Saved. This is what the backend now holds for your agency. Connecting the Google Sheet itself is a separate step that is not ",
+  "afterReload": "nuovasolution:false google_sheets:true",
+  "interest": "I use HubSpot => Noted. We will tell you when HubSpot can be connected.",
+  "connectButtons": [],
+  "text": "CRM Set up and confirmed. Native CRM Where your leads are kept A CRM is included. Most agencies start with it and never need another one. Using the CRM included in Nuova. Also keep a copy in Google Sheets. Noted. We will tell you when HubSpot can be connected. Your choice No external CRM. Use the CRM included in Nuova. Included · Recommended Every enquiry becomes a lead with the person's contact details, what they are looking for, their qualification and priority, and the conversation so far. Viewing requests become tasks for your team. Nothing to connect and nothing to pay extra. It is not a replacement for an accounting or transaction system, and it does not import records from another CRM. Also keep a copy in Google Sheets Nuova stays the place where leads are kept. A Google Sheet receives a copy you can open, filter and share. Save choice Your own CRM HubSpot Coming soon Con"
+ },
+ "skip": {
+  "label": "Skip for now",
+  "visibleChange": false
+ },
+ "goLive": {
+  "disabledAttr": false,
+  "ariaDisabled": null,
+  "describedby": null
+ },
+ "w360": {
+  "/es/platform/crm": {
+   "innerWidth": 360,
+   "scrollWidth": 360
+  },
+  "/es/platform/voice": {
+   "innerWidth": 360,
+   "scrollWidth": 360
+  },
+  "/es/platform/social-growth": {
+   "innerWidth": 360,
+   "scrollWidth": 360
+  },
+  "/es/platform/lead-acquisition": {
+   "innerWidth": 360,
+   "scrollWidth": 360
+  },
+  "/es/trial": {
+   "innerWidth": 360,
+   "scrollWidth": 360
+  },
+  "/es/onboarding": {
+   "innerWidth": 360,
+   "scrollWidth": 360
+  }
+ },
+ "qa": {
+  "focusAfterOpen": "TEXTAREA Type your question",
+  "focusInPanel": true,
+  "focusAfterEscape": "BUTTON Ask a question",
+  "returnedToLauncher": true
+ },
+ "targets": [
+  "NuovaSolution 140x28",
+  "Menu 44x44"
+ ],
+ "qaOpenShot": "Ask Nuova Questions about what Nuova does and whether it fits your agency. It does not quote prices, give legal or tax advice, or commit NuovaSolution to anything. For those, a person answers. Answers are written by an AI assistant from what NuovaSolution has confirmed about its product. Type your question Name, email or phone (optional). Only needed if you want a person to reply to you. Your question and our answer are stored so we can answer it and improve our replies. If you leave contact det"
+}

@@ -1,0 +1,247 @@
+{
+ "started_utc": "2026-09-22T08:02:15.770Z",
+ "commit": "2089094",
+ "mode": "stub build + local Q&A contract mock",
+ "checks": [
+  {
+   "id": "WR-05a",
+   "what": "backslash next does not leave the origin",
+   "pass": true,
+   "evidence": "http://localhost:3107/en/onboarding"
+  },
+  {
+   "id": "WR-05b",
+   "what": "tab next does not leave the origin",
+   "pass": true,
+   "evidence": "http://localhost:3107/en/onboarding"
+  },
+  {
+   "id": "WR-05c",
+   "what": "legitimate locale next is kept",
+   "pass": true,
+   "evidence": "http://localhost:3107/es/onboarding"
+  },
+  {
+   "id": "WR-09a",
+   "what": "forged status=success never renders connected",
+   "pass": true,
+   "evidence": "reason=unknown rendered"
+  },
+  {
+   "id": "WR-09b",
+   "what": "user_cancelled renders the neutral cancellation",
+   "pass": true,
+   "evidence": "reason=user_cancelled"
+  },
+  {
+   "id": "WR-09c",
+   "what": "an unknown provider name is never echoed",
+   "pass": true,
+   "evidence": "fallback provider name"
+  },
+  {
+   "id": "WR-12",
+   "what": "logout clears nuova_refresh on its own path",
+   "pass": true,
+   "evidence": [
+    "nuova_refresh=; Path=/api/bff/auth; Max-Age=0; Secure; HttpOnly; SameSite=lax"
+   ]
+  },
+  {
+   "id": "WR-19",
+   "what": "cross-origin login POST is refused",
+   "pass": true,
+   "evidence": 403
+  },
+  {
+   "id": "W2-01",
+   "what": "CRM catalog: 9 entries, only built-in and Google Sheets selectable",
+   "pass": true,
+   "evidence": [
+    "nuovasolution:available",
+    "google_sheets:available",
+    "hubspot:coming_soon",
+    "pipedrive:coming_soon",
+    "zoho:coming_soon",
+    "salesforce:coming_soon",
+    "gohighlevel:unavailable",
+    "dynamics:unavailable",
+    "airtable:unavailable"
+   ]
+  },
+  {
+   "id": "W2-02",
+   "what": "backend note is never passed to the browser",
+   "pass": true,
+   "evidence": "no note field"
+  },
+  {
+   "id": "W2-03",
+   "what": "an external CRM cannot be selected as connected",
+   "pass": true,
+   "evidence": 409
+  },
+  {
+   "id": "W2-04",
+   "what": "an unavailable CRM cannot register interest",
+   "pass": true,
+   "evidence": 409
+  },
+  {
+   "id": "W2-05",
+   "what": "a provider outside the catalog is refused",
+   "pass": true,
+   "evidence": 400
+  },
+  {
+   "id": "W2-06",
+   "what": "CRM choice requires a session",
+   "pass": true,
+   "evidence": 401
+  },
+  {
+   "id": "WR-21",
+   "what": "sitemap does not advertise unreviewed legal placeholders",
+   "pass": true,
+   "evidence": "28 urls"
+  },
+  {
+   "id": "QA-01",
+   "what": "a question over 4000 characters is refused before sending",
+   "pass": true,
+   "evidence": 422
+  },
+  {
+   "id": "WR-06",
+   "what": "with VERCEL_ENV=production no stub session or stub account can be created",
+   "pass": true,
+   "evidence": {
+    "stubGet": 404,
+    "login": 404,
+    "signup": 404
+   }
+  },
+  {
+   "id": "B1-a",
+   "what": "onboarding has an h1 and the CRM choice with exactly the two selectable options",
+   "pass": true,
+   "evidence": {
+    "h1": [
+     "Set your agency up."
+    ],
+    "radios": [
+     "nuovasolution",
+     "google_sheets"
+    ]
+   }
+  },
+  {
+   "id": "B1-b",
+   "what": "stub band visible on the onboarding surface",
+   "pass": true,
+   "evidence": "stub"
+  },
+  {
+   "id": "WR-11",
+   "what": "no raw backend key is rendered",
+   "pass": true,
+   "evidence": []
+  },
+  {
+   "id": "WR-22",
+   "what": "no percentage number on onboarding",
+   "pass": true,
+   "evidence": "step count shown instead"
+  },
+  {
+   "id": "B1-c",
+   "what": "no horizontal overflow at 390 px",
+   "pass": true,
+   "evidence": {
+    "scrollWidth": 390,
+    "innerWidth": 390
+   }
+  },
+  {
+   "id": "W2-07",
+   "what": "choice saved, and a reload shows the same choice",
+   "pass": true,
+   "evidence": {
+    "checked": "google_sheets",
+    "done": "Using the CRM included in Nuova. Also keep a copy in Google Sheets."
+   }
+  },
+  {
+   "id": "W2-08",
+   "what": "naming HubSpot records interest only, with the built-in CRM kept",
+   "pass": true,
+   "evidence": "interest message shown"
+  },
+  {
+   "id": "WR-17a",
+   "what": "opening the Q&A panel moves focus into it",
+   "pass": true,
+   "evidence": "textarea focused"
+  },
+  {
+   "id": "WR-07/08",
+   "what": "question accepted (202), polled, and the answer rendered",
+   "pass": true,
+   "evidence": "answer from the local contract mock"
+  },
+  {
+   "id": "WR-17b",
+   "what": "Escape returns focus to the launcher",
+   "pass": true,
+   "evidence": "launcher focused"
+  },
+  {
+   "id": "B5",
+   "what": "Spanish onboarding renders Spanish step titles",
+   "pass": true,
+   "evidence": "es titles present"
+  },
+  {
+   "id": "WR-15",
+   "what": "no horizontal overflow at 360 px on /es/platform/crm",
+   "pass": true,
+   "evidence": {
+    "sw": 360,
+    "iw": 360
+   }
+  },
+  {
+   "id": "WR-04",
+   "what": "no forbidden claim wording on ten public pages, EN and ES",
+   "pass": true,
+   "evidence": []
+  },
+  {
+   "id": "QA-02",
+   "what": "every POST passed the ingress contract (signature, freshness, nonce, tenant, session_id, only contract fields)",
+   "pass": true,
+   "evidence": [
+    202
+   ]
+  },
+  {
+   "id": "QA-03",
+   "what": "result polls were signed over the canonical query and resolved pending then answered",
+   "pass": true,
+   "evidence": [
+    "200 pending",
+    "200 answered"
+   ]
+  }
+ ],
+ "screens": [
+  "m390-en-onboarding-case3.png",
+  "m390-en-onboarding-crm-after.png",
+  "m390-en-qa-answered.png",
+  "m360-es-platform-crm.png",
+  "d1440-en-packages.png"
+ ],
+ "finished_utc": "2026-09-22T08:03:00.666Z",
+ "passed": 32,
+ "failed": 0
+}
