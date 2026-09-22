@@ -1,0 +1,31 @@
+{
+ "phase": "signup",
+ "started_utc": "2026-09-22T14:04:20.797Z",
+ "commit": "eec96ec",
+ "env": "staging fflmmzapksycjfdcjdtd",
+ "checks": [
+  {
+   "id": "R1",
+   "what": "sign-up through the BFF answers 'confirm your e-mail', sets no session",
+   "pass": false,
+   "evidence": {
+    "status": 400
+   }
+  },
+  {
+   "id": "R2",
+   "what": "login before the confirmation click is refused (email_not_confirmed)",
+   "pass": false,
+   "evidence": "invalid_grant"
+  }
+ ],
+ "identity": {
+  "address_pattern": "web.impl.e2e+<stamp>@test.nuovasolution.com",
+  "stamp": "mucqwinx",
+  "stored_in": "secure store stg_web_impl_new_identity.txt"
+ },
+ "next_signal": "STG_CONFIRM_REQUEST = web.impl.e2e+mucqwinx@test.nuovasolution.com",
+ "finished_utc": "2026-09-22T14:04:23.054Z",
+ "passed": 0,
+ "failed": 2
+}

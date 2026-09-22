@@ -1,0 +1,3 @@
+{"utc":"2026-09-22T14:12:47.409Z","op":"POST","verdict":202,"checks":{"tenant":true,"fresh":true,"nonce_format":true,"nonce_unused":true,"sig_format":true,"signature":true,"question":true,"session_id":true,"no_extra_fields":true},"fields":["question","session_id","message_id","locale"]}
+{"utc":"2026-09-22T14:12:48.921Z","op":"GET","verdict":"200 pending","checks":{"tenant":true,"fresh":true,"nonce_format":true,"nonce_unused":true,"sig_format":true,"signature":true,"canonical_order":true}}
+{"utc":"2026-09-22T14:12:49.735Z","op":"GET","verdict":"200 answered","checks":{"tenant":true,"fresh":true,"nonce_format":true,"nonce_unused":true,"sig_format":true,"signature":true,"canonical_order":true}}
