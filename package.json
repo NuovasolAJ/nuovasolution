@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:e2e": "node scripts/e2e/website-e2e.mjs"
+    "test:e2e": "node scripts/e2e/website-e2e.mjs",
+    "test:e2e:staging": "node scripts/e2e/staging-e2e.mjs",
+    "owner:staging": "node scripts/owner/staging-local.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

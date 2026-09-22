@@ -91,7 +91,8 @@ export async function signUp(email: string, password: string, meta: { full_name:
   if (res.status === 429) throw new BackendRefusal("rate_limited", 429);
   if (res.status === 422 || res.status === 400) {
     const j = (await res.json().catch(() => ({}))) as { error_code?: string };
-    throw new BackendRefusal(j.error_code === "weak_password" ? "weak_password" : j.error_code === "signup_disabled" ? "not_available" : "invalid_input", 400);
+    const code = j.error_code === "weak_password" ? "weak_password" : j.error_code === "signup_disabled" ? "not_available" : j.error_code === "email_address_invalid" ? "invalid_email" : "invalid_input";
+    throw new BackendRefusal(code, 400);
   }
   if (!res.ok) throw new BackendRefusal("server_error", 502);
 }
