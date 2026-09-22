@@ -1,5 +1,25 @@
 # CLAIMS MATRIX — NuovaSolution Website
 
+> ## ⚠ STATE 2026-09-22 (block version `cm-state-2026-09-22`, written 2026-09-22T08:11Z)
+>
+> **No verdict loosened.** Changes against the 2026-09-21 block below:
+>
+> 1. **D-10 hot lead alerting:** the rebuilt site at `2089094` carries **no** hot lead statement. The
+>    2026-09-21 register's "being built" retensing was itself in conflict with D-10 (every wording
+>    forbidden) and is withdrawn (`WEBSITE_CLAIM_REGISTER_v2.md` §4). D-10 stands.
+> 2. **T-03 extension:** the rebuilt site no longer publishes it; owner decision D1 stays open.
+> 3. **V-07 and F-03:** resolved on the rebuilt site. **All four breaches listed in the 2026-09-21
+>    block are closed in the code at `2089094`**; they remain on the old public site (WR-03), for
+>    which `OLD_LIVE_SITE_HOTFIX_COPY_v1.md` gives replacement text.
+> 4. **Rule added for email:** no copy may claim single delivery, reliability or speed for email
+>    replies until `GMAIL_POSTFIX_E2E_PASS` exists (the 2026-09-20 message was answered twice).
+> 5. **AI disclosure wording:** the only approved text is v1.0-es (owner, 2026-08-05; three
+>    channels). EN, DE and IT equivalents and the voice texts are drafts in
+>    `COUNSEL_PACKAGE_v1.md` §E; none may be marked approved. The interim sentence live in prod is
+>    not approved (ruling R2).
+> 6. **Withdrawn:** owner question D4 (*usted* or *tú* for WhatsApp). The approved form of address
+>    of each channel stands.
+
 > ## ⚠ STATE 2026-09-21 — read this block before any row below
 >
 > **Last row-level reconciliation: 2026-08-31 (export v2).** The rows below still govern **wording**

@@ -1,5 +1,9 @@
 # CONNECT NOTICE DRAFT v1 — notice before a data or CRM connection, and the counsel package
 
+> **2026-09-22:** §A (the notice itself) stays valid, with the corrections in
+> `COUNSEL_PACKAGE_v1.md` §G. §B (privacy additions) and §C (counsel questions) are **superseded** by
+> the consolidated `COUNSEL_PACKAGE_v1.md`; question numbers there are new (C-01 to C-19).
+
 > # DRAFT – not legally reviewed
 > Prepared by the Website Copy / Product Truth lane as a **template for counsel**. It states what
 > the system technically does, as far as it is documented. It is not legal advice, not an approved

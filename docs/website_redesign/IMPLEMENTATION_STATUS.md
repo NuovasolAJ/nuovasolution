@@ -1,5 +1,23 @@
 # IMPLEMENTATION STATUS — NuovaSolution Website Enterprise Redesign
 
+> ## ⚠ STATE 2026-09-22 (block version `is-state-2026-09-22`, written 2026-09-22T08:11Z)
+>
+> Added by the Copy / Product Truth / Director lane. The Implementer's own record is
+> `WEBSITE_SYNC_0921_RETURN_v1.md` and `WEBSITE_REBUILD_STATUS.md`. This block states the state; it
+> certifies nothing.
+>
+> | | State on 2026-09-22 | Source |
+> |---|---|---|
+> | Branch | HEAD `0b813d0` (docs), last code commit `2089094`; **never pushed** (`WEBSITE_BRANCH_PUSH` open) | `git log` |
+> | Claim corrections | applied in `0405129`; code check at `2089094`: 2 deviations, 1 accepted deviation, 1 open condition | `WEBSITE_CLAIM_REGISTER_v2.md` |
+> | Mode gate | implemented, local proof 9/9 | Implementer return |
+> | Staging E2E | **not run** (test agency, key handover, handoff v2 missing) | Implementer return |
+> | Independent acceptance | **not granted**; re-review of `2089094` pending | `REVIEW_2026-09-21.md` §6 |
+> | Public site | the **pre-redesign** site, with rejected claims (WR-03); replacement copy ready, owner decision `WEBSITE_LIVE_CLAIM_FIX` | `OLD_LIVE_SITE_HOTFIX_COPY_v1.md` |
+> | Deployed commit, env names | **UNKNOWN**; only the Reviewer's readout may state them | Reviewer |
+> | Work in progress | the Implementer has uncommitted work under `app/api/bff/` and `lib/` | `git status` 2026-09-22T08:11Z |
+> | Legal routes | placeholders on the rebuild; counsel package `COUNSEL_PACKAGE_v1.md` ready for counsel | this lane |
+
 > ## ⚠ STATE 2026-09-21 — corrected current state. §1 below is HISTORICAL (2026-09-01)
 >
 > Added by the Website Copy / Product Truth / Director lane under the owner's instruction of

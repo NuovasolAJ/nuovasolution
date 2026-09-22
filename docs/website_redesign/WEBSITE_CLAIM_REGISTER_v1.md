@@ -1,5 +1,10 @@
 # WEBSITE CLAIM REGISTER v1
 
+> **Superseded for status and code conformance by `WEBSITE_CLAIM_REGISTER_v2.md` (2026-09-22).**
+> The row definitions below remain valid. **One correction:** the corrections for WCR-021 point 3
+> and WCR-065 read "remove", not "`in_implementation`": `CLAIMS_MATRIX.md` D-10 forbids every hot
+> lead wording, including "being built". The page count in §0.4 is 61, not 62 (review WR-24).
+
 **State:** `2026-09-21_SYNC_1215Z` · **Written:** 2026-09-21
 **Lane:** Website Copy / Product Truth / Director
 **Branch:** `website_enterprise_redesign` (local, never pushed)

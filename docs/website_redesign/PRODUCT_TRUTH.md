@@ -1,5 +1,28 @@
 # PRODUCT TRUTH — NuovaSolution
 
+> ## ⚠ STATE 2026-09-22 (block version `pt-state-2026-09-22`, written 2026-09-22T08:11Z)
+>
+> Source: `CLOSEOUT_EVIDENCE_INDEX_v1.md` state `2026-09-22_SYNC_0900Z` and the Audit's live read of
+> 2026-09-22 (~08:30Z as dated by the Audit) in `governance/dispatch_2026-09-22/`. Changes against
+> the 2026-09-21 block below; everything not listed is unchanged.
+>
+> | Chain | Now | Record |
+> |---|---|---|
+> | Owner login | proven in prod (LV) | `OWNER-LOGIN-PROD-1` |
+> | Owner membership | in prod: employee `24ee6292…`, agency_admin, 2026-09-21 12:33Z (LV) | `OWNER-MEMBERSHIP-PROD-1` |
+> | Owner walk in the Daily board | **not done**: task `03d0d8eb…` still queued, unclaimed | Audit read 2026-09-22 |
+> | Gmail reply | the 2026-09-20 regression was **answered twice** (one node run, a timeout retry). `GMAIL_REGRESSION_PASS = NO` stays. A fix is deployed (no blind retry, renderer v2, Main `942392608803592d`) but **no real message has run on it**: nothing counts as proven before `GMAIL_POSTFIX_E2E_PASS` | Index `GMAIL-REGRESSION-0920` (corrected) |
+> | Interaction count contract | in prod (`upsert_lead_memory` `55aa533b340e9ea4`); not yet proven by a real first message | `IC-CONTRACT-PROD-1` |
+> | Media analysis | prod media tables exist; prod still calls the old v1 children; no email attachment path; **not live** | `MEDIA-PLANE-PROD-1` |
+> | Property matching | internal only: staging canary, prod returns `{}` | `PM_SYNC_0921_RETURN_v1.md` |
+> | Voice | **not offered.** A public voice agent in prod can create confirmed bookings without calendar authority; containment awaits owner decision `VOICE_BOOK_SCOPE_REVOKE`. **Not "blocked" until the containment is confirmed** | `VOICE-PROD-BOOK-CONFIRM-1` |
+> | AI disclosure | v1.0-es (owner approved 2026-08-05) and v1.1-es (counsel pending) exist, **both inactive**; prod renders an **unapproved** interim sentence since 2026-09-21 17:12Z (ruling R2) | `API_A7_AI_DISCLOSURE_AUTHORITY_PROD_2026-09-21_v1.md` |
+> | Sign-off | renderer v2 in prod builds a localised sign-off; the prompt closing and the code fallback that produce "Antonio's AI Assistant" are **still present**; no real reply seen | `HOSTING_SYNC_0921_RETURN_v1.md` |
+> | Native CRM | prod gained an **inert** `contacts` table (no consumer) | `API_MEDIA_PROD_PLANE_2026-09-21_v1.md` |
+> | Hot lead alert | unchanged: not evidenced; the website now carries no hot lead statement at all (accepted, D-10) | `WEBSITE_CLAIM_REGISTER_v2.md` §4 |
+> | Social | unchanged: nothing submitted, nothing connected | `SOCIAL_SYNC_0921_RETURN_v1.md` |
+> | Website | public site is still the pre-redesign site with rejected claims (WR-03); rebuild at `2089094` not accepted (re-review pending) | `REVIEW_2026-09-21.md` |
+
 > ## ⚠ STATE 2026-09-21 — read this block before any section below
 >
 > **This document was last reconciled on 2026-08-31 against backend contracts (export v2). Since

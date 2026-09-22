@@ -1,5 +1,11 @@
 # SIGNATURE COPY READY v1 — multilingual sign-off, role label and AI disclosure drafts
 
+> **Superseded on 2026-09-22.** Part A → `SIGNATURE_COPY_READY_v2.md` (final mapping for Hosting).
+> Part B → `COUNSEL_PACKAGE_v1.md` §E (all channels, both versions, approval status per text).
+> **Withdrawn:** the owner decision on WhatsApp register (*usted* instead of *tú*) and the usted
+> rewrite of the WhatsApp drafts below. The approved form of address of each channel stays as
+> approved; translations follow it.
+
 **State:** `2026-09-21_SYNC_1215Z` · **Written:** 2026-09-21
 **Lane:** Website Copy / Product Truth / Director, for **Lead** (L3) and **Hosting** (H2), with
 **API** (A9) for the data fields
