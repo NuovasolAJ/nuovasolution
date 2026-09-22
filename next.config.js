@@ -17,9 +17,26 @@ if (buildMode === "live" && process.env.NUOVA_LIVE_RELEASE !== "OWNER_RELEASED_P
   );
 }
 
-// Content Security Policy. Self plus the two external services the site may use:
-// Vercel Analytics (cookieless page views) and the optional scheduling embed.
-// No backend host is listed here: the browser only ever talks to this site's own BFF routes.
+// Backend storage origin. The browser talks to this site's BFF routes for everything, with one
+// exception: a branding upload goes straight to a signed storage URL minted by the BFF (5 MB does
+// not fit through a serverless function), and the stored logo is shown from its public URL.
+// Listed only in sandbox/live builds, only as an https *.supabase.co origin.
+function storageOrigin() {
+  if (buildMode === "stub") return "";
+  try {
+    const u = new URL(process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "");
+    return u.protocol === "https:" && u.hostname.endsWith(".supabase.co") ? u.origin : "";
+  } catch {
+    return "";
+  }
+}
+const storage = storageOrigin();
+
+// Content Security Policy. Self plus the external services the site may use:
+// Vercel Analytics (cookieless page views), the optional scheduling embed and, outside stub
+// builds, the storage origin above.
+// 'unsafe-inline' for scripts stays (review WR-20, accepted P2): a nonce would force every page
+// into dynamic rendering. The only inline script is the one-line js-class marker in the layout.
 const csp = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -28,9 +45,9 @@ const csp = [
   "object-src 'none'",
   `script-src 'self' 'unsafe-inline'${isProd ? "" : " 'unsafe-eval'"} https://va.vercel-scripts.com https://app.cal.com`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  `img-src 'self' data: blob:${storage ? ` ${storage}` : ""}`,
   "font-src 'self' data:",
-  "connect-src 'self' https://vitals.vercel-insights.com https://app.cal.com https://cal.com",
+  `connect-src 'self' https://vitals.vercel-insights.com https://app.cal.com https://cal.com${storage ? ` ${storage}` : ""}`,
   "frame-src https://app.cal.com https://cal.com",
   "media-src 'self'",
   "upgrade-insecure-requests",
@@ -42,7 +59,9 @@ const securityHeaders = [
   { key: "X-Frame-Options", value: "DENY" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
-  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+  // Review WR-27: no includeSubDomains/preload until the owner decides it for every subdomain
+  // (flows.* and others are not served by this site); preload is hard to undo.
+  { key: "Strict-Transport-Security", value: "max-age=63072000" },
 ];
 
 const nextConfig = {

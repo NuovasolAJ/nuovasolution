@@ -1,7 +1,8 @@
 import { cookies } from "next/headers";
-import { clientKey, envelope, fail, isStub, rateLimited, safeNextPath, sameOrigin, stubRefused } from "@/lib/contracts/bff";
+import { clientKey, envelope, fail, isStub, rateLimited, refusal, safeNextPath, sameOrigin, stubRefused } from "@/lib/contracts/bff";
 import { environmentProblem } from "@/lib/contracts/mode";
 import { SESSION_COOKIE, STUB_CASE_COOKIE } from "@/lib/contracts/server";
+import { passwordGrant } from "@/lib/contracts/supabase";
 
 export const runtime = "nodejs";
 
@@ -53,31 +54,11 @@ export async function POST(req: Request) {
   }
 
   if (environmentProblem()) return fail("environment_misconfigured", 503);
-  const url = process.env.SUPABASE_URL;
-  const anon = process.env.SUPABASE_ANON_KEY;
-  if (!url || !anon) return fail("server_error", 503);
-
-  let res: Response;
   try {
-    res = await fetch(`${url.replace(/\/$/, "")}/auth/v1/token?grant_type=password`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", apikey: anon },
-      body: JSON.stringify({ email: body.email, password: body.password }),
-      cache: "no-store",
-      signal: AbortSignal.timeout(10_000),
-    });
-  } catch {
-    return fail("server_error", 502);
+    const data = await passwordGrant(String(body.email), String(body.password));
+    cookies().set(SESSION_COOKIE, data.access_token, { httpOnly: true, sameSite: "lax", secure: true, path: "/", maxAge: data.expires_in });
+    return envelope({ ok: true, code: "ok", message: "signed_in" });
+  } catch (e) {
+    return refusal(e);
   }
-  if (res.status === 400) {
-    const j = (await res.json().catch(() => ({}))) as { error_code?: string; error?: string };
-    const code = j.error_code === "email_not_confirmed" || j.error === "email_not_confirmed" ? "email_not_confirmed" : "invalid_grant";
-    return fail(code, 400);
-  }
-  if (res.status === 429) return fail("rate_limited", 429);
-  if (!res.ok) return fail("server_error", 502);
-  const data = (await res.json()) as { access_token?: string; expires_in?: number };
-  if (!data.access_token) return fail("server_error", 502);
-  cookies().set(SESSION_COOKIE, data.access_token, { httpOnly: true, sameSite: "lax", secure: true, path: "/", maxAge: data.expires_in ?? 3600 });
-  return envelope({ ok: true, code: "ok", message: "signed_in" });
 }

@@ -18,6 +18,7 @@ mkdirSync(OUT, { recursive: true });
 const results = { started_utc: new Date().toISOString(), commit: process.env.E2E_COMMIT ?? "working tree", checks: [] };
 const check = (id, what, pass, evidence) => { results.checks.push({ id, what, pass: Boolean(pass), evidence }); console.log(`${pass ? "PASS" : "FAIL"} ${id} ${what}`); };
 const kids = [];
+const cookieNames = (res) => (res.headers.getSetCookie?.() ?? []).map((c) => c.split("=")[0]);
 
 try {
   // 1. live build refused
@@ -29,9 +30,12 @@ try {
   check("G-2", "a sandbox build compiles", sb.status === 0, `exit ${sb.status}`);
 
   const scenarios = [
-    { id: "G-3", port: 3111, what: "pinned staging URL but no per-target approval: refused before any call", env: { SUPABASE_URL: "https://fflmmzapksycjfdcjdtd.supabase.co", SUPABASE_ANON_KEY: "not-a-key", SUPABASE_SERVICE_ROLE_KEY: "not-a-key" } },
-    { id: "G-4", port: 3112, what: "a non-pinned (e.g. production) Supabase URL with an approval value: refused before any call", env: { SUPABASE_URL: "https://notthestagingref.supabase.co", SUPABASE_ANON_KEY: "not-a-key", SUPABASE_SERVICE_ROLE_KEY: "not-a-key", NUOVA_STAGING_TARGET_APPROVED: "notthestagingref" } },
+    // Fake keys of the right type (never real values), so each scenario reaches the check it names.
+    { id: "G-3", port: 3111, what: "pinned staging URL but no per-target approval: refused before any call", env: { NEXT_PUBLIC_SUPABASE_URL: "https://fflmmzapksycjfdcjdtd.supabase.co", NEXT_PUBLIC_SUPABASE_ANON_KEY: "sb_publishable_FAKEFORGATECHECK" } },
+    { id: "G-4", port: 3112, what: "a non-pinned (e.g. production) Supabase URL with an approval value: refused before any call", env: { NEXT_PUBLIC_SUPABASE_URL: "https://notthestagingref.supabase.co", NEXT_PUBLIC_SUPABASE_ANON_KEY: "sb_publishable_FAKEFORGATECHECK", NUOVA_STAGING_TARGET_APPROVED: "notthestagingref" } },
     { id: "G-5", port: 3113, what: "no Supabase URL at all: refused", env: {} },
+    { id: "G-10", port: 3114, what: "a secret key in the website environment is refused (v2: no secret key for user actions)", env: { NEXT_PUBLIC_SUPABASE_URL: "https://fflmmzapksycjfdcjdtd.supabase.co", NEXT_PUBLIC_SUPABASE_ANON_KEY: "sb_publishable_FAKEFORGATECHECK", NUOVA_STAGING_TARGET_APPROVED: "fflmmzapksycjfdcjdtd", SUPABASE_SERVICE_ROLE_KEY: "sb_secret_FAKEFORGATECHECK" } },
+    { id: "G-11", port: 3115, what: "a legacy JWT as publishable key is refused", env: { NEXT_PUBLIC_SUPABASE_URL: "https://fflmmzapksycjfdcjdtd.supabase.co", NEXT_PUBLIC_SUPABASE_ANON_KEY: "eyJFAKE.FAKE.FAKE", NUOVA_STAGING_TARGET_APPROVED: "fflmmzapksycjfdcjdtd" } },
   ];
   for (const s of scenarios) {
     const p = spawn(process.execPath, [NEXT, "start", "-p", String(s.port)], { cwd: ROOT, env: { ...process.env, ...s.env, QA_INTAKE_URL: "https://flows.nuovasolution.com/webhook/website-qa", QA_TENANT_ID: "x", QA_TENANT_HMAC_SECRET: "not-a-secret" }, stdio: "ignore" });
@@ -48,8 +52,9 @@ try {
       check("G-7", "a production Q&A intake host is refused in a sandbox build (no call made)", qj.message === "not_configured" && qj.details?.status === "cannot_confirm", qj.message);
       const stubGet = await fetch(`http://localhost:${s.port}/api/bff/auth/login?stub=1`, { redirect: "manual" });
       check("G-8", "stub session endpoint does not exist in a sandbox build", stubGet.status === 404, stubGet.status);
-      const signup = await fetch(`http://localhost:${s.port}/api/bff/signup`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: "A", email: "a@b.c", password: "longpassword", language: "en", agency_name: "X" }) });
-      check("G-9", "signup in a sandbox build answers awaiting_contract, never a fake account", signup.status === 501, signup.status);
+      const signup = await fetch(`http://localhost:${s.port}/api/bff/signup`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: "A", email: "a@b.c", password: "a-long-password", language: "en", agency_name: "X" }) });
+      const sj = await signup.json();
+      check("G-9", "signup against an unapproved target is refused before any call, and no session is set", signup.status === 503 && sj.code === "environment_misconfigured" && !cookieNames(signup).includes("nuova_session"), { status: signup.status, code: sj.code });
     }
     p.kill();
   }

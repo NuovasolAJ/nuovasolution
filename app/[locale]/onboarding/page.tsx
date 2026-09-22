@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { crmSelectionFromState, getCrmCatalog, getOnboardingState, getTrialState, hasSession, stubCrmSelection } from "@/lib/contracts/server";
+import { getCrmCatalog, getCrmSelection, getOnboardingBundle, hasSession, type OnboardingBundle, type RegistrationBundle } from "@/lib/contracts/server";
+import { integrationMode } from "@/lib/contracts/mode";
 import { BackendRefusal } from "@/lib/contracts/supabase";
 import { Section } from "@/components/ui/section";
 import { Display, Eyebrow, Lead } from "@/components/ui/type";
 import { StatusGlyph } from "@/components/ui/status";
 import { OnboardingWizard } from "@/components/site/onboarding-wizard";
-import type { CrmCatalogEntry, CrmSelection, OnboardingState, TrialState } from "@/lib/contracts/types";
+import { OnboardingSetup } from "@/components/site/onboarding-setup";
+import { RegisterForm } from "@/components/site/auth-forms";
+import type { CrmCatalogEntry, CrmSelection } from "@/lib/contracts/types";
 import { EnvironmentRibbon } from "@/components/site/environment-ribbon";
 
 export const dynamic = "force-dynamic";
@@ -19,41 +22,38 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return { title: d.onboarding.h1, robots: { index: false, follow: false } };
 }
 
-/** Authenticated surface. Rendered only from the readiness contract. */
+/** Authenticated surface. Rendered only from what the server read back for the verified actor. */
 export default async function OnboardingPage({ params, searchParams }: { params: { locale: string }; searchParams: { case?: string } }) {
   const locale = params.locale as Locale;
   if (!hasSession()) redirect(localePath(locale, "/login"));
   const d = getDictionary(locale);
   const caseParam = searchParams.case ? Number(searchParams.case) : undefined;
 
-  let state: OnboardingState | null = null;
-  let stub = false;
+  let bundle: OnboardingBundle | RegistrationBundle | null = null;
   let problem: string | null = null;
   try {
-    const r = await getOnboardingState(Number.isFinite(caseParam) ? caseParam : undefined);
-    state = r.data;
-    stub = r.stub;
+    bundle = await getOnboardingBundle(Number.isFinite(caseParam) ? caseParam : undefined);
   } catch (e) {
     const code = e instanceof BackendRefusal ? e.code : "generic";
     if (code === "no_session") redirect(localePath(locale, "/login"));
     problem = code;
   }
 
-  let trial: TrialState | null = null;
   let crm: { catalog: CrmCatalogEntry[]; selection: CrmSelection } | undefined;
-  if (state) {
-    trial = (await getTrialState())?.data ?? null;
+  if (bundle?.kind === "member") {
     try {
-      const catalog = (await getCrmCatalog()).data;
-      crm = { catalog, selection: stub ? stubCrmSelection() : crmSelectionFromState(state) };
+      const [catalog, selection] = await Promise.all([getCrmCatalog(), getCrmSelection()]);
+      crm = { catalog: catalog.data, selection };
     } catch {
       crm = undefined; // the CRM step still renders its status; the choice appears when the catalog can be read
     }
   }
+  // The pre-connection notice is a DRAFT: test surfaces only (stub and staging builds).
+  const noticeAllowed = integrationMode() !== "live";
 
   return (
     <Section rhythm="opening" labelledBy="ob-h1">
-        <EnvironmentRibbon locale={locale} scope="form" />
+      <EnvironmentRibbon locale={locale} scope="form" />
       <div className="container-default">
         <div className="xl:max-w-[62%]">
           <Eyebrow className="mb-4">{d.onboarding.eyebrow}</Eyebrow>
@@ -61,8 +61,21 @@ export default async function OnboardingPage({ params, searchParams }: { params:
           <Lead className="mt-4">{d.onboarding.lead}</Lead>
         </div>
         <div className="mt-12">
-          {state ? (
-            <OnboardingWizard locale={locale} state={state} trial={trial} stub={stub} crm={crm} />
+          {bundle?.kind === "register" ? (
+            <div className="xl:max-w-[62%] border border-line-strong bg-surface-raised p-6" data-onboarding-register>
+              <h2 className="t-heading-l text-text-primary">{d.onboarding.register.heading}</h2>
+              <p className="mt-2 t-body-s text-text-secondary measure-body">{d.onboarding.register.lead}</p>
+              <div className="mt-8">
+                <RegisterForm locale={locale} agencyNameHint={bundle.agencyNameHint} />
+              </div>
+            </div>
+          ) : bundle ? (
+            <div className="space-y-16">
+              <OnboardingWizard locale={locale} state={bundle.state} trial={bundle.trial} readiness={bundle.readiness} stub={bundle.stub} crm={crm} noticeAllowed={noticeAllowed} />
+              <div className="xl:max-w-[62%]">
+                <OnboardingSetup locale={locale} profile={bundle.profile} readiness={bundle.readiness} role={bundle.role} stub={bundle.stub} />
+              </div>
+            </div>
           ) : (
             <p role="alert" data-onboarding-problem={problem ?? ""} className="flex items-start gap-2 border border-line-strong bg-surface-raised p-5 t-body-m text-text-secondary">
               <StatusGlyph glyph="triangle" className="mt-1 shrink-0 text-signal-attention" />

@@ -256,7 +256,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
           </Reveal>
         </div>
       </Section>
-      <Link href={p("/platform")} className="sr-only">{d.common.explorePlatform}</Link>
+      <Link href={p("/platform")} className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-20 focus:z-50 focus:bg-surface-raised focus:px-4 focus:py-3 t-body-s">{d.common.explorePlatform}</Link>
     </>
   );
 }

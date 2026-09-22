@@ -5,7 +5,8 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import type { Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import type { CrmCatalogEntry, CrmSelection, OnboardingState, StepStatus, TrialState, WizardStep } from "@/lib/contracts/types";
+import type { CrmCatalogEntry, CrmSelection, OnboardingState, StepStatus, WizardStep } from "@/lib/contracts/types";
+import type { Readiness, TrialView } from "@/lib/contracts/types-onboarding";
 import { providerDisplayNames } from "@/lib/contracts/types";
 import { Button } from "@/components/ui/button";
 import { StatusGlyph, LabelChip, type Glyph } from "@/components/ui/status";
@@ -42,7 +43,7 @@ function providerFor(step: WizardStep, fallback: string): string {
  * shown. A gate not returned is not enforced. Disabled features never block
  * readiness. The browser never grants anything: Go live only sends a request.
  */
-export function OnboardingWizard({ locale, state, trial, stub, crm }: { locale: Locale; state: OnboardingState; trial: TrialState | null; stub: boolean; crm?: { catalog: CrmCatalogEntry[]; selection: CrmSelection } }) {
+export function OnboardingWizard({ locale, state, trial, readiness, stub, crm, noticeAllowed }: { locale: Locale; state: OnboardingState; trial: TrialView | null; readiness: Readiness | null; stub: boolean; crm?: { catalog: CrmCatalogEntry[]; selection: CrmSelection }; noticeAllowed: boolean }) {
   const dict = getDictionary(locale);
   const d = dict.onboarding;
   const errorText = (code: string) => (dict.common.errors as Record<string, string>)[code] ?? dict.common.errors.generic;
@@ -90,14 +91,19 @@ export function OnboardingWizard({ locale, state, trial, stub, crm }: { locale: 
     return (d.gates as Record<string, string>)[k] ?? stepTitle ?? null;
   };
   const labels = (keys: string[] | undefined) => Array.from(new Set((keys ?? []).map(gateLabel).filter((x): x is string => Boolean(x))));
-  const blockedMandatory = labels(ready?.readiness?.blocked_mandatory);
-  const blockedFeatures = labels(ready?.readiness?.blocked_features);
+  // With the readiness read available, the setup's readiness section lists the gates; this panel keeps only the summary.
+  const blockedMandatory = readiness ? [] : labels(ready?.readiness?.blocked_mandatory);
+  const blockedFeatures = readiness ? [] : labels(ready?.readiness?.blocked_features);
+  const activatable = readiness ? readiness.activatable : state.activatable;
+  // trial_status (trial_lifecycle): active | expired | converted. Nothing else is interpreted, and no payment is inferred.
   const trialLine = trial
-    ? trial.status === "trialing"
-      ? trial.days_left <= 1
+    ? trial.status === "active" && trial.remaining_days !== null
+      ? trial.remaining_days <= 1
         ? d.trial.lastDay
-        : d.trial.trialing.replace("{days}", String(trial.days_left))
-      : d.trial[trial.status]
+        : d.trial.trialing.replace("{days}", String(trial.remaining_days))
+      : trial.status === "expired"
+        ? d.trial.trial_expired
+        : null
     : state.trial_end
       ? d.trialEnd.replace("{date}", new Date(state.trial_end).toLocaleDateString(locale === "es" ? "es-ES" : "en-GB", { day: "numeric", month: "long", year: "numeric" }))
       : null;
@@ -122,7 +128,7 @@ export function OnboardingWizard({ locale, state, trial, stub, crm }: { locale: 
           <p className="t-caption text-text-muted">{state.agency_name}</p>
           <p className="mt-1 t-heading-l text-text-primary tnum">{d.progressSteps.replace("{done}", String(state.completed_steps)).replace("{total}", String(state.total_steps))}</p>
           {trialLine && <p className="mt-2 t-body-s text-text-secondary">{trialLine}</p>}
-          {trial?.status === "trial_expired" && <p className="mt-1 t-body-s text-text-secondary">{d.trial.expiredBody}</p>}
+          {trial?.status === "expired" &&<p className="mt-1 t-body-s text-text-secondary">{d.trial.expiredBody}</p>}
         </div>
         <a href={`#step-${state.resume_step}`} className="inline-flex h-12 items-center rounded-sm border border-line-interactive px-6 t-body-m text-text-primary hover:bg-surface-raised">{d.resume}</a>
       </div>
@@ -141,7 +147,7 @@ export function OnboardingWizard({ locale, state, trial, stub, crm }: { locale: 
                 <p className={cn("t-heading-s", s.status === "locked_by_plan" ? "text-text-secondary" : "text-text-primary")}>{(d.steps as Record<string, string>)[s.key] ?? s.title}</p>
                 <p className="mt-1 t-body-s text-text-muted">{line}</p>
                 <Detail step={s} locale={locale} />
-                {s.key === "crm" && crm && <CrmChoice locale={locale} catalog={crm.catalog} selection={crm.selection} />}
+                {s.key === "crm" && crm && <CrmChoice locale={locale} catalog={crm.catalog} selection={crm.selection} noticeAllowed={noticeAllowed} />}
               </div>
               <div className="col-start-2 md:col-start-3 flex flex-wrap items-center gap-3 md:justify-end">
                 <span className={cn("inline-flex items-center gap-1.5 t-caption", toneFor[s.status])}>
@@ -158,7 +164,7 @@ export function OnboardingWizard({ locale, state, trial, stub, crm }: { locale: 
       </ol>
 
       <div className="border border-line-strong bg-surface-raised p-6">
-        <p className={cn("t-heading-m", state.activatable ? "text-signal-positive" : "text-text-primary")}>{state.activatable ? d.activatable : d.notActivatable}</p>
+        <p className={cn("t-heading-m", activatable ? "text-signal-positive" : "text-text-primary")}>{activatable ? d.activatable : d.notActivatable}</p>
         {blockedMandatory.length > 0 && (
           <div className="mt-2">
             <p className="t-body-s text-text-secondary">{d.blockedMandatory}: {blockedMandatory.join(", ")}</p>
@@ -168,7 +174,7 @@ export function OnboardingWizard({ locale, state, trial, stub, crm }: { locale: 
         )}
         {blockedFeatures.length > 0 && <p className="mt-2 t-caption text-text-muted">{d.blockedFeatures}: {blockedFeatures.join(", ")}</p>}
         <div className="mt-6 flex flex-col gap-3 md:flex-row md:items-center">
-          <Button type="button" onClick={() => (state.activatable ? goLive() : setNote(d.notActivatable))} disabled={busy === "activate"} busy={busy === "activate"} aria-disabled={!state.activatable} aria-describedby="go-live-note">{d.goLive}</Button>
+          <Button type="button" onClick={() => (activatable ? goLive() : setNote(d.notActivatable))} disabled={busy === "activate"} busy={busy === "activate"} aria-disabled={!activatable} aria-describedby="go-live-note">{d.goLive}</Button>
           <p id="go-live-note" className="t-caption text-text-muted">{d.goLiveNote}</p>
         </div>
         {note && <p role="status" className="mt-4 t-body-s text-text-secondary">{note}</p>}

@@ -9,6 +9,7 @@ import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { QaWidget } from "@/components/site/qa-widget";
 import { EnvironmentRibbon } from "@/components/site/environment-ribbon";
+import { AuthFragment } from "@/components/site/auth-fragment";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -67,6 +68,7 @@ export default function LocaleLayout({ children, params }: { children: ReactNode
         </main>
         <Footer locale={locale} />
         <QaWidget locale={locale} />
+        <AuthFragment locale={locale} />
         <Analytics />
       </body>
     </html>

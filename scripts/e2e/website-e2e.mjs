@@ -7,6 +7,7 @@ import { randomBytes } from "node:crypto";
 import { mkdirSync, rmSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { deflateSync } from "node:zlib";
 
 const ROOT = new URL("../../", import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1");
 const OUT = process.env.OUT ?? join(ROOT, "docs", "website_redesign", "evidence_2026-09-21");
@@ -37,6 +38,16 @@ const waitHttp = async (url) => {
   }
   throw new Error(`not reachable: ${url}`);
 };
+// A small solid PNG, built by hand so the harness needs no image dependency.
+function makePng(w, h) {
+  const crcTable = Array.from({ length: 256 }, (_, n) => { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; return c >>> 0; });
+  const crc = (buf) => { let c = 0xffffffff; for (const b of buf) c = crcTable[(c ^ b) & 0xff] ^ (c >>> 8); return (c ^ 0xffffffff) >>> 0; };
+  const chunk = (type, data) => { const len = Buffer.alloc(4); len.writeUInt32BE(data.length); const td = Buffer.concat([Buffer.from(type), data]); const c = Buffer.alloc(4); c.writeUInt32BE(crc(td)); return Buffer.concat([len, td, c]); };
+  const ihdr = Buffer.alloc(13); ihdr.writeUInt32BE(w, 0); ihdr.writeUInt32BE(h, 4); ihdr[8] = 8; ihdr[9] = 2;
+  const raw = Buffer.alloc((w * 3 + 1) * h);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { const o = y * (w * 3 + 1) + 1 + x * 3; raw[o] = 31; raw[o + 1] = 42; raw[o + 2] = 68; }
+  return Buffer.concat([Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]), chunk("IHDR", ihdr), chunk("IDAT", deflateSync(raw)), chunk("IEND", Buffer.alloc(0))]);
+}
 const cookieOf = (res) => (res.headers.getSetCookie?.() ?? []).map((c) => c.split(";")[0]).join("; ");
 
 try {
@@ -94,6 +105,45 @@ try {
   r = await post("/api/bff/crm/select", { provider: "nuovasolution", intent: "select" }, "");
   check("W2-06", "CRM choice requires a session", r.status === 401, r.status);
 
+  // ---- W1: onboarding BFF input and authorization refusals (stub build; the same guards run before any staging call) ----
+  r = await post("/api/bff/onboarding/business", { timezone: "Europe/Madrid", languages: ["es"], default_language: "es", business_hours: { mon: "18:00-09:00" } }, stubCookie);
+  j = await r.json();
+  check("W1-01", "inverted opening hours are refused with the field named", r.status === 400 && j.details?.field === "business_hours.mon", { status: r.status, field: j.details?.field });
+  r = await post("/api/bff/onboarding/business", { timezone: "Mars/Olympus", languages: ["es"], default_language: "es", business_hours: { mon: "09:00-18:00" } }, stubCookie);
+  check("W1-02", "an unknown time zone is refused", r.status === 400, r.status);
+  r = await post("/api/bff/onboarding/legal", { legal_name: "X", tax_id: "123", address_line: "a", address_city: "b", address_postal_code: "29600", privacy_url: "https://a.es/p", terms_url: "https://a.es/t" }, stubCookie);
+  j = await r.json();
+  check("W1-03", "an invalid tax number is refused before any call", r.status === 400 && j.details?.field === "tax_id", j.details);
+  r = await post("/api/bff/onboarding/legal", { legal_name: "X", tax_id: "B12345678", address_line: "a", address_city: "b", address_postal_code: "29600", privacy_url: "javascript:alert(1)", terms_url: "https://a.es/t" }, stubCookie);
+  j = await r.json();
+  check("W1-04", "a non-https legal link is refused", r.status === 400 && j.details?.field === "privacy_url", j.details);
+  r = await post("/api/bff/onboarding/calendar", { appointment_types: [{ type: "viewing", minutes: 30 }], no_calendar_fallback: { create_callback: false } }, stubCookie);
+  check("W1-05", "switching off the callback fallback is refused (no request may be dropped)", r.status === 400, r.status);
+  r = await post("/api/bff/branding/upload-init", { kind: "logo", filename: "x.svg", content_type: "image/svg+xml", size_bytes: 100 }, stubCookie);
+  const svgStatus = r.status;
+  r = await post("/api/bff/branding/upload-init", { kind: "logo", filename: "x.png", content_type: "image/png", size_bytes: 6 * 1024 * 1024 }, stubCookie);
+  check("W1-06", "SVG and files over 5 MB are refused before any upload URL exists", svgStatus === 400 && r.status === 400, { svg: svgStatus, big: r.status });
+  r = await post("/api/bff/branding/commit", { kind: "logo", object_path: "stub/logo/x.png" }, "");
+  check("W1-07", "branding commit requires a session", r.status === 401, r.status);
+  r = await post("/api/bff/crm/select", { provider: "google_sheets", intent: "select" }, stubCookie);
+  j = await r.json();
+  check("W1-13", "Google Sheets cannot be chosen server-side without the notice acknowledged first", r.status === 428 && j.code === "notice_required", { status: r.status, code: j.code });
+  r = await post("/api/bff/branding/upload-init", { kind: "logo", filename: "x.gif", content_type: "image/gif", size_bytes: 1000 }, stubCookie);
+  check("W1-14", "GIF is refused (v2 accepts PNG, JPEG, WebP)", r.status === 400, r.status);
+  r = await post("/api/bff/consent/connect-notice", { source: "google_sheets", notice_version: "connect-notice-v0" }, stubCookie);
+  check("W1-08", "an acknowledgement of an unknown notice version is refused", r.status === 400, r.status);
+  r = await post("/api/bff/auth/set-password", { password: "a-long-password" }, "");
+  j = await r.json();
+  check("W1-09", "setting a password without a verified invite link is refused", r.status === 401 && j.code === "link_expired", j.code);
+  r = await h("/api/bff/onboarding/business", { method: "POST", headers: { Origin: "https://evil.example", "Content-Type": "text/plain", Cookie: stubCookie }, body: "{}" });
+  check("W1-10", "cross-origin onboarding writes are refused", r.status === 403, r.status);
+  r = await h("/api/bff/onboarding/state", { headers: { Cookie: stubCookie } });
+  j = await r.json();
+  check("W1-11", "the onboarding read carries no tenant id", j.ok && j.details?.state?.client_id === "" && !JSON.stringify(j).includes("stub-client"), "client_id blanked");
+  r = await h("/api/bff/onboarding/readiness", { headers: { Cookie: stubCookie } });
+  j = await r.json();
+  check("W1-12", "readiness is served as gate states from the readiness contract shape", j.ok && Array.isArray(j.details?.gates) && j.details.gates.every((g) => typeof g.gate_key === "string" && typeof g.status === "string"), j.details?.gates?.length);
+
   r = await h("/sitemap.xml");
   const sm = await r.text();
   check("WR-21", "sitemap does not advertise unreviewed legal placeholders", !sm.includes("/legal/"), `${(sm.match(/<loc>/g) ?? []).length} urls`);
@@ -128,6 +178,7 @@ try {
   const desktop = () => send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
   await send("Page.enable");
   await send("Runtime.enable");
+  await send("DOM.enable");
 
   // B1 onboarding, stub case 3, mobile 390
   await mobile(390, 844);
@@ -141,13 +192,22 @@ try {
   check("B1-c", "no horizontal overflow at 390 px", ob.sw <= ob.iw, { scrollWidth: ob.sw, innerWidth: ob.iw });
   results.screens = [await shot("m390-en-onboarding-case3")];
 
-  // B2 choose Google Sheets, save, reload: the same state comes back
+  // B2 choose Google Sheets: DRAFT notice first, acknowledgement required, then save, reload
   await ev(`document.querySelector('[data-crm-choice] input[value=google_sheets]').click()`);
-  await ev(`[...document.querySelectorAll('[data-crm-choice] button')].find(b=>/Save choice/.test(b.innerText)).click()`);
+  await sleep(300);
+  const saveBtn = `[...document.querySelectorAll('[data-crm-choice] button')].find(b=>/Save choice/.test(b.innerText))`;
+  const notice = await ev(`(()=>{const n=document.querySelector('[data-connect-notice]');return {version:n?.getAttribute('data-connect-notice'),draft:/DRAFT – not legally reviewed/.test(n?.innerText??''),slot:/⟦/.test(n?.innerText??''),pendingRows:n?.querySelectorAll('[data-pending=legal_review]').length??0,disabled:${saveBtn}.disabled}})()`);
+  check("W2-09", "Sheets shows the DRAFT notice above the button, no open slot rendered, save blocked until acknowledged", notice.version === "connect-notice-v1-draft" && notice.draft && !notice.slot && notice.pendingRows === 3 && notice.disabled, notice);
+  await ev(`document.querySelector('[data-connect-ack]').click()`);
+  await ev(`document.querySelector('[data-connect-notice]').scrollIntoView({block:'start'})`);
+  await sleep(300);
+  results.screens.push(await shot("m390-en-onboarding-sheets-notice"));
+  await ev(`${saveBtn}.click()`);
   const saved = await waitFor(`document.querySelector('[data-crm-msg=ok]')?.innerText.includes('Saved')`);
   await nav(`${BASE}/en/onboarding`, 3000);
-  const after = await ev(`(()=>({checked:document.querySelector('[data-crm-choice] input:checked')?.value,done:document.querySelector('[data-crm-of-record]')?.innerText}))()`);
-  check("W2-07", "choice saved, and a reload shows the same choice", saved && after.checked === "google_sheets" && /Google Sheets/.test(after.done ?? ""), after);
+  const after = await ev(`(()=>({checked:document.querySelector('[data-crm-choice] input:checked')?.value,done:document.querySelector('[data-crm-of-record]')?.innerText,sheets:document.querySelector('[data-sheets-state]')?.getAttribute('data-sheets-state'),sheetsText:document.querySelector('[data-sheets-state]')?.innerText}))()`);
+  check("W2-07", "choice saved, and a reload shows the same choice", saved && after.checked === "google_sheets" && /CRM included in Nuova/.test(after.done ?? ""), after);
+  check("W2-10", "Google Sheets reads 'chosen, not connected', never 'connected'", after.sheets === "chosen_not_connected" && /Chosen, not connected/.test(after.sheetsText ?? "") && !/^Connected/m.test(after.sheetsText ?? ""), after.sheetsText);
 
   // B3 register interest for HubSpot
   await ev(`[...document.querySelectorAll('[data-crm-choice] button')].find(b=>/I use HubSpot/.test(b.innerText)).click()`);
@@ -156,6 +216,77 @@ try {
   await ev(`document.querySelector('[data-crm-choice]').scrollIntoView({block:'start'})`);
   await sleep(400);
   results.screens.push(await shot("m390-en-onboarding-crm-after"));
+
+  // B8 setup sections: business + hours, legal, logo upload with light/dark preview, calendar; save, reload, readiness
+  const setVal = (sel, v) => ev(`(()=>{const e=document.querySelector(${JSON.stringify(sel)});const proto=e.tagName==='SELECT'?HTMLSelectElement.prototype:HTMLInputElement.prototype;Object.getOwnPropertyDescriptor(proto,'value').set.call(e,${JSON.stringify(v)});e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));})()`);
+  const submitIn = (sec) => ev(`document.querySelector('[data-setup-section=${sec}] button[type=submit]').click()`);
+  const okIn = (sec) => waitFor(`!!document.querySelector('[data-setup-section=${sec}] [data-setup-msg=ok]')`);
+  const before = await ev(`(()=>({missing:document.querySelector('[data-legal-missing]')?.getAttribute('data-legal-missing'),fallback:document.querySelectorAll('[data-text-fallback]').length,wl:document.querySelector('[data-gate=white_label_legal]')?.getAttribute('data-gate-status'),bh:document.querySelector('[data-gate=business_hours]')?.getAttribute('data-gate-status')}))()`);
+  check("B8-a", "fresh profile: legal fields missing, agency name shown as text fallback on both previews, gates blocked", before.missing?.includes("tax_id") && before.fallback === 2 && before.wl === "BLOCKED" && before.bh === "BLOCKED", before);
+  await ev(`document.querySelector('[data-lang=en]').click()`);
+  await submitIn("setup-business");
+  const bizOk = await okIn("setup-business");
+  for (const [n, v] of Object.entries({ legal_name: "Demo Agency S.L. (stub)", tax_id: "B12345678", address_line: "Calle Ejemplo 1", address_postal_code: "29600", address_city: "Marbella", privacy_url: "https://demo-agency.example/privacidad", terms_url: "https://demo-agency.example/terminos" })) await setVal(`[data-setup-section=setup-legal] input[name=${n}]`, v);
+  await submitIn("setup-legal");
+  const legalOk = await okIn("setup-legal");
+  // logo: a real 96x48 PNG file through the file input (stub stores no bytes and shows its labelled demo logo)
+  const png = join(tmpdir(), `nuova-e2e-logo-${Date.now()}.png`);
+  writeFileSync(png, makePng(96, 48));
+  const docRoot = await send("DOM.getDocument", { depth: -1 });
+  const inp = await send("DOM.querySelector", { nodeId: docRoot.result.root.nodeId, selector: "[data-logo-input=logo]" });
+  await send("DOM.setFileInputFiles", { nodeId: inp.result.nodeId, files: [png] });
+  const logoOk = await waitFor(`document.querySelectorAll('[data-logo-img]').length===2`);
+  // v2 §3: optional variant for dark backgrounds, then the contrast flag
+  const doc2 = await send("DOM.getDocument", { depth: -1 });
+  const inpDark = await send("DOM.querySelector", { nodeId: doc2.result.root.nodeId, selector: "[data-logo-input=logo_dark]" });
+  await send("DOM.setFileInputFiles", { nodeId: inpDark.result.nodeId, files: [png] });
+  const darkOk = await waitFor(`!!document.querySelector('[data-preview=dark] [data-logo-img=dark]')`);
+  results.screens.push(await (async () => { await ev(`document.querySelector('[data-setup-section=setup-branding]').scrollIntoView({block:'start'})`); await sleep(300); return shot("m390-en-setup-branding-dark-variant"); })());
+  await ev(`fetch('/api/bff/branding/remove',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({kind:'logo_dark'})})`);
+  await nav(`${BASE}/en/onboarding`, 3000);
+  await ev(`document.querySelector('[data-needs-light]').click()`);
+  const chipOk = await waitFor(`!!document.querySelector('[data-preview=dark] [data-light-chip=yes]')`);
+  check("B8-f", "dark-variant upload shows on the dark preview; without it, the contrast flag puts the logo on a light chip", darkOk && chipOk, { darkOk, chipOk });
+  await ev(`document.querySelector('[data-setup-section=setup-calendar] [data-appointment=valuation] input').click()`);
+  await submitIn("setup-calendar");
+  const calOk = await okIn("setup-calendar");
+  check("B8-b", "business, legal, logo and calendar each save and show the read-back state", bizOk && legalOk && logoOk && calOk, { bizOk, legalOk, logoOk, calOk });
+  await ev(`document.querySelector('[data-setup-section=setup-branding]').scrollIntoView({block:'start'})`);
+  await sleep(300);
+  results.screens.push(await shot("m390-en-setup-branding-light-dark"));
+  await nav(`${BASE}/en/onboarding`, 3000);
+  const reload = await ev(`(()=>({missing:document.querySelector('[data-legal-missing]')?.getAttribute('data-legal-missing'),logos:document.querySelectorAll('[data-logo-img]').length,previews:[...document.querySelectorAll('[data-preview]')].map(p=>p.getAttribute('data-preview')),tax:document.querySelector('[data-setup-section=setup-legal] input[name=tax_id]')?.value,en:document.querySelector('[data-lang=en]')?.checked,val:document.querySelector('[data-appointment=valuation] input')?.checked,wl:document.querySelector('[data-gate=white_label_legal]')?.getAttribute('data-gate-status'),bh:document.querySelector('[data-gate=business_hours]')?.getAttribute('data-gate-status'),ai:document.querySelector('[data-gate=ai_disclosure]')?.getAttribute('data-gate-status'),act:document.querySelector('[data-activatable]')?.getAttribute('data-activatable'),sw:document.documentElement.scrollWidth,iw:innerWidth}))()`);
+  check("B8-c", "after reload: every saved value is back, logo on light and dark previews", reload.missing === "" && reload.logos === 2 && reload.previews.join(",") === "light,dark" && reload.tax === "B12345678" && reload.en && reload.val, reload);
+  check("B8-d", "readiness follows the saved data: legal and hours ready, the AI notice gate still blocks, not activatable", reload.wl === "READY" && reload.bh === "READY" && reload.ai === "BLOCKED" && reload.act === "no", { wl: reload.wl, bh: reload.bh, ai: reload.ai, act: reload.act });
+  check("B8-e", "no horizontal overflow at 390 px with the setup sections", reload.sw <= reload.iw, { sw: reload.sw, iw: reload.iw });
+  await ev(`document.querySelector('[data-setup-section=setup-readiness]').scrollIntoView({block:'start'})`);
+  await sleep(300);
+  results.screens.push(await shot("m390-en-setup-readiness"));
+
+  // B10 sign-up -> (stub confirmation) -> registration step -> onboarding
+  await ev(`fetch('/api/bff/auth/logout',{method:'POST'})`);
+  await nav(`${BASE}/en/signup`, 3000);
+  for (const [n, v] of Object.entries({ name: "Stub Owner", agency_name: "Registered Agency (stub)", email: "owner@agency.example", password: "a-long-password" })) await setVal(`form input[name=${n}]`, v);
+  await ev(`document.querySelector('form button[type=submit]').click()`);
+  const reg = await waitFor(`!!document.querySelector('[data-register]')`);
+  const regName = await ev(`document.querySelector('[data-register] input[name=agency_name]')?.value`);
+  await ev(`document.querySelector('[data-register] button[type=submit]').click()`);
+  const regDone = await waitFor(`!!document.querySelector('[data-onboarding-setup]')`);
+  check("B10", "sign-up leads to the registration step, and registering opens the agency setup", reg && regDone && typeof regName === "string", { reg, regDone });
+
+  // B9 invite link: fragment token -> verified server-side -> fragment gone -> set password -> onboarding
+  await ev(`fetch('/api/bff/auth/logout',{method:'POST'})`);
+  await nav(`${BASE}/es#access_token=stub&type=invite&expires_in=3600`, 3500);
+  const inv = await ev(`({path:location.pathname,hash:location.hash,form:!!document.querySelector('[data-set-password]')})`);
+  check("B9-a", "the invite fragment is removed from the address bar and the set-password form appears", inv.path === "/es/welcome" && inv.hash === "" && inv.form, inv);
+  await setVal("[data-set-password] input[name=password]", "una-contraseña-larga");
+  await setVal("[data-set-password] input[name=confirm]", "una-contraseña-larga");
+  await ev(`document.querySelector('[data-set-password] button[type=submit]').click()`);
+  const landed = await waitFor(`location.pathname==='/es/onboarding'`);
+  check("B9-b", "setting the password opens the onboarding with a session", landed, "landed on /es/onboarding");
+  await nav(`${BASE}/en#error=access_denied&error_code=otp_expired`, 3000);
+  const exp = await ev(`({path:location.pathname+location.search,state:document.querySelector('[data-welcome-state]')?.getAttribute('data-welcome-state')})`);
+  check("B9-c", "an expired link says so and offers login, no form", exp.path === "/en/welcome?state=expired" && exp.state === "expired", exp);
 
   // B4 Q&A widget against the contract mock: accept, poll, answer, focus handling
   await nav(`${BASE}/en`, 3000);

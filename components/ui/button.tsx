@@ -14,14 +14,14 @@ const variants: Record<Variant, string> = {
   secondary:
     "border border-line-interactive text-text-primary bg-transparent hover:bg-surface-raised",
   tertiary:
-    "text-text-primary underline underline-offset-4 decoration-line-hairline hover:decoration-champagne-400 px-0",
-  quiet: "text-text-accent hover:underline underline-offset-4 px-0 h-auto",
+    "text-text-primary underline underline-offset-4 decoration-line-hairline hover:decoration-champagne-400 px-0 min-h-[44px]",
+  quiet: "text-text-accent hover:underline underline-offset-4 px-0 h-auto min-h-[44px]",
   pending:
     "border border-dashed border-line-interactive text-text-secondary bg-transparent hover:bg-surface-raised",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-10 px-4 t-body-s",
+  sm: "h-11 px-4 t-body-s", // 44 px touch floor (review WR-18)
   md: "h-12 px-6 t-body-m",
   lg: "h-14 px-8 t-body-l",
 };

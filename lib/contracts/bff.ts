@@ -76,8 +76,25 @@ export function rateLimited(key: string, max = 10, windowMs = 60_000): boolean {
   return b.n > max;
 }
 
+/**
+ * Rate-limit key (review WR-23). Only headers the platform sets itself are trusted:
+ * a client-supplied X-Forwarded-For first entry is spoofable and would let one caller
+ * rotate through buckets. Off-platform (local) every caller shares one bucket.
+ */
 export function clientKey(req: Request): string {
-  return req.headers.get("x-forwarded-for")?.split(",")[0].trim() || req.headers.get("x-real-ip") || "local";
+  return req.headers.get("x-vercel-forwarded-for")?.split(",")[0].trim() || req.headers.get("x-real-ip") || "local";
+}
+
+/** Parse a JSON body of bounded size. Returns null when absent, oversized or malformed. */
+export async function readJson<T = Record<string, unknown>>(req: Request, maxBytes = 16_384): Promise<T | null> {
+  const text = await req.text().catch(() => "");
+  if (!text || text.length > maxBytes) return null;
+  try {
+    const v = JSON.parse(text);
+    return v && typeof v === "object" && !Array.isArray(v) ? (v as T) : null;
+  } catch {
+    return null;
+  }
 }
 
 /** Same-origin check for state-changing BFF calls (defence in depth next to SameSite cookies). */

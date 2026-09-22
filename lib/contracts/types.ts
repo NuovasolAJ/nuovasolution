@@ -139,7 +139,11 @@ export interface CrmSelection {
   selected: string | null;
   /** Interest recorded for an external CRM that is not live yet. */
   interest: string | null;
-  source: "stub" | "wizard_state" | "select_response";
+  source: "stub" | "wizard_state" | "select_response" | "crm_current";
+  /** True once the agency made a CRM choice itself (crm.current `explicitly_chosen`), including "No external CRM". */
+  explicitly_chosen?: boolean;
+  /** Google Sheets connection, from tenant-api crm.current `connection.status`. Never inferred from the choice. */
+  sheets_connected?: boolean;
   /** True when the backend offers no read of the additional selection (see IMPLEMENTATION record, interface question CRM-READ-1). */
   selection_not_readable: boolean;
 }

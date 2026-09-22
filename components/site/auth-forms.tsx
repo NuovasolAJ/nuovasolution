@@ -27,6 +27,7 @@ export function SignupForm({ locale }: { locale: Locale }) {
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [stub, setStub] = useState(false);
+  const [sent, setSent] = useState<string | null>(null);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -43,7 +44,7 @@ export function SignupForm({ locale }: { locale: Locale }) {
     if (!values.agency_name) fe.agency_name = d.errors.required;
     if (!values.email) fe.email = d.errors.required;
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) fe.email = d.errors.invalidEmail;
-    if (values.password.length < 8) fe.password = d.errors.shortPassword;
+    if (values.password.length < 10) fe.password = d.errors.shortPassword;
     setFieldErrors(fe);
     if (Object.keys(fe).length) return;
 
@@ -53,6 +54,11 @@ export function SignupForm({ locale }: { locale: Locale }) {
       const r = await post("/api/bff/signup", values);
       if (r.ok) {
         if (r.stub) setStub(true);
+        // Staging/live: e-mail confirmation first; the link brings the user back signed in.
+        if (r.details?.next === "confirm") {
+          setSent(values.email);
+          return;
+        }
         router.push(localePath(locale, r.details?.session ? "/onboarding" : "/login"));
         return;
       }
@@ -63,6 +69,14 @@ export function SignupForm({ locale }: { locale: Locale }) {
     } finally {
       setBusy(false);
     }
+  }
+
+  if (sent) {
+    return (
+      <p role="status" className="border border-line-strong bg-surface-raised p-5 t-body-m text-text-secondary" data-signup-sent>
+        {d.checkEmail.replace("{email}", sent)}
+      </p>
+    );
   }
 
   return (
@@ -98,6 +112,113 @@ export function SignupForm({ locale }: { locale: Locale }) {
       <p className="t-body-s text-text-secondary">
         {d.haveAccount} <Link href={localePath(locale, "/login")} className="text-text-accent underline underline-offset-4">{d.loginLink}</Link>
       </p>
+    </form>
+  );
+}
+
+/**
+ * Registration step for a confirmed user without an agency (tenant-api `register`, v2 §2).
+ * The agency name is prefilled from what was entered at sign-up; the server decides everything else.
+ */
+export function RegisterForm({ locale, agencyNameHint }: { locale: Locale; agencyNameHint: string | null }) {
+  const dict = getDictionary(locale);
+  const d = dict.onboarding.register;
+  const id = useId();
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const f = new FormData(e.currentTarget);
+    const agency_name = String(f.get("agency_name") ?? "").trim();
+    if (!agency_name) return setError(dict.common.errors.invalid_agency_name);
+    setBusy(true);
+    setError(null);
+    try {
+      const r = await post("/api/bff/register", { agency_name, language: f.get("language"), timezone: f.get("timezone") });
+      if (r.ok) {
+        window.location.assign(localePath(locale, "/onboarding"));
+        return;
+      }
+      setError((dict.common.errors as Record<string, string>)[r.code] ?? dict.common.errors.generic);
+    } catch {
+      setError(dict.common.errors.generic);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <form onSubmit={onSubmit} noValidate className="space-y-6" data-register>
+      <div>
+        <label htmlFor={`${id}-name`} className={labelCls}>{d.agencyName}</label>
+        <input id={`${id}-name`} name="agency_name" type="text" autoComplete="organization" defaultValue={agencyNameHint ?? ""} maxLength={120} className={inputCls} />
+      </div>
+      <div className="grid gap-6 md:grid-cols-2">
+        <div>
+          <label htmlFor={`${id}-lang`} className={labelCls}>{d.language}</label>
+          <select id={`${id}-lang`} name="language" defaultValue={locale === "en" ? "en" : "es"} className={inputCls}>
+            <option value="es">Español</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor={`${id}-tz`} className={labelCls}>{d.timezone}</label>
+          <select id={`${id}-tz`} name="timezone" defaultValue="Europe/Madrid" className={inputCls}>
+            <option value="Europe/Madrid">Europe/Madrid</option>
+            <option value="Atlantic/Canary">Atlantic/Canary</option>
+          </select>
+        </div>
+      </div>
+      {error && <p role="alert" className="t-body-s text-signal-critical">{error}</p>}
+      <Button type="submit" size="lg" busy={busy} disabled={busy}>{busy ? d.submitting : d.submit}</Button>
+    </form>
+  );
+}
+
+/** Set the password behind a verified invite or recovery link (token stays in an httpOnly cookie). */
+export function SetPasswordForm({ locale }: { locale: Locale }) {
+  const dict = getDictionary(locale);
+  const d = dict.welcome;
+  const id = useId();
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const f = new FormData(e.currentTarget);
+    const password = String(f.get("password") ?? "");
+    if (password.length < 10) return setError(dict.common.errors.weak_password);
+    if (password !== String(f.get("confirm") ?? "")) return setError(d.mismatch);
+    setBusy(true);
+    setError(null);
+    try {
+      const r = await post("/api/bff/auth/set-password", { password });
+      if (r.ok) {
+        window.location.assign(localePath(locale, "/onboarding"));
+        return;
+      }
+      setError((dict.common.errors as Record<string, string>)[r.code] ?? dict.common.errors.generic);
+    } catch {
+      setError(dict.common.errors.generic);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <form onSubmit={onSubmit} noValidate className="space-y-6" data-set-password>
+      <div>
+        <label htmlFor={`${id}-pw`} className={labelCls}>{d.password}</label>
+        <input id={`${id}-pw`} name="password" type="password" autoComplete="new-password" aria-describedby={`${id}-help`} className={inputCls} />
+        <p id={`${id}-help`} className="mt-2 t-caption text-text-muted">{d.help}</p>
+      </div>
+      <div>
+        <label htmlFor={`${id}-confirm`} className={labelCls}>{d.confirm}</label>
+        <input id={`${id}-confirm`} name="confirm" type="password" autoComplete="new-password" className={inputCls} />
+      </div>
+      {error && <p role="alert" className="t-body-s text-signal-critical">{error}</p>}
+      <Button type="submit" size="lg" full busy={busy} disabled={busy}>{busy ? d.submitting : d.submit}</Button>
     </form>
   );
 }

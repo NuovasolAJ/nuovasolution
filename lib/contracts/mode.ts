@@ -21,6 +21,8 @@
  * This is not an authorisation mechanism. Authorisation is the verified session
  * plus the backend's own membership checks (lib/contracts/supabase.ts).
  */
+import { keyTypeProblem, supabaseUrl } from "./env";
+
 export type IntegrationMode = "stub" | "staging" | "live";
 
 /**
@@ -78,9 +80,10 @@ export function environmentProblem(): string | null {
   const mode = integrationMode();
   if (mode === "stub") return null;
 
-  const supa = hostOf(process.env.SUPABASE_URL);
+  const supa = hostOf(supabaseUrl() ?? undefined);
   if (!supa) return "supabase_url_missing";
-  if (!process.env.SUPABASE_ANON_KEY) return "publishable_key_missing";
+  const keys = keyTypeProblem();
+  if (keys) return keys;
 
   if (mode === "staging") {
     const ref = supa.split(".")[0];

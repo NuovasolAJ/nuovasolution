@@ -93,7 +93,7 @@ export function HeaderShell({
               </div>
             </div>
             {nav.map((n) => (
-              <Link key={n.href} href={n.href} aria-current={pathname === n.href ? "page" : undefined} className="t-body-s text-text-primary hover:text-champagne-400 transition-colors duration-micro">
+              <Link key={n.href} href={n.href} aria-current={pathname === n.href ? "page" : undefined} className="inline-flex min-h-[44px] items-center t-body-s text-text-primary hover:text-champagne-400 transition-colors duration-micro">
                 {n.label}
               </Link>
             ))}
@@ -102,7 +102,7 @@ export function HeaderShell({
 
         <div className="hidden xl:flex items-center gap-5">
           {utilities}
-          <Link href={login.href} className="t-body-s text-text-primary hover:text-champagne-400 transition-colors duration-micro">
+          <Link href={login.href} className="inline-flex min-h-[44px] items-center t-body-s text-text-primary hover:text-champagne-400 transition-colors duration-micro">
             {login.label}
           </Link>
           <ButtonLink href={primary.href} size="sm">

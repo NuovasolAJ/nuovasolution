@@ -62,10 +62,10 @@ export function Footer({ locale }: { locale: Locale }) {
           {cols.map((col) => (
             <nav key={col.heading} aria-label={col.heading}>
               <p className="t-eyebrow text-text-muted mb-4">{col.heading}</p>
-              <ul className="space-y-3">
+              <ul>
                 {col.items.map((it) => (
                   <li key={it.href + it.label}>
-                    <Link href={it.href} className="t-body-s text-text-secondary hover:text-text-primary transition-colors duration-micro">
+                    <Link href={it.href} className="inline-flex min-h-[44px] items-center t-body-s text-text-secondary hover:text-text-primary transition-colors duration-micro">
                       {it.label}
                     </Link>
                   </li>
