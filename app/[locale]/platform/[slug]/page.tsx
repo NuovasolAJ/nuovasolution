@@ -49,6 +49,8 @@ export default function ProductPage({ params }: { params: { locale: string; slug
               <Eyebrow className="mb-4">{d.product.eyebrowPrefix} · {c.name[locale]}</Eyebrow>
               <Display size="xl" id="pd-h1" className="max-w-[18ch]">{c.h1[locale]}</Display>
               <Lead className="mt-6">{c.lead[locale]}</Lead>
+              {/* The qualifier sits with the claim it qualifies (review WR-34). */}
+              <Caption className="mt-3">{d.common.qualifiers.q2}</Caption>
               <div className="mt-8"><StatusNote status={c.status} locale={locale} /></div>
               <CtaRow className="mt-12">
                 {publicly ? (
