@@ -1,5 +1,9 @@
 # OLD LIVE SITE HOTFIX COPY v1 — minimal true replacements for nuovasolution.com (WR-03)
 
+> **Superseded by `OLD_LIVE_SITE_HOTFIX_COPY_v2.md` (2026-09-23).** v1 missed 13 claims that are
+> actually rendered on the live site (Reviewer TSV `review_2026-09-22/hotfix-uncovered-keys-9943660.tsv`).
+> v2 is complete and standalone. Do not implement from this file.
+
 **State:** `2026-09-22_SYNC_0900Z` · **Written:** 2026-09-22 · **Copy version:** `oldsite-fix-v1`
 **Lane:** Website Copy / Product Truth / Director → **Website Implementer** (text only PR against
 `main` @ `9943660`, if the owner chooses that route) · Reviewer verifies the deployed result
