@@ -1,0 +1,475 @@
+{
+ "started_utc": "2026-09-23T13:07:05.865Z",
+ "commit": "working tree",
+ "mode": "stub build + local Q&A contract mock",
+ "checks": [
+  {
+   "id": "WR-05a",
+   "what": "backslash next does not leave the origin",
+   "pass": true,
+   "evidence": "http://localhost:3107/en/onboarding"
+  },
+  {
+   "id": "WR-05b",
+   "what": "tab next does not leave the origin",
+   "pass": true,
+   "evidence": "http://localhost:3107/en/onboarding"
+  },
+  {
+   "id": "WR-05c",
+   "what": "legitimate locale next is kept",
+   "pass": true,
+   "evidence": "http://localhost:3107/es/onboarding"
+  },
+  {
+   "id": "WR-09a",
+   "what": "forged status=success never renders connected",
+   "pass": true,
+   "evidence": "reason=unknown rendered"
+  },
+  {
+   "id": "WR-09b",
+   "what": "user_cancelled renders the neutral cancellation",
+   "pass": true,
+   "evidence": "reason=user_cancelled"
+  },
+  {
+   "id": "WR-09c",
+   "what": "an unknown provider name is never echoed",
+   "pass": true,
+   "evidence": "fallback provider name"
+  },
+  {
+   "id": "WR-12",
+   "what": "logout clears nuova_refresh on its own path",
+   "pass": true,
+   "evidence": [
+    "nuova_refresh=; Path=/api/bff/auth; Max-Age=0; Secure; HttpOnly; SameSite=lax"
+   ]
+  },
+  {
+   "id": "WR-19",
+   "what": "cross-origin login POST is refused",
+   "pass": true,
+   "evidence": 403
+  },
+  {
+   "id": "W2-01",
+   "what": "CRM catalog: 9 entries, only built-in and Google Sheets selectable",
+   "pass": true,
+   "evidence": [
+    "nuovasolution:available",
+    "google_sheets:available",
+    "hubspot:coming_soon",
+    "pipedrive:coming_soon",
+    "zoho:coming_soon",
+    "salesforce:coming_soon",
+    "gohighlevel:unavailable",
+    "dynamics:unavailable",
+    "airtable:unavailable"
+   ]
+  },
+  {
+   "id": "W2-02",
+   "what": "backend note is never passed to the browser",
+   "pass": true,
+   "evidence": "no note field"
+  },
+  {
+   "id": "W2-03",
+   "what": "an external CRM cannot be selected as connected",
+   "pass": true,
+   "evidence": 409
+  },
+  {
+   "id": "W2-04",
+   "what": "an unavailable CRM cannot register interest",
+   "pass": true,
+   "evidence": 409
+  },
+  {
+   "id": "W2-05",
+   "what": "a provider outside the catalog is refused",
+   "pass": true,
+   "evidence": 400
+  },
+  {
+   "id": "W2-06",
+   "what": "CRM choice requires a session",
+   "pass": true,
+   "evidence": 401
+  },
+  {
+   "id": "W1-01",
+   "what": "inverted opening hours are refused with the field named",
+   "pass": true,
+   "evidence": {
+    "status": 400,
+    "field": "business_hours.mon"
+   }
+  },
+  {
+   "id": "W1-02",
+   "what": "an unknown time zone is refused",
+   "pass": true,
+   "evidence": 400
+  },
+  {
+   "id": "W1-03",
+   "what": "an invalid tax number is refused before any call",
+   "pass": true,
+   "evidence": {
+    "field": "tax_id"
+   }
+  },
+  {
+   "id": "W1-04",
+   "what": "a non-https legal link is refused",
+   "pass": true,
+   "evidence": {
+    "field": "privacy_url"
+   }
+  },
+  {
+   "id": "W1-05",
+   "what": "switching off the callback fallback is refused (no request may be dropped)",
+   "pass": true,
+   "evidence": 400
+  },
+  {
+   "id": "W1-06",
+   "what": "SVG and files over 5 MB are refused before any upload URL exists",
+   "pass": true,
+   "evidence": {
+    "svg": 400,
+    "big": 400
+   }
+  },
+  {
+   "id": "W1-07",
+   "what": "branding commit requires a session",
+   "pass": true,
+   "evidence": 401
+  },
+  {
+   "id": "W1-13",
+   "what": "Google Sheets cannot be chosen server-side without the notice acknowledged first",
+   "pass": true,
+   "evidence": {
+    "status": 428,
+    "code": "notice_required"
+   }
+  },
+  {
+   "id": "W1-14",
+   "what": "GIF is refused (v2 accepts PNG, JPEG, WebP)",
+   "pass": true,
+   "evidence": 400
+  },
+  {
+   "id": "W1-08",
+   "what": "an acknowledgement of an unknown notice version is refused",
+   "pass": true,
+   "evidence": 400
+  },
+  {
+   "id": "W1-09",
+   "what": "setting a password without a verified invite link is refused",
+   "pass": true,
+   "evidence": "link_expired"
+  },
+  {
+   "id": "W1-10",
+   "what": "cross-origin onboarding writes are refused",
+   "pass": true,
+   "evidence": 403
+  },
+  {
+   "id": "W1-11",
+   "what": "the onboarding read carries no tenant id",
+   "pass": true,
+   "evidence": "client_id blanked"
+  },
+  {
+   "id": "W1-12",
+   "what": "readiness is served as gate states from the readiness contract shape",
+   "pass": true,
+   "evidence": 13
+  },
+  {
+   "id": "WR-21",
+   "what": "sitemap does not advertise unreviewed legal placeholders",
+   "pass": true,
+   "evidence": "28 urls"
+  },
+  {
+   "id": "QA-01",
+   "what": "a question over 4000 characters is refused before sending",
+   "pass": true,
+   "evidence": 422
+  },
+  {
+   "id": "WR-06",
+   "what": "with VERCEL_ENV=production no stub session or stub account can be created",
+   "pass": true,
+   "evidence": {
+    "stubGet": 404,
+    "login": 404,
+    "signup": 404
+   }
+  },
+  {
+   "id": "B1-a",
+   "what": "onboarding has an h1 and the CRM choice with exactly the two selectable options",
+   "pass": true,
+   "evidence": {
+    "h1": [
+     "Set your agency up."
+    ],
+    "radios": [
+     "nuovasolution",
+     "google_sheets"
+    ]
+   }
+  },
+  {
+   "id": "B1-b",
+   "what": "stub band visible on the onboarding surface",
+   "pass": true,
+   "evidence": "stub"
+  },
+  {
+   "id": "WR-11",
+   "what": "no raw backend key is rendered",
+   "pass": true,
+   "evidence": []
+  },
+  {
+   "id": "WR-22",
+   "what": "no percentage number on onboarding",
+   "pass": true,
+   "evidence": "step count shown instead"
+  },
+  {
+   "id": "B1-c",
+   "what": "no horizontal overflow at 390 px",
+   "pass": true,
+   "evidence": {
+    "scrollWidth": 390,
+    "innerWidth": 390
+   }
+  },
+  {
+   "id": "W2-09",
+   "what": "Sheets shows the DRAFT notice above the button, no open slot rendered, save blocked until acknowledged",
+   "pass": true,
+   "evidence": {
+    "version": "connect-notice-v1-draft",
+    "draft": true,
+    "slot": false,
+    "pendingRows": 3,
+    "disabled": true
+   }
+  },
+  {
+   "id": "W2-07",
+   "what": "choice saved, and a reload shows the same choice",
+   "pass": true,
+   "evidence": {
+    "checked": "google_sheets",
+    "done": "Using the CRM included in Nuova.",
+    "sheets": "chosen_not_connected",
+    "sheetsText": "Google Sheets\nChosen, not connected\nConnecting the Google Sheet itself is a separate step that is not available on this site yet."
+   }
+  },
+  {
+   "id": "W2-10",
+   "what": "Google Sheets reads 'chosen, not connected', never 'connected'",
+   "pass": true,
+   "evidence": "Google Sheets\nChosen, not connected\nConnecting the Google Sheet itself is a separate step that is not available on this site yet."
+  },
+  {
+   "id": "W2-08",
+   "what": "naming HubSpot records interest only, with the built-in CRM kept",
+   "pass": true,
+   "evidence": "interest message shown"
+  },
+  {
+   "id": "B8-a",
+   "what": "fresh profile: legal fields missing, agency name shown as text fallback on both previews, gates blocked",
+   "pass": true,
+   "evidence": {
+    "missing": "legal_name,tax_id,address,privacy_url,terms_url,logo",
+    "fallback": 2,
+    "wl": "BLOCKED",
+    "bh": "BLOCKED"
+   }
+  },
+  {
+   "id": "B8-f",
+   "what": "dark-variant upload shows on the dark preview; without it, the contrast flag puts the logo on a light chip",
+   "pass": true,
+   "evidence": {
+    "darkOk": true,
+    "chipOk": true
+   }
+  },
+  {
+   "id": "B8-b",
+   "what": "business, legal, logo and calendar each save and show the read-back state",
+   "pass": true,
+   "evidence": {
+    "bizOk": true,
+    "legalOk": true,
+    "logoOk": true,
+    "calOk": true
+   }
+  },
+  {
+   "id": "B8-c",
+   "what": "after reload: every saved value is back, logo on light and dark previews",
+   "pass": true,
+   "evidence": {
+    "missing": "",
+    "logos": 2,
+    "previews": [
+     "light",
+     "dark"
+    ],
+    "tax": "B12345678",
+    "en": true,
+    "val": true,
+    "wl": "READY",
+    "bh": "READY",
+    "ai": "BLOCKED",
+    "act": "no",
+    "sw": 390,
+    "iw": 390
+   }
+  },
+  {
+   "id": "B8-d",
+   "what": "readiness follows the saved data: legal and hours ready, the AI notice gate still blocks, not activatable",
+   "pass": true,
+   "evidence": {
+    "wl": "READY",
+    "bh": "READY",
+    "ai": "BLOCKED",
+    "act": "no"
+   }
+  },
+  {
+   "id": "B8-e",
+   "what": "no horizontal overflow at 390 px with the setup sections",
+   "pass": true,
+   "evidence": {
+    "sw": 390,
+    "iw": 390
+   }
+  },
+  {
+   "id": "B10",
+   "what": "sign-up leads to the registration step, and registering opens the agency setup",
+   "pass": true,
+   "evidence": {
+    "reg": true,
+    "regDone": true
+   }
+  },
+  {
+   "id": "B9-a",
+   "what": "the invite fragment is removed from the address bar and the set-password form appears",
+   "pass": true,
+   "evidence": {
+    "path": "/es/welcome",
+    "hash": "",
+    "form": true
+   }
+  },
+  {
+   "id": "B9-b",
+   "what": "setting the password opens the onboarding with a session",
+   "pass": true,
+   "evidence": "landed on /es/onboarding"
+  },
+  {
+   "id": "B9-c",
+   "what": "an expired link says so and offers login, no form",
+   "pass": true,
+   "evidence": {
+    "path": "/en/welcome?state=expired",
+    "state": "expired"
+   }
+  },
+  {
+   "id": "WR-17a",
+   "what": "opening the Q&A panel moves focus into it",
+   "pass": true,
+   "evidence": "textarea focused"
+  },
+  {
+   "id": "WR-07/08",
+   "what": "question accepted (202), polled, and the answer rendered",
+   "pass": true,
+   "evidence": "answer from the local contract mock"
+  },
+  {
+   "id": "WR-17b",
+   "what": "Escape returns focus to the launcher",
+   "pass": true,
+   "evidence": "launcher focused"
+  },
+  {
+   "id": "B5",
+   "what": "Spanish onboarding renders Spanish step titles",
+   "pass": true,
+   "evidence": "es titles present"
+  },
+  {
+   "id": "WR-15",
+   "what": "no horizontal overflow at 360 px on /es/platform/crm",
+   "pass": true,
+   "evidence": {
+    "sw": 360,
+    "iw": 360
+   }
+  },
+  {
+   "id": "WR-04",
+   "what": "no forbidden claim wording on ten public pages, EN and ES",
+   "pass": true,
+   "evidence": []
+  },
+  {
+   "id": "QA-02",
+   "what": "every POST passed the ingress contract (signature, freshness, nonce, tenant, session_id, only contract fields)",
+   "pass": true,
+   "evidence": [
+    202
+   ]
+  },
+  {
+   "id": "QA-03",
+   "what": "result polls were signed over the canonical query and resolved pending then answered",
+   "pass": true,
+   "evidence": [
+    "200 pending",
+    "200 answered"
+   ]
+  }
+ ],
+ "screens": [
+  "m390-en-onboarding-case3.png",
+  "m390-en-onboarding-sheets-notice.png",
+  "m390-en-onboarding-crm-after.png",
+  "m390-en-setup-branding-dark-variant.png",
+  "m390-en-setup-branding-light-dark.png",
+  "m390-en-setup-readiness.png",
+  "m390-en-qa-answered.png",
+  "m360-es-platform-crm.png",
+  "d1440-en-packages.png"
+ ],
+ "finished_utc": "2026-09-23T13:08:11.385Z",
+ "passed": 58,
+ "failed": 0
+}

@@ -26,8 +26,9 @@ export default function WelcomePage({ params, searchParams }: { params: { locale
   const expired = searchParams.state === "expired";
   const ready = !expired && hasInvite();
   return (
-    <Section surface="ivory" rhythm="opening" labelledBy="wl-h1">
-      <EnvironmentRibbon locale={locale} scope="form" />
+    <>
+    <EnvironmentRibbon locale={locale} scope="form" />
+    <Section rhythm="opening" labelledBy="wl-h1">
       <div className="container-narrow !mx-0 xl:!mx-auto">
         <Eyebrow className="mb-4">{w.eyebrow}</Eyebrow>
         <Display size="l" as="h1" id="wl-h1">{expired ? w.expiredH1 : w.h1}</Display>
@@ -40,11 +41,13 @@ export default function WelcomePage({ params, searchParams }: { params: { locale
           </>
         ) : (
           <div className="mt-6 space-y-4" data-welcome-state={expired ? "expired" : "no_link"}>
-            <p className="t-body-m text-text-secondary">{expired ? d.common.errors.link_expired : w.noLink}</p>
-            <Link href={localePath(locale, "/login")} className="inline-flex min-h-[44px] items-center t-body-m text-text-accent underline underline-offset-4">{w.loginInstead}</Link>
+            <p className="t-body-m text-text-secondary">{expired ? w.expiredBody : w.noLink}</p>
+            {expired && <p className="t-body-m text-text-secondary">{w.expiredConfirmed}</p>}
+            <Link href={localePath(locale, expired ? "/login?confirmed=1" : "/login")} className="inline-flex min-h-[44px] items-center t-body-m text-text-accent underline underline-offset-4">{w.loginInstead}</Link>
           </div>
         )}
       </div>
     </Section>
+    </>
   );
 }

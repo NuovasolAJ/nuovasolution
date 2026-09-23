@@ -5,7 +5,7 @@ import { statusPresentation, type CapabilityStatus } from "@/lib/content/statuse
 
 /**
  * Status expression law: glyph + text + colour. Colour is never the only
- * differentiator. Eight glyphs, 16 px, 1.5 px stroke, currentColor, no badge.
+ * differentiator. Eight glyphs, 16 px, 1.5 px stroke, currentColor.
  */
 export type Glyph = "check" | "arrow-right" | "clock" | "lock" | "rule" | "link" | "triangle" | "diamond";
 
@@ -36,14 +36,23 @@ const toneCls = {
   attention: "text-signal-attention",
   neutral: "text-text-muted",
 };
+const dotCls = {
+  positive: "bg-signal-positive",
+  attention: "bg-signal-attention",
+  neutral: "bg-ink-350",
+};
 
-export function StatusChip({ status, locale, className }: { status: CapabilityStatus; locale: Locale; className?: string }) {
+/**
+ * A status chip: a coloured dot plus the short status word by default, the full label with
+ * `long`. It wraps onto its own line instead of widening a row (review WR-15) and never
+ * overlaps its neighbour (owner finding, design probe 2026-09-23).
+ */
+export function StatusChip({ status, locale, className, long = false }: { status: CapabilityStatus; locale: Locale; className?: string; long?: boolean }) {
   const p = statusPresentation(status, locale);
   return (
-    // Wraps below ~400 px instead of widening the layout viewport (review WR-15: the Spanish label is 350 px wide).
-    <span className={cn("inline-flex min-h-6 max-w-full items-center gap-1.5 rounded-pill border border-line-hairline px-2.5 py-0.5 t-caption sm:whitespace-nowrap", toneCls[p.tone], className)}>
-      <StatusGlyph glyph={p.glyph} size={12} />
-      <span>{p.label}</span>
+    <span className={cn("inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-pill bg-surface-sunken px-2.5 py-1 t-caption leading-none", toneCls[p.tone], className)}>
+      <span aria-hidden="true" className={cn("h-1.5 w-1.5 shrink-0 rounded-pill", dotCls[p.tone])} />
+      <span className="text-text-secondary">{long ? p.label : p.short}</span>
     </span>
   );
 }
@@ -63,7 +72,7 @@ export function StatusNote({ status, locale, className }: { status: CapabilitySt
 /** A generic chip for labels such as Illustrative, Example, Placeholder. */
 export function LabelChip({ children, tone = "neutral", className }: { children: ReactNode; tone?: "neutral" | "attention"; className?: string }) {
   return (
-    <span className={cn("inline-flex h-6 shrink-0 items-center whitespace-nowrap rounded-sm border border-line-interactive bg-surface-canvas px-2 t-caption", tone === "attention" ? "text-signal-attention" : "text-text-secondary", className)}>
+    <span className={cn("inline-flex h-6 shrink-0 items-center whitespace-nowrap rounded-pill border border-line-hairline bg-surface-raised px-2.5 t-caption", tone === "attention" ? "text-signal-attention" : "text-text-secondary", className)}>
       {children}
     </span>
   );

@@ -13,6 +13,12 @@ export const runtime = "nodejs";
  * E-mail confirmation is required, so the answer is always "check your inbox" (next: "confirm"),
  * whether or not the address already had an account. The agency itself is created later by
  * tenant-api `register`, after the confirmed user signs in: never here, never partially.
+ *
+ * The confirmation link is asked to return to THIS site's login page in the chosen language
+ * (`redirect_to`); the identity server honours that only for origins on its allowlist, so a
+ * new deployment origin has to be registered by API first (otherwise the link lands on site_url).
+ * A repeated submit for the same address is idempotent on the identity server's side; a 429 is
+ * answered with the specific limit code so the page can say the honest thing.
  */
 export async function POST(req: Request) {
   if (!sameOrigin(req)) return fail("forbidden", 403);
@@ -40,7 +46,8 @@ export async function POST(req: Request) {
   }
   if (environmentProblem()) return fail("environment_misconfigured", 503);
   try {
-    await signUp(email, password, { full_name: name, agency_name, language }, null);
+    const redirectTo = `${new URL(req.url).origin}/${language}/login?confirmed=1`;
+    await signUp(email, password, { full_name: name, agency_name, language }, redirectTo);
     return envelope({ ok: true, code: "ok", message: "confirm", details: { next: "confirm", session: false } }, 201);
   } catch (e) {
     return refusal(e);

@@ -52,8 +52,9 @@ export default async function OnboardingPage({ params, searchParams }: { params:
   const noticeAllowed = integrationMode() !== "live";
 
   return (
+    <>
+    <EnvironmentRibbon locale={locale} scope="form" />
     <Section rhythm="opening" labelledBy="ob-h1">
-      <EnvironmentRibbon locale={locale} scope="form" />
       <div className="container-default">
         <div className="xl:max-w-[62%]">
           <Eyebrow className="mb-4">{d.onboarding.eyebrow}</Eyebrow>
@@ -85,5 +86,6 @@ export default async function OnboardingPage({ params, searchParams }: { params:
         </div>
       </div>
     </Section>
+    </>
   );
 }

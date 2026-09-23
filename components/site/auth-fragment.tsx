@@ -19,6 +19,8 @@ export function AuthFragment({ locale }: { locale: Locale }) {
     const go = (path: string) => window.location.replace(`/${locale}/${path}`);
     const token = p.get("access_token");
     const type = p.get("type");
+    // A spent or expired confirmation link: the address may well be confirmed already (the
+    // first click did that), so the welcome page points to the login, which continues from there.
     if (!token || (type !== "invite" && type !== "recovery" && type !== "signup")) return go("welcome?state=expired");
     fetch("/api/bff/auth/invite", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ access_token: token, type }) })
       .then((r) => r.json())

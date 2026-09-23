@@ -35,13 +35,13 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
             <Display size="xl" id="ct-h1">{c.h1}</Display>
             <Lead className="mt-6">{c.lead}</Lead>
             <p className="mt-10 t-eyebrow text-text-muted">{c.emailLabel}</p>
-            <a href="mailto:antonio@nuovasolution.com" className="mt-2 inline-block t-heading-l text-text-primary underline underline-offset-8 decoration-line-hairline hover:decoration-champagne-400 break-all">antonio@nuovasolution.com</a>
+            <a href="mailto:antonio@nuovasolution.com" className="mt-2 inline-block t-heading-l text-text-primary underline underline-offset-8 decoration-line-strong hover:decoration-ink-950 break-all">antonio@nuovasolution.com</a>
           </Reveal>
         </div>
       </Section>
 
       <Section rhythm="default" hairline>
-        <div className="container-default grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+        <div className="container-default grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 [&>*]:card [&>*]:rounded-xl [&>*]:p-6">
           <Reveal>
             <Eyebrow className="mb-3">{c.demoEyebrow}</Eyebrow>
             <Heading size="l" as="h2">{c.demoH2}</Heading>
@@ -67,14 +67,16 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
         </div>
       </Section>
 
-      <Section rhythm="feature" surface="deep" labelledBy="ct-close">
-        <div className="container-text text-center">
-          <Display size="l" id="ct-close" className="mx-auto max-w-[24ch]">{d.home.closing.h2}</Display>
-          <CtaRow align="center" className="mt-12">
-            <ButtonLink href={p("/signup")} size="lg">{d.common.startFree}</ButtonLink>
-            <ButtonLink href={p("/platform")} size="lg" variant="secondary">{d.common.explorePlatform}</ButtonLink>
-          </CtaRow>
-          <Caption className="mt-4">{d.home.closing.caption}</Caption>
+      <Section rhythm="feature" labelledBy="ct-close">
+        <div className="container-default">
+          <div className="field-sand rounded-xl px-6 py-14 text-center md:px-12 md:py-20">
+            <Display size="l" id="ct-close" className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
+            <CtaRow align="center" className="mt-10">
+              <ButtonLink href={p("/signup")} size="lg">{d.common.startFree}</ButtonLink>
+              <ButtonLink href={p("/platform")} size="lg" variant="secondary">{d.common.explorePlatform}</ButtonLink>
+            </CtaRow>
+            {d.home.closing.caption && <Caption className="mt-4">{d.home.closing.caption}</Caption>}
+          </div>
         </div>
       </Section>
     </>

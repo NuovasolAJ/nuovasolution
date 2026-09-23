@@ -1,0 +1,1170 @@
+﻿diff --git a/app/layout.tsx b/app/layout.tsx
+index bc40320..df3d6d0 100644
+--- a/app/layout.tsx
++++ b/app/layout.tsx
+@@ -6,9 +6,9 @@ import { ThemeProvider }   from "@/lib/theme-provider";
+ import { LanguageProvider } from "@/lib/language-context";
+ 
+ export const metadata: Metadata = {
+-  title: "NuovaSolution — Never Miss a Lead Again",
++  title: "NuovaSolution. The operating layer of a real estate agency",
+   description:
+-    "Instant replies. Qualified clients. Real opportunities. AI lead capture and qualification for real estate agencies in Spain.",
++    "Enquiries answered, qualified and kept on one record. For real estate agencies in Spain.",
+   icons: {
+     icon: [
+       { url: "/favicon-v2.svg", type: "image/svg+xml" },
+@@ -18,8 +18,8 @@ export const metadata: Metadata = {
+     apple: "/favicon-v2.png",
+   },
+   openGraph: {
+-    title: "NuovaSolution — Never Miss a Lead Again",
+-    description: "Instant replies. Qualified clients. Real opportunities.",
++    title: "NuovaSolution. The operating layer of a real estate agency",
++    description: "Automatic replies. Qualified enquiries. One record per customer.",
+     type: "website",
+   },
+ };
+diff --git a/app/live-demo/page.tsx b/app/live-demo/page.tsx
+index f32aaee..01d958c 100644
+--- a/app/live-demo/page.tsx
++++ b/app/live-demo/page.tsx
+@@ -4,11 +4,11 @@ import { Footer } from '@/components/ui/footer';
+ import LiveDemoClient from '@/components/live-demo/live-demo-client';
+ 
+ export const metadata: Metadata = {
+-  title: 'Live Demo — NuovaSolution',
+-  description: 'See exactly how NuovaSolution qualifies, scores, and responds to real estate inquiries in real time. Try any lead message in any language.',
++  title: 'Demo (simulation). NuovaSolution',
++  description: 'A simulation that shows the steps NuovaSolution takes with a real estate enquiry. It runs in your browser, not on the live system.',
+   openGraph: {
+-    title: 'Live Demo — NuovaSolution',
+-    description: 'See exactly how NuovaSolution qualifies, scores, and responds to real estate inquiries in real time.',
++    title: 'Demo (simulation). NuovaSolution',
++    description: 'A simulation that shows the steps NuovaSolution takes with a real estate enquiry. It runs in your browser, not on the live system.',
+     type: 'website',
+   },
+ };
+diff --git a/components/live-demo/demo-engine.ts b/components/live-demo/demo-engine.ts
+index 3b67cb9..8cec0ee 100644
+--- a/components/live-demo/demo-engine.ts
++++ b/components/live-demo/demo-engine.ts
+@@ -359,7 +359,7 @@ export function analyzeInput(message: string, source: string): DemoResult {
+     if (location) parts.push(location);
+     if (viewingRequested) parts.push('Viewing requested');
+     if (timeline) parts.push(timeline);
+-    alertSnippet = parts.join(' · ') || 'High-intent lead detected';
++    alertSnippet = parts.join(' · ') || 'Viewing requested';
+   }
+ 
+   return { language, languageLabel, languageFlag, leadType, leadTypeLabel, leadClassLabel, extracted, score, temperature, factors, aiResponse, alertSnippet };
+@@ -519,7 +519,7 @@ export function mergeFollowUp(original: DemoResult, followUpMsg: string): DemoRe
+     if (merged.location)         parts.push(merged.location);
+     if (merged.viewingRequested) parts.push('Viewing requested');
+     if (merged.timeline)         parts.push(merged.timeline);
+-    alertSnippet = parts.join(' · ') || 'High-intent lead detected';
++    alertSnippet = parts.join(' · ') || 'Viewing requested';
+   }
+ 
+   const isRentalNow = original.leadType === 'rental';
+diff --git a/components/live-demo/live-demo-client.tsx b/components/live-demo/live-demo-client.tsx
+index a620502..6dec6b1 100644
+--- a/components/live-demo/live-demo-client.tsx
++++ b/components/live-demo/live-demo-client.tsx
+@@ -14,10 +14,10 @@ const w = (a: number) => `rgba(255,255,255,${a})`;
+ // Warm charcoal — no blue cast
+ const BG = 'linear-gradient(160deg, #0C0B09 0%, #080706 55%, #0C0B09 100%)';
+ 
++// Hotfix v2 §2.3 / acceptance 9: only the channels that run today are offered as inputs.
+ const CHANNELS = [
+-  { id: 'WhatsApp',        label: 'WhatsApp',        labelES: 'WhatsApp',         sub: null,                                        subES: null,                           icon: '💬' },
+-  { id: 'Email & Portals', label: 'Email & Portals', labelES: 'Email y Portales', sub: 'Idealista · Fotocasa · Kyero · ThinkSpain', subES: 'Idealista · Fotocasa · Kyero', icon: '✉' },
+-  { id: 'Web Forms',       label: 'Web Forms',       labelES: 'Formularios Web',  sub: 'Contact & website forms',                   subES: 'Formularios de contacto web',  icon: '📋' },
++  { id: 'WhatsApp',        label: 'WhatsApp', labelES: 'WhatsApp', sub: null, subES: null, icon: '💬' },
++  { id: 'Email & Portals', label: 'Email',    labelES: 'Email',    sub: null, subES: null, icon: '✉' },
+ ];
+ 
+ const T_RESPONSE     = 750;
+@@ -25,10 +25,11 @@ const T_ROW_INTERVAL = 150;
+ 
+ type Phase = 0 | 1 | 2 | 3 | 4 | 5;
+ 
++// The three priority bands the product sets (hotfix v2 §2.5). No numeric scale is rendered (§4.1).
+ const TEMP_CFG: Record<Temperature, { color: string; glow: string; label: string; labelES: string }> = {
+-  hot:  { color: '#F05050', glow: 'rgba(240,80,80,0.4)',    label: 'HOT LEAD',  labelES: 'LEAD URGENTE' },
+-  warm: { color: '#D4941A', glow: 'rgba(212,148,26,0.35)',  label: 'WARM LEAD', labelES: 'LEAD ACTIVO'  },
+-  cold: { color: '#6B9EC8', glow: 'rgba(107,158,200,0.28)', label: 'COLD LEAD', labelES: 'LEAD FRÍO'    },
++  hot:  { color: '#D2AC62', glow: 'rgba(210,172,98,0.4)',   label: 'HOT',  labelES: 'PRIORITARIO' },
++  warm: { color: '#D4941A', glow: 'rgba(212,148,26,0.35)',  label: 'WARM', labelES: 'INTERESADO'  },
++  cold: { color: '#6B9EC8', glow: 'rgba(107,158,200,0.28)', label: 'COLD', labelES: 'FRÍO'        },
+ };
+ 
+ const FOLLOW_UP_EXAMPLES: Record<string, string[]> = {
+@@ -36,7 +37,7 @@ const FOLLOW_UP_EXAMPLES: Record<string, string[]> = {
+   es: ['Marzo', 'Cerca de la playa', 'Presupuesto €500k'],
+ };
+ 
+-const PORTALS = ['Email', 'Idealista', 'Fotocasa', 'Kyero'] as const;
++const PORTALS = ['Email'] as const; // hotfix v2 §2.3: only the channel that runs today
+ type PortalOption = typeof PORTALS[number];
+ 
+ interface WebFormData {
+@@ -52,30 +53,31 @@ const EMPTY_FORM: WebFormData = { name: '', email: '', budget: '', location: '',
+ 
+ function getUI(lang: string) {
+   if (lang === 'es') return {
+-    pageLabel:             'Demo en Vivo',
++    pageLabel:             'Demo (simulación)',
++    simulationNote:        'Esto es una simulación. Funciona en tu navegador y muestra los pasos que sigue Nuova con una consulta. No es el sistema real y no usa IA.',
+     headlineA:             'Tu agencia',
+-    headlineB:             'no vuelve a perder',
+-    headlineC:             'un lead',
+-    subheadline:           'Cada consulta recibe respuesta inmediata. Cada lead se califica automáticamente. Tu equipo puede enfocarse en cerrar operaciones mientras NuovaSolution gestiona el seguimiento.',
++    headlineB:             'responde',
++    headlineC:             'mientras trabajas',
++    subheadline:           'Consultas de texto respondidas automáticamente y cualificadas. Tu equipo empieza por las más prometedoras.',
+     sendEmail:             'Enviar consulta',
+     tagline:               'El canal no importa.',
+     channelNote:           'Selecciona una fuente de consulta:',
+-    tryExample:            'Prueba un ejemplo real:',
++    tryExample:            'Prueba un ejemplo:',
+     placeholder:           'Pega aquí un mensaje de WhatsApp, email o formulario...',
+     minChars:              'Mín. 10 caracteres',
+     analyze:               'Analizar lead',
+     analyzing:             'Analizando...',
+     runAgain:              'Repetir',
+     insightsLabel:         'Inteligencia del lead',
+-    scoreLabel:            'Puntuación del lead',
+-    hotAlert:              'LEAD URGENTE · Agente notificado',
++    scoreLabel:            'Prioridad',
++    hotAlert:              'Prioridad alta (simulado)',
+     tryAnother:            'Probar otro lead',
+     readyLabel:            '¿Listo para su agencia?',
+     stopLosing:            'Deje de perder leads',
+-    stopLosingBody:        'Reserve una demo y le mostramos el sistema completo en vivo, adaptado a su agencia en la Costa del Sol.',
+-    bookDemo:              'Empezar gratis ahora',
++    stopLosingBody:        'Reserva una demo y te enseñamos el sistema con una consulta real de tu mercado.',
++    bookDemo:              'Reserva una demo',
+     whatsappUs:            'WhatsApp',
+-    analysisLabel:         'Análisis IA',
++    analysisLabel:         'Análisis (simulado)',
+     reading:               'Leyendo consulta...',
+     sent:                  'Enviado',
+     newInquiry:            'Nueva consulta',
+@@ -87,7 +89,7 @@ function getUI(lang: string) {
+     formReply:             'Respuesta automática',
+     replyFrom:             'Re: Nueva consulta',
+     portalInquiry:         'Consulta de portal',
+-    emailTagline:          'Cada consulta. Automática. En segundos.',
++    emailTagline:          'Cada consulta. Automática.',
+     fieldLanguage:         'Idioma',
+     fieldLeadType:         'Tipo de lead',
+     fieldName:             'Nombre',
+@@ -98,10 +100,10 @@ function getUI(lang: string) {
+     fieldUrgency:          'Urgencia',
+     requested:             'Solicitada',
+     high:                  'Alta',
+-    crmUpdated:            'CRM actualizado',
++    crmUpdated:            'Lead registrado (simulado)',
+     crmNow:                'Ahora mismo',
+     fieldPriority:         'Prioridad',
+-    fieldScore:            'Puntuación',
++    fieldScore:            'Prioridad',
+     recommendedTitle:      'Acción recomendada',
+     actNow:                'Actuar ahora',
+     actSoon:               'Hoy',
+@@ -128,7 +130,7 @@ function getUI(lang: string) {
+     formHintBudget:        'ej. €400,000',
+     formHintLocation:      'ej. Marbella, Estepona',
+     formHintMessage:       'Describe lo que buscas...',
+-    inquiryUpdated:        'Nueva señal detectada · puntuación actualizada',
++    inquiryUpdated:        'Nueva señal detectada · prioridad actualizada',
+     // Lead type display values (site language)
+     leadTypeBuyer:         'Comprador potencial',
+     leadTypeBuyerInvestor: 'Comprador inversor',
+@@ -137,30 +139,31 @@ function getUI(lang: string) {
+   };
+ 
+   return {
+-    pageLabel:             'Live Demo',
++    pageLabel:             'Demo (simulation)',
++    simulationNote:        'This is a simulation. It runs in your browser and shows the steps Nuova takes with an enquiry. It is not the live system and does not use AI.',
+     headlineA:             'Your agency',
+-    headlineB:             'never misses',
+-    headlineC:             'another lead',
+-    subheadline:           'Every inquiry answered instantly. Every lead qualified automatically. Your team focuses on closing deals while NuovaSolution handles the follow up.',
++    headlineB:             'replies',
++    headlineC:             'while you work',
++    subheadline:           'Text enquiries answered automatically and qualified. Your team starts with the most promising ones.',
+     sendEmail:             'Send Inquiry',
+     tagline:               'It does not matter where the lead comes from.',
+     channelNote:           'Select a lead source:',
+-    tryExample:            'Try a real example:',
++    tryExample:            'Try an example:',
+     placeholder:           'Paste a WhatsApp message, email inquiry, or web form lead here...',
+     minChars:              'Min. 10 characters',
+     analyze:               'Analyze Lead',
+     analyzing:             'Analyzing...',
+     runAgain:              'Run Again',
+     insightsLabel:         'Lead Intelligence',
+-    scoreLabel:            'Lead Score',
+-    hotAlert:              'HOT LEAD · Agent alerted',
++    scoreLabel:            'Priority',
++    hotAlert:              'High priority (simulated)',
+     tryAnother:            'Try another lead',
+     readyLabel:            'Ready for your agency?',
+     stopLosing:            'Stop losing leads',
+-    stopLosingBody:        'Book a demo and we will show you the full system running live, tailored to your agency on the Costa del Sol.',
+-    bookDemo:              'Start for free now',
++    stopLosingBody:        'Book a demo and we show you the system on a real enquiry from your market.',
++    bookDemo:              'Book a demo',
+     whatsappUs:            'WhatsApp Us',
+-    analysisLabel:         'AI Analysis',
++    analysisLabel:         'Analysis (simulated)',
+     reading:               'Reading inquiry...',
+     sent:                  'Sent',
+     newInquiry:            'New inquiry',
+@@ -172,7 +175,7 @@ function getUI(lang: string) {
+     formReply:             'Automated Reply',
+     replyFrom:             'Re: New Inquiry',
+     portalInquiry:         'Portal inquiry',
+-    emailTagline:          'Every inquiry. Automatic. In seconds.',
++    emailTagline:          'Every enquiry. Automatic.',
+     fieldLanguage:         'Language',
+     fieldLeadType:         'Lead Type',
+     fieldName:             'Name',
+@@ -183,10 +186,10 @@ function getUI(lang: string) {
+     fieldUrgency:          'Urgency',
+     requested:             'Requested',
+     high:                  'High',
+-    crmUpdated:            'CRM Updated',
++    crmUpdated:            'Lead recorded (simulated)',
+     crmNow:                'Just now',
+     fieldPriority:         'Priority',
+-    fieldScore:            'Score',
++    fieldScore:            'Priority',
+     recommendedTitle:      'Recommended Action',
+     actNow:                'Act now',
+     actSoon:               'Today',
+@@ -213,7 +216,7 @@ function getUI(lang: string) {
+     formHintBudget:        'e.g. €400,000',
+     formHintLocation:      'e.g. Marbella, Estepona',
+     formHintMessage:       'Tell us what you are looking for...',
+-    inquiryUpdated:        'New signal detected · score updated',
++    inquiryUpdated:        'New signal detected · priority updated',
+     // Lead type display values (site language)
+     leadTypeBuyer:         'Buyer Lead',
+     leadTypeBuyerInvestor: 'Investment Buyer',
+@@ -352,8 +355,7 @@ function CrmUpdateCard({
+     result.extracted.location ? { label: ui.fieldLocation, value: result.extracted.location } : null,
+     result.extracted.budget   ? { label: ui.fieldBudget,   value: result.extracted.budget }   : null,
+     result.extracted.timeline ? { label: ui.fieldTimeline, value: result.extracted.timeline } : null,
+-    { label: ui.fieldPriority, value: priorityLabel },
+-    { label: ui.fieldScore,    value: `${result.score}/100` },
++    { label: ui.fieldPriority, value: priorityLabel }, // the band only; no numeric scale (hotfix v2 §4.1)
+   ].filter(Boolean) as { label: string; value: string }[];
+ 
+   return (
+@@ -491,22 +493,19 @@ function ScoreRing({ score, temperature, lang, fromScore = 0 }: {
+           />
+         </svg>
+         <div className="absolute inset-0 flex flex-col items-center justify-center">
++          {/* The band, never the number (hotfix v2 §4.1): the arc still fills as the simulation reads the message. */}
+           <span
+-            className="font-display font-bold leading-none tabular-nums"
++            className="font-display font-bold leading-none text-center"
+             style={{
+               color: tc.color,
+               textShadow: `0 0 24px ${tc.glow}, 0 0 48px ${tc.glow}`,
+-              fontSize: '3.1rem',
+-              letterSpacing: '-0.025em',
++              fontSize: '1.25rem',
++              letterSpacing: '0.04em',
++              opacity: display >= score ? 1 : 0.55,
++              transition: 'opacity 0.3s ease',
+             }}
+           >
+-            {display}
+-          </span>
+-          <span
+-            className="tracking-widest mt-1.5"
+-            style={{ color: w(0.38), fontSize: '0.65rem' }}
+-          >
+-            /100
++            {badge}
+           </span>
+         </div>
+       </div>
+@@ -706,7 +705,6 @@ function EmailComposeInput({
+               {p}
+             </button>
+           ))}
+-          <span className="text-xs self-center" style={{ color: w(0.22) }}>etc.</span>
+         </div>
+       </div>
+ 
+@@ -1534,10 +1532,18 @@ export default function LiveDemoClient() {
+                     initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                     transition={{ duration: 0.5, delay: 0.18, ease: EASE }}
+                   >
++                    {/* Simulation disclosure before any interaction (hotfix v2 §3, S-02) */}
++                    <p
++                      role="note"
++                      className="text-xs text-center mb-4 mx-auto max-w-md rounded-lg px-3 py-2"
++                      style={{ color: w(0.62), border: `1px solid ${w(0.08)}`, background: 'rgba(255,255,255,0.02)' }}
++                    >
++                      {ui.simulationNote}
++                    </p>
+                     <p className="text-sm font-medium text-center mb-5" style={{ color: g(0.62) }}>
+                       {ui.tagline}
+                     </p>
+-                    <div className="grid grid-cols-3 gap-2 sm:gap-3">
++                    <div className="grid grid-cols-2 gap-2 sm:gap-3 max-w-sm mx-auto">
+                       {CHANNELS.map(ch => {
+                         const active = source === ch.id;
+                         const label  = lang === 'es' ? ch.labelES : ch.label;
+@@ -1770,15 +1776,8 @@ export default function LiveDemoClient() {
+                       }}
+                     >
+                       <div className="flex items-start gap-3">
+-                        <motion.span
+-                          animate={{ scale: [1, 1.12, 1] }}
+-                          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+-                          className="text-xl shrink-0 mt-0.5"
+-                        >
+-                          🔥
+-                        </motion.span>
+                         <div className="flex-1 min-w-0">
+-                          <p className="text-sm font-bold mb-0.5" style={{ color: '#F05050' }}>
++                          <p className="text-sm font-bold mb-0.5" style={{ color: g(1) }}>
+                             {ui.hotAlert}
+                           </p>
+                           <p className="text-xs break-words" style={{ color: w(0.42) }}>
+diff --git a/components/sections/demo-flow.tsx b/components/sections/demo-flow.tsx
+index c29f5d5..fdc4bb6 100644
+--- a/components/sections/demo-flow.tsx
++++ b/components/sections/demo-flow.tsx
+@@ -101,33 +101,33 @@ function AnimatedScore({ isVisible, t }: { isVisible: boolean; t: (k: string) =>
+ }
+ 
+ /* ------------------------------------------------------------------ */
+-/* WhatsApp alert phone mockup                                          */
++/* Task card (hotfix v2 §2.4 / §4.2: no phone push chrome, no "online" dot; a task for the team) */
+ /* ------------------------------------------------------------------ */
+ function WhatsAppAlert({ t }: { t: (k: string) => string }) {
+   return (
+     <div className="w-full max-w-xs mx-auto">
+-      <div className="bg-[#1a1a2e] rounded-[2.5rem] p-3 shadow-2xl ring-1 ring-white/10">
+-        <div className="bg-[#ECE5DD] rounded-[2rem] overflow-hidden">
+-          {/* WhatsApp header */}
+-          <div className="bg-[#075E54] px-4 py-3 flex items-center gap-3">
+-            <div className="w-8 h-8 rounded-full bg-[#25D366] flex items-center justify-center text-white text-xs font-bold shrink-0">
++      <div className="bg-white/[0.04] rounded-2xl p-3 shadow-2xl ring-1 ring-white/10">
++        <div className="bg-[#F4F1EA] rounded-xl overflow-hidden">
++          {/* Card header: the team's task list, not a messaging app */}
++          <div className="bg-brand-navy px-4 py-3 flex items-center gap-3">
++            <div className="w-8 h-8 rounded-full bg-brand-gold flex items-center justify-center text-brand-navy text-xs font-bold shrink-0">
+               N
+             </div>
+             <div>
+               <div className="text-white text-sm font-semibold leading-tight">{t("demo.alert.label")}</div>
+-              <div className="text-[#B2DFDB] text-xs">{t("demo.alert.online")}</div>
++              <div className="text-white/60 text-xs">{t("demo.step4.label")}</div>
+             </div>
+           </div>
+ 
+-          {/* Chat */}
++          {/* Task */}
+           <div className="px-3 py-4 min-h-[240px] flex flex-col justify-end">
+             <motion.div
+               initial={{ opacity: 0, y: 10 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ delay: 0.3 }}
+-              className="bg-white rounded-xl rounded-bl-sm p-3.5 shadow-sm max-w-[92%]"
++              className="bg-white rounded-xl p-3.5 shadow-sm max-w-[92%]"
+             >
+-              <div className="text-xs font-bold text-hot mb-2">{t("demo.alert.hot")}</div>
++              <div className="text-xs font-bold text-brand-gold mb-2">{t("demo.alert.hot")}</div>
+               <div className="text-xs text-brand-navy leading-relaxed space-y-1">
+                 <div className="font-semibold">{t("demo.alert.buyer")}</div>
+                 <div>{t("demo.alert.budget")}</div>
+diff --git a/components/sections/final-cta.tsx b/components/sections/final-cta.tsx
+index f369dc7..7215bc1 100644
+--- a/components/sections/final-cta.tsx
++++ b/components/sections/final-cta.tsx
+@@ -61,10 +61,9 @@ export function FinalCTA() {
+           {/* CTA buttons */}
+           <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: 14, alignItems: "center", justifyContent: "center", marginBottom: 18 }}>
+             <a
+-              href="#"
++              href="https://cal.com/nuovasolution/demo"
+               data-cal-link="nuovasolution/demo"
+               data-cal-config='{"layout":"month_view"}'
+-              onClick={(e) => e.preventDefault()}
+               className="btn btn-gold btn-lg"
+               style={{
+                 fontWeight: 700,
+diff --git a/components/sections/hero.tsx b/components/sections/hero.tsx
+index 2cfde19..8f05b1d 100644
+--- a/components/sections/hero.tsx
++++ b/components/sections/hero.tsx
+@@ -437,10 +437,9 @@ export function Hero() {
+                 }}
+               >
+                 <motion.a
+-                  href="#"
++                  href="https://cal.com/nuovasolution/demo"
+                   data-cal-link="nuovasolution/demo"
+                   data-cal-config='{"layout":"month_view"}'
+-                  onClick={(e) => e.preventDefault()}
+                   className="btn btn-gold btn-lg"
+                   whileHover={{ scale: 1.02 }}
+                   transition={{ duration: 0.18, ease: "easeOut" }}
+diff --git a/components/sections/lead-intelligence.tsx b/components/sections/lead-intelligence.tsx
+index cb09af4..35cd110 100644
+--- a/components/sections/lead-intelligence.tsx
++++ b/components/sections/lead-intelligence.tsx
+@@ -112,15 +112,13 @@ function ScoreVisual({ active, t }: { active: boolean; t: (k: string) => string
+           display: "flex", flexDirection: "column",
+           alignItems: "center", justifyContent: "center",
+         }}>
++          {/* The band, never a number (hotfix v2 §4.1 / D-04): the arc still fills as information arrives. */}
+           <span style={{
+-            fontSize: 48, fontWeight: 700, letterSpacing: "-0.05em", lineHeight: 1,
++            fontSize: 15, fontWeight: 700, letterSpacing: "0.08em", lineHeight: 1.2, textTransform: "uppercase",
+             color: isHot ? g(0.96) : isWarm ? g(0.66) : w(0.36),
+             transition: resetting ? "none" : "color 0.35s ease",
+           }}>
+-            {score}
+-          </span>
+-          <span style={{ fontSize: 10, color: w(0.22), letterSpacing: "0.07em", marginTop: 2 }}>
+-            / 100
++            {isHot ? t("intel.score.hot") : isWarm ? t("intel.score.warm") : t("intel.score.cold")}
+           </span>
+         </div>
+       </div>
+@@ -159,7 +157,7 @@ function ScoreVisual({ active, t }: { active: boolean; t: (k: string) => string
+                   transition: "all 0.50s ease",
+                 }}
+               >
+-                {t(r.key)} {r.range}
++                {t(r.key)}
+               </span>
+             );
+           })}
+diff --git a/components/ui/nav.tsx b/components/ui/nav.tsx
+index 6abe4ae..058e6f9 100644
+--- a/components/ui/nav.tsx
++++ b/components/ui/nav.tsx
+@@ -98,10 +98,9 @@ export function Nav() {
+             <LangToggle onHero={true} />
+ 
+             <a
+-              href="#"
++              href="https://cal.com/nuovasolution/demo"
+               data-cal-link="nuovasolution/demo"
+               data-cal-config='{"layout":"month_view"}'
+-              onClick={(e) => e.preventDefault()}
+               className="btn btn-gold btn-sm nav-cta-btn"
+               style={{ fontWeight: 700, fontSize: 13, letterSpacing: "0.01em" }}
+             >
+diff --git a/translations/en.ts b/translations/en.ts
+index aa06747..95f8183 100644
+--- a/translations/en.ts
++++ b/translations/en.ts
+@@ -1,3 +1,10 @@
++/**
++ * English strings. Hotfix oldsite-fix-v2 (docs OLD_LIVE_SITE_HOTFIX_COPY_v2.md, 2026-09-23):
++ * every statement is true today per CLOSEOUT_EVIDENCE_INDEX_v1; no absolute, no speed figure,
++ * no score scale, no alert claim or visual (D-10), no portal or web form intake, follow up
++ * "in preparation", no price. Keys marked † in that file are in components no page imports;
++ * they are replaced too because their strings ship in the bundle.
++ */
+ export const en: Record<string, string> = {
+   /* Navigation */
+   "nav.cta":              "Book a Demo",
+@@ -6,54 +13,54 @@ export const en: Record<string, string> = {
+ 
+   /* Hero */
+   "hero.label":               "Built for Real Estate Agencies",
+-  "hero.headline.line1":      "Respond in seconds",
++  "hero.headline.line1":      "Reply in seconds, not hours",
+   "hero.headline.line2":      "Only talk to buyers and sellers who are ready to move forward and worth your time",
+   "hero.pain.line1":          "The first agent to reply wins the client.",
+   "hero.pain.line2":          "Make sure it is you.",
+-  "hero.sub":                 "Every lead gets a reply. The system filters and shows you which buyers and sellers are actually serious.",
+-  "hero.cta.note":            "It takes 15 minutes. No setup needed.",
++  "hero.sub":                 "Text enquiries get a reply, and each one gets a priority, so you can see who is serious.",
++  "hero.cta.note":            "We show you Nuova on a real enquiry, not a slide deck.",
+   "hero.trust.line1":         "Built for real estate agencies in Spain",
+   "hero.trust.line2":         "Works with your existing inbox and lead sources",
+-  "hero.feature.1.title":     "Respond instantly",
+-  "hero.feature.1.desc":      "Every lead gets a response within seconds",
+-  "hero.feature.2.title":     "Qualify automatically",
+-  "hero.feature.2.desc":      "Know instantly who wants to buy, rent or sell",
+-  "hero.feature.3.title":     "Never miss opportunities",
+-  "hero.feature.3.desc":      "Every lead is captured and answered instantly",
++  "hero.feature.1.title":     "Reply automatically",
++  "hero.feature.1.desc":      "Text enquiries on WhatsApp and email get an automatic reply",
++  "hero.feature.2.title":     "Qualified automatically",
++  "hero.feature.2.desc":      "See who wants to buy, rent or sell",
++  "hero.feature.3.title":     "Recorded and answered",
++  "hero.feature.3.desc":      "Enquiries are recorded and answered",
+   "hero.feature.4.title":     "Close more deals",
+   "hero.feature.4.desc":      "Focus only on buyers and sellers with real potential",
+   "hero.cta.primary":         "Book a Demo",
+   "hero.cta.secondary":       "See it in action",
+   "hero.scroll":              "Scroll",
+-  "hero.chat.replied":        "Replied instantly",
++  "hero.chat.replied":        "Replied automatically",
+   "hero.chat.msg.1":          "Hi, I'm looking for a property near Marbella.",
+   "hero.chat.msg.2":          "My budget is around €800k. I'm currently in the area and would love to see something.",
+   "hero.chat.msg.3":          "I'm available tomorrow.",
+   "hero.chat.reply.1":        "Hi Daniel, great to hear from you.",
+   "hero.chat.reply.2":        "Tomorrow sounds good. I'll check what's available.",
+   "hero.chat.reply.3":        "Do you have any specific preferences in the area?",
+-  "hero.chat.sent":           "Sent to your phone",
+-  "hero.chat.alert.title":    "New enquiry",
+-  "hero.chat.alert.line1":    "Serious buyer · Marbella",
+-  "hero.chat.alert.line2":    "Requested viewing tomorrow",
++  "hero.chat.sent":           "Added to your tasks",
++  "hero.chat.alert.title":    "Viewing request",
++  "hero.chat.alert.line1":    "Buyer · Marbella",
++  "hero.chat.alert.line2":    "Asked for a viewing tomorrow",
+ 
+-  /* Always On */
+-  "always.label":    "Always Running",
+-  "always.headline": "Your agency never stops moving",
+-  "always.sub":      "Replies instantly, follows up automatically and moves conversations toward real opportunities",
++  /* Day or night */
++  "always.label":    "Day or night",
++  "always.headline": "Enquiries keep moving while your team is busy",
++  "always.sub":      "Replies automatically and keeps each conversation on one record",
+   "always.row1":     "New inquiry comes in",
+-  "always.row2":     "Reply sent instantly",
+-  "always.row3":     "Follow-up sent if no response",
+-  "always.row4":     "Serious clients identified",
+-  "always.row5":     "You're notified when it matters",
++  "always.row2":     "Reply sent automatically",
++  "always.row3":     "Follow up with the customer's permission: in preparation",
++  "always.row4":     "Priority set for each enquiry",
++  "always.row5":     "A viewing request becomes a task",
+   "always.row6":     "Conversation continues naturally",
+ 
+-  /* Always On — flow visualization */
++  /* Day or night: flow visualization */
+   "always.step.1":        "New inquiry",
+   "always.step.2":        "Analyzed",
+   "always.step.3":        "Classified",
+   "always.step.4":        "Scored",
+-  "always.step.5":        "Instant reply",
++  "always.step.5":        "Automatic reply",
+   "always.step.6":        "Hot",
+ 
+   "always.cls.1":         "Buyer · Seller",
+@@ -64,39 +71,39 @@ export const en: Record<string, string> = {
+   "always.score.hot":     "Hot",
+ 
+   "always.alert.main":    "WhatsApp / Email",
+-  "always.alert.sub":     "Instant alert",
++  "always.alert.sub":     "Task for your team",
+ 
+-  "always.fup":           "No reply → follow-up continues",
+-  "always.crm":           "Always synced to your CRM",
++  "always.fup":           "Follow up: in preparation",
++  "always.crm":           "Recorded as a lead in Nuova",
+ 
+   "always.time.1":        "Now",
+-  "always.time.2":        "Instantly",
++  "always.time.2":        "Automatic",
+   "always.time.3":        "Seconds",
+   "always.time.4":        "Continuous",
+ 
+-  "always.left.1.title":  "New lead",
+-  "always.left.1.desc":   "Email, WhatsApp, forms and portals",
++  "always.left.1.title":  "New enquiry",
++  "always.left.1.desc":   "Email and WhatsApp",
+   "always.left.2.title":  "Detect intent",
+   "always.left.2.desc1":  "Buyer or seller",
+   "always.left.2.desc2":  "Short or long-term",
+   "always.left.3.title":  "Prioritize clients",
+   "always.left.3.desc1":  "Cold, warm or hot",
+-  "always.left.3.desc2":  "Evaluated instantly",
+-  "always.left.4.title":  "Filter and follow up",
+-  "always.left.4.desc":   "Only important leads reach you",
++  "always.left.3.desc2":  "Evaluated automatically",
++  "always.left.4.title":  "Prioritise and hand over",
++  "always.left.4.desc":   "The most promising leads first",
+ 
+   /* Trust Strip */
+-  "strip.label":       "Always On",
+-  "strip.headline":    "Built to never miss a serious lead",
+-  "strip.sub":         "Every inquiry is captured, understood, prioritized, and followed up automatically. No missed messages. No delays. No manual chaos.",
+-  "strip.item1.label": "Replies instantly",
+-  "strip.item1.desc":  "Every lead gets an immediate response, day or night.",
++  "strip.label":       "Day or night",
++  "strip.headline":    "Built so enquiries do not sit unanswered",
++  "strip.sub":         "Text enquiries are captured, understood and prioritised automatically. Follow up, only with the customer's permission, is in preparation.",
++  "strip.item1.label": "Replies automatically",
++  "strip.item1.desc":  "Text enquiries get an automatic reply, day or night.",
+   "strip.item2.label": "Understands intent",
+-  "strip.item2.desc":  "Buyer, seller, long-term, short-term — classified automatically.",
++  "strip.item2.desc":  "Buyer, seller, long term or short term, classified automatically.",
+   "strip.item3.label": "Works with your process",
+-  "strip.item3.desc":  "Fits into your current inbox, CRM, and team workflow.",
+-  "strip.item4.label": "Keeps following up",
+-  "strip.item4.desc":  "If the lead goes quiet, the system continues automatically.",
++  "strip.item3.desc":  "We set it up around the way your team already works.",
++  "strip.item4.label": "Follow up in preparation",
++  "strip.item4.desc":  "Only where the customer has agreed to it.",
+ 
+   /* Lead Lost */
+   "lost.label":           "The Hidden Cost",
+@@ -118,39 +125,38 @@ export const en: Record<string, string> = {
+   "lost.conclusion.sub":  "This happens every day. It doesn't have to.",
+ 
+   /* Demo Flow */
+-  "demo.label":           "Live Demo",
+-  "demo.heading":         "See it happen in real time",
+-  "demo.sub":             "Scroll through to watch an inquiry arrive, get replied to, scored, and flagged",
++  "demo.label":           "Demo (simulation)",
++  "demo.heading":         "See the steps, in a simulation",
++  "demo.sub":             "Scroll through to watch an enquiry arrive, get answered, prioritised and turned into a task",
+   "demo.scroll.hint":     "↓ Keep scrolling",
+   "demo.step1.tab":       "Inquiry",
+   "demo.step2.tab":       "Reply",
+-  "demo.step3.tab":       "Score",
+-  "demo.step4.tab":       "Alert",
++  "demo.step3.tab":       "Priority",
++  "demo.step4.tab":       "Task",
+   "demo.step1.label":     "Customer message",
+-  "demo.step2.label":     "Instant system reply",
+-  "demo.step3.label":     "Lead scoring",
+-  "demo.step4.label":     "Agent WhatsApp alert",
++  "demo.step2.label":     "Automatic reply",
++  "demo.step3.label":     "Priority for this lead",
++  "demo.step4.label":     "Task for the team",
+   "demo.msg.from":        "Klara S.",
+-  "demo.msg.channel":     "Inquiry via website",
++  "demo.msg.channel":     "Inquiry via email",
+   "demo.msg.waiting":     "Waiting for response...",
+   "demo.msg.text":        "\"Hi, is this property still available in Nerja? We are 2 people, budget 900–1200€, looking from June.\"",
+   "demo.reply.from":      "NuovaSolution",
+-  "demo.reply.speed":     "Replied in < 1 second",
++  "demo.reply.speed":     "Automatic reply",
+   "demo.reply.text":      "\"Hi! Yes, it's available. I'll send you options shortly. When would you like to schedule a viewing?\"",
+-  "demo.reply.status":    "Lead engaged instantly",
+-  "demo.score.title":     "Lead Score",
+-  "demo.score.temp":      "HOT LEAD",
+-  "demo.alert.title":     "Agent notified instantly via WhatsApp",
++  "demo.reply.status":    "Lead answered",
++  "demo.score.title":     "Priority",
++  "demo.score.temp":      "HIGH PRIORITY",
++  "demo.alert.title":     "A task for the team",
+   "demo.alert.label":     "NuovaSolution",
+-  "demo.alert.online":    "online",
+-  "demo.alert.hot":       "🔥 HOT LEAD",
+-  "demo.alert.buyer":     "Buyer – Nerja",
+-  "demo.alert.budget":    "€900–1,200 / month",
++  "demo.alert.hot":       "HIGH PRIORITY",
++  "demo.alert.buyer":     "Buyer · Nerja",
++  "demo.alert.budget":    "900 to 1.200 € per month",
+   "demo.alert.people":    "2 people",
+-  "demo.alert.movein":    "Move-in: June",
+-  "demo.alert.viewing":   "Viewing interest:",
++  "demo.alert.movein":    "From June",
++  "demo.alert.viewing":   "Viewing requested:",
+   "demo.alert.yes":       "Yes",
+-  "demo.alert.cta":       "→ Call now",
++  "demo.alert.cta":       "→ Open the record",
+ 
+   /* Chat Demo */
+   "chat.label":           "Qualification Flow",
+@@ -167,7 +173,7 @@ export const en: Record<string, string> = {
+   "speed.label":          "Why Speed Wins",
+   "speed.heading":        "The fastest agency usually wins the client",
+   "speed.sub":            "Speed is not a nice-to-have. It's what separates closed deals from lost ones",
+-  "speed.note":           "Most agencies reply in hours. NuovaSolution replies in under a second.",
++  "speed.note":           "A reply in seconds, not hours.",
+   "speed.slow.title":     "Without NuovaSolution",
+   "speed.slow.t1":        "0:00",
+   "speed.slow.l1":        "Inquiry arrives",
+@@ -181,20 +187,20 @@ export const en: Record<string, string> = {
+   "speed.fast.title":     "With NuovaSolution",
+   "speed.fast.t1":        "0:00",
+   "speed.fast.l1":        "Inquiry arrives",
+-  "speed.fast.t2":        "< 1 second",
+-  "speed.fast.l2":        "Instant reply sent automatically",
+-  "speed.fast.t3":        "Instant",
+-  "speed.fast.l3":        "Lead qualified and scored",
+-  "speed.fast.t4":        "Instant",
+-  "speed.fast.l4":        "Agent alerted if lead is hot",
+-  "speed.fast.outcome":   "Lead engaged — viewing booked",
++  "speed.fast.t2":        "Seconds",
++  "speed.fast.l2":        "Reply sent automatically",
++  "speed.fast.t3":        "Automatic",
++  "speed.fast.l3":        "Lead qualified and prioritised",
++  "speed.fast.t4":        "Automatic",
++  "speed.fast.l4":        "Viewing request becomes a task",
++  "speed.fast.outcome":   "Lead answered, viewing request as a task",
+ 
+   /* Real Scenarios */
+   "scenarios.label":      "Real Situations",
+-  "scenarios.headline":   "Every lead handled automatically from first message to a qualified opportunity",
+-  "scenarios.sub":        "From first message to a qualified buyer or seller. Everything runs in the background",
++  "scenarios.headline":   "From the first message to a qualified enquiry",
++  "scenarios.sub":        "Text enquiries are answered and qualified in the background.",
+ 
+-  "scenarios.s1.title":   "The system replies instantly and collects what matters",
++  "scenarios.s1.title":   "The system replies automatically and collects what matters",
+   "scenarios.s1.text":    "Budget, timing and real intent",
+   "scenarios.s1.label.client": "Client",
+   "scenarios.s1.loop.c1": "Hi, I'm in Málaga and looking for an apartment in August.",
+@@ -208,70 +214,70 @@ export const en: Record<string, string> = {
+   "scenarios.filter.warm": "Warm",
+   "scenarios.filter.hot":  "Hot",
+ 
+-  "scenarios.s3.title":   "You instantly see which leads are worth your time",
+-  "scenarios.s3.text":    "Every message is evaluated automatically. A lead can be cold, warm, or hot from the start. If the conversation changes, the priority updates.",
++  "scenarios.s3.title":   "You see which leads are worth your time",
++  "scenarios.s3.text":    "Messages are evaluated automatically. A lead can be cold, warm or hot from the start, and the priority updates as the conversation changes.",
+   "scenarios.s3.visual.note": "Priority updates automatically",
+   "scenarios.s3.detail":  "Ready to move in August",
+ 
+-  "scenarios.s4.title":   "If a client stops replying, the system follows up automatically so no opportunity is lost",
+-  "scenarios.s4.text":    "If a client doesn't reply, follow-ups are sent automatically. No manual work. No missed opportunities.",
++  "scenarios.s4.title":   "Follow up with the customer's permission is in preparation",
++  "scenarios.s4.text":    "When a customer goes quiet, the conversation stays on their record. Automatic follow up, only where the customer has agreed to it, is being prepared.",
+   "scenarios.fup.t1":     "Day 1",
+   "scenarios.fup.l1":     "Message sent",
+   "scenarios.fup.t2":     "Day 2",
+   "scenarios.fup.l2":     "No response",
+   "scenarios.fup.t3":     "Day 3",
+-  "scenarios.fup.l3":     "Follow-up sent automatically",
++  "scenarios.fup.l3":     "Follow up in preparation",
+ 
+   /* Lead Intelligence */
+   "intel.label":             "LEAD INTELLIGENCE",
+-  "intel.headline":          "Know instantly which leads are worth your time",
+-  "intel.sub":               "Every lead is answered, qualified and scored so you can focus on closing deals",
++  "intel.headline":          "Know which leads are worth your time",
++  "intel.sub":               "Leads are answered, qualified and given a priority, so you can focus on the most promising ones",
+   "intel.score.cold":        "Cold",
+   "intel.score.warm":        "Warm",
+   "intel.score.hot":         "Hot",
+-  "intel.score.note":        "As more information comes in, the score updates automatically",
+-  "intel.build.title":       "The system builds a clear lead score step by step",
++  "intel.score.note":        "As more information comes in, the priority updates automatically",
++  "intel.build.title":       "The system builds a clear priority step by step",
+   "intel.build.r1":          "Budget confirmed",
+   "intel.build.r2":          "Timeline confirmed",
+   "intel.build.r3":          "Real intent detected",
+-  "intel.build.text":        "Every message adds missing information and improves the quality of the lead",
++  "intel.build.text":        "Each message can add missing information and update the priority",
+   "intel.outcome.title":     "You only see real opportunities",
+-  "intel.outcome.text":      "Irrelevant or low quality leads are filtered automatically. High quality leads are prioritized and sent to you instantly.",
+-  "intel.outcome.crm":       "Every lead is saved and updated in your CRM automatically",
+-  "intel.outcome.highlight": "Leads above 80 are marked as priority instantly",
++  "intel.outcome.text":      "Leads get a priority, so the most promising ones are handled first.",
++  "intel.outcome.crm":       "Leads are recorded in Nuova with their qualification",
++  "intel.outcome.highlight": "The most promising leads are marked as priority",
+ 
+   /* Final CTA */
+   "cta.label":      "NEXT STEP",
+   "cta.heading":    "The first agent to reply wins the client",
+-  "cta.sub":        "Every inquiry is answered, qualified and prioritized automatically. You focus only on the ones that matter",
++  "cta.sub":        "Text enquiries are answered, qualified and prioritised, so your team starts with the most promising ones",
+   "cta.primary":    "See how it works",
+   "cta.secondary":  "Book your demo",
+-  "cta.start.free": "Start for free",
+-  "cta.microcopy":  "15 minutes. No commitment",
+-  "cta.compat":     "Works with your existing inbox, portals and lead sources",
+-  "cta.compat2":    "No setup needed",
++  "cta.start.free": "Book a demo",
++  "cta.microcopy":  "Optional. On a real enquiry.",
++  "cta.compat":     "Works with your existing email and WhatsApp",
++  "cta.compat2":    "We set it up with you",
+   "cta.process.1":  "Connect your inbox or lead source",
+-  "cta.process.2":  "Replies start instantly",
++  "cta.process.2":  "Replies start automatically",
+   "cta.process.3":  "You see which leads are worth your time",
+   "cta.email.address":  "antonio@nuovasolution.com",
+-  "footer.tagline":     "AI lead automation for real estate agencies in Spain.",
++  "footer.tagline":     "The operating layer of a real estate agency. Built for agencies in Spain.",
+   "footer.copy":        "© 2026 NuovaSolution. All rights reserved.",
+ 
+   /* FAQ */
+   "faq.label":    "QUESTIONS",
+   "faq.headline": "Everything you need to know",
+   "faq.q1.q":    "Do I need to change my current setup?",
+-  "faq.q1.a":    "No. The system works with your existing email and lead sources.",
++  "faq.q1.a":    "No. You keep your email and WhatsApp, and we set Nuova up with you.",
+   "faq.q2.q":    "What happens when a new inquiry comes in?",
+-  "faq.q2.a":    "It is answered instantly, qualified and scored automatically.",
+-  "faq.q3.q":    "Will every lead get a reply?",
+-  "faq.q3.a":    "Yes. Every real inquiry gets a reply. Only spam is ignored.",
++  "faq.q2.a":    "It is answered automatically, qualified and given a priority.",
++  "faq.q3.q":    "Do enquiries get a reply?",
++  "faq.q3.a":    "Text enquiries on connected channels get an automatic reply.",
+   "faq.q4.q":    "How do I know which leads are worth my time?",
+-  "faq.q4.a":    "Each lead is scored from 1 to 100. The highest quality leads are clearly prioritized.",
++  "faq.q4.a":    "Each lead gets a priority: cold, warm or hot. The most promising ones are clearly marked.",
+   "faq.q5.q":    "What happens after a lead is qualified?",
+-  "faq.q5.a":    "The lead is updated in your system and you are notified when it is ready to move forward.",
++  "faq.q5.a":    "The lead is updated in Nuova, and a viewing request becomes a task for your team.",
+   "faq.q6.q":    "What if a client does not respond?",
+-  "faq.q6.a":    "The system follows up automatically so no opportunity is lost.",
+-  "faq.q7.q":    "Can I test this before making a decision?",
+-  "faq.q7.a":    "Yes. After the demo, you can try it with your own leads.",
++  "faq.q6.a":    "The conversation stays on their record. Automatic follow up, only with the customer's permission, is in preparation.",
++  "faq.q7.q":    "Can I test this before deciding?",
++  "faq.q7.a":    "A free 14 day trial without payment is being prepared. Until it opens, a demo shows Nuova on a real enquiry.",
+ };
+diff --git a/translations/es.ts b/translations/es.ts
+index 8d214cb..1326d97 100644
+--- a/translations/es.ts
++++ b/translations/es.ts
+@@ -1,6 +1,6 @@
+ /**
+- * Spanish translations — structure ready, content to be refined by a native speaker.
+- * Currently mirrors English as placeholder.
++ * Spanish strings, written for Spain (tú). Hotfix oldsite-fix-v2
++ * (docs OLD_LIVE_SITE_HOTFIX_COPY_v2.md, 2026-09-23): see translations/en.ts for the rules.
+  */
+ export const es: Record<string, string> = {
+   /* Navigation */
+@@ -10,54 +10,54 @@ export const es: Record<string, string> = {
+ 
+   /* Hero */
+   "hero.label":               "Para Agencias Inmobiliarias",
+-  "hero.headline.line1":      "Responde en segundos",
++  "hero.headline.line1":      "Responde en segundos, no en horas",
+   "hero.headline.line2":      "Habla solo con compradores y vendedores que realmente quieren avanzar y valen tu tiempo",
+   "hero.pain.line1":          "El primer agente en responder se queda con el cliente.",
+   "hero.pain.line2":          "Asegúrate de ser tú.",
+-  "hero.sub":                 "Cada consulta recibe respuesta. El sistema filtra y te muestra qué clientes realmente van en serio.",
+-  "hero.cta.note":            "Lista en 15 minutos. Sin configuración.",
++  "hero.sub":                 "Las consultas de texto reciben respuesta, y cada una recibe una prioridad, para que veas quién va en serio.",
++  "hero.cta.note":            "Te enseñamos Nuova con una consulta real, no con un PowerPoint.",
+   "hero.trust.line1":         "Diseñado para agencias inmobiliarias en España",
+   "hero.trust.line2":         "Funciona con tu bandeja de entrada y fuentes de leads actuales",
+-  "hero.feature.1.title":     "Responde al instante",
+-  "hero.feature.1.desc":      "Cada consulta recibe respuesta en segundos",
+-  "hero.feature.2.title":     "Calificación automática",
+-  "hero.feature.2.desc":      "Sabe al instante quién quiere comprar, alquilar o vender",
+-  "hero.feature.3.title":     "Sin oportunidades perdidas",
+-  "hero.feature.3.desc":      "Cada consulta se captura y se responde al instante",
++  "hero.feature.1.title":     "Responde automáticamente",
++  "hero.feature.1.desc":      "Las consultas de texto por WhatsApp y email reciben una respuesta automática",
++  "hero.feature.2.title":     "Cualificación automática",
++  "hero.feature.2.desc":      "Ve quién quiere comprar, alquilar o vender",
++  "hero.feature.3.title":     "Registradas y respondidas",
++  "hero.feature.3.desc":      "Las consultas se registran y se responden",
+   "hero.feature.4.title":     "Cierra más operaciones",
+   "hero.feature.4.desc":      "Concéntrate solo en clientes con potencial real",
+   "hero.cta.primary":         "Reservar Demo",
+   "hero.cta.secondary":       "Ver en acción",
+   "hero.scroll":              "Desplazar",
+-  "hero.chat.replied":        "RESPUESTA INMEDIATA",
++  "hero.chat.replied":        "Respondido automáticamente",
+   "hero.chat.msg.1":          "Hola, estoy buscando una propiedad cerca de Marbella.",
+   "hero.chat.msg.2":          "Mi presupuesto es de unos 800k y estoy en la zona ahora mismo.",
+   "hero.chat.msg.3":          "Me gustaría ver algo mañana.",
+   "hero.chat.reply.1":        "Hola Daniel, encantado de ayudarte.",
+   "hero.chat.reply.2":        "Mañana podría funcionar, voy a revisar qué opciones tenemos disponibles.",
+   "hero.chat.reply.3":        "¿Buscas algo en una zona concreta o tienes alguna preferencia?",
+-  "hero.chat.sent":           "Enviado a tu móvil",
+-  "hero.chat.alert.title":    "NUEVA CONSULTA",
+-  "hero.chat.alert.line1":    "Comprador serio · Marbella",
+-  "hero.chat.alert.line2":    "Solicita visita mañana",
++  "hero.chat.sent":           "Añadido a tus tareas",
++  "hero.chat.alert.title":    "Petición de visita",
++  "hero.chat.alert.line1":    "Comprador · Marbella",
++  "hero.chat.alert.line2":    "Pide visita para mañana",
+ 
+-  /* Always On */
+-  "always.label":    "Siempre Activo",
+-  "always.headline": "Tu agencia nunca para",
+-  "always.sub":      "Responde al instante, hace seguimiento automático y convierte conversaciones en oportunidades reales",
++  /* De día o de noche */
++  "always.label":    "De día o de noche",
++  "always.headline": "Las consultas siguen avanzando mientras tu equipo está ocupado",
++  "always.sub":      "Responde automáticamente y mantiene cada conversación en una sola ficha",
+   "always.row1":     "Llega una nueva consulta",
+-  "always.row2":     "Respuesta enviada al instante",
+-  "always.row3":     "Seguimiento si no hay respuesta",
+-  "always.row4":     "Clientes serios identificados",
+-  "always.row5":     "Te avisamos cuando importa",
++  "always.row2":     "Respuesta enviada automáticamente",
++  "always.row3":     "Seguimiento con permiso del cliente: en preparación",
++  "always.row4":     "Prioridad asignada a cada consulta",
++  "always.row5":     "Una petición de visita pasa a ser una tarea",
+   "always.row6":     "La conversación sigue de forma natural",
+ 
+-  /* Always On — flow visualization */
++  /* De día o de noche: flow visualization */
+   "always.step.1":        "Nueva consulta",
+   "always.step.2":        "Analizado",
+   "always.step.3":        "Clasificado",
+   "always.step.4":        "Evaluado",
+-  "always.step.5":        "Respuesta",
++  "always.step.5":        "Respuesta automática",
+   "always.step.6":        "Prioritario",
+ 
+   "always.cls.1":         "Comprador · Vendedor",
+@@ -68,39 +68,39 @@ export const es: Record<string, string> = {
+   "always.score.hot":     "Prioritario",
+ 
+   "always.alert.main":    "WhatsApp / Email",
+-  "always.alert.sub":     "Alerta inmediata",
++  "always.alert.sub":     "Tarea para tu equipo",
+ 
+-  "always.fup":           "Sin respuesta → seguimiento automático",
+-  "always.crm":           "Siempre sincronizado con tu CRM",
++  "always.fup":           "Seguimiento: en preparación",
++  "always.crm":           "Registrado como lead en Nuova",
+ 
+   "always.time.1":        "Ahora",
+-  "always.time.2":        "Al instante",
++  "always.time.2":        "Automático",
+   "always.time.3":        "Segundos",
+   "always.time.4":        "Continuo",
+ 
+   "always.left.1.title":  "Nueva consulta",
+-  "always.left.1.desc":   "Email, WhatsApp, formularios",
++  "always.left.1.desc":   "Email y WhatsApp",
+   "always.left.2.title":  "Detecta la intención",
+   "always.left.2.desc1":  "Comprador · Vendedor",
+   "always.left.2.desc2":  "Corto · Largo plazo",
+   "always.left.3.title":  "Prioriza clientes",
+   "always.left.3.desc1":  "Frío · Interesado · Prioritario",
+-  "always.left.3.desc2":  "",
+-  "always.left.4.title":  "Filtra y continúa automáticamente",
+-  "always.left.4.desc":   "Solo te llegan los contactos relevantes",
++  "always.left.3.desc2":  "Evaluado automáticamente",
++  "always.left.4.title":  "Prioriza y traspasa",
++  "always.left.4.desc":   "Primero los leads más prometedores",
+ 
+   /* Trust Strip */
+-  "strip.label":       "Siempre Activo",
+-  "strip.headline":    "Diseñado para no perder nunca un cliente serio",
+-  "strip.sub":         "Cada consulta se captura, comprende, prioriza y gestiona automáticamente. Sin mensajes perdidos. Sin retrasos. Sin caos manual.",
+-  "strip.item1.label": "Responde al instante",
+-  "strip.item1.desc":  "Cada consulta recibe respuesta inmediata, de día o de noche.",
++  "strip.label":       "De día o de noche",
++  "strip.headline":    "Hecho para que las consultas no se queden sin respuesta",
++  "strip.sub":         "Las consultas de texto se capturan, se entienden y se priorizan automáticamente. El seguimiento, solo con el permiso del cliente, está en preparación.",
++  "strip.item1.label": "Responde automáticamente",
++  "strip.item1.desc":  "Las consultas de texto reciben una respuesta automática, de día o de noche.",
+   "strip.item2.label": "Entiende la intención",
+-  "strip.item2.desc":  "Comprador, vendedor, largo plazo, corto plazo — clasificado automáticamente.",
++  "strip.item2.desc":  "Comprador, vendedor, largo plazo o corto plazo, clasificado automáticamente.",
+   "strip.item3.label": "Se adapta a tu proceso",
+-  "strip.item3.desc":  "Se integra en tu buzón actual, CRM y flujo de trabajo del equipo.",
+-  "strip.item4.label": "Continúa el seguimiento",
+-  "strip.item4.desc":  "Si el cliente queda en silencio, el sistema continúa automáticamente.",
++  "strip.item3.desc":  "Lo configuramos según la forma en que ya trabaja tu equipo.",
++  "strip.item4.label": "Seguimiento en preparación",
++  "strip.item4.desc":  "Solo cuando el cliente lo ha aceptado.",
+ 
+   /* Lead Lost */
+   "lost.label":           "El Coste Oculto",
+@@ -122,39 +122,38 @@ export const es: Record<string, string> = {
+   "lost.conclusion.sub":  "Esto ocurre cada día. No tiene por qué ser así.",
+ 
+   /* Demo Flow */
+-  "demo.label":           "Demo en Vivo",
+-  "demo.heading":         "Míralo ocurrir en tiempo real",
+-  "demo.sub":             "Desplázate para ver cómo llega una consulta, se responde, se puntúa y se marca",
++  "demo.label":           "Demo (simulación)",
++  "demo.heading":         "Mira los pasos, en una simulación",
++  "demo.sub":             "Desplázate para ver cómo llega una consulta, se responde, recibe una prioridad y pasa a ser una tarea",
+   "demo.scroll.hint":     "↓ Sigue desplazando",
+   "demo.step1.tab":       "Consulta",
+   "demo.step2.tab":       "Respuesta",
+-  "demo.step3.tab":       "Puntuación",
+-  "demo.step4.tab":       "Alerta",
++  "demo.step3.tab":       "Prioridad",
++  "demo.step4.tab":       "Tarea",
+   "demo.step1.label":     "Mensaje del cliente",
+-  "demo.step2.label":     "Respuesta instantánea",
+-  "demo.step3.label":     "Puntuación del cliente",
+-  "demo.step4.label":     "Alerta WhatsApp al agente",
++  "demo.step2.label":     "Respuesta automática",
++  "demo.step3.label":     "Prioridad de este contacto",
++  "demo.step4.label":     "Tarea para el equipo",
+   "demo.msg.from":        "Klara S.",
+-  "demo.msg.channel":     "Consulta vía web",
++  "demo.msg.channel":     "Consulta por email",
+   "demo.msg.waiting":     "Esperando respuesta...",
+   "demo.msg.text":        "\"Hola, ¿sigue disponible esta propiedad en Nerja? Somos 2 personas, presupuesto 900–1200€, buscamos desde junio.\"",
+   "demo.reply.from":      "NuovaSolution",
+-  "demo.reply.speed":     "Respondido en < 1 segundo",
++  "demo.reply.speed":     "Respuesta automática",
+   "demo.reply.text":      "\"¡Hola! Sí, está disponible. Te enviaré opciones en breve. ¿Cuándo te gustaría programar una visita?\"",
+-  "demo.reply.status":    "Consulta respondida al instante",
+-  "demo.score.title":     "Puntuación del Cliente",
+-  "demo.score.temp":      "PRIORITARIO",
+-  "demo.alert.title":     "Agente notificado al instante vía WhatsApp",
++  "demo.reply.status":    "Consulta respondida",
++  "demo.score.title":     "Prioridad",
++  "demo.score.temp":      "PRIORIDAD ALTA",
++  "demo.alert.title":     "Una tarea para el equipo",
+   "demo.alert.label":     "NuovaSolution",
+-  "demo.alert.online":    "en línea",
+-  "demo.alert.hot":       "🔥 CLIENTE PRIORITARIO",
+-  "demo.alert.buyer":     "Comprador – Nerja",
+-  "demo.alert.budget":    "€900–1.200 / mes",
++  "demo.alert.hot":       "PRIORIDAD ALTA",
++  "demo.alert.buyer":     "Comprador · Nerja",
++  "demo.alert.budget":    "900 a 1.200 € al mes",
+   "demo.alert.people":    "2 personas",
+-  "demo.alert.movein":    "Entrada: Junio",
+-  "demo.alert.viewing":   "Interés en visita:",
++  "demo.alert.movein":    "Desde junio",
++  "demo.alert.viewing":   "Visita solicitada:",
+   "demo.alert.yes":       "Sí",
+-  "demo.alert.cta":       "→ Llamar ahora",
++  "demo.alert.cta":       "→ Abrir la ficha",
+ 
+   /* Chat Demo */
+   "chat.label":           "Flujo de Cualificación",
+@@ -171,7 +170,7 @@ export const es: Record<string, string> = {
+   "speed.label":          "Por Qué Gana la Velocidad",
+   "speed.heading":        "La agencia más rápida suele ganar al cliente",
+   "speed.sub":            "La velocidad no es un extra. Es lo que separa los cierres de las oportunidades perdidas",
+-  "speed.note":           "La mayoría de las agencias responden en horas. NuovaSolution responde en menos de un segundo.",
++  "speed.note":           "Una respuesta en segundos, no en horas.",
+   "speed.slow.title":     "Sin NuovaSolution",
+   "speed.slow.t1":        "0:00",
+   "speed.slow.l1":        "Llega la consulta",
+@@ -185,20 +184,20 @@ export const es: Record<string, string> = {
+   "speed.fast.title":     "Con NuovaSolution",
+   "speed.fast.t1":        "0:00",
+   "speed.fast.l1":        "Llega la consulta",
+-  "speed.fast.t2":        "< 1 segundo",
+-  "speed.fast.l2":        "Respuesta instantánea enviada automáticamente",
+-  "speed.fast.t3":        "Instantáneo",
+-  "speed.fast.l3":        "Cliente cualificado y puntuado",
+-  "speed.fast.t4":        "Instantáneo",
+-  "speed.fast.l4":        "Agente alertado si el cliente es prioritario",
+-  "speed.fast.outcome":   "Cliente captado — visita reservada",
++  "speed.fast.t2":        "Segundos",
++  "speed.fast.l2":        "Respuesta enviada automáticamente",
++  "speed.fast.t3":        "Automático",
++  "speed.fast.l3":        "Cliente cualificado y priorizado",
++  "speed.fast.t4":        "Automático",
++  "speed.fast.l4":        "La petición de visita pasa a ser una tarea",
++  "speed.fast.outcome":   "Consulta respondida, petición de visita como tarea",
+ 
+   /* Real Scenarios */
+   "scenarios.label":      "Situaciones Reales",
+-  "scenarios.headline":   "Cada consulta gestionada automáticamente desde el primer mensaje hasta una oportunidad cualificada",
+-  "scenarios.sub":        "Desde el primer mensaje hasta un cliente cualificado. Todo funciona en segundo plano",
++  "scenarios.headline":   "Del primer mensaje a una consulta cualificada",
++  "scenarios.sub":        "Las consultas de texto se responden y se cualifican en segundo plano.",
+ 
+-  "scenarios.s1.title":   "El sistema responde al instante y recoge lo importante",
++  "scenarios.s1.title":   "El sistema responde automáticamente y recoge lo importante",
+   "scenarios.s1.text":    "Presupuesto, tiempos e intención real",
+   "scenarios.s1.label.client": "Interesado",
+   "scenarios.s1.loop.c1": "Hola, estoy en Málaga y busco un apartamento para agosto.",
+@@ -212,70 +211,70 @@ export const es: Record<string, string> = {
+   "scenarios.filter.warm": "Interesado",
+   "scenarios.filter.hot":  "Prioritario",
+ 
+-  "scenarios.s3.title":   "Sabes al instante qué clientes valen la pena",
+-  "scenarios.s3.text":    "Cada mensaje se evalúa automáticamente. Un cliente puede ser frío, interesado o prioritario desde el inicio. Si la conversación cambia, la prioridad también.",
++  "scenarios.s3.title":   "Ves qué clientes valen la pena",
++  "scenarios.s3.text":    "Los mensajes se evalúan automáticamente. Un cliente puede ser frío, interesado o prioritario desde el inicio, y la prioridad se actualiza según cambia la conversación.",
+   "scenarios.s3.visual.note": "Prioridad actualizada automáticamente",
+   "scenarios.s3.detail":  "Listo para mudarse en agosto",
+ 
+-  "scenarios.s4.title":   "Si un cliente deja de responder, el sistema hace seguimiento automático para no perder ninguna oportunidad",
+-  "scenarios.s4.text":    "Si el cliente no responde, el sistema hace el seguimiento automáticamente. Sin trabajo manual. Sin oportunidades perdidas.",
++  "scenarios.s4.title":   "El seguimiento con permiso del cliente está en preparación",
++  "scenarios.s4.text":    "Cuando un cliente deja de responder, la conversación queda en su ficha. El seguimiento automático, solo cuando el cliente lo ha aceptado, se está preparando.",
+   "scenarios.fup.t1":     "Día 1",
+   "scenarios.fup.l1":     "Mensaje enviado",
+   "scenarios.fup.t2":     "Día 2",
+   "scenarios.fup.l2":     "Sin respuesta",
+   "scenarios.fup.t3":     "Día 3",
+-  "scenarios.fup.l3":     "Seguimiento enviado automáticamente",
++  "scenarios.fup.l3":     "Seguimiento en preparación",
+ 
+   /* Lead Intelligence */
+   "intel.label":             "INTELIGENCIA DE LEADS",
+-  "intel.headline":          "Sabe al instante qué clientes valen tu tiempo",
+-  "intel.sub":               "Cada consulta se responde, se cualifica y se puntúa para que te centres en cerrar ventas",
++  "intel.headline":          "Sabe qué clientes valen tu tiempo",
++  "intel.sub":               "Las consultas se responden, se cualifican y reciben una prioridad, para que te centres en las más prometedoras",
+   "intel.score.cold":        "Frío",
+   "intel.score.warm":        "Interesado",
+   "intel.score.hot":         "Prioritario",
+-  "intel.score.note":        "A medida que llega más información, la puntuación se actualiza automáticamente",
+-  "intel.build.title":       "El sistema construye una puntuación clara paso a paso",
++  "intel.score.note":        "A medida que llega más información, la prioridad se actualiza automáticamente",
++  "intel.build.title":       "El sistema construye una prioridad clara paso a paso",
+   "intel.build.r1":          "Presupuesto confirmado",
+   "intel.build.r2":          "Tiempo definido",
+   "intel.build.r3":          "Intención real detectada",
+-  "intel.build.text":        "Cada mensaje añade la información que falta y mejora la calidad de la oportunidad",
++  "intel.build.text":        "Cada mensaje puede añadir información que falta y actualizar la prioridad",
+   "intel.outcome.title":     "Solo ves oportunidades reales",
+-  "intel.outcome.text":      "Las consultas irrelevantes o de baja calidad se filtran automáticamente. Los clientes con mayor potencial se priorizan y se te envían al instante.",
+-  "intel.outcome.crm":       "Cada contacto se guarda y se actualiza automáticamente en tu CRM",
+-  "intel.outcome.highlight": "Los clientes con más de 80 puntos se marcan como prioritarios al instante",
++  "intel.outcome.text":      "Los leads reciben una prioridad, así que los más prometedores se atienden primero.",
++  "intel.outcome.crm":       "Los contactos quedan registrados en Nuova con su cualificación",
++  "intel.outcome.highlight": "Los leads más prometedores se marcan como prioritarios",
+ 
+   /* Final CTA */
+   "cta.label":      "SIGUIENTE PASO",
+   "cta.heading":    "El primer agente en responder se queda con el cliente",
+-  "cta.sub":        "Cada consulta se responde, cualifica y prioriza automáticamente. Tú solo te centras en las que importan",
++  "cta.sub":        "Las consultas de texto se responden, se cualifican y se priorizan, para que tu equipo empiece por las más prometedoras",
+   "cta.primary":    "Ver cómo funciona",
+   "cta.secondary":  "Reservar demo",
+-  "cta.start.free": "Empezar gratis",
+-  "cta.microcopy":  "15 minutos. Sin compromiso",
+-  "cta.compat":     "Funciona con tu bandeja de entrada, portales y fuentes de contactos actuales",
+-  "cta.compat2":    "Sin configuración necesaria",
++  "cta.start.free": "Reserva una demo",
++  "cta.microcopy":  "Opcional. Con una consulta real.",
++  "cta.compat":     "Funciona con tu email y tu WhatsApp actuales",
++  "cta.compat2":    "Lo configuramos contigo",
+   "cta.process.1":  "Conecta tu bandeja de entrada o fuente de contactos",
+-  "cta.process.2":  "Las respuestas empiezan al instante",
++  "cta.process.2":  "Las respuestas empiezan automáticamente",
+   "cta.process.3":  "Ves qué clientes valen tu tiempo",
+   "cta.email.address":  "antonio@nuovasolution.com",
+-  "footer.tagline":     "Automatización IA de leads para agencias inmobiliarias en España.",
++  "footer.tagline":     "La capa operativa de una agencia inmobiliaria. Hecho para agencias en España.",
+   "footer.copy":        "© 2026 NuovaSolution. Todos los derechos reservados.",
+ 
+   /* FAQ */
+   "faq.label":    "PREGUNTAS",
+   "faq.headline": "Todo lo que necesitas saber",
+   "faq.q1.q":    "¿Tengo que cambiar mi sistema actual?",
+-  "faq.q1.a":    "No. Funciona con tu email y tus fuentes de contactos actuales.",
++  "faq.q1.a":    "No. Mantienes tu email y tu WhatsApp, y configuramos Nuova contigo.",
+   "faq.q2.q":    "¿Qué pasa cuando entra una nueva consulta?",
+-  "faq.q2.a":    "Se responde al instante, se cualifica y se puntúa automáticamente.",
+-  "faq.q3.q":    "¿Todos los clientes reciben respuesta?",
+-  "faq.q3.a":    "Sí. Todas las consultas reales reciben respuesta. Solo se ignora el spam.",
++  "faq.q2.a":    "Se responde automáticamente, se cualifica y recibe una prioridad.",
++  "faq.q3.q":    "¿Las consultas reciben respuesta?",
++  "faq.q3.a":    "Las consultas de texto en los canales conectados reciben una respuesta automática.",
+   "faq.q4.q":    "¿Cómo sé qué clientes valen mi tiempo?",
+-  "faq.q4.a":    "Cada cliente recibe una puntuación de 1 a 100. Los de mayor potencial se priorizan claramente.",
++  "faq.q4.a":    "Cada cliente recibe una prioridad: frío, interesado o prioritario. Los de mayor potencial se marcan claramente.",
+   "faq.q5.q":    "¿Qué pasa después de cualificar a un cliente?",
+-  "faq.q5.a":    "Se actualiza en tu sistema y se te avisa cuando está listo para avanzar.",
++  "faq.q5.a":    "El contacto se actualiza en Nuova, y una petición de visita pasa a ser una tarea para tu equipo.",
+   "faq.q6.q":    "¿Qué pasa si el cliente no responde?",
+-  "faq.q6.a":    "El sistema hace seguimiento automático para no perder oportunidades.",
++  "faq.q6.a":    "La conversación queda en su ficha. El seguimiento automático, solo con el permiso del cliente, está en preparación.",
+   "faq.q7.q":    "¿Puedo probarlo antes de decidir?",
+-  "faq.q7.a":    "Sí. Después de la demo puedes probarlo con tus propios clientes.",
++  "faq.q7.a":    "Se está preparando una prueba gratuita de 14 días sin pago. Hasta que se abra, una demo te enseña Nuova con una consulta real.",
+ };

@@ -51,7 +51,7 @@ export const capabilities: Capability[] = [
     stage: "answer",
     status: "live",
     name: { en: "AI Sales Agent", es: "AI Sales Agent" },
-    navLine: { en: "Answered day or night", es: "Respondido de día o de noche" },
+    navLine: { en: "Answers text enquiries, day or night", es: "Responde consultas de texto, de día o de noche" }, // C3 §1.3
     h1: { en: "Every enquiry gets an answer, and the conversation carries on.", es: "Cada consulta recibe respuesta, y la conversación sigue." },
     lead: {
       en: "Text enquiries on Gmail and WhatsApp are answered and carried forward on the same channel, without anyone in the office having to be free at that moment.",
@@ -83,7 +83,7 @@ export const capabilities: Capability[] = [
     stage: "understand",
     status: "live",
     name: { en: "Lead Intelligence", es: "Lead Intelligence" },
-    navLine: { en: "Qualified and prioritised", es: "Cualificado y priorizado" }, // WCR-060
+    navLine: { en: "Qualifies and prioritises each enquiry", es: "Cualifica y prioriza cada consulta" }, // WCR-060, C3 §1.3
     h1: { en: "One customer, one record, and a clear priority on every enquiry.", es: "Un cliente, una ficha, y una prioridad clara en cada consulta." }, // WCR-061
     lead: {
       // WCR-062 = WCR-020
@@ -111,7 +111,7 @@ export const capabilities: Capability[] = [
     stage: "understand",
     status: "live",
     name: { en: "Universal CRM", es: "CRM universal" },
-    navLine: { en: "One record per customer", es: "Una ficha por cliente" },
+    navLine: { en: "One record per customer", es: "Una ficha por cliente" }, // C3 §1.3
     h1: { en: "Every message, from every channel, on one record.", es: "Cada mensaje, de cada canal, en una sola ficha." },
     lead: {
       // WCR-070
@@ -145,7 +145,7 @@ export const capabilities: Capability[] = [
     stage: "advance",
     status: "in_implementation", // WCR-080
     name: { en: "Property Matching", es: "Property Matching" },
-    navLine: { en: "A short, honest selection", es: "Una selección corta y honesta" },
+    navLine: { en: "A short, honest selection. In development", es: "Una selección corta y honesta. En desarrollo" }, // C3 §1.3
     h1: { en: "A short, relevant selection, with availability the agency can stand behind.", es: "Una selección corta y relevante, con una disponibilidad que la agencia puede defender." },
     lead: {
       // WCR-081
@@ -176,7 +176,7 @@ export const capabilities: Capability[] = [
     stage: "handover",
     status: "final_acceptance",
     name: { en: "Daily Assistant", es: "Daily Assistant" },
-    navLine: { en: "What to do first, and why", es: "Qué hacer primero, y por qué" },
+    navLine: { en: "What to do first, and why", es: "Qué hacer primero, y por qué" }, // C3 §1.3
     h1: { en: "Your agents stop administering the pipeline.", es: "Tus agentes dejan de administrar el pipeline." },
     lead: {
       en: "Daily Goals and the assistant tell your team what to do first, and why. Built, with the final owner test still pending before it is offered.",
@@ -204,7 +204,7 @@ export const capabilities: Capability[] = [
     stage: "answer",
     status: "certified_gate_pending",
     name: { en: "Voice", es: "Voz" },
-    navLine: { en: "Certified internally, gate pending", es: "Certificado internamente, puerta pendiente" },
+    navLine: { en: "Phone calls. Not offered yet", es: "Llamadas. Todavía no se ofrece" }, // C3 §1.3
     h1: { en: "Voice: certified on our side, waiting on the gates.", es: "Voz: certificado por nuestra parte, a la espera de las puertas." },
     lead: {
       // WCR-100 (V-07: no language count)
@@ -233,7 +233,7 @@ export const capabilities: Capability[] = [
     stage: "attract",
     status: "certified_gate_pending",
     name: { en: "Social Growth", es: "Social Growth" },
-    navLine: { en: "Built, Meta review not yet submitted", es: "Construido, revisión de Meta aún no solicitada" }, // WCR-110
+    navLine: { en: "Comments and posts. Not offered yet", es: "Comentarios y publicaciones. Todavía no se ofrece" }, // WCR-110, C3 §1.3
     h1: { en: "Present in public, restrained by design.", es: "Presente en público, contenido por diseño." },
     lead: {
       // WCR-110
@@ -267,7 +267,7 @@ export const capabilities: Capability[] = [
     stage: "attract",
     status: "certified_gate_pending",
     name: { en: "Lead Acquisition", es: "Captación de leads" },
-    navLine: { en: "Certified internally, provider test pending", es: "Certificado internamente, prueba del proveedor pendiente" },
+    navLine: { en: "Leads from your campaigns. Not offered yet", es: "Leads de tus campañas. Todavía no se ofrece" }, // C3 §1.3
     h1: { en: "Leads from your campaigns, carrying the source they came from.", es: "Leads de tus campañas, con la fuente de la que vienen." },
     lead: {
       en: "Meta Lead Ads and Google Lead Forms are certified on our internal harness. The provider test is pending. Until it clears, paid acquisition is not offered.",
@@ -297,7 +297,7 @@ export const capabilities: Capability[] = [
     stage: "advance",
     status: "premium_on_request",
     name: { en: "Property Experience 3D", es: "Property Experience 3D" },
-    navLine: { en: "Premium, on request", es: "Premium, bajo petición" },
+    navLine: { en: "Room by room, on request", es: "Habitación por habitación, bajo petición" }, // C3 §1.3
     h1: { en: "Room by room, through the real doorways.", es: "Habitación por habitación, por las puertas reales." },
     lead: {
       en: "A finished property experience, created by Nuova and checked by a person before it reaches a buyer. A premium service, on request, in preparation.",

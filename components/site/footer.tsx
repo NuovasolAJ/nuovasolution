@@ -6,8 +6,8 @@ import { capabilities } from "@/lib/content/capabilities";
 import { Logo } from "@/components/ui/logo";
 
 /**
- * Identical on every page. Only pages that exist appear. No newsletter,
- * no social icons, no badges.
+ * Identical on every page: the one dark surface of the light system, the foundation band.
+ * Only pages that exist appear. No newsletter, no social icons, no badges.
  */
 export function Footer({ locale }: { locale: Locale }) {
   const d = getDictionary(locale);
@@ -52,7 +52,7 @@ export function Footer({ locale }: { locale: Locale }) {
   }
 
   return (
-    <footer data-canvas="deep" className="border-t border-line-hairline">
+    <footer data-canvas="deep" className="mt-8 rounded-t-[28px]">
       <div className="container-default section-default">
         <div className="grid gap-12 xl:grid-cols-[minmax(0,1.4fr)_repeat(4,minmax(0,1fr))] xl:gap-8">
           <div>

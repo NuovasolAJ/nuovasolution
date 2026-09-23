@@ -296,7 +296,8 @@ try {
   check("WR-17a", "opening the Q&A panel moves focus into it", focusIn, "textarea focused");
   await ev(`(()=>{const t=document.querySelector('[role=dialog] textarea');const set=Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value').set;set.call(t,'Does Nuova work with WhatsApp?');t.dispatchEvent(new Event('input',{bubbles:true}));})()`);
   await ev(`document.querySelector('[role=dialog] form button[type=submit]').click()`);
-  const answered = await waitFor(`/MOCK ANSWER/.test(document.querySelector('[role=log]')?.innerText??'')`, 20000);
+  // The home page also embeds an inline Q&A window; the launcher's window is the dialog.
+  const answered = await waitFor(`/MOCK ANSWER/.test(document.querySelector('[role=dialog] [role=log]')?.innerText??'')`, 20000);
   check("WR-07/08", "question accepted (202), polled, and the answer rendered", answered, "answer from the local contract mock");
   results.screens.push(await shot("m390-en-qa-answered"));
   await send("Input.dispatchKeyEvent", { type: "keyDown", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });

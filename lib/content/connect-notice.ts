@@ -28,8 +28,9 @@ export const connectNoticeSheets: {
   heading: { en: "Before you connect Google Sheets", es: "Antes de conectar Google Sheets" },
   short: [
     {
-      en: "Connecting Google Sheets lets Nuova do its job for your agency: read the enquiries that arrive there, answer them, qualify them and keep them as leads. To do that, Nuova processes the messages and the details people send you, including with AI services that understand the message and draft the reply.",
-      es: "Al conectar Google Sheets, Nuova puede hacer su trabajo para tu agencia: leer las consultas que llegan ahí, responderlas, cualificarlas y guardarlas como leads. Para ello, Nuova trata los mensajes y los datos que te envían las personas, también con servicios de inteligencia artificial que entienden el mensaje y redactan la respuesta.",
+      // COUNSEL_PACKAGE_v2 §D7.1: direction of the data flow corrected (the sheet receives a copy).
+      en: "Connecting Google Sheets gives your team a copy of your leads in a spreadsheet you control. Nuova answers and qualifies the enquiries it receives, and writes each lead to your sheet. To do that, Nuova processes the messages and the details people send you, including with AI services that understand the message and draft the reply.",
+      es: "Al conectar Google Sheets, tu equipo tiene una copia de tus leads en una hoja que controlas tú. Nuova responde y cualifica las consultas que recibe, y escribe cada lead en tu hoja. Para ello, Nuova trata los mensajes y los datos que te envían las personas, también con servicios de inteligencia artificial que entienden el mensaje y redactan la respuesta.",
     },
     {
       en: "Nuova uses this data to provide the service to your agency, not to sell it or to advertise to anyone. You can disconnect at any time.",
@@ -41,8 +42,9 @@ export const connectNoticeSheets: {
     {
       heading: { en: "What is shared", es: "Qué se comparte" },
       text: {
-        en: "From Google Sheets: a copy of each lead: contact details, what they are looking for, qualification and status. Plus what Nuova creates from it: the qualification and priority of each lead, the conversation history, and tasks such as a viewing request.",
-        es: "De Google Sheets: una copia de cada lead: datos de contacto, lo que busca, cualificación y estado. Además, lo que Nuova genera a partir de ello: la cualificación y la prioridad de cada lead, el historial de conversación y tareas como una petición de visita.",
+        // COUNSEL_PACKAGE_v2 §D7.1: the sheet is a copy sink; leads flow TO it.
+        en: "To Google Sheets: a copy of each lead: contact details, what they are looking for, qualification and status. What Nuova keeps: the same lead, its qualification and priority, the conversation history, and tasks such as a viewing request.",
+        es: "A Google Sheets: una copia de cada lead: datos de contacto, lo que busca, cualificación y estado. Lo que Nuova conserva: el mismo lead, su cualificación y prioridad, el historial de conversación y tareas como una petición de visita.",
       },
     },
     {

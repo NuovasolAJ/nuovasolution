@@ -7,10 +7,15 @@ import { Logo } from "@/components/ui/logo";
 import { LanguageSwitcher } from "./language-switcher";
 import { HeaderShell } from "./header-shell";
 import { StatusChip } from "@/components/ui/status";
+import { StatusGlyph } from "@/components/ui/status";
 
 /**
- * Identical on every page. Fixed, solid after 8 px of scroll (HeaderShell).
- * Left: logo. Centre: Platform (mega), Packages, Trial, Contact. Right: language, Log in, Start free.
+ * Identical on every page. Left: logo. Centre: Platform (menu), Packages, Trial, Contact.
+ * Right: language, Log in, Start free.
+ *
+ * The Platform menu lists every capability under its stage with one plain line of what it
+ * does and a short status word. No audit or gate sentence appears here (owner finding); the
+ * full status wording lives on the product page.
  */
 export function Header({ locale }: { locale: Locale }) {
   const d = getDictionary(locale);
@@ -22,46 +27,44 @@ export function Header({ locale }: { locale: Locale }) {
     { href: localePath(locale, "/contact"), label: d.nav.contact },
   ];
 
-  const stageLabel: Record<string, string> = {
-    attract: d.nav.stages.attract,
-    answer: d.nav.stages.answer,
-    understand: d.nav.stages.understand,
-    advance: d.nav.stages.advance,
-    handover: d.nav.stages.handover,
-  };
+  const stageLabel = d.nav.stages as Record<string, string>;
+  const stageLine = d.nav.stageLines as Record<string, string>;
 
   const platformMenu = (
-    <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-      <div>
-        <Link href={localePath(locale, "/platform")} className="group block border-b border-line-hairline pb-5">
-          <span className="t-heading-s text-text-primary group-hover:text-champagne-400 transition-colors duration-micro">{d.nav.overview}</span>
-          <span className="mt-1 block t-body-s text-text-muted">{d.nav.overviewLine}</span>
-        </Link>
-      </div>
-      <ul className="grid gap-x-8 gap-y-6 md:grid-cols-2">
+    <div className="grid gap-6 xl:grid-cols-[minmax(0,240px)_minmax(0,1fr)] xl:gap-8">
+      <Link href={localePath(locale, "/platform")} className="group field-sand flex flex-col justify-between rounded-lg p-5 transition-shadow duration-control hover:shadow-card">
+        <span>
+          <span className="block t-heading-s text-text-primary">{d.nav.menuTitle}</span>
+          <span className="mt-1 block t-body-s text-text-secondary">{d.nav.overviewLine}</span>
+        </span>
+        <span className="mt-6 inline-flex items-center gap-2 t-body-s text-text-primary">
+          {d.nav.allCapabilities}
+          <StatusGlyph glyph="arrow-right" size={14} className="transition-transform duration-micro group-hover:translate-x-0.5" />
+        </span>
+      </Link>
+      <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2 md:grid-cols-3">
         {stageOrder.map((stage) => {
           const items = byStage[stage];
           if (!items.length) return null;
           return (
-            <li key={stage}>
-              <p className="t-eyebrow text-text-muted mb-3">{stageLabel[stage]}</p>
-              <ul className="hairline-list">
+            <div key={stage} className="min-w-0">
+              <p className="t-eyebrow text-text-muted">{stageLabel[stage]}</p>
+              <p className="sr-only">{stageLine[stage]}</p>
+              <ul className="mt-3 space-y-1">
                 {items.map((c) => (
                   <li key={c.slug}>
-                    <Link href={localePath(locale, `/platform/${c.slug}`)} className="group flex items-start justify-between gap-4 py-3">
-                      <span>
-                        <span className="block t-body-m text-text-primary group-hover:text-champagne-400 transition-colors duration-micro">{c.name[locale]}</span>
-                        <span className="block t-caption text-text-muted">{c.navLine[locale]}</span>
-                      </span>
-                      <StatusChip status={c.status} locale={locale} className="mt-0.5 shrink-0" />
+                    <Link href={localePath(locale, `/platform/${c.slug}`)} className="group -mx-2 flex min-h-[44px] flex-col justify-center gap-1 rounded-md px-2 py-2 transition-colors duration-micro hover:bg-surface-sunken">
+                      <span className="block t-body-s font-medium text-text-primary">{c.name[locale]}</span>
+                      <span className="block t-caption text-text-muted">{c.navLine[locale]}</span>
+                      <StatusChip status={c.status} locale={locale} className="mt-0.5 self-start" />
                     </Link>
                   </li>
                 ))}
               </ul>
-            </li>
+            </div>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 

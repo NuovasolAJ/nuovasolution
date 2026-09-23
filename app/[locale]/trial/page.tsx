@@ -4,7 +4,6 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Section } from "@/components/ui/section";
 import { SectionHead, Display, Eyebrow, Lead, Caption, Heading } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
-import { VideoSlot } from "@/components/ui/video-slot";
 import { Reveal } from "@/components/ui/reveal";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
@@ -22,8 +21,9 @@ export default function TrialPage({ params }: { params: { locale: string } }) {
 
   return (
     <>
-      <Section surface="ivory" rhythm="opening" labelledBy="tr-h1">
-        <div className="container-narrow !mx-0 xl:!mx-auto">
+      <Section rhythm="opening" labelledBy="tr-h1" className="overflow-hidden">
+        <div className="atmosphere" aria-hidden="true" />
+        <div className="container-narrow relative !mx-0 xl:!mx-auto">
           <Reveal>
             <Eyebrow className="mb-4">{t.eyebrow}</Eyebrow>
             <Display size="xl" id="tr-h1">{t.h1}</Display>
@@ -63,15 +63,6 @@ export default function TrialPage({ params }: { params: { locale: string } }) {
         </div>
       </Section>
 
-      <Section rhythm="default" labelledBy="tr-film">
-        <div className="container-default">
-          <Reveal><SectionHead eyebrow={t.filmEyebrow} title={t.filmH2} id="tr-film" /></Reveal>
-        </div>
-        <div className="container-wide mt-12">
-          <VideoSlot id="V-05" locale={locale} fallbackHref={p("/signup")} fallbackLabel={d.common.startFree} />
-        </div>
-      </Section>
-
       <Section rhythm="feature" hairline labelledBy="tr-steps">
         <div className="container-default">
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-10">
@@ -93,14 +84,15 @@ export default function TrialPage({ params }: { params: { locale: string } }) {
         </div>
       </Section>
 
-      <Section rhythm="feature" surface="deep" labelledBy="tr-close">
-        <div className="container-text text-center">
-          <Display size="l" id="tr-close" className="mx-auto max-w-[24ch]">{d.home.closing.h2}</Display>
-          <CtaRow align="center" className="mt-12">
-            <ButtonLink href={p("/signup")} size="lg">{d.common.startFree}</ButtonLink>
-            <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
-          </CtaRow>
-          <Caption className="mt-4">{d.common.tryFree}. {d.common.noPayment}</Caption>
+      <Section rhythm="feature" labelledBy="tr-close">
+        <div className="container-default">
+          <div className="field-sand rounded-xl px-6 py-14 text-center md:px-12 md:py-20">
+            <Display size="l" id="tr-close" className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
+            <CtaRow align="center" className="mt-10">
+              <ButtonLink href={p("/signup")} size="lg">{d.common.startFree}</ButtonLink>
+              <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
+            </CtaRow>
+          </div>
         </div>
       </Section>
     </>

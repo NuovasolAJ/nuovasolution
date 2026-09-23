@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useId, useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { Button } from "@/components/ui/button";
+import { Button, ButtonLink } from "@/components/ui/button";
 import { LabelChip } from "@/components/ui/status";
 
-const inputCls = "mt-2 h-12 w-full rounded-sm border border-line-interactive bg-surface-raised px-4 t-body-m text-text-primary placeholder:text-text-muted";
-const labelCls = "block t-body-s text-text-primary";
+const inputCls = "mt-2 h-12 w-full rounded-md border border-line-strong bg-surface-raised px-4 t-body-m text-text-primary placeholder:text-text-muted";
+const labelCls = "block t-body-s font-medium text-text-primary";
 
 type Env = { ok: boolean; code: string; stub?: true; details?: { next?: string; session?: boolean } };
 
@@ -19,18 +19,56 @@ async function post(url: string, body: unknown): Promise<Env> {
   return (await res.json()) as Env;
 }
 
+/** Draft of the sign-up form (never the password), so switching the site language keeps what was typed. */
+const DRAFT_KEY = "nuova_signup_draft";
+type Draft = { name?: string; agency_name?: string; email?: string; language?: string };
+function readDraft(): Draft {
+  try {
+    return JSON.parse(sessionStorage.getItem(DRAFT_KEY) ?? "{}") as Draft;
+  } catch {
+    return {};
+  }
+}
+function writeDraft(d: Draft) {
+  try {
+    sessionStorage.setItem(DRAFT_KEY, JSON.stringify(d));
+  } catch {
+    /* storage unavailable: nothing to keep */
+  }
+}
+function clearDraft() {
+  try {
+    sessionStorage.removeItem(DRAFT_KEY);
+  } catch {
+    /* nothing to clear */
+  }
+}
+
 export function SignupForm({ locale }: { locale: Locale }) {
-  const d = getDictionary(locale).signup;
+  const dict = getDictionary(locale);
+  const d = dict.signup;
   const router = useRouter();
   const id = useId();
   const [busy, setBusy] = useState(false);
+  const inFlight = useRef(false); // a second click before the re-render never sends a second request
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [stub, setStub] = useState(false);
   const [sent, setSent] = useState<string | null>(null);
+  const [draft, setDraft] = useState<Draft | null>(null);
+
+  useEffect(() => {
+    setDraft(readDraft());
+  }, []);
+
+  function keep(form: HTMLFormElement) {
+    const f = new FormData(form);
+    writeDraft({ name: String(f.get("name") ?? ""), agency_name: String(f.get("agency_name") ?? ""), email: String(f.get("email") ?? ""), language: String(f.get("language") ?? "") });
+  }
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (inFlight.current) return;
     const f = new FormData(e.currentTarget);
     const values = {
       name: String(f.get("name") ?? "").trim(),
@@ -48,12 +86,14 @@ export function SignupForm({ locale }: { locale: Locale }) {
     setFieldErrors(fe);
     if (Object.keys(fe).length) return;
 
+    inFlight.current = true;
     setBusy(true);
     setError(null);
     try {
       const r = await post("/api/bff/signup", values);
       if (r.ok) {
         if (r.stub) setStub(true);
+        clearDraft();
         // Staging/live: e-mail confirmation first; the link brings the user back signed in.
         if (r.details?.next === "confirm") {
           setSent(values.email);
@@ -62,45 +102,70 @@ export function SignupForm({ locale }: { locale: Locale }) {
         router.push(localePath(locale, r.details?.session ? "/onboarding" : "/login"));
         return;
       }
-      const msg = (d.errors as Record<string, string>)[r.code] ?? (getDictionary(locale).common.errors as Record<string, string>)[r.code] ?? d.errors.server_error;
+      const rate = (d.rateErrors as Record<string, string>)[r.code];
+      const msg = rate ?? (d.errors as Record<string, string>)[r.code] ?? (dict.common.errors as Record<string, string>)[r.code] ?? d.errors.server_error;
       setError(msg);
     } catch {
       setError(d.errors.server_error);
     } finally {
+      inFlight.current = false;
       setBusy(false);
     }
   }
 
   if (sent) {
     return (
-      <p role="status" className="border border-line-strong bg-surface-raised p-5 t-body-m text-text-secondary" data-signup-sent>
-        {d.checkEmail.replace("{email}", sent)}
-      </p>
+      <div role="status" className="card rounded-xl p-6" data-signup-sent>
+        <h2 className="t-heading-m text-text-primary">{d.checkEmail.h}</h2>
+        <p className="mt-2 t-body-m text-text-primary">{d.checkEmail.body.replace("{email}", sent)}</p>
+        <p className="mt-3 t-body-s text-text-secondary">{d.checkEmail.otherDevice}</p>
+        <p className="mt-2 t-body-s text-text-secondary">{d.checkEmail.noMail}</p>
+        <div className="mt-6 flex flex-col gap-3 md:flex-row md:items-center">
+          <ButtonLink href={localePath(locale, "/login?confirmed=1")} variant="secondary">{d.goToLogin}</ButtonLink>
+          <ResendButton locale={locale} email={sent} />
+        </div>
+        <button type="button" onClick={() => setSent(null)} className="mt-4 min-h-[44px] t-body-s text-text-accent underline underline-offset-4">{d.checkEmail.wrongAddress}</button>
+      </div>
     );
   }
 
+  const fields = [
+    { name: "name", label: d.fields.name, type: "text", auto: "name", value: draft?.name },
+    { name: "agency_name", label: d.fields.agency, type: "text", auto: "organization", value: draft?.agency_name },
+    { name: "email", label: d.fields.email, type: "email", auto: "email", placeholder: d.fields.emailPlaceholder, value: draft?.email },
+    { name: "password", label: d.fields.password, type: "password", auto: "new-password", value: undefined, help: d.passwordHelp },
+  ];
+
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-6">
-      {[
-        { name: "name", label: d.fields.name, type: "text", auto: "name" },
-        { name: "agency_name", label: d.fields.agency, type: "text", auto: "organization" },
-        { name: "email", label: d.fields.email, type: "email", auto: "email", placeholder: d.fields.emailPlaceholder },
-        { name: "password", label: d.fields.password, type: "password", auto: "new-password" },
-      ].map((fld) => (
+    <form onSubmit={onSubmit} onChange={(e) => keep(e.currentTarget)} noValidate className="space-y-6" data-signup-form>
+      {fields.map((fld) => (
         <div key={fld.name}>
           <label htmlFor={`${id}-${fld.name}`} className={labelCls}>{fld.label}</label>
-          <input id={`${id}-${fld.name}`} name={fld.name} type={fld.type} autoComplete={fld.auto} placeholder={fld.placeholder} className={inputCls} aria-invalid={Boolean(fieldErrors[fld.name])} aria-describedby={fieldErrors[fld.name] ? `${id}-${fld.name}-err` : undefined} />
+          <input
+            key={`${fld.name}-${draft ? "d" : "n"}`}
+            id={`${id}-${fld.name}`}
+            name={fld.name}
+            type={fld.type}
+            autoComplete={fld.auto}
+            placeholder={fld.placeholder}
+            defaultValue={fld.value ?? ""}
+            className={inputCls}
+            aria-invalid={Boolean(fieldErrors[fld.name])}
+            aria-describedby={fieldErrors[fld.name] ? `${id}-${fld.name}-err` : "help" in fld && fld.help ? `${id}-${fld.name}-help` : undefined}
+          />
+          {"help" in fld && fld.help && !fieldErrors[fld.name] && <p id={`${id}-${fld.name}-help`} className="mt-2 t-caption text-text-muted">{fld.help}</p>}
           {fieldErrors[fld.name] && <p id={`${id}-${fld.name}-err`} className="mt-2 t-caption text-signal-critical">{fieldErrors[fld.name]}</p>}
         </div>
       ))}
       <div>
         <label htmlFor={`${id}-language`} className={labelCls}>{d.fields.language}</label>
-        <select id={`${id}-language`} name="language" defaultValue={locale} className={inputCls}>
-          <option value="en">English</option>
+        <select key={`language-${draft ? "d" : "n"}`} id={`${id}-language`} name="language" defaultValue={draft?.language === "en" || draft?.language === "es" ? draft.language : locale} aria-describedby={`${id}-language-help`} className={inputCls}>
           <option value="es">Español</option>
+          <option value="en">English</option>
         </select>
+        <p id={`${id}-language-help`} className="mt-2 t-caption text-text-muted">{d.languageHelp}</p>
       </div>
-      {error && <p role="alert" className="t-body-s text-signal-critical">{error}</p>}
+      {error && <p role="alert" className="rounded-md bg-apricot-100 px-4 py-3 t-body-s text-text-primary">{error}</p>}
       <div className="flex flex-col gap-3">
         <Button type="submit" size="lg" full busy={busy} disabled={busy}>{busy ? d.submitting : d.submit}</Button>
         <p className="t-caption text-text-muted">
@@ -108,11 +173,36 @@ export function SignupForm({ locale }: { locale: Locale }) {
           <Link href={localePath(locale, "/legal/privacy")} className="text-text-accent underline underline-offset-4">{locale === "es" ? "Aviso de privacidad" : "Privacy notice"}</Link>
         </p>
       </div>
-      {stub && <p className="t-caption text-text-muted"><LabelChip tone="attention">{getDictionary(locale).common.env.stub.label}</LabelChip> {d.stubNotice}</p>}
+      {stub && <p className="t-caption text-text-muted"><LabelChip tone="attention">{dict.common.env.stub.label}</LabelChip> {d.stubNotice}</p>}
       <p className="t-body-s text-text-secondary">
         {d.haveAccount} <Link href={localePath(locale, "/login")} className="text-text-accent underline underline-offset-4">{d.loginLink}</Link>
       </p>
     </form>
+  );
+}
+
+/** Sends the confirmation e-mail again. The same answer whether or not the address is known. */
+function ResendButton({ locale, email }: { locale: Locale; email: string }) {
+  const d = getDictionary(locale).login;
+  const [state, setState] = useState<"idle" | "busy" | "sent" | "failed">("idle");
+  async function resend() {
+    if (state === "busy") return;
+    setState("busy");
+    try {
+      const r = await post("/api/bff/auth/resend", { email, language: locale });
+      setState(r.ok ? "sent" : "failed");
+    } catch {
+      setState("failed");
+    }
+  }
+  return (
+    <div className="flex flex-col gap-2">
+      <Button type="button" variant="tertiary" onClick={() => void resend()} disabled={state === "busy" || state === "sent"} data-resend>
+        {d.resend}
+      </Button>
+      {state === "sent" && <p role="status" className="t-caption text-signal-positive">{d.resent.replace("{email}", email)}</p>}
+      {state === "failed" && <p role="alert" className="t-caption text-signal-critical">{d.resendFailed}</p>}
+    </div>
   );
 }
 
@@ -125,13 +215,16 @@ export function RegisterForm({ locale, agencyNameHint }: { locale: Locale; agenc
   const d = dict.onboarding.register;
   const id = useId();
   const [busy, setBusy] = useState(false);
+  const inFlight = useRef(false);
   const [error, setError] = useState<string | null>(null);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (inFlight.current) return;
     const f = new FormData(e.currentTarget);
     const agency_name = String(f.get("agency_name") ?? "").trim();
     if (!agency_name) return setError(dict.common.errors.invalid_agency_name);
+    inFlight.current = true;
     setBusy(true);
     setError(null);
     try {
@@ -140,10 +233,12 @@ export function RegisterForm({ locale, agencyNameHint }: { locale: Locale; agenc
         window.location.assign(localePath(locale, "/onboarding"));
         return;
       }
-      setError((dict.common.errors as Record<string, string>)[r.code] ?? dict.common.errors.generic);
+      // AUTH_COPY_v1 §4.1: a backend failure leaves nothing behind, and the text says so.
+      setError(r.code === "server_error" ? d.backendError : (dict.common.errors as Record<string, string>)[r.code] ?? dict.common.errors.generic);
     } catch {
       setError(dict.common.errors.generic);
     } finally {
+      inFlight.current = false;
       setBusy(false);
     }
   }
@@ -152,15 +247,17 @@ export function RegisterForm({ locale, agencyNameHint }: { locale: Locale; agenc
     <form onSubmit={onSubmit} noValidate className="space-y-6" data-register>
       <div>
         <label htmlFor={`${id}-name`} className={labelCls}>{d.agencyName}</label>
-        <input id={`${id}-name`} name="agency_name" type="text" autoComplete="organization" defaultValue={agencyNameHint ?? ""} maxLength={120} className={inputCls} />
+        <input id={`${id}-name`} name="agency_name" type="text" autoComplete="organization" defaultValue={agencyNameHint ?? ""} maxLength={120} aria-describedby={`${id}-name-help`} className={inputCls} />
+        <p id={`${id}-name-help`} className="mt-2 t-caption text-text-muted">{d.agencyNameHelp}</p>
       </div>
       <div className="grid gap-6 md:grid-cols-2">
         <div>
           <label htmlFor={`${id}-lang`} className={labelCls}>{d.language}</label>
-          <select id={`${id}-lang`} name="language" defaultValue={locale === "en" ? "en" : "es"} className={inputCls}>
+          <select id={`${id}-lang`} name="language" defaultValue={locale === "en" ? "en" : "es"} aria-describedby={`${id}-lang-help`} className={inputCls}>
             <option value="es">Español</option>
             <option value="en">English</option>
           </select>
+          <p id={`${id}-lang-help`} className="mt-2 t-caption text-text-muted">{d.languageHelp}</p>
         </div>
         <div>
           <label htmlFor={`${id}-tz`} className={labelCls}>{d.timezone}</label>
@@ -223,16 +320,25 @@ export function SetPasswordForm({ locale }: { locale: Locale }) {
   );
 }
 
-export function LoginForm({ locale }: { locale: Locale }) {
-  const d = getDictionary(locale).login;
+/**
+ * Log in. `confirmed` is set when the person arrives from the confirmation e-mail (or from the
+ * sign-up page): a confirmed account without an agency continues to the registration step after
+ * this login. An unconfirmed account gets the confirmation e-mail again from here.
+ */
+export function LoginForm({ locale, confirmed = false }: { locale: Locale; confirmed?: boolean }) {
+  const dict = getDictionary(locale);
+  const d = dict.login;
   const router = useRouter();
   const id = useId();
   const [busy, setBusy] = useState(false);
+  const inFlight = useRef(false);
   const [error, setError] = useState<string | null>(null);
+  const [unconfirmedEmail, setUnconfirmedEmail] = useState<string | null>(null);
   const [forgot, setForgot] = useState(false);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (inFlight.current) return;
     const f = new FormData(e.currentTarget);
     const email = String(f.get("email") ?? "").trim();
     const password = String(f.get("password") ?? "");
@@ -240,24 +346,32 @@ export function LoginForm({ locale }: { locale: Locale }) {
       setError(d.errors.required);
       return;
     }
+    inFlight.current = true;
     setBusy(true);
     setError(null);
+    setUnconfirmedEmail(null);
     try {
       const r = await post("/api/bff/auth/login", { email, password });
       if (r.ok) {
         router.push(localePath(locale, "/onboarding"));
         return;
       }
-      setError((d.errors as Record<string, string>)[r.code] ?? (getDictionary(locale).common.errors as Record<string, string>)[r.code] ?? d.errors.server_error);
+      if (r.code === "email_not_confirmed") setUnconfirmedEmail(email);
+      const rate = (dict.signup.rateErrors as Record<string, string>)[r.code];
+      setError(rate ?? (d.errors as Record<string, string>)[r.code] ?? (dict.common.errors as Record<string, string>)[r.code] ?? d.errors.server_error);
     } catch {
       setError(d.errors.server_error);
     } finally {
+      inFlight.current = false;
       setBusy(false);
     }
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-6">
+    <form onSubmit={onSubmit} noValidate className="space-y-6" data-login-form>
+      {confirmed && (
+        <p role="status" className="rounded-md bg-sage-100 px-4 py-3 t-body-s text-text-primary" data-confirmed-hint>{d.confirmedHint}</p>
+      )}
       <div>
         <label htmlFor={`${id}-email`} className={labelCls}>{d.fields.email}</label>
         <input id={`${id}-email`} name="email" type="email" autoComplete="email" className={inputCls} />
@@ -266,10 +380,11 @@ export function LoginForm({ locale }: { locale: Locale }) {
         <label htmlFor={`${id}-password`} className={labelCls}>{d.fields.password}</label>
         <input id={`${id}-password`} name="password" type="password" autoComplete="current-password" className={inputCls} />
       </div>
-      {error && <p role="alert" className="t-body-s text-signal-critical">{error}</p>}
+      {error && <p role="alert" className="rounded-md bg-apricot-100 px-4 py-3 t-body-s text-text-primary">{error}</p>}
+      {unconfirmedEmail && <ResendButton locale={locale} email={unconfirmedEmail} />}
       <Button type="submit" size="lg" full busy={busy} disabled={busy}>{busy ? d.submitting : d.submit}</Button>
       <div className="space-y-3">
-        <button type="button" onClick={() => setForgot(true)} className="t-body-s text-text-accent underline underline-offset-4">{d.forgot}</button>
+        <button type="button" onClick={() => setForgot(true)} className="min-h-[44px] t-body-s text-text-accent underline underline-offset-4">{d.forgot}</button>
         {forgot && <p role="status" className="t-body-s text-text-secondary">{d.forgotUnavailable}</p>}
         <p className="t-body-s text-text-secondary">
           {d.noAccount} <Link href={localePath(locale, "/signup")} className="text-text-accent underline underline-offset-4">{d.createLink}</Link>

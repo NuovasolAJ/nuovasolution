@@ -36,6 +36,7 @@ const config: Config = {
         },
         ivory: "var(--ivory)",
         paper: "var(--paper)",
+        canvas: "var(--canvas)",
         champagne: {
           200: "var(--champagne-200)",
           300: "var(--champagne-300)",
@@ -43,6 +44,11 @@ const config: Config = {
           700: "var(--champagne-700)",
           850: "var(--champagne-850)",
         },
+        sage: { 100: "var(--sage-100)", 200: "var(--sage-200)", 700: "var(--sage-700)" },
+        sand: { 100: "var(--sand-100)", 200: "var(--sand-200)" },
+        sky: { 100: "var(--sky-100)", 200: "var(--sky-200)", 700: "var(--sky-700)" },
+        apricot: { 100: "var(--apricot-100)", 200: "var(--apricot-200)" },
+        lavender: { 100: "var(--lavender-100)" },
         surface: {
           canvas: "var(--surface-canvas)",
           raised: "var(--surface-raised)",
@@ -68,13 +74,17 @@ const config: Config = {
       },
       borderRadius: {
         none: "0",
-        sm: "4px",
-        md: "8px",
+        sm: "8px",
+        md: "12px",
+        lg: "20px",
+        xl: "28px",
         pill: "999px",
       },
       boxShadow: {
         overlay: "var(--shadow-overlay)",
-        lift: "0 1px 2px rgba(0,0,0,.40), 0 8px 24px -8px rgba(0,0,0,.50)",
+        soft: "var(--shadow-soft)",
+        card: "var(--shadow-card)",
+        lift: "0 1px 2px rgba(26,25,23,.06), 0 10px 28px -10px rgba(26,25,23,.18)",
         none: "none",
       },
       transitionTimingFunction: {
@@ -84,17 +94,17 @@ const config: Config = {
       transitionDuration: {
         micro: "120ms",
         control: "200ms",
-        element: "320ms",
-        scene: "520ms",
+        element: "360ms",
+        scene: "560ms",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       maxWidth: {
         text: "720px",
-        narrow: "640px",
-        default: "1240px",
-        wide: "1440px",
+        narrow: "560px",
+        default: "1200px",
+        wide: "1400px",
       },
     },
   },

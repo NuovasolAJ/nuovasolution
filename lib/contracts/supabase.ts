@@ -64,6 +64,22 @@ export async function verifySession(token: string | undefined): Promise<Verified
   return { id: u.id, email: u.email ?? null, emailConfirmed: Boolean(u.email_confirmed_at), agencyName: typeof agency === "string" ? agency.slice(0, 120) : null };
 }
 
+/**
+ * GoTrue 429 answers carry an `error_code` that says WHICH limit was hit. The two that matter to
+ * a person at the sign-up form are kept apart (owner finding "Demasiados intentos", 2026-09-22):
+ * - over_email_send_rate_limit: the mail server's send limit; the account may already exist and
+ *   the first e-mail may already be on its way, so the page says "check your inbox first";
+ * - over_request_rate_limit: too many requests from this address; retry later, input kept.
+ * Anything else stays the generic rate_limited. The code is logged without any personal data so
+ * API can match it against the GoTrue log.
+ */
+async function gotrue429(res: Response, where: string): Promise<never> {
+  const j = (await res.json().catch(() => ({}))) as { error_code?: string; msg?: string };
+  const code = j.error_code === "over_email_send_rate_limit" || j.error_code === "over_request_rate_limit" ? j.error_code : "rate_limited";
+  console.warn(`[gotrue] 429 at ${where}: ${j.error_code ?? "no_error_code"}`);
+  throw new BackendRefusal(code, 429);
+}
+
 export async function passwordGrant(email: string, password: string): Promise<{ access_token: string; expires_in: number }> {
   assertTargetOk();
   const res = await call(`${supabaseUrl()}/auth/v1/token?grant_type=password`, { method: "POST", headers: gotrueHeaders(), body: JSON.stringify({ email, password }) }, 10_000);
@@ -71,7 +87,7 @@ export async function passwordGrant(email: string, password: string): Promise<{ 
     const j = (await res.json().catch(() => ({}))) as { error_code?: string; error?: string };
     throw new BackendRefusal(j.error_code === "email_not_confirmed" || j.error === "email_not_confirmed" ? "email_not_confirmed" : "invalid_grant", 400);
   }
-  if (res.status === 429) throw new BackendRefusal("rate_limited", 429);
+  if (res.status === 429) await gotrue429(res, "token");
   if (!res.ok) throw new BackendRefusal("server_error", 502);
   const d = (await res.json()) as { access_token?: string; expires_in?: number };
   if (!d.access_token) throw new BackendRefusal("server_error", 502);
@@ -82,18 +98,33 @@ export async function passwordGrant(email: string, password: string): Promise<{ 
  * GoTrue sign-up (v2 §2 registration path, step 1). Staging requires e-mail confirmation, so no
  * session is returned here; the confirmation link brings the user back with a session fragment.
  * GoTrue answers a repeated address the same way as a new one, so nothing here reveals whether
- * an account exists.
+ * an account exists. `redirectTo` is where the confirmation link lands; GoTrue honours it only
+ * when it is on the project's redirect allowlist (API keeps that list), otherwise site_url.
  */
 export async function signUp(email: string, password: string, meta: { full_name: string; agency_name: string; language: string }, redirectTo: string | null): Promise<void> {
   assertTargetOk();
   const q = redirectTo ? `?redirect_to=${encodeURIComponent(redirectTo)}` : "";
   const res = await call(`${supabaseUrl()}/auth/v1/signup${q}`, { method: "POST", headers: gotrueHeaders(), body: JSON.stringify({ email, password, data: meta }) }, 10_000);
-  if (res.status === 429) throw new BackendRefusal("rate_limited", 429);
+  if (res.status === 429) await gotrue429(res, "signup");
   if (res.status === 422 || res.status === 400) {
     const j = (await res.json().catch(() => ({}))) as { error_code?: string };
     const code = j.error_code === "weak_password" ? "weak_password" : j.error_code === "signup_disabled" ? "not_available" : j.error_code === "email_address_invalid" ? "invalid_email" : "invalid_input";
     throw new BackendRefusal(code, 400);
   }
+  if (!res.ok) throw new BackendRefusal("server_error", 502);
+}
+
+/**
+ * Send the sign-up confirmation e-mail again (GoTrue /resend, type signup). Used when a person
+ * signed up, never received or lost the e-mail, and tries to log in unconfirmed. GoTrue answers
+ * an unknown or already confirmed address the same way, so nothing here is an oracle.
+ */
+export async function resendConfirmation(email: string, redirectTo: string | null): Promise<void> {
+  assertTargetOk();
+  const q = redirectTo ? `?redirect_to=${encodeURIComponent(redirectTo)}` : "";
+  const res = await call(`${supabaseUrl()}/auth/v1/resend${q}`, { method: "POST", headers: gotrueHeaders(), body: JSON.stringify({ type: "signup", email }) }, 10_000);
+  if (res.status === 429) await gotrue429(res, "resend");
+  if (res.status === 400 || res.status === 422) return; // already confirmed or unknown: same answer as success
   if (!res.ok) throw new BackendRefusal("server_error", 502);
 }
 

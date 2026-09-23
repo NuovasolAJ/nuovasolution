@@ -1,9 +1,13 @@
 import type { Locale } from "@/lib/i18n/config";
 
 /**
- * Capability statuses. Wording corrected per docs/website_redesign/WEBSITE_CLAIM_REGISTER_v1.md
- * (state 2026-09-21_SYNC_1215Z), which supersedes the 2026-09-08 audit for status. The website
- * renders these as content. It never upgrades a status on its own.
+ * Capability statuses. Wording per docs/website_redesign/PRODUCT_TEXTS_C3_v1.md §1.2
+ * (redesign copy, 2026-09-23), which supersedes the register's long internal formulas on
+ * chips. The website renders these as content. It never upgrades a status on its own.
+ *
+ * `short` is the chip (navigation, cards, index rows). `sentence` is the detail line that sits
+ * next to the capability on its page. `label` equals the chip: no internal audit or gate
+ * sentence appears in a label any more.
  */
 export type CapabilityStatus =
   | "live"
@@ -14,9 +18,11 @@ export type CapabilityStatus =
   | "not_available";
 
 export interface StatusPresentation {
-  /** Short label shown on chips and index rows. */
+  /** Chip text. */
   label: string;
-  /** One honest sentence, used wherever the label alone would over-promise. */
+  /** Same as label; kept as its own field so callers can ask for the chip form explicitly. */
+  short: string;
+  /** One honest sentence, used wherever the chip alone would over-promise. */
   sentence: string;
   /** Whether the public site may describe the capability in the present tense as usable. */
   publiclyAvailable: boolean;
@@ -27,41 +33,47 @@ export interface StatusPresentation {
 const EN: Record<CapabilityStatus, StatusPresentation> = {
   live: {
     label: "In use today",
-    sentence: "In use today on real WhatsApp and email traffic, in our own agency environment.", // WCR-003
+    short: "In use today",
+    sentence: "Running on real WhatsApp and email traffic in our own agency environment.", // WCR-003
     publiclyAvailable: true,
     glyph: "check",
     tone: "positive",
   },
   final_acceptance: {
-    label: "Built, final acceptance pending",
-    sentence: "Built. The final owner test is still pending, so it is not offered yet.",
+    label: "In final testing",
+    short: "In final testing",
+    sentence: "Built. We are finishing the last test before we offer it.",
     publiclyAvailable: false,
     glyph: "clock",
     tone: "attention",
   },
   in_implementation: {
     label: "In development",
+    short: "In development",
     sentence: "Being built. Not available yet.",
     publiclyAvailable: false,
     glyph: "rule",
     tone: "neutral",
   },
   certified_gate_pending: {
-    label: "Certified internally, external approval pending",
-    sentence: "Certified in our own testing. Waiting on an external approval before it is offered.",
+    label: "Not offered yet",
+    short: "Not offered yet",
+    sentence: "Built and tested on our side. We are waiting on an approval from outside.",
     publiclyAvailable: false,
     glyph: "triangle",
     tone: "attention",
   },
   premium_on_request: {
-    label: "Premium, on request",
-    sentence: "A premium service we prepare for you on request. The first deliveries are in preparation.", // WCR-004
+    label: "On request",
+    short: "On request",
+    sentence: "A service we prepare for you. The first deliveries are in preparation.", // WCR-004
     publiclyAvailable: true,
     glyph: "diamond",
     tone: "neutral",
   },
   not_available: {
-    label: "Not available",
+    label: "Not offered",
+    short: "Not offered",
     sentence: "Not offered.",
     publiclyAvailable: false,
     glyph: "lock",
@@ -72,41 +84,47 @@ const EN: Record<CapabilityStatus, StatusPresentation> = {
 const ES: Record<CapabilityStatus, StatusPresentation> = {
   live: {
     label: "En uso hoy",
-    sentence: "En uso hoy con tráfico real de WhatsApp y email, en nuestro propio entorno de agencia.", // WCR-003
+    short: "En uso hoy",
+    sentence: "Funcionando con tráfico real de WhatsApp y email en nuestro propio entorno de agencia.", // WCR-003
     publiclyAvailable: true,
     glyph: "check",
     tone: "positive",
   },
   final_acceptance: {
-    label: "Construido, aceptación final pendiente",
-    sentence: "Construido. La prueba final del propietario sigue pendiente, así que todavía no se ofrece.",
+    label: "En prueba final",
+    short: "En prueba final",
+    sentence: "Construido. Estamos terminando la última prueba antes de ofrecerlo.",
     publiclyAvailable: false,
     glyph: "clock",
     tone: "attention",
   },
   in_implementation: {
     label: "En desarrollo",
+    short: "En desarrollo",
     sentence: "En construcción. Todavía no está disponible.",
     publiclyAvailable: false,
     glyph: "rule",
     tone: "neutral",
   },
   certified_gate_pending: {
-    label: "Certificado internamente, aprobación externa pendiente",
-    sentence: "Certificado en nuestras propias pruebas. A la espera de una aprobación externa antes de ofrecerlo.",
+    label: "Todavía no se ofrece",
+    short: "Todavía no se ofrece",
+    sentence: "Construido y probado por nuestra parte. Esperamos una aprobación externa.",
     publiclyAvailable: false,
     glyph: "triangle",
     tone: "attention",
   },
   premium_on_request: {
-    label: "Premium, bajo petición",
-    sentence: "Un servicio premium que preparamos para ti bajo petición. Las primeras entregas están en preparación.", // WCR-004
+    label: "Bajo petición",
+    short: "Bajo petición",
+    sentence: "Un servicio que preparamos para ti. Las primeras entregas están en preparación.", // WCR-004
     publiclyAvailable: true,
     glyph: "diamond",
     tone: "neutral",
   },
   not_available: {
-    label: "No disponible",
+    label: "No se ofrece",
+    short: "No se ofrece",
     sentence: "No se ofrece.",
     publiclyAvailable: false,
     glyph: "lock",

@@ -5,23 +5,23 @@ import { cn } from "@/lib/utils";
 type Variant = "primary" | "secondary" | "tertiary" | "quiet" | "pending";
 type Size = "sm" | "md" | "lg";
 
+/**
+ * Buttons of the light system: pill shaped, ink primary, quiet outline secondary.
+ * The brand gold is not a button colour; it stays an accent.
+ */
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-sm font-medium whitespace-nowrap select-none transition-[background-color,color,border-color,transform] duration-micro ease-standard focus-visible:outline-2 disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2 rounded-pill font-medium whitespace-nowrap select-none transition-[background-color,color,border-color,transform,box-shadow] duration-micro ease-standard focus-visible:outline-2 disabled:opacity-60";
 
 const variants: Record<Variant, string> = {
-  primary:
-    "bg-champagne-400 text-ink-950 hover:bg-champagne-300 hover:-translate-y-px active:translate-y-0",
-  secondary:
-    "border border-line-interactive text-text-primary bg-transparent hover:bg-surface-raised",
-  tertiary:
-    "text-text-primary underline underline-offset-4 decoration-line-hairline hover:decoration-champagne-400 px-0 min-h-[44px]",
+  primary: "bg-ink-950 text-ivory hover:bg-ink-800 hover:-translate-y-px active:translate-y-0 shadow-card",
+  secondary: "border border-line-strong text-text-primary bg-surface-raised hover:border-line-interactive hover:bg-surface-hover",
+  tertiary: "text-text-primary underline underline-offset-4 decoration-line-strong hover:decoration-ink-950 px-0 min-h-[44px]",
   quiet: "text-text-accent hover:underline underline-offset-4 px-0 h-auto min-h-[44px]",
-  pending:
-    "border border-dashed border-line-interactive text-text-secondary bg-transparent hover:bg-surface-raised",
+  pending: "border border-dashed border-line-interactive text-text-secondary bg-transparent hover:bg-surface-hover",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-11 px-4 t-body-s", // 44 px touch floor (review WR-18)
+  sm: "h-11 px-5 t-body-s", // 44 px touch floor (review WR-18)
   md: "h-12 px-6 t-body-m",
   lg: "h-14 px-8 t-body-l",
 };

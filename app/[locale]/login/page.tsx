@@ -14,27 +14,37 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return { title: d.login.h1, description: d.login.lead, robots: { index: false, follow: true } };
 }
 
-export default function LoginPage({ params }: { params: { locale: string } }) {
+/**
+ * Log in. `?confirmed=1` is where the sign-up confirmation link returns (and where the sign-up
+ * page sends people who confirm on another device): the page then says that a confirmed account
+ * continues to the agency step after logging in. The session fragment, when present, is handled
+ * by AuthFragment in the layout before this form is needed.
+ */
+export default function LoginPage({ params, searchParams }: { params: { locale: string }; searchParams: { confirmed?: string } }) {
   const locale = params.locale as Locale;
   const d = getDictionary(locale);
   const stub = integrationMode() === "stub";
+  const confirmed = searchParams.confirmed === "1";
   return (
-    <Section surface="ivory" rhythm="opening" labelledBy="li-h1">
-        <EnvironmentRibbon locale={locale} scope="form" />
-      <div className="container-narrow !mx-0 xl:!mx-auto">
+    <>
+    <EnvironmentRibbon locale={locale} scope="form" />
+    <Section rhythm="opening" labelledBy="li-h1" className="overflow-hidden">
+      <div className="atmosphere" aria-hidden="true" />
+      <div className="container-narrow relative !mx-0 xl:!mx-auto">
         <Eyebrow className="mb-4">{d.login.eyebrow}</Eyebrow>
         <Display size="l" as="h1" id="li-h1">{d.login.h1}</Display>
         <Lead className="mt-4">{d.login.lead}</Lead>
         {stub && (
-          <p className="mt-6 flex items-start gap-3 border border-line-strong bg-surface-raised p-4 t-body-s text-text-secondary">
+          <p className="mt-6 flex items-start gap-3 rounded-lg border border-line-hairline bg-surface-raised p-4 t-body-s text-text-secondary">
             <LabelChip tone="attention">{d.common.stubData}</LabelChip>
             <span>{d.login.stubNotice}</span>
           </p>
         )}
-        <div className="mt-10">
-          <LoginForm locale={locale} />
+        <div className="card mt-10 rounded-xl p-6 md:p-8">
+          <LoginForm locale={locale} confirmed={confirmed} />
         </div>
       </div>
     </Section>
+    </>
   );
 }

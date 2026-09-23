@@ -1,0 +1,80 @@
+{
+  "started_utc": "2026-09-23T12:53:46.356Z",
+  "commit": "working tree",
+  "intake": "https://167-235-150-163.sslip.io/webhook/website-qa",
+  "tenant": "stg_pm_nerjamar",
+  "checks": [
+    {
+      "id": "QA-S1",
+      "what": "the website accepts the question through the staging path (pending or answered, never cannot_confirm)",
+      "pass": true,
+      "evidence": {
+        "status": 200,
+        "outcome": "pending",
+        "ms": 7574
+      }
+    },
+    {
+      "id": "QA-S2",
+      "what": "a Q&A session cookie is set (httpOnly, the browser never sees the tenant or secret)",
+      "pass": true,
+      "evidence": "nuova_qa_session"
+    },
+    {
+      "id": "QA-S3",
+      "what": "a terminal state arrives through the signed poll",
+      "pass": false,
+      "evidence": {
+        "final": "none",
+        "polls": 70,
+        "elapsed_ms": 240327
+      }
+    },
+    {
+      "id": "QA-S4",
+      "what": "the terminal state is 'answered' with text (mock LLM on staging: text proves transport, not quality)",
+      "pass": false,
+      "evidence": {
+        "textChars": 0
+      }
+    },
+    {
+      "id": "QA-S5",
+      "what": "the answer arrived inside the website's 60 s polling budget",
+      "pass": false,
+      "evidence": {
+        "elapsed_ms": 240327
+      }
+    },
+    {
+      "id": "QA-S6",
+      "what": "reading a result without the session cookie is refused (401)",
+      "pass": true,
+      "evidence": 401
+    },
+    {
+      "id": "QA-S7",
+      "what": "a malformed message id is refused before any call (400)",
+      "pass": true,
+      "evidence": 400
+    },
+    {
+      "id": "QA-S8",
+      "what": "another visitor's session cannot read this answer (unknown, never the text)",
+      "pass": true,
+      "evidence": {
+        "status": 200,
+        "outcome": "unknown"
+      }
+    },
+    {
+      "id": "QA-S9",
+      "what": "a cross-origin question is refused (403)",
+      "pass": true,
+      "evidence": 403
+    }
+  ],
+  "finished_utc": "2026-09-23T12:58:02.644Z",
+  "pass": 6,
+  "total": 9
+}

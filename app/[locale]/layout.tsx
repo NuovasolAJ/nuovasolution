@@ -62,6 +62,7 @@ export default function LocaleLayout({ children, params }: { children: ReactNode
           {d.common.skip}
         </a>
         <Header locale={locale} />
+        {/* main starts below the fixed header (globals.css); the test band sits in the flow under it. */}
         <main id="main">
           <EnvironmentRibbon locale={locale} scope="site" />
           {children}
