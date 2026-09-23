@@ -1,0 +1,102 @@
+{
+ "started_utc": "2026-09-23T08:05:54.115Z",
+ "endpoint": "https://167-235-150-163.sslip.io/webhook/website-qa",
+ "tenant": "stg_pm_avail_probe",
+ "checks": [
+  {
+   "id": "QA-R1",
+   "what": "unsigned POST is refused",
+   "pass": true,
+   "evidence": {
+    "status": 401
+   }
+  },
+  {
+   "id": "QA-R2",
+   "what": "signed POST is accepted (202) and returns no answer synchronously",
+   "pass": true,
+   "evidence": {
+    "status": 202,
+    "body_len": 119
+   }
+  },
+  {
+   "id": "QA-R3",
+   "what": "the result poll reaches an end state with an answer",
+   "pass": false,
+   "evidence": {
+    "state": "pending",
+    "polls": 20,
+    "seconds": 46.3,
+    "answer_chars": 0
+   }
+  },
+  {
+   "id": "QA-R4",
+   "what": "a replayed signature/nonce is refused",
+   "pass": true,
+   "evidence": {
+    "first": 202,
+    "replay": 401
+   }
+  },
+  {
+   "id": "QA-R5",
+   "what": "a different tenant id with this secret is refused",
+   "pass": true,
+   "evidence": {
+    "status": 401
+   }
+  },
+  {
+   "id": "QA-R6",
+   "what": "a body changed after signing is refused",
+   "pass": true,
+   "evidence": {
+    "status": 401
+   }
+  },
+  {
+   "id": "QA-R7",
+   "what": "an hour-old timestamp is refused",
+   "pass": true,
+   "evidence": {
+    "status": 401
+   }
+  },
+  {
+   "id": "QA-R8",
+   "what": "an unknown message is answered 404, not with someone else's data",
+   "pass": true,
+   "evidence": {
+    "status": 404
+   }
+  },
+  {
+   "id": "QA-R9",
+   "what": "the other tenant cannot read this conversation's answer",
+   "pass": true,
+   "evidence": {
+    "status": 404,
+    "state": null
+   }
+  },
+  {
+   "id": "QA-R10",
+   "what": "a question outside the tenant's knowledge ends in a handoff or a stated limit, not an invented number",
+   "pass": false,
+   "evidence": {
+    "state": "pending",
+    "answer_chars": 0
+   }
+  }
+ ],
+ "answer_sample": "",
+ "result_keys": [],
+ "unknown_answer_sample": "",
+ "finished_utc": "2026-09-23T08:07:35.544Z",
+ "summary": {
+  "pass": 8,
+  "total": 10
+ }
+}

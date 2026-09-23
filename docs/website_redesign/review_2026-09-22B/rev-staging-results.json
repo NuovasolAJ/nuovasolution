@@ -1,0 +1,223 @@
+{
+ "started_utc": "2026-09-23T08:05:53.240Z",
+ "commit": "6fbe45f",
+ "target": "staging fflmmzapksycjfdcjdtd",
+ "reviewer": "independent",
+ "checks": [
+  {
+   "id": "RV-01",
+   "what": "no session: onboarding read refused",
+   "pass": true,
+   "evidence": {
+    "status": 401,
+    "code": "no_session"
+   }
+  },
+  {
+   "id": "RV-02",
+   "what": "self-made JWT: refused, no data",
+   "pass": true,
+   "evidence": {
+    "status": 401,
+    "code": "no_session"
+   }
+  },
+  {
+   "id": "RV-03",
+   "what": "three identities sign in through the server",
+   "pass": true,
+   "evidence": {
+    "owner": 200,
+    "agent": 200,
+    "other": 200
+   }
+  },
+  {
+   "id": "RV-04",
+   "what": "session cookie is HttpOnly + SameSite and the body carries no token",
+   "pass": true,
+   "evidence": {
+    "httpOnly": true,
+    "sameSite": "SameSite=lax",
+    "secure": true,
+    "token_in_body": false
+   }
+  },
+  {
+   "id": "RV-05",
+   "what": "valid session, foreign Origin: write refused",
+   "pass": true,
+   "evidence": {
+    "status": 403,
+    "code": "forbidden"
+   }
+  },
+  {
+   "id": "RV-06",
+   "what": "agent writes business data: refused by the backend",
+   "pass": true,
+   "evidence": {
+    "status": 403,
+    "code": "forbidden"
+   }
+  },
+  {
+   "id": "RV-07",
+   "what": "agent activates: refused",
+   "pass": true,
+   "evidence": {
+    "status": 403,
+    "code": "forbidden"
+   }
+  },
+  {
+   "id": "RV-08",
+   "what": "agent starts a logo upload: refused",
+   "pass": true,
+   "evidence": {
+    "status": 403,
+    "code": "forbidden"
+   }
+  },
+  {
+   "id": "RV-09",
+   "what": "manipulated client_id has no effect: the write lands in the caller's own agency, the second agency is unchanged",
+   "pass": true,
+   "evidence": {
+    "owner_tz": "Atlantic/Canary",
+    "other_tz_before": "Europe/Madrid",
+    "other_tz_after": "Europe/Madrid"
+   }
+  },
+  {
+   "id": "RV-10",
+   "what": "no tenant id in the reads, outside the backend's public asset URL",
+   "pass": true,
+   "evidence": {
+    "leak": false
+   }
+  },
+  {
+   "id": "RV-11",
+   "what": "upload init returns a tenant-prefixed path and a signed URL at the configured project",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "path_shape": "stg_web_e2e_agency_a1b523/logo/<file>",
+    "url_host_ok": true
+   }
+  },
+  {
+   "id": "RV-12",
+   "what": "the bytes uploaded by the reviewer are the bytes the product serves back",
+   "pass": true,
+   "evidence": {
+    "put": 200,
+    "commit": 200,
+    "uploaded_sha16": "ca274c0acf3d7d51",
+    "served_sha16": "ca274c0acf3d7d51",
+    "uploaded_bytes": 48620,
+    "served_bytes": 48620
+   }
+  },
+  {
+   "id": "RV-13",
+   "what": "PNG declared, text stored: the commit reads the stored bytes and rejects",
+   "pass": true,
+   "evidence": {
+    "status": 422,
+    "code": "unsupported_file_type"
+   }
+  },
+  {
+   "id": "RV-14",
+   "what": "second tenant commits this agency's upload: refused as a foreign asset",
+   "pass": true,
+   "evidence": {
+    "status": 403,
+    "code": "cross_tenant_asset"
+   }
+  },
+  {
+   "id": "RV-15",
+   "what": "readiness comes from the backend and names open gates",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "gates": 25,
+    "activatable": false
+   }
+  },
+  {
+   "id": "RV-16",
+   "what": "admin activates while gates are open: blocked, nothing activated",
+   "pass": true,
+   "evidence": {
+    "status": 409,
+    "outcome": "blocked",
+    "activated": false,
+    "blocked": 4
+   }
+  },
+  {
+   "id": "RV-17",
+   "what": "Google Sheets without the acknowledged notice: refused",
+   "pass": true,
+   "evidence": {
+    "status": 428,
+    "code": "notice_required"
+   }
+  },
+  {
+   "id": "RV-18",
+   "what": "with the receipt the choice goes through and is never called connected",
+   "pass": false,
+   "evidence": {
+    "ack_status": 400,
+    "select": 428
+   }
+  },
+  {
+   "id": "RV-19",
+   "what": "switching back to the built-in CRM works and the copy flag is reported honestly",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "sheets_projection": false
+   }
+  },
+  {
+   "id": "RV-20",
+   "what": "a second, independent session reads the same stored data back",
+   "pass": true,
+   "evidence": {
+    "timezone": "Atlantic/Canary",
+    "logo_present": true
+   }
+  },
+  {
+   "id": "RV-21",
+   "what": "legal data saves; the contract has no read operation, so the form cannot show it again",
+   "pass": false,
+   "evidence": {
+    "save": 400,
+    "read_back": 7
+   }
+  },
+  {
+   "id": "RV-22",
+   "what": "after logout the old cookie value is no longer accepted",
+   "pass": true,
+   "evidence": {
+    "logout": 200,
+    "reuse": 401,
+    "code": "no_session"
+   }
+  }
+ ],
+ "finished_utc": "2026-09-23T08:06:17.684Z",
+ "summary": {
+  "pass": 20,
+  "total": 22
+ }
+}

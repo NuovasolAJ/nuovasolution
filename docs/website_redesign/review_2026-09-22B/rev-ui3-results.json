@@ -1,0 +1,1048 @@
+{
+ "checks": [
+  {
+   "id": "UI-01b",
+   "what": "no overlapping text after per-line hit testing, four viewports, eight pages, whole page scrolled",
+   "pass": false,
+   "evidence": {
+    "pages": [
+     "360/en",
+     "360/es",
+     "360/en/platform/crm",
+     "360/es/platform/crm",
+     "360/en/packages",
+     "360/es/packages",
+     "360/en/signup",
+     "360/es/signup"
+    ]
+   }
+  },
+  {
+   "id": "UI-05b",
+   "what": "no placeholder surfaces on the public pages",
+   "pass": false,
+   "evidence": {
+    "/en": 5,
+    "/es": 4,
+    "/en/platform/crm": 2,
+    "/es/platform/crm": 2,
+    "/en/packages": 0,
+    "/es/packages": 0,
+    "/en/signup": 0,
+    "/es/signup": 0
+   }
+  },
+  {
+   "id": "UI-07b",
+   "what": "the packages page offers a next step per plan",
+   "pass": true,
+   "evidence": {
+    "h1": "Three packages. One baseline. The size o",
+    "plans": [
+     "THE PACKAGES",
+     "In every paid package",
+     "Pricing",
+     "QUESTIONS",
+     "Try free for 14 days."
+    ],
+    "ctas": [
+     {
+      "t": "Start free",
+      "href": "/en/signup"
+     },
+     {
+      "t": "Talk to us about packages",
+      "href": "/en/contact"
+     },
+     {
+      "t": "Start free",
+      "href": "/en/signup"
+     },
+     {
+      "t": "Trial",
+      "href": "/en/trial"
+     }
+    ],
+    "prices": []
+   }
+  }
+ ],
+ "overlap": {
+  "360/en": [
+   {
+    "a": "Test environment",
+    "b": "The client who wrote on What",
+    "ox": 108,
+    "oy": 20
+   },
+   {
+    "a": "Test environment",
+    "b": "Qualified",
+    "ox": 75,
+    "oy": 14
+   },
+   {
+    "a": "Test environment",
+    "b": "Property match",
+    "ox": 75,
+    "oy": 6
+   },
+   {
+    "a": "Test environment",
+    "b": "Gmail text enquiries: answer",
+    "ox": 108,
+    "oy": 5
+   },
+   {
+    "a": "Test environment",
+    "b": "WhatsApp text enquiries: ans",
+    "ox": 108,
+    "oy": 15
+   }
+  ],
+  "360/es": [
+   {
+    "a": "Entorno de pruebas",
+    "b": "Daily Goals y una asistente,",
+    "ox": 122,
+    "oy": 20
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "El cliente que escribió por ",
+    "ox": 122,
+    "oy": 5
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Propiedad coincidente",
+    "ox": 89,
+    "oy": 20
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Consultas de texto por Whats",
+    "ox": 122,
+    "oy": 12
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Adjuntos, archivos de WhatsA",
+    "ox": 122,
+    "oy": 7
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "II · ENTENDER",
+    "ox": 122,
+    "oy": 6
+   }
+  ],
+  "360/en/platform/crm": [
+   {
+    "a": "Test environment",
+    "b": "Book a demo",
+    "ox": 108,
+    "oy": 20
+   },
+   {
+    "a": "Test environment",
+    "b": "In use today",
+    "ox": 76,
+    "oy": 13
+   },
+   {
+    "a": "Test environment",
+    "b": "Platform overview",
+    "ox": 99,
+    "oy": 20
+   }
+  ],
+  "360/es/platform/crm": [
+   {
+    "a": "Entorno de pruebas",
+    "b": "Reserva una demo",
+    "ox": 122,
+    "oy": 13
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "En uso hoy",
+    "ox": 69,
+    "oy": 12
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Todavía no se ofrece. Cada p",
+    "ox": 122,
+    "oy": 20
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "En desarrollo",
+    "ox": 82,
+    "oy": 20
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Visión general",
+    "ox": 72,
+    "oy": 7
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "antonio@nuovasolution.com",
+    "ox": 122,
+    "oy": 20
+   }
+  ],
+  "360/en/packages": [
+   {
+    "a": "Test environment",
+    "b": "Package names and contents a",
+    "ox": 108,
+    "oy": 4
+   },
+   {
+    "a": "Test environment",
+    "b": "We set the package around ho",
+    "ox": 108,
+    "oy": 20
+   },
+   {
+    "a": "",
+    "b": "Is a payment method required",
+    "ox": 320,
+    "oy": 49
+   },
+   {
+    "a": "",
+    "b": "+",
+    "ox": 12,
+    "oy": 24
+   },
+   {
+    "a": "",
+    "b": "Can I pay online?\n+",
+    "ox": 320,
+    "oy": 24
+   },
+   {
+    "a": "",
+    "b": "+",
+    "ox": 12,
+    "oy": 24
+   }
+  ],
+  "360/es/packages": [
+   {
+    "a": "Entorno de pruebas",
+    "b": "Precio",
+    "ox": 122,
+    "oy": 20
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "¿La prueba necesita una llam",
+    "ox": 122,
+    "oy": 20
+   },
+   {
+    "a": "",
+    "b": "¿Hace falta un método de pag",
+    "ox": 320,
+    "oy": 49
+   },
+   {
+    "a": "",
+    "b": "+",
+    "ox": 12,
+    "oy": 24
+   },
+   {
+    "a": "",
+    "b": "¿Puedo pagar online?\n+",
+    "ox": 320,
+    "oy": 24
+   },
+   {
+    "a": "",
+    "b": "+",
+    "ox": 12,
+    "oy": 24
+   }
+  ],
+  "360/en/signup": [
+   {
+    "a": "Test environment",
+    "b": "Universal CRM",
+    "ox": 76,
+    "oy": 20
+   },
+   {
+    "a": "Test environment",
+    "b": "Legal pages are published as",
+    "ox": 108,
+    "oy": 20
+   }
+  ],
+  "360/es/signup": [
+   {
+    "a": "Entorno de pruebas",
+    "b": "CRM universal",
+    "ox": 73,
+    "oy": 5
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Property Matching",
+    "ox": 103,
+    "oy": 15
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Las páginas legales se publi",
+    "ox": 122,
+    "oy": 20
+   }
+  ],
+  "390/en": [
+   {
+    "a": "Test environment",
+    "b": "Daily Goals and an assistant",
+    "ox": 108,
+    "oy": 20
+   },
+   {
+    "a": "Test environment",
+    "b": "The client who wrote on What",
+    "ox": 108,
+    "oy": 18
+   },
+   {
+    "a": "Test environment",
+    "b": "See Nuova run an agency day.",
+    "ox": 108,
+    "oy": 20
+   },
+   {
+    "a": "Test environment",
+    "b": "Daily Goals",
+    "ox": 75,
+    "oy": 20
+   },
+   {
+    "a": "Test environment",
+    "b": "Attachments, WhatsApp media ",
+    "ox": 108,
+    "oy": 20
+   },
+   {
+    "a": "Test environment",
+    "b": "One customer, one record, an",
+    "ox": 108,
+    "oy": 20
+   }
+  ],
+  "390/es": [
+   {
+    "a": "Entorno de pruebas",
+    "b": "Daily Goals y una asistente,",
+    "ox": 123,
+    "oy": 13
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "El cliente que escribió por ",
+    "ox": 123,
+    "oy": 12
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Propiedad coincidente",
+    "ox": 90,
+    "oy": 14
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Daily Goals",
+    "ox": 90,
+    "oy": 5
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Adjuntos, archivos de WhatsA",
+    "ox": 123,
+    "oy": 17
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "II · ENTENDER",
+    "ox": 123,
+    "oy": 5
+   }
+  ],
+  "390/en/platform/crm": [
+   {
+    "a": "Test environment",
+    "b": "Book a demo",
+    "ox": 108,
+    "oy": 20
+   },
+   {
+    "a": "Test environment",
+    "b": "Leads recorded with their qu",
+    "ox": 108,
+    "oy": 20
+   },
+   {
+    "a": "Test environment",
+    "b": "Platform overview",
+    "ox": 99,
+    "oy": 20
+   },
+   {
+    "a": "Test environment",
+    "b": "antonio@nuovasolution.com",
+    "ox": 108,
+    "oy": 3
+   }
+  ],
+  "390/es/platform/crm": [
+   {
+    "a": "Entorno de pruebas",
+    "b": "En uso hoy",
+    "ox": 69,
+    "oy": 14
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "AI Sales Agent",
+    "ox": 74,
+    "oy": 5
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Lead Intelligence",
+    "ox": 92,
+    "oy": 14
+   }
+  ],
+  "390/en/packages": [
+   {
+    "a": "Test environment",
+    "b": "Package names and contents a",
+    "ox": 108,
+    "oy": 20
+   },
+   {
+    "a": "Test environment",
+    "b": "Billing self-service is not ",
+    "ox": 108,
+    "oy": 20
+   },
+   {
+    "a": "Test environment",
+    "b": "Try free for 14 days.",
+    "ox": 108,
+    "oy": 7
+   },
+   {
+    "a": "",
+    "b": "Is a payment method required",
+    "ox": 350,
+    "oy": 49
+   },
+   {
+    "a": "",
+    "b": "+",
+    "ox": 12,
+    "oy": 24
+   },
+   {
+    "a": "",
+    "b": "Can I pay online?\n+",
+    "ox": 350,
+    "oy": 5
+   }
+  ],
+  "390/es/packages": [
+   {
+    "a": "Entorno de pruebas",
+    "b": "Los nombres y contenidos de ",
+    "ox": 123,
+    "oy": 16
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Ajustamos el paquete a cómo ",
+    "ox": 123,
+    "oy": 20
+   },
+   {
+    "a": "",
+    "b": "¿Hace falta un método de pag",
+    "ox": 350,
+    "oy": 32
+   },
+   {
+    "a": "",
+    "b": "+",
+    "ox": 12,
+    "oy": 20
+   },
+   {
+    "a": "",
+    "b": "¿Puedo pagar online?\n+",
+    "ox": 350,
+    "oy": 24
+   },
+   {
+    "a": "",
+    "b": "+",
+    "ox": 12,
+    "oy": 24
+   }
+  ],
+  "390/en/signup": [
+   {
+    "a": "Test environment",
+    "b": "Universal CRM",
+    "ox": 76,
+    "oy": 6
+   },
+   {
+    "a": "Test environment",
+    "b": "Property Matching",
+    "ox": 103,
+    "oy": 14
+   },
+   {
+    "a": "Test environment",
+    "b": "Legal pages are published as",
+    "ox": 108,
+    "oy": 3
+   }
+  ],
+  "390/es/signup": [
+   {
+    "a": "Entorno de pruebas",
+    "b": "CRM universal",
+    "ox": 73,
+    "oy": 6
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Property Matching",
+    "ox": 103,
+    "oy": 14
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Las páginas legales se publi",
+    "ox": 123,
+    "oy": 20
+   }
+  ],
+  "768/en": [
+   {
+    "a": "Test environment",
+    "b": "ADVANCE",
+    "ox": 108,
+    "oy": 12
+   },
+   {
+    "a": "Test environment",
+    "b": "The buyer who got a folder o",
+    "ox": 108,
+    "oy": 15
+   },
+   {
+    "a": "Test environment",
+    "b": "The film is being made. The ",
+    "ox": 7,
+    "oy": 20
+   },
+   {
+    "a": "Test environment",
+    "b": "Gmail and WhatsApp",
+    "ox": 63,
+    "oy": 20
+   },
+   {
+    "a": "Test environment",
+    "b": "Gmail text enquiries: answer",
+    "ox": 108,
+    "oy": 20
+   },
+   {
+    "a": "Test environment",
+    "b": "Every enquiry recorded as a ",
+    "ox": 108,
+    "oy": 20
+   }
+  ],
+  "768/es": [
+   {
+    "a": "Entorno de pruebas",
+    "b": "AVANZAR",
+    "ox": 123,
+    "oy": 12
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Ilustrativo",
+    "ox": 79,
+    "oy": 8
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Cada consulta respondida se ",
+    "ox": 123,
+    "oy": 20
+   }
+  ],
+  "768/en/platform/crm": [
+   {
+    "a": "Test environment",
+    "b": "WHAT IT DOES",
+    "ox": 108,
+    "oy": 14
+   },
+   {
+    "a": "Test environment",
+    "b": "IN PRACTICE",
+    "ox": 108,
+    "oy": 7
+   },
+   {
+    "a": "Test environment",
+    "b": "antonio@nuovasolution.com",
+    "ox": 108,
+    "oy": 20
+   }
+  ],
+  "768/es/platform/crm": [
+   {
+    "a": "Entorno de pruebas",
+    "b": "QUÉ HACE",
+    "ox": 123,
+    "oy": 14
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Lead Intelligence",
+    "ox": 123,
+    "oy": 15
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Nuova es la capa operativa d",
+    "ox": 123,
+    "oy": 20
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Contacto",
+    "ox": 48,
+    "oy": 16
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "antonio@nuovasolution.com",
+    "ox": 123,
+    "oy": 3
+   }
+  ],
+  "768/en/packages": [
+   {
+    "a": "",
+    "b": "Is a payment method required",
+    "ox": 689,
+    "oy": 6
+   },
+   {
+    "a": "",
+    "b": "+",
+    "ox": 13,
+    "oy": 6
+   },
+   {
+    "a": "",
+    "b": "Can I pay online?\n+",
+    "ox": 689,
+    "oy": 6
+   },
+   {
+    "a": "",
+    "b": "+",
+    "ox": 13,
+    "oy": 6
+   },
+   {
+    "a": "",
+    "b": "Does the trial need a sales ",
+    "ox": 689,
+    "oy": 6
+   },
+   {
+    "a": "",
+    "b": "+",
+    "ox": 13,
+    "oy": 6
+   }
+  ],
+  "768/es/packages": [
+   {
+    "a": "",
+    "b": "¿Hace falta un método de pag",
+    "ox": 689,
+    "oy": 6
+   },
+   {
+    "a": "",
+    "b": "+",
+    "ox": 13,
+    "oy": 6
+   },
+   {
+    "a": "",
+    "b": "¿Puedo pagar online?\n+",
+    "ox": 689,
+    "oy": 6
+   },
+   {
+    "a": "",
+    "b": "+",
+    "ox": 13,
+    "oy": 6
+   },
+   {
+    "a": "",
+    "b": "¿La prueba necesita una llam",
+    "ox": 689,
+    "oy": 25
+   },
+   {
+    "a": "",
+    "b": "+",
+    "ox": 13,
+    "oy": 25
+   }
+  ],
+  "768/en/signup": [
+   {
+    "a": "Test environment",
+    "b": "Voice",
+    "ox": 23,
+    "oy": 19
+   }
+  ],
+  "768/es/signup": [
+   {
+    "a": "Entorno de pruebas",
+    "b": "Voz",
+    "ox": 10,
+    "oy": 19
+   }
+  ],
+  "1440/en": [
+   {
+    "a": "Platform",
+    "b": "Enquiries land in four place",
+    "ox": 77,
+    "oy": 40
+   },
+   {
+    "a": "Packages",
+    "b": "Enquiries land in four place",
+    "ox": 69,
+    "oy": 44
+   },
+   {
+    "a": "Trial",
+    "b": "Enquiries land in four place",
+    "ox": 30,
+    "oy": 44
+   },
+   {
+    "a": "Contact",
+    "b": "Enquiries land in four place",
+    "ox": 56,
+    "oy": 44
+   },
+   {
+    "a": "Test environment",
+    "b": "One enquiry, one memory, one",
+    "ox": 65,
+    "oy": 6
+   },
+   {
+    "a": "Platform",
+    "b": "Nuova sits underneath the ag",
+    "ox": 77,
+    "oy": 40
+   }
+  ],
+  "1440/es": [
+   {
+    "a": "Plataforma",
+    "b": "Las consultas llegan por cua",
+    "ox": 95,
+    "oy": 40
+   },
+   {
+    "a": "Paquetes",
+    "b": "Las consultas llegan por cua",
+    "ox": 66,
+    "oy": 44
+   },
+   {
+    "a": "Prueba",
+    "b": "Las consultas llegan por cua",
+    "ox": 51,
+    "oy": 44
+   },
+   {
+    "a": "Contacto",
+    "b": "Las consultas llegan por cua",
+    "ox": 65,
+    "oy": 44
+   },
+   {
+    "a": "Entorno de pruebas",
+    "b": "Una consulta, una memoria, u",
+    "ox": 79,
+    "oy": 12
+   },
+   {
+    "a": "",
+    "b": "",
+    "ox": 24,
+    "oy": 17
+   }
+  ],
+  "1440/en/platform/crm": [
+   {
+    "a": "Platform",
+    "b": "Book a demo",
+    "ox": 77,
+    "oy": 16
+   },
+   {
+    "a": "Packages",
+    "b": "Book a demo",
+    "ox": 69,
+    "oy": 18
+   },
+   {
+    "a": "Platform",
+    "b": "External CRM connections for",
+    "ox": 77,
+    "oy": 40
+   },
+   {
+    "a": "Packages",
+    "b": "External CRM connections for",
+    "ox": 69,
+    "oy": 44
+   },
+   {
+    "a": "Trial",
+    "b": "External CRM connections for",
+    "ox": 30,
+    "oy": 44
+   },
+   {
+    "a": "Contact",
+    "b": "External CRM connections for",
+    "ox": 56,
+    "oy": 44
+   }
+  ],
+  "1440/es/platform/crm": [
+   {
+    "a": "Plataforma",
+    "b": "Las conexiones con CRM exter",
+    "ox": 95,
+    "oy": 40
+   },
+   {
+    "a": "Paquetes",
+    "b": "Las conexiones con CRM exter",
+    "ox": 66,
+    "oy": 44
+   },
+   {
+    "a": "Prueba",
+    "b": "Las conexiones con CRM exter",
+    "ox": 51,
+    "oy": 44
+   },
+   {
+    "a": "Contacto",
+    "b": "Las conexiones con CRM exter",
+    "ox": 65,
+    "oy": 44
+   },
+   {
+    "a": "EN\nENGLISH",
+    "b": "Todavía no se ofrece. Cada p",
+    "ox": 42,
+    "oy": 34
+   },
+   {
+    "a": "ES\nESPAÑOL",
+    "b": "Todavía no se ofrece. Cada p",
+    "ox": 40,
+    "oy": 34
+   }
+  ],
+  "1440/en/packages": [
+   {
+    "a": "Test environment",
+    "b": "Core reporting",
+    "ox": 65,
+    "oy": 19
+   },
+   {
+    "a": "",
+    "b": "Is a payment method required",
+    "ox": 720,
+    "oy": 7
+   },
+   {
+    "a": "",
+    "b": "+",
+    "ox": 13,
+    "oy": 7
+   },
+   {
+    "a": "",
+    "b": "Can I pay online?\n+",
+    "ox": 720,
+    "oy": 7
+   },
+   {
+    "a": "",
+    "b": "+",
+    "ox": 13,
+    "oy": 7
+   },
+   {
+    "a": "",
+    "b": "Does the trial need a sales ",
+    "ox": 720,
+    "oy": 7
+   }
+  ],
+  "1440/es/packages": [
+   {
+    "a": "Entorno de pruebas",
+    "b": "Seguimiento básico",
+    "ox": 79,
+    "oy": 20
+   },
+   {
+    "a": "Plataforma",
+    "b": "Property matching",
+    "ox": 95,
+    "oy": 40
+   },
+   {
+    "a": "Paquetes",
+    "b": "Property matching",
+    "ox": 66,
+    "oy": 44
+   },
+   {
+    "a": "Prueba",
+    "b": "Property matching",
+    "ox": 51,
+    "oy": 44
+   },
+   {
+    "a": "Contacto",
+    "b": "Property matching",
+    "ox": 26,
+    "oy": 44
+   },
+   {
+    "a": "",
+    "b": "¿Hace falta un método de pag",
+    "ox": 720,
+    "oy": 7
+   }
+  ]
+ },
+ "placeholders": {
+  "/en": 5,
+  "/es": 4,
+  "/en/platform/crm": 2,
+  "/es/platform/crm": 2,
+  "/en/packages": 0,
+  "/es/packages": 0,
+  "/en/signup": 0,
+  "/es/signup": 0
+ },
+ "packages": {
+  "/en/packages": {
+   "h1": "Three packages. One baseline. The size of the operation decides.",
+   "plans": [
+    "THE PACKAGES",
+    "In every paid package",
+    "Pricing",
+    "QUESTIONS",
+    "Try free for 14 days."
+   ],
+   "prices": [],
+   "ctas": [
+    {
+     "t": "Start free",
+     "href": "/en/signup"
+    },
+    {
+     "t": "Talk to us about packages",
+     "href": "/en/contact"
+    },
+    {
+     "t": "Start free",
+     "href": "/en/signup"
+    },
+    {
+     "t": "Trial",
+     "href": "/en/trial"
+    }
+   ]
+  },
+  "/es/packages": {
+   "h1": "Tres paquetes. Una base común. El tamaño de la operación decide.",
+   "plans": [
+    "LOS PAQUETES",
+    "En todos los paquetes de pago",
+    "Precio",
+    "PREGUNTAS",
+    "Prueba gratis durante 14 días."
+   ],
+   "prices": [],
+   "ctas": [
+    {
+     "t": "Empieza gratis",
+     "href": "/es/signup"
+    },
+    {
+     "t": "Hablar sobre los paquetes",
+     "href": "/es/contact"
+    },
+    {
+     "t": "Empieza gratis",
+     "href": "/es/signup"
+    },
+    {
+     "t": "Prueba",
+     "href": "/es/trial"
+    }
+   ]
+  }
+ }
+}

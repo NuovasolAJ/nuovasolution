@@ -1,0 +1,406 @@
+{
+ "accepted": 202,
+ "polls": [
+  {
+   "s": 0,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 3,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 6,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 9,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 12,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 15,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 18,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 21,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 24,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 27,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 30,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 33,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 36,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 39,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 42,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 45,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 48,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 51,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 54,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 57,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 60,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 63,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 66,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 69,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 72,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 75,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 78,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 81,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 84,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 87,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 90,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 93,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 96,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 99,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 102,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 105,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 108,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 111,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 114,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 117,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 120,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 123,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 126,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 129,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 132,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 135,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 138,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 141,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 144,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 147,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 150,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 153,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 156,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 159,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 162,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 165,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 168,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 171,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 174,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 177,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 180,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 183,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 186,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 189,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 192,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 195,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 198,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 201,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 204,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 207,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 210,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 213,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 216,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 219,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 222,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 225,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 228,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 231,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 234,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 237,
+   "status": 200,
+   "state": "pending"
+  }
+ ],
+ "waited_seconds": 240
+}

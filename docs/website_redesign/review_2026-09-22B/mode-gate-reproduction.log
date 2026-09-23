@@ -1,0 +1,13 @@
+PASS G-1 a live build without the owner release value is refused
+PASS G-2 a sandbox build compiles
+PASS G-3 pinned staging URL but no per-target approval: refused before any call
+PASS G-6 sandbox band and fixed marker render on a marketing page
+PASS G-7 a production Q&A intake host is refused in a sandbox build (no call made)
+PASS G-8 stub session endpoint does not exist in a sandbox build
+PASS G-9 signup against an unapproved target is refused before any call, and no session is set
+PASS G-4 a non-pinned (e.g. production) Supabase URL with an approval value: refused before any call
+PASS G-5 no Supabase URL at all: refused
+PASS G-10 a secret key in the website environment is refused (v2: no secret key for user actions)
+PASS G-11 a legacy JWT as publishable key is refused
+
+11 passed, 0 failed

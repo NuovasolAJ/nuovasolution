@@ -1,0 +1,630 @@
+{
+ "started_utc": "2026-09-23T08:12:25.957Z",
+ "commit": "6fbe45f",
+ "checks": [
+  {
+   "id": "UI-01",
+   "what": "no overlapping text boxes on eight pages x four viewports",
+   "pass": false,
+   "evidence": {
+    "pages_with_overlap": [
+     "360/en",
+     "360/es",
+     "360/en/platform/crm",
+     "360/es/platform/crm",
+     "360/en/signup",
+     "360/es/signup"
+    ],
+    "count": 16
+   }
+  },
+  {
+   "id": "UI-02",
+   "what": "no clipped text (scroll size beyond a hidden box)",
+   "pass": false,
+   "evidence": {
+    "pages": [
+     "360/en",
+     "360/es",
+     "390/en",
+     "390/es",
+     "768/en",
+     "768/es"
+    ],
+    "count": 12
+   }
+  },
+  {
+   "id": "UI-03",
+   "what": "no horizontal page overflow",
+   "pass": true,
+   "evidence": {
+    "pages": []
+   }
+  },
+  {
+   "id": "UI-04",
+   "what": "the open mobile navigation has no overlapping labels",
+   "pass": false,
+   "evidence": {
+    "menu": "opened",
+    "overlaps": [
+     {
+      "a": "Empieza gratis",
+      "b": "Las cuentas y los datos de a",
+      "overlap": "327x20"
+     },
+     {
+      "a": "Iniciar sesión",
+      "b": "LA CAPA OPERATIVA DE UNA AGE",
+      "overlap": "350x13"
+     },
+     {
+      "a": "Iniciar sesión",
+      "b": "Tu inmobiliaria, sin que se ",
+      "overlap": "350x19"
+     },
+     {
+      "a": "PLATAFORMA",
+      "b": "Tu inmobiliaria, sin que se ",
+      "overlap": "350x13"
+     }
+    ]
+   }
+  },
+  {
+   "id": "UI-05",
+   "what": "no placeholder wording on the public pages",
+   "pass": false,
+   "evidence": {
+    "/en": [
+     "Capture pending",
+     "placeholder"
+    ],
+    "/es": [
+     "todo",
+     "Todo"
+    ],
+    "/en/platform/crm": [
+     "Capture pending",
+     "placeholder"
+    ],
+    "/es/platform/crm": [
+     "todo",
+     "Todo"
+    ],
+    "/en/signup": [
+     "placeholder"
+    ],
+    "/es/signup": [
+     "todo",
+     "Todo"
+    ]
+   }
+  },
+  {
+   "id": "UI-06",
+   "what": "the Spanish sign-up page preselects Spanish and labels the field in Spanish",
+   "pass": true,
+   "evidence": {
+    "found": true,
+    "label": "Idioma",
+    "value": "es",
+    "options": [
+     "en:English",
+     "es:Español"
+    ],
+    "pageLocale": "es"
+   }
+  },
+  {
+   "id": "UI-07",
+   "what": "each plan offers a visible next step (registration or demo), not a dead end",
+   "pass": false,
+   "evidence": {
+    "ctas": []
+   }
+  },
+  {
+   "id": "UI-08",
+   "what": "with reduced motion no animation keeps running",
+   "pass": true,
+   "evidence": {
+    "total": 0,
+    "running": 0,
+    "infinite": 0
+   }
+  },
+  {
+   "id": "UI-09",
+   "what": "at 200 % zoom the page neither overflows nor overlaps",
+   "pass": true,
+   "evidence": {
+    "iw": 720,
+    "sw": 705,
+    "overlaps": 0
+   }
+  },
+  {
+   "id": "UI-10",
+   "what": "keyboard focus is visible on the first interactive element",
+   "pass": true,
+   "evidence": {
+    "n": 38,
+    "firstFocus": "Ir al contenido",
+    "visibleRing": true
+   }
+  }
+ ],
+ "detail": {
+  "overlaps": {
+   "360/en": [
+    {
+     "a": "Test environment.",
+     "b": "Accounts and data here are f",
+     "overlap": "113x16"
+    }
+   ],
+   "360/es": [
+    {
+     "a": "Entorno de pruebas.",
+     "b": "Las cuentas y los datos de a",
+     "overlap": "128x16"
+    }
+   ],
+   "360/en/platform/crm": [
+    {
+     "a": "Test environment.",
+     "b": "Accounts and data here are f",
+     "overlap": "113x16"
+    },
+    {
+     "a": "Test environment",
+     "b": "Book a demo",
+     "overlap": "108x20"
+    },
+    {
+     "a": "In use today.",
+     "b": "In use today on real WhatsAp",
+     "overlap": "90x19"
+    }
+   ],
+   "360/es/platform/crm": [
+    {
+     "a": "Entorno de pruebas.",
+     "b": "Las cuentas y los datos de a",
+     "overlap": "128x16"
+    },
+    {
+     "a": "Entorno de pruebas",
+     "b": "Reserva una demo",
+     "overlap": "122x13"
+    },
+    {
+     "a": "En uso hoy.",
+     "b": "En uso hoy con tráfico real ",
+     "overlap": "82x19"
+    }
+   ],
+   "360/en/signup": [
+    {
+     "a": "Test environment.",
+     "b": "Accounts and data here are f",
+     "overlap": "113x16"
+    }
+   ],
+   "360/es/signup": [
+    {
+     "a": "Entorno de pruebas.",
+     "b": "Las cuentas y los datos de a",
+     "overlap": "128x16"
+    }
+   ],
+   "390/en": [
+    {
+     "a": "Test environment.",
+     "b": "Accounts and data here are f",
+     "overlap": "113x16"
+    }
+   ],
+   "390/es": [
+    {
+     "a": "Entorno de pruebas.",
+     "b": "Las cuentas y los datos de a",
+     "overlap": "128x16"
+    }
+   ],
+   "390/en/platform/crm": [
+    {
+     "a": "Test environment.",
+     "b": "Accounts and data here are f",
+     "overlap": "113x16"
+    },
+    {
+     "a": "Test environment",
+     "b": "Book a demo",
+     "overlap": "108x20"
+    },
+    {
+     "a": "In use today.",
+     "b": "In use today on real WhatsAp",
+     "overlap": "90x19"
+    }
+   ],
+   "390/es/platform/crm": [
+    {
+     "a": "Entorno de pruebas.",
+     "b": "Las cuentas y los datos de a",
+     "overlap": "128x16"
+    },
+    {
+     "a": "En uso hoy.",
+     "b": "En uso hoy con tráfico real ",
+     "overlap": "82x19"
+    }
+   ],
+   "390/en/signup": [
+    {
+     "a": "Test environment.",
+     "b": "Accounts and data here are f",
+     "overlap": "113x16"
+    }
+   ],
+   "390/es/signup": [
+    {
+     "a": "Entorno de pruebas.",
+     "b": "Las cuentas y los datos de a",
+     "overlap": "128x16"
+    }
+   ],
+   "768/en/platform/crm": [
+    {
+     "a": "In use today.",
+     "b": "In use today on real WhatsAp",
+     "overlap": "90x19"
+    }
+   ],
+   "768/es/platform/crm": [
+    {
+     "a": "En uso hoy.",
+     "b": "En uso hoy con tráfico real ",
+     "overlap": "82x19"
+    }
+   ],
+   "1440/en/platform/crm": [
+    {
+     "a": "In use today.",
+     "b": "In use today on real WhatsAp",
+     "overlap": "90x19"
+    }
+   ],
+   "1440/es/platform/crm": [
+    {
+     "a": "En uso hoy.",
+     "b": "En uso hoy con tráfico real ",
+     "overlap": "82x19"
+    }
+   ]
+  },
+  "clipped": {
+   "360/en": [
+    {
+     "t": "What the system covers",
+     "sw": 182,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    },
+    {
+     "t": "Gmail and WhatsApp\nAnswered\nOne customer",
+     "sw": 160,
+     "cw": 1,
+     "sh": 144,
+     "ch": 1
+    },
+    {
+     "t": "Explore the platform",
+     "sw": 143,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    }
+   ],
+   "360/es": [
+    {
+     "t": "Qué cubre el sistema",
+     "sw": 159,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    },
+    {
+     "t": "Gmail y WhatsApp\nRespondida\nUna ficha de",
+     "sw": 182,
+     "cw": 1,
+     "sh": 144,
+     "ch": 1
+    },
+    {
+     "t": "Descubre la plataforma",
+     "sw": 165,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    }
+   ],
+   "390/en": [
+    {
+     "t": "What the system covers",
+     "sw": 182,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    },
+    {
+     "t": "Gmail and WhatsApp\nAnswered\nOne customer",
+     "sw": 160,
+     "cw": 1,
+     "sh": 144,
+     "ch": 1
+    },
+    {
+     "t": "Explore the platform",
+     "sw": 143,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    }
+   ],
+   "390/es": [
+    {
+     "t": "Qué cubre el sistema",
+     "sw": 159,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    },
+    {
+     "t": "Gmail y WhatsApp\nRespondida\nUna ficha de",
+     "sw": 182,
+     "cw": 1,
+     "sh": 144,
+     "ch": 1
+    },
+    {
+     "t": "Descubre la plataforma",
+     "sw": 165,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    }
+   ],
+   "768/en": [
+    {
+     "t": "What the system covers",
+     "sw": 182,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    },
+    {
+     "t": "Gmail and WhatsApp\nAnswered\nOne customer",
+     "sw": 160,
+     "cw": 1,
+     "sh": 144,
+     "ch": 1
+    },
+    {
+     "t": "Explore the platform",
+     "sw": 143,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    }
+   ],
+   "768/es": [
+    {
+     "t": "Qué cubre el sistema",
+     "sw": 159,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    },
+    {
+     "t": "Gmail y WhatsApp\nRespondida\nUna ficha de",
+     "sw": 182,
+     "cw": 1,
+     "sh": 144,
+     "ch": 1
+    },
+    {
+     "t": "Descubre la plataforma",
+     "sw": 165,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    }
+   ],
+   "1440/en": [
+    {
+     "t": "ENGLISH",
+     "sw": 57,
+     "cw": 1,
+     "sh": 20,
+     "ch": 1
+    },
+    {
+     "t": "ESPAÑOL",
+     "sw": 60,
+     "cw": 1,
+     "sh": 20,
+     "ch": 1
+    },
+    {
+     "t": "What the system covers",
+     "sw": 182,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    },
+    {
+     "t": "Gmail and WhatsApp\nAnswered\nOne customer",
+     "sw": 160,
+     "cw": 1,
+     "sh": 144,
+     "ch": 1
+    },
+    {
+     "t": "Explore the platform",
+     "sw": 143,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    }
+   ],
+   "1440/es": [
+    {
+     "t": "ENGLISH",
+     "sw": 57,
+     "cw": 1,
+     "sh": 20,
+     "ch": 1
+    },
+    {
+     "t": "ESPAÑOL",
+     "sw": 60,
+     "cw": 1,
+     "sh": 20,
+     "ch": 1
+    },
+    {
+     "t": "Qué cubre el sistema",
+     "sw": 159,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    },
+    {
+     "t": "Gmail y WhatsApp\nRespondida\nUna ficha de",
+     "sw": 182,
+     "cw": 1,
+     "sh": 144,
+     "ch": 1
+    },
+    {
+     "t": "Descubre la plataforma",
+     "sw": 165,
+     "cw": 1,
+     "sh": 24,
+     "ch": 1
+    }
+   ],
+   "1440/en/platform/crm": [
+    {
+     "t": "ENGLISH",
+     "sw": 57,
+     "cw": 1,
+     "sh": 20,
+     "ch": 1
+    },
+    {
+     "t": "ESPAÑOL",
+     "sw": 60,
+     "cw": 1,
+     "sh": 20,
+     "ch": 1
+    }
+   ],
+   "1440/es/platform/crm": [
+    {
+     "t": "ENGLISH",
+     "sw": 57,
+     "cw": 1,
+     "sh": 20,
+     "ch": 1
+    },
+    {
+     "t": "ESPAÑOL",
+     "sw": 60,
+     "cw": 1,
+     "sh": 20,
+     "ch": 1
+    }
+   ],
+   "1440/en/signup": [
+    {
+     "t": "ENGLISH",
+     "sw": 57,
+     "cw": 1,
+     "sh": 20,
+     "ch": 1
+    },
+    {
+     "t": "ESPAÑOL",
+     "sw": 60,
+     "cw": 1,
+     "sh": 20,
+     "ch": 1
+    }
+   ],
+   "1440/es/signup": [
+    {
+     "t": "ENGLISH",
+     "sw": 57,
+     "cw": 1,
+     "sh": 20,
+     "ch": 1
+    },
+    {
+     "t": "ESPAÑOL",
+     "sw": 60,
+     "cw": 1,
+     "sh": 20,
+     "ch": 1
+    }
+   ]
+  },
+  "overflow": {},
+  "placeholders": {
+   "/en": [
+    "Capture pending",
+    "placeholder"
+   ],
+   "/es": [
+    "todo",
+    "Todo"
+   ],
+   "/en/platform/crm": [
+    "Capture pending",
+    "placeholder"
+   ],
+   "/es/platform/crm": [
+    "todo",
+    "Todo"
+   ],
+   "/en/signup": [
+    "placeholder"
+   ],
+   "/es/signup": [
+    "todo",
+    "Todo"
+   ]
+  },
+  "language_field": {
+   "found": true,
+   "label": "Idioma",
+   "value": "es",
+   "options": [
+    "en:English",
+    "es:Español"
+   ],
+   "pageLocale": "es"
+  },
+  "pricing_ctas": []
+ },
+ "finished_utc": "2026-09-23T08:14:13.191Z",
+ "summary": {
+  "pass": 5,
+  "total": 10
+ }
+}
