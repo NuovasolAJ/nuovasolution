@@ -34,7 +34,7 @@ WEBSITE_QA_STAGING                = FAIL 2026-09-23 (Transport 6/9: 202 + signie
 CHECKOUT_TEST_PATH                = NOT_APPLICABLE (kein Checkout-Vertrag; Rechnung/Überweisung ehrlich dargestellt; automatischer Checkout = fehlende Integration, API)
 WEBSITE_REDESIGN_ROLLOUT          = PARTIAL e39ad06 (Home, Pläne, Plattform, Produktseiten, Auth, Prueba, Contacto im hellen System; Onboarding erbt nur die Tokens; Vollrollout nach Designfreigabe)
 WEBSITE_LIVE_CLAIM_FIX            = READY_NOT_DEPLOYED 82112df (Branch hotfix/old-site-copy-v2; Deploy = Owner)
-WEBSITE_BRANCH_PUSH               = NOT_DONE (Owner-Freigabe fehlt)
+WEBSITE_BRANCH_PUSH               = BLOCKED_ACCESS 2026-09-23 (Owner-Freigabe für Push + isolierte Vercel-Preview liegt vor; auf diesem Rechner gibt es keine GitHub-Push-Berechtigung: kein Credential, kein Token, SSH-Key nicht bei GitHub registriert; kein Vercel-Token. ZIP-Export + PREVIEW_START.md geliefert; Owner-Aktion s. Chat-Rückgabe)
 WEBSITE_BFF_SECRET_KEY            = NONE (unverändert seit 6fbe45f; Runtime verweigert jeden Secret-/Legacy-Key)
 ```
 
