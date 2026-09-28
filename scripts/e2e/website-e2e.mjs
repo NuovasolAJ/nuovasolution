@@ -185,7 +185,7 @@ try {
   await nav(`${BASE}/api/bff/auth/login?stub=1&case=3&next=/en/onboarding`, 3500);
   const ob = await ev(`(()=>({h1:[...document.querySelectorAll('h1')].map(x=>x.innerText),crm:!!document.querySelector('[data-crm-choice]'),radios:[...document.querySelectorAll('[data-crm-choice] input[type=radio]')].map(x=>x.value),ribbon:document.querySelector('[data-env]')?.getAttribute('data-env')??null,text:document.body.innerText,sw:document.documentElement.scrollWidth,iw:innerWidth}))()`);
   check("B1-a", "onboarding has an h1 and the CRM choice with exactly the two selectable options", ob.h1.length === 1 && ob.crm && ob.radios.join(",") === "nuovasolution,google_sheets", { h1: ob.h1, radios: ob.radios });
-  check("B1-b", "stub band visible on the onboarding surface", ob.ribbon === "stub", ob.ribbon);
+  check("B1-b", "preview band (demonstration data) visible on the onboarding surface", ob.ribbon === "preview", ob.ribbon);
   const rawKeys = ["white_label_legal", "ai_disclosure", "staff_provisioned", "owner_admin", "business_hours", "px.experience", "externally_pending", "locked_by_plan"].filter((k) => ob.text.includes(k));
   check("WR-11", "no raw backend key is rendered", rawKeys.length === 0, rawKeys);
   check("WR-22", "no percentage number on onboarding", !/\d+\s?%/.test(ob.text), "step count shown instead");
@@ -319,7 +319,7 @@ try {
   // B7 claims: no forbidden public wording on the rendered pages
   await desktop();
   const forbidden = [];
-  for (const path of ["/en", "/es", "/en/trial", "/es/trial", "/en/platform/lead-intelligence", "/es/platform/lead-intelligence", "/en/platform/voice", "/en/platform/property-matching", "/en/contact", "/en/packages"]) {
+  for (const path of ["/en", "/es", "/en/trial", "/es/trial", "/en/platform/lead-intelligence", "/es/platform/lead-intelligence", "/en/platform/crm", "/en/platform/daily-assistant", "/en/contact", "/en/packages"]) {
     await nav(`${BASE}${path}`, 2200);
     const t = await ev(`document.body.innerText`);
     for (const re of [/hot lead/i, /lead caliente/i, /21 days/i, /21 días/i, /nine languages/i, /nueve idiomas/i, /three properties/i, /tres propiedades/i, /honest video/i]) if (re.test(t)) forbidden.push(`${path}: ${re}`);

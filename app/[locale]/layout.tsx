@@ -10,6 +10,7 @@ import { Footer } from "@/components/site/footer";
 import { QaWidget } from "@/components/site/qa-widget";
 import { EnvironmentRibbon } from "@/components/site/environment-ribbon";
 import { AuthFragment } from "@/components/site/auth-fragment";
+import { publicIndexingAllowed } from "@/lib/contracts/mode";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -42,7 +43,8 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       alternateLocale: params.locale === "es" ? "en_GB" : "es_ES",
     },
     twitter: { card: "summary_large_image", title: d.meta.title, description: d.meta.description },
-    robots: { index: true, follow: true },
+    // Indexing is an owner release (audit Z21); every preview is noindex here, in the header and in robots.txt.
+    robots: publicIndexingAllowed() ? { index: true, follow: true } : { index: false, follow: false },
   };
 }
 

@@ -44,6 +44,7 @@ export function HeroStack({ locale, className }: { locale: Locale; className?: s
                 <span className="t-caption tnum text-text-muted">{h.answer.time}</span>
               </div>
               <p className="mt-3 t-body-m text-text-primary">{h.answer.text}</p>
+              <p className="mt-2 t-caption text-sage-700">{h.answer.assistant}</p>
             </div>
           </li>
 

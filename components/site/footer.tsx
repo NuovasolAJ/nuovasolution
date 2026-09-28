@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { capabilities } from "@/lib/content/capabilities";
+import { publishedCapabilities } from "@/lib/content/capabilities";
 import { Logo } from "@/components/ui/logo";
 
 /**
@@ -16,7 +16,7 @@ export function Footer({ locale }: { locale: Locale }) {
   const cols: { heading: string; items: { href: string; label: string; note?: string }[] }[] = [
     {
       heading: d.footer.platform,
-      items: [{ href: p("/platform"), label: d.nav.overview }, ...capabilities.map((c) => ({ href: p(`/platform/${c.slug}`), label: c.name[locale] }))],
+      items: [{ href: p("/platform"), label: d.nav.overview }, ...publishedCapabilities().map((c) => ({ href: p(`/platform/${c.slug}`), label: c.name[locale] }))],
     },
     {
       heading: d.footer.getStarted,

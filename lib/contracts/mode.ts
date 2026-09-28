@@ -121,5 +121,18 @@ export function qaTargetProblem(url: string): string | null {
   return null;
 }
 
+/**
+ * Search engines may index this deployment only when the owner has released production
+ * (the same release value as the live build gate). Every preview, every stub or staging build
+ * and every deployment without the variable is noindex by default, in the meta tag, in the
+ * X-Robots-Tag header (next.config.js) and in robots.txt (audit Z21). noindex is not access
+ * control; it only keeps a review link out of search results.
+ */
+export function publicIndexingAllowed(): boolean {
+  return integrationMode() === "live" && process.env.NUOVA_LIVE_RELEASE === LIVE_RELEASE_TOKEN;
+}
+
+/** The question box surface switch lives in ./surface.ts (client-safe, no server-only import). */
+
 export const STUB_HEADER = "x-nuova-stub";
 export const MODE_HEADER = "x-nuova-mode";

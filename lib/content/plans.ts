@@ -55,11 +55,23 @@ export const catalogPlans: CatalogPlan[] = [
   },
 ];
 
-/** Flags whose capability is not offered publicly today (status from lib/content/capabilities.ts). */
-export const gatedFeatures: Record<string, "in_implementation" | "certified_gate_pending" | "final_acceptance"> = {
-  "property.matching": "in_implementation",
-  "channel.voice": "certified_gate_pending",
-  "feed.structured": "in_implementation",
-  "lead.engine.orchestrate": "certified_gate_pending",
-  "reporting.advanced": "final_acceptance",
-};
+/**
+ * Flags the public page may list (audit R27): only those whose capability is published today.
+ * Not listed: property.matching, channel.voice, feed.structured, lead.engine.orchestrate (hidden
+ * capabilities), followup.basic (follow-up copy is legally held, C3 §7) and reporting.* (no status
+ * in the canonical audit). They come back one by one as the register changes.
+ */
+export const PUBLIC_FEATURES: string[] = ["cx.baseline", "channel.email", "channel.whatsapp", "lead.qualify", "crm.core", "consent.handling"];
+
+/**
+ * R26: the trial equals Essential for 14 days once API signals TRIAL_PLAN_ALIGNED. The owner
+ * records that signal as NEXT_PUBLIC_TRIAL_PLAN=essential on the deployment; until then the
+ * pages state the trial neutrally and tie no badge or CTA to a plan.
+ */
+export function trialPlanAligned(): boolean {
+  return process.env.NEXT_PUBLIC_TRIAL_PLAN === "essential";
+}
+
+export function isPlanCode(v: string | undefined): v is PlanCode {
+  return v === "essential" || v === "growth" || v === "scale";
+}

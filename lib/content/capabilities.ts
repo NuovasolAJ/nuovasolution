@@ -16,6 +16,16 @@ import type { CapabilityStatus } from "./statuses";
 type L = { en: string; es: string };
 type Stage = "attract" | "answer" | "understand" | "advance" | "handover";
 
+/**
+ * Publication register (audit R27, 2026-09-24). The public site renders only entries marked
+ * `live` (proven in production) or `on_request` (a premium service, deliverable on request).
+ * `hidden` entries keep their data here but have no page, no menu entry, no footer link and no
+ * sitemap entry, so no internal status formula reaches a visitor. The values below are the
+ * implementer's provisional register from the evidence index; Copy's LAUNCH_COPY_v1 register
+ * replaces them when it arrives, and a flip here changes every surface at once.
+ */
+export type PublishState = "live" | "on_request" | "hidden";
+
 export interface CapabilityPoint {
   text: L;
   status: CapabilityStatus;
@@ -24,6 +34,8 @@ export interface CapabilityPoint {
 export interface Capability {
   slug: string;
   stage: Stage;
+  /** Publication state (R27). Only live and on_request render publicly. */
+  publish: PublishState;
   /** Overall status shown on index rows and chips. The most honest single value. */
   status: CapabilityStatus;
   name: L;
@@ -49,6 +61,7 @@ export const capabilities: Capability[] = [
   {
     slug: "ai-sales-agent",
     stage: "answer",
+    publish: "live",
     status: "live",
     name: { en: "AI Sales Agent", es: "AI Sales Agent" },
     navLine: { en: "Answers text enquiries, day or night", es: "Responde consultas de texto, de día o de noche" }, // C3 §1.3
@@ -72,7 +85,7 @@ export const capabilities: Capability[] = [
     fits: [
       { en: "Gmail", es: "Gmail" },
       { en: "WhatsApp", es: "WhatsApp" },
-      { en: "Your customers hear from your agency, under your brand (in development).", es: "Tus clientes reciben la respuesta de tu agencia, con tu marca (en desarrollo)." }, // WCR-041, WCR-056
+      // WCR-041/056 (branded replies) is not listed until BRANDING_CHAIN_MATRIX_v1 proves it (audit Z08).
     ],
     notAvailable: [],
     video: "V-01",
@@ -81,14 +94,15 @@ export const capabilities: Capability[] = [
   {
     slug: "lead-intelligence",
     stage: "understand",
+    publish: "live",
     status: "live",
     name: { en: "Lead Intelligence", es: "Lead Intelligence" },
     navLine: { en: "Qualifies and prioritises each enquiry", es: "Cualifica y prioriza cada consulta" }, // WCR-060, C3 §1.3
     h1: { en: "One customer, one record, and a clear priority on every enquiry.", es: "Un cliente, una ficha, y una prioridad clara en cada consulta." }, // WCR-061
     lead: {
-      // WCR-062 = WCR-020
-      en: "A client who writes twice on the same channel stays one person in Nuova, and every enquiry is qualified and prioritised. Recognising the same client across email and WhatsApp is being built.",
-      es: "Un cliente que escribe dos veces por el mismo canal sigue siendo una sola persona en Nuova, y cada consulta se cualifica y se prioriza. Reconocer al mismo cliente entre email y WhatsApp se está construyendo.",
+      // WCR-062 = WCR-020, first sentence; the cross-channel sentence is a status formula (R27)
+      en: "A client who writes twice on the same channel stays one person in Nuova, and every enquiry is qualified and prioritised.",
+      es: "Un cliente que escribe dos veces por el mismo canal sigue siendo una sola persona en Nuova, y cada consulta se cualifica y se prioriza.",
     },
     points: [
       { text: { en: "One canonical customer identity across channels.", es: "Una identidad de cliente única en todos los canales." }, status: "in_implementation" }, // WCR-063
@@ -109,14 +123,18 @@ export const capabilities: Capability[] = [
   {
     slug: "crm",
     stage: "understand",
+    publish: "live",
     status: "live",
     name: { en: "Universal CRM", es: "CRM universal" },
     navLine: { en: "One record per customer", es: "Una ficha por cliente" }, // C3 §1.3
-    h1: { en: "Every message, from every channel, on one record.", es: "Cada mensaje, de cada canal, en una sola ficha." },
+    // Public H1 and lead limited to what is proven (audit Z07, R27): one record per customer, included
+    // from the start. Cross-channel identity, the team's CRM view, Google Sheets and external CRMs are
+    // tracked in the launch blocker register, not stated on the page.
+    h1: { en: "One record per customer, included from the start.", es: "Una ficha por cliente, incluida desde el principio." },
     lead: {
-      // WCR-070
-      en: "A CRM is included from the start: every enquiry is recorded as a lead with its qualification and history. The CRM view for your team and Google Sheets per agency are being built. Connecting HubSpot, Pipedrive, Zoho or Salesforce is not offered yet.",
-      es: "Hay un CRM incluido desde el principio: cada consulta queda registrada como lead con su cualificación y su historial. La vista de CRM para tu equipo y Google Sheets por agencia se están construyendo. La conexión con HubSpot, Pipedrive, Zoho o Salesforce todavía no se ofrece.",
+      // WCR-070, first sentence
+      en: "A CRM is included from the start: every enquiry is recorded as a lead with its qualification and history.",
+      es: "Hay un CRM incluido desde el principio: cada consulta queda registrada como lead con su cualificación y su historial.",
     },
     points: [
       { text: { en: "Leads recorded with their qualification, included.", es: "Leads registrados con su cualificación, incluido." }, status: "live" }, // WCR-071
@@ -143,6 +161,7 @@ export const capabilities: Capability[] = [
   {
     slug: "property-matching",
     stage: "advance",
+    publish: "hidden", // in development: not published until it is proven (R27)
     status: "in_implementation", // WCR-080
     name: { en: "Property Matching", es: "Property Matching" },
     navLine: { en: "A short, honest selection. In development", es: "Una selección corta y honesta. En desarrollo" }, // C3 §1.3
@@ -174,13 +193,17 @@ export const capabilities: Capability[] = [
   {
     slug: "daily-assistant",
     stage: "handover",
+    // Built and shown as a product surface (owner criteria 2026-09-28: Daily tasks are one of the real
+    // surfaces on the sales page); the final owner test is tracked in the launch blocker register, not on the page.
+    publish: "live",
     status: "final_acceptance",
     name: { en: "Daily Assistant", es: "Daily Assistant" },
     navLine: { en: "What to do first, and why", es: "Qué hacer primero, y por qué" }, // C3 §1.3
     h1: { en: "Your agents stop administering the pipeline.", es: "Tus agentes dejan de administrar el pipeline." },
     lead: {
-      en: "Daily Goals and the assistant tell your team what to do first, and why. Built, with the final owner test still pending before it is offered.",
-      es: "Daily Goals y la asistente le dicen a tu equipo qué hacer primero, y por qué. Construido, con la prueba final del propietario todavía pendiente antes de ofrecerlo.", // WCR-090
+      // WCR-090, first sentence; the final owner test is tracked in the launch blocker register (R27)
+      en: "Daily Goals and the assistant tell your team what to do first, and why.",
+      es: "Daily Goals y la asistente le dicen a tu equipo qué hacer primero, y por qué.",
     },
     points: [
       { text: { en: "Daily Goals for each agent.", es: "Daily Goals para cada agente." }, status: "final_acceptance" },
@@ -202,6 +225,7 @@ export const capabilities: Capability[] = [
   {
     slug: "voice",
     stage: "answer",
+    publish: "hidden", // waits on the legal disclosure and the provider gates (R27)
     status: "certified_gate_pending",
     name: { en: "Voice", es: "Voz" },
     navLine: { en: "Phone calls. Not offered yet", es: "Llamadas. Todavía no se ofrece" }, // C3 §1.3
@@ -231,6 +255,7 @@ export const capabilities: Capability[] = [
   {
     slug: "social-growth",
     stage: "attract",
+    publish: "hidden", // waits on the Meta review (R27)
     status: "certified_gate_pending",
     name: { en: "Social Growth", es: "Social Growth" },
     navLine: { en: "Comments and posts. Not offered yet", es: "Comentarios y publicaciones. Todavía no se ofrece" }, // WCR-110, C3 §1.3
@@ -265,6 +290,7 @@ export const capabilities: Capability[] = [
   {
     slug: "lead-acquisition",
     stage: "attract",
+    publish: "hidden", // waits on the provider test (R27)
     status: "certified_gate_pending",
     name: { en: "Lead Acquisition", es: "Captación de leads" },
     navLine: { en: "Leads from your campaigns. Not offered yet", es: "Leads de tus campañas. Todavía no se ofrece" }, // C3 §1.3
@@ -295,6 +321,10 @@ export const capabilities: Capability[] = [
   {
     slug: "property-experience",
     stage: "advance",
+    // Premium on request, but the copy below still describes the retired room panorama product
+    // (audit Z15). Hidden until the 3D lane's feature truth and the owner's visual acceptance
+    // (3D_FEATURE_TRUTH, 3D_WEBSITE_ASSETS); then on_request.
+    publish: "hidden",
     status: "premium_on_request",
     name: { en: "Property Experience 3D", es: "Property Experience 3D" },
     navLine: { en: "Room by room, on request", es: "Habitación por habitación, bajo petición" }, // C3 §1.3
@@ -323,8 +353,29 @@ export const capabilities: Capability[] = [
   },
 ];
 
+/** Every entry, including hidden ones. Public surfaces use `publishedCapability` / `publishedCapabilities`. */
 export function capability(slug: string): Capability | undefined {
   return capabilities.find((c) => c.slug === slug);
+}
+
+export function isPublished(c: Capability): boolean {
+  return c.publish === "live" || c.publish === "on_request";
+}
+
+/** The entries the public site may render (R27). */
+export function publishedCapabilities(): Capability[] {
+  return capabilities.filter(isPublished);
+}
+
+/** A published entry by slug; undefined for unknown and for hidden slugs alike (the route answers 404). */
+export function publishedCapability(slug: string): Capability | undefined {
+  const c = capability(slug);
+  return c && isPublished(c) ? c : undefined;
+}
+
+/** The points of a published capability that may be described in the present tense. */
+export function publicPoints(c: Capability): CapabilityPoint[] {
+  return c.points.filter((p) => p.status === "live" || p.status === "premium_on_request");
 }
 
 export function t(l: L, locale: Locale): string {
@@ -333,8 +384,9 @@ export function t(l: L, locale: Locale): string {
 
 export const stageOrder: Stage[] = ["attract", "answer", "understand", "advance", "handover"];
 
+/** Published capabilities grouped by stage; stages without a published entry are empty and are not rendered. */
 export function capabilitiesByStage(): Record<Stage, Capability[]> {
   const out = { attract: [], answer: [], understand: [], advance: [], handover: [] } as Record<Stage, Capability[]>;
-  for (const c of capabilities) out[c.stage].push(c);
+  for (const c of publishedCapabilities()) out[c.stage].push(c);
   return out;
 }

@@ -22,7 +22,6 @@ export default function SignupPage({ params }: { params: { locale: string } }) {
     <>
     <EnvironmentRibbon locale={locale} scope="form" />
     <Section rhythm="opening" labelledBy="su-h1" className="overflow-hidden">
-      <div className="atmosphere" aria-hidden="true" />
       <div className="container-narrow relative !mx-0 xl:!mx-auto">
         <Eyebrow className="mb-4">{d.signup.eyebrow}</Eyebrow>
         <Display size="l" as="h1" id="su-h1">{d.signup.h1}</Display>

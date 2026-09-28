@@ -10,7 +10,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 const ROOT = new URL("../../", import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1");
-const OUT = process.env.OUT ?? join(ROOT, "docs", "website_redesign", "design_probe_2026-09-23");
+const OUT = process.env.OUT ?? join(ROOT, "docs", "website_redesign", "design_probe_2026-09-28");
 const EDGE = process.env.EDGE ?? "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";
 const NEXT = join(ROOT, "node_modules", "next", "dist", "bin", "next");
 const PORT = 3111, CDP_PORT = 9343;
@@ -58,6 +58,9 @@ try {
     ["packages", "/packages"],
     ["platform", "/platform"],
     ["product-agent", "/platform/ai-sales-agent"],
+    ["product-crm", "/platform/crm"],
+    ["trial", "/trial"],
+    ["contact", "/contact"],
     ["signup", "/signup"],
     ["login", "/login?confirmed=1"],
   ];

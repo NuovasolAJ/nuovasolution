@@ -241,24 +241,7 @@ img, video, svg { display: block; max-width: 100%; }
 .field-apricot { background: linear-gradient(160deg, var(--apricot-100), var(--apricot-200)); }
 .field-lavender { background: linear-gradient(160deg, var(--lavender-100), var(--sky-100)); }
 
-/* Atmosphere: a soft light wash behind the opening. Static, no motion. */
-.atmosphere {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-.atmosphere::before {
-  content: "";
-  position: absolute;
-  inset: -20% -10% auto;
-  height: 70%;
-  background:
-    radial-gradient(60% 55% at 78% 30%, var(--sand-100) 0%, transparent 70%),
-    radial-gradient(45% 45% at 20% 10%, var(--sky-100) 0%, transparent 70%),
-    radial-gradient(40% 40% at 55% 75%, var(--sage-100) 0%, transparent 70%);
-  opacity: 0.9;
-}
+/* No radial colour washes (audit Z13): depth comes from composed fields, cards and the stack. */
 .rule-vertical {
   position: absolute;
   top: 0;
@@ -281,14 +264,16 @@ img, video, svg { display: block; max-width: 100%; }
   opacity: 0.85;
 }
 
-/* Stacked cards: each card sticks a little lower than the previous one while the
-   next one scrolls over it. Plain position: sticky, no scroll hijacking. */
-.stack-card {
-  position: sticky;
-  top: calc(var(--header-h) + 16px + var(--stack-offset, 0px));
-}
-@media (min-width: 1024px) {
-  .stack-card { top: calc(var(--header-h) + 24px + var(--stack-offset, 0px)); }
+/* Stacked cards: on a desktop viewport with enough height each card sticks a little lower than
+   the previous one while the next one scrolls over it. Plain position: sticky, no scroll
+   hijacking. Below 1024 px wide or 720 px high (phones, 200 % zoom, short windows) the cards
+   simply follow each other, so an opened detail is always fully readable (audit Z17). */
+.stack-card { position: relative; }
+@media (min-width: 1024px) and (min-height: 720px) {
+  .stack-card {
+    position: sticky;
+    top: calc(var(--header-h) + 24px + var(--stack-offset, 0px));
+  }
 }
 
 /* ------------------------------------------------------------------ */

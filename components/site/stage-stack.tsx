@@ -2,133 +2,98 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { capabilitiesByStage, stageOrder, type Capability } from "@/lib/content/capabilities";
-import { statusPresentation } from "@/lib/content/statuses";
+import { publishedCapability } from "@/lib/content/capabilities";
 import { cn } from "@/lib/utils";
-import { StatusChip, StatusGlyph } from "@/components/ui/status";
-import { AssistantView, ConversationView, RecordView, StatusCard } from "./product-views";
+import { StatusGlyph } from "@/components/ui/status";
+import { AssistantView, BoardView, ConversationView } from "./product-views";
 
-const field: Record<string, string> = {
-  answer: "field-sage",
-  understand: "field-sand",
-  advance: "field-sky",
-  handover: "field-apricot",
-  attract: "field-lavender",
-};
+/**
+ * What Nuova does, as three stacked cards along one continuous example (PRODUCT_TEXTS_C3_v1
+ * §2 H3 to H5): the enquiry answered, the lead recorded and prioritised, the task for the team.
+ * Each card: the step, a short title, one or two sentences, the capabilities behind it as plain
+ * links, and a real product view with synthetic data. No status chip and no gate sentence
+ * (audit R27, Z12). On a desktop viewport with enough height the cards stick and slide over each
+ * other (position: sticky only); elsewhere they simply follow one another (Z17).
+ */
+const cards = [
+  { key: "answer", field: "field-sage", slugs: ["ai-sales-agent"] },
+  { key: "organise", field: "field-sand", slugs: ["lead-intelligence", "crm"] },
+  { key: "team", field: "field-sky", slugs: ["daily-assistant"] },
+] as const;
 
-/** Reading order for the cards: what runs today first, what is being built last. */
-const cardOrder = ["answer", "understand", "handover", "advance", "attract"] as const;
-
-function StageView({ stage, locale }: { stage: string; locale: Locale }) {
-  const byStage = capabilitiesByStage();
-  const items = byStage[stage as keyof typeof byStage] ?? [];
-  const first = items[0] as Capability | undefined;
-  switch (stage) {
+function View({ k, locale }: { k: (typeof cards)[number]["key"]; locale: Locale }) {
+  switch (k) {
     case "answer":
       return <ConversationView locale={locale} />;
-    case "understand":
-      return <RecordView locale={locale} />;
-    case "handover":
+    case "organise":
+      return <BoardView locale={locale} />;
+    default:
       return <AssistantView locale={locale} />;
-    case "advance": {
-      const pm = items.find((c) => c.slug === "property-matching") ?? first;
-      return pm ? <StatusCard locale={locale} status="in_implementation" title={pm.name[locale]} pending={pm.lead[locale]} /> : null;
-    }
-    default: {
-      const sg = items.find((c) => c.slug === "lead-acquisition") ?? first;
-      return sg ? <StatusCard locale={locale} status="certified_gate_pending" title={sg.name[locale]} certified={sg.bothHalves?.certified[locale]} pending={sg.bothHalves?.pending[locale]} /> : null;
-    }
   }
 }
 
-/**
- * The five stages as stacked cards (PRODUCT_TEXTS_C3_v1 §1.1 names, §2 H4/H5 texts). Each card
- * sticks below the header while the next one scrolls over it (position: sticky only; nothing
- * hijacks the scroll, and under reduced motion the cards simply follow each other). Every card:
- * a short title, one line, the capabilities it contains with their status, details on demand,
- * and a product view or the honest state in words.
- */
 export function StageStack({ locale }: { locale: Locale }) {
   const d = getDictionary(locale);
-  const s = d.home.stack;
-  const byStage = capabilitiesByStage();
-  const cards = s.cards as Record<string, { title: string; line: string; qualifier?: string }>;
-  const stageName = d.nav.stages as Record<string, string>;
+  const f = d.home.flow;
+  const texts = f.cards as Record<string, { step: string; title: string; line: string; qualifier?: string }>;
 
   return (
     <ol className="space-y-6" data-stage-stack>
-      {cardOrder.map((stage, i) => {
-        const items = byStage[stage];
-        if (!items.length) return null;
-        const c = cards[stage];
+      {cards.map((c, i) => {
+        const t = texts[c.key];
+        const caps = c.slugs.map(publishedCapability).filter((x): x is NonNullable<typeof x> => Boolean(x));
         return (
-          <li key={stage} className="stack-card" style={{ ["--stack-offset" as string]: `${i * 10}px` }}>
-            <article className="card overflow-hidden rounded-xl" aria-labelledby={`stack-${stage}`}>
+          <li key={c.key} className="stack-card" style={{ ["--stack-offset" as string]: `${i * 12}px` }}>
+            <article className="card overflow-hidden rounded-xl" aria-labelledby={`stack-${c.key}`}>
               <div className="grid xl:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
                 <div className="p-6 md:p-8 xl:p-10">
                   <p className="t-eyebrow text-text-muted">
-                    <span className="tnum">0{i + 1}</span> · {stageName[stage]}
+                    <span className="tnum">0{i + 1}</span> · {t.step}
                   </p>
-                  <h3 id={`stack-${stage}`} className="mt-3 t-heading-l text-text-primary">{c.title}</h3>
-                  <p className="mt-3 t-body-m text-text-secondary measure-body">{c.line}</p>
-                  {c.qualifier && <p className="mt-2 t-caption text-text-muted">{c.qualifier}</p>}
-                  {stage === "answer" && (
-                    <ol className="mt-5 flex flex-wrap gap-2" aria-label={s.h2}>
-                      {s.steps.map((st, j) => (
-                        <li key={st} className="inline-flex items-center gap-2 rounded-pill bg-surface-sunken px-3 py-1.5 t-caption text-text-primary">
-                          <span className="tnum text-text-muted">{j + 1}</span>
-                          {st}
+                  <h3 id={`stack-${c.key}`} className="mt-3 t-heading-l text-text-primary">{t.title}</h3>
+                  <p className="mt-3 t-body-m text-text-secondary measure-body">{t.line}</p>
+                  {t.qualifier && <p className="mt-2 t-caption text-text-muted">{t.qualifier}</p>}
+                  {c.key === "answer" && <p className="mt-3 t-caption text-text-muted measure-body">{f.stepsDetail}</p>}
+                  {caps.length > 0 && (
+                    <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+                      {caps.map((cap) => (
+                        <li key={cap.slug}>
+                          <Link href={localePath(locale, `/platform/${cap.slug}`)} className="inline-flex min-h-[32px] items-center gap-1.5 t-body-s font-medium text-text-primary underline-offset-4 hover:underline">
+                            {cap.name[locale]}
+                            <StatusGlyph glyph="arrow-right" size={12} className="text-text-muted" />
+                          </Link>
                         </li>
                       ))}
-                    </ol>
+                    </ul>
                   )}
-                  <ul className="mt-6 space-y-2">
-                    {items.map((cap) => (
-                      <li key={cap.slug} className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                        <Link href={localePath(locale, `/platform/${cap.slug}`)} className="inline-flex min-h-[32px] items-center gap-1.5 t-body-s font-medium text-text-primary underline-offset-4 hover:underline">
-                          {cap.name[locale]}
-                          <StatusGlyph glyph="arrow-right" size={12} className="text-text-muted" />
-                        </Link>
-                        <StatusChip status={cap.status} locale={locale} />
-                      </li>
-                    ))}
-                  </ul>
-                  <details className="group mt-6 rounded-lg border border-line-hairline bg-surface-canvas">
-                    <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-3 px-4 py-2 t-body-s text-text-primary">
-                      {s.details}
-                      <span aria-hidden="true" className="text-text-muted transition-transform duration-control group-open:rotate-45">+</span>
-                    </summary>
-                    <div className="border-t border-line-hairline px-4 py-3">
-                      {stage === "answer" && <p className="py-2 t-body-s text-text-secondary">{s.stepsDetail}</p>}
-                      {items.map((cap) => (
-                        <div key={cap.slug} className="py-2">
-                          <p className="t-caption text-text-muted">{cap.name[locale]}</p>
-                          <ul className="mt-1 space-y-1.5">
-                            {cap.points.map((pt, j) => {
-                              const sp = statusPresentation(pt.status, locale);
-                              return (
-                                <li key={j} className="flex items-start gap-2 t-body-s">
-                                  <StatusGlyph glyph={sp.glyph} size={14} className={cn("mt-1 shrink-0", sp.tone === "positive" ? "text-signal-positive" : sp.tone === "attention" ? "text-signal-attention" : "text-text-muted")} />
-                                  <span className={sp.publiclyAvailable ? "text-text-primary" : "text-text-secondary"}>
-                                    {pt.text[locale]} <span className="t-caption text-text-muted">· {sp.short}</span>
-                                  </span>
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  </details>
                 </div>
-                <div className={cn("flex items-center p-6 md:p-8 xl:p-10", field[stage])}>
-                  <StageView stage={stage} locale={locale} />
+                <div className={cn("flex items-center p-6 md:p-8 xl:p-10", c.field)}>
+                  <View k={c.key} locale={locale} />
                 </div>
               </div>
             </article>
           </li>
         );
       })}
+    </ol>
+  );
+}
+
+/** The same example as four compact cards in a row (platform overview), no sticky behaviour. */
+export function FlowRow({ locale }: { locale: Locale }) {
+  const f = getDictionary(locale).home.flow;
+  const texts = f.cards as Record<string, { step: string; title: string }>;
+  return (
+    <ol className="grid gap-5 md:grid-cols-3" data-flow-row>
+      {cards.map((c, i) => (
+        <li key={c.key} className={cn("rounded-xl p-5 md:p-6", c.field)}>
+          <p className="t-eyebrow text-text-muted"><span className="tnum">0{i + 1}</span> · {texts[c.key].step}</p>
+          <p className="mt-2 t-heading-s text-text-primary">{texts[c.key].title}</p>
+          <div className="mt-5">
+            {c.key === "answer" ? <ConversationView locale={locale} /> : c.key === "organise" ? <BoardView locale={locale} compact /> : <AssistantView locale={locale} />}
+          </div>
+        </li>
+      ))}
     </ol>
   );
 }

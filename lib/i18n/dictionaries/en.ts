@@ -84,6 +84,8 @@ export const en = {
       // PRODUCT_TEXTS_C3_v1 §5
       stub: { label: "Demonstration only", line: "Nothing you enter creates an account or reaches anyone." },
       staging: { label: "Test environment", line: "Accounts and data here are for testing and may be reset." },
+      // Review preview (audit R24): visible on every page of a deployment that is not the released production site.
+      preview: { label: "Preview", line: "Not public. Demonstration data only: nothing you enter creates an account or reaches anyone." },
     },
     errors: {
       no_session: "Your session has ended. Log in again to continue.",
@@ -125,6 +127,9 @@ export const en = {
 
   home: {
     // Section texts: PRODUCT_TEXTS_C3_v1 §2 (H1 to H9). Card and view data: synthetic, labelled.
+    // One sales path (owner criteria 2026-09-28): the pain of an agency, what Nuova does on one
+    // continuous example (Laura M., a two bedroom flat in Estepona), the visible benefit, the next
+    // step. Texts PRODUCT_TEXTS_C3_v1 §2; status sentences are not rendered (audit R27).
     hero: {
       eyebrow: "For real estate agencies in Spain",
       h1: "Your enquiries answered, day or night",
@@ -133,56 +138,57 @@ export const en = {
       note: "14 days free. No payment.",
       cards: {
         synthetic: "Example with synthetic data",
-        enquiry: { channel: "WhatsApp · new enquiry", time: "Sunday 21:40", text: "Hello, is the two bedroom flat in Estepona still available? We are in Manchester and could view it on Thursday.", from: "Laura M." },
-        answer: { label: "Answered by Nuova, under your agency's name", time: "Sunday 21:40", text: "Hello Laura, yes, it is still available. Thursday works. Would morning or afternoon suit you better? An agent from the agency will confirm the viewing with you." },
+        // The customer introduces herself, so the reply may use her name; the reply asks for a preferred day instead of offering calendar time (audit Z05).
+        enquiry: { channel: "WhatsApp · new enquiry", time: "Sunday 21:40", text: "Hello, I'm Laura. Is the two bedroom flat in Estepona still available? We are in Manchester and could view it on Thursday.", from: "Laura M." },
+        answer: { label: "Answered by Nuova, under your agency's name", time: "Sunday 21:40", assistant: "AI assistant", text: "Hello Laura, yes, it is still available. Thursday is noted as your preferred day. An agent from the agency will confirm the viewing time with you." },
         record: { label: "Customer record", priority: "Priority: high", name: "Laura M.", summary: "Buyer · 2 bedrooms · Estepona · viewing requested", qualificationLabel: "Qualification", qualification: "Qualified, ready to view", nextLabel: "Next", next: "Confirm Thursday's viewing" },
       },
     },
-    problem: {
+    pains: {
       h2: "Enquiries arrive when nobody is free",
       lead: "Viewings, calls, the school run. The enquiry that arrives at the wrong moment waits, and the person who sent it writes to someone else.",
-      detail: "Enquiries land in four places, the context lives in three tools, and whether someone hears back on Sunday depends on who is looking at their phone.",
-      more: "More",
+      items: ["Enquiries land in four places.", "The context lives in three tools.", "Whether someone hears back on Sunday depends on who is looking at their phone."],
     },
-    stack: {
+    flow: {
       eyebrow: "What Nuova does",
       h2: "From a message to a task",
       lead: "The message is answered in the customer's language. It becomes one record with what they are looking for, a qualification and a priority. A viewing request becomes a task for your team.",
       steps: ["Answered", "Recorded", "Prioritised", "Task for your team"],
       stepsDetail: "The reply is written by an AI assistant and says so. It does not commit your agency to a price, a date or a condition.",
-      details: "What is included, and its status",
       cards: {
-        answer: { title: "WhatsApp and email, today", line: "Text enquiries on WhatsApp and Gmail are answered and recorded today. Attachments, voice notes, Outlook and phone calls are in development and not offered yet." },
-        understand: { title: "One record, one priority, one clear task", line: "Every enquiry is recorded as a lead with the conversation, what the person wants and a priority. Your team starts with the most promising ones instead of the loudest.", qualifier: "Cold, warm or hot. No score to interpret." },
-        advance: { title: "A short, honest selection", line: "Nuova understands what the customer is looking for and matches it against your own inventory. Being built, not offered yet." },
-        handover: { title: "What to do first, and why", line: "Daily Goals and the assistant tell your team what to do first, and why. Built, with the final owner test still pending before it is offered." },
-        attract: { title: "Leads from your campaigns", line: "Meta Lead Ads, Google Lead Forms and social conversations. Built and tested on our side, not offered until the approvals from outside clear." },
+        answer: { step: "Answered", title: "WhatsApp and email, today", line: "Text enquiries on WhatsApp and Gmail are answered and recorded today." },
+        organise: { step: "Recorded and prioritised", title: "One record, one priority, one clear task", line: "Every enquiry is recorded as a lead with the conversation, what the person wants and a priority. Your team starts with the most promising ones instead of the loudest.", qualifier: "Cold, warm or hot. No score to interpret." },
+        team: { step: "Task for your team", title: "What to do first, and why", line: "Daily Goals and the assistant tell your team what to do first, and why." },
       },
-    },
-    brand: {
-      h2: "Your customers hear from your agency",
-      lead: "Messages go out with your name, your logo and your signature. The reply says an assistant wrote it, as the rules require.",
-      note: "Branded email is in development.",
-    },
-    notReady: {
-      h2: "What is not ready yet",
-      lead: "We would rather tell you here than in your second week. These are built and tested on our side, and not offered until the last gate clears.",
-      items: ["Phone calls", "Property matching to customers", "Instagram and Facebook", "Campaign leads", "3D property experiences, on request"],
     },
     views: {
       conversation: {
         agency: "Your agency",
-        channel: "WhatsApp · answered by Nuova",
+        channel: "WhatsApp",
         synthetic: "Synthetic data",
+        assistant: "AI assistant",
         turns: [
-          { role: "customer", text: "Hello, is the two bedroom flat in Estepona still available?", time: "21:40" },
-          { role: "agency", text: "Hello Laura, yes, it is still available. Would you like to view it? Thursday morning or afternoon both work.", time: "21:40" },
+          { role: "customer", text: "Hello, I'm Laura. Is the two bedroom flat in Estepona still available?", time: "21:40" },
+          { role: "agency", text: "Hello Laura, yes, it is still available. Which day would suit you for a viewing?", time: "21:40" },
           { role: "customer", text: "Thursday afternoon, please. We land at 13:00.", time: "21:43" },
           { role: "agency", text: "Noted: Thursday afternoon. An agent from the agency will confirm the exact time with you.", time: "21:43" },
         ],
-        footer: "In use today on real WhatsApp and Gmail traffic. Names and times are invented.",
+        footer: "Names and times are invented.",
       },
-      readiness: { label: "This site, test environment" },
+      board: {
+        title: "Leads",
+        subtitle: "Your agency · this week",
+        columns: { name: "Name", wants: "Looking for", qualification: "Qualification", priority: "Priority", next: "Next" },
+        priorities: { high: "High", medium: "Medium", low: "Low" },
+        rows: [
+          { name: "Laura M.", wants: "2 bedrooms · Estepona", qualification: "Qualified, ready to view", priority: "high", next: "Confirm Thursday's viewing" },
+          { name: "Peter and Anna K.", wants: "Valuation · Marbella", qualification: "Qualified", priority: "medium", next: "Call this week" },
+          { name: "Carlos R.", wants: "Villa · Benahavís", qualification: "Second enquiry", priority: "medium", next: "Reply on WhatsApp" },
+          { name: "Sofía L.", wants: "Long term rental · Fuengirola", qualification: "Details still missing", priority: "low", next: "Wait for her reply" },
+        ],
+        footer: "Synthetic data. Every enquiry is recorded with its qualification and priority.",
+      },
+      readiness: { label: "Example" },
       assistant: {
         title: "Daily assistant",
         subtitle: "For your team, on desktop and mobile",
@@ -196,22 +202,10 @@ export const en = {
         footer: "Synthetic data. The assistant answers from your own leads, viewings and priorities.",
       },
     },
-    ask: {
-      eyebrow: "Ask",
-      h2: "Ask Nuova anything about the product.",
-      lead: "Answers come from what NuovaSolution has confirmed about its product. Prices, legal and tax questions go to a person.",
-      points: ["Answers in English or Spanish.", "A person takes over when the assistant cannot confirm something.", "Leave an email only if you want a reply from a person."],
-    },
-    picture: {
-      eyebrow: "One system",
-      h2: "One enquiry, one memory, one place where the whole thing is visible.",
-      lead: "Nuova sits underneath the agency rather than beside it. Everything an enquiry needs happens in one place, with one memory of the customer, so nothing is handed between tools and nothing has to be held in someone's head.",
-      pathLabel: "The path one enquiry takes through the system",
-      nodes: ["Gmail and WhatsApp", "Answered", "One customer record", "Qualified", "Property match", "Daily Goals"],
-      /** Nodes from this index on are being built and render outlined. */
-      nextFrom: 4,
-      legend: "Solid steps run today. Outlined steps are being built.",
-      qualifier: "Based on agency permissions and configuration.",
+    record: {
+      eyebrow: "What your team sees",
+      h2: "One customer, one record",
+      lead: "The conversation, what the person is looking for, the qualification and the priority sit on one record. Nothing has to be reconstructed.",
     },
     access: {
       eyebrow: "Getting started",
@@ -223,6 +217,19 @@ export const en = {
         { title: "Name your agency", line: "One step, and your 14 day trial starts." },
         { title: "Set it up yourself", line: "Your details, your hours, your logo, your calendar. Your progress is saved." },
       ],
+      viewCaption: "The readiness check in your setup. A step waiting on a provider is never shown as done.",
+    },
+    offer: {
+      eyebrow: "Plans",
+      h2: "Start free, then choose a plan",
+      lead: "14 days free with no payment. After that you choose a plan with us. We tell you the price for your agency before anything is agreed.",
+      link: "See the plans",
+    },
+    ask: {
+      eyebrow: "Ask",
+      h2: "Ask Nuova anything about the product.",
+      lead: "Answers come from what NuovaSolution has confirmed about its product. Prices, legal and tax questions go to a person.",
+      points: ["Answers in English or Spanish.", "A person takes over when the assistant cannot confirm something.", "Leave an email only if you want a reply from a person."],
     },
     closing: {
       h2: "Your next enquiry is on its way",
@@ -237,7 +244,9 @@ export const en = {
     h1: "The operating layer of a real estate agency.",
     lead: "Each part of Nuova does one job properly. Together they behave like one system, because the customer is one record rather than one record per tool.",
     indexEyebrow: "Capabilities",
-    indexH2: "Every capability, with its status today.",
+    indexH2: "What Nuova does for your agency.",
+    exampleEyebrow: "One enquiry, end to end",
+    exampleH2: "From a message to a task",
     tenant: {
       eyebrow: "Your environment",
       h2: "Each agency has its own branded environment.",
@@ -285,10 +294,7 @@ export const en = {
       { q: "What happens after 14 days?", a: "You keep your account and your data. Paid features pause until you choose a plan." },
     ],
     tiersEyebrow: "Three plans, side by side",
-    tiersLead: "Contents and limits are read from the plan catalog of our test environment. Plan names come from the backend once the plan vocabulary is decided.",
-    catalogCode: "Catalog code: {code}",
-    catalogNote: "Plan names follow the billing catalog and may still be renamed before release.",
-    catalogSource: "Source: {source}.",
+    tiersLead: "Every plan starts with the same 14 day trial. Growth and Scale raise the limits; we send a proposal for your agency.",
     amount: "Price for your agency",
     amountLine: "We tell you before anything is agreed.",
     amountNote: "There is no card checkout and no automatic renewal. Receiving an invoice does not activate the plan; the confirmed payment does.",
@@ -298,6 +304,9 @@ export const en = {
       "Your account and your data stay. Paid features pause until you choose a plan. You can still log in.",
       "Days left are shown from the server, never counted in your browser.",
     ],
+    // Trial badge and CTA move onto Essential only after the API signal TRIAL_PLAN_ALIGNED (audit R26).
+    trialBadge: "14 days free",
+    ctaTrialEssential: "Try Essential free",
     limitsHeading: "Limits",
     limits: { offices: "Offices", seats: "Seats", leads_month: "Leads per month", crm_connections: "CRM connections", voice_minutes: "Voice minutes", unlimited: "No monthly cap", none: "None" },
     featuresHeading: "Included",
@@ -316,7 +325,6 @@ export const en = {
       "channel.voice": "Voice",
       "feed.structured": "Structured property feed",
     },
-    recommended: "Most agencies start here",
     ctaTrial: "Start free",
     ctaProposal: "Request a proposal",
     payEyebrow: "How paying works",
@@ -362,7 +370,6 @@ export const en = {
       { title: "Lead sources", line: "Connect the places your leads already come from." },
       { title: "CRM", line: "A CRM is included from the start. If you use another one, tell us which: connecting it is not offered yet, and you stay on the included CRM meanwhile." },
       { title: "Property source", line: "Point it at your own website, a supported feed or your CRM inventory." },
-      { title: "Property Experience", line: "A premium service, on request." },
       { title: "Readiness", line: "A clear readiness check before you go live. A step waiting on a provider is never shown as done." },
     ],
   },
@@ -382,6 +389,10 @@ export const en = {
     whatsappUnavailable: "A direct WhatsApp line will appear here once the business number is configured.",
     trialH2: "Or just start",
     trialBody: "Try free for 14 days. No payment method required, no sales call required.",
+    // A plan interest from the packages page is carried into the request (audit Z03, Z11). The plan name comes from the catalog.
+    planInterest: "Plan of interest: {plan}",
+    planInterestBody: "Write to us with your agency's name and we send you a proposal for this plan.",
+    proposalSubject: "Proposal request: {plan}",
   },
 
   signup: {
@@ -489,7 +500,7 @@ export const en = {
     crm: {
       // PRODUCT_TEXTS_C2_v1 §1.2. UI state lines (save, saved, sheetsNext, notReadable, registerInterest) are the implementer's, not claims.
       heading: "Where your leads are kept",
-      lead: "A CRM is included. Most agencies start with it and never need another one.",
+      lead: "A CRM is included from the start.",
       nativeTitle: "No external CRM. Use the CRM included in Nuova.",
       nativeTag: "Included · Recommended",
       nativeBody: "Every enquiry becomes a lead with the person's contact details, what they are looking for, their qualification and priority, and the conversation so far. Viewing requests become tasks for your team. Nothing to connect and nothing to pay extra.",
@@ -751,7 +762,12 @@ export const en = {
     ai: "Answers are written by an AI assistant.",
     slow: "Still working on it.",
     rateLimited: "Too many questions in a short time. Try again shortly.",
-    contactOptional: "Name, email or phone (optional). Only needed if you want a person to reply to you.",
+    contactOptional: "Email or phone (optional). Only needed if you want a person to reply to you.",
+    contactInvalid: "Enter a valid email address or phone number, or leave the field empty.",
+    // Review previews show the box as a demo (audit R25); it is hidden on the public site until the assistant is proven.
+    demo: "Demo",
+    demoNote: "Demo: no assistant is connected here, so every question gets the honest answer that it cannot be confirmed from here.",
+    received: "Received. Your question is saved as an enquiry in Nuova, with any contact details you gave, so we can answer and follow up.",
     handoff: "A person on our team will answer this one. Leave an email if you want the answer sent to you.",
     failed: "That did not go through. Try once more, or contact a person.",
     timeout: "No answer yet. A person can help you directly.",
@@ -759,6 +775,12 @@ export const en = {
     tooLong: "Please keep it under 4000 characters.",
     suggestionsLabel: "Common questions",
     suggestions: ["Does Nuova answer WhatsApp enquiries at night?", "Do I need to change my CRM?", "What happens after the 14 day trial?"],
+  },
+
+  media: {
+    // Captions for the prepared media slots (audit Z14). The poster is a real product frame; a film replaces it without layout shift.
+    conversation: "The conversation view: one WhatsApp enquiry, answered and recorded. Synthetic data.",
+    setup: "The readiness check in the setup. Synthetic data.",
   },
 
   footer: {

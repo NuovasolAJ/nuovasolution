@@ -1,20 +1,18 @@
 import type { Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { cn } from "@/lib/utils";
-import type { CapabilityStatus } from "@/lib/content/statuses";
-import { LabelChip, StatusChip, StatusGlyph } from "@/components/ui/status";
+import { LabelChip, StatusGlyph } from "@/components/ui/status";
 
 /**
  * Product views for the marketing pages. Rule: only what actually exists is depicted, with
- * synthetic data, and every view carries the status of what it shows.
+ * synthetic data, and every view says so. No status chip, no gate sentence and no internal
+ * formula appears on a sales surface (audit R27); what is not proven is not depicted.
  *
- * - ConversationView: a WhatsApp text enquiry answered and carried forward (AI Sales Agent,
- *   in use today).
- * - ReadinessView: the onboarding readiness list exactly as the onboarding page renders it
- *   (this site, staging), with the real gate labels.
- * - AssistantView: the Daily assistant client (system repo build/daily_goals/web), built,
- *   final acceptance pending.
- * No CRM screen is depicted: the team's CRM view is in development.
+ * - ConversationView: a WhatsApp text enquiry answered and carried forward (AI Sales Agent).
+ * - BoardView: the leads of an agency as Nuova records them, each with qualification and priority.
+ * - RecordView: one customer record (the same person as in the hero).
+ * - ReadinessView: the readiness list exactly as the onboarding page renders it, with the real gate labels.
+ * - AssistantView: the Daily assistant answering from the agency's own leads.
  */
 
 export function ConversationView({ locale, className }: { locale: Locale; className?: string }) {
@@ -34,6 +32,7 @@ export function ConversationView({ locale, className }: { locale: Locale; classN
           {v.turns.map((t, i) => (
             <li key={i} className={cn("flex", t.role === "customer" ? "justify-start" : "justify-end")}>
               <div className={cn("max-w-[86%] rounded-lg px-3.5 py-2.5", t.role === "customer" ? "rounded-bl-sm bg-surface-sunken" : "rounded-br-sm bg-sage-100")}>
+                {t.role === "agency" && <p className="mb-1 t-caption text-sage-700">{v.assistant}</p>}
                 <p className="t-body-s text-text-primary">{t.text}</p>
                 <p className="mt-1 t-caption tnum text-text-muted">{t.time}</p>
               </div>
@@ -41,6 +40,55 @@ export function ConversationView({ locale, className }: { locale: Locale; classN
           ))}
         </ol>
         <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{v.footer}</p>
+      </div>
+    </div>
+  );
+}
+
+const priorityCls: Record<string, string> = {
+  high: "bg-apricot-100 text-text-primary",
+  medium: "bg-sand-100 text-text-primary",
+  low: "bg-surface-sunken text-text-secondary",
+};
+const priorityDot: Record<string, string> = { high: "bg-signal-attention", medium: "bg-champagne-400", low: "bg-ink-350" };
+
+/** The leads of an agency as Nuova records them: one row per person, qualification and priority visible. */
+export function BoardView({ locale, className, compact = false }: { locale: Locale; className?: string; compact?: boolean }) {
+  const b = getDictionary(locale).home.views.board;
+  const pr = b.priorities as Record<string, string>;
+  return (
+    <div className={cn("mx-auto w-full", compact ? "max-w-[440px]" : "max-w-[560px]", className)} data-view="board">
+      <div className="card overflow-hidden rounded-xl">
+        <div className="flex items-center gap-3 border-b border-line-hairline px-4 py-3">
+          <div className="min-w-0">
+            <p className="t-body-s font-medium text-text-primary">{b.title}</p>
+            <p className="t-caption text-text-muted">{b.subtitle}</p>
+          </div>
+          <LabelChip className="ml-auto">{getDictionary(locale).home.views.conversation.synthetic}</LabelChip>
+        </div>
+        <ol className="hairline-list">
+          {b.rows.map((r) => (
+            <li key={r.name} className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-3 gap-y-1 px-4 py-3">
+              <div className="min-w-0">
+                <p className="t-body-s font-medium text-text-primary">{r.name}</p>
+                <p className="t-caption text-text-secondary">{r.wants}</p>
+                {!compact && (
+                  <p className="mt-1 t-caption text-text-muted">
+                    <span>{b.columns.qualification}: </span>
+                    <span className="text-text-secondary">{r.qualification}</span>
+                    <span> · {b.columns.next}: </span>
+                    <span className="text-text-secondary">{r.next}</span>
+                  </p>
+                )}
+              </div>
+              <span className={cn("inline-flex h-6 shrink-0 items-center gap-1.5 self-start rounded-pill px-2.5 t-caption", priorityCls[r.priority])}>
+                <span aria-hidden="true" className={cn("h-1.5 w-1.5 rounded-pill", priorityDot[r.priority])} />
+                {pr[r.priority]}
+              </span>
+            </li>
+          ))}
+        </ol>
+        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{b.footer}</p>
       </div>
     </div>
   );
@@ -94,7 +142,8 @@ export function ReadinessView({ locale, className }: { locale: Locale; className
 }
 
 export function AssistantView({ locale, className }: { locale: Locale; className?: string }) {
-  const v = getDictionary(locale).home.views.assistant;
+  const d = getDictionary(locale);
+  const v = d.home.views.assistant;
   return (
     <div className={cn("mx-auto w-full max-w-[420px]", className)} data-view="assistant">
       <div className="card overflow-hidden rounded-xl">
@@ -104,7 +153,7 @@ export function AssistantView({ locale, className }: { locale: Locale; className
             <p className="t-body-s font-medium text-text-primary">{v.title}</p>
             <p className="t-caption text-text-muted">{v.subtitle}</p>
           </div>
-          <StatusChip status="final_acceptance" locale={locale} className="ml-auto" />
+          <LabelChip className="ml-auto">{d.home.views.conversation.synthetic}</LabelChip>
         </div>
         <div className="space-y-3 p-4">
           <div className="flex justify-end">
@@ -130,7 +179,7 @@ export function AssistantView({ locale, className }: { locale: Locale; className
   );
 }
 
-/** The customer record as Nuova keeps it: one person, the qualification and the priority (both in use today). */
+/** The customer record as Nuova keeps it: one person, the qualification and the priority. */
 export function RecordView({ locale, className }: { locale: Locale; className?: string }) {
   const h = getDictionary(locale).home.hero.cards;
   return (
@@ -161,37 +210,18 @@ export function RecordView({ locale, className }: { locale: Locale; className?: 
   );
 }
 
-/** The view for one capability page, chosen by slug. Never an empty frame. */
-export function ProductView({ slug, locale, name, lead, bothHalves, status }: { slug: string; locale: Locale; name: string; lead: string; bothHalves?: { certified: string; pending: string }; status: CapabilityStatus }) {
+/** The view for one published capability page, chosen by slug. Never an empty frame. */
+export function ProductView({ slug, locale }: { slug: string; locale: Locale }) {
   switch (slug) {
     case "ai-sales-agent":
       return <ConversationView locale={locale} />;
     case "lead-intelligence":
-    case "crm":
       return <RecordView locale={locale} />;
+    case "crm":
+      return <BoardView locale={locale} />;
     case "daily-assistant":
       return <AssistantView locale={locale} />;
     default:
-      return <StatusCard locale={locale} status={status} title={name} certified={bothHalves?.certified} pending={bothHalves?.pending ?? lead} />;
+      return <RecordView locale={locale} />;
   }
-}
-
-/** For capabilities that are not offered yet: the honest state in words, never an empty frame. */
-export function StatusCard({ title, certified, pending, locale, status, className }: { title: string; certified?: string; pending?: string; locale: Locale; status: CapabilityStatus; className?: string }) {
-  return (
-    <div className={cn("mx-auto w-full max-w-[440px]", className)} data-view="status">
-      <div className="card rounded-xl p-5">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <p className="t-heading-s text-text-primary">{title}</p>
-          <StatusChip status={status} locale={locale} />
-        </div>
-        {certified && (
-          <p className="mt-4 flex items-start gap-2 t-body-s text-text-secondary"><StatusGlyph glyph="check" size={14} className="mt-1 shrink-0 text-signal-positive" />{certified}</p>
-        )}
-        {pending && (
-          <p className="mt-3 flex items-start gap-2 t-body-s text-text-secondary"><StatusGlyph glyph="clock" size={14} className="mt-1 shrink-0 text-signal-attention" />{pending}</p>
-        )}
-      </div>
-    </div>
-  );
 }

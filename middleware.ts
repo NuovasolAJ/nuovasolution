@@ -22,7 +22,8 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   // Everything except API routes, Next internals, static files and the media folder.
-  matcher: ["/((?!api|_next|media|images|favicon|icon|robots\\.txt|sitemap\\.xml|.*\\..*).*)"],
+  // "poster" is the unlinked frame route for the media posters; it carries its own locale segment.
+  matcher: ["/((?!api|_next|media|images|favicon|icon|poster|robots\\.txt|sitemap\\.xml|.*\\..*).*)"],
 };
 
 export { locales };

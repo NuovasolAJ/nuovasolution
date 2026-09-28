@@ -29,7 +29,6 @@ export default function LoginPage({ params, searchParams }: { params: { locale: 
     <>
     <EnvironmentRibbon locale={locale} scope="form" />
     <Section rhythm="opening" labelledBy="li-h1" className="overflow-hidden">
-      <div className="atmosphere" aria-hidden="true" />
       <div className="container-narrow relative !mx-0 xl:!mx-auto">
         <Eyebrow className="mb-4">{d.login.eyebrow}</Eyebrow>
         <Display size="l" as="h1" id="li-h1">{d.login.h1}</Display>

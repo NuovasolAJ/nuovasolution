@@ -107,7 +107,7 @@ const pages: Record<Locale, Record<LegalSlug, LegalPage>> = {
       updated: "2026-09-08",
       sections: [
         { heading: "Alcance", paragraphs: ["Estos términos regulan el uso de este sitio web y la prueba del servicio NuovaSolution. Los términos completos de un paquete de pago se acuerdan directamente con la agencia."] },
-        { heading: "La prueba", paragraphs: ["La prueba es gratuita durante catorce días y no requiere ningún método de pago."] },
+        { heading: "La prueba", paragraphs: ["La prueba es gratuita durante 14 días y no requiere ningún método de pago."] },
         { heading: "Lo que el navegador nunca hace", paragraphs: ["Este sitio web no concede ninguna prueba, permiso, rol, estado de preparación ni ampliación. Todo eso lo decide el propio servicio."] },
         { heading: "Uso aceptable", paragraphs: ["Te comprometes a no usar el servicio para enviar comunicaciones no solicitadas ni en contra de la normativa de comunicación aplicable."] },
         { heading: "Cambios", paragraphs: ["Estos términos se sustituirán por una versión revisada. La fecha de arriba indica el texto actual."] },

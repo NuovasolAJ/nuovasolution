@@ -53,7 +53,13 @@ const csp = [
   "upgrade-insecure-requests",
 ].join("; ");
 
+// Indexing is an owner release, never a default (audit Z21): every deployment without the live
+// release value answers with X-Robots-Tag: noindex, in addition to the meta tag and robots.txt.
+// noindex is not access control; it only keeps review links out of search results.
+const indexingReleased = buildMode === "live" && process.env.NUOVA_LIVE_RELEASE === "OWNER_RELEASED_PRODUCTION";
+
 const securityHeaders = [
+  ...(indexingReleased ? [] : [{ key: "X-Robots-Tag", value: "noindex, nofollow" }]),
   { key: "Content-Security-Policy", value: csp },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "DENY" },

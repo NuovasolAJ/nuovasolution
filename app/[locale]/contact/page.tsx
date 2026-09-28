@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
+import { catalogPlans, isPlanCode } from "@/lib/content/plans";
 import { Section } from "@/components/ui/section";
 import { Display, Eyebrow, Lead, Heading, Caption } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+
+export const dynamic = "force-dynamic";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   if (!isLocale(params.locale)) return {};
@@ -13,29 +16,37 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
 }
 
 /**
- * Direct human reach. Email is real. The scheduling link is an existing external
- * tool with a real href (progressive enhancement only, never href="#").
- * WhatsApp renders only when a business number is configured.
+ * Direct human reach. Email is real. The scheduling link is an existing external tool with a
+ * real href (progressive enhancement only, never href="#"). WhatsApp renders only when a
+ * business number is configured. A plan interest from the packages page (?plan=growth) is
+ * shown and carried into the e-mail subject; it grants nothing (audit Z03, Z11).
  */
-export default function ContactPage({ params }: { params: { locale: string } }) {
+export default function ContactPage({ params, searchParams }: { params: { locale: string }; searchParams?: { plan?: string } }) {
   const locale = params.locale as Locale;
   const d = getDictionary(locale);
   const c = d.contact;
   const p = (path: string) => localePath(locale, path);
   const cal = process.env.NEXT_PUBLIC_CAL_URL || "https://cal.com/nuovasolution/demo";
   const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/[^0-9]/g, "");
+  const plan = isPlanCode(searchParams?.plan) ? catalogPlans.find((x) => x.code === searchParams!.plan) : undefined;
+  const mailto = plan ? `mailto:antonio@nuovasolution.com?subject=${encodeURIComponent(c.proposalSubject.replace("{plan}", plan.display_name))}` : "mailto:antonio@nuovasolution.com";
 
   return (
     <>
       <Section rhythm="opening" labelledBy="ct-h1">
-        <div className="atmosphere" aria-hidden="true" />
-        <div className="container-default relative">
+        <div className="container-default">
           <Reveal className="xl:max-w-[58%]">
             <Eyebrow className="mb-4">{c.eyebrow}</Eyebrow>
             <Display size="xl" id="ct-h1">{c.h1}</Display>
             <Lead className="mt-6">{c.lead}</Lead>
+            {plan && (
+              <div className="mt-8 card-quiet p-5" data-plan-interest={plan.code}>
+                <p className="t-heading-s text-text-primary">{c.planInterest.replace("{plan}", plan.display_name)}</p>
+                <p className="mt-1 t-body-s text-text-secondary">{c.planInterestBody}</p>
+              </div>
+            )}
             <p className="mt-10 t-eyebrow text-text-muted">{c.emailLabel}</p>
-            <a href="mailto:antonio@nuovasolution.com" className="mt-2 inline-block t-heading-l text-text-primary underline underline-offset-8 decoration-line-strong hover:decoration-ink-950 break-all">antonio@nuovasolution.com</a>
+            <a href={mailto} className="mt-2 inline-block t-heading-l text-text-primary underline underline-offset-8 decoration-line-strong hover:decoration-ink-950 break-all">antonio@nuovasolution.com</a>
           </Reveal>
         </div>
       </Section>

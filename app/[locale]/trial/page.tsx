@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
+import { trialPlanAligned } from "@/lib/content/plans";
 import { Section } from "@/components/ui/section";
 import { SectionHead, Display, Eyebrow, Lead, Caption, Heading } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { MediaSlot } from "@/components/ui/media-slot";
+import { ReadinessView } from "@/components/site/product-views";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   if (!isLocale(params.locale)) return {};
@@ -12,54 +15,68 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return { title: d.nav.trial, description: d.trial.lead, alternates: { canonical: `/${params.locale}/trial`, languages: { en: "/en/trial", es: "/es/trial" } } };
 }
 
-/** Ivory canvas. The trial copy is the owner's exact wording. Conditions are in plain sight. */
+/**
+ * Trial. The copy is the owner's exact wording; conditions in plain sight. The setup steps sit
+ * next to the readiness check as the agency sees it, and the prepared media place carries a
+ * real poster of that check (audit Z14). The Essential wording appears only after API's
+ * TRIAL_PLAN_ALIGNED (R26).
+ */
 export default function TrialPage({ params }: { params: { locale: string } }) {
   const locale = params.locale as Locale;
   const d = getDictionary(locale);
   const p = (path: string) => localePath(locale, path);
   const t = d.trial;
+  const aligned = trialPlanAligned();
 
   return (
     <>
       <Section rhythm="opening" labelledBy="tr-h1" className="overflow-hidden">
-        <div className="atmosphere" aria-hidden="true" />
-        <div className="container-narrow relative !mx-0 xl:!mx-auto">
-          <Reveal>
-            <Eyebrow className="mb-4">{t.eyebrow}</Eyebrow>
-            <Display size="xl" id="tr-h1">{t.h1}</Display>
-            <Lead className="mt-6">{t.lead}</Lead>
-            <CtaRow className="mt-12">
-              <ButtonLink href={p("/signup")} size="lg">{t.ctaPrimary}</ButtonLink>
-              <ButtonLink href={p("/packages")} size="lg" variant="secondary">{t.ctaSecondary}</ButtonLink>
-            </CtaRow>
-            <Caption className="mt-4">{d.common.noPayment} {d.common.noSalesCall}</Caption>
-          </Reveal>
+        <div className="container-default">
+          <div className="grid grid-cols-1 gap-10 xl:grid-cols-12 xl:gap-12 items-center">
+            <Reveal className="xl:col-span-6">
+              <Eyebrow className="mb-4">{t.eyebrow}</Eyebrow>
+              <Display size="xl" id="tr-h1">{t.h1}</Display>
+              <Lead className="mt-6">{t.lead}</Lead>
+              {aligned && <Caption className="mt-3">{d.packages.ctaTrialEssential}: {t.how[0].line}</Caption>}
+              <CtaRow className="mt-12">
+                <ButtonLink href={p("/signup")} size="lg">{aligned ? d.packages.ctaTrialEssential : t.ctaPrimary}</ButtonLink>
+                <ButtonLink href={p("/packages")} size="lg" variant="secondary">{t.ctaSecondary}</ButtonLink>
+              </CtaRow>
+              <Caption className="mt-4">{d.common.noPayment} {d.common.noSalesCall}</Caption>
+            </Reveal>
+            <Reveal delay={80} mode="opacity" className="xl:col-span-6">
+              <div className="field-sky rounded-xl p-5 md:p-8">
+                <ReadinessView locale={locale} />
+              </div>
+            </Reveal>
+          </div>
         </div>
       </Section>
 
       <Section surface="ivory" rhythm="default" hairline labelledBy="tr-how">
-        <div className="container-narrow !mx-0 xl:!mx-auto">
-          <Reveal><SectionHead eyebrow={t.howEyebrow} title={t.howH2} id="tr-how" /></Reveal>
-          <ol className="mt-12 hairline-list border-y border-line-hairline">
-            {t.how.map((s, i) => (
-              <Reveal key={s.title} delay={i * 60} as="li" className="py-6">
-                <p className="t-caption tnum text-text-muted">0{i + 1}</p>
-                <Heading size="m" className="mt-2">{s.title}</Heading>
-                <p className="mt-2 t-body-m text-text-secondary">{s.line}</p>
-              </Reveal>
-            ))}
-          </ol>
-        </div>
-      </Section>
-
-      <Section surface="ivory" rhythm="default" hairline labelledBy="tr-honesty">
-        <div className="container-narrow !mx-0 xl:!mx-auto">
-          <Heading size="l" as="h2" id="tr-honesty">{t.honesty.h2}</Heading>
-          <ul className="mt-6 space-y-4">
-            {t.honesty.lines.map((l) => (
-              <li key={l} className="t-body-m text-text-secondary border-l border-line-strong pl-4">{l}</li>
-            ))}
-          </ul>
+        <div className="container-default">
+          <div className="grid grid-cols-1 gap-10 xl:grid-cols-12 xl:gap-16 items-start">
+            <Reveal className="xl:col-span-5">
+              <SectionHead eyebrow={t.howEyebrow} title={t.howH2} id="tr-how" />
+              <ol className="mt-8 hairline-list border-y border-line-hairline">
+                {t.how.map((s, i) => (
+                  <li key={s.title} className="py-5">
+                    <p className="t-caption tnum text-text-muted">0{i + 1}</p>
+                    <Heading size="m" className="mt-2">{s.title}</Heading>
+                    <p className="mt-2 t-body-m text-text-secondary">{s.line}</p>
+                  </li>
+                ))}
+              </ol>
+            </Reveal>
+            <Reveal delay={80} className="xl:col-span-7">
+              <Heading size="l" as="h3">{t.honesty.h2}</Heading>
+              <ul className="mt-6 space-y-4">
+                {t.honesty.lines.map((l) => (
+                  <li key={l} className="t-body-m text-text-secondary border-l border-line-strong pl-4">{l}</li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
         </div>
       </Section>
 
@@ -81,6 +98,15 @@ export default function TrialPage({ params }: { params: { locale: string } }) {
               ))}
             </ol>
           </div>
+        </div>
+      </Section>
+
+      <Section rhythm="default" surface="ivory" labelledBy="tr-film">
+        <div className="container-default">
+          <Reveal><SectionHead eyebrow={t.filmEyebrow} title={t.filmH2} size="heading-l" id="tr-film" /></Reveal>
+        </div>
+        <div className="container-wide mt-8">
+          <Reveal mode="opacity"><MediaSlot id="V-05" locale={locale} caption={d.media.setup} /></Reveal>
         </div>
       </Section>
 
