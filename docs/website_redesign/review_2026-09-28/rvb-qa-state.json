@@ -1,0 +1,116 @@
+{
+ "accepted": 202,
+ "polls": [
+  {
+   "s": 0,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 3,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 6,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 9,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 12,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 15,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 18,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 21,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 24,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 27,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 30,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 33,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 36,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 39,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 42,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 45,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 48,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 51,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 54,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 57,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 60,
+   "status": 200,
+   "state": "pending"
+  },
+  {
+   "s": 63,
+   "status": 200,
+   "state": "pending"
+  }
+ ],
+ "waited_seconds": 66
+}

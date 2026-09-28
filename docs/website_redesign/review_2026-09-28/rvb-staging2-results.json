@@ -1,0 +1,87 @@
+{
+ "started_utc": "2026-09-28T09:31:42.062Z",
+ "commit": "6fbe45f",
+ "target": "staging fflmmzapksycjfdcjdtd",
+ "checks": [
+  {
+   "id": "RV-18b",
+   "what": "with the acknowledged notice the Sheets choice goes through and is never reported as connected",
+   "pass": true,
+   "evidence": {
+    "ack": 200,
+    "recorded_in": "website_server_log",
+    "select": 200
+   }
+  },
+  {
+   "id": "RV-21b",
+   "what": "legal data saves against the backend; the read-back gap is declared, not hidden",
+   "pass": true,
+   "evidence": {
+    "save": 200,
+    "saved_legal_name": true,
+    "readable_flag": false,
+    "values_after_reload": 1
+   }
+  },
+  {
+   "id": "RV-23",
+   "what": "repeated failed logins end in a named rate limit, not an unhandled error",
+   "pass": true,
+   "evidence": {
+    "attempts": 8,
+    "last": [
+     "400:invalid_grant",
+     "400:invalid_grant",
+     "429:rate_limited"
+    ]
+   }
+  },
+  {
+   "id": "RV-24",
+   "what": "sign-up with the test domain still refused by the identity server, mapped to a field error",
+   "pass": true,
+   "evidence": {
+    "status": 400,
+    "code": "invalid_input"
+   }
+  },
+  {
+   "id": "RV-25",
+   "what": "a signed-in identity is routed by the backend's own next step",
+   "pass": true,
+   "evidence": {
+    "next": "onboarding",
+    "authorized": null
+   }
+  },
+  {
+   "id": "RV-26",
+   "what": "the trial line is backend data, not a constant",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "trial_status": "active",
+    "has_expiry": true
+   }
+  },
+  {
+   "id": "RV-27",
+   "what": "entitlements do not claim a paid plan for a trial agency",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "keys": [
+     "features",
+     "account_state"
+    ]
+   }
+  }
+ ],
+ "crm_restored": 200,
+ "finished_utc": "2026-09-28T09:31:49.736Z",
+ "summary": {
+  "pass": 7,
+  "total": 7
+ }
+}

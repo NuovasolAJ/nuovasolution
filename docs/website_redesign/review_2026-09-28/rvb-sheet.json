@@ -1,0 +1,28 @@
+{
+ "Menu": {
+  "expanded": "true",
+  "panelHeight": 784,
+  "focusablesInPanel": 17,
+  "focusMovedIntoPanel": false,
+  "roleDialog": null,
+  "ariaModal": null,
+  "focusWasOnOpenerBeforeEscape": false,
+  "expandedAfterEscape": "true",
+  "panelVisibleAfterEscape": true,
+  "focusBackOnOpener": false,
+  "activeAfterEscape": "ES\nESPAÑOL"
+ },
+ "Platform": {
+  "expanded": "true",
+  "panelHeight": 0,
+  "focusablesInPanel": 0,
+  "focusMovedIntoPanel": false,
+  "roleDialog": null,
+  "ariaModal": null,
+  "focusWasOnOpenerBeforeEscape": false,
+  "expandedAfterEscape": "false",
+  "panelVisibleAfterEscape": false,
+  "focusBackOnOpener": false,
+  "activeAfterEscape": "Skip to content\n\nFor r"
+ }
+}

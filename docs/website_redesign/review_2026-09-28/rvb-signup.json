@@ -1,0 +1,38 @@
+{
+ "test_domain": {
+  "status": 400,
+  "body": {
+   "request_id": "eaebfa94-74f8-4a1a-aa5b-555844b4ab3f",
+   "ok": false,
+   "code": "invalid_email",
+   "message": "invalid_email"
+  }
+ },
+ "malformed_email": {
+  "status": 400,
+  "body": {
+   "request_id": "0cff01cc-6111-4562-ae15-45a145022fdd",
+   "ok": false,
+   "code": "invalid_input",
+   "message": "invalid_input"
+  }
+ },
+ "weak_password": {
+  "status": 400,
+  "body": {
+   "request_id": "dc5cbe29-7f11-4191-bba8-5cca5a278ffe",
+   "ok": false,
+   "code": "weak_password",
+   "message": "weak_password"
+  }
+ },
+ "resend_unknown": {
+  "status": 200,
+  "body": {
+   "request_id": "8858668e-1fc7-4143-ac0b-3fd23cc27b94",
+   "ok": true,
+   "code": "ok",
+   "message": "sent"
+  }
+ }
+}

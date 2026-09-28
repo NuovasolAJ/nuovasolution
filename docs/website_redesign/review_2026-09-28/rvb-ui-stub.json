@@ -1,0 +1,185 @@
+{
+ "commit": "e39ad06",
+ "mode": "stub",
+ "started_utc": "2026-09-28T09:27:50.580Z",
+ "checks": [
+  {
+   "id": "RVB-33",
+   "what": "WR-33: the home hero claim carries its qualifier within the first screen",
+   "pass": false,
+   "evidence": {
+    "en": {
+     "gap_chars": null,
+     "h1_y": 210,
+     "q_y": null
+    },
+    "es": {
+     "gap_chars": null,
+     "q_y": null
+    }
+   }
+  },
+  {
+   "id": "RVB-34",
+   "what": "WR-34: the product page qualifier sits with the h1 claim, both languages",
+   "pass": true,
+   "evidence": {
+    "en": {
+     "h1": "Every enquiry gets an answer, and the conversation carries o",
+     "h1_y": 182,
+     "q_y": 0
+    },
+    "es": {
+     "h1_y": 182,
+     "q_y": 0
+    }
+   }
+  },
+  {
+   "id": "RVB-Z21",
+   "what": "a non-production build answers noindex in the header and the meta tag",
+   "pass": false,
+   "evidence": {
+    "header": "none",
+    "meta": "index, follow",
+    "robots_txt": "User-Agent: *\nAllow: /\nDisallow: /api/\nDisallow: /en/onboarding\nDisallow: /es/onboarding\nDisallow: /en/connect/\nDisallow: /es/connect/\n\nSitemap: https://nuovasolution.com/sitemap.xml\n"
+   }
+  },
+  {
+   "id": "RVB-Z18",
+   "what": "switching language keeps the confirmation query",
+   "pass": false,
+   "evidence": {
+    "found": true,
+    "href": "/es/login",
+    "url": "/es/login"
+   }
+  },
+  {
+   "id": "RVB-Z20",
+   "what": "the mobile sheet closes with Escape and returns focus to its opener",
+   "pass": false,
+   "evidence": {
+    "opener": true,
+    "panelFound": false,
+    "focusInPanel": null,
+    "closedByEscape": true,
+    "focusBackOnOpener": false
+   }
+  },
+  {
+   "id": "RVB-Z17",
+   "what": "stacked cards are not taller than a small viewport and clip no content",
+   "pass": false,
+   "evidence": {
+    "390x640": {
+     "cards": 5,
+     "taller_than_viewport": 5,
+     "sticky": 5,
+     "clipped_content": 0,
+     "viewport": 640
+    },
+    "200pct-zoom": {
+     "cards": 5,
+     "taller_than_viewport": 3,
+     "sticky": 5,
+     "clipped_content": 0,
+     "viewport": 700
+    }
+   }
+  },
+  {
+   "id": "RVB-Z10",
+   "what": "only one question thread is offered at a time",
+   "pass": true,
+   "evidence": {
+    "launchers": 1,
+    "question_inputs": 1,
+    "panels": 2
+   }
+  }
+ ],
+ "detail": {
+  "qualifier": {
+   "/en": {
+    "h1": "Your enquiries answered, day or night",
+    "h1_char": 52,
+    "qualifier_char": -1,
+    "gap_chars": null,
+    "h1_y": 210,
+    "qualifier_y": null,
+    "occurrences": 0
+   },
+   "/en/platform/ai-sales-agent": {
+    "h1": "Every enquiry gets an answer, and the conversation carries o",
+    "h1_char": 44,
+    "qualifier_char": 1210,
+    "gap_chars": 1166,
+    "h1_y": 182,
+    "qualifier_y": 0,
+    "occurrences": 1
+   },
+   "/es": {
+    "h1": "Tus consultas respondidas, de día o de noche",
+    "h1_char": 56,
+    "qualifier_char": -1,
+    "gap_chars": null,
+    "h1_y": 210,
+    "qualifier_y": null,
+    "occurrences": 0
+   },
+   "/es/platform/ai-sales-agent": {
+    "h1": "Cada consulta recibe respuesta, y la conversación sigue.",
+    "h1_char": 46,
+    "qualifier_char": 1278,
+    "gap_chars": 1232,
+    "h1_y": 182,
+    "qualifier_y": 0,
+    "occurrences": 1
+   }
+  },
+  "robots": {
+   "header": "none",
+   "meta": "index, follow",
+   "robots_txt": "User-Agent: *\nAllow: /\nDisallow: /api/\nDisallow: /en/onboarding\nDisallow: /es/onboarding\nDisallow: /en/connect/\nDisallow: /es/connect/\n\nSitemap: https://nuovasolution.com/sitemap.xml\n"
+  },
+  "language_switch": {
+   "found": true,
+   "href": "/es/login",
+   "url": "/es/login"
+  },
+  "sheet": {
+   "opener": true,
+   "panelFound": false,
+   "focusInPanel": null,
+   "closedByEscape": true,
+   "focusBackOnOpener": false
+  },
+  "stack": {
+   "390x640": {
+    "cards": 5,
+    "taller_than_viewport": 5,
+    "sticky": 5,
+    "clipped_content": 0,
+    "viewport": 640
+   },
+   "200pct-zoom": {
+    "cards": 5,
+    "taller_than_viewport": 3,
+    "sticky": 5,
+    "clipped_content": 0,
+    "viewport": 700
+   }
+  },
+  "qa_instances": {
+   "launchers": 1,
+   "question_inputs": 1,
+   "panels": 2
+  }
+ },
+ "finished_utc": "2026-09-28T09:28:21.633Z",
+ "summary": {
+  "pass": 2,
+  "total": 7
+ }
+}

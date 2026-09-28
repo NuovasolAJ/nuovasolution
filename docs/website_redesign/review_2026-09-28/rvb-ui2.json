@@ -1,0 +1,160 @@
+{
+ "hero": {
+  "/en": {
+   "h1": "Your enquiries answered, day or night",
+   "h1_y": 336,
+   "qualifier_count": 2,
+   "first_qualifier": {
+    "text": "Example with synthetic data",
+    "y": 226
+   },
+   "first_screen_text": [
+    "Everything Nuova does",
+    "See how the parts fit together",
+    "See every capability",
+    "Be found",
+    "Social Growth, Lead Acquisition",
+    "Social Growth",
+    "Comments and posts. Not offered yet",
+    "Not offered yet",
+    "Lead Acquisition",
+    "Leads from your campaigns. Not offered yet",
+    "Not offered yet",
+    "Answer enquiries"
+   ]
+  },
+  "/es": {
+   "h1": "Tus consultas respondidas, de día o de noche",
+   "h1_y": 348,
+   "qualifier_count": 2,
+   "first_qualifier": {
+    "text": "Ejemplo con datos sintéticos",
+    "y": 226
+   },
+   "first_screen_text": [
+    "Todo lo que hace Nuova",
+    "Mira cómo encajan las piezas",
+    "Ver todas las capacidades",
+    "Que te encuentren",
+    "Social Growth, Captación de leads",
+    "Social Growth",
+    "Comentarios y publicaciones. Todavía no se ofrece",
+    "Todavía no se ofrece",
+    "Captación de leads",
+    "Leads de tus campañas. Todavía no se ofrece",
+    "Todavía no se ofrece",
+    "Responder consultas"
+   ]
+  },
+  "/en/platform/ai-sales-agent": {
+   "h1": "Every enquiry gets an answer, and the conversation carries on.",
+   "h1_y": 231,
+   "qualifier_count": 1,
+   "first_qualifier": {
+    "text": "Example. Based on agency permissions and configuration.",
+    "y": 2086
+   },
+   "first_screen_text": [
+    "Everything Nuova does",
+    "See how the parts fit together",
+    "See every capability",
+    "Be found",
+    "Social Growth, Lead Acquisition",
+    "Social Growth",
+    "Comments and posts. Not offered yet",
+    "Not offered yet",
+    "Lead Acquisition",
+    "Leads from your campaigns. Not offered yet",
+    "Not offered yet",
+    "Answer enquiries"
+   ]
+  },
+  "/es/platform/ai-sales-agent": {
+   "h1": "Cada consulta recibe respuesta, y la conversación sigue.",
+   "h1_y": 267,
+   "qualifier_count": 1,
+   "first_qualifier": {
+    "text": "Ejemplo. Según los permisos y la configuración de tu agencia.",
+    "y": 2086
+   },
+   "first_screen_text": [
+    "Todo lo que hace Nuova",
+    "Mira cómo encajan las piezas",
+    "Ver todas las capacidades",
+    "Que te encuentren",
+    "Social Growth, Captación de leads",
+    "Social Growth",
+    "Comentarios y publicaciones. Todavía no se ofrece",
+    "Todavía no se ofrece",
+    "Captación de leads",
+    "Leads de tus campañas. Todavía no se ofrece",
+    "Todavía no se ofrece",
+    "Responder consultas"
+   ]
+  }
+ },
+ "sheet": {
+  "headerButtons": [
+   {
+    "label": "Platform",
+    "expanded": "false",
+    "controls": ":Rajsq:"
+   },
+   {
+    "label": "Menu",
+    "expanded": "false",
+    "controls": ":RajsqH1:"
+   }
+  ],
+  "opener": true,
+  "expandedAfterOpen": "true",
+  "panel": "DIV#:Rajsq:",
+  "focusInPanel": false,
+  "activeAfterOpen": "Skip to content\n\nFor rea",
+  "expandedAfterEscape": "false",
+  "panelVisible": false,
+  "focusBackOnOpener": false
+ },
+ "stack": [
+  {
+   "h": 1279,
+   "viewport": 640,
+   "position": "sticky",
+   "top": "76px",
+   "overflowY": "visible",
+   "text": "01 · ANSWER ENQUIRIES\n\nWhatsApp and emai"
+  },
+  {
+   "h": 860,
+   "viewport": 640,
+   "position": "sticky",
+   "top": "86px",
+   "overflowY": "visible",
+   "text": "02 · ORGANISE LEADS\n\nOne record, one pri"
+  },
+  {
+   "h": 994,
+   "viewport": 640,
+   "position": "sticky",
+   "top": "96px",
+   "overflowY": "visible",
+   "text": "03 · SUPPORT YOUR TEAM\n\nWhat to do first"
+  },
+  {
+   "h": 739,
+   "viewport": 640,
+   "position": "sticky",
+   "top": "106px",
+   "overflowY": "visible",
+   "text": "04 · SHOW PROPERTIES\n\nA short, honest se"
+  },
+  {
+   "h": 707,
+   "viewport": 640,
+   "position": "sticky",
+   "top": "116px",
+   "overflowY": "visible",
+   "text": "05 · BE FOUND\n\nLeads from your campaigns"
+  }
+ ]
+}

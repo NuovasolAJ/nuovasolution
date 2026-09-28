@@ -1,0 +1,199 @@
+{
+ "commit": "e39ad06",
+ "mode": "staging",
+ "started_utc": "2026-09-28T09:31:49.814Z",
+ "checks": [
+  {
+   "id": "RVB-BAND",
+   "what": "the staging band no longer covers page text at 360 and 390 px",
+   "pass": false,
+   "evidence": {
+    "pages": [
+     "360/en",
+     "360/es",
+     "360/es/platform/crm",
+     "390/en",
+     "390/es",
+     "390/es/platform/crm"
+    ]
+   }
+  }
+ ],
+ "detail": {
+  "band_overlap": {
+   "360/en": [
+    {
+     "a": "Test environment",
+     "b": "14 days free. No payment.",
+     "ox": 108,
+     "oy": 19
+    },
+    {
+     "a": "Test environment",
+     "b": "Qualification",
+     "ox": 106,
+     "oy": 13
+    },
+    {
+     "a": "Test environment",
+     "b": "Qualified, ready to view",
+     "ox": 106,
+     "oy": 4
+    },
+    {
+     "a": "Test environment",
+     "b": "From a message to a task",
+     "ox": 108,
+     "oy": 18
+    },
+    {
+     "a": "Test environment",
+     "b": "Your agency",
+     "ox": 73,
+     "oy": 17
+    }
+   ],
+   "360/es": [
+    {
+     "a": "Entorno de pruebas",
+     "b": "14 días gratis. Sin pago.",
+     "ox": 118,
+     "oy": 19
+    },
+    {
+     "a": "Entorno de pruebas",
+     "b": "Cualificación",
+     "ox": 116,
+     "oy": 13
+    },
+    {
+     "a": "Entorno de pruebas",
+     "b": "Cualificada, lista para vi",
+     "ox": 116,
+     "oy": 4
+    },
+    {
+     "a": "Entorno de pruebas",
+     "b": "WhatsApp · respondido por ",
+     "ox": 86,
+     "oy": 20
+    },
+    {
+     "a": "",
+     "b": "Tu agencia",
+     "ox": 89,
+     "oy": 24
+    }
+   ],
+   "360/es/platform/crm": [
+    {
+     "a": "Entorno de pruebas",
+     "b": "Empieza gratis",
+     "ox": 118,
+     "oy": 20
+    },
+    {
+     "a": "Entorno de pruebas",
+     "b": "Leads registrados con su c",
+     "ox": 118,
+     "oy": 4
+    },
+    {
+     "a": "Entorno de pruebas",
+     "b": "Todavía no se ofrece. Cada",
+     "ox": 118,
+     "oy": 20
+    },
+    {
+     "a": "Entorno de pruebas",
+     "b": "AI Sales Agent",
+     "ox": 68,
+     "oy": 20
+    }
+   ],
+   "390/en": [
+    {
+     "a": "Test environment",
+     "b": "Example with synthetic dat",
+     "ox": 108,
+     "oy": 7
+    },
+    {
+     "a": "Test environment",
+     "b": "Hello, is the two bedroom ",
+     "ox": 87,
+     "oy": 11
+    },
+    {
+     "a": "Test environment",
+     "b": "21:40",
+     "ox": 87,
+     "oy": 4
+    },
+    {
+     "a": "",
+     "b": "Your agency",
+     "ox": 120,
+     "oy": 24
+    },
+    {
+     "a": "",
+     "b": "WhatsApp · answered by Nuo",
+     "ox": 120,
+     "oy": 39
+    }
+   ],
+   "390/es": [
+    {
+     "a": "Entorno de pruebas",
+     "b": "Hola, ¿sigue disponible el",
+     "ox": 101,
+     "oy": 11
+    },
+    {
+     "a": "Entorno de pruebas",
+     "b": "21:40",
+     "ox": 101,
+     "oy": 4
+    },
+    {
+     "a": "",
+     "b": "Tu agencia",
+     "ox": 112,
+     "oy": 24
+    },
+    {
+     "a": "",
+     "b": "WhatsApp · respondido por ",
+     "ox": 112,
+     "oy": 39
+    },
+    {
+     "a": "",
+     "b": "Datos sintéticos",
+     "ox": 121,
+     "oy": 24
+    }
+   ],
+   "390/es/platform/crm": [
+    {
+     "a": "Entorno de pruebas",
+     "b": "Reserva una demo",
+     "ox": 122,
+     "oy": 20
+    },
+    {
+     "a": "Entorno de pruebas",
+     "b": "Disponible según los canal",
+     "ox": 122,
+     "oy": 16
+    }
+   ]
+  }
+ },
+ "finished_utc": "2026-09-28T09:32:18.219Z",
+ "summary": {
+  "pass": 0,
+  "total": 1
+ }
+}
