@@ -1,17 +1,19 @@
 # WEBSITE SYNC 0928 — implementer return v1
 
 **State:** `2026-09-28_FINAL_CONVERGENCE_AUDIT_R2` · **Lane:** Website Implementer · **Written:** 2026-09-28
-**Branch:** `website_enterprise_redesign` · **Code:** `2ba0231` (on `44e9639` → `ca81034` → `e39ad06`, base `origin/main 9943660`)
+**Branch:** `website_enterprise_redesign`, pushed to origin · **Code:** `d475dec` (copy round) on `1fd5400` (routing without middleware) on `2ba0231` (sales path, register, gates) on `9fb4cc8`; base `origin/main 9943660`. Copy `e0ccf82` (LAUNCH_COPY_v1, FAQ KB, legal pages) and review `4e1a20a` are below it on the same branch.
 **Status wording:** implemented and awaiting independent technical and final audit. Nothing here is a design
 acceptance; `WEBSITE_OWNER_ACCEPTANCE` is the owner's signal.
 
 ## 0. Signals
 
 ```
-WEBSITE_REVIEW_URL        = PENDING_OWNER_LOGIN  (push + Vercel device login started on the PC; two browser steps, §1)
-WEBSITE_STAGING_URL       = PENDING_OWNER_LOGIN  (same two steps; variables listed in PREVIEW_START.md)
-WEBSITE_ZIP_FIXES         = Z01 Z02 Z03(code) Z04 Z05(provisional) Z06 Z07(code) Z08(code) Z10 Z12 Z13 Z14 Z15(hidden) Z16 Z17 Z18 Z20 Z21 Z22 CLOSED_IN_CODE 2ba0231 · Z09 Z11 Z19 OPEN (other lanes / owner)
-OWNER_RESUME_READY        = NOT_YET (needs WEBSITE_STAGING_URL + API STG_AUTH_REDIRECTS = EXACT with that origin)
+WEBSITE_REVIEW_URL        = https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app d475dec  (stub, logged out, noindex; stable branch alias, updates on every push)
+WEBSITE_STAGING_URL       = https://nuovasolution-staging-preview-git-w-44e113-nuovasolajs-projects.vercel.app d475dec  (staging mode against fflmmzapksycjfdcjdtd, logged out, noindex)
+STAGING_ORIGIN_FOR_API    = https://nuovasolution-staging-preview-git-w-44e113-nuovasolajs-projects.vercel.app  (exact allow-list entry + site_url; the per-deployment URLs nuovasolution-staging-preview-<hash>-nuovasolajs-projects.vercel.app also exist, the alias is the one to register)
+WEBSITE_ZIP_FIXES         = Z01 Z02 Z03(code) Z04 Z05 Z06 Z07 Z08 Z10 Z12 Z13 Z14 Z15(hidden) Z16 Z17 Z18 Z20 Z21 Z22 CLOSED d475dec · Z09 Z11(runtime catalog) Z19 OPEN (other lanes / owner)
+LAUNCH_COPY_v1            = ADOPTED d475dec (§3, §4, §5, §6.1, §7; deviations in §6 of this return)
+OWNER_RESUME_READY        = NOT_YET (needs API STG_AUTH_REDIRECTS = EXACT with the staging origin above, then a fixture check on that origin)
 OWNER_RESUME_PROVEN       = NOT_YET
 WEBSITE_LIVE_CLAIM_FIX    = READY_NOT_DEPLOYED (hotfix/old-site-copy-v2 82112df; needs owner JA + push access)
 META_LEGAL_PUBLIC         = BLOCKED_INPUT (no Rechtsträger, no META_LEGAL_SECTIONS, no LEGAL_PAGES_FINAL yet)
@@ -25,7 +27,9 @@ Evidence on this commit, all reproducible with the scripts named:
 | Suite | Result | Where |
 |---|---|---|
 | Design probe (Edge, 1440/1024/390/360, EN/ES, menu, Q&A, 200 %, reduced motion, keyboard) | 102/102 | `docs/website_redesign/design_probe_2026-09-28/probe-results.json`, screenshots, two scroll GIFs |
-| Route scan (every route EN/ES 200 with its own H1, hidden slugs 404, `X-Robots-Tag: noindex` + meta, robots Disallow, empty sitemap, 0 forbidden strings, poster served, legacy redirect) | 51/51 | `docs/website_redesign/evidence_2026-09-28/route-scan.json` |
+| Route scan local (every route EN/ES 200 with its own H1, hidden slugs 404, `X-Robots-Tag: noindex` + meta, robots Disallow, empty sitemap, 0 forbidden strings incl. LAUNCH_COPY_v1 §2 list, poster served, legacy redirect) | 51/51 | `docs/website_redesign/evidence_2026-09-28/route-scan.json` |
+| Route scan on the HTTPS design preview, logged out | 51/51 | `docs/website_redesign/evidence_2026-09-28/preview-design/route-scan.json` |
+| Route scan on the HTTPS staging preview, logged out (band `staging`, plans BFF answers `awaiting_contract`) | 51/51 | `docs/website_redesign/evidence_2026-09-28/preview-staging/route-scan.json` |
 | Stub end to end (auth stub, onboarding, CRM, branding, Q&A contract mock) | 58/58 | `docs/website_redesign/evidence_2026-09-28/stub/e2e-results.json` |
 | Staging end to end (real login, tenant-api writes, branding-assets upload, readiness, cross-tenant refusals) | 27/27 | `docs/website_redesign/evidence_2026-09-28/staging/staging-e2e-results.json` |
 | Mode gate (live refused without release, sandbox pinned, secret key refused) | 11/11 | console (`scripts/e2e/mode-gate-check.mjs`) |
@@ -39,29 +43,43 @@ Done in code (`2ba0231`):
 - `PREVIEW_START.md` rewritten: two separate Vercel projects, Preview deployments (never `--prod`), variables per project, Deployment Protection off only in those projects, `route-scan.mjs` against the deployed origin.
 - Negative case: `VERCEL_ENV=production` still refuses the stub account surfaces (WR-06 unchanged); the staging deployment does not use them, so it is unaffected.
 
-Access (Route A, as the audit's owner line allows): both flows are **running on this PC right now** and wait for two browser steps by the owner:
-1. **GitHub:** the Windows Git Credential Manager window ("Connect to GitHub") opened by `git push -u origin website_enterprise_redesign`. Sign in once with the NuovasolAJ account. The push completes on its own, no force.
-2. **Vercel:** open `https://vercel.com/oauth/device?user_code=CFCB-CTCQ`, sign in, confirm the code. (If the code has expired, say so and I restart `npx vercel@latest login` for a new one.)
+Access (Route A): the owner completed the two browser logins on 2026-09-28 (GitHub through the Windows
+Credential Manager, Vercel device code). What followed, all on this PC, recorded in `PREVIEW_START.md` §B:
+- projects `nuovasolution-design-preview` (no variables) and `nuovasolution-staging-preview` (staging variables for
+  the preview environment, publishable key piped from the secure store) in team `nuovasolajs-projects`, both
+  Git-connected to the repository, framework preset `nextjs` set through the API (without it Vercel served only
+  static files), Vercel Authentication switched off through the API for these two projects only;
+- the existing `nuovasolution` project is untouched (its own Git integration also builds the branch, behind its
+  protection; not used for review);
+- the Next 14 edge middleware failed on the Vercel runtime (`MIDDLEWARE_INVOCATION_FAILED`, loaded as CommonJS);
+  `1fd5400` replaces it with `next.config.js` redirects (root and the known page paths, `Accept-Language: es…`);
+- every push of the branch rebuilds both previews; the stable links are the branch aliases in §0. Per-deployment
+  URLs (`…-<hash>-nuovasolajs-projects.vercel.app`) exist as well.
 
-After both: I create `nuovasolution-design-preview` (no variables) and `nuovasolution-staging-preview` (staging variables, publishable key from the secure store), deploy both as Preview deployments, switch Vercel Authentication off for those two projects only, verify logged out (route scan against the real origin, reload, language switch, assets, no localhost), and report `WEBSITE_REVIEW_URL` and `WEBSITE_STAGING_URL` with commit and header output. The staging origin goes to API the same moment for the exact allow-list entry and `site_url`.
+Header output of the design alias (`/es`, logged out, 2026-09-28): `HTTP 200`, `x-robots-tag: noindex, nofollow`,
+`<meta name="robots" content="noindex, nofollow">`, band `data-env="preview"`; staging alias: `HTTP 200`, same
+headers, band `data-env="staging"`. Full route scans in §0.
 
-Route B fallback: the start-ready package is the repository at `2ba0231` with `PREVIEW_START.md` §A (`npm ci && npm run build && npm start`; staging: the variables in the table, `NUOVA_INTEGRATION_MODE=staging` at build time).
+Owner mail "Preview deployment failed … nuovasolution-staging-preview … 9fb4cc8 … 19:41 UTC": that was the
+automatic first Git build right after connecting the repository, before the framework preset existed; it is
+superseded by the READY builds of `1fd5400` and `d475dec`.
 
 ## 2. W-Design — the sales path, and the screenshot set for T5
 
-One sales path on one continuous example (Laura M., a two bedroom flat in Estepona):
+One sales path on one continuous example (Laura M., a two bedroom flat in Estepona), texts from
+`LAUNCH_COPY_v1.md` (`e0ccf82`) where it changes C3, C3 elsewhere:
 
 | # | Section | Texts | Product surface |
 |---|---|---|---|
-| 1 | Hero: pain in one sentence, qualifier, Start free / Book a demo, "14 days free. No payment." once | C3 H1 | three layered cards: enquiry → answer (marked "AI assistant") → record |
-| 2 | Three pains of an agency | C3 H2, the detail sentence split in three | — |
-| 3 | "From a message to a task": four step chips, then three stacked product cards that slide over each other on desktop | C3 H3/H4/H5 first sentences | conversation view · leads board (qualification, priority, next step) · daily assistant |
-| 4 | Media place with a real poster (film later, no layout shift) | — | rendered frame of conversation + record + board |
-| 5 | "One customer, one record" | new short lead (implementer) | record view |
+| 1 | Hero "No enquiry waits until Monday", qualifier "On the channels you connect.", Start free / See how it works, "14 days free. No payment." once | LC §3.1 | three layered cards: enquiry → answer carrying the notice (ES: v1.0-es quoted; EN: marked sample) → record |
+| 2 | "The enquiry arrives at the worst moment": three everyday pains and the closing line | LC §3.2 | — |
+| 3 | "From a message to a task": four step chips, then four stacked product cards that slide over each other on desktop | LC §3.3 | reply with the notice · leads board (qualification, priority) · the task, open and claimable (§4.4) · readiness check |
+| 4 | Media place with a real poster (film later, no layout shift) | captions LC §4.5 | rendered frame of conversation + record + board |
+| 5 | "One enquiry, one memory, one place" | LC §3.4 | record view |
 | 6 | "14 days free, no payment": three steps | C3 H8 | readiness check as the onboarding renders it |
-| 7 | Plans teaser + four questions in a grid | C3 §3.1, §3.5 | — |
-| 8 | Question box (labelled Demo in previews) | C3 §4 | — |
-| 9 | Closing | C3 H9 | — |
+| 7 | Plans teaser + four questions in a grid | LC §5 | — |
+| 8 | Question box (labelled Demo in previews; hidden on a live build until L-13's gate) | C3 §4, LC L-13 | — |
+| 9 | Closing "Your next enquiry is already on its way", Start free / Request a demo | LC §3.5 | — |
 
 Removed from every public page: status chips, gate sentences, "What is not ready yet", "Certified internally",
 "in development / not offered yet" formulas, the schematic process map, the radial colour washes, the
@@ -139,23 +157,29 @@ Does not work yet: a public HTTPS URL (two owner logins pending); e-mail confirm
 (API signal); hidden capabilities (voice, social, lead acquisition, property matching, 3D) have no page until
 the register changes.
 
-## 6. Decisions I took that the owner or another lane may overturn
+## 6. Decisions and deviations from LAUNCH_COPY_v1 (for Copy and the Audit)
 
-- Publication register values: `live` = AI Sales Agent, Lead Intelligence, Universal CRM, Daily Assistant;
-  `hidden` = Voice, Social Growth, Lead Acquisition, Property Matching, Property Experience 3D. Daily Assistant is
-  shown because the owner's criteria name Daily tasks as one of the real product surfaces; its final owner test
-  stays in the launch blocker register, not on the page.
-- Feature flags shown on the plans page: text replies, Gmail, WhatsApp, qualification and priority, CRM included,
-  consent handling. `followup.basic` (legally held) and `reporting.*` (no canonical status) are not listed.
-- Demo conversation wording (Z05) and the short "one record" lead are implementer sentences until
-  `LAUNCH_COPY_v1` arrives.
+- Register on the page: `live` = AI Sales Agent, Lead Intelligence, CRM, Daily Assistant (its page carries the
+  task surface of LC §4.4, L-04 owner-proven; the assistant's own question/answer view is no longer shown);
+  `hidden` = Social Growth, Lead Acquisition, Property Matching (LC L-16, L-17, L-11). Voice and 3D (L-14, L-15,
+  `on request`) have **no page**: their one sentence each (LC §7.2) renders only on the platform overview. Copy's
+  §6.1 could be read as "a page with one sentence"; a page with one sentence and no product surface would look like
+  an empty box, so the overview line is the implementation. Easy to flip.
+- LC §3.3 lists four cards; the platform overview shows the same four in a 2 × 2 grid, the home page as the stack.
+- Feature flags on the plans page: text replies, Gmail, WhatsApp, qualification and priority, CRM included,
+  consent handling. `followup.basic` and `reporting.*` are not listed (LC §5.3 hidden rows; API told through this return).
+- `common.bookDemo` is now "Request a demo" everywhere (LC §7.1); "Book a demo" returns after `DEMO_PATH = PASS`.
+- The EN disclosure is the sample translation from LC §4.2 with the visible mark "Sample translation. The approved
+  notice exists in Spanish."; the ES text is quoted unchanged.
 - The Q&A test tenant remains `stg_pm_nerjamar` for the transport harness only; the product tenant is API's
   (`WEB_QA_PRODUCT_TENANT`).
+- Not adopted yet: `LEGAL_PAGES_FINAL_v1.md` into `lib/content/legal.ts` (the new site's legal routes still show
+  the labelled placeholders; the Rechtsträger placeholders are the owner's, and publication is hotfix v3 of the old
+  site per W8). `PRODUCT_FAQ_KB_v1.md` is Hosting's/Lead's input for the assistant, not page text.
 
 ## 7. Owner steps
 
-1. The two browser logins now (§1). Nothing else is needed for the preview URLs.
-2. T5 after `WEBSITE_REVIEW_URL`: desktop and iPhone Safari, ES/EN, menu, plans, Q&A demo; list the defects, I fix
-   them without a new order.
+1. T5 on the design alias (§0): desktop and iPhone Safari, ES/EN, menu, plans, Q&A demo; list the defects, I fix
+   them without a new order. `OWNER_TEST_READY_T5` is hereby set for the design preview.
 3. `WEBSITE_LIVE_CLAIM_FIX = JA` if the old-site claims should be corrected before the launch.
 4. Rechtsträger line for the legal pages; `PRICING_AUTHORITY`; `DEMO_TEST_BOOKING`.
