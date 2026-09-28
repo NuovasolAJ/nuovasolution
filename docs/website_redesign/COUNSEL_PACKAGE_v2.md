@@ -17,15 +17,29 @@ blocked until the answer arrives.
 
 Send both files together. Read v2 first.
 
-**Nothing here has been approved by a lawyer.** Every text is a draft. Two texts are live in
-production today and are marked as such, because counsel needs to know what is already reaching real
-people.
+**Nothing here has been approved by a lawyer.** Every text is a draft.
+
+### 0a. Corrections of 2026-09-28 — read before the sheets
+
+Three statements in the first version of this package were wrong. The Audit refuted them from its own
+reads of the production and staging functions, and they are corrected here rather than quietly
+adjusted. Evidence: `DISCLOSURE-FN-BYTES-0924` and `STATE-0928-LIVE` in
+`governance/CLOSEOUT_EVIDENCE_INDEX_v1.md`.
+
+| # | What this package claimed | What is established |
+|---|---|---|
+| C-1 | "A channel with no approved text falls back to the **e-mail** text, so it does not fail closed." | **Refuted for production.** `ai_disclosure_render` selects the text per channel and stops with `no_text_for_channel`. It fails closed. The fallback defect is in the **staging** gate `check_ai_disclosure`, which falls back to the **WhatsApp** text and filters neither approval status nor tenant. That is a staging defect owed by API, and it never reached a customer. |
+| C-2 | "An unapproved interim sentence reaches real customers today." | **Not established, and materially different.** Production has had **0 customer runs since 2026-09-20**, 0 leads since 09-24, and all 8 notices are inactive. E-mail replies are held. WhatsApp ran under a regime that would have answered **without any notice** rather than with an unapproved one. Under ruling R34 that regime is corrected to `held`, so after Hosting's `WA_HOLD_PROD = VERIFIED` both channels hold until an approved notice is active. |
+| C-3 | "Two texts are live in production today." | Only one text has ever been publicly live in this sense: the old website's own copy, which is a truthfulness matter, not a disclosure one. Whether the hard-coded interim string described in `COUNSEL_PACKAGE_v1.md` §E.3 still exists in the production workflow at all is **an open fact**, not a finding: ⟦OPEN FACT → Hosting: does prod Main still carry the renderer v2 fallback string, and under which regime would it be emitted?⟧ |
+
+What does **not** change: no approved Spanish text is active, so nothing the assistant writes is
+covered by an approval today, and `v1.1-es` is still pending. The urgency is unchanged; its reason is.
 
 ### Priority
 
 | Order | Sheet | Why first |
 |---|---|---|
-| 1 | D1 AI disclosure `v1.1-es` | An unapproved interim sentence reaches real customers today |
+| 1 | D1 AI disclosure `v1.1-es` | No approved notice is active, so every AI channel is held. The product cannot answer a customer until counsel and the owner close this |
 | 2 | D2 Spoken Spanish disclosure | Voice has no approved text at all |
 | 3 | D4 Privacy notice | Launch blocking, matrix row L-14 |
 | 4 | D6 Deletion page, D5 Terms | Required by Meta for the WhatsApp review |
@@ -38,7 +52,7 @@ people.
 
 | # | Item | Channel | Languages | Live today? | Blocks |
 |---|---|---|---|---|---|
-| D1 | AI disclosure `v1.1-es` | chat, e-mail, WhatsApp | es | interim text yes | every customer-facing reply |
+| D1 | AI disclosure `v1.1-es` | chat, e-mail, WhatsApp | es | no notice active; both channels held | every customer-facing reply |
 | D2 | Spoken Spanish disclosure | voice | es | no text exists | voice go-live |
 | D3 | Disclosure equivalence | chat, e-mail, WhatsApp | en, de, it | no | non-Spanish customers |
 | D4 | Privacy notice (controller) | website | en, es | placeholder | public launch |
@@ -73,10 +87,18 @@ depending on the channel.
    enough? Today it repeats.
 3. Must the agency's registered legal name appear, or is the trading brand enough? This decides
    whether an empty `{{agency_legal_name}}` may ever render. See §3 item T-02.
-4. The interim sentence in §E.3 is live and was never approved. Confirm whether it must be replaced
-   before the next real customer message, or whether it is defensible in the meantime.
+4. **Which text may be activated for the pilot agency.** The owner is being asked to activate
+   `v1.0-es`. Its **e-mail** text reads "asistente de inteligencia artificial de NuovaSolution", so an
+   e-mail sent under the pilot agency's brand would name **our** company as the operator of the
+   assistant. `v1.1-es` is the version written to name the agency (`{{agency_legal_name}}`), and it is
+   the one pending. Counsel decides whether naming the vendor instead of the agency in the agency's own
+   e-mail is acceptable for the pilot, or whether `v1.1-es` must be approved first. The WhatsApp text
+   of `v1.0-es` does not have this problem, because it names no company at all.
+5. The interim wording in `COUNSEL_PACKAGE_v1.md` §E.3 was never approved by anyone. Whether it is
+   still emitted anywhere is an open fact (§0a, C-3). If Hosting confirms it exists, counsel says
+   whether it may remain for non-Spanish replies while `v1.1-es` is pending.
 
-**Blocked until answered:** any reply to a real customer in the new build, and D3.
+**Blocked until answered:** any reply to a real customer, and D3.
 
 ---
 
@@ -96,9 +118,15 @@ brand. The caller hears the disclosure before anything else is said.
    needed for that.
 3. Whether an outbound call needs more than an inbound one.
 
-**Known defect counsel should be aware of:** the renderer falls back to the **e-mail** text when no
-voice text exists, so a channel with no approved wording does not fail closed. That is a technical
-fix owed by API (§3, item T-01), not a legal question, but it changes the risk while D2 is open.
+**Corrected, and it improves the position:** production does **not** substitute another channel's
+text. `ai_disclosure_render` stops with `no_text_for_channel`, and the voice text is NULL in all eight
+notices, so a spoken reply cannot go out carrying an e-mail sentence. A voice channel without an
+approved text is held, not improvised (§0a, C-1). The residual defect is in the staging gate and is
+owed by API (§3, T-01).
+
+**Who writes the spoken text:** the wording belongs to the Voice lane, which owes the telephony
+inventory first (`VOICE_TELEPHONY_INVENTORY`); this package carries the draft in
+`COUNSEL_PACKAGE_v1.md` §E.6 so counsel can rule on the shape of it, not on a final script.
 
 **Blocked until answered:** voice go-live, and every public sentence about voice.
 
@@ -126,7 +154,11 @@ item T-03).
 **Channel:** website · **Languages:** en, es · **Status:** draft; the live site carries a
 placeholder, which is matrix row **L-14, launch blocking**.
 
-**Exact text:** `COUNSEL_PACKAGE_v1.md` §B.1 (EN) and §B.2 (ES), unchanged in v2.
+**Exact text:** **`LEGAL_PAGES_FINAL_v1.md` §2** (EN §2.1, ES §2.2, retention proposal §2.7), which
+replaces `COUNSEL_PACKAGE_v1.md` §B.1/§B.2 as of 2026-09-28. The new version adds the Instagram, Meta
+and WhatsApp section, splits the controller and processor situations into one explicit section, and
+removes both "will be listed here after legal review" promises, which are now marked gaps that must be
+filled before publication.
 
 **What counsel must decide.**
 
@@ -150,7 +182,10 @@ placeholder, which is matrix row **L-14, launch blocking**.
 
 **Channel:** website · **Languages:** en, es · **Status:** draft.
 
-**Exact text:** `COUNSEL_PACKAGE_v1.md` §C.1 and §C.2.
+**Exact text:** **`LEGAL_PAGES_FINAL_v1.md` §3** (EN §3.1, ES §3.2), which replaces
+`COUNSEL_PACKAGE_v1.md` §C.1/§C.2 as of 2026-09-28. It adds the agency's duty not to remove the AI
+notice, the four separated payment steps, and the statement that a held reply is correct behaviour
+rather than downtime. Two marks remain for counsel: ⟦COUNSEL: DPA⟧ and ⟦COUNSEL: LIABILITY⟧.
 
 **What counsel must decide.**
 
@@ -168,7 +203,11 @@ placeholder, which is matrix row **L-14, launch blocking**.
 
 **Channel:** website · **Languages:** en, es · **Status:** draft, required by Meta.
 
-**Exact text:** `COUNSEL_PACKAGE_v1.md` §D.1 and §D.2.
+**Exact text:** **`LEGAL_PAGES_FINAL_v1.md` §4** (EN §4.1, ES §4.2), which replaces
+`COUNSEL_PACKAGE_v1.md` §D.1/§D.2 as of 2026-09-28. It adds the Instagram and Facebook path: the agency
+disconnects, or the person removes the app in their Meta settings, which sends us a deletion request for
+which we return a confirmation code. Content of the Meta parts follows the Social lane's own
+specification of 2026-09-23 §5 and awaits Social's confirmation.
 
 **What counsel must decide.** Whether the page satisfies the platform requirement while being
 accurate about our role: a person writing to an agency is the agency's data subject, and the request
@@ -285,15 +324,20 @@ longer control.
 
 ---
 
-## 2. Two texts are live today
+## 2. The actual exposure today
 
-Counsel should treat these as the current exposure, independent of the drafts above.
+Counsel should treat this as the current exposure, independent of the drafts above. It is smaller than
+the first version of this package claimed, and the difference matters for how urgent each sheet is.
 
-1. The interim AI disclosure sentence, `COUNSEL_PACKAGE_v1.md` §E.3, confirmed in production by the
-   Audit on 2026-09-22. Never approved by anyone.
-2. The old live website, whose unsupported claims are being removed under
-   `OLD_LIVE_SITE_HOTFIX_COPY_v2.md`. That is a truthfulness fix, not a legal one, and it is
-   proceeding without waiting for counsel.
+1. **No AI reply is going out at all.** 0 production customer runs since 2026-09-20, all eight notices
+   inactive, e-mail held, and WhatsApp moving to held under R34. There is no stream of unapproved
+   disclosures to stop; there is a product that cannot answer until D1 is closed.
+2. **The old live website** still carries unsupported claims. They are being removed under
+   `OLD_LIVE_SITE_HOTFIX_COPY_v2.md`, which is a truthfulness fix, not a legal one, and it proceeds
+   without waiting for counsel.
+3. **No legal page is public.** `/terms` and `/data-deletion` return 404 and the privacy notice
+   contains no Instagram, Meta, WhatsApp or Facebook section. That blocks the Meta review and is the
+   reason D4, D5 and D6 now have finished drafts in `LEGAL_PAGES_FINAL_v1.md`.
 
 ---
 
@@ -304,7 +348,7 @@ responsible lane should close it first.
 
 | # | Unknown | Lane | Closing signal | Affects |
 |---|---|---|---|---|
-| T-01 | `ai_disclosure_render` does not fail closed: with no text for a channel it falls back to the e-mail text, and an empty `{{agency_legal_name}}` still renders | API | `DISCLOSURE_FAIL_CLOSED = READY` | D1, D2, D3 |
+| T-01 | **Corrected (§0a, C-1).** Production fails closed with `no_text_for_channel`. Open: the **staging** gate `check_ai_disclosure` falls back to the WhatsApp text and filters neither `approval_status` nor `approved_client_ids`; and an empty `{{agency_legal_name}}` still renders | API | `STG_DISCLOSURE_GATE_FIXED` | D1, D2, D3 |
 | T-02 | Where the agency's legal name is stored, whether it is mandatory at onboarding, and what happens when it is empty | API | `AGENCY_LEGAL_NAME_SOURCE` | D1, D4 |
 | T-03 | No rule routes a customer writing in a language with no approved disclosure to a person | API | `DISCLOSURE_LANGUAGE_GATE` | D3 |
 | T-04 | The full list of sub-processors actually reached by a customer message, including the AI provider, and the region each runs in | Hosting | `SUBPROCESSOR_LIST_v1` | D4, D7 |
@@ -322,7 +366,8 @@ responsible lane should close it first.
 | O-1 | The legal entity, registered address and tax identifier to publish | D4, D5, D6, D10 |
 | O-2 | How long the product keeps customer data by default, as a business choice inside whatever counsel allows | D4, D7, D11 |
 | O-3 | Which lawyer receives this package, and whether one engagement covers Spain plus the Meta review | all |
-| O-4 | Whether to pause the interim disclosure sentence now or accept it until D1 returns | D1 |
+| O-4 | `DISCLOSURE_LIVE_TEXT`: which version is activated, given that the `v1.0-es` e-mail text names NuovaSolution rather than the agency (D1 question 4) | D1, and the pilot |
+| O-5 | Whether the four legal pages are published now, ahead of the website launch, so the Meta chain can proceed | D4, D5, D6 |
 
 ---
 
@@ -336,7 +381,22 @@ responsible lane should close it first.
    (D8, D10, D9 item 1).
 4. The technical unknowns are separated from the legal questions and assigned to API, Hosting and
    Social with a named closing signal each (§3).
-5. Priority is stated, led by the unapproved sentence that is live today.
+5. Priority is stated, led by the fact that no approved notice is active, which holds every channel.
 
-**Not changed:** the drafts in v1 §B, §C, §D, §E, §F and §G. v2 adds no new legal text except the
-two Google Sheets corrections in D7.1.
+## 6. What changed on 2026-09-28
+
+1. Three of this package's own statements are corrected in §0a: the production renderer does fail
+   closed, no unapproved sentence is reaching customers, and the "two live texts" claim is withdrawn.
+2. The privacy notice, the terms and the deletion page now have finished drafts in
+   `LEGAL_PAGES_FINAL_v1.md`, including the Instagram, Meta and WhatsApp sections the Meta review
+   needs. D4, D5 and D6 point there instead of at v1.
+3. D1 gains the question that decides the pilot: `v1.0-es` names the vendor in the e-mail text, while
+   the proof API is asked to produce expects the agency's legal name, which only the pending `v1.1-es`
+   yields.
+4. D2 is corrected in our favour and the authorship of the spoken text is assigned to the Voice lane.
+5. T-01 is rewritten to the staging defect that actually exists.
+6. Two owner decisions are added: which disclosure version is activated, and whether the legal pages
+   are published ahead of the launch.
+
+**Not changed:** v1 §E (the disclosure inventory and the equivalence drafts), §F and §G. The
+Google Sheets corrections in D7.1 stand.
