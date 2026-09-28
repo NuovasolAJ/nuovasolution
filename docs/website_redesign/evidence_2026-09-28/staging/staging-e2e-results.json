@@ -1,6 +1,6 @@
 {
- "started_utc": "2026-09-28T13:58:30.352Z",
- "commit": "wt",
+ "started_utc": "2026-09-28T20:25:02.912Z",
+ "commit": "d475dec",
  "env": "staging fflmmzapksycjfdcjdtd",
  "fixtures": {
   "agency": "stg_web_e2e_agency_a1b523",
@@ -270,7 +270,7 @@
   "stg-m390-en-agent-readonly.png",
   "stg-d1440-es-setup.png"
  ],
- "finished_utc": "2026-09-28T13:59:32.755Z",
+ "finished_utc": "2026-09-28T20:26:06.177Z",
  "passed": 27,
  "failed": 0
 }
