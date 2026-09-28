@@ -90,14 +90,30 @@ const nextConfig = {
     ];
   },
   async redirects() {
-    // Legacy routes from the previous site. All permanent.
+    // Locale routing without middleware (the Vercel runtime loaded Next 14's edge middleware as a
+    // CommonJS function and failed, 2026-09-28). The root and the known unprefixed page paths are
+    // redirected once; Accept-Language decides only between the two supported locales: Spanish
+    // when the header starts with es, English otherwise. Files, API routes, Next internals, media
+    // and the poster frames are never touched.
+    // No lookaheads anywhere: Vercel's routing layer rejects them and answers NOT_FOUND for every path.
+    const prefersEs = [{ type: "header", key: "accept-language", value: "es.*" }];
+    const pages = "/:page(packages|trial|contact|signup|login|welcome|platform|onboarding)";
+    const nested = "/:section(platform|legal)/:slug";
     return [
+      // Legacy routes from the previous site. All permanent.
       { source: "/legal-notice", destination: "/en/legal/notice", permanent: true },
       { source: "/privacy-policy", destination: "/en/legal/privacy", permanent: true },
       { source: "/aviso-legal", destination: "/es/legal/notice", permanent: true },
       { source: "/politica-privacidad", destination: "/es/legal/privacy", permanent: true },
       { source: "/live-demo", destination: "/en", permanent: true },
       { source: "/v2", destination: "/en", permanent: true },
+      // Locale prefix.
+      { source: "/", has: prefersEs, destination: "/es", permanent: false },
+      { source: "/", destination: "/en", permanent: false },
+      { source: pages, has: prefersEs, destination: "/es/:page", permanent: false },
+      { source: pages, destination: "/en/:page", permanent: false },
+      { source: nested, has: prefersEs, destination: "/es/:section/:slug", permanent: false },
+      { source: nested, destination: "/en/:section/:slug", permanent: false },
     ];
   },
 };

@@ -1,0 +1,8 @@
+# Not part of a deployment: evidence, documentation, harnesses, local tooling.
+docs
+screenshots
+scripts
+.claude
+.mcp.json
+_archive
+*.mp4
