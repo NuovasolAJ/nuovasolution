@@ -52,7 +52,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
               <Caption className="mt-3">{h.hero.qualifier}</Caption>
               <CtaRow className="mt-10">
                 <ButtonLink href={p("/signup")} size="lg">{d.common.startFree}</ButtonLink>
-                <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
+                <ButtonLink href="#flow-h" size="lg" variant="secondary">{h.hero.ctaSecondary}</ButtonLink>
               </CtaRow>
               <Caption className="mt-4">{h.hero.note}</Caption>
             </Reveal>
@@ -61,18 +61,19 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         </div>
       </Section>
 
-      {/* H2 Three pains */}
+      {/* H2 The three everyday pains (LAUNCH_COPY_v1 §3.2), text only */}
       <Section rhythm="feature" hairline labelledBy="pains-h">
         <div className="container-default">
-          <Reveal className="xl:max-w-[62%]"><SectionHead title={h.pains.h2} lead={h.pains.lead} id="pains-h" /></Reveal>
-          <ul className="mt-12 grid gap-4 md:grid-cols-3">
-            {h.pains.items.map((it, i) => (
+          <Reveal className="xl:max-w-[62%]"><SectionHead title={h.problem.h2} id="pains-h" /></Reveal>
+          <ul className="mt-10 grid gap-4 md:grid-cols-3">
+            {h.problem.items.map((it, i) => (
               <Reveal key={it} delay={i * 60} as="li" className="card-quiet flex items-start gap-3 p-6">
                 <span aria-hidden="true" className="mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-pill bg-apricot-100 text-signal-attention"><StatusGlyph glyph="clock" size={14} /></span>
                 <p className="t-body-m text-text-primary">{it}</p>
               </Reveal>
             ))}
           </ul>
+          <Reveal delay={200}><p className="mt-8 t-body-l text-text-secondary measure-lead">{h.problem.close}</p></Reveal>
         </div>
       </Section>
 
@@ -106,7 +107,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         </div>
       </Section>
 
-      {/* What your team sees: one record */}
+      {/* One system, kept short (LAUNCH_COPY_v1 §3.4), with the record */}
       <Section rhythm="feature" hairline labelledBy="record-h">
         <div className="container-default">
           <div className="grid grid-cols-1 gap-8 xl:grid-cols-12 xl:gap-16 items-center">

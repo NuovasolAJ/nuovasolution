@@ -31,3 +31,6 @@ Thumbs.db
 
 # local screenshots produced by the review script
 /screenshots/
+
+.vercel
+.env*

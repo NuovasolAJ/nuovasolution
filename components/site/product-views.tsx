@@ -4,21 +4,25 @@ import { cn } from "@/lib/utils";
 import { LabelChip, StatusGlyph } from "@/components/ui/status";
 
 /**
- * Product views for the marketing pages. Rule: only what actually exists is depicted, with
- * synthetic data, and every view says so. No status chip, no gate sentence and no internal
- * formula appears on a sales surface (audit R27); what is not proven is not depicted.
+ * Product views for the marketing pages (LAUNCH_COPY_v1 §4: one person, one property, four
+ * surfaces). Rule: only what actually exists is depicted, with synthetic data, and every view
+ * says so. No status chip, no gate sentence and no internal formula appears on a sales surface
+ * (audit R27); what is not proven is not depicted.
  *
- * - ConversationView: a WhatsApp text enquiry answered and carried forward (AI Sales Agent).
+ * - ConversationView: the WhatsApp enquiry and the reply that goes out, with the notice it must carry
+ *   (ES: the owner-approved v1.0-es text, quoted; EN: a marked sample translation).
  * - BoardView: the leads of an agency as Nuova records them, each with qualification and priority.
  * - RecordView: one customer record (the same person as in the hero).
+ * - TaskView: the task a viewing request becomes, open and claimable (L-04, owner-proven in production).
  * - ReadinessView: the readiness list exactly as the onboarding page renders it, with the real gate labels.
- * - AssistantView: the Daily assistant answering from the agency's own leads.
  */
 
 export function ConversationView({ locale, className }: { locale: Locale; className?: string }) {
-  const v = getDictionary(locale).home.views.conversation;
+  const d = getDictionary(locale);
+  const v = d.home.views.conversation;
+  const a = d.home.hero.cards.answer;
   return (
-    <div className={cn("mx-auto w-full max-w-[380px]", className)} data-view="conversation">
+    <div className={cn("mx-auto w-full max-w-[400px]", className)} data-view="conversation">
       <div className="card overflow-hidden rounded-xl">
         <div className="flex items-center gap-3 border-b border-line-hairline bg-surface-sunken px-4 py-3">
           <span aria-hidden="true" className="inline-flex h-8 w-8 items-center justify-center rounded-pill bg-sage-200 text-sage-700"><StatusGlyph glyph="link" size={14} /></span>
@@ -29,17 +33,26 @@ export function ConversationView({ locale, className }: { locale: Locale; classN
           <LabelChip className="ml-auto">{v.synthetic}</LabelChip>
         </div>
         <ol className="space-y-3 p-4">
-          {v.turns.map((t, i) => (
-            <li key={i} className={cn("flex", t.role === "customer" ? "justify-start" : "justify-end")}>
-              <div className={cn("max-w-[86%] rounded-lg px-3.5 py-2.5", t.role === "customer" ? "rounded-bl-sm bg-surface-sunken" : "rounded-br-sm bg-sage-100")}>
-                {t.role === "agency" && <p className="mb-1 t-caption text-sage-700">{v.assistant}</p>}
-                <p className="t-body-s text-text-primary">{t.text}</p>
-                <p className="mt-1 t-caption tnum text-text-muted">{t.time}</p>
-              </div>
-            </li>
-          ))}
+          {v.turns.map((t, i) => {
+            const withNotice = "disclosure" in t && t.disclosure === true;
+            return (
+              <li key={i} className={cn("flex", t.role === "customer" ? "justify-start" : "justify-end")}>
+                <div className={cn("max-w-[88%] rounded-lg px-3.5 py-2.5", t.role === "customer" ? "rounded-bl-sm bg-surface-sunken" : "rounded-br-sm bg-sage-100")}>
+                  {t.role === "agency" && <p className="mb-1 t-caption text-sage-700">{v.assistant}</p>}
+                  {withNotice && (
+                    <p className="mb-2 border-b border-sage-200 pb-2 t-body-s text-text-primary" data-disclosure={locale}>
+                      {a.disclosure}
+                      {a.disclosureMark && <span className="mt-1 block t-caption text-text-muted">{a.disclosureMark}</span>}
+                    </p>
+                  )}
+                  <p className="t-body-s text-text-primary">{t.text}</p>
+                  <p className="mt-1 t-caption tnum text-text-muted">{t.time}</p>
+                </div>
+              </li>
+            );
+          })}
         </ol>
-        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{v.footer}</p>
+        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{a.disclosureNote} {v.footer}</p>
       </div>
     </div>
   );
@@ -88,7 +101,38 @@ export function BoardView({ locale, className, compact = false }: { locale: Loca
             </li>
           ))}
         </ol>
-        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{b.footer}</p>
+        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{b.footer} {b.caption}</p>
+      </div>
+    </div>
+  );
+}
+
+/** The task a viewing request becomes: name, reason, owner, claimable. A request is never an appointment. */
+export function TaskView({ locale, className }: { locale: Locale; className?: string }) {
+  const d = getDictionary(locale);
+  const t = d.home.hero.cards.task;
+  return (
+    <div className={cn("mx-auto w-full max-w-[440px]", className)} data-view="task">
+      <div className="card overflow-hidden rounded-xl">
+        <div className="flex items-center gap-3 border-b border-line-hairline px-4 py-3">
+          <span aria-hidden="true" className="inline-flex h-8 w-8 items-center justify-center rounded-pill bg-sky-200 text-sky-700"><StatusGlyph glyph="check" size={14} /></span>
+          <p className="t-body-s font-medium text-text-primary">{t.label}</p>
+          <LabelChip className="ml-auto">{d.home.views.conversation.synthetic}</LabelChip>
+        </div>
+        <div className="p-4">
+          <div className="rounded-lg border border-line-hairline bg-surface-raised p-4">
+            <p className="t-heading-s text-text-primary">{t.title}</p>
+            <p className="mt-1 t-body-s text-text-secondary">{t.reason}</p>
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+              <span className="inline-flex items-center gap-1.5 t-caption text-text-muted">
+                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-pill bg-signal-attention" />
+                {t.state}
+              </span>
+              <span aria-hidden="true" className="inline-flex h-9 items-center rounded-pill bg-ink-950 px-4 t-body-s text-ivory">{t.action}</span>
+            </div>
+          </div>
+        </div>
+        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{t.note} {d.home.views.task.caption}</p>
       </div>
     </div>
   );
@@ -141,44 +185,6 @@ export function ReadinessView({ locale, className }: { locale: Locale; className
   );
 }
 
-export function AssistantView({ locale, className }: { locale: Locale; className?: string }) {
-  const d = getDictionary(locale);
-  const v = d.home.views.assistant;
-  return (
-    <div className={cn("mx-auto w-full max-w-[420px]", className)} data-view="assistant">
-      <div className="card overflow-hidden rounded-xl">
-        <div className="flex items-center gap-3 border-b border-line-hairline px-4 py-3">
-          <span aria-hidden="true" className="inline-flex h-8 w-8 items-center justify-center rounded-pill bg-sky-200 t-caption font-semibold text-sky-700">N</span>
-          <div className="min-w-0">
-            <p className="t-body-s font-medium text-text-primary">{v.title}</p>
-            <p className="t-caption text-text-muted">{v.subtitle}</p>
-          </div>
-          <LabelChip className="ml-auto">{d.home.views.conversation.synthetic}</LabelChip>
-        </div>
-        <div className="space-y-3 p-4">
-          <div className="flex justify-end">
-            <p className="max-w-[80%] rounded-lg rounded-br-sm bg-ink-950 px-3.5 py-2.5 t-body-s text-ivory">{v.question}</p>
-          </div>
-          <div className="flex justify-start">
-            <div className="max-w-[92%] rounded-lg rounded-bl-sm border border-line-hairline bg-surface-raised px-3.5 py-3">
-              <p className="t-body-s text-text-primary">{v.intro}</p>
-              <ol className="mt-2 space-y-2">
-                {v.items.map((it, i) => (
-                  <li key={i} className="flex gap-2 t-body-s text-text-secondary">
-                    <span className="t-caption tnum text-text-muted pt-0.5">{i + 1}.</span>
-                    <span><span className="text-text-primary">{it.name}</span> {it.why}</span>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
-        </div>
-        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{v.footer}</p>
-      </div>
-    </div>
-  );
-}
-
 /** The customer record as Nuova keeps it: one person, the qualification and the priority. */
 export function RecordView({ locale, className }: { locale: Locale; className?: string }) {
   const h = getDictionary(locale).home.hero.cards;
@@ -220,7 +226,7 @@ export function ProductView({ slug, locale }: { slug: string; locale: Locale }) 
     case "crm":
       return <BoardView locale={locale} />;
     case "daily-assistant":
-      return <AssistantView locale={locale} />;
+      return <TaskView locale={locale} />;
     default:
       return <RecordView locale={locale} />;
   }

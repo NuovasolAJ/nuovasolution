@@ -1,5 +1,5 @@
 {
-  "started_utc": "2026-09-28T13:44:18.505Z",
+  "started_utc": "2026-09-28T20:14:19.061Z",
   "commit": "wt",
   "mode": "stub build",
   "checks": [
@@ -11,7 +11,7 @@
         "sw": 1440,
         "iw": 1440,
         "header": 72,
-        "firstHeadingTop": 372.609375,
+        "firstHeadingTop": 473.625,
         "pending": false
       }
     },
@@ -47,7 +47,7 @@
         "sw": 1440,
         "iw": 1440,
         "header": 72,
-        "firstHeadingTop": 295.984375,
+        "firstHeadingTop": 419.734375,
         "pending": false
       }
     },
@@ -154,7 +154,7 @@
         "sw": 1024,
         "iw": 1024,
         "header": 72,
-        "firstHeadingTop": 445.90625,
+        "firstHeadingTop": 561.296875,
         "pending": false
       }
     },
@@ -190,7 +190,7 @@
         "sw": 1024,
         "iw": 1024,
         "header": 72,
-        "firstHeadingTop": 297.515625,
+        "firstHeadingTop": 421.265625,
         "pending": false
       }
     },
@@ -202,7 +202,7 @@
         "sw": 1024,
         "iw": 1024,
         "header": 72,
-        "firstHeadingTop": 265.28125,
+        "firstHeadingTop": 279.859375,
         "pending": false
       }
     },
@@ -573,7 +573,7 @@
         "sw": 1440,
         "iw": 1440,
         "header": 72,
-        "firstHeadingTop": 398.578125,
+        "firstHeadingTop": 497.59375,
         "pending": false
       }
     },
@@ -609,7 +609,7 @@
         "sw": 1440,
         "iw": 1440,
         "header": 72,
-        "firstHeadingTop": 319.265625,
+        "firstHeadingTop": 410.234375,
         "pending": false
       }
     },
@@ -621,7 +621,7 @@
         "sw": 1440,
         "iw": 1440,
         "header": 72,
-        "firstHeadingTop": 284.390625,
+        "firstHeadingTop": 284.953125,
         "pending": false
       }
     },
@@ -716,7 +716,7 @@
         "sw": 1024,
         "iw": 1024,
         "header": 72,
-        "firstHeadingTop": 445.90625,
+        "firstHeadingTop": 521.65625,
         "pending": false
       }
     },
@@ -752,7 +752,7 @@
         "sw": 1024,
         "iw": 1024,
         "header": 72,
-        "firstHeadingTop": 297.515625,
+        "firstHeadingTop": 423.765625,
         "pending": false
       }
     },
@@ -764,7 +764,7 @@
         "sw": 1024,
         "iw": 1024,
         "header": 72,
-        "firstHeadingTop": 250.6875,
+        "firstHeadingTop": 309.0625,
         "pending": false
       }
     },
@@ -1018,8 +1018,8 @@
       "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
       "pass": true,
       "evidence": {
-        "sw": 360,
-        "iw": 360,
+        "sw": 363,
+        "iw": 363,
         "header": 60,
         "firstHeadingTop": 237.890625,
         "pending": false
@@ -1150,7 +1150,7 @@
       "what": "with reduced motion every reveal is visible without scrolling and stacked cards are static",
       "pass": true,
       "evidence": {
-        "reveals": 17,
+        "reveals": 18,
         "allVisible": true,
         "stackStatic": true
       }
@@ -1320,7 +1320,7 @@
     "reduced-motion-es-home.png",
     "focus-en-launcher.png"
   ],
-  "finished_utc": "2026-09-28T13:49:35.973Z",
+  "finished_utc": "2026-09-28T20:19:37.903Z",
   "pass": 102,
   "total": 102
 }

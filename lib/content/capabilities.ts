@@ -65,7 +65,7 @@ export const capabilities: Capability[] = [
     status: "live",
     name: { en: "AI Sales Agent", es: "AI Sales Agent" },
     navLine: { en: "Answers text enquiries, day or night", es: "Responde consultas de texto, de día o de noche" }, // C3 §1.3
-    h1: { en: "Every enquiry gets an answer, and the conversation carries on.", es: "Cada consulta recibe respuesta, y la conversación sigue." },
+    h1: { en: "Your text enquiries are answered on the channels you connect.", es: "Tus consultas de texto se responden en los canales que conectes." }, // LAUNCH_COPY_v1 §6.1
     lead: {
       en: "Text enquiries on Gmail and WhatsApp are answered and carried forward on the same channel, without anyone in the office having to be free at that moment.",
       es: "Las consultas de texto por Gmail y WhatsApp se responden y se llevan hacia adelante por el mismo canal, sin que nadie de la oficina tenga que estar libre en ese momento.",
@@ -98,7 +98,7 @@ export const capabilities: Capability[] = [
     status: "live",
     name: { en: "Lead Intelligence", es: "Lead Intelligence" },
     navLine: { en: "Qualifies and prioritises each enquiry", es: "Cualifica y prioriza cada consulta" }, // WCR-060, C3 §1.3
-    h1: { en: "One customer, one record, and a clear priority on every enquiry.", es: "Un cliente, una ficha, y una prioridad clara en cada consulta." }, // WCR-061
+    h1: { en: "One customer, one record, one clear priority.", es: "Un cliente, una ficha, una prioridad clara." }, // WCR-061, LAUNCH_COPY_v1 §6.1
     lead: {
       // WCR-062 = WCR-020, first sentence; the cross-channel sentence is a status formula (R27)
       en: "A client who writes twice on the same channel stays one person in Nuova, and every enquiry is qualified and prioritised.",
@@ -125,12 +125,12 @@ export const capabilities: Capability[] = [
     stage: "understand",
     publish: "live",
     status: "live",
-    name: { en: "Universal CRM", es: "CRM universal" },
+    name: { en: "CRM", es: "CRM" }, // "Universal" dropped: unproven universality (LAUNCH_COPY_v1 S-14)
     navLine: { en: "One record per customer", es: "Una ficha por cliente" }, // C3 §1.3
-    // Public H1 and lead limited to what is proven (audit Z07, R27): one record per customer, included
+    // Public H1 and lead limited to what is proven (audit Z07, R27, LAUNCH_COPY_v1 §6.1): the connected channels on one record, included
     // from the start. Cross-channel identity, the team's CRM view, Google Sheets and external CRMs are
     // tracked in the launch blocker register, not stated on the page.
-    h1: { en: "One record per customer, included from the start.", es: "Una ficha por cliente, incluida desde el principio." },
+    h1: { en: "The messages from your connected channels, on one record.", es: "Los mensajes de tus canales conectados, en una sola ficha." }, // LAUNCH_COPY_v1 §6.1
     lead: {
       // WCR-070, first sentence
       en: "A CRM is included from the start: every enquiry is recorded as a lead with its qualification and history.",

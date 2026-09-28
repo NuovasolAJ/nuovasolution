@@ -68,10 +68,10 @@ export default function TrialPage({ params }: { params: { locale: string } }) {
                 ))}
               </ol>
             </Reveal>
+            {/* LAUNCH_COPY_v1 §5.3: the "what the website never does" block is governance text, not customer copy (S-16). */}
             <Reveal delay={80} className="xl:col-span-7">
-              <Heading size="l" as="h3">{t.honesty.h2}</Heading>
-              <ul className="mt-6 space-y-4">
-                {t.honesty.lines.map((l) => (
+              <ul className="space-y-4">
+                {d.packages.trialLines.map((l) => (
                   <li key={l} className="t-body-m text-text-secondary border-l border-line-strong pl-4">{l}</li>
                 ))}
               </ul>

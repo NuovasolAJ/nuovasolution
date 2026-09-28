@@ -43,8 +43,11 @@ export function HeroStack({ locale, className }: { locale: Locale; className?: s
                 </span>
                 <span className="t-caption tnum text-text-muted">{h.answer.time}</span>
               </div>
+              {/* The notice the reply carries: ES the approved v1.0-es text, quoted; EN a marked sample translation (LAUNCH_COPY_v1 §4.2). */}
+              <p className="mt-3 t-body-s text-text-primary" data-disclosure={locale}>{h.answer.disclosure}</p>
+              {h.answer.disclosureMark && <p className="mt-1 t-caption text-text-muted">{h.answer.disclosureMark}</p>}
               <p className="mt-3 t-body-m text-text-primary">{h.answer.text}</p>
-              <p className="mt-2 t-caption text-sage-700">{h.answer.assistant}</p>
+              <p className="mt-2 t-caption text-sage-700">{h.answer.disclosureNote}</p>
             </div>
           </li>
 

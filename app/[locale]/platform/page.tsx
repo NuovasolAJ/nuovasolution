@@ -49,7 +49,16 @@ export default function PlatformPage({ params }: { params: { locale: string } })
       <Section rhythm="feature" surface="ivory" labelledBy="po-index">
         <div className="container-default">
           <Reveal><SectionHead eyebrow={d.platform.indexEyebrow} title={d.platform.indexH2} id="po-index" /></Reveal>
-          <ol className="mt-12 grid gap-4 md:grid-cols-2">
+          {/* LAUNCH_COPY_v1 §7.2: the two on-request modules, one sentence each, only here. */}
+          <div className="mt-12 card-quiet p-6" data-on-request>
+            <p className="t-eyebrow text-text-muted">{d.nav.onRequest}</p>
+            <ul className="mt-3 space-y-2">
+              {d.nav.onRequestLines.map((l) => (
+                <li key={l} className="flex items-start gap-2 t-body-m text-text-secondary"><StatusGlyph glyph="diamond" size={12} className="mt-2 shrink-0 text-champagne-400" />{l}</li>
+              ))}
+            </ul>
+          </div>
+          <ol className="mt-6 grid gap-4 md:grid-cols-2">
             {caps.map((c, i) => (
               <li key={c.slug}>
                 <Link href={p(`/platform/${c.slug}`)} className="group card flex h-full flex-col rounded-xl p-6 transition-shadow duration-control hover:shadow-lift">

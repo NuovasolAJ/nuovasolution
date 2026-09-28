@@ -5,30 +5,33 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import { publishedCapability } from "@/lib/content/capabilities";
 import { cn } from "@/lib/utils";
 import { StatusGlyph } from "@/components/ui/status";
-import { AssistantView, BoardView, ConversationView } from "./product-views";
+import { BoardView, ConversationView, ReadinessView, TaskView } from "./product-views";
 
 /**
- * What Nuova does, as three stacked cards along one continuous example (PRODUCT_TEXTS_C3_v1
- * §2 H3 to H5): the enquiry answered, the lead recorded and prioritised, the task for the team.
- * Each card: the step, a short title, one or two sentences, the capabilities behind it as plain
- * links, and a real product view with synthetic data. No status chip and no gate sentence
- * (audit R27, Z12). On a desktop viewport with enough height the cards stick and slide over each
- * other (position: sticky only); elsewhere they simply follow one another (Z17).
+ * What Nuova does, as four stacked cards along one continuous example (LAUNCH_COPY_v1 §3.3 and
+ * §4): the enquiry answered with its notice, the lead recorded and prioritised, the task for the
+ * team, the setup by the agency. Each card: the step, a short title, one or two sentences, the
+ * capabilities behind it as plain links, and a real product view with synthetic data. No status
+ * chip and no gate sentence (audit R27, Z12). On a desktop viewport with enough height the cards
+ * stick and slide over each other (position: sticky only); elsewhere they follow one another (Z17).
  */
 const cards = [
   { key: "answer", field: "field-sage", slugs: ["ai-sales-agent"] },
-  { key: "organise", field: "field-sand", slugs: ["lead-intelligence", "crm"] },
-  { key: "team", field: "field-sky", slugs: ["daily-assistant"] },
+  { key: "understand", field: "field-sand", slugs: ["lead-intelligence", "crm"] },
+  { key: "handover", field: "field-sky", slugs: ["daily-assistant"] },
+  { key: "setup", field: "field-lavender", slugs: [] },
 ] as const;
 
-function View({ k, locale }: { k: (typeof cards)[number]["key"]; locale: Locale }) {
+function View({ k, locale, compact = false }: { k: (typeof cards)[number]["key"]; locale: Locale; compact?: boolean }) {
   switch (k) {
     case "answer":
       return <ConversationView locale={locale} />;
-    case "organise":
-      return <BoardView locale={locale} />;
+    case "understand":
+      return <BoardView locale={locale} compact={compact} />;
+    case "handover":
+      return <TaskView locale={locale} />;
     default:
-      return <AssistantView locale={locale} />;
+      return <ReadinessView locale={locale} />;
   }
 }
 
@@ -66,6 +69,14 @@ export function StageStack({ locale }: { locale: Locale }) {
                       ))}
                     </ul>
                   )}
+                  {c.key === "setup" && (
+                    <div className="mt-6">
+                      <Link href={localePath(locale, "/trial")} className="inline-flex min-h-[32px] items-center gap-1.5 t-body-s font-medium text-text-primary underline-offset-4 hover:underline">
+                        {d.nav.trial}
+                        <StatusGlyph glyph="arrow-right" size={12} className="text-text-muted" />
+                      </Link>
+                    </div>
+                  )}
                 </div>
                 <div className={cn("flex items-center p-6 md:p-8 xl:p-10", c.field)}>
                   <View k={c.key} locale={locale} />
@@ -79,19 +90,17 @@ export function StageStack({ locale }: { locale: Locale }) {
   );
 }
 
-/** The same example as four compact cards in a row (platform overview), no sticky behaviour. */
+/** The same example as compact cards in a row (platform overview), no sticky behaviour. */
 export function FlowRow({ locale }: { locale: Locale }) {
   const f = getDictionary(locale).home.flow;
   const texts = f.cards as Record<string, { step: string; title: string }>;
   return (
-    <ol className="grid gap-5 md:grid-cols-3" data-flow-row>
+    <ol className="grid gap-5 md:grid-cols-2" data-flow-row>
       {cards.map((c, i) => (
         <li key={c.key} className={cn("rounded-xl p-5 md:p-6", c.field)}>
           <p className="t-eyebrow text-text-muted"><span className="tnum">0{i + 1}</span> · {texts[c.key].step}</p>
           <p className="mt-2 t-heading-s text-text-primary">{texts[c.key].title}</p>
-          <div className="mt-5">
-            {c.key === "answer" ? <ConversationView locale={locale} /> : c.key === "organise" ? <BoardView locale={locale} compact /> : <AssistantView locale={locale} />}
-          </div>
+          <div className="mt-5"><View k={c.key} locale={locale} compact /></div>
         </li>
       ))}
     </ol>

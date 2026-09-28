@@ -45,13 +45,13 @@ export default async function PackagesPage({ params }: { params: { locale: strin
         <div className="container-default">
           <Reveal className="xl:max-w-[62%]">
             <Eyebrow className="mb-4">{pk.eyebrow}</Eyebrow>
-            <Display size="xl" id="pk-h1">{pk.h1}</Display>
+            <Display size="xl" id="pk-h1">{aligned ? pk.h1Aligned : pk.h1}</Display>
             <Lead className="mt-6">{pk.lead}</Lead>
             <CtaRow className="mt-10">
               <ButtonLink href={p("/signup")} size="lg">{aligned ? pk.ctaTrialEssential : pk.ctaTrial}</ButtonLink>
               <ButtonLink href={p("/contact")} size="lg" variant="secondary">{pk.ctaSecondary}</ButtonLink>
             </CtaRow>
-            <Caption className="mt-4">{pk.trialLines[0]}</Caption>
+            <Caption className="mt-4">{aligned ? pk.trialBadgeAligned : pk.trialBadge}. {pk.baselineLine}</Caption>
           </Reveal>
         </div>
       </Section>
@@ -71,7 +71,7 @@ export default async function PackagesPage({ params }: { params: { locale: strin
                 <Reveal key={plan.code} delay={i * 60} as="li" className={cn("card flex flex-col rounded-xl p-6", trialHere && "border-ink-950 shadow-lift")} data-plan={plan.code}>
                   <div className="flex items-start justify-between gap-3">
                     <Heading size="l" as="h3">{backendName(plan.code) ?? plan.display_name}</Heading>
-                    {trialHere && <span className="rounded-pill bg-ink-950 px-2.5 py-1 t-caption text-ivory">{pk.trialBadge}</span>}
+                    {trialHere && <span className="rounded-pill bg-ink-950 px-2.5 py-1 t-caption text-ivory">{pk.trialBadgeAligned}</span>}
                   </div>
                   <div className="mt-5 rounded-lg bg-surface-sunken px-4 py-3">
                     <p className="t-heading-s text-text-primary">{pk.amount}</p>
@@ -102,7 +102,10 @@ export default async function PackagesPage({ params }: { params: { locale: strin
                     {trialHere ? (
                       <ButtonLink href={p("/signup")} full>{pk.ctaTrialEssential}</ButtonLink>
                     ) : (
-                      <ButtonLink href={p(`/contact?plan=${plan.code}`)} full variant={essential ? "secondary" : "primary"}>{pk.ctaProposal}</ButtonLink>
+                      <>
+                        <ButtonLink href={p(`/contact?plan=${plan.code}`)} full variant={essential ? "secondary" : "primary"}>{pk.ctaProposal}</ButtonLink>
+                        {!essential && <p className="t-caption text-text-muted">{pk.proposalLine}</p>}
+                      </>
                     )}
                   </div>
                 </Reveal>

@@ -1,6 +1,6 @@
 {
- "started_utc": "2026-09-28T20:20:03.963Z",
- "base": "http://localhost:3113",
+ "started_utc": "2026-09-28T19:54:52.660Z",
+ "base": "https://nuovasolution-design-preview-n6ayxhwp0-nuovasolajs-projects.vercel.app",
  "checks": [
   {
    "id": "route /en",
@@ -8,7 +8,7 @@
    "pass": true,
    "evidence": {
     "status": 200,
-    "h1": "No enquiry waits until Monday",
+    "h1": "Your enquiries answered, day or night",
     "robots": "noindex, nofollow",
     "metaNoindex": true,
     "hits": []
@@ -32,7 +32,7 @@
    "pass": true,
    "evidence": {
     "status": 200,
-    "h1": "Your text enquiries are answered on the channels you connect.",
+    "h1": "Every enquiry gets an answer, and the conversation carries on.",
     "robots": "noindex, nofollow",
     "metaNoindex": true,
     "hits": []
@@ -44,7 +44,7 @@
    "pass": true,
    "evidence": {
     "status": 200,
-    "h1": "One customer, one record, one clear priority.",
+    "h1": "One customer, one record, and a clear priority on every enquiry.",
     "robots": "noindex, nofollow",
     "metaNoindex": true,
     "hits": []
@@ -56,7 +56,7 @@
    "pass": true,
    "evidence": {
     "status": 200,
-    "h1": "The messages from your connected channels, on one record.",
+    "h1": "One record per customer, included from the start.",
     "robots": "noindex, nofollow",
     "metaNoindex": true,
     "hits": []
@@ -80,7 +80,7 @@
    "pass": true,
    "evidence": {
     "status": 200,
-    "h1": "Start with 14 days of trial",
+    "h1": "Start free, then choose a plan",
     "robots": "noindex, nofollow",
     "metaNoindex": true,
     "hits": []
@@ -260,7 +260,7 @@
    "pass": true,
    "evidence": {
     "status": 200,
-    "h1": "Ninguna consulta espera al lunes",
+    "h1": "Tus consultas respondidas, de día o de noche",
     "robots": "noindex, nofollow",
     "metaNoindex": true,
     "hits": []
@@ -284,7 +284,7 @@
    "pass": true,
    "evidence": {
     "status": 200,
-    "h1": "Tus consultas de texto se responden en los canales que conectes.",
+    "h1": "Cada consulta recibe respuesta, y la conversación sigue.",
     "robots": "noindex, nofollow",
     "metaNoindex": true,
     "hits": []
@@ -296,7 +296,7 @@
    "pass": true,
    "evidence": {
     "status": 200,
-    "h1": "Un cliente, una ficha, una prioridad clara.",
+    "h1": "Un cliente, una ficha, y una prioridad clara en cada consulta.",
     "robots": "noindex, nofollow",
     "metaNoindex": true,
     "hits": []
@@ -308,7 +308,7 @@
    "pass": true,
    "evidence": {
     "status": 200,
-    "h1": "Los mensajes de tus canales conectados, en una sola ficha.",
+    "h1": "Una ficha por cliente, incluida desde el principio.",
     "robots": "noindex, nofollow",
     "metaNoindex": true,
     "hits": []
@@ -332,7 +332,7 @@
    "pass": true,
    "evidence": {
     "status": 200,
-    "h1": "Empieza con 14 días de prueba",
+    "h1": "Empieza gratis y luego elige un plan",
     "robots": "noindex, nofollow",
     "metaNoindex": true,
     "hits": []
@@ -549,9 +549,9 @@
    }
   }
  ],
- "home_words_en": 1524,
- "home_words_es": 1567,
- "finished_utc": "2026-09-28T20:20:07.272Z",
+ "home_words_en": 1385,
+ "home_words_es": 1442,
+ "finished_utc": "2026-09-28T19:55:03.471Z",
  "pass": 51,
  "total": 51
 }
