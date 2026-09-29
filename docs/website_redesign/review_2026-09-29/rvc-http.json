@@ -1,0 +1,239 @@
+{
+ "started_utc": "2026-09-29T08:14:26.660Z",
+ "commit_reported": "d475dec",
+ "design": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "staging": "https://nuovasolution-staging-preview-git-w-44e113-nuovasolajs-projects.vercel.app",
+ "local_publishable_key_fp12": "d40a758a2f1f",
+ "checks": [
+  {
+   "id": "RVC-01",
+   "what": "both previews answer noindex in the header and the meta tag on every sampled route",
+   "verdict": "PASS",
+   "evidence": {
+    "pages": 8,
+    "without_header": [],
+    "without_meta": []
+   }
+  },
+  {
+   "id": "RVC-02",
+   "what": "robots.txt and sitemap of a preview do not invite indexing of the customer domain",
+   "verdict": "INFO",
+   "evidence": {
+    "design_robots": "User-Agent: * Disallow: / ",
+    "staging_robots": "User-Agent: * Disallow: / ",
+    "design_sitemap": "<?xml version=\"1.0\" encoding=\"UTF-8\"?> <urlset xmlns=\"http://www.sitemaps.org/schemas/site"
+   }
+  },
+  {
+   "id": "RVC-03",
+   "what": "design preview answers from the stub, staging preview from the real identity server",
+   "verdict": "PASS",
+   "evidence": {
+    "design": {
+     "status": 201,
+     "code": "ok",
+     "stub": true
+    },
+    "staging": {
+     "status": 400,
+     "code": "invalid_email",
+     "stub": null
+    }
+   }
+  },
+  {
+   "id": "RVC-04",
+   "what": "the staging preview is bound to the approved project (server-minted signed URL names it)",
+   "verdict": "PASS",
+   "evidence": {
+    "login_status": 200,
+    "init_status": 200,
+    "storage_host": "fflmmzapksycjfdcjdtd.supabase.co",
+    "project_ref": "fflmmzapksycjfdcjdtd",
+    "path_shape": "stg_web_e2e_agency_a1b523/logo/<file>"
+   }
+  },
+  {
+   "id": "RVC-05",
+   "what": "the design preview mints no backend URL and marks its answers as a demonstration",
+   "verdict": "PASS",
+   "evidence": {
+    "login_status": 200,
+    "init_status": 200,
+    "signed_url": null,
+    "stub": true
+   }
+  },
+  {
+   "id": "RVC-06",
+   "what": "on the live preview: no session, forged cookie, foreign origin and a non-admin role are all refused",
+   "verdict": "PASS",
+   "evidence": {
+    "no_session": 401,
+    "forged_cookie": 401,
+    "cross_origin_write": 403,
+    "agent_write": 403,
+    "agent_code": "forbidden"
+   }
+  },
+  {
+   "id": "RVC-07",
+   "what": "the session cookie is HttpOnly and Secure over HTTPS",
+   "verdict": "PASS",
+   "evidence": {
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "SameSite=lax",
+    "path": "Path=/"
+   }
+  },
+  {
+   "id": "RVC-08",
+   "what": "the website's Q&A endpoint on the live preview",
+   "verdict": "INFO",
+   "evidence": {
+    "status": 200,
+    "code": "ok",
+    "keys": [
+     "status"
+    ]
+   }
+  },
+  {
+   "id": "RVC-09",
+   "what": "no key shape in the client chunks of the staging preview",
+   "verdict": "PASS",
+   "evidence": {
+    "scanned": 12,
+    "hits": 0
+   }
+  }
+ ],
+ "detail": {
+  "headers": {
+   "design/en": {
+    "status": 200,
+    "robots": "noindex, nofollow",
+    "meta": "noindex, nofollow",
+    "body_head": null
+   },
+   "design/es": {
+    "status": 200,
+    "robots": "noindex, nofollow",
+    "meta": "noindex, nofollow",
+    "body_head": null
+   },
+   "design/en/packages": {
+    "status": 200,
+    "robots": "noindex, nofollow",
+    "meta": "noindex, nofollow",
+    "body_head": null
+   },
+   "design/es/legal/privacy": {
+    "status": 200,
+    "robots": "noindex, nofollow",
+    "meta": "noindex, nofollow",
+    "body_head": null
+   },
+   "design/robots.txt": {
+    "status": 200,
+    "robots": "noindex, nofollow",
+    "meta": null,
+    "body_head": "User-Agent: * Disallow: / "
+   },
+   "design/sitemap.xml": {
+    "status": 200,
+    "robots": "noindex, nofollow",
+    "meta": null,
+    "body_head": "<?xml version=\"1.0\" encoding=\"UTF-8\"?> <urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"> </urlset> "
+   },
+   "staging/en": {
+    "status": 200,
+    "robots": "noindex, nofollow",
+    "meta": "noindex, nofollow",
+    "body_head": null
+   },
+   "staging/es": {
+    "status": 200,
+    "robots": "noindex, nofollow",
+    "meta": "noindex, nofollow",
+    "body_head": null
+   },
+   "staging/en/packages": {
+    "status": 200,
+    "robots": "noindex, nofollow",
+    "meta": "noindex, nofollow",
+    "body_head": null
+   },
+   "staging/es/legal/privacy": {
+    "status": 200,
+    "robots": "noindex, nofollow",
+    "meta": "noindex, nofollow",
+    "body_head": null
+   },
+   "staging/robots.txt": {
+    "status": 200,
+    "robots": "noindex, nofollow",
+    "meta": null,
+    "body_head": "User-Agent: * Disallow: / "
+   },
+   "staging/sitemap.xml": {
+    "status": 200,
+    "robots": "noindex, nofollow",
+    "meta": null,
+    "body_head": "<?xml version=\"1.0\" encoding=\"UTF-8\"?> <urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"> </urlset> "
+   }
+  },
+  "signup": {
+   "design": {
+    "status": 201,
+    "code": "ok",
+    "stub": true
+   },
+   "staging": {
+    "status": 400,
+    "code": "invalid_email",
+    "stub": null
+   }
+  },
+  "staging_binding": {
+   "login_status": 200,
+   "init_status": 200,
+   "storage_host": "fflmmzapksycjfdcjdtd.supabase.co",
+   "project_ref": "fflmmzapksycjfdcjdtd",
+   "path_shape": "stg_web_e2e_agency_a1b523/logo/<file>"
+  },
+  "design_binding": {
+   "login_status": 200,
+   "init_status": 200,
+   "signed_url": null,
+   "stub": true
+  },
+  "negatives": {
+   "no_session": 401,
+   "forged_cookie": 401,
+   "cross_origin_write": 403,
+   "agent_write": 403,
+   "agent_code": "forbidden"
+  },
+  "cookie_flags": {
+   "httpOnly": true,
+   "secure": true,
+   "sameSite": "SameSite=lax",
+   "path": "Path=/"
+  },
+  "qa": {
+   "status": 200,
+   "code": "ok",
+   "keys": [
+    "status"
+   ]
+  },
+  "bundle": {
+   "scanned": 12,
+   "hits": 0
+  }
+ },
+ "finished_utc": "2026-09-29T08:14:42.106Z"
+}

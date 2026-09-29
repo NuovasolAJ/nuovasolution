@@ -1,0 +1,453 @@
+{
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-09-29T08:16:31.943Z",
+ "checks": [
+  {
+   "id": "RVC-33",
+   "what": "WR-33: the home hero claim is qualified within its own screen, both languages",
+   "verdict": "PASS",
+   "evidence": {
+    "en": {
+     "h1": "No enquiry waits until Monday",
+     "h1_y": 474,
+     "qualifiers_total": 9,
+     "first": {
+      "t": "Example with synthetic data",
+      "y": 262
+     },
+     "near_claim": [
+      {
+       "t": "Example with synthetic data",
+       "y": 262
+      }
+     ]
+    },
+    "es": {
+     "h1": "Ninguna consulta espera al lunes",
+     "h1_y": 498,
+     "qualifiers_total": 10,
+     "first": {
+      "t": "Ejemplo con datos sintéticos",
+      "y": 262
+     },
+     "near_claim": [
+      {
+       "t": "Ejemplo con datos sintéticos",
+       "y": 262
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "RVC-34",
+   "what": "WR-34: the product page claim is qualified next to its h1, both languages",
+   "verdict": "PASS",
+   "evidence": {
+    "en": {
+     "h1": "Your text enquiries are answered on the channels you connect.",
+     "h1_y": 420,
+     "qualifiers_total": 4,
+     "first": {
+      "t": "Synthetic data",
+      "y": 283
+     },
+     "near_claim": [
+      {
+       "t": "Synthetic data",
+       "y": 283
+      },
+      {
+       "t": "Based on agency permissions and configuration.",
+       "y": 900
+      }
+     ]
+    },
+    "es": {
+     "h1": "Tus consultas de texto se responden en los canales que conectes.",
+     "h1_y": 410,
+     "qualifiers_total": 4,
+     "first": {
+      "t": "Datos sintéticos",
+      "y": 283
+     },
+     "near_claim": [
+      {
+       "t": "Datos sintéticos",
+       "y": 283
+      },
+      {
+       "t": "Según los permisos y la configuración de tu agencia.",
+       "y": 890
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "RVC-Z18",
+   "what": "switching language keeps ?confirmed=1",
+   "verdict": "PASS",
+   "evidence": {
+    "found": true,
+    "href": "/es/login?confirmed=1",
+    "url": "/es/login?confirmed=1"
+   }
+  },
+  {
+   "id": "RVC-Z20",
+   "what": "the mobile sheet closes with Escape and gives focus back to its opener",
+   "verdict": "PASS",
+   "evidence": {
+    "opener": true,
+    "expanded": "true",
+    "role": "dialog",
+    "ariaModal": "true",
+    "focusInPanel": true,
+    "height": 784,
+    "expandedAfterEscape": "false",
+    "visibleAfterEscape": false,
+    "focusBackOnOpener": true
+   }
+  },
+  {
+   "id": "RVC-Z17",
+   "what": "stacked cards fit a 640 px viewport and a 200 % zoom",
+   "verdict": "FAIL",
+   "evidence": {
+    "390x640": {
+     "cards": 4,
+     "viewport": 640,
+     "heights": [
+      1349,
+      971,
+      731,
+      898
+     ],
+     "taller": 4,
+     "sticky": 0
+    },
+    "zoom200": {
+     "cards": 4,
+     "viewport": 700,
+     "heights": [
+      1223,
+      837,
+      600,
+      781
+     ],
+     "taller": 3,
+     "sticky": 0
+    }
+   }
+  },
+  {
+   "id": "RVC-PLAN",
+   "what": "a plan carries its interest into the contact request",
+   "verdict": "FAIL",
+   "evidence": {
+    "link": {
+     "t": "Talk to us about plans",
+     "href": "/en/contact"
+    },
+    "contact": {
+     "url": "",
+     "plan_field": false,
+     "prefilled": null,
+     "fields": []
+    }
+   }
+  },
+  {
+   "id": "RVC-MAILTO",
+   "what": "mail links carry a clean address (no trailing dot)",
+   "verdict": "FAIL",
+   "evidence": {
+    "mailto": [
+     {
+      "href": "mailto:antonio@nuovasolution.com",
+      "text": "antonio@nuovasolution.com"
+     },
+     {
+      "href": "mailto:antonio@nuovasolution.com.",
+      "text": "You can ask to see, correct or delete your data at any time. Send an email to antonio@nuovasolution.com. You may also lodge a complaint with the Spanish data protection authority."
+     },
+     {
+      "href": "mailto:antonio@nuovasolution.com",
+      "text": "antonio@nuovasolution.com"
+     }
+    ],
+    "bad": [
+     {
+      "href": "mailto:antonio@nuovasolution.com.",
+      "text": "You can ask to see, correct or delete your data at any time. Send an email to antonio@nuovasolution.com. You may also lodge a complaint with the Spanish data protection authority."
+     }
+    ]
+   }
+  },
+  {
+   "id": "RVC-360",
+   "what": "no horizontal overflow at 360 px",
+   "verdict": "PASS",
+   "evidence": {
+    "/en": {
+     "iw": 360,
+     "sw": 360,
+     "overflow": false
+    },
+    "/es": {
+     "iw": 363,
+     "sw": 363,
+     "overflow": false
+    },
+    "/es/packages": {
+     "iw": 360,
+     "sw": 360,
+     "overflow": false
+    },
+    "/es/signup": {
+     "iw": 360,
+     "sw": 360,
+     "overflow": false
+    }
+   }
+  },
+  {
+   "id": "RVC-MOTION",
+   "what": "with reduced motion nothing keeps animating and no video plays with sound",
+   "verdict": "PASS",
+   "evidence": {
+    "animations": 0,
+    "running": 0,
+    "videos": []
+   }
+  },
+  {
+   "id": "RVC-KB",
+   "what": "focus is visible on the first interactive element",
+   "verdict": "PASS",
+   "evidence": {
+    "focusables": 41,
+    "first": "Skip to content",
+    "ring": true
+   }
+  }
+ ],
+ "detail": {
+  "qualifier": {
+   "/en": {
+    "h1": "No enquiry waits until Monday",
+    "h1_y": 474,
+    "qualifiers_total": 9,
+    "first": {
+     "t": "Example with synthetic data",
+     "y": 262
+    },
+    "near_claim": [
+     {
+      "t": "Example with synthetic data",
+      "y": 262
+     }
+    ]
+   },
+   "/es": {
+    "h1": "Ninguna consulta espera al lunes",
+    "h1_y": 498,
+    "qualifiers_total": 10,
+    "first": {
+     "t": "Ejemplo con datos sintéticos",
+     "y": 262
+    },
+    "near_claim": [
+     {
+      "t": "Ejemplo con datos sintéticos",
+      "y": 262
+     }
+    ]
+   },
+   "/en/platform/ai-sales-agent": {
+    "h1": "Your text enquiries are answered on the channels you connect.",
+    "h1_y": 420,
+    "qualifiers_total": 4,
+    "first": {
+     "t": "Synthetic data",
+     "y": 283
+    },
+    "near_claim": [
+     {
+      "t": "Synthetic data",
+      "y": 283
+     },
+     {
+      "t": "Based on agency permissions and configuration.",
+      "y": 900
+     }
+    ]
+   },
+   "/es/platform/ai-sales-agent": {
+    "h1": "Tus consultas de texto se responden en los canales que conectes.",
+    "h1_y": 410,
+    "qualifiers_total": 4,
+    "first": {
+     "t": "Datos sintéticos",
+     "y": 283
+    },
+    "near_claim": [
+     {
+      "t": "Datos sintéticos",
+      "y": 283
+     },
+     {
+      "t": "Según los permisos y la configuración de tu agencia.",
+      "y": 890
+     }
+    ]
+   }
+  },
+  "language_switch": {
+   "found": true,
+   "href": "/es/login?confirmed=1",
+   "url": "/es/login?confirmed=1"
+  },
+  "sheet": {
+   "opener": true,
+   "expanded": "true",
+   "role": "dialog",
+   "ariaModal": "true",
+   "focusInPanel": true,
+   "height": 784,
+   "expandedAfterEscape": "false",
+   "visibleAfterEscape": false,
+   "focusBackOnOpener": true
+  },
+  "stack": {
+   "390x640": {
+    "cards": 4,
+    "viewport": 640,
+    "heights": [
+     1349,
+     971,
+     731,
+     898
+    ],
+    "taller": 4,
+    "sticky": 0
+   },
+   "zoom200": {
+    "cards": 4,
+    "viewport": 700,
+    "heights": [
+     1223,
+     837,
+     600,
+     781
+    ],
+    "taller": 3,
+    "sticky": 0
+   }
+  },
+  "packages": {
+   "ctas": [
+    {
+     "t": "Start free",
+     "href": "/en/signup"
+    },
+    {
+     "t": "Talk to us about plans",
+     "href": "/en/contact"
+    },
+    {
+     "t": "Request a proposal",
+     "href": "/en/contact?plan=essential"
+    },
+    {
+     "t": "Request a proposal",
+     "href": "/en/contact?plan=growth"
+    },
+    {
+     "t": "Request a proposal",
+     "href": "/en/contact?plan=scale"
+    },
+    {
+     "t": "Start free",
+     "href": "/en/signup"
+    },
+    {
+     "t": "Trial",
+     "href": "/en/trial"
+    }
+   ],
+   "trial_badges": 6,
+   "free_words": 6
+  },
+  "contact": {
+   "url": "",
+   "plan_field": false,
+   "prefilled": null,
+   "fields": []
+  },
+  "legal": {
+   "mailto": [
+    {
+     "href": "mailto:antonio@nuovasolution.com",
+     "text": "antonio@nuovasolution.com"
+    },
+    {
+     "href": "mailto:antonio@nuovasolution.com.",
+     "text": "You can ask to see, correct or delete your data at any time. Send an email to antonio@nuovasolution.com. You may also lodge a complaint with the Spanish data protection authority."
+    },
+    {
+     "href": "mailto:antonio@nuovasolution.com",
+     "text": "antonio@nuovasolution.com"
+    }
+   ],
+   "footer_links": [
+    "/en/platform",
+    "/en/platform/ai-sales-agent",
+    "/en/platform/lead-intelligence",
+    "/en/platform/crm",
+    "/en/platform/daily-assistant",
+    "/en/signup",
+    "/en/trial",
+    "/en/packages",
+    "/en/login",
+    "/en/contact",
+    "mailto:antonio@nuovasolution.com"
+   ],
+   "h1": "Privacy notice"
+  },
+  "small": {
+   "/en": {
+    "iw": 360,
+    "sw": 360,
+    "overflow": false
+   },
+   "/es": {
+    "iw": 363,
+    "sw": 363,
+    "overflow": false
+   },
+   "/es/packages": {
+    "iw": 360,
+    "sw": 360,
+    "overflow": false
+   },
+   "/es/signup": {
+    "iw": 360,
+    "sw": 360,
+    "overflow": false
+   }
+  },
+  "motion": {
+   "animations": 0,
+   "running": 0,
+   "videos": []
+  },
+  "keyboard": {
+   "focusables": 41,
+   "first": "Skip to content",
+   "ring": true
+  }
+ },
+ "finished_utc": "2026-09-29T08:17:33.669Z"
+}

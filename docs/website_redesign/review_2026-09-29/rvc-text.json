@@ -1,0 +1,401 @@
+{
+ "started_utc": "2026-09-29T08:17:09.904Z",
+ "pages": {
+  "design/en": {
+   "status": 200,
+   "words": 1526,
+   "hits": {
+    "provisional": [
+     "placeholder"
+    ],
+    "assistant_off": [
+     "no assistant is connected"
+    ],
+    "trial_free": [
+     "14 days free"
+    ],
+    "no_payment": [
+     "no payment method"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "design/es": {
+   "status": 200,
+   "words": 1569,
+   "hits": {
+    "provisional": [
+     "provisional"
+    ],
+    "trial_free": [
+     "14 días gratis"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "design/en/packages": {
+   "status": 200,
+   "words": 660,
+   "hits": {
+    "provisional": [
+     "placeholder"
+    ],
+    "trial_free": [
+     "free for 14"
+    ],
+    "no_payment": [
+     "no payment method",
+     "No payment method"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "design/es/packages": {
+   "status": 200,
+   "words": 687,
+   "hits": {
+    "provisional": [
+     "provisional"
+    ],
+    "trial_free": [
+     "gratis durante 14"
+    ],
+    "no_payment": [
+     "sin método de pago",
+     "Sin método de pago"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "design/en/trial": {
+   "status": 200,
+   "words": 563,
+   "hits": {
+    "provisional": [
+     "placeholder"
+    ],
+    "trial_free": [
+     "free for 14",
+     "14 days free"
+    ],
+    "no_payment": [
+     "No payment method",
+     "no payment method"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "design/es/trial": {
+   "status": 200,
+   "words": 602,
+   "hits": {
+    "provisional": [
+     "provisional"
+    ],
+    "trial_free": [
+     "gratis durante 14",
+     "14 días gratis"
+    ],
+    "no_payment": [
+     "Sin método de pago",
+     "sin método de pago"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "design/en/contact": {
+   "status": 200,
+   "words": 296,
+   "hits": {
+    "provisional": [
+     "placeholder"
+    ],
+    "trial_free": [
+     "free for 14"
+    ],
+    "no_payment": [
+     "No payment method"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "design/es/contact": {
+   "status": 200,
+   "words": 318,
+   "hits": {
+    "provisional": [
+     "provisional"
+    ],
+    "trial_free": [
+     "gratis durante 14"
+    ],
+    "no_payment": [
+     "Sin método de pago"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "design/en/legal/privacy": {
+   "status": 200,
+   "words": 485,
+   "hits": {
+    "provisional": [
+     "Placeholder",
+     "PLACEHOLDER",
+     "placeholder"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.com.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "design/es/legal/privacidad": {
+   "status": 404
+  },
+  "design/en/legal/terms": {
+   "status": 200,
+   "words": 351,
+   "hits": {
+    "provisional": [
+     "Placeholder",
+     "PLACEHOLDER",
+     "placeholder"
+    ],
+    "no_payment": [
+     "no payment method"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "design/es/legal/terminos": {
+   "status": 404
+  },
+  "staging/en": {
+   "status": 200,
+   "words": 1525,
+   "hits": {
+    "provisional": [
+     "placeholder"
+    ],
+    "assistant_off": [
+     "no assistant is connected"
+    ],
+    "trial_free": [
+     "14 days free"
+    ],
+    "no_payment": [
+     "no payment method"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "staging/es": {
+   "status": 200,
+   "words": 1565,
+   "hits": {
+    "provisional": [
+     "provisional"
+    ],
+    "trial_free": [
+     "14 días gratis"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "staging/en/packages": {
+   "status": 200,
+   "words": 659,
+   "hits": {
+    "provisional": [
+     "placeholder"
+    ],
+    "trial_free": [
+     "free for 14"
+    ],
+    "no_payment": [
+     "no payment method",
+     "No payment method"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "staging/es/packages": {
+   "status": 200,
+   "words": 683,
+   "hits": {
+    "provisional": [
+     "provisional"
+    ],
+    "trial_free": [
+     "gratis durante 14"
+    ],
+    "no_payment": [
+     "sin método de pago",
+     "Sin método de pago"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "staging/en/trial": {
+   "status": 200,
+   "words": 562,
+   "hits": {
+    "provisional": [
+     "placeholder"
+    ],
+    "trial_free": [
+     "free for 14",
+     "14 days free"
+    ],
+    "no_payment": [
+     "No payment method",
+     "no payment method"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "staging/es/trial": {
+   "status": 200,
+   "words": 598,
+   "hits": {
+    "provisional": [
+     "provisional"
+    ],
+    "trial_free": [
+     "gratis durante 14",
+     "14 días gratis"
+    ],
+    "no_payment": [
+     "Sin método de pago",
+     "sin método de pago"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "staging/en/contact": {
+   "status": 200,
+   "words": 295,
+   "hits": {
+    "provisional": [
+     "placeholder"
+    ],
+    "trial_free": [
+     "free for 14"
+    ],
+    "no_payment": [
+     "No payment method"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "staging/es/contact": {
+   "status": 200,
+   "words": 314,
+   "hits": {
+    "provisional": [
+     "provisional"
+    ],
+    "trial_free": [
+     "gratis durante 14"
+    ],
+    "no_payment": [
+     "Sin método de pago"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "staging/en/legal/privacy": {
+   "status": 200,
+   "words": 484,
+   "hits": {
+    "provisional": [
+     "Placeholder",
+     "PLACEHOLDER",
+     "placeholder"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.com.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "staging/es/legal/privacidad": {
+   "status": 404
+  },
+  "staging/en/legal/terms": {
+   "status": 200,
+   "words": 350,
+   "hits": {
+    "provisional": [
+     "Placeholder",
+     "PLACEHOLDER",
+     "placeholder"
+    ],
+    "no_payment": [
+     "no payment method"
+    ],
+    "mailto_dot": [
+     "mailto:antonio@nuovasolution.",
+     "mailto:antonio@nuovasolution.comantonio@nuovasolution."
+    ]
+   }
+  },
+  "staging/es/legal/terminos": {
+   "status": 404
+  }
+ }
+}
