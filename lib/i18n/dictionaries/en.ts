@@ -273,7 +273,7 @@ export const en = {
       eyebrow: "Ask",
       h2: "Ask Nuova anything about the product.",
       lead: "Answers come from what NuovaSolution has confirmed about its product. Prices, legal and tax questions go to a person.",
-      points: ["Answers in English or Spanish.", "A person takes over when the assistant cannot confirm something.", "Leave an email only if you want a reply from a person."],
+      points: ["Answers in English or Spanish."],
     },
     closing: {
       h2: "Your next enquiry is already on its way",
@@ -810,22 +810,15 @@ export const en = {
     thinking: "Reading your question",
     cannotConfirm: "We cannot confirm that from here. A person can.",
     humanCta: "Contact a person",
-    whatsappCta: "Write on WhatsApp",
-    // PRODUCT_TEXTS_C3_v1 §4 (counsel item C-Q7): storage line matches the ingress contract; no grounding claim, no "improve our replies", no waiting time.
-    disclosure: "Your question is saved as an enquiry in Nuova, with any contact details you give us, so we can answer and follow up. Read the privacy notice.",
     boundaries: "It does not give prices, legal or tax advice, and it does not commit us to anything. A person answers those.",
     ai: "Answers are written by an AI assistant.",
     slow: "Still working on it.",
     rateLimited: "Too many questions in a short time. Try again shortly.",
-    contactOptional: "Email or phone (optional). Only needed if you want a person to reply to you.",
-    contactInvalid: "Enter a valid email address or phone number, or leave the field empty.",
-    // Review previews show the box as a demo (audit R25); it is hidden on the public site until the assistant is proven.
+    // The design preview shows the box as a demo (audit R25). No contact details are asked for here: the product
+    // assistant records no handover (WEBQA_BACKEND_READY_2026-09-29 §3), so the contact page owns that promise.
     demo: "Demo",
     demoNote: "Demo: no assistant is connected here, so every question gets the honest answer that it cannot be confirmed from here.",
-    received: "Received. Your question is saved as an enquiry in Nuova, with any contact details you gave, so we can answer and follow up.",
-    handoff: "A person on our team will answer this one. Leave an email if you want the answer sent to you.",
     failed: "That did not go through. Try once more, or contact a person.",
-    timeout: "No answer yet. A person can help you directly.",
     error: "That did not send. Try once more, or contact a person.",
     tooLong: "Please keep it under 4000 characters.",
     suggestionsLabel: "Common questions",

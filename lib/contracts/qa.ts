@@ -61,7 +61,7 @@ function signedHeaders(cfg: QaConfig, bytes: Buffer): Record<string, string> {
 }
 
 export type QaOutcome =
-  | { status: "answered"; text: string; language: string | null }
+  | { status: "answered"; text: string; language: string | null; kb_version: string | null }
   | { status: "pending"; retry_after_ms: number }
   | { status: "handoff" }
   | { status: "failed" }
@@ -70,9 +70,12 @@ export type QaOutcome =
 
 /** Map a response body in the result shape (also used by the intake's synchronous 200). */
 function outcomeFrom(json: unknown): QaOutcome {
-  const j = (json ?? {}) as { status?: string; answer?: { text?: string; language?: string }; retry_after_ms?: number };
-  if (j.status === "answered" && typeof j.answer?.text === "string" && j.answer.text.trim()) {
-    return { status: "answered", text: j.answer.text, language: typeof j.answer.language === "string" ? j.answer.language : null };
+  const j = (json ?? {}) as { status?: string; answer?: { text?: string; language?: string }; language?: string; kb_version?: string; retry_after_ms?: number };
+  // WEBQA_BACKEND_READY_2026-09-29 §2: the result carries status "answered"; the intake's synchronous 200
+  // carries the answer without a status field. Both are an answer when the text is there.
+  if ((j.status === "answered" || j.status === undefined) && typeof j.answer?.text === "string" && j.answer.text.trim()) {
+    const language = typeof j.language === "string" ? j.language : typeof j.answer.language === "string" ? j.answer.language : null;
+    return { status: "answered", text: j.answer.text, language, kb_version: typeof j.kb_version === "string" ? j.kb_version.slice(0, 40) : null };
   }
   if (j.status === "pending") {
     const r = Number(j.retry_after_ms);
@@ -83,24 +86,23 @@ function outcomeFrom(json: unknown): QaOutcome {
   return { status: "cannot_confirm" };
 }
 
+/**
+ * A product question carries no contact details: the product assistant records no handover and
+ * creates no lead (WEBQA_BACKEND_READY_2026-09-29 §3), so the site does not collect a name, an
+ * e-mail address or a phone number here. A visitor who wants a person uses the contact page.
+ */
 export interface QaAsk {
   question: string;
   locale: "en" | "es";
   session_id: string;
   message_id: string;
   page_url?: string;
-  name?: string;
-  email?: string;
-  phone?: string;
 }
 
 export async function qaAccept(cfg: QaConfig, ask: QaAsk): Promise<QaOutcome> {
   // Only fields the ingress contract defines. Exact bytes are signed and sent.
   const body: Record<string, string> = { question: ask.question, session_id: ask.session_id, message_id: ask.message_id, locale: ask.locale };
   if (ask.page_url) body.page_url = ask.page_url;
-  if (ask.name) body.name = ask.name;
-  if (ask.email) body.email = ask.email;
-  if (ask.phone) body.phone = ask.phone;
   const bytes = Buffer.from(JSON.stringify(body), "utf8");
   let res: Response;
   try {

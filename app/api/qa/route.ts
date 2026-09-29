@@ -5,7 +5,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /**
- * POST /api/qa { question, locale, contact? }
+ * POST /api/qa { question, locale }
  *
  * browser → this route (same origin, rate limit, validate)
  *         → session_id from an httpOnly cookie, message_id minted here
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
   if (!sameOrigin(req)) return fail("forbidden", 403);
   if (rateLimited(`qa:${clientKey(req)}`, 10)) return fail("rate_limited", 429);
 
-  let body: { question?: string; locale?: string; contact?: string };
+  let body: { question?: string; locale?: string };
   try {
     body = await req.json();
   } catch {
@@ -32,11 +32,8 @@ export async function POST(req: Request) {
   const cfg = qaConfig();
   if (!cfg) return envelope({ ok: true, code: "ok", message: "not_configured", details: { status: "cannot_confirm" } });
 
-  // Optional contact: one free field, sorted into the contract's name / email / phone.
-  const contact = String(body.contact ?? "").trim().slice(0, 200);
-  const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact) ? contact : undefined;
-  const phone = !email && /^\+?[0-9 ()-]{7,20}$/.test(contact) ? contact.replace(/[^0-9+]/g, "") : undefined;
-  const name = !email && !phone && contact.length >= 2 ? contact : undefined;
+  // No contact details are taken or forwarded: a product question creates no lead and no handover
+  // (WEBQA_BACKEND_READY_2026-09-29 §3). A visitor who wants a person uses the contact page.
 
   // page_url: https and this site only, otherwise dropped (ingress contract).
   const ref = req.headers.get("referer");
@@ -50,6 +47,6 @@ export async function POST(req: Request) {
 
   const session_id = qaSession(true)!;
   const message_id = newMessageId();
-  const outcome = await qaAccept(cfg, { question, locale, session_id, message_id, page_url, name, email, phone });
+  const outcome = await qaAccept(cfg, { question, locale, session_id, message_id, page_url });
   return envelope({ ok: true, code: "ok", message: outcome.status, details: { ...outcome, message_id } });
 }

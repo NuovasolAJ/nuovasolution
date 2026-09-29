@@ -203,7 +203,8 @@ export default function HomePage({ params }: { params: { locale: string } }) {
                 <Reveal className="xl:col-span-5">
                   <SectionHead eyebrow={h.ask.eyebrow} title={h.ask.h2} lead={h.ask.lead} id="ask-h" size="m" />
                   <ul className="mt-8 space-y-3">
-                    {h.ask.points.map((pt) => (
+                    {/* The assistant hands nothing over and takes no contact details, so only these two statements are made here. */}
+                    {[h.ask.points[0], d.qa.boundaries].map((pt) => (
                       <li key={pt} className="flex items-start gap-2 t-body-s text-text-secondary"><StatusGlyph glyph="check" size={14} className="mt-1 shrink-0 text-signal-positive" />{pt}</li>
                     ))}
                   </ul>
