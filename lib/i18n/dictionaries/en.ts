@@ -799,6 +799,129 @@ export const en = {
     contactLine: "Questions about these pages: antonio@nuovasolution.com",
   },
 
+  // Social screens (account surface, staging). States and error texts: SOCIAL_UI_SPEC_v1 §2 and §5 (EN column,
+  // binding). Everything the spec gives no English sentence for is the implementer's interim wording
+  // (marked "interim") until Social and Copy deliver it.
+  social: {
+    eyebrow: "Social",
+    navLabel: "Social sections",
+    tabs: { connect: "Connect", post: "Post", inbox: "Inbox", settings: "Connection and data" },
+    readOnly: "This page shows the state of your workspace. Connecting, publishing and replying are switched on in a separate step.", // interim
+    asOf: "State read",
+    refresh: "Read again",
+    problem: "The state could not be read. Nothing was changed.", // interim
+    connect: {
+      h1: "Connect Instagram",
+      lead: "The Instagram account your agency publishes from and answers on.", // interim
+      unavailable: "Instagram is not enabled for this workspace yet.", // §5 provider_status:unavailable
+      inactive: "Your agency account is not active yet.", // interim
+      none: "No Instagram account connected.", // §5 no_connected_account
+      action: "Connect Instagram",
+      connected: "Connected",
+      disconnected: "Disconnected",
+      account: "Account",
+      platform: "Platform",
+      since: "Connected since",
+      until: "Disconnected on",
+      manage: "Connection and data",
+      // The four uses are the four requested permissions in plain words (META_PERMISSION_MATRIX_v1 §1); interim wording.
+      usesH: "What the connection is used for",
+      uses: [
+        "Showing your account in Nuova.",
+        "Publishing the listing posts you approve.",
+        "Reading comments, replying in public, and one private reply per comment.",
+        "Reading messages and answering them within 24 hours.",
+      ],
+      never: "Nuova never writes to anyone first.",
+    },
+    post: {
+      h1: "Create a post",
+      lead: "Choose a listing, check the text, approve it, publish it.", // interim
+      steps: ["Choose a listing", "Create the text", "Approve", "Publish"],
+      listingsH: "Your listings",
+      listingsEmpty: "No listings yet.", // interim
+      ready: "Can be published",
+      blocked: "This listing cannot be published:", // §5 publication_readiness
+      reasons: {
+        source_rights_missing: "The image rights for this listing are not documented.",
+        listing_stale: "The listing data is older than {hours} hours.",
+        other: "A requirement for publishing is not met.", // interim
+      },
+      choose: "Choose",
+      dataFrom: "Listing data from",
+      postsH: "Posts",
+      postsEmpty: "No posts yet.", // interim
+      states: {
+        queued: "Being published …",
+        published: "Published",
+        delivery_unknown: "Outcome unclear. Check status — do not publish again.", // §5
+        blocked: "Not published",
+        other: "In preparation", // interim
+      },
+      checkStatus: "Check status",
+      scheduled: "Planned for",
+      ctaWithheld: "Contact number not approved: the post is published without a link.",
+      mock: "Test post, not on Instagram", // interim
+      open: "Open the post",
+    },
+    inbox: {
+      h1: "Inbox",
+      lead: "Comments and messages that arrived on your connected account.", // interim
+      comments: "Comments",
+      messages: "Messages",
+      emptyComments: "No comments yet.",
+      emptyMessages: "No messages yet.",
+      fetch: "Fetch now",
+      intentLabel: "Recognised as",
+      lead_: "Became a lead",
+      replyLabel: "Your reply",
+      replyPublic: "Reply publicly",
+      replyPrivate: "Reply privately",
+      replyMessage: "Send reply",
+      answered: "Already answered.", // §5 already_replied_or_claimed
+      answeredKinds: { public: "Public reply", private: "Private reply", message: "Reply", other: "Reply" },
+      privateUsed: "One private reply per comment.",
+      windowExpired: "The reply window has expired.",
+      reference: "Reference",
+      received: "Events received",
+      lastReceived: "last one",
+      intents: {
+        viewing_request: "Viewing request",
+        price_inquiry: "Price question",
+        availability: "Availability question",
+        attribute_question: "Question about the property",
+        location_question: "Question about the location",
+        financing: "Financing question",
+        explicit_interest: "Interest in the property",
+        seller_intent: "Wants to sell",
+        question_other: "Other question",
+        informational: "Information",
+        generic_praise: "Praise",
+        emoji_only: "Emoji only",
+        complaint: "Complaint",
+        competitor: "Competitor",
+        spam: "Spam",
+        scam: "Suspected fraud",
+        abuse: "Abusive",
+        unrelated: "Unrelated",
+        unintelligible: "Not understandable",
+        unknown_fact: "Asks for a fact we do not have",
+        other: "Not classified",
+      },
+    },
+    settings: {
+      h1: "Connection and data",
+      lead: "Disconnect the account, and see how stored data is deleted.", // interim
+      connectionH: "Connection",
+      disconnectH: "Disconnect",
+      disconnectBody: "After disconnecting, the access token is deleted and reading and publishing stop.",
+      disconnect: "Disconnect",
+      deleteH: "Delete data",
+      deleteBody: "Posts, comments, messages and leads from this channel that are already stored are deleted on request.", // interim, no deadline promised
+      deleteLink: "How to request deletion",
+    },
+  },
+
   qa: {
     open: "Ask a question",
     close: "Close",

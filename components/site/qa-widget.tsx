@@ -250,7 +250,9 @@ export function QaPanel({ locale, inline = false, onClose, closeLabel }: { local
           className="block w-full resize-none rounded-md border border-line-strong bg-surface-raised px-3.5 py-2.5 t-body-s text-text-primary placeholder:text-text-muted"
         />
         <div className="flex items-center justify-between gap-3">
+          {/* The AI notice stays next to the conversation, not only in the empty state. */}
           <p className="t-caption text-text-muted">
+            <span data-qa-ai-notice>{d.ai}</span>{" "}
             <Link href={localePath(locale, "/legal/privacy")} className="inline-flex min-h-[44px] items-center underline underline-offset-4">{locale === "es" ? "Aviso de privacidad" : "Privacy notice"}</Link>
           </p>
           <Button type="submit" size="sm" busy={s.busy} disabled={s.busy || !q.trim()}>
