@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale, localePath, locales, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
+import { startLabel } from "@/lib/content/plans";
 import { publishedCapabilities, publishedCapability, publicPoints } from "@/lib/content/capabilities";
 import { Section } from "@/components/ui/section";
 import { SectionHead, Display, Eyebrow, Lead, Caption, Heading } from "@/components/ui/type";
@@ -51,7 +52,7 @@ export default function ProductPage({ params }: { params: { locale: string; slug
               {/* The qualifier sits with the claim it qualifies (review WR-34). */}
               <Caption className="mt-3">{d.common.qualifiers.q2}</Caption>
               <CtaRow className="mt-12">
-                <ButtonLink href={p("/signup")} size="lg">{d.common.startFree}</ButtonLink>
+                <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
                 <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
               </CtaRow>
             </Reveal>
@@ -139,7 +140,7 @@ export default function ProductPage({ params }: { params: { locale: string; slug
             <Reveal mode="opacity">
               <Display size="l" id="pd-close" className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
               <CtaRow align="center" className="mt-10">
-                <ButtonLink href={p("/signup")} size="lg">{d.common.startFree}</ButtonLink>
+                <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
                 <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
               </CtaRow>
             </Reveal>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { catalogPlans, isPlanCode } from "@/lib/content/plans";
+import { catalogPlans, isPlanCode, startLabel } from "@/lib/content/plans";
 import { Section } from "@/components/ui/section";
 import { Display, Eyebrow, Lead, Heading, Caption } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
@@ -61,7 +61,7 @@ export default function ContactPage({ params, searchParams }: { params: { locale
           <Reveal delay={120}>
             <Heading size="l" as="h2">{c.trialH2}</Heading>
             <p className="mt-3 t-body-m text-text-secondary">{c.trialBody}</p>
-            <div className="mt-6"><ButtonLink href={p("/signup")}>{d.common.startFree}</ButtonLink></div>
+            <div className="mt-6"><ButtonLink href={p("/signup")}>{startLabel(locale)}</ButtonLink></div>
           </Reveal>
         </div>
       </Section>
@@ -71,7 +71,7 @@ export default function ContactPage({ params, searchParams }: { params: { locale
           <div className="field-sand rounded-xl px-6 py-14 text-center md:px-12 md:py-20">
             <Display size="l" id="ct-close" className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
             <CtaRow align="center" className="mt-10">
-              <ButtonLink href={p("/signup")} size="lg">{d.common.startFree}</ButtonLink>
+              <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
               <ButtonLink href={p("/platform")} size="lg" variant="secondary">{d.common.explorePlatform}</ButtonLink>
             </CtaRow>
             {d.home.closing.caption && <Caption className="mt-4">{d.home.closing.caption}</Caption>}

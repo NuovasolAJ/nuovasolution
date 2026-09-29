@@ -1,3 +1,6 @@
+import { getDictionary } from "@/lib/i18n/dictionaries";
+import type { Locale } from "@/lib/i18n/config";
+
 /**
  * Plan catalog as it exists on the staging billing plane (system repo
  * build/billing_wave1/BILLING_WAVE1_STAGING.sql, table billing_plan, version 1, status
@@ -76,4 +79,13 @@ export function trialPlanAligned(): boolean {
 
 export function isPlanCode(v: string | undefined): v is PlanCode {
   return v === "essential" || v === "growth" || v === "scale";
+}
+
+/**
+ * The one label of the primary call to action, on every page (owner order 2026-09-29 B: one CTA
+ * hierarchy). While the trial belongs to Essential it names Essential; otherwise the neutral label.
+ */
+export function startLabel(locale: Locale): string {
+  const d = getDictionary(locale);
+  return trialPlanAligned() ? d.packages.ctaTrialEssential : d.common.startFree;
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { catalogPlans, PUBLIC_FEATURES, trialPlanAligned, type PlanCode } from "@/lib/content/plans";
+import { catalogPlans, PUBLIC_FEATURES, trialPlanAligned, type PlanCode, startLabel } from "@/lib/content/plans";
 import { getPlans } from "@/lib/contracts/server";
 import { Display, Eyebrow, Lead, Caption, Heading, SectionHead } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
@@ -84,7 +84,7 @@ export default async function PackagesPage({ params }: { params: { locale: strin
                         return (
                           <div key={k} className="flex items-baseline justify-between gap-4 py-3">
                             <dt className="t-body-s text-text-secondary">{limitName(k)}</dt>
-                            <dd className="t-heading-m tnum text-text-primary">{v === null ? pk.limits.unlimited : String(v)}</dd>
+                            <dd className="t-heading-m tnum text-text-primary">{v === null ? pk.limits.unlimited : new Intl.NumberFormat(locale === "es" ? "es-ES" : "en-GB", { useGrouping: "always" } as Intl.NumberFormatOptions).format(v)}</dd>
                           </div>
                         );
                       })}
@@ -180,7 +180,7 @@ export default async function PackagesPage({ params }: { params: { locale: strin
           <div className="band band-sand band-panel px-6 py-14 text-center md:px-12 md:py-20">
             <Display size="l" id="pk-close" className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
             <CtaRow align="center" className="mt-10">
-              <ButtonLink href={p("/signup")} size="lg">{aligned ? pk.ctaTrialEssential : d.common.startFree}</ButtonLink>
+              <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
               <ButtonLink href={p("/contact")} size="lg" variant="secondary">{pk.ctaSecondary}</ButtonLink>
             </CtaRow>
             <Caption className="mt-4">{d.common.noSalesCall}</Caption>

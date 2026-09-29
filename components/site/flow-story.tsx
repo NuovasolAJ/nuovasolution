@@ -81,7 +81,7 @@ export function FlowStory({ locale }: { locale: Locale }) {
                 </p>
                 <CapLinks slugs={["ai-sales-agent"]} locale={locale} />
               </div>
-              <div className="field-sage relative flex items-center px-4 py-14 md:px-10">
+              <div className="field-sage relative flex items-center px-4 pb-8 pt-14 md:px-10 md:pb-14">
                 <ConversationView locale={locale} />
                 <p className="rise float-chip absolute left-4 top-4 md:left-6 md:top-5">
                   <StatusGlyph glyph="check" size={12} className="text-signal-positive" />
@@ -132,13 +132,8 @@ export function FlowStory({ locale }: { locale: Locale }) {
 
         {/* 04 Done: the real staff app, recorded; the clip on top, what it proves below */}
         <li id="step-done" className={STAGE}>
-          <article className="stage overflow-hidden" aria-labelledby="step-done-h">
-            <div className="field-sky p-4 md:p-8">
-              <div className="mx-auto max-w-[920px]">
-                <ProductClip base="/media/daily/daily-claim-flow" locale={locale} playLabel={daily.playLabel} meta={daily.clipMeta} alt={daily.clipAlt} posterLabel={daily.posterLabel} cues={daily.cues} />
-                <p className="mt-3 t-caption text-text-muted">{daily.note}</p>
-              </div>
-            </div>
+          {/* Reading order: the step and its sentence first, then the clip. From 1024 px the clip is shown on top. */}
+          <article className="stage flex flex-col overflow-hidden" aria-labelledby="step-done-h">
             <div className="p-6 md:p-10 lg:grid lg:grid-cols-2 lg:gap-12">
               <div>
                 <StepLabel n="04">{c.done.step}</StepLabel>
@@ -148,6 +143,12 @@ export function FlowStory({ locale }: { locale: Locale }) {
                 <p className="t-body-l text-text-secondary">{c.done.line}</p>
                 <p className="mt-3 t-body-s text-text-muted">{daily.clipLead}</p>
                 <CapLinks slugs={["daily-assistant"]} locale={locale} />
+              </div>
+            </div>
+            <div className="field-sky p-4 md:p-8 lg:order-first">
+              <div className="mx-auto max-w-[920px]">
+                <ProductClip base="/media/daily/daily-claim-flow" locale={locale} playLabel={daily.playLabel} meta={daily.clipMeta} alt={daily.clipAlt} posterLabel={daily.posterLabel} cues={daily.cues} />
+                <p className="mt-3 t-caption text-text-muted">{daily.note}</p>
               </div>
             </div>
           </article>

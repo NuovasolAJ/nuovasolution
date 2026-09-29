@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
+import { startLabel } from "@/lib/content/plans";
 import { publishedCapabilities } from "@/lib/content/capabilities";
 import { Section } from "@/components/ui/section";
 import { SectionHead, Display, Eyebrow, Lead } from "@/components/ui/type";
@@ -82,7 +83,7 @@ export default function PlatformPage({ params }: { params: { locale: string } })
             <Reveal mode="opacity">
               <Display size="l" id="po-close" className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
               <CtaRow align="center" className="mt-10">
-                <ButtonLink href={p("/signup")} size="lg">{d.common.startFree}</ButtonLink>
+                <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
                 <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
               </CtaRow>
             </Reveal>

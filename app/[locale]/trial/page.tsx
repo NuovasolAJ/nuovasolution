@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { trialPlanAligned } from "@/lib/content/plans";
+import { trialPlanAligned, startLabel } from "@/lib/content/plans";
 import { Section } from "@/components/ui/section";
 import { SectionHead, Display, Eyebrow, Lead, Caption, Heading } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
@@ -105,7 +105,7 @@ export default function TrialPage({ params }: { params: { locale: string } }) {
           <div className="field-sand rounded-xl px-6 py-14 text-center md:px-12 md:py-20">
             <Display size="l" id="tr-close" className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
             <CtaRow align="center" className="mt-10">
-              <ButtonLink href={p("/signup")} size="lg">{d.common.startFree}</ButtonLink>
+              <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
               <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
             </CtaRow>
           </div>

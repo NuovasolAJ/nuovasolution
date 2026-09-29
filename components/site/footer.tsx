@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
+import { startLabel } from "@/lib/content/plans";
 import { publishedCapabilities } from "@/lib/content/capabilities";
 import { Logo } from "@/components/ui/logo";
 
@@ -21,7 +22,7 @@ export function Footer({ locale }: { locale: Locale }) {
     {
       heading: d.footer.getStarted,
       items: [
-        { href: p("/signup"), label: d.common.startFree },
+        { href: p("/signup"), label: startLabel(locale) },
         { href: p("/trial"), label: d.nav.trial },
         { href: p("/packages"), label: d.nav.packages },
         { href: p("/login"), label: d.nav.login },
