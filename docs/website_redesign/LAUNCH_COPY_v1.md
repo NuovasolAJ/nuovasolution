@@ -32,6 +32,11 @@ the register against the rendered page.
 
 ## 1. Publication register
 
+> **Amended 2026-09-29 by `COPY_DELTAS_0929.md` §1.** Five rows moved after the lane truth sheets
+> arrived: L-03 loses qualification and priority, the new L-03b states that a record is per channel,
+> L-04 is confirmed as the strongest proven row, L-07 releases the Essential trial wording, and L-14
+> narrows Voice. Read that section together with this table.
+
 `publish` is the decision for the launch build. `gate` is the signal that must be reported before
 that row may render at all; a row whose gate has not been reported stays out of the build, it does
 not render with a caveat. Evidence keys are rows of

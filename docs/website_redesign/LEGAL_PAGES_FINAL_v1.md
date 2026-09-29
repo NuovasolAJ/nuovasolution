@@ -1,5 +1,18 @@
-# LEGAL PAGES FINAL v1 — legal notice, privacy, terms, data deletion, EN and ES
+# LEGAL PAGES FINAL v2 — legal notice, privacy, terms, data deletion, EN and ES
 
+**Version:** **v2**, 2026-09-29 (v1 was 2026-09-28) · **State:** `2026-09-29_CONVERGENCE_R2` ·
+**Copy version:** `legal-v2`
+
+**What v2 adds.** The Instagram and Meta sections supplied by the Social lane
+(`backend_handoff/handoff_in_2026-09-29/social/META_LEGAL_SECTIONS_v1.md`) are integrated, in their
+substance, with a language pass and three corrections named in §6. The processor section now names what
+the truth table actually establishes, including the production region. The open entries are consolidated
+into **seven distinct gaps** (§0), so the same missing fact is no longer counted as several different
+problems. **Open marks in the publishable page text: 24, counted; seven distinct gaps.** None of them is
+in this lane's hands: six wait on the owner, on Hosting or on counsel, and the seventh is the publication
+date, which the implementer sets when the page goes live.
+
+**Earlier header, still valid:**
 **State:** `2026-09-28_FINAL_CONVERGENCE_AUDIT_R2` · **Written:** 2026-09-28 · **Copy version:** `legal-v1`
 **Lane:** Website Copy → **Website Implementer** (hotfix v3 of the old live site, and the new build) ·
 **Owner** (the marked entries) · **counsel** (`COUNSEL_PACKAGE_v2.md` decision sheets D4, D5, D6)
@@ -28,13 +41,24 @@ are the English ones, because the forms are filled in English:
 **Marked gaps.** Every `⟦…⟧` is a gap with a named owner. **The implementer does not publish a page
 while a `⟦…⟧` is still in it.** Each one carries a recommendation the owner can approve in one line.
 
-| Mark | Who | What is missing | Recommendation to approve or correct |
-|---|---|---|---|
-| ⟦OWNER: LEGAL_FORM⟧ | Owner | whether the party is the individual trading under their own name or a company | the published pages name Antonio Jesus Diaz Gomez as the individual; if a company exists, its name replaces it everywhere |
-| ⟦OWNER: NIF⟧ | Owner | the tax number (NIF or CIF) | required in Spain for a legal notice and for Meta's business verification |
-| ⟦OWNER: ADDRESS_FULL⟧ | Owner | street number and postal code | today only "Prolongación Hernando de Carabeo, Nerja, Málaga" is published; a legal notice needs the complete address |
-| ⟦HOSTING: SUBPROCESSOR_LIST⟧ | Hosting | the exact list of processors and their regions (`SUBPROCESSOR_LIST_v1`, audit item T-04) | until it arrives, the notice names the categories and the processors that are certain |
-| ⟦OWNER+COUNSEL: RETENTION⟧ | Owner, then counsel | concrete retention periods (audit item T-05) | the proposal in §2.7 is written to be approved or corrected, not invented at publication time |
+**Seven distinct gaps, 24 marks in the page text.** The count is per occurrence across both languages;
+the gaps are what actually has to be decided. One of them, the publication date, is set by the
+implementer at publication and waits on nobody.
+
+| # | Mark | Occurrences | Who | What is missing | Recommendation to approve or correct |
+|---|---|---|---|---|---|
+| 1 | ⟦OWNER: NIF⟧ | 6 (3 pages × 2 languages) | Owner, O-6 | the tax number, NIF or CIF | required in Spain for a legal notice, for invoices, and for Meta's business verification |
+| 2 | ⟦OWNER: ADDRESS_FULL⟧ | 4 | Owner, O-6 | street number and postal code | today only "Prolongación Hernando de Carabeo, Nerja, Málaga" is published. The legal form is **no longer a gap**: the party is the individual trading under his own name, exactly as the live site has published for months. If a company is founded, its name replaces his everywhere |
+| 3 | ⟦OWNER+COUNSEL: RETENTION⟧ | 2 | Owner, O-8, then counsel | retention periods per data class | the proposal in §2.7 is written to be approved or corrected. **Not** applicable to the Instagram section, which now carries its own implementable rule |
+| 4 | ⟦HOSTING: SUBPROCESSOR_LIST⟧ | 4 (sections 6 and 10, both languages) | Hosting, `SUBPROCESSOR_LIST_v1` | the complete list and the region of each processor outside the named ones | requested from Hosting in this round. Section 6 now names what the truth table establishes, so the mark covers only the completeness of the list and the transfer statement |
+| 5 | ⟦COUNSEL: DPA⟧ | 2 | counsel | whether the processing agreement is an annex and when the agency accepts it | sheet D5 |
+| 6 | ⟦COUNSEL: LIABILITY⟧ | 2 | counsel | the limitation | sheet D5 |
+| 7 | ⟦publication date⟧ | 4 | Implementer | the date each page goes live | set at publication; this is not a waiting item |
+
+**Two things counsel must rule on before the deletion page can promise them** (Social proposed both, and
+Social itself says they must not be promised before the path is served): the **72 hour** confirmation and
+the **30 day** completion. Until then the page states the statutory period, which is what v1 already did.
+Listed as questions in `COUNSEL_PACKAGE_v2.md` §7.
 
 ---
 
@@ -44,7 +68,7 @@ while a `⟦…⟧` is still in it.** Each one carries a recommendation the owne
 
 **Legal notice**
 
-*Who runs this website.* ⟦OWNER: LEGAL_FORM⟧ Antonio Jesus Diaz Gomez, trading as NuovaSolution.
+*Who runs this website.* Antonio Jesus Diaz Gomez, trading as NuovaSolution.
 Tax number: ⟦OWNER: NIF⟧. Address: ⟦OWNER: ADDRESS_FULL⟧ Prolongación Hernando de Carabeo, Nerja,
 Málaga, Spain. E-mail: antonio@nuovasolution.com.
 
@@ -65,7 +89,7 @@ Málaga, Spain are competent.
 
 **Aviso legal**
 
-*Quién gestiona este sitio web.* ⟦OWNER: LEGAL_FORM⟧ Antonio Jesus Diaz Gomez, que opera como
+*Quién gestiona este sitio web.* Antonio Jesus Diaz Gomez, que opera como
 NuovaSolution. NIF: ⟦OWNER: NIF⟧. Dirección: ⟦OWNER: ADDRESS_FULL⟧ Prolongación Hernando de Carabeo,
 Nerja, Málaga, España. Email: antonio@nuovasolution.com.
 
@@ -93,7 +117,7 @@ for our own visitors and agency users, and the processor for the people who writ
 
 **Privacy notice**
 
-**1 · Who is responsible.** ⟦OWNER: LEGAL_FORM⟧ Antonio Jesus Diaz Gomez, trading as NuovaSolution,
+**1 · Who is responsible.** Antonio Jesus Diaz Gomez, trading as NuovaSolution,
 ⟦OWNER: NIF⟧, ⟦OWNER: ADDRESS_FULL⟧ Prolongación Hernando de Carabeo, Nerja, Málaga, Spain,
 antonio@nuovasolution.com.
 
@@ -122,12 +146,14 @@ the basis and we act for it.
 carries a notice that says so. A person can take over at any point, and anyone who asks for a person
 gets one.
 
-**6 · Who processes data for us.** ⟦HOSTING: SUBPROCESSOR_LIST⟧ Today: Supabase (database, storage
-and authentication), our server hosting provider, and the provider of the AI model that writes the
-replies. Where an enquiry arrives through WhatsApp or through Gmail, the operator of that channel
-processes it as well, under its own terms with you or with the agency. We do not sell data and we do
-not use it to advertise to anyone. The exact list of processors, with the region each operates in,
-is published here.
+**6 · Who processes data for us.** Supabase provides the database, the file storage and the
+authentication; the production system runs in the European Union, in Frankfurt. Our server hosting
+provider runs the automation that carries a message from your channel to the reply. An AI provider
+writes the drafts and classifies messages. Where an enquiry arrives through WhatsApp or through Gmail,
+the operator of that channel processes it as well, under its own terms with you or with the agency. We
+do not sell data and we do not use it to advertise to anyone. ⟦HOSTING: SUBPROCESSOR_LIST⟧ The current
+list of all processors, naming each one and the region it operates in, is available on request and is
+published here.
 
 **7 · How long we keep it.** ⟦OWNER+COUNSEL: RETENTION⟧ See section 2.7 of the source document: the
 periods are approved before this page is published, and they appear here as concrete periods rather
@@ -145,30 +171,48 @@ you used with us. You can also complain to the Spanish data protection authority
 European Economic Area, the transfer is covered by the European Commission's standard contractual
 clauses. The list in section 6 states which processors this applies to.
 
-**11 · Instagram, Facebook and WhatsApp data.** See section 12.
+**11 · WhatsApp.** Where your agency receives enquiries through WhatsApp, the message and the sender's
+number reach us through that channel and are processed as described in section 3. WhatsApp is operated by
+Meta under its own terms with the account holder.
 
-**12 · When your agency connects Instagram or Facebook.** This section applies only to agencies that
-connect a Meta account.
+**12 · Instagram connection (Meta platform data).** This section applies only to agencies that connect an
+Instagram professional account. It covers Instagram and nothing else: Facebook pages and advertising lead
+forms are not part of this connection and we do not read them.
 
-*From your agency:* the Instagram account identifier, the username and the account type; one access
-token, which is valid for a limited period, stored encrypted and revocable by you at any time; the
-media and post texts you publish through us.
+If your agency connects its Instagram professional account to NuovaSolution, we process the following data
+from the Instagram API with Instagram Login:
 
-*From the people who write to or comment on your account:* an identifier of the sender, which we store
-only as a hash bound to your agency and never as a reusable Instagram identifier; the text; the time;
-the intent we recognise; and the lead created from it.
+- **Account data of the connected account:** the Instagram account identifier, the username and the
+  account type. We use it to show you which account is connected and to publish on your behalf.
+- **Access token:** a token issued by Instagram, valid for up to 60 days. It is stored encrypted, used
+  only for what this section describes, and deleted when you disconnect.
+- **Your own content:** the posts we create from your property listings, their texts and images, the
+  identifier of the published post and its link.
+- **Comments and direct messages on your account:** the text, the time, the sender identifier that
+  Instagram assigns, and the interest our system recognises. The sender identifier is stored **only as a
+  value derived through a one way function** that is specific to your agency. We do not keep the original
+  Instagram identifier and cannot recover it.
+- **Leads:** if a comment or a message shows interest in a property, we create a lead record for your
+  agency.
 
-*What we use it for:* publishing your posts, answering enquiries and comments, and creating leads. Not
-for advertising to third parties, and never shared with another agency.
+*Purposes:* publishing your listings, showing you incoming comments and messages, replying to them from
+your workspace, and creating leads. Not for advertising, not sold, and never shared with another agency.
+
+*Legal basis:* performance of the contract with your agency, and our legitimate interest in operating the
+service. For the people who write to your agency, your agency is the controller and we act as its
+processor.
 
 *Who processes it:* the processors in section 6, plus Meta as the operator of the platform.
 
-*Two ways to have it deleted:* your agency disconnects the account or asks us to delete, including
-through the deletion request that Meta sends us for the connected app; or a person who wrote to the
-account asks us directly, following the data deletion page. In both cases we tell you the outcome, and
-for requests that come through Meta we return a confirmation code you can check.
+*How long it is kept:* the account data and the token for as long as the connection exists. Comments,
+messages and the leads from them for as long as your agency's account exists, unless you ask us to delete
+them earlier.
 
-*Automated replies* on these channels carry the same notice as in section 5.
+*Automated processing:* messages are classified by an AI model in order to recognise interest. Replies
+drafted by the system carry the notice described in section 5 in the channel where they are sent.
+
+*Your rights:* you can disconnect the Instagram account in NuovaSolution at any time, and the token is
+deleted immediately. For the deletion of data already stored, see the data deletion page.
 
 **13 · Analytics.** This site counts page views without cookies and without advertising identifiers.
 
@@ -181,7 +225,7 @@ account holders by e-mail.
 
 **Aviso de privacidad**
 
-**1 · Quién es responsable.** ⟦OWNER: LEGAL_FORM⟧ Antonio Jesus Diaz Gomez, que opera como
+**1 · Quién es responsable.** Antonio Jesus Diaz Gomez, que opera como
 NuovaSolution, ⟦OWNER: NIF⟧, ⟦OWNER: ADDRESS_FULL⟧ Prolongación Hernando de Carabeo, Nerja, Málaga,
 España, antonio@nuovasolution.com.
 
@@ -210,12 +254,14 @@ agencia, la base la determina la agencia y nosotros actuamos por ella.
 inteligencia artificial, y cada una de esas respuestas lleva un aviso que lo indica. Una persona puede
 tomar el relevo en cualquier momento, y quien pide hablar con una persona la tiene.
 
-**6 · Quién trata los datos por nuestra cuenta.** ⟦HOSTING: SUBPROCESSOR_LIST⟧ Hoy: Supabase (base de
-datos, almacenamiento y autenticación), nuestro proveedor de alojamiento y el proveedor del modelo de
-inteligencia artificial que redacta las respuestas. Cuando una consulta llega por WhatsApp o por
-Gmail, el operador de ese canal también la trata, según sus propias condiciones contigo o con la
-agencia. No vendemos datos y no los usamos para hacer publicidad a nadie. La lista exacta de
-proveedores, con la región en la que opera cada uno, se publica aquí.
+**6 · Quién trata los datos por nuestra cuenta.** Supabase presta la base de datos, el almacenamiento de
+archivos y la autenticación; el sistema de producción funciona en la Unión Europea, en Fráncfort.
+Nuestro proveedor de alojamiento ejecuta la automatización que lleva un mensaje desde tu canal hasta la
+respuesta. Un proveedor de inteligencia artificial redacta los borradores y clasifica los mensajes.
+Cuando una consulta llega por WhatsApp o por Gmail, el operador de ese canal también la trata, según sus
+propias condiciones contigo o con la agencia. No vendemos datos y no los usamos para hacer publicidad a
+nadie. ⟦HOSTING: SUBPROCESSOR_LIST⟧ La lista actualizada de todos los proveedores, con el nombre de cada
+uno y la región en la que opera, está disponible a petición y se publica aquí.
 
 **7 · Cuánto tiempo los guardamos.** ⟦OWNER+COUNSEL: RETENTION⟧ Los plazos se aprueban antes de
 publicar esta página y aparecen aquí como plazos concretos, no como una promesa de indicarlos más
@@ -235,31 +281,51 @@ Agencia Española de Protección de Datos (AEPD).
 del Espacio Económico Europeo, la transferencia se cubre con las cláusulas contractuales tipo de la
 Comisión Europea. La lista del apartado 6 indica a qué proveedores se aplica.
 
-**11 · Datos de Instagram, Facebook y WhatsApp.** Ver el apartado 12.
+**11 · WhatsApp.** Cuando tu agencia recibe consultas por WhatsApp, el mensaje y el número de quien
+escribe nos llegan por ese canal y se tratan como describe el apartado 3. WhatsApp lo opera Meta según
+sus propias condiciones con el titular de la cuenta.
 
-**12 · Cuando tu agencia conecta Instagram o Facebook.** Este apartado se aplica solo a las agencias
-que conectan una cuenta de Meta.
+**12 · Conexión con Instagram (datos de la plataforma de Meta).** Este apartado se aplica solo a las
+agencias que conectan una cuenta profesional de Instagram. Cubre Instagram y nada más: las páginas de
+Facebook y los formularios de publicidad no forman parte de esta conexión y no los leemos.
 
-*De tu agencia:* el identificador de la cuenta de Instagram, el nombre de usuario y el tipo de cuenta;
-un token de acceso, válido durante un tiempo limitado, guardado cifrado y que puedes revocar en
-cualquier momento; los medios y los textos de publicación que publicas a través de nosotros.
+Si tu agencia conecta su cuenta profesional de Instagram con NuovaSolution, tratamos los siguientes datos
+procedentes de la API de Instagram con inicio de sesión de Instagram:
 
-*De las personas que escriben o comentan en tu cuenta:* un identificador del remitente, que guardamos
-solo como un hash vinculado a tu agencia y nunca como un identificador de Instagram reutilizable; el
-texto; la hora; la intención que reconocemos; y el lead que se genera a partir de ello.
+- **Datos de la cuenta conectada:** el identificador de la cuenta, el nombre de usuario y el tipo de
+  cuenta. Sirven para mostrarte qué cuenta está conectada y para publicar en tu nombre.
+- **Token de acceso:** un token emitido por Instagram con una validez de hasta 60 días. Se guarda
+  cifrado, se usa solo para lo que describe este apartado y se elimina al desconectar.
+- **Tu propio contenido:** las publicaciones que creamos a partir de tus inmuebles, sus textos e
+  imágenes, el identificador de la publicación y su enlace.
+- **Comentarios y mensajes directos en tu cuenta:** el texto, la fecha, el identificador del remitente
+  que asigna Instagram y el interés que detecta nuestro sistema. El identificador del remitente se guarda
+  **solo como un valor derivado mediante una función unidireccional** propia de tu agencia. No
+  conservamos el identificador original de Instagram ni podemos recuperarlo.
+- **Oportunidades:** si un comentario o un mensaje muestra interés por un inmueble, creamos un registro
+  para tu agencia.
 
-*Para qué lo usamos:* para publicar tus contenidos, responder consultas y comentarios y generar leads.
-No para hacer publicidad a terceros, y nunca se comparte con otra agencia.
+*Finalidades:* publicar tus inmuebles, mostrarte los comentarios y mensajes entrantes, responderlos desde
+tu panel y crear oportunidades. No con fines publicitarios, no se venden y nunca se comparten con otra
+agencia.
+
+*Base jurídica:* la ejecución del contrato con tu agencia y nuestro interés legítimo en la prestación del
+servicio. Respecto de quienes escriben a tu agencia, la agencia es la responsable del tratamiento y
+nosotros actuamos como encargados.
 
 *Quién lo trata:* los proveedores del apartado 6, más Meta como operador de la plataforma.
 
-*Dos vías para que se eliminen:* tu agencia desconecta la cuenta o nos pide la eliminación, incluida la
-solicitud de eliminación que Meta nos envía para la app conectada; o una persona que escribió a la
-cuenta nos lo pide directamente, siguiendo la página de eliminación de datos. En ambos casos te
-comunicamos el resultado y, para las solicitudes que llegan por Meta, devolvemos un código de
-confirmación que puedes comprobar.
+*Cuánto tiempo se guarda:* los datos de la cuenta y el token mientras exista la conexión. Los
+comentarios, los mensajes y las oportunidades que surjan de ellos mientras exista la cuenta de tu
+agencia, salvo que nos pidas suprimirlos antes.
 
-*Las respuestas automáticas* en estos canales llevan el mismo aviso que en el apartado 5.
+*Tratamiento automatizado:* los mensajes se clasifican con un modelo de inteligencia artificial para
+detectar interés. Las respuestas que redacta el sistema llevan el aviso del apartado 5 en el canal en el
+que se envían.
+
+*Tus derechos:* puedes desconectar la cuenta de Instagram en NuovaSolution en cualquier momento, y el
+token se elimina de inmediato. Para la supresión de los datos ya almacenados, consulta la página de
+eliminación de datos.
 
 **13 · Analítica.** Este sitio cuenta visitas de página sin cookies y sin identificadores
 publicitarios.
@@ -292,7 +358,7 @@ sentences. They are proposals from how the product actually works, not legal adv
 
 **Terms of service**
 
-**1 · Who these are between.** ⟦OWNER: LEGAL_FORM⟧ Antonio Jesus Diaz Gomez, trading as
+**1 · Who these are between.** Antonio Jesus Diaz Gomez, trading as
 NuovaSolution, ⟦OWNER: NIF⟧, and the agency that uses the service. The service is for businesses. It
 is not offered to consumers.
 
@@ -312,6 +378,15 @@ activate a plan. There is no card payment on this site and no automatic renewal.
 to connect, and you hold the rights to the content and the property data you put into the system. You
 do not use the service to send unsolicited messages or in breach of the rules of a channel you
 connected.
+
+*Connected Instagram accounts.* You may connect an Instagram professional account that you own or
+administer. You are responsible for holding the rights to the images and texts you publish through
+NuovaSolution and for complying with Instagram's own terms and community guidelines. We publish only what
+you approve. We reply to a comment or a message only after that person has contacted your account, never
+on our own initiative, and we send no unsolicited messages. We may refuse or stop a publication if a
+listing has no proven image rights, if its data is out of date, or if Instagram restricts the connection.
+You can disconnect at any time, and publishing and reading stop immediately. NuovaSolution is not
+affiliated with Meta Platforms, Inc., and is neither endorsed nor certified by it.
 
 **6 · Automated replies and the notice they carry.** Replies are written by an AI assistant and carry a
 notice that says so. You agree not to remove or obscure that notice, because it is a legal duty and
@@ -347,7 +422,7 @@ takes effect.
 
 **Términos del servicio**
 
-**1 · Entre quiénes.** ⟦OWNER: LEGAL_FORM⟧ Antonio Jesus Diaz Gomez, que opera como NuovaSolution,
+**1 · Entre quiénes.** Antonio Jesus Diaz Gomez, que opera como NuovaSolution,
 ⟦OWNER: NIF⟧, y la agencia que usa el servicio. El servicio es para empresas. No se ofrece a
 consumidores.
 
@@ -367,6 +442,16 @@ plan. En este sitio no se paga con tarjeta y no hay renovación automática.
 derecho a conectar y tienes los derechos sobre el contenido y los datos de propiedades que introduces
 en el sistema. No usas el servicio para enviar mensajes no solicitados ni en contra de las normas de un
 canal que hayas conectado.
+
+*Cuentas de Instagram conectadas.* Puedes conectar una cuenta profesional de Instagram de tu propiedad o
+que administres. Eres responsable de disponer de los derechos sobre las imágenes y los textos que
+publiques a través de NuovaSolution y de cumplir las condiciones y las normas de la comunidad de
+Instagram. Publicamos únicamente lo que apruebas. Respondemos a un comentario o a un mensaje solo después
+de que esa persona haya contactado con tu cuenta, nunca por iniciativa propia, y no enviamos mensajes no
+solicitados. Podemos rechazar o detener una publicación si el inmueble no tiene derechos de imagen
+acreditados, si sus datos no están actualizados o si Instagram restringe la conexión. Puedes desconectar
+en cualquier momento, y la publicación y la lectura se detienen de inmediato. NuovaSolution no está
+afiliada a Meta Platforms, Inc., ni cuenta con su respaldo o su certificación.
 
 **6 · Respuestas automáticas y el aviso que llevan.** Las respuestas las redacta un asistente de
 inteligencia artificial y llevan un aviso que lo indica. Te comprometes a no eliminar ni ocultar ese
@@ -418,11 +503,19 @@ the outcome.
 ask us inside your account. We confirm what will be deleted, what we have to keep by law, and when it
 is done.
 
-**If you connected Instagram or Facebook.** You can disconnect the account in your Nuova account at
-any time, which revokes our access. To have the stored data deleted as well, ask us as described
-above, or remove the app in your Instagram or Facebook settings, which sends us a deletion request
-automatically. For a request that arrives that way we return a confirmation code, and you can ask us
-about the status of that code at any time.
+**If your agency connected Instagram.** Open NuovaSolution, go to Social and choose Disconnect. The access
+token is deleted immediately and we stop reading and publishing. To have the data already stored deleted as
+well, which means posts, comments, messages and the leads from this channel, write to
+antonio@nuovasolution.com from the address of your account and name your agency.
+
+**If you commented on or wrote to an agency that uses Nuova on Instagram.** Write to
+antonio@nuovasolution.com and name the agency and the approximate date of your message. We do not store
+your Instagram username or your original Instagram identifier, so the agency and the time frame are what
+let us find your data.
+
+**If you remove the app in Instagram.** Instagram then notifies us, we delete the stored token and the data
+of that connection, and we give you a confirmation code. You can ask us about the status of that code at
+any time.
 
 **What we need from you.** The address or number you used with us, and what you want: a copy of your
 data, a correction, or deletion. We may ask you to confirm the request from that same address or
@@ -449,11 +542,19 @@ comunicamos el resultado.
 cuenta, o pídenoslo dentro de tu cuenta. Confirmamos qué se va a eliminar, qué tenemos que conservar por
 ley y cuándo está hecho.
 
-**Si conectaste Instagram o Facebook.** Puedes desconectar la cuenta en tu cuenta de Nuova en cualquier
-momento, lo que revoca nuestro acceso. Para que además se eliminen los datos guardados, pídenoslo como
-se indica arriba, o elimina la app en los ajustes de Instagram o Facebook, lo que nos envía una
-solicitud de eliminación automáticamente. Para una solicitud que llega por esa vía devolvemos un código
-de confirmación, y puedes preguntarnos por el estado de ese código cuando quieras.
+**Si tu agencia conectó Instagram.** Abre NuovaSolution, entra en Social y pulsa Desconectar. El token se
+elimina de inmediato y dejamos de leer y de publicar. Para que además se supriman los datos ya guardados,
+es decir las publicaciones, los comentarios, los mensajes y las oportunidades de este canal, escribe a
+antonio@nuovasolution.com desde la dirección de tu cuenta e indica el nombre de la agencia.
+
+**Si has comentado o escrito por Instagram a una agencia que usa Nuova.** Escribe a
+antonio@nuovasolution.com e indica la agencia y la fecha aproximada de tu mensaje. No guardamos tu nombre
+de usuario ni tu identificador original de Instagram, así que la agencia y el periodo son lo que nos
+permite encontrar tus datos.
+
+**Si eliminas la app en Instagram.** Instagram nos lo comunica, suprimimos el token y los datos de esa
+conexión y te damos un código de confirmación. Puedes preguntarnos por el estado de ese código cuando
+quieras.
 
 **Qué necesitamos de ti.** La dirección o el número que usaste con nosotros y qué pides: una copia de
 tus datos, una corrección o la eliminación. Podemos pedirte que confirmes la solicitud desde esa misma
@@ -486,3 +587,28 @@ dentro del plazo que marca la ley, que normalmente es de un mes.
 
 **Not changed:** the analytics statement, the AEPD reference, the contact address, and the published
 controller name and city, which stay as they are on the live site.
+
+---
+
+## 6. v2, 2026-09-29: the Meta sections, and four corrections to them
+
+Social delivered the Instagram sections on 2026-09-28
+(`backend_handoff/handoff_in_2026-09-29/social/META_LEGAL_SECTIONS_v1.md`). Their substance is adopted:
+privacy section 12, the connected-accounts block inside terms section 5, and the three deletion paths.
+Four things are **not** adopted as written, each for a reason:
+
+| # | Social's draft | What v2 says | Why |
+|---|---|---|---|
+| 1 | "Instagram **or Facebook**" in the deletion paths, and a Meta-wide framing | **Instagram only**, and the privacy section says so in its first line | Social's own delimitation D2: Facebook pages and advertising lead forms run through a different login with different permissions and belong to another lane. A page that says Facebook describes a connection we do not have |
+| 2 | "We confirm within 72 hours and complete the deletion within 30 days" | the statutory period, normally one month, as in v1 | Social itself writes that the two figures are a proposal, need counsel, and "must not be promised before the deletion path is actually served". No social deletion path has run, because no agency connection exists. Both figures are now counsel questions |
+| 3 | `privacy@nuovasolution.com` | `antonio@nuovasolution.com` | Social flags it itself: an address that does not exist is a review risk. The owner may create the alias, and then one search and replace closes it |
+| 4 | a second processor list inside the Instagram section | one processor section, referenced from section 12 | two lists in one notice drift apart. Section 6 is the single place, and it now names Supabase and the production region |
+
+Also new in v2: the production region is stated (Frankfurt, European Union) because
+`PRODUCT_TRUTH_TABLE_v1` §C establishes it; WhatsApp gets its own short section 11 instead of being
+bundled with Instagram; and the legal form is no longer a marked gap, because the individual trading
+under his own name is what the live site already publishes.
+
+**What v2 still does not do:** it makes no retention promise outside the Instagram connection, no backup
+promise, and no statement about where a processor operates beyond Supabase. Those wait on O-8, on Hosting's
+list, and on counsel.

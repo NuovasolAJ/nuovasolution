@@ -400,3 +400,47 @@ responsible lane should close it first.
 
 **Not changed:** v1 §E (the disclosure inventory and the equivalence drafts), §F and §G. The
 Google Sheets corrections in D7.1 stand.
+
+---
+
+## 7. COUNSEL_QUESTIONS_0929 — the whole list, in one place
+
+Added 2026-09-29. Everything counsel is being asked, bundled, so nobody has to assemble it from the
+sheets. Each row names the sheet it belongs to and what stays blocked while it is open. Nothing on this
+list has been approved by a lawyer, and no text in our files is marked as approved.
+
+| # | Question | Sheet | Blocked while open |
+|---|---|---|---|
+| CQ-1 | Is `v1.1-es` adequate as the AI notice for e-mail, WhatsApp and the form channel, in each channel separately? | D1 | every reply to a real customer |
+| CQ-2 | **The pilot's version question.** May `v1.0-es` be used for a **third party agency**, given that its e-mail text names NuovaSolution as the operator of the assistant, or must `v1.1-es` (which names the agency) be approved first? An owner acceptance alone does not answer whether the customer of that agency is correctly informed | D1, O-4 | `DISCLOSURE_SCOPE_PILOT` for any agency other than our own tenant |
+| CQ-3 | Must the notice repeat in every message of a conversation, or is the first one enough? | D1 | nothing; today it repeats |
+| CQ-4 | Must the agency's **registered** legal name appear, or is the trading brand enough? | D1 | whether an empty legal name may ever render |
+| CQ-5 | The **spoken** notice for a call: wording, the moment it is said, and whether recording needs its own sentence. Voice owns the draft, counsel the adequacy | D2 | every call. Today the routing answers `route = human`, `reason = language_not_legally_supported`, so no AI call happens at all |
+| CQ-6 | Are the EN, DE and IT drafts legally equivalent to the approved Spanish text for a recipient in that language? | D3 | answering a customer who writes in those languages |
+| CQ-7 | The privacy notice as a whole: legal bases per purpose, the processor list's required level of detail, the transfer statement, and whether the agency's customers need a notice separate from the one for agency users | D4 | publication of the privacy page |
+| CQ-8 | **Retention.** The proposal per data class in `LEGAL_PAGES_FINAL` §2.7. Note the facts: production carries **0** retention policy rows, and no restorable backup is proven, so nothing may be promised that the system does not do | D4, O-8 | the retention section, and any answer about how long data is kept |
+| CQ-9 | Terms: is a data processing agreement an annex, and when does the agency accept it? | D5 | the terms page |
+| CQ-10 | Terms: the liability limitation | D5 | the terms page |
+| CQ-11 | Terms: the trial clause, including that it does not convert on its own | D5 | nothing; the current wording is conservative |
+| CQ-12 | **The Instagram section** now in `LEGAL_PAGES_FINAL` §2.1/§2.2 section 12: the legal bases as stated, the hashed sender identifier as a safeguard, and whether the retention rule tied to the connection is sufficient | D4, D6 | the Meta App Review |
+| CQ-13 | **The deletion deadlines.** Social proposes confirming within 72 hours and completing within 30 days. Are they required, or may we state the statutory period? They are currently **not** in the page, because no social deletion path has ever run | D6 | nothing today; it changes the page if required |
+| CQ-14 | Does the deletion page satisfy the platform requirement while staying truthful about our role as processor for an agency's data subjects? | D6 | the Meta App Review |
+| CQ-15 | The connect notice: acknowledgement or consent, and may the three pending rows stay hidden until CQ-7 and CQ-8 are answered? | D7 | the first real data source connection |
+| CQ-16 | **The web channel notice**, priority 1: is the draft in `PRODUCT_FAQ_KB_v1.md` §8 sufficient on our own site, must it be versioned like the channel texts, and is "follow up" a permissible description? | D8 | the public question box |
+| CQ-17 | The review rule: may we ask a customer for a public review, and under what disclosure? | D9 | the first review we would ever publish |
+| CQ-18 | The legal footer of transactional account e-mail, and whether it needs an unsubscribe line | D10 | the confirmation e-mail |
+| CQ-19 | What we may guarantee an agency about executing a data subject request on its behalf, and what happens to copies outside our control | D11 | the first real agency |
+
+### 7.1 O-4 for the owner, in two sentences
+
+For the owner's decision, without legal language:
+
+> **`v1.0-es`** is approved and ready, and its e-mail text tells your pilot agency's customers that they
+> are dealing with "un asistente de inteligencia artificial **de NuovaSolution**", which names us rather
+> than the agency.
+> **`v1.1-es`** says "el asistente digital **de \{\{agency_legal_name\}\}**", which is what an agency would
+> want its customers to read, and it is still waiting for the lawyer.
+
+Consequence either way: the **WhatsApp** text of `v1.0-es` names no company, so a WhatsApp-only pilot can
+start today without this question. E-mail cannot, unless the owner accepts our name appearing in the
+agency's mail, which is CQ-2.
