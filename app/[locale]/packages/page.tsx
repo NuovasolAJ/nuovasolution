@@ -3,8 +3,7 @@ import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { catalogPlans, PUBLIC_FEATURES, trialPlanAligned, type PlanCode } from "@/lib/content/plans";
 import { getPlans } from "@/lib/contracts/server";
-import { Section } from "@/components/ui/section";
-import { SectionHead, Display, Eyebrow, Lead, Caption, Heading } from "@/components/ui/type";
+import { Display, Eyebrow, Lead, Caption, Heading, SectionHead } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { StatusGlyph } from "@/components/ui/status";
@@ -19,13 +18,20 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
 }
 
 /**
- * Packages, comparable side by side. Plan names come from the backend plan catalog when the
- * BFF path returns them; contents and limits from the transcribed staging catalog until API
- * publishes a runtime catalog contract (audit Z11). No amount is shown: there is no price
- * authority. Only features whose capability is published appear (R27). The trial badge and
- * the "Try Essential free" CTA move onto Essential only after API's TRIAL_PLAN_ALIGNED (R26);
- * until then the trial is stated neutrally above the cards. Growth and Scale are an offer:
- * the plan interest travels to the contact page. The payment path is described as it is.
+ * Packages (owner direction 2026-09-29). Layers: canvas opening · sand band with the three
+ * plans as white stages, the Essential sticker laid over its card · the payment path on canvas.
+ *
+ * - The free trial belongs to Essential (API TRIAL_PLAN_ALIGNED, staging catalog read
+ *   2026-09-29: the trial plan carries Essential's scope and limits for 14 days). Growth and
+ *   Scale carry no trial sticker and no trial CTA; they are an offer, and the plan interest
+ *   travels to the contact page. A URL parameter grants nothing.
+ * - What differs between the plans is shown on the cards (offices, seats, enquiries a month);
+ *   what every plan does is said once, below them. CRM connections and voice minutes are not
+ *   shown: no external CRM flow and no production number exist (PRODUCT_TRUTH_TABLE_v1 A, D).
+ * - No amount and no period is printed before PRICING_AUTHORITY; the page says where both are stated.
+ * - An invoice is not a payment. There is no card payment and no checkout on this site.
+ * Plan names come from the backend plan catalog when the BFF path returns them; until API
+ * publishes PLANS_ENDPOINT the contents are the transcribed staging catalog (lib/content/plans.ts).
  */
 export default async function PackagesPage({ params }: { params: { locale: string } }) {
   const locale = params.locale as Locale;
@@ -34,6 +40,7 @@ export default async function PackagesPage({ params }: { params: { locale: strin
   const p = (path: string) => localePath(locale, path);
   const featureName = (k: string) => (pk.featureNames as Record<string, string>)[k] ?? k;
   const limitName = (k: string) => (pk.limits as Record<string, string>)[k] ?? k;
+  const planLine = (k: string) => (pk.planLines as Record<string, string>)[k] ?? "";
   const aligned = trialPlanAligned();
 
   const runtime = await getPlans();
@@ -41,131 +48,145 @@ export default async function PackagesPage({ params }: { params: { locale: strin
 
   return (
     <>
-      <Section rhythm="flush" className="overflow-hidden pt-[var(--section-default)] pb-[var(--section-compact)]" labelledBy="pk-h1">
+      <section aria-labelledby="pk-h1" className="pb-[var(--section-compact)] pt-[var(--section-compact)] xl:pt-[var(--section-default)]">
         <div className="container-default">
           <Reveal className="xl:max-w-[62%]">
             <Eyebrow className="mb-4">{pk.eyebrow}</Eyebrow>
-            <Display size="xl" id="pk-h1">{aligned ? pk.h1Aligned : pk.h1}</Display>
-            <Lead className="mt-6">{pk.lead}</Lead>
-            <CtaRow className="mt-10">
-              <ButtonLink href={p("/signup")} size="lg">{aligned ? pk.ctaTrialEssential : pk.ctaTrial}</ButtonLink>
-              <ButtonLink href={p("/contact")} size="lg" variant="secondary">{pk.ctaSecondary}</ButtonLink>
-            </CtaRow>
-            <Caption className="mt-4">{aligned ? pk.trialBadgeAligned : pk.trialBadge}. {pk.baselineLine}</Caption>
+            <Display size="xl" id="pk-h1">{aligned ? pk.h1 : pk.h1Neutral}</Display>
+            <Lead className="mt-6">{aligned ? pk.lead : pk.leadNeutral}</Lead>
           </Reveal>
         </div>
-      </Section>
+      </section>
 
-      <Section rhythm="flush" className="pb-[var(--section-default)]" labelledBy="pk-plans">
-        <div className="container-default">
-          <Reveal>
-            <Eyebrow as="h2" id="pk-plans">{pk.tiersEyebrow}</Eyebrow>
-            <p className="mt-3 t-body-m text-text-secondary measure-body">{pk.tiersLead}</p>
-          </Reveal>
-          <ol className="mt-10 grid gap-5 md:grid-cols-3" data-plan-cards>
-            {catalogPlans.map((plan, i) => {
-              const essential = plan.code === "essential";
-              const trialHere = aligned && essential;
-              const features = plan.features.filter((f) => PUBLIC_FEATURES.includes(f));
-              return (
-                <Reveal key={plan.code} delay={i * 60} as="li" className={cn("card flex flex-col rounded-xl p-6", trialHere && "border-ink-950 shadow-lift")} data-plan={plan.code}>
-                  <div className="flex items-start justify-between gap-3">
-                    <Heading size="l" as="h3">{backendName(plan.code) ?? plan.display_name}</Heading>
-                    {trialHere && <span className="rounded-pill bg-ink-950 px-2.5 py-1 t-caption text-ivory">{pk.trialBadgeAligned}</span>}
-                  </div>
-                  <div className="mt-5 rounded-lg bg-surface-sunken px-4 py-3">
-                    <p className="t-heading-s text-text-primary">{pk.amount}</p>
-                    <p className="mt-1 t-caption text-text-muted">{pk.amountLine}</p>
-                  </div>
-                  <p className="mt-6 t-eyebrow text-text-muted">{pk.limitsHeading}</p>
-                  <dl className="mt-2 grid grid-cols-2 gap-x-4 gap-y-2">
-                    {(["offices", "seats", "leads_month", "crm_connections"] as const).map((k) => {
-                      const v = plan.limits[k];
-                      return (
-                        <div key={k} className="border-t border-line-hairline pt-2">
-                          <dt className="t-caption text-text-muted">{limitName(k)}</dt>
-                          <dd className="t-body-s tnum text-text-primary">{v === null ? pk.limits.unlimited : v === 0 ? pk.limits.none : String(v)}</dd>
-                        </div>
-                      );
-                    })}
-                  </dl>
-                  <p className="mt-6 t-eyebrow text-text-muted">{pk.featuresHeading}</p>
-                  <ul className="mt-2 space-y-2">
-                    {features.map((f) => (
-                      <li key={f} className="flex items-start gap-2 t-body-s text-text-primary">
-                        <StatusGlyph glyph="check" size={14} className="mt-1 shrink-0 text-signal-positive" />
-                        {featureName(f)}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-8 flex flex-col gap-2 pt-2 mt-auto">
-                    {trialHere ? (
-                      <ButtonLink href={p("/signup")} full>{pk.ctaTrialEssential}</ButtonLink>
-                    ) : (
-                      <>
-                        <ButtonLink href={p(`/contact?plan=${plan.code}`)} full variant={essential ? "secondary" : "primary"}>{pk.ctaProposal}</ButtonLink>
-                        {!essential && <p className="t-caption text-text-muted">{pk.proposalLine}</p>}
-                      </>
+      <div className="band band-sand band-shoulders">
+        <section aria-labelledby="pk-plans" className="pb-[var(--section-default)] pt-[var(--section-default)]">
+          <div className="container-default">
+            <Reveal className="xl:max-w-[62%]">
+              <SectionHead title={pk.compareHeading} lead={pk.compareLead} size="m" id="pk-plans" />
+            </Reveal>
+            <ol className="mt-12 grid gap-6 lg:grid-cols-3" data-plan-cards>
+              {catalogPlans.map((plan, i) => {
+                const essential = plan.code === "essential";
+                const trialHere = aligned && essential;
+                return (
+                  <Reveal key={plan.code} delay={i * 70} as="li" className={cn("stage relative flex flex-col p-7", trialHere && "border-ink-950")} data-plan={plan.code} data-trial={trialHere ? "yes" : "no"}>
+                    {trialHere && (
+                      <p className="absolute -top-4 right-5 inline-flex -rotate-2 flex-col items-start rounded-lg bg-ink-950 px-4 py-2 text-ivory shadow-overlay" data-trial-sticker>
+                        <span className="t-body-s font-semibold leading-tight">{pk.trialBadgeAligned}</span>
+                        <span className="t-caption text-ink-300">{pk.noPaymentMethod}</span>
+                      </p>
                     )}
-                  </div>
-                </Reveal>
-              );
-            })}
-          </ol>
-        </div>
-      </Section>
+                    <Heading size="l" as="h3">{backendName(plan.code) ?? plan.display_name}</Heading>
+                    <p className="mt-1 t-body-s text-text-secondary">{planLine(plan.code)}</p>
+                    <dl className="mt-6 divide-y divide-line-hairline border-y border-line-hairline">
+                      {(["offices", "seats", "leads_month"] as const).map((k) => {
+                        const v = plan.limits[k];
+                        return (
+                          <div key={k} className="flex items-baseline justify-between gap-4 py-3">
+                            <dt className="t-body-s text-text-secondary">{limitName(k)}</dt>
+                            <dd className="t-heading-m tnum text-text-primary">{v === null ? pk.limits.unlimited : String(v)}</dd>
+                          </div>
+                        );
+                      })}
+                    </dl>
+                    <div className="mt-6 rounded-lg bg-surface-sunken px-4 py-3">
+                      <p className="t-body-s font-medium text-text-primary">{pk.amount}</p>
+                      <p className="mt-0.5 t-caption text-text-muted">{pk.amountLine}</p>
+                    </div>
+                    <div className="mt-auto flex flex-col gap-3 pt-7">
+                      {trialHere ? (
+                        <>
+                          <ButtonLink href={p("/signup")} full>{pk.ctaTrialEssential}</ButtonLink>
+                          <ButtonLink href={p(`/contact?plan=${plan.code}`)} full variant="tertiary" className="justify-center">{pk.ctaProposal}</ButtonLink>
+                        </>
+                      ) : (
+                        <>
+                          <ButtonLink href={p(`/contact?plan=${plan.code}`)} full variant="secondary">{pk.ctaProposal}</ButtonLink>
+                          <p className="t-caption text-text-muted">{pk.proposalLine}</p>
+                        </>
+                      )}
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </ol>
 
-      <Section rhythm="feature" surface="ivory" labelledBy="pk-pay">
+            <div className="mt-12 grid gap-8 lg:grid-cols-2">
+              <Reveal className="rounded-xl border border-line-strong bg-[color:rgba(255,255,255,0.5)] p-7">
+                <Heading size="m" as="h3">{pk.baselineHeading}</Heading>
+                <p className="mt-2 t-body-s text-text-secondary">{pk.baselineLine}</p>
+                <ul className="mt-5 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
+                  {PUBLIC_FEATURES.map((f) => (
+                    <li key={f} className="flex items-start gap-2 t-body-s text-text-primary">
+                      <StatusGlyph glyph="check" size={14} className="mt-1 shrink-0 text-signal-positive" />
+                      {featureName(f)}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+              <Reveal delay={80} className="rounded-xl border border-line-strong bg-[color:rgba(255,255,255,0.5)] p-7">
+                <Heading size="m" as="h3">{pk.periodHeading}</Heading>
+                <p className="mt-2 t-body-m text-text-secondary">{pk.periodLine}</p>
+                <ul className="mt-5 space-y-3">
+                  {pk.trialLines.map((l) => (
+                    <li key={l} className="border-l border-line-strong pl-4 t-body-s text-text-secondary">{l}</li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section aria-labelledby="pk-pay" className="py-[var(--section-default)]">
         <div className="container-default">
-          <Reveal className="xl:max-w-[62%]"><SectionHead eyebrow={pk.payEyebrow} title={pk.payH2} id="pk-pay" /></Reveal>
-          <ol className="mt-12 grid gap-4 md:grid-cols-4">
+          <Reveal className="xl:max-w-[62%]"><SectionHead eyebrow={pk.payEyebrow} title={pk.payH2} id="pk-pay" size="m" /></Reveal>
+          <ol className="relative mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {pk.paySteps.map((s, i) => (
-              <Reveal key={s.title} delay={i * 60} as="li" className="card-quiet p-5">
-                <p className="t-caption tnum text-text-muted">0{i + 1}</p>
-                <p className="mt-2 t-heading-s text-text-primary">{s.title}</p>
+              <Reveal key={s.title} delay={i * 60} as="li" className="card-quiet relative p-6">
+                <p className="inline-flex h-8 w-8 items-center justify-center rounded-pill bg-ink-950 t-caption tnum text-ivory">{i + 1}</p>
+                <p className="mt-4 t-heading-s text-text-primary">{s.title}</p>
                 <p className="mt-1 t-body-s text-text-secondary">{s.line}</p>
               </Reveal>
             ))}
           </ol>
-          <p className="mt-6 flex items-start gap-2 t-body-s text-text-secondary measure-body"><StatusGlyph glyph="lock" size={14} className="mt-1 shrink-0 text-text-muted" />{pk.checkoutNote}</p>
+          <p className="mt-8 flex items-start gap-3 rounded-lg bg-surface-sunken p-5 t-body-m text-text-primary measure-text">
+            <StatusGlyph glyph="lock" size={16} className="mt-1 shrink-0 text-text-muted" />
+            {pk.checkoutNote}
+          </p>
         </div>
-      </Section>
+      </section>
 
-      <Section rhythm="default" hairline labelledBy="pk-trial">
-        <div className="container-default">
-          <div className="grid grid-cols-1 gap-10 xl:grid-cols-12 xl:gap-16 items-start">
-            <Reveal className="xl:col-span-5">
-              <SectionHead eyebrow={pk.trialEyebrow} title={pk.trialLines[0]} size="heading-l" id="pk-trial" />
-              <ul className="mt-6 space-y-3">
-                {pk.trialLines.slice(1).map((l) => (
-                  <li key={l} className="t-body-m text-text-secondary border-l border-line-strong pl-4">{l}</li>
+      <section aria-labelledby="pk-faq" className="pb-[var(--section-default)]">
+        <div className="container-wide">
+          <div className="band band-stone band-panel px-5 py-12 md:px-12 md:py-16">
+            <div className="mx-auto max-w-[1200px]">
+              <Eyebrow as="h2" id="pk-faq">{pk.faqEyebrow}</Eyebrow>
+              <dl className="mt-6 grid gap-4 md:grid-cols-2">
+                {pk.faq.map((f) => (
+                  <div key={f.q} className="rounded-xl border border-line-hairline bg-surface-raised p-6">
+                    <dt className="t-heading-s text-text-primary">{f.q}</dt>
+                    <dd className="mt-2 t-body-s text-text-secondary">{f.a}</dd>
+                  </div>
                 ))}
-              </ul>
-            </Reveal>
-            <dl className="xl:col-span-7 grid gap-4 md:grid-cols-2">
-              {pk.faq.map((f) => (
-                <div key={f.q} className="card-quiet p-5">
-                  <dt className="t-heading-s text-text-primary">{f.q}</dt>
-                  <dd className="mt-2 t-body-s text-text-secondary">{f.a}</dd>
-                </div>
-              ))}
-            </dl>
+              </dl>
+            </div>
           </div>
         </div>
-      </Section>
+      </section>
 
-      <Section rhythm="feature" labelledBy="pk-close">
-        <div className="container-default">
-          <div className="field-sand rounded-xl px-6 py-14 text-center md:px-12 md:py-20">
-            <Display size="l" id="pk-close" className="mx-auto max-w-[20ch]">{d.trial.h1}</Display>
+      <section aria-labelledby="pk-close" className="pb-[var(--section-default)]">
+        <div className="container-wide">
+          <div className="band band-sand band-panel px-6 py-14 text-center md:px-12 md:py-20">
+            <Display size="l" id="pk-close" className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
             <CtaRow align="center" className="mt-10">
               <ButtonLink href={p("/signup")} size="lg">{aligned ? pk.ctaTrialEssential : d.common.startFree}</ButtonLink>
-              <ButtonLink href={p("/trial")} size="lg" variant="secondary">{d.nav.trial}</ButtonLink>
+              <ButtonLink href={p("/contact")} size="lg" variant="secondary">{pk.ctaSecondary}</ButtonLink>
             </CtaRow>
-            <Caption className="mt-4">{d.common.noPayment} {d.common.noSalesCall}</Caption>
+            <Caption className="mt-4">{d.common.noSalesCall}</Caption>
           </div>
         </div>
-      </Section>
+      </section>
     </>
   );
 }

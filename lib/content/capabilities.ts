@@ -53,6 +53,8 @@ export interface Capability {
   notAvailable?: L[];
   /** Extra honest paragraph, used by premium services. */
   honesty?: L;
+  /** A material limit the buyer needs for the decision, said on the page (COPY_DELTAS_0929 D-39). */
+  note?: L;
   video?: string;
   related: string[];
 }
@@ -97,22 +99,25 @@ export const capabilities: Capability[] = [
     publish: "live",
     status: "live",
     name: { en: "Lead Intelligence", es: "Lead Intelligence" },
-    navLine: { en: "Qualifies and prioritises each enquiry", es: "Cualifica y prioriza cada consulta" }, // WCR-060, C3 §1.3
-    h1: { en: "One customer, one record, one clear priority.", es: "Un cliente, una ficha, una prioridad clara." }, // WCR-061, LAUNCH_COPY_v1 §6.1
+    // COPY_DELTAS_0929 L-03, D-38: qualification and priority are not in production, so they are not claimed.
+    // The h1 is the D-38 line; scenario and lead are limited to the proven same-channel identity (interim implementer wording).
+    navLine: { en: "Keeps what each customer told you", es: "Guarda lo que te ha contado cada cliente" },
+    h1: { en: "Keeps what each customer told you.", es: "Guarda lo que te ha contado cada cliente." },
     lead: {
       // WCR-062 = WCR-020, first sentence; the cross-channel sentence is a status formula (R27)
-      en: "A client who writes twice on the same channel stays one person in Nuova, and every enquiry is qualified and prioritised.",
-      es: "Un cliente que escribe dos veces por el mismo canal sigue siendo una sola persona en Nuova, y cada consulta se cualifica y se prioriza.",
+      en: "A client who writes twice on the same channel stays one person in Nuova, with what they asked for kept on their record.",
+      es: "Un cliente que escribe dos veces por el mismo canal sigue siendo una sola persona en Nuova, con lo que ha pedido guardado en su ficha.",
     },
     points: [
       { text: { en: "One canonical customer identity across channels.", es: "Una identidad de cliente única en todos los canales." }, status: "in_implementation" }, // WCR-063
-      { text: { en: "Qualification on every answered enquiry.", es: "Cualificación en cada consulta respondida." }, status: "live" }, // WCR-064
+      { text: { en: "What the customer asked for, kept on their record.", es: "Lo que ha pedido el cliente, guardado en su ficha." }, status: "live" }, // D-26
+      { text: { en: "Qualification on every answered enquiry.", es: "Cualificación en cada consulta respondida." }, status: "in_implementation" }, // WCR-064; staging only (LEAD_TRUTH_INPUT_v1 §1)
       // WCR-065 removed rather than retensed: CLAIMS_MATRIX D-10 forbids every hot lead wording.
-      { text: { en: "A priority signal so your team knows where to start.", es: "Una señal de prioridad para que tu equipo sepa por dónde empezar." }, status: "live" },
+      { text: { en: "A priority signal so your team knows where to start.", es: "Una señal de prioridad para que tu equipo sepa por dónde empezar." }, status: "in_implementation" }, // not asserted in production (COPY_DELTAS_0929 L-03)
     ],
     scenario: {
-      en: "The buyer from Sunday confirms a budget and asks for a viewing this week. The record is qualified and its priority rises, so the agent responsible starts there.", // WCR-067
-      es: "El comprador del domingo confirma un presupuesto y pide una visita esta semana. La ficha se cualifica y su prioridad sube, así que el agente responsable empieza por ahí.",
+      en: "The buyer from Sunday writes again on WhatsApp on Tuesday. Her message lands on the same record, next to what she asked for before.",
+      es: "La compradora del domingo vuelve a escribir por WhatsApp el martes. Su mensaje llega a la misma ficha, junto a lo que había pedido antes.",
     },
     fits: [
       { en: "Gmail and WhatsApp conversations", es: "Conversaciones de Gmail y WhatsApp" },
@@ -126,7 +131,9 @@ export const capabilities: Capability[] = [
     publish: "live",
     status: "live",
     name: { en: "CRM", es: "CRM" }, // "Universal" dropped: unproven universality (LAUNCH_COPY_v1 S-14)
-    navLine: { en: "One record per customer", es: "Una ficha por cliente" }, // C3 §1.3
+    navLine: { en: "Leads, conversations and tasks in one place", es: "Leads, conversaciones y tareas en un solo lugar" }, // COPY_DELTAS_0929 D-38
+    // D-39: the material limit is said on the page (LEAD_TRUTH_INPUT_v1 §3: no automatic person merge across channels).
+    note: { en: "A customer who writes by e-mail and later on WhatsApp starts as two records until you link them. We would rather tell you that here than let you find it.", es: "Un cliente que escribe por email y después por WhatsApp empieza como dos fichas hasta que las unes. Preferimos decírtelo aquí y no que lo descubras tú." },
     // Public H1 and lead limited to what is proven (audit Z07, R27, LAUNCH_COPY_v1 §6.1): the connected channels on one record, included
     // from the start. Cross-channel identity, the team's CRM view, Google Sheets and external CRMs are
     // tracked in the launch blocker register, not stated on the page.
@@ -197,23 +204,28 @@ export const capabilities: Capability[] = [
     // surfaces on the sales page); the final owner test is tracked in the launch blocker register, not on the page.
     publish: "live",
     status: "final_acceptance",
-    name: { en: "Daily Assistant", es: "Daily Assistant" },
-    navLine: { en: "What to do first, and why", es: "Qué hacer primero, y por qué" }, // C3 §1.3
-    h1: { en: "Your agents stop administering the pipeline.", es: "Tus agentes dejan de administrar el pipeline." },
+    // COPY_DELTAS_0929 D-34 to D-37 and DAILY_FEATURE_TRUTH: the task surface, not a chat assistant. The slug stays, so links keep working.
+    name: { en: "Daily Tasks", es: "Tareas diarias" },
+    navLine: { en: "The tasks your team takes and closes", es: "Las tareas que tu equipo toma y cierra" },
+    h1: { en: "The request becomes a task somebody owns.", es: "La petición pasa a ser una tarea con dueño." },
     lead: {
       // WCR-090, first sentence; the final owner test is tracked in the launch blocker register (R27)
-      en: "Daily Goals and the assistant tell your team what to do first, and why.",
-      es: "Daily Goals y la asistente le dicen a tu equipo qué hacer primero, y por qué.",
+      en: "Every viewing request and every callback becomes a task with the customer, the property and the time they asked for.",
+      es: "Cada petición de visita y cada llamada pendiente pasa a ser una tarea con el cliente, el inmueble y la hora que ha pedido.",
     },
     points: [
+      { text: { en: "Whoever takes a task owns it. The others can see that it is taken and by whom.", es: "Quien toma una tarea se hace cargo de ella. Los demás ven que está tomada y por quién." }, status: "live" }, // DAILY_FEATURE_TRUTH §2
+      { text: { en: "One tap takes it, one tap completes it.", es: "Un toque la toma, un toque la completa." }, status: "live" },
+      { text: { en: "Nobody can take the same task twice, and only the person who took it can close it.", es: "Nadie puede tomar la misma tarea dos veces, y solo quien la tomó puede cerrarla." }, status: "live" },
+      { text: { en: "In Spanish or in English, chosen in the app.", es: "En español o en inglés, elegido en la aplicación." }, status: "live" },
       { text: { en: "Daily Goals for each agent.", es: "Daily Goals para cada agente." }, status: "final_acceptance" },
       { text: { en: "An assistant that answers questions about your own leads, viewings and priorities.", es: "Una asistente que responde preguntas sobre tus propios leads, visitas y prioridades." }, status: "final_acceptance" },
       { text: { en: "Branded email, so what the assistant sends goes out under your agency's brand.", es: "Email con tu marca, para que lo que envíe la asistente salga con la marca de tu agencia." }, status: "final_acceptance" },
       { text: { en: "An employee assistant for internal tasks.", es: "Una asistente para los empleados y sus tareas internas." }, status: "in_implementation" },
     ],
     scenario: {
-      en: "An agent starts the day and asks who to call first. The assistant lists the leads whose priority rose overnight and explains, for each one, what changed.",
-      es: "Un agente empieza el día y pregunta a quién llamar primero. La asistente enumera los leads cuya prioridad subió durante la noche y explica, para cada uno, qué cambió.",
+      en: "An agent opens the list, takes Laura Serrano's viewing task, and completes it once a person has agreed the time with her. The others see that it is taken, and by whom.",
+      es: "Un agente abre la lista, toma la tarea de la visita de Laura Serrano y la completa cuando una persona ha acordado la hora con ella. Los demás ven que está tomada y quién la ha tomado.",
     },
     fits: [
       { en: "Desktop and mobile", es: "Escritorio y móvil" },

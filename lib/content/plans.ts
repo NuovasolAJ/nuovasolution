@@ -64,12 +64,14 @@ export const catalogPlans: CatalogPlan[] = [
 export const PUBLIC_FEATURES: string[] = ["cx.baseline", "channel.email", "channel.whatsapp", "lead.qualify", "crm.core", "consent.handling"];
 
 /**
- * R26: the trial equals Essential for 14 days once API signals TRIAL_PLAN_ALIGNED. The owner
- * records that signal as NEXT_PUBLIC_TRIAL_PLAN=essential on the deployment; until then the
- * pages state the trial neutrally and tie no badge or CTA to a plan.
+ * R26: the trial equals Essential for 14 days. API reported TRIAL_PLAN_ALIGNED (staging 10/10,
+ * reconciliation 2026-09-29 §B 4), and the staging catalog read on 2026-09-29 shows the trial plan
+ * with Essential's scope and limits (seats 3, offices 1, 750 enquiries a month, trial_days 14).
+ * So the Essential wording is the default. NEXT_PUBLIC_TRIAL_PLAN=unaligned on a deployment
+ * switches back to the neutral wording, should the contract change.
  */
 export function trialPlanAligned(): boolean {
-  return process.env.NEXT_PUBLIC_TRIAL_PLAN === "essential";
+  return process.env.NEXT_PUBLIC_TRIAL_PLAN !== "unaligned";
 }
 
 export function isPlanCode(v: string | undefined): v is PlanCode {

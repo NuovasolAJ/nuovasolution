@@ -3,6 +3,7 @@ import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { capabilitiesByStage, stageOrder } from "@/lib/content/capabilities";
+import { trialPlanAligned } from "@/lib/content/plans";
 import { Logo } from "@/components/ui/logo";
 import { LanguageSwitcher } from "./language-switcher";
 import { HeaderShell } from "./header-shell";
@@ -73,7 +74,7 @@ export function Header({ locale }: { locale: Locale }) {
       nav={nav}
       utilities={<LanguageSwitcher locale={locale} labels={{ en: d.common.english, es: d.common.spanish, group: d.common.language }} />}
       login={{ href: localePath(locale, "/login"), label: d.nav.login }}
-      primary={{ href: localePath(locale, "/signup"), label: d.nav.startFree }}
+      primary={{ href: localePath(locale, "/signup"), label: trialPlanAligned() ? d.packages.ctaTrialEssential : d.nav.startFree }}
       labels={{ menu: d.nav.menu, close: d.nav.close }}
     />
   );

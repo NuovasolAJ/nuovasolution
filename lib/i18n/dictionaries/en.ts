@@ -42,7 +42,8 @@ export const en = {
     allCapabilities: "See every capability",
     // LAUNCH_COPY_v1 §7.2: exactly one sentence each for the two on-request modules, nowhere else.
     onRequest: "On request",
-    onRequestLines: ["A phone assistant is part of the product and we show it on request.", "A 3D walkthrough of a property, as a premium service on request."],
+    // COPY_DELTAS_0929 D-43 (Voice) and D-42 (3D, 3D_FEATURE_TRUTH §2): these sentences and no others.
+    onRequestLines: ["A phone assistant is in preparation. We walk you through it on request.", "An interactive 3D model of your property in the browser, built by us on request. To scale from your plans; furniture and materials are illustrative. Tap a room, choose a floor, switch the furnishing on and off."],
   },
 
   common: {
@@ -140,25 +141,28 @@ export const en = {
     hero: {
       eyebrow: "For real estate agencies in Spain",
       h1: "No enquiry waits until Monday",
-      lead: "A buyer writes on Sunday evening. Nuova answers in their language, records the enquiry with a priority, and leaves your team one clear task.",
+      lead: "A buyer writes on Sunday evening. Nuova answers in their language, records what she asked for, and leaves your team one task to finish.", // COPY_DELTAS_0929 D-01
       qualifier: "On the channels you connect.",
       note: "14 days free. No payment.",
       ctaSecondary: "See how it works",
       cards: {
         synthetic: "Example with synthetic data",
-        enquiry: { channel: "WhatsApp · new enquiry", time: "Sunday 21:40", text: "Hello, I am Laura. Is the two bedroom flat in Estepona still available? We are in Manchester and could come on Thursday.", from: "Laura M." },
+        // One person across every surface, the same as in the Daily captures (daily_media/MANIFEST.md): Laura Serrano, Thursday morning.
+        enquiry: { channel: "WhatsApp · new enquiry", time: "Sunday 21:40", text: "Hello, I am Laura Serrano. Is the two bedroom flat in Estepona still free to view? We are in Manchester and could come on Thursday morning.", from: "Laura Serrano" }, // D-09
         answer: {
           label: "Answered by Nuova, under your agency's name",
           time: "Sunday 21:40",
           disclosure: "I am an AI assistant. I will help you with your property enquiry. If you prefer to speak to a human agent, tell me at any time.",
           disclosureMark: "Sample translation. The approved notice exists in Spanish.",
-          text: "Hello Laura, yes, the flat is still available. I have noted Thursday. An agent from the agency will contact you to confirm the time.",
+          // No availability is confirmed: there is no inventory source behind the example (external finding 13, COPY_DELTAS_0929 D-10).
+          text: "Hello Laura, thank you for writing. I have noted the two bedroom flat in Estepona and Thursday morning. An agent from the agency will contact you to confirm availability and the time.",
           disclosureNote: "The reply carries this notice because an assistant wrote it.",
         },
-        record: { label: "Customer record", priority: "Priority: high", name: "Laura M.", summary: "Buyer · 2 bedrooms · Estepona · viewing requested", qualificationLabel: "Qualification", qualification: "Qualified, ready to view", nextLabel: "Next", next: "Confirm Thursday with Laura" },
+        // D-12: no priority and no qualification (not in production, LEAD_TRUTH_INPUT_v1 §1); the record shows what the customer asked for.
+        record: { label: "Customer record", name: "Laura Serrano", lines: ["Asked for: 2 bedrooms, Estepona · REF-DEMO-204", "Wants to view: Thursday morning", "Writes in: English"], next: "Next: a task for your team" },
         task: {
           label: "Your team's tasks, today",
-          title: "Confirm Thursday's viewing with Laura M.",
+          title: "Confirm Thursday's viewing with Laura Serrano",
           reason: "Reason: viewing requested, Estepona, 2 bedrooms",
           state: "Open · nobody has claimed it yet",
           action: "Claim",
@@ -166,21 +170,32 @@ export const en = {
         },
       },
     },
+    // Three concrete pains, each followed by what the product does about it (owner order 2026-09-29 B).
+    // Pain sentences 1 and 2 and the benefits are LAUNCH_COPY_v1 / DAILY_FEATURE_TRUTH §2 sentences;
+    // pain 3 and the three labels are interim implementer wording until COPY_DELTAS_0929.
     problem: {
       h2: "The enquiry arrives at the worst moment",
-      items: ["You are at a viewing when it lands.", "It waits until the evening. By then they have written to another agency.", "Monday starts with a full inbox and no order to it."],
+      lead: "You are at a viewing when it lands.",
+      items: [
+        { label: "Lost enquiries", pain: "It waits until the evening. By then they have written to another agency.", benefit: "Text enquiries are answered and recorded under your agency's name." },
+        { label: "Scattered context", pain: "Monday starts with a full inbox and no order to it.", benefit: "The conversation and what the customer asked for stay on one record, so the next person to open it sees everything without asking." },
+        { label: "Unclear ownership", pain: "A viewing was asked for, and nobody knows who calls back.", benefit: "Whoever takes a task owns it. The others can see that it is taken and by whom." },
+      ],
+      benefitLabel: "With Nuova",
       close: "None of that is a discipline problem. There is simply nobody free at 21:40 on a Sunday.",
     },
     flow: {
       eyebrow: "What Nuova does",
-      h2: "From a message to a task",
-      lead: "The enquiry is answered in the customer's language. It becomes one record with what they are looking for, a qualification and a priority. A viewing request becomes a task your team can see.",
-      steps: ["Answered", "Recorded", "Prioritised", "Task for your team"],
+      // COPY_DELTAS_0929 D-02 to D-08: one journey of four steps that ends with a person acting; setup is not a step.
+      h2: "From a message to a finished task",
+      lead: "The enquiry is answered in the customer's language. It becomes one record with what they asked for. A viewing request becomes a task, and one of your people takes it and closes it.",
+      steps: ["Answered", "Recorded", "Handed over", "Done"],
       stepsDetail: "The reply says an assistant wrote it. It does not commit your agency to a price, a date or a condition.",
       cards: {
         answer: { step: "Answered", title: "WhatsApp and e-mail", line: "Text enquiries are answered and recorded under your agency's name." },
-        understand: { step: "Recorded and prioritised", title: "One record, one priority", line: "Every enquiry is recorded with the conversation, what the person wants and a priority, so your team starts with the most promising ones.", qualifier: "Cold, warm or hot. No score to interpret." },
-        handover: { step: "Task for your team", title: "One clear task, not a reminder", line: "A viewing request becomes a task with a name, a reason and an owner. Your team claims it and completes it." },
+        understand: { step: "Recorded", title: "One record per enquiry", line: "The conversation and what the customer asked for stay on one record, so the next person to open it sees everything without asking." },
+        handover: { step: "Handed over", title: "One clear task, not a reminder", line: "A viewing request becomes a task with a name, a reason and an owner. Your team claims it and completes it." },
+        done: { step: "Done", title: "One of your people finishes it", line: "One tap takes the task, one tap completes it. The card shows who took it, and nobody can take the same task twice." },
         setup: { step: "Your setup", title: "Your agency, set up by you", line: "Your details, your hours, your team and your roles. Your progress is saved between sessions." },
       },
     },
@@ -191,47 +206,49 @@ export const en = {
         synthetic: "Synthetic data",
         assistant: "AI assistant",
         caption: "The reply that goes out, with the notice it must carry.",
-        turns: [
-          { role: "customer", text: "Hello, I am Laura. Is the two bedroom flat in Estepona still available? We are in Manchester and could come on Thursday.", time: "21:40" },
-          { role: "agency", text: "Hello Laura, yes, the flat is still available. I have noted Thursday. An agent from the agency will contact you to confirm the time.", time: "21:40", disclosure: true },
-          { role: "customer", text: "Thursday afternoon would suit us. We land at 13:00.", time: "21:43" },
-          { role: "agency", text: "Noted: Thursday afternoon. An agent from the agency will confirm the exact time with you.", time: "21:43" },
-        ],
+        time: "21:40",
         footer: "Names and times are invented.",
       },
       board: {
         title: "Leads",
         subtitle: "Your agency · this week",
-        columns: { name: "Name", wants: "Looking for", qualification: "Qualification", priority: "Priority", next: "Next" },
-        priorities: { high: "High", medium: "Medium", low: "Low" },
+        // D-13: rows say what was asked for and what comes next; no qualification, no priority chip.
+        columns: { asked: "Asked for", next: "Next" },
         rows: [
-          { name: "Laura M.", wants: "2 bedrooms · Estepona", qualification: "Qualified, ready to view", priority: "high", next: "Confirm Thursday's viewing" },
-          { name: "Peter and Anna K.", wants: "Valuation · Marbella", qualification: "Qualified", priority: "medium", next: "Call this week" },
-          { name: "Carlos R.", wants: "Villa · Benahavís", qualification: "Second enquiry", priority: "medium", next: "Reply on WhatsApp" },
-          { name: "Sofía L.", wants: "Long term rental · Fuengirola", qualification: "Details still missing", priority: "low", next: "Wait for her reply" },
+          { name: "Laura Serrano", asked: "2 bedrooms, Estepona · REF-DEMO-204", next: "A task for your team" },
+          { name: "Peter and Anna K.", asked: "A valuation in Marbella", next: "Call this week" },
+          { name: "Carlos R.", asked: "A villa in Benahavís", next: "Reply on WhatsApp" },
+          { name: "Sofía L.", asked: "A long term rental in Fuengirola", next: "Wait for her reply" },
         ],
-        footer: "Synthetic data.",
-        caption: "Every enquiry as one record, ordered by priority.",
+        footer: "Synthetic data. One week of enquiries, each one as a record with what the customer asked for.",
       },
       task: { caption: "What your team does first, and why." },
-      readiness: { label: "Example" },
-      assistant: {
-        title: "Daily assistant",
-        subtitle: "For your team, on desktop and mobile",
-        question: "Who should I call first today?",
-        intro: "Three leads rose in priority overnight:",
-        items: [
-          { name: "Laura M.", why: "asked for a viewing on Thursday and is ready to travel." },
-          { name: "Peter and Anna K.", why: "replied to the valuation email and want a call this week." },
-          { name: "Carlos R.", why: "wrote a second time about the same villa in Benahavís." },
-        ],
-        footer: "Synthetic data. The assistant answers from your own leads, viewings and priorities.",
+      readiness: { label: "Example", withYou: "We set this up with you" }, // D-19
+      // The real task surface (DAILY_FEATURE_TRUTH rows 1 to 6; captures 2026-09-28, synthetic data). The chat
+      // assistant, a team board and a staff login address are not claimed: they do not exist in production.
+      // Texts COPY_DELTAS_0929 §5 (MEDIA_CAPTIONS); playLabel, clipMeta and the alt text are the implementer's control labels.
+      daily: {
+        clipHeading: "One task, taken and closed",
+        clipLead: "21 seconds from the real screen your team uses. No sound needed.",
+        posterLabel: "The task list your team works from",
+        playLabel: "Play the clip",
+        clipMeta: "21 seconds, no sound",
+        clipAlt: "The task list in the staff app: a viewing request from Laura Serrano waits to be taken.",
+        note: "Recording from the product, with synthetic people and properties. The ring marks where the agent taps; it is part of the recording, not the product.",
+        cues: ["Laura Serrano asked for a viewing on Thursday morning.", "The agent takes the task. The card now says it is theirs.", "Done. It leaves the list, and the rest stays."],
+        stills: {
+          tasks: "Each person sees their own list: taken, waiting, and what nobody has yet.",
+          "task-action": "Taken by you. Only you can close it.",
+          "task-done": "Closed. The task leaves the list.",
+          "task-card": "The customer, the property and the time they asked for, on one card.",
+        },
+        synthetic: "Synthetic data",
       },
     },
     // LAUNCH_COPY_v1 §3.4: the one-system idea, kept short.
     record: {
       eyebrow: "One system",
-      h2: "One enquiry, one memory, one place",
+      h2: "One enquiry, one record, one place", // D-18
       lead: "Nuova sits underneath the agency rather than beside it. Nothing is handed between tools, and nothing has to be kept in someone's head.",
     },
     access: {
@@ -273,7 +290,7 @@ export const en = {
     indexEyebrow: "Capabilities",
     indexH2: "What Nuova does for your agency.",
     exampleEyebrow: "One enquiry, end to end",
-    exampleH2: "From a message to a task",
+    exampleH2: "From a message to a finished task",
     tenant: {
       eyebrow: "Your environment",
       h2: "Each agency has its own branded environment.",
@@ -300,14 +317,16 @@ export const en = {
     // PRODUCT_TEXTS_C3_v1 §3: no price, interval or discount anywhere until PRICING_AUTHORITY exists.
     eyebrow: "Plans",
     // LAUNCH_COPY_v1 §5.1 interim wording (trial plan not Essential yet); the Essential wording after TRIAL_PLAN_ALIGNED.
-    h1: "Start with 14 days of trial",
-    lead: "14 days, no payment method. After that you choose a plan with us, and we tell you the price for your agency before anything is agreed.",
-    h1Aligned: "Try Essential free for 14 days",
+    h1Neutral: "Start with 14 days of trial",
+    leadNeutral: "14 days, no payment method. After that you choose a plan with us, and we tell you the price for your agency before anything is agreed.",
+    // COPY_DELTAS_0929 D-20, D-21: the Essential wording is released (PRODUCT_TRUTH_TABLE_v1 §G).
+    h1: "Try Essential free for 14 days",
+    lead: "14 days of Essential, free, with no payment method. After that you choose a plan with us, and we tell you the price and the billing period before anything is agreed.",
     plansEyebrow: "The plans",
     included: "Included",
     baselineHeading: "What every plan includes",
     baseline: ["CRM", "Lead Engine", "Automatic replies", "Basic follow up", "Property matching", "Core reporting"],
-    baselineLine: "Every plan includes the CRM, the replies, the qualification and the tasks.",
+    baselineLine: "Every plan includes the replies, the record and the tasks. The CRM is included from the start.", // D-30
     noPriceHeading: "Pricing",
     noPriceBody: "We tell you the price for your agency before anything is agreed. There is no self-service billing. Start the free trial or talk to us.",
     notAvailable: "Billing self-service is not available.",
@@ -326,26 +345,34 @@ export const en = {
     tiersLead: "What each plan includes, read from the plan catalogue.",
     proposalLine: "Tell us your offices, your team and your channels, and we send you a proposal.",
     amount: "Price for your agency",
-    amountLine: "We tell you before anything is agreed.",
+    amountLine: "We tell you the price and the billing period before anything is agreed.", // D-29
     amountNote: "There is no card checkout and no automatic renewal. Receiving an invoice does not activate the plan; the confirmed payment does.",
     trialEyebrow: "Trial and expiry",
     trialLines: [
       "14 days, free, with no payment method.",
       "Your account and your data stay. Paid features pause until you choose a plan. You can still log in.",
-      "Days left are shown from the server, never counted in your browser.",
     ],
+    // Pricing comparison (owner order 2026-09-29): what differs is shown once per plan, what is shared is said once.
+    // Interim implementer wording until COPY_DELTAS_0929; amounts and the period come from PRICING_AUTHORITY (O-7).
+    noPaymentMethod: "No payment method",
+    compareHeading: "What differs between the plans",
+    compareLead: "All three plans include the same working parts today. They differ in size: offices, seats and enquiries per month.", // D-25
+    planColumn: "Plan",
+    periodHeading: "Price and billing period",
+    periodLine: "We state the price and the billing period in your proposal and on every invoice. Nothing is charged automatically.",
+    planLines: { essential: "One office and a small team.", growth: "A larger team in one office.", scale: "Several offices." },
     // Trial badge and CTA move onto Essential only after the API signal TRIAL_PLAN_ALIGNED (audit R26).
     trialBadge: "14 days of trial",
-    trialBadgeAligned: "14 days free, Essential",
+    trialBadgeAligned: "14 days free", // D-22: the chip sits on the Essential card only
     ctaTrialEssential: "Try Essential free",
     limitsHeading: "Limits",
     limits: { offices: "Offices", seats: "Seats", leads_month: "Leads per month", crm_connections: "CRM connections", voice_minutes: "Voice minutes", unlimited: "No monthly cap", none: "None" },
     featuresHeading: "Included",
     featureNames: {
       "cx.baseline": "Automatic text replies",
-      "channel.email": "Gmail",
+      "channel.email": "Email through Gmail", // D-27
       "channel.whatsapp": "WhatsApp",
-      "lead.qualify": "Qualification and priority on every enquiry",
+      "lead.qualify": "What each customer asked for, kept on their record", // D-26
       "crm.core": "CRM included",
       "followup.basic": "Basic follow up",
       "consent.handling": "Consent handling",
@@ -412,13 +439,9 @@ export const en = {
     lead: "Direct human reach, in English or in Spanish. A demo is optional and never a condition for starting the trial.",
     emailLabel: "Email",
     demoEyebrow: "Optional",
-    demoH2: "Book a demo",
-    demoBody: "We show you Nuova running on a real enquiry, not a slide deck.",
+    demoH2: "Request a demo", // D-31
+    demoBody: "We walk you through the system on a real example and you can ask anything. No slide deck.", // D-32
     demoCta: "Request a demo",
-    whatsappH2: "WhatsApp",
-    whatsappBody: "Write to us directly.",
-    whatsappCta: "Open WhatsApp",
-    whatsappUnavailable: "A direct WhatsApp line will appear here once the business number is configured.",
     trialH2: "Or just start",
     trialBody: "Try free for 14 days. No payment method required, no sales call required.",
     // A plan interest from the packages page is carried into the request (audit Z03, Z11). The plan name comes from the catalog.
@@ -816,7 +839,7 @@ export const en = {
   },
 
   footer: {
-    brandLine: "Nuova is the operating layer of a real estate agency. Built for the way agencies in Spain actually work.",
+    brandLine: "Nuova answers your agency's enquiries and turns them into work your team can finish. Built for how agencies in Spain actually work.", // D-40
     platform: "Platform",
     getStarted: "Get started",
     legal: "Legal",
@@ -826,7 +849,6 @@ export const en = {
     terms: "Terms of service",
     dataDeletion: "Data deletion",
     notice: "Legal notice",
-    placeholderNote: "Legal pages are published as labelled placeholders pending counsel.",
   },
 
   notFound: {

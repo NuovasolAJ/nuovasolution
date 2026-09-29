@@ -9,7 +9,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const ROOT = new URL("../../", import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1");
-const OUT = process.env.OUT ?? join(ROOT, "docs", "website_redesign", "evidence_2026-09-28");
+const OUT = process.env.OUT ?? join(ROOT, "docs", "website_redesign", "evidence_2026-09-29");
 const PORT = 3113;
 const BASE = (process.env.BASE ?? `http://localhost:${PORT}`).replace(/\/$/, "");
 const EXPECT_INDEXABLE = process.env.EXPECT_INDEXABLE === "1";
@@ -72,7 +72,7 @@ try {
   check("sitemap.xml", EXPECT_INDEXABLE ? "lists routes" : "lists nothing on a preview", EXPECT_INDEXABLE ? /<loc>/.test(smText) : !/<loc>/.test(smText), { status: sm.status, locs: (smText.match(/<loc>/g) ?? []).length });
   const root = await get("/");
   check("root redirect", "/ redirects once to a locale", root.status === 307 && /\/(en|es)$/.test(root.headers.get("location") ?? ""), { status: root.status, location: root.headers.get("location") });
-  const assets = await get("/media/nuova-agency-day/nuova-agency-day-16x9-v1-poster-es.jpg");
+  const assets = await get("/media/daily/daily-clip-poster-es-desktop.png");
   check("poster asset", "media poster is served", assets.status === 200 && (assets.headers.get("content-type") ?? "").includes("image"), { status: assets.status, type: assets.headers.get("content-type") });
   const legacy = await get("/live-demo");
   check("legacy redirect", "/live-demo redirects permanently", legacy.status === 308 || legacy.status === 301, { status: legacy.status, location: legacy.headers.get("location") });

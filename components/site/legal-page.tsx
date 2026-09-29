@@ -4,6 +4,24 @@ import { legalPage, type LegalSlug } from "@/lib/content/legal";
 import { Section } from "@/components/ui/section";
 import { LabelChip } from "@/components/ui/status";
 
+/**
+ * Only the address itself is the link, and the address never includes the sentence's full stop
+ * (external finding 14: the old pattern linked the whole paragraph to "…@nuovasolution.com.").
+ */
+const MAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+/;
+function WithMail({ text }: { text: string }) {
+  const m = text.match(MAIL);
+  if (!m || m.index === undefined) return <>{text}</>;
+  const address = m[0];
+  return (
+    <>
+      {text.slice(0, m.index)}
+      <a href={`mailto:${address}`} className="text-text-accent underline underline-offset-4">{address}</a>
+      {text.slice(m.index + address.length)}
+    </>
+  );
+}
+
 /** Ivory canvas, 720 px measure, centred title (permitted case), PLACEHOLDER banner. */
 export function LegalPageView({ locale, slug }: { locale: Locale; slug: LegalSlug }) {
   const d = getDictionary(locale);
@@ -28,13 +46,7 @@ export function LegalPageView({ locale, slug }: { locale: Locale; slug: LegalSlu
               <div className="mt-4 space-y-4">
                 {s.paragraphs.map((p, i) => (
                   <p key={i} className="t-body-m text-text-secondary measure-text" style={{ lineHeight: 1.7 }}>
-                    {p.includes("@") ? (
-                      <a href={`mailto:${p.match(/[^\s]+@[^\s.]+\.[^\s]+/)?.[0] ?? ""}`} className="text-text-accent underline underline-offset-4">
-                        {p}
-                      </a>
-                    ) : (
-                      p
-                    )}
+                    <WithMail text={p} />
                   </p>
                 ))}
               </div>

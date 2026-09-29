@@ -137,7 +137,7 @@ try {
   await motion(true);
   await vp(1440, 900, false);
   await nav(`${BASE}/es`);
-  const rm = await ev("(()=>{const els=[...document.querySelectorAll('.reveal')];const vis=els.every(e=>getComputedStyle(e).opacity==='1');const st=[...document.querySelectorAll('.stack-card')].every(e=>getComputedStyle(e).position==='relative');return {reveals:els.length,allVisible:vis,stackStatic:st}})()");
+  const rm = await ev("(()=>{const els=[...document.querySelectorAll('.reveal')];const vis=els.every(e=>getComputedStyle(e).opacity==='1');const st=[...document.querySelectorAll('.stage')].every(e=>getComputedStyle(e).position==='relative');return {reveals:els.length,allVisible:vis,stackStatic:st}})()");
   check("reduced-motion", "with reduced motion every reveal is visible without scrolling and stacked cards are static", rm.allVisible && rm.stackStatic, rm);
   await shot("reduced-motion-es-home");
   await motion(false);
@@ -159,7 +159,7 @@ try {
 
   // no JS: server HTML alone has the hero cards, the stack and the Q&A window text
   const html = await (await fetch(`${BASE}/es`)).text();
-  check("no-js-content", "server HTML carries hero cards, stacked stage cards and the Q&A window", html.includes("data-hero-stack") && html.includes("data-stage-stack") && html.includes('data-qa-panel="inline"'), true);
+  check("no-js-content", "server HTML carries hero cards, stacked stage cards and the Q&A window", html.includes("data-hero-scene") && html.includes("data-flow-story") && html.includes('data-qa-panel="inline"'), true);
   check("no-dark-sections", "no dark section apart from the footer", (html.match(/data-canvas="deep"/g) ?? []).length === 1, (html.match(/data-canvas="deep"/g) ?? []).length);
 
   ws.close();

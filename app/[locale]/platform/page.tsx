@@ -7,7 +7,7 @@ import { Section } from "@/components/ui/section";
 import { SectionHead, Display, Eyebrow, Lead } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
-import { FlowRow } from "@/components/site/stage-stack";
+import { FlowRow } from "@/components/site/flow-story";
 import { StatusGlyph } from "@/components/ui/status";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
@@ -41,7 +41,7 @@ export default function PlatformPage({ params }: { params: { locale: string } })
 
       <Section rhythm="default" hairline labelledBy="po-flow">
         <div className="container-default">
-          <Reveal><SectionHead eyebrow={d.platform.exampleEyebrow} title={d.platform.exampleH2} id="po-flow" /></Reveal>
+          <Reveal><SectionHead eyebrow={d.platform.exampleEyebrow} title={d.home.flow.h2} id="po-flow" /></Reveal>
           <div className="mt-12"><FlowRow locale={locale} /></div>
         </div>
       </Section>

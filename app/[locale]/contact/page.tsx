@@ -17,8 +17,7 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
 
 /**
  * Direct human reach. Email is real. The scheduling link is an existing external tool with a
- * real href (progressive enhancement only, never href="#"). WhatsApp renders only when a
- * business number is configured. A plan interest from the packages page (?plan=growth) is
+ * real href (progressive enhancement only, never href="#"). A plan interest from the packages page (?plan=growth) is
  * shown and carried into the e-mail subject; it grants nothing (audit Z03, Z11).
  */
 export default function ContactPage({ params, searchParams }: { params: { locale: string }; searchParams?: { plan?: string } }) {
@@ -27,7 +26,6 @@ export default function ContactPage({ params, searchParams }: { params: { locale
   const c = d.contact;
   const p = (path: string) => localePath(locale, path);
   const cal = process.env.NEXT_PUBLIC_CAL_URL || "https://cal.com/nuovasolution/demo";
-  const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/[^0-9]/g, "");
   const plan = isPlanCode(searchParams?.plan) ? catalogPlans.find((x) => x.code === searchParams!.plan) : undefined;
   const mailto = plan ? `mailto:antonio@nuovasolution.com?subject=${encodeURIComponent(c.proposalSubject.replace("{plan}", plan.display_name))}` : "mailto:antonio@nuovasolution.com";
 
@@ -52,23 +50,13 @@ export default function ContactPage({ params, searchParams }: { params: { locale
       </Section>
 
       <Section rhythm="default" hairline>
-        <div className="container-default grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 [&>*]:card [&>*]:rounded-xl [&>*]:p-6">
+        {/* No WhatsApp block: a channel that does not exist is not a contact option (external finding 10, COPY_DELTAS_0929 D-33). */}
+        <div className="container-default grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 [&>*]:card [&>*]:rounded-xl [&>*]:p-6">
           <Reveal>
             <Eyebrow className="mb-3">{c.demoEyebrow}</Eyebrow>
             <Heading size="l" as="h2">{c.demoH2}</Heading>
             <p className="mt-3 t-body-m text-text-secondary">{c.demoBody}</p>
             <div className="mt-6"><ButtonLink href={cal} variant="secondary" external>{c.demoCta}</ButtonLink></div>
-          </Reveal>
-          <Reveal delay={60}>
-            <Heading size="l" as="h2">{c.whatsappH2}</Heading>
-            {wa ? (
-              <>
-                <p className="mt-3 t-body-m text-text-secondary">{c.whatsappBody}</p>
-                <div className="mt-6"><ButtonLink href={`https://wa.me/${wa}`} variant="secondary" external>{c.whatsappCta}</ButtonLink></div>
-              </>
-            ) : (
-              <p className="mt-3 t-body-m text-text-muted">{c.whatsappUnavailable}</p>
-            )}
           </Reveal>
           <Reveal delay={120}>
             <Heading size="l" as="h2">{c.trialH2}</Heading>

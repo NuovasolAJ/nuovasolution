@@ -6,7 +6,6 @@ import { Section } from "@/components/ui/section";
 import { SectionHead, Display, Eyebrow, Lead, Caption, Heading } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
-import { MediaSlot } from "@/components/ui/media-slot";
 import { ReadinessView } from "@/components/site/product-views";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
@@ -98,15 +97,6 @@ export default function TrialPage({ params }: { params: { locale: string } }) {
               ))}
             </ol>
           </div>
-        </div>
-      </Section>
-
-      <Section rhythm="default" surface="ivory" labelledBy="tr-film">
-        <div className="container-default">
-          <Reveal><SectionHead eyebrow={t.filmEyebrow} title={t.filmH2} size="heading-l" id="tr-film" /></Reveal>
-        </div>
-        <div className="container-wide mt-8">
-          <Reveal mode="opacity"><MediaSlot id="V-05" locale={locale} caption={d.media.setup} /></Reveal>
         </div>
       </Section>
 

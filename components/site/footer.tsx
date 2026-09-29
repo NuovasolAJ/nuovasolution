@@ -74,9 +74,8 @@ export function Footer({ locale }: { locale: Locale }) {
             </nav>
           ))}
         </div>
-        <div className="mt-16 flex flex-col gap-3 border-t border-line-hairline pt-6 md:flex-row md:items-center md:justify-between">
+        <div className="mt-16 border-t border-line-hairline pt-6">
           <p className="t-caption text-text-muted">{d.footer.copyright}</p>
-          <p className="t-caption text-text-muted">{d.footer.placeholderNote}</p>
         </div>
       </div>
     </footer>
