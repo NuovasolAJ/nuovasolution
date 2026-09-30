@@ -68,12 +68,34 @@ export type QaOutcome =
   | { status: "unknown" }
   | { status: "cannot_confirm" };
 
+/**
+ * This path records no handover and takes no contact details (WEBQA_BACKEND_READY_2026-09-29 §3: "the
+ * assistant may only say that someone will get in touch when a handover was actually recorded").
+ * So a text that tells the visitor somebody will get back to them is never shown as an answer: nobody
+ * could keep that promise. It becomes the site's own "cannot confirm from here" with the contact link.
+ * Observed on staging on 2026-09-30: every question answered "I cannot answer that right now. A
+ * colleague will get back to you." with status "answered" and no marker for that state.
+ */
+// Built from a string so the Unicode letter class works whatever the compile target is.
+const CONTACT_PROMISE = new RegExp(
+  [
+    String.raw`(?:\bwill|'ll)\s+(?:get\s+back\s+to|contact|call|write\s+to|reach\s+out\s+to|be\s+in\s+touch\s+with)\s+you\b`,
+    String.raw`(?<!\p{L})te\s+(?:responder[áa]|contactar[áa]|llamar[áa]|escribir[áa])(?!\p{L})`,
+    String.raw`(?<!\p{L})se\s+pondr[áa]n?\s+en\s+contacto\s+contigo(?!\p{L})`,
+  ].join("|"),
+  "iu",
+);
+export function promisesContact(text: string): boolean {
+  return CONTACT_PROMISE.test(text);
+}
+
 /** Map a response body in the result shape (also used by the intake's synchronous 200). */
 function outcomeFrom(json: unknown): QaOutcome {
   const j = (json ?? {}) as { status?: string; answer?: { text?: string; language?: string }; language?: string; kb_version?: string; retry_after_ms?: number };
   // WEBQA_BACKEND_READY_2026-09-29 §2: the result carries status "answered"; the intake's synchronous 200
   // carries the answer without a status field. Both are an answer when the text is there.
   if ((j.status === "answered" || j.status === undefined) && typeof j.answer?.text === "string" && j.answer.text.trim()) {
+    if (promisesContact(j.answer.text)) return { status: "cannot_confirm" };
     const language = typeof j.language === "string" ? j.language : typeof j.answer.language === "string" ? j.answer.language : null;
     return { status: "answered", text: j.answer.text, language, kb_version: typeof j.kb_version === "string" ? j.kb_version.slice(0, 40) : null };
   }

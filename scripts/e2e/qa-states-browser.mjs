@@ -95,6 +95,12 @@ try {
   const ai = await ev(`${D}.querySelector('[data-qa-ai-notice]')?.innerText??null`);
   check("QT-08", "the AI notice stays next to the conversation", /AI assistant/.test(ai ?? ""), { notice: ai });
 
+  // 4b. the backend "answers" with a promise of contact: shown as 'cannot confirm', never as that promise
+  await ask("PROMISE me something");
+  await waitFor(`${D}.querySelectorAll('[data-qa-turn="nuova"]').length===5`, 20000);
+  const a5 = await last();
+  check("QT-11", "an answer text that promises contact is never shown: the box says 'cannot confirm' and links to the contact page", /cannot confirm/i.test(a5?.text ?? "") && a5?.link === "/en/contact" && !/colleague will get back/i.test(a5?.text ?? ""), a5);
+
   // 5. over-long question
   await ask("x".repeat(4001));
   await sleep(600);

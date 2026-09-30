@@ -95,6 +95,11 @@ http
           log({ op: "GET", verdict: "200 failed", checks: v.checks });
           return reply(res, 200, { status: "failed", conversation_id: conv, message_id: msg });
         }
+        if (/PROMISE/.test(rec.question)) {
+          // what the staging assistant said for every question on 2026-09-30: an "answer" that promises contact
+          log({ op: "GET", verdict: "200 answered (contact promise)", checks: v.checks });
+          return reply(res, 200, { status: "answered", conversation_id: conv, message_id: msg, answer: { text: "I cannot answer that right now. A colleague will get back to you.", language: "en", html: null } });
+        }
         if (/HANDOFF/.test(rec.question)) {
           log({ op: "GET", verdict: "200 handoff", checks: v.checks });
           return reply(res, 200, { status: "handoff", conversation_id: conv, message_id: msg, note: "a colleague will follow up" });

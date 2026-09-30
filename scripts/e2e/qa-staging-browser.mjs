@@ -89,8 +89,10 @@ try {
     await ev(`${PANEL}?.scrollIntoView({block:'center'})`);
     await sleep(500);
     await shot(`${tag}-${locale}-qa-answer`);
-    results.answers.push({ locale, view: tag, question, ms, answered: got && !human, text, kb_version: kb ?? null });
-    return { surface, busy, got, human, ms, text };
+    const promise = String.raw`(will|'ll) (get back to|contact|call|be in touch with) you|te (responder|contactar|llamar)[áa]|en contacto contigo`;
+    const promised = new RegExp(promise, "i").test(text ?? "");
+    results.answers.push({ locale, view: tag, question, ms, outcome: !got ? "none" : human ? "site: cannot confirm, contact link" : "assistant answer", promises_contact: promised, text, kb_version: kb ?? null });
+    return { surface, busy, got, human, promised, ms, text };
   }
 
   const D1440 = [1440, 900, false, 1];
@@ -99,7 +101,8 @@ try {
   // QS-01 to QS-03: English on desktop
   const en = await askInline("en", D1440, "Does Nuova answer WhatsApp enquiries at night?", "d1440");
   check("QS-01", "staging shows the wired question box: surface 'public', no Demo label", en.surface?.surface === "public" && !/\bDemo\b/.test(en.surface?.text ?? ""), { surface: en.surface?.surface });
-  check("QS-02", "EN: a typed question is answered on screen inside the 60 second budget", en.got && !en.human && en.ms < 60000, { ms: en.ms, answer: en.text });
+  check("QS-02", "EN: a typed question gets a visible outcome inside the 60 second budget (an answer, or 'cannot confirm' with the contact link), never a promise of contact", en.got && en.ms < 60000 && !en.promised, { ms: en.ms, outcome: en.human ? "cannot confirm + contact link" : "answer", text: en.text });
+  check("QS-02k", "EN: the assistant answered from its knowledge base", en.got && !en.human, { answered: en.got && !en.human, text: en.text });
   check("QS-03", "EN: the waiting state is shown while the answer is produced", en.busy, { busy: en.busy });
 
   // QS-04: the floating window shows the same conversation (one conversation per visitor)
@@ -113,7 +116,8 @@ try {
   // QS-05: Spanish on a phone
   const es = await askInline("es", M390, "¿Tengo que cambiar de CRM?", "m390");
   const spanish = /\b(el|la|los|las|un|una|que|es|de|y|no|tu|tus)\b/i.test(es.text ?? "") && !/\bthe\b/i.test(es.text ?? "");
-  check("QS-05", "ES: a typed question is answered on screen, in Spanish, inside the budget", es.got && !es.human && es.ms < 60000 && spanish, { ms: es.ms, answer: es.text });
+  check("QS-05", "ES: a typed question gets a visible outcome in Spanish inside the budget, never a promise of contact", es.got && es.ms < 60000 && spanish && !es.promised, { ms: es.ms, outcome: es.human ? "cannot confirm + contact link" : "answer", text: es.text });
+  check("QS-05k", "ES: the assistant answered from its knowledge base", es.got && !es.human, { answered: es.got && !es.human, text: es.text });
   const over = await ev(`({sw:document.documentElement.scrollWidth,iw:innerWidth})`);
   check("QS-06", "no horizontal overflow at 390 px with the answer on screen", over.sw <= over.iw, over);
 

@@ -47,7 +47,9 @@ try {
   await send("Runtime.enable");
 
   for (const locale of LOCALES) for (const [tag, w, h, mobile, minStep, frameW] of [["d1440", 1440, 900, false, 90, 720], ["m390", 390, 844, true, 70, 390]].filter(([t]) => VIEWS.includes(t))) {
-    await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile });
+    // The frame is the visible viewport itself, scaled through the device scale factor. (A clip rectangle is in
+    // document coordinates: with a fixed clip at y = 0 every frame after the first showed nothing.)
+    await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: frameW / w, mobile });
     await send("Page.navigate", { url: `${BASE}/${locale}` });
     await sleep(process.env.BASE ? 3500 : 2200);
     const end = await ev("document.documentElement.scrollHeight - innerHeight"); // the whole page
@@ -57,11 +59,14 @@ try {
     const fh = Math.round(h * scale);
     let y = 0;
     let frames = 0;
+    let blank = 0;
     while (y <= end) {
       await ev(`window.scrollTo({top:${y},behavior:'instant'})`);
-      await sleep(y === 0 ? 900 : 70);
-      const s = await send("Page.captureScreenshot", { format: "png", captureBeyondViewport: false, clip: { x: 0, y: 0, width: w, height: h, scale } });
-      const png = PNG.decode(Buffer.from(s.result.data, "base64"));
+      await sleep(y === 0 ? 900 : 90);
+      const s = await send("Page.captureScreenshot", { format: "png", captureBeyondViewport: false });
+      const raw = Buffer.from(s.result.data, "base64");
+      if (raw.length < 6000) blank++; // a frame of one flat colour: the recording would be worthless
+      const png = PNG.decode(raw);
       const rgba = png.data;
       const palette = quantize(rgba, 128, { format: "rgba4444" });
       const index = applyPalette(rgba, palette, "rgba4444");
@@ -73,7 +78,8 @@ try {
     const file = join(OUT, `scroll-${tag}-${locale}-home.gif`);
     const bytes = Buffer.from(gif.bytes());
     writeFileSync(file, bytes);
-    console.log(`wrote ${file} (${frames} frames of ${frameW}x${fh}, page ${end + h}px, ${Math.round(bytes.length / 1024)} kB)`);
+    console.log(`wrote ${file} (${frames} frames of ${frameW}x${fh}, page ${end + h}px, ${Math.round(bytes.length / 1024)} kB, ${blank} blank frames)`);
+    if (blank > 0) process.exitCode = 1;
   }
   ws.close();
 } finally {
