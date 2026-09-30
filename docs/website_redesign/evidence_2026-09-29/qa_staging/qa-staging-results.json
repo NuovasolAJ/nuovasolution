@@ -1,0 +1,174 @@
+{
+ "started_utc": "2026-09-30T09:51:52.112Z",
+ "base": "https://nuovasolution-staging-preview-git-w-44e113-nuovasolajs-projects.vercel.app",
+ "design_base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "commit": "3c38f8d",
+ "deployment": "dpl_8xx9U1TuH6XaGT8EM9sEzb5etB41",
+ "checks": [
+  {
+   "id": "QS-01",
+   "what": "staging shows the wired question box: surface 'public', no Demo label",
+   "pass": true,
+   "evidence": {
+    "surface": "public"
+   }
+  },
+  {
+   "id": "QS-02",
+   "what": "EN: a typed question gets a visible outcome inside the 60 second budget (an answer, or 'cannot confirm' with the contact link), never a promise of contact",
+   "pass": true,
+   "evidence": {
+    "ms": 4502,
+    "outcome": "cannot confirm + contact link",
+    "text": "We cannot confirm that from here. A person can.\n\nContact a person"
+   }
+  },
+  {
+   "id": "QS-02k",
+   "what": "EN: the assistant answered from its knowledge base",
+   "pass": false,
+   "evidence": {
+    "answered": false,
+    "text": "We cannot confirm that from here. A person can.\n\nContact a person"
+   }
+  },
+  {
+   "id": "QS-03",
+   "what": "EN: the waiting state is shown while the answer is produced",
+   "pass": true,
+   "evidence": {
+    "busy": true
+   }
+  },
+  {
+   "id": "QS-04",
+   "what": "the floating window shows the same conversation as the embedded one",
+   "pass": true,
+   "evidence": {
+    "same": true
+   }
+  },
+  {
+   "id": "QS-05",
+   "what": "ES: a typed question gets a visible outcome in Spanish inside the budget, never a promise of contact",
+   "pass": true,
+   "evidence": {
+    "ms": 3249,
+    "outcome": "cannot confirm + contact link",
+    "text": "No podemos confirmarlo desde aquí. Una persona sí puede.\n\nContactar con una persona"
+   }
+  },
+  {
+   "id": "QS-05k",
+   "what": "ES: the assistant answered from its knowledge base",
+   "pass": false,
+   "evidence": {
+    "answered": false,
+    "text": "No podemos confirmarlo desde aquí. Una persona sí puede.\n\nContactar con una persona"
+   }
+  },
+  {
+   "id": "QS-06",
+   "what": "no horizontal overflow at 390 px with the answer on screen",
+   "pass": true,
+   "evidence": {
+    "sw": 390,
+    "iw": 390
+   }
+  },
+  {
+   "id": "QS-07",
+   "what": "the browser talks to the site's own /api/qa only, and sends the question and the language, nothing else",
+   "pass": true,
+   "evidence": {
+    "assistant_calls_from_browser": 0,
+    "posts": 2,
+    "body_keys": [
+     "locale,question"
+    ]
+   }
+  },
+  {
+   "id": "QS-08",
+   "what": "the tenant secret, the tenant id and the assistant host appear in no response body, no cookie and not in the page",
+   "pass": true,
+   "evidence": {
+    "bodies_searched": 22,
+    "bytes": 762326,
+    "hits": {
+     "secret": 0,
+     "tenant": 0,
+     "host": 0
+    },
+    "in_cookie": false,
+    "in_dom": false
+   }
+  },
+  {
+   "id": "QS-09",
+   "what": "the conversation cookie is httpOnly and secure",
+   "pass": true,
+   "evidence": {
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "Lax"
+   }
+  },
+  {
+   "id": "QS-10",
+   "what": "a POST from another origin is refused by the site's route",
+   "pass": true,
+   "evidence": {
+    "status": 403
+   }
+  },
+  {
+   "id": "QS-11",
+   "what": "the assistant refuses a foreign tenant and a wrong signature with 401",
+   "pass": true,
+   "evidence": {
+    "foreign_tenant": 401,
+    "wrong_signature": 401
+   }
+  },
+  {
+   "id": "QS-12",
+   "what": "design preview: the box is labelled Demo and answers that it cannot confirm from here",
+   "pass": true,
+   "evidence": {
+    "surface": "demo",
+    "answer": "We cannot confirm that from here. A person can.\n\nContact a person"
+   }
+  }
+ ],
+ "answers": [
+  {
+   "locale": "en",
+   "view": "d1440",
+   "question": "Does Nuova answer WhatsApp enquiries at night?",
+   "ms": 4502,
+   "outcome": "site: cannot confirm, contact link",
+   "promises_contact": false,
+   "text": "We cannot confirm that from here. A person can.\n\nContact a person",
+   "kb_version": null
+  },
+  {
+   "locale": "es",
+   "view": "m390",
+   "question": "¿Tengo que cambiar de CRM?",
+   "ms": 3249,
+   "outcome": "site: cannot confirm, contact link",
+   "promises_contact": false,
+   "text": "No podemos confirmarlo desde aquí. Una persona sí puede.\n\nContactar con una persona",
+   "kb_version": null
+  }
+ ],
+ "screens": [
+  "d1440-en-qa-answer.png",
+  "m390-es-qa-answer.png",
+  "d1440-en-design-qa-demo.png"
+ ],
+ "finished_utc": "2026-09-30T09:52:17.128Z",
+ "pass": 12,
+ "total": 14
+}

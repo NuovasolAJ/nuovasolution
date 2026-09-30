@@ -1,0 +1,1329 @@
+{
+  "started_utc": "2026-09-30T10:37:20.630Z",
+  "commit": "working tree",
+  "mode": "stub build",
+  "checks": [
+    {
+      "id": "d1440-en-home-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 346.109375,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-en-packages-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 258.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-en-platform-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 258.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-en-product-agent-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 282.734375,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-en-product-crm-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 258.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-en-trial-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 282.78125,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-en-contact-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 258.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-en-signup-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 258.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-en-login-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 258.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-en-nav-open",
+      "what": "platform menu open, items inside the panel, no name/chip overlap",
+      "pass": true,
+      "evidence": {
+        "open": true,
+        "inside": true,
+        "overlap": false,
+        "chipsFit": true,
+        "items": 5,
+        "menuW": 960,
+        "menuRight": 1200,
+        "vw": 1440
+      }
+    },
+    {
+      "id": "d1440-en-qa-open",
+      "what": "Q&A window opens inside the viewport with focus in the question field",
+      "pass": true,
+      "evidence": {
+        "w": 400,
+        "h": 680,
+        "right": 1420,
+        "bottom": 880,
+        "vw": 1440,
+        "vh": 900,
+        "focused": "TEXTAREA"
+      }
+    },
+    {
+      "id": "d1440-en-qa-inline",
+      "what": "the integrated Q&A window is on the home page",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "id": "t1024-en-home-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 356.046875,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-en-packages-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 242.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-en-platform-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 242.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-en-product-agent-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 308.265625,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-en-product-crm-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 242.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-en-trial-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 254.734375,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-en-contact-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 242.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-en-signup-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 242.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-en-login-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 242.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-en-nav-open",
+      "what": "platform menu open, items inside the panel, no name/chip overlap",
+      "pass": true,
+      "evidence": {
+        "open": true,
+        "inside": true,
+        "overlap": false,
+        "chipsFit": true,
+        "items": 5,
+        "menuW": 928,
+        "menuRight": 976,
+        "vw": 1024
+      }
+    },
+    {
+      "id": "t1024-en-qa-open",
+      "what": "Q&A window opens inside the viewport with focus in the question field",
+      "pass": true,
+      "evidence": {
+        "w": 400,
+        "h": 680,
+        "right": 1004,
+        "bottom": 1346,
+        "vw": 1024,
+        "vh": 1366,
+        "focused": "TEXTAREA"
+      }
+    },
+    {
+      "id": "t1024-en-qa-inline",
+      "what": "the integrated Q&A window is on the home page",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "id": "m390-en-home-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 221.5,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-en-packages-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 194.390625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-en-platform-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 218.390625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-en-product-agent-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 218.390625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-en-product-crm-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 218.390625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-en-trial-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 218.390625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-en-contact-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 218.390625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-en-signup-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 218.390625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-en-login-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 218.390625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-en-nav-open",
+      "what": "mobile sheet opens without horizontal overflow",
+      "pass": true,
+      "evidence": {
+        "hidden": false,
+        "sw": 390,
+        "cw": 390
+      }
+    },
+    {
+      "id": "m390-en-qa-open",
+      "what": "Q&A window opens inside the viewport with focus in the question field",
+      "pass": true,
+      "evidence": {
+        "w": 350,
+        "h": 680,
+        "right": 370,
+        "bottom": 824,
+        "vw": 390,
+        "vh": 844,
+        "focused": "TEXTAREA"
+      }
+    },
+    {
+      "id": "m390-en-qa-inline",
+      "what": "the integrated Q&A window is on the home page",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "id": "m360-en-home-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 241,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-en-packages-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 213.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-en-platform-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-en-product-agent-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-en-product-crm-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-en-trial-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-en-contact-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-en-signup-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-en-login-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-en-nav-open",
+      "what": "mobile sheet opens without horizontal overflow",
+      "pass": true,
+      "evidence": {
+        "hidden": false,
+        "sw": 360,
+        "cw": 360
+      }
+    },
+    {
+      "id": "m360-en-qa-open",
+      "what": "Q&A window opens inside the viewport with focus in the question field",
+      "pass": true,
+      "evidence": {
+        "w": 320,
+        "h": 680,
+        "right": 340,
+        "bottom": 760,
+        "vw": 360,
+        "vh": 780,
+        "focused": "TEXTAREA"
+      }
+    },
+    {
+      "id": "m360-en-qa-inline",
+      "what": "the integrated Q&A window is on the home page",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "id": "d1440-es-home-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 358.109375,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-es-packages-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 258.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-es-platform-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 258.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-es-product-agent-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 285.234375,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-es-product-crm-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 258.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-es-trial-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 282.78125,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-es-contact-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 258.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-es-signup-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 258.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-es-login-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1440,
+        "iw": 1440,
+        "header": 72,
+        "firstHeadingTop": 258.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "d1440-es-nav-open",
+      "what": "platform menu open, items inside the panel, no name/chip overlap",
+      "pass": true,
+      "evidence": {
+        "open": true,
+        "inside": true,
+        "overlap": false,
+        "chipsFit": true,
+        "items": 5,
+        "menuW": 960,
+        "menuRight": 1200,
+        "vw": 1440
+      }
+    },
+    {
+      "id": "d1440-es-qa-open",
+      "what": "Q&A window opens inside the viewport with focus in the question field",
+      "pass": true,
+      "evidence": {
+        "w": 400,
+        "h": 680,
+        "right": 1420,
+        "bottom": 880,
+        "vw": 1440,
+        "vh": 900,
+        "focused": "TEXTAREA"
+      }
+    },
+    {
+      "id": "d1440-es-qa-inline",
+      "what": "the integrated Q&A window is on the home page",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "id": "t1024-es-home-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 348.578125,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-es-packages-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 242.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-es-platform-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 242.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-es-product-agent-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 298.765625,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-es-product-crm-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 242.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-es-trial-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 266.734375,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-es-contact-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 242.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-es-signup-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 242.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-es-login-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 1024,
+        "iw": 1024,
+        "header": 72,
+        "firstHeadingTop": 242.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "t1024-es-nav-open",
+      "what": "platform menu open, items inside the panel, no name/chip overlap",
+      "pass": true,
+      "evidence": {
+        "open": true,
+        "inside": true,
+        "overlap": false,
+        "chipsFit": true,
+        "items": 5,
+        "menuW": 928,
+        "menuRight": 976,
+        "vw": 1024
+      }
+    },
+    {
+      "id": "t1024-es-qa-open",
+      "what": "Q&A window opens inside the viewport with focus in the question field",
+      "pass": true,
+      "evidence": {
+        "w": 400,
+        "h": 680,
+        "right": 1004,
+        "bottom": 1346,
+        "vw": 1024,
+        "vh": 1366,
+        "focused": "TEXTAREA"
+      }
+    },
+    {
+      "id": "t1024-es-qa-inline",
+      "what": "the integrated Q&A window is on the home page",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "id": "m390-es-home-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 241,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-es-packages-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 213.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-es-platform-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-es-product-agent-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-es-product-crm-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-es-trial-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-es-contact-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-es-signup-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-es-login-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 390,
+        "iw": 390,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m390-es-nav-open",
+      "what": "mobile sheet opens without horizontal overflow",
+      "pass": true,
+      "evidence": {
+        "hidden": false,
+        "sw": 390,
+        "cw": 390
+      }
+    },
+    {
+      "id": "m390-es-qa-open",
+      "what": "Q&A window opens inside the viewport with focus in the question field",
+      "pass": true,
+      "evidence": {
+        "w": 350,
+        "h": 680,
+        "right": 370,
+        "bottom": 824,
+        "vw": 390,
+        "vh": 844,
+        "focused": "TEXTAREA"
+      }
+    },
+    {
+      "id": "m390-es-qa-inline",
+      "what": "the integrated Q&A window is on the home page",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "id": "m360-es-home-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 241,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-es-packages-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 213.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-es-platform-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-es-product-agent-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-es-product-crm-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-es-trial-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-es-contact-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-es-signup-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-es-login-fit",
+      "what": "no horizontal overflow, heading clear of the header, no empty capture frame",
+      "pass": true,
+      "evidence": {
+        "sw": 360,
+        "iw": 360,
+        "header": 60,
+        "firstHeadingTop": 237.890625,
+        "pending": false
+      }
+    },
+    {
+      "id": "m360-es-nav-open",
+      "what": "mobile sheet opens without horizontal overflow",
+      "pass": true,
+      "evidence": {
+        "hidden": false,
+        "sw": 360,
+        "cw": 360
+      }
+    },
+    {
+      "id": "m360-es-qa-open",
+      "what": "Q&A window opens inside the viewport with focus in the question field",
+      "pass": true,
+      "evidence": {
+        "w": 320,
+        "h": 680,
+        "right": 340,
+        "bottom": 760,
+        "vw": 360,
+        "vh": 780,
+        "focused": "TEXTAREA"
+      }
+    },
+    {
+      "id": "m360-es-qa-inline",
+      "what": "the integrated Q&A window is on the home page",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "id": "zoom200-es-home",
+      "what": "200 % zoom: no horizontal overflow",
+      "pass": true,
+      "evidence": {
+        "sw": 720,
+        "iw": 720
+      }
+    },
+    {
+      "id": "zoom200-es-packages",
+      "what": "200 % zoom packages: no horizontal overflow",
+      "pass": true,
+      "evidence": {
+        "sw": 720,
+        "iw": 720
+      }
+    },
+    {
+      "id": "reduced-motion",
+      "what": "with reduced motion every reveal is visible without scrolling, no stage is pinned, nothing animates and no video is loaded",
+      "pass": true,
+      "evidence": {
+        "reveals": 19,
+        "allVisible": true,
+        "stages": 5,
+        "stackStatic": true,
+        "runningAnimations": 0,
+        "videos": 0
+      }
+    },
+    {
+      "id": "keyboard-menu",
+      "what": "Platform menu opens with Enter and closes with Escape from the keyboard",
+      "pass": true,
+      "evidence": {
+        "kb": true,
+        "opened": true,
+        "closed": true
+      }
+    },
+    {
+      "id": "no-js-content",
+      "what": "server HTML carries hero cards, stacked stage cards and the Q&A window",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "id": "no-dark-sections",
+      "what": "no dark section apart from the footer",
+      "pass": true,
+      "evidence": 1
+    }
+  ],
+  "shots": [
+    "d1440-en-home.png",
+    "d1440-en-home-scroll-1.png",
+    "d1440-en-home-scroll-2.png",
+    "d1440-en-home-scroll-3.png",
+    "d1440-en-home-scroll-4.png",
+    "d1440-en-home-scroll-5.png",
+    "d1440-en-packages.png",
+    "d1440-en-platform.png",
+    "d1440-en-product-agent.png",
+    "d1440-en-product-crm.png",
+    "d1440-en-trial.png",
+    "d1440-en-contact.png",
+    "d1440-en-signup.png",
+    "d1440-en-login.png",
+    "d1440-en-nav-open.png",
+    "d1440-en-qa-open.png",
+    "d1440-en-qa-inline.png",
+    "t1024-en-home.png",
+    "t1024-en-home-scroll-1.png",
+    "t1024-en-home-scroll-2.png",
+    "t1024-en-home-scroll-3.png",
+    "t1024-en-home-scroll-4.png",
+    "t1024-en-home-scroll-5.png",
+    "t1024-en-packages.png",
+    "t1024-en-platform.png",
+    "t1024-en-product-agent.png",
+    "t1024-en-product-crm.png",
+    "t1024-en-trial.png",
+    "t1024-en-contact.png",
+    "t1024-en-signup.png",
+    "t1024-en-login.png",
+    "t1024-en-nav-open.png",
+    "t1024-en-qa-open.png",
+    "t1024-en-qa-inline.png",
+    "m390-en-home.png",
+    "m390-en-home-scroll-1.png",
+    "m390-en-home-scroll-2.png",
+    "m390-en-home-scroll-3.png",
+    "m390-en-home-scroll-4.png",
+    "m390-en-home-scroll-5.png",
+    "m390-en-packages.png",
+    "m390-en-platform.png",
+    "m390-en-product-agent.png",
+    "m390-en-product-crm.png",
+    "m390-en-trial.png",
+    "m390-en-contact.png",
+    "m390-en-signup.png",
+    "m390-en-login.png",
+    "m390-en-nav-open.png",
+    "m390-en-qa-open.png",
+    "m390-en-qa-inline.png",
+    "m360-en-home.png",
+    "m360-en-home-scroll-1.png",
+    "m360-en-home-scroll-2.png",
+    "m360-en-home-scroll-3.png",
+    "m360-en-home-scroll-4.png",
+    "m360-en-home-scroll-5.png",
+    "m360-en-packages.png",
+    "m360-en-platform.png",
+    "m360-en-product-agent.png",
+    "m360-en-product-crm.png",
+    "m360-en-trial.png",
+    "m360-en-contact.png",
+    "m360-en-signup.png",
+    "m360-en-login.png",
+    "m360-en-nav-open.png",
+    "m360-en-qa-open.png",
+    "m360-en-qa-inline.png",
+    "d1440-es-home.png",
+    "d1440-es-home-scroll-1.png",
+    "d1440-es-home-scroll-2.png",
+    "d1440-es-home-scroll-3.png",
+    "d1440-es-home-scroll-4.png",
+    "d1440-es-home-scroll-5.png",
+    "d1440-es-packages.png",
+    "d1440-es-platform.png",
+    "d1440-es-product-agent.png",
+    "d1440-es-product-crm.png",
+    "d1440-es-trial.png",
+    "d1440-es-contact.png",
+    "d1440-es-signup.png",
+    "d1440-es-login.png",
+    "d1440-es-nav-open.png",
+    "d1440-es-qa-open.png",
+    "d1440-es-qa-inline.png",
+    "t1024-es-home.png",
+    "t1024-es-home-scroll-1.png",
+    "t1024-es-home-scroll-2.png",
+    "t1024-es-home-scroll-3.png",
+    "t1024-es-home-scroll-4.png",
+    "t1024-es-home-scroll-5.png",
+    "t1024-es-packages.png",
+    "t1024-es-platform.png",
+    "t1024-es-product-agent.png",
+    "t1024-es-product-crm.png",
+    "t1024-es-trial.png",
+    "t1024-es-contact.png",
+    "t1024-es-signup.png",
+    "t1024-es-login.png",
+    "t1024-es-nav-open.png",
+    "t1024-es-qa-open.png",
+    "t1024-es-qa-inline.png",
+    "m390-es-home.png",
+    "m390-es-home-scroll-1.png",
+    "m390-es-home-scroll-2.png",
+    "m390-es-home-scroll-3.png",
+    "m390-es-home-scroll-4.png",
+    "m390-es-home-scroll-5.png",
+    "m390-es-packages.png",
+    "m390-es-platform.png",
+    "m390-es-product-agent.png",
+    "m390-es-product-crm.png",
+    "m390-es-trial.png",
+    "m390-es-contact.png",
+    "m390-es-signup.png",
+    "m390-es-login.png",
+    "m390-es-nav-open.png",
+    "m390-es-qa-open.png",
+    "m390-es-qa-inline.png",
+    "m360-es-home.png",
+    "m360-es-home-scroll-1.png",
+    "m360-es-home-scroll-2.png",
+    "m360-es-home-scroll-3.png",
+    "m360-es-home-scroll-4.png",
+    "m360-es-home-scroll-5.png",
+    "m360-es-packages.png",
+    "m360-es-platform.png",
+    "m360-es-product-agent.png",
+    "m360-es-product-crm.png",
+    "m360-es-trial.png",
+    "m360-es-contact.png",
+    "m360-es-signup.png",
+    "m360-es-login.png",
+    "m360-es-nav-open.png",
+    "m360-es-qa-open.png",
+    "m360-es-qa-inline.png",
+    "zoom200-es-home.png",
+    "zoom200-es-packages.png",
+    "reduced-motion-es-home.png",
+    "focus-en-launcher.png"
+  ],
+  "finished_utc": "2026-09-30T10:42:41.366Z",
+  "pass": 102,
+  "total": 102
+}

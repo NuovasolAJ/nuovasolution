@@ -1,6 +1,6 @@
 {
- "started_utc": "2026-09-30T08:07:03.176Z",
- "base": "http://localhost:3113",
+ "started_utc": "2026-09-30T09:49:33.779Z",
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
  "checks": [
   {
    "id": "route /en",
@@ -582,7 +582,7 @@
  ],
  "home_words_en": 1444,
  "home_words_es": 1514,
- "finished_utc": "2026-09-30T08:07:06.596Z",
+ "finished_utc": "2026-09-30T09:49:44.947Z",
  "pass": 52,
  "total": 52
 }

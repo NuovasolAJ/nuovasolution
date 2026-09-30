@@ -54,8 +54,14 @@ What was done, so it can be repeated or audited:
    function and failed (`MIDDLEWARE_INVOCATION_FAILED`). Locale prefixing is a set of `next.config.js`
    redirects (root and the known unprefixed page paths; `Accept-Language: es…` → `/es`, else `/en`).
 6. Verification, logged out: `BASE=https://… node scripts/e2e/route-scan.mjs` runs every route in ES and EN,
-   the hidden slugs (404), the `X-Robots-Tag: noindex` header and meta, robots.txt, sitemap, a poster asset and
-   a legacy redirect against a deployed origin.
+   the hidden slugs (404), the `X-Robots-Tag: noindex` header and meta, robots.txt, sitemap, a poster asset, the
+   four product clips (they have to answer as `video/mp4`) and a legacy redirect against a deployed origin.
+7. Staging project only, since 2026-09-29 (question box on the product assistant): `QA_INTAKE_URL`,
+   `QA_TENANT_ID`, `NEXT_PUBLIC_QA_SURFACE=public` and, stored as a **Secret**, `QA_TENANT_HMAC_SECRET` piped
+   from the secure store (`stg_webqa_hmac_stg_web_product_qa.txt`). The secret is used by the site's server to
+   sign the forwarded question and never reaches the browser; the design project has none of these.
+8. `.vercelignore` leaves out documentation, scripts and video files in the repository root. The product clips
+   under `public/media/` are part of every deployment.
 
 `.vercel/` and `.env*.local` are ignored by Git; linking a project never touches the repository.
 
@@ -67,6 +73,10 @@ What was done, so it can be repeated or audited:
   (`lib/content/capabilities.ts`) have no page (404), no menu entry and no footer link.
 - The question box: shown as a labelled **Demo**; without a backend a question gets the honest
   "We cannot confirm that from here" state. Set `NEXT_PUBLIC_QA_SURFACE=hidden` to remove it entirely.
+  (On a staging or live build the box is hidden unless that deployment sets `NEXT_PUBLIC_QA_SURFACE=public`.)
+- The social screens `/social`, `/social/post`, `/social/inbox`, `/social/settings` after the stub login, with
+  synthetic fixtures (`?case=empty` for a fresh workspace). On the staging preview they read the signed-in
+  agency's real state and send nothing.
 - Sign up and log in: the forms work as UI; a stub login opens the onboarding with local sample data.
 
 ## D. Not in the design preview

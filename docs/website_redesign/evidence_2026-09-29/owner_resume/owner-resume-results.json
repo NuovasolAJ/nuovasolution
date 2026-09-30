@@ -1,0 +1,11 @@
+{
+ "started_utc": "2026-09-30T07:46:30.628Z",
+ "base": "https://nuovasolution-staging-preview-git-w-44e113-nuovasolajs-projects.vercel.app",
+ "locale": "es",
+ "register": false,
+ "commit": null,
+ "deployment": null,
+ "checks": [],
+ "blocked": "no confirmed staging identity without an agency in the secure store (stg_web_resume_fixture.txt)",
+ "finished_utc": "2026-09-30T07:46:30.629Z"
+}

@@ -1,0 +1,112 @@
+{
+ "started_utc": "2026-09-30T10:43:47.296Z",
+ "mode": "stub build + local Q&A contract mock",
+ "commit": "3c38f8d",
+ "checks": [
+  {
+   "id": "QT-01",
+   "what": "an empty question cannot be sent",
+   "pass": true,
+   "evidence": {
+    "disabled": true
+   }
+  },
+  {
+   "id": "QT-02",
+   "what": "waiting is shown at once, and the send control is busy while it lasts",
+   "pass": true,
+   "evidence": {
+    "thinking_ms": 1,
+    "disabled": true,
+    "busy": "true"
+   }
+  },
+  {
+   "id": "QT-03",
+   "what": "after about ten seconds the box says it is still working",
+   "pass": true,
+   "evidence": {
+    "still_working_after_ms": 10723
+   }
+  },
+  {
+   "id": "QT-04",
+   "what": "an answer that never comes ends inside the 60 second budget with 'cannot confirm' and the contact link",
+   "pass": true,
+   "evidence": {
+    "ended_after_ms": 59159,
+    "text": "We cannot confirm that from here. A person can.\n\nContact a person",
+    "link": "/en/contact"
+   }
+  },
+  {
+   "id": "QT-05",
+   "what": "a handover answer of the backend is shown as 'cannot confirm' with the contact link, never as a promise of contact",
+   "pass": true,
+   "evidence": {
+    "text": "We cannot confirm that from here. A person can.\n\nContact a person",
+    "link": "/en/contact"
+   }
+  },
+  {
+   "id": "QT-06",
+   "what": "a failed answer says so and offers the contact page",
+   "pass": true,
+   "evidence": {
+    "text": "That did not go through. Try once more, or contact a person.\n\nContact a person",
+    "link": "/en/contact"
+   }
+  },
+  {
+   "id": "QT-07",
+   "what": "an answer is shown as an answer, without a contact button",
+   "pass": true,
+   "evidence": {
+    "text": "MOCK ANSWER (local contract mock, not the product): Does Nuova work with WhatsApp?",
+    "link": null
+   }
+  },
+  {
+   "id": "QT-08",
+   "what": "the AI notice stays next to the conversation",
+   "pass": true,
+   "evidence": {
+    "notice": "Answers are written by an AI assistant."
+   }
+  },
+  {
+   "id": "QT-11",
+   "what": "an answer text that promises contact is never shown: the box says 'cannot confirm' and links to the contact page",
+   "pass": true,
+   "evidence": {
+    "text": "We cannot confirm that from here. A person can.\n\nContact a person",
+    "link": "/en/contact"
+   }
+  },
+  {
+   "id": "QT-09",
+   "what": "a question over 4000 characters is not sent: the field stops at 4000 and the route refuses more",
+   "pass": true,
+   "evidence": {
+    "maxLength": 4000,
+    "error": "Please keep it under 4000 characters."
+   }
+  },
+  {
+   "id": "QT-10",
+   "what": "Escape closes the window and ends the waiting request; reopened, the box is idle and nothing was appended",
+   "pass": true,
+   "evidence": {
+    "closed": true,
+    "before": 0,
+    "answers": 0,
+    "typing": false,
+    "busy": null,
+    "label": "Enviar"
+   }
+  }
+ ],
+ "finished_utc": "2026-09-30T10:45:13.682Z",
+ "pass": 11,
+ "total": 11
+}
