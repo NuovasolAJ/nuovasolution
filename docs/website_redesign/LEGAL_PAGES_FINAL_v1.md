@@ -1,6 +1,22 @@
-# LEGAL PAGES FINAL v2 — legal notice, privacy, terms, data deletion, EN and ES
+# LEGAL PAGES FINAL v3 — legal notice, privacy, terms, data deletion, EN and ES
 
-**Version:** **v2**, 2026-09-29 (v1 was 2026-09-28) · **State:** `2026-09-29_CONVERGENCE_R2` ·
+**Version:** **v3**, 2026-09-30 (v2 was 2026-09-29, v1 2026-09-28) · **State:** `2026-09-30` ·
+**Copy version:** `legal-v3`
+
+**What v3 adds.** Section 6 now names **every service in the customer path**, what it receives and where it
+runs, from Hosting's reading of the active workflows
+(`backend_handoff/handoff_in_2026-09-30/HOSTING_SUBPROCESSORS_2026-09-29_v1.md`): Hetzner Online, Supabase,
+Meta for WhatsApp, Google for Gmail, OpenRouter, OpenAI for voice transcription, and Google Sheets as the
+optional export. Two locations are marked as verified by us and the rest as declared by the provider,
+because Hosting verified exactly two. Section 10 names which of them may process outside the European
+Economic Area instead of describing the situation in general. The four `SUBPROCESSOR_LIST` marks are
+therefore **closed**. Wired but inactive connectors, HubSpot, Pipedrive, Zoho, Salesforce and Outlook, are
+**not** named as processors, because nothing has ever run through them for a customer.
+
+**Open marks in the publishable page text: 20, counted; six distinct gaps** (was 24 in seven).
+
+**Earlier header, still valid:**
+**Version:** v2, 2026-09-29 (v1 was 2026-09-28) · **State:** `2026-09-29_CONVERGENCE_R2` ·
 **Copy version:** `legal-v2`
 
 **What v2 adds.** The Instagram and Meta sections supplied by the Social lane
@@ -41,7 +57,7 @@ are the English ones, because the forms are filled in English:
 **Marked gaps.** Every `⟦…⟧` is a gap with a named owner. **The implementer does not publish a page
 while a `⟦…⟧` is still in it.** Each one carries a recommendation the owner can approve in one line.
 
-**Seven distinct gaps, 24 marks in the page text.** The count is per occurrence across both languages;
+**Six distinct gaps, 20 marks in the page text** (v3; v2 had seven gaps and 24 marks). The count is per occurrence across both languages;
 the gaps are what actually has to be decided. One of them, the publication date, is set by the
 implementer at publication and waits on nobody.
 
@@ -50,7 +66,7 @@ implementer at publication and waits on nobody.
 | 1 | ⟦OWNER: NIF⟧ | 6 (3 pages × 2 languages) | Owner, O-6 | the tax number, NIF or CIF | required in Spain for a legal notice, for invoices, and for Meta's business verification |
 | 2 | ⟦OWNER: ADDRESS_FULL⟧ | 4 | Owner, O-6 | street number and postal code | today only "Prolongación Hernando de Carabeo, Nerja, Málaga" is published. The legal form is **no longer a gap**: the party is the individual trading under his own name, exactly as the live site has published for months. If a company is founded, its name replaces his everywhere |
 | 3 | ⟦OWNER+COUNSEL: RETENTION⟧ | 2 | Owner, O-8, then counsel | retention periods per data class | the proposal in §2.7 is written to be approved or corrected. **Not** applicable to the Instagram section, which now carries its own implementable rule |
-| 4 | ⟦HOSTING: SUBPROCESSOR_LIST⟧ | 4 (sections 6 and 10, both languages) | Hosting, `SUBPROCESSOR_LIST_v1` | the complete list and the region of each processor outside the named ones | requested from Hosting in this round. Section 6 now names what the truth table establishes, so the mark covers only the completeness of the list and the transfer statement |
+| 4 | ~~⟦HOSTING: SUBPROCESSOR_LIST⟧~~ | **0, closed in v3** | Hosting delivered it 2026-09-29 | — | section 6 now names all seven services with purpose, data and location; section 10 names the four that may process outside the EEA. What remains is a **counsel** question, not a gap in the text: whether stating the providers' own standard contractual clauses is a sufficient transfer basis (CQ-20) |
 | 5 | ⟦COUNSEL: DPA⟧ | 2 | counsel | whether the processing agreement is an annex and when the agency accepts it | sheet D5 |
 | 6 | ⟦COUNSEL: LIABILITY⟧ | 2 | counsel | the limitation | sheet D5 |
 | 7 | ⟦publication date⟧ | 4 | Implementer | the date each page goes live | set at publication; this is not a waiting item |
@@ -146,14 +162,23 @@ the basis and we act for it.
 carries a notice that says so. A person can take over at any point, and anyone who asks for a person
 gets one.
 
-**6 · Who processes data for us.** Supabase provides the database, the file storage and the
-authentication; the production system runs in the European Union, in Frankfurt. Our server hosting
-provider runs the automation that carries a message from your channel to the reply. An AI provider
-writes the drafts and classifies messages. Where an enquiry arrives through WhatsApp or through Gmail,
-the operator of that channel processes it as well, under its own terms with you or with the agency. We
-do not sell data and we do not use it to advertise to anyone. ⟦HOSTING: SUBPROCESSOR_LIST⟧ The current
-list of all processors, naming each one and the region it operates in, is available on request and is
-published here.
+**6 · Who processes data for us.** These are the services that take part in answering an enquiry. We do
+not sell data and we do not use it to advertise to anyone.
+
+| Service | What it does for us | What it receives | Where |
+|---|---|---|---|
+| Hetzner Online | runs the automation that carries a message from your channel to the reply, and the staff application | while a workflow runs: message texts, names, phone numbers, e-mail addresses and attachments | Germany, verified by us |
+| Supabase | the database and the file storage: customer records, tasks, media | all stored customer data and media files | European Union, Frankfurt region, verified by us |
+| Meta Platforms, WhatsApp Business Platform | receives and sends the WhatsApp messages | phone number, profile name, message content, media | as Meta states, European Union data for European business numbers |
+| Google, Gmail | reads the agency mailbox and sends the replies | e-mail address, subject, body, attachments | as Google states |
+| OpenRouter | routes the message to the AI model that understands it and drafts the reply | the message text and the context of the request, without attachment files | as the provider states, routed in the United States |
+| OpenAI | transcribes a voice message when one is received | the audio of that message | as the provider states, United States |
+| Google, Sheets | an optional copy of your leads in a spreadsheet, only if your agency switches it on | the lead fields | as Google states |
+
+Two of these locations we have verified ourselves, the servers and the database. For the others we state
+what the provider declares, and we say so rather than presenting a declaration as our own finding. This
+list is the complete set of services in the customer path; anything else an enquiry might touch would be
+added here before it did.
 
 **7 · How long we keep it.** ⟦OWNER+COUNSEL: RETENTION⟧ See section 2.7 of the source document: the
 periods are approved before this page is published, and they appear here as concrete periods rather
@@ -167,9 +192,10 @@ agency and help it answer; you can also ask the agency directly. The data deleti
 object, and you can withdraw a consent you gave. Write to antonio@nuovasolution.com from the address
 you used with us. You can also complain to the Spanish data protection authority, the AEPD.
 
-**10 · Transfers outside the EU.** ⟦HOSTING: SUBPROCESSOR_LIST⟧ Where a processor operates outside the
-European Economic Area, the transfer is covered by the European Commission's standard contractual
-clauses. The list in section 6 states which processors this applies to.
+**10 · Transfers outside the EU.** Of the services in section 6, Meta, Google, OpenRouter and OpenAI may
+process data outside the European Economic Area. Their own data processing terms state that such transfers
+are made under the European Commission's standard contractual clauses. We have not independently verified
+where each of them stores data, and section 6 says which locations we did verify.
 
 **11 · WhatsApp.** Where your agency receives enquiries through WhatsApp, the message and the sender's
 number reach us through that channel and are processed as described in section 3. WhatsApp is operated by
@@ -254,14 +280,23 @@ agencia, la base la determina la agencia y nosotros actuamos por ella.
 inteligencia artificial, y cada una de esas respuestas lleva un aviso que lo indica. Una persona puede
 tomar el relevo en cualquier momento, y quien pide hablar con una persona la tiene.
 
-**6 · Quién trata los datos por nuestra cuenta.** Supabase presta la base de datos, el almacenamiento de
-archivos y la autenticación; el sistema de producción funciona en la Unión Europea, en Fráncfort.
-Nuestro proveedor de alojamiento ejecuta la automatización que lleva un mensaje desde tu canal hasta la
-respuesta. Un proveedor de inteligencia artificial redacta los borradores y clasifica los mensajes.
-Cuando una consulta llega por WhatsApp o por Gmail, el operador de ese canal también la trata, según sus
-propias condiciones contigo o con la agencia. No vendemos datos y no los usamos para hacer publicidad a
-nadie. ⟦HOSTING: SUBPROCESSOR_LIST⟧ La lista actualizada de todos los proveedores, con el nombre de cada
-uno y la región en la que opera, está disponible a petición y se publica aquí.
+**6 · Quién trata los datos por nuestra cuenta.** Estos son los servicios que intervienen en responder a
+una consulta. No vendemos datos y no los usamos para hacer publicidad a nadie.
+
+| Servicio | Qué hace por nosotros | Qué recibe | Dónde |
+|---|---|---|---|
+| Hetzner Online | ejecuta la automatización que lleva un mensaje desde tu canal hasta la respuesta, y la aplicación del equipo | mientras se ejecuta: textos de mensajes, nombres, teléfonos, direcciones de email y archivos adjuntos | Alemania, verificado por nosotros |
+| Supabase | la base de datos y el almacenamiento de archivos: fichas, tareas, medios | todos los datos de clientes guardados y los archivos | Unión Europea, región de Fráncfort, verificado por nosotros |
+| Meta Platforms, WhatsApp Business Platform | recibe y envía los mensajes de WhatsApp | número de teléfono, nombre de perfil, contenido del mensaje, medios | según indica Meta, datos en la Unión Europea para números de empresa europeos |
+| Google, Gmail | lee el buzón de la agencia y envía las respuestas | dirección de email, asunto, cuerpo, adjuntos | según indica Google |
+| OpenRouter | dirige el mensaje al modelo de inteligencia artificial que lo entiende y redacta la respuesta | el texto del mensaje y el contexto de la petición, sin los archivos adjuntos | según indica el proveedor, con enrutado en Estados Unidos |
+| OpenAI | transcribe un mensaje de voz cuando se recibe | el audio de ese mensaje | según indica el proveedor, Estados Unidos |
+| Google, Sheets | una copia opcional de tus leads en una hoja de cálculo, solo si tu agencia la activa | los campos del lead | según indica Google |
+
+Dos de estas ubicaciones las hemos verificado nosotros mismos, los servidores y la base de datos. Para las
+demás indicamos lo que declara el proveedor, y lo decimos así en lugar de presentar una declaración como
+una comprobación propia. Esta lista es el conjunto completo de servicios que intervienen en el camino de
+una consulta; cualquier otro se añadiría aquí antes de intervenir.
 
 **7 · Cuánto tiempo los guardamos.** ⟦OWNER+COUNSEL: RETENTION⟧ Los plazos se aprueban antes de
 publicar esta página y aparecen aquí como plazos concretos, no como una promesa de indicarlos más
@@ -277,9 +312,11 @@ limitación del tratamiento u oponerte, y puedes retirar un consentimiento que h
 antonio@nuovasolution.com desde la dirección que usaste con nosotros. También puedes reclamar ante la
 Agencia Española de Protección de Datos (AEPD).
 
-**10 · Transferencias fuera de la UE.** ⟦HOSTING: SUBPROCESSOR_LIST⟧ Cuando un proveedor opera fuera
-del Espacio Económico Europeo, la transferencia se cubre con las cláusulas contractuales tipo de la
-Comisión Europea. La lista del apartado 6 indica a qué proveedores se aplica.
+**10 · Transferencias fuera de la UE.** De los servicios del apartado 6, Meta, Google, OpenRouter y OpenAI
+pueden tratar datos fuera del Espacio Económico Europeo. Sus propias condiciones de tratamiento indican que
+esas transferencias se realizan con las cláusulas contractuales tipo de la Comisión Europea. No hemos
+verificado de forma independiente dónde guarda los datos cada uno de ellos, y el apartado 6 indica qué
+ubicaciones sí hemos verificado.
 
 **11 · WhatsApp.** Cuando tu agencia recibe consultas por WhatsApp, el mensaje y el número de quien
 escribe nos llegan por ese canal y se tratan como describe el apartado 3. WhatsApp lo opera Meta según

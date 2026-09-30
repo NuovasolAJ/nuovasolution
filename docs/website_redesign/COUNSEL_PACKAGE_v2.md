@@ -430,6 +430,8 @@ list has been approved by a lawyer, and no text in our files is marked as approv
 | CQ-17 | The review rule: may we ask a customer for a public review, and under what disclosure? | D9 | the first review we would ever publish |
 | CQ-18 | The legal footer of transactional account e-mail, and whether it needs an unsubscribe line | D10 | the confirmation e-mail |
 | CQ-19 | What we may guarantee an agency about executing a data subject request on its behalf, and what happens to copies outside our control | D11 | the first real agency |
+| CQ-20 | **The transfer basis, added 2026-09-30.** `LEGAL_PAGES_FINAL` v3 §6 now names all seven services in the customer path, and §10 names the four that may process outside the European Economic Area: Meta, Google, OpenRouter, OpenAI. The page states that their **own** data processing terms make such transfers under the European Commission's standard contractual clauses, and that we have not verified where each stores data. Is that a sufficient basis and a sufficient statement, or must we hold a signed processing agreement with each one before naming it? | D4 | publication of the privacy page, if the answer is that the statement is not enough |
+| CQ-21 | **Retention, now with a template.** API and Multimodal delivered `MEDIA_RETENTION_TEMPLATE_v1`, so the owner can decide days per document class (O-8). Counsel confirms the classes and the periods before they are printed. Today production carries **0** retention policy rows, so nothing is deleted on a schedule | D4, D11 | the retention section |
 
 ### 7.1 O-4 for the owner, in two sentences
 
