@@ -5,6 +5,10 @@
 **Status wording:** implemented and awaiting independent technical and final audit. Nothing here is a design
 acceptance; `WEBSITE_OWNER_ACCEPTANCE` is the owner's signal.
 
+The two aliases follow every push of the branch. A later commit that changes only documentation or scripts (this
+return is one) rebuilds them with the same application code; the deployments named below stay reachable under
+their own addresses and are the ones every result in this return was measured on.
+
 Deploy found before work (as ordered): design and staging aliases both served `d475dec`
 (`dpl_7Vmqsr6CUhTyhkDrNW2fzgU3YzoH` on the design project, created 2026-09-28 22:21 CEST).
 
