@@ -16,6 +16,8 @@ type Outcome = { status: "answered" | "pending" | "handoff" | "failed" | "unknow
 /** WEBSITE_QA_RESPONSE_CONTRACT_v1: at most 60 s on the website side, counted from the send, requests included (audit Z10). */
 const BUDGET_MS = 60_000;
 const SLOW_AFTER_MS = 10_000;
+/** Never poll faster than this, whatever the backend suggests: at most 40 polls inside the budget. */
+const MIN_POLL_MS = 1_500;
 
 /**
  * One conversation per visitor, shared by the inline window and the floating one (audit Z10):
@@ -47,6 +49,9 @@ export function cancelQa() {
   controller = null;
   if (budgetTimer) clearTimeout(budgetTimer);
   budgetTimer = null;
+  // A cancelled request no longer reaches its own clean-up (it is not the current one any more), so the
+  // waiting state is ended here; otherwise a reopened window would wait for ever.
+  if (state.busy) set({ busy: false, slow: false });
 }
 
 async function send(locale: Locale, question: string) {
@@ -82,7 +87,7 @@ async function send(locale: Locale, question: string) {
     }
     const o = json.details ?? { status: "cannot_confirm" };
     if (o.status === "pending" && o.message_id) {
-      let wait = o.retry_after_ms ?? 1500;
+      let wait = Math.max(MIN_POLL_MS, o.retry_after_ms ?? MIN_POLL_MS);
       while (Date.now() - started + wait < BUDGET_MS && !ac.signal.aborted) {
         await new Promise((r) => setTimeout(r, wait));
         if (ac.signal.aborted) return;
@@ -97,7 +102,7 @@ async function send(locale: Locale, question: string) {
           r = { status: "cannot_confirm" };
         }
         if (r.status !== "pending") return finish(r);
-        wait = r.retry_after_ms ?? 1500;
+        wait = Math.max(MIN_POLL_MS, r.retry_after_ms ?? MIN_POLL_MS);
       }
       if (!ac.signal.aborted) finish({ status: "cannot_confirm" });
     } else {

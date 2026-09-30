@@ -4,7 +4,8 @@
 //   governance/WEBSITE_QA_RESPONSE_CONTRACT_v1.md  GET  /webhook/website-qa/result -> 200 pending|answered|handoff|failed | 401 | 404
 // Signature: hex(HMAC-SHA256(secret, `${ts}|${nonce}|${sha256hex(bytes)}`)), bytes = raw body (POST) or raw query (GET).
 // Freshness |now - ts| <= 300 s. Nonce single use per tenant. Secret comes from MOCK_SECRET (throwaway, generated per run).
-// Behaviour: first result poll -> pending (retry 800 ms), later -> answered. A question containing "HANDOFF" resolves to handoff.
+// Behaviour: first result poll -> pending (retry 800 ms), later -> answered. A question containing "HANDOFF" resolves to handoff,
+// "FAILED" to failed, and "NEVER" stays pending for good (the website's 60 second budget has to end the wait).
 import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 import { appendFileSync } from "node:fs";
 import http from "node:http";
@@ -86,9 +87,13 @@ http
           return reply(res, 404, { error: "unknown" });
         }
         rec.polls += 1;
-        if (rec.polls === 1) {
+        if (rec.polls === 1 || /NEVER/.test(rec.question)) {
           log({ op: "GET", verdict: "200 pending", checks: v.checks });
           return reply(res, 200, { status: "pending", conversation_id: conv, message_id: msg, retry_after_ms: 800 });
+        }
+        if (/FAILED/.test(rec.question)) {
+          log({ op: "GET", verdict: "200 failed", checks: v.checks });
+          return reply(res, 200, { status: "failed", conversation_id: conv, message_id: msg });
         }
         if (/HANDOFF/.test(rec.question)) {
           log({ op: "GET", verdict: "200 handoff", checks: v.checks });

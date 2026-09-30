@@ -84,7 +84,12 @@ export function SignupForm({ locale }: { locale: Locale }) {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) fe.email = d.errors.invalidEmail;
     if (values.password.length < 10) fe.password = d.errors.shortPassword;
     setFieldErrors(fe);
-    if (Object.keys(fe).length) return;
+    if (Object.keys(fe).length) {
+      // Keyboard and screen reader users land on the first field that needs them.
+      const first = ["name", "agency_name", "email", "password"].find((k) => fe[k]);
+      if (first) (e.currentTarget.elements.namedItem(first) as HTMLInputElement | null)?.focus();
+      return;
+    }
 
     inFlight.current = true;
     setBusy(true);

@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
  * Returns { status } in answered | pending | handoff | failed | unknown | cannot_confirm.
  */
 export async function GET(req: Request) {
-  if (rateLimited(`qa-result:${clientKey(req)}`, 60)) return fail("rate_limited", 429);
+  if (rateLimited(`qa-result:${clientKey(req)}`, 120)) return fail("rate_limited", 429);
   const message_id = new URL(req.url).searchParams.get("message_id");
   if (!isMessageId(message_id)) return fail("invalid_input", 400);
   const session_id = qaSession(false);
