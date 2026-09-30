@@ -210,6 +210,7 @@ export const es: Dictionary = {
         posterLabel: "La lista de tareas con la que trabaja tu equipo",
         playLabel: "Ver el clip",
         clipMeta: "21 segundos, sin sonido",
+        clipError: "El vídeo no se ha cargado. Inténtalo de nuevo en un momento.",
         clipAlt: "La lista de tareas en la aplicación del equipo: una petición de visita de Laura Serrano espera a que alguien la tome.",
         note: "Grabación del producto, con personas e inmuebles sintéticos. El anillo marca dónde toca el agente; es parte de la grabación, no del producto.",
         cues: ["Laura Serrano ha pedido una visita el jueves por la mañana.", "El agente toma la tarea. La tarjeta ya dice que es suya.", "Hecha. Sale de la lista y el resto se queda."],

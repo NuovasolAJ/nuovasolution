@@ -28,6 +28,7 @@ export function ProductClip({
   alt,
   posterLabel,
   cues,
+  errorLabel,
   className,
 }: {
   /** Path prefix without language and format, e.g. "/media/daily/daily-claim-flow". */
@@ -38,10 +39,13 @@ export function ProductClip({
   alt: string;
   posterLabel: string;
   cues: readonly string[];
+  /** Shown in place of the caption when the film cannot be loaded; the poster comes back. */
+  errorLabel: string;
   className?: string;
 }) {
   const [src, setSrc] = useState<string | null>(null);
   const [cue, setCue] = useState(0);
+  const [failed, setFailed] = useState(false);
   const video = useRef<HTMLVideoElement | null>(null);
   const posterBase = base.replace("claim-flow", "clip-poster");
   const posterDesktop = `${posterBase}-${locale}-desktop.png`;
@@ -56,8 +60,16 @@ export function ProductClip({
   }, [src]);
 
   function start() {
+    setFailed(false);
     const mobile = window.matchMedia("(max-width: 767px)").matches;
     setSrc(`${base}-${locale}-${mobile ? "mobile" : "desktop"}.mp4`);
+  }
+
+  // The film did not load (network, or a missing file): back to the poster, and say so. Never an empty player.
+  function onError() {
+    setSrc(null);
+    setCue(0);
+    setFailed(true);
   }
 
   function onTime() {
@@ -75,7 +87,7 @@ export function ProductClip({
       </p>
       <div className={cn("relative overflow-hidden rounded-xl border border-line-hairline bg-[#f5f6f8] shadow-card aspect-[840/1052] lg:aspect-[1756/988]")} data-product-clip={src ? "playing" : "poster"}>
         {src ? (
-          <video ref={video} src={src} controls muted playsInline preload="metadata" onTimeUpdate={onTime} className="absolute inset-0 h-full w-full" aria-label={alt} />
+          <video ref={video} src={src} controls muted playsInline preload="metadata" onTimeUpdate={onTime} onError={onError} className="absolute inset-0 h-full w-full" aria-label={alt} />
         ) : (
           <button type="button" onClick={start} className="group absolute inset-0 block" aria-label={`${playLabel}. ${meta}`} tabIndex={-1}>
             <picture>
@@ -99,9 +111,13 @@ export function ProductClip({
           </button>
         )}
         {/* The caption line: always present, so starting the clip moves nothing above it. */}
-        <p className="t-body-s font-medium text-text-primary" data-clip-cue={cue}>
-          {cues[src ? cue : 0]}
-        </p>
+        {failed ? (
+          <p role="status" className="t-body-s font-medium text-signal-attention" data-clip-error>{errorLabel}</p>
+        ) : (
+          <p className="t-body-s font-medium text-text-primary" data-clip-cue={cue}>
+            {cues[src ? cue : 0]}
+          </p>
+        )}
       </div>
     </div>
   );

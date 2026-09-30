@@ -233,6 +233,7 @@ export const en = {
         posterLabel: "The task list your team works from",
         playLabel: "Play the clip",
         clipMeta: "21 seconds, no sound",
+        clipError: "The clip did not load. Try again in a moment.",
         clipAlt: "The task list in the staff app: a viewing request from Laura Serrano waits to be taken.",
         note: "Recording from the product, with synthetic people and properties. The ring marks where the agent taps; it is part of the recording, not the product.",
         cues: ["Laura Serrano asked for a viewing on Thursday morning.", "The agent takes the task. The card now says it is theirs.", "Done. It leaves the list, and the rest stays."],

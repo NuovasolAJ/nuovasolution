@@ -5,4 +5,5 @@ scripts
 .claude
 .mcp.json
 _archive
-*.mp4
+# Video files in the repository root are local recordings; the product clips under public/media are part of the site.
+/*.mp4
