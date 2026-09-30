@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { qaSurface } from "@/lib/contracts/surface";
@@ -233,7 +232,6 @@ export default function HomePage({ params }: { params: { locale: string } }) {
           </div>
         </div>
       </section>
-      <Link href={p("/platform")} className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-20 focus:z-50 focus:bg-surface-raised focus:px-4 focus:py-3 t-body-s">{d.common.explorePlatform}</Link>
     </>
   );
 }

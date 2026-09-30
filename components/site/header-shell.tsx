@@ -141,8 +141,8 @@ export function HeaderShell({
           scrolled || menuOpen || sheetOpen ? "border-b border-line-hairline" : "border-b border-transparent",
         )}
       >
-        <div className="container-wide relative flex h-full items-center justify-between gap-6">
-          <div className="flex items-center gap-8">
+        <div className="container-wide relative flex h-full items-center justify-between gap-3 2xl:gap-6">
+          <div className="flex items-center gap-4 2xl:gap-8">
             {logo}
             <nav aria-label="Primary" className="hidden xl:flex items-center gap-1">
               {/* The menu panel is positioned against the header container (not the button), so it never leaves the viewport. */}
@@ -177,7 +177,7 @@ export function HeaderShell({
             </nav>
           </div>
 
-          <div className="hidden xl:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-1 2xl:gap-3">
             {utilities}
             <Link href={login.href} className={linkCls}>
               {login.label}

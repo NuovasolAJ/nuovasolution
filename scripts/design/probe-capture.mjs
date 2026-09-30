@@ -133,12 +133,12 @@ try {
   m = await measure();
   check("zoom200-es-packages", "200 % zoom packages: no horizontal overflow", m.sw <= m.iw, { sw: m.sw, iw: m.iw });
 
-  // reduced motion: content visible without any reveal class, cards not sticky
+  // reduced motion: content visible without any reveal class, no stage pinned while scrolling, no running animation
   await motion(true);
   await vp(1440, 900, false);
   await nav(`${BASE}/es`);
-  const rm = await ev("(()=>{const els=[...document.querySelectorAll('.reveal')];const vis=els.every(e=>getComputedStyle(e).opacity==='1');const st=[...document.querySelectorAll('.stage')].every(e=>getComputedStyle(e).position==='relative');return {reveals:els.length,allVisible:vis,stackStatic:st}})()");
-  check("reduced-motion", "with reduced motion every reveal is visible without scrolling and stacked cards are static", rm.allVisible && rm.stackStatic, rm);
+  const rm = await ev("(()=>{const els=[...document.querySelectorAll('.reveal,.rise')];const vis=els.every(e=>getComputedStyle(e).opacity==='1'&&getComputedStyle(e).transform==='none');const stages=[...document.querySelectorAll('.stage')];const st=stages.every(e=>getComputedStyle(e).position!=='sticky'&&getComputedStyle(e).position!=='fixed');const running=document.getAnimations().filter(a=>a.playState==='running').length;return {reveals:els.length,allVisible:vis,stages:stages.length,stackStatic:st&&running===0,runningAnimations:running,videos:document.querySelectorAll('video').length}})()");
+  check("reduced-motion", "with reduced motion every reveal is visible without scrolling, no stage is pinned, nothing animates and no video is loaded", rm.allVisible && rm.stackStatic, rm);
   await shot("reduced-motion-es-home");
   await motion(false);
 
