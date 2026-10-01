@@ -55,6 +55,9 @@ try {
   const ev = async (x) => (await send("Runtime.evaluate", { expression: x, returnByValue: true, awaitPromise: true })).result?.result?.value;
   await send("Page.enable");
   await send("Runtime.enable");
+  // Close-ups show each part on its own: with reduced motion the journey deck is off, so no stage lies over
+  // another in the picture (the deck has its own frames, scripts/design/deck-probe.mjs).
+  await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
 
   for (const locale of locales) {
     for (const [tag, w, h, mobile, dpr] of views) {
@@ -71,7 +74,7 @@ try {
         const r = await ev(`(()=>{const e=document.querySelector(${JSON.stringify(sel)});if(!e)return null;const b=e.getBoundingClientRect();return {x:0,y:Math.max(0,b.top+scrollY),w:innerWidth,h:Math.min(b.height,4200)}})()`);
         if (!r) { console.log(`MISS ${tag}-${locale}-${page}-${name}`); continue; }
         const s = await send("Page.captureScreenshot", { format: "jpeg", quality: 80, captureBeyondViewport: true, clip: { x: r.x, y: r.y, width: r.w, height: r.h, scale: 1 } });
-        const file = join(OUT, `${tag}-${locale}-${page}-${name}.jpg`);
+        const file = join(OUT, `${tag}-${locale}-${page.replaceAll("/", "_")}-${name}.jpg`);
         if (s.result?.data) writeFileSync(file, Buffer.from(s.result.data, "base64"));
         console.log(`shot ${tag}-${locale}-${page}-${name} ${Math.round(r.w)}x${Math.round(r.h)}`);
       }

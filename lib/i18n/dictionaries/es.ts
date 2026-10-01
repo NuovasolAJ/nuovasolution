@@ -526,7 +526,7 @@ export const es: Dictionary = {
       lead: "Hay un CRM incluido desde el principio.",
       nativeTitle: "Sin CRM externo. Usa el CRM incluido en Nuova.",
       nativeTag: "Incluido · Recomendado",
-      nativeBody: "Cada consulta se convierte en un lead con los datos de contacto de la persona, lo que busca, su cualificación y prioridad, y la conversación hasta ahora. Las peticiones de visita pasan a ser tareas para tu equipo. No hay que conectar nada ni pagar nada más.",
+      nativeBody: "Cada consulta se convierte en un lead con los datos de contacto de la persona, lo que busca y la conversación hasta ahora. Las peticiones de visita pasan a ser tareas para tu equipo. No hay que conectar nada ni pagar nada más.",
       nativeLimits: "No sustituye a un sistema contable o de gestión de operaciones, y no importa fichas de otro CRM.",
       sheetsTitle: "Guardar también una copia en Google Sheets",
       sheetsBody: "Nuova sigue siendo el sitio donde se guardan los leads. Una hoja de Google Sheets recibe una copia que puedes abrir, filtrar y compartir.",

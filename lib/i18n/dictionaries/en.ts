@@ -568,7 +568,7 @@ export const en = {
       lead: "A CRM is included from the start.",
       nativeTitle: "No external CRM. Use the CRM included in Nuova.",
       nativeTag: "Included · Recommended",
-      nativeBody: "Every enquiry becomes a lead with the person's contact details, what they are looking for, their qualification and priority, and the conversation so far. Viewing requests become tasks for your team. Nothing to connect and nothing to pay extra.",
+      nativeBody: "Every enquiry becomes a lead with the person's contact details, what they are looking for and the conversation so far. Viewing requests become tasks for your team. Nothing to connect and nothing to pay extra.",
       nativeLimits: "It is not a replacement for an accounting or transaction system, and it does not import records from another CRM.",
       sheetsTitle: "Also keep a copy in Google Sheets",
       sheetsBody: "Nuova stays the place where leads are kept. A Google Sheet receives a copy you can open, filter and share.",

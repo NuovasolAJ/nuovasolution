@@ -140,19 +140,20 @@ export const capabilities: Capability[] = [
     h1: { en: "The messages from your connected channels, on one record.", es: "Los mensajes de tus canales conectados, en una sola ficha." }, // LAUNCH_COPY_v1 §6.1
     lead: {
       // WCR-070, first sentence
-      en: "A CRM is included from the start: every enquiry is recorded as a lead with its qualification and history.",
-      es: "Hay un CRM incluido desde el principio: cada consulta queda registrada como lead con su cualificación y su historial.",
+      // Interim wording 2026-10-01: qualification is not in production (LEAD_TRUTH_INPUT_v1 §1); Copy's D-12 / D-26 formula.
+      en: "A CRM is included from the start: every enquiry is recorded as a lead with what the customer asked for and the conversation so far.",
+      es: "Hay un CRM incluido desde el principio: cada consulta queda registrada como lead con lo que ha pedido el cliente y la conversación hasta ahora.",
     },
     points: [
-      { text: { en: "Leads recorded with their qualification, included.", es: "Leads registrados con su cualificación, incluido." }, status: "live" }, // WCR-071
+      { text: { en: "Leads recorded with what each customer asked for, included.", es: "Leads registrados con lo que ha pedido cada cliente, incluido." }, status: "live" }, // WCR-071, interim wording 2026-10-01 (no qualification claim)
       { text: { en: "Google Sheets.", es: "Google Sheets." }, status: "in_implementation" }, // WCR-072
       { text: { en: "The conversation history on the customer record.", es: "El historial de conversación en la ficha del cliente." }, status: "live" }, // WCR-073
       { text: { en: "HubSpot, Pipedrive, Zoho CRM and Salesforce.", es: "HubSpot, Pipedrive, Zoho CRM y Salesforce." }, status: "certified_gate_pending" },
     ],
     scenario: {
       // WCR-075
-      en: "The office manager opens one record and sees the email from last week, the qualification and the viewing request that became a task. Nothing has to be reconstructed.",
-      es: "La responsable de oficina abre una ficha y ve el email de la semana pasada, la cualificación y la petición de visita que pasó a ser una tarea. No hay que reconstruir nada.",
+      en: "The office manager opens one record and sees the email from last week, what the customer asked for and the viewing request that became a task. Nothing has to be reconstructed.",
+      es: "La responsable de oficina abre una ficha y ve el email de la semana pasada, lo que pidió el cliente y la petición de visita que pasó a ser una tarea. No hay que reconstruir nada.",
     },
     fits: [
       { en: "Native CRM", es: "CRM propio" },
