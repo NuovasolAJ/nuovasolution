@@ -1,0 +1,113 @@
+{
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-01T07:26:43.083Z",
+ "detail": {
+  "clips": {
+   "390/en": {
+    "videos": 0,
+    "posters": 1,
+    "playControl": true,
+    "playLabel": "Play the clip. 21 second",
+    "videoAfterClick": true,
+    "muted": true,
+    "autoplay": false,
+    "controls": true,
+    "playsInline": true,
+    "poster": null,
+    "src": "daily-claim-flow-en-mobile.mp4",
+    "playing": false,
+    "currentTime": 0,
+    "readyState": 4
+   },
+   "1440/en": {
+    "videos": 0,
+    "posters": 1,
+    "playControl": true,
+    "playLabel": "Play the clip. 21 second",
+    "videoAfterClick": true,
+    "muted": true,
+    "autoplay": false,
+    "controls": true,
+    "playsInline": true,
+    "poster": null,
+    "src": "daily-claim-flow-en-desktop.mp4",
+    "playing": false,
+    "currentTime": 0,
+    "readyState": 4
+   },
+   "390/es": {
+    "videos": 0,
+    "posters": 1,
+    "playControl": true,
+    "playLabel": "Ver el clip. 21 segundos",
+    "videoAfterClick": true,
+    "muted": true,
+    "autoplay": false,
+    "controls": true,
+    "playsInline": true,
+    "poster": null,
+    "src": "daily-claim-flow-es-mobile.mp4",
+    "playing": false,
+    "currentTime": 0,
+    "readyState": 4
+   }
+  },
+  "conversion": {
+   "390": {
+    "visibleCta": 4,
+    "hiddenCta": 2,
+    "labels": [
+     "Try Essential free",
+     "Try Essential free",
+     "Try Essential free",
+     "Try Essential free"
+    ],
+    "href": "/en/signup",
+    "landed": {
+     "path": "/en/signup",
+     "fields": [
+      "name",
+      "agency_name",
+      "email",
+      "password",
+      "language"
+     ],
+     "submitLabel": "Create account"
+    }
+   },
+   "1440": {
+    "visibleCta": 5,
+    "hiddenCta": 1,
+    "labels": [
+     "Try Essential free",
+     "Try Essential free",
+     "Try Essential free",
+     "Try Essential free"
+    ],
+    "href": "/en/signup",
+    "landed": {
+     "path": "/en/signup",
+     "fields": [
+      "name",
+      "agency_name",
+      "email",
+      "password",
+      "language"
+     ],
+     "submitLabel": "Create account"
+    }
+   }
+  },
+  "signupValidation": {
+   "form": true,
+   "focused": "name",
+   "messages": [
+    "name",
+    "agency_name",
+    "email",
+    "password"
+   ],
+   "stillOnPage": "/en/signup"
+  }
+ }
+}

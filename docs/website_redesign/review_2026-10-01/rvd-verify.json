@@ -1,0 +1,976 @@
+{
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-09-30T13:49:11.793Z",
+ "detail": {
+  "overlap_settled": {
+   "768/en": [
+    {
+     "a": "Preview",
+     "b": "Carlos R.",
+     "ox": 10,
+     "oy": 12,
+     "y": 4064
+    }
+   ],
+   "768/es": [
+    {
+     "a": "Vista previa",
+     "b": "Con Nuova\nLas consultas de",
+     "ox": 31,
+     "oy": 20,
+     "y": 2012
+    },
+    {
+     "a": "domingo 21:40",
+     "b": "Las tareas de tu equipo, h",
+     "ox": 128,
+     "oy": 10,
+     "y": 1133
+    },
+    {
+     "a": "Vista previa",
+     "b": "Pide: Una valoración en Ma",
+     "ox": 34,
+     "oy": 17,
+     "y": 4059
+    },
+    {
+     "a": "Vista previa",
+     "b": "Pide:",
+     "ox": 27,
+     "oy": 15,
+     "y": 4058
+    }
+   ],
+   "768/en/platform": [
+    {
+     "a": "Preview",
+     "b": "Hello, I am Laura Serrano.",
+     "ox": 13,
+     "oy": 20,
+     "y": 988
+    },
+    {
+     "a": "Preview",
+     "b": "Answers text enquiries, da",
+     "ox": 43,
+     "oy": 13,
+     "y": 3039
+    },
+    {
+     "a": "Preview",
+     "b": "© 2026 NuovaSolution. All ",
+     "ox": 49,
+     "oy": 15,
+     "y": 5086
+    }
+   ],
+   "768/es/platform": [
+    {
+     "a": "Vista previa",
+     "b": "Hola, soy Laura Serrano. ¿",
+     "ox": 37,
+     "oy": 20,
+     "y": 988
+    },
+    {
+     "a": "Vista previa",
+     "b": "Hola Laura, gracias por es",
+     "ox": 21,
+     "oy": 20,
+     "y": 2012
+    },
+    {
+     "a": "Vista previa",
+     "b": "Responde consultas de text",
+     "ox": 67,
+     "oy": 19,
+     "y": 3036
+    }
+   ],
+   "768/es/packages": [
+    {
+     "a": "14 días gratis",
+     "b": "Sin método de pago",
+     "ox": 93,
+     "oy": 4,
+     "y": 694
+    },
+    {
+     "a": "Sin método de pago",
+     "b": "Essential",
+     "ox": 125,
+     "oy": 10,
+     "y": 711
+    },
+    {
+     "a": "Vista previa",
+     "b": "Nuova responde a las consu",
+     "ox": 73,
+     "oy": 20,
+     "y": 4060
+    }
+   ],
+   "1024/en": [
+    {
+     "a": "Sunday 21:40",
+     "b": "Your team's tasks, today",
+     "ox": 173,
+     "oy": 10,
+     "y": 726
+    },
+    {
+     "a": "Contact",
+     "b": "Open · nobody has claimed ",
+     "ox": 39,
+     "oy": 7,
+     "y": 817
+    },
+    {
+     "a": "Log in",
+     "b": "Open · nobody has claimed ",
+     "ox": 71,
+     "oy": 7,
+     "y": 817
+    },
+    {
+     "a": "Platform",
+     "b": "With Nuova\nText enquiries ",
+     "ox": 90,
+     "oy": 26,
+     "y": 1627
+    }
+   ],
+   "1024/es": [
+    {
+     "a": "Vista previa",
+     "b": "Prueba Essential gratis",
+     "ox": 73,
+     "oy": 17,
+     "y": 763
+    },
+    {
+     "a": "Mira cómo funciona",
+     "b": "Las tareas de tu equipo, h",
+     "ox": 21,
+     "oy": 6,
+     "y": 768
+    },
+    {
+     "a": "domingo 21:40",
+     "b": "Las tareas de tu equipo, h",
+     "ox": 173,
+     "oy": 10,
+     "y": 769
+    },
+    {
+     "a": "Contacto",
+     "b": "Confirmar con Laura Serran",
+     "ox": 70,
+     "oy": 27,
+     "y": 827
+    }
+   ],
+   "1024/en/platform": [
+    {
+     "a": "Platform",
+     "b": "01 · ANSWERED",
+     "ox": 91,
+     "oy": 9,
+     "y": 853
+    },
+    {
+     "a": "Packages",
+     "b": "02 · RECORDED",
+     "ox": 47,
+     "oy": 9,
+     "y": 853
+    },
+    {
+     "a": "Trial",
+     "b": "02 · RECORDED",
+     "ox": 58,
+     "oy": 9,
+     "y": 853
+    },
+    {
+     "a": "Contact",
+     "b": "02 · RECORDED",
+     "ox": 84,
+     "oy": 9,
+     "y": 853
+    }
+   ],
+   "1024/es/platform": [
+    {
+     "a": "Plataforma",
+     "b": "De un mensaje a una tarea ",
+     "ox": 111,
+     "oy": 22,
+     "y": 824
+    },
+    {
+     "a": "Paquetes",
+     "b": "De un mensaje a una tarea ",
+     "ox": 94,
+     "oy": 22,
+     "y": 824
+    },
+    {
+     "a": "Prueba",
+     "b": "De un mensaje a una tarea ",
+     "ox": 79,
+     "oy": 22,
+     "y": 824
+    },
+    {
+     "a": "Contacto",
+     "b": "De un mensaje a una tarea ",
+     "ox": 93,
+     "oy": 22,
+     "y": 824
+    }
+   ],
+   "1024/es/packages": [
+    {
+     "a": "Vista previa",
+     "b": "Hoy los tres planes incluy",
+     "ox": 73,
+     "oy": 20,
+     "y": 764
+    },
+    {
+     "a": "Plataforma",
+     "b": "14 días gratis",
+     "ox": 44,
+     "oy": 24,
+     "y": 845
+    },
+    {
+     "a": "Sin método de pago",
+     "b": "Essential",
+     "ox": 125,
+     "oy": 10,
+     "y": 875
+    },
+    {
+     "a": "Plataforma",
+     "b": "Respuestas automáticas por",
+     "ox": 32,
+     "oy": 27,
+     "y": 1644
+    }
+   ]
+  },
+  "contrast_settled": {
+   "360/en": [
+    {
+     "t": "WhatsApp · new enquiry",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Laura Serrano · Sunday 21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sunday 21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "WhatsApp",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "360/es": [
+    {
+     "t": "WhatsApp · consulta nueva",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Laura Serrano · domingo 21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "domingo 21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "WhatsApp",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "360/en/platform": [
+    {
+     "t": "WhatsApp",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sample translation. The approv",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "Asked for:",
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    }
+   ],
+   "360/es/platform": [
+    {
+     "t": "WhatsApp",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "Pide:",
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    }
+   ],
+   "360/es/packages": [
+    {
+     "t": "Te decimos el precio y el peri",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Te decimos el precio y el peri",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "390/en": [
+    {
+     "t": "Laura Serrano · Sunday 21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sunday 21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "WhatsApp",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sample translation. The approv",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    }
+   ],
+   "390/es": [
+    {
+     "t": "Laura Serrano · domingo 21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "domingo 21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "WhatsApp",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    }
+   ],
+   "390/en/platform": [
+    {
+     "t": "WhatsApp",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sample translation. The approv",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "Asked for:",
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    }
+   ],
+   "390/es/platform": [
+    {
+     "t": "WhatsApp",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "Pide:",
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    }
+   ],
+   "390/es/packages": [
+    {
+     "t": "Te decimos el precio y el peri",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Te decimos el precio y el peri",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "768/en": [
+    {
+     "t": "WhatsApp · new enquiry",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Laura Serrano · Sunday 21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sunday 21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "WhatsApp",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "768/es": [
+    {
+     "t": "WhatsApp · consulta nueva",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Laura Serrano · domingo 21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "domingo 21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "WhatsApp",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "768/en/platform": [
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sample translation. The approv",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "Asked for:",
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    }
+   ],
+   "768/es/platform": [
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Pide:",
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    }
+   ],
+   "768/es/packages": [
+    {
+     "t": "Te decimos el precio y el peri",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "1024/en": [
+    {
+     "t": "WhatsApp · new enquiry",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Laura Serrano · Sunday 21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sunday 21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "WhatsApp",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "1024/es": [
+    {
+     "t": "WhatsApp · consulta nueva",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Laura Serrano · domingo 21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "domingo 21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "WhatsApp",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "1024/en/platform": [
+    {
+     "t": "WhatsApp",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sample translation. The approv",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "Asked for:",
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    }
+   ],
+   "1024/es/platform": [
+    {
+     "t": "WhatsApp",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Pide:",
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "21:40",
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    }
+   ],
+   "1024/es/packages": [
+    {
+     "t": "Te decimos el precio y el peri",
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ]
+  },
+  "videos": {
+   "/en": {
+    "count": 0,
+    "sources": [],
+    "videos": []
+   },
+   "/en/platform": {
+    "count": 0,
+    "sources": [],
+    "videos": []
+   },
+   "/en/platform/ai-sales-agent": {
+    "count": 0,
+    "sources": [],
+    "videos": []
+   },
+   "/en/platform/daily-assistant": {
+    "count": 0,
+    "sources": [],
+    "videos": []
+   },
+   "/es/platform/daily-assistant": {
+    "count": 0,
+    "sources": [],
+    "videos": []
+   }
+  },
+  "conversion": {}
+ }
+}

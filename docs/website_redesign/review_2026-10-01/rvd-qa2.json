@@ -1,0 +1,39 @@
+{
+ "base": "https://nuovasolution-staging-preview-git-w-44e113-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-09-30T13:50:18.361Z",
+ "runs": [
+  {
+   "locale": "en",
+   "question": "Does Nuova answer WhatsApp enquiries at night?",
+   "launcher": true,
+   "panel": true,
+   "input": true,
+   "seconds": 3.6,
+   "panelText": "N Ask Nuova Questions about what Nuova does and whether it fits your agency. Does Nuova answer WhatsApp enquiries at night? We cannot confirm that from here. A person can. Contact a person Type your question Answers are written by an AI assistant. Privacy notice Send",
+   "aiNotice": "Answers are written by an AI assistant.",
+   "contactOffer": true
+  },
+  {
+   "locale": "es",
+   "question": "¿Tengo que cambiar de CRM?",
+   "launcher": true,
+   "panel": true,
+   "input": true,
+   "seconds": 3.6,
+   "panelText": "N Pregunta a Nuova Preguntas sobre qué hace Nuova y si encaja con tu agencia. ¿Tengo que cambiar de CRM? No podemos confirmarlo desde aquí. Una persona sí puede. Contactar con una persona Escribe tu pregunta Las respuestas las redacta un asistente de IA. Aviso de privacidad Enviar",
+   "aiNotice": "Las respuestas las redacta un asistente de IA.",
+   "contactOffer": true
+  },
+  {
+   "locale": "en",
+   "question": "What does Essential cost?",
+   "launcher": true,
+   "panel": true,
+   "input": true,
+   "seconds": 3.6,
+   "panelText": "N Ask Nuova Questions about what Nuova does and whether it fits your agency. What does Essential cost? We cannot confirm that from here. A person can. Contact a person Type your question Answers are written by an AI assistant. Privacy notice Send",
+   "aiNotice": "Answers are written by an AI assistant.",
+   "contactOffer": true
+  }
+ ]
+}

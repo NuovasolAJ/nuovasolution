@@ -1,0 +1,38 @@
+{
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-01T07:29:29.336Z",
+ "runs": [
+  {
+   "route": "/en",
+   "viewport": 390,
+   "playControl": true,
+   "label": "",
+   "video": true,
+   "playing": true,
+   "currentTime": 3.58,
+   "duration": 21.3,
+   "muted": true,
+   "controls": true,
+   "autoplay": false,
+   "src": "daily-claim-flow-en-mobile.mp4",
+   "volume": 1,
+   "readyState": 4
+  },
+  {
+   "route": "/es",
+   "viewport": 1440,
+   "playControl": true,
+   "label": "",
+   "video": true,
+   "playing": true,
+   "currentTime": 3,
+   "duration": 21.3,
+   "muted": true,
+   "controls": true,
+   "autoplay": false,
+   "src": "daily-claim-flow-es-desktop.mp4",
+   "volume": 1,
+   "readyState": 4
+  }
+ ]
+}

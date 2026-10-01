@@ -1,0 +1,188 @@
+{
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-09-30T13:44:28.631Z",
+ "routes": {
+  "/en": {
+   "status": 200,
+   "found": {
+    "phone": [
+     "without asking. Unclear ownership A viewing was asked for, and nobody knows who calls back. With Nuova Whoever takes a task owns it. The others can see that it is taken a",
+     "task for your team Peter and Anna K. Asked for : A valuation in Marbella Next : Call this week Carlos R. Asked for : A villa in Benahavís Next : Reply on WhatsApp Sofía L",
+     "o payment method is asked for. Can I pay online? Not on this site. We send an invoice and you pay by bank transfer. Do I have to talk to someone first? No. You can start"
+    ],
+    "invoice": [
+     "no payment method is asked for. Can I pay online? Not on this site. We send an invoice and you pay by bank transfer. Do I have to talk to someone first? No. You can star",
+     "sked for. Can I pay online? Not on this site. We send an invoice and you pay by bank transfer. Do I have to talk to someone first? No. You can start on your own. A demo i"
+    ],
+    "whatsapp_night": [
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,",
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,",
+     "e confirmed from here. Common questions Does Nuova answer WhatsApp enquiries at night? Do I need to change my CRM? What happens after the 14 day trial? Type your question"
+    ]
+   }
+  },
+  "/es": {
+   "status": 200,
+   "found": {
+    "phone": [
+     "ponsabilidad poco clara Alguien pidió una visita y nadie sabe quién devuelve la llamada. Con Nuova Quien toma una tarea se hace cargo de ella. Los demás ven que está toma"
+    ],
+    "invoice": [
+     "se pide método de pago. ¿Puedo pagar online? En este sitio no. Te enviamos una factura y la pagas por transferencia. ¿Tengo que hablar con alguien antes? No. Puedes empe",
+     ". ¿Puedo pagar online? En este sitio no. Te enviamos una factura y la pagas por transferencia. ¿Tengo que hablar con alguien antes? No. Puedes empezar por tu cuenta. La d"
+    ],
+    "whatsapp_night": [
+     "capacidades Responder consultas AI Sales Agent Responde consultas de texto, de día o de noche Organizar leads Lead Intelligence Guarda lo que te ha contado cada cliente",
+     "capacidades Responder consultas AI Sales Agent Responde consultas de texto, de día o de noche Organizar leads Lead Intelligence Guarda lo que te ha contado cada cliente",
+     "España Ninguna consulta espera al lunes Un comprador escribe un domingo por la noche. Nuova responde en su idioma, registra lo que ha pedido y deja a tu equipo una tarea"
+    ]
+   }
+  },
+  "/en/platform": {
+   "status": 200,
+   "found": {
+    "phone": [
+     "ly you can close it. Capabilities What Nuova does for your agency. On request A phone assistant is in preparation. We walk you through it on request. An interactive 3D mo"
+    ],
+    "threeD": [
+     "assistant is in preparation. We walk you through it on request. An interactive 3D model of your property in the browser, built by us on request. To scale from your plans"
+    ],
+    "whatsapp_night": [
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,",
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,",
+     "or, switch the furnishing on and off. 01 AI Sales Agent Answers text enquiries, day or night Read the module 02 Lead Intelligence Keeps what each customer told you Read t"
+    ]
+   }
+  },
+  "/es/platform": {
+   "status": 200,
+   "found": {
+    "threeD": [
+     "sistente telefónico está en preparación. Te lo explicamos a petición. Un modelo 3D interactivo de tu inmueble en el navegador, hecho por nosotros a petición. A escala seg"
+    ],
+    "whatsapp_night": [
+     "capacidades Responder consultas AI Sales Agent Responde consultas de texto, de día o de noche Organizar leads Lead Intelligence Guarda lo que te ha contado cada cliente",
+     "capacidades Responder consultas AI Sales Agent Responde consultas de texto, de día o de noche Organizar leads Lead Intelligence Guarda lo que te ha contado cada cliente",
+     "va y desactiva el mobiliario. 01 AI Sales Agent Responde consultas de texto, de día o de noche Ver el módulo 02 Lead Intelligence Guarda lo que te ha contado cada cliente"
+    ]
+   }
+  },
+  "/en/platform/ai-sales-agent": {
+   "status": 200,
+   "found": {
+    "whatsapp_night": [
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,",
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,"
+    ]
+   }
+  },
+  "/en/platform/crm": {
+   "status": 200,
+   "found": {
+    "phone": [
+     "task for your team Peter and Anna K. Asked for : A valuation in Marbella Next : Call this week Carlos R. Asked for : A villa in Benahavís Next : Reply on WhatsApp Sofía L"
+    ],
+    "whatsapp_night": [
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,",
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,",
+     "igence Keeps what each customer told you AI Sales Agent Answers text enquiries, day or night Your next enquiry is already on its way Try Essential free Request a demo Nuo"
+    ]
+   }
+  },
+  "/es/platform/crm": {
+   "status": 200,
+   "found": {
+    "whatsapp_night": [
+     "capacidades Responder consultas AI Sales Agent Responde consultas de texto, de día o de noche Organizar leads Lead Intelligence Guarda lo que te ha contado cada cliente",
+     "capacidades Responder consultas AI Sales Agent Responde consultas de texto, de día o de noche Organizar leads Lead Intelligence Guarda lo que te ha contado cada cliente",
+     "o que te ha contado cada cliente AI Sales Agent Responde consultas de texto, de día o de noche Tu próxima consulta ya está en camino Prueba Essential gratis Solicitar una"
+    ]
+   }
+  },
+  "/en/platform/lead-intelligence": {
+   "status": 200,
+   "found": {
+    "whatsapp_night": [
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,",
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,",
+     "the channels you have connected. Related AI Sales Agent Answers text enquiries, day or night CRM Leads, conversations and tasks in one place Daily Tasks The tasks your te"
+    ]
+   }
+  },
+  "/en/platform/daily-assistant": {
+   "status": 200,
+   "found": {
+    "phone": [
+     "Tasks The request becomes a task somebody owns. Every viewing request and every callback becomes a task with the customer, the property and the time they asked for. Based"
+    ],
+    "whatsapp_night": [
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,",
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,"
+    ]
+   }
+  },
+  "/en/packages": {
+   "status": 200,
+   "found": {
+    "phone": [
+     "eriod We state the price and the billing period in your proposal and on every invoice. Nothing is charged automatically. 14 days, free, with no payment method. Your accou",
+     "illing period in your proposal and on every invoice. Nothing is charged automatically. 14 days, free, with no payment method. Your account and your data stay. Paid featur",
+     "ures pause until you choose a plan. You can still log in. How paying works An invoice, paid by bank transfer 1 You request the plan. You tell us which plan you want. 2 We"
+    ],
+    "invoice": [
+     "period We state the price and the billing period in your proposal and on every invoice. Nothing is charged automatically. 14 days, free, with no payment method. Your acc",
+     "atures pause until you choose a plan. You can still log in. How paying works An invoice, paid by bank transfer 1 You request the plan. You tell us which plan you want. 2",
+     "l you choose a plan. You can still log in. How paying works An invoice, paid by bank transfer 1 You request the plan. You tell us which plan you want. 2 We issue the invo"
+    ],
+    "whatsapp_night": [
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,",
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,"
+    ]
+   }
+  },
+  "/es/packages": {
+   "status": 200,
+   "found": {
+    "phone": [
+     "consulta ya está en camino Prueba Essential gratis Hablar sobre los planes Sin llamada comercial. Nuova responde a las consultas de tu agencia y las convierte en trabajo"
+    ],
+    "invoice": [
+     "ago. Después eliges un plan con nosotros y te decimos el precio y el periodo de facturación antes de acordar nada. En qué se diferencian los planes Hoy los tres planes in",
+     "3 Leads al mes 750 Precio para tu agencia Te decimos el precio y el periodo de facturación antes de acordar nada. Prueba Essential gratis Solicita una propuesta Growth U",
+     "Leads al mes 3.000 Precio para tu agencia Te decimos el precio y el periodo de facturación antes de acordar nada. Solicita una propuesta Cuéntanos tus oficinas, tu equip"
+    ],
+    "whatsapp_night": [
+     "capacidades Responder consultas AI Sales Agent Responde consultas de texto, de día o de noche Organizar leads Lead Intelligence Guarda lo que te ha contado cada cliente",
+     "capacidades Responder consultas AI Sales Agent Responde consultas de texto, de día o de noche Organizar leads Lead Intelligence Guarda lo que te ha contado cada cliente"
+    ]
+   }
+  },
+  "/en/trial": {
+   "status": 200,
+   "found": {
+    "external_crm": [
+     "meanwhile. 08 Property source Point it at your own website, a supported feed or your CRM inventory. 09 Readiness A clear readiness check before you go live. A step waitin"
+    ],
+    "phone": [
+     "nment. Try Essential free See the packages No payment method required. No sales call required. What is needed to go live Example Needed to go live Your agency account Don"
+    ],
+    "whatsapp_night": [
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,",
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,"
+    ]
+   }
+  },
+  "/en/contact": {
+   "status": 200,
+   "found": {
+    "phone": [
+     "a demo Or just start Try free for 14 days. No payment method required, no sales call required. Try Essential free Your next enquiry is already on its way Try Essential fr"
+    ],
+    "whatsapp_night": [
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,",
+     "er See every capability Answer enquiries AI Sales Agent Answers text enquiries, day or night Organise leads Lead Intelligence Keeps what each customer told you CRM Leads,"
+    ]
+   }
+  }
+ }
+}

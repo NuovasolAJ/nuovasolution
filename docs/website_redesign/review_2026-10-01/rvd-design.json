@@ -1,0 +1,3100 @@
+{
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-09-30T13:39:34.015Z",
+ "engine": "Chromium (Edge headless) — approximation, not Safari/WebKit",
+ "checks": [
+  {
+   "id": "RVD-01",
+   "what": "no text boxes visibly cross each other while scrolling, five viewports x twelve routes",
+   "verdict": "FAIL",
+   "evidence": {
+    "affected": [
+     "390/es/packages",
+     "768/en",
+     "768/es",
+     "768/en/platform",
+     "768/es/platform",
+     "768/en/platform/ai-sales-agent",
+     "768/es/platform/crm",
+     "768/en/packages"
+    ],
+    "count": 37
+   }
+  },
+  {
+   "id": "RVD-02",
+   "what": "no text sits below the contrast floor or fades to near invisible",
+   "verdict": "FAIL",
+   "evidence": {
+    "affected": [
+     "360/en",
+     "360/es",
+     "360/en/platform",
+     "360/es/platform",
+     "360/en/platform/ai-sales-agent",
+     "360/es/platform/crm",
+     "360/en/packages",
+     "360/es/packages"
+    ],
+    "sample": [
+     {
+      "t": "Your agency",
+      "opacity": 0,
+      "ratio": 15.56,
+      "need": 4.5,
+      "size": 15,
+      "color": "rgb(26, 25, 23)",
+      "bg": "rgb(243, 241, 236)"
+     },
+     {
+      "t": "WhatsApp · new enquiry",
+      "opacity": 0,
+      "ratio": 4.18,
+      "need": 4.5,
+      "size": 13,
+      "color": "rgb(119, 115, 108)",
+      "bg": "rgb(243, 241, 236)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "RVD-03",
+   "what": "no text is cut off by its own box (wrapping)",
+   "verdict": "FAIL",
+   "evidence": {
+    "affected": [
+     "768/es",
+     "768/es/platform",
+     "768/es/packages",
+     "1024/es",
+     "1024/en/platform",
+     "1024/es/platform"
+    ],
+    "sample": [
+     {
+      "t": "WhatsApp",
+      "sw": 64,
+      "cw": 60
+     },
+     {
+      "t": "WhatsApp",
+      "sw": 64,
+      "cw": 60
+     }
+    ]
+   }
+  },
+  {
+   "id": "RVD-04",
+   "what": "cards are distinguishable from their background by tone, border or shadow",
+   "verdict": "PASS",
+   "evidence": [
+    {
+     "t": "With Nuova\nText enquirie",
+     "bg": "rgb(255, 255, 255)",
+     "parentBg": "rgba(0, 0, 0, 0)",
+     "border": "1px rgb(235, 232, 225)",
+     "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0",
+     "separation": 1
+    },
+    {
+     "t": "With Nuova\nThe conversat",
+     "bg": "rgb(255, 255, 255)",
+     "parentBg": "rgba(0, 0, 0, 0)",
+     "border": "1px rgb(235, 232, 225)",
+     "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0",
+     "separation": 1
+    },
+    {
+     "t": "With Nuova\nWhoever takes",
+     "bg": "rgb(255, 255, 255)",
+     "parentBg": "rgba(0, 0, 0, 0)",
+     "border": "1px rgb(235, 232, 225)",
+     "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0",
+     "separation": 1
+    },
+    {
+     "t": "01 · ANSWERED\n\nWhatsApp ",
+     "bg": "rgb(255, 255, 255)",
+     "parentBg": "rgba(0, 0, 0, 0)",
+     "border": "1px rgb(235, 232, 225)",
+     "shadow": "rgba(26, 25, 23, 0.03) 0px 1px 1px 0px, ",
+     "separation": 1
+    }
+   ]
+  },
+  {
+   "id": "RVD-05",
+   "what": "product clips: poster present, muted, no autoplay with sound, and they actually start",
+   "verdict": "FAIL",
+   "evidence": {
+    "count": 0
+   }
+  },
+  {
+   "id": "RVD-06",
+   "what": "at 200 % zoom with all details open: no overflow, no crossing text",
+   "verdict": "PASS",
+   "evidence": {
+    "details": 0,
+    "overflow": false,
+    "sw": 705,
+    "iw": 720,
+    "overlaps": 0
+   }
+  },
+  {
+   "id": "RVD-07",
+   "what": "every one of the first 25 focusable elements shows a focus ring",
+   "verdict": "PASS",
+   "evidence": {
+    "focusables": 47,
+    "checked": 25,
+    "withoutRing": []
+   }
+  },
+  {
+   "id": "RVD-08",
+   "what": "with reduced motion nothing animates, no clip plays by itself and no content stays hidden",
+   "verdict": "PASS",
+   "evidence": {
+    "total": 0,
+    "running": 0,
+    "videosPlaying": 0,
+    "hiddenByAnimation": 0
+   }
+  },
+  {
+   "id": "RVD-09",
+   "what": "the primary call to action leads to a working registration form",
+   "verdict": "FAIL",
+   "evidence": {
+    "found": false,
+    "links": [
+     "",
+     "Everything Nuova doesSee how the parts fit togetherSee every capability",
+     "AI Sales AgentAnswers text enquiries, day or night",
+     "Lead IntelligenceKeeps what each customer told you",
+     "CRMLeads, conversations and tasks in one place",
+     "Daily TasksThe tasks your team takes and closes",
+     "Packages",
+     "Trial"
+    ]
+   }
+  }
+ ],
+ "detail": {
+  "overlap": {
+   "390/es/packages": [
+    {
+     "a": "Sin método de pago",
+     "b": "Essential",
+     "ox": 125,
+     "oy": 10
+    }
+   ],
+   "768/en": [
+    {
+     "a": "Preview",
+     "b": "Carlos R.",
+     "ox": 10,
+     "oy": 12
+    },
+    {
+     "a": "Asked for: 2 bedrooms, Est",
+     "b": "CUSTOMER RECORD",
+     "ox": 139,
+     "oy": 3
+    },
+    {
+     "a": "Asked for: 2 bedrooms, Est",
+     "b": "Synthetic data",
+     "ox": 108,
+     "oy": 8
+    },
+    {
+     "a": "Next: A task for your team",
+     "b": "CUSTOMER RECORD",
+     "ox": 139,
+     "oy": 11
+    }
+   ],
+   "768/es": [
+    {
+     "a": "Vista previa",
+     "b": "Con Nuova\nLas consultas de",
+     "ox": 31,
+     "oy": 20
+    },
+    {
+     "a": "domingo 21:40",
+     "b": "Las tareas de tu equipo, h",
+     "ox": 128,
+     "oy": 10
+    },
+    {
+     "a": "Vista previa",
+     "b": "Pide: Una valoración en Ma",
+     "ox": 34,
+     "oy": 17
+    },
+    {
+     "a": "Vista previa",
+     "b": "Pide:",
+     "ox": 27,
+     "oy": 15
+    }
+   ],
+   "768/en/platform": [
+    {
+     "a": "Preview",
+     "b": "Hello, I am Laura Serrano.",
+     "ox": 13,
+     "oy": 20
+    },
+    {
+     "a": "Preview",
+     "b": "Answers text enquiries, da",
+     "ox": 43,
+     "oy": 13
+    },
+    {
+     "a": "Preview",
+     "b": "© 2026 NuovaSolution. All ",
+     "ox": 49,
+     "oy": 15
+    }
+   ],
+   "768/es/platform": [
+    {
+     "a": "Vista previa",
+     "b": "Hola, soy Laura Serrano. ¿",
+     "ox": 37,
+     "oy": 20
+    },
+    {
+     "a": "Vista previa",
+     "b": "Hola Laura, gracias por es",
+     "ox": 21,
+     "oy": 20
+    },
+    {
+     "a": "Vista previa",
+     "b": "Responde consultas de text",
+     "ox": 67,
+     "oy": 19
+    }
+   ],
+   "768/en/platform/ai-sales-agent": [
+    {
+     "a": "Preview",
+     "b": "IN PRACTICE",
+     "ox": 49,
+     "oy": 8
+    },
+    {
+     "a": "Preview",
+     "b": "AI Sales Agent",
+     "ox": 49,
+     "oy": 20
+    }
+   ],
+   "768/es/platform/crm": [
+    {
+     "a": "Vista previa",
+     "b": "Pide: Una valoración en Ma",
+     "ox": 30,
+     "oy": 16
+    },
+    {
+     "a": "Vista previa",
+     "b": "Pide:",
+     "ox": 27,
+     "oy": 15
+    },
+    {
+     "a": "Vista previa",
+     "b": "Tareas diarias",
+     "ox": 73,
+     "oy": 20
+    }
+   ],
+   "768/en/packages": [
+    {
+     "a": "14 days free",
+     "b": "No payment method",
+     "ox": 86,
+     "oy": 4
+    },
+    {
+     "a": "No payment method",
+     "b": "Essential",
+     "ox": 127,
+     "oy": 10
+    },
+    {
+     "a": "Preview",
+     "b": "HOW PAYING WORKS",
+     "ox": 49,
+     "oy": 14
+    }
+   ],
+   "768/es/packages": [
+    {
+     "a": "14 días gratis",
+     "b": "Sin método de pago",
+     "ox": 93,
+     "oy": 4
+    },
+    {
+     "a": "Sin método de pago",
+     "b": "Essential",
+     "ox": 125,
+     "oy": 10
+    },
+    {
+     "a": "Vista previa",
+     "b": "Nuova responde a las consu",
+     "ox": 73,
+     "oy": 20
+    }
+   ],
+   "768/en/trial": [
+    {
+     "a": "Preview",
+     "b": "Try Essential free",
+     "ox": 49,
+     "oy": 11
+    },
+    {
+     "a": "Preview",
+     "b": "Trial",
+     "ox": 11,
+     "oy": 8
+    }
+   ],
+   "768/es/trial": [
+    {
+     "a": "Vista previa",
+     "b": "01",
+     "ox": 13,
+     "oy": 6
+    },
+    {
+     "a": "Vista previa",
+     "b": "Tu nombre, tu email, tu id",
+     "ox": 44,
+     "oy": 6
+    },
+    {
+     "a": "Vista previa",
+     "b": "EMPEZAR",
+     "ox": 73,
+     "oy": 14
+    }
+   ],
+   "768/en/contact": [
+    {
+     "a": "Preview",
+     "b": "Lead Intelligence",
+     "ox": 49,
+     "oy": 6
+    },
+    {
+     "a": "Preview",
+     "b": "CRM",
+     "ox": 15,
+     "oy": 13
+    }
+   ],
+   "768/es/signup": [
+    {
+     "a": "Vista previa",
+     "b": "Idioma de tu cuenta",
+     "ox": 59,
+     "oy": 18
+    }
+   ],
+   "1024/en": [
+    {
+     "a": "Sunday 21:40",
+     "b": "Your team's tasks, today",
+     "ox": 173,
+     "oy": 10
+    },
+    {
+     "a": "Contact",
+     "b": "Open · nobody has claimed ",
+     "ox": 39,
+     "oy": 7
+    },
+    {
+     "a": "Log in",
+     "b": "Open · nobody has claimed ",
+     "ox": 71,
+     "oy": 7
+    },
+    {
+     "a": "Platform",
+     "b": "With Nuova\nText enquiries ",
+     "ox": 90,
+     "oy": 26
+    }
+   ],
+   "1024/es": [
+    {
+     "a": "Vista previa",
+     "b": "Prueba Essential gratis",
+     "ox": 73,
+     "oy": 17
+    },
+    {
+     "a": "Mira cómo funciona",
+     "b": "Las tareas de tu equipo, h",
+     "ox": 21,
+     "oy": 6
+    },
+    {
+     "a": "domingo 21:40",
+     "b": "Las tareas de tu equipo, h",
+     "ox": 173,
+     "oy": 10
+    },
+    {
+     "a": "Contacto",
+     "b": "Confirmar con Laura Serran",
+     "ox": 70,
+     "oy": 27
+    }
+   ],
+   "1024/en/platform": [
+    {
+     "a": "Preview",
+     "b": "From a message to a finish",
+     "ox": 49,
+     "oy": 20
+    },
+    {
+     "a": "Platform",
+     "b": "01 · ANSWERED",
+     "ox": 91,
+     "oy": 9
+    },
+    {
+     "a": "Packages",
+     "b": "02 · RECORDED",
+     "ox": 47,
+     "oy": 9
+    },
+    {
+     "a": "Trial",
+     "b": "02 · RECORDED",
+     "ox": 58,
+     "oy": 9
+    }
+   ],
+   "1024/es/platform": [
+    {
+     "a": "Plataforma",
+     "b": "De un mensaje a una tarea ",
+     "ox": 111,
+     "oy": 22
+    },
+    {
+     "a": "Paquetes",
+     "b": "De un mensaje a una tarea ",
+     "ox": 94,
+     "oy": 22
+    },
+    {
+     "a": "Prueba",
+     "b": "De un mensaje a una tarea ",
+     "ox": 79,
+     "oy": 22
+    },
+    {
+     "a": "Contacto",
+     "b": "De un mensaje a una tarea ",
+     "ox": 93,
+     "oy": 22
+    }
+   ],
+   "1024/en/platform/ai-sales-agent": [
+    {
+     "a": "Preview",
+     "b": "Based on agency permission",
+     "ox": 49,
+     "oy": 18
+    },
+    {
+     "a": "Platform",
+     "b": "Try Essential free",
+     "ox": 38,
+     "oy": 37
+    },
+    {
+     "a": "Platform",
+     "b": "Request a demo",
+     "ox": 52,
+     "oy": 37
+    },
+    {
+     "a": "Packages",
+     "b": "Request a demo",
+     "ox": 97,
+     "oy": 37
+    }
+   ],
+   "1024/es/platform/crm": [
+    {
+     "a": "Plataforma",
+     "b": "Prueba Essential gratis",
+     "ox": 85,
+     "oy": 35
+    },
+    {
+     "a": "Plataforma",
+     "b": "Solicitar una demo",
+     "ox": 10,
+     "oy": 35
+    },
+    {
+     "a": "Paquetes",
+     "b": "Solicitar una demo",
+     "ox": 94,
+     "oy": 35
+    },
+    {
+     "a": "Prueba",
+     "b": "Solicitar una demo",
+     "ox": 79,
+     "oy": 35
+    }
+   ],
+   "1024/en/packages": [
+    {
+     "a": "Preview",
+     "b": "All three plans include th",
+     "ox": 49,
+     "oy": 10
+    },
+    {
+     "a": "Platform",
+     "b": "14 days free",
+     "ox": 36,
+     "oy": 18
+    },
+    {
+     "a": "Platform",
+     "b": "No payment method",
+     "ox": 76,
+     "oy": 24
+    },
+    {
+     "a": "Platform",
+     "b": "Essential",
+     "ox": 83,
+     "oy": 17
+    }
+   ],
+   "1024/es/packages": [
+    {
+     "a": "Vista previa",
+     "b": "Hoy los tres planes incluy",
+     "ox": 73,
+     "oy": 20
+    },
+    {
+     "a": "Plataforma",
+     "b": "14 días gratis",
+     "ox": 44,
+     "oy": 24
+    },
+    {
+     "a": "Vista previa",
+     "b": "Qué incluye cada plan",
+     "ox": 47,
+     "oy": 18
+    },
+    {
+     "a": "Sin método de pago",
+     "b": "Essential",
+     "ox": 125,
+     "oy": 10
+    }
+   ],
+   "1024/en/trial": [
+    {
+     "a": "Preview",
+     "b": "You set your agency up you",
+     "ox": 49,
+     "oy": 8
+    },
+    {
+     "a": "Platform",
+     "b": "One step at a time, in you",
+     "ox": 105,
+     "oy": 42
+    },
+    {
+     "a": "Packages",
+     "b": "One step at a time, in you",
+     "ox": 72,
+     "oy": 42
+    },
+    {
+     "a": "Trial",
+     "b": "03",
+     "ox": 32,
+     "oy": 17
+    }
+   ],
+   "1024/es/trial": [
+    {
+     "a": "Vista previa",
+     "b": "Configuras tu agencia tú m",
+     "ox": 73,
+     "oy": 20
+    },
+    {
+     "a": "Plataforma",
+     "b": "Paso a paso, a tu ritmo. T",
+     "ox": 111,
+     "oy": 41
+    },
+    {
+     "a": "Paquetes",
+     "b": "Paso a paso, a tu ritmo. T",
+     "ox": 66,
+     "oy": 41
+    },
+    {
+     "a": "Prueba",
+     "b": "02",
+     "ox": 32,
+     "oy": 42
+    }
+   ],
+   "1024/en/contact": [
+    {
+     "a": "Preview",
+     "b": "OPTIONAL",
+     "ox": 28,
+     "oy": 13
+    },
+    {
+     "a": "Platform",
+     "b": "We walk you through the sy",
+     "ox": 105,
+     "oy": 44
+    },
+    {
+     "a": "Packages",
+     "b": "We walk you through the sy",
+     "ox": 97,
+     "oy": 44
+    },
+    {
+     "a": "Trial",
+     "b": "We walk you through the sy",
+     "ox": 36,
+     "oy": 44
+    }
+   ],
+   "1024/es/signup": [
+    {
+     "a": "Plataforma",
+     "b": "Email de trabajo",
+     "ox": 77,
+     "oy": 8
+    },
+    {
+     "a": "Paquetes",
+     "b": "Email de trabajo",
+     "ox": 94,
+     "oy": 8
+    },
+    {
+     "a": "Prueba",
+     "b": "Email de trabajo",
+     "ox": 79,
+     "oy": 8
+    },
+    {
+     "a": "Contacto",
+     "b": "Email de trabajo",
+     "ox": 93,
+     "oy": 8
+    }
+   ],
+   "1440/en": [
+    {
+     "a": "Sunday 21:40",
+     "b": "Your team's tasks, today",
+     "ox": 128,
+     "oy": 10
+    },
+    {
+     "a": "Platform",
+     "b": "02\nRecorded",
+     "ox": 92,
+     "oy": 8
+    },
+    {
+     "a": "Packages",
+     "b": "02\nRecorded",
+     "ox": 31,
+     "oy": 8
+    },
+    {
+     "a": "Packages",
+     "b": "03\nHanded over",
+     "ox": 36,
+     "oy": 8
+    }
+   ],
+   "1440/es": [
+    {
+     "a": "domingo 21:40",
+     "b": "Las tareas de tu equipo, h",
+     "ox": 128,
+     "oy": 10
+    },
+    {
+     "a": "Plataforma",
+     "b": "02\nRegistrada",
+     "ox": 97,
+     "oy": 32
+    },
+    {
+     "a": "Plataforma",
+     "b": "02",
+     "ox": 16,
+     "oy": 20
+    },
+    {
+     "a": "Paquetes",
+     "b": "02\nRegistrada",
+     "ox": 33,
+     "oy": 32
+    }
+   ],
+   "1440/en/platform": [
+    {
+     "a": "Platform",
+     "b": "01 · ANSWERED",
+     "ox": 105,
+     "oy": 14
+    },
+    {
+     "a": "Platform",
+     "b": "WhatsApp and e-mail",
+     "ox": 105,
+     "oy": 3
+    },
+    {
+     "a": "Packages",
+     "b": "01 · ANSWERED",
+     "ox": 97,
+     "oy": 14
+    },
+    {
+     "a": "Packages",
+     "b": "WhatsApp and e-mail",
+     "ox": 97,
+     "oy": 3
+    }
+   ],
+   "1440/es/platform": [
+    {
+     "a": "Vista previa",
+     "b": "UNA CONSULTA, DE PRINCIPIO",
+     "ox": 11,
+     "oy": 5
+    },
+    {
+     "a": "Plataforma",
+     "b": "De un mensaje a una tarea ",
+     "ox": 123,
+     "oy": 17
+    },
+    {
+     "a": "Paquetes",
+     "b": "De un mensaje a una tarea ",
+     "ox": 94,
+     "oy": 17
+    },
+    {
+     "a": "Prueba",
+     "b": "De un mensaje a una tarea ",
+     "ox": 79,
+     "oy": 17
+    }
+   ],
+   "1440/en/platform/ai-sales-agent": [
+    {
+     "a": "Trial",
+     "b": "Try Essential free",
+     "ox": 36,
+     "oy": 31
+    },
+    {
+     "a": "Contact",
+     "b": "Try Essential free",
+     "ox": 84,
+     "oy": 31
+    }
+   ],
+   "1440/es/platform/crm": [
+    {
+     "a": "Vista previa",
+     "b": "Nuova responde a las consu",
+     "ox": 11,
+     "oy": 20
+    },
+    {
+     "a": "Paquetes",
+     "b": "Prueba Essential gratis",
+     "ox": 23,
+     "oy": 31
+    },
+    {
+     "a": "Prueba",
+     "b": "Prueba Essential gratis",
+     "ox": 79,
+     "oy": 31
+    },
+    {
+     "a": "Contacto",
+     "b": "Prueba Essential gratis",
+     "ox": 93,
+     "oy": 31
+    }
+   ],
+   "1440/en/packages": [
+    {
+     "a": "Platform",
+     "b": "No payment method",
+     "ox": 28,
+     "oy": 14
+    },
+    {
+     "a": "Platform",
+     "b": "Essential",
+     "ox": 105,
+     "oy": 36
+    },
+    {
+     "a": "Packages",
+     "b": "No payment method",
+     "ox": 95,
+     "oy": 14
+    },
+    {
+     "a": "Packages",
+     "b": "Essential",
+     "ox": 97,
+     "oy": 36
+    }
+   ],
+   "1440/es/packages": [
+    {
+     "a": "Plataforma",
+     "b": "Sin método de pago",
+     "ox": 43,
+     "oy": 14
+    },
+    {
+     "a": "Plataforma",
+     "b": "Essential",
+     "ox": 123,
+     "oy": 36
+    },
+    {
+     "a": "Paquetes",
+     "b": "Sin método de pago",
+     "ox": 78,
+     "oy": 14
+    },
+    {
+     "a": "Paquetes",
+     "b": "Essential",
+     "ox": 85,
+     "oy": 36
+    }
+   ],
+   "1440/en/trial": [
+    {
+     "a": "Platform",
+     "b": "HOW IT WORKS",
+     "ox": 105,
+     "oy": 14
+    },
+    {
+     "a": "Packages",
+     "b": "HOW IT WORKS",
+     "ox": 97,
+     "oy": 14
+    },
+    {
+     "a": "Trial",
+     "b": "HOW IT WORKS",
+     "ox": 58,
+     "oy": 14
+    },
+    {
+     "a": "Contact",
+     "b": "HOW IT WORKS",
+     "ox": 46,
+     "oy": 14
+    }
+   ],
+   "1440/es/trial": [
+    {
+     "a": "Plataforma",
+     "b": "CÓMO FUNCIONA",
+     "ox": 123,
+     "oy": 14
+    },
+    {
+     "a": "Paquetes",
+     "b": "CÓMO FUNCIONA",
+     "ox": 94,
+     "oy": 14
+    },
+    {
+     "a": "Prueba",
+     "b": "CÓMO FUNCIONA",
+     "ox": 79,
+     "oy": 14
+    },
+    {
+     "a": "Contacto",
+     "b": "CÓMO FUNCIONA",
+     "ox": 12,
+     "oy": 14
+    }
+   ],
+   "1440/en/contact": [
+    {
+     "a": "Platform",
+     "b": "We walk you through the sy",
+     "ox": 105,
+     "oy": 18
+    },
+    {
+     "a": "Packages",
+     "b": "We walk you through the sy",
+     "ox": 97,
+     "oy": 18
+    },
+    {
+     "a": "Trial",
+     "b": "We walk you through the sy",
+     "ox": 58,
+     "oy": 18
+    },
+    {
+     "a": "Contact",
+     "b": "We walk you through the sy",
+     "ox": 84,
+     "oy": 18
+    }
+   ],
+   "1440/es/signup": [
+    {
+     "a": "Paquetes",
+     "b": "Contraseña",
+     "ox": 11,
+     "oy": 20
+    },
+    {
+     "a": "Prueba",
+     "b": "Contraseña",
+     "ox": 79,
+     "oy": 20
+    },
+    {
+     "a": "Contacto",
+     "b": "Contraseña",
+     "ox": 93,
+     "oy": 20
+    },
+    {
+     "a": "EN\nENGLISH",
+     "b": "Contraseña",
+     "ox": 30,
+     "oy": 15
+    }
+   ]
+  },
+  "faded": {
+   "360/en": [
+    {
+     "t": "Your agency",
+     "opacity": 0,
+     "ratio": 15.56,
+     "need": 4.5,
+     "size": 15,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "WhatsApp · new enquiry",
+     "opacity": 0,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Synthetic data",
+     "opacity": 0,
+     "ratio": 9.1,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(255, 255, 255)"
+    },
+    {
+     "t": "Recorded · Laura Serrano",
+     "opacity": 0,
+     "ratio": 17.57,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(255, 255, 255)"
+    }
+   ],
+   "360/es": [
+    {
+     "t": "Tu agencia",
+     "opacity": 0,
+     "ratio": 15.56,
+     "need": 4.5,
+     "size": 15,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "WhatsApp · consulta nueva",
+     "opacity": 0,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Datos sintéticos",
+     "opacity": 0,
+     "ratio": 9.1,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(255, 255, 255)"
+    },
+    {
+     "t": "Registrada · Laura Serrano",
+     "opacity": 0,
+     "ratio": 17.57,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(255, 255, 255)"
+    }
+   ],
+   "360/en/platform": [
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sample translation. The approved n",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    }
+   ],
+   "360/es/platform": [
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "Pide:",
+     "opacity": 1,
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    }
+   ],
+   "360/en/platform/ai-sales-agent": [
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sample translation. The approved n",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    }
+   ],
+   "360/es/platform/crm": [
+    {
+     "t": "Pide:",
+     "opacity": 1,
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "Siguiente:",
+     "opacity": 1,
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "Ejemplo. Según los permisos y la c",
+     "opacity": 1,
+     "ratio": 4.37,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(248, 246, 241)"
+    },
+    {
+     "t": "Ejemplo",
+     "opacity": 0,
+     "ratio": 9.1,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(255, 255, 255)"
+    }
+   ],
+   "360/en/packages": [
+    {
+     "t": "14 days free",
+     "opacity": 0,
+     "ratio": 16.27,
+     "need": 4.5,
+     "size": 15,
+     "color": "rgb(248, 246, 241)",
+     "bg": "rgb(26, 25, 23)"
+    },
+    {
+     "t": "We tell you the price and the bill",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "We tell you the price and the bill",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "We tell you the price and the bill",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "360/es/packages": [
+    {
+     "t": "Te decimos el precio y el periodo ",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Te decimos el precio y el periodo ",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Te decimos el precio y el periodo ",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "3",
+     "opacity": 0,
+     "ratio": 16.27,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(248, 246, 241)",
+     "bg": "rgb(26, 25, 23)"
+    }
+   ],
+   "360/en/trial": [
+    {
+     "t": "What is needed to go live",
+     "opacity": 0,
+     "ratio": 17.57,
+     "need": 4.5,
+     "size": 17,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(255, 255, 255)"
+    },
+    {
+     "t": "Example",
+     "opacity": 0,
+     "ratio": 9.1,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(255, 255, 255)"
+    },
+    {
+     "t": "HOW IT WORKS",
+     "opacity": 0,
+     "ratio": 4.6,
+     "need": 4.5,
+     "size": 12,
+     "color": "rgb(138, 107, 50)",
+     "bg": "rgb(248, 246, 241)"
+    },
+    {
+     "t": "The conditions, in plain sight.",
+     "opacity": 0,
+     "ratio": 16.27,
+     "need": 3,
+     "size": 28,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(248, 246, 241)"
+    }
+   ],
+   "360/es/trial": [
+    {
+     "t": "Qué falta para salir en vivo",
+     "opacity": 0,
+     "ratio": 17.57,
+     "need": 4.5,
+     "size": 17,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(255, 255, 255)"
+    },
+    {
+     "t": "Ejemplo",
+     "opacity": 0,
+     "ratio": 9.1,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(255, 255, 255)"
+    },
+    {
+     "t": "CÓMO FUNCIONA",
+     "opacity": 0,
+     "ratio": 4.6,
+     "need": 4.5,
+     "size": 12,
+     "color": "rgb(138, 107, 50)",
+     "bg": "rgb(248, 246, 241)"
+    },
+    {
+     "t": "Las condiciones, a la vista.",
+     "opacity": 0,
+     "ratio": 16.27,
+     "need": 3,
+     "size": 28,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(248, 246, 241)"
+    }
+   ],
+   "390/en": [
+    {
+     "t": "Your agency",
+     "opacity": 0,
+     "ratio": 15.56,
+     "need": 4.5,
+     "size": 15,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "WhatsApp · new enquiry",
+     "opacity": 0,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Synthetic data",
+     "opacity": 0,
+     "ratio": 9.1,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(255, 255, 255)"
+    },
+    {
+     "t": "Recorded · Laura Serrano",
+     "opacity": 0,
+     "ratio": 17.57,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(255, 255, 255)"
+    }
+   ],
+   "390/es": [
+    {
+     "t": "Tu agencia",
+     "opacity": 0,
+     "ratio": 15.56,
+     "need": 4.5,
+     "size": 15,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "WhatsApp · consulta nueva",
+     "opacity": 0,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Datos sintéticos",
+     "opacity": 0,
+     "ratio": 9.1,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(255, 255, 255)"
+    },
+    {
+     "t": "Registrada · Laura Serrano",
+     "opacity": 0,
+     "ratio": 17.57,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(255, 255, 255)"
+    }
+   ],
+   "390/en/platform": [
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sample translation. The approved n",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    }
+   ],
+   "390/es/platform": [
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "Pide:",
+     "opacity": 1,
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    }
+   ],
+   "390/en/platform/ai-sales-agent": [
+    {
+     "t": "Your agency",
+     "opacity": 0,
+     "ratio": 15.56,
+     "need": 4.5,
+     "size": 15,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "WhatsApp",
+     "opacity": 0,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Synthetic data",
+     "opacity": 0,
+     "ratio": 9.1,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(255, 255, 255)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "390/es/platform/crm": [
+    {
+     "t": "Pide:",
+     "opacity": 1,
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "Siguiente:",
+     "opacity": 1,
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "Qué hace",
+     "opacity": 0,
+     "ratio": 16.83,
+     "need": 4.5,
+     "size": 22,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(251, 250, 247)"
+    },
+    {
+     "t": "Qué hace",
+     "opacity": 0,
+     "ratio": 16.83,
+     "need": 4.5,
+     "size": 22,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(251, 250, 247)"
+    }
+   ],
+   "390/en/packages": [
+    {
+     "t": "14 days free",
+     "opacity": 0,
+     "ratio": 16.27,
+     "need": 4.5,
+     "size": 15,
+     "color": "rgb(248, 246, 241)",
+     "bg": "rgb(26, 25, 23)"
+    },
+    {
+     "t": "No payment method",
+     "opacity": 0,
+     "ratio": 10.12,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(201, 196, 187)",
+     "bg": "rgb(26, 25, 23)"
+    },
+    {
+     "t": "Essential",
+     "opacity": 0,
+     "ratio": 17.57,
+     "need": 4.5,
+     "size": 22,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(255, 255, 255)"
+    },
+    {
+     "t": "One office and a small team.",
+     "opacity": 0,
+     "ratio": 9.1,
+     "need": 4.5,
+     "size": 15,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(255, 255, 255)"
+    }
+   ],
+   "390/es/packages": [
+    {
+     "t": "14 días gratis",
+     "opacity": 0,
+     "ratio": 16.27,
+     "need": 4.5,
+     "size": 15,
+     "color": "rgb(248, 246, 241)",
+     "bg": "rgb(26, 25, 23)"
+    },
+    {
+     "t": "Sin método de pago",
+     "opacity": 0,
+     "ratio": 10.12,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(201, 196, 187)",
+     "bg": "rgb(26, 25, 23)"
+    },
+    {
+     "t": "Essential",
+     "opacity": 0,
+     "ratio": 17.57,
+     "need": 4.5,
+     "size": 22,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(255, 255, 255)"
+    },
+    {
+     "t": "Te decimos el precio y el periodo ",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "390/en/trial": [
+    {
+     "t": "01",
+     "opacity": 1,
+     "ratio": 4.37,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(248, 246, 241)"
+    },
+    {
+     "t": "14 days, free, with no payment met",
+     "opacity": 0,
+     "ratio": 8.43,
+     "need": 4.5,
+     "size": 16,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(248, 246, 241)"
+    }
+   ],
+   "390/es/trial": [
+    {
+     "t": "Qué falta para salir en vivo",
+     "opacity": 0,
+     "ratio": 17.57,
+     "need": 4.5,
+     "size": 17,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(255, 255, 255)"
+    },
+    {
+     "t": "Ejemplo",
+     "opacity": 0,
+     "ratio": 9.1,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(255, 255, 255)"
+    },
+    {
+     "t": "Necesario para salir en vivo",
+     "opacity": 0,
+     "ratio": 4.72,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(255, 255, 255)"
+    },
+    {
+     "t": "La cuenta de tu agencia",
+     "opacity": 0,
+     "ratio": 17.57,
+     "need": 4.5,
+     "size": 15,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(255, 255, 255)"
+    }
+   ],
+   "768/en": [
+    {
+     "t": "WhatsApp · new enquiry",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Laura Serrano · Sunday 21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sunday 21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "768/es": [
+    {
+     "t": "WhatsApp · consulta nueva",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Laura Serrano · domingo 21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "domingo 21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "768/en/platform": [
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sample translation. The approved n",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "Asked for:",
+     "opacity": 1,
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    }
+   ],
+   "768/es/platform": [
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Pide:",
+     "opacity": 1,
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    }
+   ],
+   "768/en/platform/ai-sales-agent": [
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sample translation. The approved n",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    }
+   ],
+   "768/es/platform/crm": [
+    {
+     "t": "Pide:",
+     "opacity": 1,
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "Siguiente:",
+     "opacity": 1,
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "Ejemplo. Según los permisos y la c",
+     "opacity": 1,
+     "ratio": 4.37,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(248, 246, 241)"
+    },
+    {
+     "t": "Ejemplo",
+     "opacity": 0,
+     "ratio": 9.1,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(255, 255, 255)"
+    }
+   ],
+   "768/en/packages": [
+    {
+     "t": "We tell you the price and the bill",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "We tell you the price and the bill",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "We tell you the price and the bill",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "HOW PAYING WORKS",
+     "opacity": 0,
+     "ratio": 4.76,
+     "need": 4.5,
+     "size": 12,
+     "color": "rgb(138, 107, 50)",
+     "bg": "rgb(251, 250, 247)"
+    }
+   ],
+   "768/es/packages": [
+    {
+     "t": "Te decimos el precio y el periodo ",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Te decimos el precio y el periodo ",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Te decimos el precio y el periodo ",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "768/en/trial": [
+    {
+     "t": "01",
+     "opacity": 1,
+     "ratio": 4.37,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(248, 246, 241)"
+    }
+   ],
+   "768/es/trial": [
+    {
+     "t": "01",
+     "opacity": 1,
+     "ratio": 4.37,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(248, 246, 241)"
+    }
+   ],
+   "1024/en": [
+    {
+     "t": "WhatsApp · new enquiry",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Laura Serrano · Sunday 21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sunday 21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "1024/es": [
+    {
+     "t": "WhatsApp · consulta nueva",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Laura Serrano · domingo 21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "domingo 21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "1024/en/platform": [
+    {
+     "t": "ONE ENQUIRY, END TO END",
+     "opacity": 0,
+     "ratio": 4.76,
+     "need": 4.5,
+     "size": 12,
+     "color": "rgb(138, 107, 50)",
+     "bg": "rgb(251, 250, 247)"
+    },
+    {
+     "t": "From a message to a finished task",
+     "opacity": 0,
+     "ratio": 16.83,
+     "need": 3,
+     "size": 38,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(251, 250, 247)"
+    },
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "1024/es/platform": [
+    {
+     "t": "UNA CONSULTA, DE PRINCIPIO A FIN",
+     "opacity": 0,
+     "ratio": 4.76,
+     "need": 4.5,
+     "size": 12,
+     "color": "rgb(138, 107, 50)",
+     "bg": "rgb(251, 250, 247)"
+    },
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Pide:",
+     "opacity": 1,
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    }
+   ],
+   "1024/en/platform/ai-sales-agent": [
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sample translation. The approved n",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    }
+   ],
+   "1024/es/platform/crm": [
+    {
+     "t": "Pide:",
+     "opacity": 1,
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "Siguiente:",
+     "opacity": 1,
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "Ejemplo. Según los permisos y la c",
+     "opacity": 1,
+     "ratio": 4.37,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(248, 246, 241)"
+    },
+    {
+     "t": "Ejemplo",
+     "opacity": 0,
+     "ratio": 9.1,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(255, 255, 255)"
+    }
+   ],
+   "1024/en/packages": [
+    {
+     "t": "We tell you the price and the bill",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "We tell you the price and the bill",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "We tell you the price and the bill",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "What every plan includes",
+     "opacity": 0,
+     "ratio": 17.57,
+     "need": 4.5,
+     "size": 22,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgba(255, 255, 255, 0.5)"
+    }
+   ],
+   "1024/es/packages": [
+    {
+     "t": "Te decimos el precio y el periodo ",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Te decimos el precio y el periodo ",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Te decimos el precio y el periodo ",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Qué incluye cada plan",
+     "opacity": 0,
+     "ratio": 17.57,
+     "need": 4.5,
+     "size": 22,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgba(255, 255, 255, 0.5)"
+    }
+   ],
+   "1024/en/trial": [
+    {
+     "t": "01",
+     "opacity": 1,
+     "ratio": 4.37,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(248, 246, 241)"
+    },
+    {
+     "t": "YOUR ENVIRONMENT",
+     "opacity": 0,
+     "ratio": 4.76,
+     "need": 4.5,
+     "size": 12,
+     "color": "rgb(138, 107, 50)",
+     "bg": "rgb(251, 250, 247)"
+    },
+    {
+     "t": "You set your agency up yourself.",
+     "opacity": 0,
+     "ratio": 16.83,
+     "need": 3,
+     "size": 38,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(251, 250, 247)"
+    },
+    {
+     "t": "One step at a time, in your own ti",
+     "opacity": 0,
+     "ratio": 8.72,
+     "need": 4.5,
+     "size": 18,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(251, 250, 247)"
+    }
+   ],
+   "1024/es/trial": [
+    {
+     "t": "01",
+     "opacity": 1,
+     "ratio": 4.37,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(248, 246, 241)"
+    },
+    {
+     "t": "TU ENTORNO",
+     "opacity": 0,
+     "ratio": 4.76,
+     "need": 4.5,
+     "size": 12,
+     "color": "rgb(138, 107, 50)",
+     "bg": "rgb(251, 250, 247)"
+    },
+    {
+     "t": "Configuras tu agencia tú mismo.",
+     "opacity": 0,
+     "ratio": 16.83,
+     "need": 3,
+     "size": 38,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(251, 250, 247)"
+    }
+   ],
+   "1024/en/contact": [
+    {
+     "t": "OPTIONAL",
+     "opacity": 0,
+     "ratio": 4.76,
+     "need": 4.5,
+     "size": 12,
+     "color": "rgb(138, 107, 50)",
+     "bg": "rgb(251, 250, 247)"
+    },
+    {
+     "t": "Request a demo",
+     "opacity": 0,
+     "ratio": 16.83,
+     "need": 3,
+     "size": 27,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(251, 250, 247)"
+    },
+    {
+     "t": "Or just start",
+     "opacity": 0,
+     "ratio": 16.83,
+     "need": 3,
+     "size": 27,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(251, 250, 247)"
+    },
+    {
+     "t": "Try free for 14 days. No payment m",
+     "opacity": 0,
+     "ratio": 8.72,
+     "need": 4.5,
+     "size": 17,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(251, 250, 247)"
+    }
+   ],
+   "1440/en": [
+    {
+     "t": "WhatsApp · new enquiry",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Laura Serrano · Sunday 21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sunday 21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "1440/es": [
+    {
+     "t": "WhatsApp · consulta nueva",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Laura Serrano · domingo 21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "domingo 21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "Nada de eso es un problema de disc",
+     "opacity": 0,
+     "ratio": 8.72,
+     "need": 4.5,
+     "size": 19,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(251, 250, 247)"
+    }
+   ],
+   "1440/en/platform": [
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sample translation. The approved n",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    }
+   ],
+   "1440/es/platform": [
+    {
+     "t": "UNA CONSULTA, DE PRINCIPIO A FIN",
+     "opacity": 0,
+     "ratio": 4.76,
+     "need": 4.5,
+     "size": 12,
+     "color": "rgb(138, 107, 50)",
+     "bg": "rgb(251, 250, 247)"
+    },
+    {
+     "t": "De un mensaje a una tarea terminad",
+     "opacity": 0,
+     "ratio": 16.83,
+     "need": 3,
+     "size": 44,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(251, 250, 247)"
+    },
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "1440/en/platform/ai-sales-agent": [
+    {
+     "t": "WhatsApp",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Sample translation. The approved n",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    },
+    {
+     "t": "21:40",
+     "opacity": 1,
+     "ratio": 4.09,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(234, 241, 230)"
+    }
+   ],
+   "1440/es/platform/crm": [
+    {
+     "t": "Pide:",
+     "opacity": 1,
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "Siguiente:",
+     "opacity": 1,
+     "ratio": 4.16,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgba(247, 240, 228, 0.55)"
+    },
+    {
+     "t": "Ejemplo. Según los permisos y la c",
+     "opacity": 1,
+     "ratio": 4.37,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(248, 246, 241)"
+    }
+   ],
+   "1440/en/packages": [
+    {
+     "t": "14 days free",
+     "opacity": 0,
+     "ratio": 16.27,
+     "need": 4.5,
+     "size": 15,
+     "color": "rgb(248, 246, 241)",
+     "bg": "rgb(26, 25, 23)"
+    },
+    {
+     "t": "We tell you the price and the bill",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "We tell you the price and the bill",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "We tell you the price and the bill",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "1440/es/packages": [
+    {
+     "t": "14 días gratis",
+     "opacity": 0,
+     "ratio": 16.27,
+     "need": 4.5,
+     "size": 15,
+     "color": "rgb(248, 246, 241)",
+     "bg": "rgb(26, 25, 23)"
+    },
+    {
+     "t": "Te decimos el precio y el periodo ",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Te decimos el precio y el periodo ",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    },
+    {
+     "t": "Te decimos el precio y el periodo ",
+     "opacity": 1,
+     "ratio": 4.18,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(243, 241, 236)"
+    }
+   ],
+   "1440/en/trial": [
+    {
+     "t": "01",
+     "opacity": 1,
+     "ratio": 4.37,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(248, 246, 241)"
+    }
+   ],
+   "1440/es/trial": [
+    {
+     "t": "01",
+     "opacity": 1,
+     "ratio": 4.37,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(248, 246, 241)"
+    }
+   ],
+   "1440/en/contact": [
+    {
+     "t": "OPTIONAL",
+     "opacity": 0,
+     "ratio": 4.76,
+     "need": 4.5,
+     "size": 12,
+     "color": "rgb(138, 107, 50)",
+     "bg": "rgb(251, 250, 247)"
+    },
+    {
+     "t": "Request a demo",
+     "opacity": 0,
+     "ratio": 16.83,
+     "need": 3,
+     "size": 30,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(251, 250, 247)"
+    },
+    {
+     "t": "We walk you through the system on ",
+     "opacity": 0,
+     "ratio": 8.72,
+     "need": 4.5,
+     "size": 17,
+     "color": "rgb(75, 72, 67)",
+     "bg": "rgb(251, 250, 247)"
+    },
+    {
+     "t": "Or just start",
+     "opacity": 0,
+     "ratio": 16.83,
+     "need": 3,
+     "size": 30,
+     "color": "rgb(26, 25, 23)",
+     "bg": "rgb(251, 250, 247)"
+    }
+   ]
+  },
+  "wrap": {
+   "768/es": [
+    {
+     "t": "WhatsApp",
+     "sw": 64,
+     "cw": 60
+    },
+    {
+     "t": "WhatsApp",
+     "sw": 64,
+     "cw": 60
+    },
+    {
+     "t": "WhatsApp",
+     "sw": 64,
+     "cw": 60
+    },
+    {
+     "t": "WhatsApp",
+     "sw": 64,
+     "cw": 60
+    }
+   ],
+   "768/es/platform": [
+    {
+     "t": "Hola Laura, gracias por escribir. ",
+     "sw": 98,
+     "cw": 90
+    },
+    {
+     "t": "Hola Laura, gracias por escribir. ",
+     "sw": 98,
+     "cw": 90
+    },
+    {
+     "t": "Hola Laura, gracias por escribir. ",
+     "sw": 98,
+     "cw": 90
+    },
+    {
+     "t": "Hola Laura, gracias por escribir. ",
+     "sw": 98,
+     "cw": 90
+    }
+   ],
+   "768/es/packages": [
+    {
+     "t": "Prueba Essential gratis",
+     "sw": 166,
+     "cw": 156
+    },
+    {
+     "t": "Solicita una propuesta",
+     "sw": 163,
+     "cw": 156
+    },
+    {
+     "t": "Solicita una propuesta",
+     "sw": 163,
+     "cw": 154
+    },
+    {
+     "t": "Solicita una propuesta",
+     "sw": 163,
+     "cw": 154
+    }
+   ],
+   "1024/es": [
+    {
+     "t": "WhatsApp",
+     "sw": 64,
+     "cw": 58
+    },
+    {
+     "t": "WhatsApp",
+     "sw": 64,
+     "cw": 58
+    },
+    {
+     "t": "WhatsApp",
+     "sw": 64,
+     "cw": 58
+    },
+    {
+     "t": "WhatsApp",
+     "sw": 64,
+     "cw": 58
+    }
+   ],
+   "1024/en/platform": [
+    {
+     "t": "WhatsApp",
+     "sw": 64,
+     "cw": 54
+    },
+    {
+     "t": "WhatsApp",
+     "sw": 64,
+     "cw": 54
+    },
+    {
+     "t": "WhatsApp",
+     "sw": 64,
+     "cw": 54
+    },
+    {
+     "t": "WhatsApp",
+     "sw": 64,
+     "cw": 54
+    }
+   ],
+   "1024/es/platform": [
+    {
+     "t": "Tu agencia",
+     "sw": 56,
+     "cw": 45
+    },
+    {
+     "t": "WhatsApp",
+     "sw": 64,
+     "cw": 45
+    },
+    {
+     "t": "Tu agencia",
+     "sw": 56,
+     "cw": 45
+    },
+    {
+     "t": "WhatsApp",
+     "sw": 64,
+     "cw": 45
+    }
+   ]
+  },
+  "depth": [
+   {
+    "t": "With Nuova\nText enquirie",
+    "bg": "rgb(255, 255, 255)",
+    "parentBg": "rgba(0, 0, 0, 0)",
+    "border": "1px rgb(235, 232, 225)",
+    "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0",
+    "separation": 1
+   },
+   {
+    "t": "With Nuova\nThe conversat",
+    "bg": "rgb(255, 255, 255)",
+    "parentBg": "rgba(0, 0, 0, 0)",
+    "border": "1px rgb(235, 232, 225)",
+    "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0",
+    "separation": 1
+   },
+   {
+    "t": "With Nuova\nWhoever takes",
+    "bg": "rgb(255, 255, 255)",
+    "parentBg": "rgba(0, 0, 0, 0)",
+    "border": "1px rgb(235, 232, 225)",
+    "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0",
+    "separation": 1
+   },
+   {
+    "t": "01 · ANSWERED\n\nWhatsApp ",
+    "bg": "rgb(255, 255, 255)",
+    "parentBg": "rgba(0, 0, 0, 0)",
+    "border": "1px rgb(235, 232, 225)",
+    "shadow": "rgba(26, 25, 23, 0.03) 0px 1px 1px 0px, ",
+    "separation": 1
+   },
+   {
+    "t": "Your agency\n\nWhatsApp\n\nS",
+    "bg": "rgb(255, 255, 255)",
+    "parentBg": "rgba(0, 0, 0, 0)",
+    "border": "1px rgb(235, 232, 225)",
+    "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0",
+    "separation": 1
+   },
+   {
+    "t": "02 · RECORDED\n\nOne recor",
+    "bg": "rgb(255, 255, 255)",
+    "parentBg": "rgba(0, 0, 0, 0)",
+    "border": "1px rgb(235, 232, 225)",
+    "shadow": "rgba(26, 25, 23, 0.03) 0px 1px 1px 0px, ",
+    "separation": 1
+   },
+   {
+    "t": "Leads\n\nYour agency · thi",
+    "bg": "rgb(255, 255, 255)",
+    "parentBg": "rgba(0, 0, 0, 0)",
+    "border": "1px rgb(235, 232, 225)",
+    "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0",
+    "separation": 1
+   },
+   {
+    "t": "03 · HANDED OVER\n\nOne cl",
+    "bg": "rgb(255, 255, 255)",
+    "parentBg": "rgba(0, 0, 0, 0)",
+    "border": "1px rgb(235, 232, 225)",
+    "shadow": "rgba(26, 25, 23, 0.03) 0px 1px 1px 0px, ",
+    "separation": 1
+   },
+   {
+    "t": "04 · DONE\n\nOne of your p",
+    "bg": "rgb(255, 255, 255)",
+    "parentBg": "rgba(0, 0, 0, 0)",
+    "border": "1px rgb(235, 232, 225)",
+    "shadow": "rgba(26, 25, 23, 0.03) 0px 1px 1px 0px, ",
+    "separation": 1
+   },
+   {
+    "t": "",
+    "bg": "rgb(245, 246, 248)",
+    "parentBg": "rgba(0, 0, 0, 0)",
+    "border": "1px rgb(235, 232, 225)",
+    "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0",
+    "separation": 0.921
+   }
+  ],
+  "video": {
+   "count": 0
+  },
+  "zoom": {
+   "details": 0,
+   "overflow": false,
+   "sw": 705,
+   "iw": 720,
+   "overlaps": 0
+  },
+  "keyboard": {
+   "focusables": 47,
+   "checked": 25,
+   "withoutRing": []
+  },
+  "motion": {
+   "total": 0,
+   "running": 0,
+   "videosPlaying": 0,
+   "hiddenByAnimation": 0
+  },
+  "conversion": {
+   "found": false,
+   "links": [
+    "",
+    "Everything Nuova doesSee how the parts fit togetherSee every capability",
+    "AI Sales AgentAnswers text enquiries, day or night",
+    "Lead IntelligenceKeeps what each customer told you",
+    "CRMLeads, conversations and tasks in one place",
+    "Daily TasksThe tasks your team takes and closes",
+    "Packages",
+    "Trial"
+   ]
+  }
+ },
+ "finished_utc": "2026-09-30T13:45:40.695Z"
+}
