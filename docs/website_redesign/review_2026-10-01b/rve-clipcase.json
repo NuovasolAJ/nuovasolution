@@ -1,0 +1,23 @@
+{
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "case": {
+  "found": true,
+  "text": "Hola Laura, gracias por escribir. He anotado el piso de dos dormitorio",
+  "scrollWidth": 98,
+  "clientWidth": 95,
+  "overflowX": "visible",
+  "overflowY": "visible",
+  "lineClamp": "none",
+  "textOverflow": "clip",
+  "whiteSpace": "normal",
+  "box": {
+   "w": 95,
+   "h": 432
+  },
+  "lineBoxes": 18,
+  "widestLine": 98,
+  "scrollHeight": 432,
+  "clientHeight": 432
+ },
+ "utc": "2026-10-01T14:16:22.787Z"
+}
