@@ -26,7 +26,7 @@ export function HeroScene({ locale, className }: { locale: Locale; className?: s
 
         <div className="relative z-[1] mx-auto max-w-[400px]">
           <div className="overflow-hidden rounded-xl border border-line-hairline bg-surface-raised shadow-overlay">
-            <div className="flex items-center gap-3 border-b border-line-hairline bg-surface-sunken px-4 py-3">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line-hairline bg-surface-sunken px-4 py-3">
               <span aria-hidden="true" className="inline-flex h-8 w-8 items-center justify-center rounded-pill bg-sage-200 text-sage-700"><StatusGlyph glyph="link" size={14} /></span>
               <div className="min-w-0">
                 <p className="t-body-s font-medium text-text-primary">{v.agency}</p>

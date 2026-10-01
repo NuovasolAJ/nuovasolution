@@ -26,7 +26,7 @@ export function ConversationView({ locale, className }: { locale: Locale; classN
   return (
     <div className={cn("mx-auto w-full max-w-[420px]", className)} data-view="conversation">
       <div className="overflow-hidden rounded-xl border border-line-hairline bg-surface-raised shadow-card">
-        <div className="flex items-center gap-3 border-b border-line-hairline bg-surface-sunken px-4 py-3">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line-hairline bg-surface-sunken px-4 py-3">
           <span aria-hidden="true" className="inline-flex h-8 w-8 items-center justify-center rounded-pill bg-sage-200 text-sage-700"><StatusGlyph glyph="link" size={14} /></span>
           <div className="min-w-0">
             <p className="t-body-s font-medium text-text-primary">{v.agency}</p>
@@ -66,7 +66,7 @@ export function BoardView({ locale, className, compact = false }: { locale: Loca
   return (
     <div className={cn("mx-auto w-full", compact ? "max-w-[440px]" : "max-w-[600px]", className)} data-view="board">
       <div className="overflow-hidden rounded-xl border border-line-hairline bg-surface-raised shadow-card">
-        <div className="flex items-center gap-3 border-b border-line-hairline px-4 py-3">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line-hairline px-4 py-3">
           <div className="min-w-0">
             <p className="t-body-s font-medium text-text-primary">{b.title}</p>
             <p className="t-caption text-text-muted">{b.subtitle}</p>
@@ -165,10 +165,10 @@ export function ReadinessView({ locale, className }: { locale: Locale; className
   const gates = d.onboarding.gates as Record<string, string>;
   const v = d.home.views.readiness;
   // The disclosure notice is ours to activate with the agency, not a box the agency ticks (COPY_DELTAS_0929 D-19).
+  // No opening hours row: they are stored and steer nothing in production (COPY_DELTAS_0930 D-51).
   const rows: { key: string; status: "READY" | "BLOCKED" | "WITH_YOU" }[] = [
     { key: "agency_tenant", status: "READY" },
     { key: "owner_admin", status: "READY" },
-    { key: "business_hours", status: "READY" },
     { key: "white_label_legal", status: "BLOCKED" },
     { key: "ai_disclosure", status: "WITH_YOU" },
   ];

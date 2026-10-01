@@ -21,7 +21,7 @@ export default function SignupPage({ params }: { params: { locale: string } }) {
   return (
     <>
     <EnvironmentRibbon locale={locale} scope="form" />
-    <Section rhythm="opening" labelledBy="su-h1" className="overflow-hidden">
+    <Section rhythm="opening" labelledBy="su-h1" className="overflow-hidden !pb-[var(--section-compact)]">
       <div className="container-narrow relative !mx-0 xl:!mx-auto">
         <Eyebrow className="mb-4">{d.signup.eyebrow}</Eyebrow>
         <Display size="l" as="h1" id="su-h1">{d.signup.h1}</Display>
@@ -33,11 +33,16 @@ export default function SignupPage({ params }: { params: { locale: string } }) {
             <span>{d.signup.stubNotice}</span>
           </p>
         )}
-        <div className="card mt-10 rounded-xl p-6 md:p-8">
+      </div>
+    </Section>
+    {/* The form is the one white stage of the page, on the sand ground (accepted direction, 2026-09-30). */}
+    <div className="band band-sand band-shoulders">
+      <div className="container-narrow relative !mx-0 pb-[var(--section-default)] pt-[var(--section-compact)] xl:!mx-auto">
+        <div className="stage p-6 md:p-8">
           <SignupForm locale={locale} />
         </div>
       </div>
-    </Section>
+    </div>
     </>
   );
 }

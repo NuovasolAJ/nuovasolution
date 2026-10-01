@@ -115,11 +115,12 @@ export default async function PackagesPage({ params }: { params: { locale: strin
               <Reveal className="rounded-xl border border-line-strong bg-[color:rgba(255,255,255,0.5)] p-7">
                 <Heading size="m" as="h3">{pk.baselineHeading}</Heading>
                 <p className="mt-2 t-body-s text-text-secondary">{pk.baselineLine}</p>
-                <ul className="mt-5 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
+                {/* One column while this block shares the row at 768 px, so a long Spanish name keeps its width. */}
+                <ul className="mt-5 grid gap-x-6 gap-y-2.5 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
                   {PUBLIC_FEATURES.map((f) => (
                     <li key={f} className="flex items-start gap-2 t-body-s text-text-primary">
                       <StatusGlyph glyph="check" size={14} className="mt-1 shrink-0 text-signal-positive" />
-                      {featureName(f)}
+                      <span className="min-w-0 break-words">{featureName(f)}</span>
                     </li>
                   ))}
                 </ul>
@@ -164,12 +165,13 @@ export default async function PackagesPage({ params }: { params: { locale: strin
               <Eyebrow as="h2" id="pk-faq">{pk.faqEyebrow}</Eyebrow>
               <dl className="mt-6 grid gap-4 md:grid-cols-2">
                 {pk.faq.map((f) => (
-                  <div key={f.q} className="rounded-xl border border-line-hairline bg-surface-raised p-6">
+                  <div key={f.q} className="stage p-6">
                     <dt className="t-heading-s text-text-primary">{f.q}</dt>
                     <dd className="mt-2 t-body-s text-text-secondary">{f.a}</dd>
                   </div>
                 ))}
               </dl>
+              <div className="mt-8"><ButtonLink href={p("/faq")} variant="secondary">{d.home.faqTeaser.link}</ButtonLink></div>
             </div>
           </div>
         </div>

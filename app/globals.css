@@ -56,14 +56,16 @@
   --surface-hover: var(--ink-50);
   --text-primary: var(--ink-950);
   --text-secondary: var(--ink-700);
-  --text-muted: var(--ink-500);
-  --text-accent: var(--champagne-700);
+  /* Text tones measured against every light ground of the site (sunken, sand, sage, stone and sky fields):
+     each reaches 4.5 : 1 or more for small text (review 2026-10-01, F1). */
+  --text-muted: #635f58;
+  --text-accent: #735827;
   --border-hairline: var(--ink-100);
   --border-strong: var(--ink-200);
   --border-interactive: var(--ink-350);
   --focus-ring: var(--ink-950);
-  --signal-positive: #3f6b52;
-  --signal-attention: #8a5a21;
+  --signal-positive: #3a634b;
+  --signal-attention: #7f531e;
   --signal-critical: #a33f30;
   --shadow-overlay: 0 24px 64px -16px rgba(26, 25, 23, 0.22);
   --shadow-soft: 0 1px 2px rgba(26, 25, 23, 0.04), 0 12px 32px -12px rgba(26, 25, 23, 0.14);
@@ -302,12 +304,13 @@ img, video, svg { display: block; max-width: 100%; }
   .hero-arch::after { border-radius: 292px 292px 48px 48px; }
 }
 
-/* A white stage for a product surface (layer 2). */
+/* A white stage for a product surface (layer 2). The contour and the two-part shadow keep a light
+   card readable on a light ground: a crisp edge close in, a soft lift further out. */
 .stage {
   background: var(--surface-raised);
-  border: 1px solid var(--border-hairline);
+  border: 1px solid rgba(26, 25, 23, 0.09);
   border-radius: 28px;
-  box-shadow: 0 1px 1px rgba(26, 25, 23, 0.03), 0 18px 48px -24px rgba(26, 25, 23, 0.18);
+  box-shadow: 0 1px 2px rgba(26, 25, 23, 0.06), 0 2px 6px -2px rgba(26, 25, 23, 0.06), 0 22px 52px -26px rgba(26, 25, 23, 0.28);
 }
 
 /* A small overlapping detail (layer 3). */
@@ -352,16 +355,30 @@ img, video, svg { display: block; max-width: 100%; }
   opacity: 0.85;
 }
 
-/* Stacked cards: on a desktop viewport with enough height each card sticks a little lower than
-   the previous one while the next one scrolls over it. Plain position: sticky, no scroll
-   hijacking. Below 1024 px wide or 720 px high (phones, 200 % zoom, short windows) the cards
-   simply follow each other, so an opened detail is always fully readable (audit Z17). */
-.stack-card { position: relative; }
-@media (min-width: 1024px) and (min-height: 720px) {
-  .stack-card {
-    position: sticky;
-    top: calc(var(--header-h) + 24px + var(--stack-offset, 0px));
-  }
+/* The deck (owner order 2026-09-30): on a desktop viewport the cards of a sequence stick one after
+   the other and the next card slides over the previous one, which steps back a little. Native scrolling
+   only: position: sticky with a top that components/site/stack-deck.tsx computes per card, so a card
+   taller than the window first scrolls to its end before it sticks; nothing is ever hidden unread.
+   The deck is switched on by the script (data-deck="on") only from 1024 px wide and 700 px high and
+   without reduced motion. Otherwise, on phones and without JavaScript, the cards simply follow
+   each other with the same content. */
+[data-deck="on"] > [data-deck-item] {
+  position: sticky;
+  top: var(--deck-top, 96px);
+}
+[data-deck="on"] > [data-deck-item] > * {
+  transform-origin: 50% 0;
+  transform: scale(calc(1 - var(--deck-covered, 0) * 0.035));
+  will-change: transform;
+}
+[data-deck-item] > * { position: relative; }
+[data-deck="on"] > [data-deck-item] > *::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: rgba(26, 25, 23, calc(var(--deck-covered, 0) * 0.06));
 }
 
 /* ------------------------------------------------------------------ */
@@ -391,7 +408,8 @@ html.js .rise.is-in, html.js .is-in .rise { opacity: 1; transform: none; }
   html.js .reveal, html.js .rise { opacity: 1; transform: none; transition: none; }
   html.js .draw-rule { transform: none; transition: none; }
   .path-draw { stroke-dashoffset: 0 !important; transition: none !important; }
-  .stack-card { position: relative; top: auto; }
+  [data-deck] > [data-deck-item] { position: relative !important; top: auto !important; }
+  [data-deck] > [data-deck-item] > * { transform: none !important; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

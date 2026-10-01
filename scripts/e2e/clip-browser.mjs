@@ -78,6 +78,9 @@ try {
       await click("[data-clip-play]");
       const playing = await waitFor(`(()=>{const v=${V};return !!v&&v.readyState>=2&&v.currentTime>0.3&&!v.paused})()`, 25000);
       const st = await ev(`(()=>{const v=${V};if(!v)return null;return {duration:Math.round(v.duration*10)/10,muted:v.muted,controls:v.controls,paused:v.paused,autoplayAttr:v.autoplay,loopAttr:v.loop,w:v.videoWidth,h:v.videoHeight,src:new URL(v.currentSrc).pathname,audioTracks:(v.audioTracks?v.audioTracks.length:null),hasAudio:(v.webkitAudioDecodedByteCount??0)>0}})()`);
+      // the subtitle track: present, off by default, three cues that load when switched on
+      const track = await ev(`(async()=>{const v=${V};const t=v.textTracks[0];if(!t)return null;const before=t.mode;t.mode="hidden";for(let i=0;i<30&&!(t.cues&&t.cues.length);i++)await new Promise(r=>setTimeout(r,100));const cues=t.cues?[...t.cues].map(c=>c.text):[];t.mode=before;return {kind:t.kind,lang:t.language,modeBefore:before,cues}})()`);
+      check(`CL-${id}-t`, "a subtitle track in the page language with the three lines, off by default so nothing covers the recording", track && track.lang === locale && track.modeBefore !== "showing" && track.cues.length === 3 && track.cues[0] === before.cue, track);
       // the caption line follows the action: jump behind the second and the third cue
       await ev(`(()=>{${V}.currentTime=8})()`); await sleep(900);
       const cue2 = await ev(`({i:document.querySelector('[data-clip-cue]')?.getAttribute('data-clip-cue'),t:document.querySelector('[data-clip-cue]')?.innerText})`);

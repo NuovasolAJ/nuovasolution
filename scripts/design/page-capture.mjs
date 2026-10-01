@@ -19,7 +19,7 @@ const BASE = (process.env.BASE ?? `http://localhost:${PORT}`).replace(/\/$/, "")
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 mkdirSync(OUT, { recursive: true });
 
-const ALL_ROUTES = ["/", "/platform", "/platform/ai-sales-agent", "/platform/lead-intelligence", "/platform/crm", "/platform/daily-assistant", "/packages", "/trial", "/contact", "/signup", "/login", "/welcome", "/legal/privacy", "/legal/terms", "/legal/data-deletion", "/legal/notice"];
+const ALL_ROUTES = ["/", "/faq", "/platform", "/platform/ai-sales-agent", "/platform/lead-intelligence", "/platform/crm", "/platform/daily-assistant", "/packages", "/trial", "/contact", "/signup", "/login", "/welcome", "/legal/privacy", "/legal/terms", "/legal/data-deletion", "/legal/notice"];
 const ALL_VIEWS = { d1440: [1440, 900, false, 1], t1024: [1024, 1366, false, 1], t768: [768, 1024, false, 1], m390: [390, 844, true, 2], m360: [360, 780, true, 2], z200: [720, 450, false, 2] };
 // "home" is accepted for "/" (Git Bash rewrites a bare "/" in an environment value into a Windows path).
 const routes = (process.env.ROUTES ? process.env.ROUTES.split(",") : ALL_ROUTES).map((r) => (r === "/" || r === "home" ? "" : r.startsWith("/") ? r : `/${r}`));
@@ -60,6 +60,16 @@ try {
       const outside = r.right > vw + 1 || r.left < -1;
       if (hidden || outside) clipped.push({ tag: el.tagName, text: (el.innerText || '').trim().slice(0, 50), right: Math.round(r.right), sw: el.scrollWidth, cw: el.clientWidth });
     }
+    // Text wider than its own box (review 2026-10-01, F2): every element with its own text, not only the
+    // ones that cannot wrap. Screen-reader-only text (1 px wide on purpose) is left out.
+    const tight = [];
+    for (const el of document.querySelectorAll('main *, header *')) {
+      if (!el.offsetParent) continue;
+      const own = [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
+      if (!own || getComputedStyle(el).display === 'inline') continue;
+      if (el.scrollWidth > el.clientWidth + 1 && el.clientWidth > 2) tight.push({ tag: el.tagName, text: (el.innerText || '').trim().slice(0, 40), sw: el.scrollWidth, cw: el.clientWidth });
+    }
+    clipped.push(...tight.slice(0, 6));
     const img = [...document.images].filter(i => i.complete && i.naturalWidth === 0 && i.currentSrc).map(i => i.currentSrc);
     return { height: document.documentElement.scrollHeight, sw: document.documentElement.scrollWidth, vw, h1: document.querySelectorAll('h1').length, clipped: clipped.slice(0, 8), brokenImages: img, scrollY: Math.round(scrollY) };
   })()`;

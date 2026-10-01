@@ -103,20 +103,13 @@ try {
         check(`${tag}-${locale}-nav-open`, "platform menu open, items inside the panel, no name/chip overlap", ov.open && ov.inside && !ov.overlap && ov.chipsFit && ov.menuRight <= ov.vw, ov);
         await ev("document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}))");
       }
-      // Q&A open (launcher), then the inline window on the home page
+      // The question box is off (owner order 2026-09-30): no launcher, no window; the checked FAQ stands in its place.
       await nav(`${BASE}/${locale}`);
       await revealAll();
-      await ev("document.querySelector('[data-qa-launcher]').click()");
-      await sleep(500);
-      await shot(`${tag}-${locale}-qa-open`);
-      const qa = await ev("(()=>{const p=document.querySelector('[data-qa-panel=\"fixed\"]');if(!p)return null;const r=p.getBoundingClientRect();return {w:r.width,h:r.height,right:r.right,bottom:r.bottom,vw:innerWidth,vh:innerHeight,focused:document.activeElement&&document.activeElement.tagName}})()");
-      check(`${tag}-${locale}-qa-open`, "Q&A window opens inside the viewport with focus in the question field", qa && qa.right <= qa.vw + 1 && qa.bottom <= qa.vh + 1 && qa.focused === "TEXTAREA", qa);
-      await ev("document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}))");
-      await sleep(200);
-      const inl = await ev("(()=>{const p=document.querySelector('[data-qa-panel=\"inline\"]');if(!p)return null;p.scrollIntoView({block:'center'});return true})()");
+      const faq = await ev("(()=>{const s=document.querySelector('section[aria-labelledby=faq-h]');if(!s)return null;s.scrollIntoView({block:'center'});return {answers:s.querySelectorAll('dt').length,link:s.querySelector('a[href$=\"/faq\"]')?.getAttribute('href')??null,launcher:!!document.querySelector('[data-qa-launcher]'),panel:!!document.querySelector('[data-qa-panel]')}})()");
       await sleep(400);
-      await shot(`${tag}-${locale}-qa-inline`);
-      check(`${tag}-${locale}-qa-inline`, "the integrated Q&A window is on the home page", inl === true, inl);
+      await shot(`${tag}-${locale}-faq`);
+      check(`${tag}-${locale}-faq`, "no question box on the home page; the FAQ section with its answers and the link to all questions", faq && faq.answers >= 4 && faq.link === `/${locale}/faq` && !faq.launcher && !faq.panel, faq);
     }
   }
 
@@ -154,12 +147,12 @@ try {
   await sleep(300);
   const closed = await ev("(()=>{const m=document.querySelector('[data-platform-menu]');return m&&m.hidden})()");
   check("keyboard-menu", "Platform menu opens with Enter and closes with Escape from the keyboard", kb && opened && closed, { kb, opened, closed });
-  await ev("(()=>{const b=document.querySelector('[data-qa-launcher]');b.focus();return true})()");
-  await shot("focus-en-launcher");
+  await ev("(()=>{const b=document.querySelector('a[href$=\"/faq\"]');b.scrollIntoView({block:'center'});b.focus();return true})()");
+  await shot("focus-en-faq-link");
 
-  // no JS: server HTML alone has the hero cards, the stack and the Q&A window text
+  // no JS: server HTML alone has the hero, the journey (its deck works without JavaScript as a plain sequence) and the FAQ
   const html = await (await fetch(`${BASE}/es`)).text();
-  check("no-js-content", "server HTML carries hero cards, stacked stage cards and the Q&A window", html.includes("data-hero-scene") && html.includes("data-flow-story") && html.includes('data-qa-panel="inline"'), true);
+  check("no-js-content", "server HTML carries the hero scene, the journey and the FAQ answers, and no question box", html.includes("data-hero-scene") && html.includes("data-flow-story") && html.includes('data-deck="off"') && html.includes('aria-labelledby="faq-h"') && !html.includes("data-qa-panel"), true);
   check("no-dark-sections", "no dark section apart from the footer", (html.match(/data-canvas="deep"/g) ?? []).length === 1, (html.match(/data-canvas="deep"/g) ?? []).length);
 
   ws.close();

@@ -120,7 +120,7 @@ export function SignupForm({ locale }: { locale: Locale }) {
 
   if (sent) {
     return (
-      <div role="status" className="card rounded-xl p-6" data-signup-sent>
+      <div role="status" data-signup-sent>
         <h2 className="t-heading-m text-text-primary">{d.checkEmail.h}</h2>
         <p className="mt-2 t-body-m text-text-primary">{d.checkEmail.body.replace("{email}", sent)}</p>
         <p className="mt-3 t-body-s text-text-secondary">{d.checkEmail.otherDevice}</p>

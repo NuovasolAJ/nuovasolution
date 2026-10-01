@@ -43,7 +43,12 @@ export const en = {
     // LAUNCH_COPY_v1 §7.2: exactly one sentence each for the two on-request modules, nowhere else.
     onRequest: "On request",
     // COPY_DELTAS_0929 D-43 (Voice) and D-42 (3D, 3D_FEATURE_TRUTH §2): these sentences and no others.
-    onRequestLines: ["A phone assistant is in preparation. We walk you through it on request.", "An interactive 3D model of your property in the browser, built by us on request. To scale from your plans; furniture and materials are illustrative. Tap a room, choose a floor, switch the furnishing on and off."],
+    // COPY_DELTAS_0930 D-49: 3D, with what the customer sends and what we check.
+    onRequestLines: ["An interactive 3D model of your property in the browser, built by us on request. To scale from your plans; furniture and materials are illustrative. Tap a room, choose a floor, switch the furnishing on and off. You send us a dimensioned floor plan, and photos if you have them. We build the model from the plan, check it against your drawings, and you get a link. Furniture and materials are illustrative and can be switched off."],
+    // COPY_DELTAS_0930 D-48: the phone is not something you can order; it has its own heading.
+    beingBuilt: "Being built",
+    beingBuiltLines: ["A phone assistant that answers calls is being built. It is not part of what you can order today, and we will say so plainly until it is."],
+    faq: "Questions",
   },
 
   common: {
@@ -140,7 +145,7 @@ export const en = {
     // in Estepona), four surfaces. The ES disclosure line is the owner-approved WhatsApp text v1.0-es, quoted.
     hero: {
       eyebrow: "For real estate agencies in Spain",
-      h1: "No enquiry waits until Monday",
+      h1: "Answered when it arrives, not when someone is free", // COPY_DELTAS_0930 D-45
       lead: "A buyer writes on Sunday evening. Nuova answers in their language, records what she asked for, and leaves your team one task to finish.", // COPY_DELTAS_0929 D-01
       qualifier: "On the channels you connect.",
       note: "14 days free. No payment.",
@@ -196,7 +201,7 @@ export const en = {
         understand: { step: "Recorded", title: "One record per enquiry", line: "The conversation and what the customer asked for stay on one record, so the next person to open it sees everything without asking." },
         handover: { step: "Handed over", title: "One clear task, not a reminder", line: "A viewing request becomes a task with a name, a reason and an owner. Your team claims it and completes it." },
         done: { step: "Done", title: "One of your people finishes it", line: "One tap takes the task, one tap completes it. The card shows who took it, and nobody can take the same task twice." },
-        setup: { step: "Your setup", title: "Your agency, set up by you", line: "Your details, your hours, your team and your roles. Your progress is saved between sessions." },
+        setup: { step: "Your setup", title: "Your agency, set up by you", line: "Your agency details, your legal details and your logo, plus your team and their roles. Your progress is saved between sessions." },
       },
     },
     views: {
@@ -236,7 +241,8 @@ export const en = {
         clipError: "The clip did not load. Try again in a moment.",
         clipAlt: "The task list in the staff app: a viewing request from Laura Serrano waits to be taken.",
         note: "Recording from the product, with synthetic people and properties. The ring marks where the agent taps; it is part of the recording, not the product.",
-        cues: ["Laura Serrano asked for a viewing on Thursday morning.", "The agent takes the task. The card now says it is theirs.", "Done. It leaves the list, and the rest stays."],
+        // COPY_DELTAS_0930 §4: before → action → result.
+        cues: ["Laura Serrano asked for a viewing on Thursday morning. Nobody has taken it yet.", "The agent takes the task. The card now says it is theirs, and no one else can take it.", "Closed. It leaves the list, the rest stays, and the team can see who did it."],
         stills: {
           tasks: "Each person sees their own list: taken, waiting, and what nobody has yet.",
           "task-action": "Taken by you. Only you can close it.",
@@ -250,7 +256,7 @@ export const en = {
     record: {
       eyebrow: "One system",
       h2: "One enquiry, one record, one place", // D-18
-      lead: "Nuova sits underneath the agency rather than beside it. Nothing is handed between tools, and nothing has to be kept in someone's head.",
+      lead: "The conversation, what the customer asked for and the task all sit on one record. Nothing has to be kept in someone's head, and nobody has to ask a colleague what was already said.", // D-46
     },
     access: {
       eyebrow: "Getting started",
@@ -260,8 +266,9 @@ export const en = {
       steps: [
         { title: "Create your account", line: "Your name, your work email, a password. Then confirm your email." },
         { title: "Name your agency", line: "One step, and your 14 day trial starts." },
-        { title: "Set it up yourself", line: "Your details, your hours, your logo, your calendar. Your progress is saved." },
+        { title: "Set it up yourself", line: "Your agency details, your legal details and your logo, plus your team and their roles." }, // D-51
       ],
+      noCharge: "Nothing is charged, and we do not ask for a card at any point in these three steps.", // D-53
       viewCaption: "You set your agency up yourself, one step at a time.",
     },
     offer: {
@@ -276,6 +283,8 @@ export const en = {
       lead: "Answers come from what NuovaSolution has confirmed about its product. Prices, legal and tax questions go to a person.",
       points: ["Answers in English or Spanish."],
     },
+    // Home section in place of the question box (COPY_DELTAS_0930 §3 frame); the link label is interim.
+    faqTeaser: { link: "All questions" },
     closing: {
       h2: "Your next enquiry is already on its way",
       body: "The only question is what happens to it.",
@@ -286,8 +295,8 @@ export const en = {
 
   platform: {
     eyebrow: "Platform",
-    h1: "The operating layer of a real estate agency.",
-    lead: "Each part of Nuova does one job properly. Together they behave like one system, because the customer is one record rather than one record per tool.",
+    h1: "Everything one enquiry needs, in one place", // D-47
+    lead: "Each part of Nuova does one job properly, and they share one record, so the answer, the context and the task are never in three different places.",
     indexEyebrow: "Capabilities",
     indexH2: "What Nuova does for your agency.",
     exampleEyebrow: "One enquiry, end to end",
@@ -932,7 +941,7 @@ export const en = {
     send: "Send",
     sending: "Sending",
     thinking: "Reading your question",
-    cannotConfirm: "We cannot confirm that from here. A person can.",
+    cannotConfirm: "We cannot confirm that from here. You can send the question to antonio@nuovasolution.com.", // D-50
     humanCta: "Contact a person",
     boundaries: "It does not give prices, legal or tax advice, and it does not commit us to anything. A person answers those.",
     ai: "Answers are written by an AI assistant.",

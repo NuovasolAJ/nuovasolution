@@ -20,11 +20,14 @@ const variants: Record<Variant, string> = {
   pending: "border border-dashed border-line-interactive text-text-secondary bg-transparent hover:bg-surface-hover",
 };
 
+// A minimum height, not a fixed one: one line keeps the 44 / 48 / 56 px of the touch floor (review WR-18); a
+// full-width button in a narrow column may wrap its label instead of cutting it (review 2026-10-01, F2).
 const sizes: Record<Size, string> = {
-  sm: "h-11 px-5 t-body-s", // 44 px touch floor (review WR-18)
-  md: "h-12 px-6 t-body-m",
-  lg: "h-14 px-8 t-body-l",
+  sm: "min-h-[44px] px-5 py-2 t-body-s",
+  md: "min-h-[48px] px-6 py-2.5 t-body-m",
+  lg: "min-h-[56px] px-8 py-3 t-body-l",
 };
+const fullCls = "w-full whitespace-normal text-center";
 
 function ExternalIcon() {
   return (
@@ -53,7 +56,7 @@ export function ButtonLink({
   ariaLabel?: string;
   full?: boolean;
 }) {
-  const cls = cn(base, variants[variant], variant === "tertiary" || variant === "quiet" ? "" : sizes[size], full && "w-full", className);
+  const cls = cn(base, variants[variant], variant === "tertiary" || variant === "quiet" ? "" : sizes[size], full && fullCls, className);
   if (external) {
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={cls} aria-label={ariaLabel}>
@@ -80,7 +83,7 @@ export function Button({
 }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant; size?: Size; full?: boolean; busy?: boolean }) {
   return (
     <button
-      className={cn(base, variants[variant], variant === "tertiary" || variant === "quiet" ? "" : sizes[size], full && "w-full", className)}
+      className={cn(base, variants[variant], variant === "tertiary" || variant === "quiet" ? "" : sizes[size], full && fullCls, className)}
       aria-busy={busy || undefined}
       {...rest}
     >
@@ -92,7 +95,7 @@ export function Button({
 /** Primary + Secondary at most, stacked full-width on mobile. */
 export function CtaRow({ children, className, align = "left" }: { children: ReactNode; className?: string; align?: "left" | "center" }) {
   return (
-    <div className={cn("flex flex-col gap-3 md:flex-row md:items-center md:gap-4 [&>*]:w-full md:[&>*]:w-auto", align === "center" && "md:justify-center", className)}>
+    <div className={cn("flex flex-col gap-3 md:flex-row md:flex-wrap md:items-center md:gap-4 [&>*]:w-full md:[&>*]:w-auto", align === "center" && "md:justify-center", className)}>
       {children}
     </div>
   );

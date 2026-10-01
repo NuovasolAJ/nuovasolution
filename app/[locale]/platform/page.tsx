@@ -2,13 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { startLabel } from "@/lib/content/plans";
 import { publishedCapabilities } from "@/lib/content/capabilities";
-import { Section } from "@/components/ui/section";
 import { SectionHead, Display, Eyebrow, Lead } from "@/components/ui/type";
-import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { FlowRow } from "@/components/site/flow-story";
+import { ClosingBand } from "@/components/site/closing-band";
 import { StatusGlyph } from "@/components/ui/status";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
@@ -18,9 +16,10 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
 }
 
 /**
- * Platform overview: the same continuous example as compact product cards (replaces the
- * schematic map, audit Z12), then the published capabilities as an index. No status chip and
- * no internal formula (audit R27).
+ * Platform overview, in the accepted direction (owner 2026-09-30): the claim on the canvas, then one sand
+ * ground that carries the example (three real surfaces on white stages) and the four working modules,
+ * then a stone panel with what is not a module: 3D on request, the phone being built
+ * (COPY_DELTAS_0930 D-48, D-49, D-52: what you get first, then what you do not). No status chip.
  */
 export default function PlatformPage({ params }: { params: { locale: string } }) {
   const locale = params.locale as Locale;
@@ -30,7 +29,7 @@ export default function PlatformPage({ params }: { params: { locale: string } })
 
   return (
     <>
-      <Section rhythm="opening" labelledBy="po-h1" className="overflow-hidden">
+      <section aria-labelledby="po-h1" className="pb-[var(--section-compact)] pt-[var(--section-compact)] xl:pt-[var(--section-default)]">
         <div className="container-default">
           <Reveal className="xl:max-w-[62%]">
             <Eyebrow className="mb-4">{d.platform.eyebrow}</Eyebrow>
@@ -38,58 +37,64 @@ export default function PlatformPage({ params }: { params: { locale: string } })
             <Lead className="mt-6">{d.platform.lead}</Lead>
           </Reveal>
         </div>
-      </Section>
+      </section>
 
-      <Section rhythm="default" hairline labelledBy="po-flow">
-        <div className="container-default">
-          <Reveal><SectionHead eyebrow={d.platform.exampleEyebrow} title={d.home.flow.h2} id="po-flow" /></Reveal>
-          <div className="mt-12"><FlowRow locale={locale} /></div>
-        </div>
-      </Section>
+      <div className="band band-sand band-shoulders">
+        <section aria-labelledby="po-flow" className="pt-[var(--section-default)]">
+          <div className="container-default">
+            <Reveal className="xl:max-w-[60%]"><SectionHead eyebrow={d.platform.exampleEyebrow} title={d.home.flow.h2} id="po-flow" /></Reveal>
+            <div className="mt-10"><FlowRow locale={locale} /></div>
+          </div>
+        </section>
 
-      <Section rhythm="feature" surface="ivory" labelledBy="po-index">
-        <div className="container-default">
-          <Reveal><SectionHead eyebrow={d.platform.indexEyebrow} title={d.platform.indexH2} id="po-index" /></Reveal>
-          {/* LAUNCH_COPY_v1 §7.2: the two on-request modules, one sentence each, only here. */}
-          <div className="mt-12 card-quiet p-6" data-on-request>
-            <p className="t-eyebrow text-text-muted">{d.nav.onRequest}</p>
-            <ul className="mt-3 space-y-2">
-              {d.nav.onRequestLines.map((l) => (
-                <li key={l} className="flex items-start gap-2 t-body-m text-text-secondary"><StatusGlyph glyph="diamond" size={12} className="mt-2 shrink-0 text-champagne-400" />{l}</li>
+        <section aria-labelledby="po-index" className="pb-[var(--section-default)] pt-[var(--section-default)]">
+          <div className="container-default">
+            <Reveal className="xl:max-w-[60%]"><SectionHead eyebrow={d.platform.indexEyebrow} title={d.platform.indexH2} id="po-index" /></Reveal>
+            <ol className="mt-10 grid gap-5 md:grid-cols-2" data-modules>
+              {caps.map((c, i) => (
+                <li key={c.slug}>
+                  <Link href={p(`/platform/${c.slug}`)} className="group stage flex h-full flex-col p-6 transition-shadow duration-control hover:shadow-overlay md:p-8">
+                    <span className="t-caption tnum text-text-accent">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="mt-4 block t-heading-m text-text-primary">{c.name[locale]}</span>
+                    <span className="mt-2 block t-body-s text-text-secondary">{c.navLine[locale]}</span>
+                    <span className="mt-auto inline-flex items-center gap-2 pt-6 t-body-s font-medium text-text-primary">
+                      {d.common.readModule}
+                      <StatusGlyph glyph="arrow-right" size={14} className="text-text-muted transition-transform duration-micro group-hover:translate-x-0.5" />
+                    </span>
+                  </Link>
+                </li>
               ))}
-            </ul>
+            </ol>
           </div>
-          <ol className="mt-6 grid gap-4 md:grid-cols-2">
-            {caps.map((c, i) => (
-              <li key={c.slug}>
-                <Link href={p(`/platform/${c.slug}`)} className="group card flex h-full flex-col rounded-xl p-6 transition-shadow duration-control hover:shadow-lift">
-                  <span className="t-caption tnum text-text-muted">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="mt-4 block t-heading-m text-text-primary">{c.name[locale]}</span>
-                  <span className="mt-2 block t-body-s text-text-secondary">{c.navLine[locale]}</span>
-                  <span className="mt-auto inline-flex items-center gap-2 pt-6 t-body-s text-text-primary">
-                    {d.common.readModule}
-                    <StatusGlyph glyph="arrow-right" size={14} className="text-text-muted transition-transform duration-micro group-hover:translate-x-0.5" />
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </Section>
+        </section>
+      </div>
 
-      <Section rhythm="feature" labelledBy="po-close">
-        <div className="container-default">
-          <div className="field-sand rounded-xl px-6 py-14 text-center md:px-12 md:py-20">
-            <Reveal mode="opacity">
-              <Display size="l" id="po-close" className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
-              <CtaRow align="center" className="mt-10">
-                <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
-                <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
-              </CtaRow>
-            </Reveal>
+      <section aria-label={`${d.nav.onRequest} · ${d.nav.beingBuilt}`} className="pt-[var(--section-default)]">
+        <div className="container-wide">
+          <div className="band band-stone band-panel px-5 py-10 md:px-12 md:py-14">
+            <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+              <div data-on-request>
+                <p className="t-eyebrow text-text-accent">{d.nav.onRequest}</p>
+                <ul className="mt-4 space-y-3">
+                  {d.nav.onRequestLines.map((l) => (
+                    <li key={l} className="flex items-start gap-2 t-body-m text-text-secondary"><StatusGlyph glyph="diamond" size={12} className="mt-2 shrink-0 text-champagne-400" />{l}</li>
+                  ))}
+                </ul>
+              </div>
+              <div data-being-built>
+                <p className="t-eyebrow text-text-muted">{d.nav.beingBuilt}</p>
+                <ul className="mt-4 space-y-3">
+                  {d.nav.beingBuiltLines.map((l) => (
+                    <li key={l} className="flex items-start gap-2 t-body-m text-text-secondary"><StatusGlyph glyph="rule" size={12} className="mt-2 shrink-0 text-text-muted" />{l}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-      </Section>
+      </section>
+
+      <ClosingBand locale={locale} id="po-close" />
     </>
   );
 }

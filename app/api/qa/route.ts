@@ -1,5 +1,6 @@
 import { clientKey, envelope, fail, rateLimited, sameOrigin } from "@/lib/contracts/bff";
 import { newMessageId, qaAccept, qaConfig, qaSession } from "@/lib/contracts/qa";
+import { qaSurface } from "@/lib/contracts/surface";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -29,7 +30,9 @@ export async function POST(req: Request) {
   if (question.length < 1) return fail("invalid_input", 400);
   if (question.length > 4000) return fail("too_long", 422);
 
-  const cfg = qaConfig();
+  // While the box is switched off (the default since 2026-09-30) nothing is forwarded, even when the server
+  // still holds the assistant target: a direct call gets the same honest state as an unconfigured site.
+  const cfg = qaSurface() === "hidden" ? null : qaConfig();
   if (!cfg) return envelope({ ok: true, code: "ok", message: "not_configured", details: { status: "cannot_confirm" } });
 
   // No contact details are taken or forwarded: a product question creates no lead and no handover

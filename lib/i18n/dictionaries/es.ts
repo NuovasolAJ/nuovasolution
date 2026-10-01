@@ -40,7 +40,10 @@ export const es: Dictionary = {
     },
     allCapabilities: "Ver todas las capacidades",
     onRequest: "A petición",
-    onRequestLines: ["El asistente telefónico está en preparación. Te lo explicamos a petición.", "Un modelo 3D interactivo de tu inmueble en el navegador, hecho por nosotros a petición. A escala según tus planos; los muebles y los materiales son ilustrativos. Toca una habitación, elige una planta, activa y desactiva el mobiliario."],
+    beingBuilt: "En construcción",
+    beingBuiltLines: ["Un asistente telefónico que atiende llamadas está en construcción. Hoy no forma parte de lo que se puede contratar, y lo diremos claramente hasta que lo sea."],
+    faq: "Preguntas",
+    onRequestLines: ["Un modelo 3D interactivo de tu inmueble en el navegador, hecho por nosotros a petición. A escala según tus planos; los muebles y los materiales son ilustrativos. Toca una habitación, elige una planta, activa y desactiva el mobiliario. Nos envías un plano con medidas y, si las tienes, fotos. Construimos el modelo a partir del plano, lo comprobamos contra tus planos y recibes un enlace. Los muebles y los materiales son ilustrativos y se pueden desactivar."], // D-49
   },
 
   common: {
@@ -127,7 +130,7 @@ export const es: Dictionary = {
   home: {
     hero: {
       eyebrow: "Para agencias inmobiliarias en España",
-      h1: "Ninguna consulta espera al lunes",
+      h1: "Respondida cuando llega, no cuando alguien tiene tiempo", // D-45
       lead: "Un comprador escribe un domingo por la noche. Nuova responde en su idioma, registra lo que ha pedido y deja a tu equipo una tarea que terminar.",
       qualifier: "En los canales que conectes.",
       note: "14 días gratis. Sin pago.",
@@ -177,7 +180,7 @@ export const es: Dictionary = {
         understand: { step: "Registrada", title: "Una ficha por consulta", line: "La conversación y lo que ha pedido el cliente se quedan en una sola ficha, así que quien la abra después lo ve todo sin preguntar." },
         handover: { step: "Asignada", title: "Una tarea clara, no un recordatorio", line: "Una petición de visita pasa a ser una tarea con nombre, motivo y responsable. Tu equipo la toma y la completa." },
         done: { step: "Hecha", title: "Alguien de tu equipo la termina", line: "Un toque la toma, un toque la completa. La tarjeta muestra quién la ha tomado, y nadie puede tomar la misma tarea dos veces." },
-        setup: { step: "Tu configuración", title: "Tu agencia, configurada por ti", line: "Tus datos, tu horario, tu equipo y sus roles. Tu progreso se guarda entre sesiones." },
+        setup: { step: "Tu configuración", title: "Tu agencia, configurada por ti", line: "Los datos de tu agencia, tus datos legales y tu logo, más tu equipo y sus roles. Tu progreso se guarda entre sesiones." },
       },
     },
     views: {
@@ -213,7 +216,7 @@ export const es: Dictionary = {
         clipError: "El vídeo no se ha cargado. Inténtalo de nuevo en un momento.",
         clipAlt: "La lista de tareas en la aplicación del equipo: una petición de visita de Laura Serrano espera a que alguien la tome.",
         note: "Grabación del producto, con personas e inmuebles sintéticos. El anillo marca dónde toca el agente; es parte de la grabación, no del producto.",
-        cues: ["Laura Serrano ha pedido una visita el jueves por la mañana.", "El agente toma la tarea. La tarjeta ya dice que es suya.", "Hecha. Sale de la lista y el resto se queda."],
+        cues: ["Laura Serrano ha pedido una visita el jueves por la mañana. Todavía no la ha tomado nadie.", "El agente toma la tarea. La tarjeta ya dice que es suya, y nadie más puede tomarla.", "Cerrada. Sale de la lista, el resto se queda y el equipo ve quién lo ha hecho."],
         stills: {
           tasks: "Cada persona ve su propia lista: tomadas, en espera y lo que todavía no tiene nadie.",
           "task-action": "La has tomado tú. Solo tú puedes cerrarla.",
@@ -226,7 +229,7 @@ export const es: Dictionary = {
     record: {
       eyebrow: "Un solo sistema",
       h2: "Una consulta, una ficha, un solo lugar",
-      lead: "Nuova está debajo de la agencia, no al lado. Nada se pasa de una herramienta a otra y nada tiene que quedarse en la cabeza de nadie.",
+      lead: "La conversación, lo que ha pedido el cliente y la tarea están en una sola ficha. Nada tiene que quedarse en la cabeza de nadie, y nadie tiene que preguntar a un compañero qué se dijo ya.", // D-46
     },
     access: {
       eyebrow: "Para empezar",
@@ -236,8 +239,9 @@ export const es: Dictionary = {
       steps: [
         { title: "Crea tu cuenta", line: "Tu nombre, tu email de trabajo, una contraseña. Después confirma tu email." },
         { title: "Pon nombre a tu agencia", line: "Un paso, y empieza tu prueba de 14 días." },
-        { title: "Configúrala tú mismo", line: "Tus datos, tu horario, tu logo, tu calendario. Tu progreso queda guardado." },
+        { title: "Configúrala tú mismo", line: "Los datos de tu agencia, tus datos legales y tu logo, más tu equipo y sus roles." }, // D-51
       ],
+      noCharge: "No se cobra nada y no pedimos ninguna tarjeta en ninguno de estos tres pasos.", // D-53
       viewCaption: "Configuras tu agencia tú mismo, paso a paso.",
     },
     offer: {
@@ -252,6 +256,7 @@ export const es: Dictionary = {
       lead: "Las respuestas salen de lo que NuovaSolution ha confirmado sobre su producto. Precios, cuestiones legales y fiscales las responde una persona.",
       points: ["Responde en español o en inglés."],
     },
+    faqTeaser: { link: "Todas las preguntas" },
     closing: {
       h2: "Tu próxima consulta ya está en camino",
       body: "La única pregunta es qué pasa con ella.",
@@ -261,8 +266,8 @@ export const es: Dictionary = {
 
   platform: {
     eyebrow: "Plataforma",
-    h1: "La capa operativa de una agencia inmobiliaria.",
-    lead: "Cada parte de Nuova hace bien un solo trabajo. Juntas se comportan como un solo sistema, porque el cliente es una sola ficha y no una ficha por herramienta.",
+    h1: "Todo lo que necesita una consulta, en un solo lugar", // D-47
+    lead: "Cada parte de Nuova hace bien una cosa, y comparten una misma ficha, así que la respuesta, el contexto y la tarea nunca están en tres sitios distintos.", // D-47
     indexEyebrow: "Capacidades",
     indexH2: "Qué hace Nuova por tu agencia.",
     exampleEyebrow: "Una consulta, de principio a fin",
@@ -886,7 +891,7 @@ export const es: Dictionary = {
     send: "Enviar",
     sending: "Enviando",
     thinking: "Leyendo tu pregunta",
-    cannotConfirm: "No podemos confirmarlo desde aquí. Una persona sí puede.",
+    cannotConfirm: "No podemos confirmarlo desde aquí. Puedes enviar la pregunta a antonio@nuovasolution.com.", // D-50
     humanCta: "Contactar con una persona",
     boundaries: "No da precios, ni asesoramiento legal o fiscal, ni nos compromete a nada. Eso lo responde una persona.",
     ai: "Las respuestas las redacta un asistente de IA.",

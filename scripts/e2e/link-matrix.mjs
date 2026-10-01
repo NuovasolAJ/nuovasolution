@@ -18,7 +18,7 @@ const BASE = (process.env.BASE ?? `http://localhost:${PORT}`).replace(/\/$/, "")
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 mkdirSync(OUT, { recursive: true });
 
-const ROUTES = ["", "/platform", "/platform/ai-sales-agent", "/platform/lead-intelligence", "/platform/crm", "/platform/daily-assistant", "/packages", "/trial", "/contact", "/contact?plan=growth", "/signup", "/login", "/welcome", "/legal/privacy", "/legal/terms", "/legal/data-deletion", "/legal/notice"];
+const ROUTES = ["", "/faq", "/platform", "/platform/ai-sales-agent", "/platform/lead-intelligence", "/platform/crm", "/platform/daily-assistant", "/packages", "/trial", "/contact", "/contact?plan=growth", "/signup", "/login", "/welcome", "/legal/privacy", "/legal/terms", "/legal/data-deletion", "/legal/notice"];
 const kids = [];
 const pages = new Map(); // url path -> { status, html, final }
 

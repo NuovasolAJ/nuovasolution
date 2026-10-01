@@ -11,6 +11,11 @@ import { FlowStory } from "@/components/site/flow-story";
 import { ReadinessView } from "@/components/site/product-views";
 import { QaPanel } from "@/components/site/qa-widget";
 import { StatusGlyph } from "@/components/ui/status";
+import { faqFrame, faqGroups } from "@/lib/content/faq";
+
+/** Four answers from the FAQ on the home page: what the reply does, what it does not, and two limits said plainly. */
+const HOME_FAQ = ["Q-03", "Q-07", "Q-43", "Q-27"];
+const homeFaq = HOME_FAQ.map((kb) => faqGroups.flatMap((g) => g.items).find((it) => it.kb === kb)!).filter(Boolean);
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   if (!isLocale(params.locale)) return {};
@@ -19,8 +24,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
 }
 
 /**
- * Home (owner direction 2026-09-29). One main story, told once: enquiry, meaningful answer,
- * record with a priority, a task for a person. The setup of an agency is explained separately.
+ * Home (owner direction 2026-09-29, accepted 2026-09-30). One main story, told once: enquiry,
+ * meaningful answer, a record, a task for a person. The setup of an agency is explained separately.
  *
  * Layers per section (ground · product · foreground):
  * 1 Hero            canvas with the sand arch · the enquiry and the reply · record chip and task card laid over
@@ -29,7 +34,7 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
  * 4 Statement       canvas · one sentence across the page · none
  * 5 Setup           stone panel · the readiness check as the onboarding renders it · none
  * 6 Essential, FAQ  canvas · the Essential trial card · the sticker
- * 7 Question box    sage panel · the assistant window · none
+ * 7 FAQ             sage panel · four checked answers on a white stage · none (the question box only when switched on)
  * 8 Closing         sand panel · the next step · none
  * The payment sentence appears once (hero note).
  */
@@ -152,6 +157,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
                     </li>
                   ))}
                 </ol>
+                <p className="mt-4 t-body-s text-text-secondary">{h.access.noCharge}</p>
                 <div className="mt-8"><ButtonLink href={p("/trial")} variant="secondary">{h.access.link}</ButtonLink></div>
               </Reveal>
               <Reveal delay={80} className="xl:col-span-6">
@@ -181,9 +187,10 @@ export default function HomePage({ params }: { params: { locale: string } }) {
                 </CtaRow>
               </div>
             </Reveal>
-            <Reveal delay={80} as="dl" className="grid gap-4 md:grid-cols-2 xl:col-span-7">
+            {/* One white stage for the four trial questions, separated by hairlines, instead of four loose boxes. */}
+            <Reveal delay={80} as="dl" className="stage grid gap-px overflow-hidden bg-[color:var(--border-hairline)] md:grid-cols-2 xl:col-span-7">
               {pk.faq.map((f) => (
-                <div key={f.q} className="card-quiet p-5">
+                <div key={f.q} className="bg-surface-raised p-6">
                   <dt className="t-heading-s text-text-primary">{f.q}</dt>
                   <dd className="mt-2 t-body-s text-text-secondary">{f.a}</dd>
                 </div>
@@ -193,7 +200,29 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         </div>
       </section>
 
-      {/* 7 Ask Nuova, integrated (absent when the surface is hidden) */}
+      {/* 7 Straight answers: Copy's checked FAQ in place of the question box (owner order 2026-09-30) */}
+      <section aria-labelledby="faq-h" className="pb-[var(--section-default)]">
+        <div className="container-wide">
+          <div className="band band-sage band-panel px-5 py-12 md:px-12 md:py-16">
+            <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-start gap-10 xl:grid-cols-12 xl:gap-16">
+              <Reveal className="xl:col-span-5">
+                <SectionHead eyebrow={faqFrame.eyebrow[locale]} title={faqFrame.h1[locale]} lead={faqFrame.lead[locale]} id="faq-h" size="m" />
+                <div className="mt-8"><ButtonLink href={p("/faq")} variant="secondary">{h.faqTeaser.link}</ButtonLink></div>
+              </Reveal>
+              <Reveal delay={80} as="dl" className="stage divide-y divide-line-hairline overflow-hidden xl:col-span-7">
+                {homeFaq.map((it) => (
+                  <div key={it.kb} className="p-6 md:p-7">
+                    <dt className="t-heading-s text-text-primary">{it.q[locale]}</dt>
+                    <dd className="mt-2 t-body-s text-text-secondary">{it.a[locale]}</dd>
+                  </div>
+                ))}
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The question box returns only when a deployment switches it on (lib/contracts/surface.ts). */}
       {qaSurface() !== "hidden" && (
         <section aria-labelledby="ask-h" className="pb-[var(--section-default)]">
           <div className="container-wide">

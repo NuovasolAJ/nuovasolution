@@ -28,7 +28,7 @@ export default function LoginPage({ params, searchParams }: { params: { locale: 
   return (
     <>
     <EnvironmentRibbon locale={locale} scope="form" />
-    <Section rhythm="opening" labelledBy="li-h1" className="overflow-hidden">
+    <Section rhythm="opening" labelledBy="li-h1" className="overflow-hidden !pb-[var(--section-compact)]">
       <div className="container-narrow relative !mx-0 xl:!mx-auto">
         <Eyebrow className="mb-4">{d.login.eyebrow}</Eyebrow>
         <Display size="l" as="h1" id="li-h1">{d.login.h1}</Display>
@@ -39,11 +39,16 @@ export default function LoginPage({ params, searchParams }: { params: { locale: 
             <span>{d.login.stubNotice}</span>
           </p>
         )}
-        <div className="card mt-10 rounded-xl p-6 md:p-8">
+      </div>
+    </Section>
+    {/* The form is the one white stage of the page, on the sand ground (accepted direction, 2026-09-30). */}
+    <div className="band band-sand band-shoulders">
+      <div className="container-narrow relative !mx-0 pb-[var(--section-default)] pt-[var(--section-compact)] xl:!mx-auto">
+        <div className="stage p-6 md:p-8">
           <LoginForm locale={locale} confirmed={confirmed} />
         </div>
       </div>
-    </Section>
+    </div>
     </>
   );
 }

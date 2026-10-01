@@ -8,6 +8,7 @@ import { StatusGlyph } from "@/components/ui/status";
 import { ProductClip } from "@/components/ui/product-clip";
 import { BoardView, ConversationView, DailyShot, RecordView } from "./product-views";
 import { FlowRail } from "./flow-rail";
+import { StackDeck } from "./stack-deck";
 
 /**
  * The one story of the site, told once (owner order 2026-09-29 B, COPY_DELTAS_0929 §2.2): an
@@ -18,6 +19,8 @@ import { FlowRail } from "./flow-rail";
  * corner · the task card across the full width · the real clip of the staff app on top, its text
  * below. Small foreground details (layer 3) mark what changed at each step. Setting an agency
  * up is not a step of this story and has its own section.
+ * On a desktop viewport the four stages form a deck (stack-deck.tsx): each stage sticks and the next
+ * one slides over it; on a phone, with reduced motion and without JavaScript they follow each other.
  */
 function CapLinks({ slugs, locale }: { slugs: string[]; locale: Locale }) {
   const caps = slugs.map(publishedCapability).filter((x): x is NonNullable<typeof x> => Boolean(x));
@@ -66,9 +69,9 @@ export function FlowStory({ locale }: { locale: Locale }) {
         </div>
       </div>
 
-      <ol className="space-y-8 md:space-y-10">
+      <StackDeck className="space-y-8 md:space-y-10 lg:space-y-16">
         {/* 01 Answered: the reply beside what it must and must not do */}
-        <li id="step-answer" className={STAGE}>
+        <li id="step-answer" className={STAGE} data-deck-item>
           <article className="stage overflow-hidden" aria-labelledby="step-answer-h">
             <div className="grid lg:grid-cols-2">
               <div className="p-6 md:p-10">
@@ -93,7 +96,7 @@ export function FlowStory({ locale }: { locale: Locale }) {
         </li>
 
         {/* 02 Recorded: a week of records, with one record laid over their corner */}
-        <li id="step-record" className={STAGE}>
+        <li id="step-record" className={STAGE} data-deck-item>
           <article className="stage overflow-hidden" aria-labelledby="step-record-h">
             <div className="p-6 md:p-10 lg:grid lg:grid-cols-2 lg:items-end lg:gap-12">
               <div>
@@ -115,7 +118,7 @@ export function FlowStory({ locale }: { locale: Locale }) {
         </li>
 
         {/* 03 Handed over: the task card, real, across the full width */}
-        <li id="step-handover" className={STAGE}>
+        <li id="step-handover" className={STAGE} data-deck-item>
           <article className="stage overflow-hidden" aria-labelledby="step-handover-h">
             <div className="p-6 md:p-10 lg:grid lg:grid-cols-2 lg:items-end lg:gap-12">
               <div>
@@ -131,7 +134,7 @@ export function FlowStory({ locale }: { locale: Locale }) {
         </li>
 
         {/* 04 Done: the real staff app, recorded; the clip on top, what it proves below */}
-        <li id="step-done" className={STAGE}>
+        <li id="step-done" className={STAGE} data-deck-item>
           {/* Reading order: the step and its sentence first, then the clip. From 1024 px the clip is shown on top. */}
           <article className="stage flex flex-col overflow-hidden" aria-labelledby="step-done-h">
             <div className="p-6 md:p-10 lg:grid lg:grid-cols-2 lg:gap-12">
@@ -153,7 +156,7 @@ export function FlowStory({ locale }: { locale: Locale }) {
             </div>
           </article>
         </li>
-      </ol>
+      </StackDeck>
     </div>
   );
 }
@@ -167,12 +170,15 @@ export function FlowRow({ locale }: { locale: Locale }) {
     { key: "done", field: "field-sky", text: c.done, view: <DailyShot locale={locale} shot="task-action" /> },
   ];
   return (
-    <ol className="grid gap-5 lg:grid-cols-3" data-flow-row>
+    <ol className="grid items-start gap-5 lg:grid-cols-3" data-flow-row>
+      {/* Each step is a white stage (layer 2) with its real surface on a coloured field inside, so it reads on the sand ground. */}
       {items.map((it, i) => (
-        <li key={it.key} className={cn("rounded-xl p-5 md:p-6", it.field)}>
-          <p className="t-eyebrow text-text-muted"><span className="tnum">0{i + 1}</span> · {it.text.step}</p>
-          <p className="mt-2 t-heading-s text-text-primary">{it.text.title}</p>
-          <div className="mt-5">{it.view}</div>
+        <li key={it.key} className="stage flex flex-col overflow-hidden">
+          <div className="p-5 md:p-6">
+            <p className="t-eyebrow text-text-muted"><span className="tnum text-text-accent">0{i + 1}</span> · {it.text.step}</p>
+            <p className="mt-2 t-heading-s text-text-primary">{it.text.title}</p>
+          </div>
+          <div className={cn("flex-1 p-4 md:p-5", it.field)}>{it.view}</div>
         </li>
       ))}
     </ol>

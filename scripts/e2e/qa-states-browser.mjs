@@ -2,7 +2,8 @@
 // production): waiting, still working, the 60 second budget, the three outcomes that are not an answer,
 // closing while waiting, an over-long question, an empty question. What it guards: the box never says
 // that somebody will get in touch (the product assistant records no handover), and it never hangs.
-// Requires a prior `next build` (stub mode). Usage: node scripts/e2e/qa-states-browser.mjs
+// Requires a stub build with the box switched on: NEXT_PUBLIC_QA_SURFACE=demo next build (the box is off by default).
+// Usage: node scripts/e2e/qa-states-browser.mjs
 import { spawn } from "node:child_process";
 import { randomBytes } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";

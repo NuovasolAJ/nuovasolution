@@ -14,7 +14,8 @@ import { cn } from "@/lib/utils";
  * it, so no interface text of the capture is covered (the whole poster is clickable as well).
  * The three cues (COPY_DELTAS_0929 §5.1) are a caption line under the frame, matched to the
  * visible action by the playback time, so the clip is understood without sound and without the
- * browser's subtitle menu.
+ * browser's subtitle menu. The same three lines are also a subtitle track (WebVTT, COPY_DELTAS_0930 §4), off by
+ * default so nothing covers the recording; the player's captions control switches it on.
  */
 // Seconds, measured on the four clips with scripts/design/clip-cues.mjs (largest picture changes at 7.0 s and
 // 13.5 s in every cut): the list at rest · the agent takes the task · the task is completed and leaves the list.
@@ -87,7 +88,9 @@ export function ProductClip({
       </p>
       <div className={cn("relative overflow-hidden rounded-xl border border-line-hairline bg-[#f5f6f8] shadow-card aspect-[840/1052] lg:aspect-[1756/988]")} data-product-clip={src ? "playing" : "poster"}>
         {src ? (
-          <video ref={video} src={src} controls muted playsInline preload="metadata" onTimeUpdate={onTime} onError={onError} className="absolute inset-0 h-full w-full" aria-label={alt} />
+          <video ref={video} src={src} controls muted playsInline preload="metadata" onTimeUpdate={onTime} onError={onError} className="absolute inset-0 h-full w-full" aria-label={alt}>
+            <track kind="captions" src={`${base}-${locale}.vtt`} srcLang={locale} label={locale === "es" ? "Español" : "English"} />
+          </video>
         ) : (
           <button type="button" onClick={start} className="group absolute inset-0 block" aria-label={`${playLabel}. ${meta}`} tabIndex={-1}>
             <picture>

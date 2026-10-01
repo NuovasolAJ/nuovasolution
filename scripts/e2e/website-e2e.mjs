@@ -288,8 +288,14 @@ try {
   const exp = await ev(`({path:location.pathname+location.search,state:document.querySelector('[data-welcome-state]')?.getAttribute('data-welcome-state')})`);
   check("B9-c", "an expired link says so and offers login, no form", exp.path === "/en/welcome?state=expired" && exp.state === "expired", exp);
 
-  // B4 Q&A widget against the contract mock: accept, poll, answer, focus handling
+  // B4 The question box is off by default (owner order 2026-09-30). On a build made with NEXT_PUBLIC_QA_SURFACE=demo
+  // (QA_SURFACE_EXPECTED=demo) the widget is checked against the contract mock: accept, poll, answer, focus.
+  const QA_ON = process.env.QA_SURFACE_EXPECTED === "demo";
   await nav(`${BASE}/en`, 3000);
+  if (!QA_ON) {
+    const off = await ev(`({launcher:!!document.querySelector('[data-qa-launcher]'),panel:!!document.querySelector('[data-qa-panel]'),faq:!!document.querySelector('section[aria-labelledby=faq-h]')})`);
+    check("QA-OFF", "no question box and no launcher; the FAQ section stands in its place", !off.launcher && !off.panel && off.faq, off);
+  } else {
   await ev(`document.querySelector('[data-qa-launcher]').click()`);
   await sleep(400);
   const focusIn = await ev(`document.activeElement?.tagName==='TEXTAREA'`);
@@ -305,6 +311,7 @@ try {
   await sleep(300);
   const focusBack = await ev(`document.activeElement?.hasAttribute('data-qa-launcher')`);
   check("WR-17b", "Escape returns focus to the launcher", focusBack, "launcher focused");
+  }
 
   // B5 Spanish onboarding uses Spanish step titles; B6 360 px Spanish CRM page does not overflow
   await nav(`${BASE}/es/onboarding`, 3000);
@@ -333,8 +340,12 @@ try {
   const lines = existsSync(mockLog) ? readFileSync(mockLog, "utf8").trim().split("\n").map((l) => JSON.parse(l)) : [];
   const posts = lines.filter((l) => l.op === "POST");
   const gets = lines.filter((l) => l.op === "GET");
+  if (process.env.QA_SURFACE_EXPECTED === "demo") {
   check("QA-02", "every POST passed the ingress contract (signature, freshness, nonce, tenant, session_id, only contract fields)", posts.length > 0 && posts.every((l) => l.verdict === 202), posts.map((l) => l.verdict));
   check("QA-03", "result polls were signed over the canonical query and resolved pending then answered", gets.some((l) => l.verdict === "200 pending") && gets.some((l) => l.verdict === "200 answered") && gets.every((l) => l.checks.signature), gets.map((l) => l.verdict));
+  } else {
+    check("QA-02", "with the box off, the browser sent no question to the assistant path", posts.length === 0, posts.length);
+  }
 } catch (e) {
   check("RUNNER", "the harness itself completed", false, String(e?.stack ?? e));
 } finally {

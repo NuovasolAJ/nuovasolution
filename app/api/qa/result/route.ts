@@ -1,5 +1,6 @@
 import { clientKey, envelope, fail, rateLimited } from "@/lib/contracts/bff";
 import { isMessageId, qaConfig, qaResult, qaSession } from "@/lib/contracts/qa";
+import { qaSurface } from "@/lib/contracts/surface";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,7 +17,7 @@ export async function GET(req: Request) {
   if (!isMessageId(message_id)) return fail("invalid_input", 400);
   const session_id = qaSession(false);
   if (!session_id) return fail("no_session", 401);
-  const cfg = qaConfig();
+  const cfg = qaSurface() === "hidden" ? null : qaConfig(); // off by default since 2026-09-30
   if (!cfg) return envelope({ ok: true, code: "ok", message: "not_configured", details: { status: "cannot_confirm" } });
   const outcome = await qaResult(cfg, session_id, message_id);
   return envelope({ ok: true, code: "ok", message: outcome.status, details: outcome });

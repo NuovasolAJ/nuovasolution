@@ -4,12 +4,14 @@
 // that one agency.
 //
 // It needs a staging identity in exactly that state, delivered to the secure store as
-//   stg_web_resume_fixture.txt   (line 1 e-mail, line 2 password)
+//   stg_website_t6_identity.txt  (API, WEBSITE_TEST_IDENTITY = READY 2026-09-30; lines "email: …" and "password: …")
 // The owner's own identity is never used here. Nothing is printed or written from that file.
 //
 // Two stages, so that nothing is created by accident:
 //   BASE=https://<staging preview> node scripts/e2e/owner-resume-browser.mjs            read only: login → registration step shown
 //   BASE=… RUN_REGISTER=1 node scripts/e2e/owner-resume-browser.mjs                     also names the agency (creates ONE staging agency)
+//   BASE=… REPEAT_ONLY=1 AGENCY_NAME="…" node scripts/e2e/owner-resume-browser.mjs  after the agency exists: a second login goes
+//                                                                     straight to the setup, and a repeated register creates nothing
 // Exit code 2 when the fixture is missing (a dependency, not a failure), 1 when a check fails.
 import { spawn } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -17,11 +19,13 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 const ROOT = new URL("../../", import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1");
-const OUT = process.env.OUT ?? join(ROOT, "docs", "website_redesign", "evidence_2026-09-29", "owner_resume");
+const OUT = process.env.OUT ?? join(ROOT, "docs", "website_redesign", "evidence_2026-09-30", "owner_resume");
 const EDGE = process.env.EDGE ?? "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";
 const BASE = (process.env.BASE ?? "").replace(/\/$/, "");
-const FIXTURE = process.env.RESUME_FIXTURE ?? "C:/Users/Usuario/.nuova-secrets/stg_web_resume_fixture.txt";
+const FIXTURE = process.env.RESUME_FIXTURE ?? "C:/Users/Usuario/.nuova-secrets/stg_website_t6_identity.txt";
 const REGISTER = process.env.RUN_REGISTER === "1";
+const REPEAT_ONLY = process.env.REPEAT_ONLY === "1";
+const RESULT_FILE = REPEAT_ONLY ? "owner-resume-repeat-results.json" : "owner-resume-results.json";
 const LOCALE = process.env.LOCALE === "en" ? "en" : "es"; // the owner continues on /es/login
 const CDP_PORT = 9366;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -29,13 +33,18 @@ if (!BASE.startsWith("https://")) { console.log("BASE=https://<staging preview> 
 mkdirSync(OUT, { recursive: true });
 
 const results = { started_utc: new Date().toISOString(), base: BASE, locale: LOCALE, register: REGISTER, commit: process.env.E2E_COMMIT ?? null, deployment: process.env.E2E_DEPLOYMENT ?? null, checks: [] };
-const finish = (code) => { results.finished_utc = new Date().toISOString(); writeFileSync(join(OUT, "owner-resume-results.json"), JSON.stringify(results, null, 1)); process.exit(code); };
+const finish = (code) => { results.finished_utc = new Date().toISOString(); writeFileSync(join(OUT, RESULT_FILE), JSON.stringify(results, null, 1)); process.exit(code); };
 if (!existsSync(FIXTURE)) {
-  results.blocked = "no confirmed staging identity without an agency in the secure store (stg_web_resume_fixture.txt)";
+  results.blocked = "no confirmed staging identity without an agency in the secure store (stg_website_t6_identity.txt)";
   console.log(`BLOCKED ${results.blocked}`);
   finish(2);
 }
-const [email, password] = readFileSync(FIXTURE, "utf8").split(/\r?\n/).map((l) => l.trim());
+// Lines may be plain ("address", "password") or labelled ("email: …", "password: …"); a heading line is ignored.
+const lines = readFileSync(FIXTURE, "utf8").split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+const valueOf = (re) => lines.map((l) => l.match(re)).filter(Boolean).map((m) => m[1].trim())[0];
+const email = valueOf(/^(?:e-?mail|user|login)\s*[:=]\s*(\S+@\S+)$/i) ?? lines.find((l) => /^[^\s@:=]+@[^\s@]+$/.test(l));
+const password = valueOf(/^(?:password|pass|pw)\s*[:=]\s*(.+)$/i) ?? lines.filter((l) => l !== email && !/[:=]/.test(l.slice(0, 12)))[1];
+if (!email || !password) { results.blocked = "the identity file could not be read"; console.log("BLOCKED " + results.blocked); finish(2); }
 const scrub = (s) => String(s).split(password).join("[hidden]").split(email).join("[hidden]");
 const check = (id, what, pass, evidence) => { results.checks.push({ id, what, pass: Boolean(pass), evidence }); console.log(`${pass ? "PASS" : "FAIL"} ${id} ${what}`); };
 
@@ -75,11 +84,29 @@ try {
   const landed = await waitFor(`location.pathname==='/${LOCALE}/onboarding'`);
   check("OR-01", "the confirmed identity logs in on the HTTPS staging preview and is taken to the onboarding", form && landed, { landed: await ev("location.pathname") });
 
+  if (REPEAT_ONLY) {
+    // The agency exists already. What a second visit looks like, and that a repeated register changes nothing.
+    const name = process.env.AGENCY_NAME ?? "";
+    const direct = await ev(`({setup:!!document.querySelector('[data-onboarding-setup]'),register:!!document.querySelector('[data-onboarding-register]')})`);
+    check("OR-10", "a second login goes straight to the agency setup; the registration step does not come back", direct.setup && !direct.register, direct);
+    const again = await ev(`fetch('/api/bff/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({agency_name:${JSON.stringify(name + " (second attempt)")}})}).then(async r=>{const j=await r.json().catch(()=>({}));return {status:r.status,outcome:j.details?.outcome??null}})`);
+    await nav(`${BASE}/${LOCALE}/onboarding`, 4000);
+    const kept = await ev(`({original:document.body.innerText.includes(${JSON.stringify(name)}),second:document.body.innerText.includes('(second attempt)'),trialLines:[...document.querySelectorAll('main p')].map(p=>p.innerText).filter(t=>/^(Te quedan \\d+ d[ií]as de prueba|\\d+ days left in your trial|Último día de prueba|Last day of your trial)/i.test(t.trim())).length})`);
+    check("OR-11", "a repeated register answers 'already_registered' and changes nothing: the first agency name stays, one trial line", again.outcome === "already_registered" && kept.original && !kept.second && kept.trialLines === 1, { ...again, ...kept });
+    await shot(`d1440-${LOCALE}-resume-second-visit`);
+    await ev(`fetch('/api/bff/auth/logout',{method:'POST'}).then(r=>r.status)`);
+    ws.close();
+    throw { done: true };
+  }
+
   const reg = await ev(`({register:!!document.querySelector('[data-onboarding-register]'),form:!!document.querySelector('[data-register]'),setup:!!document.querySelector('[data-onboarding-setup]'),problem:document.querySelector('[data-onboarding-problem]')?.getAttribute('data-onboarding-problem')??null})`);
   check("OR-02", "without an agency the page shows the registration step, not the setup and not an error", reg.register && reg.form && !reg.setup && !reg.problem, reg);
   check("OR-03", "continuing needs no sign-up and no second confirmation e-mail", !posts.some((p) => /\/api\/bff\/(signup|auth\/resend)$/.test(p)), { posts: [...new Set(posts)] });
   const state = await ev(`fetch('/api/bff/onboarding/state',{cache:'no-store'}).then(r=>r.json()).then(j=>({ok:j.ok,next:j.details?.next??null,hasTenantId:/stg_[a-z0-9_]+/.test(JSON.stringify(j))}))`);
   check("OR-04", "the state route says 'register' and carries no tenant id", state.ok && state.next === "register" && !state.hasTenantId, state);
+  const seen1 = await ev(`({h1:document.querySelector('h1')?.innerText??null,heading:document.querySelector('[data-onboarding-register] h2')?.innerText??null,fields:[...document.querySelectorAll('[data-register] label')].map(l=>l.innerText),button:document.querySelector('[data-register] button[type=submit]')?.innerText??null,band:document.querySelector('[data-env]')?.getAttribute('data-env')??null,asksPassword:!!document.querySelector('[data-register] input[type=password]'),asksEmail:!!document.querySelector('[data-register] input[type=email]')})`);
+  results.screen_register = seen1;
+  check("OR-04b", "the registration step asks for the agency only: no e-mail field, no password field, no sign-up form", !seen1.asksPassword && !seen1.asksEmail && !(await ev(`!!document.querySelector('[data-signup-form]')`)), seen1);
   await shot(`d1440-${LOCALE}-resume-register`);
 
   if (REGISTER) {
@@ -92,20 +119,29 @@ try {
     const after = await ev(`({setup:!!document.querySelector('[data-onboarding-setup]'),register:!!document.querySelector('[data-onboarding-register]')})`);
     const st2 = await ev(`fetch('/api/bff/onboarding/state',{cache:'no-store'}).then(r=>r.json()).then(j=>({next:j.details?.next??null,steps:j.details?.state?.steps?.length??0,trial:!!j.details?.trial}))`);
     check("OR-06", "after a reload the same agency is there: setup shown, no registration step, trial present", after.setup && !after.register && st2.next === "onboarding" && st2.steps > 0 && st2.trial, { ...after, ...st2 });
-    const again = await ev(`fetch('/api/bff/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({agency_name:${JSON.stringify(name + " 2")}})}).then(async r=>({status:r.status,code:(await r.json().catch(()=>({}))).code}))`);
-    check("OR-07", "a second registration for the same identity creates no second agency", again.status !== 200 && again.status !== 201, again);
+    const again = await ev(`fetch('/api/bff/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({agency_name:${JSON.stringify(name + " 2")}})}).then(async r=>{const j=await r.json().catch(()=>({}));return {status:r.status,outcome:j.details?.outcome??null}})`);
+    // By contract a repeat is not an error: it answers "already_registered" for the same agency (API, 10/10 on a twin).
+    check("OR-07", "a second registration for the same identity answers 'already_registered' instead of creating an agency", again.outcome === "already_registered", again);
+    const seen2 = await ev(`({h1:document.querySelector('h1')?.innerText??null,steps:document.querySelectorAll('[data-step], [data-wizard-step]').length,trialLines:[...document.querySelectorAll('main p')].map(p=>p.innerText).filter(t=>/\\b14\\b|d[ií]as|days/i.test(t)&&/prueba|trial/i.test(t)).slice(0,4),role:document.body.innerText.match(/agency admin|administrador[a]? de la agencia/i)?.[0]??null,agencyShown:document.body.innerText.includes(${JSON.stringify(name)})})`);
+    results.screen_onboarding = seen2;
+    check("OR-08", "the onboarding shows the agency that was named and one trial line", seen2.agencyShown && seen2.trialLines.length >= 1, seen2);
     await shot(`d1440-${LOCALE}-resume-onboarding`);
+    await send("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 2, mobile: true });
+    await nav(`${BASE}/${LOCALE}/onboarding`, 3500);
+    const m = await ev(`({setup:!!document.querySelector('[data-onboarding-setup]'),sw:document.documentElement.scrollWidth,iw:innerWidth})`);
+    check("OR-09", "on a phone the same onboarding is there after another reload, without horizontal overflow", m.setup && m.sw <= m.iw, m);
+    await shot(`m390-${LOCALE}-resume-onboarding`);
   }
   await ev(`fetch('/api/bff/auth/logout',{method:'POST'}).then(r=>r.status)`);
   ws.close();
 } catch (e) {
-  check("OR-00", "the run completed", false, scrub(e?.stack ?? e));
+  if (!e?.done) check("OR-00", "the run completed", false, scrub(e?.stack ?? e));
 } finally {
   for (const k of kids) { try { k.kill(); } catch { /* gone */ } }
   const pass = results.checks.filter((c) => c.pass).length;
   results.pass = pass; results.total = results.checks.length;
   console.log(`${pass} passed, ${results.total - pass} failed`);
   results.finished_utc = new Date().toISOString();
-  writeFileSync(join(OUT, "owner-resume-results.json"), scrub(JSON.stringify(results, null, 1)));
+  writeFileSync(join(OUT, RESULT_FILE), scrub(JSON.stringify(results, null, 1)));
   process.exit(pass === results.total ? 0 : 1);
 }

@@ -97,7 +97,7 @@ const nextConfig = {
     // and the poster frames are never touched.
     // No lookaheads anywhere: Vercel's routing layer rejects them and answers NOT_FOUND for every path.
     const prefersEs = [{ type: "header", key: "accept-language", value: "es.*" }];
-    const pages = "/:page(packages|trial|contact|signup|login|welcome|platform|onboarding|social)";
+    const pages = "/:page(packages|trial|contact|signup|login|welcome|platform|onboarding|social|faq)";
     const nested = "/:section(platform|legal|social)/:slug";
     return [
       // Legacy routes from the previous site. All permanent.

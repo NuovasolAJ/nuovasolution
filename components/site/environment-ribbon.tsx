@@ -35,10 +35,11 @@ export function EnvironmentRibbon({ locale, scope }: { locale: Locale; scope: "s
         role="note"
         aria-label={`${e.label}. ${e.line}`}
         data-env-marker={kind}
-        className="pointer-events-none fixed bottom-5 left-5 z-[85] hidden md:inline-flex h-8 max-w-[45vw] items-center gap-1.5 rounded-pill border border-signal-attention bg-surface-raised px-3 t-caption text-signal-attention shadow-card"
+        // Upright along the left edge, inside the page gutter, so it never lies over content (review 2026-10-01).
+        className="pointer-events-none fixed bottom-6 left-1.5 z-[85] hidden md:inline-flex w-7 items-center justify-center gap-1.5 rounded-pill border border-signal-attention bg-surface-raised py-3 t-caption text-signal-attention shadow-card [writing-mode:vertical-rl] rotate-180"
       >
-        <StatusGlyph glyph="triangle" size={12} className="shrink-0" />
-        <span className="truncate">{e.label}</span>
+        <StatusGlyph glyph="triangle" size={12} className="shrink-0 rotate-90" />
+        <span className="whitespace-nowrap">{e.label}</span>
       </div>
     </>
   );

@@ -31,6 +31,7 @@ export function Footer({ locale }: { locale: Locale }) {
     {
       heading: d.footer.company,
       items: [
+        { href: p("/faq"), label: d.nav.faq },
         { href: p("/contact"), label: d.nav.contact },
         { href: "mailto:antonio@nuovasolution.com", label: "antonio@nuovasolution.com" },
       ],

@@ -5,12 +5,12 @@ import { isLocale, localePath, locales, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { startLabel } from "@/lib/content/plans";
 import { publishedCapabilities, publishedCapability, publicPoints } from "@/lib/content/capabilities";
-import { Section } from "@/components/ui/section";
 import { SectionHead, Display, Eyebrow, Lead, Caption, Heading } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { StatusGlyph, LabelChip } from "@/components/ui/status";
 import { ProductView } from "@/components/site/product-views";
+import { ClosingBand } from "@/components/site/closing-band";
 
 /** Only published capabilities have a page (audit R27). A hidden or unknown slug answers 404, never a home fallback (Z01). */
 export function generateStaticParams() {
@@ -29,6 +29,12 @@ export function generateMetadata({ params }: { params: { locale: string; slug: s
   };
 }
 
+/**
+ * One product page in the accepted direction (owner 2026-09-30). Layer 1: the canvas, then one sand
+ * ground for what it does and how it looks in practice. Layer 2: the real surface on a white stage,
+ * and the points and the example as white stages. Layer 3: the synthetic-data label and the step
+ * marks inside the surfaces. The qualifier stays with the claim it qualifies (review WR-34).
+ */
 export default function ProductPage({ params }: { params: { locale: string; slug: string } }) {
   const locale = params.locale as Locale;
   const c = publishedCapability(params.slug);
@@ -40,86 +46,90 @@ export default function ProductPage({ params }: { params: { locale: string; slug
 
   return (
     <>
-      {/* PD-01 Opening: the claim, its qualifier, and the real product view */}
-      <Section rhythm="opening" labelledBy="pd-h1" className="overflow-hidden">
+      {/* Opening: the claim, its qualifier, and the real product view */}
+      <section aria-labelledby="pd-h1" className="overflow-hidden pb-[var(--section-default)] pt-[var(--section-compact)] xl:pt-[var(--section-default)]">
         <div className="container-default">
-          <div className="grid grid-cols-1 gap-12 xl:grid-cols-12 xl:gap-16 items-center">
+          <div className="grid grid-cols-1 items-center gap-12 xl:grid-cols-12 xl:gap-16">
             <Reveal className="xl:col-span-6">
               <Eyebrow className="mb-4">{d.product.eyebrowPrefix} · {c.name[locale]}</Eyebrow>
               <Display size="xl" id="pd-h1" className="max-w-[18ch]">{c.h1[locale]}</Display>
               <Lead className="mt-6">{c.lead[locale]}</Lead>
               {c.note && <p className="mt-4 border-l-2 border-line-strong pl-4 t-body-m text-text-secondary measure-lead">{c.note[locale]}</p>}
-              {/* The qualifier sits with the claim it qualifies (review WR-34). */}
               <Caption className="mt-3">{d.common.qualifiers.q2}</Caption>
-              <CtaRow className="mt-12">
+              <CtaRow className="mt-10">
                 <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
                 <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
               </CtaRow>
             </Reveal>
             <Reveal delay={120} mode="opacity" className="xl:col-span-6">
-              <div className="field-sky rounded-xl p-5 md:p-8">
-                <ProductView slug={c.slug} locale={locale} />
+              <div className="stage overflow-hidden p-2 md:p-3">
+                <div className="field-sky rounded-[20px] p-4 md:p-8">
+                  <ProductView slug={c.slug} locale={locale} />
+                </div>
               </div>
             </Reveal>
           </div>
         </div>
-      </Section>
+      </section>
 
-      {/* PD-02 What it does */}
-      {points.length > 0 && (
-        <Section rhythm="default" hairline labelledBy="pd-what">
+      <div className="band band-sand band-shoulders">
+        {/* What it does */}
+        {points.length > 0 && (
+          <section aria-labelledby="pd-what" className="pt-[var(--section-default)]">
+            <div className="container-default">
+              <Reveal><SectionHead title={d.product.whatItDoes} size="heading-l" id="pd-what" /></Reveal>
+              {/* One stage, the points separated by hairlines (the 1 px gaps show the line colour). */}
+              <ul className="stage mt-8 grid gap-px overflow-hidden bg-[color:var(--border-hairline)] md:grid-cols-2">
+                {points.map((pt, i) => (
+                  <li key={i} className="flex items-start gap-3 bg-surface-raised p-6 md:[&:last-child:nth-child(odd)]:col-span-2">
+                    <StatusGlyph glyph="check" size={16} className="mt-1 shrink-0 text-signal-positive" />
+                    <p className="t-body-m text-text-primary">{pt.text[locale]}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
+
+        {/* In practice, illustrative and labelled */}
+        <section aria-labelledby="pd-practice" className="pb-[var(--section-default)] pt-[var(--section-default)]">
           <div className="container-default">
-            <Reveal><SectionHead title={d.product.whatItDoes} size="heading-l" id="pd-what" /></Reveal>
-            <ul className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {points.map((pt, i) => (
-                <Reveal key={i} delay={Math.min(i, 4) * 60} as="li" className="card-quiet flex items-start gap-3 p-5">
-                  <StatusGlyph glyph="check" size={16} className="mt-1 shrink-0 text-signal-positive" />
-                  <p className="t-body-m text-text-primary">{pt.text[locale]}</p>
-                </Reveal>
-              ))}
-            </ul>
+            <div className="grid grid-cols-1 items-start gap-8 xl:grid-cols-12 xl:gap-16">
+              <Reveal className="xl:col-span-5">
+                <SectionHead eyebrow={d.product.inPractice} title={d.product.scenarioLabel} size="heading-l" id="pd-practice" />
+                <Caption className="mt-4">{d.common.example}. {d.common.qualifiers.q2}</Caption>
+              </Reveal>
+              <Reveal delay={120} className="stage p-6 md:p-8 xl:col-span-7">
+                <LabelChip>{d.common.example}</LabelChip>
+                <p className="mt-4 t-body-l text-text-primary">{c.scenario[locale]}</p>
+              </Reveal>
+            </div>
           </div>
-        </Section>
-      )}
+        </section>
+      </div>
 
-      {/* PD-04 In practice, illustrative and labelled */}
-      <Section rhythm="feature" surface="ivory" labelledBy="pd-practice">
-        <div className="container-default">
-          <div className="grid grid-cols-1 gap-10 xl:grid-cols-12 xl:gap-16 items-start">
-            <Reveal className="xl:col-span-5">
-              <SectionHead eyebrow={d.product.inPractice} title={d.product.scenarioLabel} size="heading-l" id="pd-practice" />
-              <Caption className="mt-4">{d.common.example}. {d.common.qualifiers.q2}</Caption>
-            </Reveal>
-            <Reveal delay={120} className="xl:col-span-7 card rounded-xl p-6 md:p-8">
-              <LabelChip>{d.common.example}</LabelChip>
-              <p className="mt-4 t-body-l text-text-primary">{c.scenario[locale]}</p>
-            </Reveal>
-          </div>
-        </div>
-      </Section>
-
-      {/* PD-05 Fits your operation: names as text, never logos */}
-      <Section rhythm="default" hairline labelledBy="pd-fits">
+      {/* Fits your operation: names as text, never logos */}
+      <section aria-labelledby="pd-fits" className="pt-[var(--section-default)]">
         <div className="container-default">
           <Reveal><SectionHead title={d.product.fits} size="heading-l" id="pd-fits" /></Reveal>
-          <ul className="mt-8 hairline-list border-y border-line-hairline max-w-text">
+          <ul className="mt-8 max-w-text hairline-list border-y border-line-hairline">
             {c.fits.map((f, i) => (
               <li key={i} className="py-4 t-body-m text-text-secondary">{f[locale]}</li>
             ))}
           </ul>
           <Caption className="mt-4">{d.common.qualifiers.q5}</Caption>
         </div>
-      </Section>
+      </section>
 
-      {/* PD-06 Related, published only */}
+      {/* Related, published only */}
       {related.length > 0 && (
-        <Section rhythm="compact" surface="raised" labelledBy="pd-related">
+        <section aria-labelledby="pd-related" className="pt-[var(--section-default)]">
           <div className="container-default">
             <Heading size="s" as="h2" id="pd-related" className="t-eyebrow text-text-muted">{d.product.related}</Heading>
             <ul className="mt-4 hairline-list border-y border-line-hairline">
               {related.map((r) => (
                 <li key={r.slug}>
-                  <Link href={p(`/platform/${r.slug}`)} className="group flex items-center justify-between gap-4 py-4">
+                  <Link href={p(`/platform/${r.slug}`)} className="group flex min-h-[44px] items-center justify-between gap-4 py-4">
                     <span className="flex flex-wrap items-center gap-x-4 gap-y-1">
                       <span className="t-heading-m text-text-primary">{r.name[locale]}</span>
                       <span className="t-body-s text-text-secondary">{r.navLine[locale]}</span>
@@ -130,23 +140,10 @@ export default function ProductPage({ params }: { params: { locale: string; slug
               ))}
             </ul>
           </div>
-        </Section>
+        </section>
       )}
 
-      {/* PD-07 Closing */}
-      <Section rhythm="feature" labelledBy="pd-close">
-        <div className="container-default">
-          <div className="field-sand rounded-xl px-6 py-14 text-center md:px-12 md:py-20">
-            <Reveal mode="opacity">
-              <Display size="l" id="pd-close" className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
-              <CtaRow align="center" className="mt-10">
-                <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
-                <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
-              </CtaRow>
-            </Reveal>
-          </div>
-        </div>
-      </Section>
+      <ClosingBand locale={locale} id="pd-close" />
     </>
   );
 }
