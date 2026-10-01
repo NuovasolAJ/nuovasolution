@@ -1,0 +1,612 @@
+{
+ "started_utc": "2026-10-01T09:32:11.524Z",
+ "base": "https://nuovasolution-staging-preview-git-w-44e113-nuovasolajs-projects.vercel.app",
+ "checks": [
+  {
+   "id": "route /en",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Answered when it arrives, not when someone is free",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/platform",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Everything one enquiry needs, in one place",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/platform/ai-sales-agent",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Your text enquiries are answered on the channels you connect.",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/platform/lead-intelligence",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Keeps what each customer told you.",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/platform/crm",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "The messages from your connected channels, on one record.",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/platform/daily-assistant",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "The request becomes a task somebody owns.",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/packages",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Try Essential free for 14 days",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/trial",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Try free for 14 days.",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/contact",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Talk to a person.",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/signup",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Create your agency account",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/login",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Log in",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/login?confirmed=1",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Log in",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/welcome",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Set your password",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/faq",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Straight answers about what Nuova does today",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/legal/privacy",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Privacy notice",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/legal/terms",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Terms of service",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/legal/data-deletion",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Your data, and how to ask about it",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /en/legal/notice",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Legal notice",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "hidden /en/platform/voice",
+   "what": "hidden or unknown capability answers 404",
+   "pass": true,
+   "evidence": {
+    "status": 404
+   }
+  },
+  {
+   "id": "hidden /en/platform/social-growth",
+   "what": "hidden or unknown capability answers 404",
+   "pass": true,
+   "evidence": {
+    "status": 404
+   }
+  },
+  {
+   "id": "hidden /en/platform/lead-acquisition",
+   "what": "hidden or unknown capability answers 404",
+   "pass": true,
+   "evidence": {
+    "status": 404
+   }
+  },
+  {
+   "id": "hidden /en/platform/property-matching",
+   "what": "hidden or unknown capability answers 404",
+   "pass": true,
+   "evidence": {
+    "status": 404
+   }
+  },
+  {
+   "id": "hidden /en/platform/property-experience",
+   "what": "hidden or unknown capability answers 404",
+   "pass": true,
+   "evidence": {
+    "status": 404
+   }
+  },
+  {
+   "id": "hidden /en/platform/does-not-exist",
+   "what": "hidden or unknown capability answers 404",
+   "pass": true,
+   "evidence": {
+    "status": 404
+   }
+  },
+  {
+   "id": "route /es",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Respondida cuando llega, no cuando alguien tiene tiempo",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/platform",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Todo lo que necesita una consulta, en un solo lugar",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/platform/ai-sales-agent",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Tus consultas de texto se responden en los canales que conectes.",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/platform/lead-intelligence",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Guarda lo que te ha contado cada cliente.",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/platform/crm",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Los mensajes de tus canales conectados, en una sola ficha.",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/platform/daily-assistant",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "La petición pasa a ser una tarea con dueño.",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/packages",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Prueba Essential gratis 14 días",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/trial",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Prueba gratis durante 14 días.",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/contact",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Habla con una persona.",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/signup",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Crea la cuenta de tu agencia",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/login",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Iniciar sesión",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/login?confirmed=1",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Iniciar sesión",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/welcome",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Crea tu contraseña",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/faq",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Respuestas claras sobre lo que hace Nuova hoy",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/legal/privacy",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Aviso de privacidad",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/legal/terms",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Términos del servicio",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/legal/data-deletion",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Tus datos, y cómo preguntar por ellos",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "route /es/legal/notice",
+   "what": "200, own page (no home fallback), noindex header + meta, no forbidden string",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "h1": "Aviso legal",
+    "robots": "noindex, nofollow",
+    "metaNoindex": true,
+    "hits": []
+   }
+  },
+  {
+   "id": "hidden /es/platform/voice",
+   "what": "hidden or unknown capability answers 404",
+   "pass": true,
+   "evidence": {
+    "status": 404
+   }
+  },
+  {
+   "id": "hidden /es/platform/social-growth",
+   "what": "hidden or unknown capability answers 404",
+   "pass": true,
+   "evidence": {
+    "status": 404
+   }
+  },
+  {
+   "id": "hidden /es/platform/lead-acquisition",
+   "what": "hidden or unknown capability answers 404",
+   "pass": true,
+   "evidence": {
+    "status": 404
+   }
+  },
+  {
+   "id": "hidden /es/platform/property-matching",
+   "what": "hidden or unknown capability answers 404",
+   "pass": true,
+   "evidence": {
+    "status": 404
+   }
+  },
+  {
+   "id": "hidden /es/platform/property-experience",
+   "what": "hidden or unknown capability answers 404",
+   "pass": true,
+   "evidence": {
+    "status": 404
+   }
+  },
+  {
+   "id": "hidden /es/platform/does-not-exist",
+   "what": "hidden or unknown capability answers 404",
+   "pass": true,
+   "evidence": {
+    "status": 404
+   }
+  },
+  {
+   "id": "robots.txt",
+   "what": "disallows everything, advertises no sitemap",
+   "pass": true,
+   "evidence": "User-Agent: *\nDisallow: /"
+  },
+  {
+   "id": "sitemap.xml",
+   "what": "lists nothing on a preview",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "locs": 0
+   }
+  },
+  {
+   "id": "root redirect",
+   "what": "/ redirects once to a locale",
+   "pass": true,
+   "evidence": {
+    "status": 307,
+    "location": "/en"
+   }
+  },
+  {
+   "id": "poster asset",
+   "what": "media poster is served",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "type": "image/png"
+   }
+  },
+  {
+   "id": "clip assets",
+   "what": "the four product clips are served as video, with byte ranges",
+   "pass": true,
+   "evidence": [
+    {
+     "f": "en-desktop",
+     "status": 206,
+     "type": "video/mp4",
+     "range": "bytes 0-1023/726442"
+    },
+    {
+     "f": "en-mobile",
+     "status": 206,
+     "type": "video/mp4",
+     "range": "bytes 0-1023/622344"
+    },
+    {
+     "f": "es-desktop",
+     "status": 206,
+     "type": "video/mp4",
+     "range": "bytes 0-1023/703004"
+    },
+    {
+     "f": "es-mobile",
+     "status": 206,
+     "type": "video/mp4",
+     "range": "bytes 0-1023/653862"
+    }
+   ]
+  },
+  {
+   "id": "legacy redirect",
+   "what": "/live-demo redirects permanently",
+   "pass": true,
+   "evidence": {
+    "status": 308,
+    "location": "/en"
+   }
+  }
+ ],
+ "home_words_en": 1499,
+ "home_words_es": 1555,
+ "finished_utc": "2026-10-01T09:32:24.166Z",
+ "pass": 54,
+ "total": 54
+}

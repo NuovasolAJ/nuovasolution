@@ -1,0 +1,555 @@
+{
+ "started_utc": "2026-10-01T08:12:39.459Z",
+ "base": "http://localhost:3141",
+ "commit": null,
+ "deployment": null,
+ "grounds": {
+  "canvas": "#fbfaf7",
+  "white": "#ffffff",
+  "sunken": "#f3f1ec",
+  "sandTop": "#f6efe2",
+  "sandBand": "#f1e8d7",
+  "sand200": "#ecdfc4",
+  "sageBand": "#e5ede0",
+  "sage100": "#eaf1e6",
+  "stoneBand": "#ecebe5",
+  "sky100": "#e6eef5",
+  "sky200": "#cfdde9",
+  "apricot100": "#f9e9de",
+  "archTop": "#f4ebd9",
+  "archEnd": "#efe3cb"
+ },
+ "pages": [
+  {
+   "page": "/en",
+   "view": "d1440",
+   "texts": 213,
+   "comparisons": 815,
+   "worst": {
+    "ratio": 4.59,
+    "text": "You set your agency up yourself, one ste",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/en/faq",
+   "view": "d1440",
+   "texts": 120,
+   "comparisons": 162,
+   "worst": {
+    "ratio": 4.81,
+    "text": "antonio@nuovasolution.com",
+    "ground": "sky200",
+    "size": 16.944
+   }
+  },
+  {
+   "page": "/en/platform",
+   "view": "d1440",
+   "texts": 97,
+   "comparisons": 237,
+   "worst": {
+    "ratio": 4.59,
+    "text": "BEING BUILT",
+    "ground": "sky200",
+    "size": 12
+   }
+  },
+  {
+   "page": "/en/platform/ai-sales-agent",
+   "view": "d1440",
+   "texts": 67,
+   "comparisons": 137,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Example. Based on agency permissions and",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/en/platform/daily-assistant",
+   "view": "d1440",
+   "texts": 59,
+   "comparisons": 143,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Example. Based on agency permissions and",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/en/packages",
+   "view": "d1440",
+   "texts": 113,
+   "comparisons": 351,
+   "worst": {
+    "ratio": 4.59,
+    "text": "No sales call required.",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/en/trial",
+   "view": "d1440",
+   "texts": 87,
+   "comparisons": 199,
+   "worst": {
+    "ratio": 4.81,
+    "text": "HOW IT WORKS",
+    "ground": "sky200",
+    "size": 12
+   }
+  },
+  {
+   "page": "/en/contact",
+   "view": "d1440",
+   "texts": 44,
+   "comparisons": 58,
+   "worst": {
+    "ratio": 5.81,
+    "text": "Preview.",
+    "ground": "own",
+    "size": 13
+   }
+  },
+  {
+   "page": "/en/signup",
+   "view": "d1440",
+   "texts": 46,
+   "comparisons": 46,
+   "worst": {
+    "ratio": 5.81,
+    "text": "Preview.",
+    "ground": "own",
+    "size": 13
+   }
+  },
+  {
+   "page": "/en/login",
+   "view": "d1440",
+   "texts": 40,
+   "comparisons": 40,
+   "worst": {
+    "ratio": 5.81,
+    "text": "Preview.",
+    "ground": "own",
+    "size": 13
+   }
+  },
+  {
+   "page": "/en/legal/privacy",
+   "view": "d1440",
+   "texts": 55,
+   "comparisons": 69,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Questions about these pages: antonio@nuo",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/en",
+   "view": "m390",
+   "texts": 196,
+   "comparisons": 686,
+   "worst": {
+    "ratio": 4.59,
+    "text": "You set your agency up yourself, one ste",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/en/faq",
+   "view": "m390",
+   "texts": 111,
+   "comparisons": 153,
+   "worst": {
+    "ratio": 4.81,
+    "text": "antonio@nuovasolution.com",
+    "ground": "sky200",
+    "size": 16
+   }
+  },
+  {
+   "page": "/en/platform",
+   "view": "m390",
+   "texts": 88,
+   "comparisons": 228,
+   "worst": {
+    "ratio": 4.59,
+    "text": "BEING BUILT",
+    "ground": "sky200",
+    "size": 12
+   }
+  },
+  {
+   "page": "/en/platform/ai-sales-agent",
+   "view": "m390",
+   "texts": 58,
+   "comparisons": 128,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Example. Based on agency permissions and",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/en/platform/daily-assistant",
+   "view": "m390",
+   "texts": 50,
+   "comparisons": 134,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Example. Based on agency permissions and",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/en/packages",
+   "view": "m390",
+   "texts": 104,
+   "comparisons": 342,
+   "worst": {
+    "ratio": 4.59,
+    "text": "No sales call required.",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/en/trial",
+   "view": "m390",
+   "texts": 78,
+   "comparisons": 190,
+   "worst": {
+    "ratio": 4.81,
+    "text": "HOW IT WORKS",
+    "ground": "sky200",
+    "size": 12
+   }
+  },
+  {
+   "page": "/en/contact",
+   "view": "m390",
+   "texts": 35,
+   "comparisons": 49,
+   "worst": {
+    "ratio": 5.81,
+    "text": "Preview.",
+    "ground": "own",
+    "size": 13
+   }
+  },
+  {
+   "page": "/en/signup",
+   "view": "m390",
+   "texts": 37,
+   "comparisons": 37,
+   "worst": {
+    "ratio": 5.81,
+    "text": "Preview.",
+    "ground": "own",
+    "size": 13
+   }
+  },
+  {
+   "page": "/en/login",
+   "view": "m390",
+   "texts": 31,
+   "comparisons": 31,
+   "worst": {
+    "ratio": 5.81,
+    "text": "Preview.",
+    "ground": "own",
+    "size": 13
+   }
+  },
+  {
+   "page": "/en/legal/privacy",
+   "view": "m390",
+   "texts": 46,
+   "comparisons": 60,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Questions about these pages: antonio@nuo",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es",
+   "view": "d1440",
+   "texts": 212,
+   "comparisons": 814,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Configuras tu agencia tú mismo, paso a p",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es/faq",
+   "view": "d1440",
+   "texts": 120,
+   "comparisons": 162,
+   "worst": {
+    "ratio": 4.81,
+    "text": "antonio@nuovasolution.com",
+    "ground": "sky200",
+    "size": 16.944
+   }
+  },
+  {
+   "page": "/es/platform",
+   "view": "d1440",
+   "texts": 96,
+   "comparisons": 236,
+   "worst": {
+    "ratio": 4.59,
+    "text": "EN CONSTRUCCIÓN",
+    "ground": "sky200",
+    "size": 12
+   }
+  },
+  {
+   "page": "/es/platform/ai-sales-agent",
+   "view": "d1440",
+   "texts": 66,
+   "comparisons": 136,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Ejemplo. Según los permisos y la configu",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es/platform/daily-assistant",
+   "view": "d1440",
+   "texts": 59,
+   "comparisons": 143,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Ejemplo. Según los permisos y la configu",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es/packages",
+   "view": "d1440",
+   "texts": 113,
+   "comparisons": 351,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Sin llamada comercial.",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es/trial",
+   "view": "d1440",
+   "texts": 87,
+   "comparisons": 199,
+   "worst": {
+    "ratio": 4.81,
+    "text": "CÓMO FUNCIONA",
+    "ground": "sky200",
+    "size": 12
+   }
+  },
+  {
+   "page": "/es/contact",
+   "view": "d1440",
+   "texts": 44,
+   "comparisons": 58,
+   "worst": {
+    "ratio": 5.81,
+    "text": "Vista previa.",
+    "ground": "own",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es/signup",
+   "view": "d1440",
+   "texts": 46,
+   "comparisons": 46,
+   "worst": {
+    "ratio": 5.81,
+    "text": "Vista previa.",
+    "ground": "own",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es/login",
+   "view": "d1440",
+   "texts": 40,
+   "comparisons": 40,
+   "worst": {
+    "ratio": 5.81,
+    "text": "Vista previa.",
+    "ground": "own",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es/legal/privacy",
+   "view": "d1440",
+   "texts": 55,
+   "comparisons": 69,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Preguntas sobre estas páginas: antonio@n",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es",
+   "view": "m390",
+   "texts": 195,
+   "comparisons": 685,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Configuras tu agencia tú mismo, paso a p",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es/faq",
+   "view": "m390",
+   "texts": 111,
+   "comparisons": 153,
+   "worst": {
+    "ratio": 4.81,
+    "text": "antonio@nuovasolution.com",
+    "ground": "sky200",
+    "size": 16
+   }
+  },
+  {
+   "page": "/es/platform",
+   "view": "m390",
+   "texts": 87,
+   "comparisons": 227,
+   "worst": {
+    "ratio": 4.59,
+    "text": "EN CONSTRUCCIÓN",
+    "ground": "sky200",
+    "size": 12
+   }
+  },
+  {
+   "page": "/es/platform/ai-sales-agent",
+   "view": "m390",
+   "texts": 57,
+   "comparisons": 127,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Ejemplo. Según los permisos y la configu",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es/platform/daily-assistant",
+   "view": "m390",
+   "texts": 50,
+   "comparisons": 134,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Ejemplo. Según los permisos y la configu",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es/packages",
+   "view": "m390",
+   "texts": 104,
+   "comparisons": 342,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Sin llamada comercial.",
+    "ground": "sky200",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es/trial",
+   "view": "m390",
+   "texts": 78,
+   "comparisons": 190,
+   "worst": {
+    "ratio": 4.81,
+    "text": "CÓMO FUNCIONA",
+    "ground": "sky200",
+    "size": 12
+   }
+  },
+  {
+   "page": "/es/contact",
+   "view": "m390",
+   "texts": 35,
+   "comparisons": 49,
+   "worst": {
+    "ratio": 5.81,
+    "text": "Vista previa.",
+    "ground": "own",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es/signup",
+   "view": "m390",
+   "texts": 37,
+   "comparisons": 37,
+   "worst": {
+    "ratio": 5.81,
+    "text": "Vista previa.",
+    "ground": "own",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es/login",
+   "view": "m390",
+   "texts": 31,
+   "comparisons": 31,
+   "worst": {
+    "ratio": 5.81,
+    "text": "Vista previa.",
+    "ground": "own",
+    "size": 13
+   }
+  },
+  {
+   "page": "/es/legal/privacy",
+   "view": "m390",
+   "texts": 46,
+   "comparisons": 60,
+   "worst": {
+    "ratio": 4.59,
+    "text": "Preguntas sobre estas páginas: antonio@n",
+    "ground": "sky200",
+    "size": 13
+   }
+  }
+ ],
+ "failures": [],
+ "finished_utc": "2026-10-01T08:14:16.951Z",
+ "distinct_failures": []
+}

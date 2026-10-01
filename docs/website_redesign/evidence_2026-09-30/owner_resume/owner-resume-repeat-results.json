@@ -1,0 +1,42 @@
+{
+ "started_utc": "2026-09-30T13:47:16.309Z",
+ "base": "https://nuovasolution-staging-preview-git-w-44e113-nuovasolajs-projects.vercel.app",
+ "locale": "es",
+ "register": false,
+ "commit": "d56ba6c",
+ "deployment": "dpl_EGKPj3a3evMhfLZxYfRpNtbctcsT",
+ "checks": [
+  {
+   "id": "OR-01",
+   "what": "the confirmed identity logs in on the HTTPS staging preview and is taken to the onboarding",
+   "pass": true,
+   "evidence": {
+    "landed": "/es/onboarding"
+   }
+  },
+  {
+   "id": "OR-10",
+   "what": "a second login goes straight to the agency setup; the registration step does not come back",
+   "pass": true,
+   "evidence": {
+    "setup": true,
+    "register": false
+   }
+  },
+  {
+   "id": "OR-11",
+   "what": "a repeated register answers 'already_registered' and changes nothing: the first agency name stays, one trial line",
+   "pass": true,
+   "evidence": {
+    "status": 200,
+    "outcome": "already_registered",
+    "original": true,
+    "second": false,
+    "trialLines": 1
+   }
+  }
+ ],
+ "pass": 3,
+ "total": 3,
+ "finished_utc": "2026-09-30T13:47:34.915Z"
+}

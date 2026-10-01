@@ -1,0 +1,889 @@
+{
+ "started_utc": "2026-10-01T09:35:52.595Z",
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "commit": "3d662e1",
+ "deployment": "dpl_CrPSKn1epivVHFWJ85no6ANkmzmf",
+ "checks": [
+  {
+   "id": "DK-d1440-en-on",
+   "what": "1440×900: the deck is on, cards stick and slide over each other",
+   "pass": true,
+   "evidence": {
+    "deck": "on",
+    "cards_stuck_at_once": 4
+   }
+  },
+  {
+   "id": "DK-d1440-en-read",
+   "what": "1440×900: every card is seen from its top to its end before anything covers it",
+   "pass": true,
+   "evidence": {
+    "seen": {
+     "step-answer": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 756
+     },
+     "step-record": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 912
+     },
+     "step-handover": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 499
+     },
+     "step-done": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 1039
+     }
+    },
+    "maxCoverWhileUnread": 0
+   }
+  },
+  {
+   "id": "DK-d1440-en-flow",
+   "what": "1440×900: native scrolling (every requested position reached), no horizontal overflow, the next section is free after the deck",
+   "pass": true,
+   "evidence": {
+    "scrollMismatch": 0,
+    "overflow": false,
+    "afterVisible": true
+   }
+  },
+  {
+   "id": "DK-d1280-en-on",
+   "what": "1280×800: the deck is on, cards stick and slide over each other",
+   "pass": true,
+   "evidence": {
+    "deck": "on",
+    "cards_stuck_at_once": 4
+   }
+  },
+  {
+   "id": "DK-d1280-en-read",
+   "what": "1280×800: every card is seen from its top to its end before anything covers it",
+   "pass": true,
+   "evidence": {
+    "seen": {
+     "step-answer": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 756
+     },
+     "step-record": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 907
+     },
+     "step-handover": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 490
+     },
+     "step-done": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 1029
+     }
+    },
+    "maxCoverWhileUnread": 0
+   }
+  },
+  {
+   "id": "DK-d1280-en-flow",
+   "what": "1280×800: native scrolling (every requested position reached), no horizontal overflow, the next section is free after the deck",
+   "pass": true,
+   "evidence": {
+    "scrollMismatch": 0,
+    "overflow": false,
+    "afterVisible": true
+   }
+  },
+  {
+   "id": "DK-d1024-en-on",
+   "what": "1024×768: the deck is on, cards stick and slide over each other",
+   "pass": true,
+   "evidence": {
+    "deck": "on",
+    "cards_stuck_at_once": 4
+   }
+  },
+  {
+   "id": "DK-d1024-en-read",
+   "what": "1024×768: every card is seen from its top to its end before anything covers it",
+   "pass": true,
+   "evidence": {
+    "seen": {
+     "step-answer": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 999
+     },
+     "step-record": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 933
+     },
+     "step-handover": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 437
+     },
+     "step-done": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 912
+     }
+    },
+    "maxCoverWhileUnread": 0
+   }
+  },
+  {
+   "id": "DK-d1024-en-flow",
+   "what": "1024×768: native scrolling (every requested position reached), no horizontal overflow, the next section is free after the deck",
+   "pass": true,
+   "evidence": {
+    "scrollMismatch": 0,
+    "overflow": false,
+    "afterVisible": true
+   }
+  },
+  {
+   "id": "DK-d1024short-en-off",
+   "what": "1024×640: no deck, the cards follow each other and nothing sticks",
+   "pass": true,
+   "evidence": {
+    "deck": "off",
+    "pinnedMax": 0
+   }
+  },
+  {
+   "id": "DK-d1024short-en-flow",
+   "what": "1024×640: native scrolling (every requested position reached), no horizontal overflow, the next section is free after the deck",
+   "pass": true,
+   "evidence": {
+    "scrollMismatch": 0,
+    "overflow": false,
+    "afterVisible": true
+   }
+  },
+  {
+   "id": "DK-m390-en-off",
+   "what": "390×844: no deck, the cards follow each other and nothing sticks",
+   "pass": true,
+   "evidence": {
+    "deck": "off",
+    "pinnedMax": 0
+   }
+  },
+  {
+   "id": "DK-m390-en-flow",
+   "what": "390×844: native scrolling (every requested position reached), no horizontal overflow, the next section is free after the deck",
+   "pass": true,
+   "evidence": {
+    "scrollMismatch": 0,
+    "overflow": false,
+    "afterVisible": true
+   }
+  },
+  {
+   "id": "DK-d1440rm-en-off",
+   "what": "1440×900 reduced motion: no deck, the cards follow each other and nothing sticks",
+   "pass": true,
+   "evidence": {
+    "deck": "off",
+    "pinnedMax": 0
+   }
+  },
+  {
+   "id": "DK-d1440rm-en-flow",
+   "what": "1440×900: native scrolling (every requested position reached), no horizontal overflow, the next section is free after the deck",
+   "pass": true,
+   "evidence": {
+    "scrollMismatch": 0,
+    "overflow": false,
+    "afterVisible": true
+   }
+  },
+  {
+   "id": "DK-d1440-es-on",
+   "what": "1440×900: the deck is on, cards stick and slide over each other",
+   "pass": true,
+   "evidence": {
+    "deck": "on",
+    "cards_stuck_at_once": 4
+   }
+  },
+  {
+   "id": "DK-d1440-es-read",
+   "what": "1440×900: every card is seen from its top to its end before anything covers it",
+   "pass": true,
+   "evidence": {
+    "seen": {
+     "step-answer": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 761
+     },
+     "step-record": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 912
+     },
+     "step-handover": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 499
+     },
+     "step-done": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 1020
+     }
+    },
+    "maxCoverWhileUnread": 0
+   }
+  },
+  {
+   "id": "DK-d1440-es-flow",
+   "what": "1440×900: native scrolling (every requested position reached), no horizontal overflow, the next section is free after the deck",
+   "pass": true,
+   "evidence": {
+    "scrollMismatch": 0,
+    "overflow": false,
+    "afterVisible": true
+   }
+  },
+  {
+   "id": "DK-d1280-es-on",
+   "what": "1280×800: the deck is on, cards stick and slide over each other",
+   "pass": true,
+   "evidence": {
+    "deck": "on",
+    "cards_stuck_at_once": 4
+   }
+  },
+  {
+   "id": "DK-d1280-es-read",
+   "what": "1280×800: every card is seen from its top to its end before anything covers it",
+   "pass": true,
+   "evidence": {
+    "seen": {
+     "step-answer": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 761
+     },
+     "step-record": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 907
+     },
+     "step-handover": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 490
+     },
+     "step-done": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 1010
+     }
+    },
+    "maxCoverWhileUnread": 0
+   }
+  },
+  {
+   "id": "DK-d1280-es-flow",
+   "what": "1280×800: native scrolling (every requested position reached), no horizontal overflow, the next section is free after the deck",
+   "pass": true,
+   "evidence": {
+    "scrollMismatch": 0,
+    "overflow": false,
+    "afterVisible": true
+   }
+  },
+  {
+   "id": "DK-d1024-es-on",
+   "what": "1024×768: the deck is on, cards stick and slide over each other",
+   "pass": true,
+   "evidence": {
+    "deck": "on",
+    "cards_stuck_at_once": 4
+   }
+  },
+  {
+   "id": "DK-d1024-es-read",
+   "what": "1024×768: every card is seen from its top to its end before anything covers it",
+   "pass": true,
+   "evidence": {
+    "seen": {
+     "step-answer": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 985
+     },
+     "step-record": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 933
+     },
+     "step-handover": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 474
+     },
+     "step-done": {
+      "topSeen": true,
+      "bottomSeen": true,
+      "readBeforeCover": true,
+      "h": 941
+     }
+    },
+    "maxCoverWhileUnread": 0
+   }
+  },
+  {
+   "id": "DK-d1024-es-flow",
+   "what": "1024×768: native scrolling (every requested position reached), no horizontal overflow, the next section is free after the deck",
+   "pass": true,
+   "evidence": {
+    "scrollMismatch": 0,
+    "overflow": false,
+    "afterVisible": true
+   }
+  },
+  {
+   "id": "DK-d1024short-es-off",
+   "what": "1024×640: no deck, the cards follow each other and nothing sticks",
+   "pass": true,
+   "evidence": {
+    "deck": "off",
+    "pinnedMax": 0
+   }
+  },
+  {
+   "id": "DK-d1024short-es-flow",
+   "what": "1024×640: native scrolling (every requested position reached), no horizontal overflow, the next section is free after the deck",
+   "pass": true,
+   "evidence": {
+    "scrollMismatch": 0,
+    "overflow": false,
+    "afterVisible": true
+   }
+  },
+  {
+   "id": "DK-m390-es-off",
+   "what": "390×844: no deck, the cards follow each other and nothing sticks",
+   "pass": true,
+   "evidence": {
+    "deck": "off",
+    "pinnedMax": 0
+   }
+  },
+  {
+   "id": "DK-m390-es-flow",
+   "what": "390×844: native scrolling (every requested position reached), no horizontal overflow, the next section is free after the deck",
+   "pass": true,
+   "evidence": {
+    "scrollMismatch": 0,
+    "overflow": false,
+    "afterVisible": true
+   }
+  },
+  {
+   "id": "DK-d1440rm-es-off",
+   "what": "1440×900 reduced motion: no deck, the cards follow each other and nothing sticks",
+   "pass": true,
+   "evidence": {
+    "deck": "off",
+    "pinnedMax": 0
+   }
+  },
+  {
+   "id": "DK-d1440rm-es-flow",
+   "what": "1440×900: native scrolling (every requested position reached), no horizontal overflow, the next section is free after the deck",
+   "pass": true,
+   "evidence": {
+    "scrollMismatch": 0,
+    "overflow": false,
+    "afterVisible": true
+   }
+  }
+ ],
+ "runs": [
+  {
+   "tag": "d1440",
+   "locale": "en",
+   "deck": "on",
+   "steps": 108,
+   "seen": {
+    "step-answer": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 756
+    },
+    "step-record": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 912
+    },
+    "step-handover": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 499
+    },
+    "step-done": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 1039
+    }
+   },
+   "maxCoverWhileUnread": 0,
+   "pinnedMax": 4,
+   "overflow": false,
+   "afterVisible": true,
+   "scrollMismatch": 0
+  },
+  {
+   "tag": "d1280",
+   "locale": "en",
+   "deck": "on",
+   "steps": 105,
+   "seen": {
+    "step-answer": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 756
+    },
+    "step-record": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 907
+    },
+    "step-handover": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 490
+    },
+    "step-done": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 1029
+    }
+   },
+   "maxCoverWhileUnread": 0,
+   "pinnedMax": 4,
+   "overflow": false,
+   "afterVisible": true,
+   "scrollMismatch": 0
+  },
+  {
+   "tag": "d1024",
+   "locale": "en",
+   "deck": "on",
+   "steps": 107,
+   "seen": {
+    "step-answer": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 999
+    },
+    "step-record": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 933
+    },
+    "step-handover": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 437
+    },
+    "step-done": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 912
+    }
+   },
+   "maxCoverWhileUnread": 0,
+   "pinnedMax": 4,
+   "overflow": false,
+   "afterVisible": true,
+   "scrollMismatch": 0
+  },
+  {
+   "tag": "d1024short",
+   "locale": "en",
+   "deck": "off",
+   "steps": 103,
+   "seen": {
+    "step-answer": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 999
+    },
+    "step-record": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 933
+    },
+    "step-handover": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 437
+    },
+    "step-done": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 912
+    }
+   },
+   "maxCoverWhileUnread": 0,
+   "pinnedMax": 0,
+   "overflow": false,
+   "afterVisible": true,
+   "scrollMismatch": 0
+  },
+  {
+   "tag": "m390",
+   "locale": "en",
+   "deck": "off",
+   "steps": 125,
+   "seen": {
+    "step-answer": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 1224
+    },
+    "step-record": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 1216
+    },
+    "step-handover": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 511
+    },
+    "step-done": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 1074
+    }
+   },
+   "maxCoverWhileUnread": 0,
+   "pinnedMax": 0,
+   "overflow": false,
+   "afterVisible": true,
+   "scrollMismatch": 0
+  },
+  {
+   "tag": "d1440rm",
+   "locale": "en",
+   "deck": "off",
+   "steps": 108,
+   "seen": {
+    "step-answer": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 756
+    },
+    "step-record": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 912
+    },
+    "step-handover": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 499
+    },
+    "step-done": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 1039
+    }
+   },
+   "maxCoverWhileUnread": 0,
+   "pinnedMax": 0,
+   "overflow": false,
+   "afterVisible": true,
+   "scrollMismatch": 0
+  },
+  {
+   "tag": "d1440",
+   "locale": "es",
+   "deck": "on",
+   "steps": 108,
+   "seen": {
+    "step-answer": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 761
+    },
+    "step-record": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 912
+    },
+    "step-handover": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 499
+    },
+    "step-done": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 1020
+    }
+   },
+   "maxCoverWhileUnread": 0,
+   "pinnedMax": 4,
+   "overflow": false,
+   "afterVisible": true,
+   "scrollMismatch": 0
+  },
+  {
+   "tag": "d1280",
+   "locale": "es",
+   "deck": "on",
+   "steps": 104,
+   "seen": {
+    "step-answer": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 761
+    },
+    "step-record": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 907
+    },
+    "step-handover": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 490
+    },
+    "step-done": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 1010
+    }
+   },
+   "maxCoverWhileUnread": 0,
+   "pinnedMax": 4,
+   "overflow": false,
+   "afterVisible": true,
+   "scrollMismatch": 0
+  },
+  {
+   "tag": "d1024",
+   "locale": "es",
+   "deck": "on",
+   "steps": 108,
+   "seen": {
+    "step-answer": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 985
+    },
+    "step-record": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 933
+    },
+    "step-handover": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 474
+    },
+    "step-done": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 941
+    }
+   },
+   "maxCoverWhileUnread": 0,
+   "pinnedMax": 4,
+   "overflow": false,
+   "afterVisible": true,
+   "scrollMismatch": 0
+  },
+  {
+   "tag": "d1024short",
+   "locale": "es",
+   "deck": "off",
+   "steps": 105,
+   "seen": {
+    "step-answer": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 985
+    },
+    "step-record": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 933
+    },
+    "step-handover": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 474
+    },
+    "step-done": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 941
+    }
+   },
+   "maxCoverWhileUnread": 0,
+   "pinnedMax": 0,
+   "overflow": false,
+   "afterVisible": true,
+   "scrollMismatch": 0
+  },
+  {
+   "tag": "m390",
+   "locale": "es",
+   "deck": "off",
+   "steps": 130,
+   "seen": {
+    "step-answer": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 1304
+    },
+    "step-record": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 1267
+    },
+    "step-handover": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 553
+    },
+    "step-done": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 1120
+    }
+   },
+   "maxCoverWhileUnread": 0,
+   "pinnedMax": 0,
+   "overflow": false,
+   "afterVisible": true,
+   "scrollMismatch": 0
+  },
+  {
+   "tag": "d1440rm",
+   "locale": "es",
+   "deck": "off",
+   "steps": 108,
+   "seen": {
+    "step-answer": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 761
+    },
+    "step-record": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 912
+    },
+    "step-handover": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 499
+    },
+    "step-done": {
+     "topSeen": true,
+     "bottomSeen": true,
+     "readBeforeCover": true,
+     "h": 1020
+    }
+   },
+   "maxCoverWhileUnread": 0,
+   "pinnedMax": 0,
+   "overflow": false,
+   "afterVisible": true,
+   "scrollMismatch": 0
+  }
+ ],
+ "finished_utc": "2026-10-01T09:38:24.208Z",
+ "pass": 30,
+ "total": 30
+}

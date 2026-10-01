@@ -1,0 +1,145 @@
+{
+ "started_utc": "2026-09-30T13:43:48.488Z",
+ "base": "https://nuovasolution-staging-preview-git-w-44e113-nuovasolajs-projects.vercel.app",
+ "locale": "es",
+ "register": true,
+ "commit": "d56ba6c",
+ "deployment": "dpl_EGKPj3a3evMhfLZxYfRpNtbctcsT",
+ "checks": [
+  {
+   "id": "OR-01",
+   "what": "the confirmed identity logs in on the HTTPS staging preview and is taken to the onboarding",
+   "pass": true,
+   "evidence": {
+    "landed": "/es/onboarding"
+   }
+  },
+  {
+   "id": "OR-02",
+   "what": "without an agency the page shows the registration step, not the setup and not an error",
+   "pass": true,
+   "evidence": {
+    "register": true,
+    "form": true,
+    "setup": false,
+    "problem": null
+   }
+  },
+  {
+   "id": "OR-03",
+   "what": "continuing needs no sign-up and no second confirmation e-mail",
+   "pass": true,
+   "evidence": {
+    "posts": [
+     "/api/bff/auth/login"
+    ]
+   }
+  },
+  {
+   "id": "OR-04",
+   "what": "the state route says 'register' and carries no tenant id",
+   "pass": true,
+   "evidence": {
+    "ok": true,
+    "next": "register",
+    "hasTenantId": false
+   }
+  },
+  {
+   "id": "OR-04b",
+   "what": "the registration step asks for the agency only: no e-mail field, no password field, no sign-up form",
+   "pass": true,
+   "evidence": {
+    "h1": "Configura tu agencia.",
+    "heading": "Pon nombre a tu agencia",
+    "fields": [
+     "Nombre de la agencia",
+     "Idioma principal con tus clientes",
+     "Zona horaria"
+    ],
+    "button": "Crear agencia y continuar",
+    "band": "staging",
+    "asksPassword": false,
+    "asksEmail": false
+   }
+  },
+  {
+   "id": "OR-05",
+   "what": "naming the agency opens the agency setup",
+   "pass": true,
+   "evidence": {
+    "setup": true
+   }
+  },
+  {
+   "id": "OR-06",
+   "what": "after a reload the same agency is there: setup shown, no registration step, trial present",
+   "pass": true,
+   "evidence": {
+    "setup": true,
+    "register": false,
+    "next": "onboarding",
+    "steps": 10,
+    "trial": true
+   }
+  },
+  {
+   "id": "OR-07",
+   "what": "a second registration for the same identity creates no second agency",
+   "pass": false,
+   "evidence": {
+    "status": 200,
+    "code": "ok"
+   }
+  },
+  {
+   "id": "OR-08",
+   "what": "the onboarding shows the agency that was named and one trial line",
+   "pass": true,
+   "evidence": {
+    "h1": "Configura tu agencia.",
+    "steps": 0,
+    "trialLines": [
+     "Te quedan 14 días de prueba."
+    ],
+    "role": null,
+    "agencyShown": true
+   }
+  },
+  {
+   "id": "OR-09",
+   "what": "on a phone the same onboarding is there after another reload, without horizontal overflow",
+   "pass": true,
+   "evidence": {
+    "setup": true,
+    "sw": 390,
+    "iw": 390
+   }
+  }
+ ],
+ "screen_register": {
+  "h1": "Configura tu agencia.",
+  "heading": "Pon nombre a tu agencia",
+  "fields": [
+   "Nombre de la agencia",
+   "Idioma principal con tus clientes",
+   "Zona horaria"
+  ],
+  "button": "Crear agencia y continuar",
+  "band": "staging",
+  "asksPassword": false,
+  "asksEmail": false
+ },
+ "screen_onboarding": {
+  "h1": "Configura tu agencia.",
+  "steps": 0,
+  "trialLines": [
+   "Te quedan 14 días de prueba."
+  ],
+  "role": null,
+  "agencyShown": true
+ },
+ "pass": 9,
+ "total": 10,
+ "finished_utc": "2026-09-30T13:44:27.793Z"
+}

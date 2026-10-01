@@ -1,0 +1,500 @@
+{
+ "started_utc": "2026-10-01T08:43:47.705Z",
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "commit": "e630b5b",
+ "deployment": "dpl_HMrZUXBNSxoesW2GFoEjNF5ARixh",
+ "checks": [
+  {
+   "id": "CL-d1440-en-t",
+   "what": "a subtitle track in the page language with the three lines, off by default so nothing covers the recording",
+   "pass": true,
+   "evidence": {
+    "kind": "captions",
+    "lang": "en",
+    "modeBefore": "disabled",
+    "cues": [
+     "Laura Serrano asked for a viewing on Thursday morning. Nobody has taken it yet.",
+     "The agent takes the task. The card now says it is theirs, and no one else can take it.",
+     "Closed. It leaves the list, the rest stays, and the team can see who did it."
+    ]
+   }
+  },
+  {
+   "id": "CL-d1440-en-a",
+   "what": "before play: poster only, no video element, no film requested",
+   "pass": true,
+   "evidence": {
+    "state": "poster",
+    "videos": 0,
+    "films_requested": 0,
+    "poster": {
+     "w": 1756,
+     "h": 988,
+     "src": "/media/daily/daily-clip-poster-en-desktop.png"
+    }
+   }
+  },
+  {
+   "id": "CL-d1440-en-b",
+   "what": "play: the film of this language and format plays, muted, with the browser's controls, about 21 seconds",
+   "pass": true,
+   "evidence": {
+    "duration": 21.3,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 1756,
+    "h": 988,
+    "src": "/media/daily/daily-claim-flow-en-desktop.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   }
+  },
+  {
+   "id": "CL-d1440-en-c",
+   "what": "the caption line follows the action (second and third cue), so the clip is understood without sound",
+   "pass": true,
+   "evidence": {
+    "first": "Laura Serrano asked for a viewing on Thursday morning. Nobody has taken it yet.",
+    "second": "The agent takes the task. The card now says it is theirs, and no one else can take it.",
+    "third": "Closed. It leaves the list, the rest stays, and the team can see who did it."
+   }
+  },
+  {
+   "id": "CL-d1440-en-d",
+   "what": "the video can be paused and resumed; nothing overflows while it plays",
+   "pass": true,
+   "evidence": {
+    "pausedHolds": true,
+    "resumed": true,
+    "focusOnVideo": true,
+    "overflow": {
+     "sw": 1440,
+     "iw": 1440
+    }
+   }
+  },
+  {
+   "id": "CL-m390-en-t",
+   "what": "a subtitle track in the page language with the three lines, off by default so nothing covers the recording",
+   "pass": true,
+   "evidence": {
+    "kind": "captions",
+    "lang": "en",
+    "modeBefore": "disabled",
+    "cues": [
+     "Laura Serrano asked for a viewing on Thursday morning. Nobody has taken it yet.",
+     "The agent takes the task. The card now says it is theirs, and no one else can take it.",
+     "Closed. It leaves the list, the rest stays, and the team can see who did it."
+    ]
+   }
+  },
+  {
+   "id": "CL-m390-en-a",
+   "what": "before play: poster only, no video element, no film requested",
+   "pass": true,
+   "evidence": {
+    "state": "poster",
+    "videos": 0,
+    "films_requested": 0,
+    "poster": {
+     "w": 840,
+     "h": 1052,
+     "src": "/media/daily/daily-clip-poster-en-mobile.png"
+    }
+   }
+  },
+  {
+   "id": "CL-m390-en-b",
+   "what": "play: the film of this language and format plays, muted, with the browser's controls, about 21 seconds",
+   "pass": true,
+   "evidence": {
+    "duration": 21.3,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 840,
+    "h": 1052,
+    "src": "/media/daily/daily-claim-flow-en-mobile.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   }
+  },
+  {
+   "id": "CL-m390-en-c",
+   "what": "the caption line follows the action (second and third cue), so the clip is understood without sound",
+   "pass": true,
+   "evidence": {
+    "first": "Laura Serrano asked for a viewing on Thursday morning. Nobody has taken it yet.",
+    "second": "The agent takes the task. The card now says it is theirs, and no one else can take it.",
+    "third": "Closed. It leaves the list, the rest stays, and the team can see who did it."
+   }
+  },
+  {
+   "id": "CL-m390-en-d",
+   "what": "the video can be paused and resumed; nothing overflows while it plays",
+   "pass": true,
+   "evidence": {
+    "pausedHolds": true,
+    "resumed": true,
+    "focusOnVideo": true,
+    "overflow": {
+     "sw": 390,
+     "iw": 390
+    }
+   }
+  },
+  {
+   "id": "CL-d1440-es-t",
+   "what": "a subtitle track in the page language with the three lines, off by default so nothing covers the recording",
+   "pass": true,
+   "evidence": {
+    "kind": "captions",
+    "lang": "es",
+    "modeBefore": "disabled",
+    "cues": [
+     "Laura Serrano ha pedido una visita el jueves por la mañana. Todavía no la ha tomado nadie.",
+     "El agente toma la tarea. La tarjeta ya dice que es suya, y nadie más puede tomarla.",
+     "Cerrada. Sale de la lista, el resto se queda y el equipo ve quién lo ha hecho."
+    ]
+   }
+  },
+  {
+   "id": "CL-d1440-es-a",
+   "what": "before play: poster only, no video element, no film requested",
+   "pass": true,
+   "evidence": {
+    "state": "poster",
+    "videos": 0,
+    "films_requested": 0,
+    "poster": {
+     "w": 1756,
+     "h": 988,
+     "src": "/media/daily/daily-clip-poster-es-desktop.png"
+    }
+   }
+  },
+  {
+   "id": "CL-d1440-es-b",
+   "what": "play: the film of this language and format plays, muted, with the browser's controls, about 21 seconds",
+   "pass": true,
+   "evidence": {
+    "duration": 21.3,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 1756,
+    "h": 988,
+    "src": "/media/daily/daily-claim-flow-es-desktop.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   }
+  },
+  {
+   "id": "CL-d1440-es-c",
+   "what": "the caption line follows the action (second and third cue), so the clip is understood without sound",
+   "pass": true,
+   "evidence": {
+    "first": "Laura Serrano ha pedido una visita el jueves por la mañana. Todavía no la ha tomado nadie.",
+    "second": "El agente toma la tarea. La tarjeta ya dice que es suya, y nadie más puede tomarla.",
+    "third": "Cerrada. Sale de la lista, el resto se queda y el equipo ve quién lo ha hecho."
+   }
+  },
+  {
+   "id": "CL-d1440-es-d",
+   "what": "the video can be paused and resumed; nothing overflows while it plays",
+   "pass": true,
+   "evidence": {
+    "pausedHolds": true,
+    "resumed": true,
+    "focusOnVideo": true,
+    "overflow": {
+     "sw": 1440,
+     "iw": 1440
+    }
+   }
+  },
+  {
+   "id": "CL-m390-es-t",
+   "what": "a subtitle track in the page language with the three lines, off by default so nothing covers the recording",
+   "pass": true,
+   "evidence": {
+    "kind": "captions",
+    "lang": "es",
+    "modeBefore": "disabled",
+    "cues": [
+     "Laura Serrano ha pedido una visita el jueves por la mañana. Todavía no la ha tomado nadie.",
+     "El agente toma la tarea. La tarjeta ya dice que es suya, y nadie más puede tomarla.",
+     "Cerrada. Sale de la lista, el resto se queda y el equipo ve quién lo ha hecho."
+    ]
+   }
+  },
+  {
+   "id": "CL-m390-es-a",
+   "what": "before play: poster only, no video element, no film requested",
+   "pass": true,
+   "evidence": {
+    "state": "poster",
+    "videos": 0,
+    "films_requested": 0,
+    "poster": {
+     "w": 840,
+     "h": 1052,
+     "src": "/media/daily/daily-clip-poster-es-mobile.png"
+    }
+   }
+  },
+  {
+   "id": "CL-m390-es-b",
+   "what": "play: the film of this language and format plays, muted, with the browser's controls, about 21 seconds",
+   "pass": true,
+   "evidence": {
+    "duration": 21.3,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 840,
+    "h": 1052,
+    "src": "/media/daily/daily-claim-flow-es-mobile.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   }
+  },
+  {
+   "id": "CL-m390-es-c",
+   "what": "the caption line follows the action (second and third cue), so the clip is understood without sound",
+   "pass": true,
+   "evidence": {
+    "first": "Laura Serrano ha pedido una visita el jueves por la mañana. Todavía no la ha tomado nadie.",
+    "second": "El agente toma la tarea. La tarjeta ya dice que es suya, y nadie más puede tomarla.",
+    "third": "Cerrada. Sale de la lista, el resto se queda y el equipo ve quién lo ha hecho."
+   }
+  },
+  {
+   "id": "CL-m390-es-d",
+   "what": "the video can be paused and resumed; nothing overflows while it plays",
+   "pass": true,
+   "evidence": {
+    "pausedHolds": true,
+    "resumed": true,
+    "focusOnVideo": true,
+    "overflow": {
+     "sw": 390,
+     "iw": 390
+    }
+   }
+  },
+  {
+   "id": "CL-fail",
+   "what": "when the film cannot be loaded the poster comes back with a sentence and the play control, never an empty player",
+   "pass": true,
+   "evidence": {
+    "state": "poster",
+    "videos": 0,
+    "text": "The clip did not load. Try again in a moment.",
+    "play": true
+   }
+  }
+ ],
+ "cases": [
+  {
+   "id": "d1440-en",
+   "before": {
+    "state": "poster",
+    "videos": 0,
+    "poster": {
+     "w": 1756,
+     "h": 988,
+     "src": "/media/daily/daily-clip-poster-en-desktop.png"
+    },
+    "cue": "Laura Serrano asked for a viewing on Thursday morning. Nobody has taken it yet."
+   },
+   "noFilmBefore": true,
+   "playing": true,
+   "video": {
+    "duration": 21.3,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 1756,
+    "h": 988,
+    "src": "/media/daily/daily-claim-flow-en-desktop.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   },
+   "cue2": {
+    "i": "1",
+    "t": "The agent takes the task. The card now says it is theirs, and no one else can take it."
+   },
+   "cue3": {
+    "i": "2",
+    "t": "Closed. It leaves the list, the rest stays, and the team can see who did it."
+   },
+   "focusOnVideo": true,
+   "pausedHolds": true,
+   "resumed": true,
+   "films": [
+    "/media/daily/daily-claim-flow-en-desktop.mp4"
+   ],
+   "want": "/media/daily/daily-claim-flow-en-desktop.mp4",
+   "overflow": {
+    "sw": 1440,
+    "iw": 1440
+   }
+  },
+  {
+   "id": "m390-en",
+   "before": {
+    "state": "poster",
+    "videos": 0,
+    "poster": {
+     "w": 840,
+     "h": 1052,
+     "src": "/media/daily/daily-clip-poster-en-mobile.png"
+    },
+    "cue": "Laura Serrano asked for a viewing on Thursday morning. Nobody has taken it yet."
+   },
+   "noFilmBefore": true,
+   "playing": true,
+   "video": {
+    "duration": 21.3,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 840,
+    "h": 1052,
+    "src": "/media/daily/daily-claim-flow-en-mobile.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   },
+   "cue2": {
+    "i": "1",
+    "t": "The agent takes the task. The card now says it is theirs, and no one else can take it."
+   },
+   "cue3": {
+    "i": "2",
+    "t": "Closed. It leaves the list, the rest stays, and the team can see who did it."
+   },
+   "focusOnVideo": true,
+   "pausedHolds": true,
+   "resumed": true,
+   "films": [
+    "/media/daily/daily-claim-flow-en-mobile.mp4"
+   ],
+   "want": "/media/daily/daily-claim-flow-en-mobile.mp4",
+   "overflow": {
+    "sw": 390,
+    "iw": 390
+   }
+  },
+  {
+   "id": "d1440-es",
+   "before": {
+    "state": "poster",
+    "videos": 0,
+    "poster": {
+     "w": 1756,
+     "h": 988,
+     "src": "/media/daily/daily-clip-poster-es-desktop.png"
+    },
+    "cue": "Laura Serrano ha pedido una visita el jueves por la mañana. Todavía no la ha tomado nadie."
+   },
+   "noFilmBefore": true,
+   "playing": true,
+   "video": {
+    "duration": 21.3,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 1756,
+    "h": 988,
+    "src": "/media/daily/daily-claim-flow-es-desktop.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   },
+   "cue2": {
+    "i": "1",
+    "t": "El agente toma la tarea. La tarjeta ya dice que es suya, y nadie más puede tomarla."
+   },
+   "cue3": {
+    "i": "2",
+    "t": "Cerrada. Sale de la lista, el resto se queda y el equipo ve quién lo ha hecho."
+   },
+   "focusOnVideo": true,
+   "pausedHolds": true,
+   "resumed": true,
+   "films": [
+    "/media/daily/daily-claim-flow-es-desktop.mp4"
+   ],
+   "want": "/media/daily/daily-claim-flow-es-desktop.mp4",
+   "overflow": {
+    "sw": 1440,
+    "iw": 1440
+   }
+  },
+  {
+   "id": "m390-es",
+   "before": {
+    "state": "poster",
+    "videos": 0,
+    "poster": {
+     "w": 840,
+     "h": 1052,
+     "src": "/media/daily/daily-clip-poster-es-mobile.png"
+    },
+    "cue": "Laura Serrano ha pedido una visita el jueves por la mañana. Todavía no la ha tomado nadie."
+   },
+   "noFilmBefore": true,
+   "playing": true,
+   "video": {
+    "duration": 21.3,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 840,
+    "h": 1052,
+    "src": "/media/daily/daily-claim-flow-es-mobile.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   },
+   "cue2": {
+    "i": "1",
+    "t": "El agente toma la tarea. La tarjeta ya dice que es suya, y nadie más puede tomarla."
+   },
+   "cue3": {
+    "i": "2",
+    "t": "Cerrada. Sale de la lista, el resto se queda y el equipo ve quién lo ha hecho."
+   },
+   "focusOnVideo": true,
+   "pausedHolds": true,
+   "resumed": true,
+   "films": [
+    "/media/daily/daily-claim-flow-es-mobile.mp4"
+   ],
+   "want": "/media/daily/daily-claim-flow-es-mobile.mp4",
+   "overflow": {
+    "sw": 390,
+    "iw": 390
+   }
+  }
+ ],
+ "finished_utc": "2026-10-01T08:44:38.041Z",
+ "pass": 21,
+ "total": 21
+}

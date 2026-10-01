@@ -1,0 +1,276 @@
+{
+ "started_utc": "2026-10-01T08:50:05.197Z",
+ "commit": "e630b5b",
+ "env": "staging fflmmzapksycjfdcjdtd",
+ "fixtures": {
+  "agency": "stg_web_e2e_agency_a1b523",
+  "second_agency": "stg_web_e2e_other_393a6e"
+ },
+ "checks": [
+  {
+   "id": "N1",
+   "what": "no session: onboarding read refused (401)",
+   "pass": true,
+   "evidence": 401
+  },
+  {
+   "id": "N2",
+   "what": "forged session token: refused (401 no_session)",
+   "pass": true,
+   "evidence": {
+    "status": 401,
+    "code": "no_session"
+   }
+  },
+  {
+   "id": "N3",
+   "what": "the three test identities sign in through the BFF (server-side GoTrue, httpOnly cookie)",
+   "pass": true,
+   "evidence": {
+    "owner": true,
+    "agent": true,
+    "other": true
+   }
+  },
+  {
+   "id": "N4",
+   "what": "wrong password: invalid_grant, no session cookie",
+   "pass": true,
+   "evidence": "invalid_grant"
+  },
+  {
+   "id": "N5",
+   "what": "a manipulated client_id is ignored: the owner's write lands in the owner's agency, the second agency is unchanged",
+   "pass": true,
+   "evidence": {
+    "owner_tz": "Atlantic/Canary",
+    "other_tz_before": "Europe/Madrid",
+    "other_tz_after": "Europe/Madrid"
+   }
+  },
+  {
+   "id": "N6",
+   "what": "no tenant id in any onboarding read outside the backend's public asset URLs",
+   "pass": true,
+   "evidence": "ids absent outside asset URLs, client_id blanked"
+  },
+  {
+   "id": "N7",
+   "what": "agent role: setup write, activation and upload are refused (403 forbidden)",
+   "pass": true,
+   "evidence": {
+    "write": 403,
+    "activate": 403,
+    "upload": 403
+   }
+  },
+  {
+   "id": "N8",
+   "what": "another agency cannot commit this agency's upload (403 cross_tenant_asset)",
+   "pass": true,
+   "evidence": {
+    "status": 403,
+    "code": "cross_tenant_asset"
+   }
+  },
+  {
+   "id": "N9",
+   "what": "declared PNG with text bytes: rejected by the server's check of the stored bytes (422)",
+   "pass": true,
+   "evidence": {
+    "status": 422,
+    "code": "unsupported_file_type"
+   }
+  },
+  {
+   "id": "N10",
+   "what": "Google Sheets cannot be chosen without the notice acknowledgement (428)",
+   "pass": true,
+   "evidence": 428
+  },
+  {
+   "id": "N11",
+   "what": "with the acknowledgement recorded (website server log, no DB contract yet) the Sheets choice reaches tenant-api crm.select",
+   "pass": true,
+   "evidence": {
+    "ack": "website_server_log",
+    "select": 200,
+    "state": "live"
+   }
+  },
+  {
+   "id": "N12",
+   "what": "an agent cannot record the acknowledgement (403)",
+   "pass": true,
+   "evidence": 403
+  },
+  {
+   "id": "S1",
+   "what": "owner logs in through the form and lands on the agency setup (staging ribbon, 10 steps, trial line from trial.status)",
+   "pass": true,
+   "evidence": {
+    "ribbon": "staging",
+    "steps": 10,
+    "trial": "6 days left in your trial",
+    "sw": 390,
+    "iw": 390
+   }
+  },
+  {
+   "id": "S2",
+   "what": "business data and opening hours saved through tenant-api",
+   "pass": true,
+   "evidence": "Saved. This is what is now stored."
+  },
+  {
+   "id": "S3",
+   "what": "CRM read back from crm.current: built-in CRM of record ('No external CRM'), Google Sheets 'chosen, not connected', never 'connected'",
+   "pass": true,
+   "evidence": {
+    "state": "chosen_not_connected",
+    "text": "Google Sheets\nChosen, not connected\nConnecting the Google Sheet itself is a separate step that is not available on this site yet.",
+    "ofRecord": true,
+    "checked": "google_sheets",
+    "slot": false
+   }
+  },
+  {
+   "id": "S4",
+   "what": "'No external CRM' is shown as the CRM of record; switching the Sheets copy off is stated as not available (WEB-API-3), never faked as saved",
+   "pass": true,
+   "evidence": {
+    "note": true,
+    "disabled": true
+   }
+  },
+  {
+   "id": "S5",
+   "what": "logo uploaded as a real file: stored on staging storage, shown on light and dark previews",
+   "pass": true,
+   "evidence": {
+    "logoOk": true,
+    "host": "fflmmzapksycjfdcjdtd.supabase.co"
+   }
+  },
+  {
+   "id": "S6",
+   "what": "dark variant upload, removal, and the light-background flag all round-trip through branding-assets",
+   "pass": true,
+   "evidence": {
+    "darkOk": true,
+    "darkGone": true,
+    "chip": true
+   }
+  },
+  {
+   "id": "S7",
+   "what": "legal identity and links saved; the form shows what the setters returned",
+   "pass": true,
+   "evidence": {
+    "tone": "ok",
+    "text": "Saved. This is what is now stored.",
+    "tax": "B12345674"
+   }
+  },
+  {
+   "id": "S8",
+   "what": "appointment types and the no-calendar fallback saved (no booking-mode selector offered)",
+   "pass": true,
+   "evidence": true
+  },
+  {
+   "id": "S9",
+   "what": "after reload: business, hours, languages, calendar, logo and contrast flag are read back from the backend",
+   "pass": true,
+   "evidence": {
+    "blocked": [
+     "owner_admin",
+     "whatsapp",
+     "test_scenarios",
+     "launch_approval",
+     "google_sheets"
+    ],
+    "tz": "Europe/Madrid",
+    "en": true,
+    "val": true,
+    "logos": 2,
+    "chip": true,
+    "legalNote": true,
+    "wl": "READY",
+    "bh": "READY",
+    "ai": "READY",
+    "act": "no",
+    "sw": 390,
+    "iw": 390
+   }
+  },
+  {
+   "id": "S10",
+   "what": "legal read-back gap stated honestly (no legal read in tenant-api yet; WEB-API-1)",
+   "pass": true,
+   "evidence": true
+  },
+  {
+   "id": "S11",
+   "what": "readiness from tenant_activation_readiness: legal+branding and hours READY after the setup; not activatable while other mandatory gates block",
+   "pass": true,
+   "evidence": {
+    "wl": "READY",
+    "bh": "READY",
+    "ai": "READY",
+    "act": "no",
+    "blocked": [
+     "owner_admin",
+     "whatsapp",
+     "test_scenarios",
+     "launch_approval",
+     "google_sheets"
+    ]
+   }
+  },
+  {
+   "id": "S12",
+   "what": "no horizontal overflow at 390 px on the staging onboarding",
+   "pass": true,
+   "evidence": {
+    "sw": 390,
+    "iw": 390
+   }
+  },
+  {
+   "id": "S13",
+   "what": "Go live never claims activation while gates are open",
+   "pass": true,
+   "evidence": "A few things are still needed before you go live."
+  },
+  {
+   "id": "S14",
+   "what": "agent sees the setup read-only with the role note on every section",
+   "pass": true,
+   "evidence": {
+    "notes": 4,
+    "disabled": true
+   }
+  },
+  {
+   "id": "S15",
+   "what": "Spanish owner view renders in Spanish on desktop",
+   "pass": true,
+   "evidence": true
+  }
+ ],
+ "screens": [
+  "stg-m390-en-onboarding-top.png",
+  "stg-m390-en-crm-sheets-chosen-not-connected.png",
+  "stg-m390-en-crm-sheets-off-unavailable.png",
+  "stg-m390-en-branding-light-dark.png",
+  "stg-m390-en-branding-dark-variant.png",
+  "stg-m390-en-branding-light-chip.png",
+  "stg-m390-en-readiness.png",
+  "stg-m390-en-agent-readonly.png",
+  "stg-d1440-es-setup.png"
+ ],
+ "finished_utc": "2026-10-01T08:51:05.221Z",
+ "passed": 27,
+ "failed": 0
+}
