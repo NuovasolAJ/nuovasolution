@@ -1,0 +1,167 @@
+{
+ "started_utc": "2026-10-02T12:42:40.291Z",
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "commit": "cf6e80f",
+ "deployment": "dpl_8556PUqAcV67u3SB6e1YE4YFgrUV",
+ "checks": [
+  {
+   "id": "NV-d1440-01",
+   "what": "a link opens the new page at its top; back returns to the page and the place that was left",
+   "pass": true,
+   "evidence": {
+    "left_at": 2400,
+    "new_page_scrollY": 0,
+    "after_back_scrollY": 8323
+   }
+  },
+  {
+   "id": "NV-d1440-02",
+   "what": "forward works after back",
+   "pass": true,
+   "evidence": {
+    "path": "/en/packages"
+   }
+  },
+  {
+   "id": "NV-d1440-03",
+   "what": "an anchor lands on its target, below the fixed header and inside the first screen",
+   "pass": true,
+   "evidence": {
+    "hash": "#step-record",
+    "top": 192,
+    "header": 72,
+    "vh": 900
+   }
+  },
+  {
+   "id": "NV-d1440-04",
+   "what": "back from an anchor returns to where the visitor was on the same page",
+   "pass": true,
+   "evidence": {
+    "hash": "",
+    "y": 0
+   }
+  },
+  {
+   "id": "NV-d1440-05",
+   "what": "a deep link with an anchor lands on its target on first load",
+   "pass": true,
+   "evidence": {
+    "hash": "#step-done",
+    "top": 192,
+    "header": 72,
+    "vh": 900
+   }
+  },
+  {
+   "id": "NV-d1440-06",
+   "what": "the language switch keeps the anchor",
+   "pass": true,
+   "evidence": {
+    "href": "/en#step-done"
+   }
+  },
+  {
+   "id": "NV-d1440-07",
+   "what": "the public pages have no accordion: questions stand with their answers, nothing is folded away",
+   "pass": true,
+   "evidence": [
+    {
+     "path": "/en",
+     "details": 0,
+     "collapsed": 0,
+     "questions": 8
+    },
+    {
+     "path": "/en/packages",
+     "details": 0,
+     "collapsed": 0,
+     "questions": 4
+    },
+    {
+     "path": "/es/trial",
+     "details": 0,
+     "collapsed": 0,
+     "questions": 0
+    }
+   ]
+  },
+  {
+   "id": "NV-m390-01",
+   "what": "a link opens the new page at its top; back returns to the page and the place that was left",
+   "pass": true,
+   "evidence": {
+    "left_at": 2400,
+    "new_page_scrollY": 0,
+    "after_back_scrollY": 12450
+   }
+  },
+  {
+   "id": "NV-m390-02",
+   "what": "forward works after back",
+   "pass": true,
+   "evidence": {
+    "path": "/en/packages"
+   }
+  },
+  {
+   "id": "NV-m390-03",
+   "what": "an anchor lands on its target, below the fixed header and inside the first screen",
+   "pass": true,
+   "evidence": {
+    "hash": "#step-record",
+    "top": 168,
+    "header": 60,
+    "vh": 844
+   }
+  },
+  {
+   "id": "NV-m390-04",
+   "what": "back from an anchor returns to where the visitor was on the same page",
+   "pass": true,
+   "evidence": {
+    "hash": "",
+    "y": 0
+   }
+  },
+  {
+   "id": "NV-m390-05",
+   "what": "a deep link with an anchor lands on its target on first load",
+   "pass": true,
+   "evidence": {
+    "hash": "#step-done",
+    "top": 168,
+    "header": 60,
+    "vh": 844
+   }
+  },
+  {
+   "id": "NV-m390-07",
+   "what": "the public pages have no accordion: questions stand with their answers, nothing is folded away",
+   "pass": true,
+   "evidence": [
+    {
+     "path": "/en",
+     "details": 0,
+     "collapsed": 0,
+     "questions": 8
+    },
+    {
+     "path": "/en/packages",
+     "details": 0,
+     "collapsed": 0,
+     "questions": 4
+    },
+    {
+     "path": "/es/trial",
+     "details": 0,
+     "collapsed": 0,
+     "questions": 0
+    }
+   ]
+  }
+ ],
+ "finished_utc": "2026-10-02T12:43:33.989Z",
+ "pass": 13,
+ "total": 13
+}

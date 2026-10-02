@@ -1,0 +1,516 @@
+{
+ "started_utc": "2026-10-02T12:41:49.084Z",
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "commit": "cf6e80f",
+ "deployment": "dpl_8556PUqAcV67u3SB6e1YE4YFgrUV",
+ "checks": [
+  {
+   "id": "CL-d1440-en-t",
+   "what": "a subtitle track in the page language with Daily's five lines, off by default so nothing covers the recording",
+   "pass": true,
+   "evidence": {
+    "kind": "captions",
+    "lang": "en",
+    "modeBefore": "disabled",
+    "cues": [
+     "Laura writes on WhatsApp asking to see a flat.",
+     "Her request arrives as a task, with the reference and the time she asked for.",
+     "An agent takes it.",
+     "It is hers now. Nobody else can take it.",
+     "Once it is done, it leaves the list."
+    ]
+   }
+  },
+  {
+   "id": "CL-d1440-en-a",
+   "what": "before play: poster only, no video element, no film requested",
+   "pass": true,
+   "evidence": {
+    "state": "poster",
+    "videos": 0,
+    "films_requested": 0,
+    "poster": {
+     "w": 1640,
+     "h": 924,
+     "src": "/media/daily/daily-laura-en-desktop-poster.png"
+    }
+   }
+  },
+  {
+   "id": "CL-d1440-en-b",
+   "what": "play: the film of this language and format plays, muted, with the browser's controls, about 22 seconds",
+   "pass": true,
+   "evidence": {
+    "duration": 22.3,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 1640,
+    "h": 924,
+    "src": "/media/daily/daily-laura-en-desktop.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   }
+  },
+  {
+   "id": "CL-d1440-en-c",
+   "what": "the caption line follows the action (second and fourth cue), so the clip is understood without sound",
+   "pass": true,
+   "evidence": {
+    "first": "Laura writes on WhatsApp asking to see a flat.",
+    "second": "Her request arrives as a task, with the reference and the time she asked for.",
+    "fourth": "It is hers now. Nobody else can take it."
+   }
+  },
+  {
+   "id": "CL-d1440-en-d",
+   "what": "the video can be paused and resumed; nothing overflows while it plays",
+   "pass": true,
+   "evidence": {
+    "pausedHolds": true,
+    "resumed": true,
+    "focusOnVideo": true,
+    "overflow": {
+     "sw": 1440,
+     "iw": 1440
+    }
+   }
+  },
+  {
+   "id": "CL-m390-en-t",
+   "what": "a subtitle track in the page language with Daily's five lines, off by default so nothing covers the recording",
+   "pass": true,
+   "evidence": {
+    "kind": "captions",
+    "lang": "en",
+    "modeBefore": "disabled",
+    "cues": [
+     "Laura writes on WhatsApp asking to see a flat.",
+     "Her request arrives as a task, with the reference and the time she asked for.",
+     "An agent takes it.",
+     "It is hers now. Nobody else can take it.",
+     "Once it is done, it leaves the list."
+    ]
+   }
+  },
+  {
+   "id": "CL-m390-en-a",
+   "what": "before play: poster only, no video element, no film requested",
+   "pass": true,
+   "evidence": {
+    "state": "poster",
+    "videos": 0,
+    "films_requested": 0,
+    "poster": {
+     "w": 840,
+     "h": 1052,
+     "src": "/media/daily/daily-laura-en-mobile-poster.png"
+    }
+   }
+  },
+  {
+   "id": "CL-m390-en-b",
+   "what": "play: the film of this language and format plays, muted, with the browser's controls, about 22 seconds",
+   "pass": true,
+   "evidence": {
+    "duration": 23.8,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 840,
+    "h": 1052,
+    "src": "/media/daily/daily-laura-en-mobile.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   }
+  },
+  {
+   "id": "CL-m390-en-c",
+   "what": "the caption line follows the action (second and fourth cue), so the clip is understood without sound",
+   "pass": true,
+   "evidence": {
+    "first": "Laura writes on WhatsApp asking to see a flat.",
+    "second": "Her request arrives as a task, with the reference and the time she asked for.",
+    "fourth": "It is hers now. Nobody else can take it."
+   }
+  },
+  {
+   "id": "CL-m390-en-d",
+   "what": "the video can be paused and resumed; nothing overflows while it plays",
+   "pass": true,
+   "evidence": {
+    "pausedHolds": true,
+    "resumed": true,
+    "focusOnVideo": true,
+    "overflow": {
+     "sw": 390,
+     "iw": 390
+    }
+   }
+  },
+  {
+   "id": "CL-d1440-es-t",
+   "what": "a subtitle track in the page language with Daily's five lines, off by default so nothing covers the recording",
+   "pass": true,
+   "evidence": {
+    "kind": "captions",
+    "lang": "es",
+    "modeBefore": "disabled",
+    "cues": [
+     "Laura escribe por WhatsApp y pide ver un piso.",
+     "Su petición aparece como tarea, con la referencia y la hora que pidió.",
+     "Una agente la toma.",
+     "Queda a su nombre. Nadie más puede tomarla.",
+     "Al terminarla, sale de la lista."
+    ]
+   }
+  },
+  {
+   "id": "CL-d1440-es-a",
+   "what": "before play: poster only, no video element, no film requested",
+   "pass": true,
+   "evidence": {
+    "state": "poster",
+    "videos": 0,
+    "films_requested": 0,
+    "poster": {
+     "w": 1640,
+     "h": 924,
+     "src": "/media/daily/daily-laura-es-desktop-poster.png"
+    }
+   }
+  },
+  {
+   "id": "CL-d1440-es-b",
+   "what": "play: the film of this language and format plays, muted, with the browser's controls, about 22 seconds",
+   "pass": true,
+   "evidence": {
+    "duration": 22.5,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 1640,
+    "h": 924,
+    "src": "/media/daily/daily-laura-es-desktop.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   }
+  },
+  {
+   "id": "CL-d1440-es-c",
+   "what": "the caption line follows the action (second and fourth cue), so the clip is understood without sound",
+   "pass": true,
+   "evidence": {
+    "first": "Laura escribe por WhatsApp y pide ver un piso.",
+    "second": "Su petición aparece como tarea, con la referencia y la hora que pidió.",
+    "fourth": "Queda a su nombre. Nadie más puede tomarla."
+   }
+  },
+  {
+   "id": "CL-d1440-es-d",
+   "what": "the video can be paused and resumed; nothing overflows while it plays",
+   "pass": true,
+   "evidence": {
+    "pausedHolds": true,
+    "resumed": true,
+    "focusOnVideo": true,
+    "overflow": {
+     "sw": 1440,
+     "iw": 1440
+    }
+   }
+  },
+  {
+   "id": "CL-m390-es-t",
+   "what": "a subtitle track in the page language with Daily's five lines, off by default so nothing covers the recording",
+   "pass": true,
+   "evidence": {
+    "kind": "captions",
+    "lang": "es",
+    "modeBefore": "disabled",
+    "cues": [
+     "Laura escribe por WhatsApp y pide ver un piso.",
+     "Su petición aparece como tarea, con la referencia y la hora que pidió.",
+     "Una agente la toma.",
+     "Queda a su nombre. Nadie más puede tomarla.",
+     "Al terminarla, sale de la lista."
+    ]
+   }
+  },
+  {
+   "id": "CL-m390-es-a",
+   "what": "before play: poster only, no video element, no film requested",
+   "pass": true,
+   "evidence": {
+    "state": "poster",
+    "videos": 0,
+    "films_requested": 0,
+    "poster": {
+     "w": 840,
+     "h": 1052,
+     "src": "/media/daily/daily-laura-es-mobile-poster.png"
+    }
+   }
+  },
+  {
+   "id": "CL-m390-es-b",
+   "what": "play: the film of this language and format plays, muted, with the browser's controls, about 22 seconds",
+   "pass": true,
+   "evidence": {
+    "duration": 22.4,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 840,
+    "h": 1052,
+    "src": "/media/daily/daily-laura-es-mobile.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   }
+  },
+  {
+   "id": "CL-m390-es-c",
+   "what": "the caption line follows the action (second and fourth cue), so the clip is understood without sound",
+   "pass": true,
+   "evidence": {
+    "first": "Laura escribe por WhatsApp y pide ver un piso.",
+    "second": "Su petición aparece como tarea, con la referencia y la hora que pidió.",
+    "fourth": "Queda a su nombre. Nadie más puede tomarla."
+   }
+  },
+  {
+   "id": "CL-m390-es-d",
+   "what": "the video can be paused and resumed; nothing overflows while it plays",
+   "pass": true,
+   "evidence": {
+    "pausedHolds": true,
+    "resumed": true,
+    "focusOnVideo": true,
+    "overflow": {
+     "sw": 390,
+     "iw": 390
+    }
+   }
+  },
+  {
+   "id": "CL-fail",
+   "what": "when the film cannot be loaded the poster comes back with a sentence and the play control, never an empty player",
+   "pass": true,
+   "evidence": {
+    "state": "poster",
+    "videos": 0,
+    "text": "The clip did not load. Try again in a moment.",
+    "play": true
+   }
+  }
+ ],
+ "cases": [
+  {
+   "id": "d1440-en",
+   "before": {
+    "state": "poster",
+    "videos": 0,
+    "poster": {
+     "w": 1640,
+     "h": 924,
+     "src": "/media/daily/daily-laura-en-desktop-poster.png"
+    },
+    "cue": "Laura writes on WhatsApp asking to see a flat."
+   },
+   "noFilmBefore": true,
+   "playing": true,
+   "video": {
+    "duration": 22.3,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 1640,
+    "h": 924,
+    "src": "/media/daily/daily-laura-en-desktop.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   },
+   "cue2": {
+    "i": "1",
+    "t": "Her request arrives as a task, with the reference and the time she asked for."
+   },
+   "cue3": {
+    "i": "3",
+    "t": "It is hers now. Nobody else can take it."
+   },
+   "focusOnVideo": true,
+   "pausedHolds": true,
+   "resumed": true,
+   "films": [
+    "/media/daily/daily-laura-en-desktop.mp4"
+   ],
+   "want": [
+    "/media/daily/daily-laura-en-desktop.mp4"
+   ],
+   "overflow": {
+    "sw": 1440,
+    "iw": 1440
+   }
+  },
+  {
+   "id": "m390-en",
+   "before": {
+    "state": "poster",
+    "videos": 0,
+    "poster": {
+     "w": 840,
+     "h": 1052,
+     "src": "/media/daily/daily-laura-en-mobile-poster.png"
+    },
+    "cue": "Laura writes on WhatsApp asking to see a flat."
+   },
+   "noFilmBefore": true,
+   "playing": true,
+   "video": {
+    "duration": 23.8,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 840,
+    "h": 1052,
+    "src": "/media/daily/daily-laura-en-mobile.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   },
+   "cue2": {
+    "i": "1",
+    "t": "Her request arrives as a task, with the reference and the time she asked for."
+   },
+   "cue3": {
+    "i": "3",
+    "t": "It is hers now. Nobody else can take it."
+   },
+   "focusOnVideo": true,
+   "pausedHolds": true,
+   "resumed": true,
+   "films": [
+    "/media/daily/daily-laura-en-mobile.mp4"
+   ],
+   "want": [
+    "/media/daily/daily-laura-en-mobile.mp4"
+   ],
+   "overflow": {
+    "sw": 390,
+    "iw": 390
+   }
+  },
+  {
+   "id": "d1440-es",
+   "before": {
+    "state": "poster",
+    "videos": 0,
+    "poster": {
+     "w": 1640,
+     "h": 924,
+     "src": "/media/daily/daily-laura-es-desktop-poster.png"
+    },
+    "cue": "Laura escribe por WhatsApp y pide ver un piso."
+   },
+   "noFilmBefore": true,
+   "playing": true,
+   "video": {
+    "duration": 22.5,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 1640,
+    "h": 924,
+    "src": "/media/daily/daily-laura-es-desktop.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   },
+   "cue2": {
+    "i": "1",
+    "t": "Su petición aparece como tarea, con la referencia y la hora que pidió."
+   },
+   "cue3": {
+    "i": "3",
+    "t": "Queda a su nombre. Nadie más puede tomarla."
+   },
+   "focusOnVideo": true,
+   "pausedHolds": true,
+   "resumed": true,
+   "films": [
+    "/media/daily/daily-laura-es-desktop.mp4"
+   ],
+   "want": [
+    "/media/daily/daily-laura-es-desktop.mp4"
+   ],
+   "overflow": {
+    "sw": 1440,
+    "iw": 1440
+   }
+  },
+  {
+   "id": "m390-es",
+   "before": {
+    "state": "poster",
+    "videos": 0,
+    "poster": {
+     "w": 840,
+     "h": 1052,
+     "src": "/media/daily/daily-laura-es-mobile-poster.png"
+    },
+    "cue": "Laura escribe por WhatsApp y pide ver un piso."
+   },
+   "noFilmBefore": true,
+   "playing": true,
+   "video": {
+    "duration": 22.4,
+    "muted": true,
+    "controls": true,
+    "paused": false,
+    "autoplayAttr": false,
+    "loopAttr": false,
+    "w": 840,
+    "h": 1052,
+    "src": "/media/daily/daily-laura-es-mobile.mp4",
+    "audioTracks": null,
+    "hasAudio": false
+   },
+   "cue2": {
+    "i": "1",
+    "t": "Su petición aparece como tarea, con la referencia y la hora que pidió."
+   },
+   "cue3": {
+    "i": "3",
+    "t": "Queda a su nombre. Nadie más puede tomarla."
+   },
+   "focusOnVideo": true,
+   "pausedHolds": true,
+   "resumed": true,
+   "films": [
+    "/media/daily/daily-laura-es-mobile.mp4"
+   ],
+   "want": [
+    "/media/daily/daily-laura-es-mobile.mp4"
+   ],
+   "overflow": {
+    "sw": 390,
+    "iw": 390
+   }
+  }
+ ],
+ "finished_utc": "2026-10-02T12:42:40.166Z",
+ "pass": 21,
+ "total": 21
+}

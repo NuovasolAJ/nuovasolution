@@ -1,0 +1,93 @@
+{
+ "started_utc": "2026-10-02T11:43:50.048Z",
+ "commit": "working tree",
+ "checks": [
+  {
+   "id": "G-1",
+   "what": "a live build without the owner release value is refused",
+   "pass": true,
+   "evidence": "exit 1"
+  },
+  {
+   "id": "G-2",
+   "what": "a sandbox build compiles",
+   "pass": true,
+   "evidence": "exit 0"
+  },
+  {
+   "id": "G-3",
+   "what": "pinned staging URL but no per-target approval: refused before any call",
+   "pass": true,
+   "evidence": {
+    "status": 503,
+    "code": "environment_misconfigured"
+   }
+  },
+  {
+   "id": "G-6",
+   "what": "sandbox band and fixed marker render on a marketing page",
+   "pass": true,
+   "evidence": "data-env=staging, data-env-marker=staging"
+  },
+  {
+   "id": "G-7",
+   "what": "a production Q&A intake host is refused in a sandbox build (no call made)",
+   "pass": true,
+   "evidence": "not_configured"
+  },
+  {
+   "id": "G-8",
+   "what": "stub session endpoint does not exist in a sandbox build",
+   "pass": true,
+   "evidence": 404
+  },
+  {
+   "id": "G-9",
+   "what": "signup against an unapproved target is refused before any call, and no session is set",
+   "pass": true,
+   "evidence": {
+    "status": 503,
+    "code": "environment_misconfigured"
+   }
+  },
+  {
+   "id": "G-4",
+   "what": "a non-pinned (e.g. production) Supabase URL with an approval value: refused before any call",
+   "pass": true,
+   "evidence": {
+    "status": 503,
+    "code": "environment_misconfigured"
+   }
+  },
+  {
+   "id": "G-5",
+   "what": "no Supabase URL at all: refused",
+   "pass": true,
+   "evidence": {
+    "status": 503,
+    "code": "environment_misconfigured"
+   }
+  },
+  {
+   "id": "G-10",
+   "what": "a secret key in the website environment is refused (v2: no secret key for user actions)",
+   "pass": true,
+   "evidence": {
+    "status": 503,
+    "code": "environment_misconfigured"
+   }
+  },
+  {
+   "id": "G-11",
+   "what": "a legacy JWT as publishable key is refused",
+   "pass": true,
+   "evidence": {
+    "status": 503,
+    "code": "environment_misconfigured"
+   }
+  }
+ ],
+ "finished_utc": "2026-10-02T11:44:15.124Z",
+ "passed": 11,
+ "failed": 0
+}

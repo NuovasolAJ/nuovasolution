@@ -1,0 +1,418 @@
+{
+ "started_utc": "2026-10-02T12:51:00.951Z",
+ "base": "https://nuovasolution-staging-preview-git-w-44e113-nuovasolajs-projects.vercel.app",
+ "staging": true,
+ "commit": "cf6e80f",
+ "deployment": "dpl_8fj7GGzQDUL9ughXjiZkQdyrcrJX",
+ "checks": [
+  {
+   "id": "CV-d1440-en-1",
+   "what": "home: every primary control leads to sign-up, and the page offers a way forward",
+   "pass": true,
+   "evidence": {
+    "primaries": [
+     "/en/signup",
+     "/en/signup",
+     "/en/signup"
+    ],
+    "forward": 9
+   }
+  },
+  {
+   "id": "CV-d1440-en-2",
+   "what": "home → packages by a visible link; the trial sticker is on Essential; a way forward exists",
+   "pass": true,
+   "evidence": {
+    "name": "packages",
+    "path": "/en/packages",
+    "forward": 12,
+    "sticker": true
+   }
+  },
+  {
+   "id": "CV-d1440-en-3",
+   "what": "packages → sign-up from the Essential card's own control",
+   "pass": true,
+   "evidence": {
+    "name": "signup",
+    "path": "/en/signup",
+    "forward": 8,
+    "from": "Try Essential free"
+   }
+  },
+  {
+   "id": "CV-d1440-en-4",
+   "what": "staging: the filled sign-up form is ready to send (not sent: no account, no e-mail)",
+   "pass": true,
+   "evidence": {
+    "submit": true,
+    "posts": []
+   }
+  },
+  {
+   "id": "CV-d1440-en-6",
+   "what": "the confirmation landing says the account is confirmed and offers the login",
+   "pass": true,
+   "evidence": {
+    "name": "confirmed",
+    "path": "/en/login?confirmed=1",
+    "forward": 8,
+    "hint": true
+   }
+  },
+  {
+   "id": "CV-d1440-en-7",
+   "what": "an expired link says so and leads on (login or sign-up), never a dead end",
+   "pass": true,
+   "evidence": {
+    "name": "expired",
+    "path": "/en/welcome?state=expired",
+    "forward": 5,
+    "state": "expired",
+    "links": [
+     "/en/login?confirmed=1"
+    ]
+   }
+  },
+  {
+   "id": "CV-m390-en-1",
+   "what": "home: every primary control leads to sign-up, and the page offers a way forward",
+   "pass": true,
+   "evidence": {
+    "primaries": [
+     "/en/signup",
+     "/en/signup",
+     "/en/signup"
+    ],
+    "forward": 5
+   }
+  },
+  {
+   "id": "CV-m390-en-2",
+   "what": "home → packages by a visible link; the trial sticker is on Essential; a way forward exists",
+   "pass": true,
+   "evidence": {
+    "name": "packages",
+    "path": "/en/packages",
+    "forward": 6,
+    "sticker": true
+   }
+  },
+  {
+   "id": "CV-m390-en-3",
+   "what": "packages → sign-up from the Essential card's own control",
+   "pass": true,
+   "evidence": {
+    "name": "signup",
+    "path": "/en/signup",
+    "forward": 2,
+    "from": "Try Essential free"
+   }
+  },
+  {
+   "id": "CV-m390-en-4",
+   "what": "staging: the filled sign-up form is ready to send (not sent: no account, no e-mail)",
+   "pass": true,
+   "evidence": {
+    "submit": true,
+    "posts": []
+   }
+  },
+  {
+   "id": "CV-m390-en-6",
+   "what": "the confirmation landing says the account is confirmed and offers the login",
+   "pass": true,
+   "evidence": {
+    "name": "confirmed",
+    "path": "/en/login?confirmed=1",
+    "forward": 2,
+    "hint": true
+   }
+  },
+  {
+   "id": "CV-m390-en-7",
+   "what": "an expired link says so and leads on (login or sign-up), never a dead end",
+   "pass": true,
+   "evidence": {
+    "name": "expired",
+    "path": "/en/welcome?state=expired",
+    "forward": 1,
+    "state": "expired",
+    "links": [
+     "/en/login?confirmed=1"
+    ]
+   }
+  },
+  {
+   "id": "CV-d1440-es-1",
+   "what": "home: every primary control leads to sign-up, and the page offers a way forward",
+   "pass": true,
+   "evidence": {
+    "primaries": [
+     "/es/signup",
+     "/es/signup",
+     "/es/signup"
+    ],
+    "forward": 9
+   }
+  },
+  {
+   "id": "CV-d1440-es-2",
+   "what": "home → packages by a visible link; the trial sticker is on Essential; a way forward exists",
+   "pass": true,
+   "evidence": {
+    "name": "packages",
+    "path": "/es/packages",
+    "forward": 12,
+    "sticker": true
+   }
+  },
+  {
+   "id": "CV-d1440-es-3",
+   "what": "packages → sign-up from the Essential card's own control",
+   "pass": true,
+   "evidence": {
+    "name": "signup",
+    "path": "/es/signup",
+    "forward": 8,
+    "from": "Prueba Essential gratis"
+   }
+  },
+  {
+   "id": "CV-d1440-es-4",
+   "what": "staging: the filled sign-up form is ready to send (not sent: no account, no e-mail)",
+   "pass": true,
+   "evidence": {
+    "submit": true,
+    "posts": []
+   }
+  },
+  {
+   "id": "CV-d1440-es-6",
+   "what": "the confirmation landing says the account is confirmed and offers the login",
+   "pass": true,
+   "evidence": {
+    "name": "confirmed",
+    "path": "/es/login?confirmed=1",
+    "forward": 8,
+    "hint": true
+   }
+  },
+  {
+   "id": "CV-d1440-es-7",
+   "what": "an expired link says so and leads on (login or sign-up), never a dead end",
+   "pass": true,
+   "evidence": {
+    "name": "expired",
+    "path": "/es/welcome?state=expired",
+    "forward": 5,
+    "state": "expired",
+    "links": [
+     "/es/login?confirmed=1"
+    ]
+   }
+  },
+  {
+   "id": "CV-m390-es-1",
+   "what": "home: every primary control leads to sign-up, and the page offers a way forward",
+   "pass": true,
+   "evidence": {
+    "primaries": [
+     "/es/signup",
+     "/es/signup",
+     "/es/signup"
+    ],
+    "forward": 5
+   }
+  },
+  {
+   "id": "CV-m390-es-2",
+   "what": "home → packages by a visible link; the trial sticker is on Essential; a way forward exists",
+   "pass": true,
+   "evidence": {
+    "name": "packages",
+    "path": "/es/packages",
+    "forward": 6,
+    "sticker": true
+   }
+  },
+  {
+   "id": "CV-m390-es-3",
+   "what": "packages → sign-up from the Essential card's own control",
+   "pass": true,
+   "evidence": {
+    "name": "signup",
+    "path": "/es/signup",
+    "forward": 2,
+    "from": "Prueba Essential gratis"
+   }
+  },
+  {
+   "id": "CV-m390-es-4",
+   "what": "staging: the filled sign-up form is ready to send (not sent: no account, no e-mail)",
+   "pass": true,
+   "evidence": {
+    "submit": true,
+    "posts": []
+   }
+  },
+  {
+   "id": "CV-m390-es-6",
+   "what": "the confirmation landing says the account is confirmed and offers the login",
+   "pass": true,
+   "evidence": {
+    "name": "confirmed",
+    "path": "/es/login?confirmed=1",
+    "forward": 2,
+    "hint": true
+   }
+  },
+  {
+   "id": "CV-m390-es-7",
+   "what": "an expired link says so and leads on (login or sign-up), never a dead end",
+   "pass": true,
+   "evidence": {
+    "name": "expired",
+    "path": "/es/welcome?state=expired",
+    "forward": 1,
+    "state": "expired",
+    "links": [
+     "/es/login?confirmed=1"
+    ]
+   }
+  }
+ ],
+ "path": [
+  {
+   "name": "home",
+   "path": "/en",
+   "forward": 9
+  },
+  {
+   "name": "packages",
+   "path": "/en/packages",
+   "forward": 12,
+   "sticker": true
+  },
+  {
+   "name": "signup",
+   "path": "/en/signup",
+   "forward": 8,
+   "from": "Try Essential free"
+  },
+  {
+   "name": "confirmed",
+   "path": "/en/login?confirmed=1",
+   "forward": 8,
+   "hint": true
+  },
+  {
+   "name": "expired",
+   "path": "/en/welcome?state=expired",
+   "forward": 5,
+   "state": "expired",
+   "links": [
+    "/en/login?confirmed=1"
+   ]
+  },
+  {
+   "name": "home",
+   "path": "/en",
+   "forward": 5
+  },
+  {
+   "name": "packages",
+   "path": "/en/packages",
+   "forward": 6,
+   "sticker": true
+  },
+  {
+   "name": "signup",
+   "path": "/en/signup",
+   "forward": 2,
+   "from": "Try Essential free"
+  },
+  {
+   "name": "confirmed",
+   "path": "/en/login?confirmed=1",
+   "forward": 2,
+   "hint": true
+  },
+  {
+   "name": "expired",
+   "path": "/en/welcome?state=expired",
+   "forward": 1,
+   "state": "expired",
+   "links": [
+    "/en/login?confirmed=1"
+   ]
+  },
+  {
+   "name": "home",
+   "path": "/es",
+   "forward": 9
+  },
+  {
+   "name": "packages",
+   "path": "/es/packages",
+   "forward": 12,
+   "sticker": true
+  },
+  {
+   "name": "signup",
+   "path": "/es/signup",
+   "forward": 8,
+   "from": "Prueba Essential gratis"
+  },
+  {
+   "name": "confirmed",
+   "path": "/es/login?confirmed=1",
+   "forward": 8,
+   "hint": true
+  },
+  {
+   "name": "expired",
+   "path": "/es/welcome?state=expired",
+   "forward": 5,
+   "state": "expired",
+   "links": [
+    "/es/login?confirmed=1"
+   ]
+  },
+  {
+   "name": "home",
+   "path": "/es",
+   "forward": 5
+  },
+  {
+   "name": "packages",
+   "path": "/es/packages",
+   "forward": 6,
+   "sticker": true
+  },
+  {
+   "name": "signup",
+   "path": "/es/signup",
+   "forward": 2,
+   "from": "Prueba Essential gratis"
+  },
+  {
+   "name": "confirmed",
+   "path": "/es/login?confirmed=1",
+   "forward": 2,
+   "hint": true
+  },
+  {
+   "name": "expired",
+   "path": "/es/welcome?state=expired",
+   "forward": 1,
+   "state": "expired",
+   "links": [
+    "/es/login?confirmed=1"
+   ]
+  }
+ ],
+ "finished_utc": "2026-10-02T12:51:58.904Z",
+ "pass": 24,
+ "total": 24
+}

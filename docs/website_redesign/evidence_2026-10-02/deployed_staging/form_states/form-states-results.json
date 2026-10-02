@@ -1,0 +1,542 @@
+{
+ "started_utc": "2026-10-02T12:51:59.016Z",
+ "base": "https://nuovasolution-staging-preview-git-w-44e113-nuovasolajs-projects.vercel.app",
+ "real_login": true,
+ "commit": "cf6e80f",
+ "deployment": "dpl_8fj7GGzQDUL9ughXjiZkQdyrcrJX",
+ "checks": [
+  {
+   "id": "FS-m390-en-01",
+   "what": "sign-up, empty: every field is marked and says what is missing, focus is on the first one, nothing is sent",
+   "pass": true,
+   "evidence": {
+    "fields": [
+     {
+      "n": "name",
+      "invalid": "true",
+      "text": "We need this one to create your account."
+     },
+     {
+      "n": "agency_name",
+      "invalid": "true",
+      "text": "We need this one to create your account."
+     },
+     {
+      "n": "email",
+      "invalid": "true",
+      "text": "We need this one to create your account."
+     },
+     {
+      "n": "password",
+      "invalid": "true",
+      "text": "Use at least 10 characters."
+     }
+    ],
+    "focused": "name",
+    "posts": [],
+    "overflow": {
+     "sw": 390,
+     "iw": 390
+    }
+   }
+  },
+  {
+   "id": "FS-m390-en-02",
+   "what": "sign-up, wrong e-mail and short password: each has its own sentence, the filled fields are clean, long values do not widen the page",
+   "pass": true,
+   "evidence": {
+    "fields": [
+     {
+      "n": "name",
+      "invalid": "false",
+      "text": null
+     },
+     {
+      "n": "agency_name",
+      "invalid": "false",
+      "text": null
+     },
+     {
+      "n": "email",
+      "invalid": "true",
+      "text": "That email address does not look right."
+     },
+     {
+      "n": "password",
+      "invalid": "true",
+      "text": "Use at least 10 characters."
+     }
+    ],
+    "focused": "email",
+    "overflow": {
+     "sw": 390,
+     "iw": 390
+    }
+   }
+  },
+  {
+   "id": "FS-m390-en-03",
+   "what": "sign-up: a reload keeps name, agency and e-mail, and never the password",
+   "pass": true,
+   "evidence": {
+    "name": 74,
+    "agency": 168,
+    "email": "not-an-address",
+    "password": 0
+   }
+  },
+  {
+   "id": "FS-m390-en-04",
+   "what": "login, empty: one sentence, nothing sent; 'forgot your password' says what is possible today",
+   "pass": true,
+   "evidence": {
+    "alert": "We need this one to log you in.",
+    "forgot": "Password reset is not available yet. Write to us and we will help you.",
+    "posts": [],
+    "overflow": {
+     "sw": 390,
+     "iw": 390
+    }
+   }
+  },
+  {
+   "id": "FS-m390-en-06",
+   "what": "login: two clicks and Enter send one request; the button is disabled, marked busy, shows the ring and says it is logging in; it stays blocked until the next page replaces this one",
+   "pass": true,
+   "evidence": {
+    "heldCount": 1,
+    "held": {
+     "disabled": true,
+     "busy": "true",
+     "label": "Logging you in…",
+     "ring": true,
+     "status": "Logging you in…",
+     "state": "busy",
+     "alert": null,
+     "email": "owner@example.invalid",
+     "path": "/en/login"
+    },
+    "left": true,
+    "reenabled": false,
+    "sawLeaving": false
+   }
+  },
+  {
+   "id": "FS-m390-en-07",
+   "what": "login refused: the sentence for a wrong login, the button free and not busy, the address kept, and a second attempt sends a new request",
+   "pass": true,
+   "evidence": {
+    "wrong": {
+     "disabled": false,
+     "busy": null,
+     "label": "Log in",
+     "ring": false,
+     "status": "",
+     "state": "idle",
+     "alert": "That email and password do not match an account.",
+     "email": "owner@example.invalid",
+     "path": "/en/login"
+    },
+    "retried": 2
+   }
+  },
+  {
+   "id": "FS-m390-en-08",
+   "what": "login with the server unreachable: the connection sentence, the button free, nothing blocked",
+   "pass": true,
+   "evidence": {
+    "disabled": false,
+    "busy": null,
+    "label": "Log in",
+    "ring": false,
+    "status": "",
+    "state": "idle",
+    "alert": "We could not reach the server. Nothing was changed. Check your connection and try again.",
+    "email": "owner@example.invalid",
+    "path": "/en/login"
+   }
+  },
+  {
+   "id": "FS-m390-en-09",
+   "what": "login with no answer at all: busy first, then the timeout sentence within the form's limit and the button free again",
+   "pass": true,
+   "evidence": {
+    "stillBusy": true,
+    "gaveUp": true,
+    "slow": {
+     "disabled": false,
+     "busy": null,
+     "label": "Log in",
+     "ring": false,
+     "status": "",
+     "state": "idle",
+     "alert": "The connection took too long and nothing was changed. Check your connection and try again.",
+     "email": "owner@example.invalid",
+     "path": "/en/login"
+    }
+   }
+  },
+  {
+   "id": "FS-m390-en-05",
+   "what": "login with an address that has no account: the button waits visibly, then the sentence for a wrong login; the address stays, the page stays",
+   "pass": true,
+   "evidence": {
+    "busy": true,
+    "alert": "That email and password do not match an account.",
+    "path": "/en/login"
+   }
+  },
+  {
+   "id": "FS-m360-en-01",
+   "what": "sign-up, empty: every field is marked and says what is missing, focus is on the first one, nothing is sent",
+   "pass": true,
+   "evidence": {
+    "fields": [
+     {
+      "n": "name",
+      "invalid": "true",
+      "text": "We need this one to create your account."
+     },
+     {
+      "n": "agency_name",
+      "invalid": "true",
+      "text": "We need this one to create your account."
+     },
+     {
+      "n": "email",
+      "invalid": "true",
+      "text": "We need this one to create your account."
+     },
+     {
+      "n": "password",
+      "invalid": "true",
+      "text": "Use at least 10 characters."
+     }
+    ],
+    "focused": "name",
+    "posts": [],
+    "overflow": {
+     "sw": 360,
+     "iw": 360
+    }
+   }
+  },
+  {
+   "id": "FS-m360-en-02",
+   "what": "sign-up, wrong e-mail and short password: each has its own sentence, the filled fields are clean, long values do not widen the page",
+   "pass": true,
+   "evidence": {
+    "fields": [
+     {
+      "n": "name",
+      "invalid": "false",
+      "text": null
+     },
+     {
+      "n": "agency_name",
+      "invalid": "false",
+      "text": null
+     },
+     {
+      "n": "email",
+      "invalid": "true",
+      "text": "That email address does not look right."
+     },
+     {
+      "n": "password",
+      "invalid": "true",
+      "text": "Use at least 10 characters."
+     }
+    ],
+    "focused": "email",
+    "overflow": {
+     "sw": 360,
+     "iw": 360
+    }
+   }
+  },
+  {
+   "id": "FS-m360-en-03",
+   "what": "sign-up: a reload keeps name, agency and e-mail, and never the password",
+   "pass": true,
+   "evidence": {
+    "name": 74,
+    "agency": 168,
+    "email": "not-an-address",
+    "password": 0
+   }
+  },
+  {
+   "id": "FS-m360-en-04",
+   "what": "login, empty: one sentence, nothing sent; 'forgot your password' says what is possible today",
+   "pass": true,
+   "evidence": {
+    "alert": "We need this one to log you in.",
+    "forgot": "Password reset is not available yet. Write to us and we will help you.",
+    "posts": [],
+    "overflow": {
+     "sw": 360,
+     "iw": 360
+    }
+   }
+  },
+  {
+   "id": "FS-m390-es-01",
+   "what": "sign-up, empty: every field is marked and says what is missing, focus is on the first one, nothing is sent",
+   "pass": true,
+   "evidence": {
+    "fields": [
+     {
+      "n": "name",
+      "invalid": "true",
+      "text": "Necesitamos este dato para crear tu cuenta."
+     },
+     {
+      "n": "agency_name",
+      "invalid": "true",
+      "text": "Necesitamos este dato para crear tu cuenta."
+     },
+     {
+      "n": "email",
+      "invalid": "true",
+      "text": "Necesitamos este dato para crear tu cuenta."
+     },
+     {
+      "n": "password",
+      "invalid": "true",
+      "text": "Usa al menos 10 caracteres."
+     }
+    ],
+    "focused": "name",
+    "posts": [],
+    "overflow": {
+     "sw": 390,
+     "iw": 390
+    }
+   }
+  },
+  {
+   "id": "FS-m390-es-02",
+   "what": "sign-up, wrong e-mail and short password: each has its own sentence, the filled fields are clean, long values do not widen the page",
+   "pass": true,
+   "evidence": {
+    "fields": [
+     {
+      "n": "name",
+      "invalid": "false",
+      "text": null
+     },
+     {
+      "n": "agency_name",
+      "invalid": "false",
+      "text": null
+     },
+     {
+      "n": "email",
+      "invalid": "true",
+      "text": "Ese email no parece correcto."
+     },
+     {
+      "n": "password",
+      "invalid": "true",
+      "text": "Usa al menos 10 caracteres."
+     }
+    ],
+    "focused": "email",
+    "overflow": {
+     "sw": 390,
+     "iw": 390
+    }
+   }
+  },
+  {
+   "id": "FS-m390-es-03",
+   "what": "sign-up: a reload keeps name, agency and e-mail, and never the password",
+   "pass": true,
+   "evidence": {
+    "name": 74,
+    "agency": 168,
+    "email": "not-an-address",
+    "password": 0
+   }
+  },
+  {
+   "id": "FS-m390-es-04",
+   "what": "login, empty: one sentence, nothing sent; 'forgot your password' says what is possible today",
+   "pass": true,
+   "evidence": {
+    "alert": "Necesitamos este dato para iniciar sesión.",
+    "forgot": "El restablecimiento de contraseña todavía no está disponible. Escríbenos y te ayudamos.",
+    "posts": [],
+    "overflow": {
+     "sw": 390,
+     "iw": 390
+    }
+   }
+  },
+  {
+   "id": "FS-m390-es-06",
+   "what": "login: two clicks and Enter send one request; the button is disabled, marked busy, shows the ring and says it is logging in; it stays blocked until the next page replaces this one",
+   "pass": true,
+   "evidence": {
+    "heldCount": 1,
+    "held": {
+     "disabled": true,
+     "busy": "true",
+     "label": "Iniciando sesión…",
+     "ring": true,
+     "status": "Iniciando sesión…",
+     "state": "busy",
+     "alert": null,
+     "email": "owner@example.invalid",
+     "path": "/es/login"
+    },
+    "left": true,
+    "reenabled": false,
+    "sawLeaving": false
+   }
+  },
+  {
+   "id": "FS-m390-es-07",
+   "what": "login refused: the sentence for a wrong login, the button free and not busy, the address kept, and a second attempt sends a new request",
+   "pass": true,
+   "evidence": {
+    "wrong": {
+     "disabled": false,
+     "busy": null,
+     "label": "Iniciar sesión",
+     "ring": false,
+     "status": "",
+     "state": "idle",
+     "alert": "Ese email y esa contraseña no coinciden con ninguna cuenta.",
+     "email": "owner@example.invalid",
+     "path": "/es/login"
+    },
+    "retried": 2
+   }
+  },
+  {
+   "id": "FS-m390-es-08",
+   "what": "login with the server unreachable: the connection sentence, the button free, nothing blocked",
+   "pass": true,
+   "evidence": {
+    "disabled": false,
+    "busy": null,
+    "label": "Iniciar sesión",
+    "ring": false,
+    "status": "",
+    "state": "idle",
+    "alert": "No hemos podido conectar con el servidor. No se ha cambiado nada. Revisa tu conexión e inténtalo de nuevo.",
+    "email": "owner@example.invalid",
+    "path": "/es/login"
+   }
+  },
+  {
+   "id": "FS-m390-es-05",
+   "what": "login with an address that has no account: the button waits visibly, then the sentence for a wrong login; the address stays, the page stays",
+   "pass": true,
+   "evidence": {
+    "busy": true,
+    "alert": "Ese email y esa contraseña no coinciden con ninguna cuenta.",
+    "path": "/es/login"
+   }
+  },
+  {
+   "id": "FS-m360-es-01",
+   "what": "sign-up, empty: every field is marked and says what is missing, focus is on the first one, nothing is sent",
+   "pass": true,
+   "evidence": {
+    "fields": [
+     {
+      "n": "name",
+      "invalid": "true",
+      "text": "Necesitamos este dato para crear tu cuenta."
+     },
+     {
+      "n": "agency_name",
+      "invalid": "true",
+      "text": "Necesitamos este dato para crear tu cuenta."
+     },
+     {
+      "n": "email",
+      "invalid": "true",
+      "text": "Necesitamos este dato para crear tu cuenta."
+     },
+     {
+      "n": "password",
+      "invalid": "true",
+      "text": "Usa al menos 10 caracteres."
+     }
+    ],
+    "focused": "name",
+    "posts": [],
+    "overflow": {
+     "sw": 360,
+     "iw": 360
+    }
+   }
+  },
+  {
+   "id": "FS-m360-es-02",
+   "what": "sign-up, wrong e-mail and short password: each has its own sentence, the filled fields are clean, long values do not widen the page",
+   "pass": true,
+   "evidence": {
+    "fields": [
+     {
+      "n": "name",
+      "invalid": "false",
+      "text": null
+     },
+     {
+      "n": "agency_name",
+      "invalid": "false",
+      "text": null
+     },
+     {
+      "n": "email",
+      "invalid": "true",
+      "text": "Ese email no parece correcto."
+     },
+     {
+      "n": "password",
+      "invalid": "true",
+      "text": "Usa al menos 10 caracteres."
+     }
+    ],
+    "focused": "email",
+    "overflow": {
+     "sw": 360,
+     "iw": 360
+    }
+   }
+  },
+  {
+   "id": "FS-m360-es-03",
+   "what": "sign-up: a reload keeps name, agency and e-mail, and never the password",
+   "pass": true,
+   "evidence": {
+    "name": 74,
+    "agency": 168,
+    "email": "not-an-address",
+    "password": 0
+   }
+  },
+  {
+   "id": "FS-m360-es-04",
+   "what": "login, empty: one sentence, nothing sent; 'forgot your password' says what is possible today",
+   "pass": true,
+   "evidence": {
+    "alert": "Necesitamos este dato para iniciar sesión.",
+    "forgot": "El restablecimiento de contraseña todavía no está disponible. Escríbenos y te ayudamos.",
+    "posts": [],
+    "overflow": {
+     "sw": 360,
+     "iw": 360
+    }
+   }
+  }
+ ],
+ "finished_utc": "2026-10-02T12:53:35.214Z",
+ "pass": 25,
+ "total": 25
+}
