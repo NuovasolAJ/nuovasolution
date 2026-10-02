@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
@@ -14,9 +13,56 @@ const labelCls = "block t-body-s font-medium text-text-primary";
 
 type Env = { ok: boolean; code: string; stub?: true; details?: { next?: string; session?: boolean } };
 
+/**
+ * The browser gives a request this long. After it the form says so and frees the button, so a
+ * slow or broken connection never leaves a button blocked for good (owner finding 2026-10-01).
+ */
+const REQUEST_TIMEOUT_MS = 20000;
+
+/** Never throws: a timeout and an unreachable server come back as codes the dictionaries know. */
 async function post(url: string, body: unknown): Promise<Env> {
-  const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-  return (await res.json()) as Env;
+  const ctl = new AbortController();
+  const timer = setTimeout(() => ctl.abort(), REQUEST_TIMEOUT_MS);
+  try {
+    const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), signal: ctl.signal });
+    return (await res.json()) as Env;
+  } catch {
+    return { ok: false, code: ctl.signal.aborted ? "timeout" : "connection" };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/**
+ * One running state for every form that leaves the page on success: `busy` from the first submit
+ * until the next page has replaced this one. A second click or Enter while it runs sends nothing
+ * (the button is disabled, and the ref catches the moment before React has re-rendered). Only a
+ * failure frees the button again, with the message next to it.
+ */
+function useRunning() {
+  const [busy, setBusy] = useState(false);
+  const [leaving, setLeaving] = useState(false);
+  const inFlight = useRef(false);
+  const leavingRef = useRef(false);
+  function start(): boolean {
+    if (inFlight.current || leavingRef.current) return false;
+    inFlight.current = true;
+    setBusy(true);
+    return true;
+  }
+  function leave(href: string) {
+    leavingRef.current = true;
+    setLeaving(true);
+    // A full navigation: the new session cookie is read by the server on the next page, and this
+    // page, with its busy button, stays exactly as it is until the browser has replaced it.
+    window.location.assign(href);
+  }
+  function settle() {
+    if (leavingRef.current) return;
+    inFlight.current = false;
+    setBusy(false);
+  }
+  return { busy, leaving, start, leave, settle };
 }
 
 /** Draft of the sign-up form (never the password), so switching the site language keeps what was typed. */
@@ -47,10 +93,8 @@ function clearDraft() {
 export function SignupForm({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
   const d = dict.signup;
-  const router = useRouter();
   const id = useId();
-  const [busy, setBusy] = useState(false);
-  const inFlight = useRef(false); // a second click before the re-render never sends a second request
+  const run = useRunning();
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [stub, setStub] = useState(false);
@@ -68,7 +112,7 @@ export function SignupForm({ locale }: { locale: Locale }) {
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (inFlight.current) return;
+    if (run.busy) return;
     const f = new FormData(e.currentTarget);
     const values = {
       name: String(f.get("name") ?? "").trim(),
@@ -91,8 +135,7 @@ export function SignupForm({ locale }: { locale: Locale }) {
       return;
     }
 
-    inFlight.current = true;
-    setBusy(true);
+    if (!run.start()) return;
     setError(null);
     try {
       const r = await post("/api/bff/signup", values);
@@ -104,17 +147,13 @@ export function SignupForm({ locale }: { locale: Locale }) {
           setSent(values.email);
           return;
         }
-        router.push(localePath(locale, r.details?.session ? "/onboarding" : "/login"));
+        run.leave(localePath(locale, r.details?.session ? "/onboarding" : "/login"));
         return;
       }
       const rate = (d.rateErrors as Record<string, string>)[r.code];
-      const msg = rate ?? (d.errors as Record<string, string>)[r.code] ?? (dict.common.errors as Record<string, string>)[r.code] ?? d.errors.server_error;
-      setError(msg);
-    } catch {
-      setError(d.errors.server_error);
+      setError(rate ?? (d.errors as Record<string, string>)[r.code] ?? (dict.common.errors as Record<string, string>)[r.code] ?? d.errors.server_error);
     } finally {
-      inFlight.current = false;
-      setBusy(false);
+      run.settle();
     }
   }
 
@@ -142,7 +181,7 @@ export function SignupForm({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <form onSubmit={onSubmit} onChange={(e) => keep(e.currentTarget)} noValidate className="space-y-6" data-signup-form>
+    <form onSubmit={onSubmit} onChange={(e) => keep(e.currentTarget)} noValidate className="space-y-6" data-signup-form aria-busy={run.busy || undefined}>
       {fields.map((fld) => (
         <div key={fld.name}>
           <label htmlFor={`${id}-${fld.name}`} className={labelCls}>{fld.label}</label>
@@ -172,7 +211,7 @@ export function SignupForm({ locale }: { locale: Locale }) {
       </div>
       {error && <p role="alert" className="rounded-md bg-apricot-100 px-4 py-3 t-body-s text-text-primary">{error}</p>}
       <div className="flex flex-col gap-3">
-        <Button type="submit" size="lg" full busy={busy} disabled={busy}>{busy ? d.submitting : d.submit}</Button>
+        <Button type="submit" size="lg" full busy={run.busy} disabled={run.busy}>{run.busy ? d.submitting : d.submit}</Button>
         <p className="t-caption text-text-muted">
           {d.privacy.replace(/Read the privacy notice\.|Lee el aviso de privacidad\./, "")}{" "}
           <Link href={localePath(locale, "/legal/privacy")} className="text-text-accent underline underline-offset-4">{locale === "es" ? "Aviso de privacidad" : "Privacy notice"}</Link>
@@ -182,6 +221,7 @@ export function SignupForm({ locale }: { locale: Locale }) {
       <p className="t-body-s text-text-secondary">
         {d.haveAccount} <Link href={localePath(locale, "/login")} className="text-text-accent underline underline-offset-4">{d.loginLink}</Link>
       </p>
+      <p role="status" aria-live="polite" className="sr-only" data-form-status>{run.busy ? d.submitting : ""}</p>
     </form>
   );
 }
@@ -193,16 +233,12 @@ function ResendButton({ locale, email }: { locale: Locale; email: string }) {
   async function resend() {
     if (state === "busy") return;
     setState("busy");
-    try {
-      const r = await post("/api/bff/auth/resend", { email, language: locale });
-      setState(r.ok ? "sent" : "failed");
-    } catch {
-      setState("failed");
-    }
+    const r = await post("/api/bff/auth/resend", { email, language: locale });
+    setState(r.ok ? "sent" : "failed");
   }
   return (
     <div className="flex flex-col gap-2">
-      <Button type="button" variant="tertiary" onClick={() => void resend()} disabled={state === "busy" || state === "sent"} data-resend>
+      <Button type="button" variant="tertiary" onClick={() => void resend()} busy={state === "busy"} disabled={state === "busy" || state === "sent"} data-resend>
         {d.resend}
       </Button>
       {state === "sent" && <p role="status" className="t-caption text-signal-positive">{d.resent.replace("{email}", email)}</p>}
@@ -219,37 +255,32 @@ export function RegisterForm({ locale, agencyNameHint }: { locale: Locale; agenc
   const dict = getDictionary(locale);
   const d = dict.onboarding.register;
   const id = useId();
-  const [busy, setBusy] = useState(false);
-  const inFlight = useRef(false);
+  const run = useRunning();
   const [error, setError] = useState<string | null>(null);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (inFlight.current) return;
+    if (run.busy) return;
     const f = new FormData(e.currentTarget);
     const agency_name = String(f.get("agency_name") ?? "").trim();
     if (!agency_name) return setError(dict.common.errors.invalid_agency_name);
-    inFlight.current = true;
-    setBusy(true);
+    if (!run.start()) return;
     setError(null);
     try {
       const r = await post("/api/bff/register", { agency_name, language: f.get("language"), timezone: f.get("timezone") });
       if (r.ok) {
-        window.location.assign(localePath(locale, "/onboarding"));
+        run.leave(localePath(locale, "/onboarding"));
         return;
       }
       // AUTH_COPY_v1 §4.1: a backend failure leaves nothing behind, and the text says so.
       setError(r.code === "server_error" ? d.backendError : (dict.common.errors as Record<string, string>)[r.code] ?? dict.common.errors.generic);
-    } catch {
-      setError(dict.common.errors.generic);
     } finally {
-      inFlight.current = false;
-      setBusy(false);
+      run.settle();
     }
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-6" data-register>
+    <form onSubmit={onSubmit} noValidate className="space-y-6" data-register aria-busy={run.busy || undefined}>
       <div>
         <label htmlFor={`${id}-name`} className={labelCls}>{d.agencyName}</label>
         <input id={`${id}-name`} name="agency_name" type="text" autoComplete="organization" defaultValue={agencyNameHint ?? ""} maxLength={120} aria-describedby={`${id}-name-help`} className={inputCls} />
@@ -273,7 +304,8 @@ export function RegisterForm({ locale, agencyNameHint }: { locale: Locale; agenc
         </div>
       </div>
       {error && <p role="alert" className="t-body-s text-signal-critical">{error}</p>}
-      <Button type="submit" size="lg" busy={busy} disabled={busy}>{busy ? d.submitting : d.submit}</Button>
+      <Button type="submit" size="lg" busy={run.busy} disabled={run.busy}>{run.busy ? d.submitting : d.submit}</Button>
+      <p role="status" aria-live="polite" className="sr-only" data-form-status>{run.busy ? d.submitting : ""}</p>
     </form>
   );
 }
@@ -283,33 +315,32 @@ export function SetPasswordForm({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
   const d = dict.welcome;
   const id = useId();
-  const [busy, setBusy] = useState(false);
+  const run = useRunning();
   const [error, setError] = useState<string | null>(null);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (run.busy) return;
     const f = new FormData(e.currentTarget);
     const password = String(f.get("password") ?? "");
     if (password.length < 10) return setError(dict.common.errors.weak_password);
     if (password !== String(f.get("confirm") ?? "")) return setError(d.mismatch);
-    setBusy(true);
+    if (!run.start()) return;
     setError(null);
     try {
       const r = await post("/api/bff/auth/set-password", { password });
       if (r.ok) {
-        window.location.assign(localePath(locale, "/onboarding"));
+        run.leave(localePath(locale, "/onboarding"));
         return;
       }
       setError((dict.common.errors as Record<string, string>)[r.code] ?? dict.common.errors.generic);
-    } catch {
-      setError(dict.common.errors.generic);
     } finally {
-      setBusy(false);
+      run.settle();
     }
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-6" data-set-password>
+    <form onSubmit={onSubmit} noValidate className="space-y-6" data-set-password aria-busy={run.busy || undefined}>
       <div>
         <label htmlFor={`${id}-pw`} className={labelCls}>{d.password}</label>
         <input id={`${id}-pw`} name="password" type="password" autoComplete="new-password" aria-describedby={`${id}-help`} className={inputCls} />
@@ -320,7 +351,8 @@ export function SetPasswordForm({ locale }: { locale: Locale }) {
         <input id={`${id}-confirm`} name="confirm" type="password" autoComplete="new-password" className={inputCls} />
       </div>
       {error && <p role="alert" className="t-body-s text-signal-critical">{error}</p>}
-      <Button type="submit" size="lg" full busy={busy} disabled={busy}>{busy ? d.submitting : d.submit}</Button>
+      <Button type="submit" size="lg" full busy={run.busy} disabled={run.busy}>{run.busy ? d.submitting : d.submit}</Button>
+      <p role="status" aria-live="polite" className="sr-only" data-form-status>{run.busy ? d.submitting : ""}</p>
     </form>
   );
 }
@@ -329,21 +361,24 @@ export function SetPasswordForm({ locale }: { locale: Locale }) {
  * Log in. `confirmed` is set when the person arrives from the confirmation e-mail (or from the
  * sign-up page): a confirmed account without an agency continues to the registration step after
  * this login. An unconfirmed account gets the confirmation e-mail again from here.
+ *
+ * Running state (owner finding 2026-10-01): from the first submit the button is disabled, says
+ * "Logging you in…" with a quiet ring and stays that way until the next page has replaced this one.
+ * A second click or Enter sends nothing. Only a failure (wrong login, a timeout, an unreachable
+ * server) frees the button, with its sentence above it, so a retry is always possible.
  */
 export function LoginForm({ locale, confirmed = false }: { locale: Locale; confirmed?: boolean }) {
   const dict = getDictionary(locale);
   const d = dict.login;
-  const router = useRouter();
   const id = useId();
-  const [busy, setBusy] = useState(false);
-  const inFlight = useRef(false);
+  const run = useRunning();
   const [error, setError] = useState<string | null>(null);
   const [unconfirmedEmail, setUnconfirmedEmail] = useState<string | null>(null);
   const [forgot, setForgot] = useState(false);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (inFlight.current) return;
+    if (run.busy) return;
     const f = new FormData(e.currentTarget);
     const email = String(f.get("email") ?? "").trim();
     const password = String(f.get("password") ?? "");
@@ -351,29 +386,27 @@ export function LoginForm({ locale, confirmed = false }: { locale: Locale; confi
       setError(d.errors.required);
       return;
     }
-    inFlight.current = true;
-    setBusy(true);
+    if (!run.start()) return;
     setError(null);
     setUnconfirmedEmail(null);
     try {
       const r = await post("/api/bff/auth/login", { email, password });
       if (r.ok) {
-        router.push(localePath(locale, "/onboarding"));
+        run.leave(localePath(locale, "/onboarding"));
         return;
       }
       if (r.code === "email_not_confirmed") setUnconfirmedEmail(email);
       const rate = (dict.signup.rateErrors as Record<string, string>)[r.code];
       setError(rate ?? (d.errors as Record<string, string>)[r.code] ?? (dict.common.errors as Record<string, string>)[r.code] ?? d.errors.server_error);
-    } catch {
-      setError(d.errors.server_error);
     } finally {
-      inFlight.current = false;
-      setBusy(false);
+      run.settle();
     }
   }
 
+  const running = run.busy ? (run.leaving ? d.redirecting : d.submitting) : "";
+
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-6" data-login-form>
+    <form onSubmit={onSubmit} noValidate className="space-y-6" data-login-form aria-busy={run.busy || undefined} data-login-state={run.leaving ? "leaving" : run.busy ? "busy" : "idle"}>
       {confirmed && (
         <p role="status" className="rounded-md bg-sage-100 px-4 py-3 t-body-s text-text-primary" data-confirmed-hint>{d.confirmedHint}</p>
       )}
@@ -387,7 +420,7 @@ export function LoginForm({ locale, confirmed = false }: { locale: Locale; confi
       </div>
       {error && <p role="alert" className="rounded-md bg-apricot-100 px-4 py-3 t-body-s text-text-primary">{error}</p>}
       {unconfirmedEmail && <ResendButton locale={locale} email={unconfirmedEmail} />}
-      <Button type="submit" size="lg" full busy={busy} disabled={busy}>{busy ? d.submitting : d.submit}</Button>
+      <Button type="submit" size="lg" full busy={run.busy} disabled={run.busy}>{run.busy ? d.submitting : d.submit}</Button>
       <div className="space-y-3">
         <button type="button" onClick={() => setForgot(true)} className="min-h-[44px] t-body-s text-text-accent underline underline-offset-4">{d.forgot}</button>
         {forgot && <p role="status" className="t-body-s text-text-secondary">{d.forgotUnavailable}</p>}
@@ -395,6 +428,8 @@ export function LoginForm({ locale, confirmed = false }: { locale: Locale; confi
           {d.noAccount} <Link href={localePath(locale, "/signup")} className="text-text-accent underline underline-offset-4">{d.createLink}</Link>
         </p>
       </div>
+      {/* The running state for screen readers: announced when it changes, silent otherwise. */}
+      <p role="status" aria-live="polite" className="sr-only" data-form-status>{running}</p>
     </form>
   );
 }

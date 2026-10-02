@@ -10,6 +10,7 @@ import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { StatusGlyph, LabelChip } from "@/components/ui/status";
 import { ProductView } from "@/components/site/product-views";
+import { ProductClip } from "@/components/ui/product-clip";
 import { ClosingBand } from "@/components/site/closing-band";
 
 /** Only published capabilities have a page (audit R27). A hidden or unknown slug answers 404, never a home fallback (Z01). */
@@ -62,11 +63,23 @@ export default function ProductPage({ params }: { params: { locale: string; slug
               </CtaRow>
             </Reveal>
             <Reveal delay={120} mode="opacity" className="xl:col-span-6">
-              <div className="stage overflow-hidden p-2 md:p-3">
-                <div className="field-sky rounded-[20px] p-4 md:p-8">
-                  <ProductView slug={c.slug} locale={locale} />
+              {c.slug === "daily-assistant" ? (
+                /* The product video at the function it shows (owner order 2026-10-01 §5): Daily's clip v2 in place of the still. */
+                <div className="stage overflow-hidden p-5 md:p-7" data-product-media="clip">
+                  <h2 className="t-heading-s text-text-primary">{d.home.views.daily.clipHeading}</h2>
+                  <p className="mt-1 t-body-s text-text-muted">{d.home.views.daily.clipLead}</p>
+                  <div className="mt-5">
+                    <ProductClip base="/media/daily/daily-laura" locale={locale} playLabel={d.home.views.daily.playLabel} meta={d.home.views.daily.clipMeta} alt={d.home.views.daily.clipAlt} posterLabel={d.home.views.daily.posterLabel} cues={d.home.views.daily.cues} errorLabel={d.home.views.daily.clipError} />
+                  </div>
+                  <p className="mt-3 t-caption text-text-muted">{d.home.views.daily.note}</p>
                 </div>
-              </div>
+              ) : (
+                <div className="stage overflow-hidden p-2 md:p-3">
+                  <div className="field-sand rounded-[20px] p-4 md:p-8">
+                    <ProductView slug={c.slug} locale={locale} />
+                  </div>
+                </div>
+              )}
             </Reveal>
           </div>
         </div>

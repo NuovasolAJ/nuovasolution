@@ -72,6 +72,12 @@ export function ButtonLink({
   );
 }
 
+/**
+ * `busy`: the request is running. The button is marked, shows a quiet ring (static with reduced
+ * motion) and should be disabled by the caller; the caller keeps it busy until the next page has
+ * replaced this one (owner finding 2026-10-01: the login button must not become clickable again
+ * while the redirect is still on its way).
+ */
 export function Button({
   variant = "primary",
   size = "md",
@@ -83,10 +89,12 @@ export function Button({
 }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant; size?: Size; full?: boolean; busy?: boolean }) {
   return (
     <button
-      className={cn(base, variants[variant], variant === "tertiary" || variant === "quiet" ? "" : sizes[size], full && fullCls, className)}
+      className={cn(base, variants[variant], variant === "tertiary" || variant === "quiet" ? "" : sizes[size], full && fullCls, busy && "disabled:opacity-90", className)}
       aria-busy={busy || undefined}
+      data-busy={busy ? "true" : undefined}
       {...rest}
     >
+      {busy && <span aria-hidden="true" className="busy-ring" data-busy-ring />}
       {children}
     </button>
   );

@@ -137,12 +137,11 @@ export const capabilities: Capability[] = [
     // Public H1 and lead limited to what is proven (audit Z07, R27, LAUNCH_COPY_v1 §6.1): the connected channels on one record, included
     // from the start. Cross-channel identity, the team's CRM view, Google Sheets and external CRMs are
     // tracked in the launch blocker register, not stated on the page.
-    h1: { en: "The messages from your connected channels, on one record.", es: "Los mensajes de tus canales conectados, en una sola ficha." }, // LAUNCH_COPY_v1 §6.1
+    h1: { en: "Your connected channels, on one record.", es: "Tus canales conectados, en una sola ficha." }, // COPY_DELTAS_1001 D-84
     lead: {
-      // WCR-070, first sentence
-      // Interim wording 2026-10-01: qualification is not in production (LEAD_TRUTH_INPUT_v1 §1); Copy's D-12 / D-26 formula.
-      en: "A CRM is included from the start: every enquiry is recorded as a lead with what the customer asked for and the conversation so far.",
-      es: "Hay un CRM incluido desde el principio: cada consulta queda registrada como lead con lo que ha pedido el cliente y la conversación hasta ahora.",
+      // WCR-070, first sentence; final wording COPY_DELTAS_1001 D-85 (no qualification claim, LEAD_TRUTH_INPUT_v1 §1).
+      en: "A CRM is included from the start. Each enquiry becomes a lead with what the customer asked for and the conversation so far.",
+      es: "Hay un CRM incluido desde el principio. Cada consulta pasa a ser un lead con lo que ha pedido el cliente y la conversación hasta ahora.",
     },
     points: [
       { text: { en: "Leads recorded with what each customer asked for, included.", es: "Leads registrados con lo que ha pedido cada cliente, incluido." }, status: "live" }, // WCR-071, interim wording 2026-10-01 (no qualification claim)

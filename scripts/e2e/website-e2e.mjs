@@ -207,11 +207,11 @@ try {
   await nav(`${BASE}/en/onboarding`, 3000);
   const after = await ev(`(()=>({checked:document.querySelector('[data-crm-choice] input:checked')?.value,done:document.querySelector('[data-crm-of-record]')?.innerText,sheets:document.querySelector('[data-sheets-state]')?.getAttribute('data-sheets-state'),sheetsText:document.querySelector('[data-sheets-state]')?.innerText}))()`);
   check("W2-07", "choice saved, and a reload shows the same choice", saved && after.checked === "google_sheets" && /CRM included in Nuova/.test(after.done ?? ""), after);
-  check("W2-10", "Google Sheets reads 'chosen, not connected', never 'connected'", after.sheets === "chosen_not_connected" && /Chosen, not connected/.test(after.sheetsText ?? "") && !/^Connected/m.test(after.sheetsText ?? ""), after.sheetsText);
+  check("W2-10", "Google Sheets reads 'selected, not connected', never 'connected'", after.sheets === "chosen_not_connected" && /Selected, not connected/.test(after.sheetsText ?? "") && !/^Connected/m.test(after.sheetsText ?? ""), after.sheetsText);
 
   // B3 register interest for HubSpot
   await ev(`[...document.querySelectorAll('[data-crm-choice] button')].find(b=>/I use HubSpot/.test(b.innerText)).click()`);
-  const interest = await waitFor(`/We will tell you when HubSpot can be connected/.test(document.querySelector('[data-crm-msg=ok]')?.innerText??'')`);
+  const interest = await waitFor(`/Interest recorded. Nothing is sent to HubSpot/.test(document.querySelector('[data-crm-msg=ok]')?.innerText??'')`);
   check("W2-08", "naming HubSpot records interest only, with the built-in CRM kept", interest, "interest message shown");
   await ev(`document.querySelector('[data-crm-choice]').scrollIntoView({block:'start'})`);
   await sleep(400);

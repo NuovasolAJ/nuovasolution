@@ -40,10 +40,12 @@ try {
   let mid = 0;
   const pend = new Map();
   let posts = [];
+  let paused = []; // login requests held by the Fetch domain (FS-06 to FS-09)
   ws.addEventListener("message", (e) => {
     const m = JSON.parse(e.data);
     if (m.id && pend.has(m.id)) { pend.get(m.id)(m); pend.delete(m.id); return; }
     if (m.method === "Network.requestWillBeSent" && m.params.request.method === "POST") posts.push(new URL(m.params.request.url).pathname);
+    if (m.method === "Fetch.requestPaused") paused.push(m.params);
   });
   const send = (method, params = {}) => new Promise((res) => { const i = ++mid; pend.set(i, res); ws.send(JSON.stringify({ id: i, method, params })); });
   const ev = async (x) => (await send("Runtime.evaluate", { expression: x, returnByValue: true, awaitPromise: true })).result?.result?.value;
@@ -57,9 +59,19 @@ try {
   await send("Network.enable");
 
   const T = {
-    en: { required: /We need this one/, email: /does not look right/, pw: /at least 10 characters/, loginRequired: /We need this one to log you in/, wrong: /do not match an account/, forgot: /Password reset is not available yet/ },
-    es: { required: /./, email: /./, pw: /10/, loginRequired: /./, wrong: /./, forgot: /./ },
+    en: { required: /We need this one/, email: /does not look right/, pw: /at least 10 characters/, loginRequired: /We need this one to log you in/, wrong: /do not match an account/, forgot: /Password reset is not available yet/, running: /^Logging you in…$/, leaving: /Opening your agency…/, timeout: /took too long/, connection: /could not reach the server/ },
+    es: { required: /./, email: /./, pw: /10/, loginRequired: /./, wrong: /no coinciden/, forgot: /./, running: /^Iniciando sesión…$/, leaving: /Abriendo tu agencia…/, timeout: /tardado demasiado/, connection: /No hemos podido conectar/ },
   };
+  // The running state of the login button (owner finding 2026-10-01), read in one go.
+  const loginState = () => ev(`(()=>{const b=document.querySelector('${"[data-login-form]"} button[type=submit]');return {disabled:b.disabled,busy:b.getAttribute('aria-busy'),label:b.innerText.trim(),ring:!!b.querySelector('[data-busy-ring]'),status:document.querySelector('[data-login-form] [data-form-status]')?.textContent??null,state:document.querySelector('[data-login-form]')?.getAttribute('data-login-state'),alert:document.querySelector('[data-login-form] [role=alert]')?.innerText??null,email:document.querySelector('[data-login-form] input[name=email]').value,path:location.pathname}})()`);
+  const pressEnter = async () => {
+    await ev(`document.querySelector('[data-login-form] input[name=password]').focus()`);
+    await send("Input.dispatchKeyEvent", { type: "keyDown", key: "Enter", code: "Enter", windowsVirtualKeyCode: 13, text: "\r" });
+    await send("Input.dispatchKeyEvent", { type: "keyUp", key: "Enter", code: "Enter", windowsVirtualKeyCode: 13 });
+  };
+  const holdLogin = async () => { paused = []; await send("Fetch.enable", { patterns: [{ urlPattern: "*/api/bff/auth/login", requestStage: "Request" }] }); };
+  const releaseLogin = async () => { await send("Fetch.disable"); paused = []; };
+  const freshLogin = async (locale) => { await send("Network.clearBrowserCookies"); await nav(`${BASE}/${locale}/login`); await setVal("[data-login-form] input[name=email]", "owner@example.invalid"); await setVal("[data-login-form] input[name=password]", "a-password-of-ten-or-more"); };
   const S = "[data-signup-form]", L = "[data-login-form]";
   const fieldState = () => ev(`(()=>{const f=document.querySelector('${S}');return ['name','agency_name','email','password'].map(n=>{const i=f.elements.namedItem(n);const d=i.getAttribute('aria-describedby');const t=d?document.getElementById(d):null;return {n,invalid:i.getAttribute('aria-invalid'),text:t&&/-err$/.test(d)?t.innerText:null}})})()`);
 
@@ -112,6 +124,79 @@ try {
       const o3 = await overflow();
       await shot(`${id}-login-empty`);
       check(`FS-${id}-04`, "login, empty: one sentence, nothing sent; 'forgot your password' says what is possible today", Boolean(le) && T[locale].loginRequired.test(le) && !posts.includes("/api/bff/auth/login") && Boolean(fg) && T[locale].forgot.test(fg) && o3.sw <= o3.iw, { alert: le, forgot: fg, posts, overflow: o3 });
+
+      // login running state (owner finding 2026-10-01): the request is held by the browser's own Fetch domain,
+      // so the waiting state is observable and no server, stub or real, is needed for these four cases.
+      if (tag === "m390") {
+        const fulfil = (p, body) => send("Fetch.fulfillRequest", { requestId: p.requestId, responseCode: 200, responseHeaders: [{ name: "Content-Type", value: "application/json" }], body: Buffer.from(JSON.stringify(body)).toString("base64") });
+
+        // FS-06: two clicks and Enter send one request; the button waits, says so, and stays blocked until the next page
+        await freshLogin(locale);
+        await holdLogin();
+        await ev(`document.querySelector('${L} button[type=submit]').click()`);
+        await ev(`document.querySelector('${L} button[type=submit]').click()`);
+        await pressEnter();
+        await sleep(500);
+        const held = await loginState();
+        const heldCount = paused.length;
+        await shot(`${id}-login-running`);
+        let reenabled = false, left = false, sawLeaving = false;
+        // A marker on this document: once it is gone, the browser has replaced the page (wherever it went).
+        await ev(`window.__fsMark = 1`);
+        // Stub: let the real stub answer (it sets the session cookie, so the next page opens). Staging: a faked
+        // success, so no real credentials are needed; the next page then sends the visitor back, which is still a replacement.
+        if (heldCount) { if (REAL_LOGIN) await fulfil(paused[0], { ok: true, code: "ok", message: "ok" }); else await send("Fetch.continueRequest", { requestId: paused[0].requestId }); }
+        for (let i = 0; i < 200; i++) {
+          const s = await ev(`window.__fsMark === 1 ? (${`(()=>{const b=document.querySelector('[data-login-form] button[type=submit]');return b?{disabled:b.disabled,busy:b.getAttribute('aria-busy'),status:document.querySelector('[data-login-form] [data-form-status]')?.textContent??null}:null})()`}) : null`).catch(() => null);
+          if (!s) { left = true; break; }
+          if (T[locale].leaving.test(s.status ?? "")) sawLeaving = true;
+          if (!s.disabled || s.busy !== "true") { reenabled = true; break; }
+          await sleep(40);
+        }
+        await releaseLogin();
+        check(`FS-${id}-06`, "login: two clicks and Enter send one request; the button is disabled, marked busy, shows the ring and says it is logging in; it stays blocked until the next page replaces this one", heldCount === 1 && held.disabled && held.busy === "true" && held.ring && T[locale].running.test(held.label) && T[locale].running.test(held.status ?? "") && held.state === "busy" && left && !reenabled, { heldCount, held, left, reenabled, sawLeaving });
+
+        // FS-07: a wrong login frees the button with its sentence; the address stays; a second attempt is possible
+        await freshLogin(locale);
+        await holdLogin();
+        await pressEnter();
+        for (let i = 0; i < 25 && !paused.length; i++) await sleep(100);
+        if (paused.length) await fulfil(paused[0], { ok: false, code: "invalid_grant", message: "invalid_grant" });
+        await waitFor(`!!document.querySelector('${L} [role=alert]')`, 5000);
+        const wrong = await loginState();
+        await ev(`document.querySelector('${L} button[type=submit]').click()`);
+        for (let i = 0; i < 25 && paused.length < 2; i++) await sleep(100);
+        const retried = paused.length;
+        await shot(`${id}-login-wrong-held`);
+        if (paused[1]) await send("Fetch.failRequest", { requestId: paused[1].requestId, errorReason: "ConnectionFailed" }).catch(() => {});
+        await releaseLogin();
+        check(`FS-${id}-07`, "login refused: the sentence for a wrong login, the button free and not busy, the address kept, and a second attempt sends a new request", T[locale].wrong.test(wrong.alert ?? "") && !wrong.disabled && wrong.busy !== "true" && wrong.email === "owner@example.invalid" && wrong.path === `/${locale}/login` && retried === 2, { wrong, retried });
+
+        // FS-08: the server cannot be reached: a plain sentence, the button free again
+        await freshLogin(locale);
+        await holdLogin();
+        await ev(`document.querySelector('${L} button[type=submit]').click()`);
+        for (let i = 0; i < 25 && !paused.length; i++) await sleep(100);
+        if (paused.length) await send("Fetch.failRequest", { requestId: paused[0].requestId, errorReason: "ConnectionFailed" });
+        await waitFor(`!!document.querySelector('${L} [role=alert]')`, 5000);
+        const down = await loginState();
+        await shot(`${id}-login-unreachable`);
+        await releaseLogin();
+        check(`FS-${id}-08`, "login with the server unreachable: the connection sentence, the button free, nothing blocked", T[locale].connection.test(down.alert ?? "") && !down.disabled && down.busy !== "true" && down.path === `/${locale}/login`, down);
+
+        // FS-09 (once): a request that never answers is given up after the form's own limit; the button is free again
+        if (locale === "en") {
+          await freshLogin(locale);
+          await holdLogin();
+          await ev(`document.querySelector('${L} button[type=submit]').click()`);
+          const stillBusy = await waitFor(`document.querySelector('${L} button[type=submit]').disabled`, 2000);
+          const gaveUp = await waitFor(`!!document.querySelector('${L} [role=alert]')`, 30000);
+          const slow = await loginState();
+          await shot(`${id}-login-timeout`);
+          await releaseLogin();
+          check(`FS-${id}-09`, "login with no answer at all: busy first, then the timeout sentence within the form's limit and the button free again", stillBusy && gaveUp && T[locale].timeout.test(slow.alert ?? "") && !slow.disabled && slow.busy !== "true", { stillBusy, gaveUp, slow });
+        }
+      }
 
       // login: an address without an account (staging only; the stub accepts any login by design)
       if (REAL_LOGIN && tag === "m390") {

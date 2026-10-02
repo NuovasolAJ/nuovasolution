@@ -53,13 +53,14 @@ export default function HomePage({ params }: { params: { locale: string } }) {
       {/* 1 Hero */}
       <section aria-labelledby="hero-h1" className="relative overflow-hidden pb-[var(--section-compact)] pt-[var(--section-compact)] xl:pt-[var(--section-default)]">
         <div className="container-default">
-          <div className="grid grid-cols-1 items-center gap-10 xl:grid-cols-12 xl:gap-10">
-            <Reveal className="xl:col-span-6">
+          {/* The text keeps its own column: the scene never covers the headline or the buttons. */}
+          <div className="grid grid-cols-1 items-center gap-8 xl:grid-cols-12 xl:gap-8">
+            <Reveal className="relative z-[3] xl:col-span-5">
               <p className="inline-flex items-center gap-2 rounded-pill border border-line-hairline bg-surface-raised px-3 py-1.5 t-caption text-text-secondary">
                 <span aria-hidden="true" className="h-1.5 w-1.5 rounded-pill bg-champagne-400" />
                 {h.hero.eyebrow}
               </p>
-              <Display size="xl" id="hero-h1" className="mt-6 max-w-[14ch]">{h.hero.h1}</Display>
+              <Display size="xl" id="hero-h1" className="mt-6 max-w-[12ch]">{h.hero.h1}</Display>
               <Lead className="mt-6">{h.hero.lead}</Lead>
               <Caption className="mt-3">{h.hero.qualifier}</Caption>
               <CtaRow className="mt-9">
@@ -68,7 +69,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
               </CtaRow>
               <Caption className="mt-4">{h.hero.note}</Caption>
             </Reveal>
-            <HeroScene locale={locale} className="xl:col-span-6" />
+            <HeroScene locale={locale} className="xl:col-span-7" />
           </div>
 
           {/* The story in one line; each step jumps to its stage. */}
@@ -98,11 +99,12 @@ export default function HomePage({ params }: { params: { locale: string } }) {
             <ul className="mt-10 grid gap-5 lg:grid-cols-3">
               {h.problem.items.map((it, i) => (
                 <Reveal key={it.label} delay={i * 70} as="li" className="flex flex-col">
-                  <div className="rounded-t-xl border border-b-0 border-line-strong bg-[color:rgba(255,255,255,0.45)] p-6">
+                  {/* A solid warm surface, so the text never sinks into the sand ground (owner order 2026-10-01 §3). */}
+                  <div className="rounded-t-xl border border-b-0 border-line-strong bg-[color:var(--ivory)] p-6">
                     <p className="t-eyebrow text-signal-attention">{it.label}</p>
                     <p className="mt-3 t-heading-m text-text-primary">{it.pain}</p>
                   </div>
-                  <div className="flex flex-1 items-start gap-3 rounded-b-xl border border-line-hairline bg-surface-raised p-6 shadow-card">
+                  <div className="flex flex-1 items-start gap-3 rounded-b-xl border border-[color:var(--line-contour)] bg-surface-raised p-6 shadow-card">
                     <span aria-hidden="true" className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-pill bg-sage-100 text-sage-700"><StatusGlyph glyph="check" size={12} /></span>
                     <p className="t-body-m text-text-secondary">
                       <span className="block t-caption font-medium text-sage-700">{h.problem.benefitLabel}</span>

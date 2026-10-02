@@ -130,7 +130,9 @@ export function HeaderShell({
     };
   }, [menuOpen]);
 
-  const linkCls = "inline-flex min-h-[44px] items-center rounded-pill px-3.5 t-body-s text-text-secondary transition-colors duration-micro hover:bg-surface-sunken hover:text-text-primary";
+  // A header label never wraps (Spanish "Iniciar sesión" at 1366 px): the outer grid columns grow to their content
+  // instead, and the menu stays centred wherever the two sides fit in the same width.
+  const linkCls = "inline-flex min-h-[44px] items-center whitespace-nowrap rounded-pill px-3 t-body-s text-text-secondary transition-colors duration-micro hover:bg-surface-sunken hover:text-text-primary 2xl:px-3.5";
 
   return (
     <>
@@ -141,10 +143,13 @@ export function HeaderShell({
           scrolled || menuOpen || sheetOpen ? "border-b border-line-hairline" : "border-b border-transparent",
         )}
       >
-        <div className="container-wide relative flex h-full items-center justify-between gap-3 2xl:gap-6">
-          <div className="flex items-center gap-4 2xl:gap-8">
+        {/* Three columns of which the outer two share the width equally: the menu sits in the geometric centre of
+            the page whatever the logo and the actions weigh (owner order 2026-10-01 §3). Below 1024 px: logo and the menu button. */}
+        <div className="container-wide relative grid h-full grid-cols-[1fr_auto] items-center gap-3 xl:grid-cols-[1fr_auto_1fr] 2xl:gap-6">
+          <div className="flex items-center justify-start">
             {logo}
-            <nav aria-label="Primary" className="hidden xl:flex items-center gap-1">
+          </div>
+          <nav aria-label="Primary" className="hidden xl:flex items-center justify-center gap-1">
               {/* The menu panel is positioned against the header container (not the button), so it never leaves the viewport. */}
               <div ref={menuRef} className="static">
                 <button
@@ -174,10 +179,9 @@ export function HeaderShell({
                   {n.label}
                 </Link>
               ))}
-            </nav>
-          </div>
+          </nav>
 
-          <div className="hidden xl:flex items-center gap-1 2xl:gap-3">
+          <div className="hidden xl:flex items-center justify-end gap-1 2xl:gap-3">
             {utilities}
             <Link href={login.href} className={linkCls}>
               {login.label}
@@ -190,7 +194,7 @@ export function HeaderShell({
           <button
             ref={toggleRef}
             type="button"
-            className="xl:hidden inline-flex h-11 w-11 items-center justify-center rounded-pill border border-line-strong bg-surface-raised text-text-primary"
+            className="xl:hidden inline-flex h-11 w-11 items-center justify-center justify-self-end rounded-pill border border-line-strong bg-surface-raised text-text-primary"
             aria-expanded={sheetOpen}
             aria-controls={sheetId}
             aria-label={sheetOpen ? labels.close : labels.menu}

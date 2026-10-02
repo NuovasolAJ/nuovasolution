@@ -9,8 +9,8 @@ import { DAYS, type Day, type OnboardingProfile, type Readiness } from "@/lib/co
 import { Button } from "@/components/ui/button";
 import { LabelChip, StatusGlyph } from "@/components/ui/status";
 
-const inputCls = "mt-2 h-12 w-full rounded-sm border border-line-interactive bg-surface-raised px-4 t-body-m text-text-primary disabled:opacity-60";
-const labelCls = "block t-body-s text-text-primary";
+const inputCls = "mt-2 h-12 w-full rounded-md border border-line-strong bg-surface-raised px-4 t-body-m text-text-primary disabled:opacity-60";
+const labelCls = "block t-body-s font-medium text-text-primary";
 const TIMEZONES = ["Europe/Madrid", "Atlantic/Canary", "Europe/London", "Europe/Lisbon", "Europe/Berlin", "Europe/Paris", "Europe/Amsterdam"];
 const LANGS = ["es", "en", "de", "fr", "it", "nl", "pt"] as const;
 const TYPES = ["viewing", "valuation", "call"] as const;
@@ -18,61 +18,50 @@ const MINUTES = [15, 30, 45, 60, 90];
 const MANAGERS = ["office_manager", "agency_admin"];
 
 type Env = { ok: boolean; code: string; stub?: true; details?: { profile?: OnboardingProfile; field?: string; object_path?: string; signed_upload_url?: string | null } };
-type Msg = { tone: "ok" | "error"; text: string } | null;
+export type Msg = { tone: "ok" | "error"; text: string } | null;
 
 async function post(url: string, body: unknown): Promise<Env> {
-  const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-  return (await res.json().catch(() => ({ ok: false, code: "generic" }))) as Env;
+  try {
+    const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    return (await res.json().catch(() => ({ ok: false, code: "generic" }))) as Env;
+  } catch {
+    return { ok: false, code: "connection" };
+  }
 }
 
 /**
- * The agency's own setup, section by section. Every section saves through its BFF route and then
- * shows the profile the server read back (never the form values echoed). Role limits are shown
- * up front; the server enforces them regardless.
+ * The agency's own setup, section by section (the sections are laid out in five areas by
+ * onboarding-areas.tsx). Every section saves through its BFF route and then shows the profile the
+ * server read back (never the form values echoed). Role limits are shown up front; the server
+ * enforces them regardless.
  */
-export function OnboardingSetup({ locale, profile: initial, readiness, role, stub }: { locale: Locale; profile: OnboardingProfile; readiness: Readiness | null; role: string; stub: boolean }) {
+export type SaveFn = (url: string, body: unknown) => Promise<Msg>;
+
+export function useSetupSave(locale: Locale, initial: OnboardingProfile, role: string) {
   const dict = getDictionary(locale);
   const s = dict.onboarding.setup;
   const router = useRouter();
   const [profile, setProfile] = useState(initial);
   // v2 §2: every onboarding.set section and branding write needs manage_users (office_manager, agency_admin).
   const canManage = MANAGERS.includes(role);
-
   const errorText = (r: Env) => {
     if (r.code === "invalid_input" && r.details?.field) return s.invalidField.replace("{field}", r.details.field);
     return (dict.common.errors as Record<string, string>)[r.code] ?? dict.common.errors.generic;
   };
-  async function save(url: string, body: unknown): Promise<Msg> {
-    try {
-      const r = await post(url, body);
-      if (!r.ok || !r.details?.profile) return { tone: "error", text: errorText(r) };
-      setProfile(r.details.profile);
-      router.refresh(); // wizard steps and readiness re-read from the server
-      return { tone: "ok", text: s.saved };
-    } catch {
-      return { tone: "error", text: dict.common.errors.generic };
-    }
-  }
-
-  return (
-    <section aria-labelledby="setup-h" className="space-y-10" data-onboarding-setup>
-      <div>
-        <h2 id="setup-h" className="t-heading-l text-text-primary">{s.heading}</h2>
-        <p className="mt-2 t-body-s text-text-secondary measure-body">{s.lead}</p>
-      </div>
-      <BusinessSection locale={locale} profile={profile} disabled={!canManage} save={save} />
-      <LegalSection locale={locale} profile={profile} readiness={readiness} disabled={!canManage} save={save} />
-      <BrandingSection locale={locale} profile={profile} disabled={!canManage} stub={stub} setProfile={setProfile} errorText={errorText} />
-      <CalendarSection locale={locale} profile={profile} disabled={!canManage} save={save} />
-      <ReadinessSection locale={locale} readiness={readiness} />
-    </section>
-  );
+  const save: SaveFn = async (url, body) => {
+    const r = await post(url, body);
+    if (!r.ok || !r.details?.profile) return { tone: "error", text: errorText(r) };
+    setProfile(r.details.profile);
+    router.refresh(); // wizard steps and readiness re-read from the server
+    return { tone: "ok", text: s.saved };
+  };
+  return { profile, setProfile, save, errorText, canManage };
 }
 
-function Panel({ id, title, lead, note, children }: { id: string; title: string; lead?: string; note?: string | null; children: ReactNode }) {
+export function Panel({ id, title, lead, note, children }: { id: string; title: string; lead?: string; note?: string | null; children: ReactNode }) {
   return (
-    <div id={id} className="border-t border-line-hairline pt-6" data-setup-section={id}>
-      <h3 className="t-heading-m text-text-primary">{title}</h3>
+    <div id={id} className="scroll-mt-[calc(var(--header-h)+88px)] border-t border-line-hairline pt-6 xl:scroll-mt-[calc(var(--header-h)+24px)]" data-setup-section={id}>
+      <h4 className="t-heading-m text-text-primary">{title}</h4>
       {lead && <p className="mt-2 t-body-s text-text-secondary measure-body">{lead}</p>}
       {note && <p className="mt-2 t-caption text-text-muted" data-role-note>{note}</p>}
       <div className="mt-5">{children}</div>
@@ -89,8 +78,6 @@ function Result({ msg }: { msg: Msg }) {
   );
 }
 
-type SaveFn = (url: string, body: unknown) => Promise<Msg>;
-
 function useSubmit(save: SaveFn) {
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<Msg>(null);
@@ -103,7 +90,7 @@ function useSubmit(save: SaveFn) {
   return { busy, msg, run };
 }
 
-// ---------------- business and hours ----------------
+// ---------------- business ----------------
 
 function splitHours(v: string | undefined): { open: boolean; from: string; to: string } {
   if (!v || v === "closed") return { open: false, from: "09:00", to: "18:00" };
@@ -111,26 +98,19 @@ function splitHours(v: string | undefined): { open: boolean; from: string; to: s
   return { open: true, from, to };
 }
 
-function BusinessSection({ locale, profile, disabled, save }: { locale: Locale; profile: OnboardingProfile; disabled: boolean; save: SaveFn }) {
+/** Name, time zone and languages. Saves with the stored hours untouched (one route carries both). */
+export function BusinessSection({ locale, profile, disabled, save }: { locale: Locale; profile: OnboardingProfile; disabled: boolean; save: SaveFn }) {
   const dict = getDictionary(locale);
   const s = dict.onboarding.setup;
   const b = s.business;
   const id = useId();
   const { busy, msg, run } = useSubmit(save);
   const [langs, setLangs] = useState<string[]>(profile.business.languages.length ? profile.business.languages : ["es"]);
-  const hasHours = Object.keys(profile.business.business_hours).length > 0;
-  const [hours, setHours] = useState<Record<Day, { open: boolean; from: string; to: string }>>(() => {
-    const out = {} as Record<Day, { open: boolean; from: string; to: string }>;
-    for (const d of DAYS) out[d] = hasHours ? splitHours(profile.business.business_hours[d]) : { open: !["sat", "sun"].includes(d), from: "09:00", to: "18:00" };
-    return out;
-  });
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const business_hours: Partial<Record<Day, string>> = {};
-    for (const d of DAYS) business_hours[d] = hours[d].open ? `${hours[d].from}-${hours[d].to}` : "closed";
-    run("/api/bff/onboarding/business", { timezone: f.get("timezone"), languages: langs, default_language: f.get("default_language"), business_hours });
+    run("/api/bff/onboarding/business", { timezone: f.get("timezone"), languages: langs, default_language: f.get("default_language"), business_hours: storedHours(profile) });
   }
 
   return (
@@ -165,10 +145,53 @@ function BusinessSection({ locale, profile, disabled, save }: { locale: Locale; 
             ))}
           </div>
         </fieldset>
+        <Button type="submit" size="sm" busy={busy} disabled={busy || disabled}>{s.save}</Button>
+        <Result msg={msg} />
+      </form>
+    </Panel>
+  );
+}
+
+/** The stored hours, in the runtime format, or a working week when nothing is stored yet. */
+function storedHours(profile: OnboardingProfile): Record<Day, string> {
+  const has = Object.keys(profile.business.business_hours).length > 0;
+  const out = {} as Record<Day, string>;
+  for (const d of DAYS) out[d] = has ? (profile.business.business_hours[d] ?? "closed") : ["sat", "sun"].includes(d) ? "closed" : "09:00-18:00";
+  return out;
+}
+
+/** Opening hours on their own (owner order 2026-10-01 §7: team and working hours). Stored, and the help says what they steer (D-64). */
+export function HoursSection({ locale, profile, disabled, save }: { locale: Locale; profile: OnboardingProfile; disabled: boolean; save: SaveFn }) {
+  const dict = getDictionary(locale);
+  const s = dict.onboarding.setup;
+  const b = s.business;
+  const id = useId();
+  const { busy, msg, run } = useSubmit(save);
+  const [hours, setHours] = useState<Record<Day, { open: boolean; from: string; to: string }>>(() => {
+    const stored = storedHours(profile);
+    const out = {} as Record<Day, { open: boolean; from: string; to: string }>;
+    for (const d of DAYS) out[d] = splitHours(stored[d]);
+    return out;
+  });
+
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const business_hours: Partial<Record<Day, string>> = {};
+    for (const d of DAYS) business_hours[d] = hours[d].open ? `${hours[d].from}-${hours[d].to}` : "closed";
+    run("/api/bff/onboarding/business", {
+      timezone: profile.business.timezone ?? "Europe/Madrid",
+      languages: profile.business.languages.length ? profile.business.languages : ["es"],
+      default_language: profile.business.default_language,
+      business_hours,
+    });
+  }
+
+  return (
+    <Panel id="setup-hours" title={b.hoursHeading} lead={b.hoursHelp} note={disabled ? s.managersOnly : null}>
+      <form onSubmit={onSubmit} noValidate className="space-y-6">
         <fieldset>
-          <legend className={labelCls}>{b.hours}</legend>
-          <p className="mt-1 t-caption text-text-muted">{b.hoursHelp}</p>
-          <div className="mt-3 hairline-list border-y border-line-hairline">
+          <legend className="sr-only">{b.hours}</legend>
+          <div className="hairline-list border-y border-line-hairline">
             {DAYS.map((d) => (
               <div key={d} className="grid grid-cols-[6.5rem_1fr] items-center gap-3 py-2 md:grid-cols-[8rem_7rem_1fr]" data-day={d}>
                 <span className="t-body-s text-text-primary">{b.days[d]}</span>
@@ -179,10 +202,10 @@ function BusinessSection({ locale, profile, disabled, save }: { locale: Locale; 
                 {hours[d].open && (
                   <div className="col-span-2 flex items-center gap-2 md:col-span-1">
                     <label className="sr-only" htmlFor={`${id}-${d}-f`}>{b.from}</label>
-                    <input id={`${id}-${d}-f`} type="time" step={900} value={hours[d].from} disabled={disabled} onChange={(e) => setHours((h) => ({ ...h, [d]: { ...h[d], from: e.target.value } }))} className="h-11 rounded-sm border border-line-interactive bg-surface-raised px-2 t-body-s tnum" />
+                    <input id={`${id}-${d}-f`} type="time" step={900} value={hours[d].from} disabled={disabled} onChange={(e) => setHours((h) => ({ ...h, [d]: { ...h[d], from: e.target.value } }))} className="h-11 rounded-md border border-line-strong bg-surface-raised px-2 t-body-s tnum" />
                     <span aria-hidden className="text-text-muted">–</span>
                     <label className="sr-only" htmlFor={`${id}-${d}-t`}>{b.to}</label>
-                    <input id={`${id}-${d}-t`} type="time" step={900} value={hours[d].to} disabled={disabled} onChange={(e) => setHours((h) => ({ ...h, [d]: { ...h[d], to: e.target.value } }))} className="h-11 rounded-sm border border-line-interactive bg-surface-raised px-2 t-body-s tnum" />
+                    <input id={`${id}-${d}-t`} type="time" step={900} value={hours[d].to} disabled={disabled} onChange={(e) => setHours((h) => ({ ...h, [d]: { ...h[d], to: e.target.value } }))} className="h-11 rounded-md border border-line-strong bg-surface-raised px-2 t-body-s tnum" />
                   </div>
                 )}
               </div>
@@ -198,7 +221,7 @@ function BusinessSection({ locale, profile, disabled, save }: { locale: Locale; 
 
 // ---------------- legal ----------------
 
-function LegalSection({ locale, profile, readiness, disabled, save }: { locale: Locale; profile: OnboardingProfile; readiness: Readiness | null; disabled: boolean; save: SaveFn }) {
+export function LegalSection({ locale, profile, readiness, disabled, save }: { locale: Locale; profile: OnboardingProfile; readiness: Readiness | null; disabled: boolean; save: SaveFn }) {
   const s = getDictionary(locale).onboarding.setup;
   const l = s.legal;
   const id = useId();
@@ -208,14 +231,15 @@ function LegalSection({ locale, profile, readiness, disabled, save }: { locale: 
   const gate = readiness?.gates.find((g) => g.gate_key === "white_label_legal")?.status;
   const missing = profile.legal_missing ? profile.legal_missing.map((m) => l.fields[m as keyof typeof l.fields]).filter(Boolean) : null;
   const complete = missing ? missing.length === 0 : gate === "READY";
-  const fields: { name: string; label: string; value: string | null; type?: string; auto?: string; wide?: boolean }[] = [
+  // Help lines COPY_DELTAS_1001 D-69 (address) and D-70 (the two links): what each is used for, where the person types it.
+  const fields: { name: string; label: string; value: string | null; type?: string; auto?: string; wide?: boolean; help?: string }[] = [
     { name: "legal_name", label: l.legalName, value: p.legal_name, auto: "organization", wide: true },
     { name: "tax_id", label: l.taxId, value: p.tax_id },
-    { name: "address_line", label: l.addressLine, value: p.address.line, auto: "street-address", wide: true },
+    { name: "address_line", label: l.addressLine, value: p.address.line, auto: "street-address", wide: true, help: l.addressHelp },
     { name: "address_postal_code", label: l.postalCode, value: p.address.postal_code, auto: "postal-code" },
     { name: "address_city", label: l.city, value: p.address.city, auto: "address-level2" },
     { name: "address_region", label: l.region, value: p.address.region, auto: "address-level1" },
-    { name: "privacy_url", label: l.privacyUrl, value: p.privacy_url, type: "url", wide: true },
+    { name: "privacy_url", label: l.privacyUrl, value: p.privacy_url, type: "url", wide: true, help: l.linksHelp },
     { name: "terms_url", label: l.termsUrl, value: p.terms_url, type: "url", wide: true },
     { name: "imprint_url", label: l.imprintUrl, value: p.imprint_url, type: "url", wide: true },
   ];
@@ -237,7 +261,8 @@ function LegalSection({ locale, profile, readiness, disabled, save }: { locale: 
         {fields.map((x) => (
           <div key={x.name} className={cn(x.wide && "md:col-span-2")}>
             <label htmlFor={`${id}-${x.name}`} className={labelCls}>{x.label}</label>
-            <input id={`${id}-${x.name}`} name={x.name} type={x.type ?? "text"} inputMode={x.type === "url" ? "url" : undefined} autoComplete={x.auto} defaultValue={x.value ?? ""} placeholder={x.type === "url" ? "https://" : undefined} disabled={disabled} className={inputCls} />
+            <input id={`${id}-${x.name}`} name={x.name} type={x.type ?? "text"} inputMode={x.type === "url" ? "url" : undefined} autoComplete={x.auto} defaultValue={x.value ?? ""} placeholder={x.type === "url" ? "https://" : undefined} disabled={disabled} aria-describedby={x.help ? `${id}-${x.name}-help` : undefined} className={inputCls} />
+            {x.help && <p id={`${id}-${x.name}-help`} className="mt-2 t-caption text-text-muted">{x.help}</p>}
           </div>
         ))}
         <div className="md:col-span-2">
@@ -254,7 +279,7 @@ function LegalSection({ locale, profile, readiness, disabled, save }: { locale: 
 const TYPES_ACCEPTED = ["image/png", "image/jpeg", "image/webp"];
 type LogoKind = "logo" | "logo_dark";
 
-function BrandingSection({ locale, profile, disabled, stub, setProfile, errorText }: { locale: Locale; profile: OnboardingProfile; disabled: boolean; stub: boolean; setProfile: (p: OnboardingProfile) => void; errorText: (r: Env) => string }) {
+export function BrandingSection({ locale, profile, disabled, stub, setProfile, errorText }: { locale: Locale; profile: OnboardingProfile; disabled: boolean; stub: boolean; setProfile: (p: OnboardingProfile) => void; errorText: (r: Env) => string }) {
   const dict = getDictionary(locale);
   const s = dict.onboarding.setup;
   const b = s.branding;
@@ -312,7 +337,7 @@ function BrandingSection({ locale, profile, disabled, stub, setProfile, errorTex
     const src = dark ? darkSrc : br.logo_present ? br.logo : null;
     return (
       <figure className="min-w-0">
-        <div className={cn("flex h-28 items-center justify-center overflow-hidden rounded-sm border px-4", dark ? "border-[#2A2F38] bg-[#1C1F24]" : "border-line-hairline bg-white")} data-preview={dark ? "dark" : "light"}>
+        <div className={cn("flex h-28 items-center justify-center overflow-hidden rounded-md border px-4", dark ? "border-[#2A2F38] bg-[#1C1F24]" : "border-line-hairline bg-white")} data-preview={dark ? "dark" : "light"}>
           {src ? (
             <span className={cn("inline-flex max-w-full items-center justify-center", dark && darkChip && "rounded-sm bg-white px-3 py-2")} data-light-chip={dark && darkChip ? "yes" : undefined}>
               {/* eslint-disable-next-line @next/next/no-img-element -- the agency's own stored asset, shown untouched at up to email size */}
@@ -330,7 +355,7 @@ function BrandingSection({ locale, profile, disabled, stub, setProfile, errorTex
   const fileButton = (kind: LogoKind, label: string) => (
     <>
       <input id={`setup-file-${kind}`} type="file" accept={TYPES_ACCEPTED.join(",")} className="sr-only" disabled={off} onChange={(e) => e.target.files?.[0] && upload(kind, e.target.files[0], e.target)} data-logo-input={kind} />
-      <label htmlFor={`setup-file-${kind}`} className={cn("inline-flex h-11 cursor-pointer items-center rounded-sm border border-line-interactive px-5 t-body-s text-text-primary hover:bg-surface-raised", off && "pointer-events-none opacity-60")}>
+      <label htmlFor={`setup-file-${kind}`} className={cn("inline-flex min-h-[44px] cursor-pointer items-center rounded-pill border border-line-strong bg-surface-raised px-5 t-body-s text-text-primary hover:border-line-interactive", off && "pointer-events-none opacity-60")}>
         {busy === `upload:${kind}` ? ob.uploading : label}
       </label>
     </>
@@ -376,7 +401,7 @@ function BrandingSection({ locale, profile, disabled, stub, setProfile, errorTex
 
 // ---------------- calendar and hand-off ----------------
 
-function CalendarSection({ locale, profile, disabled, save }: { locale: Locale; profile: OnboardingProfile; disabled: boolean; save: SaveFn }) {
+export function CalendarSection({ locale, profile, disabled, save }: { locale: Locale; profile: OnboardingProfile; disabled: boolean; save: SaveFn }) {
   const s = getDictionary(locale).onboarding.setup;
   const c = s.calendar;
   const { busy, msg, run } = useSubmit(save);
@@ -405,7 +430,7 @@ function CalendarSection({ locale, profile, disabled, save }: { locale: Locale; 
                   {c.typeNames[t]}
                 </label>
                 {types[t] !== null && (
-                  <select aria-label={`${c.typeNames[t]}: ${c.minutes.replace("{n} ", "")}`} value={types[t] as number} disabled={disabled} onChange={(e) => setTypes((cur) => ({ ...cur, [t]: Number(e.target.value) }))} className="h-11 rounded-sm border border-line-interactive bg-surface-raised px-2 t-body-s">
+                  <select aria-label={`${c.typeNames[t]}: ${c.minutes.replace("{n} ", "")}`} value={types[t] as number} disabled={disabled} onChange={(e) => setTypes((cur) => ({ ...cur, [t]: Number(e.target.value) }))} className="h-11 rounded-md border border-line-strong bg-surface-raised px-2 t-body-s">
                     {MINUTES.map((m) => <option key={m} value={m}>{c.minutes.replace("{n}", String(m))}</option>)}
                   </select>
                 )}
@@ -439,12 +464,13 @@ function CalendarSection({ locale, profile, disabled, save }: { locale: Locale; 
 
 // ---------------- readiness (tenant_activation_readiness) ----------------
 
-function ReadinessSection({ locale, readiness }: { locale: Locale; readiness: Readiness | null }) {
+export function ReadinessSection({ locale, readiness }: { locale: Locale; readiness: Readiness | null }) {
   const d = getDictionary(locale).onboarding;
   const r = d.setup.readiness;
   if (!readiness) return <Panel id="setup-readiness" title={r.heading}><p role="status" className="t-body-s text-text-secondary">{d.readyError}</p></Panel>;
   // Redaction boundary: only keys with a label render. Two voice gates share one label.
   const label = (k: string) => (d.gates as Record<string, string>)[k] ?? null;
+  const detail = (k: string) => (d.gateDetail as Record<string, string>)[k] ?? null;
   const seen = new Set<string>();
   const rows = readiness.gates.filter((g) => {
     const l = label(g.gate_key);
@@ -459,12 +485,16 @@ function ReadinessSection({ locale, readiness }: { locale: Locale; readiness: Re
   const list = (gs: typeof rows) => (
     <ul className="mt-2 hairline-list border-y border-line-hairline">
       {gs.map((g) => (
-        <li key={g.gate_key} className="flex flex-col gap-1 py-3 md:flex-row md:items-center md:justify-between" data-gate={g.gate_key} data-gate-status={g.status}>
-          <span className="t-body-s text-text-primary">{label(g.gate_key)}</span>
-          <span className={cn("inline-flex items-center gap-1.5 t-caption", g.status === "READY" ? "text-signal-positive" : g.status === "BLOCKED" && g.mandatory ? "text-text-primary" : "text-text-muted")}>
-            <StatusGlyph glyph={g.status === "READY" ? "check" : g.status === "BLOCKED" ? "arrow-right" : "rule"} size={14} />
-            {stateText(g.status)}
-          </span>
+        <li key={g.gate_key} className="py-3" data-gate={g.gate_key} data-gate-status={g.status}>
+          <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
+            <span className="t-body-s text-text-primary">{label(g.gate_key)}</span>
+            <span className={cn("inline-flex items-center gap-1.5 t-caption", g.status === "READY" ? "text-signal-positive" : g.status === "BLOCKED" && g.mandatory ? "text-text-primary" : "text-text-muted")}>
+              <StatusGlyph glyph={g.status === "READY" ? "check" : g.status === "BLOCKED" ? "arrow-right" : "rule"} size={14} />
+              {stateText(g.status)}
+            </span>
+          </div>
+          {/* The plan gate says what the trial carries (COPY_DELTAS_1001 D-67); the legal gate lists what it needs. */}
+          {detail(g.gate_key) && (g.gate_key === "plan_entitlements" || g.status === "BLOCKED") && <p className="mt-1 t-caption text-text-muted">{detail(g.gate_key)}</p>}
         </li>
       ))}
     </ul>

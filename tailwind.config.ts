@@ -82,6 +82,7 @@ const config: Config = {
       },
       boxShadow: {
         overlay: "var(--shadow-overlay)",
+        stage: "var(--shadow-stage)",
         soft: "var(--shadow-soft)",
         card: "var(--shadow-card)",
         lift: "0 1px 2px rgba(26,25,23,.06), 0 10px 28px -10px rgba(26,25,23,.18)",

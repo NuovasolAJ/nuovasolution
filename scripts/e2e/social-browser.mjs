@@ -156,7 +156,7 @@ try {
   }
   const bad = results.pages.filter((p) => !p.ok).map((p) => p.name);
   check("SO-04", `every screen renders from the ${STAGING ? "backend" : "stub"} state with one h1, no horizontal overflow (1440, 768, 390, 360), 44 px controls, EN and ES`, bad.length === 0, { pages: results.pages.length, findings: bad });
-  check("SO-05", "no screen offers an enabled action in this read-only step, and none has a field for a first message", results.pages.every((p) => p.enabledActions === 0 && !p.newMessageField), { inert_controls_seen: results.pages.reduce((n, p) => n + p.inert, 0) });
+  check("SO-05", "no screen offers an enabled action while the read state carries no release (stub: demonstration data), and none has a field for a first message", results.pages.every((p) => p.enabledActions === 0 && !p.newMessageField), { inert_controls_seen: results.pages.reduce((n, p) => n + p.inert, 0) });
 
   const g = (locale, key, c = "", tab = "") => seen[`${locale}:d1440:${c}:${key}:${tab}`];
   if (STAGING) {

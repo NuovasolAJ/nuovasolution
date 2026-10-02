@@ -8,14 +8,36 @@ import { Button, ButtonLink } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { Display, Eyebrow, Heading, Lead } from "@/components/ui/type";
 import { LabelChip, StatusGlyph, type Glyph } from "@/components/ui/status";
+import { ConnectAction, ReplyBox, SocialAction, type OffReason } from "./social-actions";
 
 /**
- * The four social screens (SOCIAL_UI_SPEC_v1 §2), read side. Everything here renders what the
- * server read for the signed-in user. The screens decide no permission: a control whose action
- * is not switched on is shown disabled, next to the sentence that says why.
+ * The four social screens (SOCIAL_UI_SPEC_v1 §2). Everything here renders what the server read for
+ * the signed-in user. The screens decide no permission: a control is switched on only when the read
+ * state suggests it (SOCIAL_ACTIONS_CONTRACT_v1 §2), the database decides, and a control that is off
+ * stands next to the sentence that says why. The actions themselves live in social-actions.tsx.
  */
 
 const PATHS: Record<SocialScreen, string> = { connect: "/social", post: "/social/post", inbox: "/social/inbox", settings: "/social/settings" };
+
+/**
+ * Activation rules (contract §2). Without the v2 read model (`release`, `provider`) the page cannot tell
+ * a missing release from a missing setup, so every action stays off with the sentence for a missing
+ * release; the demonstration data of the stub sends nothing either.
+ */
+function gate(state: SocialState, need: "connect" | "connected"): OffReason {
+  if (state.stub) return "stub";
+  if (state.provider && !state.provider.app_configured) return "notConfigured";
+  if (!state.release || !state.release.active) return "noRelease";
+  if (need === "connected" && !state.connection.some((c) => c.status === "connected")) return "needsConnection";
+  return null;
+}
+function publishGate(state: SocialState): OffReason {
+  const g = gate(state, "connected");
+  if (g) return g;
+  const r = state.release;
+  if (r && r.posts_max !== null && r.posts_used !== null && r.posts_used >= r.posts_max) return "limitReached";
+  return null;
+}
 
 function when(locale: Locale, iso: string | null, withTime = true): string {
   if (!iso) return "";
@@ -107,8 +129,8 @@ export function ConnectScreen({ locale, state }: { locale: Locale; state: Social
   const c = s.connect;
   const live = state.connection.filter((x) => x.status === "connected");
   const past = state.connection.filter((x) => x.status !== "connected");
-  const gate = !state.entitlement.tenant_active ? "inactive" : state.entitlement.publish === "enabled" ? null : "unavailable";
-  const view = live.length ? "connected" : gate ? gate : "disconnected";
+  const gateText = !state.entitlement.tenant_active ? "inactive" : state.entitlement.publish === "enabled" ? null : "unavailable";
+  const view = live.length ? "connected" : gateText ? gateText : "disconnected";
   return (
     <div className="grid gap-6 xl:grid-cols-12" data-connect-state={view}>
       <div className="stage p-6 md:p-8 xl:col-span-7">
@@ -133,8 +155,8 @@ export function ConnectScreen({ locale, state }: { locale: Locale; state: Social
           </ul>
         ) : (
           <div>
-            <Heading size="m" as="h2">{gate ? c[gate] : c.none}</Heading>
-            <div className="mt-6"><Inert>{c.action}</Inert></div>
+            <Heading size="m" as="h2">{gateText ? c[gateText] : c.none}</Heading>
+            <div className="mt-6"><ConnectAction locale={locale} label={c.action} checkLabel={s.actions.accountCheck} off={gateText ? (gateText === "inactive" ? "noRelease" : "notConfigured") : gate(state, "connect")} /></div>
           </div>
         )}
         {live.length > 0 && (
@@ -200,8 +222,9 @@ function ListingRow({ locale, l }: { locale: Locale; l: SocialListing }) {
   );
 }
 
-function PostRow({ locale, x }: { locale: Locale; x: SocialPost }) {
-  const p = getDictionary(locale).social.post;
+function PostRow({ locale, x, state }: { locale: Locale; x: SocialPost; state: SocialState }) {
+  const d = getDictionary(locale).social;
+  const p = d.post;
   const glyph: Glyph = x.state === "published" ? "check" : x.state === "queued" ? "clock" : x.state === "delivery_unknown" ? "triangle" : x.state === "blocked" ? "lock" : "rule";
   const tone = x.state === "published" ? "positive" : x.state === "delivery_unknown" || x.state === "blocked" ? "attention" : "neutral";
   return (
@@ -215,11 +238,13 @@ function PostRow({ locale, x }: { locale: Locale; x: SocialPost }) {
         {!x.published_at && x.scheduled_for && <p>{p.scheduled} {when(locale, x.scheduled_for)}</p>}
         {x.cta_withheld && <p>{p.ctaWithheld}</p>}
       </div>
-      {(x.permalink || x.state === "delivery_unknown") && (
+      {(x.permalink || x.state === "delivery_unknown" || x.state === "queued") && (
         <div className="mt-4 pl-6">
           {x.permalink && <ButtonLink href={x.permalink} external variant="secondary" size="sm">{p.open}</ButtonLink>}
-          {/* After an unclear outcome the only action is the status check; publishing again is never offered. */}
-          {x.state === "delivery_unknown" && <Inert variant="secondary">{p.checkStatus}</Inert>}
+          {/* A queued post is published from here; after an unclear outcome the only action is the status check,
+              publishing again is never offered (contract §1, §3). */}
+          {x.state === "queued" && <SocialAction locale={locale} action="publish" post={x.key} label={d.actions.publish} off={publishGate(state)} />}
+          {x.state === "delivery_unknown" && <SocialAction locale={locale} action="verify_publish" post={x.key} label={p.checkStatus} variant="secondary" off={gate(state, "connected")} />}
         </div>
       )}
     </li>
@@ -253,7 +278,7 @@ export function PostScreen({ locale, state }: { locale: Locale; state: SocialSta
           <Heading size="m" as="h2" id="social-posts">{p.postsH}</Heading>
           {state.posts.length ? (
             <ul className="stage mt-4 divide-y divide-line-hairline overflow-hidden">
-              {state.posts.map((x) => <PostRow key={x.key} locale={locale} x={x} />)}
+              {state.posts.map((x) => <PostRow key={x.key} locale={locale} x={x} state={state} />)}
             </ul>
           ) : (
             <div className="stage mt-4 p-6" data-empty="posts"><Note glyph="rule">{p.postsEmpty}</Note></div>
@@ -266,12 +291,11 @@ export function PostScreen({ locale, state }: { locale: Locale; state: SocialSta
 
 // ---------------- Screen C: inbox ----------------
 
-function SignalRow({ locale, x }: { locale: Locale; x: SocialSignal }) {
+function SignalRow({ locale, x, state }: { locale: Locale; x: SocialSignal; state: SocialState }) {
   const b = getDictionary(locale).social.inbox;
   const intents = b.intents as Record<string, string>;
   const intent = x.intent ? intents[x.intent] ?? intents.other : null;
   const status = x.reply ? "answered" : x.window_expired ? "dm_window" : "answerable";
-  const fieldId = `reply-${x.key}`;
   return (
     <li className="p-5 md:p-6" data-signal-state={status}>
       <p className="t-body-m text-text-primary break-words">{x.text}</p>
@@ -292,18 +316,8 @@ function SignalRow({ locale, x }: { locale: Locale; x: SocialSignal }) {
         <Note glyph="clock" tone="attention" className="mt-4">{b.windowExpired}</Note>
       ) : (
         <div className="mt-4">
-          <label htmlFor={fieldId} className="t-caption text-text-muted">{b.replyLabel}</label>
-          <textarea id={fieldId} rows={2} disabled className="mt-1 block w-full resize-none rounded-md border border-line-strong bg-surface-sunken px-3.5 py-2.5 t-body-s text-text-primary disabled:opacity-70" />
-          <div className="mt-3 flex flex-wrap gap-2">
-            {x.kind === "comment" ? (
-              <>
-                <Inert>{b.replyPublic}</Inert>
-                <Inert variant="secondary">{b.replyPrivate}</Inert>
-              </>
-            ) : (
-              <Inert>{b.replyMessage}</Inert>
-            )}
-          </div>
+          {/* The target is this entry's key; the server turns it back into the comment or sender it rendered. */}
+          <ReplyBox locale={locale} signal={x.key} kind={x.kind} off={gate(state, "connected")} labels={{ field: b.replyLabel, publicLabel: b.replyPublic, privateLabel: b.replyPrivate, messageLabel: b.replyMessage }} />
         </div>
       )}
     </li>
@@ -331,11 +345,11 @@ export function InboxScreen({ locale, state, tab }: { locale: Locale; state: Soc
             </Link>
           ))}
         </div>
-        <Inert variant="secondary">{b.fetch}</Inert>
+        <SocialAction locale={locale} action={tab === "messages" ? "poll_dms" : "poll_comments"} label={b.fetch} variant="secondary" off={gate(state, "connected")} okText={getDictionary(locale).social.actions.fetched} />
       </div>
       {rows.length ? (
         <ul className="stage mt-5 divide-y divide-line-hairline overflow-hidden">
-          {rows.map((x) => <SignalRow key={x.key} locale={locale} x={x} />)}
+          {rows.map((x) => <SignalRow key={x.key} locale={locale} x={x} state={state} />)}
         </ul>
       ) : (
         <div className="stage mt-5 p-6 md:p-8" data-empty={tab}>
@@ -372,7 +386,7 @@ export function SettingsScreen({ locale, state }: { locale: Locale; state: Socia
               ))}
             </ul>
             <p className="mt-5 t-body-s text-text-secondary measure-body">{s.settings.disconnectBody}</p>
-            <div className="mt-5"><Inert variant="secondary">{s.settings.disconnect}</Inert></div>
+            <div className="mt-5"><SocialAction locale={locale} action="disconnect" label={s.settings.disconnect} variant="secondary" off={gate(state, "connected")} okText={s.actions.disconnected} /></div>
           </>
         ) : (
           <>
@@ -380,6 +394,30 @@ export function SettingsScreen({ locale, state }: { locale: Locale; state: Socia
             <div className="mt-5"><ButtonLink href={localePath(locale, PATHS.connect)} variant="secondary" size="sm">{s.tabs.connect}</ButtonLink></div>
           </>
         )}
+        {/* The release and the last operations (SOCIAL_UI_CONTRACT_v2): shown only once the read model carries them. */}
+        {state.release && (
+          <dl className="mt-6 grid gap-3 border-t border-line-hairline pt-5 t-caption text-text-muted md:grid-cols-3" data-social-release={state.release.active ? "active" : "inactive"}>
+            <div><dt>{s.settings.releaseH}</dt><dd className="mt-0.5 t-body-s text-text-primary">{state.release.active ? s.settings.releaseActive : s.actions.noRelease}</dd></div>
+            {state.release.expires_at && <div><dt>{s.settings.releaseUntil}</dt><dd className="mt-0.5 t-body-s text-text-primary">{when(locale, state.release.expires_at, false)}</dd></div>}
+            {state.release.posts_max !== null && <div><dt>{s.settings.releasePosts}</dt><dd className="mt-0.5 t-body-s tnum text-text-primary">{state.release.posts_used ?? 0} / {state.release.posts_max}</dd></div>}
+          </dl>
+        )}
+        {state.recent_operations.length > 0 && (
+          <div className="mt-6 border-t border-line-hairline pt-5" data-social-operations>
+            <p className="t-caption text-text-muted">{s.settings.recentH}</p>
+            <ul className="mt-2 hairline-list border-y border-line-hairline">
+              {state.recent_operations.map((o, i) => (
+                <li key={i} className="flex flex-wrap items-center gap-x-3 gap-y-1 py-2 t-caption">
+                  <StatusGlyph glyph={o.outcome === "confirmed" ? "check" : o.outcome === "refused" ? "lock" : "triangle"} size={14} className={o.outcome === "confirmed" ? "text-signal-positive" : o.outcome === "refused" ? "text-text-muted" : "text-signal-attention"} />
+                  <span className="text-text-primary">{(s.settings.steps as Record<string, string>)[o.step] ?? o.step}</span>
+                  <span className="text-text-muted">{when(locale, o.at)}</span>
+                  {o.detail && <span className="basis-full pl-6 text-text-secondary">{o.detail}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {state.provider?.graph_version && <p className="mt-4 t-caption text-text-muted" data-social-graph>Graph {state.provider.graph_version}</p>}
       </section>
       <section aria-labelledby="social-delete" className="stage p-6 md:p-8">
         <Heading size="m" as="h2" id="social-delete">{s.settings.deleteH}</Heading>

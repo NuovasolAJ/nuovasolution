@@ -150,7 +150,7 @@ export function FlowStory({ locale }: { locale: Locale }) {
             </div>
             <div className="field-sky p-4 md:p-8 lg:order-first">
               <div className="mx-auto max-w-[920px]">
-                <ProductClip base="/media/daily/daily-claim-flow" locale={locale} playLabel={daily.playLabel} meta={daily.clipMeta} alt={daily.clipAlt} posterLabel={daily.posterLabel} cues={daily.cues} errorLabel={daily.clipError} />
+                <ProductClip base="/media/daily/daily-laura" locale={locale} playLabel={daily.playLabel} meta={daily.clipMeta} alt={daily.clipAlt} posterLabel={daily.posterLabel} cues={daily.cues} errorLabel={daily.clipError} />
                 <p className="mt-3 t-caption text-text-muted">{daily.note}</p>
               </div>
             </div>

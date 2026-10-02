@@ -36,18 +36,21 @@
   --champagne-700: #8a6b32;
   --champagne-850: #6b5626;
 
-  /* pastel fields: backgrounds for product surfaces and cards */
-  --sage-100: #eaf1e6;
-  --sage-200: #d6e3cf;
-  --sage-700: #4c6a4b;
+  /* Fields: the grounds under product surfaces and cards. One warm family (owner order 2026-10-01 §3):
+     sand (the warmest), linen (a breath of olive) and stone (a cooler grey-beige). The names sage and
+     sky stay in the code for the linen and the stone field; no large green or blue surface remains.
+     Functional status colours are separate (--signal-*). */
+  --sage-100: #f1f0e6;
+  --sage-200: #e4e2d1;
+  --sage-700: #5a6349;
   --sand-100: #f6efe2;
   --sand-200: #ecdfc4;
-  --sky-100: #e6eef5;
-  --sky-200: #cfdde9;
-  --sky-700: #3f5f7a;
+  --sky-100: #f1efe9;
+  --sky-200: #e4e0d6;
+  --sky-700: #5f584c;
   --apricot-100: #f9e9de;
   --apricot-200: #f1d3bf;
-  --lavender-100: #ede9f4;
+  --lavender-100: #f0ece4;
 
   /* semantic, light canvas default */
   --surface-canvas: var(--canvas);
@@ -67,9 +70,13 @@
   --signal-positive: #3a634b;
   --signal-attention: #7f531e;
   --signal-critical: #a33f30;
-  --shadow-overlay: 0 24px 64px -16px rgba(26, 25, 23, 0.22);
+  /* One shadow family, three distances: card (in the flow), stage (a product surface on a ground),
+     overlay (a detail that floats over something). Each has a crisp edge close in and a soft lift further out. */
+  --shadow-card: 0 1px 1px rgba(26, 25, 23, 0.04), 0 2px 6px -2px rgba(26, 25, 23, 0.05), 0 12px 28px -14px rgba(26, 25, 23, 0.16);
+  --shadow-stage: 0 1px 2px rgba(26, 25, 23, 0.06), 0 2px 6px -2px rgba(26, 25, 23, 0.06), 0 22px 52px -26px rgba(26, 25, 23, 0.28);
+  --shadow-overlay: 0 1px 2px rgba(26, 25, 23, 0.08), 0 6px 14px -6px rgba(26, 25, 23, 0.12), 0 28px 64px -20px rgba(26, 25, 23, 0.3);
   --shadow-soft: 0 1px 2px rgba(26, 25, 23, 0.04), 0 12px 32px -12px rgba(26, 25, 23, 0.14);
-  --shadow-card: 0 1px 1px rgba(26, 25, 23, 0.03), 0 6px 20px -8px rgba(26, 25, 23, 0.12);
+  --line-contour: rgba(26, 25, 23, 0.09);
 
   /* motion */
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
@@ -100,22 +107,23 @@
     --section-feature: 104px;
   }
 }
+/* From 1024 px the steps grow less than before (owner order 2026-10-01 §3: no large empty transitions, a compact reading flow). */
 @media (min-width: 1024px) {
   :root {
     --header-h: 72px;
     --gutter: 48px;
-    --section-compact: 64px;
-    --section-default: 104px;
-    --section-feature: 128px;
+    --section-compact: 56px;
+    --section-default: 88px;
+    --section-feature: 104px;
     --reveal-y: 18px;
   }
 }
 @media (min-width: 1440px) {
   :root {
     --gutter: 64px;
-    --section-compact: 72px;
-    --section-default: 120px;
-    --section-feature: 144px;
+    --section-compact: 64px;
+    --section-default: 96px;
+    --section-feature: 112px;
   }
 }
 
@@ -228,7 +236,7 @@ img, video, svg { display: block; max-width: 100%; }
 /* ------------------------------------------------------------------ */
 .card {
   background: var(--surface-raised);
-  border: 1px solid var(--border-hairline);
+  border: 1px solid var(--line-contour);
   border-radius: 20px;
   box-shadow: var(--shadow-card);
 }
@@ -241,7 +249,7 @@ img, video, svg { display: block; max-width: 100%; }
 .field-sand { background: linear-gradient(160deg, var(--sand-100), var(--sand-200)); }
 .field-sky { background: linear-gradient(160deg, var(--sky-100), var(--sky-200)); }
 .field-apricot { background: linear-gradient(160deg, var(--apricot-100), var(--apricot-200)); }
-.field-lavender { background: linear-gradient(160deg, var(--lavender-100), var(--sky-100)); }
+.field-lavender { background: linear-gradient(160deg, var(--lavender-100), var(--sand-100)); }
 
 /* No radial colour washes (audit Z13): depth comes from composed fields, cards and the stack. */
 
@@ -275,7 +283,7 @@ img, video, svg { display: block; max-width: 100%; }
 }
 .band-sand { --band-bg: linear-gradient(180deg, #f6f0e3 0%, #f1e8d7 100%); }
 .band-stone { --band-bg: linear-gradient(180deg, #f3f1ec 0%, #ecebe5 100%); }
-.band-sage { --band-bg: linear-gradient(180deg, #eef3ea 0%, #e5ede0 100%); }
+.band-sage { --band-bg: linear-gradient(180deg, #f2f1e7 0%, #e9e8d9 100%); }
 .band-shoulders { --band-radius: 28px 28px 0 0; }
 .band-panel { --band-radius: 24px; }
 @media (min-width: 768px) {
@@ -283,37 +291,61 @@ img, video, svg { display: block; max-width: 100%; }
   .band-panel { --band-radius: 36px; }
 }
 
-/* The hero ground: one arch, the shape of an Andalusian doorway, with a hairline echo. */
-.hero-arch {
-  position: absolute;
-  inset: 0 0 8% 0;
-  z-index: 0;
-  border-radius: 200px 200px 28px 28px;
-  background: linear-gradient(180deg, #f4ebd9 0%, #efe3cb 100%);
+/* ------------------------------------------------------------------ */
+/* Depth (owner order 2026-10-01 §2). A scene has three layers that    */
+/* are told apart in the still picture by size, overlap and shadow,    */
+/* and on scroll by a small differential movement: the ground moves    */
+/* least, the product surface scrolls with the page, the details in     */
+/* front move a little further. components/ui/depth-scene.tsx writes   */
+/* --depth (0 → 1 while the scene passes through the window); the      */
+/* phone gets half the travel, reduced motion none at all.             */
+/* ------------------------------------------------------------------ */
+[data-depth] { --depth: 0; --depth-back: -10px; --depth-front: -22px; }
+@media (min-width: 1024px) {
+  [data-depth] { --depth-back: -22px; --depth-front: -56px; }
 }
-.hero-arch::after {
-  content: "";
+[data-depth-layer="back"] { transform: translate3d(0, calc(var(--depth) * var(--depth-back)), 0); will-change: transform; }
+[data-depth-layer="front"] { transform: translate3d(0, calc(var(--depth) * var(--depth-front)), 0); will-change: transform; }
+
+/* The hero ground (layer 1): one arch, the shape of an Andalusian doorway, a hairline echo set off
+   from it, and a low horizon band that leads the eye to the product surface. */
+.hero-ground { position: absolute; inset: 0; pointer-events: none; }
+.hero-ground-arch {
   position: absolute;
-  inset: -12px;
+  inset: 1% 6% 12% 6%;
+  border-radius: 240px 240px 32px 32px;
+  background: linear-gradient(180deg, #f4ebd9 0%, #eee2c9 100%);
+}
+.hero-ground-echo {
+  position: absolute;
+  inset: -2% 0% 7% 0%;
   border: 1px solid rgba(138, 107, 50, 0.22);
-  border-radius: 212px 212px 40px 40px;
-  pointer-events: none;
+  border-radius: 280px 280px 44px 44px;
+}
+.hero-ground-horizon {
+  position: absolute;
+  left: -4%;
+  right: -10%;
+  bottom: 2%;
+  height: 34%;
+  border-radius: 40px;
+  background: linear-gradient(180deg, rgba(243, 241, 236, 0.9) 0%, rgba(236, 235, 229, 0.9) 100%);
 }
 @media (min-width: 768px) {
-  .hero-arch { inset: 0 4% 6% 4%; border-radius: 280px 280px 36px 36px; }
-  .hero-arch::after { border-radius: 292px 292px 48px 48px; }
+  .hero-ground-arch { inset: -6% 8% 14% 8%; border-radius: 320px 320px 40px 40px; }
+  .hero-ground-echo { inset: -12% 1% 9% 1%; border-radius: 360px 360px 56px 56px; }
 }
 
-/* A white stage for a product surface (layer 2). The contour and the two-part shadow keep a light
+/* A white stage for a product surface (layer 2). The contour and the three-part shadow keep a light
    card readable on a light ground: a crisp edge close in, a soft lift further out. */
 .stage {
   background: var(--surface-raised);
-  border: 1px solid rgba(26, 25, 23, 0.09);
+  border: 1px solid var(--line-contour);
   border-radius: 28px;
-  box-shadow: 0 1px 2px rgba(26, 25, 23, 0.06), 0 2px 6px -2px rgba(26, 25, 23, 0.06), 0 22px 52px -26px rgba(26, 25, 23, 0.28);
+  box-shadow: var(--shadow-stage);
 }
 
-/* A small overlapping detail (layer 3). */
+/* A small overlapping detail (layer 3): the strongest shadow of the three, because it floats highest. */
 .float-chip {
   display: inline-flex;
   align-items: center;
@@ -321,12 +353,18 @@ img, video, svg { display: block; max-width: 100%; }
   padding: 8px 14px;
   border-radius: 999px;
   background: var(--paper);
-  border: 1px solid var(--border-hairline);
-  box-shadow: 0 10px 28px -12px rgba(26, 25, 23, 0.28);
+  border: 1px solid var(--line-contour);
+  box-shadow: var(--shadow-overlay);
   font-size: 0.8125rem;
   line-height: 1.3;
   font-weight: 500;
   color: var(--text-primary);
+}
+.float-card {
+  background: var(--paper);
+  border: 1px solid var(--line-contour);
+  border-radius: 20px;
+  box-shadow: var(--shadow-overlay);
 }
 
 /* The flow rail: which step of the story is on screen. */
@@ -366,10 +404,14 @@ img, video, svg { display: block; max-width: 100%; }
   position: sticky;
   top: var(--deck-top, 96px);
 }
+/* A covered card steps back: a little smaller, a touch softer, a thin veil. The card in front is opaque
+   (white stage), so nothing of the covered text shows through; the veil and the blur only mark the distance,
+   they never stand in for coverage (owner order 2026-10-01 §4). */
 [data-deck="on"] > [data-deck-item] > * {
   transform-origin: 50% 0;
   transform: scale(calc(1 - var(--deck-covered, 0) * 0.035));
-  will-change: transform;
+  filter: blur(calc(var(--deck-covered, 0) * 1.2px));
+  will-change: transform, filter;
 }
 [data-deck-item] > * { position: relative; }
 [data-deck="on"] > [data-deck-item] > *::after {
@@ -409,13 +451,29 @@ html.js .rise.is-in, html.js .is-in .rise { opacity: 1; transform: none; }
   html.js .draw-rule { transform: none; transition: none; }
   .path-draw { stroke-dashoffset: 0 !important; transition: none !important; }
   [data-deck] > [data-deck-item] { position: relative !important; top: auto !important; }
-  [data-deck] > [data-deck-item] > * { transform: none !important; }
+  [data-deck] > [data-deck-item] > * { transform: none !important; filter: none !important; }
+  [data-depth-layer] { transform: none !important; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* A quiet running indicator inside a busy button: a thin ring in the button's own colour. With reduced
+   motion the global rule below stops the turn and the ring simply stands still. */
+@keyframes busy-turn { to { transform: rotate(360deg); } }
+.busy-ring {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex: none;
+  border-radius: 999px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  opacity: 0.85;
+  animation: busy-turn 0.9s linear infinite;
 }
 
 /* typing indicator (Q&A only) */

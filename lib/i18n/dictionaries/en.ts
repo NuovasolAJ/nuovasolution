@@ -109,6 +109,9 @@ export const en = {
       rate_limited: "Too many attempts. Try again later, or write to us.",
       not_activatable: "Not everything needed to go live is in place yet.",
       generic: "That did not work. Nothing was changed. Try again, or contact us.",
+      // The browser gave up waiting, or never reached us: nothing is blocked, the button is free again.
+      timeout: "The connection took too long and nothing was changed. Check your connection and try again.",
+      connection: "We could not reach the server. Nothing was changed. Check your connection and try again.",
       not_available: "This is not available on this site yet.",
       invalid_grant: "That email and password do not match an account.",
       email_not_confirmed: "Confirm your email address first, using the link we sent you.",
@@ -145,8 +148,8 @@ export const en = {
     // in Estepona), four surfaces. The ES disclosure line is the owner-approved WhatsApp text v1.0-es, quoted.
     hero: {
       eyebrow: "For real estate agencies in Spain",
-      h1: "Answered when it arrives, not when someone is free", // COPY_DELTAS_0930 D-45
-      lead: "A buyer writes on Sunday evening. Nuova answers in their language, records what she asked for, and leaves your team one task to finish.", // COPY_DELTAS_0929 D-01
+      h1: "Answered when it arrives", // COPY_DELTAS_1001 D-81
+      lead: "A buyer writes on Sunday evening, when nobody is free. Nuova answers in their language, records what she asked for, and leaves your team one task to finish.", // D-82
       qualifier: "On the channels you connect.",
       note: "14 days free. No payment.",
       ctaSecondary: "See how it works",
@@ -158,10 +161,10 @@ export const en = {
           label: "Answered by Nuova, under your agency's name",
           time: "Sunday 21:40",
           disclosure: "I am an AI assistant. I will help you with your property enquiry. If you prefer to speak to a human agent, tell me at any time.",
-          disclosureMark: "Sample translation. The approved notice exists in Spanish.",
+          disclosureMark: "Sample translation. The approved notice is the Spanish one.", // D-78
           // No availability is confirmed: there is no inventory source behind the example (external finding 13, COPY_DELTAS_0929 D-10).
           text: "Hello Laura, thank you for writing. I have noted the two bedroom flat in Estepona and Thursday morning. An agent from the agency will contact you to confirm availability and the time.",
-          disclosureNote: "The reply carries this notice because an assistant wrote it.",
+          // D-79: the former disclosureNote is gone; flow.stepsDetail (D-77) says it once.
         },
         // D-12: no priority and no qualification (not in production, LEAD_TRUTH_INPUT_v1 §1); the record shows what the customer asked for.
         record: { label: "Customer record", name: "Laura Serrano", lines: ["Asked for: 2 bedrooms, Estepona · REF-DEMO-204", "Wants to view: Thursday morning", "Writes in: English"], next: "Next: a task for your team" },
@@ -195,7 +198,7 @@ export const en = {
       h2: "From a message to a finished task",
       lead: "The enquiry is answered in the customer's language. It becomes one record with what they asked for. A viewing request becomes a task, and one of your people takes it and closes it.",
       steps: ["Answered", "Recorded", "Handed over", "Done"],
-      stepsDetail: "The reply says an assistant wrote it. It does not commit your agency to a price, a date or a condition.",
+      stepsDetail: "Written by the assistant, and it says so. It agrees no price, no date and no condition.", // D-77
       cards: {
         answer: { step: "Answered", title: "WhatsApp and e-mail", line: "Text enquiries are answered and recorded under your agency's name." },
         understand: { step: "Recorded", title: "One record per enquiry", line: "The conversation and what the customer asked for stay on one record, so the next person to open it sees everything without asking." },
@@ -209,7 +212,7 @@ export const en = {
         agency: "Your agency",
         channel: "WhatsApp",
         synthetic: "Synthetic data",
-        assistant: "AI assistant",
+        assistant: "Nuova · AI assistant", // D-76
         caption: "The reply that goes out, with the notice it must carry.",
         time: "21:40",
         footer: "Names and times are invented.",
@@ -232,17 +235,18 @@ export const en = {
       // The real task surface (DAILY_FEATURE_TRUTH rows 1 to 6; captures 2026-09-28, synthetic data). The chat
       // assistant, a team board and a staff login address are not claimed: they do not exist in production.
       // Texts COPY_DELTAS_0929 §5 (MEDIA_CAPTIONS); playLabel, clipMeta and the alt text are the implementer's control labels.
+      // Clip v2 (daily_clip_v2/MANIFEST.md, 2026-10-01): the request arrives on camera, an agent takes it, it is finished.
+      // Texts COPY_DELTAS_1001 D-72 to D-75; the five cues are Daily's subtitles, approved as they are (§2.1).
       daily: {
-        clipHeading: "One task, taken and closed",
-        clipLead: "21 seconds from the real screen your team uses. No sound needed.",
-        posterLabel: "The task list your team works from",
+        clipHeading: "A request, taken and finished", // D-72
+        clipLead: "Twenty-two seconds from the screen your team actually uses. No sound.", // D-73
+        posterLabel: "The request has just arrived", // D-74
         playLabel: "Play the clip",
-        clipMeta: "21 seconds, no sound",
+        clipMeta: "22 seconds, no sound",
         clipError: "The clip did not load. Try again in a moment.",
-        clipAlt: "The task list in the staff app: a viewing request from Laura Serrano waits to be taken.",
-        note: "Recording from the product, with synthetic people and properties. The ring marks where the agent taps; it is part of the recording, not the product.",
-        // COPY_DELTAS_0930 §4: before → action → result.
-        cues: ["Laura Serrano asked for a viewing on Thursday morning. Nobody has taken it yet.", "The agent takes the task. The card now says it is theirs, and no one else can take it.", "Closed. It leaves the list, the rest stays, and the team can see who did it."],
+        clipAlt: "The task list in the staff app: a viewing request from Laura Serrano has just arrived and waits to be taken.",
+        note: "Recorded from the product with invented people and properties. The ring marks where the agent taps and is part of the recording.", // D-75
+        cues: ["Laura writes on WhatsApp asking to see a flat.", "Her request arrives as a task, with the reference and the time she asked for.", "An agent takes it.", "It is hers now. Nobody else can take it.", "Once it is done, it leaves the list."],
         stills: {
           tasks: "Each person sees their own list: taken, waiting, and what nobody has yet.",
           "task-action": "Taken by you. Only you can close it.",
@@ -255,7 +259,7 @@ export const en = {
     // LAUNCH_COPY_v1 §3.4: the one-system idea, kept short.
     record: {
       eyebrow: "One system",
-      h2: "One enquiry, one record, one place", // D-18
+      h2: "Nothing lives in three places", // D-83
       lead: "The conversation, what the customer asked for and the task all sit on one record. Nothing has to be kept in someone's head, and nobody has to ask a colleague what was already said.", // D-46
     },
     access: {
@@ -514,7 +518,8 @@ export const en = {
     lead: "Continue where you left off.",
     fields: { email: "Email", password: "Password" },
     submit: "Log in",
-    submitting: "Logging you in",
+    submitting: "Logging you in…",
+    redirecting: "Logged in. Opening your agency…",
     forgot: "Forgot your password?",
     forgotUnavailable: "Password reset is not available yet. Write to us and we will help you.",
     noAccount: "No account yet?",
@@ -542,11 +547,12 @@ export const en = {
     resume: "Continue where you left off",
     activatable: "Your agency is ready to go live.",
     notActivatable: "A few things are still needed before you go live.",
-    blockedMandatory: "Still needed",
+    blockedMandatory: "Required", // D-57
     blockedFeatures: "Disabled features never block readiness",
+    // One state vocabulary (COPY_DELTAS_1001 §1.1): Saved · Connected · Checked · Required, plus the honest "Waiting on {provider}".
     stepStatus: {
-      completed: { label: "Done", line: "Set up and confirmed." },
-      needs_action: { label: "Needs you", line: "Something here is waiting on you." },
+      completed: { label: "Saved", line: "What you entered is stored for your agency." }, // D-54
+      needs_action: { label: "Required", line: "This step is still needed from you." }, // D-55
       externally_pending: { label: "Waiting on {provider}", line: "Sent. {provider} has not approved it yet. Nothing more for you to do right now." },
       locked_by_plan: { label: "Not on your plan", line: "Available on the plans that include it." },
       optional: { label: "Optional", line: "Not needed to go live. You can come back to it." },
@@ -568,30 +574,43 @@ export const en = {
       lead: "A CRM is included from the start.",
       nativeTitle: "No external CRM. Use the CRM included in Nuova.",
       nativeTag: "Included · Recommended",
-      nativeBody: "Every enquiry becomes a lead with the person's contact details, what they are looking for and the conversation so far. Viewing requests become tasks for your team. Nothing to connect and nothing to pay extra.",
+      nativeBody: "Each enquiry becomes a lead with the contact details, what the person asked for and the conversation so far. Viewing requests become tasks for your team. Nothing to connect and nothing extra to pay.", // D-86
       nativeLimits: "It is not a replacement for an accounting or transaction system, and it does not import records from another CRM.",
       sheetsTitle: "Also keep a copy in Google Sheets",
       sheetsBody: "Nuova stays the place where leads are kept. A Google Sheet receives a copy you can open, filter and share.",
       externalGroup: "Your own CRM",
-      externalSoon: "Coming soon",
-      externalBody: "Connecting {provider} is not offered yet. Choose it to tell us you want it. You stay on the included CRM meanwhile, and nothing is sent to {provider}.",
+      externalSoon: "Interest only", // D-60
+      externalBody: "Connecting {provider} is not offered. Selecting it records your interest, nothing is sent to {provider}, and your leads stay in the CRM included in Nuova.", // D-61
       registerInterest: "I use {provider}",
-      interestSaved: "Noted. We will tell you when {provider} can be connected.",
+      interestSaved: "Interest recorded. Nothing is sent to {provider}.", // D-62
       unavailable: "Not offered",
       other: "My CRM is not listed",
       otherBody: "That CRM is not offered. You are on the CRM included in Nuova, and you can change this later.",
       done: "Using the CRM included in Nuova.",
-      chooseLabel: "Your choice",
+      chooseLabel: "Your selection", // D-59
       save: "Save choice",
       saved: "Saved. This is what the backend now holds for your agency.",
       sheetsNext: "Connecting the Google Sheet itself is a separate step that is not available on this site yet.",
       notReadable: "The Google Sheets choice cannot be read back in this environment yet, so it is not shown here.",
       savedStub: "Saved in this demonstration only. Nothing reached a backend.",
-      sheetsChosen: "Chosen, not connected",
+      sheetsChosen: "Selected, not connected", // D-63
       sheetsConnected: "Connected",
       sheetsOffUnavailable: "Turning the Google Sheets copy off is not available on this site yet. Your leads stay in the CRM included in Nuova either way.",
     },
     progressSteps: "{done} of {total} steps done",
+    // Five areas (owner order 2026-10-01 §7); the progress counts only the steps that are really needed.
+    progressRequired: "{done} of {total} required steps saved",
+    progressLabel: "Your progress",
+    nextUp: "Next",
+    goToStep: "Go to this step",
+    noFormHere: "There is no form for this on the site yet. The status comes from your agency's account.",
+    areas: {
+      agency: { title: "Agency data and brand", line: "Who you are, your legal details, and the logo on your emails." },
+      channels: { title: "Connections and channels", line: "Where enquiries come in, and what is connected to your agency." },
+      crm: { title: "CRM and property sources", line: "Where your leads are kept, and where your listings would be read from." },
+      team: { title: "Team and working hours", line: "Who works with the tasks, and the hours stored for your agency." },
+      summary: { title: "Summary and activation", line: "What is checked, what is still required, and the step that goes live." },
+    },
     // Step titles by backend key. The backend's own title is English only, so the page renders these.
     steps: {
       account: "Account",
@@ -629,7 +648,14 @@ export const en = {
       property_experience: "Property Experience 3D",
       legal: "Your legal details",
     },
-    gateDetail: { white_label_legal: "Legal name, tax number (CIF or NIF), address, logo, and links to your own privacy notice and terms." },
+    gateDetail: {
+      white_label_legal: "Legal name, tax number (CIF or NIF), address, logo, and links to your own privacy notice and terms.",
+      plan_entitlements: "Your trial carries the Essential scope for 14 days. What a paid plan includes is agreed with you before anything is signed.", // D-67
+    },
+    // D-66: nothing answers a call today; what is set is stored for the phone assistant being built.
+    voiceLine: "No phone number is connected to your agency. What you set here is stored for when the phone assistant is ready, and nothing answers a call today.",
+    // D-71: the website is not read today; property matching is switched on per agency later.
+    propertySourceHelp: "Your website is where we would read your listings from, once property matching is switched on for your agency. Nothing is read from it today.",
     aiDisclosurePending: "Waiting on us. We are finalising the notice that tells your customers when an assistant is replying. You do not need to do anything.",
     readyWaitingOnUs: "Some of this is waiting on us, not on you. We will tell you when it clears.",
     readyError: "We could not load your readiness right now. Nothing has changed. Try again in a moment.",
@@ -679,13 +705,14 @@ export const en = {
       adminOnly: "Only an agency admin can change this.",
       managersOnly: "Only a team member who manages users can change this.",
       business: {
-        heading: "Business details and opening hours",
+        heading: "Business details",
+        hoursHeading: "Opening hours",
         name: "Agency name",
         timezone: "Time zone",
         languages: "Languages your agency answers in",
         defaultLanguage: "Main language",
         hours: "Opening hours",
-        hoursHelp: "Appointments are only offered inside these hours. With no hours set, nothing is booked.",
+        hoursHelp: "Your hours are stored for your agency. They do not change when a text enquiry is answered: that happens whenever it arrives. They will steer the phone assistant, which is being built.", // D-64
         open: "Open",
         from: "From",
         to: "To",
@@ -695,7 +722,9 @@ export const en = {
       },
       legal: {
         heading: "Legal details",
-        lead: "Required before any customer email can be sent in your agency's name.",
+        lead: "These details go into the emails your agency sends through Nuova and onto the invoices we send you. Without them we cannot send in your name.", // D-68
+        addressHelp: "Your address appears in the legal footer of those emails and on your invoices.", // D-69
+        linksHelp: "These links are placed in the emails sent in your name, so the people who write to you can reach your own notices. Nuova's own notices are separate.", // D-70
         notReadable: "Saved legal details cannot be shown again here yet, so the form starts empty. Whether they are complete is shown under \"What is needed to go live\".",
         legalName: "Legal name",
         taxId: "Tax number (CIF or NIF)",
@@ -733,7 +762,7 @@ export const en = {
       calendar: {
         heading: "Appointments and hand-off",
         connected: "A calendar is connected.",
-        notConnected: "No calendar is connected, so nothing is booked automatically. Requests are handled as set below.",
+        notConnected: "No calendar is connected, so nothing is booked and no appointment is confirmed. A customer who asks for a time becomes a task for your team.", // D-65
         types: "Appointment types",
         typeNames: { viewing: "Viewing", valuation: "Valuation", call: "Call" },
         minutes: "{n} min",
@@ -748,8 +777,8 @@ export const en = {
         mandatory: "Needed to go live",
         optional: "Optional",
         states: {
-          READY: "Done",
-          BLOCKED: "Still needed",
+          READY: "Checked", // D-56
+          BLOCKED: "Required", // D-57
           OPTIONAL: "Optional, never blocks going live",
           DISABLED: "Switched off for this account",
           UNSUPPORTED_GATE: "We cannot check this one yet. It does not block you.",
@@ -816,7 +845,42 @@ export const en = {
     eyebrow: "Social",
     navLabel: "Social sections",
     tabs: { connect: "Connect", post: "Post", inbox: "Inbox", settings: "Connection and data" },
-    readOnly: "This page shows the state of your workspace. Connecting, publishing and replying are switched on in a separate step.", // interim
+    readOnly: "This page shows the state of your workspace. Each control is switched on only when the state allows it; the database decides, never the page.", // interim
+    // The write side (SOCIAL_ACTIONS_CONTRACT_v1 §2, §3): why a control is off, and what an action answered. Interim wording where no §5 text exists.
+    actions: {
+      noRelease: "No release has been granted for this access yet.", // §5 (no release)
+      notConfigured: "Instagram is not set up for this workspace yet.",
+      needsConnection: "Connect an Instagram account first.",
+      limitReached: "The agreed post limit is reached.", // §5
+      stub: "Demonstration data: this action sends nothing here.",
+      running: "Working …",
+      done: "Done.",
+      connectOpened: "Instagram opened in a new tab. This page reads the state again every few seconds until the account appears.",
+      connectWaited: "The account has not appeared after five minutes. Read the state again, or start the connection once more.",
+      popupBlocked: "The browser did not open the Instagram window. Allow pop-ups for this page and try again.",
+      unclear: "Outcome unclear. Check the status; nothing is published again.", // §5 / contract §3
+      serverProblem: "A problem on our side. Nothing was changed. Try again in a moment.", // contract §3 ops_auth_failed and alike
+      refused: "Not done: {reason}.",
+      reasons: {
+        not_entitled: "Instagram is not enabled for this workspace",
+        no_connected_account: "no Instagram account is connected",
+        already_replied_or_claimed: "already answered",
+        recipient_not_in_received_comments: "that comment was not received here",
+        recipient_never_messaged_us: "that person has not written to this account",
+        publication_readiness: "this listing cannot be published",
+        post_limit_reached: "the agreed post limit is reached",
+        release_missing: "no release has been granted for this access",
+        rate_limited: "too many actions in a short time",
+        invalid_input: "that request could not be made",
+        not_available_in_stub: "demonstration data, nothing is sent",
+      },
+      accountCheck: "Check account",
+      accountChecked: "Account {name} · {type}",
+      publish: "Publish",
+      fetched: "Fetched. The list below is read again.",
+      sent: "Sent.",
+      disconnected: "Disconnected. The access token was deleted.",
+    },
     asOf: "State read",
     refresh: "Read again",
     problem: "The state could not be read. Nothing was changed.", // interim
@@ -929,6 +993,12 @@ export const en = {
       deleteH: "Delete data",
       deleteBody: "Posts, comments, messages and leads from this channel that are already stored are deleted on request.", // interim, no deadline promised
       deleteLink: "How to request deletion",
+      releaseH: "Release",
+      releaseActive: "A test release is granted for this access.",
+      releaseUntil: "Valid until",
+      releasePosts: "Posts used",
+      recentH: "Last operations",
+      steps: { connect: "Connect", publish: "Publish", verify_publish: "Status check", poll_comments: "Comments fetched", poll_dms: "Messages fetched", reply_public: "Public reply", reply_private: "Private reply", dm_reply: "Message reply", revoke: "Disconnect" },
     },
   },
 

@@ -100,6 +100,8 @@ export const es: Dictionary = {
       rate_limited: "Demasiados intentos. Inténtalo más tarde o escríbenos.",
       not_activatable: "Todavía falta algo de lo necesario para empezar.",
       generic: "No ha funcionado. No se ha cambiado nada. Vuelve a probar o escríbenos.",
+      timeout: "La conexión ha tardado demasiado y no se ha cambiado nada. Revisa tu conexión e inténtalo de nuevo.",
+      connection: "No hemos podido conectar con el servidor. No se ha cambiado nada. Revisa tu conexión e inténtalo de nuevo.",
       not_available: "Esto todavía no está disponible en este sitio.",
       invalid_grant: "Ese email y esa contraseña no corresponden a ninguna cuenta.",
       email_not_confirmed: "Primero confirma tu dirección de email con el enlace que te enviamos.",
@@ -130,8 +132,8 @@ export const es: Dictionary = {
   home: {
     hero: {
       eyebrow: "Para agencias inmobiliarias en España",
-      h1: "Respondida cuando llega, no cuando alguien tiene tiempo", // D-45
-      lead: "Un comprador escribe un domingo por la noche. Nuova responde en su idioma, registra lo que ha pedido y deja a tu equipo una tarea que terminar.",
+      h1: "Respondida cuando llega", // COPY_DELTAS_1001 D-81
+      lead: "Un comprador escribe un domingo por la noche, cuando no hay nadie libre. Nuova responde en su idioma, registra lo que ha pedido y deja a tu equipo una tarea que terminar.", // D-82
       qualifier: "En los canales que conectes.",
       note: "14 días gratis. Sin pago.",
       ctaSecondary: "Mira cómo funciona",
@@ -145,7 +147,7 @@ export const es: Dictionary = {
           disclosure: "🤖 Soy un asistente de inteligencia artificial. Te ayudaré con tu consulta inmobiliaria. Si prefieres hablar con un agente humano, indícamelo en cualquier momento.",
           disclosureMark: "",
           text: "Hola Laura, gracias por escribir. He anotado el piso de dos dormitorios en Estepona y el jueves por la mañana. Un agente de la agencia se pondrá en contacto contigo para confirmar la disponibilidad y la hora.",
-          disclosureNote: "La respuesta lleva este aviso porque la ha redactado un asistente.",
+          // D-79: sin disclosureNote; flow.stepsDetail (D-77) lo dice una vez.
         },
         record: { label: "Ficha del cliente", name: "Laura Serrano", lines: ["Pide: 2 dormitorios, Estepona · REF-DEMO-204", "Quiere ver: el jueves por la mañana", "Escribe en: inglés"], next: "Siguiente: una tarea para tu equipo" },
         task: {
@@ -174,7 +176,7 @@ export const es: Dictionary = {
       h2: "De un mensaje a una tarea terminada",
       lead: "La consulta se responde en el idioma del cliente. Pasa a ser una ficha con lo que ha pedido. Una petición de visita pasa a ser una tarea, y alguien de tu equipo la toma y la cierra.",
       steps: ["Respondida", "Registrada", "Asignada", "Hecha"],
-      stepsDetail: "La respuesta indica que la ha redactado un asistente. No compromete a tu agencia a ningún precio, fecha ni condición.",
+      stepsDetail: "Lo escribe el asistente, y lo dice. No acuerda precio, ni fecha, ni condición.", // D-77
       cards: {
         answer: { step: "Respondida", title: "WhatsApp y email", line: "Las consultas de texto se responden y se registran con el nombre de tu agencia." },
         understand: { step: "Registrada", title: "Una ficha por consulta", line: "La conversación y lo que ha pedido el cliente se quedan en una sola ficha, así que quien la abra después lo ve todo sin preguntar." },
@@ -188,7 +190,7 @@ export const es: Dictionary = {
         agency: "Tu agencia",
         channel: "WhatsApp",
         synthetic: "Datos sintéticos",
-        assistant: "Asistente de IA",
+        assistant: "Nuova · asistente de IA", // D-76
         caption: "La respuesta que sale, con el aviso que debe llevar.",
         time: "21:40",
         footer: "Nombres y horas son inventados.",
@@ -208,15 +210,15 @@ export const es: Dictionary = {
       task: { caption: "Qué hace tu equipo primero, y por qué." },
       readiness: { label: "Ejemplo", withYou: "Lo preparamos contigo" },
       daily: {
-        clipHeading: "Una tarea, tomada y cerrada",
-        clipLead: "21 segundos de la pantalla real que usa tu equipo. No hace falta sonido.",
-        posterLabel: "La lista de tareas con la que trabaja tu equipo",
+        clipHeading: "Una petición, tomada y terminada", // D-72
+        clipLead: "Veintidós segundos de la pantalla que usa tu equipo. Sin sonido.", // D-73
+        posterLabel: "La petición acaba de llegar", // D-74
         playLabel: "Ver el clip",
-        clipMeta: "21 segundos, sin sonido",
+        clipMeta: "22 segundos, sin sonido",
         clipError: "El vídeo no se ha cargado. Inténtalo de nuevo en un momento.",
-        clipAlt: "La lista de tareas en la aplicación del equipo: una petición de visita de Laura Serrano espera a que alguien la tome.",
-        note: "Grabación del producto, con personas e inmuebles sintéticos. El anillo marca dónde toca el agente; es parte de la grabación, no del producto.",
-        cues: ["Laura Serrano ha pedido una visita el jueves por la mañana. Todavía no la ha tomado nadie.", "El agente toma la tarea. La tarjeta ya dice que es suya, y nadie más puede tomarla.", "Cerrada. Sale de la lista, el resto se queda y el equipo ve quién lo ha hecho."],
+        clipAlt: "La lista de tareas en la aplicación del equipo: una petición de visita de Laura Serrano acaba de llegar y espera a que alguien la tome.",
+        note: "Grabado del producto con personas e inmuebles inventados. El anillo marca dónde toca el agente y forma parte de la grabación.", // D-75
+        cues: ["Laura escribe por WhatsApp y pide ver un piso.", "Su petición aparece como tarea, con la referencia y la hora que pidió.", "Una agente la toma.", "Queda a su nombre. Nadie más puede tomarla.", "Al terminarla, sale de la lista."],
         stills: {
           tasks: "Cada persona ve su propia lista: tomadas, en espera y lo que todavía no tiene nadie.",
           "task-action": "La has tomado tú. Solo tú puedes cerrarla.",
@@ -228,7 +230,7 @@ export const es: Dictionary = {
     },
     record: {
       eyebrow: "Un solo sistema",
-      h2: "Una consulta, una ficha, un solo lugar",
+      h2: "Nada vive en tres sitios", // D-83
       lead: "La conversación, lo que ha pedido el cliente y la tarea están en una sola ficha. Nada tiene que quedarse en la cabeza de nadie, y nadie tiene que preguntar a un compañero qué se dijo ya.", // D-46
     },
     access: {
@@ -474,7 +476,8 @@ export const es: Dictionary = {
     lead: "Continúa donde lo dejaste.",
     fields: { email: "Email", password: "Contraseña" },
     submit: "Iniciar sesión",
-    submitting: "Iniciando sesión",
+    submitting: "Iniciando sesión…",
+    redirecting: "Sesión iniciada. Abriendo tu agencia…",
     forgot: "¿Has olvidado la contraseña?",
     forgotUnavailable: "El restablecimiento de contraseña todavía no está disponible. Escríbenos y te ayudamos.",
     noAccount: "¿Todavía no tienes cuenta?",
@@ -501,11 +504,11 @@ export const es: Dictionary = {
     resume: "Continúa donde lo dejaste",
     activatable: "Tu agencia está lista para salir en vivo.",
     notActivatable: "Todavía faltan algunas cosas antes de salir en vivo.",
-    blockedMandatory: "Todavía necesario",
+    blockedMandatory: "Necesario", // D-57
     blockedFeatures: "Las funciones desactivadas nunca bloquean la preparación",
     stepStatus: {
-      completed: { label: "Hecho", line: "Configurado y confirmado." },
-      needs_action: { label: "Te toca a ti", line: "Aquí hay algo esperándote." },
+      completed: { label: "Guardado", line: "Lo que has introducido está guardado para tu agencia." }, // D-54
+      needs_action: { label: "Necesario", line: "Este paso todavía lo necesitamos de ti." }, // D-55
       externally_pending: { label: "Esperando a {provider}", line: "Enviado. {provider} todavía no lo ha aprobado. Por ahora no tienes que hacer nada más." },
       locked_by_plan: { label: "No está en tu plan", line: "Disponible en los planes que lo incluyen." },
       optional: { label: "Opcional", line: "No hace falta para empezar. Puedes volver más tarde." },
@@ -526,30 +529,42 @@ export const es: Dictionary = {
       lead: "Hay un CRM incluido desde el principio.",
       nativeTitle: "Sin CRM externo. Usa el CRM incluido en Nuova.",
       nativeTag: "Incluido · Recomendado",
-      nativeBody: "Cada consulta se convierte en un lead con los datos de contacto de la persona, lo que busca y la conversación hasta ahora. Las peticiones de visita pasan a ser tareas para tu equipo. No hay que conectar nada ni pagar nada más.",
+      nativeBody: "Cada consulta pasa a ser un lead con los datos de contacto, lo que ha pedido la persona y la conversación hasta ahora. Las peticiones de visita pasan a ser tareas para tu equipo. No hay que conectar nada ni pagar nada más.", // D-86
       nativeLimits: "No sustituye a un sistema contable o de gestión de operaciones, y no importa fichas de otro CRM.",
       sheetsTitle: "Guardar también una copia en Google Sheets",
       sheetsBody: "Nuova sigue siendo el sitio donde se guardan los leads. Una hoja de Google Sheets recibe una copia que puedes abrir, filtrar y compartir.",
       externalGroup: "Tu propio CRM",
-      externalSoon: "Próximamente",
-      externalBody: "La conexión con {provider} todavía no se ofrece. Elígelo para decirnos que la quieres. Mientras tanto sigues con el CRM incluido y no se envía nada a {provider}.",
+      externalSoon: "Solo interés", // D-60
+      externalBody: "Conectar {provider} no se ofrece. Seleccionarlo registra tu interés, no se envía nada a {provider} y tus leads siguen en el CRM incluido en Nuova.", // D-61
       registerInterest: "Uso {provider}",
-      interestSaved: "Anotado. Te avisaremos cuando se pueda conectar {provider}.",
+      interestSaved: "Interés registrado. No se envía nada a {provider}.", // D-62
       unavailable: "No disponible",
       other: "Mi CRM no aparece",
       otherBody: "Ese CRM no se ofrece. Estás en el CRM incluido en Nuova, y puedes cambiarlo más adelante.",
       done: "Usando el CRM incluido en Nuova.",
-      chooseLabel: "Tu elección",
+      chooseLabel: "Tu selección", // D-59
       save: "Guardar elección",
       saved: "Guardado. Esto es lo que el backend tiene ahora para tu agencia.",
       sheetsNext: "Conectar la hoja de Google es un paso aparte que todavía no está disponible en este sitio.",
       notReadable: "En este entorno todavía no se puede leer la elección de Google Sheets, así que no se muestra aquí.",
       savedStub: "Guardado solo en esta demostración. No ha llegado nada a ningún backend.",
-      sheetsChosen: "Elegido, sin conectar",
+      sheetsChosen: "Seleccionado, sin conectar", // D-63
       sheetsConnected: "Conectado",
       sheetsOffUnavailable: "Desactivar la copia en Google Sheets todavía no está disponible en este sitio. Tus leads siguen en el CRM incluido en Nuova en cualquier caso.",
     },
     progressSteps: "{done} de {total} pasos hechos",
+    progressRequired: "{done} de {total} pasos necesarios guardados",
+    progressLabel: "Tu progreso",
+    nextUp: "Siguiente",
+    goToStep: "Ir a este paso",
+    noFormHere: "Para esto todavía no hay formulario en el sitio. El estado viene de la cuenta de tu agencia.",
+    areas: {
+      agency: { title: "Datos de la agencia y marca", line: "Quién eres, tus datos legales y el logo de tus emails." },
+      channels: { title: "Conexiones y canales", line: "Por dónde entran las consultas y qué está conectado a tu agencia." },
+      crm: { title: "CRM y fuentes de propiedades", line: "Dónde se guardan tus leads y de dónde se leerían tus inmuebles." },
+      team: { title: "Equipo y horario", line: "Quién trabaja con las tareas y el horario guardado para tu agencia." },
+      summary: { title: "Resumen y activación", line: "Qué está comprobado, qué sigue siendo necesario y el paso para salir en vivo." },
+    },
     steps: {
       account: "Cuenta",
       agency: "Datos de la agencia",
@@ -585,7 +600,12 @@ export const es: Dictionary = {
       property_experience: "Property Experience 3D",
       legal: "Tus datos legales",
     },
-    gateDetail: { white_label_legal: "Razón social, CIF o NIF, dirección, logo y enlaces a tu propio aviso de privacidad y tus términos." },
+    gateDetail: {
+      white_label_legal: "Razón social, CIF o NIF, dirección, logo y enlaces a tu propio aviso de privacidad y tus términos.",
+      plan_entitlements: "Tu prueba tiene el alcance de Essential durante 14 días. Lo que incluye un plan de pago se acuerda contigo antes de firmar nada.", // D-67
+    },
+    voiceLine: "No hay ningún número de teléfono conectado a tu agencia. Lo que configures aquí queda guardado para cuando el asistente telefónico esté listo, y hoy no hay nada que atienda una llamada.", // D-66
+    propertySourceHelp: "Tu web es de donde leeríamos tus inmuebles cuando el emparejamiento de propiedades esté activado para tu agencia. Hoy no se lee nada de ella.", // D-71
     aiDisclosurePending: "Depende de nosotros. Estamos terminando el aviso que indica a tus clientes cuándo responde un asistente. No tienes que hacer nada.",
     readyWaitingOnUs: "Parte de esto depende de nosotros, no de ti. Te avisaremos cuando se resuelva.",
     readyError: "No hemos podido cargar tu estado ahora mismo. No ha cambiado nada. Inténtalo de nuevo en un momento.",
@@ -634,13 +654,14 @@ export const es: Dictionary = {
       adminOnly: "Solo un administrador de la agencia puede cambiar esto.",
       managersOnly: "Solo un miembro del equipo que gestiona usuarios puede cambiar esto.",
       business: {
-        heading: "Datos de la agencia y horario",
+        heading: "Datos de la agencia",
+        hoursHeading: "Horario",
         name: "Nombre de la agencia",
         timezone: "Zona horaria",
         languages: "Idiomas en los que responde tu agencia",
         defaultLanguage: "Idioma principal",
         hours: "Horario",
-        hoursHelp: "Las citas solo se ofrecen dentro de este horario. Sin horario, no se reserva nada.",
+        hoursHelp: "Tu horario queda guardado para tu agencia. No cambia cuándo se responde una consulta de texto: eso ocurre cuando llega. Dirigirá al asistente telefónico, que está en construcción.", // D-64
         open: "Abierto",
         from: "Desde",
         to: "Hasta",
@@ -650,7 +671,9 @@ export const es: Dictionary = {
       },
       legal: {
         heading: "Datos legales",
-        lead: "Necesarios antes de enviar cualquier email a clientes en nombre de tu agencia.",
+        lead: "Estos datos van en los emails que tu agencia envía a través de Nuova y en las facturas que te enviamos. Sin ellos no podemos enviar en tu nombre.", // D-68
+        addressHelp: "Tu dirección aparece en el pie legal de esos emails y en tus facturas.", // D-69
+        linksHelp: "Estos enlaces se incluyen en los emails enviados en tu nombre, para que quien te escribe pueda acceder a tus propios avisos. Los avisos de Nuova son aparte.", // D-70
         notReadable: "Los datos legales guardados todavía no se pueden volver a mostrar aquí, así que el formulario empieza vacío. Si están completos se indica en \"Qué falta para salir en vivo\".",
         legalName: "Razón social",
         taxId: "CIF o NIF",
@@ -687,7 +710,7 @@ export const es: Dictionary = {
       calendar: {
         heading: "Citas y traspaso al equipo",
         connected: "Hay un calendario conectado.",
-        notConnected: "No hay ningún calendario conectado, así que no se reserva nada automáticamente. Las solicitudes se gestionan como se indica abajo.",
+        notConnected: "No hay ningún calendario conectado, así que no se reserva nada ni se confirma ninguna cita. Un cliente que pide una hora pasa a ser una tarea para tu equipo.", // D-65
         types: "Tipos de cita",
         typeNames: { viewing: "Visita", valuation: "Valoración", call: "Llamada" },
         minutes: "{n} min",
@@ -702,8 +725,8 @@ export const es: Dictionary = {
         mandatory: "Necesario para salir en vivo",
         optional: "Opcional",
         states: {
-          READY: "Hecho",
-          BLOCKED: "Todavía necesario",
+          READY: "Comprobado", // D-56
+          BLOCKED: "Necesario", // D-57
           OPTIONAL: "Opcional, nunca impide salir en vivo",
           DISABLED: "Desactivado en esta cuenta",
           UNSUPPORTED_GATE: "Esto todavía no lo podemos comprobar. No te bloquea.",
@@ -767,7 +790,41 @@ export const es: Dictionary = {
     eyebrow: "Social",
     navLabel: "Secciones de Social",
     tabs: { connect: "Conectar", post: "Publicar", inbox: "Entrada", settings: "Conexión y datos" },
-    readOnly: "Esta página muestra el estado de tu espacio de trabajo. Conectar, publicar y responder se activan en un paso aparte.",
+    readOnly: "Esta página muestra el estado de tu espacio de trabajo. Cada control se activa solo cuando el estado lo permite; decide la base de datos, nunca la página.",
+    actions: {
+      noRelease: "Para este acceso todavía no se ha concedido ninguna autorización.",
+      notConfigured: "Instagram todavía no está configurado para este espacio de trabajo.",
+      needsConnection: "Conecta primero una cuenta de Instagram.",
+      limitReached: "Se ha alcanzado el límite de publicaciones acordado.",
+      stub: "Datos de demostración: esta acción no envía nada aquí.",
+      running: "En marcha …",
+      done: "Hecho.",
+      connectOpened: "Instagram se ha abierto en una pestaña nueva. Esta página vuelve a leer el estado cada pocos segundos hasta que aparezca la cuenta.",
+      connectWaited: "La cuenta no ha aparecido en cinco minutos. Lee el estado de nuevo o vuelve a iniciar la conexión.",
+      popupBlocked: "El navegador no ha abierto la ventana de Instagram. Permite las ventanas emergentes para esta página e inténtalo de nuevo.",
+      unclear: "Resultado incierto. Comprueba el estado: no se publica de nuevo.",
+      serverProblem: "Un problema por nuestra parte. No se ha cambiado nada. Inténtalo de nuevo en un momento.",
+      refused: "No se ha hecho: {reason}.",
+      reasons: {
+        not_entitled: "Instagram no está activado para este espacio de trabajo",
+        no_connected_account: "no hay ninguna cuenta de Instagram conectada",
+        already_replied_or_claimed: "ya está respondido",
+        recipient_not_in_received_comments: "ese comentario no se recibió aquí",
+        recipient_never_messaged_us: "esa persona no ha escrito a esta cuenta",
+        publication_readiness: "este inmueble no se puede publicar",
+        post_limit_reached: "se ha alcanzado el límite de publicaciones acordado",
+        release_missing: "no se ha concedido ninguna autorización para este acceso",
+        rate_limited: "demasiadas acciones en poco tiempo",
+        invalid_input: "esa petición no se ha podido hacer",
+        not_available_in_stub: "datos de demostración, no se envía nada",
+      },
+      accountCheck: "Comprobar cuenta",
+      accountChecked: "Cuenta {name} · {type}",
+      publish: "Publicar",
+      fetched: "Consultado. La lista de abajo se vuelve a leer.",
+      sent: "Enviado.",
+      disconnected: "Desconectada. El token de acceso se ha eliminado.",
+    },
     asOf: "Estado leído",
     refresh: "Leer de nuevo",
     problem: "No se ha podido leer el estado. No se ha cambiado nada.",
@@ -879,6 +936,12 @@ export const es: Dictionary = {
       deleteH: "Eliminar datos",
       deleteBody: "Las publicaciones, los comentarios, los mensajes y los leads de este canal que ya están guardados se eliminan a petición.",
       deleteLink: "Cómo solicitar la eliminación",
+      releaseH: "Autorización",
+      releaseActive: "Hay una autorización de prueba concedida para este acceso.",
+      releaseUntil: "Válida hasta",
+      releasePosts: "Publicaciones usadas",
+      recentH: "Últimas operaciones",
+      steps: { connect: "Conectar", publish: "Publicar", verify_publish: "Comprobación de estado", poll_comments: "Comentarios consultados", poll_dms: "Mensajes consultados", reply_public: "Respuesta pública", reply_private: "Respuesta privada", dm_reply: "Respuesta a mensaje", revoke: "Desconectar" },
     },
   },
 

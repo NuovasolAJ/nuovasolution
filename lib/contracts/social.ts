@@ -66,6 +66,26 @@ export interface SocialSignal {
   window_expired: boolean;
 }
 
+/**
+ * The test release for this workspace (SOCIAL_UI_CONTRACT_V2_REQUEST_v1 §1). `null` until API's read
+ * model carries it: then the screens cannot tell "no release" from "not configured" and keep every
+ * action switched off, with the sentence for a missing release.
+ */
+export interface SocialRelease {
+  active: boolean;
+  scope: string[];
+  expires_at: string | null;
+  posts_used: number | null;
+  posts_max: number | null;
+}
+
+export interface SocialOperation {
+  at: string | null;
+  step: string;
+  outcome: "confirmed" | "refused" | "unknown";
+  detail: string | null;
+}
+
 export interface SocialState {
   screen: SocialScreen;
   as_of: string | null;
@@ -75,6 +95,10 @@ export interface SocialState {
   posts: SocialPost[];
   inbox: SocialSignal[];
   webhook: { events: number; last_received_at: string | null } | null;
+  /** v2 fields, present only once API delivers them (SOCIAL_UI_CONTRACT_v2). */
+  release: SocialRelease | null;
+  provider: { app_configured: boolean; graph_version: string | null } | null;
+  recent_operations: SocialOperation[];
   stub: boolean;
 }
 
@@ -163,6 +187,29 @@ function reduce(raw: Json, screen: SocialScreen, stub: boolean): SocialState {
   });
 
   const w = raw.webhook_health && typeof raw.webhook_health === "object" ? (raw.webhook_health as Json) : null;
+
+  // v2 fields (SOCIAL_UI_CONTRACT_V2_REQUEST_v1 §5a): read when present, never guessed when absent.
+  const rel = raw.release && typeof raw.release === "object" ? (raw.release as Json) : null;
+  const release: SocialRelease | null = rel
+    ? {
+        active: rel.active === true,
+        scope: Array.isArray(rel.scope) ? rel.scope.map(String).slice(0, 12) : [],
+        expires_at: iso(rel.expires_at),
+        posts_used: typeof rel.posts_used === "number" ? rel.posts_used : null,
+        posts_max: typeof rel.posts_max === "number" ? rel.posts_max : null,
+      }
+    : null;
+  const prov = raw.provider && typeof raw.provider === "object" ? (raw.provider as Json) : null;
+  const provider = prov ? { app_configured: prov.app_configured === true, graph_version: str(prov.graph_version, 16) } : null;
+  const recent_operations: SocialOperation[] = arr(raw.recent_operations)
+    .slice(0, 20)
+    .map((o) => ({
+      at: iso(o.at),
+      step: str(o.step, 32) ?? "other",
+      outcome: o.outcome === "confirmed" || o.outcome === "refused" ? o.outcome : "unknown",
+      detail: str(o.detail, 120),
+    }));
+
   return {
     screen,
     as_of: asOf,
@@ -172,8 +219,34 @@ function reduce(raw: Json, screen: SocialScreen, stub: boolean): SocialState {
     posts,
     inbox,
     webhook: w ? { events: Number(w.events) || 0, last_received_at: iso(w.last_received_at) } : null,
+    release,
+    provider,
+    recent_operations,
     stub,
   };
+}
+
+/**
+ * The provider-side identifier behind a rendered key ("p0" → export id of that post, "s2" → the
+ * comment or sender the reply goes to), looked up server side from a fresh read of the state, so the
+ * browser only ever names what it rendered. Which raw field carries the identifier follows API's
+ * example answers for `social.action` (SOCIAL_UI_ACTION_WIRING_PATCH_v1 §2); until then the first of
+ * the usual names is taken, and nothing is sent when none is there.
+ */
+export async function lookupSocialTarget(kind: "post" | "signal", key: string): Promise<string | null> {
+  if (integrationMode() === "stub") return null;
+  const n = Number(key.slice(1));
+  const screen: SocialScreen = kind === "post" ? "post" : "inbox";
+  const raw = await tenantApi<Json>(sessionToken(), "social.state", { screen });
+  if (!raw || raw.ok === false) return null;
+  const row = arr(kind === "post" ? raw.posts : raw.inbox)[n];
+  if (!row) return null;
+  const names = kind === "post" ? ["export_id", "id"] : ["target", "comment_id", "sender_id", "signal_id", "provider_ref", "id"];
+  for (const name of names) {
+    const v = row[name];
+    if (typeof v === "string" && v.trim()) return v.trim().slice(0, 128);
+  }
+  return null;
 }
 
 /**

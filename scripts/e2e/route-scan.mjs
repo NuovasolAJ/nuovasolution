@@ -72,15 +72,23 @@ try {
   check("sitemap.xml", EXPECT_INDEXABLE ? "lists routes" : "lists nothing on a preview", EXPECT_INDEXABLE ? /<loc>/.test(smText) : !/<loc>/.test(smText), { status: sm.status, locs: (smText.match(/<loc>/g) ?? []).length });
   const root = await get("/");
   check("root redirect", "/ redirects once to a locale", root.status === 307 && /\/(en|es)$/.test(root.headers.get("location") ?? ""), { status: root.status, location: root.headers.get("location") });
-  const assets = await get("/media/daily/daily-clip-poster-es-desktop.png");
+  const assets = await get("/media/daily/daily-laura-es-desktop-poster.png");
   check("poster asset", "media poster is served", assets.status === 200 && (assets.headers.get("content-type") ?? "").includes("image"), { status: assets.status, type: assets.headers.get("content-type") });
   // The films themselves, not only their posters: a deployment that leaves them out serves an HTML page here.
+  // Clip v2: desktop and phone MP4 per language, plus the subtitle files.
   const clips = [];
   for (const f of ["en-desktop", "en-mobile", "es-desktop", "es-mobile"]) {
-    const r = await fetch(`${BASE}/media/daily/daily-claim-flow-${f}.mp4`, { headers: { range: "bytes=0-1023" } });
-    clips.push({ f, status: r.status, type: r.headers.get("content-type"), range: r.headers.get("content-range") });
+    const r = await fetch(`${BASE}/media/daily/daily-laura-${f}.mp4`, { headers: { range: "bytes=0-1023" } });
+    clips.push({ f, status: r.status, type: r.headers.get("content-type"), range: r.headers.get("content-range"), ok: (r.status === 206 || r.status === 200) && (r.headers.get("content-type") ?? "").startsWith("video/mp4") });
   }
-  check("clip assets", "the four product clips are served as video, with byte ranges", clips.every((c) => (c.status === 206 || c.status === 200) && (c.type ?? "").startsWith("video/mp4")), clips);
+  check("clip assets", "the four product clips are served as video, with byte ranges", clips.every((c) => c.ok), clips);
+  const vtts = [];
+  for (const f of ["en-desktop", "en-mobile", "es-desktop", "es-mobile"]) {
+    const r = await get(`/media/daily/daily-laura-${f}.vtt`);
+    const t = r.status === 200 ? await r.text() : "";
+    vtts.push({ f, status: r.status, cues: (t.match(/-->/g) ?? []).length });
+  }
+  check("clip subtitles", "the four subtitle files are served with five cues each", vtts.every((v) => v.status === 200 && v.cues === 5), vtts);
   const legacy = await get("/live-demo");
   check("legacy redirect", "/live-demo redirects permanently", legacy.status === 308 || legacy.status === 301, { status: legacy.status, location: legacy.headers.get("location") });
 } finally {

@@ -8,8 +8,7 @@ import { BackendRefusal } from "@/lib/contracts/supabase";
 import { Section } from "@/components/ui/section";
 import { Display, Eyebrow, Lead } from "@/components/ui/type";
 import { StatusGlyph } from "@/components/ui/status";
-import { OnboardingWizard } from "@/components/site/onboarding-wizard";
-import { OnboardingSetup } from "@/components/site/onboarding-setup";
+import { OnboardingAreas } from "@/components/site/onboarding-areas";
 import { RegisterForm } from "@/components/site/auth-forms";
 import type { CrmCatalogEntry, CrmSelection } from "@/lib/contracts/types";
 import { EnvironmentRibbon } from "@/components/site/environment-ribbon";
@@ -54,38 +53,36 @@ export default async function OnboardingPage({ params, searchParams }: { params:
   return (
     <>
     <EnvironmentRibbon locale={locale} scope="form" />
-    <Section rhythm="opening" labelledBy="ob-h1">
+    <Section rhythm="opening" labelledBy="ob-h1" className="!pb-8">
       <div className="container-default">
         <div className="xl:max-w-[62%]">
           <Eyebrow className="mb-4">{d.onboarding.eyebrow}</Eyebrow>
           <Display size="l" as="h1" id="ob-h1">{d.onboarding.h1}</Display>
           <Lead className="mt-4">{d.onboarding.lead}</Lead>
         </div>
-        <div className="mt-12">
-          {bundle?.kind === "register" ? (
-            <div className="xl:max-w-[62%] border border-line-strong bg-surface-raised p-6" data-onboarding-register>
-              <h2 className="t-heading-l text-text-primary">{d.onboarding.register.heading}</h2>
-              <p className="mt-2 t-body-s text-text-secondary measure-body">{d.onboarding.register.lead}</p>
-              <div className="mt-8">
-                <RegisterForm locale={locale} agencyNameHint={bundle.agencyNameHint} />
-              </div>
-            </div>
-          ) : bundle ? (
-            <div className="space-y-16">
-              <OnboardingWizard locale={locale} state={bundle.state} trial={bundle.trial} readiness={bundle.readiness} stub={bundle.stub} crm={crm} noticeAllowed={noticeAllowed} />
-              <div className="xl:max-w-[62%]">
-                <OnboardingSetup locale={locale} profile={bundle.profile} readiness={bundle.readiness} role={bundle.role} stub={bundle.stub} />
-              </div>
-            </div>
-          ) : (
-            <p role="alert" data-onboarding-problem={problem ?? ""} className="flex items-start gap-2 border border-line-strong bg-surface-raised p-5 t-body-m text-text-secondary">
-              <StatusGlyph glyph="triangle" className="mt-1 shrink-0 text-signal-attention" />
-              {(d.common.errors as Record<string, string>)[problem ?? "generic"] ?? d.common.errors.generic}
-            </p>
-          )}
-        </div>
       </div>
     </Section>
+    {/* The five areas on the shared sand ground (layer 1), each a white stage (layer 2). */}
+    <div className="band band-sand band-shoulders">
+      <div className="container-default pb-24 pt-8 md:pt-10">
+        {bundle?.kind === "register" ? (
+          <div className="stage p-6 md:p-8 xl:max-w-[62%]" data-onboarding-register>
+            <h2 className="t-heading-l text-text-primary">{d.onboarding.register.heading}</h2>
+            <p className="mt-2 t-body-s text-text-secondary measure-body">{d.onboarding.register.lead}</p>
+            <div className="mt-8">
+              <RegisterForm locale={locale} agencyNameHint={bundle.agencyNameHint} />
+            </div>
+          </div>
+        ) : bundle ? (
+          <OnboardingAreas locale={locale} state={bundle.state} trial={bundle.trial} readiness={bundle.readiness} stub={bundle.stub} crm={crm} noticeAllowed={noticeAllowed} profile={bundle.profile} role={bundle.role} />
+        ) : (
+          <p role="alert" data-onboarding-problem={problem ?? ""} className="stage flex items-start gap-2 p-5 t-body-m text-text-secondary">
+            <StatusGlyph glyph="triangle" className="mt-1 shrink-0 text-signal-attention" />
+            {(d.common.errors as Record<string, string>)[problem ?? "generic"] ?? d.common.errors.generic}
+          </p>
+        )}
+      </div>
+    </div>
     </>
   );
 }

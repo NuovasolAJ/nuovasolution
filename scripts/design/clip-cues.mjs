@@ -1,7 +1,7 @@
 // Finds when the picture changes in a product clip, so the caption cues can follow the visible action
 // (COPY_DELTAS_0929 §5.1: "matched to the visible action rather than to a script"). Loads the clip from
 // the local build in headless Edge, samples a frame every 0.5 s and reports the change against the frame before.
-// Usage: node scripts/design/clip-cues.mjs /media/daily/daily-claim-flow-es-desktop.mp4
+// Usage: node scripts/design/clip-cues.mjs /media/daily/daily-laura-es-desktop.mp4
 import { spawn } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -11,7 +11,7 @@ const EDGE = process.env.EDGE ?? "C:/Program Files (x86)/Microsoft/Edge/Applicat
 const NEXT = join(ROOT, "node_modules", "next", "dist", "bin", "next");
 const PORT = 3118, CDP_PORT = 9348;
 const BASE = `http://localhost:${PORT}`;
-const clips = process.argv.slice(2).length ? process.argv.slice(2) : ["media/daily/daily-claim-flow-es-desktop.mp4", "media/daily/daily-claim-flow-en-desktop.mp4", "media/daily/daily-claim-flow-es-mobile.mp4", "media/daily/daily-claim-flow-en-mobile.mp4"];
+const clips = process.argv.slice(2).length ? process.argv.slice(2) : ["media/daily/daily-laura-es-desktop.mp4", "media/daily/daily-laura-en-desktop.mp4", "media/daily/daily-laura-es-mobile.mp4", "media/daily/daily-laura-en-mobile.mp4"];
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const kids = [];
 try {

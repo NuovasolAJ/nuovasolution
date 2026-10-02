@@ -4,22 +4,30 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * A short product clip behind a poster (owner order 2026-09-29 C). Nothing of the film is
- * requested until the visitor presses play: the page loads only the poster, lazily, in the
- * frame's own aspect ratio (16:9 from 768 px, 4:5 below), so the clip never competes with the
- * first paint and never shifts the layout. The clips have no sound track; playback starts
- * muted, only on the visitor's action, with the browser's own play, pause and seek controls.
+ * The one video component of the product sections (owner order 2026-10-01 §5): a short product
+ * clip behind its poster. Nothing of the film is requested until the visitor presses play: the
+ * page loads only the poster, lazily, in the frame's own aspect ratio (16:9 from 768 px, 4:5
+ * below), so the clip never competes with the first paint and never shifts the layout. The clips
+ * have no sound track; playback starts muted, only on the visitor's action, with the browser's own
+ * play, pause and seek controls.
+ *
+ * Formats (daily_clip_v2/MANIFEST.md): desktop 16:9 and mobile 4:5, both as MP4 (the delivered WebM
+ * has no duration header and cannot be seeked, so it is not offered); one poster per format and
+ * language; subtitles as WebVTT per format and language. The
+ * caption line under the frame follows the playback time with the same five lines, so the clip
+ * is understood without sound and without the browser's subtitle menu; the VTT track is offered
+ * but off by default, so nothing covers the recording.
  *
  * Nothing is laid over the picture: the label sits above the frame and the play control below
  * it, so no interface text of the capture is covered (the whole poster is clickable as well).
- * The three cues (COPY_DELTAS_0929 §5.1) are a caption line under the frame, matched to the
- * visible action by the playback time, so the clip is understood without sound and without the
- * browser's subtitle menu. The same three lines are also a subtitle track (WebVTT, COPY_DELTAS_0930 §4), off by
- * default so nothing covers the recording; the player's captions control switches it on.
  */
-// Seconds, measured on the four clips with scripts/design/clip-cues.mjs (largest picture changes at 7.0 s and
-// 13.5 s in every cut): the list at rest · the agent takes the task · the task is completed and leaves the list.
-const CUE_STARTS = [0, 7, 13.5];
+type Fmt = "desktop" | "mobile";
+
+/** Cue start times in seconds, read from Daily's VTT files (the five subtitles, per language). */
+const CUE_STARTS: Record<"en" | "es", readonly number[]> = {
+  en: [0.2, 5.574, 10.377, 12.549, 17.617],
+  es: [0.2, 5.758, 10.561, 12.74, 17.801],
+};
 
 export function ProductClip({
   base,
@@ -32,7 +40,7 @@ export function ProductClip({
   errorLabel,
   className,
 }: {
-  /** Path prefix without language and format, e.g. "/media/daily/daily-claim-flow". */
+  /** Path prefix without language and format, e.g. "/media/daily/daily-laura". */
   base: string;
   locale: "en" | "es";
   playLabel: string;
@@ -44,31 +52,29 @@ export function ProductClip({
   errorLabel: string;
   className?: string;
 }) {
-  const [src, setSrc] = useState<string | null>(null);
+  const [fmt, setFmt] = useState<Fmt | null>(null);
   const [cue, setCue] = useState(0);
   const [failed, setFailed] = useState(false);
   const video = useRef<HTMLVideoElement | null>(null);
-  const posterBase = base.replace("claim-flow", "clip-poster");
-  const posterDesktop = `${posterBase}-${locale}-desktop.png`;
-  const posterMobile = `${posterBase}-${locale}-mobile.png`;
+  const poster = (f: Fmt) => `${base}-${locale}-${f}-poster.png`;
+  const starts = CUE_STARTS[locale];
 
   useEffect(() => {
-    if (!src || !video.current) return;
+    if (!fmt || !video.current) return;
     video.current.focus({ preventScroll: true });
     void video.current.play().catch(() => {
       /* the visitor can still press the native play control */
     });
-  }, [src]);
+  }, [fmt]);
 
   function start() {
     setFailed(false);
-    const mobile = window.matchMedia("(max-width: 767px)").matches;
-    setSrc(`${base}-${locale}-${mobile ? "mobile" : "desktop"}.mp4`);
+    setFmt(window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop");
   }
 
   // The film did not load (network, or a missing file): back to the poster, and say so. Never an empty player.
   function onError() {
-    setSrc(null);
+    setFmt(null);
     setCue(0);
     setFailed(true);
   }
@@ -76,27 +82,32 @@ export function ProductClip({
   function onTime() {
     const t = video.current?.currentTime ?? 0;
     let i = 0;
-    for (let k = 0; k < CUE_STARTS.length; k++) if (t >= CUE_STARTS[k]) i = k;
-    setCue(i);
+    for (let k = 0; k < starts.length; k++) if (t >= starts[k]) i = k;
+    setCue(Math.min(i, cues.length - 1));
   }
 
+  const src = fmt ? `${base}-${locale}-${fmt}` : null;
+
   return (
-    <div className={className}>
+    <div className={className} data-clip-component>
       <p className="mb-3 inline-flex items-center gap-2 t-body-s font-medium text-text-primary">
-        <span aria-hidden="true" className="h-2 w-2 rounded-pill bg-sky-700" />
+        <span aria-hidden="true" className="h-2 w-2 rounded-pill bg-champagne-400" />
         {posterLabel}
       </p>
-      <div className={cn("relative overflow-hidden rounded-xl border border-line-hairline bg-[#f5f6f8] shadow-card aspect-[840/1052] lg:aspect-[1756/988]")} data-product-clip={src ? "playing" : "poster"}>
+      <div className={cn("relative overflow-hidden rounded-xl border border-line-hairline bg-[#f3f1ec] shadow-card aspect-[840/1052] lg:aspect-[1640/924]")} data-product-clip={src ? "playing" : "poster"}>
         {src ? (
-          <video ref={video} src={src} controls muted playsInline preload="metadata" onTimeUpdate={onTime} onError={onError} className="absolute inset-0 h-full w-full" aria-label={alt}>
-            <track kind="captions" src={`${base}-${locale}.vtt`} srcLang={locale} label={locale === "es" ? "Español" : "English"} />
+          <video ref={video} controls muted playsInline preload="metadata" onTimeUpdate={onTime} onError={onError} className="absolute inset-0 h-full w-full" aria-label={alt} crossOrigin="anonymous">
+            {/* MP4 for both formats. Daily's WebM cut carries no duration header (recorder output), so a browser
+                cannot show a seek bar for it; it is kept in the handoff until a cut with cues arrives. */}
+            <source src={`${src}.mp4`} type="video/mp4" onError={onError} />
+            <track kind="captions" src={`${src}.vtt`} srcLang={locale} label={locale === "es" ? "Español" : "English"} />
           </video>
         ) : (
           <button type="button" onClick={start} className="group absolute inset-0 block" aria-label={`${playLabel}. ${meta}`} tabIndex={-1}>
             <picture>
-              <source media="(max-width: 767px)" srcSet={posterMobile} width={840} height={1052} />
+              <source media="(max-width: 767px)" srcSet={poster("mobile")} width={840} height={1052} />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={posterDesktop} width={1756} height={988} alt={alt} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+              <img src={poster("desktop")} width={1640} height={924} alt={alt} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
             </picture>
           </button>
         )}

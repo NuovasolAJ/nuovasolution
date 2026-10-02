@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
 const MEDIA = "(min-width: 1024px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)";
 const STEP = 14; // px each further card sticks lower, so the edges of the cards below stay visible
 const GAP = 24; // px between the header and the first card, and above the window's bottom edge
+const MIN_ROOM = 520; // px of window height a card needs under the header before the deck is worth switching on
 
 export function StackDeck({ children, className, as: Tag = "ol" }: { children: ReactNode; className?: string; as?: "ol" | "div" }) {
   const ref = useRef<HTMLOListElement & HTMLDivElement>(null);
@@ -39,13 +40,27 @@ export function StackDeck({ children, className, as: Tag = "ol" }: { children: R
         items.forEach((el) => {
           el.style.removeProperty("--deck-top");
           el.style.removeProperty("--deck-covered");
+          el.removeAttribute("inert");
+        });
+        return;
+      }
+      const vh = window.innerHeight;
+      const base = header() + GAP;
+      // Too little room between the header and the window's bottom edge for a card to be read while it sticks:
+      // then the whole sequence stacks normally (owner order 2026-10-01 §4), nothing is cut off.
+      if (vh - base - GAP < MIN_ROOM) {
+        deck!.dataset.deck = "off";
+        items.forEach((el) => {
+          el.style.removeProperty("--deck-top");
+          el.style.removeProperty("--deck-covered");
+          el.removeAttribute("inert");
         });
         return;
       }
       deck!.dataset.deck = "on";
-      const vh = window.innerHeight;
-      const base = header() + GAP;
       items.forEach((el, i) => {
+        // A card taller than the room sticks only once its bottom edge is in view, so it is always read to its
+        // end before the next card covers it; its top then rests above the window, already read.
         const h = (el.firstElementChild as HTMLElement | null)?.offsetHeight ?? el.offsetHeight;
         const top = Math.min(base + i * STEP, vh - h - GAP);
         el.style.setProperty("--deck-top", `${Math.round(top)}px`);
@@ -54,7 +69,8 @@ export function StackDeck({ children, className, as: Tag = "ol" }: { children: R
     }
 
     // How far each card is covered by the next one: 0 while the next is below it, 1 once the next
-    // card has reached its own resting place.
+    // card has reached its own resting place. A card that is fully covered is made inert, so nothing
+    // under the card in front can take a click or the keyboard focus.
     function measure() {
       frame = 0;
       if (deck!.dataset.deck !== "on") return;
@@ -63,6 +79,7 @@ export function StackDeck({ children, className, as: Tag = "ol" }: { children: R
         const next = items[i + 1];
         if (!next) {
           el.style.setProperty("--deck-covered", "0");
+          el.removeAttribute("inert");
           continue;
         }
         const card = el.getBoundingClientRect();
@@ -71,6 +88,8 @@ export function StackDeck({ children, className, as: Tag = "ol" }: { children: R
         const travel = Math.max(1, card.bottom - nextRest);
         const covered = Math.min(1, Math.max(0, (card.bottom - nextTop) / travel));
         el.style.setProperty("--deck-covered", covered.toFixed(3));
+        if (covered >= 0.985) el.setAttribute("inert", "");
+        else el.removeAttribute("inert");
       }
     }
 
