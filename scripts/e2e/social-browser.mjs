@@ -161,7 +161,8 @@ try {
   const g = (locale, key, c = "", tab = "") => seen[`${locale}:d1440:${c}:${key}:${tab}`];
   if (STAGING) {
     const a = g("en", "connect"), b = g("en", "post"), ci = g("en", "inbox"), cm = g("en", "inbox", "", "messages"), dset = g("en", "settings"), bes = g("es", "post");
-    check("SO-06", "screen A: publishing is enabled for the reviewer tenant, no account is connected, the connect control is not active", a.connect === "disconnected" && /No Instagram account connected\./.test(a.text) && a.inert === 1, { state: a.connect, inert: a.inert });
+    // Two controls on screen A now (Connect Instagram, Check account), both off while the read model carries no release.
+    check("SO-06", "screen A: publishing is enabled for the reviewer tenant, no account is connected, the connect controls are not active", a.connect === "disconnected" && /No Instagram account connected\./.test(a.text) && a.inert >= 1, { state: a.connect, inert: a.inert });
     check("SO-07", "screen B: the listing without documented image rights is refused visibly, the others can be published", b.listings >= 4 && b.blocked.length === 1 && /image rights for this listing are not documented/.test(b.blocked[0]) && bes.blocked.length === 1 && /derechos de imagen/.test(bes.blocked[0]), { listings: b.listings, blocked_en: b.blocked, blocked_es: bes.blocked, posts: b.posts, empty: b.empty });
     check("SO-08", "screen C: the empty inbox says so for comments and for messages", ci.empty.some((x) => /No comments yet\./.test(x)) && cm.empty.some((x) => /No messages yet\./.test(x)), { comments: ci.empty, messages: cm.empty });
     check("SO-09", "screen D: no connection to disconnect, and the deletion page is linked", /No Instagram account connected\./.test(dset.text) && /How to request deletion/.test(dset.text), { connected: false });

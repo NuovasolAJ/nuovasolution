@@ -60,6 +60,24 @@ export interface RegistrationBundle {
   stub: boolean;
 }
 
+/**
+ * The tenant key never leaves the server, wherever the backend puts it: the top-level `client_id` is blanked, and any
+ * nested `client_id` / `tenant_id` / `client_ref` (the state's `trial` object started carrying one on 2026-10-02) is
+ * removed before the state is passed on. Values are not inspected, only these keys.
+ */
+export function stripTenantIds<T>(value: T): T {
+  if (Array.isArray(value)) return value.map((v) => stripTenantIds(v)) as unknown as T;
+  if (value && typeof value === "object") {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+      if (k === "client_id" || k === "tenant_id" || k === "client_ref") continue;
+      out[k] = stripTenantIds(v);
+    }
+    return out as T;
+  }
+  return value;
+}
+
 export async function getOnboardingBundle(caseOverride?: number): Promise<OnboardingBundle | RegistrationBundle> {
   if (integrationMode() === "stub") {
     if (cookies().get(STUB_REGISTERED_COOKIE)?.value === "0") return { kind: "register", agencyNameHint: "Demo Agency (stub)", email: "demo@agency.example", stub: true };
@@ -79,7 +97,7 @@ export async function getOnboardingBundle(caseOverride?: number): Promise<Onboar
     readTrial(token).catch(() => null),
   ]);
   if (!raw || !Array.isArray(raw.steps)) throw new Error("onboarding_state_unavailable");
-  return { kind: "member", state: { ...raw, client_id: "" }, profile, readiness, trial, role: actor.role ?? "agent", stub: false };
+  return { kind: "member", state: { ...stripTenantIds(raw), client_id: "" }, profile, readiness, trial, role: actor.role ?? "agent", stub: false };
 }
 
 export type PlansResult = { kind: "stub"; plans: Plan[] } | { kind: "live"; plans: Plan[] } | { kind: "awaiting_contract" };

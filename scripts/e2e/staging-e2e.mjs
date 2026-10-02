@@ -85,7 +85,9 @@ try {
   // URL is the image itself and is rendered as-is. Everywhere else the id must be absent.
   const ids = /stg_web_e2e_(agency_a1b523|other_393a6e)/;
   const noAssets = (b) => JSON.stringify(b).replace(/https:\/\/[a-z]+\.supabase\.co\/storage\/v1\/object\/public\/agency-branding\/[^"]+/g, "<asset-url>");
-  check("N6", "no tenant id in any onboarding read outside the backend's public asset URLs", !ids.test(noAssets(otherAfter.body)) && !ids.test(noAssets(r.body)) && otherAfter.body?.details?.state?.client_id === "", "ids absent outside asset URLs, client_id blanked");
+  // Evidence names the JSON paths that carry an id (never the value), so a new backend field is found at once.
+  const idPaths = (b, at = "", out = []) => { if (b && typeof b === "object") { for (const [k, v] of Object.entries(b)) idPaths(v, `${at}.${k}`, out); } else if (typeof b === "string" && ids.test(b) && !/agency-branding\//.test(b)) out.push(at); return out; };
+  check("N6", "no tenant id in any onboarding read outside the backend's public asset URLs", !ids.test(noAssets(otherAfter.body)) && !ids.test(noAssets(r.body)) && otherAfter.body?.details?.state?.client_id === "", { other_paths: idPaths(otherAfter.body), owner_paths: idPaths(r.body), client_id_blank: otherAfter.body?.details?.state?.client_id === "" });
 
   r = await jpost("/api/bff/onboarding/business", { timezone: "Europe/Madrid", languages: ["es"], default_language: "es", business_hours: { mon: "09:00-18:00" } }, agentCk);
   const agentWrite = r.status;
@@ -155,8 +157,8 @@ try {
   await nav(`${BASE}/en/onboarding`);
   await scrollTo("[data-crm-choice]");
   const sheets = await ev(`({state:document.querySelector('[data-sheets-state]')?.getAttribute('data-sheets-state'),text:document.querySelector('[data-sheets-state]')?.innerText,ofRecord:!!document.querySelector('[data-crm-of-record=nuovasolution]'),checked:document.querySelector('[data-crm-choice] input:checked')?.value,slot:/⟦/.test(document.body.innerText)})`);
-  check("S3", "CRM read back from crm.current: built-in CRM of record ('No external CRM'), Google Sheets 'chosen, not connected', never 'connected'",
-    sheets.state === "chosen_not_connected" && /Chosen, not connected/i.test(sheets.text ?? "") && sheets.ofRecord && sheets.checked === "google_sheets" && !sheets.slot, sheets);
+  check("S3", "CRM read back from crm.current: built-in CRM of record ('No external CRM'), Google Sheets 'selected, not connected', never 'connected'",
+    sheets.state === "chosen_not_connected" && /Selected, not connected/i.test(sheets.text ?? "") && sheets.ofRecord && sheets.checked === "google_sheets" && !sheets.slot, sheets);
   await shot("stg-m390-en-crm-sheets-chosen-not-connected");
   // S4 choosing "No external CRM" while the Sheets copy is on: no contracted switch-off exists, so it is not offered as saved
   await ev(`document.querySelector('[data-crm-choice] input[value=nuovasolution]').click()`);
@@ -237,7 +239,7 @@ try {
   await setVal("form input[name=email]", OWNER.email);
   await setVal("form input[name=password]", OWNER.password);
   await ev(`document.querySelector('form button[type=submit]').click()`);
-  const es = await waitFor(`location.pathname==='/es/onboarding' && /La configuración de tu agencia/.test(document.body.innerText)`);
+  const es = await waitFor(`location.pathname==='/es/onboarding' && /Datos de la agencia y marca/.test(document.body.innerText)`);
   check("S15", "Spanish owner view renders in Spanish on desktop", es, es);
   await scrollTo("[data-onboarding-setup]");
   await shot("stg-d1440-es-setup");

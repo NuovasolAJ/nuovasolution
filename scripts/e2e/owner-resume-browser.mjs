@@ -87,7 +87,9 @@ try {
   if (REPEAT_ONLY) {
     // The agency exists already. What a second visit looks like, and that a repeated register changes nothing.
     const name = process.env.AGENCY_NAME ?? "";
-    const direct = await ev(`({setup:!!document.querySelector('[data-onboarding-setup]'),register:!!document.querySelector('[data-onboarding-register]')})`);
+    // The document may still be streaming when the path has changed: wait for the page's body before reading it.
+    await waitFor(`!!document.querySelector('[data-onboarding-setup],[data-onboarding-register],[data-onboarding-problem]')`, 20000);
+    const direct = await ev(`({setup:!!document.querySelector('[data-onboarding-setup]'),register:!!document.querySelector('[data-onboarding-register]'),problem:document.querySelector('[data-onboarding-problem]')?.getAttribute('data-onboarding-problem')??null})`);
     check("OR-10", "a second login goes straight to the agency setup; the registration step does not come back", direct.setup && !direct.register, direct);
     const again = await ev(`fetch('/api/bff/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({agency_name:${JSON.stringify(name + " (second attempt)")}})}).then(async r=>{const j=await r.json().catch(()=>({}));return {status:r.status,outcome:j.details?.outcome??null}})`);
     await nav(`${BASE}/${LOCALE}/onboarding`, 4000);

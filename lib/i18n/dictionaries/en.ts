@@ -600,6 +600,7 @@ export const en = {
     progressSteps: "{done} of {total} steps done",
     // Five areas (owner order 2026-10-01 §7); the progress counts only the steps that are really needed.
     progressRequired: "{done} of {total} required steps saved",
+    progressShort: "{done} of {total} required", // the slim strip on the phone
     progressLabel: "Your progress",
     nextUp: "Next",
     goToStep: "Go to this step",

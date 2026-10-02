@@ -554,6 +554,7 @@ export const es: Dictionary = {
     },
     progressSteps: "{done} de {total} pasos hechos",
     progressRequired: "{done} de {total} pasos necesarios guardados",
+    progressShort: "{done} de {total} necesarios",
     progressLabel: "Tu progreso",
     nextUp: "Siguiente",
     goToStep: "Ir a este paso",

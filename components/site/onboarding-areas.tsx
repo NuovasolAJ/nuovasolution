@@ -183,7 +183,7 @@ export function OnboardingAreas({
       {/* The phone: a slim strip that travels with the page and never covers a field for long. */}
       <div className="sticky top-[var(--header-h)] z-[20] -mx-[var(--gutter)] border-b border-line-hairline bg-[color:rgba(251,250,247,0.94)] px-[var(--gutter)] py-2.5 backdrop-blur-md xl:hidden" data-progress-strip>
         <div className="flex items-center justify-between gap-3">
-          <p className="truncate t-body-s font-medium tnum text-text-primary">{d.progressRequired.replace("{done}", String(done)).replace("{total}", String(required.length))}</p>
+          <p className="t-body-s font-medium tnum text-text-primary" data-progress-short>{d.progressShort.replace("{done}", String(done)).replace("{total}", String(required.length))}</p>
           {resume && (
             <a href={`#step-${state.resume_step}`} className="inline-flex min-h-[36px] shrink-0 items-center gap-1 t-caption font-medium text-text-accent underline underline-offset-4">
               {d.nextUp}: {(d.steps as Record<string, string>)[resume.key] ?? resume.title}
@@ -193,12 +193,13 @@ export function OnboardingAreas({
       </div>
 
       <div className="xl:grid xl:grid-cols-[260px_minmax(0,1fr)] xl:gap-12">
-        {/* The rail from 1024 px: progress, the next step, and the five areas with their state. */}
-        <aside className="hidden xl:block" aria-label={d.progressLabel}>
-          <div className="sticky top-[calc(var(--header-h)+24px)] space-y-6" data-progress-rail>
+        {/* The progress, once in the document: at the top of the content on the phone, in a rail that travels with the
+            page from 1024 px, where it also carries the next step and the five areas with their state. */}
+        <aside className="mb-6 xl:mb-0" aria-label={d.progressLabel}>
+          <div className="space-y-6 xl:sticky xl:top-[calc(var(--header-h)+24px)]" data-progress-rail>
             <div>{progress}</div>
-            {resumeLink}
-            <ol className="flow-rail border-l-0" data-area-nav>
+            <div className="hidden xl:block">{resumeLink}</div>
+            <ol className="hidden flow-rail border-l-0 xl:block" data-area-nav>
               {AREAS.map((a, i) => {
                 const st = areaState(a);
                 return (
@@ -218,8 +219,6 @@ export function OnboardingAreas({
         </aside>
 
         <div className="space-y-6">
-          <div className="xl:hidden">{progress}</div>
-
           {/* 1 Agency data and brand */}
           <Area id="agency" n="01" d={d}>
             <StepRows locale={locale} steps={[byKey.account, byKey.agency, byKey.branding]} state={state} busy={busy} touch={touch} />
