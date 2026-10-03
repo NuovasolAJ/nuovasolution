@@ -133,10 +133,11 @@ export const es: Dictionary = {
     hero: {
       eyebrow: "Para agencias inmobiliarias en España",
       h1: "Respondida cuando llega", // COPY_DELTAS_1001 D-81
-      lead: "Un comprador escribe un domingo por la noche, cuando no hay nadie libre. Nuova responde en su idioma, registra lo que ha pedido y deja a tu equipo una tarea que terminar.", // D-82
+      lead: "Un comprador escribe el domingo. Nuova responde en español, registra lo que ha pedido y deja una tarea a tu equipo.", // COPY_HERO_1003 §1
+      state: "Hoy en español, para consultas de texto por WhatsApp y email.", // COPY_HERO_1003 §1
       qualifier: "En los canales que conectes.",
       note: "14 días gratis. Sin pago.",
-      ctaSecondary: "Mira cómo funciona",
+      ctaSecondary: "Ver cómo funciona", // COPY_HERO_1003 §1
       cards: {
         synthetic: "Ejemplo con datos sintéticos",
         enquiry: { channel: "WhatsApp · consulta nueva", time: "domingo 21:40", text: "Hola, soy Laura Serrano. ¿Se puede ver el piso de dos dormitorios en Estepona? Estamos en Manchester y podríamos ir el jueves por la mañana.", from: "Laura Serrano" },
@@ -240,7 +241,7 @@ export const es: Dictionary = {
       link: "Ver qué incluye",
       steps: [
         { title: "Crea tu cuenta", line: "Tu nombre, tu email de trabajo, una contraseña. Después confirma tu email." },
-        { title: "Pon nombre a tu agencia", line: "Un paso, y empieza tu prueba de 14 días." },
+        { title: "Pon nombre a tu agencia", line: "Le pones nombre a tu agencia y entras en la configuración." }, // COPY_DELTAS_1003 D-88
         { title: "Configúrala tú mismo", line: "Los datos de tu agencia, tus datos legales y tu logo, más tu equipo y sus roles." }, // D-51
       ],
       noCharge: "No se cobra nada y no pedimos ninguna tarjeta en ninguno de estos tres pasos.", // D-53
@@ -263,6 +264,156 @@ export const es: Dictionary = {
       h2: "Tu próxima consulta ya está en camino",
       body: "La única pregunta es qué pasa con ella.",
       caption: "",
+    },
+    // Home v3 (dirección del owner 2026-10-03, orden R10b). TEXTO DE TRABAJO del implementador hasta
+    // COPY_HERO_1003 y COPY_DELTAS_1003 (la marca está en lib/content/home-v3.ts).
+    v3: {
+      workingText: "Texto de trabajo. La redacción no es definitiva.",
+      hero: {
+        // COPY_HERO_1003 §2; la cuarta etiqueta reutiliza la redacción aprobada del tablero.
+        labels: { enquiry: "Consulta por WhatsApp", reply: "Respuesta en español", crm: "Ficha del cliente", next: "Una tarea para tu equipo" },
+        replay: "Reproducir otra vez",
+        surfaceLabel: "Ejemplo: una consulta por WhatsApp, la respuesta en español, la ficha del cliente y la tarea para el equipo",
+      },
+      modules: {
+        tag: "El producto en acción",
+        h2: "Una consulta.",
+        h2Soft: "Cada parte, trabajando.",
+        lead: "Abre una tarjeta para ver una demostración breve. Cada una dice qué puedes contratar hoy.",
+        show: "Ver la demostración",
+        hide: "Cerrar la demostración",
+        link: "Leer el módulo",
+        demoNote: "Demostración con datos sintéticos.",
+        stepOf: "Paso",
+        items: {
+          reply: {
+            title: "Responder y registrar",
+            line: "Entra el mensaje, sale la respuesta",
+            state: "Disponible hoy",
+            steps: ["Llega un mensaje", "Se escribe la respuesta", "La consulta está en tu CRM", "Tu equipo recibe el aviso"],
+          },
+          daily: {
+            title: "Tareas del día para tu equipo",
+            line: "Quién hace qué, y por qué",
+            state: "Lista de tareas disponible hoy. Vista del equipo en preparación.",
+            steps: ["Tu equipo de un vistazo", "La siguiente acción, con su motivo", "Una persona la toma", "Hecha, y fuera de la lista"],
+          },
+          voice: {
+            title: "Asistente telefónico",
+            line: "Una llamada se convierte en tarea",
+            state: "En preparación. Todavía no se puede contratar.",
+            steps: ["Entra una llamada", "Se anota lo que pide", "Aparece una tarea para tu equipo"],
+          },
+          social: {
+            title: "Social Growth",
+            line: "De un inmueble a una publicación",
+            state: "En preparación. Todavía no se puede contratar.",
+            steps: ["Eliges un inmueble", "Se redacta una publicación para tu aprobación", "Llega un comentario", "Sale una respuesta que tú permitiste"],
+          },
+          model3d: {
+            title: "Modelo 3D del inmueble",
+            line: "Del plano al modelo 3D",
+            state: "Bajo petición. Lo creamos y revisamos nosotros, por inmueble.",
+            steps: ["Envías un plano y fotos", "Creamos el modelo", "Elige una planta", "Muebles sí o no"],
+          },
+        },
+        scene: {
+          synthetic: "Datos sintéticos",
+          you: "Tú",
+          reply: { crm: "CRM", alert: "Aviso de lead caliente", alertLine: "Pide visita para el jueves" },
+          daily: {
+            team: "Equipo hoy",
+            people: [{ name: "Marta", open: "2 abiertas" }, { name: "Tom", open: "1 abierta" }, { name: "Tú", open: "1 abierta" }],
+            next: "Siguiente acción",
+            task: "Devolver la llamada a Álvaro Pons",
+            reason: "Motivo: preguntó el precio por teléfono",
+            take: "Tomarla",
+            taken: "La has tomado tú",
+            done: "Hecha",
+            empty: "No queda nada en tu lista",
+          },
+          voice: {
+            incoming: "Llamada entrante",
+            caller: "Número desconocido",
+            noted: "Anotado de la llamada",
+            wish: ["Quiere: una visita", "Dónde: Mijas, 3 dormitorios", "Cuándo: el viernes por la tarde"],
+            task: "Confirmar la visita del viernes",
+            taskMeta: "Tarea nueva · de una llamada",
+          },
+          social: {
+            property: "Piso en Estepona",
+            propertyMeta: "2 dormitorios · REF-DEMO-204",
+            draft: "Borrador de publicación",
+            caption: "Dos dormitorios, terraza y luz de mañana en Estepona.",
+            approve: "Aprobado por ti",
+            comment: "¿Sigue disponible?",
+            commenter: "Un comentario",
+            reply: "Gracias por preguntar. Te escribimos directamente.",
+            replyMeta: "De las respuestas que permitiste",
+          },
+          model3d: {
+            plan: "Plano",
+            photos: "Fotos",
+            model: "Modelo 3D",
+            floors: ["Planta baja", "Planta alta"],
+            furniture: "Muebles",
+            on: "Sí",
+            off: "No",
+            note: "Ilustración. El mobiliario de un modelo es ilustrativo.",
+          },
+        },
+      },
+      plans: {
+        tag: "Paquetes",
+        h2: "Tres paquetes.",
+        h2Soft: "Cada uno amplía el anterior.",
+        lead: "En esta página no hay precios. Te decimos el precio para tu agencia antes de acordar nada.",
+        states: { available: "Disponible", partial: "Disponible en parte", preparing: "En preparación, todavía no se puede contratar", request: "Bajo petición" },
+        essential: {
+          name: "Essential",
+          line: "Respuestas, CRM y avisos",
+          intro: "Incluye",
+          badge: "14 días gratis",
+          cta: "Prueba Essential gratis",
+          features: [
+            { name: "Respuestas automáticas", state: "available", note: "Consultas de texto, en español" },
+            { name: "Etiquetas de correo", state: "available", note: "En Gmail" },
+            { name: "Fichas en el CRM", state: "available", note: "" },
+            { name: "Conexión con un CRM externo", state: "preparing", note: "" },
+            { name: "Avisos de lead caliente", state: "available", note: "" },
+          ],
+        },
+        growth: {
+          name: "Growth",
+          line: "Para un equipo que hace seguimiento",
+          intro: "Todo lo de Essential, y además",
+          badge: "",
+          cta: "Pide una propuesta",
+          features: [
+            { name: "Seguimientos", state: "preparing", note: "" },
+            { name: "Property matching", state: "preparing", note: "" },
+            { name: "Objetivos diarios para tu equipo", state: "partial", note: "Lista de tareas hoy, vista del equipo en preparación" },
+            { name: "Generación de leads", state: "preparing", note: "" },
+            { name: "Calendario", state: "preparing", note: "" },
+          ],
+        },
+        enterprise: {
+          name: "Enterprise",
+          line: "Para agencias que amplían su alcance",
+          intro: "Todo lo de Growth, y además",
+          badge: "",
+          cta: "Habla con nosotros",
+          features: [
+            { name: "Social Growth", state: "preparing", note: "" },
+            { name: "Telefonía", state: "preparing", note: "" },
+            { name: "Mayor alcance de captación", state: "preparing", note: "" },
+            { name: "Cupo de modelos 3D", state: "request", note: "" },
+          ],
+        },
+        strip: { title: "Modelos 3D de inmuebles", line: "También se contratan por separado, por inmueble.", state: "Bajo petición", cta: "Pregunta por el 3D" },
+      },
+      faq: { tag: "Preguntas", h2: "Respuestas claras.", h2Soft: "Lo que hace Nuova hoy.", all: "Todas las preguntas" },
+      closing: { cta: "Pide una demo" },
     },
   },
 
@@ -635,7 +786,7 @@ export const es: Dictionary = {
     },
     register: {
       heading: "Pon nombre a tu agencia",
-      lead: "Tu acceso funciona. Este último paso crea tu agencia y empieza tu prueba de 14 días.",
+      lead: "Tu acceso funciona. Este último paso crea tu agencia; los 14 días empiezan cuando la actives.", // D-89
       agencyName: "Nombre de la agencia",
       agencyNameHelp: "El nombre con el que te conocen tus clientes.",
       language: "Idioma principal con tus clientes",

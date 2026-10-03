@@ -127,6 +127,50 @@
   }
 }
 
+/* ------------------------------------------------------------------ */
+/* Style foundation v3 (owner direction 2026-10-03: fora.so and        */
+/* glaido.com, on our light warm ground). Everything the new home page  */
+/* needs is a token here: type weights, the soft second headline line,  */
+/* ONE accent, section steps, radii, card and frame metrics. The values */
+/* apply to every document that contains [data-style="v3"] (today the   */
+/* home page, with its navigation and footer). Transfer to the other    */
+/* routes is mechanical: move this block's values to :root above.       */
+/* ------------------------------------------------------------------ */
+:root:has([data-style="v3"]) {
+  /* type: lighter, tighter headlines (fora 400/500, glaido 400) */
+  --display-weight: 500;
+  --display-tracking: -0.036em;
+  --heading-weight: 500;
+  --heading-tracking: -0.018em;
+  /* the quiet second line of a headline; 4.6 : 1 on the canvas, large text only */
+  --text-soft: #7a756c;
+  /* the one accent: the brand gold, as a mark, a wash and an ink */
+  --accent: var(--champagne-400);
+  --accent-ink: var(--champagne-850);
+  --accent-wash: #fbf4e3;
+  --accent-line: #e6d3a8;
+  /* the one channel accent (WhatsApp enquiries exist today); a dot, never a surface */
+  --channel-whatsapp: #2f8f5b;
+  /* radii */
+  --radius-control: 999px;
+  --radius-card: 20px;
+  --radius-stage: 20px;
+  --radius-frame: 28px;
+  /* card and frame metrics */
+  --card-pad: 24px;
+  --frame-pad: 8px;
+  /* section steps: more air than v2 */
+  --section-compact: 40px;
+  --section-default: 72px;
+  --section-feature: 88px;
+}
+@media (min-width: 640px) {
+  :root:has([data-style="v3"]) { --card-pad: 28px; --section-compact: 48px; --section-default: 96px; --section-feature: 112px; }
+}
+@media (min-width: 1024px) {
+  :root:has([data-style="v3"]) { --card-pad: 32px; --frame-pad: 10px; --radius-frame: 32px; --section-compact: 56px; --section-default: 120px; --section-feature: 136px; }
+}
+
 /* The light system has one canvas. "ivory" keeps working as a slightly warmer band. */
 [data-canvas="ivory"] {
   --surface-canvas: var(--ivory);
@@ -192,12 +236,12 @@ img, video, svg { display: block; max-width: 100%; }
 /* Type scale (fluid, locked endpoints 375 → 1440). Shorter headlines, */
 /* slightly heavier, so the page reads at 100 % and 200 % zoom.        */
 /* ------------------------------------------------------------------ */
-.t-display-xl { font-size: clamp(2.375rem, 1.72rem + 2.8vw, 4.25rem); line-height: 1.04; letter-spacing: -0.03em; font-weight: 600; text-wrap: balance; }
-.t-display-l  { font-size: clamp(2rem, 1.5rem + 2.1vw, 3.4rem); line-height: 1.08; letter-spacing: -0.026em; font-weight: 600; text-wrap: balance; }
-.t-display-m  { font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem); line-height: 1.12; letter-spacing: -0.022em; font-weight: 600; text-wrap: balance; }
-.t-heading-l  { font-size: clamp(1.375rem, 1.2rem + 0.75vw, 1.875rem); line-height: 1.2; letter-spacing: -0.016em; font-weight: 600; }
-.t-heading-m  { font-size: clamp(1.1875rem, 1.1rem + 0.4vw, 1.4375rem); line-height: 1.28; letter-spacing: -0.01em; font-weight: 600; }
-.t-heading-s  { font-size: clamp(1.0625rem, 1.03rem + 0.15vw, 1.1875rem); line-height: 1.35; letter-spacing: -0.005em; font-weight: 600; }
+.t-display-xl { font-size: clamp(2.375rem, 1.72rem + 2.8vw, 4.25rem); line-height: 1.04; letter-spacing: var(--display-tracking, -0.03em); font-weight: var(--display-weight, 600); text-wrap: balance; }
+.t-display-l  { font-size: clamp(2rem, 1.5rem + 2.1vw, 3.4rem); line-height: 1.08; letter-spacing: var(--display-tracking, -0.026em); font-weight: var(--display-weight, 600); text-wrap: balance; }
+.t-display-m  { font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem); line-height: 1.12; letter-spacing: var(--display-tracking, -0.022em); font-weight: var(--display-weight, 600); text-wrap: balance; }
+.t-heading-l  { font-size: clamp(1.375rem, 1.2rem + 0.75vw, 1.875rem); line-height: 1.2; letter-spacing: var(--heading-tracking, -0.016em); font-weight: var(--heading-weight, 600); }
+.t-heading-m  { font-size: clamp(1.1875rem, 1.1rem + 0.4vw, 1.4375rem); line-height: 1.28; letter-spacing: -0.01em; font-weight: var(--heading-weight, 600); }
+.t-heading-s  { font-size: clamp(1.0625rem, 1.03rem + 0.15vw, 1.1875rem); line-height: 1.35; letter-spacing: -0.005em; font-weight: var(--heading-weight, 600); }
 .t-body-l     { font-size: clamp(1.0625rem, 1.019rem + 0.19vw, 1.1875rem); line-height: 1.6; font-weight: 400; }
 .t-body-m     { font-size: clamp(1rem, 0.978rem + 0.09vw, 1.0625rem); line-height: 1.65; font-weight: 400; }
 .t-body-s     { font-size: 0.9375rem; line-height: 1.6; font-weight: 400; }
@@ -365,6 +409,129 @@ img, video, svg { display: block; max-width: 100%; }
   border: 1px solid var(--line-contour);
   border-radius: 20px;
   box-shadow: var(--shadow-overlay);
+}
+
+/* ------------------------------------------------------------------ */
+/* v3 building blocks (they read the v3 tokens, with fallbacks so they  */
+/* also hold outside the scope).                                        */
+/* ------------------------------------------------------------------ */
+/* The small label over a section: a dot in the accent and a few words. */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-raised);
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.tag-pill::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent, var(--champagne-400));
+  flex: none;
+}
+/* The quiet second line of a headline. */
+.h-soft { color: var(--text-soft, var(--ink-500)); }
+
+/* A flat card: a hairline and a white ground, no lift. Lift is reserved for the one card that leads. */
+.v3-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--line-contour);
+  border-radius: var(--radius-card, 20px);
+}
+.v3-card-lead { box-shadow: var(--shadow-stage); }
+
+/* A product surface: a thin outer frame with the window inside it (frame within frame). */
+.v3-frame {
+  padding: var(--frame-pad, 8px);
+  border-radius: var(--radius-frame, 28px);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--line-contour);
+  box-shadow: var(--shadow-stage);
+}
+/* The window does not clip: the foreground of a scene may cross its edge. Parts with their own ground
+   round their corners themselves (rounded-*-[inherit]). */
+.v3-window {
+  background: var(--surface-raised);
+  border: 1px solid var(--line-contour);
+  border-radius: calc(var(--radius-frame, 28px) - var(--frame-pad, 8px));
+}
+
+/* The hero scene: background (ground and arch niche), the product window, and a foreground that crosses
+   the window's edge. The scene's padding is the room the foreground needs outside the window. */
+.hero-scene {
+  isolation: isolate;
+  border-radius: var(--radius-frame, 28px);
+  padding: 28px 16px 60px;
+  overflow: hidden;
+  background: linear-gradient(165deg, #f5ecda 0%, #ead9b9 100%);
+}
+@media (min-width: 640px) { .hero-scene { padding: 44px 48px 60px 56px; } }
+@media (min-width: 1024px) { .hero-scene { padding: 44px 44px 60px 64px; } }
+.hero-scene-back { position: absolute; inset: -24px 0 -24px 0; z-index: 0; pointer-events: none; }
+/* A segmental arch: the niche the window stands in front of. Lighter than the ground, with a hairline. */
+.hero-scene-arch {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  top: 36px;
+  bottom: -8px;
+  border-radius: 50% 50% 0 0 / 132px 132px 0 0;
+  background: linear-gradient(180deg, rgba(255, 253, 247, 0.78) 0%, rgba(255, 253, 247, 0.3) 70%);
+  border: 1px solid rgba(138, 107, 50, 0.18);
+  border-bottom: 0;
+}
+/* A foreground card: white, a clear edge and the longest shadow of the scene, because it is nearest. */
+.hero-front-card {
+  background: var(--paper);
+  border: 1px solid var(--line-contour);
+  border-radius: 16px;
+  box-shadow: var(--shadow-overlay);
+}
+/* The ground a product surface stands on: one warm field (a dot hint may lie on it, nothing else). */
+.v3-ground {
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--radius-frame, 28px);
+  background: linear-gradient(165deg, #f7f1e4 0%, #efe5d0 100%);
+  overflow: hidden;
+}
+.v3-ground > svg { z-index: -1; }
+/* A status line: a mark and a few words. Colour is never the only carrier, the words say it. */
+.state-line { display: inline-flex; align-items: baseline; gap: 8px; font-size: 0.8125rem; line-height: 1.45; font-weight: 500; color: var(--text-secondary); }
+.state-line::before { content: ""; width: 7px; height: 7px; border-radius: 999px; flex: none; transform: translateY(-1px); background: var(--ink-350); }
+.state-line[data-state="available"]::before { background: var(--signal-positive); }
+.state-line[data-state="partial"]::before { background: linear-gradient(90deg, var(--signal-positive) 50%, var(--ink-300) 50%); }
+.state-line[data-state="preparing"]::before { background: transparent; box-shadow: inset 0 0 0 1.5px var(--ink-400); }
+.state-line[data-state="request"]::before { background: var(--accent, var(--champagne-400)); }
+
+/* The hero sequence: the enquiry is there, the reply forms, the CRM entry and the alert appear. CSS only,
+   so the first picture needs no script: without JavaScript and with reduced motion everything simply stands. */
+@keyframes seq-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes seq-pop { 0% { opacity: 0; transform: translateY(10px) scale(0.97); } 70% { opacity: 1; transform: translateY(-2px) scale(1.01); } 100% { opacity: 1; transform: none; } }
+@keyframes seq-typing { 0% { opacity: 0; } 12% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; } }
+/* The foreground moves along the depth axis: the message arrives from in front and to the left of the
+   window, the task comes forward out of it. */
+@keyframes seq-arrive { from { opacity: 0; transform: translate3d(-36px, 12px, 0) scale(1.06); } to { opacity: 1; transform: none; } }
+@keyframes seq-forward { from { opacity: 0; transform: translate3d(-20px, -16px, 0) scale(0.93); } to { opacity: 1; transform: none; } }
+.seq-typing { display: none; }
+html.js [data-seq="run"] .seq-item { opacity: 0; animation: seq-in 520ms var(--ease-out) var(--seq-delay, 0ms) forwards; }
+html.js [data-seq="run"] .seq-item[data-seq-kind="pop"] { animation-name: seq-pop; animation-duration: 620ms; }
+html.js [data-seq="run"] .seq-item[data-seq-kind="arrive"] { animation-name: seq-arrive; animation-duration: 760ms; }
+html.js [data-seq="run"] .seq-item[data-seq-kind="forward"] { animation-name: seq-forward; animation-duration: 720ms; }
+html.js [data-seq="run"] .seq-typing { display: inline-flex; opacity: 0; animation: seq-typing var(--seq-typing-for, 1300ms) linear var(--seq-delay, 0ms) forwards; }
+html:not(.js) .seq-replay { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-seq="run"] .seq-item { opacity: 1; animation: none; }
+  html.js [data-seq="run"] .seq-typing { display: none; }
+  .seq-replay { display: none; }
 }
 
 /* The flow rail: which step of the story is on screen. */

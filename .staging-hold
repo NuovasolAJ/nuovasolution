@@ -1,0 +1,9 @@
+The staging preview (project nuovasolution-staging-preview) does not build while this file exists.
+
+Audit order R10b (2026-10-03): the new home page is decided by the owner on the DESIGN preview and is
+"not to be transferred to staging or production before the owner releases the preview". Both preview
+projects build from this branch on every push, so vercel.json skips the build of the staging project
+(NUOVA_INTEGRATION_MODE=staging) for as long as this file is in the repository. The staging preview
+keeps serving the last deployment before the hold (commit 486bfe8, application code cf6e80f).
+
+Release: delete this file in the commit that follows the owner's decision. Nothing else changes.

@@ -6,7 +6,8 @@ import { trialPlanAligned } from "@/lib/content/plans";
 import { SectionHead, Display, Eyebrow, Lead, Heading, Caption } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
-import { HeroScene } from "@/components/site/hero-scene";
+import { HeroSurface } from "@/components/home/hero-surface";
+import { HOME_V3_WORKING_TEXT } from "@/lib/content/home-v3";
 import { FlowStory } from "@/components/site/flow-story";
 import { ReadinessView } from "@/components/site/product-views";
 import { QaPanel } from "@/components/site/qa-widget";
@@ -46,46 +47,28 @@ export default function HomePage({ params }: { params: { locale: string } }) {
   const pk = d.packages;
   const aligned = trialPlanAligned();
   const startLabel = aligned ? pk.ctaTrialEssential : d.common.startFree;
-  const stepAnchors = ["#step-answer", "#step-record", "#step-handover", "#step-done"];
+  const v3 = h.v3;
 
   return (
-    <>
-      {/* 1 Hero */}
-      <section aria-labelledby="hero-h1" className="relative overflow-hidden pb-[var(--section-compact)] pt-[var(--section-compact)] xl:pt-[var(--section-default)]">
+    <div data-style="v3" data-working-text={HOME_V3_WORKING_TEXT ? "true" : undefined}>
+      {/* 1 Hero: the text in its own column, the product picture next to it (below it on a phone).
+          No scroll reveal here: the first picture is there without a script. */}
+      <section aria-labelledby="hero-h1" className="pb-[var(--section-compact)] pt-8 md:pt-12 xl:pt-12">
         <div className="container-default">
-          {/* The text keeps its own column: the scene never covers the headline or the buttons. */}
-          <div className="grid grid-cols-1 items-center gap-8 xl:grid-cols-12 xl:gap-8">
-            <Reveal className="relative z-[3] xl:col-span-5">
-              <p className="inline-flex items-center gap-2 rounded-pill border border-line-hairline bg-surface-raised px-3 py-1.5 t-caption text-text-secondary">
-                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-pill bg-champagne-400" />
-                {h.hero.eyebrow}
-              </p>
-              <Display size="xl" id="hero-h1" className="mt-6 max-w-[12ch]">{h.hero.h1}</Display>
-              <Lead className="mt-6">{h.hero.lead}</Lead>
-              <Caption className="mt-3">{h.hero.qualifier}</Caption>
-              <CtaRow className="mt-9">
-                <ButtonLink href={p("/signup")} size="lg">{startLabel}</ButtonLink>
-                <ButtonLink href="#flow-h" size="lg" variant="secondary">{h.hero.ctaSecondary}</ButtonLink>
+          <div className="grid grid-cols-1 items-center gap-8 xl:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] xl:gap-10">
+            <div>
+              <p className="tag-pill">{h.hero.eyebrow}</p>
+              <h1 id="hero-h1" className="mt-5 max-w-[11ch] t-display-xl text-text-primary xl:mt-6">{h.hero.h1}</h1>
+              <p className="mt-5 max-w-[36ch] t-body-l text-text-secondary xl:mt-6" data-hero-lead>{h.hero.lead}</p>
+              <CtaRow className="mt-7 xl:mt-8">
+                <ButtonLink href={p("/signup")} size="lg" className="xl:min-h-[52px] xl:px-5 xl:text-[1.0625rem]">{startLabel}</ButtonLink>
+                {/* One main button on a phone, as in the references; the demonstrations follow directly below. */}
+                <ButtonLink href="#flow-h" size="lg" variant="secondary" className="hidden md:inline-flex xl:min-h-[52px] xl:px-5 xl:text-[1.0625rem]">{h.hero.ctaSecondary}</ButtonLink>
               </CtaRow>
-              <Caption className="mt-4">{h.hero.note}</Caption>
-            </Reveal>
-            <HeroScene locale={locale} className="xl:col-span-7" />
+              <p className="state-line mt-5" data-state="available">{h.hero.state}</p>
+            </div>
+            <HeroSurface locale={locale} />
           </div>
-
-          {/* The story in one line; each step jumps to its stage. */}
-          <nav aria-label={h.flow.h2} className="mt-10 xl:mt-14">
-            <ol className="flex flex-wrap items-center gap-x-2 gap-y-2">
-              {h.flow.steps.map((st, i) => (
-                <li key={st} className="flex items-center gap-2">
-                  <a href={stepAnchors[i]} className="inline-flex min-h-[44px] items-center gap-2 rounded-pill border border-line-hairline bg-surface-raised px-4 t-body-s text-text-primary transition-colors duration-micro hover:border-line-interactive">
-                    <span className="tnum t-caption text-text-accent">0{i + 1}</span>
-                    {st}
-                  </a>
-                  {i < h.flow.steps.length - 1 && <StatusGlyph glyph="arrow-right" size={14} className="hidden text-text-muted md:block" />}
-                </li>
-              ))}
-            </ol>
-          </nav>
         </div>
       </section>
 
@@ -263,6 +246,6 @@ export default function HomePage({ params }: { params: { locale: string } }) {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

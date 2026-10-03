@@ -149,7 +149,8 @@ export const en = {
     hero: {
       eyebrow: "For real estate agencies in Spain",
       h1: "Answered when it arrives", // COPY_DELTAS_1001 D-81
-      lead: "A buyer writes on Sunday evening, when nobody is free. Nuova answers in their language, records what she asked for, and leaves your team one task to finish.", // D-82
+      lead: "A buyer writes on Sunday night. Nuova answers in Spanish, records what they asked for and leaves your team one task.", // COPY_HERO_1003 §1
+      state: "Today in Spanish, for text enquiries on WhatsApp and email.", // COPY_HERO_1003 §1, the state line under the buttons
       qualifier: "On the channels you connect.",
       note: "14 days free. No payment.",
       ctaSecondary: "See how it works",
@@ -269,7 +270,7 @@ export const en = {
       link: "See what is included",
       steps: [
         { title: "Create your account", line: "Your name, your work email, a password. Then confirm your email." },
-        { title: "Name your agency", line: "One step, and your 14 day trial starts." },
+        { title: "Name your agency", line: "You name your agency and move on to the setup." }, // COPY_DELTAS_1003 D-88: the trial starts on activation
         { title: "Set it up yourself", line: "Your agency details, your legal details and your logo, plus your team and their roles." }, // D-51
       ],
       noCharge: "Nothing is charged, and we do not ask for a card at any point in these three steps.", // D-53
@@ -294,6 +295,162 @@ export const en = {
       body: "The only question is what happens to it.",
       /** Empty on purpose: the payment sentence appears once per page, in the hero note or the getting started section. */
       caption: "",
+    },
+    // Home v3 (owner direction 2026-10-03, audit order R10b). WORKING TEXT by the implementer until Copy's
+    // COPY_HERO_1003 and COPY_DELTAS_1003 arrive (lib/content/home-v3.ts carries the flag that marks the page).
+    // Text measure of the order: headline at most eight words, one lead of about twenty, feature lines three to
+    // six words, paragraphs at most two sentences. States follow the package matrix in
+    // backend_handoff/handoff_in_2026-10-03/AUDIT_ORDERS_2026-10-03.md.
+    v3: {
+      workingText: "Working text. The wording is not final.",
+      hero: {
+        // COPY_HERO_1003 §2: the three labels in the product picture. The fourth (owner 2026-10-03: the next
+        // action belongs in the hero, a hot alert does not) reuses the approved board wording "A task for your team".
+        labels: { enquiry: "WhatsApp enquiry", reply: "Reply in Spanish", crm: "Customer record", next: "A task for your team" },
+        // Control labels by the implementer (not sales copy).
+        replay: "Play again",
+        surfaceLabel: "Example: a WhatsApp enquiry, the reply in Spanish, the customer record and the task for the team",
+      },
+      modules: {
+        tag: "Product in action",
+        h2: "One enquiry.",
+        h2Soft: "Every part at work.",
+        lead: "Open a card to watch a short demonstration. Each one says what you can order today.",
+        show: "Show the demonstration",
+        hide: "Close the demonstration",
+        link: "Read the module",
+        demoNote: "Demonstration with synthetic data.",
+        stepOf: "Step",
+        items: {
+          reply: {
+            title: "Answer and record",
+            line: "Message in, reply out, CRM updated",
+            state: "Available today",
+            steps: ["A message arrives", "The reply is written", "The enquiry is in your CRM", "Your team gets the alert"],
+          },
+          daily: {
+            title: "Daily tasks for your team",
+            line: "Who does what next, and why",
+            state: "Task list available today. Team overview in preparation.",
+            steps: ["Your team at a glance", "The next action, with its reason", "One person takes it", "Done, and off the list"],
+          },
+          voice: {
+            title: "Phone assistant",
+            line: "A call becomes a visible task",
+            state: "In preparation. Not yet bookable.",
+            steps: ["A call comes in", "The caller's wish is noted", "A task appears for your team"],
+          },
+          social: {
+            title: "Social Growth",
+            line: "From a property to a post",
+            state: "In preparation. Not yet bookable.",
+            steps: ["You pick a property", "A post is drafted for your approval", "A comment arrives", "A reply you allowed goes out"],
+          },
+          model3d: {
+            title: "3D property model",
+            line: "From floor plan to 3D model",
+            state: "On request. Built and checked by us, per property.",
+            steps: ["You send a floor plan and photos", "We build the model", "Choose a floor", "Furniture on or off"],
+          },
+        },
+        // Words inside the five demonstrations (synthetic people and properties).
+        scene: {
+          synthetic: "Synthetic data",
+          you: "You",
+          reply: { crm: "CRM", alert: "Hot lead alert", alertLine: "Viewing asked for Thursday" },
+          daily: {
+            team: "Team today",
+            people: [{ name: "Marta", open: "2 open" }, { name: "Tom", open: "1 open" }, { name: "You", open: "1 open" }],
+            next: "Next action",
+            task: "Call Álvaro Pons back",
+            reason: "Reason: he asked for the price by phone",
+            take: "Take it",
+            taken: "Taken by you",
+            done: "Done",
+            empty: "Nothing left on your list",
+          },
+          voice: {
+            incoming: "Incoming call",
+            caller: "Unknown number",
+            noted: "Noted from the call",
+            wish: ["Wants: a viewing", "Where: Mijas, 3 bedrooms", "When: Friday afternoon"],
+            task: "Confirm Friday's viewing",
+            taskMeta: "New task · from a call",
+          },
+          social: {
+            property: "Flat in Estepona",
+            propertyMeta: "2 bedrooms · REF-DEMO-204",
+            draft: "Draft post",
+            caption: "Two bedrooms, a terrace and morning light in Estepona.",
+            approve: "Approved by you",
+            comment: "Is it still available?",
+            commenter: "A comment",
+            reply: "Thank you for asking. We will write to you directly.",
+            replyMeta: "From the replies you allowed",
+          },
+          model3d: {
+            plan: "Floor plan",
+            photos: "Photos",
+            model: "3D model",
+            floors: ["Ground floor", "Upper floor"],
+            furniture: "Furniture",
+            on: "On",
+            off: "Off",
+            note: "Illustration. Furnishing in a model is illustrative.",
+          },
+        },
+      },
+      plans: {
+        tag: "Packages",
+        h2: "Three packages.",
+        h2Soft: "Each builds on the last.",
+        lead: "No prices on this page. We tell you the price for your agency before anything is agreed.",
+        states: { available: "Available", partial: "Partly available", preparing: "In preparation, not yet bookable", request: "On request" },
+        essential: {
+          name: "Essential",
+          line: "Replies, CRM and alerts",
+          intro: "Included",
+          badge: "14 days free",
+          cta: "Try Essential free",
+          features: [
+            { name: "Automatic replies", state: "available", note: "Text enquiries, in Spanish" },
+            { name: "E-mail labels", state: "available", note: "In Gmail" },
+            { name: "CRM entries", state: "available", note: "" },
+            { name: "External CRM connection", state: "preparing", note: "" },
+            { name: "Hot lead alerts", state: "available", note: "" },
+          ],
+        },
+        growth: {
+          name: "Growth",
+          line: "For a team that follows up",
+          intro: "Everything in Essential, plus",
+          badge: "",
+          cta: "Request a proposal",
+          features: [
+            { name: "Follow-ups", state: "preparing", note: "" },
+            { name: "Property matching", state: "preparing", note: "" },
+            { name: "Daily goals for your team", state: "partial", note: "Task list today, overview in preparation" },
+            { name: "Lead generation", state: "preparing", note: "" },
+            { name: "Calendar", state: "preparing", note: "" },
+          ],
+        },
+        enterprise: {
+          name: "Enterprise",
+          line: "For agencies that widen their reach",
+          intro: "Everything in Growth, plus",
+          badge: "",
+          cta: "Talk to us",
+          features: [
+            { name: "Social Growth", state: "preparing", note: "" },
+            { name: "Telephony", state: "preparing", note: "" },
+            { name: "Wider acquisition scope", state: "preparing", note: "" },
+            { name: "3D model allowance", state: "request", note: "" },
+          ],
+        },
+        strip: { title: "3D property models", line: "Also bookable on their own, per property.", state: "On request", cta: "Ask about 3D" },
+      },
+      faq: { tag: "Questions", h2: "Straight answers.", h2Soft: "What Nuova does today.", all: "All questions" },
+      closing: { cta: "Request a demo" },
     },
   },
 
@@ -686,7 +843,7 @@ export const en = {
     // AUTH_COPY_v1 §4
     register: {
       heading: "Name your agency",
-      lead: "Your login works. This last step creates your agency and starts your 14 day trial.",
+      lead: "Your login works. This last step creates your agency, and the 14 days start when you activate it.", // D-89
       agencyName: "Agency name",
       agencyNameHelp: "The name your customers know.",
       language: "Main language with your customers",
