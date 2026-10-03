@@ -55,14 +55,15 @@ export function HeroSurface({ locale, className }: { locale: Locale; className?:
 
   return (
     <DepthScene className={cn("hero-scene", className)}>
-      <div data-hero-surface className="contents">
+      {/* The sequence scope: the layers and the replay control are inside it. */}
+      <div data-hero-surface data-seq="run" className="contents">
         {/* Layer 1: the background. */}
         <div data-depth-layer="back" aria-hidden="true" className="hero-scene-back">
           <div className="hero-scene-arch" />
           <DotPattern />
         </div>
 
-        <figure aria-label={t.surfaceLabel} className="relative z-[1] mx-auto max-w-[600px]" data-seq="run">
+        <figure aria-label={t.surfaceLabel} className="relative z-[1] mx-auto max-w-[600px]">
           {/* Layer 2: the agency's window. */}
           <div className="v3-frame">
             <div className="v3-window">

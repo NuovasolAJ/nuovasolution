@@ -123,11 +123,53 @@ try {
     if ((await enc.ev("typeof Mp4Muxer")) !== "object") throw new Error("mp4-muxer did not load in the encoder page");
     console.log("encoder page ready");
 
-    const W = 1440, H = 900;
-    await page.send("Emulation.setDeviceMetricsOverride", { width: W, height: H, deviceScaleFactor: 1, mobile: false });
+    // FILM=hero: the hero only (the sequence from its start, then the scroll that shows the layers move), on the
+    // desktop or, with VIEW=m390, on the phone. Without FILM: the whole page with the deck and the clip (1001 layout).
+    const HERO = process.env.FILM === "hero";
+    const PHONE = process.env.VIEW === "m390";
+    const VW = PHONE ? 390 : 1440, VH = PHONE ? 844 : 900, DPR = PHONE ? 2 : 1;
+    const W = VW * DPR, H = VH * DPR;
+    await page.send("Emulation.setDeviceMetricsOverride", { width: VW, height: VH, deviceScaleFactor: DPR, mobile: PHONE });
     await page.send("Animation.enable");
 
-    for (const locale of LOCALES) {
+    for (const locale of HERO ? LOCALES : []) {
+      await page.send("Page.navigate", { url: `${BASE}/${locale}` });
+      await sleep(5000);
+      await page.send("Animation.setPlaybackRate", { playbackRate: RATE });
+      const sceneTop = await page.ev("Math.round(document.querySelector('.hero-scene').getBoundingClientRect().top + scrollY)");
+      const sceneBottom = await page.ev("Math.round(document.querySelector('.hero-scene').getBoundingClientRect().bottom + scrollY)");
+      const start = PHONE ? Math.max(0, sceneTop - 76) : 0;
+      const plan = [["hold", 6.2, start, start], ["scroll", 4.0, start, Math.max(start, sceneBottom - (PHONE ? 420 : 300))], ["hold", 0.8, 0, 0]];
+      plan[2][2] = plan[2][3] = plan[1][3];
+      const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+      await enc.ev(`enc.init(${W}, ${H}, ${FPS})`);
+      await page.ev(`window.scrollTo({top:${start},behavior:'instant'})`);
+      await sleep(400);
+      // The sequence from its first frame: the replay control restarts the keyframes.
+      await page.ev("document.querySelector('[data-seq-replay]')?.click()");
+      let i = 0, late = 0;
+      for (const [kind, secs, from, to] of plan) {
+        const n = Math.round(secs * FPS);
+        for (let k = 0; k < n; k++, i++) {
+          const target = Date.now() + REAL_MS;
+          const y = kind === "scroll" ? Math.round(from + (to - from) * ease((k + 1) / n)) : from;
+          await page.ev(`(()=>{ window.scrollTo({top:${y},behavior:'instant'}); return new Promise(r=>{ const t=setTimeout(r,250); requestAnimationFrame(()=>requestAnimationFrame(()=>{ clearTimeout(t); r(); })); }); })()`);
+          const s = await page.send("Page.captureScreenshot", { format: "jpeg", quality: 92, captureBeyondViewport: false });
+          await enc.ev(`enc.add(${JSON.stringify(s.result.data)}, ${i})`);
+          const rest = target - Date.now();
+          if (rest > 0) await sleep(rest); else late++;
+        }
+      }
+      const bytes = Buffer.from(await enc.ev("enc.finish()"), "base64");
+      const file = join(OUT, `hero-film-${PHONE ? "m390" : "d1440"}-${locale}.mp4`);
+      writeFileSync(file, bytes);
+      console.log(`wrote ${file} (${i} frames = ${(i / FPS).toFixed(1)}s at ${FPS} fps, ${W}x${H}, ${Math.round(bytes.length / 1024)} kB, ${late} late frames)`);
+      await page.send("Animation.setPlaybackRate", { playbackRate: 1 });
+      await enc.ev("location.reload()");
+      await sleep(1500);
+    }
+
+    for (const locale of HERO ? [] : LOCALES) {
       await page.send("Page.navigate", { url: `${BASE}/${locale}` });
       await sleep(4000);
       await page.ev("window.scrollTo(0,0)");

@@ -17,7 +17,8 @@ export function SeqReplay({ label }: { label: string }) {
         const root = e.currentTarget.closest<HTMLElement>("[data-seq]");
         if (!root) return;
         root.setAttribute("data-seq", "idle");
-        void root.offsetWidth;
+        // A layout read between the two states, so the keyframes start again from their first frame.
+        void document.body.getBoundingClientRect();
         root.setAttribute("data-seq", "run");
       }}
     >
