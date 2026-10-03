@@ -1,3 +1,3 @@
 {
-  "ignoreCommand": "node -e \"const hold=require('fs').existsSync('.staging-hold');const e=process.env;const stg=e.NUOVA_INTEGRATION_MODE==='staging'||/staging-preview/.test((e.VERCEL_URL||'')+(e.VERCEL_BRANCH_URL||''));console.log('staging-hold',hold,'staging project',stg);process.exit(hold&&stg?0:1)\""
+  "ignoreCommand": "node vercel-ignore.js"
 }
