@@ -399,7 +399,8 @@ img, video, svg { display: block; max-width: 100%; }
   position: relative;
   overflow: hidden;
   color: var(--ivory);
-  background: linear-gradient(180deg, #131416 0%, #181a1e 32%, #1f2128 58%, #28272c 80%, #2f2a2b 100%);
+  background-color: #131416;
+  background-image: linear-gradient(180deg, #131416 0%, #181a1e 32%, #1f2128 58%, #28272c 80%, #2f2a2b 100%);
   --hero-soft: #9d978d;
   --hero-accent: var(--champagne-300);
   --channel-whatsapp: #25a55f;
@@ -463,7 +464,7 @@ img, video, svg { display: block; max-width: 100%; }
 .hero-bubble-in { background: #efede7; border-bottom-left-radius: 4px; }
 /* The outgoing tint of WhatsApp, used here and only here, because this is a WhatsApp conversation. */
 .hero-bubble-out { background: #dcf3df; border-bottom-right-radius: 4px; }
-.hero-bubble-meta { margin-top: 4px; font-size: 0.75rem; line-height: 1.4; color: var(--ink-500); font-variant-numeric: tabular-nums; }
+.hero-bubble-meta { margin-top: 4px; font-size: 0.75rem; line-height: 1.4; color: var(--ink-600); font-variant-numeric: tabular-nums; }
 .hero-next { padding: 12px 14px; border-left: 3px solid var(--champagne-400); border-radius: 4px 12px 12px 4px; background: #fff; box-shadow: var(--shadow-card); }
 
 /* The foreground: anchored to the lower corners of the panel, so it covers them at every width. */

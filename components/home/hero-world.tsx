@@ -36,7 +36,7 @@ const delay = (ms: number, extra?: CSSProperties): CSSProperties => ({ ["--seq-d
 function StepLabel({ n, children, className, style }: { n: number; children: ReactNode; className?: string; style?: CSSProperties }) {
   return (
     <p className={cn("flex items-baseline gap-2 text-[0.8125rem] font-medium leading-none text-ink-600", className)} style={style}>
-      <span aria-hidden="true" className="tnum text-ink-400">0{n}</span>
+      <span aria-hidden="true" className="tnum text-ink-500">0{n}</span>
       {children}
     </p>
   );
@@ -89,7 +89,7 @@ export function HeroWorld({ locale }: { locale: Locale }) {
               <div className="flex items-center gap-3 border-b border-ink-100 px-5 py-3.5 md:px-7">
                 <span aria-hidden="true" className="h-2.5 w-2.5 shrink-0 rounded-pill bg-[color:var(--channel-whatsapp)]" />
                 <p className="min-w-0 flex-1 truncate text-[0.9375rem] font-medium text-ink-950">WhatsApp · {story.name}</p>
-                <p className="hidden shrink-0 text-[0.8125rem] text-ink-500 md:block">{t.example}</p>
+                <p className="hidden shrink-0 text-[0.8125rem] text-ink-600 md:block">{t.example}</p>
                 <SeqReplay label={t.replay} compact />
               </div>
 
@@ -123,7 +123,7 @@ export function HeroWorld({ locale }: { locale: Locale }) {
                     <dl className="mt-3 divide-y divide-ink-100 border-y border-ink-100">
                       {story.fields.map((f, i) => (
                         <div key={f.k} className="seq-item flex gap-3 py-2 text-[0.875rem] leading-snug" style={delay(3050 + i * 150)}>
-                          <dt className="w-[5.5rem] shrink-0 text-ink-500">{f.k}</dt>
+                          <dt className="w-[5.5rem] shrink-0 text-ink-600">{f.k}</dt>
                           <dd className="min-w-0 flex-1 font-medium text-ink-900">{f.v}</dd>
                         </div>
                       ))}

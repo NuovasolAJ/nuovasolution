@@ -49,7 +49,7 @@ function ChatHead({ name }: { name: string }) {
       <span aria-hidden="true" className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-pill bg-ink-100 text-[0.9375rem] font-medium text-ink-700">{initials}</span>
       <div className="min-w-0">
         <p className="truncate text-[1.0625rem] font-semibold leading-tight text-ink-950">{name}</p>
-        <p className="flex items-center gap-1.5 text-[0.8125rem] text-ink-500">
+        <p className="flex items-center gap-1.5 text-[0.8125rem] text-ink-600">
           <span aria-hidden="true" className="h-2 w-2 rounded-pill bg-[#25a55f]" />
           WhatsApp
         </p>

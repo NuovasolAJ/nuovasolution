@@ -63,7 +63,7 @@ try {
       const r=el.getBoundingClientRect(); if(r.width<3||r.height<3)continue;
       if(el.closest('[aria-hidden=true],video,picture,img,svg'))continue;
       let bg=null,bgEl=null,n=el;
-      while(n&&n!==document.documentElement){const b=parse(getComputedStyle(n).backgroundColor);if(b&&b.a>=0.85){bg=b.rgb;bgEl=n;break}n=n.parentElement}
+      while(n&&n!==document.documentElement){const b=parse(getComputedStyle(n).backgroundColor);if(b&&b.a>=0.85){bg=b.rgb;bgEl=n;break}if(n.tagName==='HEADER'&&n.dataset.scrolled==='false'){const hero=document.querySelector('[data-hero=dark]');const hb=hero&&parse(getComputedStyle(hero).backgroundColor);if(hb&&hb.a>=0.85){bg=hb.rgb;bgEl=hero;break}}n=n.parentElement}
       // Painted grounds (bands, fields, the arch) are gradients that getComputedStyle cannot read. An opaque surface
       // inside such a ground is what the text really sits on; otherwise the ground itself is, so every light ground counts.
       const groundEl=el.closest('.band,.field-sage,.field-sand,.field-sky,.field-apricot,.hero-arch');
