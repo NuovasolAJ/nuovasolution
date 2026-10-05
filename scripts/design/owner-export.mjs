@@ -136,10 +136,10 @@ try {
       await page.send("Page.navigate", { url: `${BASE}/${locale}` });
       await sleep(5000);
       await page.send("Animation.setPlaybackRate", { playbackRate: RATE });
-      const sceneTop = await page.ev("Math.round(document.querySelector('.hero-scene').getBoundingClientRect().top + scrollY)");
-      const sceneBottom = await page.ev("Math.round(document.querySelector('.hero-scene').getBoundingClientRect().bottom + scrollY)");
-      const start = PHONE ? Math.max(0, sceneTop - 76) : 0;
-      const plan = [["hold", 6.2, start, start], ["scroll", 4.0, start, Math.max(start, sceneBottom - (PHONE ? 420 : 300))], ["hold", 0.8, 0, 0]];
+      // The hero world: from the top of the page (headline on the sky), down until the demonstration begins.
+      const sceneBottom = await page.ev("Math.round(document.querySelector('.hero-world').getBoundingClientRect().bottom + scrollY)");
+      const start = 0;
+      const plan = [["hold", 6.2, start, start], ["scroll", PHONE ? 7.0 : 5.0, start, Math.max(start, sceneBottom - Math.round(VH * 0.55))], ["hold", 0.8, 0, 0]];
       plan[2][2] = plan[2][3] = plan[1][3];
       const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
       await enc.ev(`enc.init(${W}, ${H}, ${FPS})`);

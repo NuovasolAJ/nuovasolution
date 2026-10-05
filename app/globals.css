@@ -350,35 +350,10 @@ img, video, svg { display: block; max-width: 100%; }
 }
 [data-depth-layer="back"] { transform: translate3d(0, calc(var(--depth) * var(--depth-back)), 0); will-change: transform; }
 [data-depth-layer="front"] { transform: translate3d(0, calc(var(--depth) * var(--depth-front)), 0); will-change: transform; }
-
-/* The hero ground (layer 1): one arch, the shape of an Andalusian doorway, a hairline echo set off
-   from it, and a low horizon band that leads the eye to the product surface. */
-.hero-ground { position: absolute; inset: 0; pointer-events: none; }
-.hero-ground-arch {
-  position: absolute;
-  inset: 1% 6% 12% 6%;
-  border-radius: 240px 240px 32px 32px;
-  background: linear-gradient(180deg, #f4ebd9 0%, #eee2c9 100%);
-}
-.hero-ground-echo {
-  position: absolute;
-  inset: -2% 0% 7% 0%;
-  border: 1px solid rgba(138, 107, 50, 0.22);
-  border-radius: 280px 280px 44px 44px;
-}
-.hero-ground-horizon {
-  position: absolute;
-  left: -4%;
-  right: -10%;
-  bottom: 2%;
-  height: 34%;
-  border-radius: 40px;
-  background: linear-gradient(180deg, rgba(243, 241, 236, 0.9) 0%, rgba(236, 235, 229, 0.9) 100%);
-}
-@media (min-width: 768px) {
-  .hero-ground-arch { inset: -6% 8% 14% 8%; border-radius: 320px 320px 40px 40px; }
-  .hero-ground-echo { inset: -12% 1% 9% 1%; border-radius: 360px 360px 56px 56px; }
-}
+/* The hero world has four depths: far and mid lag behind the page (they travel down against the scroll),
+   the front runs ahead of it. */
+[data-depth-layer="far"] { transform: translate3d(0, calc(var(--depth) * var(--depth-far, 44px)), 0); will-change: transform; }
+[data-depth-layer="mid"] { transform: translate3d(0, calc(var(--depth) * var(--depth-mid, 24px)), 0); will-change: transform; }
 
 /* A white stage for a product surface (layer 2). The contour and the three-part shadow keep a light
    card readable on a light ground: a crisp edge close in, a soft lift further out. */
@@ -412,98 +387,138 @@ img, video, svg { display: block; max-width: 100%; }
 }
 
 /* ------------------------------------------------------------------ */
-/* v3 building blocks (they read the v3 tokens, with fallbacks so they  */
-/* also hold outside the scope).                                        */
+/* The hero world (owner direction 2026-10-05): a dark anthracite hero */
+/* with a Mediterranean scene in four depths. Far (sky, ridges, sea),  */
+/* mid (the village hillsides), the product panel, front (olive tree,  */
+/* agave, terrace wall). The art is components/home/hero-world-art.tsx. */
+/* Vertical positions hang on --horizon, measured from the top of the   */
+/* stage (the box that holds the panel), so the scene keeps its shape   */
+/* whatever the height of the panel is in a language or on a phone.     */
 /* ------------------------------------------------------------------ */
-/* The small label over a section: a dot in the accent and a few words. */
-.tag-pill {
+.hero-world {
+  position: relative;
+  overflow: hidden;
+  color: var(--ivory);
+  background: linear-gradient(180deg, #131416 0%, #181a1e 32%, #1f2128 58%, #28272c 80%, #2f2a2b 100%);
+  --hero-soft: #9d978d;
+  --hero-accent: var(--champagne-300);
+  --channel-whatsapp: #25a55f;
+  --channel-whatsapp-ink: #1d6b42;
+  --horizon: 96px;
+  --world-rise: 118px;
+  --depth-far: 44px;
+  --depth-mid: 24px;
+  --depth-front: -30px;
+  --panel-tilt: 4deg;
+}
+@media (min-width: 768px) {
+  .hero-world { --horizon: 150px; --world-rise: 0px; --depth-far: 90px; --depth-mid: 48px; --depth-front: -48px; --panel-tilt: 7deg; }
+}
+.hero-world-scene { isolation: isolate; padding-top: 24px; }
+@media (min-width: 768px) { .hero-world-scene { padding-top: 30px; } }
+.hero-world-stars { position: absolute; inset: 0 0 auto 0; height: 300px; width: 100%; pointer-events: none; }
+
+/* The stage: the panel and everything of the world that is placed against it. */
+.hero-world-stage { position: relative; margin: 20px auto 0; max-width: 980px; padding-top: var(--world-rise); }
+@media (min-width: 768px) { .hero-world-stage { margin-top: 36px; } }
+.hero-world-stage > [class^="hero-world-"] { pointer-events: none; }
+.hero-world-glow, .hero-world-far, .hero-world-land, .hero-world-ground { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; }
+.hero-world-glow {
+  top: calc(var(--horizon) - 300px);
+  height: 300px;
+  background:
+    radial-gradient(ellipse 40% 92% at 64% 100%, rgba(232, 164, 100, 0.55) 0%, rgba(232, 164, 100, 0.18) 46%, rgba(232, 164, 100, 0) 74%),
+    linear-gradient(to top, rgba(206, 140, 92, 0.34) 0%, rgba(150, 110, 96, 0.14) 42%, rgba(150, 110, 96, 0) 100%);
+}
+.hero-world-far { top: calc(var(--horizon) - 180px); height: 240px; }
+.hero-world-land { top: calc(var(--horizon) + 58px); bottom: 0; background: linear-gradient(180deg, #1c1e22 0%, #1a1c1f 34%, #131414 100%); }
+.hero-world-mid { position: absolute; z-index: 1; top: calc(var(--horizon) - 84px); width: 250px; height: 180px; }
+.hero-world-mid-left { left: calc(50% - 50vw); }
+.hero-world-mid-right { right: calc(50% - 50vw); }
+@media (min-width: 768px) {
+  .hero-world-mid { top: calc(var(--horizon) - 152px); width: 460px; height: 330px; }
+}
+
+/* The panel: one light surface, large type, no frame inside a frame. It leans back and comes upright on
+   scroll (the mechanics of Container Scroll Animation: perspective, rotateX to flat, a layered shadow). */
+.hero-panel {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #fbfaf7;
+  color: var(--ink-950);
+  /* a light surface inside the dark hero: its controls read the light tokens again */
+  --text-primary: var(--ink-950);
+  --text-secondary: var(--ink-700);
+  --text-muted: #635f58;
+  --focus-ring: var(--ink-950);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 9px 20px rgba(0, 0, 0, 0.29), 0 37px 37px rgba(0, 0, 0, 0.26), 0 84px 50px rgba(0, 0, 0, 0.15), 0 149px 60px rgba(0, 0, 0, 0.04);
+  transform-origin: 50% 100%;
+  --upright: min(1, calc(var(--depth, 0) * 3.4));
+  transform: perspective(1400px) rotateX(calc((1 - var(--upright)) * var(--panel-tilt)));
+  will-change: transform;
+}
+.hero-bubble { max-width: 94%; padding: 12px 16px; border-radius: 16px; font-size: 1rem; line-height: 1.5; color: var(--ink-950); }
+.hero-bubble-in { background: #efede7; border-bottom-left-radius: 4px; }
+/* The outgoing tint of WhatsApp, used here and only here, because this is a WhatsApp conversation. */
+.hero-bubble-out { background: #dcf3df; border-bottom-right-radius: 4px; }
+.hero-bubble-meta { margin-top: 4px; font-size: 0.75rem; line-height: 1.4; color: var(--ink-500); font-variant-numeric: tabular-nums; }
+.hero-next { padding: 12px 14px; border-left: 3px solid var(--champagne-400); border-radius: 4px 12px 12px 4px; background: #fff; box-shadow: var(--shadow-card); }
+
+/* The foreground: anchored to the lower corners of the panel, so it covers them at every width. */
+.hero-world-front { position: absolute; z-index: 3; bottom: -2px; width: 320px; height: 185px; }
+.hero-world-front-left { right: calc(100% - 116px); }
+.hero-world-front-right { left: calc(100% - 116px); }
+@media (min-width: 768px) {
+  .hero-world-front { width: 520px; height: 300px; }
+  .hero-world-front-left { right: calc(100% - 190px); }
+  .hero-world-front-right { left: calc(100% - 190px); }
+}
+.hero-world-ground { z-index: 3; bottom: 0; height: 14px; background: #0b0b0a; }
+
+/* The two buttons of the hero on the dark sky. */
+.hero-cta-main {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 12px 6px 10px;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 12px 28px;
   border-radius: 999px;
-  border: 1px solid var(--border-strong);
-  background: var(--surface-raised);
-  font-size: 0.8125rem;
-  line-height: 1.3;
+  background: var(--ivory);
+  color: var(--ink-950);
+  font-size: 1.0625rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: background-color var(--motion-micro) var(--ease-standard), transform var(--motion-micro) var(--ease-standard);
 }
-.tag-pill::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: var(--accent, var(--champagne-400));
-  flex: none;
-}
-/* The quiet second line of a headline. */
-.h-soft { color: var(--text-soft, var(--ink-500)); }
+.hero-cta-main:hover { background: #fff; transform: translateY(-1px); }
+.hero-cta-second.hero-cta-second { background: transparent; border-color: rgba(248, 246, 241, 0.3); color: var(--ivory); }
+.hero-cta-second.hero-cta-second:hover { background: rgba(248, 246, 241, 0.07); border-color: rgba(248, 246, 241, 0.5); }
 
-/* A flat card: a hairline and a white ground, no lift. Lift is reserved for the one card that leads. */
-.v3-card {
-  background: var(--surface-raised);
-  border: 1px solid var(--line-contour);
-  border-radius: var(--radius-card, 20px);
+/* While the page is at its top, the navigation stands on the sky of the hero: no bar, light words. With
+   the Platform menu open or after the first scroll it is the usual light bar again. */
+:root:has([data-hero="dark"]) main { background: linear-gradient(#131416, #131416) top / 100% calc(var(--header-h) + 120px) no-repeat; }
+:root:has([data-hero="dark"]) header[data-scrolled="false"]:not(:has([aria-expanded="true"])) {
+  background-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border-color: transparent;
+  --text-primary: var(--ivory);
+  --text-secondary: var(--ink-200);
+  --text-muted: var(--ink-350);
+  --surface-raised: rgba(248, 246, 241, 0.06);
+  --surface-sunken: rgba(248, 246, 241, 0.1);
+  --surface-hover: rgba(248, 246, 241, 0.1);
+  --border-hairline: rgba(248, 246, 241, 0.16);
+  --border-strong: rgba(248, 246, 241, 0.26);
+  --border-interactive: rgba(248, 246, 241, 0.5);
+  --focus-ring: var(--champagne-200);
 }
-.v3-card-lead { box-shadow: var(--shadow-stage); }
+:root:has([data-hero="dark"]) header[data-scrolled="false"]:not(:has([aria-expanded="true"])) .header-cta { background: var(--ivory); color: var(--ink-950); }
+:root:has([data-hero="dark"]) [data-env] { background: #1a1b1e; border-color: rgba(248, 246, 241, 0.08); --signal-attention: #dcb063; --text-secondary: var(--ink-300); }
 
-/* A product surface: a thin outer frame with the window inside it (frame within frame). */
-.v3-frame {
-  padding: var(--frame-pad, 8px);
-  border-radius: var(--radius-frame, 28px);
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid var(--line-contour);
-  box-shadow: var(--shadow-stage);
-}
-/* The window does not clip: the foreground of a scene may cross its edge. Parts with their own ground
-   round their corners themselves (rounded-*-[inherit]). */
-.v3-window {
-  background: var(--surface-raised);
-  border: 1px solid var(--line-contour);
-  border-radius: calc(var(--radius-frame, 28px) - var(--frame-pad, 8px));
-}
-
-/* The hero scene: background (ground and arch niche), the product window, and a foreground that crosses
-   the window's edge. The scene's padding is the room the foreground needs outside the window. */
-.hero-scene {
-  isolation: isolate;
-  border-radius: var(--radius-frame, 28px);
-  padding: 28px 16px 60px;
-  overflow: hidden;
-  background: linear-gradient(165deg, #f5ecda 0%, #ead9b9 100%);
-}
-@media (min-width: 640px) { .hero-scene { padding: 44px 48px 60px 56px; } }
-@media (min-width: 1024px) { .hero-scene { padding: 44px 44px 60px 64px; } }
-.hero-scene-back { position: absolute; inset: -24px 0 -24px 0; z-index: 0; pointer-events: none; }
-/* A segmental arch: the niche the window stands in front of. Lighter than the ground, with a hairline. */
-.hero-scene-arch {
-  position: absolute;
-  left: 5%;
-  right: 5%;
-  top: 36px;
-  bottom: -8px;
-  border-radius: 50% 50% 0 0 / 132px 132px 0 0;
-  background: linear-gradient(180deg, rgba(255, 253, 247, 0.78) 0%, rgba(255, 253, 247, 0.3) 70%);
-  border: 1px solid rgba(138, 107, 50, 0.18);
-  border-bottom: 0;
-}
-/* A foreground card: white, a clear edge and the longest shadow of the scene, because it is nearest. */
-.hero-front-card {
-  background: var(--paper);
-  border: 1px solid var(--line-contour);
-  border-radius: 16px;
-  box-shadow: var(--shadow-overlay);
-}
-/* The ground a product surface stands on: one warm field (a dot hint may lie on it, nothing else). */
-.v3-ground {
-  position: relative;
-  isolation: isolate;
-  border-radius: var(--radius-frame, 28px);
-  background: linear-gradient(165deg, #f7f1e4 0%, #efe5d0 100%);
-  overflow: hidden;
-}
-.v3-ground > svg { z-index: -1; }
 /* A status line: a mark and a few words. Colour is never the only carrier, the words say it. */
 .state-line { display: inline-flex; align-items: baseline; gap: 8px; font-size: 0.8125rem; line-height: 1.45; font-weight: 500; color: var(--text-secondary); }
 .state-line::before { content: ""; width: 7px; height: 7px; border-radius: 999px; flex: none; transform: translateY(-1px); background: var(--ink-350); }
@@ -512,20 +527,14 @@ img, video, svg { display: block; max-width: 100%; }
 .state-line[data-state="preparing"]::before { background: transparent; box-shadow: inset 0 0 0 1.5px var(--ink-400); }
 .state-line[data-state="request"]::before { background: var(--accent, var(--champagne-400)); }
 
-/* The hero sequence: the enquiry is there, the reply forms, the CRM entry and the alert appear. CSS only,
+/* The hero sequence: the enquiry is there, the reply forms, the customer record fills, the next step appears. CSS only,
    so the first picture needs no script: without JavaScript and with reduced motion everything simply stands. */
 @keyframes seq-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes seq-pop { 0% { opacity: 0; transform: translateY(10px) scale(0.97); } 70% { opacity: 1; transform: translateY(-2px) scale(1.01); } 100% { opacity: 1; transform: none; } }
 @keyframes seq-typing { 0% { opacity: 0; } 12% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; } }
-/* The foreground moves along the depth axis: the message arrives from in front and to the left of the
-   window, the task comes forward out of it. */
-@keyframes seq-arrive { from { opacity: 0; transform: translate3d(-36px, 12px, 0) scale(1.06); } to { opacity: 1; transform: none; } }
-@keyframes seq-forward { from { opacity: 0; transform: translate3d(-20px, -16px, 0) scale(0.93); } to { opacity: 1; transform: none; } }
 .seq-typing { display: none; }
 html.js [data-seq="run"] .seq-item { opacity: 0; animation: seq-in 520ms var(--ease-out) var(--seq-delay, 0ms) forwards; }
 html.js [data-seq="run"] .seq-item[data-seq-kind="pop"] { animation-name: seq-pop; animation-duration: 620ms; }
-html.js [data-seq="run"] .seq-item[data-seq-kind="arrive"] { animation-name: seq-arrive; animation-duration: 760ms; }
-html.js [data-seq="run"] .seq-item[data-seq-kind="forward"] { animation-name: seq-forward; animation-duration: 720ms; }
 html.js [data-seq="run"] .seq-typing { display: inline-flex; opacity: 0; animation: seq-typing var(--seq-typing-for, 1300ms) linear var(--seq-delay, 0ms) forwards; }
 html:not(.js) .seq-replay { display: none; }
 @media (prefers-reduced-motion: reduce) {
@@ -620,6 +629,7 @@ html.js .rise.is-in, html.js .is-in .rise { opacity: 1; transform: none; }
   [data-deck] > [data-deck-item] { position: relative !important; top: auto !important; }
   [data-deck] > [data-deck-item] > * { transform: none !important; filter: none !important; }
   [data-depth-layer] { transform: none !important; }
+  .hero-panel { transform: perspective(1400px) rotateX(2.5deg) !important; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
@@ -660,3 +670,50 @@ html.js .rise.is-in, html.js .is-in .rise { opacity: 1; transform: none; }
   transition: top var(--motion-control) var(--ease-standard);
 }
 .skip-link:focus { top: 12px; }
+
+/* ------------------------------------------------------------------ */
+/* The product demonstration (components/home/product-demo.tsx): a     */
+/* list of steps beside one large stage. Large type, one surface.      */
+/* ------------------------------------------------------------------ */
+.demo-stage {
+  min-height: 430px;
+  padding: 22px 20px 26px;
+  border-radius: 20px;
+  background: var(--paper);
+  border: 1px solid var(--line-contour);
+  box-shadow: var(--shadow-stage);
+}
+.demo-bubble { max-width: 92%; padding: 14px 18px; border-radius: 18px; font-size: 1.0625rem; line-height: 1.55; color: var(--ink-950); }
+@media (min-width: 768px) {
+  .demo-stage { min-height: 520px; padding: 36px 44px 40px; }
+  .demo-bubble { max-width: 84%; font-size: 1.1875rem; }
+}
+.demo-control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-raised);
+  color: var(--text-primary);
+  transition: border-color var(--motion-micro) var(--ease-standard), background-color var(--motion-micro) var(--ease-standard);
+}
+.demo-control:hover { border-color: var(--border-interactive); background: var(--surface-hover); }
+.demo-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: var(--ink-950);
+  color: var(--ivory);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color var(--motion-micro) var(--ease-standard), transform var(--motion-micro) var(--ease-standard);
+}
+.demo-action:hover { background: var(--ink-800); transform: translateY(-1px); }
+@keyframes demo-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.demo-progress { transform: scaleX(0); animation: demo-progress var(--demo-ms, 7000ms) linear forwards; }

@@ -186,7 +186,7 @@ export function HeaderShell({
             <Link href={login.href} className={linkCls}>
               {login.label}
             </Link>
-            <ButtonLink href={primary.href} size="sm">
+            <ButtonLink href={primary.href} size="sm" className="header-cta">
               {primary.label}
             </ButtonLink>
           </div>

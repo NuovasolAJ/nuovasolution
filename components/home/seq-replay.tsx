@@ -7,11 +7,12 @@ import { RotateCcw } from "lucide-react";
  * for one layout pass and comes back, which starts the keyframes again. Hidden without JavaScript and with
  * reduced motion (globals.css), where the sequence does not run and there is nothing to replay.
  */
-export function SeqReplay({ label }: { label: string }) {
+export function SeqReplay({ label, compact = false }: { label: string; compact?: boolean }) {
   return (
     <button
       type="button"
       data-seq-replay
+      aria-label={label}
       className="seq-replay inline-flex min-h-[44px] items-center gap-2 rounded-pill px-3 t-caption font-medium text-text-secondary transition-colors duration-micro hover:text-text-primary"
       onClick={(e) => {
         const root = e.currentTarget.closest<HTMLElement>("[data-seq]");
@@ -23,7 +24,8 @@ export function SeqReplay({ label }: { label: string }) {
       }}
     >
       <RotateCcw size={14} aria-hidden="true" />
-      {label}
+      {/* compact: the icon alone below 640 px, where the bar has no room for the words */}
+      <span className={compact ? "hidden md:inline" : undefined}>{label}</span>
     </button>
   );
 }

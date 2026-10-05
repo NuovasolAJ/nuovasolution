@@ -296,161 +296,56 @@ export const en = {
       /** Empty on purpose: the payment sentence appears once per page, in the hero note or the getting started section. */
       caption: "",
     },
-    // Home v3 (owner direction 2026-10-03, audit order R10b). WORKING TEXT by the implementer until Copy's
-    // COPY_HERO_1003 and COPY_DELTAS_1003 arrive (lib/content/home-v3.ts carries the flag that marks the page).
-    // Text measure of the order: headline at most eight words, one lead of about twenty, feature lines three to
-    // six words, paragraphs at most two sentences. States follow the package matrix in
-    // backend_handoff/handoff_in_2026-10-03/AUDIT_ORDERS_2026-10-03.md.
+    // Home v3 (owner order 2026-10-05, "correct the visual direction and show the product"). The headline is the
+    // owner's direction ("Menos gestión. Más tiempo para tus clientes."); its English form and every text marked
+    // WORKING below are the implementer's working text until Copy confirms them (lib/content/home-v3.ts carries
+    // the flag). Labels 1 to 3 and the demonstration's title and first three steps are Copy's (COPY_HERO_1003 §2,
+    // COPY_DELTAS_1003 §1.1, D-93).
     v3: {
       workingText: "Working text. The wording is not final.",
+      // One story everywhere: the same person, property, day and language in every view.
+      story: {
+        name: "Laura Serrano",
+        time: "Sunday 21:40",
+        fields: [
+          { k: "Asked for", v: "2 bedrooms, Estepona · REF-DEMO-204" },
+          { k: "Wants to view", v: "Thursday morning" },
+          { k: "Writes in", v: "Spanish" },
+          { k: "Channel", v: "WhatsApp" },
+        ],
+      },
       hero: {
-        // COPY_HERO_1003 §2: the three labels in the product picture. The fourth (owner 2026-10-03: the next
-        // action belongs in the hero, a hot alert does not) reuses the approved board wording "A task for your team".
-        labels: { enquiry: "WhatsApp enquiry", reply: "Reply in Spanish", crm: "Customer record", next: "A task for your team" },
-        // Control labels by the implementer (not sales copy).
+        h1Soft: "Less admin.", // WORKING (English form of the owner's line)
+        h1: "More time for your clients.", // WORKING
+        lead: "Nuova replies in Spanish to enquiries on WhatsApp and email, records what each client asks for and makes the next step clear.", // WORKING
+        ctaDemo: "See the demonstration", // WORKING
+        labels: { enquiry: "WhatsApp enquiry", reply: "Reply in Spanish", crm: "Customer record", next: "Next step" },
+        example: "Example · invented data",
         replay: "Play again",
-        surfaceLabel: "Example: a WhatsApp enquiry, the reply in Spanish, the customer record and the task for the team",
+        surfaceLabel: "Example: a WhatsApp enquiry, the reply in Spanish, the customer record and the next step",
       },
-      modules: {
-        tag: "Product in action",
-        h2: "One enquiry.",
-        h2Soft: "Every part at work.",
-        lead: "Open a card to watch a short demonstration. Each one says what you can order today.",
-        show: "Show the demonstration",
-        hide: "Close the demonstration",
-        link: "Read the module",
-        demoNote: "Demonstration with synthetic data.",
-        stepOf: "Step",
-        items: {
-          reply: {
-            title: "Answer and record",
-            line: "Message in, reply out, CRM updated",
-            state: "Available today",
-            steps: ["A message arrives", "The reply is written", "The enquiry is in your CRM", "Your team gets the alert"],
-          },
-          daily: {
-            title: "Daily tasks for your team",
-            line: "Who does what next, and why",
-            state: "Task list available today. Team overview in preparation.",
-            steps: ["Your team at a glance", "The next action, with its reason", "One person takes it", "Done, and off the list"],
-          },
-          voice: {
-            title: "Phone assistant",
-            line: "A call becomes a visible task",
-            state: "In preparation. Not yet bookable.",
-            steps: ["A call comes in", "The caller's wish is noted", "A task appears for your team"],
-          },
-          social: {
-            title: "Social Growth",
-            line: "From a property to a post",
-            state: "In preparation. Not yet bookable.",
-            steps: ["You pick a property", "A post is drafted for your approval", "A comment arrives", "A reply you allowed goes out"],
-          },
-          model3d: {
-            title: "3D property model",
-            line: "From floor plan to 3D model",
-            state: "On request. Built and checked by us, per property.",
-            steps: ["You send a floor plan and photos", "We build the model", "Choose a floor", "Furniture on or off"],
-          },
-        },
-        // Words inside the five demonstrations (synthetic people and properties).
-        scene: {
-          synthetic: "Synthetic data",
-          you: "You",
-          reply: { crm: "CRM", alert: "Hot lead alert", alertLine: "Viewing asked for Thursday" },
-          daily: {
-            team: "Team today",
-            people: [{ name: "Marta", open: "2 open" }, { name: "Tom", open: "1 open" }, { name: "You", open: "1 open" }],
-            next: "Next action",
-            task: "Call Álvaro Pons back",
-            reason: "Reason: he asked for the price by phone",
-            take: "Take it",
-            taken: "Taken by you",
-            done: "Done",
-            empty: "Nothing left on your list",
-          },
-          voice: {
-            incoming: "Incoming call",
-            caller: "Unknown number",
-            noted: "Noted from the call",
-            wish: ["Wants: a viewing", "Where: Mijas, 3 bedrooms", "When: Friday afternoon"],
-            task: "Confirm Friday's viewing",
-            taskMeta: "New task · from a call",
-          },
-          social: {
-            property: "Flat in Estepona",
-            propertyMeta: "2 bedrooms · REF-DEMO-204",
-            draft: "Draft post",
-            caption: "Two bedrooms, a terrace and morning light in Estepona.",
-            approve: "Approved by you",
-            comment: "Is it still available?",
-            commenter: "A comment",
-            reply: "Thank you for asking. We will write to you directly.",
-            replyMeta: "From the replies you allowed",
-          },
-          model3d: {
-            plan: "Floor plan",
-            photos: "Photos",
-            model: "3D model",
-            floors: ["Ground floor", "Upper floor"],
-            furniture: "Furniture",
-            on: "On",
-            off: "Off",
-            note: "Illustration. Furnishing in a model is illustrative.",
-          },
-        },
+      demo: {
+        eyebrow: "The product in action",
+        h2: "From a message to a record", // COPY_DELTAS_1003 §1.1
+        state: "Available: the reply in Spanish and the customer record.", // §1.1, the available half of the state line
+        steps: [
+          { title: "An enquiry arrives on WhatsApp", line: "Laura asks about a flat in Estepona on a Sunday night." }, // title §1.1, line WORKING
+          { title: "Nuova replies in Spanish", line: "Your customers are told an assistant is replying. That is why they trust the reply, and nothing is committed: no price, no date, no condition." }, // §1.1, D-93
+          { title: "The customer record is created", line: "What she asked for is kept: the property, the viewing and her language." }, // title §1.1, line WORKING
+          { title: "The next step is clear", line: "One of your people confirms the viewing. Nuova agrees no dates." }, // WORKING
+        ],
+        // What kind of picture this is: a real product path, or a design prototype of something not available yet.
+        kindReal: "A real product path. People and data are invented.",
+        kindPrototype: "Design prototype. Not available yet.",
+        short: "Shortened view",
+        full: "Show the full conversation",
+        fullHide: "Hide the full conversation",
+        fullTitle: "The full conversation, with the notice every reply carries",
+        controls: { prev: "Previous step", next: "Next step", pause: "Pause", play: "Play", step: "Step", of: "of" },
+        record: { updated: "Updated now", from: "From the WhatsApp conversation · Sunday 21:40" },
+        task: { taken: "Taken by you", complete: "Mark as done", done: "Done. It leaves the list.", again: "Start again" },
       },
-      plans: {
-        tag: "Packages",
-        h2: "Three packages.",
-        h2Soft: "Each builds on the last.",
-        lead: "No prices on this page. We tell you the price for your agency before anything is agreed.",
-        states: { available: "Available", partial: "Partly available", preparing: "In preparation, not yet bookable", request: "On request" },
-        essential: {
-          name: "Essential",
-          line: "Replies, CRM and alerts",
-          intro: "Included",
-          badge: "14 days free",
-          cta: "Try Essential free",
-          features: [
-            { name: "Automatic replies", state: "available", note: "Text enquiries, in Spanish" },
-            { name: "E-mail labels", state: "available", note: "In Gmail" },
-            { name: "CRM entries", state: "available", note: "" },
-            { name: "External CRM connection", state: "preparing", note: "" },
-            { name: "Hot lead alerts", state: "available", note: "" },
-          ],
-        },
-        growth: {
-          name: "Growth",
-          line: "For a team that follows up",
-          intro: "Everything in Essential, plus",
-          badge: "",
-          cta: "Request a proposal",
-          features: [
-            { name: "Follow-ups", state: "preparing", note: "" },
-            { name: "Property matching", state: "preparing", note: "" },
-            { name: "Daily goals for your team", state: "partial", note: "Task list today, overview in preparation" },
-            { name: "Lead generation", state: "preparing", note: "" },
-            { name: "Calendar", state: "preparing", note: "" },
-          ],
-        },
-        enterprise: {
-          name: "Enterprise",
-          line: "For agencies that widen their reach",
-          intro: "Everything in Growth, plus",
-          badge: "",
-          cta: "Talk to us",
-          features: [
-            { name: "Social Growth", state: "preparing", note: "" },
-            { name: "Telephony", state: "preparing", note: "" },
-            { name: "Wider acquisition scope", state: "preparing", note: "" },
-            { name: "3D model allowance", state: "request", note: "" },
-          ],
-        },
-        strip: { title: "3D property models", line: "Also bookable on their own, per property.", state: "On request", cta: "Ask about 3D" },
-      },
-      faq: { tag: "Questions", h2: "Straight answers.", h2Soft: "What Nuova does today.", all: "All questions" },
-      closing: { cta: "Request a demo" },
+      offer: { cta: "Try Essential free" },
     },
   },
 
@@ -1193,7 +1088,7 @@ export const en = {
   },
 
   footer: {
-    brandLine: "Nuova answers your agency's enquiries and turns them into work your team can finish. Built for how agencies in Spain actually work.", // D-40
+    brandLine: "Nuova answers your agency's enquiries and keeps what each client asks for in one place. Built for agencies in Spain.", // owner order 2026-10-05 §9, WORKING
     platform: "Platform",
     getStarted: "Get started",
     legal: "Legal",

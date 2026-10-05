@@ -265,155 +265,52 @@ export const es: Dictionary = {
       body: "La única pregunta es qué pasa con ella.",
       caption: "",
     },
-    // Home v3 (dirección del owner 2026-10-03, orden R10b). TEXTO DE TRABAJO del implementador hasta
-    // COPY_HERO_1003 y COPY_DELTAS_1003 (la marca está en lib/content/home-v3.ts).
+    // Home v3 (orden del owner 2026-10-05). El titular es la dirección del owner; los textos marcados WORKING son
+    // texto de trabajo del implementador hasta que Copy los confirme. Las etiquetas 1 a 3 y el título y los tres
+    // primeros pasos de la demostración son de Copy (COPY_HERO_1003 §2, COPY_DELTAS_1003 §1.1, D-93).
     v3: {
       workingText: "Texto de trabajo. La redacción no es definitiva.",
+      story: {
+        name: "Laura Serrano",
+        time: "domingo 21:40",
+        fields: [
+          { k: "Pide", v: "2 dormitorios, Estepona · REF-DEMO-204" },
+          { k: "Quiere ver", v: "el jueves por la mañana" },
+          { k: "Escribe en", v: "español" },
+          { k: "Canal", v: "WhatsApp" },
+        ],
+      },
       hero: {
-        // COPY_HERO_1003 §2; la cuarta etiqueta reutiliza la redacción aprobada del tablero.
-        labels: { enquiry: "Consulta por WhatsApp", reply: "Respuesta en español", crm: "Ficha del cliente", next: "Una tarea para tu equipo" },
+        h1Soft: "Menos gestión.", // dirección del owner 2026-10-05
+        h1: "Más tiempo para tus clientes.",
+        lead: "Nuova responde en español a las consultas por WhatsApp y email, guarda lo que pide cada cliente y deja claro el siguiente paso.", // WORKING
+        ctaDemo: "Ver la demostración", // WORKING
+        labels: { enquiry: "Consulta por WhatsApp", reply: "Respuesta en español", crm: "Ficha del cliente", next: "Siguiente paso" },
+        example: "Ejemplo · datos inventados",
         replay: "Reproducir otra vez",
-        surfaceLabel: "Ejemplo: una consulta por WhatsApp, la respuesta en español, la ficha del cliente y la tarea para el equipo",
+        surfaceLabel: "Ejemplo: una consulta por WhatsApp, la respuesta en español, la ficha del cliente y el siguiente paso",
       },
-      modules: {
-        tag: "El producto en acción",
-        h2: "Una consulta.",
-        h2Soft: "Cada parte, trabajando.",
-        lead: "Abre una tarjeta para ver una demostración breve. Cada una dice qué puedes contratar hoy.",
-        show: "Ver la demostración",
-        hide: "Cerrar la demostración",
-        link: "Leer el módulo",
-        demoNote: "Demostración con datos sintéticos.",
-        stepOf: "Paso",
-        items: {
-          reply: {
-            title: "Responder y registrar",
-            line: "Entra el mensaje, sale la respuesta",
-            state: "Disponible hoy",
-            steps: ["Llega un mensaje", "Se escribe la respuesta", "La consulta está en tu CRM", "Tu equipo recibe el aviso"],
-          },
-          daily: {
-            title: "Tareas del día para tu equipo",
-            line: "Quién hace qué, y por qué",
-            state: "Lista de tareas disponible hoy. Vista del equipo en preparación.",
-            steps: ["Tu equipo de un vistazo", "La siguiente acción, con su motivo", "Una persona la toma", "Hecha, y fuera de la lista"],
-          },
-          voice: {
-            title: "Asistente telefónico",
-            line: "Una llamada se convierte en tarea",
-            state: "En preparación. Todavía no se puede contratar.",
-            steps: ["Entra una llamada", "Se anota lo que pide", "Aparece una tarea para tu equipo"],
-          },
-          social: {
-            title: "Social Growth",
-            line: "De un inmueble a una publicación",
-            state: "En preparación. Todavía no se puede contratar.",
-            steps: ["Eliges un inmueble", "Se redacta una publicación para tu aprobación", "Llega un comentario", "Sale una respuesta que tú permitiste"],
-          },
-          model3d: {
-            title: "Modelo 3D del inmueble",
-            line: "Del plano al modelo 3D",
-            state: "Bajo petición. Lo creamos y revisamos nosotros, por inmueble.",
-            steps: ["Envías un plano y fotos", "Creamos el modelo", "Elige una planta", "Muebles sí o no"],
-          },
-        },
-        scene: {
-          synthetic: "Datos sintéticos",
-          you: "Tú",
-          reply: { crm: "CRM", alert: "Aviso de lead caliente", alertLine: "Pide visita para el jueves" },
-          daily: {
-            team: "Equipo hoy",
-            people: [{ name: "Marta", open: "2 abiertas" }, { name: "Tom", open: "1 abierta" }, { name: "Tú", open: "1 abierta" }],
-            next: "Siguiente acción",
-            task: "Devolver la llamada a Álvaro Pons",
-            reason: "Motivo: preguntó el precio por teléfono",
-            take: "Tomarla",
-            taken: "La has tomado tú",
-            done: "Hecha",
-            empty: "No queda nada en tu lista",
-          },
-          voice: {
-            incoming: "Llamada entrante",
-            caller: "Número desconocido",
-            noted: "Anotado de la llamada",
-            wish: ["Quiere: una visita", "Dónde: Mijas, 3 dormitorios", "Cuándo: el viernes por la tarde"],
-            task: "Confirmar la visita del viernes",
-            taskMeta: "Tarea nueva · de una llamada",
-          },
-          social: {
-            property: "Piso en Estepona",
-            propertyMeta: "2 dormitorios · REF-DEMO-204",
-            draft: "Borrador de publicación",
-            caption: "Dos dormitorios, terraza y luz de mañana en Estepona.",
-            approve: "Aprobado por ti",
-            comment: "¿Sigue disponible?",
-            commenter: "Un comentario",
-            reply: "Gracias por preguntar. Te escribimos directamente.",
-            replyMeta: "De las respuestas que permitiste",
-          },
-          model3d: {
-            plan: "Plano",
-            photos: "Fotos",
-            model: "Modelo 3D",
-            floors: ["Planta baja", "Planta alta"],
-            furniture: "Muebles",
-            on: "Sí",
-            off: "No",
-            note: "Ilustración. El mobiliario de un modelo es ilustrativo.",
-          },
-        },
+      demo: {
+        eyebrow: "El producto en acción",
+        h2: "De un mensaje a una ficha", // COPY_DELTAS_1003 §1.1
+        state: "Disponible: respuesta en español y ficha del cliente.",
+        steps: [
+          { title: "Llega una consulta por WhatsApp", line: "Laura pregunta por un piso en Estepona un domingo por la noche." },
+          { title: "Nuova responde en español", line: "Tus clientes saben que responde un asistente. Por eso se fían de la respuesta, y nada queda comprometido: ni precio, ni fecha, ni condición." }, // D-93
+          { title: "Se crea la ficha del cliente", line: "Lo que ha pedido queda guardado: el inmueble, la visita y su idioma." },
+          { title: "Queda claro el siguiente paso", line: "Una persona de tu equipo confirma la visita. Nuova no acuerda fechas." },
+        ],
+        kindReal: "Recorrido real del producto. Personas y datos inventados.",
+        kindPrototype: "Prototipo de diseño. Todavía no disponible.",
+        short: "Vista abreviada",
+        full: "Ver la conversación completa",
+        fullHide: "Ocultar la conversación completa",
+        fullTitle: "La conversación completa, con el aviso que lleva cada respuesta",
+        controls: { prev: "Paso anterior", next: "Paso siguiente", pause: "Pausar", play: "Reproducir", step: "Paso", of: "de" },
+        record: { updated: "Actualizado ahora", from: "De la conversación de WhatsApp · domingo 21:40" },
+        task: { taken: "Tomada por ti", complete: "Marcar como hecha", done: "Hecha. Sale de la lista.", again: "Volver a empezar" },
       },
-      plans: {
-        tag: "Paquetes",
-        h2: "Tres paquetes.",
-        h2Soft: "Cada uno amplía el anterior.",
-        lead: "En esta página no hay precios. Te decimos el precio para tu agencia antes de acordar nada.",
-        states: { available: "Disponible", partial: "Disponible en parte", preparing: "En preparación, todavía no se puede contratar", request: "Bajo petición" },
-        essential: {
-          name: "Essential",
-          line: "Respuestas, CRM y avisos",
-          intro: "Incluye",
-          badge: "14 días gratis",
-          cta: "Prueba Essential gratis",
-          features: [
-            { name: "Respuestas automáticas", state: "available", note: "Consultas de texto, en español" },
-            { name: "Etiquetas de correo", state: "available", note: "En Gmail" },
-            { name: "Fichas en el CRM", state: "available", note: "" },
-            { name: "Conexión con un CRM externo", state: "preparing", note: "" },
-            { name: "Avisos de lead caliente", state: "available", note: "" },
-          ],
-        },
-        growth: {
-          name: "Growth",
-          line: "Para un equipo que hace seguimiento",
-          intro: "Todo lo de Essential, y además",
-          badge: "",
-          cta: "Pide una propuesta",
-          features: [
-            { name: "Seguimientos", state: "preparing", note: "" },
-            { name: "Property matching", state: "preparing", note: "" },
-            { name: "Objetivos diarios para tu equipo", state: "partial", note: "Lista de tareas hoy, vista del equipo en preparación" },
-            { name: "Generación de leads", state: "preparing", note: "" },
-            { name: "Calendario", state: "preparing", note: "" },
-          ],
-        },
-        enterprise: {
-          name: "Enterprise",
-          line: "Para agencias que amplían su alcance",
-          intro: "Todo lo de Growth, y además",
-          badge: "",
-          cta: "Habla con nosotros",
-          features: [
-            { name: "Social Growth", state: "preparing", note: "" },
-            { name: "Telefonía", state: "preparing", note: "" },
-            { name: "Mayor alcance de captación", state: "preparing", note: "" },
-            { name: "Cupo de modelos 3D", state: "request", note: "" },
-          ],
-        },
-        strip: { title: "Modelos 3D de inmuebles", line: "También se contratan por separado, por inmueble.", state: "Bajo petición", cta: "Pregunta por el 3D" },
-      },
-      faq: { tag: "Preguntas", h2: "Respuestas claras.", h2Soft: "Lo que hace Nuova hoy.", all: "Todas las preguntas" },
-      closing: { cta: "Pide una demo" },
+      offer: { cta: "Prueba Essential gratis" },
     },
   },
 
@@ -1127,7 +1024,7 @@ export const es: Dictionary = {
   },
 
   footer: {
-    brandLine: "Nuova responde a las consultas de tu agencia y las convierte en trabajo que tu equipo puede terminar. Hecho para la forma en que trabajan las agencias en España.",
+    brandLine: "Nuova responde a las consultas de tu agencia y mantiene en un solo sitio lo que pide cada cliente. Hecho para agencias en España.", // owner order 2026-10-05 §9, WORKING
     platform: "Plataforma",
     getStarted: "Empezar",
     legal: "Legal",
