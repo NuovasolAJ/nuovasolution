@@ -95,7 +95,7 @@ export function HeroWorld({ locale }: { locale: Locale }) {
 
               <div className="grid md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
                 {/* The conversation */}
-                <div className="space-y-4 px-5 py-5 md:px-7 md:pb-28 md:pt-6">
+                <div className="space-y-4 px-5 py-5 md:px-7 md:pb-36 md:pt-6">
                   <StepLabel n={1}>{t.labels.enquiry}</StepLabel>
                   <div className="hero-bubble hero-bubble-in" data-hero-enquiry>
                     <p lang="es">{es.enquiry.text}</p>
@@ -116,7 +116,7 @@ export function HeroWorld({ locale }: { locale: Locale }) {
                 </div>
 
                 {/* What the agency has afterwards */}
-                <div className="space-y-4 border-t border-ink-100 bg-[#f6f4ee] px-5 pb-20 pt-5 md:border-l md:border-t-0 md:px-7 md:pb-28 md:pt-6">
+                <div className="space-y-4 border-t border-ink-100 bg-[#f6f4ee] px-5 pb-32 pt-5 md:border-l md:border-t-0 md:px-7 md:pb-36 md:pt-6">
                   <StepLabel n={3} className="seq-item" style={delay(2750)}>{t.labels.crm}</StepLabel>
                   <div className="seq-item" style={delay(2850)} data-hero-crm>
                     <p className="text-[1.0625rem] font-semibold leading-tight text-ink-950">{story.name}</p>
