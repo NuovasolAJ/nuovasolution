@@ -212,14 +212,14 @@ export const es: Dictionary = {
       readiness: { label: "Ejemplo", withYou: "Lo preparamos contigo" },
       daily: {
         clipHeading: "Una petición, tomada y terminada", // D-72
-        clipLead: "Veintidós segundos de la pantalla que usa tu equipo. Sin sonido.", // D-73
-        posterLabel: "La petición acaba de llegar", // D-74
+        clipLead: "Menos de treinta segundos de la pantalla que usa tu equipo. Sin sonido.", // D-73, duración tras el clip v3
+        posterLabel: "", // clip v3: el cartel es el primer fotograma y lo describe el primer subtítulo
         playLabel: "Ver el clip",
-        clipMeta: "22 segundos, sin sonido",
+        clipMeta: "Menos de 30 segundos, sin sonido",
         clipError: "El vídeo no se ha cargado. Inténtalo de nuevo en un momento.",
-        clipAlt: "La lista de tareas en la aplicación del equipo: una petición de visita de Laura Serrano acaba de llegar y espera a que alguien la tome.",
+        clipAlt: "La lista de tareas en la aplicación del equipo, con una petición que espera a que alguien la tome.",
         note: "Grabado del producto con personas e inmuebles inventados. El anillo marca dónde toca el agente y forma parte de la grabación.", // D-75
-        cues: ["Laura escribe por WhatsApp y pide ver un piso.", "Su petición aparece como tarea, con la referencia y la hora que pidió.", "Una agente la toma.", "Queda a su nombre. Nadie más puede tomarla.", "Al terminarla, sale de la lista."],
+        cues: ["Una agente ve lo que tiene pendiente.", "Laura escribe por WhatsApp y su petición aparece como tarea, con la referencia y la hora que pidió.", "La agente la toma.", "Queda a su nombre. Nadie más puede tomarla.", "Al terminarla, sale de la lista."], // clip v3
         stills: {
           tasks: "Cada persona ve su propia lista: tomadas, en espera y lo que todavía no tiene nadie.",
           "task-action": "La has tomado tú. Solo tú puedes cerrarla.",

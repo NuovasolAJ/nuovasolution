@@ -67,7 +67,7 @@ try {
       const id = `${tag}-${locale}`;
       films = [];
       await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile });
-      await send("Page.navigate", { url: `${BASE}/${locale}` });
+      await send("Page.navigate", { url: `${BASE}/${locale}/platform/daily-assistant` });
       await sleep(process.env.BASE ? 3500 : 2200);
       // read the whole page once, as a visitor scrolling would
       await ev(`(async()=>{const H=document.documentElement.scrollHeight;for(let y=0;y<H;y+=innerHeight){scrollTo(0,y);await new Promise(r=>setTimeout(r,120));}})()`);
@@ -79,12 +79,12 @@ try {
       const playing = await waitFor(`(()=>{const v=${V};return !!v&&v.readyState>=2&&v.currentTime>0.3&&!v.paused})()`, 25000);
       const st = await ev(`(()=>{const v=${V};if(!v)return null;return {duration:Math.round(v.duration*10)/10,muted:v.muted,controls:v.controls,paused:v.paused,autoplayAttr:v.autoplay,loopAttr:v.loop,w:v.videoWidth,h:v.videoHeight,src:new URL(v.currentSrc).pathname,audioTracks:(v.audioTracks?v.audioTracks.length:null),hasAudio:(v.webkitAudioDecodedByteCount??0)>0}})()`);
       // the subtitle track: present, off by default, three cues that load when switched on
-      const track = await ev(`(async()=>{const v=${V};const t=v.textTracks[0];if(!t)return null;const before=t.mode;t.mode="hidden";for(let i=0;i<30&&!(t.cues&&t.cues.length);i++)await new Promise(r=>setTimeout(r,100));const cues=t.cues?[...t.cues].map(c=>c.text):[];t.mode=before;return {kind:t.kind,lang:t.language,modeBefore:before,cues}})()`);
-      check(`CL-${id}-t`, "a subtitle track in the page language with Daily's five lines, off by default so nothing covers the recording", track && track.lang === locale && track.modeBefore !== "showing" && track.cues.length === 5 && track.cues[0] === before.cue, track);
+      const track = await ev(`(async()=>{const v=${V};const t=v.textTracks[0];if(!t)return null;const before=t.mode;for(let i=0;i<30&&!(t.cues&&t.cues.length);i++)await new Promise(r=>setTimeout(r,100));const cues=t.cues?[...t.cues].map(c=>c.text):[];const starts=t.cues?[...t.cues].map(c=>c.startTime):[];return {kind:t.kind,lang:t.language,modeBefore:before,cues,starts}})()`);
+      check(`CL-${id}-t`, "a subtitle track in the page language with Daily's five lines, never showing, so nothing covers the recording; its first line is the line under the poster", track && track.lang === locale && track.modeBefore !== "showing" && track.cues.length === 5 && track.cues[0] === before.cue, track);
       // the caption line follows the action: jump behind the second cue (the request as a task) and the fourth (taken, hers now)
-      await ev(`(()=>{${V}.currentTime=8})()`); await sleep(900);
+      await ev(`(()=>{${V}.currentTime=${(track?.starts?.[1] ?? 6) + 1}})()`); await sleep(900);
       const cue2 = await ev(`({i:document.querySelector('[data-clip-cue]')?.getAttribute('data-clip-cue'),t:document.querySelector('[data-clip-cue]')?.innerText})`);
-      await ev(`(()=>{${V}.currentTime=15})()`); await sleep(900);
+      await ev(`(()=>{${V}.currentTime=${(track?.starts?.[3] ?? 13) + 1}})()`); await sleep(900);
       const cue3 = await ev(`({i:document.querySelector('[data-clip-cue]')?.getAttribute('data-clip-cue'),t:document.querySelector('[data-clip-cue]')?.innerText})`);
       await shot(`${id}-clip-playing`);
       // pause and resume from the keyboard (the video has the focus after play)
@@ -96,13 +96,13 @@ try {
       await ev(`${V}.play()`); await sleep(900);
       const resumed = await ev(`!${V}.paused && ${V}.currentTime > ${t2}`);
       const over = await ev(`({sw:document.documentElement.scrollWidth,iw:innerWidth})`);
-      // MP4 for both formats (daily_clip_v2; the WebM cut has no duration header and is not offered).
+      // MP4 for both formats (daily_clip_v3 ships MP4 only).
       const want = [`/media/daily/daily-laura-${locale}-${mobile ? "mobile" : "desktop"}.mp4`];
       const c = { id, before, noFilmBefore, playing, video: st, cue2, cue3, focusOnVideo, pausedHolds, resumed, films: [...new Set(films)], want, overflow: over };
       results.cases.push(c);
       check(`CL-${id}-a`, "before play: poster only, no video element, no film requested", before.state === "poster" && before.videos === 0 && noFilmBefore && before.poster && before.poster.w > 800, { state: before.state, videos: before.videos, films_requested: films.length - (playing ? 1 : 0), poster: before.poster });
-      check(`CL-${id}-b`, "play: the film of this language and format plays, muted, with the browser's controls, about 22 seconds", playing && st && want.includes(st.src) && st.muted && st.controls && !st.autoplayAttr && !st.loopAttr && st.duration > 20 && st.duration < 24 && !st.hasAudio, st);
-      check(`CL-${id}-c`, "the caption line follows the action (second and fourth cue), so the clip is understood without sound", cue2.i === "1" && cue3.i === "3" && cue2.t !== cue3.t && cue2.t !== before.cue, { first: before.cue, second: cue2.t, fourth: cue3.t });
+      check(`CL-${id}-b`, "play: the film of this language and format plays, muted, with the browser's controls, 20 to 28 seconds", playing && st && want.includes(st.src) && st.muted && st.controls && !st.autoplayAttr && !st.loopAttr && st.duration > 20 && st.duration < 28 && !st.hasAudio, st);
+      check(`CL-${id}-c`, "the caption line follows the action (second and fourth cue), so the clip is understood without sound", cue2.i === "1" && cue3.i === "3" && cue2.t === track.cues[1] && cue3.t === track.cues[3], { first: before.cue, second: cue2.t, fourth: cue3.t });
       check(`CL-${id}-d`, "the video can be paused and resumed; nothing overflows while it plays", pausedHolds && resumed && over.sw <= over.iw, { pausedHolds, resumed, focusOnVideo, overflow: over });
     }
   }
@@ -110,7 +110,7 @@ try {
   // failure: the film request is blocked → the poster comes back with a sentence
   await send("Network.setBlockedURLs", { urls: ["*.mp4", "*.webm"] });
   await send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
-  await send("Page.navigate", { url: `${BASE}/en` });
+  await send("Page.navigate", { url: `${BASE}/en/platform/daily-assistant` });
   await sleep(process.env.BASE ? 3500 : 2200);
   await ev(`document.querySelector('[data-product-clip]')?.scrollIntoView({block:'center'})`);
   await sleep(600);

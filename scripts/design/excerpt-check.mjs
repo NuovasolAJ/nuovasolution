@@ -69,7 +69,7 @@ try {
       }
       // control: the probe does see the foreground where it is painted (the foot of each foreground drawing)
       window.scrollTo(0, Math.round(hero.getBoundingClientRect().bottom+scrollY-innerHeight)); await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
-      const control=[...document.querySelectorAll('.hero-world-front')].filter(f=>{const r=f.getBoundingClientRect(); const x=Math.min(innerWidth-4,Math.max(4,r.left+r.width*0.5)); const e=document.elementFromPoint(x, r.bottom-8); return !!(e && e.closest('.hero-world-front, .hero-world-ground'));}).length;
+      const control=[...document.querySelectorAll('.hero-world-front')].filter(f=>{const r=f.getBoundingClientRect(); const x=Math.min(innerWidth-4,Math.max(4,r.left+r.width*0.5)); const e=document.elementFromPoint(x, r.bottom-r.height*0.2); return !!(e && e.closest('.hero-world-front, .hero-world-ground'));}).length;
       st.remove(); window.scrollTo(0,0); return JSON.stringify({rows:out, control});
     })()`));
     check(`${view}-cover`, "no headline, button or story part of the panel is under a painted part of the foreground, at five scroll positions", cover.control === 2 && cover.rows.every((r) => r.hits.length === 0), cover);

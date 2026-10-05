@@ -240,14 +240,14 @@ export const en = {
       // Texts COPY_DELTAS_1001 D-72 to D-75; the five cues are Daily's subtitles, approved as they are (§2.1).
       daily: {
         clipHeading: "A request, taken and finished", // D-72
-        clipLead: "Twenty-two seconds from the screen your team actually uses. No sound.", // D-73
-        posterLabel: "The request has just arrived", // D-74
+        clipLead: "Under thirty seconds from the screen your team actually uses. No sound.", // D-73, length after clip v3 (22 to 26 s by cut)
+        posterLabel: "", // clip v3: the poster is the opening frame and the first subtitle describes it (D-74 was written for the v2 poster)
         playLabel: "Play the clip",
-        clipMeta: "22 seconds, no sound",
+        clipMeta: "Under 30 seconds, no sound",
         clipError: "The clip did not load. Try again in a moment.",
-        clipAlt: "The task list in the staff app: a viewing request from Laura Serrano has just arrived and waits to be taken.",
+        clipAlt: "The task list in the staff app, with a request waiting to be taken.",
         note: "Recorded from the product with invented people and properties. The ring marks where the agent taps and is part of the recording.", // D-75
-        cues: ["Laura writes on WhatsApp asking to see a flat.", "Her request arrives as a task, with the reference and the time she asked for.", "An agent takes it.", "It is hers now. Nobody else can take it.", "Once it is done, it leaves the list."],
+        cues: ["An agent sees what is waiting.", "Laura writes on WhatsApp, and her request arrives as a task with the reference and the time she asked for.", "The agent takes it.", "It is hers now. Nobody else can take it.", "Once it is done, it leaves the list."], // clip v3, Daily's subtitles
         stills: {
           tasks: "Each person sees their own list: taken, waiting, and what nobody has yet.",
           "task-action": "Taken by you. Only you can close it.",

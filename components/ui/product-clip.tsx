@@ -11,23 +11,18 @@ import { cn } from "@/lib/utils";
  * have no sound track; playback starts muted, only on the visitor's action, with the browser's own
  * play, pause and seek controls.
  *
- * Formats (daily_clip_v2/MANIFEST.md): desktop 16:9 and mobile 4:5, both as MP4 (the delivered WebM
- * has no duration header and cannot be seeked, so it is not offered); one poster per format and
- * language; subtitles as WebVTT per format and language. The
- * caption line under the frame follows the playback time with the same five lines, so the clip
- * is understood without sound and without the browser's subtitle menu; the VTT track is offered
- * but off by default, so nothing covers the recording.
+ * Formats (daily_clip_v3/MANIFEST.md, 2026-10-03): desktop 16:9 and mobile 4:5 as MP4; one WebP
+ * poster per format and language, which is the film's opening frame; subtitles as WebVTT per format
+ * and language. v3 has no text in the picture at all, so the browser's control bar covers nothing
+ * (owner finding on v2). The caption line under the frame is fed by the VTT track itself: the track is
+ * loaded hidden and its active cue is shown, so each format keeps its own timing (the Spanish phone
+ * cut is four seconds longer than the others) and the words exist in one place only. Before play the
+ * line is the first subtitle, which describes the poster.
  *
  * Nothing is laid over the picture: the label sits above the frame and the play control below
  * it, so no interface text of the capture is covered (the whole poster is clickable as well).
  */
 type Fmt = "desktop" | "mobile";
-
-/** Cue start times in seconds, read from Daily's VTT files (the five subtitles, per language). */
-const CUE_STARTS: Record<"en" | "es", readonly number[]> = {
-  en: [0.2, 5.574, 10.377, 12.549, 17.617],
-  es: [0.2, 5.758, 10.561, 12.74, 17.801],
-};
 
 export function ProductClip({
   base,
@@ -56,19 +51,36 @@ export function ProductClip({
   const [cue, setCue] = useState(0);
   const [failed, setFailed] = useState(false);
   const video = useRef<HTMLVideoElement | null>(null);
-  const poster = (f: Fmt) => `${base}-${locale}-${f}-poster.png`;
-  const starts = CUE_STARTS[locale];
+  const poster = (f: Fmt) => `${base}-${locale}-${f}-poster.webp`;
+  // The line under the frame while the film runs: the text of the VTT track's active cue.
+  const [line, setLine] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!fmt || !video.current) return;
-    video.current.focus({ preventScroll: true });
-    void video.current.play().catch(() => {
+    const v = video.current;
+    if (!fmt || !v) return;
+    v.focus({ preventScroll: true });
+    // The subtitle track drives the caption line: hidden (nothing is drawn over the picture), but its cues fire.
+    const track = v.textTracks[0];
+    const onCue = () => {
+      const active = track?.activeCues?.[0] as VTTCue | undefined;
+      if (!active) return;
+      const n = Number(active.id);
+      setCue(Number.isFinite(n) && n >= 1 ? n - 1 : 0);
+      setLine(active.text);
+    };
+    if (track) {
+      track.mode = "hidden";
+      track.addEventListener("cuechange", onCue);
+    }
+    void v.play().catch(() => {
       /* the visitor can still press the native play control */
     });
+    return () => track?.removeEventListener("cuechange", onCue);
   }, [fmt]);
 
   function start() {
     setFailed(false);
+    setLine(null);
     setFmt(window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop");
   }
 
@@ -76,29 +88,24 @@ export function ProductClip({
   function onError() {
     setFmt(null);
     setCue(0);
+    setLine(null);
     setFailed(true);
-  }
-
-  function onTime() {
-    const t = video.current?.currentTime ?? 0;
-    let i = 0;
-    for (let k = 0; k < starts.length; k++) if (t >= starts[k]) i = k;
-    setCue(Math.min(i, cues.length - 1));
   }
 
   const src = fmt ? `${base}-${locale}-${fmt}` : null;
 
   return (
     <div className={className} data-clip-component>
-      <p className="mb-3 inline-flex items-center gap-2 t-body-s font-medium text-text-primary">
-        <span aria-hidden="true" className="h-2 w-2 rounded-pill bg-champagne-400" />
-        {posterLabel}
-      </p>
+      {posterLabel && (
+        <p className="mb-3 inline-flex items-center gap-2 t-body-s font-medium text-text-primary">
+          <span aria-hidden="true" className="h-2 w-2 rounded-pill bg-champagne-400" />
+          {posterLabel}
+        </p>
+      )}
       <div className={cn("relative overflow-hidden rounded-xl border border-line-hairline bg-[#f3f1ec] shadow-card aspect-[840/1052] lg:aspect-[1640/924]")} data-product-clip={src ? "playing" : "poster"}>
         {src ? (
-          <video ref={video} controls muted playsInline preload="metadata" onTimeUpdate={onTime} onError={onError} className="absolute inset-0 h-full w-full" aria-label={alt} crossOrigin="anonymous">
-            {/* MP4 for both formats. Daily's WebM cut carries no duration header (recorder output), so a browser
-                cannot show a seek bar for it; it is kept in the handoff until a cut with cues arrives. */}
+          <video ref={video} controls muted playsInline preload="metadata" onError={onError} className="absolute inset-0 h-full w-full" aria-label={alt} crossOrigin="anonymous">
+            {/* MP4 for both formats (v3 ships MP4 only). */}
             <source src={`${src}.mp4`} type="video/mp4" onError={onError} />
             <track kind="captions" src={`${src}.vtt`} srcLang={locale} label={locale === "es" ? "Español" : "English"} />
           </video>
@@ -129,7 +136,7 @@ export function ProductClip({
           <p role="status" className="t-body-s font-medium text-signal-attention" data-clip-error>{errorLabel}</p>
         ) : (
           <p className="t-body-s font-medium text-text-primary" data-clip-cue={cue}>
-            {cues[src ? cue : 0]}
+            {src ? line ?? cues[cue] : cues[0]}
           </p>
         )}
       </div>
