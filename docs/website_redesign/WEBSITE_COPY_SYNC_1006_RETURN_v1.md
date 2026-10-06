@@ -15,7 +15,8 @@
 COPY_WORKING_TEXTS_1006 = DELIVERED  docs/website_redesign/COPY_WORKING_TEXTS_1006.md  commit c4266b6
                           9 items: 7 confirmed unchanged, 2 replaced
 META_LEGAL_PUBLISH_READY = docs/website_redesign/META_LEGAL_TEXT_FINAL.md
-                           sha256 9e22aeb452f58535311c6345fa108ec826801b72465ce56ac341fc725c5b95a8
+                           sha256 (git blob, LF)      5c8f0d0214a21af22ad00cf3bdf8d6711019bd2417dddce1489ac12b804d0a47
+                           sha256 (Windows checkout)  9e22aeb452f58535311c6345fa108ec826801b72465ce56ac341fc725c5b95a8
                            checklist §4, six points, three of them changed something; placeholders 0
 D-80 (EST-204)           = NOT DELIVERED, as instructed: clip v3 shows REF-DEMO-204
 ```
@@ -106,3 +107,8 @@ No application code, no design direction, no acceptance. Steps 1, 2 and 4 of the
 unchanged. Nothing already delivered is handed over again without a change: `COPY_HERO_1003` and
 `COPY_DELTAS_1003` stand as they are, and only `META_LEGAL_TEXT_FINAL.md` was edited, with its new sha256
 above.
+
+**Why two checksums.** The repository stores the file with LF line endings and checks it out on Windows
+with CRLF, so the two are different bytes and hash differently. `git show HEAD:<path> | sha256sum` gives
+the first; `sha256sum` on the checked out file on a Windows machine gives the second. Verify whichever
+matches how you obtained the file, and treat a mismatch as a real difference only if neither matches.
