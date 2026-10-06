@@ -1,11 +1,11 @@
 # META_LEGAL_TEXT_FINAL — Instagram sections and the deletion instruction page, ES and EN
 
-**State:** `2026-10-06` (v1 was 2026-10-03) · **Lane:** Website Copy / Product Truth → **Website Implementer** (publish) and
+**State:** `2026-10-07` (v1 2026-10-03, content check 2026-10-06) · **Lane:** Website Copy / Product Truth → **Website Implementer** (publish) and
 **Social** (confirm the substance).
 **Source:** `backend_handoff/handoff_in_2026-10-03/META_LEGAL_SECTIONS_v1.md` (Social, 2026-09-28), with
 the **two corrections** this round requires. Integrated versions of these texts also live in
 `LEGAL_PAGES_FINAL_v1.md` v3; this file is the publishable extract.
-**Content checked for publication on 2026-10-06, see §4. Placeholders: none.** Not one open mark appears below, so a search for the mark glyph returns zero hits
+**Aligned with the built state on 2026-10-07, see §4b; content checked 2026-10-06, see §4. Placeholders: none. Publish-ready: NO, pending one signal (§4b).** Not one open mark appears below, so a search for the mark glyph returns zero hits
 in this file. The three pages this file feeds can be published without
 waiting for the tax number, the full address, the retention decision or counsel's two terms questions,
 because none of them appears in these texts.
@@ -49,12 +49,19 @@ handled. The pages state the statutory period instead. That question stays open 
 >   only for what this section describes, and deleted when you disconnect.
 > - **Your own content:** the posts we create from your property listings, their texts and images, the
 >   identifier of the published post and its link.
-> - **Comments and direct messages on your account:** the text, the time, the sender identifier that
->   Instagram assigns, and the interest our system recognises. For our own records we keep that identifier
->   **only as a value derived through a one way function** that is specific to your agency, and that value
->   cannot be turned back into the original. So that a reply can be delivered to the right conversation, the
->   identifier Instagram requires for the reply is held while the reply window of that conversation is open,
->   and deleted when it closes.
+> - **Comments and direct messages on your account:** the text, the time, and the interest our system
+>   recognises.
+> - **The identifier we need in order to reply (the reply target).** To answer inside the period Instagram
+>   allows, we keep the identifier of the comment, or the sender identifier of a direct message, in readable
+>   form and **only for as long as we may reply: 7 days for a comment, and 24 hours from that person's own
+>   message.** The same identifier and the same deadline apply to the comment identifier in our record of
+>   received events. After that period it is deleted, and it is deleted straight away if your agency
+>   disconnects the account or if the person asks for erasure. What remains is a salted value that cannot
+>   be turned back into the original, kept for one purpose only: so that a late repeat of the same event
+>   does not produce a second message.
+>
+>   This is a product rule and a short one. It is **not** the retention of the message texts, which is set
+>   out further down and is a different rule.
 > - **Leads:** if a comment or a message shows interest in a property, we create a lead record for your
 >   agency.
 >
@@ -76,8 +83,9 @@ handled. The pages state the statutory period instead. That question stays open 
 > **Automated processing:** messages are classified by an AI model in order to recognise interest. Replies
 > drafted by the system carry the notice described in this notice in the channel where they are sent.
 >
-> **Your rights:** you can disconnect the Instagram account in NuovaSolution at any time, and the token is
-> deleted immediately. For the deletion of data already stored, see the data deletion page.
+> **Your rights:** you can disconnect the Instagram account in NuovaSolution at any time. When you do, we
+> delete the access token **and every reply target still stored for that connection**. For the deletion of
+> data already stored, see the data deletion page.
 
 ### 1.2 ES
 
@@ -99,12 +107,20 @@ handled. The pages state the statutory period instead. That question stays open 
 >   cifrado, se usa solo para lo que describe este apartado y se elimina al desconectar.
 > - **Tu propio contenido:** las publicaciones que creamos a partir de tus inmuebles, sus textos e
 >   imágenes, el identificador de la publicación y su enlace.
-> - **Comentarios y mensajes directos en tu cuenta:** el texto, la fecha, el identificador del remitente
->   que asigna Instagram y el interés que detecta nuestro sistema. Para nuestros propios registros lo
->   guardamos **solo como un valor derivado mediante una función unidireccional** propia de tu agencia, y ese
->   valor no se puede convertir de vuelta en el original. Para poder entregar una respuesta en la
->   conversación correcta, el identificador que Instagram exige para responder se conserva mientras está
->   abierta la ventana de respuesta de esa conversación, y se elimina al cerrarse.
+> - **Comentarios y mensajes directos en tu cuenta:** el texto, la fecha y el interés que detecta nuestro
+>   sistema.
+> - **El identificador que necesitamos para responder (el destino de la respuesta).** Para poder contestar
+>   dentro del plazo que permite Instagram, guardamos el identificador del comentario, o el identificador del
+>   remitente de un mensaje directo, en forma legible y **solo durante el plazo en el que podemos responder:
+>   7 días en el caso de un comentario y 24 horas desde el propio mensaje de esa persona.** El mismo
+>   identificador y el mismo plazo se aplican al identificador del comentario en nuestro registro de eventos
+>   recibidos. Pasado ese plazo se elimina, y se elimina de inmediato si tu agencia desconecta la cuenta o si
+>   la persona solicita la supresión. Lo que queda es un valor con sal que no se puede convertir de vuelta en
+>   el original, conservado con una única finalidad: que un reenvío tardío del mismo evento no genere un
+>   segundo mensaje.
+>
+>   Esta es una regla de producto y es corta. **No** es la conservación de los textos de los mensajes, que se
+>   indica más abajo y es una regla distinta.
 > - **Oportunidades:** si un comentario o un mensaje muestra interés por un inmueble, creamos un registro
 >   para tu agencia.
 >
@@ -127,9 +143,9 @@ handled. The pages state the statutory period instead. That question stays open 
 > detectar interés. Las respuestas que redacta el sistema llevan el aviso descrito en este documento en el
 > canal en el que se envían.
 >
-> **Tus derechos:** puedes desconectar la cuenta de Instagram en NuovaSolution en cualquier momento, y el
-> token se elimina de inmediato. Para la supresión de los datos ya almacenados, consulta la página de
-> eliminación de datos.
+> **Tus derechos:** puedes desconectar la cuenta de Instagram en NuovaSolution en cualquier momento. Al
+> hacerlo eliminamos el token de acceso **y todos los destinos de respuesta que sigan guardados de esa
+> conexión**. Para la supresión de los datos ya almacenados, consulta la página de eliminación de datos.
 
 ---
 
@@ -143,8 +159,22 @@ handled. The pages state the statutory period instead. That question stays open 
 > holding the rights to the images and texts you publish through NuovaSolution and for complying with
 > Instagram's own terms and community guidelines.
 >
-> We publish only what you approve. We reply to a comment or a message only after that person has contacted
-> your account, never on our own initiative, and we send no unsolicited messages.
+> We reply to a comment or a message only after that person has contacted your account, never on our own
+> initiative, and we send no unsolicited messages. A message to somebody who has not written to you is not
+> possible in the system.
+>
+> **Replies only inside Instagram's periods.** A private reply to a comment is possible for 7 days, and a
+> direct message only within 24 hours of that person's own message. Outside those periods the system refuses
+> the reply rather than merely omitting it.
+>
+> **A post can be drafted automatically, and you decide whether it is published.** When one of your listings
+> becomes publishable or its content changes, the system prepares exactly one draft. Whether that draft is
+> published is your agency's setting: either a person approves it, or it goes out automatically after a delay
+> you set. The same listing, unchanged, is never published twice.
+>
+> **A photo only where the rights cover embedding it.** A listing's photo is published only if the rights
+> basis you store explicitly covers embedding the image. A permission that covers only the text or only a
+> link is not enough, and the system then refuses to publish the photo.
 >
 > We may refuse or stop a publication if a listing has no proven image rights, if its data is out of date,
 > or if Instagram restricts the connection. You can disconnect at any time, and publishing and reading stop
@@ -160,9 +190,22 @@ handled. The pages state the statutory period instead. That question stays open 
 > de disponer de los derechos sobre las imágenes y los textos que publiques a través de NuovaSolution y de
 > cumplir las condiciones y las normas de la comunidad de Instagram.
 >
-> Publicamos únicamente lo que apruebas. Respondemos a un comentario o a un mensaje solo después de que esa
-> persona haya contactado con tu cuenta, nunca por iniciativa propia, y no enviamos mensajes no
-> solicitados.
+> Respondemos a un comentario o a un mensaje solo después de que esa persona haya contactado con tu cuenta,
+> nunca por iniciativa propia, y no enviamos mensajes no solicitados. Un mensaje a alguien que no te ha
+> escrito no es posible en el sistema.
+>
+> **Respuestas solo dentro de los plazos de Instagram.** Una respuesta privada a un comentario es posible
+> durante 7 días, y un mensaje directo solo dentro de las 24 horas siguientes al propio mensaje de esa
+> persona. Fuera de esos plazos el sistema rechaza la respuesta, no se limita a omitirla.
+>
+> **Una publicación puede redactarse automáticamente, y tú decides si se publica.** Cuando uno de tus
+> inmuebles pasa a ser publicable o cambia su contenido, el sistema prepara exactamente un borrador. Que ese
+> borrador se publique lo decide la configuración de tu agencia: o lo aprueba una persona, o sale
+> automáticamente tras el plazo que tú indiques. El mismo inmueble, sin cambios, no se publica dos veces.
+>
+> **Una foto solo si los derechos cubren su incrustación.** La foto de un inmueble se publica solo si la base
+> de derechos que tienes guardada cubre expresamente la incrustación de la imagen. Un permiso que cubre solo
+> el texto o solo un enlace no basta, y en ese caso el sistema rechaza publicar la foto.
 >
 > Podemos rechazar o detener una publicación si el inmueble no tiene derechos de imagen acreditados, si sus
 > datos no están actualizados o si Instagram restringe la conexión. Puedes desconectar en cualquier
@@ -277,6 +320,40 @@ of that conversation is open" and deliberately names **no period**, because none
 API and Social confirm the window, the period goes in as a number and this file gets a new version. The
 page can be published with the sentence as it stands: it is accurate, and it is narrower than the claim it
 replaces.
+
+## 4b. Alignment against the built state, 2026-10-07
+
+Source: `governance/SOCIAL_LEGAL_DELTAS_1006_v1.md` §1 to §6 and the "Copy + Social" section of
+`governance/API_TO_LANES_1006_HANDOFFS_v1.md`. EN and ES were changed together, in the existing sections; no
+parallel version was created.
+
+| # | What is built | Where it now stands | Language |
+|---|---|---|---|
+| A-1 | the reply target: the comment identifier, or the sender identifier of a direct message, readable, for 7 days for a comment and 24 hours from that person's own message | privacy, Instagram section, its own bullet | EN + ES |
+| A-2 | the same identifier and the same deadline apply to the comment identifier **in the record of received events** | same bullet, said explicitly | EN + ES |
+| A-3 | deleted earlier on disconnect or on a deletion request; afterwards a salted value that cannot be reversed, kept only so a late repeat does not produce a second message | same bullet | EN + ES |
+| A-4 | the retention of the **message texts** is a different and longer rule | said in the same bullet, pointing at the retention paragraph, so the two are not mixed | EN + ES |
+| A-5 | outside the platform's periods the reply is **refused**, not merely omitted; a message to somebody who never wrote is impossible | terms, connected accounts | EN + ES |
+| A-6 | a publishable listing produces exactly one draft; the agency decides by human approval or by a delay it sets; an unchanged listing is never published twice | terms, connected accounts | EN + ES |
+| A-7 | a photo is published only where the stored rights basis explicitly covers embedding | terms, connected accounts | EN + ES |
+| A-8 | disconnecting deletes the access token **and** every reply target still stored for that connection | privacy, "Your rights" | EN + ES |
+| A-9 | no Facebook connection: Instagram Login only | already in §0 correction 1, unchanged | EN + ES |
+| A-10 | no automatic deletion route over Meta; the instruction page is the permitted and sufficient route | already in §0 correction 2, unchanged | EN + ES |
+
+### The one sentence that is still conditional
+
+A-1 and A-3 say the identifier "is deleted" when the period ends. That is a promise about a process that has
+to run. **Hosting has not yet reported `REPLY_TARGET_PURGE_SCHEDULED`**, so this file is **not
+publish-ready**, and the sentence must not go public while the clean-up is only a plan.
+
+Two ways to close it, and both texts are ready:
+
+- **If the purge runs when the window ends:** the wording above stands unchanged.
+- **If the purge runs on a cycle:** the sentence takes the honest upper bound instead. EN "After that period
+  it is deleted, at the latest one `<interval>` later." · ES "Pasado ese plazo se elimina, como muy tarde un
+  `<intervalo>` después." The interval comes from Hosting's signal; nothing else in the file changes.
+
+Until that signal arrives, publication waits on this one point and on nothing else in these texts.
 
 ## 5. What the owner is asked for, and what is not needed
 
