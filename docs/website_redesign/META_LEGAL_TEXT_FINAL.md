@@ -1,11 +1,11 @@
 # META_LEGAL_TEXT_FINAL — Instagram sections and the deletion instruction page, ES and EN
 
-**State:** `2026-10-03` · **Lane:** Website Copy / Product Truth → **Website Implementer** (publish) and
+**State:** `2026-10-06` (v1 was 2026-10-03) · **Lane:** Website Copy / Product Truth → **Website Implementer** (publish) and
 **Social** (confirm the substance).
 **Source:** `backend_handoff/handoff_in_2026-10-03/META_LEGAL_SECTIONS_v1.md` (Social, 2026-09-28), with
 the **two corrections** this round requires. Integrated versions of these texts also live in
 `LEGAL_PAGES_FINAL_v1.md` v3; this file is the publishable extract.
-**Placeholders: none.** Not one open mark appears below, so a search for the mark glyph returns zero hits
+**Content checked for publication on 2026-10-06, see §4. Placeholders: none.** Not one open mark appears below, so a search for the mark glyph returns zero hits
 in this file. The three pages this file feeds can be published without
 waiting for the tax number, the full address, the retention decision or counsel's two terms questions,
 because none of them appears in these texts.
@@ -34,6 +34,8 @@ handled. The pages state the statutory period instead. That question stays open 
 
 > **Instagram connection (Meta platform data)**
 >
+> In this section, “we” and “NuovaSolution” mean the controller named at the top of this notice.
+>
 > This section applies only to agencies that connect an Instagram professional account. It covers
 > Instagram and nothing else: Facebook pages and advertising lead forms are not part of this connection and
 > we do not read them.
@@ -48,9 +50,11 @@ handled. The pages state the statutory period instead. That question stays open 
 > - **Your own content:** the posts we create from your property listings, their texts and images, the
 >   identifier of the published post and its link.
 > - **Comments and direct messages on your account:** the text, the time, the sender identifier that
->   Instagram assigns, and the interest our system recognises. The sender identifier is stored **only as a
->   value derived through a one way function** that is specific to your agency. We do not keep the original
->   Instagram identifier and cannot recover it.
+>   Instagram assigns, and the interest our system recognises. For our own records we keep that identifier
+>   **only as a value derived through a one way function** that is specific to your agency, and that value
+>   cannot be turned back into the original. So that a reply can be delivered to the right conversation, the
+>   identifier Instagram requires for the reply is held while the reply window of that conversation is open,
+>   and deleted when it closes.
 > - **Leads:** if a comment or a message shows interest in a property, we create a lead record for your
 >   agency.
 >
@@ -79,6 +83,9 @@ handled. The pages state the statutory period instead. That question stays open 
 
 > **Conexión con Instagram (datos de la plataforma de Meta)**
 >
+> En este apartado, «nosotros» y «NuovaSolution» se refieren al responsable del tratamiento indicado al
+> principio de este aviso.
+>
 > Este apartado se aplica solo a las agencias que conectan una cuenta profesional de Instagram. Cubre
 > Instagram y nada más: las páginas de Facebook y los formularios de publicidad no forman parte de esta
 > conexión y no los leemos.
@@ -93,9 +100,11 @@ handled. The pages state the statutory period instead. That question stays open 
 > - **Tu propio contenido:** las publicaciones que creamos a partir de tus inmuebles, sus textos e
 >   imágenes, el identificador de la publicación y su enlace.
 > - **Comentarios y mensajes directos en tu cuenta:** el texto, la fecha, el identificador del remitente
->   que asigna Instagram y el interés que detecta nuestro sistema. El identificador del remitente se guarda
->   **solo como un valor derivado mediante una función unidireccional** propia de tu agencia. No
->   conservamos el identificador original de Instagram ni podemos recuperarlo.
+>   que asigna Instagram y el interés que detecta nuestro sistema. Para nuestros propios registros lo
+>   guardamos **solo como un valor derivado mediante una función unidireccional** propia de tu agencia, y ese
+>   valor no se puede convertir de vuelta en el original. Para poder entregar una respuesta en la
+>   conversación correcta, el identificador que Instagram exige para responder se conserva mientras está
+>   abierta la ventana de respuesta de esa conversación, y se elimina al cerrarse.
 > - **Oportunidades:** si un comentario o un mensaje muestra interés por un inmueble, creamos un registro
 >   para tu agencia.
 >
@@ -172,6 +181,10 @@ This is the page Meta is given as the Data Deletion Instructions URL:
 
 > **How to ask us to delete your data**
 >
+> **Who this is.** NuovaSolution is the trading name of Antonio Jesus Diaz Gomez, Prolongación Hernando de
+> Carabeo, Nerja, Málaga, Spain, antonio@nuovasolution.com. The full privacy notice is at
+> https://nuovasolution.com/privacy-policy.
+>
 > **If you wrote to an estate agency that uses Nuova.** That agency decides about your data and we act on
 > its instructions. Write to antonio@nuovasolution.com from the e-mail address or phone number you used,
 > and say that you want your data deleted. We pass your request to the agency, help it answer, and tell you
@@ -207,6 +220,10 @@ This is the page Meta is given as the Data Deletion Instructions URL:
 
 > **Cómo pedirnos que eliminemos tus datos**
 >
+> **Quién responde.** NuovaSolution es el nombre comercial de Antonio Jesus Diaz Gomez, Prolongación
+> Hernando de Carabeo, Nerja, Málaga, España, antonio@nuovasolution.com. El aviso de privacidad completo
+> está en https://nuovasolution.com/aviso-de-privacidad.
+>
 > **Si escribiste a una inmobiliaria que usa Nuova.** Esa agencia decide sobre tus datos y nosotros
 > actuamos según sus instrucciones. Escribe a antonio@nuovasolution.com desde el email o el teléfono que
 > usaste e indica que quieres que se eliminen tus datos. Trasladamos tu solicitud a la agencia, la ayudamos
@@ -241,7 +258,42 @@ This is the page Meta is given as the Data Deletion Instructions URL:
 
 ---
 
-## 4. For Social and the implementer
+## 4. Publication check, 2026-10-06
+
+Run before publication on the content, not only on placeholders. Six points, three of them changed
+something.
+
+| # | Checked | Result |
+|---|---|---|
+| P-1 | **Is "we" tied to a named controller?** | **Changed.** The Instagram section now opens with "In this section, 'we' and 'NuovaSolution' mean the controller named at the top of this notice", and the deletion page, which Meta reads on its own and which carried no identification at all, now opens with the controller's name, address and e-mail plus a link to the privacy notice |
+| P-2 | **Which missing owner details do these sections need?** | **None.** See §5 |
+| P-3 | **Does the sender identifier text match what is built?** | **Changed.** It said the identifier is held only as a one way value. With the reply target rule it is also held, in the form the platform requires, while the reply window of that conversation is open. Both sentences are now there, and the reply identifier is described as deleted when the window closes |
+| P-4 | **Deletion page complete?** | Yes: who is responsible, the four ways in (agency customer, agency, Instagram connection, person who wrote on Instagram), what we need, what happens and when, what the page does not do, and the complaint route |
+| P-5 | **Any claim that cannot be checked?** | No deletion callback, no confirmation code, no 72 hour or 30 day commitment, no Meta partnership, review or certification, no Facebook pages, no advertising lead forms |
+| P-6 | **Placeholders** | Zero. A search for the mark glyph returns nothing |
+
+**One condition on P-3.** The corrected sentence says the reply identifier is held "while the reply window
+of that conversation is open" and deliberately names **no period**, because none has been confirmed. When
+API and Social confirm the window, the period goes in as a number and this file gets a new version. The
+page can be published with the sentence as it stands: it is accurate, and it is narrower than the claim it
+replaces.
+
+## 5. What the owner is asked for, and what is not needed
+
+The published privacy page names Antonio Jesus Diaz Gomez, Prolongación Hernando de Carabeo, Nerja,
+Málaga, antonio@nuovasolution.com. Missing from it today are the **tax number** and the **house number and
+postal code**.
+
+| Detail | Needed for these three texts? | Reason |
+|---|---|---|
+| Tax number (NIF) | **No** | It identifies a business in a Spanish legal notice and on invoices. A privacy section and a deletion instruction page identify the controller by name, address and contact, and Meta's review asks for a reachable deletion route, not a tax number |
+| House number and postal code | **No for publication, yes for the legal notice** | The deletion page and the privacy section are identifiable with the name, the street, the town and the e-mail that are already published. A **legal notice** under Spanish law needs the complete address, and so does Meta's business verification, which compares the entry with the official document |
+
+So: **these three texts can be published today**, and the two missing details stay owed for the legal
+notice, the invoices and the business verification. That is a narrower ask than "the owner must deliver
+the legal entity before anything legal goes live", and it is the only one this file needs.
+
+## 6. For Social and the implementer
 
 **Social confirms the substance** of §1 and §2 and tells us if correction 1 or 2 misstates the connection.
 **The implementer publishes** §1 into the privacy notice, §2 into the terms, and §3 as its own page at the
