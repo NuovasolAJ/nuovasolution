@@ -5,7 +5,7 @@
 **Source:** `backend_handoff/handoff_in_2026-10-03/META_LEGAL_SECTIONS_v1.md` (Social, 2026-09-28), with
 the **two corrections** this round requires. Integrated versions of these texts also live in
 `LEGAL_PAGES_FINAL_v1.md` v3; this file is the publishable extract.
-**Aligned with the built state on 2026-10-07, see §4b; content checked 2026-10-06, see §4. Placeholders: none. Publish-ready: NO, pending one signal (§4b).** Not one open mark appears below, so a search for the mark glyph returns zero hits
+**Aligned with the built state on 2026-10-07, see §4b; content checked 2026-10-06, see §4. Placeholders: none. Publish-ready: NO — two points in §4b (the clock runs on staging, no deletion observed) and the owner's retention decision in §5b.** Not one open mark appears below, so a search for the mark glyph returns zero hits
 in this file. The three pages this file feeds can be published without
 waiting for the tax number, the full address, the retention decision or counsel's two terms questions,
 because none of them appears in these texts.
@@ -55,8 +55,10 @@ handled. The pages state the statutory period instead. That question stays open 
 >   allows, we keep the identifier of the comment, or the sender identifier of a direct message, in readable
 >   form and **only for as long as we may reply: 7 days for a comment, and 24 hours from that person's own
 >   message.** The same identifier and the same deadline apply to the comment identifier in our record of
->   received events. After that period it is deleted, and it is deleted straight away if your agency
->   disconnects the account or if the person asks for erasure. What remains is a salted value that cannot
+>   received events. A clean-up runs every fifteen minutes and removes what has fallen due, so the
+>   identifier is gone at the latest fifteen minutes after the period ends; if a run is missed, the next one
+>   removes what was due. It is removed straight away if your agency disconnects the account or if the
+>   person asks for erasure. What remains is a salted value that cannot
 >   be turned back into the original, kept for one purpose only: so that a late repeat of the same event
 >   does not produce a second message.
 >
@@ -77,8 +79,9 @@ handled. The pages state the statutory period instead. That question stays open 
 > operator of the platform.
 >
 > **How long it is kept:** the account data and the token for as long as the connection exists. Comments,
-> messages and the leads created from them for as long as your agency's account exists, unless you ask us
-> to delete them earlier.
+> messages and the leads created from them are **not deleted on a timer today**: they stay while your
+> agency's account exists, and we delete them when you or the person concerned ask us to. If we introduce
+> an automatic period for them, it will be stated here before it starts to apply.
 >
 > **Automated processing:** messages are classified by an AI model in order to recognise interest. Replies
 > drafted by the system carry the notice described in this notice in the channel where they are sent.
@@ -114,8 +117,10 @@ handled. The pages state the statutory period instead. That question stays open 
 >   remitente de un mensaje directo, en forma legible y **solo durante el plazo en el que podemos responder:
 >   7 días en el caso de un comentario y 24 horas desde el propio mensaje de esa persona.** El mismo
 >   identificador y el mismo plazo se aplican al identificador del comentario en nuestro registro de eventos
->   recibidos. Pasado ese plazo se elimina, y se elimina de inmediato si tu agencia desconecta la cuenta o si
->   la persona solicita la supresión. Lo que queda es un valor con sal que no se puede convertir de vuelta en
+>   recibidos. Una limpieza se ejecuta cada quince minutos y retira lo que ha vencido, así que el
+>   identificador desaparece como muy tarde quince minutos después de que termine el plazo; si una ejecución
+>   se salta, la siguiente retira lo que estaba pendiente. Se retira de inmediato si tu agencia desconecta la
+>   cuenta o si la persona solicita la supresión. Lo que queda es un valor con sal que no se puede convertir de vuelta en
 >   el original, conservado con una única finalidad: que un reenvío tardío del mismo evento no genere un
 >   segundo mensaje.
 >
@@ -136,8 +141,10 @@ handled. The pages state the statutory period instead. That question stays open 
 > operador de la plataforma.
 >
 > **Cuánto tiempo se guarda:** los datos de la cuenta y el token mientras exista la conexión. Los
-> comentarios, los mensajes y las oportunidades que surjan de ellos mientras exista la cuenta de tu
-> agencia, salvo que nos pidas suprimirlos antes.
+> comentarios, los mensajes y las oportunidades que surjan de ellos **hoy no se eliminan por plazo**:
+> permanecen mientras exista la cuenta de tu agencia y los suprimimos cuando nos lo pides tú o la persona
+> afectada. Si establecemos un plazo automático para ellos, se indicará aquí antes de que empiece a
+> aplicarse.
 >
 > **Tratamiento automatizado:** los mensajes se clasifican con un modelo de inteligencia artificial para
 > detectar interés. Las respuestas que redacta el sistema llevan el aviso descrito en este documento en el
@@ -265,7 +272,7 @@ This is the page Meta is given as the Data Deletion Instructions URL:
 >
 > **Quién responde.** NuovaSolution es el nombre comercial de Antonio Jesus Diaz Gomez, Prolongación
 > Hernando de Carabeo, Nerja, Málaga, España, antonio@nuovasolution.com. El aviso de privacidad completo
-> está en https://nuovasolution.com/aviso-de-privacidad.
+> está en https://nuovasolution.com/politica-privacidad.
 >
 > **Si escribiste a una inmobiliaria que usa Nuova.** Esa agencia decide sobre tus datos y nosotros
 > actuamos según sus instrucciones. Escribe a antonio@nuovasolution.com desde el email o el teléfono que
@@ -340,20 +347,36 @@ parallel version was created.
 | A-9 | no Facebook connection: Instagram Login only | already in §0 correction 1, unchanged | EN + ES |
 | A-10 | no automatic deletion route over Meta; the instruction page is the permitted and sufficient route | already in §0 correction 2, unchanged | EN + ES |
 
-### The one sentence that is still conditional
+### The clean-up sentence, and what it still waits for
 
-A-1 and A-3 say the identifier "is deleted" when the period ends. That is a promise about a process that has
-to run. **Hosting has not yet reported `REPLY_TARGET_PURGE_SCHEDULED`**, so this file is **not
-publish-ready**, and the sentence must not go public while the clean-up is only a plan.
+A-1 and A-3 now describe the clean-up the way it is actually built: a clock, not a deletion at the exact
+end of the window. The interval in the text is the measured one. Hosting reported
+`REPLY_TARGET_PURGE_SCHEDULED = 1UVIZepbuUU1I7Rw`, every **fifteen minutes**, calling
+`sg_reply_target_purge_due()` and nothing else, first run 135818 at 19:57:32Z with `purged 0, tenants 0`,
+which was the correct answer because nothing was due. The catch-up sentence is in the text because a
+missed run must not read as data kept for ever.
 
-Two ways to close it, and both texts are ready:
+**Two things are still missing before this goes public, and neither is a wording question.**
 
-- **If the purge runs when the window ends:** the wording above stands unchanged.
-- **If the purge runs on a cycle:** the sentence takes the honest upper bound instead. EN "After that period
-  it is deleted, at the latest one `<interval>` later." · ES "Pasado ese plazo se elimina, como muy tarde un
-  `<intervalo>` después." The interval comes from Hosting's signal; nothing else in the file changes.
+1. **The clock runs on staging.** A public text describes production. The same schedule has to run against
+   production before the sentence is true for the people who read it.
+2. **No deletion has ever been observed.** The first run had nothing due, so the path from "due" to "gone"
+   has not been exercised once. Hosting and Social owe `PURGE_DELETION_PROVEN`: one record that falls due,
+   one run, and the record no longer there.
 
-Until that signal arrives, publication waits on this one point and on nothing else in these texts.
+Until both hold, `META_LEGAL_TEXT_READY` stays unset. Nothing else in these texts waits on anything, and
+no further copy round is needed: when the two points close, this paragraph is deleted and the file is
+ready as it stands. If the production interval turns out to differ from fifteen minutes, the number in
+both languages is the only thing that changes.
+
+### The message texts: an undecided rule is not published as a fixed one
+
+The section used to say comments, messages and the leads from them are kept "for as long as your agency's
+account exists, unless you ask us to delete them earlier". That reads as a policy. It is not one: it is
+what happens because production carries **zero** retention policy rows, so nothing is on a timer. The
+wording now says exactly that, in both languages, and promises that a period will be stated here before it
+starts to apply. The options for deciding it are in §5b, and they are a decision for the owner, not for
+this lane.
 
 ## 5. What the owner is asked for, and what is not needed
 
@@ -369,6 +392,28 @@ postal code**.
 So: **these three texts can be published today**, and the two missing details stay owed for the legal
 notice, the invoices and the business verification. That is a narrower ask than "the owner must deliver
 the legal entity before anything legal goes live", and it is the only one this file needs.
+
+## 5b. The retention of the message texts: three options for the owner
+
+**Why this is a decision and not a wording.** Production carries zero retention policy rows, so today
+nothing is deleted on a timer, and the sentence in §1 says so. Before the pages go public the owner picks
+one of these, the chosen one is **built**, and only then is it written as a rule. A period printed before
+the mechanism runs is the same defect as the clean-up sentence in §4b.
+
+| # | Rule | The sentence it produces | What has to be built | What it costs, and who carries it |
+|---|---|---|---|---|
+| **A** | keep while the agency's account exists, delete on request | "They stay while your agency's account exists, and we delete them when you or the person concerned ask us to." | **nothing**; it is today's behaviour | nothing to build, and the weakest position on storage limitation: a person who wrote once is kept indefinitely because an agency stayed a customer. Every erasure is a manual act. Counsel is most likely to object here |
+| **B** | a fixed period per class after the last contact, for example 24 months, deletion on request earlier | "We delete them 24 months after the last contact, and earlier if you or the person concerned ask us to." | the retention mechanism configured per class, plus the offboarding path. The objects exist; production has no rows in them | the strongest position, and the one real business cost: a buyer who returns after the period is a stranger again, and in this market people do return after years. The agency loses that history without being asked |
+| **C** | tied to the relationship: delete a set number of days after the agency's account ends, with an agency-level override to delete earlier | "They stay while your agency works with us, and we delete them a set time after the account ends, or earlier if you ask." | an offboarding routine that actually deletes, and the per-agency override | the middle, and the one that matches how the data is actually used: the agency keeps its history while it is a customer, and the data does not outlive the relationship. It needs the offboarding deletion to be real, which is the piece nobody has tested |
+
+**This lane's view, and it is only that.** C is the one that can be defended without taking the agency's
+history away, and it is the only one whose cost lands on us rather than on the customer. B is the strongest
+on paper and the most expensive in the market we sell into. A is what happens today and should not be
+published as a chosen policy, because nobody chose it.
+
+**What the audit is asked for:** the owner's line naming A, B or C and, for B or C, the number. Then the
+mechanism is built, and only then does the sentence in §1 change from "today nothing is on a timer" to the
+rule.
 
 ## 6. For Social and the implementer
 
