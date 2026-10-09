@@ -82,10 +82,10 @@ export function isPlanCode(v: string | undefined): v is PlanCode {
 }
 
 /**
- * The one label of the primary call to action, on every page (owner order 2026-09-29 B: one CTA
- * hierarchy). While the trial belongs to Essential it names Essential; otherwise the neutral label.
+ * The one label of the general entry button, on every page (owner order 2026-09-29 B: one CTA hierarchy;
+ * owner 2026-10-06 §2: "Probar gratis", the package name only where it is relevant, i.e. on the packages
+ * and trial pages, which use packages.ctaTrialEssential themselves).
  */
 export function startLabel(locale: Locale): string {
-  const d = getDictionary(locale);
-  return trialPlanAligned() ? d.packages.ctaTrialEssential : d.common.startFree;
+  return getDictionary(locale).common.startFree;
 }

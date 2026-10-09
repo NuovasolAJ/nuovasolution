@@ -52,7 +52,7 @@ export const es: Dictionary = {
     english: "English",
     spanish: "Español",
     bookDemo: "Solicitar una demo",
-    startFree: "Empieza gratis",
+    startFree: "Probar gratis", // owner 2026-10-06 §2: the one general entry button
     tryFree: "Prueba gratis durante 14 días",
     noPayment: "Sin método de pago.",
     noSalesCall: "Sin llamada comercial.",
@@ -147,10 +147,10 @@ export const es: Dictionary = {
           // Owner-approved WhatsApp disclosure v1.0-es, quoted verbatim (LAUNCH_COPY_v1 §4.2). Any change is an owner and counsel matter.
           disclosure: "🤖 Soy un asistente de inteligencia artificial. Te ayudaré con tu consulta inmobiliaria. Si prefieres hablar con un agente humano, indícamelo en cualquier momento.",
           disclosureMark: "",
-          text: "Hola Laura, gracias por escribir. He anotado el piso de dos dormitorios en Estepona y el jueves por la mañana. Un agente de la agencia se pondrá en contacto contigo para confirmar la disponibilidad y la hora.",
+          text: "Hola Laura, gracias por escribir. He anotado tu interés por el piso de Estepona y el jueves por la mañana. ¿Os viene mejor a las 10 o a las 12? Un agente de la agencia te lo confirma.", // WORKING (owner 2026-10-06 §3: shorter, one targeted question; for Copy and Lead to confirm)
           // D-79: sin disclosureNote; flow.stepsDetail (D-77) lo dice una vez.
         },
-        record: { label: "Ficha del cliente", name: "Laura Serrano", lines: ["Pide: 2 dormitorios, Estepona · REF-DEMO-204", "Quiere ver: el jueves por la mañana", "Escribe en: inglés"], next: "Siguiente: una tarea para tu equipo" },
+        record: { label: "Ficha del cliente", name: "Laura Serrano", lines: ["Pide: 2 dormitorios, Estepona · EST-204", "Quiere ver: el jueves por la mañana", "Escribe en: inglés"], next: "Siguiente: una tarea para tu equipo" },
         task: {
           label: "Las tareas de tu equipo, hoy",
           title: "Confirmar con Laura Serrano la visita del jueves",
@@ -201,7 +201,7 @@ export const es: Dictionary = {
         subtitle: "Tu agencia · esta semana",
         columns: { asked: "Pide", next: "Siguiente" },
         rows: [
-          { name: "Laura Serrano", asked: "2 dormitorios, Estepona · REF-DEMO-204", next: "Una tarea para tu equipo" },
+          { name: "Laura Serrano", asked: "2 dormitorios, Estepona · EST-204", next: "Una tarea para tu equipo" },
           { name: "Peter y Anna K.", asked: "Una valoración en Marbella", next: "Llamar esta semana" },
           { name: "Carlos R.", asked: "Una villa en Benahavís", next: "Responder por WhatsApp" },
           { name: "Sofía L.", asked: "Un alquiler de larga estancia en Fuengirola", next: "Esperar su respuesta" },
@@ -226,6 +226,7 @@ export const es: Dictionary = {
           "task-done": "Cerrada. La tarea sale de la lista.",
           "task-card": "El cliente, el inmueble y la hora que ha pedido, en una sola tarjeta.",
         },
+        mediaWithheld: "La grabación de la lista del equipo se está volviendo a cortar con la referencia EST-204 y se muestra de nuevo en cuanto Daily la entregue.", // WORKING
         synthetic: "Datos sintéticos",
       },
     },
@@ -265,16 +266,16 @@ export const es: Dictionary = {
       body: "La única pregunta es qué pasa con ella.",
       caption: "",
     },
-    // Home v3 (orden del owner 2026-10-05). El titular es la dirección del owner; los textos marcados WORKING son
-    // texto de trabajo del implementador hasta que Copy los confirme. Las etiquetas 1 a 3 y el título y los tres
-    // primeros pasos de la demostración son de Copy (COPY_HERO_1003 §2, COPY_DELTAS_1003 §1.1, D-93).
+    // Home v3. Titular: la línea del owner; W-1 a W-7 confirmados en COPY_WORKING_TEXTS_1006, W-8 y W-9 sustituidos
+    // allí. Los textos marcados WORKING son texto de trabajo del implementador (orden del owner 2026-10-06).
+    // La referencia de ejemplo es EST-204 en todas partes (COPY_DELTAS_1003 §7).
     v3: {
       workingText: "Texto de trabajo. La redacción no es definitiva.",
       story: {
         name: "Laura Serrano",
         time: "domingo 21:40",
         fields: [
-          { k: "Pide", v: "2 dormitorios, Estepona · REF-DEMO-204" },
+          { k: "Pide", v: "2 dormitorios, Estepona · EST-204" },
           { k: "Quiere ver", v: "el jueves por la mañana" },
           { k: "Escribe en", v: "español" },
           { k: "Canal", v: "WhatsApp" },
@@ -283,34 +284,44 @@ export const es: Dictionary = {
       hero: {
         h1Soft: "Menos gestión.", // dirección del owner 2026-10-05
         h1: "Más tiempo para tus clientes.",
-        lead: "Nuova responde en español a las consultas por WhatsApp y email, guarda lo que pide cada cliente y deja claro el siguiente paso.", // WORKING
-        ctaDemo: "Ver la demostración", // WORKING
+        lead: "Nuova responde en español a las consultas por WhatsApp y email, guarda lo que pide cada cliente y deja claro el siguiente paso.", // W-2
+        ctaDemo: "Ver la demostración", // W-3
+        trialLine: "14 días · Sin tarjeta", // owner 2026-10-06 §2
         labels: { enquiry: "Consulta por WhatsApp", reply: "Respuesta en español", crm: "Ficha del cliente", next: "Siguiente paso" },
-        example: "Ejemplo · datos inventados",
+        example: "Ejemplo ilustrativo",
         replay: "Reproducir otra vez",
         surfaceLabel: "Ejemplo: una consulta por WhatsApp, la respuesta en español, la ficha del cliente y el siguiente paso",
       },
       demo: {
         eyebrow: "El producto en acción",
-        h2: "De un mensaje a una ficha", // COPY_DELTAS_1003 §1.1
-        state: "Disponible: respuesta en español y ficha del cliente.",
-        steps: [
-          { title: "Llega una consulta por WhatsApp", line: "Laura pregunta por un piso en Estepona un domingo por la noche." },
-          { title: "Nuova responde en español", line: "Tus clientes saben que responde un asistente. Por eso se fían de la respuesta, y nada queda comprometido: ni precio, ni fecha, ni condición." }, // D-93
-          { title: "Se crea la ficha del cliente", line: "Lo que ha pedido queda guardado: el inmueble, la visita y su idioma." },
-          { title: "Queda claro el siguiente paso", line: "Una persona de tu equipo confirma la visita. Nuova no acuerda fechas." },
-        ],
-        kindReal: "Recorrido real del producto. Personas y datos inventados.",
-        kindPrototype: "Prototipo de diseño. Todavía no disponible.",
+        h2: "Lo que hace Nuova, en cinco escenas", // WORKING
+        lead: "Elige una escena. Cada una dice qué está disponible hoy y qué es todavía un prototipo.", // WORKING
+        controls: { prev: "Paso anterior", next: "Paso siguiente", pause: "Pausar", play: "Reproducir", step: "Paso", of: "de", scenes: "Escenas" },
         short: "Vista abreviada",
         full: "Ver la conversación completa",
         fullHide: "Ocultar la conversación completa",
         fullTitle: "La conversación completa, con el aviso que lleva cada respuesta",
-        controls: { prev: "Paso anterior", next: "Paso siguiente", pause: "Pausar", play: "Reproducir", step: "Paso", of: "de" },
         record: { updated: "Actualizado ahora", from: "De la conversación de WhatsApp · domingo 21:40" },
         task: { taken: "Tomada por ti", complete: "Marcar como hecha", done: "Hecha. Sale de la lista.", again: "Volver a empezar" },
       },
-      offer: { cta: "Prueba Essential gratis" },
+      offer: {
+        cta: "Probar gratis",
+        line: "14 días · Sin tarjeta",
+        stepsTitle: "Así empiezas", // WORKING
+        steps: [
+          { title: "Crea tu cuenta", line: "Tu nombre, tu email de trabajo, una contraseña." }, // WORKING
+          { title: "Pon nombre a tu agencia y configúrala", line: "Tus datos, tus datos legales, tu logo, tu equipo." }, // WORKING
+          { title: "Conecta tus canales con nosotros", line: "WhatsApp y email se conectan junto con nosotros; es un paso distinto de la cuenta." }, // WORKING, FAQ Q-40
+        ],
+        note: "No prometemos minutos: configurar tarda lo que tarden tus datos.", // WORKING
+      },
+      packages: {
+        eyebrow: "Paquetes",
+        h2: "Tres paquetes, cada uno sobre el anterior", // WORKING
+        lead: "Lo que añade cada paquete, con su estado real. Los modelos 3D también se piden por separado.", // WORKING
+        includes: "Incluye",
+        perMonth: "al mes",
+      },
     },
   },
 
@@ -1024,7 +1035,7 @@ export const es: Dictionary = {
   },
 
   footer: {
-    brandLine: "Nuova responde a las consultas de tu agencia y mantiene en un solo sitio lo que pide cada cliente. Hecho para agencias en España.", // owner order 2026-10-05 §9, WORKING
+    brandLine: "Nuova responde a las consultas de tu agencia y deja claro el siguiente paso. Hecho para agencias en España.", // W-9
     platform: "Plataforma",
     getStarted: "Empezar",
     legal: "Legal",

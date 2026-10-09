@@ -58,7 +58,7 @@ export const en = {
     spanish: "Español",
     // LAUNCH_COPY_v1 §7.1: "Book a demo" only after the Reviewer's test booking (DEMO_PATH = PASS).
     bookDemo: "Request a demo",
-    startFree: "Start free",
+    startFree: "Try free", // owner 2026-10-06 §2
     tryFree: "Try free for 14 days",
     noPayment: "No payment method required.",
     noSalesCall: "No sales call required.",
@@ -164,11 +164,11 @@ export const en = {
           disclosure: "I am an AI assistant. I will help you with your property enquiry. If you prefer to speak to a human agent, tell me at any time.",
           disclosureMark: "Sample translation. The approved notice is the Spanish one.", // D-78
           // No availability is confirmed: there is no inventory source behind the example (external finding 13, COPY_DELTAS_0929 D-10).
-          text: "Hello Laura, thank you for writing. I have noted the two bedroom flat in Estepona and Thursday morning. An agent from the agency will contact you to confirm availability and the time.",
+          text: "Hello Laura, thank you for writing. I have noted your interest in the flat in Estepona and Thursday morning. Would 10 or 12 suit you better? An agent from the agency will confirm with you.", // WORKING (owner 2026-10-06 §3)
           // D-79: the former disclosureNote is gone; flow.stepsDetail (D-77) says it once.
         },
         // D-12: no priority and no qualification (not in production, LEAD_TRUTH_INPUT_v1 §1); the record shows what the customer asked for.
-        record: { label: "Customer record", name: "Laura Serrano", lines: ["Asked for: 2 bedrooms, Estepona · REF-DEMO-204", "Wants to view: Thursday morning", "Writes in: English"], next: "Next: a task for your team" },
+        record: { label: "Customer record", name: "Laura Serrano", lines: ["Asked for: 2 bedrooms, Estepona · EST-204", "Wants to view: Thursday morning", "Writes in: English"], next: "Next: a task for your team" },
         task: {
           label: "Your team's tasks, today",
           title: "Confirm Thursday's viewing with Laura Serrano",
@@ -224,7 +224,7 @@ export const en = {
         // D-13: rows say what was asked for and what comes next; no qualification, no priority chip.
         columns: { asked: "Asked for", next: "Next" },
         rows: [
-          { name: "Laura Serrano", asked: "2 bedrooms, Estepona · REF-DEMO-204", next: "A task for your team" },
+          { name: "Laura Serrano", asked: "2 bedrooms, Estepona · EST-204", next: "A task for your team" },
           { name: "Peter and Anna K.", asked: "A valuation in Marbella", next: "Call this week" },
           { name: "Carlos R.", asked: "A villa in Benahavís", next: "Reply on WhatsApp" },
           { name: "Sofía L.", asked: "A long term rental in Fuengirola", next: "Wait for her reply" },
@@ -254,6 +254,7 @@ export const en = {
           "task-done": "Closed. The task leaves the list.",
           "task-card": "The customer, the property and the time they asked for, on one card.",
         },
+        mediaWithheld: "The recording of the staff list is being re-cut with the reference EST-204 and is shown again as soon as Daily delivers it.", // WORKING
         synthetic: "Synthetic data",
       },
     },
@@ -296,56 +297,63 @@ export const en = {
       /** Empty on purpose: the payment sentence appears once per page, in the hero note or the getting started section. */
       caption: "",
     },
-    // Home v3 (owner order 2026-10-05, "correct the visual direction and show the product"). The headline is the
-    // owner's direction ("Menos gestión. Más tiempo para tus clientes."); its English form and every text marked
-    // WORKING below are the implementer's working text until Copy confirms them (lib/content/home-v3.ts carries
-    // the flag). Labels 1 to 3 and the demonstration's title and first three steps are Copy's (COPY_HERO_1003 §2,
-    // COPY_DELTAS_1003 §1.1, D-93).
+    // Home v3. Headline: the owner's line; W-1 to W-7 confirmed by COPY_WORKING_TEXTS_1006, W-8 and W-9 replaced
+    // there. Texts marked WORKING are the implementer's working text for Copy to confirm after the implementation
+    // (owner follow-up order 2026-10-06). The example reference is EST-204 everywhere (COPY_DELTAS_1003 §7).
     v3: {
       workingText: "Working text. The wording is not final.",
-      // One story everywhere: the same person, property, day and language in every view.
       story: {
         name: "Laura Serrano",
         time: "Sunday 21:40",
         fields: [
-          { k: "Asked for", v: "2 bedrooms, Estepona · REF-DEMO-204" },
+          { k: "Asked for", v: "2 bedrooms, Estepona · EST-204" },
           { k: "Wants to view", v: "Thursday morning" },
           { k: "Writes in", v: "Spanish" },
           { k: "Channel", v: "WhatsApp" },
         ],
       },
       hero: {
-        h1Soft: "Less admin.", // WORKING (English form of the owner's line)
-        h1: "More time for your clients.", // WORKING
-        lead: "Nuova replies in Spanish to enquiries on WhatsApp and email, records what each client asks for and makes the next step clear.", // WORKING
-        ctaDemo: "See the demonstration", // WORKING
-        labels: { enquiry: "WhatsApp enquiry", reply: "Reply in Spanish", crm: "Customer record", next: "Next step" },
-        example: "Example · invented data",
+        h1Soft: "Less admin.", // W-1
+        h1: "More time for your clients.", // W-1
+        lead: "Nuova replies in Spanish to enquiries on WhatsApp and email, records what each client asks for and makes the next step clear.", // W-2
+        ctaDemo: "See the demonstration", // W-3
+        trialLine: "14 days · No card", // owner 2026-10-06 §2, matches the real flow (no payment method, no card)
+        labels: { enquiry: "WhatsApp enquiry", reply: "Reply in Spanish", crm: "Customer record", next: "Next step" }, // COPY_HERO_1003 §2, W-4
+        example: "Illustrative example",
         replay: "Play again",
         surfaceLabel: "Example: a WhatsApp enquiry, the reply in Spanish, the customer record and the next step",
       },
       demo: {
         eyebrow: "The product in action",
-        h2: "From a message to a record", // COPY_DELTAS_1003 §1.1
-        state: "Available: the reply in Spanish and the customer record.", // §1.1, the available half of the state line
-        steps: [
-          { title: "An enquiry arrives on WhatsApp", line: "Laura asks about a flat in Estepona on a Sunday night." }, // title §1.1, line WORKING
-          { title: "Nuova replies in Spanish", line: "Your customers are told an assistant is replying. That is why they trust the reply, and nothing is committed: no price, no date, no condition." }, // §1.1, D-93
-          { title: "The customer record is created", line: "What she asked for is kept: the property, the viewing and her language." }, // title §1.1, line WORKING
-          { title: "The next step is clear", line: "One of your people confirms the viewing. Nuova agrees no dates." }, // WORKING
-        ],
-        // What kind of picture this is: a real product path, or a design prototype of something not available yet.
-        kindReal: "A real product path. People and data are invented.",
-        kindPrototype: "Design prototype. Not available yet.",
+        h2: "What Nuova does, in five scenes", // WORKING
+        lead: "Choose a scene. Each one says what is available today and what is still a prototype.", // WORKING
+        controls: { prev: "Previous step", next: "Next step", pause: "Pause", play: "Play", step: "Step", of: "of", scenes: "Scenes" },
         short: "Shortened view",
         full: "Show the full conversation",
         fullHide: "Hide the full conversation",
         fullTitle: "The full conversation, with the notice every reply carries",
-        controls: { prev: "Previous step", next: "Next step", pause: "Pause", play: "Play", step: "Step", of: "of" },
         record: { updated: "Updated now", from: "From the WhatsApp conversation · Sunday 21:40" },
         task: { taken: "Taken by you", complete: "Mark as done", done: "Done. It leaves the list.", again: "Start again" },
       },
-      offer: { cta: "Try Essential free" },
+      // The trial, offered again after the demonstrations: the real steps, in their real order (owner 2026-10-06 §2).
+      offer: {
+        cta: "Try free",
+        line: "14 days · No card",
+        stepsTitle: "How you start", // WORKING
+        steps: [
+          { title: "Create your account", line: "Your name, your work email, a password." }, // WORKING
+          { title: "Name your agency and set it up", line: "Your details, your legal details, your logo, your team." }, // WORKING
+          { title: "Connect your channels with us", line: "WhatsApp and email are connected together with us; that is a separate step from the account." }, // WORKING, FAQ Q-40
+        ],
+        note: "No minutes are promised: setting up takes as long as your details take.", // WORKING
+      },
+      packages: {
+        eyebrow: "Packages",
+        h2: "Three packages, each on top of the last", // WORKING
+        lead: "What each package adds, with its honest state. 3D models can also be ordered on their own.", // WORKING
+        includes: "Includes",
+        perMonth: "per month",
+      },
     },
   },
 
@@ -1088,7 +1096,7 @@ export const en = {
   },
 
   footer: {
-    brandLine: "Nuova answers your agency's enquiries and keeps what each client asks for in one place. Built for agencies in Spain.", // owner order 2026-10-05 §9, WORKING
+    brandLine: "Nuova answers your agency's enquiries and makes the next step clear. Built for agencies in Spain.", // W-9
     platform: "Platform",
     getStarted: "Get started",
     legal: "Legal",

@@ -214,7 +214,7 @@ export const capabilities: Capability[] = [
       es: "Cada petición de visita y cada llamada pendiente pasa a ser una tarea con el cliente, el inmueble y la hora que ha pedido.",
     },
     points: [
-      { text: { en: "Whoever takes a task owns it. The others can see that it is taken and by whom.", es: "Quien toma una tarea se hace cargo de ella. Los demás ven que está tomada y por quién." }, status: "live" }, // DAILY_FEATURE_TRUTH §2
+      { text: { en: "Whoever takes a task owns it. It leaves the lists of the others, so nobody takes it twice.", es: "Quien toma una tarea se hace cargo de ella. Desaparece de las listas de los demás, así que nadie la toma dos veces." }, status: "live" }, // measured rule, daily_clip_v3/MANIFEST.md (2026-10-02); the 09-28 sheet said the others see the claimant, Daily to confirm
       { text: { en: "One tap takes it, one tap completes it.", es: "Un toque la toma, un toque la completa." }, status: "live" },
       { text: { en: "Nobody can take the same task twice, and only the person who took it can close it.", es: "Nadie puede tomar la misma tarea dos veces, y solo quien la tomó puede cerrarla." }, status: "live" },
       { text: { en: "In Spanish or in English, chosen in the app.", es: "En español o en inglés, elegido en la aplicación." }, status: "live" },
@@ -224,8 +224,8 @@ export const capabilities: Capability[] = [
       { text: { en: "An employee assistant for internal tasks.", es: "Una asistente para los empleados y sus tareas internas." }, status: "in_implementation" },
     ],
     scenario: {
-      en: "An agent opens the list, takes Laura Serrano's viewing task, and completes it once a person has agreed the time with her. The others see that it is taken, and by whom.",
-      es: "Un agente abre la lista, toma la tarea de la visita de Laura Serrano y la completa cuando una persona ha acordado la hora con ella. Los demás ven que está tomada y quién la ha tomado.",
+      en: "An agent opens the list, takes Laura Serrano's viewing task, and completes it once a person has agreed the time with her. For the others the task is gone from their lists.",
+      es: "Un agente abre la lista, toma la tarea de la visita de Laura Serrano y la completa cuando una persona ha acordado la hora con ella. Para los demás, la tarea desaparece de su lista.",
     },
     fits: [
       { en: "Desktop and mobile", es: "Escritorio y móvil" },

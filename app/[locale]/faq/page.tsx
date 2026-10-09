@@ -6,6 +6,7 @@ import { faqFrame, faqGroups } from "@/lib/content/faq";
 import { Display, Eyebrow, Lead, Heading } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { Accordion } from "@/components/ui/accordion";
 import { WithMail } from "@/components/site/legal-page";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
@@ -15,9 +16,10 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
 }
 
 /**
- * The static FAQ (COPY_DELTAS_0930 §3) in place of the question box. Every question stands with its
- * answer; nothing is folded away. Ground: the sand band; foreground: one white stage per group.
- * The contact line offers an address and promises no reply.
+ * The FAQ (COPY_DELTAS_0930 §3, rows of PRODUCT_FAQ_KB_v1 v1.2). Owner 2026-10-06: the categories carry a
+ * heading only, no figure under it; the questions open one at a time, so the page is short; the row
+ * identifiers and counts stay internal (the kb id is a data attribute, nothing more). The contact line
+ * offers an address and promises no reply.
  */
 export default function FaqPage({ params }: { params: { locale: string } }) {
   const locale = params.locale as Locale;
@@ -54,16 +56,10 @@ export default function FaqPage({ params }: { params: { locale: string } }) {
               <div className="grid grid-cols-1 lg:grid-cols-12">
                 <div className="border-b border-line-hairline p-6 md:p-8 lg:col-span-4 lg:border-b-0 lg:border-r">
                   <Heading size="m" as="h2" id={`${g.id}-h`}>{g.title[locale]}</Heading>
-                  <p className="mt-2 t-caption text-text-muted tnum">{g.items.length}</p>
                 </div>
-                <dl className="divide-y divide-line-hairline lg:col-span-8">
-                  {g.items.map((it) => (
-                    <div key={it.kb} className="p-6 md:px-8" data-faq={it.kb}>
-                      <dt className="t-heading-s text-text-primary">{it.q[locale]}</dt>
-                      <dd className="mt-2 t-body-m text-text-secondary measure-body">{it.a[locale]}</dd>
-                    </div>
-                  ))}
-                </dl>
+                <div className="px-6 py-2 md:px-8 lg:col-span-8">
+                  <Accordion items={g.items.map((it) => ({ id: it.kb.replace(/[^A-Za-z0-9]/g, "-"), question: it.q[locale], answer: it.a[locale] }))} className="border-y-0" />
+                </div>
               </div>
             </section>
           ))}
@@ -78,6 +74,7 @@ export default function FaqPage({ params }: { params: { locale: string } }) {
           <div className="band band-stone band-panel px-6 py-14 text-center md:px-12 md:py-20">
             <Reveal mode="opacity">
               <Display size="l" id="faq-close" className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
+              <p className="mx-auto mt-6 max-w-[48ch] t-body-l text-text-secondary">{d.home.closing.body}</p>
               <CtaRow align="center" className="mt-10">
                 <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
                 <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>

@@ -34,7 +34,7 @@ try {
   ws.addEventListener("message", (e) => { const m = JSON.parse(e.data); if (m.id && pend.has(m.id)) { pend.get(m.id)(m); pend.delete(m.id); } });
   const send = (method, params = {}) => new Promise((res) => { const i = ++mid; pend.set(i, res); ws.send(JSON.stringify({ id: i, method, params })); });
   const ev = async (x) => (await send("Runtime.evaluate", { expression: x, returnByValue: true, awaitPromise: true })).result?.result?.value;
-  const key = async (k, code, vk) => { const text = k === "Enter" ? "\r" : k; await send("Input.dispatchKeyEvent", { type: "keyDown", key: k, code, windowsVirtualKeyCode: vk, text }); await send("Input.dispatchKeyEvent", { type: "keyUp", key: k, code, windowsVirtualKeyCode: vk }); };
+  const key = async (k, code, vk) => { const text = k === "Enter" ? "\r" : k.length === 1 ? k : undefined; await send("Input.dispatchKeyEvent", { type: "keyDown", key: k, code, windowsVirtualKeyCode: vk, text }); await send("Input.dispatchKeyEvent", { type: "keyUp", key: k, code, windowsVirtualKeyCode: vk }); };
   await send("Page.enable"); await send("Runtime.enable"); await send("DOM.enable");
 
   const LAYERS = `JSON.stringify(Object.fromEntries([["far","[data-depth-layer=far]"],["mid","[data-depth-layer=mid]"],["front","[data-depth-layer=front]"],["panel",".hero-panel"]].map(([k,s])=>[k,getComputedStyle(document.querySelector(s)).transform])))`;
@@ -85,23 +85,50 @@ try {
 
   // auto run and manual stop
   await ev("document.querySelector('#demo').scrollIntoView(); window.scrollBy(0, 80)"); await sleep(600);
-  const a0 = JSON.parse(await ev("JSON.stringify({step:document.querySelector('[data-product-demo]').dataset.step, auto:document.querySelector('[data-product-demo]').dataset.auto})"));
+  const a0 = JSON.parse(await ev("JSON.stringify({step:document.querySelector('[data-product-scenes]').dataset.step, auto:document.querySelector('[data-product-scenes]').dataset.auto})"));
   await sleep(7800);
-  const a1 = JSON.parse(await ev("JSON.stringify({step:document.querySelector('[data-product-demo]').dataset.step, auto:document.querySelector('[data-product-demo]').dataset.auto})"));
+  const a1 = JSON.parse(await ev("JSON.stringify({step:document.querySelector('[data-product-scenes]').dataset.step, auto:document.querySelector('[data-product-scenes]').dataset.auto})"));
   await ev("document.querySelectorAll('[data-demo-steps] button')[0].click()"); await sleep(8200);
-  const a2 = JSON.parse(await ev("JSON.stringify({step:document.querySelector('[data-product-demo]').dataset.step, auto:document.querySelector('[data-product-demo]').dataset.auto})"));
+  const a2 = JSON.parse(await ev("JSON.stringify({step:document.querySelector('[data-product-scenes]').dataset.step, auto:document.querySelector('[data-product-scenes]').dataset.auto})"));
   check("auto", "in view the demonstration advances after 7 s; after a choice by hand it stays where it was put", a0.auto === "on" && a1.step !== a0.step && a2.step === "1" && a2.auto === "off", { in_view: a0, after_7_8_s: a1, after_click_and_8_s: a2 });
+
+  // scenes: a choice of another scene stops the automatic run; the former scene's state (a taken task) is reset
+  await send("Page.navigate", { url: `${BASE}/es` }); await sleep(4000);
+  await ev("document.querySelector('#demo').scrollIntoView(); document.querySelectorAll('[data-demo-steps] button')[3].click()"); await sleep(900);
+  await ev("document.querySelector('[data-demo-take]').click()"); await sleep(500);
+  const s0 = await ev("document.querySelector('[data-demo-task]')?.dataset.demoTask");
+  await ev("document.querySelector('[data-scene-tab=team]').click()"); await sleep(900);
+  const s1 = JSON.parse(await ev("JSON.stringify({scene:document.querySelector('[data-product-scenes]').dataset.scene, step:document.querySelector('[data-product-scenes]').dataset.step, auto:document.querySelector('[data-product-scenes]').dataset.auto})"));
+  await ev("document.querySelectorAll('[data-demo-steps] button')[2].click()"); await sleep(900);
+  await ev("document.querySelector('[data-demo-take]').click()"); await sleep(500);
+  const s2 = await ev("document.querySelector('[data-demo-task]')?.dataset.demoTask");
+  await ev("document.querySelector('[data-scene-tab=reply]').click()"); await sleep(900);
+  await ev("document.querySelectorAll('[data-demo-steps] button')[3].click()"); await sleep(900);
+  const s3 = JSON.parse(await ev("JSON.stringify({step:document.querySelector('[data-product-scenes]').dataset.step, task:document.querySelector('[data-demo-task]')?.dataset.demoTask})"));
+  check("scenes", "another scene stops the automatic run and starts at its first step; a task taken in one scene is open again when the scene is left and re-entered, so no two states contradict each other", s0 === "taken" && s1.scene === "team" && s1.step === "1" && s1.auto === "off" && s2 === "taken" && s3.step === "4" && s3.task === "open", { taken_in_A: s0, after_switch: s1, taken_in_C: s2, back_in_A: s3 });
+  // the five tabs by keyboard: focus a tab and press Enter
+  await ev("document.querySelector('[data-scene-tab=model]').focus()"); await key("Enter", "Enter", 13); await sleep(900);
+  const tabK = await ev("document.querySelector('[data-product-scenes]').dataset.scene + ' ' + document.querySelector('[data-scene-tab=model]').getAttribute('aria-selected')");
+  // the compare slider by keyboard (a native range input)
+  await ev("document.querySelectorAll('[data-demo-steps] button')[1].click()"); await sleep(900);
+  await ev("document.querySelector('[data-compare-range]').focus()"); for (let i = 0; i < 5; i++) await key("ArrowLeft", "ArrowLeft", 37); await sleep(300);
+  const cmp = await ev("document.querySelector('[data-compare]').dataset.compare");
+  check("tabs-keyboard", "a scene tab and the plan/model slider work by keyboard", tabK === "model true" && Number(cmp) < 55, { tab: tabK, compare_after_5_left: cmp });
+  // the FAQ: questions open one at a time, no figure under a category heading, the row ids stay invisible
+  await send("Page.navigate", { url: `${BASE}/es/faq` }); await sleep(3500);
+  const faq = JSON.parse(await ev(`(()=>{const btns=[...document.querySelectorAll('[data-accordion] button')];btns[1].click();return new Promise(r=>setTimeout(()=>{btns[2].click();setTimeout(()=>{const open=[...document.querySelectorAll('[data-accordion-item=open]')].length;const exp=btns[2].getAttribute('aria-expanded');const region=document.getElementById(btns[2].getAttribute('aria-controls'));const counts=[...document.querySelectorAll('section[id] h2')].filter(h=>/^\d+$/.test((h.nextElementSibling?.innerText||'').trim())).length;const ids=document.body.innerText.includes('Q-0');r(JSON.stringify({open,exp,regionShown:!!region&&region.getBoundingClientRect().height>10,counts,ids_visible:ids}))},700)},700))})()`));
+  check("faq", "one question open at a time, aria-expanded and its region, no count under a category, no row id in the text", faq.open === 1 && faq.exp === "true" && faq.regionShown && faq.counts === 0 && !faq.ids_visible, faq);
 
   // keyboard: focus the third step and press Enter; then the task; then the full conversation
   await send("Page.navigate", { url: `${BASE}/es` }); await sleep(4000);
   await ev("document.querySelector('#demo').scrollIntoView(); document.querySelectorAll('[data-demo-steps] button')[2].focus()");
   await key("Enter", "Enter", 13); await sleep(900);
-  const k1 = await ev("document.querySelector('[data-product-demo]').dataset.step + ' ' + (document.querySelector('[data-demo-view]')?.dataset.demoView)");
+  const k1 = await ev("document.querySelector('[data-product-scenes]').dataset.step + ' ' + (document.querySelector('[data-demo-view]')?.dataset.demoView)");
   await ev("document.querySelectorAll('[data-demo-steps] button')[3].focus()"); await key("Enter", "Enter", 13); await sleep(900);
   await ev("document.querySelector('[data-demo-take]').focus()"); await key(" ", "Space", 32); await sleep(600);
-  const k2 = await ev("document.querySelector('[data-demo-view]').dataset.demoTask");
+  const k2 = await ev("document.querySelector('[data-demo-task]')?.dataset.demoTask");
   await ev("document.querySelector('[data-demo-complete]').focus()"); await key("Enter", "Enter", 13); await sleep(600);
-  const k3 = await ev("document.querySelector('[data-demo-view]').dataset.demoTask");
+  const k3 = await ev("document.querySelector('[data-demo-task]')?.dataset.demoTask");
   await ev("document.querySelectorAll('[data-demo-steps] button')[1].focus()"); await key("Enter", "Enter", 13); await sleep(1200);
   await ev("document.querySelector('[data-demo-full]').focus()"); await key("Enter", "Enter", 13); await sleep(600);
   const k4 = JSON.parse(await ev("JSON.stringify({expanded:document.querySelector('[data-demo-full]').getAttribute('aria-expanded'), notice:(document.querySelector('[data-demo-notice]')?.innerText||'').slice(0,60)})"));
@@ -114,7 +141,7 @@ try {
   await ev("window.scrollTo(0, 420)"); await sleep(500);
   const r1 = JSON.parse(await ev(LAYERS));
   await ev("document.querySelector('#demo').scrollIntoView(); window.scrollBy(0, 80)"); await sleep(8000);
-  const r2 = await ev("document.querySelector('[data-product-demo]').dataset.step + ' ' + document.querySelector('[data-product-demo]').dataset.auto");
+  const r2 = await ev("document.querySelector('[data-product-scenes]').dataset.step + ' ' + document.querySelector('[data-product-scenes]').dataset.auto");
   const still = JSON.parse(r0.layers);
   check("reduced", "reduced motion: everything visible at once, no layer moves, the panel keeps a fixed lean, the demonstration does not run by itself", r0.items.every((o) => o === "1") && still.far === "none" && still.front === "none" && still.panel === r1.panel && /matrix3d/.test(still.panel) && r2 === "1 off", { items_visible: r0.items.length, layers_top: still, panel_after_scroll_same: still.panel === r1.panel, replay: r0.replay, demo_after_8_s: r2 });
   await send("Emulation.setEmulatedMedia", { features: [] });

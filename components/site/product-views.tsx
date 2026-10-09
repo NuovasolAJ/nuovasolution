@@ -2,10 +2,11 @@ import type { Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { cn } from "@/lib/utils";
 import { LabelChip, StatusGlyph } from "@/components/ui/status";
+import { REFERENCE as SITE_REFERENCE } from "@/lib/content/home-scenes";
 
 /**
  * Product views for the marketing pages (LAUNCH_COPY_v1 §4 and COPY_DELTAS_0929: one person,
- * Laura Serrano, one property, REF-DEMO-204, one wish, Thursday morning). Rule: only what
+ * Laura Serrano, one property, EST-204, one wish, Thursday morning). Rule: only what
  * actually exists is depicted, every view says that its data is synthetic, and no status chip,
  * gate sentence or internal formula appears on a sales surface (audit R27).
  *
@@ -129,8 +130,22 @@ type Shot = "tasks" | "task-action" | "task-done" | "task-card";
  * are 16:9 from 768 px and 4:5 below, so no interface text is cut off; "task-card" is one card
  * on its own. Every capture keeps the synthetic-data label and its caption (COPY_DELTAS_0929 §5.2).
  */
+/**
+ * The reference inside Daily's recordings and stills (clip v3 and the captures of 2026-09-28). The site's
+ * example reference is EST-204 (owner 2026-10-06); while the two differ, no recording is shown, so no two
+ * references contradict each other on one page. Daily is asked for a cut and stills with EST-204.
+ */
+export const DAILY_MEDIA_REFERENCE: string = "REF-DEMO-204";
+
 export function DailyShot({ locale, shot = "task-action", className }: { locale: Locale; shot?: Shot; className?: string }) {
   const v = getDictionary(locale).home.views.daily;
+  if (DAILY_MEDIA_REFERENCE !== SITE_REFERENCE) {
+    return (
+      <figure className={cn("mx-auto w-full", className)} data-view="daily" data-shot="withheld">
+        <div className="rounded-xl border border-dashed border-line-interactive bg-surface-sunken p-6 t-body-s text-text-secondary">{v.mediaWithheld}</div>
+      </figure>
+    );
+  }
   const caption = (v.stills as Record<string, string>)[shot];
   const base = `/media/daily/daily-${shot}-${locale}`;
   const card = shot === "task-card";

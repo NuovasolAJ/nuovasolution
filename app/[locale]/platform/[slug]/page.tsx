@@ -11,6 +11,8 @@ import { Reveal } from "@/components/ui/reveal";
 import { StatusGlyph, LabelChip } from "@/components/ui/status";
 import { ProductView } from "@/components/site/product-views";
 import { ProductClip } from "@/components/ui/product-clip";
+import { DAILY_MEDIA_REFERENCE } from "@/components/site/product-views";
+import { REFERENCE } from "@/lib/content/home-scenes";
 import { ClosingBand } from "@/components/site/closing-band";
 
 /** Only published capabilities have a page (audit R27). A hidden or unknown slug answers 404, never a home fallback (Z01). */
@@ -63,8 +65,8 @@ export default function ProductPage({ params }: { params: { locale: string; slug
               </CtaRow>
             </Reveal>
             <Reveal delay={120} mode="opacity" className="xl:col-span-6">
-              {c.slug === "daily-assistant" ? (
-                /* The product video at the function it shows (owner order 2026-10-01 §5): Daily's clip v2 in place of the still. */
+              {c.slug === "daily-assistant" && DAILY_MEDIA_REFERENCE === REFERENCE ? (
+                /* The product video at the function it shows (owner order 2026-10-01 §5), only while its reference matches the site's. */
                 <div className="stage overflow-hidden p-5 md:p-7" data-product-media="clip">
                   <h2 className="t-heading-s text-text-primary">{d.home.views.daily.clipHeading}</h2>
                   <p className="mt-1 t-body-s text-text-muted">{d.home.views.daily.clipLead}</p>

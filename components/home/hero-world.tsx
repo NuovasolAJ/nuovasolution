@@ -20,7 +20,7 @@ import { SeqReplay } from "./seq-replay";
  *
  * The headline and the buttons stand on the open sky; no foreground reaches them. The depth is in the
  * still picture (overlap, size, contrast) and on scroll the layers move apart (depth-scene.tsx measures,
- * globals.css moves). The panel leans back a little and comes upright as the page scrolls: the mechanics
+ * globals.css moves). The panel leans back a little and comes upright and grows a touch as the page scrolls: the mechanics
  * of Container Scroll Animation by Manu Arora (Aceternity), https://21st.dev/@manuarora700/components/container-scroll-animation
  * (MIT) — perspective on the container, rotateX from tilted to flat, a layered shadow — driven by the
  * scene's own scroll measure instead of a second tracker, without the demo's tall spacers.
@@ -73,6 +73,7 @@ export function HeroWorld({ locale }: { locale: Locale }) {
               </a>
               <ButtonLink href={p("/signup")} size="lg" variant="secondary" className="hero-cta-second">{startLabel(locale)}</ButtonLink>
             </div>
+            <p className="mt-4 t-caption text-ink-300" data-hero-trial>{t.trialLine}</p>
           </div>
 
           {/* 3 The panel. Its lower corners lie under the foreground, so nothing to read is put there. */}

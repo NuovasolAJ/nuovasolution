@@ -3,9 +3,9 @@
  * and no foreign asset. Four depths, each its own layer so they can move apart on scroll:
  *
  *   far    the sky's last light, two mountain ridges, the coast lights and the sea
- *   mid    two hillsides with a white village, a bell tower, an arcade, cypresses and a palm
+ *   mid    two calm pieces of architecture on their terraces: a long house with a colonnade, a villa with an arch, a cypress, a palm
  *   (the product panel stands here)
- *   front  an olive tree and an agave on the left, a stepped terrace wall with a pot and an arch on the right
+ *   front  an olive tree and an agave on the left, a stepped terrace wall with a pot and the foot of an arch on the right
  *
  * Everything is decoration: aria-hidden, no text, no pointer events. The colours are the hero's own
  * (anthracite, a dusk warmth at the horizon, lit windows in the one warm accent).
@@ -28,8 +28,8 @@ export function FarArt({ className }: { className?: string }) {
     <svg aria-hidden="true" className={className} viewBox="0 0 1440 240" preserveAspectRatio="none" focusable="false">
       <defs>
         <linearGradient id="hw-sea" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#2b2f37" />
-          <stop offset="1" stopColor="#1c1e22" />
+          <stop offset="0" stopColor="#343944" />
+          <stop offset="1" stopColor="#232730" />
         </linearGradient>
         <radialGradient id="hw-shine" cx="0.5" cy="0" r="0.5" gradientTransform="matrix(1 0 0 2 0 0)">
           <stop offset="0" stopColor="#dfa068" stopOpacity="0.5" />
@@ -37,8 +37,8 @@ export function FarArt({ className }: { className?: string }) {
         </radialGradient>
       </defs>
       {/* the hazy back ridge, then the nearer one */}
-      <path d="M0 180V118C70 104 120 96 190 112C250 126 300 80 380 70C450 62 500 100 560 108C640 118 690 60 780 44C860 30 910 84 980 92C1060 102 1110 66 1180 74C1260 84 1320 120 1380 112C1410 108 1430 112 1440 116V180Z" fill="#464a57" />
-      <path d="M0 180V150C90 138 150 150 230 140C330 128 380 150 470 156C560 162 620 132 720 128C820 124 880 150 960 152C1060 154 1120 136 1200 140C1290 144 1350 160 1440 150V180Z" fill="#31343d" />
+      <path d="M0 180V118C70 104 120 96 190 112C250 126 300 80 380 70C450 62 500 100 560 108C640 118 690 60 780 44C860 30 910 84 980 92C1060 102 1110 66 1180 74C1260 84 1320 120 1380 112C1410 108 1430 112 1440 116V180Z" fill="#555a68" />
+      <path d="M0 180V150C90 138 150 150 230 140C330 128 380 150 470 156C560 162 620 132 720 128C820 124 880 150 960 152C1060 154 1120 136 1200 140C1290 144 1350 160 1440 150V180Z" fill="#3a3e48" />
       {/* the sea, with the last light lying on it */}
       <rect x="0" y="180" width="1440" height="60" fill="url(#hw-sea)" />
       <rect x="700" y="180" width="440" height="60" fill="url(#hw-shine)" />
@@ -55,74 +55,58 @@ export function FarArt({ className }: { className?: string }) {
   );
 }
 
-/** Mid layer, left hillside: the village steps down towards the centre. */
+/**
+ * Mid layer, left: one calm piece of architecture, a long white terrace house on the slope, a colonnade of
+ * three large arches, a single cypress. Few forms, large, so the depth reads at a glance (owner 2026-10-06 §1).
+ */
 export function MidLeftArt({ className }: { className?: string }) {
-  const hill = "M0 330V120C60 104 120 112 170 140C230 172 290 196 350 236C400 268 440 300 460 330Z";
   return (
     <svg aria-hidden="true" className={className} viewBox="0 0 460 330" focusable="false">
-      <path d={hill} fill="#222428" />
-      {/* cypresses behind the houses */}
-      <ellipse cx="98" cy="86" rx="7" ry="31" fill={TREE} />
-      <ellipse cx="212" cy="146" rx="6" ry="26" fill={TREE} />
-      <ellipse cx="318" cy="204" rx="6" ry="24" fill={TREE} />
-      {/* the bell tower */}
-      <rect x="116" y="60" width="22" height="78" fill={WALL_LIT} />
-      <path d="M113 60h28l-14-20z" fill={ROOF} />
-      <Window x={123} y={68} w={8} h={13} />
-      {/* houses, lit faces and shaded faces */}
-      <rect x="22" y="94" width="60" height="52" fill={WALL_LIT} />
-      <rect x="82" y="112" width="34" height="40" fill={WALL_SHADE} />
-      <path d="M18 94h68v-5H18z" fill={ROOF} />
-      <Window x={34} y={108} />
-      <Window x={58} y={108} />
-      <rect x="138" y="130" width="62" height="44" fill={WALL_DIM} />
-      <rect x="200" y="150" width="30" height="36" fill={WALL_SHADE} />
-      <Window x={150} y={142} />
-      <Window x={176} y={142} />
-      <rect x="226" y="184" width="58" height="40" fill={WALL_LIT} />
-      <path d="M222 184h66v-5h-66z" fill={ROOF} />
-      <Window x={240} y={196} />
-      <rect x="284" y="216" width="50" height="36" fill={WALL_SHADE} />
-      <Window x={300} y={226} w={6} h={10} />
-      <rect x="338" y="246" width="44" height="30" fill={WALL_DIM} />
-      {/* the slope in front of the house feet */}
-      <path d="M0 330V160C60 150 120 158 170 182C230 212 290 232 350 268C400 296 440 318 460 330Z" fill="#1a1c1f" />
+      <path d="M0 330V150C80 134 170 150 250 190C320 226 400 282 460 330Z" fill="#262a30" />
+      <ellipse cx="300" cy="150" rx="9" ry="42" fill={TREE} />
+      {/* the terrace house: a long low volume, a higher volume behind, a colonnade in front */}
+      <rect x="40" y="118" width="190" height="78" fill={WALL_LIT} />
+      <rect x="110" y="78" width="100" height="40" fill={WALL_DIM} />
+      <path d="M106 78h108v-6H106z" fill={ROOF} />
+      <path d="M36 118h198v-6H36z" fill={ROOF} />
+      <rect x="230" y="138" width="40" height="58" fill={WALL_SHADE} />
+      {[56, 104, 152].map((x) => (
+        <path key={x} d={`M${x} 196V158a18 18 0 0 1 36 0V196Z`} fill="#2b2622" />
+      ))}
+      <Window x={128} y={90} w={9} h={14} />
+      <Window x={178} y={90} w={9} h={14} />
+      {/* the terrace edge in front of the house */}
+      <path d="M0 214h282v8H0z" fill={WALL_SHADE} />
+      <path d="M0 330V236C70 222 150 228 230 258C300 284 380 306 460 330Z" fill="#1f2226" />
     </svg>
   );
 }
 
-/** Mid layer, right hillside: a house with an arcade, smaller houses below it, a palm. */
+/**
+ * Mid layer, right: a modern white villa with one wide arch and a palm, on its own terrace.
+ */
 export function MidRightArt({ className }: { className?: string }) {
   return (
     <svg aria-hidden="true" className={className} viewBox="0 0 460 330" focusable="false">
-      <path d="M460 330V104C400 92 340 110 290 140C230 176 170 204 110 244C60 278 20 306 0 330Z" fill="#222428" />
-      <ellipse cx="424" cy="66" rx="7" ry="33" fill={TREE} />
-      <ellipse cx="284" cy="118" rx="6" ry="27" fill={TREE} />
-      {/* the palm */}
+      <path d="M460 330V140C380 124 290 140 210 184C140 222 60 282 0 330Z" fill="#262a30" />
+      <ellipse cx="166" cy="178" rx="8" ry="36" fill={TREE} />
+      {/* the villa: two stacked volumes */}
+      <rect x="250" y="82" width="120" height="44" fill={WALL_DIM} />
+      <path d="M246 82h128v-6H246z" fill={ROOF} />
+      <rect x="214" y="126" width="206" height="74" fill={WALL_LIT} />
+      <rect x="390" y="126" width="30" height="74" fill={WALL_SHADE} />
+      <path d="M268 200V150a30 30 0 0 1 60 0V200Z" fill="#2b2622" />
+      <path d="M278 200V156a20 20 0 0 1 40 0V200Z" fill={GLOW} opacity="0.5" />
+      <Window x={352} y={146} w={10} h={16} />
+      <Window x={270} y={94} w={9} h={14} />
+      <Window x={320} y={94} w={9} h={14} />
+      {/* the palm beside the villa */}
       <g stroke={TREE} strokeLinecap="round" fill="none">
-        <path d="M232 168C234 144 230 122 236 100" strokeWidth="4" />
-        <path d="M236 100C222 86 206 84 192 92M236 100C226 80 212 70 198 70M236 100C236 80 244 66 258 60M236 100C250 88 266 86 280 94M236 100C248 98 262 104 270 116M236 100C222 100 210 108 204 120" strokeWidth="3" />
+        <path d="M196 214C198 184 194 158 200 132" strokeWidth="5" />
+        <path d="M200 132C186 118 170 116 156 124M200 132C190 112 176 102 162 102M200 132C200 112 208 98 222 92M200 132C214 120 230 118 244 126M200 132C212 130 226 136 234 148M200 132C186 132 174 140 168 152" strokeWidth="3.4" />
       </g>
-      {/* the house with the arcade */}
-      <rect x="330" y="52" width="72" height="36" fill={WALL_LIT} />
-      <path d="M326 52h80v-5h-80z" fill={ROOF} />
-      <Window x={344} y={62} />
-      <Window x={376} y={62} />
-      <rect x="300" y="86" width="124" height="62" fill={WALL_DIM} />
-      {[312, 350, 388].map((x) => (
-        <path key={x} d={`M${x} 148V112a12 12 0 0 1 24 0V148Z`} fill="#2b2622" />
-      ))}
-      <path d="M350 148V118a12 12 0 0 1 24 0V148Z" fill={GLOW} opacity="0.55" />
-      {/* smaller houses down the slope */}
-      <rect x="236" y="140" width="56" height="40" fill={WALL_SHADE} />
-      <Window x={250} y={152} />
-      <rect x="178" y="176" width="52" height="36" fill={WALL_LIT} />
-      <path d="M174 176h60v-5h-60z" fill={ROOF} />
-      <Window x={196} y={187} />
-      <rect x="124" y="208" width="48" height="34" fill={WALL_DIM} />
-      <rect x="76" y="238" width="44" height="30" fill={WALL_SHADE} />
-      <Window x={90} y={247} w={6} h={10} />
-      <path d="M460 330V150C400 140 340 156 290 184C230 216 170 240 110 276C60 302 20 320 0 330Z" fill="#1a1c1f" />
+      <path d="M214 214h246v8H214z" fill={WALL_SHADE} />
+      <path d="M460 330V236C380 226 300 236 230 268C170 294 100 314 0 330Z" fill="#1f2226" />
     </svg>
   );
 }
@@ -170,8 +154,6 @@ export function FrontRightArt({ className }: { className?: string }) {
     <svg aria-hidden="true" className={className} viewBox="0 0 520 300" focusable="false">
       {/* the arch at the edge, with a lamp */}
       <path d="M452 176V70C452 26 486 4 520 0V176Z" fill={NEAR} />
-      <circle cx="470" cy="104" r="16" fill={GLOW} opacity="0.12" />
-      <circle cx="470" cy="104" r="4" fill={GLOW} />
       {/* the yucca in its pot */}
       <g fill="#0d0f0e">
         <path d="M372 150Q352 110 328 96Q360 116 378 148Z" />
