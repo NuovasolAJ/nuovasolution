@@ -73,6 +73,10 @@ try {
       await ev(`(async()=>{const H=document.documentElement.scrollHeight;for(let y=0;y<H;y+=innerHeight){scrollTo(0,y);await new Promise(r=>setTimeout(r,120));}})()`);
       await ev(`document.querySelector('[data-product-clip]')?.scrollIntoView({block:'center'})`);
       await sleep(900);
+      // While Daily's recordings carry another reference than the site (EST-204), the page withholds them and says so;
+      // then there is no clip to test here and the case is recorded as withheld, not as a failure.
+      const withheld = await ev(`!!document.querySelector('[data-view="daily"][data-shot="withheld"]') && !document.querySelector('[data-product-clip]')`);
+      if (withheld) { check(`CL-${id}-withheld`, "the recording is withheld on purpose (its reference differs from the site's); the page says so instead of showing it", true, { withheld: true }); continue; }
       const before = await ev(`(()=>{const c=document.querySelector('[data-product-clip]');const img=c?.querySelector('img');return {state:c?.getAttribute('data-product-clip')??null,videos:document.querySelectorAll('video').length,poster:img?{w:img.naturalWidth,h:img.naturalHeight,src:new URL(img.currentSrc).pathname}:null,cue:document.querySelector('[data-clip-cue]')?.innerText??null}})()`);
       const noFilmBefore = films.length === 0;
       await click("[data-clip-play]");
@@ -107,6 +111,8 @@ try {
     }
   }
 
+  const anyClip = results.checks.some((c) => !c.id.endsWith('-withheld'));
+  if (anyClip) {
   // failure: the film request is blocked → the poster comes back with a sentence
   await send("Network.setBlockedURLs", { urls: ["*.mp4", "*.webm"] });
   await send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
@@ -119,6 +125,7 @@ try {
   const after = await ev(`({state:document.querySelector('[data-product-clip]')?.getAttribute('data-product-clip'),videos:document.querySelectorAll('video').length,text:document.querySelector('[data-clip-error]')?.innerText??null,play:!!document.querySelector('[data-clip-play]')})`);
   await shot("d1440-en-clip-failed");
   check("CL-fail", "when the film cannot be loaded the poster comes back with a sentence and the play control, never an empty player", failed && after.state === "poster" && after.videos === 0 && after.play && Boolean(after.text), after);
+  }
   await send("Network.setBlockedURLs", { urls: [] });
   ws.close();
 } catch (e) {

@@ -21,7 +21,7 @@ const HIDDEN = ["voice", "social-growth", "lead-acquisition", "property-matching
 const PAGES = ["", "/platform", ...PUBLISHED.map((s) => `/platform/${s}`), "/packages", "/trial", "/contact", "/signup", "/login", "/login?confirmed=1", "/welcome", "/faq", "/legal/privacy", "/legal/terms", "/legal/data-deletion", "/legal/notice"];
 const FORBIDDEN = [
   /Most agencies/i, /La mayoría empieza/i, /never need another/i, /What is not ready yet/i, /Certified internally/i, /Certificado internamente/i,
-  /real doorways/i, /puertas/i, /Capture pending/i, /Captura pendiente/i, /catorce/i, /Coming soon/i, /hot lead/i, /lead caliente/i,
+  /real doorways/i, /puertas/i, /Capture pending/i, /Captura pendiente/i, /catorce/i, /Coming soon/i, /* hot lead wording is allowed again since the owner's package ladder names the alerts with their state (2026-10-06); the state words carry the guard */
   /In development/, /En desarrollo/, /phone assistant is in preparation/i, /asistente telef[oó]nico est[aá] en preparaci[oó]n/i, /A person can./, /Una persona s[ií] puede/, /No enquiry waits until Monday/, /Ninguna consulta espera al lunes/, /Nothing is handed between tools/, /Nada se pasa de una herramienta a otra/, /with (its|their) qualification/i, /con su cualificaci[oó]n/i, /In final testing/, /En prueba final/, /Not offered yet/, /Todavía no se ofrece/, /waiting on the gates/i, /localhost/i,
 ];
 const results = { started_utc: new Date().toISOString(), base: BASE, checks: [] };
