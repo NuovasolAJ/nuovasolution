@@ -81,8 +81,8 @@ export const capabilities: Capability[] = [
       { text: { en: "Outlook and Microsoft 365.", es: "Outlook y Microsoft 365." }, status: "in_implementation" },
     ],
     scenario: {
-      en: "A buyer writes on WhatsApp on a Sunday evening asking whether the apartment in Estepona is still available. The message is answered on WhatsApp, and the conversation is recorded against the buyer for the agent on Monday.", // WCR-055
-      es: "Un comprador escribe por WhatsApp un domingo por la tarde para preguntar si el piso de Estepona sigue disponible. El mensaje se responde por WhatsApp, y la conversación queda registrada en la ficha del comprador para el agente el lunes.",
+      en: "A buyer writes on WhatsApp on a Tuesday morning, while the agent is at a viewing, asking whether the flat in Estepona can be viewed. The message is answered on WhatsApp in her language, and the conversation is recorded against the buyer for the agent after the viewing.", // WORKING (master order 2026-10-10); was WCR-055
+      es: "Una compradora escribe por WhatsApp un martes por la mañana, mientras el agente está en una visita, para preguntar si se puede ver el piso de Estepona. El mensaje se responde por WhatsApp en su idioma, y la conversación queda registrada en la ficha de la compradora para el agente al terminar la visita.",
     },
     fits: [
       { en: "Gmail", es: "Gmail" },

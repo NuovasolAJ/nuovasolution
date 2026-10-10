@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { isLocale, type Locale } from "@/lib/i18n/config";
+import { redirect } from "next/navigation";
+import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { integrationMode } from "@/lib/contracts/mode";
+import { hasSession } from "@/lib/contracts/server";
 import { Section } from "@/components/ui/section";
 import { Display, Eyebrow, Lead } from "@/components/ui/type";
 import { LoginForm } from "@/components/site/auth-forms";
 import { LabelChip } from "@/components/ui/status";
 import { EnvironmentRibbon } from "@/components/site/environment-ribbon";
+
+export const dynamic = "force-dynamic";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   if (!isLocale(params.locale)) return {};
@@ -14,14 +18,22 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return { title: d.login.h1, description: d.login.lead, robots: { index: false, follow: true } };
 }
 
+/** Only a same-origin locale path may be a destination (review WR-05); anything else falls back to the agency home. */
+function safeNext(next: string | undefined, locale: Locale): string {
+  const fallback = localePath(locale, "/app");
+  if (!next) return fallback;
+  return /^\/(en|es)(\/[A-Za-z0-9\-_/]*)?(\?[A-Za-z0-9=&%\-_.]*)?$/.test(next) && !next.startsWith("//") ? next : fallback;
+}
+
 /**
- * Log in. `?confirmed=1` is where the sign-up confirmation link returns (and where the sign-up
- * page sends people who confirm on another device): the page then says that a confirmed account
- * continues to the agency step after logging in. The session fragment, when present, is handled
- * by AuthFragment in the layout before this form is needed.
+ * Log in. `?confirmed=1` is where the sign-up confirmation link returns; `?next=` is the surface that sent the
+ * person here (AUTHENTICATED_SURFACE_SYSTEM §5.4): after the login they return there, not to the wizard. A
+ * visitor who already has a session is sent on at once. `?state=expired` says that the previous session ended.
  */
-export default function LoginPage({ params, searchParams }: { params: { locale: string }; searchParams: { confirmed?: string } }) {
+export default function LoginPage({ params, searchParams }: { params: { locale: string }; searchParams: { confirmed?: string; next?: string; state?: string } }) {
   const locale = params.locale as Locale;
+  const next = safeNext(searchParams.next, locale);
+  if (hasSession() && searchParams.state !== "expired") redirect(next);
   const d = getDictionary(locale);
   const stub = integrationMode() === "stub";
   const confirmed = searchParams.confirmed === "1";
@@ -45,7 +57,8 @@ export default function LoginPage({ params, searchParams }: { params: { locale: 
     <div className="band band-sand band-shoulders">
       <div className="container-narrow relative !mx-0 pb-[var(--section-default)] pt-[var(--section-compact)] xl:!mx-auto">
         <div className="stage p-6 md:p-8">
-          <LoginForm locale={locale} confirmed={confirmed} />
+          {searchParams.state === "expired" && <p role="status" className="mb-6 rounded-md bg-apricot-100 px-4 py-3 t-body-s text-text-primary" data-session-expired>{d.common.errors.no_session}</p>}
+          <LoginForm locale={locale} confirmed={confirmed} next={next} />
         </div>
       </div>
     </div>

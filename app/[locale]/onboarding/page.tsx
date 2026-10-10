@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { getCrmCatalog, getCrmSelection, getOnboardingBundle, hasSession, type OnboardingBundle, type RegistrationBundle } from "@/lib/contracts/server";
+import { getCrmCatalog, getCrmSelection, getOnboardingBundle, type OnboardingBundle, type RegistrationBundle } from "@/lib/contracts/server";
+import { loginHref, requireSession } from "@/lib/contracts/app-page";
 import { integrationMode } from "@/lib/contracts/mode";
 import { BackendRefusal } from "@/lib/contracts/supabase";
 import { Section } from "@/components/ui/section";
@@ -24,7 +25,7 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
 /** Authenticated surface. Rendered only from what the server read back for the verified actor. */
 export default async function OnboardingPage({ params, searchParams }: { params: { locale: string }; searchParams: { case?: string } }) {
   const locale = params.locale as Locale;
-  if (!hasSession()) redirect(localePath(locale, "/login"));
+  requireSession(locale, "/onboarding");
   const d = getDictionary(locale);
   const caseParam = searchParams.case ? Number(searchParams.case) : undefined;
 
@@ -34,7 +35,7 @@ export default async function OnboardingPage({ params, searchParams }: { params:
     bundle = await getOnboardingBundle(Number.isFinite(caseParam) ? caseParam : undefined);
   } catch (e) {
     const code = e instanceof BackendRefusal ? e.code : "generic";
-    if (code === "no_session") redirect(localePath(locale, "/login"));
+    if (code === "no_session") redirect(loginHref(locale, "/onboarding", { state: "expired" }));
     problem = code;
   }
 

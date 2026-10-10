@@ -22,6 +22,12 @@ export const es: Dictionary = {
     contact: "Contacto",
     login: "Iniciar sesión",
     startFree: "Empieza gratis",
+    // El rincón de la cuenta cuando hay sesión (orden de auditoría 2026-10-08b): WORKING
+    account: "Mi agencia",
+    logout: "Cerrar sesión",
+    loggingOut: "Cerrando sesión",
+    signedOut: "Has cerrado la sesión.",
+    reports: "Informes",
     menu: "Menú",
     close: "Cerrar",
     stages: {
@@ -133,17 +139,17 @@ export const es: Dictionary = {
     hero: {
       eyebrow: "Para agencias inmobiliarias en España",
       h1: "Respondida cuando llega", // COPY_DELTAS_1001 D-81
-      lead: "Un comprador escribe el domingo. Nuova responde en español, registra lo que ha pedido y deja una tarea a tu equipo.", // COPY_HERO_1003 §1
+      lead: "Una compradora escribe mientras estás en una visita. Nuova responde en su idioma, registra lo que ha pedido y deja una tarea a tu equipo.", // WORKING (orden maestra 2026-10-10 §4, §5); antes COPY_HERO_1003 §1
       state: "Hoy en español, para consultas de texto por WhatsApp y email.", // COPY_HERO_1003 §1
       qualifier: "En los canales que conectes.",
       note: "14 días gratis. Sin pago.",
       ctaSecondary: "Ver cómo funciona", // COPY_HERO_1003 §1
       cards: {
         synthetic: "Ejemplo con datos sintéticos",
-        enquiry: { channel: "WhatsApp · consulta nueva", time: "domingo 21:40", text: "Hola, soy Laura Serrano. ¿Se puede ver el piso de dos dormitorios en Estepona? Estamos en Manchester y podríamos ir el jueves por la mañana.", from: "Laura Serrano" },
+        enquiry: { channel: "WhatsApp · consulta nueva", time: "martes 11:20", text: "Hola, soy Laura Serrano. ¿Se puede ver el piso de dos dormitorios en Estepona? Estamos en Manchester y podríamos ir el jueves por la mañana.", from: "Laura Serrano" },
         answer: {
           label: "Respondido por Nuova, con el nombre de tu agencia",
-          time: "domingo 21:40",
+          time: "martes 11:20",
           // Owner-approved WhatsApp disclosure v1.0-es, quoted verbatim (LAUNCH_COPY_v1 §4.2). Any change is an owner and counsel matter.
           disclosure: "🤖 Soy un asistente de inteligencia artificial. Te ayudaré con tu consulta inmobiliaria. Si prefieres hablar con un agente humano, indícamelo en cualquier momento.",
           disclosureMark: "",
@@ -273,7 +279,7 @@ export const es: Dictionary = {
       workingText: "Texto de trabajo. La redacción no es definitiva.",
       story: {
         name: "Laura Serrano",
-        time: "domingo 21:40",
+        time: "martes 11:20",
         fields: [
           { k: "Pide", v: "2 dormitorios, Estepona · EST-204" },
           { k: "Quiere ver", v: "el jueves por la mañana" },
@@ -301,7 +307,7 @@ export const es: Dictionary = {
         full: "Ver la conversación completa",
         fullHide: "Ocultar la conversación completa",
         fullTitle: "La conversación completa, con el aviso que lleva cada respuesta",
-        record: { updated: "Actualizado ahora", from: "De la conversación de WhatsApp · domingo 21:40" },
+        record: { updated: "Actualizado ahora", from: "De la conversación de WhatsApp · martes 11:20" },
         task: { taken: "Tomada por ti", complete: "Marcar como hecha", done: "Hecha. Sale de la lista.", again: "Volver a empezar" },
       },
       offer: {
@@ -925,6 +931,16 @@ export const es: Dictionary = {
         other: "Falta un requisito para publicar.",
       },
       choose: "Elegir",
+      // Pantalla B, la mitad del recorrido (SOCIAL_UI_SPEC_v1 §2 pasos 2 y 3; wiring patch §2b): WORKING
+      draft: "Crear el texto",
+      approve: "Aprobar",
+      drafted: "Texto creado. Revísalo y apruébalo.",
+      approved: "Aprobada. La publicación está en cola; publícala desde la lista de publicaciones.",
+      testMarker: "Publicación de prueba: el texto lleva la marca técnica de prueba.",
+      noImage: "Este inmueble no tiene imagen",
+      imageExpired: "El enlace de la imagen ha caducado.",
+      imageReload: "Cargar de nuevo",
+      language: "Idioma",
       dataFrom: "Datos del inmueble del",
       postsH: "Publicaciones",
       postsEmpty: "Todavía no hay publicaciones.",

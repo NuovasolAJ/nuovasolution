@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
  * or null when it may be used. The sentence for each code is in the dictionary (social.actions).
  */
 export type OffReason = "noRelease" | "notConfigured" | "needsConnection" | "limitReached" | "stub" | null;
-export type SocialActionName = "begin_connect" | "account_check" | "publish" | "verify_publish" | "poll_comments" | "poll_dms" | "reply_public" | "reply_private" | "dm_reply" | "disconnect";
+export type SocialActionName = "begin_connect" | "account_check" | "draft" | "approve" | "publish" | "verify_publish" | "poll_comments" | "poll_dms" | "reply_public" | "reply_private" | "dm_reply" | "disconnect";
 
 type Env = { ok: boolean; code: string; stub?: true; details?: Record<string, unknown> };
 
@@ -185,6 +185,60 @@ export function ConnectAction({ locale, label, off, checkLabel }: { locale: Loca
       </div>
       {off && <OffNote reason={off} locale={locale} />}
       {msg && <p role={msg.tone === "error" ? "alert" : "status"} className={cn("t-caption", msg.tone === "error" ? "text-signal-critical" : msg.tone === "ok" ? "text-signal-positive" : "text-text-secondary")} data-social-result={msg.tone}>{msg.text}</p>}
+    </div>
+  );
+}
+
+/**
+ * Screen B, the middle of the customer path (SOCIAL_UI_ACTION_WIRING_PATCH_v1 §2b; Social 2026-10-09 gaps 2 and 3):
+ * "Create the text" drafts a post for one listing (the key is the listing's key of the read state; the server
+ * turns it into the property id), shows the caption that came back, and "Approve" queues it with the draft's
+ * own id. Nothing is published here: a queued post is published from the posts list, with the release.
+ */
+export function DraftApprove({ locale, listing, off, labels }: { locale: Locale; listing: string; off: OffReason; labels: { draft: string; approve: string; drafted: string; approved: string; testMarker: string; noImage: string; language: string } }) {
+  const { a, explain } = useActions(locale);
+  const router = useRouter();
+  const [busy, setBusy] = useState<"draft" | "approve" | null>(null);
+  const [draft, setDraft] = useState<{ id: string | null; caption: string; test: boolean; media: number } | null>(null);
+  const [msg, setMsg] = useState<{ tone: "ok" | "error"; text: string } | null>(null);
+  const [done, setDone] = useState(false);
+  async function makeDraft() {
+    if (busy) return;
+    setBusy("draft");
+    setMsg(null);
+    const r = await act({ action: "draft", listing, language: locale });
+    setBusy(null);
+    if (!r.ok) return setMsg({ tone: "error", text: explain(r) });
+    const d = r.details ?? {};
+    setDraft({ id: typeof d.variant_id === "string" ? d.variant_id : null, caption: typeof d.caption === "string" ? d.caption : "", test: d.test_marker === true, media: typeof d.media_attached === "number" ? d.media_attached : 0 });
+    setMsg({ tone: "ok", text: labels.drafted });
+  }
+  async function approve() {
+    if (busy || !draft?.id) return;
+    setBusy("approve");
+    setMsg(null);
+    const r = await act({ action: "approve", draft: draft.id });
+    setBusy(null);
+    if (!r.ok) return setMsg({ tone: "error", text: explain(r) });
+    setDone(true);
+    setMsg({ tone: "ok", text: labels.approved });
+    router.refresh();
+  }
+  return (
+    <div className="flex flex-col gap-3" data-social-draft={done ? "queued" : draft ? "drafted" : "none"}>
+      <div className="flex flex-wrap items-center gap-3">
+        {!draft && <Button type="button" size="sm" variant="secondary" disabled={busy !== null || off !== null} busy={busy === "draft"} onClick={() => void makeDraft()} data-social-inert={off ?? undefined} data-social-action="draft">{busy === "draft" ? a.running : labels.draft}</Button>}
+        {draft && !done && <Button type="button" size="sm" disabled={busy !== null || off !== null || !draft.id} busy={busy === "approve"} onClick={() => void approve()} data-social-inert={off ?? undefined} data-social-action="approve">{busy === "approve" ? a.running : labels.approve}</Button>}
+      </div>
+      {draft && (
+        <div className="rounded-lg border border-line-hairline bg-surface-raised p-4" data-social-caption>
+          <p className="t-caption text-text-muted">{labels.language}: {locale === "es" ? "Español" : "English"}{draft.media === 0 ? ` · ${labels.noImage}` : ""}</p>
+          <p className="mt-1 whitespace-pre-line t-body-s text-text-primary">{draft.caption}</p>
+          {draft.test && <p className="mt-2 t-caption text-signal-attention">{labels.testMarker}</p>}
+        </div>
+      )}
+      {off && <OffNote reason={off} locale={locale} />}
+      {msg && <p role={msg.tone === "error" ? "alert" : "status"} className={cn("t-caption", msg.tone === "error" ? "text-signal-critical" : "text-signal-positive")} data-social-result={msg.tone}>{msg.text}</p>}
     </div>
   );
 }

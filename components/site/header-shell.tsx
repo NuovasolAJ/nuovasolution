@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import { ButtonLink } from "@/components/ui/button";
+import { SessionNav } from "./session-nav";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -25,6 +25,9 @@ export function HeaderShell({
   utilities,
   login,
   primary,
+  account,
+  logout,
+  home,
   labels,
 }: {
   logo: ReactNode;
@@ -34,6 +37,9 @@ export function HeaderShell({
   utilities: ReactNode;
   login: { href: string; label: string };
   primary: { href: string; label: string };
+  account: { href: string; label: string };
+  logout: { label: string; busy: string };
+  home: string;
   labels: { menu: string; close: string };
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -183,12 +189,7 @@ export function HeaderShell({
 
           <div className="hidden xl:flex items-center justify-end gap-1 2xl:gap-3">
             {utilities}
-            <Link href={login.href} className={linkCls}>
-              {login.label}
-            </Link>
-            <ButtonLink href={primary.href} size="sm" className="header-cta">
-              {primary.label}
-            </ButtonLink>
+            <SessionNav variant="bar" login={login} primary={primary} account={account} logout={logout} home={home} linkCls={linkCls} />
           </div>
 
           <button
@@ -221,14 +222,7 @@ export function HeaderShell({
         className="xl:hidden fixed inset-x-0 top-[var(--header-h)] bottom-0 z-[90] overflow-y-auto bg-surface-canvas border-t border-line-hairline"
       >
         <div className="container-default flex min-h-full flex-col gap-8 py-6">
-          <div className="flex flex-col gap-3">
-            <ButtonLink href={primary.href} size="lg" full>
-              {primary.label}
-            </ButtonLink>
-            <ButtonLink href={login.href} variant="secondary" size="md" full>
-              {login.label}
-            </ButtonLink>
-          </div>
+          <SessionNav variant="sheet" login={login} primary={primary} account={account} logout={logout} home={home} />
           <div>
             <p className="t-eyebrow text-text-muted mb-4">{platformLabel}</p>
             {platformMenu}

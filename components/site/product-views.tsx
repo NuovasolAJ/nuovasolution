@@ -2,7 +2,7 @@ import type { Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { cn } from "@/lib/utils";
 import { LabelChip, StatusGlyph } from "@/components/ui/status";
-import { REFERENCE as SITE_REFERENCE } from "@/lib/content/home-scenes";
+import { REFERENCE as SITE_REFERENCE, enquiries, storyWords } from "@/lib/content/home-story";
 
 /**
  * Product views for the marketing pages (LAUNCH_COPY_v1 §4 and COPY_DELTAS_0929: one person,
@@ -23,7 +23,9 @@ import { REFERENCE as SITE_REFERENCE } from "@/lib/content/home-scenes";
 export function ConversationView({ locale, className }: { locale: Locale; className?: string }) {
   const d = getDictionary(locale);
   const v = d.home.views.conversation;
-  const c = d.home.hero.cards;
+  // The same conversation as the home page story (lib/content/home-story.ts): Laura writes in English, the reply is in English.
+  const laura = enquiries[0];
+  const time = laura.time[locale];
   return (
     <div className={cn("mx-auto w-full max-w-[420px]", className)} data-view="conversation">
       <div className="overflow-hidden rounded-xl border border-line-hairline bg-surface-raised shadow-card">
@@ -31,26 +33,26 @@ export function ConversationView({ locale, className }: { locale: Locale; classN
           <span aria-hidden="true" className="inline-flex h-8 w-8 items-center justify-center rounded-pill bg-sage-200 text-sage-700"><StatusGlyph glyph="link" size={14} /></span>
           <div className="min-w-0">
             <p className="t-body-s font-medium text-text-primary">{v.agency}</p>
-            <p className="t-caption text-text-muted">{v.channel}</p>
+            <p className="t-caption text-text-muted">{v.channel} · {laura.language[locale]}</p>
           </div>
           <LabelChip className="ml-auto">{v.synthetic}</LabelChip>
         </div>
         <ol className="space-y-3 p-4">
           <li className="flex justify-start">
             <div className="max-w-[88%] rounded-lg rounded-bl-sm bg-surface-sunken px-3.5 py-2.5">
-              <p className="t-body-s text-text-primary">{c.enquiry.text}</p>
-              <p className="mt-1 t-caption tnum text-text-muted">{v.time}</p>
+              <p lang={laura.lang} className="t-body-s text-text-primary">{laura.text}</p>
+              <p className="mt-1 t-caption tnum text-text-muted">{time}</p>
             </div>
           </li>
           <li className="flex justify-end">
             <div className="max-w-[88%] rounded-lg rounded-br-sm bg-sage-100 px-3.5 py-2.5">
               <p className="mb-1 t-caption text-sage-700">{v.assistant}</p>
-              <p className="mb-2 border-b border-sage-200 pb-2 t-body-s text-text-primary" data-disclosure={locale}>
-                {c.answer.disclosure}
-                {c.answer.disclosureMark && <span className="mt-1 block t-caption text-text-muted">{c.answer.disclosureMark}</span>}
+              <p lang={laura.lang} className="mb-2 border-b border-sage-200 pb-2 t-body-s text-text-primary" data-disclosure={laura.lang}>
+                {laura.notice}
+                {laura.noticeIsSample && <span className="mt-1 block t-caption text-text-muted">{storyWords.common.noticeSample[locale]}</span>}
               </p>
-              <p className="t-body-s text-text-primary">{c.answer.text}</p>
-              <p className="mt-1 t-caption tnum text-text-muted">{v.time}</p>
+              <p lang={laura.lang} className="t-body-s text-text-primary">{laura.reply}</p>
+              <p className="mt-1 t-caption tnum text-text-muted">{time}</p>
             </div>
           </li>
         </ol>

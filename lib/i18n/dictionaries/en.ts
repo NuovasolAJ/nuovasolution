@@ -21,6 +21,12 @@ export const en = {
     contact: "Contact",
     login: "Log in",
     startFree: "Start free",
+    // The account corner once a session exists (audit order 2026-10-08b): WORKING
+    account: "My agency",
+    logout: "Log out",
+    loggingOut: "Logging out",
+    signedOut: "You are logged out.",
+    reports: "Reports",
     menu: "Menu",
     close: "Close",
     // Stage names in customer language (PRODUCT_TEXTS_C3_v1 §1.1)
@@ -149,7 +155,7 @@ export const en = {
     hero: {
       eyebrow: "For real estate agencies in Spain",
       h1: "Answered when it arrives", // COPY_DELTAS_1001 D-81
-      lead: "A buyer writes on Sunday night. Nuova answers in Spanish, records what they asked for and leaves your team one task.", // COPY_HERO_1003 §1
+      lead: "A buyer writes while you are at a viewing. Nuova answers in her language, records what she asked for and leaves your team one task.", // WORKING (master order 2026-10-10 §4, §5); was COPY_HERO_1003 §1
       state: "Today in Spanish, for text enquiries on WhatsApp and email.", // COPY_HERO_1003 §1, the state line under the buttons
       qualifier: "On the channels you connect.",
       note: "14 days free. No payment.",
@@ -157,10 +163,10 @@ export const en = {
       cards: {
         synthetic: "Example with synthetic data",
         // One person across every surface, the same as in the Daily captures (daily_media/MANIFEST.md): Laura Serrano, Thursday morning.
-        enquiry: { channel: "WhatsApp · new enquiry", time: "Sunday 21:40", text: "Hello, I am Laura Serrano. Is the two bedroom flat in Estepona still free to view? We are in Manchester and could come on Thursday morning.", from: "Laura Serrano" }, // D-09
+        enquiry: { channel: "WhatsApp · new enquiry", time: "Tuesday 11:20", text: "Hello, I am Laura Serrano. Is the two bedroom flat in Estepona still free to view? We are in Manchester and could come on Thursday morning.", from: "Laura Serrano" }, // D-09
         answer: {
           label: "Answered by Nuova, under your agency's name",
-          time: "Sunday 21:40",
+          time: "Tuesday 11:20",
           disclosure: "I am an AI assistant. I will help you with your property enquiry. If you prefer to speak to a human agent, tell me at any time.",
           disclosureMark: "Sample translation. The approved notice is the Spanish one.", // D-78
           // No availability is confirmed: there is no inventory source behind the example (external finding 13, COPY_DELTAS_0929 D-10).
@@ -304,7 +310,7 @@ export const en = {
       workingText: "Working text. The wording is not final.",
       story: {
         name: "Laura Serrano",
-        time: "Sunday 21:40",
+        time: "Tuesday 11:20",
         fields: [
           { k: "Asked for", v: "2 bedrooms, Estepona · EST-204" },
           { k: "Wants to view", v: "Thursday morning" },
@@ -332,7 +338,7 @@ export const en = {
         full: "Show the full conversation",
         fullHide: "Hide the full conversation",
         fullTitle: "The full conversation, with the notice every reply carries",
-        record: { updated: "Updated now", from: "From the WhatsApp conversation · Sunday 21:40" },
+        record: { updated: "Updated now", from: "From the WhatsApp conversation · Tuesday 11:20" },
         task: { taken: "Taken by you", complete: "Mark as done", done: "Done. It leaves the list.", again: "Start again" },
       },
       // The trial, offered again after the demonstrations: the real steps, in their real order (owner 2026-10-06 §2).
@@ -983,6 +989,16 @@ export const en = {
         other: "A requirement for publishing is not met.", // interim
       },
       choose: "Choose",
+      // Screen B, the middle of the path (SOCIAL_UI_SPEC_v1 §2 steps 2 and 3; wiring patch §2b): WORKING
+      draft: "Create the text",
+      approve: "Approve",
+      drafted: "Text created. Check it, then approve it.",
+      approved: "Approved. The post is queued; publish it from the posts list.",
+      testMarker: "Test post: the caption carries the technical test marker.",
+      noImage: "No image for this listing",
+      imageExpired: "The image link has expired.",
+      imageReload: "Load again",
+      language: "Language",
       dataFrom: "Listing data from",
       postsH: "Posts",
       postsEmpty: "No posts yet.", // interim

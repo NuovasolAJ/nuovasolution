@@ -8,35 +8,43 @@ export const dynamic = "force-dynamic";
 
 /**
  * POST /api/bff/social/action
- * Write side of the four social screens (SOCIAL_ACTIONS_CONTRACT_v1 + SOCIAL_UI_ACTION_WIRING_PATCH_v1 §3).
- * The browser sends an action name and, where needed, the key of a post or an inbox entry as the
- * read state rendered it ("p0", "s2"); this route turns the key back into the provider's export id
- * or target by re-reading the state server side, so no provider id of a third party ever reaches
- * the browser. No token, no ops secret and no client_id passes through the browser either: the
- * session decides the tenant, tenant-api op `social.action` resolves it and talks to social_meta_ig.
+ * Write side of the four social screens (SOCIAL_ACTIONS_CONTRACT_v1 + SOCIAL_UI_ACTION_WIRING_PATCH_v1 §3, §2b;
+ * SOCIAL_ACTION_OP_v1, tenant-api v12). The browser sends an action name and, where needed, the key of a
+ * post, an inbox entry or a listing as the read state rendered it ("p0", "s2", "l1"); this route turns the key
+ * back into the export id, the target or the property id by re-reading the state server side, so no provider
+ * id of a third party ever reaches the browser. No token, no ops secret and no client_id passes through the
+ * browser either: the session decides the tenant, tenant-api op `social.action` resolves it.
+ *
+ * Draft and approve (the middle of the customer path): `draft` takes the listing key and the language and
+ * answers with the caption and the draft's own id (`variant_id`, Nuova's id, not a provider's); `approve`
+ * takes that id back. The database checks that both belong to the tenant of the session.
  * Every refusal from the database is passed on as a reason, never rewritten into a technical error.
  *
  * Stub build: there is nothing to act on; the answer is a labelled refusal, never a faked success.
  */
-const ACTIONS = ["begin_connect", "account_check", "publish", "verify_publish", "poll_comments", "poll_dms", "reply_public", "reply_private", "dm_reply", "disconnect"] as const;
+const ACTIONS = ["begin_connect", "account_check", "draft", "approve", "publish", "verify_publish", "poll_comments", "poll_dms", "reply_public", "reply_private", "dm_reply", "disconnect"] as const;
 type Action = (typeof ACTIONS)[number];
 const NEEDS_EXPORT: Action[] = ["publish", "verify_publish"];
 const NEEDS_TARGET: Action[] = ["reply_public", "reply_private", "dm_reply"];
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 /** Only the fields the screens show pass back (patch §2 step 5). Nothing else of the provider answer leaves the server. */
-const SHOWN = ["ok", "reason", "authorize_url", "media_id", "permalink", "provider_ref", "token_deleted", "outcome", "account_name", "account_type", "quota"] as const;
+const SHOWN = ["ok", "reason", "reasons", "authorize_url", "media_id", "permalink", "provider_ref", "token_deleted", "outcome", "account_name", "account_type", "quota", "variant_id", "caption", "language", "test_marker", "media_attached", "export_id", "state", "note"] as const;
 
 export async function POST(req: Request) {
   if (!sameOrigin(req)) return fail("forbidden", 403);
   const token = sessionToken();
   if (!token) return fail("no_session", 401);
 
-  const body = await readJson<{ action?: string; post?: string; signal?: string; message?: string }>(req);
+  const body = await readJson<{ action?: string; post?: string; signal?: string; listing?: string; draft?: string; language?: string; message?: string }>(req);
   const action = body?.action as Action | undefined;
   if (!action || !ACTIONS.includes(action)) return fail("invalid_input", 400);
   if (NEEDS_EXPORT.includes(action) && !/^p\d{1,3}$/.test(body?.post ?? "")) return fail("invalid_input", 400);
   if (NEEDS_TARGET.includes(action) && !(/^s\d{1,3}$/.test(body?.signal ?? "") && body?.message?.trim())) return fail("invalid_input", 400);
+  if (action === "draft" && !/^l\d{1,3}$/.test(body?.listing ?? "")) return fail("invalid_input", 400);
+  if (action === "approve" && !UUID.test(body?.draft ?? "")) return fail("invalid_input", 400);
   if (body?.message && body.message.length > 1000) return fail("invalid_input", 400);
+  const language = body?.language === "en" ? "en" : "es";
 
   // tighter than the read route, and tightest for the one action that opens a provider window
   const budget = action === "begin_connect" ? 5 : 20;
@@ -57,11 +65,20 @@ export async function POST(req: Request) {
       args.target = target;
       args.message = body!.message!.trim();
     }
+    if (action === "draft") {
+      const propertyId = await lookupSocialTarget("listing", body!.listing!);
+      if (!propertyId) return fail("invalid_input", 400);
+      args.property_id = propertyId;
+      args.language = language;
+    }
+    if (action === "approve") args.variant_id = body!.draft!;
     const r = await tenantApi<Json>(token, "social.action", args);
     const details: Json = {};
     for (const k of SHOWN) if (k in r) details[k] = r[k];
     // Only an https link to the provider is ever opened by the browser.
     if (typeof details.authorize_url === "string" && !/^https:\/\//.test(details.authorize_url)) delete details.authorize_url;
+    if (typeof details.variant_id === "string" && !UUID.test(details.variant_id)) delete details.variant_id;
+    if (typeof details.caption === "string") details.caption = details.caption.slice(0, 2200);
     // A refusal is a result, not an error: 200 with ok:false, so the screen can show the reason.
     const ok = r.ok === true;
     const reason = ok ? "ok" : String(r.reason ?? "refused");

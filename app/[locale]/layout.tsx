@@ -10,6 +10,7 @@ import { Footer } from "@/components/site/footer";
 import { QaWidget } from "@/components/site/qa-widget";
 import { EnvironmentRibbon } from "@/components/site/environment-ribbon";
 import { AuthFragment } from "@/components/site/auth-fragment";
+import { SignedOutNotice } from "@/components/site/signed-out-notice";
 import { publicIndexingAllowed } from "@/lib/contracts/mode";
 
 export function generateStaticParams() {
@@ -67,6 +68,7 @@ export default function LocaleLayout({ children, params }: { children: ReactNode
         {/* main starts below the fixed header (globals.css); the test band sits in the flow under it. */}
         <main id="main">
           <EnvironmentRibbon locale={locale} scope="site" />
+          <SignedOutNotice text={d.nav.signedOut} />
           {children}
         </main>
         <Footer locale={locale} />

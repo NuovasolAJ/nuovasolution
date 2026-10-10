@@ -367,7 +367,7 @@ export function SetPasswordForm({ locale }: { locale: Locale }) {
  * A second click or Enter sends nothing. Only a failure (wrong login, a timeout, an unreachable
  * server) frees the button, with its sentence above it, so a retry is always possible.
  */
-export function LoginForm({ locale, confirmed = false }: { locale: Locale; confirmed?: boolean }) {
+export function LoginForm({ locale, confirmed = false, next }: { locale: Locale; confirmed?: boolean; next?: string }) {
   const dict = getDictionary(locale);
   const d = dict.login;
   const id = useId();
@@ -392,7 +392,8 @@ export function LoginForm({ locale, confirmed = false }: { locale: Locale; confi
     try {
       const r = await post("/api/bff/auth/login", { email, password });
       if (r.ok) {
-        run.leave(localePath(locale, "/onboarding"));
+        // Back to the surface that sent the person here (the page validated it), otherwise the agency home.
+        run.leave(next && /^\/(en|es)(\/|\?|$)/.test(next) ? next : localePath(locale, "/app"));
         return;
       }
       if (r.code === "email_not_confirmed") setUnconfirmedEmail(email);

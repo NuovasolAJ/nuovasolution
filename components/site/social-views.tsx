@@ -4,11 +4,12 @@ import { cn } from "@/lib/utils";
 import { localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import type { SocialListing, SocialPost, SocialScreen, SocialSignal, SocialState } from "@/lib/contracts/social";
-import { Button, ButtonLink } from "@/components/ui/button";
+import { ButtonLink } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { Display, Eyebrow, Heading, Lead } from "@/components/ui/type";
 import { LabelChip, StatusGlyph, type Glyph } from "@/components/ui/status";
-import { ConnectAction, ReplyBox, SocialAction, type OffReason } from "./social-actions";
+import { ConnectAction, DraftApprove, ReplyBox, SocialAction, type OffReason } from "./social-actions";
+import { ListingCover } from "./social-cover";
 
 /**
  * The four social screens (SOCIAL_UI_SPEC_v1 §2). Everything here renders what the server read for
@@ -113,15 +114,6 @@ export function SocialShell({ locale, screen, state, problem, children }: { loca
   );
 }
 
-/** A control whose action is not switched on in this step: visible, disabled, never a fake. */
-function Inert({ children, variant = "primary" }: { children: ReactNode; variant?: "primary" | "secondary" }) {
-  return (
-    <Button type="button" size="sm" variant={variant} disabled data-social-inert>
-      {children}
-    </Button>
-  );
-}
-
 // ---------------- Screen A: connect ----------------
 
 export function ConnectScreen({ locale, state }: { locale: Locale; state: SocialState }) {
@@ -195,11 +187,14 @@ export function ConnectScreen({ locale, state }: { locale: Locale; state: Social
 
 // ---------------- Screen B: post ----------------
 
-function ListingRow({ locale, l }: { locale: Locale; l: SocialListing }) {
+function ListingRow({ locale, l, state }: { locale: Locale; l: SocialListing; state: SocialState }) {
   const p = getDictionary(locale).social.post;
   const price = l.price === null ? null : new Intl.NumberFormat(locale === "es" ? "es-ES" : "en-GB", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(l.price);
+  // A draft needs the release and the app (the database refuses otherwise); a listing that cannot be published gets no button at all.
+  const off = gate(state, "connect");
   return (
-    <li className="grid gap-4 p-5 md:grid-cols-[1fr_auto] md:items-center md:p-6" data-listing-ready={l.ready ? "yes" : "no"}>
+    <li className="grid gap-4 p-5 md:grid-cols-[132px_minmax(0,1fr)] md:p-6" data-listing-ready={l.ready ? "yes" : "no"} data-listing={l.key}>
+      <ListingCover locale={locale} url={l.cover_url} expiresAt={l.cover_expires_at} alt={l.title} labels={{ none: p.noImage, expired: p.imageExpired, reload: p.imageReload }} />
       <div className="min-w-0">
         <p className="t-heading-s text-text-primary break-words">{l.title}</p>
         <p className="mt-1 t-body-s text-text-secondary">{[l.location, price].filter(Boolean).join(" · ")}</p>
@@ -216,8 +211,12 @@ function ListingRow({ locale, l }: { locale: Locale; l: SocialListing }) {
           </div>
         )}
         {l.last_seen_at && <p className="mt-2 t-caption text-text-muted">{p.dataFrom} {when(locale, l.last_seen_at)}</p>}
+        {l.ready && (
+          <div className="mt-4">
+            <DraftApprove locale={locale} listing={l.key} off={off} labels={{ draft: p.draft, approve: p.approve, drafted: p.drafted, approved: p.approved, testMarker: p.testMarker, noImage: p.noImage, language: p.language }} />
+          </div>
+        )}
       </div>
-      <div><Inert variant="secondary">{p.choose}</Inert></div>
     </li>
   );
 }
@@ -252,9 +251,13 @@ function PostRow({ locale, x, state }: { locale: Locale; x: SocialPost; state: S
 }
 
 export function PostScreen({ locale, state }: { locale: Locale; state: SocialState }) {
-  const p = getDictionary(locale).social.post;
+  const d = getDictionary(locale).social;
+  const p = d.post;
+  // Screen B says why nothing happens (Social 2026-10-09, gap 1): the same sentence as the other screens.
+  const why = gate(state, "connect");
   return (
     <div className="space-y-10">
+      {why && why !== "stub" && <Note glyph="lock" tone="attention" className="t-body-m" data-post-reason={why}>{d.actions[why]}</Note>}
       <ol className="grid gap-2 md:grid-cols-4" data-post-steps>
         {p.steps.map((label, i) => (
           <li key={label} aria-current={i === 0 ? "step" : undefined} className={cn("flex items-center gap-3 rounded-pill px-4 py-2.5 t-body-s", i === 0 ? "bg-surface-raised text-text-primary shadow-card" : "text-text-muted")}>
@@ -268,7 +271,7 @@ export function PostScreen({ locale, state }: { locale: Locale; state: SocialSta
           <Heading size="m" as="h2" id="social-listings">{p.listingsH}</Heading>
           {state.listings.length ? (
             <ul className="stage mt-4 divide-y divide-line-hairline overflow-hidden">
-              {state.listings.map((l) => <ListingRow key={l.key} locale={locale} l={l} />)}
+              {state.listings.map((l) => <ListingRow key={l.key} locale={locale} l={l} state={state} />)}
             </ul>
           ) : (
             <div className="stage mt-4 p-6" data-empty="listings"><Note glyph="rule">{p.listingsEmpty}</Note></div>

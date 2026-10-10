@@ -12,7 +12,7 @@ import { StatusGlyph, LabelChip } from "@/components/ui/status";
 import { ProductView } from "@/components/site/product-views";
 import { ProductClip } from "@/components/ui/product-clip";
 import { DAILY_MEDIA_REFERENCE } from "@/components/site/product-views";
-import { REFERENCE } from "@/lib/content/home-scenes";
+import { REFERENCE } from "@/lib/content/home-story";
 import { ClosingBand } from "@/components/site/closing-band";
 
 /** Only published capabilities have a page (audit R27). A hidden or unknown slug answers 404, never a home fallback (Z01). */

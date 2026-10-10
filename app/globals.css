@@ -387,61 +387,60 @@ img, video, svg { display: block; max-width: 100%; }
 }
 
 /* ------------------------------------------------------------------ */
-/* The hero world (owner direction 2026-10-05): a dark anthracite hero */
-/* with a Mediterranean scene in four depths. Far (sky, ridges, sea),  */
-/* mid (the village hillsides), the product panel, front (olive tree,  */
-/* agave, terrace wall). The art is components/home/hero-world-art.tsx. */
-/* Vertical positions hang on --horizon, measured from the top of the   */
-/* stage (the box that holds the panel), so the scene keeps its shape   */
-/* whatever the height of the panel is in a language or on a phone.     */
+/* The hero world (master order 2026-10-10 §1): a dark anthracite hero */
+/* with a Costa del Sol dusk behind (photograph, far), calm ridges     */
+/* (drawn, mid), the product panel, and two floating product cards in  */
+/* front. Layers: components/home/hero-world-layers.tsx. Vertical       */
+/* positions hang on --horizon, measured from the top of the stage, so */
+/* the scene keeps its shape whatever the panel's height is.           */
 /* ------------------------------------------------------------------ */
 .hero-world {
   position: relative;
   overflow: hidden;
   color: var(--ivory);
   background-color: #131416;
-  background-image: linear-gradient(180deg, #131416 0%, #181a1e 32%, #1f2128 58%, #28272c 80%, #2f2a2b 100%);
-  --hero-soft: #9d978d;
+  background-image: linear-gradient(180deg, #131416 0%, #16181c 40%, #1a1c21 70%, #1d1f24 100%);
+  --hero-soft: #a39d93;
   --hero-accent: var(--champagne-300);
   --channel-whatsapp: #25a55f;
   --channel-whatsapp-ink: #1d6b42;
-  --horizon: 96px;
-  --world-rise: 118px;
-  --depth-far: 44px;
-  --depth-mid: 24px;
-  --depth-front: -30px;
-  --panel-tilt: 4deg;
+  --horizon: 120px;
+  --depth-far: 36px;
+  --depth-mid: 18px;
+  --depth-front: -26px;
+  --panel-tilt: 6deg;
+  --panel-rise: 18px;
 }
 @media (min-width: 768px) {
-  .hero-world { --horizon: 150px; --world-rise: 0px; --depth-far: 90px; --depth-mid: 48px; --depth-front: -48px; --panel-tilt: 9deg; }
+  .hero-world { --horizon: 170px; --depth-far: 70px; --depth-mid: 36px; --depth-front: -54px; --panel-tilt: 14deg; --panel-rise: 40px; }
 }
 .hero-world-scene { isolation: isolate; padding-top: 24px; }
-@media (min-width: 768px) { .hero-world-scene { padding-top: 30px; } }
-.hero-world-stars { position: absolute; inset: 0 0 auto 0; height: 300px; width: 100%; pointer-events: none; }
+@media (min-width: 768px) { .hero-world-scene { padding-top: 34px; } }
+.hero-world-stars { position: absolute; inset: 0 0 auto 0; z-index: 1; height: 300px; width: 100%; pointer-events: none; }
+
+/* Far: the photograph, toned to the page. It fades into the sky at the top (so the words and the
+   navigation stand on a calm ground) and into the land at the bottom. */
+.hero-sky { position: absolute; inset: 0 0 auto 0; z-index: 0; height: 100%; max-height: 1100px; pointer-events: none; }
+.hero-sky-photo { display: block; height: 100%; width: 100%; filter: saturate(0.42) brightness(0.56) contrast(1.08); }
+.hero-sky-tone {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(19, 20, 22, 0.97) 0%, rgba(19, 20, 22, 0.84) 24%, rgba(19, 20, 22, 0.42) 48%, rgba(24, 26, 32, 0.22) 62%, rgba(23, 26, 30, 0.7) 84%, #171a1e 100%),
+    linear-gradient(90deg, rgba(19, 20, 22, 0.4) 0%, rgba(19, 20, 22, 0) 32%, rgba(19, 20, 22, 0) 68%, rgba(19, 20, 22, 0.4) 100%),
+    linear-gradient(180deg, rgba(40, 52, 78, 0.18) 0%, rgba(40, 52, 78, 0) 60%);
+}
 
 /* The stage: the panel and everything of the world that is placed against it. */
-.hero-world-stage { position: relative; margin: 20px auto 0; max-width: 980px; padding-top: var(--world-rise); }
-@media (min-width: 768px) { .hero-world-stage { margin-top: 36px; } }
-.hero-world-stage > [class^="hero-world-"] { pointer-events: none; }
-.hero-world-glow, .hero-world-far, .hero-world-land, .hero-world-ground { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; }
-.hero-world-glow {
-  top: calc(var(--horizon) - 300px);
-  height: 300px;
-  background:
-    radial-gradient(ellipse 40% 92% at 64% 100%, rgba(232, 164, 100, 0.55) 0%, rgba(232, 164, 100, 0.18) 46%, rgba(232, 164, 100, 0) 74%),
-    linear-gradient(to top, rgba(206, 140, 92, 0.34) 0%, rgba(150, 110, 96, 0.14) 42%, rgba(150, 110, 96, 0) 100%);
-}
-.hero-world-far { top: calc(var(--horizon) - 180px); height: 240px; }
-.hero-world-land { top: calc(var(--horizon) + 58px); bottom: 0; background: linear-gradient(180deg, #23272d 0%, #1f2226 40%, #171819 100%); }
-.hero-world-mid { position: absolute; z-index: 1; top: calc(var(--horizon) - 84px); width: 250px; height: 180px; }
-.hero-world-mid-left { left: calc(50% - 50vw); }
-.hero-world-mid-right { right: calc(50% - 50vw); }
-@media (min-width: 768px) {
-  .hero-world-mid { top: calc(var(--horizon) - 152px); width: 460px; height: 330px; }
-}
+.hero-world-stage { position: relative; margin: 28px auto 0; max-width: 1040px; padding-top: 10px; }
+@media (min-width: 768px) { .hero-world-stage { margin-top: 48px; padding: 24px 0 176px; } }
+.hero-world-land, .hero-world-ground, .hero-ridges { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; pointer-events: none; }
+.hero-ridges { top: calc(var(--horizon) - 120px); z-index: 1; height: 220px; }
+.hero-world-land { top: calc(var(--horizon) + 60px); bottom: 0; background: linear-gradient(180deg, #171a1e 0%, #15171b 50%, #131416 100%); }
+.hero-world-ground { z-index: 3; bottom: 0; height: 10px; background: #0f0f10; }
 
 /* The panel: one light surface, large type, no frame inside a frame. It leans back and comes upright on
-   scroll (the mechanics of Container Scroll Animation: perspective, rotateX to flat, a layered shadow). */
+   scroll, rising and growing a little (the mechanics of Container Scroll Animation: perspective, rotateX to
+   flat, a layered shadow), so the product visibly steps forward as the page starts to move. */
 .hero-panel {
   position: relative;
   z-index: 2;
@@ -456,28 +455,90 @@ img, video, svg { display: block; max-width: 100%; }
   --focus-ring: var(--ink-950);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 9px 20px rgba(0, 0, 0, 0.29), 0 37px 37px rgba(0, 0, 0, 0.26), 0 84px 50px rgba(0, 0, 0, 0.15), 0 149px 60px rgba(0, 0, 0, 0.04);
   transform-origin: 50% 100%;
-  --upright: min(1, calc(var(--depth, 0) * 3.4));
-  /* leaning back at the top of the page; upright and 4 % larger once scrolled; then it rests */
-  transform: perspective(1400px) rotateX(calc((1 - var(--upright)) * var(--panel-tilt))) scale(calc(0.96 + var(--upright) * 0.04));
+  --upright: min(1, calc(var(--depth, 0) * 2.6));
+  transform:
+    perspective(1400px)
+    translateY(calc((1 - var(--upright)) * var(--panel-rise)))
+    rotateX(calc((1 - var(--upright)) * var(--panel-tilt)))
+    scale(calc(0.94 + var(--upright) * 0.06));
   will-change: transform;
 }
 .hero-bubble { max-width: 94%; padding: 12px 16px; border-radius: 16px; font-size: 1rem; line-height: 1.5; color: var(--ink-950); }
 .hero-bubble-in { background: #efede7; border-bottom-left-radius: 4px; }
-/* The outgoing tint of WhatsApp, used here and only here, because this is a WhatsApp conversation. */
+/* The outgoing tint of WhatsApp, used for the assistant's replies. */
 .hero-bubble-out { background: #dcf3df; border-bottom-right-radius: 4px; }
 .hero-bubble-meta { margin-top: 4px; font-size: 0.75rem; line-height: 1.4; color: var(--ink-600); font-variant-numeric: tabular-nums; }
 .hero-next { padding: 12px 14px; border-left: 3px solid var(--champagne-400); border-radius: 4px 12px 12px 4px; background: #fff; box-shadow: var(--shadow-card); }
 
-/* The foreground: anchored to the lower corners of the panel, so it covers them at every width. */
-.hero-world-front { position: absolute; z-index: 3; bottom: -2px; width: 320px; height: 185px; }
-.hero-world-front-left { right: calc(100% - 116px); }
-.hero-world-front-right { left: calc(100% - 116px); }
-@media (min-width: 768px) {
-  .hero-world-front { width: 520px; height: 300px; }
-  .hero-world-front-left { right: calc(100% - 190px); }
-  .hero-world-front-right { left: calc(100% - 190px); }
+/* The front: two product cards. On a phone they stand under the panel in the flow; from 768 px they float
+   over the panel's lower corners (never over its words: the panel keeps that room free) and move ahead of
+   the page on scroll. */
+.hero-float {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #fff;
+  color: var(--ink-950);
+  --text-primary: var(--ink-950);
+  --text-secondary: var(--ink-700);
+  --text-muted: #635f58;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 8px 18px rgba(0, 0, 0, 0.28), 0 28px 40px rgba(0, 0, 0, 0.3);
 }
-.hero-world-ground { z-index: 3; bottom: 0; height: 14px; background: #0b0b0a; }
+.hero-float-photo { display: block; aspect-ratio: 16 / 7; width: 100%; object-fit: cover; }
+@media (min-width: 768px) {
+  .hero-float { position: absolute; bottom: 0; width: 292px; margin-top: 0; }
+  .hero-float-left { left: -20px; }
+  .hero-float-right { right: -20px; width: 316px; }
+  .hero-float-photo { aspect-ratio: 16 / 8; }
+}
+@media (min-width: 1280px) {
+  .hero-float { width: 316px; }
+  .hero-float-left { left: -64px; }
+  .hero-float-right { right: -64px; width: 340px; }
+}
+/* The panel leaves room for the cards at its foot, so they cover nothing to read. */
+@media (min-width: 768px) {
+  .hero-panel > .grid > div { padding-bottom: 128px; }
+}
+
+/* ------------------------------------------------------------------ */
+/* The story (master order 2026-10-10 §3): six chapters, each a scene  */
+/* in three depths on the ivory ground. A thin rail with the letters   */
+/* joins the chapters; the stage is a white surface; one soft field    */
+/* lies behind it and one chip floats in front.                        */
+/* ------------------------------------------------------------------ */
+.story { position: relative; }
+.story-chapter { position: relative; display: grid; gap: 28px; padding-block: 40px; }
+.story-chapter + .story-chapter { border-top: 1px solid var(--border-hairline); }
+@media (min-width: 1024px) {
+  .story-chapter { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; padding-block: 72px; align-items: start; }
+  .story-text { position: sticky; top: calc(var(--header-h) + 32px); }
+}
+.story-letter { font-size: clamp(2.5rem, 2rem + 2vw, 4rem); line-height: 1; font-weight: 500; letter-spacing: -0.04em; color: var(--accent, var(--champagne-400)); margin-bottom: 16px; }
+.story-scene { position: relative; padding: 14px 0 34px; }
+@media (min-width: 768px) { .story-scene { padding: 22px 0 40px; } }
+.story-field { position: absolute; inset: 0 -8px 20px 18px; z-index: 0; border-radius: 28px; background: var(--sand-100); }
+@media (min-width: 768px) { .story-field { inset: 0 -22px 24px 36px; } }
+.story-field-sand { background: linear-gradient(160deg, var(--sand-100), var(--sand-200)); }
+.story-field-sage { background: linear-gradient(160deg, var(--sage-100), var(--sage-200)); }
+.story-field-sky { background: linear-gradient(160deg, var(--sky-100), var(--sky-200)); }
+.story-field-stone { background: linear-gradient(160deg, #f3f1ec, #ecebe5); }
+.story-stage {
+  position: relative; z-index: 1;
+  padding: 20px 18px 22px;
+  border-radius: 20px;
+  background: var(--paper);
+  border: 1px solid var(--line-contour);
+  box-shadow: var(--shadow-stage);
+}
+@media (min-width: 768px) { .story-stage { padding: 28px 32px 30px; } }
+.story-front { position: absolute; z-index: 2; left: 6px; bottom: 14px; }
+@media (min-width: 768px) { .story-front { left: 12px; bottom: 16px; } }
+.story-label { position: relative; z-index: 1; margin: 12px 0 0 auto; max-width: 62ch; padding-left: 40%; text-align: right; font-size: 0.8125rem; line-height: 1.5; color: var(--text-muted); }
+@media (max-width: 767px) { .story-label { padding-left: 0; text-align: left; margin-top: 44px; } }
 
 /* The two buttons of the hero on the dark sky. */
 .hero-cta-main {

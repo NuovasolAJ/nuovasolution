@@ -40,6 +40,9 @@ export interface SocialListing {
   /** Reduced reason codes: source_rights_missing | listing_stale | other. */
   reasons: ("source_rights_missing" | "listing_stale" | "other")[];
   max_age_hours: number | null;
+  /** SOCIAL_UI_CONTRACT_v2: the listing's first image as a signed https link, valid 15 minutes; null without an image. */
+  cover_url: string | null;
+  cover_expires_at: string | null;
 }
 
 export type PostState = "queued" | "published" | "delivery_unknown" | "blocked" | "other";
@@ -106,6 +109,17 @@ const str = (v: unknown, max = 200): string | null => (typeof v === "string" && 
 const iso = (v: unknown): string | null => (typeof v === "string" && !Number.isNaN(Date.parse(v)) ? v : null);
 const arr = (v: unknown): Json[] => (Array.isArray(v) ? (v.filter((x) => x && typeof x === "object") as Json[]) : []);
 
+/** Only an https link is ever handed to the browser as an image source (the signed cover of a listing). */
+function httpsUrl(v: unknown): string | null {
+  const s = str(v, 2000);
+  if (!s) return null;
+  try {
+    return new URL(s).protocol === "https:" ? s : null;
+  } catch {
+    return null;
+  }
+}
+
 /** Only https links to Instagram are passed on as a permalink. */
 function permalink(v: unknown): string | null {
   const s = str(v, 300);
@@ -147,6 +161,8 @@ function reduce(raw: Json, screen: SocialScreen, stub: boolean): SocialState {
       ready: r.ready === true,
       reasons: reasons.filter((x, n) => reasons.indexOf(x) === n),
       max_age_hours: typeof r.max_age_hours === "number" ? r.max_age_hours : null,
+      cover_url: httpsUrl(l.cover_url),
+      cover_expires_at: iso(l.cover_expires_at),
     };
   });
 
@@ -233,15 +249,16 @@ function reduce(raw: Json, screen: SocialScreen, stub: boolean): SocialState {
  * example answers for `social.action` (SOCIAL_UI_ACTION_WIRING_PATCH_v1 §2); until then the first of
  * the usual names is taken, and nothing is sent when none is there.
  */
-export async function lookupSocialTarget(kind: "post" | "signal", key: string): Promise<string | null> {
+export async function lookupSocialTarget(kind: "post" | "signal" | "listing", key: string): Promise<string | null> {
   if (integrationMode() === "stub") return null;
   const n = Number(key.slice(1));
-  const screen: SocialScreen = kind === "post" ? "post" : "inbox";
+  const screen: SocialScreen = kind === "signal" ? "inbox" : "post";
   const raw = await tenantApi<Json>(sessionToken(), "social.state", { screen });
   if (!raw || raw.ok === false) return null;
-  const row = arr(kind === "post" ? raw.posts : raw.inbox)[n];
+  const row = arr(kind === "post" ? raw.posts : kind === "listing" ? raw.listings : raw.inbox)[n];
   if (!row) return null;
-  const names = kind === "post" ? ["export_id", "id"] : ["target", "comment_id", "sender_id", "signal_id", "provider_ref", "id"];
+  // listing: the key "l2" names the third listing of the read state; its property_id goes to `draft` (wiring patch §2b).
+  const names = kind === "post" ? ["export_id", "id"] : kind === "listing" ? ["property_id", "id"] : ["target", "comment_id", "sender_id", "signal_id", "provider_ref", "id"];
   for (const name of names) {
     const v = row[name];
     if (typeof v === "string" && v.trim()) return v.trim().slice(0, 128);
@@ -256,8 +273,8 @@ export async function lookupSocialTarget(kind: "post" | "signal", key: string): 
 function stubState(screen: SocialScreen, which: string | undefined): SocialState {
   const t = (h: number) => new Date(Date.UTC(2026, 8, 29, 9, 0, 0) - h * 3600 * 1000).toISOString();
   const listings = [
-    { title: "Villa in Nerja (synthetic)", location: "Nerja", price: 545000, last_seen_at: t(20), readiness: { ready: true, reasons: [], max_age_hours: 168 } },
-    { title: "Apartment in Torrox Costa (synthetic)", location: "Torrox Costa", price: 219000, last_seen_at: t(20), readiness: { ready: true, reasons: [], max_age_hours: 168 } },
+    { title: "Villa in Nerja (synthetic)", location: "Nerja", price: 545000, last_seen_at: t(20), readiness: { ready: true, reasons: [], max_age_hours: 168 }, cover_url: null, cover_expires_at: null },
+    { title: "Apartment in Torrox Costa (synthetic)", location: "Torrox Costa", price: 219000, last_seen_at: t(20), readiness: { ready: true, reasons: [], max_age_hours: 168 }, cover_url: null, cover_expires_at: null },
     { title: "Townhouse in Frigiliana (synthetic)", location: "Frigiliana", price: 389000, last_seen_at: t(200), readiness: { ready: false, reasons: ["listing_stale:200h"], max_age_hours: 168 } },
     { title: "Flat in Nerja, rights not documented (synthetic)", location: "Nerja", price: 175000, last_seen_at: t(1), readiness: { ready: false, reasons: ["source_rights_missing"], max_age_hours: 168 } },
   ];
