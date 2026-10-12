@@ -36,8 +36,15 @@ try {
     await new Promise((res) => ws.addEventListener("open", res));
     let mid = 0;
     const pend = new Map();
-    ws.addEventListener("message", (e) => { const m = JSON.parse(e.data); if (m.id && pend.has(m.id)) { pend.get(m.id)(m); pend.delete(m.id); } });
-    const send = (method, params = {}) => new Promise((res) => { const i = ++mid; pend.set(i, res); ws.send(JSON.stringify({ id: i, method, params })); });
+    ws.addEventListener("message", (e) => { const m = JSON.parse(e.data); if (m.id && pend.has(m.id)) { pend.get(m.id).res(m); pend.delete(m.id); } });
+    // A closed socket or a call that never answers must fail loudly, never leave the film hanging.
+    ws.addEventListener("close", (e) => { for (const p of pend.values()) p.rej(new Error(`CDP socket closed (${e.code}) during ${p.method}`)); pend.clear(); });
+    const send = (method, params = {}) => new Promise((res, rej) => {
+      const i = ++mid;
+      const t = setTimeout(() => { pend.delete(i); rej(new Error(`CDP ${method} did not answer in 30 s`)); }, 30_000);
+      pend.set(i, { method, res: (m) => { clearTimeout(t); res(m); }, rej: (err) => { clearTimeout(t); rej(err); } });
+      ws.send(JSON.stringify({ id: i, method, params }));
+    });
     const ev = async (x) => { const r = await send("Runtime.evaluate", { expression: x, returnByValue: true, awaitPromise: true }); if (r.result?.exceptionDetails) throw new Error(r.result.exceptionDetails.exception?.description ?? "evaluate failed"); return r.result?.result?.value; };
     await send("Page.enable"); await send("Runtime.enable");
     return { ws, send, ev };
@@ -82,7 +89,7 @@ try {
     await page.ev("(()=>{document.querySelectorAll('.reveal').forEach(e=>e.classList.add('is-in'));document.querySelectorAll('img[loading=lazy]').forEach(i=>i.loading='eager');return true})()");
     await sleep(2500);
     const headerH = parseFloat(await page.ev("getComputedStyle(document.documentElement).getPropertyValue('--header-h')")) || 72;
-    const pos = JSON.parse(await page.ev(`(()=>{const t=(s)=>{const e=document.querySelector(s);const r=e.getBoundingClientRect();return {top:Math.round(r.top+scrollY),bottom:Math.round(r.bottom+scrollY)}};const st=(id)=>{const e=document.getElementById(id).querySelector('[data-story-stage]');const r=e.getBoundingClientRect();return {top:Math.round(r.top+scrollY),bottom:Math.round(r.bottom+scrollY)}};return JSON.stringify({hero:t('.hero-world'),storyH:t('#story-h'),a:st('story-a'),b:st('story-b'),c:st('story-c'),d:st('story-d'),e:st('story-e'),f:st('story-f'),m3:t('#model-3d'),max:document.documentElement.scrollHeight-innerHeight})})()`);
+    const pos = JSON.parse(await page.ev(`(()=>{const t=(s)=>{const e=document.querySelector(s);const r=e.getBoundingClientRect();return {top:Math.round(r.top+scrollY),bottom:Math.round(r.bottom+scrollY)}};const st=(id)=>{const e=document.getElementById(id).querySelector('[data-story-stage]');const r=e.getBoundingClientRect();return {top:Math.round(r.top+scrollY),bottom:Math.round(r.bottom+scrollY)}};return JSON.stringify({hero:t('.hero-world'),storyH:t('#story-h'),a:st('story-a'),b:st('story-b'),c:st('story-c'),d:st('story-d'),e:st('story-e'),f:st('story-f'),m3:t('#model-3d'),max:document.documentElement.scrollHeight-innerHeight})})()`));
     // Each stage is shown with its top under the header; a tall stage is scrolled through slowly during its hold.
     const at = (s) => Math.max(0, Math.min(pos.max, s.top - headerH - 24));
     const through = (s) => Math.max(0, Math.min(pos.max, s.bottom - VH + 24));

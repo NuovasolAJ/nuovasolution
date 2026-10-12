@@ -1,5 +1,7 @@
 # HANDOFF 1010 PAUSE — where the master order stands, and the next step tomorrow
 
+> **Superseded 2026-10-12** by `WEBSITE_MASTER_1010_RETURN_v1.md` (deployment `dpl_34uYqcvqTJMkkh12WK9c9G5wXHsN`, code `2561247`). Kept as the record of the pause.
+
 **State:** `2026-10-10` evening · **Lane:** Website Implementer (Claude) → itself, tomorrow. Written because the owner
 shuts the PC down. Status of everything below: implemented and awaiting independent technical and final audit.
 

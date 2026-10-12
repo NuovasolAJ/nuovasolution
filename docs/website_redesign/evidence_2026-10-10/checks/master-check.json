@@ -1,0 +1,332 @@
+{
+ "started_utc": "2026-10-12T07:30:38.188Z",
+ "base": "https://nuovasolution-design-preview-qf57ksuey-nuovasolajs-projects.vercel.app",
+ "checks": [
+  {
+   "id": "d1440-depth",
+   "what": "far, mid and front move by different amounts on scroll (far > mid > 0 > front)",
+   "ok": true,
+   "evidence": {
+    "moved_px_after_420_scroll": {
+     "far": 13.23,
+     "mid": 6.804,
+     "front": -10.584
+    }
+   }
+  },
+  {
+   "id": "d1440-panel",
+   "what": "the panel leans back at the top of the page and comes upright and larger after scrolling",
+   "ok": true,
+   "evidence": {
+    "top": "matrix3d(0.94, 0, 0, 0, 0, 0.912078, 0.227407, -0.000162433, 0, -0.241922, 0.970296, -0.00",
+    "down": "matrix3d(0.969484, 0, 0, 0, 0, 0.962007, 0.120172, -8.58373e-05, 0, -0.123955, 0.992288, -"
+   }
+  },
+  {
+   "id": "d1440-cover",
+   "what": "no headline, button or story part of the panel is under a floating card, at five scroll positions (control: the probe does see the cards)",
+   "ok": true,
+   "evidence": {
+    "rows": [
+     {
+      "scroll": 0,
+      "hits": []
+     },
+     {
+      "scroll": 268,
+      "hits": []
+     },
+     {
+      "scroll": 536,
+      "hits": []
+     },
+     {
+      "scroll": 803,
+      "hits": []
+     },
+     {
+      "scroll": 1071,
+      "hits": []
+     }
+    ],
+    "control": 2
+   }
+  },
+  {
+   "id": "m390-depth",
+   "what": "far, mid and front move by different amounts on scroll (far > mid > 0 > front)",
+   "ok": true,
+   "evidence": {
+    "moved_px_after_420_scroll": {
+     "far": 4.3416,
+     "mid": 2.1708,
+     "front": -2.6532
+    }
+   }
+  },
+  {
+   "id": "m390-panel",
+   "what": "the panel leans back at the top of the page and comes upright and larger after scrolling",
+   "ok": true,
+   "evidence": {
+    "top": "matrix3d(0.94, 0, 0, 0, 0, 0.934851, 0.0982568, -7.01834e-05, 0, -0.104528, 0.994522, -0.0",
+    "down": "matrix3d(0.958814, 0, 0, 0, 0, 0.956337, 0.0688639, -4.91885e-05, 0, -0.0718219, 0.997417,"
+   }
+  },
+  {
+   "id": "m390-cover",
+   "what": "no headline, button or story part of the panel is under a floating card, at five scroll positions (control: the probe does see the cards)",
+   "ok": true,
+   "evidence": {
+    "rows": [
+     {
+      "scroll": 0,
+      "hits": []
+     },
+     {
+      "scroll": 442,
+      "hits": []
+     },
+     {
+      "scroll": 884,
+      "hits": []
+     },
+     {
+      "scroll": 1326,
+      "hits": []
+     },
+     {
+      "scroll": 1768,
+      "hits": []
+     }
+    ],
+    "control": 2
+   }
+  },
+  {
+   "id": "header",
+   "what": "the navigation has no bar at the top of the page and the light bar after scrolling",
+   "ok": true,
+   "evidence": {
+    "top": "rgba(0, 0, 0, 0)",
+    "scrolled": "rgba(252, 251, 248, 0.86)"
+   }
+  },
+  {
+   "id": "story",
+   "what": "the six chapters A to F stand in the document with a heading and a filled stage, and the same enquiry (Laura) runs through each of them",
+   "ok": true,
+   "evidence": {
+    "story-a": {
+     "heading": "Estás enseñando una vivienda. Mientras t",
+     "stage": true,
+     "text": 657,
+     "laura": true
+    },
+    "story-b": {
+     "heading": "Nuova responde a cada cliente en su idio",
+     "stage": true,
+     "text": 844,
+     "laura": true
+    },
+    "story-c": {
+     "heading": "De lo que pide Laura salen dos propuesta",
+     "stage": true,
+     "text": 690,
+     "laura": true
+    },
+    "story-d": {
+     "heading": "A la mañana siguiente, Jarvis dice qué v",
+     "stage": true,
+     "text": 764,
+     "laura": true
+    },
+    "story-e": {
+     "heading": "El viernes entra un piso nuevo que encaj",
+     "stage": true,
+     "text": 1138,
+     "laura": true
+    },
+    "story-f": {
+     "heading": "Al final de la semana sabes qué se atend",
+     "stage": true,
+     "text": 798,
+     "laura": true
+    }
+   }
+  },
+  {
+   "id": "channels",
+   "what": "the channel selector works by click and arrow keys; the phone view carries call words and no WhatsApp step text",
+   "ok": true,
+   "evidence": {
+    "start": "whatsapp|Laura Serrano\n\nCompradora · escribe desd",
+    "phone": {
+     "ch": "phone",
+     "view": "phone",
+     "text": "Álvaro Pons\n\nComprador · llama por una villa · martes 11:37 · Idioma: español\n\nL",
+     "hasWhatsAppWords": false,
+     "hasCall": true
+    },
+    "after_left": "webform webform",
+    "after_two_right": "whatsapp"
+   }
+  },
+  {
+   "id": "notice",
+   "what": "the AI notice can be shown on every channel",
+   "ok": true,
+   "evidence": {
+    "whatsapp": "I am an AI assistant. I will help you with your pr",
+    "email": "Ich bin ein KI-Assistent und helfe Ihnen bei Ihrer",
+    "webform": "🤖 Soy un asistente de inteligencia artificial. Te",
+    "phone": "Al descolgar, el asistente dice que es un asistent"
+   }
+  },
+  {
+   "id": "task",
+   "what": "Jarvis: take and done by keyboard; the done line names who did what; the other tasks stay open",
+   "ok": true,
+   "evidence": {
+    "taken": "taken",
+    "done": {
+     "state": "done",
+     "line": "Visita confirmada con Laura para el jueves a las 10:00. Qued",
+     "others": "done,open,open,open"
+    }
+   }
+  },
+  {
+   "id": "model3d-packages",
+   "what": "the 3D section (four stages, the compare slider, the film) and the ladder are there; no proof-state label or 'in preparation' on the public page",
+   "ok": true,
+   "evidence": {
+    "model3d": true,
+    "steps": 4,
+    "compare": true,
+    "film": true,
+    "packages": 4,
+    "proof": 0,
+    "menuStates": 0,
+    "prep": false
+   }
+  },
+  {
+   "id": "faq",
+   "what": "one question open at a time, aria-expanded and its region, no count under a category, no row id in the text",
+   "ok": true,
+   "evidence": {
+    "open": 1,
+    "exp": "true",
+    "regionShown": true,
+    "counts": 0,
+    "ids_visible": false
+   }
+  },
+  {
+   "id": "reduced",
+   "what": "reduced motion: everything visible at once, no layer moves, the panel keeps a fixed lean, the replay control is hidden",
+   "ok": true,
+   "evidence": {
+    "items_visible": 14,
+    "layers_top": {
+     "far": "none",
+     "mid": "none",
+     "front": "none",
+     "panel": "matrix3d(1, 0, 0, 0, 0, 0.999048, 0.0436194, -3.11567e-05, 0, -0.0436194, 0.999048, -0.000713606, 0, 0, 0, 1)"
+    },
+    "panel_after_scroll_same": true,
+    "replay": "none"
+   }
+  },
+  {
+   "id": "nojs",
+   "what": "without JavaScript the hero's finished picture and all six chapters with their stages are in the document",
+   "ok": true,
+   "evidence": {
+    "hero": 1,
+    "story_parts": 4,
+    "chapters": 6,
+    "stages": 6,
+    "html_js": 0
+   }
+  },
+  {
+   "id": "login-gate",
+   "what": "the report without a session goes to the login and remembers where it came from",
+   "ok": true,
+   "evidence": {
+    "url": "/es/login?next=%2Fes%2Fapp%2Freports",
+    "hasForm": true,
+    "redirects": [
+     {
+      "from": "https://nuovasolution-design-preview-qf57ksuey-nuovasolajs-projects.vercel.app/es/app/reports",
+      "to": "https://nuovasolution-design-preview-qf57ksuey-nuovasolajs-projects.vercel.app/es/login?next=%2Fes%2Fapp%2Freports",
+      "status": 307
+     }
+    ]
+   }
+  },
+  {
+   "id": "reports",
+   "what": "with a session the report renders its counts and period (stub data, labelled) and links the email preview",
+   "ok": true,
+   "evidence": {
+    "stub_login_status": 303,
+    "path": "/es/app/reports",
+    "state": "report",
+    "counts": 8,
+    "nulls": 0,
+    "period": "5 oct 2026 – 12 oct 2026",
+    "emailLink": true,
+    "stubChip": true
+   }
+  },
+  {
+   "id": "session-header",
+   "what": "with a session the header shows the account link and log out instead of log in",
+   "ok": true,
+   "evidence": {
+    "nav": "in",
+    "account": true,
+    "logout": true,
+    "loginText": false
+   }
+  },
+  {
+   "id": "report-email",
+   "what": "the Monday email preview carries the subject with the figure and the button to the full report",
+   "ok": true,
+   "evidence": {
+    "subject": "Tu semana en Nuova: 23 consultas atendidas",
+    "button": "https://nuovasolution-design-preview-qf57ksuey-nuovasolajs-projects.vercel.app/es/app/reports"
+   }
+  },
+  {
+   "id": "social-b",
+   "what": "Screen B shows the cover frame for every listing and a draft control on the publishable ones, switched off with its reason until the release",
+   "ok": true,
+   "evidence": {
+    "listings": 4,
+    "covers": 4,
+    "drafts": 2,
+    "inert": 2,
+    "off": "stub"
+   }
+  },
+  {
+   "id": "logout",
+   "what": "log out from the header lands on the public root with a status line; the agency area asks for the login again",
+   "ok": true,
+   "evidence": {
+    "path": "/es",
+    "notice": true,
+    "nav": "out",
+    "app_after_logout": "/es/login"
+   }
+  }
+ ],
+ "pass": 21,
+ "total": 21
+}
