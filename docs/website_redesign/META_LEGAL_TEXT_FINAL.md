@@ -1,11 +1,11 @@
 # META_LEGAL_TEXT_FINAL — Instagram sections and the deletion instruction page, ES and EN
 
-**State:** `2026-10-07` (v1 2026-10-03, content check 2026-10-06) · **Lane:** Website Copy / Product Truth → **Website Implementer** (publish) and
+**State:** `2026-10-12` (v1 2026-10-03, content check 2026-10-06, built-state alignment 2026-10-07) · **Lane:** Website Copy / Product Truth → **Website Implementer** (publish) and
 **Social** (confirm the substance).
 **Source:** `backend_handoff/handoff_in_2026-10-03/META_LEGAL_SECTIONS_v1.md` (Social, 2026-09-28), with
 the **two corrections** this round requires. Integrated versions of these texts also live in
 `LEGAL_PAGES_FINAL_v1.md` v3; this file is the publishable extract.
-**Aligned with the built state on 2026-10-07, see §4b; content checked 2026-10-06, see §4. Placeholders: none. Publish-ready: NO — two points in §4b (the clock runs on staging, no deletion observed) and the owner's retention decision in §5b.** Not one open mark appears below, so a search for the mark glyph returns zero hits
+**Aligned with the built state; corrected 2026-10-12 (a staging deletion HAS been observed, §4b). Placeholders: none. Publish-ready: NO — one technical point (the production path, §4b) and two owner decisions (retention §5b, backups §5c).** Not one open mark appears below, so a search for the mark glyph returns zero hits
 in this file. The three pages this file feeds can be published without
 waiting for the tax number, the full address, the retention decision or counsel's two terms questions,
 because none of them appears in these texts.
@@ -55,10 +55,10 @@ handled. The pages state the statutory period instead. That question stays open 
 >   allows, we keep the identifier of the comment, or the sender identifier of a direct message, in readable
 >   form and **only for as long as we may reply: 7 days for a comment, and 24 hours from that person's own
 >   message.** The same identifier and the same deadline apply to the comment identifier in our record of
->   received events. A clean-up runs every fifteen minutes and removes what has fallen due, so the
->   identifier is gone at the latest fifteen minutes after the period ends; if a run is missed, the next one
->   removes what was due. It is removed straight away if your agency disconnects the account or if the
->   person asks for erasure. What remains is a salted value that cannot
+>   received events. A clean-up runs every fifteen minutes and removes what has fallen due, so in normal
+>   operation the identifier is gone within fifteen minutes of the period ending. If a run fails or the
+>   service is interrupted, the next successful run removes it. It is removed straight away if your agency
+>   disconnects the account or if the person asks for erasure. What remains is a salted value that cannot
 >   be turned back into the original, kept for one purpose only: so that a late repeat of the same event
 >   does not produce a second message.
 >
@@ -117,10 +117,10 @@ handled. The pages state the statutory period instead. That question stays open 
 >   remitente de un mensaje directo, en forma legible y **solo durante el plazo en el que podemos responder:
 >   7 días en el caso de un comentario y 24 horas desde el propio mensaje de esa persona.** El mismo
 >   identificador y el mismo plazo se aplican al identificador del comentario en nuestro registro de eventos
->   recibidos. Una limpieza se ejecuta cada quince minutos y retira lo que ha vencido, así que el
->   identificador desaparece como muy tarde quince minutos después de que termine el plazo; si una ejecución
->   se salta, la siguiente retira lo que estaba pendiente. Se retira de inmediato si tu agencia desconecta la
->   cuenta o si la persona solicita la supresión. Lo que queda es un valor con sal que no se puede convertir de vuelta en
+>   recibidos. Una limpieza se ejecuta cada quince minutos y retira lo que ha vencido, así que en
+>   funcionamiento normal el identificador desaparece dentro de los quince minutos siguientes al fin del
+>   plazo. Si una ejecución falla o el servicio se interrumpe, lo retira la siguiente ejecución correcta. Se
+>   retira de inmediato si tu agencia desconecta la cuenta o si la persona solicita la supresión. Lo que queda es un valor con sal que no se puede convertir de vuelta en
 >   el original, conservado con una única finalidad: que un reenvío tardío del mismo evento no genere un
 >   segundo mensaje.
 >
@@ -349,25 +349,41 @@ parallel version was created.
 
 ### The clean-up sentence, and what it still waits for
 
-A-1 and A-3 now describe the clean-up the way it is actually built: a clock, not a deletion at the exact
-end of the window. The interval in the text is the measured one. Hosting reported
-`REPLY_TARGET_PURGE_SCHEDULED = 1UVIZepbuUU1I7Rw`, every **fifteen minutes**, calling
-`sg_reply_target_purge_due()` and nothing else, first run 135818 at 19:57:32Z with `purged 0, tenants 0`,
-which was the correct answer because nothing was due. The catch-up sentence is in the text because a
-missed run must not read as data kept for ever.
+A-1 and A-3 describe the clean-up the way it is actually built: a clock, not a deletion at the exact end
+of the window. Hosting reported `REPLY_TARGET_PURGE_SCHEDULED = 1UVIZepbuUU1I7Rw`, every **fifteen
+minutes**, calling `sg_reply_target_purge_due()` and nothing else.
 
-**Two things are still missing before this goes public, and neither is a wording question.**
+**Corrected on 2026-10-12.** This file said on 2026-10-07 that no deletion had ever been observed. That is
+**no longer true and must not be carried forward**: run **138217 at 13:15:06Z** removed a record whose
+thirteen day target had passed. The path from "due" to "gone" has been walked once, end to end.
 
-1. **The clock runs on staging.** A public text describes production. The same schedule has to run against
-   production before the sentence is true for the people who read it.
-2. **No deletion has ever been observed.** The first run had nothing due, so the path from "due" to "gone"
-   has not been exercised once. Hosting and Social owe `PURGE_DELETION_PROVEN`: one record that falls due,
-   one run, and the record no longer there.
+**It was walked on staging, and that is the whole of the remaining gap.** A public text describes
+production, and in production **the path does not exist yet**. So the evidence stands like this, and the
+two must not be blurred:
 
-Until both hold, `META_LEGAL_TEXT_READY` stays unset. Nothing else in these texts waits on anything, and
-no further copy round is needed: when the two points close, this paragraph is deleted and the file is
-ready as it stands. If the production interval turns out to differ from fifteen minutes, the number in
-both languages is the only thing that changes.
+| | Schedule | A real deletion observed |
+|---|---|---|
+| Staging | yes, every fifteen minutes | **yes**, run 138217, 13:15:06Z, a thirteen day target |
+| Production | **no path yet** | no, and it cannot be until the path exists |
+
+**Also changed on 2026-10-12:** the sentence no longer promises "at the latest fifteen minutes". A
+schedule every fifteen minutes is not an operating guarantee; a failed run or an interrupted service would
+make that promise false at the worst possible moment. Both languages now say that in **normal operation**
+the identifier is gone within fifteen minutes, and that **if a run fails or the service is interrupted,
+the next successful run removes it**.
+
+`META_LEGAL_TEXT_READY` therefore stays unset for **one** reason, not two: the production path. When
+Hosting reports it with one observed deletion in production, this paragraph is deleted and the file is
+ready as it stands. If the production interval differs from fifteen minutes, the number in two sentences
+is the only thing that changes.
+
+### Where Instagram stands, so the section is not read as an offer
+
+The Instagram section describes what happens **if** an agency connects an account, and that condition is
+in its first line. Today: Instagram runs on **staging only** and is **not part of the pilot**, no
+**Facebook** connection exists or is described, and there is **no automatic deletion route over Meta** —
+the instruction page is the route, which is what Meta permits. Publishing the section now is correct for
+the review; it is not an announcement that the connection is available.
 
 ### The message texts: an undecided rule is not published as a fixed one
 
@@ -393,7 +409,17 @@ So: **these three texts can be published today**, and the two missing details st
 notice, the invoices and the business verification. That is a narrower ask than "the owner must deliver
 the legal entity before anything legal goes live", and it is the only one this file needs.
 
-## 5b. The retention of the message texts: three options for the owner
+## 5b. Retention: three separate things, only one of them undecided
+
+They are mixed constantly, so they are kept apart here. Only the first needs a decision.
+
+| What | State | Who decides |
+|---|---|---|
+| **The message texts** (comments, direct messages, the leads from them) | **undecided.** Production carries zero retention policy rows, so nothing is on a timer. The options are below | **Owner**, then it is built, then it is written |
+| **The reply identifiers** (the reply target) | **decided and built:** 7 days for a comment, 24 hours from the person's own message, a clock every fifteen minutes, and a salted value afterwards. Written in §1 | nobody. It is done, bar the production path in §4b |
+| **The backups** | **undecided, and a different question:** a backup keeps a copy of everything, so a deletion rule that the backup silently undoes is not a rule. Point in time recovery is off today and no restore has ever been tested | **Owner**, on API's cost figure. See §5c |
+
+### The message texts: three options
 
 **Why this is a decision and not a wording.** Production carries zero retention policy rows, so today
 nothing is deleted on a timer, and the sentence in §1 says so. Before the pages go public the owner picks
@@ -414,6 +440,29 @@ published as a chosen policy, because nobody chose it.
 **What the audit is asked for:** the owner's line naming A, B or C and, for B or C, the number. Then the
 mechanism is built, and only then does the sentence in §1 change from "today nothing is on a timer" to the
 rule.
+
+## 5c. Backups: the decision that can quietly undo the other one
+
+A retention rule deletes from the live system. A backup holds a copy. If the backup keeps what the rule
+deleted, and keeps it longer, then the published period is not the real one, and that gap is exactly what
+an authority asks about. So this is decided **with** the retention rule, not after it.
+
+**What is true today:** point in time recovery is **off** in both projects, no restorable backup is
+listed, and **no restore has ever been tested**. A lost media object cannot be restored. That is not a
+retention policy; it is the absence of one, in both directions.
+
+| # | Option | What it buys | What it costs | What the page may then say |
+|---|---|---|---|---|
+| **1** | leave it as it is | nothing to pay | an agency that loses data has no way back, and we would have to say so if asked directly | nothing. The page stays silent on backups, which is honest only while nobody asks |
+| **2** | point in time recovery on, with a window shorter than or equal to the retention rule | a real recovery path, and the published period stays true because the backup cannot outlive it | **API supplies the figure.** Storage objects are not covered by a database backup, so this is two line items, not one | "We can restore the service to a recent point. Copies are not kept longer than the periods above." |
+| **3** | recovery with a window **longer** than the retention rule | the strongest recovery | the published period becomes false unless the text says a copy may survive it, which is the sentence nobody wants to write | the period, **plus** an explicit sentence that a copy may exist in a backup for up to the window. Honest, and it weakens the rule in the reader's eye |
+
+**This lane's view, and it is only that:** option 2, with the window set to the retention period chosen in
+§5b, so the two rules cannot contradict each other and the page needs one sentence rather than two.
+
+**Not this lane's call, and deliberately left out:** whether any of A, B, C or 1, 2, 3 satisfies the legal
+standard. That is the legal review, it is listed in `COUNSEL_PACKAGE_v2.md` as CQ-8 and CQ-21, and nothing
+here anticipates it.
 
 ## 6. For Social and the implementer
 
