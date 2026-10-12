@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<title>{{SUBJECT}}</title>
+<!--
+  MAIL_SHELL_v1 — the one shell for every mail NuovaSolution sends to an agency (owner decision R16-9, audit order
+  2026-10-12 R16-K). Implementer: Website. Users: Hosting (weekly report), Daily (morning brief). Texts: Copy. Data: Lead.
+
+  Rules
+  - Table layout, inline CSS only, no web font (Inter if installed, else Segoe UI / Helvetica / Arial), one column that
+    fits a phone (max 600 px), readable with images blocked: the logo carries an alt text and the wordmark stands
+    beside it as text.
+  - Brand colours from app/globals.css: ink #1a1917 · canvas #fbfaf7 · sunken #f6f4ee · muted #635f58 ·
+    hairline #e4e1da · accent (gold) #c9a96e · ivory #f8f6f1. The button is ink on ivory; the accent is for marks only.
+  - Never in a mail: n8n footers, internal ids, raw field names, infrastructure links, decorative figures, anything
+    the agency cannot act on.
+  - A slot that has no content is removed whole (its <tr>), never left empty. "Not measured" is a sentence in the
+    CONTEXT slot, never a zero in FIGURES.
+
+  Slots ({{NAME}} is replaced, [[NAME]]…[[/NAME]] is a block that may repeat or be removed)
+  LANG            es | en
+  LOGO_URL        hosted https URL of public/images/logo-icon.png (28×28 shown); the website serves it at
+                  <site origin>/images/logo-icon.png once the site is published; until then the preview origin
+  EYEBROW         "Resumen semanal · <agencia>" | "Tu mañana · <agencia>"
+  SUBJECT         the subject line, repeated as the mail's headline
+  GREETING        "Hola <nombre>,"
+  SUMMARY         one or two sentences: the period and the basis (weekly), or the day's one important thing (morning)
+  FIGURES         rows of label + value, max 4 (weekly); the morning brief uses it for the open tasks with their reason
+  CONTEXT         the sentences per present field; "not measured" sentence; trial scope
+  NEXT_ACTION     one sentence with the next concrete action
+  BUTTON_HREF / BUTTON_LABEL / BUTTON_UNDER   one button; under it "Entras con tu cuenta de agencia."
+  FOOTER          why the person receives the mail, and "reply to this mail" (Copy's wording)
+
+  Fillings: §2 of docs/website_redesign/WEEKLY_REPORT_MAIL_v1.md (weekly, Copy) and K1 of the R16-K order (morning,
+  Copy). The website renders the same shell in React for the login preview (components/app/mail-shell.tsx).
+-->
+</head>
+<body style="margin:0;padding:0;background:#f3f1ec;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3f1ec;font-family:Inter,'Segoe UI',Helvetica,Arial,sans-serif;color:#1a1917;">
+  <tr>
+    <td align="center" style="padding:24px 12px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#fbfaf7;border-radius:16px;border:1px solid #e4e1da;">
+        <tr>
+          <td style="padding:22px 28px 12px;">
+            <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+              <td style="vertical-align:middle;padding-right:10px;"><img src="{{LOGO_URL}}" alt="NuovaSolution" width="28" height="28" style="display:block;width:28px;height:28px;"></td>
+              <td style="vertical-align:middle;font-size:15px;font-weight:600;letter-spacing:-0.01em;">NuovaSolution</td>
+            </tr></table>
+          </td>
+        </tr>
+        <tr><td style="padding:0 28px;"><p style="margin:0;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#635f58;">{{EYEBROW}}</p></td></tr>
+        <tr><td style="padding:6px 28px 0;"><p style="margin:0;font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-0.01em;">{{SUBJECT}}</p></td></tr>
+        <tr><td style="padding:18px 28px 0;font-size:16px;line-height:1.5;">{{GREETING}}</td></tr>
+        <tr><td style="padding:8px 28px 0;font-size:16px;line-height:1.5;">{{SUMMARY}}</td></tr>
+        [[FIGURES]]
+        <tr>
+          <td style="padding:18px 28px 0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e4e1da;border-radius:12px;background:#ffffff;">
+              [[ROW]]
+              <tr>
+                <td style="padding:11px 16px;font-size:15px;color:#4a4742;border-top:1px solid #ece9e2;">{{LABEL}}</td>
+                <td align="right" style="padding:11px 16px;font-size:15px;font-weight:700;border-top:1px solid #ece9e2;white-space:nowrap;">{{VALUE}}</td>
+              </tr>
+              [[/ROW]]
+            </table>
+          </td>
+        </tr>
+        [[/FIGURES]]
+        [[CONTEXT]]
+        <tr><td style="padding:16px 28px 0;font-size:14px;line-height:1.5;color:#4a4742;">{{CONTEXT}}</td></tr>
+        [[/CONTEXT]]
+        [[NEXT_ACTION]]
+        <tr><td style="padding:14px 28px 0;font-size:15px;line-height:1.5;">{{NEXT_ACTION}}</td></tr>
+        [[/NEXT_ACTION]]
+        [[BUTTON]]
+        <tr>
+          <td style="padding:22px 28px 0;">
+            <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+              <td style="background:#1a1917;border-radius:999px;"><a href="{{BUTTON_HREF}}" style="display:inline-block;padding:13px 24px;color:#f8f6f1;text-decoration:none;font-size:15px;font-weight:600;">{{BUTTON_LABEL}}</a></td>
+            </tr></table>
+            <p style="margin:8px 0 0;font-size:13px;color:#635f58;">{{BUTTON_UNDER}}</p>
+          </td>
+        </tr>
+        [[/BUTTON]]
+        <tr><td style="padding:26px 28px 24px;"><p style="margin:0;padding-top:14px;border-top:1px solid #e4e1da;font-size:12px;line-height:1.5;color:#635f58;">{{FOOTER}}</p></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

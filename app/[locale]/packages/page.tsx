@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { catalogPlans, PUBLIC_FEATURES, trialPlanAligned, type PlanCode, startLabel } from "@/lib/content/plans";
+import { matrix } from "@/lib/content/package-matrix";
 import { getPlans } from "@/lib/contracts/server";
+import { Check } from "lucide-react";
 import { Display, Eyebrow, Lead, Caption, Heading, SectionHead } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
@@ -44,7 +46,10 @@ export default async function PackagesPage({ params }: { params: { locale: strin
   const aligned = trialPlanAligned();
 
   const runtime = await getPlans();
-  const backendName = (code: PlanCode) => (runtime.kind === "live" ? runtime.plans.find((x) => x.code === code)?.display_name : undefined);
+  // One package definition for every page (final order 2026-10-12 §9): the display names and the staged lines of the
+  // home ladder (lib/content/package-matrix.ts) also here; the plan ids stay the catalogue's.
+  const ladder = (code: PlanCode) => matrix.find((m) => m.code === code);
+  const backendName = (code: PlanCode) => (runtime.kind === "live" ? runtime.plans.find((x) => x.code === code)?.display_name : undefined) ?? ladder(code)?.name;
 
   return (
     <>
@@ -78,6 +83,16 @@ export default async function PackagesPage({ params }: { params: { locale: strin
                     )}
                     <Heading size="l" as="h3">{backendName(plan.code) ?? plan.display_name}</Heading>
                     <p className="mt-1 t-body-s text-text-secondary">{planLine(plan.code)}</p>
+                    {ladder(plan.code) && (
+                      <>
+                        <p className="mt-5 t-caption font-medium text-text-muted">{ladder(plan.code)!.plus ? ladder(plan.code)!.plus![locale] : pk.included}</p>
+                        <ul className="mt-2 space-y-1.5" data-plan-lines>
+                          {ladder(plan.code)!.lines.map((ln) => (
+                            <li key={ln.key} className="flex items-start gap-2 t-body-s text-text-primary"><Check size={14} strokeWidth={2.5} className="mt-1 shrink-0 text-signal-positive" aria-hidden="true" /><span className="min-w-0">{ln.name[locale]}{ln.note && <span className="text-text-muted"> · {ln.note[locale]}</span>}</span></li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
                     <dl className="mt-6 divide-y divide-line-hairline border-y border-line-hairline">
                       {(["offices", "seats", "leads_month"] as const).map((k) => {
                         const v = plan.limits[k];

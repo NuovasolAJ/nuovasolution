@@ -4,7 +4,7 @@ import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { startLabel } from "@/lib/content/plans";
-import { channels, enquiries, heroWords, listings, people, storyWords, type ChannelKey } from "@/lib/content/home-story";
+import { channels, enquiries, heroWords, storyWords, type ChannelKey } from "@/lib/content/home-story";
 import { cn } from "@/lib/utils";
 import { ButtonLink } from "@/components/ui/button";
 import { DepthScene } from "@/components/ui/depth-scene";
@@ -14,17 +14,17 @@ import { SeqReplay } from "./seq-replay";
 /**
  * The hero (master order 2026-10-10 §1, §4): a premium real estate world with the product in the middle.
  *
- *   far     a coast at dusk, toned to the anthracite of the page
+ *   far     a few stars, the slowest layer
+ *   sky     a coast at dusk, toned to the anthracite of the page
  *   mid     calm ridges where the sea meets the land
- *   panel   one large product surface: the enquiry that arrives while the agent is out, the reply in the
- *           customer's language, the record, the next step for the team
- *   front   two floating cards that tell the situation: the viewing in progress (left) and the four enquiries
- *           arriving on four channels (right). They lie over the panel's lower corners, never over its words.
+ *   panel   one large product surface, scrolling with the page: the situation in one line (the agent is at a
+ *           viewing), the short enquiry, the short reply, the record, the next step for the team, the state line
  *
  * On scroll the layers move apart (depth-scene.tsx measures, globals.css moves) and the panel comes upright and
  * grows: the mechanics of Container Scroll Animation by Manu Arora (Aceternity, MIT,
  * https://21st.dev/@manuarora700/components/container-scroll-animation), driven by the scene's own scroll measure.
- * On a phone the cards stand under the panel; with reduced motion nothing moves and the picture is complete.
+ * The two floating cards of 2026-10-10 are gone (owner 2026-10-12: the eye did not know where to look) and so is
+ * the ivory band under them; with reduced motion nothing moves and the picture is complete.
  */
 const ICON: Record<ChannelKey, typeof MessageCircle> = { whatsapp: MessageCircle, email: Mail, webform: PanelsTopLeft, phone: Phone };
 const delay = (ms: number, extra?: CSSProperties): CSSProperties => ({ ["--seq-delay" as string]: `${ms}ms`, ...extra });
@@ -43,19 +43,18 @@ export function HeroWorld({ locale }: { locale: Locale }) {
   const w = heroWords;
   const sw = storyWords;
   const laura = enquiries[0];
-  const viewing = listings.est118;
   const p = (path: string) => localePath(locale, path);
   const l = <T,>(x: Record<Locale, T>) => x[locale];
 
   return (
     <section aria-labelledby="hero-h1" data-hero="dark" data-canvas="deep" className="hero-world">
       <DepthScene className="hero-world-scene">
-        {/* 1 Far: the dusk. */}
-        <div data-depth-layer="far" className="hero-sky" aria-hidden="true">
+        {/* 1 Far: the stars, slowest of all. 2 Sky: the coast at dusk. */}
+        <div data-depth-layer="sky" className="hero-sky" aria-hidden="true">
           <DuskPhoto className="hero-sky-photo" />
           <div className="hero-sky-tone" />
         </div>
-        <Stars className="hero-world-stars" />
+        <Stars className="hero-world-stars" data-depth-layer="far" />
 
         <div className="container-default relative z-[2]">
           {/* The words, on the open sky. */}
@@ -65,8 +64,8 @@ export function HeroWorld({ locale }: { locale: Locale }) {
               <span className="block text-[color:var(--hero-soft)]">{l(w.h1Soft)}</span>
               <span className="block">{l(w.h1)}</span>
             </h1>
-            <p className="mx-auto mt-5 max-w-[56ch] t-body-l text-ink-200" data-hero-lead>{l(w.lead)}</p>
-            <div className="mt-7 flex flex-col items-stretch justify-center gap-3 md:flex-row md:items-center md:gap-4">
+            <p className="mx-auto mt-4 max-w-[52ch] t-body-m text-ink-200 md:t-body-l" data-hero-lead>{l(w.lead)}</p>
+            <div className="mt-6 flex flex-col items-stretch justify-center gap-3 md:flex-row md:items-center md:gap-4">
               <a href="#story" className="hero-cta-main" data-hero-cta="story">
                 {l(w.ctaStory)}
                 <ArrowDown size={18} strokeWidth={2} aria-hidden="true" />
@@ -77,11 +76,11 @@ export function HeroWorld({ locale }: { locale: Locale }) {
           </div>
 
           <div className="hero-world-stage" data-seq="run" data-hero-surface>
-            {/* 2 Mid: the ridges where the sea meets the land. */}
+            {/* 3 Mid: the ridges where the sea meets the land. */}
             <div data-depth-layer="mid" className="hero-ridges" aria-hidden="true"><Ridges className="h-full w-full" /></div>
             <div className="hero-world-land" aria-hidden="true" />
 
-            {/* 3 The panel. */}
+            {/* 4 The panel: scrolls with the page, comes upright and grows. */}
             <figure aria-label={l(w.surfaceLabel)} className="hero-panel" data-hero-panel>
               <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-ink-100 px-5 py-3 md:px-7">
                 <p className="min-w-0 text-[0.9375rem] font-medium text-ink-950">{l(sw.common.assistant)}</p>
@@ -100,13 +99,15 @@ export function HeroWorld({ locale }: { locale: Locale }) {
                 <p className="ml-auto hidden shrink-0 text-[0.8125rem] text-ink-600 lg:block">{l(sw.common.example)}</p>
                 <SeqReplay label={l(w.replay)} compact />
               </div>
+              {/* What runs today and what the example shows (Copy, CLAIMS_CHECK_1012 §1 B): one line, inside the product. */}
+              <p className="flex items-center gap-2 border-b border-ink-100 bg-[#f6f4ee] px-5 py-2 text-[0.8125rem] leading-snug text-ink-800 md:px-7" data-hero-situation><span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-pill bg-[color:var(--signal-attention)]" />{l(w.situationLine)}</p>
 
               <div className="grid md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
                 {/* The conversation, in the customer's language */}
                 <div className="space-y-4 px-5 pb-6 pt-5 md:px-7 md:pb-10 md:pt-6">
                   <StepLabel n={1}>{l(w.labels.enquiry)} · {l(laura.time)}</StepLabel>
                   <div className="hero-bubble hero-bubble-in" data-hero-enquiry>
-                    <p lang={laura.lang}>{laura.text}</p>
+                    <p lang={laura.lang}>{w.heroEnquiry}</p>
                     <p className="hero-bubble-meta">{laura.who} · {l(laura.role)}</p>
                   </div>
 
@@ -117,7 +118,7 @@ export function HeroWorld({ locale }: { locale: Locale }) {
                     </span>
                     <div className="seq-item hero-bubble hero-bubble-out" style={delay(1950)} data-hero-reply>
                       <p className="mb-1 text-[0.8125rem] font-semibold text-[color:var(--channel-whatsapp-ink)]">{l(sw.common.assistant)}</p>
-                      <p lang={laura.lang}>{laura.reply}</p>
+                      <p lang={laura.lang}>{w.heroReply}</p>
                       <p className="hero-bubble-meta">{l(laura.time)}</p>
                     </div>
                   </div>
@@ -148,34 +149,9 @@ export function HeroWorld({ locale }: { locale: Locale }) {
                   </div>
                 </div>
               </div>
+              <p className="border-t border-ink-100 px-5 py-2.5 text-[0.75rem] leading-snug text-ink-600 md:px-7" data-hero-state>{l(w.stateToday)}</p>
             </figure>
 
-            {/* 4 Front: the situation, as two cards over the panel's lower corners. */}
-            <aside data-depth-layer="front" className="hero-float hero-float-left" aria-label={l(sw.situation.viewing)} data-hero-float="viewing">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={viewing.photo} alt={l(viewing.photoAlt)} width={800} height={533} loading="eager" decoding="async" className="hero-float-photo" />
-              <div className="p-3.5">
-                <p className="flex items-center gap-2 text-[0.75rem] font-medium text-ink-600"><span aria-hidden="true" className="h-2 w-2 rounded-pill bg-[color:var(--signal-attention)]" />{l(sw.situation.viewing)} · {l(sw.situation.now)}</p>
-                <p className="mt-1 text-[0.9375rem] font-semibold leading-snug text-ink-950">{viewing.ref} · {l(viewing.place)}</p>
-                <p className="mt-0.5 text-[0.8125rem] text-ink-600">{people.agent.name} · 11:00–12:00</p>
-              </div>
-            </aside>
-            <aside data-depth-layer="front" className="hero-float hero-float-right" aria-label={l(sw.situation.arriving)} data-hero-float="arrivals">
-              <p className="px-3.5 pt-3 text-[0.75rem] font-medium text-ink-600">{l(sw.situation.arriving)}</p>
-              <ul className="px-3.5 pb-3 pt-1">
-                {enquiries.map((e, i) => {
-                  const Icon = ICON[e.channel];
-                  return (
-                    <li key={e.channel} className="seq-item flex items-center gap-2.5 py-1.5 text-[0.8125rem]" style={delay(300 + i * 500)}>
-                      <span aria-hidden="true" className={cn("inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-pill", e.channel === "whatsapp" ? "bg-[color:var(--channel-whatsapp)] text-white" : "bg-ink-100 text-ink-700")}><Icon size={12} strokeWidth={2.2} /></span>
-                      <span className="min-w-0 flex-1 truncate font-medium text-ink-950">{e.who}</span>
-                      <span className="shrink-0 tnum text-ink-600">{l(e.time).split(" ")[1]} · {l(e.language)}</span>
-                    </li>
-                  );
-                })}
-              </ul>
-            </aside>
-            <div className="hero-world-ground" aria-hidden="true" />
           </div>
         </div>
       </DepthScene>

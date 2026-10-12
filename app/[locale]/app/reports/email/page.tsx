@@ -60,7 +60,7 @@ export default async function ReportEmailPage({ params }: { params: { locale: st
       <div className="band band-sand band-shoulders">
         <div className="container-default pb-24 pt-8 md:pt-10">
           <div className="stage mx-auto max-w-[640px] overflow-hidden">
-            <WeeklyEmail locale={locale} report={report!} reportUrl={`${origin}${p("/app/reports")}`} agencyName={agencyName} />
+            <WeeklyEmail locale={locale} report={report!} reportUrl={`${origin}${p("/app/reports")}`} agencyName={agencyName} logoUrl={`${origin}/images/logo-icon.png`} />
           </div>
         </div>
       </div>

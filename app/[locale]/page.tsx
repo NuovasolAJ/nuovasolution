@@ -7,7 +7,7 @@ import { homeWords } from "@/lib/content/home-sections";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { HeroWorld } from "@/components/home/hero-world";
-import { Story } from "@/components/home/story";
+import { SocialStrip, Story } from "@/components/home/story";
 import { Model3dSection } from "@/components/home/model-3d";
 import { TrustSection } from "@/components/home/trust";
 import { PackageMatrix } from "@/components/home/package-matrix";
@@ -41,8 +41,8 @@ export default function HomePage({ params }: { params: { locale: string } }) {
     <div data-style="v3" data-working-text={HOME_V3_WORKING_TEXT ? "true" : undefined}>
       <HeroWorld locale={locale} />
 
-      {/* 2 The story. The ivory ground rises over the hero's foot with rounded shoulders. */}
-      <section id="story" aria-labelledby="story-h" className="relative z-[5] -mt-7 scroll-mt-[var(--header-h)] rounded-t-[28px] bg-[color:var(--surface-canvas)] pb-[var(--section-compact)] pt-[var(--section-default)] md:rounded-t-[40px]">
+      {/* 2 The story. The hero's ground is already the ivory of this section (the panel bridges the two). */}
+      <section id="story" aria-labelledby="story-h" className="relative scroll-mt-[var(--header-h)] bg-[color:var(--surface-canvas)] pb-[var(--section-compact)] pt-[var(--section-compact)]">
         <div className="container-default">
           <Reveal className="max-w-[760px]">
             <p className="t-eyebrow text-text-accent">{l(w.story.eyebrow)}</p>
@@ -51,6 +51,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
           </Reveal>
           <div className="mt-6 xl:mt-8">
             <Story locale={locale} />
+            <SocialStrip locale={locale} />
           </div>
         </div>
       </section>

@@ -3,26 +3,29 @@
 import { useId, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import Link from "next/link";
 import { AnimatePresence, LazyMotion, MotionConfig, domAnimation, m } from "framer-motion";
-import { ArrowRight, Check, Mail, MessageCircle, PanelsTopLeft, Phone, RotateCcw } from "lucide-react";
+import { ArrowRight, Check, Languages, Mail, MessageCircle, PanelsTopLeft, Phone, RotateCcw, Sparkles } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
 import { AnimatedList } from "@/components/ui/animated-list";
 import { DepthScene } from "@/components/ui/depth-scene";
 import { Reveal } from "@/components/ui/reveal";
-import { chapters, channels, enquiries, listings, people, storyWords, type ChannelKey, type Listing } from "@/lib/content/home-story";
+import { chapters, channels, enquiries, listings, people, storyWords, type ChannelKey, type Enquiry, type Listing } from "@/lib/content/home-story";
 
 /**
- * The main story of the home page (master order 2026-10-10 §3): six chapters, A to F, that read in the normal
- * scroll. No tab has to be clicked to follow it; the channel choice in B and the task in D are extras.
+ * The main story of the home page (master order 2026-10-10 §3; final order 2026-10-12 §4, §5): six chapters that read
+ * in the normal scroll, each with one benefit headline, one dominant visual proof, one short paragraph and its
+ * two-word state line. No chapter letters, and no two chapters in the same frame: the sides alternate and the stages
+ * differ (a situation board, a channel tablist, two listing cards, Jarvis's list, an email, the week's three figures).
  *
- * Each chapter is a scene in three depths: a soft field behind (back), the product surface (the page's own
- * plane), one floating detail in front (front). components/ui/depth-scene.tsx measures, globals.css moves.
+ * Every animation runs once when its stage enters the window, or on an explicit control (a tab, "Tomar", the demo
+ * button of the email, "Reproducir otra vez"); with reduced motion the end states stand at once.
  *
- * Building blocks: Animated List (Magic UI, MIT) for things arriving; the channel selector is a native tablist
- * with arrow keys; everything else is our own markup on the house tokens.
+ * Building blocks: Animated List (Magic UI, MIT) for things arriving; the channel selector is a native tablist with
+ * arrow keys; everything else is our own markup on the house tokens.
  */
 const ICON: Record<ChannelKey, typeof MessageCircle> = { whatsapp: MessageCircle, email: Mail, webform: PanelsTopLeft, phone: Phone };
+const LANG_NAME: Record<Enquiry["lang"], Record<Locale, string>> = { en: { es: "inglés", en: "English" }, de: { es: "alemán", en: "German" }, es: { es: "español", en: "Spanish" } };
 
 function Rise({ children, delay = 0, className }: { children: ReactNode; delay?: number; className?: string }) {
   return <m.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.38, delay }} className={className}>{children}</m.div>;
@@ -32,9 +35,9 @@ function Mark({ children, tone = "muted" }: { children: ReactNode; tone?: "muted
   return <span className={cn("inline-flex items-center gap-1.5 text-[0.8125rem] font-medium", tone === "positive" && "text-signal-positive", tone === "accent" && "text-text-accent", tone === "muted" && "text-text-muted")}>{children}</span>;
 }
 
-function Bubble({ children, out = false, meta, label, lang }: { children: ReactNode; out?: boolean; meta?: string; label?: string; lang?: string }) {
+function Bubble({ children, out = false, meta, label, lang, className }: { children: ReactNode; out?: boolean; meta?: string; label?: string; lang?: string; className?: string }) {
   return (
-    <div className={cn("demo-bubble", out ? "hero-bubble-out" : "hero-bubble-in")}>
+    <div className={cn("demo-bubble", out ? "hero-bubble-out" : "hero-bubble-in", className)}>
       {label && <p className="mb-1.5 text-[0.875rem] font-semibold text-[#1d6b42]">{label}</p>}
       <div lang={lang}>{children}</div>
       {meta && <p className="hero-bubble-meta">{meta}</p>}
@@ -44,19 +47,41 @@ function Bubble({ children, out = false, meta, label, lang }: { children: ReactN
 
 function ChannelIcon({ channel, on = false, size = 12 }: { channel: ChannelKey; on?: boolean; size?: number }) {
   const Icon = ICON[channel];
-  return <span aria-hidden="true" className={cn("inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-pill", on ? "bg-[color:var(--channel-whatsapp)] text-white" : "bg-ink-100 text-ink-700")}><Icon size={size} strokeWidth={2.2} /></span>;
+  return <span aria-hidden="true" className={cn("inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-pill", on ? "bg-[color:var(--channel-whatsapp-ink)] text-white" : "bg-ink-100 text-ink-700")}><Icon size={size} strokeWidth={2.2} /></span>;
+}
+
+/**
+ * A message in the customer's language, shown translated into the page's language by default, the original one
+ * tap away (final order §5). When the message already is in the page's language there is nothing to switch.
+ */
+function Translated({ locale, lang, original, translated, className, as: Tag = "p" }: { locale: Locale; lang: Enquiry["lang"]; original: string; translated: string; className?: string; as?: "p" | "span" }) {
+  const [showOriginal, setShowOriginal] = useState(false);
+  const W = storyWords.common;
+  const same = lang === locale;
+  const text = same || showOriginal ? original : translated;
+  const langName = LANG_NAME[lang][locale];
+  return (
+    <>
+      <Tag lang={showOriginal || same ? lang : locale} className={className}>{text}</Tag>
+      {!same && (
+        <button type="button" onClick={() => setShowOriginal((v) => !v)} aria-pressed={showOriginal} className="mt-1.5 inline-flex min-h-[32px] items-center gap-1.5 rounded-pill px-2 text-[0.75rem] font-medium text-text-secondary underline decoration-line-strong underline-offset-4 hover:text-text-primary" data-translation-toggle={showOriginal ? "original" : "translated"}>
+          <Languages size={12} aria-hidden="true" />
+          {(showOriginal ? W.showTranslation[locale] : W.showOriginal[locale]).replace("{lang}", langName)}
+        </button>
+      )}
+    </>
+  );
 }
 
 function ListingCard({ listing, locale, photoLabel, className, compact = false, note }: { listing: Listing; locale: Locale; photoLabel: string; className?: string; compact?: boolean; note?: string }) {
   return (
-    <article className={cn("overflow-hidden rounded-lg border border-ink-100 bg-white", className)} data-listing={listing.ref}>
+    <article className={cn("min-w-0 overflow-hidden rounded-lg border border-ink-100 bg-white", className)} data-listing={listing.ref}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={listing.photo} alt={listing.photoAlt[locale]} width={800} height={533} loading="lazy" decoding="async" className={cn("w-full object-cover", compact ? "aspect-[16/9]" : "aspect-[3/2]")} />
       <div className={compact ? "p-3" : "p-4"}>
-        <p className="flex flex-wrap items-baseline justify-between gap-x-3 t-caption text-text-muted"><span className="tnum">{listing.ref}</span><span>{photoLabel}</span></p>
-        <p className={cn("mt-1 font-semibold leading-snug text-ink-950", compact ? "text-[0.9375rem]" : "text-[1.0625rem]")}>{listing.title[locale]}</p>
+        <p className={cn("font-semibold leading-snug text-ink-950", compact ? "text-[0.9375rem]" : "text-[1.0625rem]")}>{listing.title[locale]}</p>
         <p className="mt-0.5 t-body-s text-text-secondary">{listing.place[locale]} · {listing.facts[locale]}</p>
-        <p className="mt-1.5 tnum text-[0.9375rem] font-medium text-ink-950">{listing.price}</p>
+        <p className="mt-1.5 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1"><span className="tnum text-[0.9375rem] font-medium text-ink-950">{listing.price}</span><span className="t-caption text-text-muted"><span className="tnum">{listing.ref}</span> · {photoLabel}</span></p>
         {note && <p className="mt-1.5 t-caption text-text-accent">{note}</p>}
       </div>
     </article>
@@ -69,7 +94,7 @@ function Fields({ rows }: { rows: { k: string; v: string }[] }) {
       {rows.map((r, i) => (
         <Rise key={r.k} delay={0.1 + i * 0.1}>
           <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-2.5">
-            <dt className="w-28 shrink-0 t-body-s text-text-muted">{r.k}</dt>
+            <dt className="w-24 shrink-0 t-body-s text-text-muted">{r.k}</dt>
             <dd className="min-w-0 flex-1 text-[1rem] font-medium text-ink-950">{r.v}</dd>
           </div>
         </Rise>
@@ -79,25 +104,24 @@ function Fields({ rows }: { rows: { k: string; v: string }[] }) {
 }
 
 /** One scene: the stage with its three depths. */
-function Stage({ children, back, front, label }: { children: ReactNode; back?: "sand" | "sage" | "sky" | "stone"; front?: ReactNode; label?: string }) {
+function Stage({ children, back, front }: { children: ReactNode; back?: "sand" | "sage" | "sky" | "stone"; front?: ReactNode }) {
   return (
     <DepthScene className="story-scene">
       <div data-depth-layer="back" className={cn("story-field", back && `story-field-${back}`)} aria-hidden="true" />
       <div className="story-stage" data-story-stage>{children}</div>
       {front && <div data-depth-layer="front" className="story-front">{front}</div>}
-      {label && <p className="story-label">{label}</p>}
     </DepthScene>
   );
 }
 
-function Chapter({ id, letter, eyebrow, title, line, children }: { id: string; letter: string; eyebrow: string; title: string; line: string; children: ReactNode }) {
+function Chapter({ id, locale, eyebrow, title, line, state, flip = false, wide = false, children }: { id: string; locale: Locale; eyebrow: string; title: string; line: string; state: string; flip?: boolean; wide?: boolean; children: ReactNode }) {
   return (
-    <article id={id} className="story-chapter" data-chapter={id} aria-labelledby={`${id}-h`}>
+    <article id={id} className={cn("story-chapter", flip && "story-chapter-flip", wide && "story-chapter-wide")} data-chapter={id} aria-labelledby={`${id}-h`}>
       <Reveal className="story-text">
-        <p className="story-letter" aria-hidden="true">{letter}</p>
         <p className="t-eyebrow text-text-accent">{eyebrow}</p>
         <h3 id={`${id}-h`} className="mt-3 t-display-m text-text-primary">{title}</h3>
         <p className="mt-4 t-body-m text-text-secondary">{line}</p>
+        <p className="state-line mt-5" data-state="preparing" data-chapter-state>{storyWords.common.stateLabel[locale]}: {state}</p>
       </Reveal>
       <Reveal mode="opacity" delay={120} className="story-stage-col">{children}</Reveal>
     </article>
@@ -110,6 +134,8 @@ export function Story({ locale }: { locale: Locale }) {
   const [channel, setChannel] = useState<ChannelKey>("whatsapp");
   const [notice, setNotice] = useState(false);
   const [task, setTask] = useState<"open" | "taken" | "done">("open");
+  const [requested, setRequested] = useState(false);
+  const [replayA, setReplayA] = useState(0);
   const tabsRef = useRef<HTMLDivElement>(null);
   const panelId = useId();
   const noticeId = useId();
@@ -117,7 +143,7 @@ export function Story({ locale }: { locale: Locale }) {
   const laura = enquiries[0];
   const [ch1, ch2, ch3, ch4, ch5, ch6] = chapters;
   const taskItems = l(W.task.items);
-  const numbers = l(W.result.numbers);
+  const langOf = (q: Enquiry) => LANG_NAME[q.lang][locale];
 
   function onTabKey(ev: KeyboardEvent<HTMLDivElement>) {
     const keys = channels.map((c) => c.key);
@@ -137,29 +163,32 @@ export function Story({ locale }: { locale: Locale }) {
   return (
     <LazyMotion features={domAnimation}>
       <MotionConfig reducedMotion="user">
-        <div className="story" data-story data-story-channel={channel} data-story-task={task}>
-          {/* A */}
-          <Chapter id="story-a" letter={ch1.letter} eyebrow={l(ch1.eyebrow)} title={l(ch1.title)} line={l(ch1.line)}>
-            <Stage back="sand" label={l(W.common.example)} front={<span className="float-chip"><span aria-hidden="true" className="h-2 w-2 rounded-pill bg-[color:var(--signal-attention)]" />{l(W.situation.desk)}</span>}>
+        <div className="story" data-story data-story-channel={channel} data-story-task={task} data-story-requested={requested ? "sent" : "none"}>
+          {/* 1 The situation: the viewing on the left, the arrivals on the right */}
+          <Chapter id="story-a" locale={locale} eyebrow={l(ch1.eyebrow)} title={l(ch1.title)} line={l(ch1.line)} state={l(ch1.state)}>
+            <Stage back="sand" front={<span className="float-chip"><span aria-hidden="true" className="h-2 w-2 rounded-pill bg-[color:var(--signal-attention)]" />{l(W.situation.desk)}</span>}>
               <div className="grid gap-5 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-7" data-stage="situation">
-                <div className="overflow-hidden rounded-lg border border-ink-100 bg-white">
+                <div className="min-w-0 overflow-hidden rounded-lg border border-ink-100 bg-white">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={listings.est118.photo} alt={l(listings.est118.photoAlt)} width={800} height={533} loading="lazy" decoding="async" className="aspect-[3/2] w-full object-cover" />
                   <div className="p-4">
                     <p className="flex items-center gap-2 t-caption font-medium text-text-secondary"><span aria-hidden="true" className="h-2 w-2 rounded-pill bg-[color:var(--signal-attention)]" />{l(W.situation.viewing)} · {l(W.situation.now)}</p>
-                    <p className="mt-1 text-[1.0625rem] font-semibold leading-snug text-ink-950">{listings.est118.ref} · {l(listings.est118.title)}</p>
+                    <p className="mt-1 text-[1.0625rem] font-semibold leading-snug text-ink-950">{l(listings.est118.title)}</p>
                     <p className="mt-0.5 t-body-s text-text-secondary">{l(listings.est118.place)} · {l(W.situation.viewingWho)}</p>
                   </div>
                 </div>
-                <div>
-                  <p className="t-caption font-medium text-text-muted">{l(W.situation.arriving)}</p>
-                  <AnimatedList className="mt-3" delay={700} startDelay={400}>
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <p className="t-caption font-medium text-text-muted">{l(W.situation.arriving)}</p>
+                    <button type="button" onClick={() => setReplayA((n) => n + 1)} className="inline-flex min-h-[32px] items-center gap-1.5 rounded-pill px-2 t-caption font-medium text-text-secondary hover:text-text-primary" data-story-replay="arrivals"><RotateCcw size={12} aria-hidden="true" />{l(W.common.replay)}</button>
+                  </div>
+                  <AnimatedList className="mt-3" delay={700} startDelay={400} replayKey={replayA}>
                     {enquiries.map((q) => (
-                      <div key={q.channel} className="flex items-center gap-3 rounded-lg border border-ink-100 bg-white px-3.5 py-3" data-arrival={q.channel}>
+                      <div key={q.channel} className="flex min-w-0 items-center gap-3 rounded-lg border border-ink-100 bg-white px-3.5 py-3" data-arrival={q.channel}>
                         <ChannelIcon channel={q.channel} on={q.channel === "whatsapp"} />
                         <div className="min-w-0 flex-1">
                           <p className="truncate text-[0.9375rem] font-semibold text-ink-950">{q.who} <span className="font-normal text-text-muted">· {l(q.role)}</span></p>
-                          <p className="t-caption tnum text-text-muted">{l(channels.find((c) => c.key === q.channel)!.name)} · {l(q.time)} · {l(q.language)}</p>
+                          <p className="t-caption tnum text-text-muted">{l(channels.find((c) => c.key === q.channel)!.name)} · {l(q.time)} · {langOf(q)}</p>
                         </div>
                         <Mark tone="positive"><Check size={14} strokeWidth={2.5} aria-hidden="true" /><span className="hidden sm:inline">{l(W.situation.answered)}</span></Mark>
                       </div>
@@ -171,9 +200,9 @@ export function Story({ locale }: { locale: Locale }) {
             </Stage>
           </Chapter>
 
-          {/* B */}
-          <Chapter id="story-b" letter={ch2.letter} eyebrow={l(ch2.eyebrow)} title={l(ch2.title)} line={l(ch2.line)}>
-            <Stage back="sage" label={l(W.reply.languages)} front={<span className="float-chip"><span className="text-text-muted">{l(W.common.replyLanguage)}:</span> {l(e.language)}</span>}>
+          {/* 2 The reply: one channel at a time, the short question and the concrete answer, translated for the reader */}
+          <Chapter id="story-b" locale={locale} eyebrow={l(ch2.eyebrow)} title={l(ch2.title)} line={l(ch2.line)} state={l(ch2.state)} flip>
+            <Stage back="sage" front={<span className="float-chip"><span className="text-text-muted">{l(W.common.language)}:</span> {langOf(e)}</span>}>
               <div data-stage="reply">
                 <div ref={tabsRef} role="tablist" aria-label={l(W.reply.pick)} className="scene-tabs" onKeyDown={onTabKey} data-channel-tabs>
                   {channels.map((c) => {
@@ -189,23 +218,23 @@ export function Story({ locale }: { locale: Locale }) {
                 <div id={panelId} role="tabpanel" className="mt-6">
                   <AnimatePresence mode="wait" initial={false}>
                     <m.div key={channel} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }} className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-8" data-channel-view={channel}>
-                      <div>
-                        {/* who and when */}
+                      <div className="min-w-0">
                         <div className="flex items-center gap-3 border-b border-ink-100 pb-4">
                           <ChannelIcon channel={channel} on={channel === "whatsapp"} size={14} />
                           <div className="min-w-0">
-                            <p className="truncate text-[1.0625rem] font-semibold leading-tight text-ink-950">{e.who}</p>
-                            <p className="t-caption text-text-muted">{l(e.role)} · {l(e.time)} · {l(W.common.language)}: {l(e.language)}</p>
+                            <p className="text-[1.0625rem] font-semibold leading-tight text-ink-950">{e.who}</p>
+                            <p className="t-caption text-text-muted">{l(e.role)} · {l(e.time)}{channel === "phone" ? ` · ${people.caller.phone}` : ""}</p>
                           </div>
                         </div>
 
                         {channel === "whatsapp" && (
                           <div className="space-y-4 pt-5">
-                            <Bubble meta={`${e.who} · ${l(e.time)}`} lang={e.lang}>{e.text}</Bubble>
-                            <Rise delay={0.25} className="flex flex-col items-end gap-2">
-                              <Bubble out label={l(W.common.assistant)} meta={l(e.time)} lang={e.lang}>
-                                {notice && <p className="mb-2 border-b border-[#b9dcc0] pb-2 text-[0.9375rem] leading-[1.5] text-ink-800" data-story-notice>{e.notice}</p>}
-                                <p>{e.reply}</p>
+                            {/* the hero already showed Laura's whole message; here the short form and the reply */}
+                            <p className="t-body-s text-text-secondary" data-story-short>{l(e.textShort)}</p>
+                            <Rise delay={0.2} className="flex flex-col items-end gap-1">
+                              <Bubble out label={l(W.common.assistant)} meta={l(e.time)} className="max-w-full">
+                                {notice && <p className="mb-2 border-b border-[#b9dcc0] pb-2 text-[0.9375rem] leading-[1.5] text-ink-800" lang={e.lang} data-story-notice>{e.notice}</p>}
+                                <Translated locale={locale} lang={e.lang} original={e.reply} translated={l(e.translation.reply)} />
                               </Bubble>
                             </Rise>
                           </div>
@@ -215,21 +244,14 @@ export function Story({ locale }: { locale: Locale }) {
                           <div className="space-y-4 pt-5">
                             <div className="rounded-lg border border-ink-100 bg-white p-4" data-story-incoming>
                               <p className="t-caption font-medium text-text-muted">{channel === "email" ? l(W.reply.incoming) : l(W.reply.formTitle)}</p>
-                              {channel === "webform" ? (
-                                <dl className="mt-2 grid gap-1.5 text-[0.9375rem]">
-                                  <div className="flex gap-3"><dt className="w-20 shrink-0 text-text-muted">{locale === "es" ? "Nombre" : "Name"}</dt><dd className="font-medium text-ink-950">{e.who}</dd></div>
-                                  <div className="flex gap-3"><dt className="w-20 shrink-0 text-text-muted">{locale === "es" ? "Mensaje" : "Message"}</dt><dd lang={e.lang} className="text-ink-950">{e.text}</dd></div>
-                                </dl>
-                              ) : (
-                                <p lang={e.lang} className="mt-2 text-[1rem] leading-[1.55] text-ink-950">{e.text}</p>
-                              )}
+                              <Translated locale={locale} lang={e.lang} original={e.text} translated={l(e.translation.text)} className="mt-2 text-[1rem] leading-[1.55] text-ink-950" />
                             </div>
                             <Rise delay={0.25}>
                               <div className="rounded-lg border border-[#b9dcc0] bg-[#eef8f0] p-4" data-story-reply>
                                 <p className="flex flex-wrap items-baseline justify-between gap-x-3 t-caption"><span className="font-semibold text-[#1d6b42]">{l(W.common.assistant)}</span><span className="text-text-muted">{channel === "email" ? l(W.reply.replied) : l(W.reply.formReply)}</span></p>
                                 {channel === "email" && <p className="mt-2 t-caption text-text-muted"><span className="font-medium text-text-secondary">{l(W.reply.emailSubject)}:</span> {W.reply.emailSubjectKeller}</p>}
                                 {notice && <p className="mt-2 border-b border-[#b9dcc0] pb-2 text-[0.9375rem] leading-[1.5] text-ink-800" lang={e.lang} data-story-notice>{e.notice}</p>}
-                                <p lang={e.lang} className="mt-2 text-[1rem] leading-[1.55] text-ink-950">{e.reply}</p>
+                                <Translated locale={locale} lang={e.lang} original={e.reply} translated={l(e.translation.reply)} className="mt-2 text-[1rem] leading-[1.55] text-ink-950" />
                               </div>
                             </Rise>
                           </div>
@@ -239,14 +261,14 @@ export function Story({ locale }: { locale: Locale }) {
                           <div className="space-y-4 pt-5">
                             <div className="flex items-center gap-3 rounded-lg border border-ink-100 bg-white p-4" data-story-incoming>
                               <span aria-hidden="true" className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-pill bg-ink-950 text-ivory"><Phone size={18} /></span>
-                              <div><p className="text-[1rem] font-semibold leading-tight text-ink-950">{l(W.reply.callIncoming)}</p><p className="t-caption text-text-muted">{l(W.reply.callAnswered)}</p></div>
+                              <div className="min-w-0"><p className="text-[1rem] font-semibold leading-tight text-ink-950">{l(W.reply.callIncoming)}</p><p className="t-caption text-text-muted">{l(W.reply.callAnswered)}</p></div>
                               <div className="ml-auto flex items-end gap-1" aria-hidden="true">{[10, 18, 12, 22, 14, 8, 20, 11].map((h, i) => <span key={i} className="w-1 rounded-pill bg-ink-300" style={{ height: h }} />)}</div>
                             </div>
-                            <blockquote className="border-l-2 border-ink-200 pl-4 text-[1rem] leading-[1.55] text-ink-900" lang={e.lang}><p className="t-caption font-medium text-text-muted">{l(W.reply.incomingPhone)}</p><p className="mt-1">{e.text}</p></blockquote>
+                            <blockquote className="border-l-2 border-ink-200 pl-4 text-[1rem] leading-[1.55] text-ink-900"><p className="t-caption font-medium text-text-muted">{l(W.reply.incomingPhone)}</p><Translated locale={locale} lang={e.lang} original={e.text} translated={l(e.translation.text)} className="mt-1" /></blockquote>
                             <Rise delay={0.25}>
                               <div className="rounded-lg border border-ink-100 bg-white p-4" data-story-reply>
                                 <p className="t-caption font-medium text-text-muted">{l(W.reply.repliedPhone)}</p>
-                                <p className="mt-1.5 text-[1rem] leading-[1.55] text-ink-950">{e.reply}</p>
+                                <Translated locale={locale} lang={e.lang} original={e.reply} translated={l(e.translation.reply)} className="mt-1.5 text-[1rem] leading-[1.55] text-ink-950" />
                                 {notice && <p className="mt-2 border-t border-ink-100 pt-2 text-[0.9375rem] leading-[1.5] text-ink-800" data-story-notice>{e.notice}</p>}
                               </div>
                             </Rise>
@@ -260,7 +282,7 @@ export function Story({ locale }: { locale: Locale }) {
                         </p>
                       </div>
 
-                      <div className="rounded-lg bg-[#f6f4ee] p-4 md:p-5" data-story-noted>
+                      <div className="min-w-0 rounded-lg bg-[#f6f4ee] p-4 md:p-5" data-story-noted>
                         <p className="t-caption font-medium text-text-muted">{l(W.reply.noted)}</p>
                         <p className="mt-1 text-[1.125rem] font-semibold leading-tight text-ink-950">{e.who}</p>
                         <div className="mt-3"><Fields rows={e.recorded.map((r) => ({ k: l(r.k), v: l(r.v) }))} /></div>
@@ -269,17 +291,18 @@ export function Story({ locale }: { locale: Locale }) {
                     </m.div>
                   </AnimatePresence>
                 </div>
+                <p className="mt-4 t-caption text-text-muted">{l(W.reply.languages)}</p>
               </div>
             </Stage>
           </Chapter>
 
-          {/* C */}
-          <Chapter id="story-c" letter={ch3.letter} eyebrow={l(ch3.eyebrow)} title={l(ch3.title)} line={l(ch3.line)}>
-            <Stage back="sky" label={l(W.match.rights)} front={<span className="float-chip">{laura.who} · {listings.est204.ref}</span>}>
+          {/* 3 The property that fits: criteria → two listings → the proposal */}
+          <Chapter id="story-c" locale={locale} eyebrow={l(ch3.eyebrow)} title={l(ch3.title)} line={l(ch3.line)} state={l(ch3.state)}>
+            <Stage back="sky" front={<span className="float-chip">{laura.who}</span>}>
               <div data-stage="match">
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                   <p className="t-caption font-medium text-text-muted">{l(W.match.wants)}</p>
-                  <AnimatedList className="flex-row flex-wrap gap-2" delay={350} startDelay={300}>
+                  <AnimatedList className="flex-row flex-wrap gap-2" delay={350} startDelay={300} keepOrder>
                     {l(W.match.criteria).map((c) => <span key={c} className="inline-flex rounded-pill border border-ink-200 bg-white px-3 py-1.5 text-[0.9375rem] font-medium text-ink-950">{c}</span>)}
                   </AnimatedList>
                 </div>
@@ -288,28 +311,33 @@ export function Story({ locale }: { locale: Locale }) {
                   {[listings.est204, listings.est231].map((li, i) => <Rise key={li.ref} delay={1.2 + i * 0.2}><ListingCard listing={li} locale={locale} photoLabel={l(W.common.photo)} note={l(W.match.yours)} /></Rise>)}
                 </div>
                 <Rise delay={1.8} className="mt-5 flex flex-col items-end gap-1.5">
-                  <Bubble out label={l(W.common.assistant)} lang="en">{W.match.proposal}</Bubble>
+                  <Bubble out label={l(W.common.assistant)} className="max-w-full md:max-w-[88%]"><Translated locale={locale} lang="en" original={W.match.proposal} translated={l(W.match.proposalTranslated)} /></Bubble>
                   <p className="t-caption text-text-muted">{l(W.match.sent)}</p>
                 </Rise>
+                <p className="mt-4 t-caption text-text-muted">{l(W.match.rights)}</p>
               </div>
             </Stage>
           </Chapter>
 
-          {/* D */}
-          <Chapter id="story-d" letter={ch4.letter} eyebrow={l(ch4.eyebrow)} title={l(ch4.title)} line={l(ch4.line)}>
-            <Stage back="stone" label={l(W.task.othersSee)} front={<span className="float-chip"><span aria-hidden="true" className="inline-flex h-5 w-5 items-center justify-center rounded-pill bg-ink-950 text-[0.6875rem] font-semibold text-ivory">E</span>{people.colleague.name}</span>}>
+          {/* 4 Jarvis: the greeting, the one that matters with its reason, take and done */}
+          <Chapter id="story-d" locale={locale} eyebrow={l(ch4.eyebrow)} title={l(ch4.title)} line={l(ch4.line)} state={l(ch4.state)} flip>
+            <Stage back="stone" front={<span className="float-chip"><span aria-hidden="true" className="inline-flex h-5 w-5 items-center justify-center rounded-pill bg-ink-950 text-[0.6875rem] font-semibold text-ivory">E</span>{people.colleague.name}</span>}>
               <div data-stage="task">
                 <p className="t-caption font-medium text-text-muted">{l(W.task.morning)}</p>
+                <div className="mt-2 flex items-start gap-3 rounded-lg bg-[#f6f4ee] p-4" data-jarvis-greeting>
+                  <span aria-hidden="true" className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-pill bg-ink-950 text-ivory"><Sparkles size={14} /></span>
+                  <div className="min-w-0"><p className="text-[1.0625rem] font-semibold leading-snug text-ink-950">{l(W.task.greeting)}</p><p className="mt-0.5 t-body-s text-text-secondary">{l(W.task.greetingLine)}</p></div>
+                </div>
                 <ol className="mt-3 space-y-3">
                   {taskItems.map((it, i) => {
                     const first = i === 0;
                     return (
-                      <li key={it.who} className={cn("grid grid-cols-[auto_minmax(0,1fr)] gap-4 rounded-lg border bg-white p-4", first ? "border-ink-950" : "border-ink-100")} data-task-item={i + 1} data-task-state={first ? task : "open"}>
-                        <span className="tnum inline-flex h-8 w-8 items-center justify-center rounded-pill bg-ink-950 text-[0.9375rem] font-semibold text-ivory" aria-label={`${l(W.task.priority)} ${i + 1}`}>{i + 1}</span>
+                      <li key={it.who} className={cn("grid min-w-0 grid-cols-[auto_minmax(0,1fr)] gap-4 rounded-lg border bg-white p-4", first ? "border-ink-950" : "border-ink-100")} data-task-item={i + 1} data-task-state={first ? task : "open"}>
+                        <span className="tnum inline-flex h-8 w-8 items-center justify-center rounded-pill bg-ink-950 text-[0.9375rem] font-semibold text-ivory" aria-hidden="true">{i + 1}</span>
                         <div className="min-w-0">
-                          <p className="text-[1rem] font-semibold text-ink-950">{it.who}</p>
+                          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[1rem] font-semibold text-ink-950">{it.who}{first && <span className="inline-flex items-center gap-1 rounded-pill bg-[color:var(--accent-wash)] px-2 py-0.5 text-[0.75rem] font-medium text-[color:var(--accent-ink)]" data-hot-lead><Sparkles size={11} aria-hidden="true" />{l(W.task.important)}</span>}</p>
                           <p className="mt-0.5 t-body-s text-text-secondary">{it.what}</p>
-                          <p className="mt-1.5 t-caption text-text-secondary"><span className="font-medium text-text-accent">{l(W.task.why)}:</span> {it.why}</p>
+                          <p className="mt-1.5 t-caption text-text-secondary"><span className="font-medium text-text-accent">{l(W.task.why)}:</span> {it.why}{first ? ` · ${l(W.task.importantWhy)}` : ""}</p>
                           {first ? (
                             <div className="mt-3 border-t border-ink-100 pt-3" aria-live="polite">
                               <p className="t-body-s text-text-primary"><span className="font-medium">{l(W.task.nextStep)}:</span> {it.next}</p>
@@ -320,7 +348,7 @@ export function Story({ locale }: { locale: Locale }) {
                               </div>
                               {task !== "open" && (
                                 <Rise delay={0.15} className="mt-4 flex flex-col items-end gap-1.5">
-                                  <Bubble out label={people.colleague.name} meta={locale === "es" ? "miércoles 08:58" : "Wednesday 08:58"} lang="en">{W.task.chatConfirm}</Bubble>
+                                  <Bubble out label={people.colleague.name} meta={locale === "es" ? "miércoles 08:58" : "Wednesday 08:58"} className="max-w-full"><Translated locale={locale} lang="en" original={W.task.chatConfirm} translated={l(W.task.chatConfirmTranslated)} /></Bubble>
                                 </Rise>
                               )}
                               {task === "done" && <Rise delay={0.1}><p className="mt-3 rounded-md bg-sage-100 px-3 py-2 t-body-s text-text-primary" data-task-done-line>{l(W.task.doneLine)}</p></Rise>}
@@ -333,34 +361,49 @@ export function Story({ locale }: { locale: Locale }) {
                     );
                   })}
                 </ol>
+                <p className="mt-4 t-caption text-text-muted">{l(W.task.othersSee)}</p>
               </div>
             </Stage>
           </Chapter>
 
-          {/* E */}
-          <Chapter id="story-e" letter={ch5.letter} eyebrow={l(ch5.eyebrow)} title={l(ch5.title)} line={l(ch5.line)}>
-            <Stage back="sand" label={l(W.followup.footer)} front={<span className="float-chip"><Mail size={14} aria-hidden="true" />{laura.who}</span>}>
+          {/* 5 The follow-up: the new listing, the three conditions, the email with its one demo action */}
+          <Chapter id="story-e" locale={locale} eyebrow={l(ch5.eyebrow)} title={l(ch5.title)} line={l(ch5.line)} state={l(ch5.state)}>
+            <Stage back="sand" front={<span className="float-chip"><Mail size={14} aria-hidden="true" />{laura.who}</span>}>
               <div className="grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-8" data-stage="followup">
-                <div>
+                <div className="min-w-0">
                   <p className="t-caption font-medium text-text-muted">{l(W.followup.trigger)}</p>
                   <div className="mt-3"><ListingCard listing={listings.est240} locale={locale} photoLabel={l(W.common.photo)} note={l(W.followup.matches)} /></div>
                   <p className="mt-5 t-caption font-medium text-text-muted">{l(W.followup.conditions)}</p>
-                  <AnimatedList className="mt-2 gap-2" delay={500} startDelay={600}>
+                  <AnimatedList className="mt-2 gap-2" delay={500} startDelay={600} keepOrder>
                     {l(W.followup.conditionList).map((c) => <p key={c} className="flex items-start gap-2 t-body-s text-text-primary"><span aria-hidden="true" className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-pill bg-signal-positive text-ivory"><Check size={12} strokeWidth={3} /></span>{c}</p>)}
                   </AnimatedList>
                 </div>
-                <Rise delay={2.2}>
+                <Rise delay={2.2} className="min-w-0">
                   <div className="overflow-hidden rounded-lg border border-ink-100 bg-white" data-story-email>
                     <div className="border-b border-ink-100 px-5 py-3">
                       <p className="t-caption text-text-muted">{l(W.followup.email)} · {l(W.followup.from)}</p>
-                      <p className="mt-1 text-[1.0625rem] font-semibold leading-snug text-ink-950" lang="en">{W.followup.subject}</p>
+                      <Translated locale={locale} lang="en" original={W.followup.subject} translated={l(W.followup.subjectTranslated)} className="mt-1 text-[1.0625rem] font-semibold leading-snug text-ink-950" />
                     </div>
                     <div className="px-5 py-4">
-                      <p lang="en" className="text-[1rem] leading-[1.55] text-ink-950">{W.followup.body}</p>
+                      <Translated locale={locale} lang="en" original={W.followup.body} translated={l(W.followup.bodyTranslated)} className="text-[1rem] leading-[1.55] text-ink-950" />
                       <div className="mt-4 grid grid-cols-2 gap-3">
                         {[listings.est240, listings.est231].map((li) => <ListingCard key={li.ref} listing={li} locale={locale} photoLabel={l(W.common.photo)} compact />)}
                       </div>
-                      <p className="mt-4"><span className="demo-action" aria-hidden="true">{W.followup.cta}<ArrowRight size={16} /></span></p>
+                      {/* The email's one action, as a demo: it shows the request landing with the team, never a booked appointment. */}
+                      <div className="mt-4" aria-live="polite">
+                        {requested ? (
+                          <div data-story-request-sent>
+                            <Mark tone="positive"><Check size={16} strokeWidth={2.5} aria-hidden="true" />{l(W.followup.requested)}</Mark>
+                            <p className="mt-1.5 t-caption text-text-secondary">{l(W.followup.requestedLine)}</p>
+                            <button type="button" onClick={() => setRequested(false)} className="mt-2 inline-flex min-h-[32px] items-center gap-1.5 t-caption font-medium text-text-primary underline decoration-line-strong underline-offset-4" data-story-request-reset><RotateCcw size={12} aria-hidden="true" />{l(W.task.again)}</button>
+                          </div>
+                        ) : (
+                          <>
+                            <button type="button" onClick={() => setRequested(true)} className="demo-action" data-story-request>{l(W.followup.cta)}<ArrowRight size={16} aria-hidden="true" /></button>
+                            <p className="mt-1.5 t-caption text-text-muted">{l(W.followup.ctaDemo)}</p>
+                          </>
+                        )}
+                      </div>
                       <p className="mt-4 border-t border-ink-100 pt-3 t-caption text-text-muted">{l(W.followup.footer)}</p>
                     </div>
                   </div>
@@ -369,34 +412,34 @@ export function Story({ locale }: { locale: Locale }) {
             </Stage>
           </Chapter>
 
-          {/* F */}
-          <Chapter id="story-f" letter={ch6.letter} eyebrow={l(ch6.eyebrow)} title={l(ch6.title)} line={l(ch6.line)}>
-            <Stage back="sage" label={l(W.result.illustrative)} front={<span className="float-chip">{l(W.result.period)}</span>}>
-              <div className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-8" data-stage="result">
-                <div>
-                  <p className="t-caption font-medium text-text-muted">{l(W.result.weekly)}</p>
-                  <p className="mt-1 t-caption text-text-muted">{l(W.result.basis)}</p>
-                  <dl className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3">
-                    {numbers.map((n, i) => (
-                      <Rise key={n.k} delay={0.1 + i * 0.08}>
-                        <div className="rounded-lg border border-ink-100 bg-white p-4" data-result-number={i}>
-                          <dt className="t-caption text-text-muted">{n.k}</dt>
-                          <dd className="mt-1 tnum text-[1.75rem] font-semibold leading-none tracking-[-0.02em] text-ink-950">{n.v}</dd>
-                          <dd className="mt-1.5 t-caption text-text-secondary">{n.d}</dd>
-                        </div>
-                      </Rise>
-                    ))}
-                  </dl>
-                  <p className="mt-5 t-caption font-medium text-text-muted">{l(W.result.openTitle)}</p>
-                  <ul className="mt-2 space-y-1.5">{l(W.result.open).map((o) => <li key={o} className="flex items-start gap-2 t-body-s text-text-primary"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-pill bg-[color:var(--signal-attention)]" />{o}</li>)}</ul>
-                </div>
-                <div className="rounded-lg bg-[#f6f4ee] p-4 md:p-5" data-story-weekly-email>
-                  <p className="t-caption font-medium text-text-muted">{l(W.result.emailTitle)}</p>
-                  <p className="mt-1 text-[1.0625rem] font-semibold leading-snug text-ink-950">{l(W.result.weekly)}</p>
-                  <p className="mt-1 t-body-s text-text-secondary">{l(W.result.emailLine)}</p>
-                  <ul className="mt-3 divide-y divide-ink-100 border-y border-ink-100">{numbers.slice(0, 4).map((n) => <li key={n.k} className="flex items-baseline justify-between gap-3 py-2 t-body-s"><span className="text-text-secondary">{n.k}</span><span className="tnum font-semibold text-ink-950">{n.v}</span></li>)}</ul>
-                  <p className="mt-4"><Link href={localePath(locale, "/app/reports")} className="demo-action" data-story-report-link>{l(W.result.button)}<ArrowRight size={16} aria-hidden="true" /></Link></p>
-                  <p className="mt-3 t-caption text-text-muted">{l(W.result.inLogin)}</p>
+          {/* 6 The week: three figures with their meaning, what is open, Monday's email */}
+          <Chapter id="story-f" locale={locale} eyebrow={l(ch6.eyebrow)} title={l(ch6.title)} line={l(ch6.line)} state={l(ch6.state)} flip>
+            <Stage back="sage" front={<span className="float-chip">{l(W.result.period)}</span>}>
+              <div data-stage="result">
+                <p className="inline-flex items-center gap-2 rounded-pill bg-[color:var(--accent-wash)] px-3 py-1 t-caption font-medium text-[color:var(--accent-ink)]" data-result-demo>{l(W.result.demo)}</p>
+                <p className="mt-3 t-caption text-text-muted">{l(W.result.weekly)} · {l(W.result.basis)}</p>
+                <dl className="mt-4 grid gap-3 md:grid-cols-3">
+                  {[W.result.handled, W.result.chances, W.result.next].map((k, i) => (
+                    <Rise key={l(k.title)} delay={0.1 + i * 0.12}>
+                      <div className="h-full min-w-0 rounded-lg border border-ink-100 bg-white p-4" data-result-number={i}>
+                        <dt className="t-caption font-medium text-text-secondary">{l(k.title)}</dt>
+                        <dd className="mt-1 tnum text-[2rem] font-semibold leading-none tracking-[-0.02em] text-ink-950">{k.value}</dd>
+                        <dd className="mt-1.5 t-caption text-text-secondary">{l(k.line)}</dd>
+                      </div>
+                    </Rise>
+                  ))}
+                </dl>
+                <div className="mt-5 grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+                  <div className="min-w-0">
+                    <p className="t-caption font-medium text-text-muted">{l(W.result.openTitle)}</p>
+                    <ul className="mt-2 space-y-1.5">{l(W.result.open).map((o) => <li key={o} className="flex items-start gap-2 t-body-s text-text-primary"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-pill bg-[color:var(--signal-attention)]" />{o}</li>)}</ul>
+                  </div>
+                  <div className="min-w-0 rounded-lg bg-[#f6f4ee] p-4" data-story-weekly-email>
+                    <p className="t-caption font-medium text-text-muted">{l(W.result.emailTitle)}</p>
+                    <p className="mt-1 t-body-s text-text-secondary">{l(W.result.emailLine)}</p>
+                    <p className="mt-3"><Link href={localePath(locale, "/app/reports")} className="demo-action" data-story-report-link>{l(W.result.button)}<ArrowRight size={16} aria-hidden="true" /></Link></p>
+                    <p className="mt-2 t-caption text-text-muted">{l(W.result.inLogin)}</p>
+                  </div>
                 </div>
               </div>
             </Stage>
@@ -404,5 +447,51 @@ export function Story({ locale }: { locale: Locale }) {
         </div>
       </MotionConfig>
     </LazyMotion>
+  );
+}
+
+/** The compact social strip (final order §6): listing → draft → approval → published → a comment, styled as a comment. */
+export function SocialStrip({ locale }: { locale: Locale }) {
+  const l = <T,>(x: Record<Locale, T>) => x[locale];
+  const S = storyWords.social;
+  const steps = l(S.steps);
+  return (
+    <section id="story-social" aria-labelledby="social-h" className="story-chapter story-chapter-wide" data-chapter="story-social">
+      <Reveal className="max-w-[760px]">
+        <p className="t-eyebrow text-text-accent">{l(S.eyebrow)}</p>
+        <h3 id="social-h" className="mt-3 t-display-m text-text-primary">{l(S.title)}</h3>
+        <p className="mt-4 t-body-m text-text-secondary">{l(S.line)}</p>
+        <p className="state-line mt-5" data-state="preparing" data-chapter-state>{storyWords.common.stateLabel[locale]}: {l(S.state)}</p>
+      </Reveal>
+      <Reveal mode="opacity" delay={100} className="mt-8">
+        <ol className="grid gap-3 md:grid-cols-5" data-social-strip>
+          {steps.map((s, i) => (
+            <li key={s.title} className="relative min-w-0 rounded-lg border border-line-contour bg-surface-raised p-4" data-social-step={i + 1}>
+              <p className="flex items-center gap-2 t-caption font-medium text-text-muted"><span className="tnum inline-flex h-5 w-5 items-center justify-center rounded-pill bg-ink-950 text-[0.6875rem] text-ivory">{i + 1}</span>{s.title}</p>
+              {i === 0 && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={listings.est204.photo} alt={l(listings.est204.photoAlt)} width={800} height={533} loading="lazy" decoding="async" className="mt-3 aspect-[4/3] w-full rounded-md object-cover" />
+              )}
+              {i === 4 ? (
+                <div className="mt-3 space-y-2" data-social-comment>
+                  <div className="flex items-start gap-2">
+                    <span aria-hidden="true" className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-pill bg-ink-100 text-[0.6875rem] font-semibold text-ink-700">M</span>
+                    <p className="min-w-0 t-body-s"><span className="font-semibold text-ink-950">{S.commenter}</span> <span className="text-text-muted">· {l(S.commentLabel)}</span><span lang="es" className="block text-text-primary">{S.comment}</span></p>
+                  </div>
+                  <div className="ml-8 border-l-2 border-ink-200 pl-3">
+                    <p className="t-caption text-text-muted">{l(S.replyLabel)}</p>
+                    <p lang="es" className="t-body-s text-text-primary">{S.reply}</p>
+                    <p className="mt-1 t-caption text-text-muted">{l(S.noAvailability)}</p>
+                  </div>
+                </div>
+              ) : (
+                <p className={cn("mt-2 t-body-s", i === 2 || i === 3 ? "text-signal-positive" : "text-text-primary")}>{(i === 2 || i === 3) && <Check size={14} strokeWidth={2.5} className="mr-1 inline" aria-hidden="true" />}{s.line}</p>
+              )}
+            </li>
+          ))}
+        </ol>
+        <p className="mt-3 t-caption text-text-muted">{l(S.noAds)}</p>
+      </Reveal>
+    </section>
   );
 }

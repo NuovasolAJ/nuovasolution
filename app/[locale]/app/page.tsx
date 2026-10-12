@@ -9,6 +9,7 @@ import { loginHref, requireSession } from "@/lib/contracts/app-page";
 import { BackendRefusal } from "@/lib/contracts/supabase";
 import { integrationMode } from "@/lib/contracts/mode";
 import { appWords } from "@/lib/content/app-words";
+import { trialPlanAligned } from "@/lib/content/plans";
 import { Section } from "@/components/ui/section";
 import { Display, Eyebrow, Lead } from "@/components/ui/type";
 import { LabelChip, StatusGlyph } from "@/components/ui/status";
@@ -41,7 +42,9 @@ export default async function AppHomePage({ params }: { params: { locale: string
     const bundle = await getOnboardingBundle();
     if (bundle.kind === "register") redirect(p("/onboarding"));
     agencyName = bundle.profile.business.name ?? bundle.profile.branding.display_name ?? null;
-    if (bundle.trial?.status === "active") trialLine = bundle.trial.remaining_days === null ? l(w.trialNoDays) : l(w.trial).replace("{days}", String(bundle.trial.remaining_days));
+    // The package the trial maps to (Reviewer F-R16-2): Essential while TRIAL_PLAN_ALIGNED holds.
+    const plan = trialPlanAligned() ? "Essential" : "";
+    if (bundle.trial?.status === "active") trialLine = (bundle.trial.remaining_days === null ? l(w.trialNoDays) : l(w.trial).replace("{days}", String(bundle.trial.remaining_days))).replace("{plan}", plan).replace(" ·  ·", " ·");
   } catch (e) {
     const code = e instanceof BackendRefusal ? e.code : "generic";
     if (code === "no_session") redirect(loginHref(locale, "/app", { state: "expired" }));

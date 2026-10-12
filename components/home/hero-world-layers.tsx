@@ -5,7 +5,7 @@
  *   far    one photograph of a coast at dusk (licensed stock, see docs/website_redesign/MEDIA_SOURCES_1010.md),
  *          toned down to the hero's anthracite and faded into the sky at the top and into the ground at the bottom
  *   mid    two soft ridges, drawn, in the hero's own dark tones; they sit where the sea meets the land
- *   front  nothing drawn: the two floating product cards are the foreground (hero-world.tsx)
+ *   stars  a few faint points, the slowest layer of all
  *
  * Everything here is decoration: aria-hidden, no text, no pointer events.
  */
@@ -30,10 +30,10 @@ export function Ridges({ className }: { className?: string }) {
 }
 
 /** A few faint stars high in the sky: a hint of the hour, nothing more. */
-export function Stars({ className }: { className?: string }) {
+export function Stars({ className, ...rest }: { className?: string } & Record<`data-${string}`, string>) {
   const pts: [number, number, number][] = [[80, 40, 1], [210, 90, 0.8], [330, 30, 1.2], [470, 70, 0.7], [620, 24, 1], [760, 58, 0.8], [900, 36, 1.1], [1040, 80, 0.7], [1180, 28, 1], [1300, 64, 0.9], [1400, 44, 0.7], [540, 120, 0.6], [980, 130, 0.6], [1250, 140, 0.7], [150, 150, 0.6]];
   return (
-    <svg aria-hidden="true" className={className} viewBox="0 0 1440 300" preserveAspectRatio="xMidYMin slice" focusable="false">
+    <svg aria-hidden="true" className={className} viewBox="0 0 1440 300" preserveAspectRatio="xMidYMin slice" focusable="false" {...rest}>
       {pts.map(([x, y, r], i) => <circle key={i} cx={x} cy={y} r={r} fill="#f8f6f1" opacity={0.35 + (i % 3) * 0.15} />)}
     </svg>
   );

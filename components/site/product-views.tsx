@@ -47,15 +47,14 @@ export function ConversationView({ locale, className }: { locale: Locale; classN
           <li className="flex justify-end">
             <div className="max-w-[88%] rounded-lg rounded-br-sm bg-sage-100 px-3.5 py-2.5">
               <p className="mb-1 t-caption text-sage-700">{v.assistant}</p>
-              <p lang={laura.lang} className="mb-2 border-b border-sage-200 pb-2 t-body-s text-text-primary" data-disclosure={laura.lang}>
-                {laura.notice}
-                {laura.noticeIsSample && <span className="mt-1 block t-caption text-text-muted">{storyWords.common.noticeSample[locale]}</span>}
-              </p>
+              <p lang={laura.lang} className="mb-2 border-b border-sage-200 pb-2 t-body-s text-text-primary" data-disclosure={laura.lang}>{laura.notice}</p>
               <p lang={laura.lang} className="t-body-s text-text-primary">{laura.reply}</p>
               <p className="mt-1 t-caption tnum text-text-muted">{time}</p>
             </div>
           </li>
         </ol>
+        {/* D-104: the sample-translation mark stands in the caption, with the synthetic-data label, not inside the sales card. */}
+        {laura.noticeIsSample && <p className="border-t border-line-hairline px-4 pt-3 t-caption text-text-muted">{storyWords.common.noticeSample[locale]}</p>}
         <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{v.footer}</p>
       </div>
     </div>
@@ -141,13 +140,9 @@ export const DAILY_MEDIA_REFERENCE: string = "REF-DEMO-204";
 
 export function DailyShot({ locale, shot = "task-action", className }: { locale: Locale; shot?: Shot; className?: string }) {
   const v = getDictionary(locale).home.views.daily;
-  if (DAILY_MEDIA_REFERENCE !== SITE_REFERENCE) {
-    return (
-      <figure className={cn("mx-auto w-full", className)} data-view="daily" data-shot="withheld">
-        <div className="rounded-xl border border-dashed border-line-interactive bg-surface-sunken p-6 t-body-s text-text-secondary">{v.mediaWithheld}</div>
-      </figure>
-    );
-  }
+  // While Daily's recordings carry another reference than the site, the page shows the board of records instead:
+  // no internal note about clips or cuts reaches a customer view (final order 2026-10-12 §9).
+  if (DAILY_MEDIA_REFERENCE !== SITE_REFERENCE) return <BoardView locale={locale} className={className} compact />;
   const caption = (v.stills as Record<string, string>)[shot];
   const base = `/media/daily/daily-${shot}-${locale}`;
   const card = shot === "task-card";

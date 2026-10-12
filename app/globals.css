@@ -353,6 +353,7 @@ img, video, svg { display: block; max-width: 100%; }
 /* The hero world has four depths: far and mid lag behind the page (they travel down against the scroll),
    the front runs ahead of it. */
 [data-depth-layer="far"] { transform: translate3d(0, calc(var(--depth) * var(--depth-far, 44px)), 0); will-change: transform; }
+[data-depth-layer="sky"] { transform: translate3d(0, calc(var(--depth) * var(--depth-sky, 32px)), 0); will-change: transform; }
 [data-depth-layer="mid"] { transform: translate3d(0, calc(var(--depth) * var(--depth-mid, 24px)), 0); will-change: transform; }
 
 /* A white stage for a product surface (layer 2). The contour and the three-part shadow keep a light
@@ -405,17 +406,20 @@ img, video, svg { display: block; max-width: 100%; }
   --channel-whatsapp: #25a55f;
   --channel-whatsapp-ink: #1d6b42;
   --horizon: 120px;
-  --depth-far: 36px;
-  --depth-mid: 18px;
-  --depth-front: -26px;
-  --panel-tilt: 6deg;
-  --panel-rise: 18px;
+  --depth-far: 48px;
+  --depth-sky: 30px;
+  --depth-mid: 14px;
+  --panel-tilt: 5deg;
+  --panel-rise: 14px;
+  --panel-scale-from: 0.96;
+  --panel-scale-to: 1;
 }
 @media (min-width: 768px) {
-  .hero-world { --horizon: 170px; --depth-far: 70px; --depth-mid: 36px; --depth-front: -54px; --panel-tilt: 14deg; --panel-rise: 40px; }
+  /* final order §3: rotateX 10° → 0°, scale 0.92 → 1.04, within the available width */
+  .hero-world { --horizon: 170px; --depth-far: 90px; --depth-sky: 56px; --depth-mid: 28px; --panel-tilt: 10deg; --panel-rise: 36px; --panel-scale-from: 0.92; --panel-scale-to: 1.04; }
 }
-.hero-world-scene { isolation: isolate; padding-top: 24px; }
-@media (min-width: 768px) { .hero-world-scene { padding-top: 34px; } }
+.hero-world-scene { isolation: isolate; padding-top: 16px; }
+@media (min-width: 768px) { .hero-world-scene { padding-top: 22px; } }
 .hero-world-stars { position: absolute; inset: 0 0 auto 0; z-index: 1; height: 300px; width: 100%; pointer-events: none; }
 
 /* Far: the photograph, toned to the page. It fades into the sky at the top (so the words and the
@@ -431,12 +435,13 @@ img, video, svg { display: block; max-width: 100%; }
 }
 
 /* The stage: the panel and everything of the world that is placed against it. */
-.hero-world-stage { position: relative; margin: 28px auto 0; max-width: 1040px; padding-top: 10px; }
-@media (min-width: 768px) { .hero-world-stage { margin-top: 48px; padding: 24px 0 176px; } }
-.hero-world-land, .hero-world-ground, .hero-ridges { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; pointer-events: none; }
+.hero-world-stage { position: relative; margin: 22px auto 0; max-width: 1000px; padding: 10px 0 40px; }
+@media (min-width: 768px) { .hero-world-stage { margin-top: 14px; padding: 20px 0 64px; } }
+.hero-world-land, .hero-ridges { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; pointer-events: none; }
 .hero-ridges { top: calc(var(--horizon) - 120px); z-index: 1; height: 220px; }
 .hero-world-land { top: calc(var(--horizon) + 60px); bottom: 0; background: linear-gradient(180deg, #171a1e 0%, #15171b 50%, #131416 100%); }
-.hero-world-ground { z-index: 3; bottom: 0; height: 10px; background: #0f0f10; }
+/* The hero ends with the panel standing on the land and a short dark foot; the story's ivory begins at its own
+   edge (owner 2026-10-12: no ivory band and no cards under the panel). */
 
 /* The panel: one light surface, large type, no frame inside a frame. It leans back and comes upright on
    scroll, rising and growing a little (the mechanics of Container Scroll Animation: perspective, rotateX to
@@ -460,7 +465,7 @@ img, video, svg { display: block; max-width: 100%; }
     perspective(1400px)
     translateY(calc((1 - var(--upright)) * var(--panel-rise)))
     rotateX(calc((1 - var(--upright)) * var(--panel-tilt)))
-    scale(calc(0.94 + var(--upright) * 0.06));
+    scale(calc(var(--panel-scale-from) + var(--upright) * (var(--panel-scale-to) - var(--panel-scale-from))));
   will-change: transform;
 }
 .hero-bubble { max-width: 94%; padding: 12px 16px; border-radius: 16px; font-size: 1rem; line-height: 1.5; color: var(--ink-950); }
@@ -470,40 +475,6 @@ img, video, svg { display: block; max-width: 100%; }
 .hero-bubble-meta { margin-top: 4px; font-size: 0.75rem; line-height: 1.4; color: var(--ink-600); font-variant-numeric: tabular-nums; }
 .hero-next { padding: 12px 14px; border-left: 3px solid var(--champagne-400); border-radius: 4px 12px 12px 4px; background: #fff; box-shadow: var(--shadow-card); }
 
-/* The front: two product cards. On a phone they stand under the panel in the flow; from 768 px they float
-   over the panel's lower corners (never over its words: the panel keeps that room free) and move ahead of
-   the page on scroll. */
-.hero-float {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  margin-top: 12px;
-  overflow: hidden;
-  border-radius: 14px;
-  background: #fff;
-  color: var(--ink-950);
-  --text-primary: var(--ink-950);
-  --text-secondary: var(--ink-700);
-  --text-muted: #635f58;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 8px 18px rgba(0, 0, 0, 0.28), 0 28px 40px rgba(0, 0, 0, 0.3);
-}
-.hero-float-photo { display: block; aspect-ratio: 16 / 7; width: 100%; object-fit: cover; }
-@media (min-width: 768px) {
-  .hero-float { position: absolute; bottom: 0; width: 292px; margin-top: 0; }
-  .hero-float-left { left: -20px; }
-  .hero-float-right { right: -20px; width: 316px; }
-  .hero-float-photo { aspect-ratio: 16 / 8; }
-}
-@media (min-width: 1280px) {
-  .hero-float { width: 316px; }
-  .hero-float-left { left: -64px; }
-  .hero-float-right { right: -64px; width: 340px; }
-}
-/* The panel leaves room for the cards at its foot, so they cover nothing to read. */
-@media (min-width: 768px) {
-  .hero-panel > .grid > div { padding-bottom: 128px; }
-}
-
 /* ------------------------------------------------------------------ */
 /* The story (master order 2026-10-10 §3): six chapters, each a scene  */
 /* in three depths on the ivory ground. A thin rail with the letters   */
@@ -511,13 +482,18 @@ img, video, svg { display: block; max-width: 100%; }
 /* lies behind it and one chip floats in front.                        */
 /* ------------------------------------------------------------------ */
 .story { position: relative; }
-.story-chapter { position: relative; display: grid; gap: 28px; padding-block: 40px; }
+/* One column that may shrink to zero: a chapter's tablist (nowrap) must never widen the page (measured 586 px at 390, 2026-10-12). */
+.story-chapter { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; padding-block: 40px; min-width: 0; }
 .story-chapter + .story-chapter { border-top: 1px solid var(--border-hairline); }
+.story-text, .story-stage-col, .story-stage, .scene-tabs { min-width: 0; }
 @media (min-width: 1024px) {
   .story-chapter { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; padding-block: 72px; align-items: start; }
+  .story-chapter-flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+  .story-chapter-flip > .story-text { order: 2; }
+  .story-chapter-flip > .story-stage-col { order: 1; }
+  .story-chapter-wide { grid-template-columns: minmax(0, 1fr); }
   .story-text { position: sticky; top: calc(var(--header-h) + 32px); }
 }
-.story-letter { font-size: clamp(2.5rem, 2rem + 2vw, 4rem); line-height: 1; font-weight: 500; letter-spacing: -0.04em; color: var(--accent, var(--champagne-400)); margin-bottom: 16px; }
 .story-scene { position: relative; padding: 14px 0 34px; }
 @media (min-width: 768px) { .story-scene { padding: 22px 0 40px; } }
 .story-field { position: absolute; inset: 0 -8px 20px 18px; z-index: 0; border-radius: 28px; background: var(--sand-100); }
@@ -537,8 +513,6 @@ img, video, svg { display: block; max-width: 100%; }
 @media (min-width: 768px) { .story-stage { padding: 28px 32px 30px; } }
 .story-front { position: absolute; z-index: 2; left: 6px; bottom: 14px; }
 @media (min-width: 768px) { .story-front { left: 12px; bottom: 16px; } }
-.story-label { position: relative; z-index: 1; margin: 12px 0 0 auto; max-width: 62ch; padding-left: 40%; text-align: right; font-size: 0.8125rem; line-height: 1.5; color: var(--text-muted); }
-@media (max-width: 767px) { .story-label { padding-left: 0; text-align: left; margin-top: 44px; } }
 
 /* The two buttons of the hero on the dark sky. */
 .hero-cta-main {

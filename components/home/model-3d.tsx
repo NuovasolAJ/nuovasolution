@@ -56,6 +56,7 @@ export function Model3dSection({ locale }: { locale: Locale }) {
               <div className="p-4">
                 <p className="flex items-baseline gap-2 t-heading-s text-text-primary"><span className="tnum t-caption text-text-accent">0{i + 1}</span>{s.title}</p>
                 <p className="mt-1 t-body-s text-text-secondary">{s.line}</p>
+                {i === 3 && <p className="mt-2 t-caption text-text-muted">{l(w.viewer)}</p>}
               </div>
             </Reveal>
           ))}
@@ -73,7 +74,7 @@ export function Model3dSection({ locale }: { locale: Locale }) {
               className="border border-line-contour"
               initial={50}
             />
-            <p className="mt-3 t-caption text-text-muted">{l(w.compareLabel)}</p>
+            <p className="mt-3 t-caption text-text-muted" data-model3d-compare-note>{l(w.compareNote)}</p>
           </Reveal>
           {/* The camera ride */}
           <Reveal delay={100}>

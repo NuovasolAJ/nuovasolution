@@ -15,14 +15,16 @@ property.
 | File (public/media/world/) | Pexels id | Photographer | Stated location | Used as |
 |---|---|---|---|---|
 | `hero-dusk-1400.webp`, `hero-dusk-800.webp` | 10393597 | Soontorn B | none stated | the hero's far layer (a coast at dusk), toned to the page's anthracite |
-| `listing-est204.webp` | 20304083 | Adrianna CA | Marbella, Andalucía | the example listing EST-204 (terrace, sea between palms) |
-| `listing-est231.webp` | 30720428 | May Vanhille | Italy | the example listing EST-231 (sea between bougainvillea) |
-| `listing-est118.webp` | 24807132 | Ahmet Çötür | none stated (Mediterranean) | the example villa EST-118 of the viewing in progress |
-| `listing-est240.webp` | 29698107 | Renkgezgini | none stated | the example listing EST-240 of the follow-up |
+| `listing-est204.webp` (since 2026-10-12) | 12715501 | Keegan Checks | none stated | the example listing EST-204: a living room opening onto a terrace with the sea behind |
+| `listing-est231.webp` (since 2026-10-12) | 31817163 | Ahmet Çötür | none stated (Mediterranean) | the example listing EST-231: a double-height living room with sea views |
+| `listing-est118.webp` (since 2026-10-12) | 31817156 | Ahmet Çötür | none stated (Mediterranean) | the example villa EST-118 of the viewing in progress: the house with its pool and terrace |
+| `listing-est240.webp` (since 2026-10-12) | 7851904 | Gabriela Pons | Madrid, Spain | the example listing EST-240 of the follow-up: a renovated flat's living room |
 
+Replaced on 2026-10-12 (final order §7: listing cards show rooms, architecture and terraces, not the sea alone):
+20304083 (Adrianna CA, Marbella), 30720428 (May Vanhille, Italy), 24807132 (Ahmet Çötür), 29698107 (Renkgezgini).
 Not used: 6775268 (Ben Mack; the photographer's own caption restricts commercial use, so it was left out although
 the Pexels licence would allow it), 16030699 (download failed), 26859048, 18042769, 4383348, 15172873, 1838640,
-17672408, 16443429 (viewed, not fitting).
+17672408, 16443429, 4180974, 5793547, 31817155, 8134746, 22042390, 18179901, 6312353 (viewed, not fitting).
 
 ## 2. The 3D living room (3D lane, 2026-10-05 delivery)
 
@@ -34,7 +36,7 @@ style, not a reconstruction. The page says so under the section.
 
 | File (public/media/3d/) | From | Shows |
 |---|---|---|
-| `living-before-1200.webp` | `living_before_same_camera.jpg` | the raw model, same camera, same daylight (the "before" of the slider) |
+| `living-before-1200.webp` | `living_before_same_camera.jpg` | the **first version** of the furnished living room, same camera, same daylight (the "before" of the slider). It is furnished, so the slider is labelled "first version / revised design", not "raw / furnished" (final order 2026-10-12 §7). An unfurnished-to-furnished pair from the same camera does not exist yet; the viewer's furniture-off frames of 2026-10-03 (`toggle_living/`, 960×540) are from another camera and were not used |
 | `living-render-1600.webp`, `living-render-800.webp` | `living_final_3000.jpg` | the furnished living room, offline render (the "after", and the film's poster) |
 | `living-clay-1200.webp` | `living_stage_clay.jpg` | furniture placed, no materials (stage 2 of 4) |
 | `living-viewer-1200.webp` | right half of `viewer_living_room_before_vs_after.jpg` | the rotatable browser viewer with the study furnishing (stage 4 of 4) |

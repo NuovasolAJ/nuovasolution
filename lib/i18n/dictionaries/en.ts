@@ -210,7 +210,7 @@ export const en = {
         answer: { step: "Answered", title: "WhatsApp and e-mail", line: "Text enquiries are answered and recorded under your agency's name." },
         understand: { step: "Recorded", title: "One record per enquiry", line: "The conversation and what the customer asked for stay on one record, so the next person to open it sees everything without asking." },
         handover: { step: "Handed over", title: "One clear task, not a reminder", line: "A viewing request becomes a task with a name, a reason and an owner. Your team claims it and completes it." },
-        done: { step: "Done", title: "One of your people finishes it", line: "One tap takes the task, one tap completes it. The card shows who took it, and nobody can take the same task twice." },
+        done: { step: "Done", title: "Nuova prepares, your team advises and closes", line: "One tap takes the task, one tap completes it. The card shows who took it, and nobody can take the same task twice. The viewing, the negotiation and the relationship stay with your people." }, // final order 2026-10-12 §6
         setup: { step: "Your setup", title: "Your agency, set up by you", line: "Your agency details, your legal details and your logo, plus your team and their roles. Your progress is saved between sessions." },
       },
     },
@@ -400,8 +400,8 @@ export const en = {
     h1Neutral: "Start with 14 days of trial",
     leadNeutral: "14 days, no payment method. After that you choose a plan with us, and we tell you the price for your agency before anything is agreed.",
     // COPY_DELTAS_0929 D-20, D-21: the Essential wording is released (PRODUCT_TRUTH_TABLE_v1 §G).
-    h1: "Try Essential free for 14 days",
-    lead: "14 days of Essential, free, with no payment method. After that you choose a plan with us, and we tell you the price and the billing period before anything is agreed.",
+    h1: "Try it free for 14 days", // D-105
+    lead: "14 days free, with no payment method, on the Essential package. After that you choose a plan with us, and we tell you the price and the billing period before anything is agreed.", // D-106
     plansEyebrow: "The plans",
     included: "Included",
     baselineHeading: "What every plan includes",
@@ -436,17 +436,17 @@ export const en = {
     // Interim implementer wording until COPY_DELTAS_0929; amounts and the period come from PRICING_AUTHORITY (O-7).
     noPaymentMethod: "No payment method",
     compareHeading: "What differs between the plans",
-    compareLead: "All three plans include the same working parts today. They differ in size: offices, seats and enquiries per month.", // D-25
+    compareLead: "Each package builds on the one before and grows in size: offices, seats and enquiries processed per month.", // final order 2026-10-12 §9: staged functions, not the same parts
     planColumn: "Plan",
     periodHeading: "Price and billing period",
     periodLine: "We state the price and the billing period in your proposal and on every invoice. Nothing is charged automatically.",
-    planLines: { essential: "One office and a small team.", growth: "A larger team in one office.", scale: "Several offices." },
+    planLines: { essential: "Answering and ordering what arrives. One office, a small team.", growth: "Following up, proposing and coordinating. A larger team.", scale: "Attracting, taking calls and presenting in 3D. Several offices." },
     // Trial badge and CTA move onto Essential only after the API signal TRIAL_PLAN_ALIGNED (audit R26).
     trialBadge: "14 days of trial",
     trialBadgeAligned: "14 days free", // D-22: the chip sits on the Essential card only
     ctaTrialEssential: "Try Essential free",
     limitsHeading: "Limits",
-    limits: { offices: "Offices", seats: "Seats", leads_month: "Leads per month", crm_connections: "CRM connections", voice_minutes: "Voice minutes", unlimited: "No monthly cap", none: "None" },
+    limits: { offices: "Offices", seats: "Seats", leads_month: "Enquiries processed per month", crm_connections: "CRM connections", voice_minutes: "Voice minutes", unlimited: "No monthly cap", none: "None" },
     featuresHeading: "Included",
     featureNames: {
       "cx.baseline": "Automatic text replies",
