@@ -1,0 +1,377 @@
+{
+ "deployment": "https://nuovasolution-design-preview-qf57ksuey-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-12T12:09:21.761Z",
+ "detail": {
+  "package_in_session": {
+   "/es/app": {
+    "plan": null,
+    "planContext": null,
+    "trial": "Ir al contenido Plataforma Paquetes Prueba Contacto EN ENGLISH ES ESPAÑOL Mi agencia Cerrar"
+   },
+   "/es/app/reports": {
+    "plan": null,
+    "planContext": null,
+    "trial": "Ir al contenido Plataforma Paquetes Prueba Contacto EN ENGLISH ES ESPAÑOL Mi agencia Cerrar"
+   },
+   "/es/onboarding": {
+    "plan": "Essential",
+    "planContext": "Comprobado Tu plan Comprobado Tu prueba tiene el alcance de Essential durante 14 días",
+    "trial": "Ir al contenido Plataforma Paquetes Prueba Contacto EN ENGLISH ES ESPAÑOL Mi agencia Cerrar"
+   },
+   "/es/social/settings": {
+    "plan": null,
+    "planContext": null,
+    "trial": "Ir al contenido Plataforma Paquetes Prueba Contacto EN ENGLISH ES ESPAÑOL Mi agencia Cerrar"
+   },
+   "/es/app/reports/email": {
+    "plan": null,
+    "planContext": null,
+    "trial": "Ir al contenido Plataforma Paquetes Prueba Contacto EN ENGLISH ES ESPAÑOL Mi agencia Cerrar"
+   }
+  },
+  "contrast_small": {
+   "360/en": [
+    {
+     "t": "03",
+     "parent": "03 Customer record",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(246, 244, 238)",
+     "ariaHiddenChain": true,
+     "cls": "tnum text-ink-500"
+    },
+    {
+     "t": "04",
+     "parent": "04 Next step",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(246, 244, 238)",
+     "ariaHiddenChain": true,
+     "cls": "tnum text-ink-500"
+    },
+    {
+     "t": "A",
+     "parent": "A THE SITUATION You are showing a home. Meanwhile, four enqu",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    },
+    {
+     "t": "B",
+     "parent": "B THE REPLY Nuova replies to each customer in their language",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    },
+    {
+     "t": "C",
+     "parent": "C THE PROPERTY THAT FITS What Laura asked for becomes two pr",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    }
+   ],
+   "360/es": [
+    {
+     "t": "03",
+     "parent": "03 Ficha del cliente",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(246, 244, 238)",
+     "ariaHiddenChain": true,
+     "cls": "tnum text-ink-500"
+    },
+    {
+     "t": "04",
+     "parent": "04 Siguiente paso",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(246, 244, 238)",
+     "ariaHiddenChain": true,
+     "cls": "tnum text-ink-500"
+    },
+    {
+     "t": "A",
+     "parent": "A LA SITUACIÓN Estás enseñando una vivienda. Mientras tanto,",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    },
+    {
+     "t": "B",
+     "parent": "B LA RESPUESTA Nuova responde a cada cliente en su idioma y ",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    },
+    {
+     "t": "C",
+     "parent": "C EL INMUEBLE QUE ENCAJA De lo que pide Laura salen dos prop",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    }
+   ],
+   "390/en": [
+    {
+     "t": "03",
+     "parent": "03 Customer record",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(246, 244, 238)",
+     "ariaHiddenChain": true,
+     "cls": "tnum text-ink-500"
+    },
+    {
+     "t": "04",
+     "parent": "04 Next step",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(246, 244, 238)",
+     "ariaHiddenChain": true,
+     "cls": "tnum text-ink-500"
+    },
+    {
+     "t": "A",
+     "parent": "A THE SITUATION You are showing a home. Meanwhile, four enqu",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    },
+    {
+     "t": "B",
+     "parent": "B THE REPLY Nuova replies to each customer in their language",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    },
+    {
+     "t": "C",
+     "parent": "C THE PROPERTY THAT FITS What Laura asked for becomes two pr",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    }
+   ],
+   "390/es": [
+    {
+     "t": "03",
+     "parent": "03 Ficha del cliente",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(246, 244, 238)",
+     "ariaHiddenChain": true,
+     "cls": "tnum text-ink-500"
+    },
+    {
+     "t": "04",
+     "parent": "04 Siguiente paso",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(246, 244, 238)",
+     "ariaHiddenChain": true,
+     "cls": "tnum text-ink-500"
+    },
+    {
+     "t": "A",
+     "parent": "A LA SITUACIÓN Estás enseñando una vivienda. Mientras tanto,",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    },
+    {
+     "t": "B",
+     "parent": "B LA RESPUESTA Nuova responde a cada cliente en su idioma y ",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    },
+    {
+     "t": "C",
+     "parent": "C EL INMUEBLE QUE ENCAJA De lo que pide Laura salen dos prop",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    }
+   ],
+   "768/en": [
+    {
+     "t": "03",
+     "parent": "03 Customer record",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(246, 244, 238)",
+     "ariaHiddenChain": true,
+     "cls": "tnum text-ink-500"
+    },
+    {
+     "t": "04",
+     "parent": "04 Next step",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(246, 244, 238)",
+     "ariaHiddenChain": true,
+     "cls": "tnum text-ink-500"
+    },
+    {
+     "t": "B",
+     "parent": "B THE REPLY Nuova replies to each customer in their language",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 47,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    },
+    {
+     "t": "C",
+     "parent": "C THE PROPERTY THAT FITS What Laura asked for becomes two pr",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 47,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    },
+    {
+     "t": "D",
+     "parent": "D THE NEXT ACTION The next morning, Jarvis says what comes f",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 47,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    }
+   ],
+   "768/es": [
+    {
+     "t": "03",
+     "parent": "03 Ficha del cliente",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13,
+     "color": "rgb(119, 115, 108)",
+     "bg": "rgb(246, 244, 238)",
+     "ariaHiddenChain": true,
+     "cls": "tnum text-ink-500"
+    },
+    {
+     "t": "A",
+     "parent": "A LA SITUACIÓN Estás enseñando una vivienda. Mientras tanto,",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 47,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    },
+    {
+     "t": "B",
+     "parent": "B LA RESPUESTA Nuova responde a cada cliente en su idioma y ",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 47,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    },
+    {
+     "t": "C",
+     "parent": "C EL INMUEBLE QUE ENCAJA De lo que pide Laura salen dos prop",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 47,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    },
+    {
+     "t": "D",
+     "parent": "D LA SIGUIENTE ACCIÓN A la mañana siguiente, Jarvis dice qué",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 47,
+     "color": "rgb(201, 169, 110)",
+     "bg": "rgb(251, 250, 247)",
+     "ariaHiddenChain": true,
+     "cls": "story-letter"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,639 @@
+{
+ "deployment": "https://nuovasolution-design-preview-qf57ksuey-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-12T11:57:54.300Z",
+ "checks": [
+  {
+   "id": "R16-01",
+   "what": "the login area is gated before a session exists",
+   "verdict": "PASS",
+   "evidence": {
+    "path": "/es/login",
+    "search": "?next=%2Fes%2Fapp",
+    "h1": "Iniciar sesión"
+   }
+  },
+  {
+   "id": "R16-02",
+   "what": "after the stub sign-in the area names the session, the package and the trial",
+   "verdict": "FAIL",
+   "evidence": {
+    "path": "/es/app",
+    "logout": true,
+    "package": null,
+    "trial": "Ir al contenido Plataforma Paquetes Prueba Contacto EN ENGLISH ES ESPAÑOL Mi agencia Cerrar sesión Vista previa.",
+    "header": "Plataforma Paquetes Prueba Contacto EN ENGLISH ES ESPAÑOL Mi agencia Cerrar sesión"
+   }
+  },
+  {
+   "id": "R16-03",
+   "what": "the weekly report says the contract is awaited and shows no figure",
+   "verdict": "FAIL",
+   "evidence": {
+    "path": "/es/app/reports",
+    "awaiting": null,
+    "numbers_left": [
+     "5",
+     "12",
+     "12",
+     "8",
+     "00",
+     "23",
+     "23"
+    ]
+   }
+  },
+  {
+   "id": "R16-04",
+   "what": "the social screens offer draft and approval and name cover and reason",
+   "verdict": "FAIL",
+   "evidence": {
+    "post": {
+     "draft": false,
+     "approve": true,
+     "cover": false,
+     "reason": false,
+     "buttons": [
+      "Ir al contenido",
+      "Plataforma",
+      "Paquetes",
+      "Prueba",
+      "Contacto",
+      "EN\nENGLISH"
+     ]
+    },
+    "overview_h1": "Conectar Instagram",
+    "inbox": "Entrada",
+    "settings": "Conexión y datos"
+   }
+  },
+  {
+   "id": "R16-05",
+   "what": "onboarding lets the agency stay on the built-in CRM and says honestly where the save landed",
+   "verdict": "FAIL",
+   "evidence": {
+    "radios": [
+     "nuovasolution",
+     "google_sheets"
+    ],
+    "saved": "Guardado",
+    "labelled_as_preview": true
+   }
+  },
+  {
+   "id": "R16-06",
+   "what": "logging out ends the session: the area is gated again afterwards",
+   "verdict": "FAIL",
+   "evidence": {
+    "revisit": {
+     "path": "/es/login",
+     "search": "?next=%2Fes%2Fapp"
+    }
+   }
+  },
+  {
+   "id": "R16-07",
+   "what": "no horizontal overflow on the public routes, four viewports",
+   "verdict": "PASS",
+   "evidence": {
+    "affected": []
+   }
+  },
+  {
+   "id": "R16-08",
+   "what": "no text below the contrast floor on the public routes",
+   "verdict": "FAIL",
+   "evidence": {
+    "affected": [
+     "360/en",
+     "360/es",
+     "390/en",
+     "390/es",
+     "768/en",
+     "768/es"
+    ],
+    "sample": [
+     {
+      "t": "03",
+      "ratio": 4.29,
+      "need": 4.5,
+      "size": 13
+     },
+     {
+      "t": "A",
+      "ratio": 2.14,
+      "need": 3,
+      "size": 40
+     }
+    ]
+   }
+  },
+  {
+   "id": "R16-09",
+   "what": "with reduced motion nothing animates and nothing stays hidden",
+   "verdict": "PASS",
+   "evidence": {
+    "running": 0,
+    "videosPlaying": 0,
+    "hiddenText": 0
+   }
+  },
+  {
+   "id": "R16-10",
+   "what": "the first 25 focusable elements show a focus ring",
+   "verdict": "PASS",
+   "evidence": {
+    "focusables": 49,
+    "withoutRing": []
+   }
+  },
+  {
+   "id": "R16-11",
+   "what": "no broken image and no clip that plays with sound by itself",
+   "verdict": "PASS",
+   "evidence": {
+    "images": 13,
+    "broken": [],
+    "videos": [
+     {
+      "poster": true,
+      "autoplay": false,
+      "muted": true,
+      "controls": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "R16-12",
+   "what": "the pages load without console errors or failed requests",
+   "verdict": "FAIL",
+   "evidence": {
+    "errors": [
+     "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-in",
+     "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-in",
+     "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-in"
+    ],
+    "failed": [
+     {
+      "type": "Script",
+      "error": ""
+     },
+     {
+      "type": "Fetch",
+      "error": "net::ERR_ABORTED"
+     },
+     {
+      "type": "Script",
+      "error": ""
+     }
+    ]
+   }
+  }
+ ],
+ "detail": {
+  "app": {
+   "path": "/es/app",
+   "h1": "Hola. Esto es lo que tienes hoy.",
+   "header": "Plataforma Paquetes Prueba Contacto EN ENGLISH ES ESPAÑOL Mi agencia Cerrar sesión",
+   "logout": true,
+   "packageName": null,
+   "trialText": "Ir al contenido Plataforma Paquetes Prueba Contacto EN ENGLISH ES ESPAÑOL Mi agencia Cerrar sesión Vista previa.",
+   "awaitingNumbers": [
+    "9",
+    "2026"
+   ],
+   "body": "Ir al contenido Plataforma Paquetes Prueba Contacto EN ENGLISH ES ESPAÑOL Mi agencia Cerrar sesión Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa TU AGENCIA · DEMO AGENCY (STUB) Hola. Esto es lo que tienes hoy. Tu configuración, tus informes y las conexiones de tu agencia, en un solo sitio. Prueba activa · quedan 9"
+  },
+  "reports": {
+   "path": "/es/app/reports",
+   "h1": "Lo que pasó esta semana en tu agencia",
+   "awaiting": true,
+   "awaitingSentence": null,
+   "numbers": [
+    "5",
+    "2026",
+    "12",
+    "2026",
+    "12",
+    "2026",
+    "8",
+    "00",
+    "23",
+    "23"
+   ],
+   "zeros": 0,
+   "body": "Ir al contenido Plataforma Paquetes Prueba Contacto EN ENGLISH ES ESPAÑOL Mi agencia Cerrar sesión Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa INFORME SEMANAL Lo que pasó esta semana en tu agencia Cuentas de los registros que Nuova guarda en los canales conectados. Nada aquí es una estimación. Volver a tu agencia Ver el email del lunes Periodo 5 oct 2026 – 12 oct 2026 Europe/Madrid Generado 12 oct 2026, 8:00 B"
+  },
+  "social": {
+   "/es/social": {
+    "path": "/es/social",
+    "h1": "Conectar Instagram",
+    "draft": false,
+    "approve": true,
+    "cover": false,
+    "reason": false,
+    "disabledButtons": 0,
+    "buttons": [
+     "Ir al contenido",
+     "Plataforma",
+     "Paquetes",
+     "Prueba",
+     "Contacto",
+     "EN\nENGLISH",
+     "ES\nESPAÑOL",
+     "Mi agencia",
+     "Cerrar sesión",
+     "Conectar",
+     "Publicar",
+     "Entrada"
+    ],
+    "body": "Ir al contenido Plataforma Paquetes Prueba Contacto EN ENGLISH ES ESPAÑOL Mi agencia Cerrar sesión Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa SOCIAL Conectar Instagram La cuenta de Instagram desde la que tu agencia publica y respond"
+   },
+   "/es/social/post": {
+    "path": "/es/social/post",
+    "h1": "Crear una publicación",
+    "draft": false,
+    "approve": true,
+    "cover": false,
+    "reason": false,
+    "disabledButtons": 4,
+    "buttons": [
+     "Ir al contenido",
+     "Plataforma",
+     "Paquetes",
+     "Prueba",
+     "Contacto",
+     "EN\nENGLISH",
+     "ES\nESPAÑOL",
+     "Mi agencia",
+     "Cerrar sesión",
+     "Conectar",
+     "Publicar",
+     "Entrada"
+    ],
+    "body": "Ir al contenido Plataforma Paquetes Prueba Contacto EN ENGLISH ES ESPAÑOL Mi agencia Cerrar sesión Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa SOCIAL Crear una publicación Elige un inmueble, revisa el texto, apruébalo y publícalo. Co"
+   },
+   "/es/social/inbox": {
+    "path": "/es/social/inbox",
+    "h1": "Entrada",
+    "draft": false,
+    "approve": true,
+    "cover": false,
+    "reason": false,
+    "disabledButtons": 3,
+    "buttons": [
+     "Ir al contenido",
+     "Plataforma",
+     "Paquetes",
+     "Prueba",
+     "Contacto",
+     "EN\nENGLISH",
+     "ES\nESPAÑOL",
+     "Mi agencia",
+     "Cerrar sesión",
+     "Conectar",
+     "Publicar",
+     "Entrada"
+    ],
+    "body": "Ir al contenido Plataforma Paquetes Prueba Contacto EN ENGLISH ES ESPAÑOL Mi agencia Cerrar sesión Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa SOCIAL Entrada Comentarios y mensajes que han llegado a tu cuenta conectada. Conectar Publ"
+   },
+   "/es/social/settings": {
+    "path": "/es/social/settings",
+    "h1": "Conexión y datos",
+    "draft": false,
+    "approve": true,
+    "cover": false,
+    "reason": false,
+    "disabledButtons": 1,
+    "buttons": [
+     "Ir al contenido",
+     "Plataforma",
+     "Paquetes",
+     "Prueba",
+     "Contacto",
+     "EN\nENGLISH",
+     "ES\nESPAÑOL",
+     "Mi agencia",
+     "Cerrar sesión",
+     "Conectar",
+     "Publicar",
+     "Entrada"
+    ],
+    "body": "Ir al contenido Plataforma Paquetes Prueba Contacto EN ENGLISH ES ESPAÑOL Mi agencia Cerrar sesión Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa SOCIAL Conexión y datos Desconecta la cuenta y consulta cómo se eliminan los datos guardad"
+   }
+  },
+  "onboarding": {
+   "path": "/es/onboarding",
+   "radios": [
+    "nuovasolution",
+    "google_sheets"
+   ],
+   "chosenOwn": true,
+   "saved": "Guardado",
+   "stubBand": true,
+   "steps": [
+    "01\nDatos de la agencia y marca",
+    "02\nConexiones y canales",
+    "03\nCRM y fuentes de propiedades",
+    "04\nEquipo y horario",
+    "05\nResumen y activación",
+    "01\n\nCuenta\n\nLo que has introducido está ",
+    "02\n\nDatos de la agencia\n\nEste paso todav",
+    "03\n\nMarca\n\nEste paso todavía lo necesita"
+   ]
+  },
+  "logout": {
+   "afterSecondVisit": {
+    "path": "/es/login",
+    "search": "?next=%2Fes%2Fapp"
+   }
+  },
+  "overflow": {},
+  "contrast": {
+   "360/en": [
+    {
+     "t": "03",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13
+    },
+    {
+     "t": "A",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40
+    },
+    {
+     "t": "B",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40
+    },
+    {
+     "t": "C",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40
+    }
+   ],
+   "360/es": [
+    {
+     "t": "03",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13
+    },
+    {
+     "t": "A",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40
+    },
+    {
+     "t": "B",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40
+    },
+    {
+     "t": "C",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40
+    }
+   ],
+   "390/en": [
+    {
+     "t": "03",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13
+    },
+    {
+     "t": "A",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40
+    },
+    {
+     "t": "B",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40
+    },
+    {
+     "t": "C",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40
+    }
+   ],
+   "390/es": [
+    {
+     "t": "03",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13
+    },
+    {
+     "t": "04",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13
+    },
+    {
+     "t": "A",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40
+    },
+    {
+     "t": "B",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 40
+    }
+   ],
+   "768/en": [
+    {
+     "t": "03",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13
+    },
+    {
+     "t": "A",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 47
+    },
+    {
+     "t": "B",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 47
+    },
+    {
+     "t": "C",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 47
+    }
+   ],
+   "768/es": [
+    {
+     "t": "03",
+     "ratio": 4.29,
+     "need": 4.5,
+     "size": 13
+    },
+    {
+     "t": "A",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 47
+    },
+    {
+     "t": "B",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 47
+    },
+    {
+     "t": "C",
+     "ratio": 2.14,
+     "need": 3,
+     "size": 47
+    }
+   ],
+   "1440/en": [
+    {
+     "t": "Platform",
+     "ratio": 1.34,
+     "need": 4.5,
+     "size": 15
+    },
+    {
+     "t": "Packages",
+     "ratio": 1.34,
+     "need": 4.5,
+     "size": 15
+    },
+    {
+     "t": "Trial",
+     "ratio": 1.34,
+     "need": 4.5,
+     "size": 15
+    },
+    {
+     "t": "Contact",
+     "ratio": 1.34,
+     "need": 4.5,
+     "size": 15
+    }
+   ],
+   "1440/es": [
+    {
+     "t": "Plataforma",
+     "ratio": 1.34,
+     "need": 4.5,
+     "size": 15
+    },
+    {
+     "t": "Paquetes",
+     "ratio": 1.34,
+     "need": 4.5,
+     "size": 15
+    },
+    {
+     "t": "Prueba",
+     "ratio": 1.34,
+     "need": 4.5,
+     "size": 15
+    },
+    {
+     "t": "Contacto",
+     "ratio": 1.34,
+     "need": 4.5,
+     "size": 15
+    }
+   ]
+  },
+  "motion": {
+   "running": 0,
+   "videosPlaying": 0,
+   "hiddenText": 0
+  },
+  "focus": {
+   "focusables": 49,
+   "withoutRing": []
+  },
+  "media": {
+   "images": 13,
+   "broken": [],
+   "videos": [
+    {
+     "poster": true,
+     "autoplay": false,
+     "muted": true,
+     "controls": true
+    }
+   ]
+  },
+  "consoleErrors": [
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-in",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-in",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-in",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-in",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-in",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-in",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-in",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-in",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-in",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-in"
+  ],
+  "failedRequests": [
+   {
+    "type": "Script",
+    "error": ""
+   },
+   {
+    "type": "Fetch",
+    "error": "net::ERR_ABORTED"
+   },
+   {
+    "type": "Script",
+    "error": ""
+   },
+   {
+    "type": "Script",
+    "error": ""
+   },
+   {
+    "type": "Script",
+    "error": ""
+   },
+   {
+    "type": "Script",
+    "error": ""
+   },
+   {
+    "type": "Fetch",
+    "error": "net::ERR_ABORTED"
+   },
+   {
+    "type": "Fetch",
+    "error": "net::ERR_ABORTED"
+   },
+   {
+    "type": "Fetch",
+    "error": "net::ERR_ABORTED"
+   },
+   {
+    "type": "Script",
+    "error": ""
+   }
+  ]
+ },
+ "finished_utc": "2026-10-12T12:05:15.129Z"
+}
