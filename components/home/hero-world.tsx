@@ -90,7 +90,8 @@ export function HeroWorld({ locale }: { locale: Locale }) {
                     const Icon = ICON[c.key];
                     const on = c.key === laura.channel;
                     return (
-                      <li key={c.key} className={cn("inline-flex items-center gap-1.5 rounded-pill px-2.5 py-1 text-[0.75rem] font-medium", on ? "bg-[color:var(--channel-whatsapp)] text-white" : "bg-ink-100 text-ink-700")} data-hero-channel={c.key} aria-current={on ? "true" : undefined}>
+                      {/* the active chip in the channel's dark ink, so its 12 px label keeps 4.5 : 1 */}
+                      <li key={c.key} className={cn("inline-flex items-center gap-1.5 rounded-pill px-2.5 py-1 text-[0.75rem] font-medium", on ? "bg-[color:var(--channel-whatsapp-ink)] text-white" : "bg-ink-100 text-ink-700")} data-hero-channel={c.key} aria-current={on ? "true" : undefined}>
                         <Icon size={12} strokeWidth={2.2} aria-hidden="true" />{l(c.name)}
                       </li>
                     );
