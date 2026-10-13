@@ -447,14 +447,21 @@ A retention rule deletes from the live system. A backup holds a copy. If the bac
 deleted, and keeps it longer, then the published period is not the real one, and that gap is exactly what
 an authority asks about. So this is decided **with** the retention rule, not after it.
 
-**What is true today:** point in time recovery is **off** in both projects, no restorable backup is
-listed, and **no restore has ever been tested**. A lost media object cannot be restored. That is not a
-retention policy; it is the absence of one, in both directions.
+**What is true today, updated 2026-10-13.** The production project is on **Pro** and **database backups
+are visible**. That is a real change from the earlier state, where nothing restorable was listed at all.
+Three things it does **not** settle, and the page must not imply any of them:
+
+- **Storage is not the database.** Media objects are not part of a database backup, so a lost document is
+  still lost unless storage is backed up separately.
+- **A visible backup is not a tested restore.** Nobody has restored anything. "We have backups" and "we can
+  get your data back" are two sentences, and only the first is true.
+- **The window is now part of the retention decision**, not a separate one: a backup that keeps what the
+  rule deletes makes the published period false.
 
 | # | Option | What it buys | What it costs | What the page may then say |
 |---|---|---|---|---|
-| **1** | leave it as it is | nothing to pay | an agency that loses data has no way back, and we would have to say so if asked directly | nothing. The page stays silent on backups, which is honest only while nobody asks |
-| **2** | point in time recovery on, with a window shorter than or equal to the retention rule | a real recovery path, and the published period stays true because the backup cannot outlive it | **API supplies the figure.** Storage objects are not covered by a database backup, so this is two line items, not one | "We can restore the service to a recent point. Copies are not kept longer than the periods above." |
+| **1** | leave it at the database backups that now exist | already paid for with Pro | storage is still uncovered and no restore has been tested, so a lost document has no way back | nothing. The page stays silent on backups, which is honest only while nobody asks |
+| **2** | storage backed up as well, a tested restore, and a window shorter than or equal to the retention rule | a recovery path that has actually been performed once, and a published period the backup cannot outlive | **API supplies the figure** for the storage half; the database half is covered by Pro. The restore test costs time rather than money | "We can restore the service to a recent point. Copies are not kept longer than the periods above." |
 | **3** | recovery with a window **longer** than the retention rule | the strongest recovery | the published period becomes false unless the text says a copy may survive it, which is the sentence nobody wants to write | the period, **plus** an explicit sentence that a copy may exist in a backup for up to the window. Honest, and it weakens the rule in the reader's eye |
 
 **This lane's view, and it is only that:** option 2, with the window set to the retention period chosen in
