@@ -447,16 +447,39 @@ A retention rule deletes from the live system. A backup holds a copy. If the bac
 deleted, and keeps it longer, then the published period is not the real one, and that gap is exactly what
 an authority asks about. So this is decided **with** the retention rule, not after it.
 
-**What is true today, updated 2026-10-13.** The production project is on **Pro** and **database backups
-are visible**. That is a real change from the earlier state, where nothing restorable was listed at all.
-Three things it does **not** settle, and the page must not imply any of them:
+**What is true today, measured 2026-10-13 in `BACKUP_E7B_1013.md`.** Two different things, and the text
+keeps them apart because a reader asking "is my message gone?" is asking about both:
 
-- **Storage is not the database.** Media objects are not part of a database backup, so a lost document is
-  still lost unless storage is backed up separately.
+| | The live system | The backups |
+|---|---|---|
+| database | the record is deleted when the rule deletes it | **daily physical backups, kept 7 days** (Pro). **No point in time recovery** |
+| files in storage | deleted with their record | **not backed up at all.** A database backup does not contain storage files |
+| the automation's own database | — | daily dumps, **kept 14 days**, and today **on the same disk** as the system they protect |
+| recovery points before a risky change | — | kept until the change is accepted, **plus 30 days** |
+
+**What this means for a deletion, and it is the sentence a privacy page owes:** a deletion takes effect in
+the live system straight away, and a copy can still exist in a backup until that backup rolls over. With
+the periods above, the longest any copy survives a deletion today is **thirty days plus the life of the
+change it belongs to**, and for ordinary customer data **seven days**.
+
+**Three things that are still not settled**, and the page must not imply any of them:
+
 - **A visible backup is not a tested restore.** Nobody has restored anything. "We have backups" and "we can
-  get your data back" are two sentences, and only the first is true.
-- **The window is now part of the retention decision**, not a separate one: a backup that keeps what the
+  get your data back" are two sentences, and only the first is true. API's isolated restore test costs
+  under USD 0.10 and is owner decision E7b-1.
+- **Storage is uncovered.** One file exists today, so the exposure is small, and it grows with the first
+  real customer document. Owner decision E7b-3.
+- **The backup window is part of the retention decision**, not a separate one: a backup that keeps what the
   rule deletes makes the published period false.
+
+**How a deletion is re-applied after a restore — written, not yet publishable.** If a backup is ever
+restored, the records a customer asked us to delete would come back with it unless the deletion is applied
+again. The sentence for that day is ready: ES "Si alguna vez restauramos una copia de seguridad, volvemos a
+aplicar sobre ella las supresiones solicitadas antes de volver al funcionamiento normal." · EN "If we ever
+restore a backup, we re-apply the deletions that were requested before returning to normal operation."
+**It is not published yet**, because no restore has ever been performed and no mechanism re-applies
+anything. It goes in on the day the restore test runs **and** the re-application is part of it; the test in
+E7b-1 is the natural place to prove both at once.
 
 | # | Option | What it buys | What it costs | What the page may then say |
 |---|---|---|---|---|

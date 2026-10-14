@@ -55,6 +55,37 @@ not missed, a priority score, a figure the envelope does not carry, a task from 
 field name. If `summary.headline` is absent, the "why now" line is absent too; a reason nobody wrote is
 not improved by inventing one.
 
+### 1b. Decisions on Daily's notes of 2026-10-13
+
+Daily asked six things back. **All three deviations are accepted**, because each one caught a line of mine
+that claimed something the envelope does not carry, and the seven missing lines are below.
+
+| # | Daily's deviation | Decision |
+|---|---|---|
+| 1 | SUMMARY: "it has waited longest" only when nothing else raised the first task | **accepted.** It was my own rule 2 broken by my own line: when a recorded deadline puts a task first, "it has waited longest" is not the reason, and the row's own "why now" already carries the real one |
+| 2 | a callback row without a name reads "Devolver la llamada al {+34 …}" | **accepted.** "Llamar a +34 … al +34 …" is the kind of sentence that makes a reader distrust everything else in the letter |
+| 3 | NEXT_ACTION names the concrete step, my line only where no step is recorded | **accepted**, with one addition: the step is rendered with **the same words the staff card uses** for that action, from the shared dictionary, so the letter and the card never describe one action differently |
+
+**The seven lines, mine as asked.** Where Daily's draft was already right it is kept, and that is said.
+
+| key | ES | EN | note |
+|---|---|---|---|
+| `open_task` | Abrir | Open | Daily's, kept: it sits in a row under a button that already says "Abrir mis tareas" |
+| `new_mark_f` | Nueva | New | for a feminine `kind` (visita, llamada, consulta) |
+| `new_mark_m` | Nuevo | New | for a masculine `kind` (mensaje, aviso). **Two keys rather than one**: "Nueva mensaje" is the sort of mistake a Spanish reader notices immediately, and the gender cannot be guessed from the English |
+| `good_to_know` | El cliente mencionó: {…} | The customer mentioned: {…} | replaces "Para que lo sepas". It attributes the budget or the time to the **customer**, which is what it is; "good to know" reads as our judgement of what matters |
+| `more` | Y {n} más en tu lista. | And {n} more in your list. | Daily's, kept |
+| `greeting_noname` | Buenos días. | Good morning. | Daily's, kept |
+| `eyebrow_noagency` | Tu mañana | Your morning | Daily's, kept |
+| `footer_noagency` | Lo recibes porque formas parte de un equipo en Nuova. Las tareas se toman y se cierran en tu lista. | You receive this because you are part of a team in Nuova. Tasks are taken and closed in your list. | shortened: the draft said "del equipo de tu agencia", which names an agency in the one case where no agency name exists |
+| `env_note` | Entorno de pruebas — {…}. Nada de este correo es un cliente real. | Test environment — {…}. Nothing in this mail is a real customer. | Daily's, kept |
+| `period` | Desde el último aviso | Since the last briefing | **new, and the reason it exists:** Daily was right to refuse "desde ayer". The product knows the period between briefings, not a calendar day. If a period is ever shown, it is this one |
+
+**Daily's two refusals are both correct and are recorded as rules**, not as one-off choices: the letter
+never says "since yesterday", and the "why now" words are identical to the staff card's, compared key by
+key by their gate. If this lane changes one of those sentences, it says so to Daily and it is one edit in
+each file.
+
 ---
 
 ## 2. The hold case, and the three customer options (E18) — for Lead
@@ -162,11 +193,24 @@ R17-5 separates reserved, accepted and delivered. The weekly mail of `WEEKLY_REP
 |---|---|---|
 | **received** | an enquiry arrived and was recorded | ES "Llegaron {n} consultas." · EN "{n} enquiries arrived." |
 | **answered** | a reply was produced **and handed to the provider** | ES "Se respondieron {n}." · EN "{n} were answered." |
-| **delivered** | the provider confirmed delivery, with its own reference | ES "{n} llegaron al cliente, confirmado por el canal." · EN "{n} reached the customer, confirmed by the channel." |
+| **provider_accepted** | the channel took the message and gave us a reference. **Not** receipt | ES "{n} las aceptó el canal para enviar." · EN "{n} were accepted by the channel for sending." |
+| **delivered** | the channel confirmed it reached the customer | ES "{n} llegaron al cliente, confirmado por el canal." · EN "{n} reached the customer, confirmed by the channel." |
 
-**Today the third line does not render at all**, because the `reply_delivered` event with a provider
+**Four terms, updated 2026-10-14.** `provider_accepted` is its own step and its own sentence. A provider
+reference means the channel took the message, and a message can carry a reference and still never arrive.
+**A reference is not a receipt**, and the two must never share a line.
+
+**Today neither of the last two lines renders**, because the `reply_delivered` event with a provider
 reference is still to be built (Lead's point 7 with API). That is correct: an answered count printed as a
 delivered count is the kind of number an agency acts on and we cannot stand behind.
+
+**An unknown value is not a zero.** If delivery is not measured, the report says nothing about delivery.
+It never says "0 delivered", because that reads as a failure that was observed, and nothing was observed
+at all. The same rule as absent-versus-zero everywhere else in the report.
+
+**The waiting task and the next step** are written as soon as Lead delivers the data contract: what is
+waiting, why, and the one action that moves it. Until the fields exist there is nothing to bind them to,
+and a generic "check your account" would be the filler this report is meant to avoid.
 
 A held turn counts as **received**, never as answered. An aborted run counts as nothing at all.
 
@@ -195,6 +239,37 @@ So the legal wording stays bound to what is implemented: the reply identifiers k
 message texts keep "today nothing is on a timer", and nothing claims a recovery that has never been
 performed. One line changes in `META_LEGAL_TEXT_FINAL.md` §5c, from "no restorable backup is listed" to
 the state above.
+
+---
+
+## 6b. "Universal": the lines for the next named build, from `MAIL_CRM_MATRIX_v1`
+
+Three things are kept apart in every line: **the technical capability**, **the operational release**, and
+**a delivery actually proven**. A general formulation that blurs them is how an open integration starts
+looking finished.
+
+| # | The line to render | Capability | Release | Proven delivery |
+|---|---|---|---|---|
+| M-1 | ES "Hoy las consultas llegan a un buzón que operamos nosotros para ti. Conectar el buzón propio de tu agencia está en construcción." · EN "Today enquiries arrive at a mailbox we operate for you. Connecting your agency's own mailbox is being built." | one mailbox wired by hand | **no self-service connect for an agency** | never done for an agency |
+| M-2 | ES "Gmail: recibimos y respondemos." · EN "Gmail: we receive and we reply." | yes, prod intake every minute | yes | **receiving yes; the reply in the thread is still owed as a real-provider proof (T2)**, so no sentence claims the thread |
+| M-3 | **no line about Outlook, Microsoft 365 or IMAP** | none: no credential, no entry point | — | — |
+| M-4 | ES "Tus leads viven en el CRM incluido." · EN "Your leads live in the included CRM." | built in | yes | staging and the staff surface |
+| M-5 | ES "HubSpot, Pipedrive, Zoho y Salesforce están certificados en nuestro entorno de pruebas; en producción no hay ninguna conexión." · EN "HubSpot, Pipedrive, Zoho and Salesforce are certified in our test environment; in production there is no connection." | OAuth and write, August | **no production plane** | staging certificates only |
+| M-6 | **no line about Google Sheets as a CRM** until the contradiction below is resolved | — | — | — |
+| M-7 | ES "Hoy respondemos en español." · EN "Today we answer in Spanish." | the rule is in the production agent | **one approved notice, one tenant** | yes, for our own tenant |
+| M-8 | ES "Para una agencia piloto falta todavía la versión del aviso que la nombra." · EN "For a pilot agency the version of the notice that names the agency is still outstanding." | `v1.1-es` exists | **pending** | — |
+
+**The contradiction in M-6, named rather than decided.** `PRODUCT_TRUTH_TABLE` v1.1 and the package matrix
+say Google Sheets is **one active production workflow** that receives a copy of the leads.
+`MAIL_CRM_MATRIX_v1` says Sheets is "**fehlt** as a certified path". Both can be true at once — a thing can
+run and never have been certified — but they produce opposite sentences on a public page. **Asked of API:**
+which of the two governs a customer-facing claim. Until the answer, no Sheets line renders, and the earlier
+delta D-101, which said a copy is written today, is **held back** rather than shipped.
+
+**M-1 is the one that changes the offer's shape**, so it is named plainly: the trust section currently says
+we connect the channels together with you. The matrix calls an agency's own mailbox a pilot blocker that has
+never been done once. What we can honestly say is that we operate a mailbox for you today, and that the
+connection of your own is being built. That is still a service, and it is one that exists.
 
 ---
 
