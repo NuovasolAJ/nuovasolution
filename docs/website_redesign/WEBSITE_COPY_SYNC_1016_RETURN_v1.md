@@ -92,6 +92,28 @@ the capability is advertised instead of only on `/hoy`. No new wording — the s
 Not given, and not possible this round. It happens **on the named build after the owner's requested
 roll-back**, and this lane will not sign a text check on an unnamed build.
 
+## 6b. Owner decisions §4, taken into this order
+
+`OWNER_DECISIONS_2026-10-16_R18.md` §4 reads, for this lane, **no change** plus one standing item. Nothing
+delivered above is reworked. Four consequences are recorded in `COPY_1016.md` §8a:
+
+**The standing item:** this lane reviews the **E10 spoken-text packages** as soon as Voice has them
+prepared. Nothing exists yet. They will be read against the rule every notice follows: an approved text is
+quoted word for word, and a channel without one is held rather than improvised. It is also the open half
+of E22 T-2.
+
+**Tenant locale `nuovasolution` = `es`** changes no text and decides which version is read: the **Spanish**
+morning letter and weekly report are the ones to check on the preview.
+
+**E18-A** is accepted only with a notification plus customer, reason, draft and next step. All four are
+already in the delivered texts, and §8a names the slot each one sits in, so the acceptance can be checked
+against the wording instead of against a memory of it.
+
+**E19 stage 1 will need two texts that do not exist:** the escalation state on the staff surface and the
+mail to the agency manager. **They are not written here**, because nobody assigned them and inventing an
+assignment is how two lanes end up with two wordings for one event. They are named so that they are not
+improvised on the day the builder needs them; one round produces both, in both languages.
+
 ## 7. The one open factual question
 
 **Which source governs a public sentence about Google Sheets?** The truth table and the package matrix
