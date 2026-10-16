@@ -910,4 +910,4 @@ html.js .rise.is-in, html.js .is-in .rise { opacity: 1; transform: none; }
 .excerpt-figures dt { margin-top: 6px; font-size: 0.8125rem; line-height: 1.3; color: var(--ink-600); }
 
 /* One ground for every page (DESIGN.md): the sand, stone and sage bands of the subpages stand on the canvas now. */
-.band-sand, .band-stone, .band-sage { background: var(--surface-canvas); }
+.band-sand, .band-stone, .band-sage { --band-bg: var(--surface-canvas); }

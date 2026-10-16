@@ -21,6 +21,8 @@ const EDGE = process.env.EDGE ?? "C:/Program Files (x86)/Microsoft/Edge/Applicat
 const CDP_PORT = 9451 + Math.floor(Math.random() * 20);
 const LOCALES = process.env.LOCALES ? process.env.LOCALES.split(",") : ["es"];
 const PHONE = process.env.VIEW === "m390";
+// PAGE=home (default): the v4 home page, hero to closing. PAGE=platform: the six scenes of the story with their controls.
+const PAGE = process.env.PAGE === "platform" ? "platform" : "home";
 const FPS = 30;
 const REAL_MS = Number(process.env.REAL_MS ?? 280);
 const RATE = 1000 / FPS / REAL_MS;
@@ -75,8 +77,10 @@ try {
   let list2;
   for (let i = 0; i < 60; i++) { try { list2 = await (await fetch(`http://127.0.0.1:${CDP_PORT + 1}/json`)).json(); break; } catch { await sleep(500); } }
   const enc = await connect(list2.find((t) => t.type === "page").webSocketDebuggerUrl, "encoder");
-  await sleep(1000);
-  if ((await enc.ev("typeof Mp4Muxer")) !== "object") throw new Error("mp4-muxer did not load in the encoder page");
+  // the encoder page may take a moment on a busy machine: wait up to 15 s for the muxer
+  let muxOk = false;
+  for (let i = 0; i < 30 && !muxOk; i++) { muxOk = (await enc.ev("typeof Mp4Muxer")) === "object"; if (!muxOk) await sleep(500); }
+  if (!muxOk) throw new Error("mp4-muxer did not load in the encoder page");
 
   const VW = PHONE ? 390 : 1440, VH = PHONE ? 844 : 900, DPR = PHONE ? 2 : 1;
   const W = VW * DPR, H = VH * DPR;
@@ -85,20 +89,41 @@ try {
   const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
 
   for (const locale of LOCALES) {
-    await page.send("Page.navigate", { url: `${BASE}/${locale}` });
+    await page.send("Page.navigate", { url: `${BASE}/${locale}${PAGE === "platform" ? "/platform" : ""}` });
     await sleep(6000);
     // Everything revealed and every lazy image loaded before the film starts, so no frame catches a half-loaded stage.
     await page.ev("(()=>{document.querySelectorAll('.reveal').forEach(e=>e.classList.add('is-in'));document.querySelectorAll('img[loading=lazy]').forEach(i=>i.loading='eager');return true})()");
     await sleep(2500);
     const headerH = parseFloat(await page.ev("getComputedStyle(document.documentElement).getPropertyValue('--header-h')")) || 72;
-    const pos = JSON.parse(await page.ev(`(()=>{const t=(s)=>{const e=document.querySelector(s);const r=e.getBoundingClientRect();return {top:Math.round(r.top+scrollY),bottom:Math.round(r.bottom+scrollY)}};const st=(id)=>{const e=document.getElementById(id).querySelector('[data-story-stage]');const r=e.getBoundingClientRect();return {top:Math.round(r.top+scrollY),bottom:Math.round(r.bottom+scrollY)}};return JSON.stringify({hero:t('.hero-world'),storyH:t('#story-h'),a:st('story-a'),b:st('story-b'),c:st('story-c'),d:st('story-d'),e:st('story-e'),f:st('story-f'),social:t('#story-social'),m3:t('#model-3d'),max:document.documentElement.scrollHeight-innerHeight})})()`));
+    const pos = JSON.parse(await page.ev(PAGE === "platform"
+      ? `(()=>{const t=(s)=>{const e=document.querySelector(s);const r=e.getBoundingClientRect();return {top:Math.round(r.top+scrollY),bottom:Math.round(r.bottom+scrollY)}};const st=(id)=>{const e=document.getElementById(id).querySelector('[data-story-stage]');const r=e.getBoundingClientRect();return {top:Math.round(r.top+scrollY),bottom:Math.round(r.bottom+scrollY)}};return JSON.stringify({a:st('story-a'),b:st('story-b'),c:st('story-c'),d:st('story-d'),e:st('story-e'),f:st('story-f'),social:t('#story-social'),m3:t('#model-3d'),max:document.documentElement.scrollHeight-innerHeight})})()`
+      : `(()=>{const t=(s)=>{const e=document.querySelector(s);const r=e.getBoundingClientRect();return {top:Math.round(r.top+scrollY),bottom:Math.round(r.bottom+scrollY)}};return JSON.stringify({hero:t('.hero4'),loss:t('.loss'),compare:t('#compare'),what:t('#what'),morning:t('#morning'),start:t('#start'),packages:t('#packages'),questions:t('#questions'),closing:t('.moment-closing'),max:document.documentElement.scrollHeight-innerHeight})})()`));
     // Each stage is shown with its top under the header; a tall stage is scrolled through slowly during its hold.
     const at = (s) => Math.max(0, Math.min(pos.max, s.top - headerH - 24));
     const through = (s) => Math.max(at(s), Math.min(pos.max, s.bottom - VH + 24));
-    const plan = [
+    const plan = PAGE === "home" ? [
+      // the v4 home: the hero's sequence, the panel standing up, the loss scene developing with the scroll, then each moment
       ["hold", 5.0, 0, 0, null],
-      ["scroll", 3.0, 0, pos.hero.bottom - VH * 0.6, null],
-      ["scroll", 1.4, pos.hero.bottom - VH * 0.6, at(pos.a), null],
+      ["scroll", 3.2, 0, pos.loss.top - VH * 0.5, null],
+      ["scroll", 7.0, pos.loss.top - VH * 0.5, pos.loss.bottom - VH, null],
+      ["hold", 1.2, pos.loss.bottom - VH, pos.loss.bottom - VH, null],
+      ["scroll", 1.4, pos.loss.bottom - VH, at(pos.compare), null],
+      ["hold", 2.2, at(pos.compare), at(pos.compare), null],
+      ["scroll", 1.4, at(pos.compare), at(pos.what), null],
+      ["scroll", 4.0, at(pos.what), through(pos.what), null],
+      ["scroll", 1.2, through(pos.what), at(pos.morning), null],
+      ["hold", 2.0, at(pos.morning), at(pos.morning), null],
+      ["scroll", 1.2, at(pos.morning), at(pos.start), null],
+      ["hold", 1.8, at(pos.start), at(pos.start), null],
+      ["scroll", 1.2, at(pos.start), at(pos.packages), null],
+      ["scroll", 2.6, at(pos.packages), through(pos.packages), null],
+      ["scroll", 1.2, through(pos.packages), at(pos.questions), null],
+      ["hold", 1.6, at(pos.questions), at(pos.questions), null],
+      ["scroll", 1.2, at(pos.questions), Math.min(pos.max, pos.closing.top - headerH), null],
+      ["hold", 1.4, Math.min(pos.max, pos.closing.top - headerH), Math.min(pos.max, pos.closing.top - headerH), null],
+    ] : [
+      ["hold", 1.0, 0, 0, null],
+      ["scroll", 1.4, 0, at(pos.a), null],
       ["scroll", 2.6, at(pos.a), through(pos.a), null],
       ["scroll", 1.2, through(pos.a), at(pos.b), null],
       ["hold", 1.8, at(pos.b), at(pos.b), null],
@@ -155,7 +180,7 @@ try {
       console.log(`${locale}: ${kind} ${secs}s ${Math.round(from)}->${Math.round(to)}${action ? " +action" : ""} (${i} frames, ${Math.round((Date.now() - t0) / 1000)}s real)`);
     }
     const bytes = Buffer.from(await enc.ev("enc.finish()"), "base64");
-    const file = join(OUT, `story-film-${PHONE ? "m390" : "d1440"}-${locale}.mp4`);
+    const file = join(OUT, `story-film-${PAGE}-${PHONE ? "m390" : "d1440"}-${locale}.mp4`);
     writeFileSync(file, bytes);
     console.log(`wrote ${file} (${i} frames = ${(i / FPS).toFixed(1)}s at ${FPS} fps, ${W}x${H}, ${Math.round(bytes.length / 1024)} kB, ${late} late frames, ${reused} frames reused)`);
     await page.send("Animation.setPlaybackRate", { playbackRate: 1 });
