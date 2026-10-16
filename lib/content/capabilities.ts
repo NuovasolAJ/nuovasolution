@@ -78,7 +78,7 @@ export const capabilities: Capability[] = [
       { text: { en: "Each conversation is recorded against the customer.", es: "Cada conversación queda registrada en la ficha del cliente." }, status: "live" }, // WCR-053
       { text: { en: "Email attachments.", es: "Adjuntos de email." }, status: "in_implementation" },
       { text: { en: "WhatsApp media understanding.", es: "Comprensión de archivos de WhatsApp." }, status: "in_implementation" },
-      { text: { en: "Outlook and Microsoft 365.", es: "Outlook y Microsoft 365." }, status: "in_implementation" },
+      // Outlook and Microsoft 365: no line (TEXTS_1013 §6b M-3: no credential, no entry point). Copy's FAQ answers the question.
     ],
     scenario: {
       en: "A buyer writes on WhatsApp on a Tuesday morning, while the agent is at a viewing, asking whether the flat in Estepona can be viewed. The message is answered on WhatsApp in her language, and the conversation is recorded against the buyer for the agent after the viewing.", // WORKING (master order 2026-10-10); was WCR-055
@@ -145,7 +145,7 @@ export const capabilities: Capability[] = [
     },
     points: [
       { text: { en: "Leads recorded with what each customer asked for, included.", es: "Leads registrados con lo que ha pedido cada cliente, incluido." }, status: "live" }, // WCR-071, interim wording 2026-10-01 (no qualification claim)
-      { text: { en: "Google Sheets.", es: "Google Sheets." }, status: "in_implementation" }, // WCR-072
+      // WCR-072 Google Sheets: no line until the contradiction of MAIL_CRM_MATRIX_v1 is resolved (TEXTS_1013 §6b M-6).
       { text: { en: "The conversation history on the customer record.", es: "El historial de conversación en la ficha del cliente." }, status: "live" }, // WCR-073
       { text: { en: "HubSpot, Pipedrive, Zoho CRM and Salesforce.", es: "HubSpot, Pipedrive, Zoho CRM y Salesforce." }, status: "certified_gate_pending" },
     ],
@@ -156,7 +156,6 @@ export const capabilities: Capability[] = [
     },
     fits: [
       { en: "Native CRM", es: "CRM propio" },
-      { en: "Google Sheets", es: "Google Sheets" },
     ],
     bothHalves: {
       // WCR-076, WCR-077

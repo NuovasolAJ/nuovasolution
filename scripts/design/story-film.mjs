@@ -1,6 +1,6 @@
 // The scroll film of the main story (master order 2026-10-10 §12): from the hero at rest (the sequence runs),
 // down through the six chapters A to F, with a pause on each so its stage can be read, the channel changed in B
-// and the task taken and closed in D, then the 3D section. Desktop 1440x900 (or VIEW=m390 for the phone).
+// and the task taken and closed in D, the request sent in E, the social strip, then the 3D section. Desktop 1440x900 (or VIEW=m390 for the phone).
 // Captured scroll-step by scroll-step from headless Edge over CDP and encoded in a second headless browser with
 // WebCodecs (H.264) and mp4-muxer, as owner-export.mjs does; real time runs slower than the film (REAL_MS per
 // frame); the hero's own sequence is slowed to the film's pace, the rest runs at the natural rate. Both browsers
@@ -91,7 +91,7 @@ try {
     await page.ev("(()=>{document.querySelectorAll('.reveal').forEach(e=>e.classList.add('is-in'));document.querySelectorAll('img[loading=lazy]').forEach(i=>i.loading='eager');return true})()");
     await sleep(2500);
     const headerH = parseFloat(await page.ev("getComputedStyle(document.documentElement).getPropertyValue('--header-h')")) || 72;
-    const pos = JSON.parse(await page.ev(`(()=>{const t=(s)=>{const e=document.querySelector(s);const r=e.getBoundingClientRect();return {top:Math.round(r.top+scrollY),bottom:Math.round(r.bottom+scrollY)}};const st=(id)=>{const e=document.getElementById(id).querySelector('[data-story-stage]');const r=e.getBoundingClientRect();return {top:Math.round(r.top+scrollY),bottom:Math.round(r.bottom+scrollY)}};return JSON.stringify({hero:t('.hero-world'),storyH:t('#story-h'),a:st('story-a'),b:st('story-b'),c:st('story-c'),d:st('story-d'),e:st('story-e'),f:st('story-f'),m3:t('#model-3d'),max:document.documentElement.scrollHeight-innerHeight})})()`));
+    const pos = JSON.parse(await page.ev(`(()=>{const t=(s)=>{const e=document.querySelector(s);const r=e.getBoundingClientRect();return {top:Math.round(r.top+scrollY),bottom:Math.round(r.bottom+scrollY)}};const st=(id)=>{const e=document.getElementById(id).querySelector('[data-story-stage]');const r=e.getBoundingClientRect();return {top:Math.round(r.top+scrollY),bottom:Math.round(r.bottom+scrollY)}};return JSON.stringify({hero:t('.hero-world'),storyH:t('#story-h'),a:st('story-a'),b:st('story-b'),c:st('story-c'),d:st('story-d'),e:st('story-e'),f:st('story-f'),social:t('#story-social'),m3:t('#model-3d'),max:document.documentElement.scrollHeight-innerHeight})})()`));
     // Each stage is shown with its top under the header; a tall stage is scrolled through slowly during its hold.
     const at = (s) => Math.max(0, Math.min(pos.max, s.top - headerH - 24));
     const through = (s) => Math.max(at(s), Math.min(pos.max, s.bottom - VH + 24));
@@ -103,6 +103,7 @@ try {
       ["scroll", 1.2, through(pos.a), at(pos.b), null],
       ["hold", 1.8, at(pos.b), at(pos.b), null],
       ["hold", 2.2, at(pos.b), at(pos.b), "document.querySelector('[data-channel-tab=email]').click()"],
+      ["hold", 2.0, at(pos.b), at(pos.b), "document.querySelector('[data-translation-toggle]')?.click()"],
       ["hold", 2.2, at(pos.b), at(pos.b), "document.querySelector('[data-channel-tab=phone]').click()"],
       ["scroll", 1.8, at(pos.b), through(pos.b), null],
       ["scroll", 1.2, through(pos.b), at(pos.c), null],
@@ -114,9 +115,12 @@ try {
       ["scroll", 1.6, at(pos.d), through(pos.d), null],
       ["scroll", 1.2, through(pos.d), at(pos.e), null],
       ["scroll", 3.2, at(pos.e), through(pos.e), null],
+      ["hold", 2.4, through(pos.e), through(pos.e), "document.querySelector('[data-story-request]')?.click()"],
       ["scroll", 1.2, through(pos.e), at(pos.f), null],
       ["scroll", 2.8, at(pos.f), through(pos.f), null],
-      ["scroll", 1.4, through(pos.f), pos.m3.top - headerH, null],
+      ["scroll", 1.2, through(pos.f), at(pos.social), null],
+      ["scroll", 2.6, at(pos.social), through(pos.social), null],
+      ["scroll", 1.4, through(pos.social), pos.m3.top - headerH, null],
       ["scroll", 2.6, pos.m3.top - headerH, Math.min(pos.max, pos.m3.top - headerH + VH * 0.9), null],
       ["hold", 1.0, Math.min(pos.max, pos.m3.top - headerH + VH * 0.9), Math.min(pos.max, pos.m3.top - headerH + VH * 0.9), null],
     ];

@@ -71,14 +71,16 @@ export const homeWords = {
     },
     // D-102: the included CRM is the way in today; the agency's own CRM when it is ready.
     crmTitle: { es: "Con el CRM incluido, y con tu CRM cuando esté listo", en: "With the included CRM, and with your CRM when it is ready" },
-    crmBuiltIn: { title: { es: "Sin CRM externo", en: "No external CRM" }, line: { es: "Usas el CRM incluido en Nuova. Es la opción recomendada para empezar: no hay nada que conectar.", en: "You use the CRM included in Nuova. The recommended way to start: there is nothing to connect." } },
-    // D-101: two states in two sentences: the four CRMs certified on staging, Google Sheets running today.
-    crmExternal: { title: { es: "Con tu CRM actual", en: "With your current CRM" }, line: { es: "HubSpot, Pipedrive, Zoho y Salesforce están certificados en nuestro entorno de pruebas contra cuentas reales de cada proveedor, y todavía no hay ninguna conexión en producción. Google Sheets sí recibe hoy una copia de tus leads. Dinos cuál usas y lo preparamos contigo.", en: "HubSpot, Pipedrive, Zoho and Salesforce are certified in our test environment against each provider's real accounts, and there is no production connection yet. Google Sheets does receive a copy of your leads today. Tell us which you use and we prepare it with you." } },
+    // TEXTS_1013 §6b M-4: the included CRM.
+    crmBuiltIn: { title: { es: "Sin CRM externo", en: "No external CRM" }, line: { es: "Tus leads viven en el CRM incluido. Es la opción recomendada para empezar: no hay nada que conectar.", en: "Your leads live in the included CRM. The recommended way to start: there is nothing to connect." } },
+    // TEXTS_1013 §6b M-5 (the four CRMs, certified on staging, no production connection) and M-6 (no line about Google Sheets as a CRM).
+    crmExternal: { title: { es: "Con tu CRM actual", en: "With your current CRM" }, line: { es: "HubSpot, Pipedrive, Zoho y Salesforce están certificados en nuestro entorno de pruebas; en producción no hay ninguna conexión. Dinos cuál usas y lo preparamos contigo cuando esté listo.", en: "HubSpot, Pipedrive, Zoho and Salesforce are certified in our test environment; in production there is no connection. Tell us which you use and we prepare it with you when it is ready." } },
     supportTitle: { es: "Qué hacemos nosotros al conectar", en: "What we do when connecting" },
-    // D-99, D-100: no phone number to set up, no web form to add.
+    // D-99, D-100: no phone number to set up, no web form to add. TEXTS_1013 §6b M-1 (the mailbox we operate; the agency's own is being
+    // built), M-2 (Gmail: receive and reply, nothing about the thread), M-3 (no line about Outlook), M-8 (the pilot notice still outstanding).
     support: {
-      es: ["Preparamos la cuenta de WhatsApp Business y el buzón de email con tu nombre.", "Probamos cada canal con un mensaje real antes de darlo por conectado.", "Configuramos contigo el aviso de IA que lleva cada respuesta y el idioma por defecto."],
-      en: ["We prepare the WhatsApp Business account and the email mailbox under your name.", "We test each channel with a real message before calling it connected.", "We set up with you the AI notice every reply carries and the default language."],
+      es: ["Preparamos la cuenta de WhatsApp Business con tu nombre. Hoy las consultas por email llegan a un buzón que operamos nosotros para ti (Gmail: recibimos y respondemos); conectar el buzón propio de tu agencia está en construcción.", "Probamos cada canal con un mensaje real antes de darlo por conectado.", "Configuramos contigo el aviso de IA que lleva cada respuesta y el idioma por defecto. Para una agencia piloto falta todavía la versión del aviso que la nombra."],
+      en: ["We prepare the WhatsApp Business account under your name. Today email enquiries arrive at a mailbox we operate for you (Gmail: we receive and we reply); connecting your agency's own mailbox is being built.", "We test each channel with a real message before calling it connected.", "We set up with you the AI notice every reply carries and the default language. For a pilot agency the version of the notice that names the agency is still outstanding."],
     },
     questionsTitle: { es: "Lo que preguntan antes de empezar", en: "What people ask before starting" },
     /** The questions answered here, by their row in Copy's FAQ (lib/content/faq.ts). Q-21 is replaced by step 2 above. */

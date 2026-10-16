@@ -241,7 +241,8 @@ export const heroWords = {
   /** The situation, as one line inside the panel (owner 2026-10-12: no cards under the panel). */
   situationLine: { es: "Martes 11:20 · Marcos está en una visita hasta las 12:00 · Nuova atiende lo que llega", en: "Tuesday 11:20 · Marcos is at a viewing until 12:00 · Nuova handles what arrives" },
   /** The state line of the hero example (Copy, CLAIMS_CHECK_1012 §1 B): what runs today, what the example shows. */
-  stateToday: { es: "Hoy: respuestas en español por WhatsApp y email. El inglés del ejemplo es el producto objetivo.", en: "Today: replies in Spanish on WhatsApp and email. The English of the example is the target product." },
+  /** TEXTS_1013 §4 L-1 + L-2 (Copy, for this build): the channel, the version and the evidence behind the line. */
+  stateToday: { es: "Hoy respondemos en español. El sistema responde en el idioma del cliente; lo que falta en otros idiomas es la aprobación legal del aviso, no la función.", en: "Today we answer in Spanish. The system replies in the customer's language; what is missing for other languages is the legal approval of the notice, not the capability." },
   surfaceLabel: { es: "Ejemplo: una consulta por WhatsApp en inglés, la respuesta, la ficha del cliente y el siguiente paso para el equipo", en: "Example: a WhatsApp enquiry in English, the reply, the customer record and the next step for the team" },
 };
 
@@ -268,7 +269,8 @@ export const chapters: Chapter[] = [
     // D-95: the language is not claimed in the title; the example keeps the international customer visible.
     title: { es: "Cada cliente recibe una respuesta concreta, y lo que pide queda guardado.", en: "Every customer gets a concrete reply, and what they ask for is kept." },
     line: { es: "Zona, presupuesto y plazo quedan claros en la primera respuesta. Nada se compromete: ni precio, ni fecha, ni disponibilidad. Cada cliente sabe que responde un asistente.", en: "Area, budget and timing are clear from the first reply. Nothing is committed: no price, no date, no availability. Every customer is told an assistant is replying." },
-    state: { es: "Disponible hoy, en español. Las respuestas en inglés y alemán son el producto objetivo.", en: "Available today, in Spanish. The English and German replies are the target product." },
+    // TEXTS_1013 §4 L-1, L-2, L-3 (email and WhatsApp; no line about the phone or the web form, L-4/L-5).
+    state: { es: "Hoy respondemos en español. El sistema responde en el idioma del cliente; lo que falta en otros idiomas es la aprobación legal del aviso, no la función. Si alguien escribe en un idioma sin aviso aprobado, no enviamos nada y queda una tarea para tu equipo.", en: "Today we answer in Spanish. The system replies in the customer's language; what is missing for other languages is the legal approval of the notice, not the capability. If somebody writes in a language without an approved notice, we send nothing and your team gets a task." },
   },
   {
     key: "match",

@@ -105,8 +105,9 @@ export const matrixWords = {
     cta: { es: "Pide un modelo", en: "Ask for a model" },
   },
   adsNote: { es: "Recogemos los leads que generan tus anuncios. Las campañas y el presupuesto publicitario siguen siendo tuyos.", en: "We take in the leads your ads produce. The campaigns and the advertising budget stay yours." },
-  crmNote: { es: "El CRM está incluido. Si ya usas HubSpot, Pipedrive, Zoho, Salesforce o Google Sheets, conectamos tus leads con él.", en: "The CRM is included. If you already use HubSpot, Pipedrive, Zoho, Salesforce or Google Sheets, we connect your leads to it." },
-  crmNoteProof: { es: "HubSpot, Pipedrive, Zoho y Salesforce están certificados en nuestro entorno de pruebas. Todavía no hay ninguna conexión en producción.", en: "HubSpot, Pipedrive, Zoho and Salesforce are certified in our test environment. There is no production connection yet." },
+  // TEXTS_1013 §6b M-4, M-5, M-6: the included CRM; the four CRMs certified on staging with no production connection; no Google Sheets line.
+  crmNote: { es: "Tus leads viven en el CRM incluido. Si ya usas HubSpot, Pipedrive, Zoho o Salesforce, lo preparamos contigo cuando esté listo.", en: "Your leads live in the included CRM. If you already use HubSpot, Pipedrive, Zoho or Salesforce, we prepare it with you when it is ready." },
+  crmNoteProof: { es: "HubSpot, Pipedrive, Zoho y Salesforce están certificados en nuestro entorno de pruebas; en producción no hay ninguna conexión.", en: "HubSpot, Pipedrive, Zoho and Salesforce are certified in our test environment; in production there is no connection." },
   noPrice: { es: "Sin precios en esta página. Te decimos el precio para tu agencia antes de acordar nada.", en: "No prices on this page. We tell you the price for your agency before anything is agreed." },
   trial: { es: "14 días · Sin tarjeta", en: "14 days · No card" },
 };
