@@ -365,8 +365,8 @@ export const en = {
 
   platform: {
     eyebrow: "Platform",
-    h1: "Everything one enquiry needs, in one place", // D-47
-    lead: "Each part of Nuova does one job properly, and they share one record, so the answer, the context and the task are never in three different places.",
+    h1: "One enquiry, end to end", // CONTENT_MODEL_1016: the product story lives here
+    lead: "Follow Laura Serrano from her first message to the task your team closes: six scenes with the same names, the same property and the same clock. Try the controls.",
     indexEyebrow: "Capabilities",
     indexH2: "What Nuova does for your agency.",
     exampleEyebrow: "One enquiry, end to end",

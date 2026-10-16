@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { startLabel } from "@/lib/content/plans";
 import { HOME_V3_WORKING_TEXT } from "@/lib/content/home-v3";
-import { homeWords } from "@/lib/content/home-sections";
-import { ButtonLink } from "@/components/ui/button";
-import { Reveal } from "@/components/ui/reveal";
-import { HeroWorld } from "@/components/home/hero-world";
-import { SocialStrip, Story } from "@/components/home/story";
-import { Model3dSection } from "@/components/home/model-3d";
-import { TrustSection } from "@/components/home/trust";
+import { homeV4 } from "@/lib/content/home-v4";
+import { HeroV4 } from "@/components/home/hero-v4";
+import { LossScene } from "@/components/home/loss-scene";
+import { ClosingMoment, CompareMoment, HomeDemoLine, MorningMoment, QuestionsMoment, StartMoment, WhatMoment } from "@/components/home/moments";
 import { PackageMatrix } from "@/components/home/package-matrix";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
@@ -19,66 +17,52 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
 }
 
 /**
- * Home (master order 2026-10-10):
+ * Home in eight moments (CONTENT_MODEL_1016.md, DESIGN.md, owner 2026-10-16):
  *
- *   1 Hero      dark anthracite · the dusk, the ridges, the product panel, the situation in two cards
- *   2 Story     warm ivory · six chapters A to F, the same enquiry through the whole product, in the scroll
- *   3 3D        the living room of the 3D lane: plan → furnishing → render → the rotatable view
- *   4 Trust     the real setup path, with or without an external CRM, cost, effort, data, the trial
- *   5 Packages  three packages, each on top of the last; 3D on its own
+ *   1 Hero       the pain in one sentence; the product rising out of the land (four layers, scrubbed)
+ *   2 Loss       one sentence lighting up word by word; the clock of an unanswered enquiry (scrubbed)
+ *   3 Compare    the same enquiry without and with Nuova
+ *   4 What       answers · keeps · alerts · sums up, one excerpt each
+ *   5 Morning    the team's list with reasons
+ *   6 Start      three steps, the CRM sentence, the button
+ *   7 Packages   three, each on the last
+ *   8 Questions  three of Copy's rows, the closing sentence
  *
- * The style foundation v3 (tokens in globals.css) applies to every document that contains [data-style="v3"].
+ * No entry animation on this page; the product story in full (six interactive scenes) is /platform; the product truth
+ * is /hoy. The style foundation v3 (tokens in globals.css) applies to every document that contains [data-style="v3"].
  */
 export default function HomePage({ params }: { params: { locale: string } }) {
   const locale = params.locale as Locale;
-  const d = getDictionary(locale);
-  const p = (path: string) => localePath(locale, path);
-  const v3 = d.home.v3;
   const l = <T,>(x: Record<Locale, T>) => x[locale];
-  const w = homeWords;
+  const w = homeV4;
 
   return (
-    <div data-style="v3" data-working-text={HOME_V3_WORKING_TEXT ? "true" : undefined}>
-      <HeroWorld locale={locale} />
+    <div data-style="v3" data-home="v4" data-working-text={HOME_V3_WORKING_TEXT ? "true" : undefined}>
+      <HeroV4 locale={locale} />
+      <LossScene locale={locale} />
+      <CompareMoment locale={locale} />
+      <WhatMoment locale={locale} />
+      <MorningMoment locale={locale} />
+      <HomeDemoLine locale={locale} />
+      <StartMoment locale={locale} />
 
-      {/* 2 The story. The hero's ground is already the ivory of this section (the panel bridges the two). */}
-      <section id="story" aria-labelledby="story-h" className="relative scroll-mt-[var(--header-h)] bg-[color:var(--surface-canvas)] pb-[var(--section-compact)] pt-[var(--section-compact)]">
+      <section id="packages" aria-labelledby="packages-h" className="moment scroll-mt-[var(--header-h)]">
         <div className="container-default">
-          <Reveal className="max-w-[760px]">
-            <p className="t-eyebrow text-text-accent">{l(w.story.eyebrow)}</p>
-            <h2 id="story-h" className="mt-4 t-display-l text-text-primary">{l(w.story.h2)}</h2>
-            <p className="mt-5 t-body-l text-text-secondary">{l(w.story.lead)}</p>
-          </Reveal>
-          <div className="mt-6 xl:mt-8">
-            <Story locale={locale} />
-            <SocialStrip locale={locale} />
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-[720px]">
+              <p className="t-eyebrow text-text-accent">{l(w.packages.eyebrow)}</p>
+              <h2 id="packages-h" className="mt-4 t-display-l text-text-primary">{l(w.packages.title)}</h2>
+            </div>
+            <Link href={localePath(locale, "/packages")} className="inline-flex items-center gap-2 t-body-m font-medium text-text-primary underline decoration-line-strong underline-offset-4">{l(w.packages.all)}<ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
-        </div>
-      </section>
-
-      {/* 3 3D: the living room, from the plan to the rotatable view. */}
-      <Model3dSection locale={locale} />
-
-      {/* 4 Trust and conversion: the real way in. */}
-      <TrustSection locale={locale} />
-
-      {/* 5 The packages */}
-      <section id="packages" aria-labelledby="packages-h" className="scroll-mt-[var(--header-h)] pb-[var(--section-default)]">
-        <div className="container-default">
-          <Reveal className="max-w-[720px]">
-            <p className="t-eyebrow text-text-accent">{v3.packages.eyebrow}</p>
-            <h2 id="packages-h" className="mt-4 t-display-l text-text-primary">{v3.packages.h2}</h2>
-            <p className="mt-5 t-body-l text-text-secondary">{v3.packages.lead}</p>
-          </Reveal>
           <div className="mt-10">
             <PackageMatrix locale={locale} />
           </div>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
-            <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
-            <p className="t-body-s font-medium text-text-secondary">{v3.offer.line}</p>
-          </div>
         </div>
       </section>
+
+      <QuestionsMoment locale={locale} />
+      <ClosingMoment locale={locale} />
     </div>
   );
 }

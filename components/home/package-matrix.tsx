@@ -21,13 +21,14 @@ export function PackageMatrix({ locale }: { locale: Locale }) {
   const proof = proofStatesShown();
   return (
     <div data-package-matrix data-proof-states={proof ? "shown" : "hidden"}>
-      <div className="grid gap-px overflow-hidden rounded-[20px] border border-line-contour bg-[color:var(--border-hairline)] lg:grid-cols-3">
+      <div className="grid gap-px overflow-hidden rounded-[20px] border border-line-hairline bg-[color:var(--border-hairline)] lg:grid-cols-3">
         {matrix.map((pk, i) => {
           const limit = processingLimit(pk.code);
           return (
             <section key={pk.code} aria-labelledby={`pkg-${pk.code}`} className={cn("flex flex-col bg-surface-raised p-6 md:p-8", i === 0 && "bg-[#fbfaf7]")} data-package={pk.code}>
               <h3 id={`pkg-${pk.code}`} className="t-heading-l text-text-primary">{pk.name}</h3>
-              <p className="mt-1 t-body-m text-text-secondary">{pk.line[locale]}</p>
+              <p className="mt-1 t-caption font-medium text-text-muted" data-package-who>{pk.who[locale]}</p>
+              <p className="mt-3 t-body-m text-text-primary" data-package-change>{pk.change[locale]}</p>
               {i === 0 && <p className="mt-3 inline-flex w-fit rounded-pill bg-ink-950 px-3 py-1 t-caption font-medium text-ivory">{w.trial[locale]}</p>}
               <p className="mt-6 t-caption font-medium text-text-muted">{pk.plus ? pk.plus[locale] : t.includes}</p>
               <ul className="mt-2 divide-y divide-line-hairline border-y border-line-hairline">
@@ -41,7 +42,6 @@ export function PackageMatrix({ locale }: { locale: Locale }) {
                   </li>
                 ))}
               </ul>
-              {pk.code === "growth" && <p className="mt-3 t-caption text-text-muted">{w.adsNote[locale]}</p>}
               {pk.code === "essential" && <p className="mt-3 t-caption text-text-muted">{proof ? w.crmNoteProof[locale] : w.crmNote[locale]}</p>}
               <p className="mt-4 t-caption text-text-muted">
                 <span className="font-medium text-text-secondary">{w.limit[locale]}:</span> <span className="tnum">{limit === null ? w.noCap[locale] : limit.toLocaleString(locale === "es" ? "es-ES" : "en-GB")}</span> · {w.limitNote[locale]}
@@ -61,7 +61,6 @@ export function PackageMatrix({ locale }: { locale: Locale }) {
         </div>
         <ButtonLink href={localePath(locale, "/contact")} variant="secondary" className="shrink-0">{w.strip.cta[locale]}</ButtonLink>
       </div>
-      <p className="mt-4 t-caption text-text-muted">{w.noPrice[locale]}</p>
     </div>
   );
 }

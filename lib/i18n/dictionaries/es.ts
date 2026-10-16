@@ -333,8 +333,8 @@ export const es: Dictionary = {
 
   platform: {
     eyebrow: "Plataforma",
-    h1: "Todo lo que necesita una consulta, en un solo lugar", // D-47
-    lead: "Cada parte de Nuova hace bien una cosa, y comparten una misma ficha, así que la respuesta, el contexto y la tarea nunca están en tres sitios distintos.", // D-47
+    h1: "Una consulta, de principio a fin", // CONTENT_MODEL_1016: the product story lives here
+    lead: "Sigue a Laura Serrano desde su primer mensaje hasta la tarea que cierra tu equipo: seis escenas, con los mismos nombres, el mismo inmueble y el mismo reloj. Prueba los controles.",
     indexEyebrow: "Capacidades",
     indexH2: "Qué hace Nuova por tu agencia.",
     exampleEyebrow: "Una consulta, de principio a fin",

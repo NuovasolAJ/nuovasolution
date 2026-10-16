@@ -121,7 +121,6 @@ function Chapter({ id, locale, eyebrow, title, line, state, flip = false, wide =
         <p className="t-eyebrow text-text-accent">{eyebrow}</p>
         <h3 id={`${id}-h`} className="mt-3 t-display-m text-text-primary">{title}</h3>
         <p className="mt-4 t-body-m text-text-secondary">{line}</p>
-        <p className="state-line mt-5" data-state="preparing" data-chapter-state>{storyWords.common.stateLabel[locale]}: {state}</p>
       </Reveal>
       <Reveal mode="opacity" delay={120} className="story-stage-col">{children}</Reveal>
     </article>
@@ -461,7 +460,6 @@ export function SocialStrip({ locale }: { locale: Locale }) {
         <p className="t-eyebrow text-text-accent">{l(S.eyebrow)}</p>
         <h3 id="social-h" className="mt-3 t-display-m text-text-primary">{l(S.title)}</h3>
         <p className="mt-4 t-body-m text-text-secondary">{l(S.line)}</p>
-        <p className="state-line mt-5" data-state="preparing" data-chapter-state>{storyWords.common.stateLabel[locale]}: {l(S.state)}</p>
       </Reveal>
       <Reveal mode="opacity" delay={100} className="mt-8">
         <ol className="grid gap-3 md:grid-cols-5" data-social-strip>

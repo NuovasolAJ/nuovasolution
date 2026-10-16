@@ -69,7 +69,8 @@ export default async function PackagesPage({ params }: { params: { locale: strin
             <Reveal className="xl:max-w-[62%]">
               <SectionHead title={pk.compareHeading} lead={pk.compareLead} size="m" id="pk-plans" />
             </Reveal>
-            <ol className="mt-12 grid gap-6 lg:grid-cols-3" data-plan-cards>
+            <p className="mt-6 t-body-m text-text-secondary">{pk.amountLine}</p>
+            <ol className="mt-10 grid gap-6 lg:grid-cols-3" data-plan-cards>
               {catalogPlans.map((plan, i) => {
                 const essential = plan.code === "essential";
                 const trialHere = aligned && essential;
@@ -82,7 +83,8 @@ export default async function PackagesPage({ params }: { params: { locale: strin
                       </p>
                     )}
                     <Heading size="l" as="h3">{backendName(plan.code) ?? plan.display_name}</Heading>
-                    <p className="mt-1 t-body-s text-text-secondary">{planLine(plan.code)}</p>
+                    <p className="mt-1 t-caption font-medium text-text-muted">{ladder(plan.code)?.who[locale]}</p>
+                    <p className="mt-3 t-body-m text-text-primary">{ladder(plan.code)?.change[locale] ?? planLine(plan.code)}</p>
                     {ladder(plan.code) && (
                       <>
                         <p className="mt-5 t-caption font-medium text-text-muted">{ladder(plan.code)!.plus ? ladder(plan.code)!.plus![locale] : pk.included}</p>
@@ -104,10 +106,6 @@ export default async function PackagesPage({ params }: { params: { locale: strin
                         );
                       })}
                     </dl>
-                    <div className="mt-6 rounded-lg bg-surface-sunken px-4 py-3">
-                      <p className="t-body-s font-medium text-text-primary">{pk.amount}</p>
-                      <p className="mt-0.5 t-caption text-text-muted">{pk.amountLine}</p>
-                    </div>
                     <div className="mt-auto flex flex-col gap-3 pt-7">
                       {trialHere ? (
                         <>

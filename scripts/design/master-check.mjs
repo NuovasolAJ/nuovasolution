@@ -63,21 +63,24 @@ try {
     // the panel is probed at five scroll positions; a point whose top element is neither inside its own part nor
     // behind it (an ancestor shows through a rounded corner) counts as covered.
     const cover = JSON.parse(await ev(`(async()=>{
-      const hero=document.querySelector('.hero-world'); const end=hero.getBoundingClientRect().bottom+scrollY-innerHeight*0.4; const out=[];
+      const hero=document.querySelector('.hero4'); const end=hero.getBoundingClientRect().bottom+scrollY-innerHeight*0.4; const out=[];
       for (const y of [0, end*0.25, end*0.5, end*0.75, end]) {
         window.scrollTo(0, Math.round(y)); await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
         const row={scroll:Math.round(y), hits:[]};
-        for (const sel of ['#hero-h1','[data-hero-lead]','[data-hero-cta]','.hero-cta-second','[data-hero-enquiry]','[data-hero-reply]','[data-hero-crm]','[data-hero-task]']) {
+        for (const sel of ['#hero-h1','[data-hero-lead]','[data-hero-cta=trial]','[data-hero-cta=story]','[data-hero-enquiry]','[data-hero-reply]','[data-hero-crm]','[data-hero-task]']) {
           const t=document.querySelector(sel); const r=t.getBoundingClientRect(); let n=0, seen=0;
           for (let i=0;i<=8;i++) for (let j=0;j<=5;j++) { const x=r.left+2+(r.width-4)*i/8, yy=r.top+2+(r.height-4)*j/5; if (yy<0||yy>innerHeight||x<0||x>innerWidth) continue; seen++; const e=document.elementFromPoint(x,yy); if (e && !e.closest(sel) && !e.contains(t) && !e.closest('header')) n++; }
           if (n>0) row.hits.push(sel+':'+n+'/'+seen);
         }
         out.push(row);
       }
-      const cards=document.querySelectorAll('.hero-float, .hero-world-ground').length;
+      const cards=document.querySelectorAll('.hero-float, .hero-world-ground, .reveal').length;
       window.scrollTo(0,0); return JSON.stringify({rows:out, cards});
     })()`));
     check(`${view}-cover`, "no headline, button or story part of the panel is covered by anything, at five scroll positions; no floating card and no ivory band exist", cover.cards === 0 && cover.rows.every((r) => r.hits.length === 0), cover);
+    // the loss scene: the words and the beats follow the scroll (0 → 1), the card fades, "lost" appears; the primary button is the trial
+    const loss = JSON.parse(await ev(`(async()=>{const sec=document.querySelector('.loss'); const top=sec.getBoundingClientRect().top+scrollY; const H=sec.getBoundingClientRect().height; const op=(sel)=>+getComputedStyle(document.querySelector(sel)).opacity; const lastWord=()=>{const w=document.querySelectorAll('.loss-word'); return +getComputedStyle(w[w.length-1]).opacity}; window.scrollTo(0, top-innerHeight*0.9); await new Promise(r=>setTimeout(r,250)); const a={word:lastWord(), step:op('.loss-step:last-child'), lost:op('[data-loss-lost]'), card:op('[data-loss-card]')}; window.scrollTo(0, top+H-innerHeight); await new Promise(r=>setTimeout(r,250)); const b={word:lastWord(), step:op('.loss-step:last-child'), lost:op('[data-loss-lost]'), card:op('[data-loss-card]')}; window.scrollTo(0,0); const cta=document.querySelector('[data-hero-cta=trial] a'); return JSON.stringify({before:a, after:b, cta:cta?cta.getAttribute('href'):null, ctaText:cta?cta.innerText:null})})()`));
+    check(`${view}-loss`, "the loss scene develops with the scroll: the last word, the last beat and the 'lost' mark are dim before and full after; the enquiry card fades; the hero's primary button is the trial", loss.before.word < 0.5 && loss.after.word > 0.95 && loss.before.step < 0.5 && loss.after.step > 0.95 && loss.before.lost < 0.1 && loss.after.lost > 0.95 && loss.after.card < loss.before.card && /signup/.test(loss.cta || ""), loss);
   }
 
   await send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
@@ -87,12 +90,17 @@ try {
   const hDown = await ev("getComputedStyle(document.querySelector('header')).backgroundColor");
   check("header", "the navigation has no bar at the top of the page and the light bar after scrolling", /rgba\(0, 0, 0, 0\)|transparent/.test(hTop) && /25[0-3], 25[0-2], 24[6-9]/.test(hDown), { top: hTop, scrolled: hDown });
 
-  // the story: six chapters, readable in the scroll, no click needed
+  // words, names and the menu on the home page (DESIGN.md "Words"; CONTENT_MODEL_1016)
+  const words = JSON.parse(await ev("JSON.stringify((()=>{const t=document.querySelector('main').innerText; return {words:t.split(/\\s+/).filter(Boolean).length, jarvis:(t.match(/Jarvis/g)||[]).length, est:(t.match(/EST-\\d+/g)||[]).length, stub:(t.match(/stub|run-2026|REF-DEMO|\\.env/gi)||[]).length, proto:(t.match(/Prototipo|Prototype/g)||[]).length, menu:document.querySelectorAll('[data-platform-menu] [data-platform-tasks] a').length, menuWords:[...document.querySelectorAll('[data-platform-menu] [data-platform-tasks] [data-platform-task]')].map(a=>a.innerText.trim().split(/\\s+/).length), demo:document.querySelectorAll('[data-home-demo]').length, reveal:document.querySelectorAll('main .reveal').length}})())"));
+  check("words", "the home page: ≤ 900 words, no Jarvis, ≤ 2 property references, no internal names, no state lines, one demo line, no entry fades; the menu: four one-word tasks", words.words <= 900 && words.jarvis === 0 && words.est <= 2 && words.stub === 0 && words.proto === 0 && words.demo === 1 && words.reveal === 0 && words.menu === 6 && words.menuWords.every((n) => n === 1), words);
+
+  // the story on /es/platform: six chapters, readable in the scroll, no click needed
+  await nav("/es/platform", 5000);
   const story = JSON.parse(await ev(`(async()=>{const ids=['story-a','story-b','story-c','story-d','story-e','story-f'];const out={};for(const id of ids){const el=document.getElementById(id);el.scrollIntoView();await new Promise(r=>setTimeout(r,500));const h=el.querySelector('h3');const stage=el.querySelector('[data-story-stage]');const laura=el.innerText.includes('Laura');out[id]={heading:h?h.innerText.slice(0,40):null,stage:!!stage&&stage.getBoundingClientRect().height>200,text:(stage?stage.innerText.length:0),laura}}window.scrollTo(0,0);return JSON.stringify(out)})()`));
   const ids = Object.keys(story);
   check("story", "the six chapters stand in the document with a heading and a filled stage, and the same enquiry (Laura) runs through each of them", ids.length === 6 && ids.every((k) => story[k].heading && story[k].stage && story[k].text > 120 && story[k].laura), story);
   const states = JSON.parse(await ev("JSON.stringify({states:document.querySelectorAll('[data-chapter-state]').length, letters:document.querySelectorAll('.story-letter').length, social:!!document.getElementById('story-social'), comment:!!document.querySelector('[data-social-comment]'), friday:/viernes|Friday/i.test(document.querySelector('[data-stage=followup]')?.innerText||''), tomorrow:/mañana|tomorrow/i.test(document.querySelector('[data-story-email]')?.innerText||''), deadSpan:document.querySelectorAll('[data-story-email] span.demo-action').length, emailBtn:!!document.querySelector('[data-story-request]')})"));
-  check("story-texts", "every chapter and the social strip carry a state line; no chapter letters; the follow-up is on Wednesday before Thursday's viewing (no Friday); the email's action is a real demo button, not a span", states.states >= 7 && states.letters === 0 && states.social && states.comment && !states.friday && states.tomorrow && states.deadSpan === 0 && states.emailBtn, states);
+  check("story-texts", "no state line on the sales pages (the truth is /hoy); no chapter letters; the follow-up is on Wednesday before Thursday's viewing (no Friday); the email's action is a real demo button, not a span", states.states === 0 && states.letters === 0 && states.social && states.comment && !states.friday && states.tomorrow && states.deadSpan === 0 && states.emailBtn, states);
   await ev("document.getElementById('story-e').scrollIntoView(); window.scrollBy(0,-80)"); await sleep(3600);
   const btn = JSON.parse(await ev("JSON.stringify((()=>{const b=document.querySelector('[data-story-request]'); if(!b) return {exists:false}; const r=b.getBoundingClientRect(); return {exists:true, tag:b.tagName, visible:r.height>0&&getComputedStyle(b).opacity!=='0', text:b.innerText.slice(0,40)}})())"));
   await ev("document.querySelector('[data-story-request]')?.click()"); await sleep(500);
@@ -129,9 +137,17 @@ try {
   const t2 = JSON.parse(await ev("JSON.stringify({state:document.querySelector('[data-story]').dataset.storyTask, line:(document.querySelector('[data-task-done-line]')?.innerText||'').slice(0,60), others:[...document.querySelectorAll('[data-task-item]')].map(e=>e.dataset.taskState).join(',')})"));
   check("task", "Jarvis: take and done by keyboard; the done line names who did what; the other tasks stay open", t1 === "taken" && t2.state === "done" && t2.line.length > 20 && t2.others === "done,open,open,open", { taken: t1, done: t2 });
 
-  // 3D and packages: there, and no proof-state label on the public page
-  const sec = JSON.parse(await ev("JSON.stringify({model3d:!!document.getElementById('model-3d'), steps:document.querySelectorAll('[data-model3d-steps] li').length, compare:!!document.querySelector('[data-compare-range]'), film:!!document.querySelector('[data-model3d-film] video'), packages:document.querySelectorAll('[data-package]').length, proof:document.querySelectorAll('[data-proof-state]').length, menuStates:document.querySelectorAll('[data-platform-menu] .state-line').length, labels:(()=>{const t=document.getElementById('model-3d').innerText;return /Primera versi|First version/.test(t)&&/Captura del visor|Capture of the rotatable/.test(t)&&/Vídeo|Video/.test(t)&&!/Raw model|Modelo en bruto/.test(t)})(), internal:/clip v|REF-DEMO|withheld|retenid/i.test(document.querySelector('main').innerText)})"));
-  check("model3d-packages", "the 3D section (four stages, the truthfully labelled slider, the film named as a video, the viewer named as a capture) and the ladder are there; no proof-state label and no state word in the menu or the ladder; no internal note about clips or Daily", sec.model3d && sec.steps === 4 && sec.compare && sec.film && sec.packages === 4 && sec.proof === 0 && sec.menuStates === 0 && sec.labels && !sec.internal, sec);
+  // 3D on /platform (the story checks are there), packages on the home page: there, no proof-state label on the public page
+  const sec3 = JSON.parse(await ev("JSON.stringify({model3d:!!document.getElementById('model-3d'), steps:document.querySelectorAll('[data-model3d-steps] li').length, compare:!!document.querySelector('[data-compare-range]'), film:!!document.querySelector('[data-model3d-film] video'), labels:(()=>{const t=document.getElementById('model-3d').innerText;return /Primera versi|First version/.test(t)&&/Captura del visor|Capture of the rotatable/.test(t)&&/Vídeo|Video/.test(t)&&!/Raw model|Modelo en bruto/.test(t)})(), internal:/clip v|REF-DEMO|withheld|retenid|run-2026/i.test(document.querySelector('main').innerText), jarvis:/Jarvis/.test(document.querySelector('main').innerText)})"));
+  await nav("/es", 4500);
+  const secHome = JSON.parse(await ev("JSON.stringify({packages:document.querySelectorAll('[data-package]').length, proof:document.querySelectorAll('[data-proof-state]').length, menuStates:document.querySelectorAll('[data-platform-menu] .state-line').length, internal:/clip v|REF-DEMO|withheld|retenid|run-2026|Jarvis/i.test(document.querySelector('main').innerText)})"));
+  const sec = { ...sec3, ...secHome, internal: sec3.internal || secHome.internal, jarvisPlatform: sec3.jarvis };
+  check("model3d-packages", "the 3D section (four stages, the truthfully labelled slider, the film named as a video, the viewer named as a capture) and the ladder are there; no proof-state label and no state word in the menu or the ladder; no internal note about clips or Daily", sec.model3d && sec.steps === 4 && sec.compare && sec.film && sec.packages === 4 && sec.proof === 0 && sec.menuStates === 0 && sec.labels && !sec.internal && !sec.jarvisPlatform, sec);
+
+  // /hoy: the one place of product truth
+  await nav("/es/hoy", 4000);
+  const hoy = JSON.parse(await ev("JSON.stringify({states:document.querySelectorAll('[data-today-state]').length, entries:document.querySelectorAll('[data-today-state] li').length, available:document.querySelectorAll('[data-today-state=available] li').length, spanish:/Hoy respondemos en español/.test(document.body.innerText), sheets:/Google Sheets/.test(document.querySelector('main').innerText), outlook:/Outlook/.test(document.querySelector('main').innerText)})"));
+  check("hoy", "/hoy lists the three states with every entry of the platform map, Copy's language line, and no Sheets or Outlook line", hoy.states === 3 && hoy.entries >= 15 && hoy.available >= 5 && hoy.spanish && !hoy.sheets && !hoy.outlook, hoy);
 
   // no element wider than the page at 390 and 768 (measured without the mobile viewport expansion that hides it)
   for (const w of [390, 768]) {
@@ -161,9 +177,13 @@ try {
   await nav("/es", 3000);
   const doc = await send("DOM.getDocument", { depth: 1 });
   const q = async (sel) => (await send("DOM.querySelectorAll", { nodeId: doc.result.root.nodeId, selector: sel })).result.nodeIds.length;
-  const nojs = { hero: await q(".hero-world"), story_parts: await q("[data-hero-enquiry],[data-hero-reply],[data-hero-crm],[data-hero-task]"), chapters: await q(".story-chapter:not(#story-social)"), stages: await q("[data-story-stage]"), html_js: await q("html.js") };
+  const heroNoJs = { hero: await q(".hero4"), story_parts: await q("[data-hero-enquiry],[data-hero-reply],[data-hero-crm],[data-hero-task]"), loss: await q("[data-loss-statement]"), html_js: await q("html.js") };
+  await nav("/es/platform", 3000);
+  const doc2 = await send("DOM.getDocument", { depth: 1 });
+  const q2 = async (sel) => (await send("DOM.querySelectorAll", { nodeId: doc2.result.root.nodeId, selector: sel })).result.nodeIds.length;
+  const nojs = { ...heroNoJs, chapters: await q2(".story-chapter:not(#story-social)"), stages: await q2("[data-story-stage]") };
   await shot("home-d1440-es-nojs.png");
-  check("nojs", "without JavaScript the hero's finished picture and all six chapters with their stages are in the document", nojs.hero === 1 && nojs.story_parts === 4 && nojs.chapters === 6 && nojs.stages === 6 && nojs.html_js === 0, nojs);
+  check("nojs", "without JavaScript the hero's finished picture and the loss sentence are in the home document and all six chapters with their stages on /platform", nojs.hero === 1 && nojs.story_parts === 4 && nojs.loss === 1 && nojs.chapters === 6 && nojs.stages === 6 && nojs.html_js === 0, nojs);
   await send("Emulation.setScriptExecutionDisabled", { value: false });
 
   // login gate: /app without a session → login with next=

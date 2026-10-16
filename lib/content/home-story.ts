@@ -9,7 +9,7 @@ import type { Locale } from "@/lib/i18n/config";
  *   Tuesday 11:24        Peter and Anna Keller (sellers, Elviria) write by email in German for a valuation.
  *   Tuesday 11:31        Sofía Lamas (tenant) sends the web form in Spanish, long-term rental in Fuengirola.
  *   Tuesday 11:37        Álvaro Pons (buyer) calls about the price of EST-118.
- *   Wednesday 08:30      Jarvis greets Elena with the day's order; she takes Laura's viewing and confirms Thursday 10:00.
+ *   Wednesday 08:30      the morning assistant greets Elena with the day's order; she takes Laura's viewing and confirms Thursday 10:00.
  *   Wednesday 17:30      A new listing EST-240 fits Laura; an allowed follow-up goes out by email, before Thursday.
  *   Thursday 10:00       Laura's viewing (confirmed by Elena on Wednesday).
  *   The week             The weekly overview counts what was handled; the details are in the login.
@@ -283,7 +283,7 @@ export const chapters: Chapter[] = [
     key: "task",
     eyebrow: { es: "La chance importante y el siguiente paso", en: "The important chance and the next step" },
     // D-96: no "priority"; the reason and the next step carry the order.
-    title: { es: "A la mañana siguiente, Jarvis le dice a Elena qué va primero y por qué.", en: "The next morning, Jarvis tells Elena what comes first and why." },
+    title: { es: "A la mañana siguiente, Elena sabe qué va primero y por qué.", en: "The next morning, Elena knows what comes first and why." },
     line: { es: "Una consulta importante se convierte en una tarea con motivo y siguiente paso. Elena la toma, confirma la hora con Laura y la cierra. Queda documentado quién hizo qué. Nuova prepara y organiza; tu equipo asesora y cierra.", en: "An important enquiry becomes a task with a reason and a next step. Elena takes it, confirms the time with Laura and closes it. Who did what is on record. Nuova prepares and organises; your team advises and closes." },
     state: { es: "Disponible hoy: la tarea, tomarla y cerrarla. Prototipo: el asistente que explica el orden y el aviso de consulta importante.", en: "Available today: the task, taking it and closing it. Prototype: the assistant that explains the order and the important-enquiry alert." },
   },
@@ -362,7 +362,7 @@ export const storyWords = {
   task: {
     greeting: { es: "Buenos días, Elena.", en: "Good morning, Elena." },
     greetingLine: { es: "Desde ayer han llegado cuatro consultas. Esta es la que más importa hoy, y por qué.", en: "Four enquiries came in since yesterday. This is the one that matters most today, and why." },
-    morning: { es: "Miércoles · 08:30 · Jarvis para Elena", en: "Wednesday · 08:30 · Jarvis for Elena" },
+    morning: { es: "Miércoles · 08:30 · la lista de la mañana de Elena", en: "Wednesday · 08:30 · Elena's morning list" },
     important: { es: "Consulta importante", en: "Important enquiry" },
     importantWhy: { es: "Fecha, inmueble y presupuesto concretos", en: "A date, a property and a budget named" },
     why: { es: "Por qué", en: "Why" },
