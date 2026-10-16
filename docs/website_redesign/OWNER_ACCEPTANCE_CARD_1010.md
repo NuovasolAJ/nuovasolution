@@ -1,7 +1,7 @@
-# Abnahmekarte 1010 — für die manuelle Sichtprüfung des Owners
+# Abnahmekarte — für die manuelle Sichtprüfung des Owners
 
-**Stand:** 2026-10-16 (Abschlussauftrag 2026-10-12, Build `3fae766`) · Website-Implementierer → Owner. Status:
-implementiert, wartet auf unabhängige technische und finale Prüfung.
+**Stand:** 2026-10-16 (Redesign v4 nach deinem Urteil vom 16.10., Build `d5c6990`) · Website-Implementierer → Owner.
+Status: implementiert, wartet auf unabhängige technische und finale Prüfung.
 
 ## Link
 
@@ -12,8 +12,7 @@ Vorschau (immer der neueste Build, ohne Login erreichbar, nicht indexiert):
 
 ## Testkonto
 
-Keines nötig. Die Vorschau ist ein Stub-Build: ein Klick auf diesen Link setzt eine Demo-Sitzung und landet direkt im
-Agenturbereich (es entsteht kein Konto, nichts wird gesendet):
+Keines nötig. Demo-Sitzung (es entsteht kein Konto, nichts wird gesendet):
 
 - https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app/api/bff/auth/login?stub=1&next=%2Fes%2Fapp
 
@@ -21,29 +20,24 @@ Abmelden: oben rechts „Cerrar sesión“.
 
 ## Fünf Schritte
 
-1. **Erster Bildschirm** (Handy und Desktop): Überschrift, zwei Knöpfe, darunter das Panel mit einer Zeile Situation
-   („Martes 11:20 · Marcos está en una visita …“), einer kurzen Anfrage, einer kurzen Antwort, der Kundenkarte und dem
-   nächsten Schritt. Keine Karten mehr unter dem Panel, kein heller Streifen; das Panel steht auf dem dunklen Land,
-   dann beginnt die helle Seite. Beim Scrollen richtet sich das Panel auf und wird etwas größer; Sterne, Küste und
-   Hügel bewegen sich verschieden schnell.
-2. **„Ver cómo funciona“** drücken und einfach scrollen: A bis F lesen sich ohne Klick, jedes Kapitel mit einer
-   Zustandszeile darunter. In **B** die vier Kanäle durchschalten; bei **Email** „Ver el original“ drücken (die
-   deutsche Mail erscheint im Original, dann wieder übersetzt) und einmal „Ver el aviso“ öffnen. In **D** „Tomar“ und
-   „Marcar como hecha“ drücken. In **E** den Knopf in der Mail drücken: die Bitte landet beim Team, nichts wird
-   gebucht. Nach **F** der kurze Social-Pfad (Objekt → Entwurf → Freigabe → Veröffentlichung → Kommentar).
-3. **3D** (Abschnitt „Presentar“): Schieberegler „Primera versión / Diseño revisado“ (die Beschriftung ist jetzt
-   ehrlich: ein unmöbliertes Paar aus derselben Kamera gibt es noch nicht), Kamerafahrt abspielen („Vídeo“), die
-   vierte Stufe heißt „Captura del visor“. Hinweis unten lesen (Demohaus, ähnliche Möbel, per Auftrag).
-4. **Agenturbereich** über den Testkonto-Link: „Mi agencia“ (Paketname in der Testzeile) → „Informe semanal“: zuerst
-   steht „Cifras de ejemplo“, dann drei Antworten (was Nuova erledigt hat, welche Chancen, was als Nächstes), dann
-   die Zahlen → „Ver el email del lunes“ (Logo, eine Farbe, ein Knopf). Danach „Cerrar sesión“.
-5. **Menü „Plataforma“**, **Paketleiter** unten und die Seite **„Paquetes“**: überall dieselben drei Pakete
-   (Essential, Growth, Enterprise), dieselbe Zeile „Consultas procesadas al mes“, gestaffelte Funktionen; im
-   Abschnitt „Empezar“ die drei Schritte und die zwei CRM-Zustände.
+1. **Erster Bildschirm** (Desktop 1440 und 1920, Handy): ein Satz („Mientras enseñas una vivienda, tus consultas no
+   esperan.“), ein Knopf (Probar 14 días gratis), darunter steigt das Produktpanel aus dem Land auf. Langsam scrollen:
+   Sterne, Küste und Hügel laufen verschieden schnell, das Panel richtet sich von 18° auf, hängt über die Kante in die
+   helle Seite. Kein Streifen, keine Kante.
+2. **Weiter scrollen, ohne Klick**: der Satz „Cada consulta que espera …“ leuchtet Wort für Wort auf, darunter die Uhr
+   11:20 · +5 min · +30 min · +2 h, die Anfrage verblasst und wird „Perdida“. Dann „Sin Nuova / Con Nuova“, dann
+   „Responde · Guarda · Avisa · Resume“ mit je einem Produktausschnitt, dann der Morgen des Teams, drei Schritte,
+   Pakete, drei Fragen, Schluss. Nichts blendet ein; Bewegung nur, wo sie erklärt.
+3. **Menü „Plataforma“**: vier Worte (Atender · Gestionar · Coordinar · Captar), darunter „Visión general“ und „Qué está
+   disponible hoy“. „Visión general“ = die sechs interaktiven Szenen (Kanäle, Übersetzung, Tomar/Hecha, der Knopf in
+   der Mail), der Social-Pfad, 3D. „Qué está disponible hoy“ = die eine Wahrheitsseite.
+4. **Paquetes** (Startseite und Seite): je Paket „für wen“, „was ändert sich“, „was kommt dazu“, die Zahlen; der
+   Preissatz einmal.
+5. **Agenturbereich** über den Testkonto-Link (unverändert gegenüber dem 12.10.): „Informe semanal“, „Ver el email del
+   lunes“, „Cerrar sesión“.
 
-## Was nicht in dieser Karte steht
+## Was nur du entscheiden kannst
 
-Die offenen Produktnachweise (Sprachen, Telefon, Matching, Follow-up-Einwilligung, Meta, 3D-Abnahme, Reporting-Vertrag,
-Hörprobe am Telefon, unmöbliertes 3D-Paar) sind in `docs/website_redesign/ACCEPTANCE_LIST_1010.md` §A–§F2; sie gehören
-zur Veröffentlichungsprüfung, nicht zur Sichtabnahme. Die Listen „behoben / externe Abhängigkeit / Owner-Handlung“
-stehen in `WEBSITE_REDESIGN_FINAL_1012_RETURN_v1.md` §5.
+Öffentlicher Name des Morgen-Assistenten (jetzt „la lista de la mañana“) · Preise oder Preisrahmen · Telefon und
+Webformular (jetzt „en preparación“ auf /hoy, nirgends verkauft) · 3D-Material (Drehvideo, Paar leer/möbliert) · ein
+echter Beweis. Alles Weitere steht in `WEBSITE_V4_1016_RETURN_v1.md` §5.

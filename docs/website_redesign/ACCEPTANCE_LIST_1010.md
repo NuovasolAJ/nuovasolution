@@ -91,6 +91,17 @@ lane truth sheets, this repository); **Needed** is the signal that closes the ro
 | R-11 | "Leads per month" vs processing limit; Essential/Growth/Scale vs Enterprise; same vs staged functions | **unified**: "Consultas procesadas al mes" on every page; the packages page shows the ladder's names (Enterprise for `scale`, the id unchanged) and the ladder's staged lines per card | API confirms `leads_month` counts processed enquiries (D-9); the owner confirms the display name "Enterprise" | API, Owner |
 | R-12 | Owner 2026-10-12 on the first screen: too much of Laura's message in the hero, the two cards under the panel confuse the eye, the grey-to-ivory band under them | **rebuilt**: the hero's exchange is two short bubbles (one question each); the cards and the ivory band are gone; the situation ("Marcos is at a viewing until 12:00 · Nuova handles what arrives") is one line inside the panel, the state line its last line; the hero ends on its own dark foot and the story begins at its own edge. The four depth layers are now stars, the coast, the ridges and the panel (final order §3 named cards as the fourth layer; the owner's verdict replaced them) | the owner's visual verdict on the deployment | Owner |
 
+## F3. The v4 redesign of 2026-10-16 (owner's verdict on 3fae766: not modern, no thread, chaos)
+
+| # | Point | State | Needed | Lane |
+|---|---|---|---|---|
+| V-1 | Pain first, the loss visible, four layers, the panel standing up, no band, no fades, one ground, ≤ 900 words, no Jarvis, ≤ 2 references | **built** (`WEBSITE_V4_1016_RETURN_v1.md` §1, §4) | the owner's verdict | Owner |
+| V-2 | The product truth on one page (`/hoy`), no state lines on the sales pages | **built**; the three lists come from the platform map, the language, email and CRM lines from TEXTS_1013 | Copy's and Audit's confirmation of the placement | Copy, Audit |
+| V-3 | One vocabulary: the menu's four words, the module page names, the footer | **built** | Copy's confirmation of the names | Copy |
+| V-4 | Packages: for whom, what changes, what is added; the price once; "WhatsApp y email" only | **built**; the web form and the phone are "in preparation" on `/hoy` and nowhere sold | the owner on prices, phone and web form | Owner |
+| V-5 | The rotating building and the unfurnished → furnished pair | **not available** (R-8) | the 3D lane's files | 3D |
+| V-6 | Every new text of v4 | WORKING by the implementer | Copy's check | Copy |
+
 ## G. Not in the target version, on purpose
 
 - The idea "ten free agencies at a time, then a waiting list" and trial extensions against testimonials (master order §10): product decisions, not on any page.
