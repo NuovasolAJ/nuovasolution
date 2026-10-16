@@ -98,18 +98,50 @@ export function StackDeck({ children, className, as: Tag = "ol" }: { children: R
     };
     const onResize = () => layout();
 
+    // A link into a card (#story-b from the menu or the platform page): a covered card still stands in the window,
+    // stuck under the ones above it, so the browser's own jump would not move. The deck scrolls to the card's place in
+    // the flow instead (offsetTop ignores the sticky shift), which uncovers it.
+    // offsetTop of a stuck item already carries its sticky shift (Chromium), so a card's place in the flow is the deck's
+    // own offset plus the heights of the cards before it.
+    const flowTop = (item: HTMLElement) => {
+      let t = 0; let n: HTMLElement | null = deck!; while (n) { t += n.offsetTop; n = n.offsetParent as HTMLElement | null; }
+      for (const it of items) { if (it === item) break; t += it.offsetHeight; }
+      return t;
+    };
+    const jumpTo = (hash: string) => {
+      if (deck!.dataset.deck !== "on" || !hash || hash.length < 2) return false;
+      const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+      const item = target?.closest<HTMLElement>("[data-deck-item]");
+      if (!item || !deck!.contains(item)) return false;
+      window.scrollTo({ top: Math.max(0, flowTop(item) - header() - GAP), behavior: "auto" });
+      return true;
+    };
+    const onHash = () => { jumpTo(location.hash); };
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as HTMLElement | null)?.closest<HTMLAnchorElement>("a[href*='#']");
+      if (!a) return;
+      const url = new URL(a.href, location.href);
+      if (url.pathname !== location.pathname || url.origin !== location.origin) return;
+      if (jumpTo(url.hash)) { e.preventDefault(); history.replaceState(null, "", url.hash); }
+    };
+
     layout();
+    if (location.hash) requestAnimationFrame(onHash);
     // Pictures inside the cards change their height when they arrive.
     const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(() => layout()) : null;
     Array.from(deck.children).forEach((c) => ro?.observe(c));
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
+    window.addEventListener("hashchange", onHash);
+    document.addEventListener("click", onClick);
     mq.addEventListener?.("change", onResize);
     return () => {
       if (frame) cancelAnimationFrame(frame);
       ro?.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("hashchange", onHash);
+      document.removeEventListener("click", onClick);
       mq.removeEventListener?.("change", onResize);
     };
   }, []);

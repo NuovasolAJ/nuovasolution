@@ -91,7 +91,15 @@ lane truth sheets, this repository); **Needed** is the signal that closes the ro
 | R-11 | "Leads per month" vs processing limit; Essential/Growth/Scale vs Enterprise; same vs staged functions | **unified**: "Consultas procesadas al mes" on every page; the packages page shows the ladder's names (Enterprise for `scale`, the id unchanged) and the ladder's staged lines per card | API confirms `leads_month` counts processed enquiries (D-9); the owner confirms the display name "Enterprise" | API, Owner |
 | R-12 | Owner 2026-10-12 on the first screen: too much of Laura's message in the hero, the two cards under the panel confuse the eye, the grey-to-ivory band under them | **rebuilt**: the hero's exchange is two short bubbles (one question each); the cards and the ivory band are gone; the situation ("Marcos is at a viewing until 12:00 · Nuova handles what arrives") is one line inside the panel, the state line its last line; the hero ends on its own dark foot and the story begins at its own edge. The four depth layers are now stars, the coast, the ridges and the panel (final order §3 named cards as the fourth layer; the owner's verdict replaced them) | the owner's visual verdict on the deployment | Owner |
 
-## F3. The v4 redesign of 2026-10-16 (owner's verdict on 3fae766: not modern, no thread, chaos)
+## F4. The restore of 2026-10-16 (owner's verdict on v4: "riesiger Rückschritt", restore 3fae766 plus the small points)
+
+| # | Point | State | Needed | Lane |
+|---|---|---|---|---|
+| W-1 | `3fae766` restored on every page and script; v4 withdrawn (its rows F3 are history) | **done** | the owner's verdict | Owner |
+| W-2 | Four layers of the land (far ridge, near ridge, panel, foreground), the panel larger, the chapters as a deck, one field colour | **built** (`WEBSITE_RESTORE_1016_RETURN_v1.md` §2) | the owner's verdict | Owner |
+| W-3 | No "Jarvis" public; fewer property references in the dialogues; "Consultas al mes"; packages with for whom / what changes; the four-word menu and the structured platform page | **built** | Copy's confirmation of the changed lines; the owner's public name for the assistant | Copy, Owner |
+
+## F3. The v4 redesign of 2026-10-16 (withdrawn on the owner's verdict; kept as history)
 
 | # | Point | State | Needed | Lane |
 |---|---|---|---|---|

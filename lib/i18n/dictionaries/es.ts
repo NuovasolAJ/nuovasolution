@@ -333,8 +333,8 @@ export const es: Dictionary = {
 
   platform: {
     eyebrow: "Plataforma",
-    h1: "Una consulta, de principio a fin", // CONTENT_MODEL_1016: the product story lives here
-    lead: "Sigue a Laura Serrano desde su primer mensaje hasta la tarea que cierra tu equipo: seis escenas, con los mismos nombres, el mismo inmueble y el mismo reloj. Prueba los controles.",
+    h1: "Todo lo que necesita una consulta, en un solo lugar", // D-47
+    lead: "Cada parte de Nuova hace bien una cosa, y comparten una misma ficha, así que la respuesta, el contexto y la tarea nunca están en tres sitios distintos.", // D-47
     indexEyebrow: "Capacidades",
     indexH2: "Qué hace Nuova por tu agencia.",
     exampleEyebrow: "Una consulta, de principio a fin",
@@ -408,7 +408,7 @@ export const es: Dictionary = {
     trialBadgeAligned: "14 días gratis",
     ctaTrialEssential: "Prueba Essential gratis",
     limitsHeading: "Límites",
-    limits: { offices: "Oficinas", seats: "Puestos", leads_month: "Consultas procesadas al mes", crm_connections: "Conexiones de CRM", voice_minutes: "Minutos de voz", unlimited: "Sin tope mensual", none: "Ninguno" },
+    limits: { offices: "Oficinas", seats: "Puestos", leads_month: "Consultas al mes", crm_connections: "Conexiones de CRM", voice_minutes: "Minutos de voz", unlimited: "Sin límite", none: "Ninguno" },
     featuresHeading: "Incluido",
     featureNames: {
       "cx.baseline": "Respuestas automáticas por texto",

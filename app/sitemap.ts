@@ -14,7 +14,7 @@ import { publicIndexingAllowed } from "@/lib/contracts/mode";
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!publicIndexingAllowed()) return [];
   const legal = process.env.NEXT_PUBLIC_LEGAL_LINKS === "approved" ? legalSlugs.map((s) => `/legal/${s}`) : [];
-  const paths = ["", "/platform", ...publishedCapabilities().map((c) => `/platform/${c.slug}`), "/hoy", "/packages", "/trial", "/contact", ...legal];
+  const paths = ["", "/platform", ...publishedCapabilities().map((c) => `/platform/${c.slug}`), "/packages", "/trial", "/contact", ...legal];
   const now = new Date();
   return paths.flatMap((path) =>
     locales.map((locale) => ({

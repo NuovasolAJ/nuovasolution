@@ -65,7 +65,7 @@ export const capabilities: Capability[] = [
     stage: "answer",
     publish: "live",
     status: "live",
-    name: { en: "Answer enquiries", es: "Atender consultas" }, // one vocabulary with the menu and the home page (DESIGN.md)
+    name: { en: "AI Sales Agent", es: "AI Sales Agent" },
     navLine: { en: "Answers text enquiries, day or night", es: "Responde consultas de texto, de día o de noche" }, // C3 §1.3
     h1: { en: "Your text enquiries are answered on the channels you connect.", es: "Tus consultas de texto se responden en los canales que conectes." }, // LAUNCH_COPY_v1 §6.1
     lead: {
@@ -98,7 +98,7 @@ export const capabilities: Capability[] = [
     stage: "understand",
     publish: "live",
     status: "live",
-    name: { en: "What each customer asks for", es: "Lo que pide cada cliente" },
+    name: { en: "Lead Intelligence", es: "Lead Intelligence" },
     // COPY_DELTAS_0929 L-03, D-38: qualification and priority are not in production, so they are not claimed.
     // The h1 is the D-38 line; scenario and lead are limited to the proven same-channel identity (interim implementer wording).
     navLine: { en: "Keeps what each customer told you", es: "Guarda lo que te ha contado cada cliente" },
@@ -204,7 +204,7 @@ export const capabilities: Capability[] = [
     publish: "live",
     status: "final_acceptance",
     // COPY_DELTAS_0929 D-34 to D-37 and DAILY_FEATURE_TRUTH: the task surface, not a chat assistant. The slug stays, so links keep working.
-    name: { en: "Coordinate your team", es: "Coordinar tu equipo" },
+    name: { en: "Daily Tasks", es: "Tareas diarias" },
     navLine: { en: "The tasks your team takes and closes", es: "Las tareas que tu equipo toma y cierra" },
     h1: { en: "The request becomes a task somebody owns.", es: "La petición pasa a ser una tarea con dueño." },
     lead: {

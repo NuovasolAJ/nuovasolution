@@ -21,7 +21,7 @@ export function PackageMatrix({ locale }: { locale: Locale }) {
   const proof = proofStatesShown();
   return (
     <div data-package-matrix data-proof-states={proof ? "shown" : "hidden"}>
-      <div className="grid gap-px overflow-hidden rounded-[20px] border border-line-hairline bg-[color:var(--border-hairline)] lg:grid-cols-3">
+      <div className="grid gap-px overflow-hidden rounded-[20px] border border-line-contour bg-[color:var(--border-hairline)] lg:grid-cols-3">
         {matrix.map((pk, i) => {
           const limit = processingLimit(pk.code);
           return (
@@ -42,9 +42,10 @@ export function PackageMatrix({ locale }: { locale: Locale }) {
                   </li>
                 ))}
               </ul>
+              {pk.code === "growth" && <p className="mt-3 t-caption text-text-muted">{w.adsNote[locale]}</p>}
               {pk.code === "essential" && <p className="mt-3 t-caption text-text-muted">{proof ? w.crmNoteProof[locale] : w.crmNote[locale]}</p>}
               <p className="mt-4 t-caption text-text-muted">
-                <span className="font-medium text-text-secondary">{w.limit[locale]}:</span> <span className="tnum">{limit === null ? w.noCap[locale] : limit.toLocaleString(locale === "es" ? "es-ES" : "en-GB")}</span> · {w.limitNote[locale]}
+                <span className="font-medium text-text-secondary">{w.limit[locale]}:</span> <span className="tnum">{limit === null ? w.noCap[locale] : limit.toLocaleString(locale === "es" ? "es-ES" : "en-GB")}</span>
               </p>
               <div className="mt-auto pt-6">
                 <ButtonLink href={localePath(locale, pk.href)} variant={i === 0 ? "primary" : "secondary"} full>{pk.cta[locale]}</ButtonLink>
@@ -61,6 +62,7 @@ export function PackageMatrix({ locale }: { locale: Locale }) {
         </div>
         <ButtonLink href={localePath(locale, "/contact")} variant="secondary" className="shrink-0">{w.strip.cta[locale]}</ButtonLink>
       </div>
+      <p className="mt-4 t-caption text-text-muted">{w.noPrice[locale]}</p>
     </div>
   );
 }

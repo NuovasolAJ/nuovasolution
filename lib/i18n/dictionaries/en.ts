@@ -365,8 +365,8 @@ export const en = {
 
   platform: {
     eyebrow: "Platform",
-    h1: "One enquiry, end to end", // CONTENT_MODEL_1016: the product story lives here
-    lead: "Follow Laura Serrano from her first message to the task your team closes: six scenes with the same names, the same property and the same clock. Try the controls.",
+    h1: "Everything one enquiry needs, in one place", // D-47
+    lead: "Each part of Nuova does one job properly, and they share one record, so the answer, the context and the task are never in three different places.",
     indexEyebrow: "Capabilities",
     indexH2: "What Nuova does for your agency.",
     exampleEyebrow: "One enquiry, end to end",
@@ -446,7 +446,7 @@ export const en = {
     trialBadgeAligned: "14 days free", // D-22: the chip sits on the Essential card only
     ctaTrialEssential: "Try Essential free",
     limitsHeading: "Limits",
-    limits: { offices: "Offices", seats: "Seats", leads_month: "Enquiries processed per month", crm_connections: "CRM connections", voice_minutes: "Voice minutes", unlimited: "No monthly cap", none: "None" },
+    limits: { offices: "Offices", seats: "Seats", leads_month: "Enquiries a month", crm_connections: "CRM connections", voice_minutes: "Voice minutes", unlimited: "Unlimited", none: "None" },
     featuresHeading: "Included",
     featureNames: {
       "cx.baseline": "Automatic text replies",

@@ -9,6 +9,7 @@ import { localePath } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
 import { AnimatedList } from "@/components/ui/animated-list";
 import { DepthScene } from "@/components/ui/depth-scene";
+import { StackDeck } from "@/components/site/stack-deck";
 import { Reveal } from "@/components/ui/reveal";
 import { chapters, channels, enquiries, listings, people, storyWords, type ChannelKey, type Enquiry, type Listing } from "@/lib/content/home-story";
 
@@ -116,14 +117,17 @@ function Stage({ children, back, front }: { children: ReactNode; back?: "sand" |
 
 function Chapter({ id, locale, eyebrow, title, line, state, flip = false, wide = false, children }: { id: string; locale: Locale; eyebrow: string; title: string; line: string; state: string; flip?: boolean; wide?: boolean; children: ReactNode }) {
   return (
+    <div data-deck-item>
     <article id={id} className={cn("story-chapter", flip && "story-chapter-flip", wide && "story-chapter-wide")} data-chapter={id} aria-labelledby={`${id}-h`}>
       <Reveal className="story-text">
         <p className="t-eyebrow text-text-accent">{eyebrow}</p>
         <h3 id={`${id}-h`} className="mt-3 t-display-m text-text-primary">{title}</h3>
         <p className="mt-4 t-body-m text-text-secondary">{line}</p>
+        <p className="state-line mt-5" data-state="preparing" data-chapter-state>{storyWords.common.stateLabel[locale]}: {state}</p>
       </Reveal>
       <Reveal mode="opacity" delay={120} className="story-stage-col">{children}</Reveal>
     </article>
+    </div>
   );
 }
 
@@ -163,6 +167,7 @@ export function Story({ locale }: { locale: Locale }) {
     <LazyMotion features={domAnimation}>
       <MotionConfig reducedMotion="user">
         <div className="story" data-story data-story-channel={channel} data-story-task={task} data-story-requested={requested ? "sent" : "none"}>
+        <StackDeck as="div" className="story-deck">
           {/* 1 The situation: the viewing on the left, the arrivals on the right */}
           <Chapter id="story-a" locale={locale} eyebrow={l(ch1.eyebrow)} title={l(ch1.title)} line={l(ch1.line)} state={l(ch1.state)}>
             <Stage back="sand" front={<span className="float-chip"><span aria-hidden="true" className="h-2 w-2 rounded-pill bg-[color:var(--signal-attention)]" />{l(W.situation.desk)}</span>}>
@@ -443,6 +448,7 @@ export function Story({ locale }: { locale: Locale }) {
               </div>
             </Stage>
           </Chapter>
+        </StackDeck>
         </div>
       </MotionConfig>
     </LazyMotion>
@@ -460,6 +466,7 @@ export function SocialStrip({ locale }: { locale: Locale }) {
         <p className="t-eyebrow text-text-accent">{l(S.eyebrow)}</p>
         <h3 id="social-h" className="mt-3 t-display-m text-text-primary">{l(S.title)}</h3>
         <p className="mt-4 t-body-m text-text-secondary">{l(S.line)}</p>
+        <p className="state-line mt-5" data-state="preparing" data-chapter-state>{storyWords.common.stateLabel[locale]}: {l(S.state)}</p>
       </Reveal>
       <Reveal mode="opacity" delay={100} className="mt-8">
         <ol className="grid gap-3 md:grid-cols-5" data-social-strip>

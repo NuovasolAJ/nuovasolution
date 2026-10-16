@@ -29,7 +29,7 @@ export function ClosingBand({
   return (
     <section aria-labelledby={id} className="pb-[var(--section-default)] pt-[var(--section-compact)]">
       <div className="container-wide">
-        <div className={cn("border-t border-line-hairline px-6 py-14 text-center md:px-12 md:py-20", tone && "")}>
+        <div className={cn("band band-panel px-6 py-14 text-center md:px-12 md:py-20", `band-${tone}`)}>
           <Reveal mode="opacity">
             <Display size="l" id={id} className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
             <CtaRow align="center" className="mt-10">

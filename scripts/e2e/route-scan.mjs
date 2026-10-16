@@ -18,7 +18,7 @@ mkdirSync(OUT, { recursive: true });
 
 const PUBLISHED = ["ai-sales-agent", "lead-intelligence", "crm", "daily-assistant"];
 const HIDDEN = ["voice", "social-growth", "lead-acquisition", "property-matching", "property-experience", "does-not-exist"];
-const PAGES = ["", "/platform", ...PUBLISHED.map((s) => `/platform/${s}`), "/hoy", "/packages", "/trial", "/contact", "/signup", "/login", "/login?confirmed=1", "/welcome", "/faq", "/legal/privacy", "/legal/terms", "/legal/data-deletion", "/legal/notice"];
+const PAGES = ["", "/platform", ...PUBLISHED.map((s) => `/platform/${s}`), "/packages", "/trial", "/contact", "/signup", "/login", "/login?confirmed=1", "/welcome", "/faq", "/legal/privacy", "/legal/terms", "/legal/data-deletion", "/legal/notice"];
 const FORBIDDEN = [
   /Most agencies/i, /La mayoría empieza/i, /never need another/i, /What is not ready yet/i, /Certified internally/i, /Certificado internamente/i,
   /real doorways/i, /puertas/i, /Capture pending/i, /Captura pendiente/i, /catorce/i, /Coming soon/i, /* hot lead wording is allowed again since the owner's package ladder names the alerts with their state (2026-10-06); the state words carry the guard */

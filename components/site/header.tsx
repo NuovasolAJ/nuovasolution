@@ -3,7 +3,6 @@ import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { platformTasks } from "@/lib/content/platform-map";
-import { todayWords } from "@/lib/content/today";
 import { startLabel } from "@/lib/content/plans";
 import { Logo } from "@/components/ui/logo";
 import { LanguageSwitcher } from "./language-switcher";
@@ -14,8 +13,8 @@ import { StatusGlyph } from "@/components/ui/status";
  * Identical on every page. Left: logo. Centre: Platform (menu), Packages, Trial, Contact. Right: language, Log in,
  * Start free.
  *
- * The Platform menu (DESIGN.md, owner 2026-10-16 "Plataforma: reines Chaos"): four tasks, one word each, plus the
- * overview and the page of product truth. No explanatory lines in the menu; the pages explain.
+ * The Platform menu (owner 2026-10-16: "Plataforma: reines Chaos, keine Struktur"): the four tasks as four words plus
+ * the overview. No explanatory lines in the menu; the platform page explains each task with its entries.
  */
 export function Header({ locale }: { locale: Locale }) {
   const d = getDictionary(locale);
@@ -38,7 +37,6 @@ export function Header({ locale }: { locale: Locale }) {
       ))}
       <div className="mt-2 border-t border-line-hairline pt-2">
         <Link href={p("/platform")} className="flex min-h-[44px] items-center rounded-md px-3 t-body-s text-text-secondary hover:bg-surface-sunken hover:text-text-primary">{d.nav.overview}</Link>
-        <Link href={p("/hoy")} className="flex min-h-[44px] items-center rounded-md px-3 t-body-s text-text-secondary hover:bg-surface-sunken hover:text-text-primary">{todayWords.h1[locale]}</Link>
       </div>
     </div>
   );

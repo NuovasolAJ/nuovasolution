@@ -33,9 +33,9 @@ export interface PlatformEntry {
 export interface PlatformTask {
   key: "answer" | "manage" | "team" | "attract";
   title: L;
-  /** One word for the menu (DESIGN.md: no explanatory lines in the menu). */
+  /** One word for the menu (owner 2026-10-16: the menu must not explain, the platform page does). */
   short: L;
-  /** Where the task is explained. */
+  /** The section of the platform page that explains the task. */
   href: string;
   line: L;
   entries: PlatformEntry[];
@@ -46,7 +46,7 @@ export const platformTasks: PlatformTask[] = [
     key: "answer",
     title: { es: "Atender consultas", en: "Answer enquiries" },
     short: { es: "Atender", en: "Answer" },
-    href: "/platform/ai-sales-agent",
+    href: "/platform#answer",
     line: { es: "Cada consulta recibe respuesta en su idioma, por el canal por el que llegó.", en: "Every enquiry gets a reply in its language, on the channel it came in on." },
     entries: [
       { key: "whatsapp", name: { es: "WhatsApp", en: "WhatsApp" }, line: { es: "Respuesta en el idioma del cliente, con el nombre de tu agencia.", en: "A reply in the customer's language, under your agency's name." }, state: "available", slug: "ai-sales-agent", anchor: "#story-b" },
@@ -60,7 +60,7 @@ export const platformTasks: PlatformTask[] = [
     key: "manage",
     title: { es: "Gestionar oportunidades", en: "Manage opportunities" },
     short: { es: "Gestionar", en: "Manage" },
-    href: "/platform/crm",
+    href: "/platform#manage",
     line: { es: "Lo que pide cada cliente, en un solo sitio y con lo que toca hacer.", en: "What each customer asks for, in one place, with what to do next." },
     entries: [
       { key: "crm", name: { es: "CRM y ficha del cliente", en: "CRM and customer record" }, line: { es: "Una ficha por cliente con lo que pidió y lo que pasó después.", en: "One record per customer, with what they asked for and what happened next." }, state: "available", slug: "crm", anchor: "#story-b" },
@@ -74,10 +74,10 @@ export const platformTasks: PlatformTask[] = [
     key: "team",
     title: { es: "Coordinar tu equipo", en: "Coordinate your team" },
     short: { es: "Coordinar", en: "Coordinate" },
-    href: "/platform/daily-assistant",
+    href: "/platform#team",
     line: { es: "Quién hace qué hoy, y qué ya está hecho.", en: "Who does what today, and what is already done." },
     entries: [
-      { key: "daily", name: { es: "La lista de la mañana", en: "The morning list" }, line: { es: "La lista de la mañana con el motivo de cada prioridad y el siguiente paso.", en: "The morning list with the reason behind each priority and the next step." }, state: "preparing", slug: "daily-assistant", anchor: "#story-d" },
+      { key: "daily", name: { es: "El asistente de la mañana", en: "The morning assistant" }, line: { es: "La lista de la mañana con el motivo de cada prioridad y el siguiente paso.", en: "The morning list with the reason behind each priority and the next step." }, state: "preparing", slug: "daily-assistant", anchor: "#story-d" },
       { key: "tasks", name: { es: "Tareas", en: "Tasks" }, line: { es: "Una tarea con dueño por cada visita o llamada pendiente.", en: "One owned task for every viewing or callback." }, state: "available", slug: "daily-assistant", anchor: "#story-d" },
       { key: "calendar", name: { es: "Calendario", en: "Calendar" }, line: { es: "Las visitas confirmadas, en la agenda de la persona que las hace.", en: "Confirmed viewings in the diary of the person who does them." }, state: "preparing", anchor: "#story-d" },
       { key: "reports", name: { es: "Informes", en: "Reports" }, line: { es: "Un resumen semanal por email y el informe completo en tu acceso.", en: "A weekly summary by email and the full report in your login." }, state: "preparing", anchor: "#story-f" },
@@ -87,7 +87,7 @@ export const platformTasks: PlatformTask[] = [
     key: "attract",
     title: { es: "Captar y presentar", en: "Attract and present" },
     short: { es: "Captar", en: "Attract" },
-    href: "/platform#story-social",
+    href: "/platform#attract",
     line: { es: "Más contactos desde lo que ya publicas, y una forma mejor de enseñar un inmueble.", en: "More contacts from what you already publish, and a better way to show a property." },
     entries: [
       { key: "posts", name: { es: "Publicaciones en Instagram", en: "Instagram posts" }, line: { es: "Un texto preparado para cada inmueble; tú lo apruebas antes de que salga.", en: "A prepared text for each listing; you approve it before it goes out." }, state: "preparing", slug: "social-growth", anchor: "/social" },

@@ -1,6 +1,6 @@
 # Abnahmekarte — für die manuelle Sichtprüfung des Owners
 
-**Stand:** 2026-10-16 (Redesign v4 nach deinem Urteil vom 16.10., Build `d5c6990`) · Website-Implementierer → Owner.
+**Stand:** 2026-10-16 (die Seite wie vor v4, plus deine kleinen Punkte; Build `⟦COMMIT⟧`) · Website-Implementierer → Owner.
 Status: implementiert, wartet auf unabhängige technische und finale Prüfung.
 
 ## Link
@@ -20,24 +20,19 @@ Abmelden: oben rechts „Cerrar sesión“.
 
 ## Fünf Schritte
 
-1. **Erster Bildschirm** (Desktop 1440 und 1920, Handy): ein Satz („Mientras enseñas una vivienda, tus consultas no
-   esperan.“), ein Knopf (Probar 14 días gratis), darunter steigt das Produktpanel aus dem Land auf. Langsam scrollen:
-   Sterne, Küste und Hügel laufen verschieden schnell, das Panel richtet sich von 18° auf, hängt über die Kante in die
-   helle Seite. Kein Streifen, keine Kante.
-2. **Weiter scrollen, ohne Klick**: der Satz „Cada consulta que espera …“ leuchtet Wort für Wort auf, darunter die Uhr
-   11:20 · +5 min · +30 min · +2 h, die Anfrage verblasst und wird „Perdida“. Dann „Sin Nuova / Con Nuova“, dann
-   „Responde · Guarda · Avisa · Resume“ mit je einem Produktausschnitt, dann der Morgen des Teams, drei Schritte,
-   Pakete, drei Fragen, Schluss. Nichts blendet ein; Bewegung nur, wo sie erklärt.
-3. **Menü „Plataforma“**: vier Worte (Atender · Gestionar · Coordinar · Captar), darunter „Visión general“ und „Qué está
-   disponible hoy“. „Visión general“ = die sechs interaktiven Szenen (Kanäle, Übersetzung, Tomar/Hecha, der Knopf in
-   der Mail), der Social-Pfad, 3D. „Qué está disponible hoy“ = die eine Wahrheitsseite.
-4. **Paquetes** (Startseite und Seite): je Paket „für wen“, „was ändert sich“, „was kommt dazu“, die Zahlen; der
-   Preissatz einmal.
-5. **Agenturbereich** über den Testkonto-Link (unverändert gegenüber dem 12.10.): „Informe semanal“, „Ver el email del
-   lunes“, „Cerrar sesión“.
+1. **Erster Bildschirm** (Desktop und Handy): wie vorher, dazu die vier Ebenen des Landes: Berg hinten (heller, langsam),
+   Bergkette davor (dunkler), das Panel (größer, richtet sich beim Scrollen auf), und der Vordergrund vor dem Panelfuß,
+   der beim Scrollen vorausläuft.
+2. **„Ver cómo funciona“** und scrollen: die sechs Kapitel liegen jetzt als Stapel übereinander (Desktop): jedes bleibt
+   unter der Kopfzeile stehen, das nächste schiebt sich darüber. In **B** die Kanäle, „Ver el original“, „Ver el aviso“;
+   in **D** „Tomar“ / „Marcar como hecha“ (der Assistent heißt jetzt „el asistente de la mañana“, kein Jarvis); in **E**
+   der Knopf in der Mail; dann Social, 3D, Empezar, Pakete.
+3. **Menü „Plataforma“**: vier Worte + „Visión general“. Die Seite „Visión general“: die vier Aufgaben als vier Abschnitte
+   mit ihren Einträgen, darunter die Modulseiten, darunter „A petición / En construcción“.
+4. **Paquetes**: je Paket „für wen“, „was ändert sich“, „was kommt dazu“, Zahlen; die Monatszahl heißt „Consultas al mes“.
+5. **Agenturbereich** über den Testkonto-Link: unverändert.
 
 ## Was nur du entscheiden kannst
 
-Öffentlicher Name des Morgen-Assistenten (jetzt „la lista de la mañana“) · Preise oder Preisrahmen · Telefon und
-Webformular (jetzt „en preparación“ auf /hoy, nirgends verkauft) · 3D-Material (Drehvideo, Paar leer/möbliert) · ein
-echter Beweis. Alles Weitere steht in `WEBSITE_V4_1016_RETURN_v1.md` §5.
+Öffentlicher Name des Morgen-Assistenten · Preise oder Preisrahmen · 3D-Material (Drehvideo, Paar leer/möbliert) ·
+ob der Kapitel-Stapel bleibt (sonst ein Wrapper weniger). Alles Weitere: `WEBSITE_RESTORE_1016_RETURN_v1.md` §4.
