@@ -18,7 +18,16 @@ const OUT = process.env.OUT ?? join(process.cwd(), "docs", "website_redesign", "
 const MUXER = process.env.MUXER;
 if (!MUXER) throw new Error("MUXER=<path to mp4-muxer.min.js> is required");
 const EDGE = process.env.EDGE ?? "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";
-const CDP_PORT = 9451 + Math.floor(Math.random() * 20);
+// A port pair that no other headless browser holds: a lingering instance on the same port would answer /json with its own
+// pages (the encoder page then "does not load", 2026-10-16). Each candidate port is probed before use.
+const CDP_PORT = await (async () => {
+  for (let tries = 0; tries < 20; tries++) {
+    const port = 9600 + Math.floor(Math.random() * 200) * 2;
+    const busy = async (q) => { try { await fetch(`http://127.0.0.1:${q}/json`, { signal: AbortSignal.timeout(400) }); return true; } catch { return false; } };
+    if (!(await busy(port)) && !(await busy(port + 1))) return port;
+  }
+  throw new Error("no free debugging port pair found");
+})();
 const LOCALES = process.env.LOCALES ? process.env.LOCALES.split(",") : ["es"];
 const PHONE = process.env.VIEW === "m390";
 // PAGE=home (default): the v4 home page, hero to closing. PAGE=platform: the six scenes of the story with their controls.
@@ -53,7 +62,7 @@ try {
     await send("Page.enable"); await send("Runtime.enable");
     return { ws, send, ev };
   };
-  const page = await connect(list.find((t) => t.type === "page").webSocketDebuggerUrl, "page");
+  const page = await connect(list.find((t) => t.type === "page" && /about:blank|^http/.test(t.url)).webSocketDebuggerUrl, "page");
 
   const encDir = join(tmpdir(), `nuova-storyenc-${Date.now()}`);
   mkdirSync(encDir, { recursive: true });
@@ -76,7 +85,7 @@ try {
   kids.push(spawn(EDGE, ["--headless=new", "--disable-gpu", "--no-first-run", "--allow-file-access-from-files", "--disable-background-timer-throttling", "--disable-renderer-backgrounding", "--disable-backgrounding-occluded-windows", "--disable-features=IntensiveWakeUpThrottling", `--user-data-dir=${prof}-enc`, `--remote-debugging-port=${CDP_PORT + 1}`, encUrl], { stdio: "ignore" }));
   let list2;
   for (let i = 0; i < 60; i++) { try { list2 = await (await fetch(`http://127.0.0.1:${CDP_PORT + 1}/json`)).json(); break; } catch { await sleep(500); } }
-  const enc = await connect(list2.find((t) => t.type === "page").webSocketDebuggerUrl, "encoder");
+  const enc = await connect(list2.find((t) => t.type === "page" && t.url.startsWith("file:")).webSocketDebuggerUrl, "encoder");
   // the encoder page may take a moment on a busy machine: wait up to 15 s for the muxer
   let muxOk = false;
   for (let i = 0; i < 30 && !muxOk; i++) { muxOk = (await enc.ev("typeof Mp4Muxer")) === "object"; if (!muxOk) await sleep(500); }
