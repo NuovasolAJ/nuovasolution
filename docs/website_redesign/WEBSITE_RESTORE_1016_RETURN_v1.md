@@ -9,14 +9,14 @@ Farbkomposition; Plataforma übersichtlich".
 documents stay in the repository as history (`WEBSITE_V4_1016_RETURN_v1.md`, `evidence_2026-10-16/`).
 
 ```
-WEBSITE_RESTORE_1016 = ⟦COMMIT⟧ ⟦DPL_ID⟧
+WEBSITE_RESTORE_1016 = 565316d dpl_FtFedJRrXZ8LorsNYSHcQoJGGcCA
 ```
 
 | | |
 |---|---|
 | Preview (alias, always the newest build) | https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app/es · `/en` |
-| This deployment | ⟦DPL_URL⟧ |
-| Code | `3fae766` restored for every page and script, plus the small points in ⟦COMMIT⟧ |
+| This deployment | https://nuovasolution-design-preview-28l13ofne-nuovasolajs-projects.vercel.app |
+| Code | `3fae766` restored for every page and script, plus the small points in 565316d |
 | Staging preview | still **held** on `486bfe8`; nothing was sent to staging or production |
 | Browser | headless Edge (Chromium), 1440×900, 768 (overflow), 390×844. **No Safari, no real phone.** |
 | Owner's card | `OWNER_ACCEPTANCE_CARD_1010.md`, rewritten for this state |
@@ -47,21 +47,21 @@ the trust section, the texts of `3fae766`. v4's `/hoy`, the loss scene and the e
 
 ## 3. What was measured on this deployment
 
-`scripts/design/master-check.mjs` (the 27 checks of `3fae766`), **⟦MC⟧**:
+`scripts/design/master-check.mjs` (the 27 checks of `3fae766`), **27 of 27**:
 
 | Check | Result |
 |---|---|
-| stars > sky > ridges at three speeds; the panel leans and stands up, larger | desktop ⟦D_DEPTH⟧ px after 420 px, phone ⟦M_DEPTH⟧; the far ridge and the foreground move with their own distances (CSS `--depth-ridge-far`, `--depth-front`) |
+| stars > sky > ridges at three speeds; the panel leans and stands up, larger | desktop +19.1 / +11.9 / +5.9 px after 420 px, phone +7.7 / +4.8 / +2.2 px; the far ridge and the foreground move with their own distances (CSS `--depth-ridge-far`, `--depth-front`) |
 | nothing covers the headline, the buttons or the four parts of the panel at five scroll positions | yes (the foreground crosses only the panel's empty foot) |
 | the six chapters with Laura; the state lines; the email's demo button; the translation; the channels by click and keyboard; the notice; the task by keyboard | yes |
 | the 3D section labelled truthfully, the ladder, no proof-state label, no internal note | yes |
 | no horizontal overflow at 390 and 768 · FAQ · reduced motion · without JavaScript · login gate · reports · package name · session header · mail shell · social B · logout | yes |
-| contrast of small text, all sales routes | ⟦CONTRAST⟧ below 4.5 : 1 |
-| route scan · link matrix | ⟦ROUTES⟧ · ⟦LINKS⟧ |
+| contrast of small text, all sales routes | **0** below 4.5 : 1 |
+| route scan · link matrix | 55 of 55 · 1064 of 1064 |
 
 Pictures in `docs/website_redesign/evidence_2026-10-16b/`: the hero at 0/25/50/75/100 % and the edge into the story
 (desktop and phone, ES and EN), the chapter deck at two positions, the platform page, the menu, the packages.
-Film: `evidence_2026-10-16b/film/story-film-d1440-es.mp4` (the hero, the six scenes with their controls, the 3D section).
+Film: `evidence_2026-10-16b/film/story-film-d1440-es.mp4` (the hero, the six scenes with their controls, the 3D section; 55 s, complete, recorded with timing slips because the deck makes every frame heavier to paint).
 
 ## 4. Lists
 

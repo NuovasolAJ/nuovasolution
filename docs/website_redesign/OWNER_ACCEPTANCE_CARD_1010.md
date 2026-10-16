@@ -1,6 +1,6 @@
 # Abnahmekarte — für die manuelle Sichtprüfung des Owners
 
-**Stand:** 2026-10-16 (die Seite wie vor v4, plus deine kleinen Punkte; Build `⟦COMMIT⟧`) · Website-Implementierer → Owner.
+**Stand:** 2026-10-16 (die Seite wie vor v4, plus deine kleinen Punkte; Build `565316d`) · Website-Implementierer → Owner.
 Status: implementiert, wartet auf unabhängige technische und finale Prüfung.
 
 ## Link
