@@ -399,7 +399,7 @@ export const es: Dictionary = {
     ],
     noPaymentMethod: "Sin método de pago",
     compareHeading: "En qué se diferencian los planes",
-    compareLead: "Cada paquete se construye sobre el anterior y crece en tamaño: oficinas, puestos y consultas procesadas al mes.",
+    compareLead: "Cada paquete se construye sobre el anterior y crece en tamaño: oficinas, puestos y capacidad de consultas al mes.",
     planColumn: "Plan",
     periodHeading: "Precio y periodo de facturación",
     periodLine: "Indicamos el precio y el periodo de facturación en tu propuesta y en cada factura. No se cobra nada de forma automática.",
@@ -408,7 +408,7 @@ export const es: Dictionary = {
     trialBadgeAligned: "14 días gratis",
     ctaTrialEssential: "Prueba Essential gratis",
     limitsHeading: "Límites",
-    limits: { offices: "Oficinas", seats: "Puestos", leads_month: "Consultas al mes", crm_connections: "Conexiones de CRM", voice_minutes: "Minutos de voz", unlimited: "Sin límite", none: "Ninguno" },
+    limits: { offices: "Oficinas", seats: "Puestos", leads_month: "Capacidad: consultas al mes", crm_connections: "Conexiones de CRM", voice_minutes: "Minutos de voz", unlimited: "Sin límite", none: "Ninguno" },
     featuresHeading: "Incluido",
     featureNames: {
       "cx.baseline": "Respuestas automáticas por texto",

@@ -91,6 +91,17 @@ lane truth sheets, this repository); **Needed** is the signal that closes the ro
 | R-11 | "Leads per month" vs processing limit; Essential/Growth/Scale vs Enterprise; same vs staged functions | **unified**: "Consultas procesadas al mes" on every page; the packages page shows the ladder's names (Enterprise for `scale`, the id unchanged) and the ladder's staged lines per card | API confirms `leads_month` counts processed enquiries (D-9); the owner confirms the display name "Enterprise" | API, Owner |
 | R-12 | Owner 2026-10-12 on the first screen: too much of Laura's message in the hero, the two cards under the panel confuse the eye, the grey-to-ivory band under them | **rebuilt**: the hero's exchange is two short bubbles (one question each); the cards and the ivory band are gone; the situation ("Marcos is at a viewing until 12:00 · Nuova handles what arrives") is one line inside the panel, the state line its last line; the hero ends on its own dark foot and the story begins at its own edge. The four depth layers are now stars, the coast, the ridges and the panel (final order §3 named cards as the fourth layer; the owner's verdict replaced them) | the owner's visual verdict on the deployment | Owner |
 
+## F5. The binding closing order of 2026-10-17 (on the restored site)
+
+| # | Point | State | Needed | Lane |
+|---|---|---|---|---|
+| X-1 | Hero and transition as one scene: the foreground releases the panel, the ground opens into the page, both headline lines ivory, no edge | **built** (`WEBSITE_CLOSING_1017_RETURN_v1.md` §2) | the owner's verdict | Owner |
+| X-2 | No content waits for a trigger; pictures of the scenes ready; cards and records readable | **built** | the owner's verdict | Owner |
+| X-3 | The story's dialogues corrected (Thursday morning, the budget's source, three visible task steps, "oportunidades", the proposal, no Manchester as the reason) | **built**; texts handed to Copy | Copy's confirmation | Copy |
+| X-4 | Social as one product moment (post → approval → published → comment → next step) | **built** | the owner's verdict; Social's acceptance of the depicted process | Owner, Social |
+| X-5 | 3D: no design variant as a furniture comparison; the viewer capture without its title bar; the slots prepared | **built**; the rotation and the pair are **missing** | `3D_ASSETS_REQUEST_1017.md` A-1, A-2 | 3D |
+| X-6 | Platform, packages, reporting and FAQ aligned: the phone out of the packages, "Capacidad: consultas al mes", limits with the claim, the setup answer | **built** | Copy's confirmation; the owner on prices | Copy, Owner |
+
 ## F4. The restore of 2026-10-16 (owner's verdict on v4: "riesiger Rückschritt", restore 3fae766 plus the small points)
 
 | # | Point | State | Needed | Lane |

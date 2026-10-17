@@ -3,7 +3,6 @@ import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { homeWords } from "@/lib/content/home-sections";
 import { ButtonLink } from "@/components/ui/button";
-import { CompareSlider } from "@/components/ui/compare-slider";
 import { Reveal } from "@/components/ui/reveal";
 import { FloorPlan } from "./scene-art";
 
@@ -51,7 +50,7 @@ export function Model3dSection({ locale }: { locale: Locale }) {
                 {i === 0 && <FloorPlan rooms={rooms} className="h-full w-full" />}
                 {i === 1 && <Img src={F.clay} alt={l(w.clay)} w={1200} h={800} className="h-full w-full object-cover" />}
                 {i === 2 && <Img src={F.render800} alt={l(w.render)} w={800} h={533} className="h-full w-full object-cover" />}
-                {i === 3 && <Img src={F.viewer} alt={l(w.viewer)} w={1200} h={703} className="h-full w-full object-cover" />}
+                {i === 3 && <Img src={F.viewer} alt={l(w.viewer)} w={1200} h={703} className="model3d-viewer-shot h-full w-full object-cover" />}
               </div>
               <div className="p-4">
                 <p className="flex items-baseline gap-2 t-heading-s text-text-primary"><span className="tnum t-caption text-text-accent">0{i + 1}</span>{s.title}</p>
@@ -63,18 +62,12 @@ export function Model3dSection({ locale }: { locale: Locale }) {
         </ol>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:gap-8">
-          {/* Before and after from the same camera */}
+          {/* The furnished render; the unfurnished → furnished pair from the same camera is requested from the 3D lane (3D_ASSETS_REQUEST_1017) */}
           <Reveal>
-            <CompareSlider
-              label={l(w.compareLabel)}
-              beforeLabel={l(w.before)}
-              afterLabel={l(w.after)}
-              before={<Img src={F.before} alt={l(w.before)} w={1200} h={800} className="w-full" />}
-              after={<Img src={F.render} alt={l(w.render)} w={1600} h={1067} className="w-full" />}
-              className="border border-line-contour"
-              initial={50}
-            />
-            <p className="mt-3 t-caption text-text-muted" data-model3d-compare-note>{l(w.compareNote)}</p>
+            <div className="overflow-hidden rounded-lg border border-line-contour" data-model3d-pair-slot="waiting">
+              <Img src={F.render} alt={l(w.render)} w={1600} h={1067} className="w-full" />
+            </div>
+            <p className="mt-3 t-caption text-text-muted" data-model3d-compare-note>{l(w.pairMissing)}</p>
           </Reveal>
           {/* The camera ride */}
           <Reveal delay={100}>

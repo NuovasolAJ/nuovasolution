@@ -43,6 +43,7 @@ export const homeWords = {
     clay: { es: "Mobiliario colocado, sin materiales", en: "Furniture placed, no materials" },
     render: { es: "Rendering con materiales y luz", en: "Render with materials and light" },
     viewer: { es: "Captura del visor giratorio en el navegador", en: "Capture of the rotatable browser viewer" },
+    pairMissing: { es: "El salón amueblado, render final. La comparación sin muebles / con muebles desde la misma cámara se añade cuando el equipo 3D la entregue; no se muestran dos variantes de diseño como si fueran esa comparación.", en: "The furnished living room, final render. The unfurnished / furnished comparison from the same camera is added when the 3D team delivers it; two design variants are not shown as if they were that comparison." },
     viewerLine: { es: "Sin tejado, para ver dentro. Planta baja o alta. Sin paseo a ojo de persona. La imagen es una captura del visor; el visor interactivo se incorpora tras la aceptación visual.", en: "No roof, so you see inside. Ground or upper floor. No eye-level walkthrough. The picture is a capture of the viewer; the interactive viewer follows the visual acceptance." },
     film: { es: "Vídeo: recorrido de cámara por el salón · 8 segundos · sin sonido", en: "Video: camera ride through the living room · 8 seconds · no sound" },
     play: { es: "Ver el recorrido", en: "Watch the ride" },

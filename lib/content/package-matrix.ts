@@ -38,6 +38,8 @@ export interface MatrixPackage {
   /** For whom (the size of the agency) and what changes in the day, in one line each (owner 2026-10-16: the packages must explain). */
   who: L;
   change: L;
+  /** The confirmed limits of the package, said with the package (final order §8). */
+  limits: L;
   /** "Everything in … plus" for the second and third package. */
   plus?: L;
   lines: MatrixLine[];
@@ -52,13 +54,14 @@ export const matrix: MatrixPackage[] = [
     line: { es: "Responder y ordenar lo que llega.", en: "Answering and ordering what arrives." }, // COPY_DELTAS_1003 §2.1
     who: { es: "Una oficina, hasta 3 personas", en: "One office, up to 3 people" },
     change: { es: "Ninguna consulta se queda sin respuesta mientras estás fuera.", en: "No enquiry goes unanswered while you are out." },
+    limits: { es: "Hoy: WhatsApp y email, respuestas en español. Las consultas al mes son capacidad de procesamiento, no leads nuevos.", en: "Today: WhatsApp and email, replies in Spanish. Enquiries a month are processing capacity, not new leads." },
     lines: [
-      { key: "replies", name: { es: "Respuestas automáticas", en: "Automatic replies" }, state: "available", note: { es: "en el idioma del cliente", en: "in the customer's language" }, flag: "cx.baseline" },
-      { key: "channels", name: { es: "WhatsApp, email y formulario web", en: "WhatsApp, email and web form" }, state: "partial", flag: "channel.whatsapp" },
+      { key: "replies", name: { es: "Respuestas automáticas", en: "Automatic replies" }, state: "available", note: { es: "hoy en español", en: "today in Spanish" }, flag: "cx.baseline" },
+      { key: "channels", name: { es: "WhatsApp y email", en: "WhatsApp and email" }, state: "available", flag: "channel.whatsapp" },
       { key: "labels", name: { es: "Etiquetas de email", en: "Email labels" }, state: "available", flag: "channel.email" },
       { key: "crm", name: { es: "Fichas de cliente (CRM)", en: "Customer records (CRM)" }, state: "available", flag: "crm.core" },
       { key: "hot", name: { es: "Avisos de consultas importantes", en: "Alerts for important enquiries" }, state: "preparing", flag: "lead.hot_alert" },
-      { key: "reports", name: { es: "Informe semanal", en: "Weekly report" }, state: "preparing", flag: "reporting.basic" },
+      { key: "reports", name: { es: "Informe semanal", en: "Weekly report" }, state: "preparing", note: { es: "la entrega al cliente no se mide", en: "delivery to the customer is not measured" }, flag: "reporting.basic" },
     ],
     cta: { es: "Probar gratis", en: "Try free" },
     href: "/signup",
@@ -69,6 +72,7 @@ export const matrix: MatrixPackage[] = [
     line: { es: "Seguir, proponer y coordinar.", en: "Follow up, propose and coordinate." },
     who: { es: "Un equipo de hasta 8 personas", en: "A team of up to 8 people" },
     change: { es: "Cada mañana el equipo sabe qué va primero, y los clientes reciben propuestas que encajan.", en: "Every morning the team knows what comes first, and customers get proposals that fit." },
+    limits: { es: "Seguimientos solo con permiso del cliente; propuestas solo de tu propia cartera.", en: "Follow-ups only with the customer's permission; proposals only from your own portfolio." },
     plus: { es: "Todo lo de Essential, y además:", en: "Everything in Essential, plus:" },
     lines: [
       { key: "followups", name: { es: "Seguimientos con permiso del cliente", en: "Follow-ups with the customer's permission" }, state: "preparing", flag: "followup.basic" },
@@ -84,13 +88,13 @@ export const matrix: MatrixPackage[] = [
   {
     code: "scale",
     name: "Enterprise",
-    line: { es: "Captar, atender llamadas y presentar en 3D.", en: "Attract, take calls and present in 3D." },
+    line: { es: "Captar y presentar en 3D.", en: "Attract and present in 3D." },
     who: { es: "Varias oficinas, hasta 50 personas", en: "Several offices, up to 50 people" },
-    change: { es: "Instagram, llamadas y modelos 3D desde el mismo sitio que las consultas.", en: "Instagram, calls and 3D models from the same place as the enquiries." },
+    change: { es: "Instagram y modelos 3D desde el mismo sitio que las consultas.", en: "Instagram and 3D models from the same place as the enquiries." },
+    limits: { es: "Instagram depende de la aprobación de la plataforma; cada modelo 3D se hace por encargo a partir de tus planos.", en: "Instagram depends on the platform's approval; each 3D model is made to order from your plans." },
     plus: { es: "Todo lo de Growth, y además:", en: "Everything in Growth, plus:" },
     lines: [
       { key: "social", name: { es: "Instagram desde el mismo sitio", en: "Instagram from the same place" }, state: "preparing" },
-      { key: "phone", name: { es: "Asistente telefónico", en: "Phone assistant" }, state: "preparing", note: { es: "hoy en español", en: "today in Spanish" }, flag: "channel.voice" },
       { key: "model3d", name: { es: "Modelos 3D incluidos por encargo", en: "3D models included, per order" }, state: "request" },
     ],
     cta: { es: "Solicita una propuesta", en: "Request a proposal" },
@@ -106,7 +110,7 @@ export const matrixWords = {
     request: { es: "Disponible por encargo · sin cupo", en: "Available per order · no quota" },
   } as Record<LineState, L>,
   // owner 2026-10-16: the monthly figure is named plainly, no "processing" wording and no explanatory note
-  limit: { es: "Consultas al mes", en: "Enquiries a month" },
+  limit: { es: "Capacidad: consultas al mes", en: "Capacity: enquiries a month" },
   limitNote: { es: "", en: "" },
   noCap: { es: "sin límite", en: "unlimited" },
   strip: {

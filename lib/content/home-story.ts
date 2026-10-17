@@ -128,12 +128,12 @@ export const enquiries: Enquiry[] = [
     language: { es: "inglés", en: "English" },
     lang: "en",
     text: "Hi, I'm Laura Serrano. Could we view the two-bedroom flat in Estepona? We're flying in from Manchester and could come on Thursday morning. Our budget is up to 320,000 €.",
-    textShort: { es: "Laura pregunta por el piso de Estepona y propone el jueves por la mañana.", en: "Laura asks about the flat in Estepona and proposes Thursday morning." },
+    textShort: { es: "Laura pregunta por el piso de Estepona, propone el jueves por la mañana y nombra su presupuesto (hasta 320.000 €).", en: "Laura asks about the flat in Estepona, proposes Thursday morning and names her budget (up to €320,000)." },
     // D-97: a preference, not two free hours. No slot is promised; a person confirms.
-    reply: "Hi Laura, thank you for writing. I've noted your interest in the flat in Estepona and Thursday. Would the morning or the afternoon suit you better? A colleague from the agency will confirm the time with you.",
+    reply: "Hi Laura, thank you for writing. I've noted the two-bedroom flat in Estepona, Thursday morning and your budget. A colleague from the agency will get back to you with the exact time.",
     translation: {
-      text: { es: "Hola, soy Laura Serrano. ¿Podríamos ver el piso de dos dormitorios en Estepona? Venimos desde Manchester y podríamos ir el jueves por la mañana. Nuestro presupuesto llega hasta 320.000 €.", en: "Hi, I'm Laura Serrano. Could we view the two-bedroom flat in Estepona (EST-204)? We're flying in from Manchester and could come on Thursday morning. Our budget is up to 320,000 €." },
-      reply: { es: "Hola Laura, gracias por escribir. He anotado tu interés por el piso de Estepona y el jueves. ¿Te viene mejor por la mañana o por la tarde? Una persona de la agencia te confirma la hora.", en: "Hi Laura, thank you for writing. I've noted your interest in EST-204 and Thursday. Would the morning or the afternoon suit you better? A colleague from the agency will confirm the time with you." },
+      text: { es: "Hola, soy Laura Serrano. ¿Podríamos ver el piso de dos dormitorios en Estepona? Venimos desde Manchester y podríamos ir el jueves por la mañana. Nuestro presupuesto llega hasta 320.000 €.", en: "Hi, I'm Laura Serrano. Could we view the two-bedroom flat in Estepona? We're flying in from Manchester and could come on Thursday morning. Our budget is up to 320,000 €." },
+      reply: { es: "Hola Laura, gracias por escribir. He anotado el piso de dos dormitorios en Estepona, el jueves por la mañana y tu presupuesto. Una persona de la agencia te escribe con la hora exacta.", en: "Hi Laura, thank you for writing. I've noted the two-bedroom flat in Estepona, Thursday morning and your budget. A colleague from the agency will get back to you with the exact time." },
     },
     notice: "I am an AI assistant. I will help you with your property enquiry. If you prefer to speak to a human agent, tell me at any time.",
     noticeIsSample: true,
@@ -143,7 +143,7 @@ export const enquiries: Enquiry[] = [
       { k: { es: "Plazo", en: "Timing" }, v: { es: "quiere visitar el jueves", en: "wants to view on Thursday" } },
       { k: { es: "Escribe en", en: "Writes in" }, v: { es: "inglés", en: "English" } },
     ],
-    next: { es: "Tarea para el equipo: confirmar la hora del jueves con Laura.", en: "Task for the team: confirm Thursday's time with Laura." },
+    next: { es: "Tarea para el equipo: acordar la hora exacta del jueves con Laura.", en: "Task for the team: agree Thursday's exact time with Laura." },
   },
   {
     channel: "email",
@@ -224,11 +224,11 @@ export const heroWords = {
   h1Soft: { es: "Mientras enseñas una vivienda,", en: "While you show a home," },
   h1: { es: "Nuova atiende tus consultas.", en: "Nuova answers your enquiries." },
   // D-94 applied in spirit: no language is promised in the lead; the state line under the panel says what runs today.
-  lead: { es: "Responde a lo que llega por WhatsApp, email, formulario web y teléfono, guarda lo que pide cada cliente y deja a tu equipo el siguiente paso.", en: "It answers what arrives on WhatsApp, email, web form and phone, keeps what each customer asks for and leaves your team the next step." },
+  lead: { es: "Responde a lo que llega por WhatsApp y email, guarda lo que pide cada cliente y deja a tu equipo el siguiente paso.", en: "Answers what arrives on WhatsApp and email, keeps what each customer asks for and leaves your team the next step." },
   ctaStory: { es: "Ver cómo funciona", en: "See how it works" },
   trialLine: { es: "14 días gratis · Sin tarjeta", en: "14 days free · No card" },
   labels: { enquiry: { es: "Llega por WhatsApp", en: "Arrives on WhatsApp" }, reply: { es: "Nuova responde en", en: "Nuova replies in" }, crm: { es: "Ficha del cliente", en: "Customer record" }, next: { es: "Siguiente paso", en: "Next step" } },
-  taskTitle: { es: "Confirmar con Laura Serrano la hora del jueves", en: "Confirm Thursday's time with Laura Serrano" },
+  taskTitle: { es: "Acordar con Laura Serrano la hora del jueves", en: "Agree Thursday's time with Laura Serrano" },
   taskFor: { es: "Para el equipo · cuando termine la visita", en: "For the team · once the viewing ends" },
   taskAction: { es: "Tomar", en: "Take" },
   replay: { es: "Reproducir otra vez", en: "Play again" },
@@ -236,8 +236,8 @@ export const heroWords = {
   cardViewing: { title: { es: "Estás en una visita", en: "You are at a viewing" }, line: { es: "Marcos enseña una villa en Marbella de 11:00 a 12:00.", en: "Marcos is showing a villa in Marbella from 11:00 to 12:00." }, ref: { es: "Referencia EST-118", en: "Reference EST-118" } },
   cardArrivals: { title: { es: "Mientras tanto, Nuova atiende lo que llega", en: "Meanwhile, Nuova handles what arrives" }, line: { es: "Cuatro consultas en una hora, por cuatro canales.", en: "Four enquiries in one hour, on four channels." } },
   /** The hero's short exchange (owner 2026-10-12: far less of Laura's text in the first screen). */
-  heroEnquiry: "Hi, could we view the two-bedroom flat in Estepona on Thursday morning? We're coming from Manchester.",
-  heroReply: "Hi Laura, thanks for writing. I've noted Estepona and Thursday. Would the morning or the afternoon suit you better? A colleague will confirm the time with you.",
+  heroEnquiry: "Hi, could we view the two-bedroom flat in Estepona on Thursday morning? We're coming from Manchester, budget up to 320,000 €.",
+  heroReply: "Hi Laura, thanks for writing. Noted: Estepona, Thursday morning, up to 320,000 €. A colleague will get back to you with the exact time.",
   /** The situation, as one line inside the panel (owner 2026-10-12: no cards under the panel). */
   situationLine: { es: "Martes 11:20 · Marcos está en una visita hasta las 12:00 · Nuova atiende lo que llega", en: "Tuesday 11:20 · Marcos is at a viewing until 12:00 · Nuova handles what arrives" },
   /** The state line of the hero example (Copy, CLAIMS_CHECK_1012 §1 B): what runs today, what the example shows. */
@@ -281,10 +281,10 @@ export const chapters: Chapter[] = [
   },
   {
     key: "task",
-    eyebrow: { es: "La chance importante y el siguiente paso", en: "The important chance and the next step" },
+    eyebrow: { es: "La consulta importante y el siguiente paso", en: "The important enquiry and the next step" },
     // D-96: no "priority"; the reason and the next step carry the order.
     title: { es: "A la mañana siguiente, el asistente le dice a Elena qué va primero y por qué.", en: "The next morning, the assistant tells Elena what comes first and why." },
-    line: { es: "Una consulta importante se convierte en una tarea con motivo y siguiente paso. Elena la toma, confirma la hora con Laura y la cierra. Queda documentado quién hizo qué. Nuova prepara y organiza; tu equipo asesora y cierra.", en: "An important enquiry becomes a task with a reason and a next step. Elena takes it, confirms the time with Laura and closes it. Who did what is on record. Nuova prepares and organises; your team advises and closes." },
+    line: { es: "Una consulta importante se convierte en una tarea con motivo y siguiente paso. Elena la toma, acuerda la hora con Laura y la cierra: tres pasos, cada uno visible. Nuova prepara y organiza; tu equipo asesora y cierra.", en: "An important enquiry becomes a task with a reason and a next step. Elena takes it, agrees the time with Laura and closes it: three steps, each one visible. Nuova prepares and organises; your team advises and closes." },
     state: { es: "Disponible hoy: la tarea, tomarla y cerrarla. Prototipo: el asistente que explica el orden y el aviso de consulta importante.", en: "Available today: the task, taking it and closing it. Prototype: the assistant that explains the order and the important-enquiry alert." },
   },
   {
@@ -297,8 +297,8 @@ export const chapters: Chapter[] = [
   {
     key: "result",
     eyebrow: { es: "La semana, en cifras", en: "The week, in figures" },
-    title: { es: "Al final de la semana sabes qué atendió Nuova, qué chances hay y qué toca hacer.", en: "At the end of the week you know what Nuova handled, which chances there are and what to do next." },
-    line: { es: "Un resumen corto llega el lunes por email. El informe completo, con el periodo, la base de datos y las acciones pendientes, está en tu acceso de agencia.", en: "A short summary arrives on Monday by email. The full report, with the period, the data behind it and the open actions, is in your agency login." },
+    title: { es: "Al final de la semana sabes qué atendió Nuova, qué oportunidades hay y qué toca hacer.", en: "At the end of the week you know what Nuova handled, which opportunities there are and what to do next." },
+    line: { es: "Un resumen corto llega el lunes por email. El informe completo, con el periodo, la base de datos y las acciones pendientes, está en tu acceso de agencia. Respondida no es lo mismo que entregada: lo que llega al cliente aún no se mide.", en: "A short summary arrives on Monday by email. The full report, with the period, the data behind it and the open actions, is in your agency login. Answered is not delivered: what reaches the customer is not measured yet." },
     state: { es: "Prototipo · todavía no disponible.", en: "Prototype · not available yet." },
   },
 ];
@@ -355,8 +355,8 @@ export const storyWords = {
     yours: { es: "Tu cartera", en: "Your portfolio" },
     rights: { es: "Se muestra solo lo que tu fuente marca como publicable y actual. Sin disponibilidad confirmada no se afirma disponibilidad.", en: "Only what your source marks as publishable and current is shown. Without confirmed availability, no availability is claimed." },
     sent: { es: "Propuesta enviada a Laura por WhatsApp · martes 11:22", en: "Proposal sent to Laura on WhatsApp · Tuesday 11:22" },
-    proposal: "Laura, two flats in Estepona fit what you described: one with 2 bedrooms and a terrace (315,000 €) and a (2 bedroom penthouse with views, 319,000 €). Here are the details. Shall we look at both on Thursday?",
-    proposalTranslated: { es: "Laura, dos pisos en Estepona encajan con lo que describes: uno de 2 dormitorios con terraza (315.000 €) y un (ático de 2 dormitorios con vistas, 319.000 €). Te paso las fichas. ¿Vemos los dos el jueves?", en: "Laura, two flats in Estepona fit what you described: EST-204 (2 bedrooms, terrace, 315,000 €) and EST-231 (2 bedroom penthouse with views, 319,000 €). Here are the details. Shall we look at both on Thursday?" },
+    proposal: "Laura, two flats in Estepona fit what you described: a two-bedroom flat with a terrace at 315,000 € and a two-bedroom penthouse with views at 319,000 €. Here are the details. Would you like to see both on Thursday?",
+    proposalTranslated: { es: "Laura, dos pisos en Estepona encajan con lo que describes: un piso de dos dormitorios con terraza por 315.000 € y un ático de dos dormitorios con vistas por 319.000 €. Te paso las fichas. ¿Quieres ver los dos el jueves?", en: "Laura, two flats in Estepona fit what you described: a two-bedroom flat with a terrace at 315,000 € and a two-bedroom penthouse with views at 319,000 €. Here are the details. Would you like to see both on Thursday?" },
     details: { es: "Ver ficha", en: "See details" },
   },
   task: {
@@ -369,13 +369,13 @@ export const storyWords = {
     nextStep: { es: "Siguiente paso", en: "Next step" },
     items: {
       es: [
-        { who: "Laura Serrano", what: "Visita pedida el jueves · piso de Estepona", why: "Nombró fecha, inmueble y presupuesto, y viene desde Manchester", next: "Confirmar mañana o tarde del jueves por WhatsApp" },
+        { who: "Laura Serrano", what: "Visita pedida el jueves por la mañana · piso de Estepona", why: "Nombró fecha, inmueble y presupuesto", next: "Acordar la hora exacta del jueves por WhatsApp" },
         { who: "Peter y Anna Keller", what: "Valoración de una villa en Elviria", why: "Propietarios que quieren vender; piden cita esta semana", next: "Proponer día y hora para la visita de valoración" },
         { who: "Álvaro Pons", what: "Rellamada por la villa de Elviria · precio y margen", why: "Pidió que le llamen por la tarde (+34 600 123 456)", next: "Llamar a partir de las 16:00" },
         { who: "Sofía Lamas", what: "Alquiler de larga temporada en Fuengirola", why: "Sin fecha; a partir de enero", next: "Enviar lo disponible en alquiler" },
       ],
       en: [
-        { who: "Laura Serrano", what: "Viewing asked for Thursday · flat in Estepona", why: "She named a date, a property and a budget, and is coming from Manchester", next: "Confirm Thursday morning or afternoon on WhatsApp" },
+        { who: "Laura Serrano", what: "Viewing asked for Thursday morning · flat in Estepona", why: "She named a date, a property and a budget", next: "Agree Thursday's exact time on WhatsApp" },
         { who: "Peter and Anna Keller", what: "Valuation of a villa in Elviria", why: "Owners who want to sell; they ask for an appointment this week", next: "Propose a day and time for the valuation visit" },
         { who: "Álvaro Pons", what: "Callback about the villa in Elviria · price and room to negotiate", why: "He asked to be called in the afternoon (+34 600 123 456)", next: "Call from 16:00" },
         { who: "Sofía Lamas", what: "Long-term rental in Fuengirola", why: "No date; from January", next: "Send what is available to rent" },
@@ -383,14 +383,16 @@ export const storyWords = {
     },
     take: { es: "Tomar", en: "Take" },
     taken: { es: "Tomada por Elena", en: "Taken by Elena" },
+    confirm: { es: "Acordar la hora con Laura", en: "Agree the time with Laura" },
+    confirmed: { es: "Hora propuesta a Laura · miércoles 08:58", en: "Time proposed to Laura · Wednesday 08:58" },
     complete: { es: "Marcar como hecha", en: "Mark as done" },
     done: { es: "Hecha · miércoles 09:02 · Elena", en: "Done · Wednesday 09:02 · Elena" },
-    doneLine: { es: "Visita confirmada con Laura para el jueves a las 10:00. Queda en la ficha y en la agenda de Elena.", en: "Viewing confirmed with Laura for Thursday at 10:00. It is on the record and in Elena's diary." },
+    doneLine: { es: "Hora acordada con Laura: jueves a las 10:00. Queda en la ficha y en la lista de Elena.", en: "Time agreed with Laura: Thursday at 10:00. It is on the record and on Elena's list." },
     open: { es: "Abierta · nadie la ha tomado", en: "Open · nobody has taken it" },
     again: { es: "Volver a empezar", en: "Start again" },
     othersSee: { es: "Los demás ven que está tomada y por quién.", en: "The others see that it is taken and by whom." },
-    chatConfirm: "Hi Laura, Elena from the agency here. Thursday at 10:00 is confirmed for the flat in Estepona. I'll send you the address and my number now. See you then!",
-    chatConfirmTranslated: { es: "Hola Laura, soy Elena, de la agencia. El jueves a las 10:00 queda confirmado para el piso de Estepona. Ahora te envío la dirección y mi número. ¡Hasta el jueves!", en: "Hi Laura, Elena from the agency here. Thursday at 10:00 is confirmed for EST-204. I'll send you the address and my number now. See you then!" },
+    chatConfirm: "Hi Laura, Elena from the agency here. Thursday morning works for the flat in Estepona: would 10:00 suit you? I'll send you the address and my number.",
+    chatConfirmTranslated: { es: "Hola Laura, soy Elena, de la agencia. El jueves por la mañana nos va bien para el piso de Estepona: ¿te viene bien a las 10:00? Te envío la dirección y mi número.", en: "Hi Laura, Elena from the agency here. Thursday morning works for the flat in Estepona: would 10:00 suit you? I'll send you the address and my number." },
   },
   followup: {
     trigger: { es: "Miércoles · 17:30 · entra en tu cartera", en: "Wednesday · 17:30 · enters your portfolio" },
@@ -418,8 +420,8 @@ export const storyWords = {
     basis: { es: "Base: consultas registradas en Nuova en los canales conectados", en: "Basis: enquiries recorded in Nuova on the connected channels" },
     demo: { es: "Cifras de ejemplo · no son datos de ninguna agencia", en: "Example figures · not any agency's data" },
     /** The three questions of the week (final order §8): what Nuova handled, which chances, what to do next. */
-    handled: { title: { es: "Lo que atendió Nuova", en: "What Nuova handled" }, value: "23", line: { es: "consultas respondidas y registradas · WhatsApp 11 · email 7 · web 3 · teléfono 2", en: "enquiries answered and recorded · WhatsApp 11 · email 7 · web 3 · phone 2" } },
-    chances: { title: { es: "Chances que han surgido", en: "Chances that came up" }, value: "6", line: { es: "visitas pedidas, 4 confirmadas por el equipo (la de Laura entre ellas) · 2 valoraciones pedidas · 4 propuestas enviadas", en: "viewings asked for, 4 confirmed by the team (Laura's among them) · 2 valuations asked for · 4 proposals sent" } },
+    handled: { title: { es: "Lo que atendió Nuova", en: "What Nuova handled" }, value: "23", line: { es: "consultas respondidas y registradas · WhatsApp 11 · email 7 · web 3 · teléfono 2 · la entrega al cliente no se mide", en: "enquiries answered and recorded · WhatsApp 11 · email 7 · web 3 · phone 2 · delivery to the customer is not measured" } },
+    chances: { title: { es: "Oportunidades que han surgido", en: "Opportunities that came up" }, value: "6", line: { es: "visitas pedidas, 4 confirmadas por el equipo (la de Laura entre ellas) · 2 valoraciones pedidas · 4 propuestas enviadas", en: "viewings asked for, 4 confirmed by the team (Laura's among them) · 2 valuations asked for · 4 proposals sent" } },
     next: { title: { es: "Lo que toca hacer", en: "What to do next" }, value: "2", line: { es: "cosas esperan a una persona: la cita de los Keller y la respuesta de Sofía", en: "things wait for a person: the Kellers' appointment and Sofía's reply" } },
     openTitle: { es: "Sigue abierto", en: "Still open" },
     open: {
@@ -452,6 +454,15 @@ export const storyWords = {
         { title: "Published", line: "Published on your account · Thursday 09:00" },
         { title: "Comment", line: "A public comment, an allowed reply, a contact in a record" },
       ],
+    },
+    post: {
+      account: "@tu_agencia",
+      caption: { es: "Dos dormitorios, terraza y luz de mañana en Estepona. 74 m², a dos calles del paseo. ¿Quieres verlo? Escríbenos.", en: "Two bedrooms, a terrace and morning light in Estepona. 74 m², two streets from the promenade. Want to see it? Write to us." },
+      draftLabel: { es: "Borrador preparado por Nuova · miércoles 11:40", en: "Draft prepared by Nuova · Wednesday 11:40" },
+      approved: { es: "Aprobada por ti · miércoles 12:10", en: "Approved by you · Wednesday 12:10" },
+      published: { es: "Publicada en tu cuenta · jueves 09:00", en: "Published on your account · Thursday 09:00" },
+      nextTitle: { es: "Siguiente paso", en: "Next step" },
+      next: { es: "Marta queda en su ficha con el inmueble y su pregunta. Una persona del equipo le escribe por privado.", en: "Marta is on a record with the listing and her question. A person from the team writes to her privately." },
     },
     commentLabel: { es: "Comentario público", en: "Public comment" },
     comment: "¿Sigue disponible? Me interesa.",

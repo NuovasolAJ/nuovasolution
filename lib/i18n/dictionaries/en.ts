@@ -436,7 +436,7 @@ export const en = {
     // Interim implementer wording until COPY_DELTAS_0929; amounts and the period come from PRICING_AUTHORITY (O-7).
     noPaymentMethod: "No payment method",
     compareHeading: "What differs between the plans",
-    compareLead: "Each package builds on the one before and grows in size: offices, seats and enquiries processed per month.", // final order 2026-10-12 §9: staged functions, not the same parts
+    compareLead: "Each package builds on the one before and grows in size: offices, seats and the capacity of enquiries a month.", // final order 2026-10-12 §9: staged functions, not the same parts
     planColumn: "Plan",
     periodHeading: "Price and billing period",
     periodLine: "We state the price and the billing period in your proposal and on every invoice. Nothing is charged automatically.",
@@ -446,7 +446,7 @@ export const en = {
     trialBadgeAligned: "14 days free", // D-22: the chip sits on the Essential card only
     ctaTrialEssential: "Try Essential free",
     limitsHeading: "Limits",
-    limits: { offices: "Offices", seats: "Seats", leads_month: "Enquiries a month", crm_connections: "CRM connections", voice_minutes: "Voice minutes", unlimited: "Unlimited", none: "None" },
+    limits: { offices: "Offices", seats: "Seats", leads_month: "Capacity: enquiries a month", crm_connections: "CRM connections", voice_minutes: "Voice minutes", unlimited: "Unlimited", none: "None" },
     featuresHeading: "Included",
     featureNames: {
       "cx.baseline": "Automatic text replies",

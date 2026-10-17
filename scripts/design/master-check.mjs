@@ -74,10 +74,10 @@ try {
         }
         out.push(row);
       }
-      const cards=document.querySelectorAll('.hero-float, .hero-world-ground').length;
+      const cards=document.querySelectorAll('.hero-float').length;
       window.scrollTo(0,0); return JSON.stringify({rows:out, cards});
     })()`));
-    check(`${view}-cover`, "no headline, button or story part of the panel is covered by anything, at five scroll positions; no floating card and no ivory band exist", cover.cards === 0 && cover.rows.every((r) => r.hits.length === 0), cover);
+    check(`${view}-cover`, "no headline, button or story part of the panel is covered by anything, at five scroll positions; no floating card exists", cover.cards === 0 && cover.rows.every((r) => r.hits.length === 0), cover);
   }
 
   await send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
@@ -125,13 +125,15 @@ try {
   await ev("(()=>{const e=document.getElementById('story-d');const it=e.closest('[data-deck-item]');let t=0,n=it?it.parentElement:e;while(n){t+=n.offsetTop;n=n.offsetParent;}if(it){for(const s of it.parentElement.children){if(s===it)break;t+=s.offsetHeight;}}window.scrollTo(0,Math.max(0,t-80))})()"); await sleep(600);
   await ev("document.querySelector('[data-task-take]').focus()"); await key(" ", "Space", 32); await sleep(600);
   const t1 = await ev("document.querySelector('[data-story]').dataset.storyTask");
+  await ev("document.querySelector('[data-task-confirm]').click()"); await sleep(600);
+  const tc = await ev("document.querySelector('[data-story]').dataset.storyTask");
   await ev("document.querySelector('[data-task-complete]').focus()"); await key("Enter", "Enter", 13); await sleep(600);
   const t2 = JSON.parse(await ev("JSON.stringify({state:document.querySelector('[data-story]').dataset.storyTask, line:(document.querySelector('[data-task-done-line]')?.innerText||'').slice(0,60), others:[...document.querySelectorAll('[data-task-item]')].map(e=>e.dataset.taskState).join(',')})"));
-  check("task", "Jarvis: take and done by keyboard; the done line names who did what; the other tasks stay open", t1 === "taken" && t2.state === "done" && t2.line.length > 20 && t2.others === "done,open,open,open", { taken: t1, done: t2 });
+  check("task", "the task: take, agree the time as its own step, done; the done line names who did what; the other tasks stay open", t1 === "taken" && tc === "confirmed" && t2.state === "done" && t2.line.length > 20 && t2.others === "done,open,open,open", { taken: t1, done: t2 });
 
   // 3D and packages: there, and no proof-state label on the public page
-  const sec = JSON.parse(await ev("JSON.stringify({model3d:!!document.getElementById('model-3d'), steps:document.querySelectorAll('[data-model3d-steps] li').length, compare:!!document.querySelector('[data-compare-range]'), film:!!document.querySelector('[data-model3d-film] video'), packages:document.querySelectorAll('[data-package]').length, proof:document.querySelectorAll('[data-proof-state]').length, menuStates:document.querySelectorAll('[data-platform-menu] .state-line').length, labels:(()=>{const t=document.getElementById('model-3d').innerText;return /Primera versi|First version/.test(t)&&/Captura del visor|Capture of the rotatable/.test(t)&&/Vídeo|Video/.test(t)&&!/Raw model|Modelo en bruto/.test(t)})(), internal:/clip v|REF-DEMO|withheld|retenid/i.test(document.querySelector('main').innerText)})"));
-  check("model3d-packages", "the 3D section (four stages, the truthfully labelled slider, the film named as a video, the viewer named as a capture) and the ladder are there; no proof-state label and no state word in the menu or the ladder; no internal note about clips or Daily", sec.model3d && sec.steps === 4 && sec.compare && sec.film && sec.packages === 4 && sec.proof === 0 && sec.menuStates === 0 && sec.labels && !sec.internal, sec);
+  const sec = JSON.parse(await ev("JSON.stringify({model3d:!!document.getElementById('model-3d'), steps:document.querySelectorAll('[data-model3d-steps] li').length, compare:!!(document.querySelector('[data-compare-range]')||document.querySelector('[data-model3d-pair-slot]')), film:!!document.querySelector('[data-model3d-film] video'), packages:document.querySelectorAll('[data-package]').length, proof:document.querySelectorAll('[data-proof-state]').length, menuStates:document.querySelectorAll('[data-platform-menu] .state-line').length, labels:(()=>{const t=document.getElementById('model-3d').innerText;return /Captura del visor|Capture of the rotatable/.test(t)&&/Vídeo|Video/.test(t)&&!/Raw model|Modelo en bruto|Primera versi|First version/.test(t)})(), internal:/clip v|REF-DEMO|withheld|retenid/i.test(document.querySelector('main').innerText)})"));
+  check("model3d-packages", "the 3D section (four stages, the pair slot or a truthful slider, no design variant labelled as a furniture comparison, the film named as a video, the viewer named as a capture) and the ladder are there; no proof-state label and no state word in the menu or the ladder; no internal note about clips or Daily", sec.model3d && sec.steps === 4 && sec.compare && sec.film && sec.packages === 4 && sec.proof === 0 && sec.menuStates === 0 && sec.labels && !sec.internal, sec);
 
   // no element wider than the page at 390 and 768 (measured without the mobile viewport expansion that hides it)
   for (const w of [390, 768]) {

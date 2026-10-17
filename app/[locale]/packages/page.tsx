@@ -84,6 +84,7 @@ export default async function PackagesPage({ params }: { params: { locale: strin
                     <Heading size="l" as="h3">{backendName(plan.code) ?? plan.display_name}</Heading>
                     <p className="mt-1 t-caption font-medium text-text-muted">{ladder(plan.code)?.who[locale]}</p>
                     <p className="mt-3 t-body-m text-text-primary">{ladder(plan.code)?.change[locale] ?? planLine(plan.code)}</p>
+                    {ladder(plan.code) && <p className="mt-2 t-caption text-text-secondary" data-package-limits>{ladder(plan.code)!.limits[locale]}</p>}
                     {ladder(plan.code) && (
                       <>
                         <p className="mt-5 t-caption font-medium text-text-muted">{ladder(plan.code)!.plus ? ladder(plan.code)!.plus![locale] : pk.included}</p>

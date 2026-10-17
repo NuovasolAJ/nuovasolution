@@ -78,11 +78,13 @@ function ListingCard({ listing, locale, photoLabel, className, compact = false, 
   return (
     <article className={cn("min-w-0 overflow-hidden rounded-lg border border-ink-100 bg-white", className)} data-listing={listing.ref}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={listing.photo} alt={listing.photoAlt[locale]} width={800} height={533} loading="lazy" decoding="async" className={cn("w-full object-cover", compact ? "aspect-[16/9]" : "aspect-[3/2]")} />
+      <img src={listing.photo} alt={listing.photoAlt[locale]} width={800} height={533} loading="eager" decoding="async" className={cn("w-full bg-[#ece9e2] object-cover", compact ? "aspect-[16/9]" : "aspect-[3/2]")} />
       <div className={compact ? "p-3" : "p-4"}>
         <p className={cn("font-semibold leading-snug text-ink-950", compact ? "text-[0.9375rem]" : "text-[1.0625rem]")}>{listing.title[locale]}</p>
-        <p className="mt-0.5 t-body-s text-text-secondary">{listing.place[locale]} · {listing.facts[locale]}</p>
-        <p className="mt-1.5 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1"><span className="tnum text-[0.9375rem] font-medium text-ink-950">{listing.price}</span><span className="t-caption text-text-muted"><span className="tnum">{listing.ref}</span> · {photoLabel}</span></p>
+        <p className={cn("tnum mt-1 whitespace-nowrap font-semibold text-ink-950", compact ? "text-[1rem]" : "text-[1.25rem]")} data-listing-price>{listing.price}</p>
+        <p className="mt-1 t-body-s text-text-secondary">{listing.place[locale]}</p>
+        <p className="mt-0.5 t-body-s text-text-secondary">{listing.facts[locale]}</p>
+        <p className="mt-1.5 t-caption text-text-muted"><span className="tnum">{listing.ref}</span> · {photoLabel}</p>
         {note && <p className="mt-1.5 t-caption text-text-accent">{note}</p>}
       </div>
     </article>
@@ -94,9 +96,9 @@ function Fields({ rows }: { rows: { k: string; v: string }[] }) {
     <dl className="divide-y divide-ink-100 border-y border-ink-100">
       {rows.map((r, i) => (
         <Rise key={r.k} delay={0.1 + i * 0.1}>
-          <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-2.5">
-            <dt className="w-24 shrink-0 t-body-s text-text-muted">{r.k}</dt>
-            <dd className="min-w-0 flex-1 text-[1rem] font-medium text-ink-950">{r.v}</dd>
+          <div className="grid gap-y-0.5 py-2.5">
+            <dt className="t-caption text-text-muted">{r.k}</dt>
+            <dd className="min-w-0 text-[1rem] font-medium leading-snug text-ink-950">{r.v}</dd>
           </div>
         </Rise>
       ))}
@@ -136,7 +138,7 @@ export function Story({ locale }: { locale: Locale }) {
   const W = storyWords;
   const [channel, setChannel] = useState<ChannelKey>("whatsapp");
   const [notice, setNotice] = useState(false);
-  const [task, setTask] = useState<"open" | "taken" | "done">("open");
+  const [task, setTask] = useState<"open" | "taken" | "confirmed" | "done">("open");
   const [requested, setRequested] = useState(false);
   const [replayA, setReplayA] = useState(0);
   const tabsRef = useRef<HTMLDivElement>(null);
@@ -174,7 +176,7 @@ export function Story({ locale }: { locale: Locale }) {
               <div className="grid gap-5 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-7" data-stage="situation">
                 <div className="min-w-0 overflow-hidden rounded-lg border border-ink-100 bg-white">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={listings.est118.photo} alt={l(listings.est118.photoAlt)} width={800} height={533} loading="lazy" decoding="async" className="aspect-[3/2] w-full object-cover" />
+                  <img src={listings.est118.photo} alt={l(listings.est118.photoAlt)} width={800} height={533} loading="eager" decoding="async" className="aspect-[3/2] w-full bg-[#ece9e2] object-cover" />
                   <div className="p-4">
                     <p className="flex items-center gap-2 t-caption font-medium text-text-secondary"><span aria-hidden="true" className="h-2 w-2 rounded-pill bg-[color:var(--signal-attention)]" />{l(W.situation.viewing)} · {l(W.situation.now)}</p>
                     <p className="mt-1 text-[1.0625rem] font-semibold leading-snug text-ink-950">{l(listings.est118.title)}</p>
@@ -221,7 +223,7 @@ export function Story({ locale }: { locale: Locale }) {
                 </div>
                 <div id={panelId} role="tabpanel" className="mt-6">
                   <AnimatePresence mode="wait" initial={false}>
-                    <m.div key={channel} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }} className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-8" data-channel-view={channel}>
+                    <m.div key={channel} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }} className="grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-8" data-channel-view={channel}>
                       <div className="min-w-0">
                         <div className="flex items-center gap-3 border-b border-ink-100 pb-4">
                           <ChannelIcon channel={channel} on={channel === "whatsapp"} size={14} />
@@ -347,10 +349,11 @@ export function Story({ locale }: { locale: Locale }) {
                               <p className="t-body-s text-text-primary"><span className="font-medium">{l(W.task.nextStep)}:</span> {it.next}</p>
                               <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-3">
                                 {task === "open" && (<><button type="button" onClick={() => setTask("taken")} className="demo-action" data-task-take>{l(W.task.take)}<ArrowRight size={16} aria-hidden="true" /></button><span className="t-body-s text-text-secondary">{l(W.task.open)}</span></>)}
-                                {task === "taken" && (<><Mark tone="positive"><Check size={18} strokeWidth={2.5} aria-hidden="true" />{l(W.task.taken)}</Mark><button type="button" onClick={() => setTask("done")} className="demo-action" data-task-complete>{l(W.task.complete)}</button></>)}
+                                {task === "taken" && (<><Mark tone="positive"><Check size={18} strokeWidth={2.5} aria-hidden="true" />{l(W.task.taken)}</Mark><button type="button" onClick={() => setTask("confirmed")} className="demo-action" data-task-confirm>{l(W.task.confirm)}<ArrowRight size={16} aria-hidden="true" /></button></>)}
+                                {task === "confirmed" && (<><Mark tone="positive"><Check size={18} strokeWidth={2.5} aria-hidden="true" />{l(W.task.confirmed)}</Mark><button type="button" onClick={() => setTask("done")} className="demo-action" data-task-complete>{l(W.task.complete)}</button></>)}
                                 {task === "done" && (<><Mark tone="positive"><Check size={18} strokeWidth={2.5} aria-hidden="true" />{l(W.task.done)}</Mark><button type="button" onClick={() => setTask("open")} className="inline-flex min-h-[44px] items-center gap-2 t-body-s font-medium text-text-primary underline decoration-line-strong underline-offset-4 hover:decoration-ink-950" data-task-again><RotateCcw size={14} aria-hidden="true" />{l(W.task.again)}</button></>)}
                               </div>
-                              {task !== "open" && (
+                              {(task === "confirmed" || task === "done") && (
                                 <Rise delay={0.15} className="mt-4 flex flex-col items-end gap-1.5">
                                   <Bubble out label={people.colleague.name} meta={locale === "es" ? "miércoles 08:58" : "Wednesday 08:58"} className="max-w-full"><Translated locale={locale} lang="en" original={W.task.chatConfirm} translated={l(W.task.chatConfirmTranslated)} /></Bubble>
                                 </Rise>
@@ -455,48 +458,4 @@ export function Story({ locale }: { locale: Locale }) {
   );
 }
 
-/** The compact social strip (final order §6): listing → draft → approval → published → a comment, styled as a comment. */
-export function SocialStrip({ locale }: { locale: Locale }) {
-  const l = <T,>(x: Record<Locale, T>) => x[locale];
-  const S = storyWords.social;
-  const steps = l(S.steps);
-  return (
-    <section id="story-social" aria-labelledby="social-h" className="story-chapter story-chapter-wide" data-chapter="story-social">
-      <Reveal className="max-w-[760px]">
-        <p className="t-eyebrow text-text-accent">{l(S.eyebrow)}</p>
-        <h3 id="social-h" className="mt-3 t-display-m text-text-primary">{l(S.title)}</h3>
-        <p className="mt-4 t-body-m text-text-secondary">{l(S.line)}</p>
-        <p className="state-line mt-5" data-state="preparing" data-chapter-state>{storyWords.common.stateLabel[locale]}: {l(S.state)}</p>
-      </Reveal>
-      <Reveal mode="opacity" delay={100} className="mt-8">
-        <ol className="grid gap-3 md:grid-cols-5" data-social-strip>
-          {steps.map((s, i) => (
-            <li key={s.title} className="relative min-w-0 rounded-lg border border-line-contour bg-surface-raised p-4" data-social-step={i + 1}>
-              <p className="flex items-center gap-2 t-caption font-medium text-text-muted"><span className="tnum inline-flex h-5 w-5 items-center justify-center rounded-pill bg-ink-950 text-[0.6875rem] text-ivory">{i + 1}</span>{s.title}</p>
-              {i === 0 && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={listings.est204.photo} alt={l(listings.est204.photoAlt)} width={800} height={533} loading="lazy" decoding="async" className="mt-3 aspect-[4/3] w-full rounded-md object-cover" />
-              )}
-              {i === 4 ? (
-                <div className="mt-3 space-y-2" data-social-comment>
-                  <div className="flex items-start gap-2">
-                    <span aria-hidden="true" className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-pill bg-ink-100 text-[0.6875rem] font-semibold text-ink-700">M</span>
-                    <p className="min-w-0 t-body-s"><span className="font-semibold text-ink-950">{S.commenter}</span> <span className="text-text-muted">· {l(S.commentLabel)}</span><span lang="es" className="block text-text-primary">{S.comment}</span></p>
-                  </div>
-                  <div className="ml-8 border-l-2 border-ink-200 pl-3">
-                    <p className="t-caption text-text-muted">{l(S.replyLabel)}</p>
-                    <p lang="es" className="t-body-s text-text-primary">{S.reply}</p>
-                    <p className="mt-1 t-caption text-text-muted">{l(S.noAvailability)}</p>
-                  </div>
-                </div>
-              ) : (
-                <p className={cn("mt-2 t-body-s", i === 2 || i === 3 ? "text-signal-positive" : "text-text-primary")}>{(i === 2 || i === 3) && <Check size={14} strokeWidth={2.5} className="mr-1 inline" aria-hidden="true" />}{s.line}</p>
-              )}
-            </li>
-          ))}
-        </ol>
-        <p className="mt-3 t-caption text-text-muted">{l(S.noAds)}</p>
-      </Reveal>
-    </section>
-  );
-}
+export { SocialFlow as SocialStrip } from "./social-flow";

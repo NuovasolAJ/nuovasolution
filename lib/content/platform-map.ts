@@ -47,9 +47,9 @@ export const platformTasks: PlatformTask[] = [
     title: { es: "Atender consultas", en: "Answer enquiries" },
     short: { es: "Atender", en: "Answer" },
     href: "/platform#answer",
-    line: { es: "Cada consulta recibe respuesta en su idioma, por el canal por el que llegó.", en: "Every enquiry gets a reply in its language, on the channel it came in on." },
+    line: { es: "Cada consulta recibe respuesta por el canal por el que llegó. Hoy en español; otro idioma queda como tarea para tu equipo.", en: "Every enquiry gets a reply on the channel it came in on. Today in Spanish; another language becomes a task for your team." },
     entries: [
-      { key: "whatsapp", name: { es: "WhatsApp", en: "WhatsApp" }, line: { es: "Respuesta en el idioma del cliente, con el nombre de tu agencia.", en: "A reply in the customer's language, under your agency's name." }, state: "available", slug: "ai-sales-agent", anchor: "#story-b" },
+      { key: "whatsapp", name: { es: "WhatsApp", en: "WhatsApp" }, line: { es: "Respuesta con el nombre de tu agencia; hoy en español.", en: "A reply under your agency's name; today in Spanish." }, state: "available", slug: "ai-sales-agent", anchor: "#story-b" },
       { key: "email", name: { es: "Email", en: "Email" }, line: { es: "La misma respuesta para lo que llega por correo.", en: "The same reply for what arrives by email." }, state: "available", slug: "ai-sales-agent", anchor: "#story-b" },
       { key: "webform", name: { es: "Formularios web", en: "Web forms" }, line: { es: "Lo que entra por tu web se trata como una consulta más.", en: "What comes in through your website is treated as an enquiry." }, state: "preparing", anchor: "#story-b" },
       { key: "phone", name: { es: "Asistente telefónico", en: "Phone assistant" }, line: { es: "Una llamada que no se pierde: lo que pide, anotado, y una tarea.", en: "A call that is not lost: what they want, noted, and a task." }, state: "preparing", anchor: "#story-b" },
@@ -80,7 +80,7 @@ export const platformTasks: PlatformTask[] = [
       { key: "daily", name: { es: "El asistente de la mañana", en: "The morning assistant" }, line: { es: "La lista de la mañana con el motivo de cada prioridad y el siguiente paso.", en: "The morning list with the reason behind each priority and the next step." }, state: "preparing", slug: "daily-assistant", anchor: "#story-d" },
       { key: "tasks", name: { es: "Tareas", en: "Tasks" }, line: { es: "Una tarea con dueño por cada visita o llamada pendiente.", en: "One owned task for every viewing or callback." }, state: "available", slug: "daily-assistant", anchor: "#story-d" },
       { key: "calendar", name: { es: "Calendario", en: "Calendar" }, line: { es: "Las visitas confirmadas, en la agenda de la persona que las hace.", en: "Confirmed viewings in the diary of the person who does them." }, state: "preparing", anchor: "#story-d" },
-      { key: "reports", name: { es: "Informes", en: "Reports" }, line: { es: "Un resumen semanal por email y el informe completo en tu acceso.", en: "A weekly summary by email and the full report in your login." }, state: "preparing", anchor: "#story-f" },
+      { key: "reports", name: { es: "Informes", en: "Reports" }, line: { es: "Un resumen semanal por email y el informe completo en tu acceso. Lo que llega al cliente aún no se mide.", en: "A weekly summary by email and the full report in your login. What reaches the customer is not measured yet." }, state: "preparing", anchor: "#story-f" },
     ],
   },
   {

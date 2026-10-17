@@ -401,7 +401,7 @@ img, video, svg { display: block; max-width: 100%; }
   color: var(--ivory);
   background-color: #131416;
   background-image: linear-gradient(180deg, #131416 0%, #16181c 40%, #1a1c21 70%, #1d1f24 100%);
-  --hero-soft: #a39d93;
+  --hero-soft: var(--ivory); /* final order §3: both headline lines equally bright */
   --hero-accent: var(--champagne-300);
   --channel-whatsapp: #25a55f;
   --channel-whatsapp-ink: #1d6b42;
@@ -444,8 +444,14 @@ img, video, svg { display: block; max-width: 100%; }
 .hero-ridges { top: calc(var(--horizon) - 120px); z-index: 1; height: 220px; }
 /* The foreground is the near ground: it starts at the panel's foot (its soft top edge crosses the last 28 px of the panel,
    which carry no words) and runs down to the hero's edge in the hero's own dark, so it never reads as a block. */
-.hero-world-front { bottom: -8px; z-index: 3; height: 74px; }
-@media (min-width: 768px) { .hero-world-front { bottom: -8px; height: 104px; } }
+.hero-world-front { bottom: -8px; z-index: 3; height: 110px; }
+@media (min-width: 768px) { .hero-world-front { bottom: -8px; height: 150px; } }
+/* The foreground frames the entry: at the top of the page it stands over the panel's empty foot; as the panel stands up it sinks
+   and fades, releasing the panel (final order §3 C). Under it the ground has already turned to the page's ivory. */
+.hero-world .hero-world-front[data-depth-layer="front"] { transform: translate3d(0, calc(var(--depth, 0) * 90px), 0); opacity: clamp(0, 1 - var(--depth, 0) * 4.5, 1); }
+.hero-world-ground { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; bottom: 0; z-index: 1; height: 120px; pointer-events: none; background: linear-gradient(180deg, rgba(248, 246, 241, 0) 0%, rgba(248, 246, 241, 0.55) 35%, #f8f6f1 70%, #f8f6f1 100%); }
+@media (min-width: 768px) { .hero-world-ground { height: 170px; } }
+@media (prefers-reduced-motion: reduce) { .hero-world .hero-world-front[data-depth-layer="front"] { opacity: 0.35; transform: none !important; } }
 /* The panel's foot stays free of words, so the foreground covers nothing to read. */
 .hero-panel { padding-bottom: 22px; }
 @media (min-width: 768px) { .hero-panel { padding-bottom: 44px; } }
@@ -524,7 +530,7 @@ img, video, svg { display: block; max-width: 100%; }
   border: 1px solid var(--line-contour);
   box-shadow: var(--shadow-stage);
 }
-@media (min-width: 768px) { .story-stage { padding: 28px 32px 30px; } }
+@media (min-width: 768px) { .story-stage { padding: 28px 32px 44px; } } /* room for the floating chip at the foot */
 .story-front { position: absolute; z-index: 2; left: 6px; bottom: 14px; }
 @media (min-width: 768px) { .story-front { left: 12px; bottom: 16px; } }
 
@@ -654,7 +660,7 @@ html:not(.js) .seq-replay { display: none; }
 /* Motion. transform and opacity only.                                 */
 /* ------------------------------------------------------------------ */
 html.js .reveal {
-  opacity: 0;
+  opacity: 1; /* final order §4: content is visible before any trigger; the reveal only settles into place */
   transform: translateY(var(--reveal-y));
   transition: opacity var(--motion-element) var(--ease-out), transform var(--motion-element) var(--ease-out);
   transition-delay: var(--reveal-delay, 0ms);
@@ -670,7 +676,7 @@ html.js .path-draw.is-in { transition: stroke-dashoffset var(--motion-scene) var
 html:not(.js) .path-draw { stroke-dashoffset: 0; }
 
 /* Hero stack: three layered cards rise into place once. Readable without motion. */
-html.js .rise { opacity: 0; transform: translateY(18px); transition: opacity 560ms var(--ease-out), transform 560ms var(--ease-out); transition-delay: var(--rise-delay, 0ms); }
+html.js .rise { opacity: 1; transform: translateY(18px); transition: opacity 560ms var(--ease-out), transform 560ms var(--ease-out); transition-delay: var(--rise-delay, 0ms); }
 html.js .rise.is-in, html.js .is-in .rise { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -805,3 +811,7 @@ html.js .rise.is-in, html.js .is-in .rise { opacity: 1; transform: none; }
   font-weight: 500;
 }
 .entry-pill-active { background: var(--ink-950); border-color: var(--ink-950); color: var(--ivory); }
+
+/* The viewer capture of the 3D section carries the viewer's own title bar; until the 3D lane delivers a clean capture or the
+   viewer itself, the picture is shown from its lower edge so the bar stays outside the frame. */
+.model3d-viewer-shot { transform: scale(1.12); transform-origin: 50% 100%; }

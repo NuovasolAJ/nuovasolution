@@ -29,6 +29,7 @@ export function PackageMatrix({ locale }: { locale: Locale }) {
               <h3 id={`pkg-${pk.code}`} className="t-heading-l text-text-primary">{pk.name}</h3>
               <p className="mt-1 t-caption font-medium text-text-muted" data-package-who>{pk.who[locale]}</p>
               <p className="mt-3 t-body-m text-text-primary" data-package-change>{pk.change[locale]}</p>
+              <p className="mt-2 t-caption text-text-secondary" data-package-limits>{pk.limits[locale]}</p>
               {i === 0 && <p className="mt-3 inline-flex w-fit rounded-pill bg-ink-950 px-3 py-1 t-caption font-medium text-ivory">{w.trial[locale]}</p>}
               <p className="mt-6 t-caption font-medium text-text-muted">{pk.plus ? pk.plus[locale] : t.includes}</p>
               <ul className="mt-2 divide-y divide-line-hairline border-y border-line-hairline">

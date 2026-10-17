@@ -153,7 +153,8 @@ export function HeroWorld({ locale }: { locale: Locale }) {
               </div>
               <p className="border-t border-ink-100 px-5 py-2.5 text-[0.75rem] leading-snug text-ink-600 md:px-7" data-hero-state>{l(w.stateToday)}</p>
             </figure>
-            {/* The foreground: the layer in front of the panel's foot, moving ahead of the page (owner 2026-10-16). */}
+            <div className="hero-world-ground" aria-hidden="true" />
+            {/* The foreground: the layer in front of the panel's foot; it frames the entry and releases the panel on scroll (final order §3). */}
             <div data-depth-layer="front" className="hero-world-front" aria-hidden="true"><Foreground className="h-full w-full" /></div>
           </div>
         </div>

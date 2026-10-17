@@ -198,8 +198,8 @@ export const faqGroups: FaqGroup[] = [
         kb: "Q-21",
         q: { en: "How long does setting up take?", es: "¿Cuánto se tarda en configurarlo?" },
         a: {
-          en: "We do not give a duration. You do it yourself in steps, your progress is saved, and you can stop and come back.",
-          es: "No damos una duración. Lo haces tú mismo por pasos, tu progreso se guarda y puedes parar y volver.",
+          en: "You prepare your agency's details, your logo, your team and the access to WhatsApp and your email; we connect the channels with you and test each one with a real message. The setup is finished when every connected channel has received and answered a test enquiry. Your progress is saved, so you can stop and come back; we don't promise a duration.",
+          es: "Tú preparas los datos de tu agencia, tu logo, tu equipo y el acceso a WhatsApp y a tu email; nosotros conectamos los canales contigo y probamos cada uno con un mensaje real. La configuración termina cuando cada canal conectado ha recibido y respondido una consulta de prueba. Tu progreso se guarda, así que puedes parar y volver; no prometemos una duración.",
         },
       },
     ],

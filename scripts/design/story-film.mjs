@@ -119,6 +119,7 @@ try {
       ["scroll", 1.2, through(pos.c), at(pos.d), null],
       ["hold", 1.6, at(pos.d), at(pos.d), null],
       ["hold", 1.6, at(pos.d), at(pos.d), "document.querySelector('[data-task-take]').click()"],
+      ["hold", 2.0, at(pos.d), at(pos.d), "document.querySelector('[data-task-confirm]')?.click()"],
       ["hold", 2.2, at(pos.d), at(pos.d), "document.querySelector('[data-task-complete]').click()"],
       ["scroll", 1.6, at(pos.d), through(pos.d), null],
       ["scroll", 1.2, through(pos.d), at(pos.e), null],
