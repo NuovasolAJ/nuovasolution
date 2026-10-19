@@ -1,7 +1,7 @@
 # Abnahmekarte — für die manuelle Sichtprüfung des Owners
 
-**Stand:** 2026-10-16 (die Seite wie vor v4, plus deine kleinen Punkte; Build `565316d`) · Website-Implementierer → Owner.
-Status: implementiert, wartet auf unabhängige technische und finale Prüfung.
+**Stand:** 2026-10-19 (Abschlussauftrag vom 17.10. auf dem wiederhergestellten Stand; Build `bb7686b`) ·
+Website-Implementierer → Owner. Status: implementiert, wartet auf unabhängige technische und finale Prüfung.
 
 ## Link
 
@@ -9,6 +9,7 @@ Vorschau (immer der neueste Build, ohne Login erreichbar, nicht indexiert):
 
 - Spanisch: https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app/es
 - Englisch: https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app/en
+- Festes Deployment dieses Builds: https://nuovasolution-design-preview-kp6ci7y9m-nuovasolajs-projects.vercel.app
 
 ## Testkonto
 
@@ -20,19 +21,20 @@ Abmelden: oben rechts „Cerrar sesión“.
 
 ## Fünf Schritte
 
-1. **Erster Bildschirm** (Desktop und Handy): wie vorher, dazu die vier Ebenen des Landes: Berg hinten (heller, langsam),
-   Bergkette davor (dunkler), das Panel (größer, richtet sich beim Scrollen auf), und der Vordergrund vor dem Panelfuß,
-   der beim Scrollen vorausläuft.
-2. **„Ver cómo funciona“** und scrollen: die sechs Kapitel liegen jetzt als Stapel übereinander (Desktop): jedes bleibt
-   unter der Kopfzeile stehen, das nächste schiebt sich darüber. In **B** die Kanäle, „Ver el original“, „Ver el aviso“;
-   in **D** „Tomar“ / „Marcar como hecha“ (der Assistent heißt jetzt „el asistente de la mañana“, kein Jarvis); in **E**
-   der Knopf in der Mail; dann Social, 3D, Empezar, Pakete.
-3. **Menü „Plataforma“**: vier Worte + „Visión general“. Die Seite „Visión general“: die vier Aufgaben als vier Abschnitte
-   mit ihren Einträgen, darunter die Modulseiten, darunter „A petición / En construcción“.
-4. **Paquetes**: je Paket „für wen“, „was ändert sich“, „was kommt dazu“, Zahlen; die Monatszahl heißt „Consultas al mes“.
-5. **Agenturbereich** über den Testkonto-Link: unverändert.
+1. **Erster Bildschirm und Übergang** (Desktop und Handy): beide Überschriftzeilen hell. Langsam scrollen: das Panel
+   richtet sich auf und kommt näher, der Vordergrund sinkt und gibt den Panelfuß frei, der Boden unter dem Panel wird
+   zur hellen Seite. Kein Streifen, keine Kante, kein schwarzer Abschluss.
+2. **Story ohne Klick** lesen. In **B** die Kanäle und „Ver el original“; in **D** Tomar → „Acordar la hora con Laura“
+   → „Marcar como hecha“ (drei sichtbare Schritte; Elena fragt nach 10:00, bestätigt nichts); in **E** der Knopf in
+   der Mail.
+3. **Social**: ein Beitrag mit Foto, Text, Freigabe und Veröffentlichung; daneben Martas Frage, die erlaubte Antwort
+   und der nächste Schritt.
+4. **3D**: vier Stufen, das Render, das Video mit Pause. Drehaufnahme und Paar leer/möbliert fehlen noch und sind beim
+   3D-Chat angefordert (`3D_ASSETS_REQUEST_1017.md`).
+5. **Menü „Plataforma“**, **Paquetes** (für wen · was übernimmt Nuova · was kommt dazu · Grenzen; Telefon nicht mehr
+   im Paket) und **FAQ** „Configuración“.
 
 ## Was nur du entscheiden kannst
 
-Öffentlicher Name des Morgen-Assistenten · Preise oder Preisrahmen · 3D-Material (Drehvideo, Paar leer/möbliert) ·
-ob der Kapitel-Stapel bleibt (sonst ein Wrapper weniger). Alles Weitere: `WEBSITE_RESTORE_1016_RETURN_v1.md` §4.
+Öffentlicher Name des Morgen-Assistenten (jetzt „el asistente de la mañana“) · Preise oder Preisrahmen · ob der
+Kapitel-Stapel bleibt. Alles Weitere: `WEBSITE_CLOSING_1017_RETURN_v1.md` §2.

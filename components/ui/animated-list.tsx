@@ -1,7 +1,7 @@
 "use client";
 
 import { Children, useEffect, useRef, useState, type ReactNode } from "react";
-import { AnimatePresence, m } from "framer-motion";
+import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 /**
@@ -11,6 +11,10 @@ import { cn } from "@/lib/utils";
  * LazyMotion instead of `motion`; no layout animation. The run starts when the list enters the window
  * (`startOnView`), runs once, and can be restarted through `replayKey`; with reduced motion every item stands at
  * once (final order 2026-10-12 §4: animation once on entry, understandable end states without motion).
+ *
+ * Closing order 2026-10-17 §4: content never waits for a trigger. Every item is in the document and readable from the
+ * first paint (a quiet state: 45 % opacity, no height change); the run only brings each one to full strength in turn.
+ * Items are therefore never removed from the flow, so the list keeps its height and no chapter stands empty.
  */
 export function AnimatedList({ children, className, delay = 900, startDelay = 300, startOnView = true, keepOrder = false, replayKey = 0 }: { children: ReactNode; className?: string; delay?: number; startDelay?: number; startOnView?: boolean; keepOrder?: boolean; replayKey?: number }) {
   const items = Children.toArray(children);
@@ -41,16 +45,17 @@ export function AnimatedList({ children, className, delay = 900, startDelay = 30
     return () => window.clearTimeout(id);
   }, [armed, shown, items.length, delay, startDelay]);
 
-  const visible = keepOrder ? items.slice(0, shown) : items.slice(0, shown).reverse();
+  // The order of arrival: the newest on top unless the caller keeps the written order. Every item is rendered; the ones
+  // that have not "arrived" yet stand quietly at 45 % and move into full strength when their turn comes.
+  const ordered = keepOrder ? items : [...items].reverse();
+  const arrived = (i: number) => (keepOrder ? i < shown : i >= items.length - shown);
   return (
     <div ref={root} className={cn("flex flex-col gap-3", className)} aria-live="polite" data-animated-list={shown >= items.length ? "done" : armed ? "running" : "waiting"}>
-      <AnimatePresence initial={false}>
-        {visible.map((item, i) => (
-          <m.div key={(item as { key?: string | null }).key ?? i} initial={{ opacity: 0, scale: 0.96, y: -8 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.96 }} transition={{ type: "spring", stiffness: 350, damping: 40 }}>
-            {item}
-          </m.div>
-        ))}
-      </AnimatePresence>
+      {ordered.map((item, i) => (
+        <m.div key={(item as { key?: string | null }).key ?? i} initial={false} animate={arrived(i) ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0.45, scale: 0.985, y: 0 }} transition={{ type: "spring", stiffness: 350, damping: 40 }} data-list-item={arrived(i) ? "arrived" : "quiet"}>
+          {item}
+        </m.div>
+      ))}
     </div>
   );
 }
