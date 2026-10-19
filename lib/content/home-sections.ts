@@ -17,23 +17,27 @@ export const homeWords = {
     demo: { es: "Demostración con personas e inmuebles inventados. Bajo cada paso: qué está disponible hoy.", en: "Demonstration with invented people and listings. Under each step: what is available today." },
   },
   model3d: {
-    eyebrow: { es: "Presentar", en: "Present" },
+    eyebrow: { es: "Un servicio aparte: presentar en 3D", en: "A separate service: presenting in 3D" },
     h2: { es: "De tu plano a una vivienda que el cliente puede recorrer con la mirada", en: "From your plan to a home the customer can look around" },
-    lead: { es: "Nos envías el plano acotado y, si las tienes, fotos. Construimos el modelo, lo amueblamos con una ambientación parecida y lo comprobamos contra tu plano. El cliente lo gira, elige planta y apaga el mobiliario.", en: "You send us the dimensioned plan and photos if you have them. We build the model, furnish it in a similar style and check it against your plan. The customer turns it, picks a floor and switches the furniture off." },
+    lead: { es: "Nos envías el plano acotado y, si las tienes, fotos. Construimos el modelo, lo mostramos vacío y amueblado desde la misma cámara y lo comprobamos contra tu plano. Cada modelo es un encargo, con o sin paquete.", en: "You send us the dimensioned plan and photos if you have them. We build the model, show it empty and furnished from the same camera and check it against your plan. Each model is an order, with or without a package." },
+    // R19 §10: the four steps as the order names them: plan → model → the same room empty and furnished → the real turn.
     steps: {
       es: [
         { title: "Plano", line: "Tu plano acotado es la base: cada muro a escala." },
-        { title: "Ambientación", line: "Muebles parecidos a tus fotos o a tu referencia; no una reconstrucción exacta." },
-        { title: "Rendering", line: "Imágenes calculadas con luz real para la ficha y las redes." },
-        { title: "Vista giratoria", line: "El modelo en el navegador: girar, acercar, planta por planta, muebles sí o no." },
+        { title: "Modelo", line: "Muros, huecos y muebles colocados, todavía sin materiales." },
+        { title: "Vacío y amueblado", line: "El mismo salón, la misma cámara: una vez sin muebles y otra con ellos." },
+        { title: "Vista giratoria", line: "El modelo gira en el navegador: girar, acercar, planta por planta." },
       ],
       en: [
         { title: "Plan", line: "Your dimensioned plan is the base: every wall to scale." },
-        { title: "Furnishing", line: "Furniture similar to your photos or your reference; not an exact reconstruction." },
-        { title: "Rendering", line: "Images computed with real light for the listing and social media." },
-        { title: "Rotatable view", line: "The model in the browser: turn, zoom, floor by floor, furniture on or off." },
+        { title: "Model", line: "Walls, openings and furniture placed, no materials yet." },
+        { title: "Empty and furnished", line: "The same living room, the same camera: once without furniture, once with it." },
+        { title: "Rotatable view", line: "The model turns in the browser: turn, zoom, floor by floor." },
       ],
     },
+    /** What stands in a slot while the 3D lane's material is missing (3D_ASSETS_REQUEST_1017 A-1, A-2): said plainly, never a stand-in. */
+    pairPending: { es: "Pendiente del equipo 3D: el par vacío / amueblado desde la misma cámara. Aquí, el salón amueblado (render final).", en: "Pending from the 3D team: the empty / furnished pair from the same camera. Here, the furnished living room (final render)." },
+    turnPending: { es: "Pendiente del equipo 3D: la vuelta completa o el visor. Aquí, un recorrido de cámara de 8 segundos por el salón.", en: "Pending from the 3D team: the full turn or the viewer. Here, an 8-second camera ride through the living room." },
     // Final order §7: the pair on the slider is the first version and the revised design of the same room from the
     // same camera, not an unfurnished and a furnished state. It is labelled as what it is.
     compareLabel: { es: "Comparar la primera versión y el diseño revisado del mismo salón, misma cámara", en: "Compare the first version and the revised design of the same living room, same camera" },
@@ -44,7 +48,7 @@ export const homeWords = {
     render: { es: "Rendering con materiales y luz", en: "Render with materials and light" },
     viewer: { es: "Captura del visor giratorio en el navegador", en: "Capture of the rotatable browser viewer" },
     pairMissing: { es: "El salón amueblado, render final. La comparación sin muebles / con muebles desde la misma cámara se añade cuando el equipo 3D la entregue; no se muestran dos variantes de diseño como si fueran esa comparación.", en: "The furnished living room, final render. The unfurnished / furnished comparison from the same camera is added when the 3D team delivers it; two design variants are not shown as if they were that comparison." },
-    viewerLine: { es: "Sin tejado, para ver dentro. Planta baja o alta. Sin paseo a ojo de persona. La imagen es una captura del visor; el visor interactivo se incorpora tras la aceptación visual.", en: "No roof, so you see inside. Ground or upper floor. No eye-level walkthrough. The picture is a capture of the viewer; the interactive viewer follows the visual acceptance." },
+    viewerLine: { es: "Sin tejado, para ver dentro. Planta baja o alta. Sin paseo a ojo de persona. Modelos 3D también por separado, sin ningún paquete: nos envías los planos, lo construimos y lo comprobamos.", en: "No roof, so you see inside. Ground or upper floor. No eye-level walkthrough. 3D models also on their own, without a package: you send the plans, we build it and we check it." },
     film: { es: "Vídeo: recorrido de cámara por el salón · 8 segundos · sin sonido", en: "Video: camera ride through the living room · 8 seconds · no sound" },
     play: { es: "Ver el recorrido", en: "Watch the ride" },
     demoNote: { es: "Vivienda de demostración de dos plantas, dibujada por NuovaSolution. No es una vivienda real. Cada modelo se hace por encargo a partir de tus planos.", en: "Two-storey demonstration home drawn by NuovaSolution. Not a real home. Each model is made to order from your plans." },

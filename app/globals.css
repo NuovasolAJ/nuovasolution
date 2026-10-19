@@ -410,14 +410,14 @@ img, video, svg { display: block; max-width: 100%; }
   --depth-sky: 30px;
   --depth-ridge-far: 22px;
   --depth-mid: 14px;
-  --panel-tilt: 5deg;
-  --panel-rise: 14px;
-  --panel-scale-from: 0.96;
+  --panel-tilt: 8deg;
+  --panel-rise: 20px;
+  --panel-scale-from: 0.95;
   --panel-scale-to: 1;
 }
 @media (min-width: 768px) {
-  /* final order §3: rotateX 10° → 0°, scale 0.92 → 1.04, within the available width */
-  .hero-world { --horizon: 170px; --depth-far: 90px; --depth-sky: 56px; --depth-ridge-far: 42px; --depth-mid: 28px; --depth-front: -60px; --panel-tilt: 12deg; --panel-rise: 40px; --panel-scale-from: 0.92; --panel-scale-to: 1.06; }
+  /* R19 §3: a visible lean (rotateX 18° → 0°), the panel rises 56 px and grows 0.9 → 1.05 while the page starts to move */
+  .hero-world { --horizon: 170px; --depth-far: 90px; --depth-sky: 56px; --depth-ridge-far: 42px; --depth-mid: 28px; --depth-front: -60px; --panel-tilt: 18deg; --panel-rise: 56px; --panel-scale-from: 0.9; --panel-scale-to: 1.05; }
 }
 .hero-world-scene { isolation: isolate; padding-top: 16px; }
 @media (min-width: 768px) { .hero-world-scene { padding-top: 22px; } }
@@ -449,8 +449,11 @@ img, video, svg { display: block; max-width: 100%; }
 /* The foreground frames the entry: at the top of the page it stands over the panel's empty foot; as the panel stands up it sinks
    and fades, releasing the panel (final order §3 C). Under it the ground has already turned to the page's ivory. */
 .hero-world .hero-world-front[data-depth-layer="front"] { transform: translate3d(0, calc(var(--depth, 0) * 90px), 0); opacity: clamp(0, 1 - var(--depth, 0) * 4.5, 1); }
-.hero-world-ground { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; bottom: 0; z-index: 1; height: 120px; pointer-events: none; background: linear-gradient(180deg, rgba(248, 246, 241, 0) 0%, rgba(248, 246, 241, 0.55) 35%, #f8f6f1 70%, #f8f6f1 100%); }
-@media (min-width: 768px) { .hero-world-ground { height: 170px; } }
+/* The light the panel opens into (R19 §4): a pool of the page's ivory under the panel's foot, warm at its edge so the dark
+   land never greys into it, and shaped as a soft curve (a lit plain), not a straight band. It lies under the panel and
+   never over a word. */
+.hero-world-ground { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; bottom: -1px; z-index: 1; height: 150px; pointer-events: none; background: linear-gradient(180deg, rgba(246, 236, 218, 0) 0%, rgba(240, 226, 200, 0.5) 28%, rgba(247, 243, 235, 0.92) 54%, #f8f6f1 72%, #f8f6f1 100%); -webkit-mask-image: radial-gradient(ellipse 95% 100% at 50% 100%, #000 55%, rgba(0, 0, 0, 0.6) 78%, transparent 100%); mask-image: radial-gradient(ellipse 95% 100% at 50% 100%, #000 55%, rgba(0, 0, 0, 0.6) 78%, transparent 100%); }
+@media (min-width: 768px) { .hero-world-ground { height: 220px; -webkit-mask-image: radial-gradient(ellipse 80% 100% at 50% 100%, #000 50%, rgba(0, 0, 0, 0.6) 76%, transparent 100%); mask-image: radial-gradient(ellipse 80% 100% at 50% 100%, #000 50%, rgba(0, 0, 0, 0.6) 76%, transparent 100%); } }
 @media (prefers-reduced-motion: reduce) { .hero-world .hero-world-front[data-depth-layer="front"] { opacity: 0.35; transform: none !important; } }
 /* The panel's foot stays free of words, so the foreground covers nothing to read. */
 .hero-panel { padding-bottom: 22px; }
@@ -476,7 +479,7 @@ img, video, svg { display: block; max-width: 100%; }
   --focus-ring: var(--ink-950);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 9px 20px rgba(0, 0, 0, 0.29), 0 37px 37px rgba(0, 0, 0, 0.26), 0 84px 50px rgba(0, 0, 0, 0.15), 0 149px 60px rgba(0, 0, 0, 0.04);
   transform-origin: 50% 100%;
-  --upright: min(1, calc(var(--depth, 0) * 2.6));
+  --upright: min(1, calc(var(--depth, 0) * 2.2));
   transform:
     perspective(1400px)
     translateY(calc((1 - var(--upright)) * var(--panel-rise)))
@@ -490,6 +493,9 @@ img, video, svg { display: block; max-width: 100%; }
 .hero-bubble-out { background: #dcf3df; border-bottom-right-radius: 4px; }
 .hero-bubble-meta { margin-top: 4px; font-size: 0.75rem; line-height: 1.4; color: var(--ink-600); font-variant-numeric: tabular-nums; }
 .hero-next { padding: 12px 14px; border-left: 3px solid var(--champagne-400); border-radius: 4px 12px 12px 4px; background: #fff; box-shadow: var(--shadow-card); }
+/* A result of the processing (R19 §2): a mark and two lines, on the panel's sunken side. */
+.hero-result { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #fff; border: 1px solid var(--ink-100); }
+.hero-result-mark { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 20px; height: 20px; margin-top: 1px; border-radius: 999px; background: var(--signal-positive); color: var(--ivory); }
 
 /* ------------------------------------------------------------------ */
 /* The story (master order 2026-10-10 §3): six chapters, each a scene  */
@@ -687,6 +693,7 @@ html.js .rise.is-in, html.js .is-in .rise { opacity: 1; transform: none; }
   [data-deck] > [data-deck-item] > * { transform: none !important; filter: none !important; }
   [data-depth-layer] { transform: none !important; }
   .hero-panel { transform: perspective(1400px) rotateX(2.5deg) scale(1) !important; }
+  .hero-world .hero-world-front[data-depth-layer="front"] { opacity: 0.35; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

@@ -7,18 +7,18 @@ import { Reveal } from "@/components/ui/reveal";
 import { FloorPlan } from "./scene-art";
 
 /**
- * The 3D section (master order 2026-10-10 §7): plan → furnishing → render → rotatable view, with the living
- * room the 3D lane delivered on 2026-10-05 as the quality reference (raw model and furnished model from the
- * same camera, the clay stage, the offline render, the viewer, an 8 second camera ride). Nothing here claims an
- * automatic pipeline or an exact reconstruction; the note says what the pictures are. New pictures and films
- * from the 3D lane replace these files in public/media/3d/.
+ * The 3D section (master order 2026-10-10 §7; R19 closing order 2026-10-19 §10): a separate service, explained as
+ * the order names it: plan → model → the same room empty and furnished → the real turn. The living room the 3D lane
+ * delivered on 2026-10-05 is the quality reference (the clay stage, the offline render, an 8 second camera ride).
+ *
+ * Two of the four steps wait for material (3D_ASSETS_REQUEST_1017.md): the empty / furnished pair from the same
+ * camera (A-2) and the full turn or the working viewer (A-1). Until then those two slots show what exists and say
+ * what is missing: no design revision as a furniture comparison, no still picture under "rotatable view", no CSS
+ * rotation of a flat image. The files land in public/media/3d/ and replace these under the same names.
  */
 const F = {
-  before: "/media/3d/living-before-1200.webp",
   render: "/media/3d/living-render-1600.webp",
-  render800: "/media/3d/living-render-800.webp",
   clay: "/media/3d/living-clay-1200.webp",
-  viewer: "/media/3d/living-viewer-1200.webp",
   ride: "/media/3d/living-camera-ride.mp4",
 };
 
@@ -32,6 +32,7 @@ export function Model3dSection({ locale }: { locale: Locale }) {
   const w = homeWords.model3d;
   const steps = l(w.steps);
   const rooms = locale === "es" ? ["Salón", "Cocina", "Dormitorio", "Baño", "Terraza"] : ["Living room", "Kitchen", "Bedroom", "Bathroom", "Terrace"];
+  const pending = locale === "es" ? "Pendiente del equipo 3D" : "Pending from the 3D team";
 
   return (
     <section id="model-3d" aria-labelledby="model3d-h" className="scroll-mt-[var(--header-h)] pb-[var(--section-default)] pt-[var(--section-compact)]">
@@ -42,43 +43,37 @@ export function Model3dSection({ locale }: { locale: Locale }) {
           <p className="mt-5 t-body-l text-text-secondary">{l(w.lead)}</p>
         </Reveal>
 
-        {/* The four stages, as one row of pictures with their words. */}
+        {/* The four steps, as one row of pictures with their words; the two waiting steps say so on the picture. */}
         <ol className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4" data-model3d-steps>
           {steps.map((s, i) => (
             <Reveal as="li" key={s.title} delay={i * 60} className="flex flex-col overflow-hidden rounded-lg border border-line-contour bg-surface-raised">
-              <div className="aspect-[3/2] w-full bg-[#f7f5ef]">
+              <div className="relative aspect-[3/2] w-full bg-[#f7f5ef]" data-model3d-step={i + 1} data-model3d-pending={i >= 2 ? "yes" : undefined}>
                 {i === 0 && <FloorPlan rooms={rooms} className="h-full w-full" />}
                 {i === 1 && <Img src={F.clay} alt={l(w.clay)} w={1200} h={800} className="h-full w-full object-cover" />}
-                {i === 2 && <Img src={F.render800} alt={l(w.render)} w={800} h={533} className="h-full w-full object-cover" />}
-                {i === 3 && <Img src={F.viewer} alt={l(w.viewer)} w={1200} h={703} className="model3d-viewer-shot h-full w-full object-cover" />}
+                {i === 2 && (
+                  <div className="h-full w-full" data-model3d-pair-slot="waiting">
+                    <Img src={F.render} alt={l(w.render)} w={1600} h={1067} className="h-full w-full object-cover" />
+                  </div>
+                )}
+                {i === 3 && (
+                  <div className="h-full w-full bg-[#f3f1ec]" data-model3d-film data-model3d-turn-slot="waiting">
+                    {/* no poster: the ride's own frame at 4 s stands here (media fragment), so the render of step 03 is not shown twice */}
+                    <video controls muted playsInline preload="metadata" className="h-full w-full object-cover" aria-label={l(w.film)}>
+                      <source src={`${F.ride}#t=4`} type="video/mp4" />
+                    </video>
+                  </div>
+                )}
+                {i >= 2 && <span className="pointer-events-none absolute left-3 top-3 inline-flex rounded-pill bg-ink-950/85 px-2.5 py-1 text-[0.75rem] font-medium text-ivory">{pending}</span>}
               </div>
               <div className="p-4">
                 <p className="flex items-baseline gap-2 t-heading-s text-text-primary"><span className="tnum t-caption text-text-accent">0{i + 1}</span>{s.title}</p>
                 <p className="mt-1 t-body-s text-text-secondary">{s.line}</p>
-                {i === 3 && <p className="mt-2 t-caption text-text-muted">{l(w.viewer)}</p>}
+                {i === 2 && <p className="mt-2 t-caption text-text-muted" data-model3d-compare-note>{l(w.pairPending)}</p>}
+                {i === 3 && <p className="mt-2 t-caption text-text-muted" data-model3d-turn-note>{l(w.turnPending)}</p>}
               </div>
             </Reveal>
           ))}
         </ol>
-
-        <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:gap-8">
-          {/* The furnished render; the unfurnished → furnished pair from the same camera is requested from the 3D lane (3D_ASSETS_REQUEST_1017) */}
-          <Reveal>
-            <div className="overflow-hidden rounded-lg border border-line-contour" data-model3d-pair-slot="waiting">
-              <Img src={F.render} alt={l(w.render)} w={1600} h={1067} className="w-full" />
-            </div>
-            <p className="mt-3 t-caption text-text-muted" data-model3d-compare-note>{l(w.pairMissing)}</p>
-          </Reveal>
-          {/* The camera ride */}
-          <Reveal delay={100}>
-            <div className="overflow-hidden rounded-lg border border-line-contour bg-[#f3f1ec]" data-model3d-film>
-              <video controls muted playsInline preload="none" poster={F.render800} className="aspect-[16/9] w-full" aria-label={l(w.film)}>
-                <source src={F.ride} type="video/mp4" />
-              </video>
-            </div>
-            <p className="mt-3 t-caption text-text-muted">{l(w.film)}</p>
-          </Reveal>
-        </div>
 
         <div className="mt-8 flex flex-col gap-4 border-t border-line-hairline pt-6 md:flex-row md:items-start md:justify-between">
           <p className="max-w-[62ch] t-body-s text-text-secondary">{l(w.viewerLine)} {l(w.demoNote)}</p>

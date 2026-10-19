@@ -54,7 +54,8 @@ export const matrix: MatrixPackage[] = [
     line: { es: "Responder y ordenar lo que llega.", en: "Answering and ordering what arrives." }, // COPY_DELTAS_1003 §2.1
     who: { es: "Una oficina, hasta 3 personas", en: "One office, up to 3 people" },
     change: { es: "Ninguna consulta se queda sin respuesta mientras estás fuera.", en: "No enquiry goes unanswered while you are out." },
-    limits: { es: "Hoy: WhatsApp y email, respuestas en español. Las consultas al mes son capacidad de procesamiento, no leads nuevos.", en: "Today: WhatsApp and email, replies in Spanish. Enquiries a month are processing capacity, not new leads." },
+    // R19 §11: no monthly figure until API confirms what the catalogue's number counts (ACCEPTANCE_LIST_1010 E-4).
+    limits: { es: "Hoy: WhatsApp y email, respuestas en español. Una oficina, hasta 3 personas.", en: "Today: WhatsApp and email, replies in Spanish. One office, up to 3 people." },
     lines: [
       { key: "replies", name: { es: "Respuestas automáticas", en: "Automatic replies" }, state: "available", note: { es: "hoy en español", en: "today in Spanish" }, flag: "cx.baseline" },
       { key: "channels", name: { es: "WhatsApp y email", en: "WhatsApp and email" }, state: "available", flag: "channel.whatsapp" },
@@ -109,10 +110,13 @@ export const matrixWords = {
     preparing: { es: "En preparación · todavía no contratable", en: "In preparation · not bookable yet" },
     request: { es: "Disponible por encargo · sin cupo", en: "Available per order · no quota" },
   } as Record<LineState, L>,
-  // owner 2026-10-16: the monthly figure is named plainly, no "processing" wording and no explanatory note
+  // R19 §11: the monthly figure is not shown until API confirms the package assignment and what it counts (E-4);
+  // the words stay for the day it is.
   limit: { es: "Capacidad: consultas al mes", en: "Capacity: enquiries a month" },
   limitNote: { es: "", en: "" },
   noCap: { es: "sin límite", en: "unlimited" },
+  /** Whether the monthly figure may be printed: only once API has confirmed it (ACCEPTANCE_LIST_1010 E-4). */
+  limitConfirmed: false,
   strip: {
     line: { es: "Modelos 3D también por separado, sin ningún paquete.", en: "3D models can also be ordered on their own, without a package." }, // COPY_DELTAS_1003 §2.4
     detail: { es: "Cada modelo es un encargo: nos envías los planos, lo construimos y lo comprobamos.", en: "Each model is an order: you send the plans, we build it and we check it." },

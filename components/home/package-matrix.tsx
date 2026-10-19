@@ -45,9 +45,11 @@ export function PackageMatrix({ locale }: { locale: Locale }) {
               </ul>
               {pk.code === "growth" && <p className="mt-3 t-caption text-text-muted">{w.adsNote[locale]}</p>}
               {pk.code === "essential" && <p className="mt-3 t-caption text-text-muted">{proof ? w.crmNoteProof[locale] : w.crmNote[locale]}</p>}
-              <p className="mt-4 t-caption text-text-muted">
-                <span className="font-medium text-text-secondary">{w.limit[locale]}:</span> <span className="tnum">{limit === null ? w.noCap[locale] : limit.toLocaleString(locale === "es" ? "es-ES" : "en-GB")}</span>
-              </p>
+              {w.limitConfirmed && (
+                <p className="mt-4 t-caption text-text-muted">
+                  <span className="font-medium text-text-secondary">{w.limit[locale]}:</span> <span className="tnum">{limit === null ? w.noCap[locale] : limit.toLocaleString(locale === "es" ? "es-ES" : "en-GB")}</span>
+                </p>
+              )}
               <div className="mt-auto pt-6">
                 <ButtonLink href={localePath(locale, pk.href)} variant={i === 0 ? "primary" : "secondary"} full>{pk.cta[locale]}</ButtonLink>
               </div>

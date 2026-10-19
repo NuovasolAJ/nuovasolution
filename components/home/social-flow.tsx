@@ -2,6 +2,7 @@ import { Check, Heart, MessageCircle, Send } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { listings, storyWords } from "@/lib/content/home-story";
 import { Reveal } from "@/components/ui/reveal";
+import { ThreeAnswers } from "./three-answers";
 
 /**
  * Social as a product experience (final order 2026-10-17 §6): the same listing photo and data become a finished post
@@ -20,6 +21,7 @@ export function SocialFlow({ locale }: { locale: Locale }) {
         <p className="t-eyebrow text-text-accent">{l(S.eyebrow)}</p>
         <h3 id="social-h" className="mt-3 t-display-m text-text-primary">{l(S.title)}</h3>
         <p className="mt-4 t-body-m text-text-secondary">{l(S.line)}</p>
+        <ThreeAnswers locale={locale} inbound={l(S.inbound)} did={l(S.did)} result={l(S.result)} className="mt-5" />
         <p className="state-line mt-5" data-state="preparing" data-chapter-state>{storyWords.common.stateLabel[locale]}: {l(S.state)}</p>
       </Reveal>
       <Reveal mode="opacity" delay={100} className="mt-8">

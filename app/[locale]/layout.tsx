@@ -59,6 +59,8 @@ export default function LocaleLayout({ children, params }: { children: ReactNode
       <head>
         {/* Marks JS availability so scroll reveals only ever hide content when they can reveal it. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        {/* The build mark (R19 W1): the commit this page was built from, also answered by /api/build. */}
+        <meta name="nuova-build" content={process.env.VERCEL_GIT_COMMIT_SHA ?? "unknown"} />
       </head>
       <body>
         <a href="#main" className="skip-link t-body-s">

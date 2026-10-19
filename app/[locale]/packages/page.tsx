@@ -96,7 +96,8 @@ export default async function PackagesPage({ params }: { params: { locale: strin
                       </>
                     )}
                     <dl className="mt-6 divide-y divide-line-hairline border-y border-line-hairline">
-                      {(["offices", "seats", "leads_month"] as const).map((k) => {
+                      {/* R19 §11: the monthly figure is not printed until API confirms what it counts (E-4). */}
+                      {(["offices", "seats"] as const).map((k) => {
                         const v = plan.limits[k];
                         return (
                           <div key={k} className="flex items-baseline justify-between gap-4 py-3">
