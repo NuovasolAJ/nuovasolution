@@ -1,6 +1,6 @@
 # Abnahmekarte — für die manuelle Sichtprüfung des Owners
 
-**Stand:** 2026-10-19 (Abschlussauftrag vom 17.10. auf dem wiederhergestellten Stand; Build `bb7686b`) ·
+**Stand:** 2026-10-19 (Abschlussauftrag vom 17.10. auf dem wiederhergestellten Stand; Build `4110566`) ·
 Website-Implementierer → Owner. Status: implementiert, wartet auf unabhängige technische und finale Prüfung.
 
 ## Link
@@ -9,7 +9,7 @@ Vorschau (immer der neueste Build, ohne Login erreichbar, nicht indexiert):
 
 - Spanisch: https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app/es
 - Englisch: https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app/en
-- Festes Deployment dieses Builds: https://nuovasolution-design-preview-kp6ci7y9m-nuovasolajs-projects.vercel.app
+- Festes Deployment dieses Builds: https://nuovasolution-design-preview-hd5u5lvm6-nuovasolajs-projects.vercel.app
 
 ## Testkonto
 
