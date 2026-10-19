@@ -166,6 +166,12 @@ carries a price, an availability or an appointment.
 
 ## 4. The language and channel lines, for the build after 15.10.
 
+> **Corrected 2026-10-19 — L-2 and L-3 are WITHDRAWN.** Both were released from the production *bytes* and
+> from *staging*, not from what production delivers. Gate §18: a reply in another language is **not present
+> in production**, and the task for a held reply exists on staging only. L-2 rendered as the hero's state
+> line and L-3 as "otro idioma queda como tarea" on the platform page. Their replacements are rows R-1 and
+> R-12 of `COPY_1019.md` §2. L-1, L-4, L-5 and L-6 stand.
+
 The order is right that **"only Spanish" is wrong as a blanket statement**, and so is "every language".
 Per statement: the channel, the version it was measured on, and the evidence.
 
