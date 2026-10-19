@@ -16,7 +16,7 @@ property.
 |---|---|---|---|---|
 | `hero-dusk-1400.webp`, `hero-dusk-800.webp` | 10393597 | Soontorn B | none stated | the hero's far layer (a coast at dusk), toned to the page's anthracite |
 | `listing-est204.webp` (since 2026-10-12) | 12715501 | Keegan Checks | none stated | the example listing EST-204: a living room opening onto a terrace with the sea behind |
-| `listing-est231.webp` (since 2026-10-12) | 31817163 | Ahmet Çötür | none stated (Mediterranean) | the example listing EST-231: a double-height living room with sea views |
+| `listing-est231.webp` (since 2026-10-19) | 10135435 | Daniel Nouri | none stated (Mediterranean) | the example listing EST-231, shown from outside: a white apartment building with balconies and a penthouse on top (R19 §9: a room, the outside or the plan, not the sea again). Replaced 31817163 (Ahmet Çötür, a double-height living room with sea views, used 2026-10-12 to 2026-10-19) |
 | `listing-est118.webp` (since 2026-10-12) | 31817156 | Ahmet Çötür | none stated (Mediterranean) | the example villa EST-118 of the viewing in progress: the house with its pool and terrace |
 | `listing-est240.webp` (since 2026-10-12) | 7851904 | Gabriela Pons | Madrid, Spain | the example listing EST-240 of the follow-up: a renovated flat's living room |
 

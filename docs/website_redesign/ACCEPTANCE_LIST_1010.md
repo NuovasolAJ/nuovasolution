@@ -102,6 +102,21 @@ lane truth sheets, this repository); **Needed** is the signal that closes the ro
 | X-5 | 3D: no design variant as a furniture comparison; the viewer capture without its title bar; the slots prepared | **built**; the rotation and the pair are **missing** | `3D_ASSETS_REQUEST_1017.md` A-1, A-2 | 3D |
 | X-6 | Platform, packages, reporting and FAQ aligned: the phone out of the packages, "Capacidad: consultas al mes", limits with the claim, the setup answer | **built** | Copy's confirmation; the owner on prices | Copy, Owner |
 
+## F6. The R19 closing order of 2026-10-19 (on 4110566; build deb9b66)
+
+| # | Point (order §) | State | Needed | Lane |
+|---|---|---|---|---|
+| R-1 | Hero shows work that is done: a question, a reply from the listing's data, one question back, three results (saved, record updated, team alerted with the reason); no appointment as the main case (§2) | **built** (`WEBSITE_R19_RETURN_v1.md` §2) | the owner's verdict; Copy C1 on the hero texts and the limit line | Owner, Copy |
+| R-2 | Four depths as one landscape (lit far range, water, wooded headland, near ground); the panel leans 18° and stands up; readable at 0/25/50/75/100 % and at 1366×650 (§3) | **built**, measured | the owner's verdict | Owner |
+| R-3 | Dark → light as one scene: the light pool under the panel's foot, no band, no veil over text; shown in the uncut film (§4) | **built** | the owner's verdict | Owner |
+| R-4 | Nothing pops in on a trigger; every stage keeps height, text and pictures after a fast scroll at five widths; no sticky deck; reduced motion complete (§5) | **built**, measured (`widths/stages.json`) | — | — |
+| R-5 | One thread with the three answers per chapter; the alert with its reason before the morning list; the customer code across channels; the held German draft never shown as sent (§6, §7) | **built**; the states per chapter say what is proven | Copy C1 against Gate §18; Reviewer on this deployment | Copy, Reviewer |
+| R-6 | Platform by tasks (unchanged from X-6); social as one flow with the three answers; attraction and handling told apart (§8) | **built** | the owner's verdict; Social on the depicted process | Owner, Social |
+| R-7 | Short dialogues, a personal address ("Hola Anna, hola Peter"), no German subject in the translated view, consistent facts, pictures that explain (interior, outside, plan) (§9) | **built**; EST-231 from outside | Copy's confirmation | Copy |
+| R-8 | 3D as plan → model → empty/furnished → turn; steps 3 and 4 marked pending; no still as "giratoria", no doubled picture (§10) | **built**; the pair and the turn **missing** | `3D_ASSETS_REQUEST_1017.md` A-1, A-2 (`WEBSITE_TO_3D_1019_SLOTS_v1.md`) | 3D |
+| R-9 | Packages without a monthly figure until API confirms it; MAIL_SHELL_v2 with the task block; the morning brief and the weekly report previewed on desktop and phone, Spanish shown (§11) | **built** | API on E-4; Daily's release of v2 on its side; the owner's look at the previews | API, Daily, Owner |
+| R-10 | Build mark `/api/build` + meta; `/legal/imprint` no longer 404 (redirects to the provisional notice); the staging build for the onboarding test asked of API (§12) | **built** / **asked** (`WEBSITE_TO_API_1019_STAGING_BUILD_v1.md`) | E14 for the company details; API's target approval and fixtures | Owner, API |
+
 ## F4. The restore of 2026-10-16 (owner's verdict on v4: "riesiger Rückschritt", restore 3fae766 plus the small points)
 
 | # | Point | State | Needed | Lane |
