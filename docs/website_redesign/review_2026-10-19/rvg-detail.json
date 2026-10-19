@@ -1,0 +1,113 @@
+{
+ "deployment": "https://nuovasolution-design-preview-hd5u5lvm6-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-19T12:35:14.562Z",
+ "detail": {
+  "app_text": "Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa TU AGENCIA · DEMO AGENCY (STUB) Hola. Esto es lo que tienes hoy. Tu configuración, tus informes y las conexiones de tu agencia, en un solo sitio. Prueba activa · paquete Essential · quedan 9 días Informe semanal Qué atendió Nuova, qué chances hay abiertas y qué toca hacer. Ver el informe Configuración de la agencia Datos, equipo, canales y CRM. El progreso se guarda. Abrir la configuración Instagram Publicaciones, comentarios y mensajes de tu cuenta conectada. Abrir Hoy en tu equipo Vista operativa de demostración: en una cuenta real aquí aparecen las tareas abiertas de hoy. Datos locales de prueba",
+  "reports_text": "Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa INFORME SEMANAL Lo que pasó esta semana en tu agencia Recuentos de los registros que Nuova guarda en los canales conectados. Lo que no se mide no aparece como cero. Volver a tu agencia Ver el email del lunes Datos de demostración: la semana del ejemplo de la página de inicio. No son datos de ninguna agencia. Lo que atendió Nuova 23 23 consultas respondidas y registradas de 23 recibidas Chances que han surgido 6 6 visitas pedidas, 4 confirmadas por el equipo · 2 valoraciones pedidas Lo que toca hacer 2 2 cosas esperan a una persona de tu equipo Acciones pendientes Peter y Anna Keller · Valoración de una villa en Elviria · falta fijar la cita desde 6 oct 2026, 11:24 Sofía Lamas · Alquiler de larga temporada en Fuengirola · esperando su respuesta desde 6 oct 2026, 11:31 Los detalles Periodo 5 oct 2026 – 12 oct 2026 Europe/Madrid Generado 12 oct 2026, 8:00 Base de datos Consultas registradas en Nuova en los canales conectados: WhatsApp, email, formulario web. Consultas recibidas 23 Respondidas 23 Visitas pedidas 6 Visitas confirmadas por el equipo 4 Valoraciones pedidas 2 Tareas cerradas por el equipo 11 Tareas abiertas 2 Propuestas enviadas 4 Por canal WhatsApp 11 email 7 formulario web 3 Frente a la semana anterior: 23 consultas (antes 19) · 23 respon",
+  "social_social": {
+   "main": "Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa SOCIAL Conectar Instagram La cuenta de Instagram desde la que tu agencia publica y responde. Conectar Publicar Entrada Conexión y datos demo.agency.nerja Instagram Conectada Conectada desde 26 sept 2026, 11:00 Plataforma Instagram Conexión y datos Para qué se usa la conexión Mostrar tu cuenta en Nuova. Publicar las publicaciones de inmuebles que apruebas. Leer comentarios, responder en público y una respuesta privada por comentario. Leer mensajes y responderlos en un plazo de 24 horas. Nuova nunca escribe primero a nadie. Esta página muestra el estado de tu espacio de trabajo. Cada control se activa solo cuando el estado lo permite; decide la base de datos, nunca la página. Estado leído: 29 sept 2026, 11:00 Leer de nuevo",
+   "controls": [
+    {
+     "tag": "A",
+     "label": "Conectar",
+     "disabled": false
+    },
+    {
+     "tag": "A",
+     "label": "Publicar",
+     "disabled": false
+    },
+    {
+     "tag": "A",
+     "label": "Entrada",
+     "disabled": false
+    },
+    {
+     "tag": "A",
+     "label": "Conexión y datos",
+     "disabled": false
+    },
+    {
+     "tag": "A",
+     "label": "Conexión y datos",
+     "disabled": false
+    },
+    {
+     "tag": "A",
+     "label": "Leer de nuevo",
+     "disabled": false
+    }
+   ]
+  },
+  "social_post": {
+   "main": "Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa SOCIAL Crear una publicación Elige un inmueble, revisa el texto, apruébalo y publícalo. Conectar Publicar Entrada Conexión y datos 1 Elegir un inmueble 2 Crear el texto 3 Aprobar 4 Publicar Tus inmuebles Este inmueble no tiene imagen Villa in Nerja (synthetic) Nerja · 545.000 € Se puede publicar Datos del inmueble del 28 sept 2026, 15:00 Crear el texto Datos de demostración: esta acción no envía nada aquí. Este inmueble no tiene imagen Apartment in Torrox Costa (synthetic) Torrox Costa · 219.000 € Se puede publicar Datos del inmueble del 28 sept 2026, 15:00 Crear el texto Datos de demostración: esta acción no envía nada aquí. Este inmueble no tiene imagen Townhouse in Frigiliana (synthetic) Frigiliana · 389.000 € Este inmueble no se puede publicar: Los datos ",
+   "controls": [
+    {
+     "tag": "A",
+     "label": "Conectar",
+     "disabled": false
+    },
+    {
+     "tag": "A",
+     "label": "Publicar",
+     "disabled": false
+    },
+    {
+     "tag": "A",
+     "label": "Entrada",
+     "disabled": false
+    },
+    {
+     "tag": "A",
+     "label": "Conexión y datos",
+     "disabled": false
+    },
+    {
+     "tag": "BUTTON",
+     "label": "Crear el texto",
+     "disabled": true
+    },
+    {
+     "tag": "BUTTON",
+     "label": "Crear el texto",
+     "disabled": true
+    },
+    {
+     "tag": "BUTTON",
+     "label": "Publicar",
+     "disabled": true
+    },
+    {
+     "tag": "BUTTON",
+     "label": "Comprobar estado",
+     "disabled": true
+    },
+    {
+     "tag": "A",
+     "label": "Leer de nuevo",
+     "disabled": false
+    }
+   ]
+  },
+  "logout_control": {
+   "found": true,
+   "tag": "BUTTON",
+   "label": "Cerrar sesión",
+   "href": null,
+   "form": false
+  },
+  "contrast_context": [
+   {
+    "t": "03",
+    "parent": "03 Ficha del cliente",
+    "ratio": 4.29,
+    "need": 4.5,
+    "size": 13,
+    "color": "rgb(119, 115, 108)",
+    "bg": "rgb(246, 244, 238)",
+    "ariaHidden": "true",
+    "cls": "tnum text-ink-500"
+   }
+  ]
+ }
+}
