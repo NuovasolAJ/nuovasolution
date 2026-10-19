@@ -223,7 +223,7 @@ export function Story({ locale }: { locale: Locale }) {
                 </div>
                 <div id={panelId} role="tabpanel" className="relative mt-6">
                   <AnimatePresence mode="popLayout" initial={false}>
-                    <m.div key={channel} initial={{ opacity: 0.4, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, position: "absolute", inset: 0 }} transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }} className="grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-8" data-channel-view={channel}>
+                    <m.div key={channel} initial={{ opacity: 0.4, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, position: "absolute", inset: 0, transition: { duration: 0 } }} transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }} className="grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-8" data-channel-view={channel}>
                       <div className="min-w-0">
                         <div className="flex items-center gap-3 border-b border-ink-100 pb-4">
                           <ChannelIcon channel={channel} on={channel === "whatsapp"} size={14} />
