@@ -63,7 +63,7 @@ export function Model3dSection({ locale }: { locale: Locale }) {
                     </video>
                   </div>
                 )}
-                {i >= 2 && <span className="pointer-events-none absolute left-3 top-3 inline-flex rounded-pill bg-ink-950/85 px-2.5 py-1 text-[0.75rem] font-medium text-ivory">{pending}</span>}
+                {i >= 2 && <span className="pointer-events-none absolute left-3 top-3 inline-flex rounded-pill bg-ink-950 px-2.5 py-1 text-[0.75rem] font-medium text-ivory">{pending}</span>}
               </div>
               <div className="p-4">
                 <p className="flex items-baseline gap-2 t-heading-s text-text-primary"><span className="tnum t-caption text-text-accent">0{i + 1}</span>{s.title}</p>
