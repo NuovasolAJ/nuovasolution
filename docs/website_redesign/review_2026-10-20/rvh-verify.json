@@ -1,0 +1,121 @@
+{
+ "deployment": "https://nuovasolution-design-preview-7p2xkf9hm-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-20T08:40:26.458Z",
+ "detail": {
+  "clipped": [
+   {
+    "tag": "SECTION",
+    "cls": "hero-world",
+    "sw": 1433,
+    "cw": 1425,
+    "sh": 1052,
+    "ch": 1044,
+    "text": "PARA AGENCIAS INMOBILIARIAS EN ESPAÑA\n\nMientras enseñas una "
+   }
+  ],
+  "panel": [
+   {
+    "cls": "hero-panel",
+    "top": 728,
+    "height": 432,
+    "inView": false,
+    "text": "Nuova · asistente de IA\n\nWhatsApp\nEmail\nFormulario web\nTeléf"
+   },
+   {
+    "cls": "story-chapter",
+    "top": 1410,
+    "height": 976,
+    "inView": false,
+    "text": "LLEGAN CONSULTAS\n\nCuatro consultas en una hora, mientras est"
+   },
+   {
+    "cls": "story-chapter story-chapter-flip",
+    "top": 2386,
+    "height": 1060,
+    "inView": false,
+    "text": "NUOVA RESPONDE Y ACTUALIZA LA FICHA\n\nCada cliente recibe una"
+   },
+   {
+    "cls": "story-chapter",
+    "top": 3446,
+    "height": 1116,
+    "inView": false,
+    "text": "EL INMUEBLE QUE ENCAJA\n\nDe lo que busca Laura salen dos prop"
+   },
+   {
+    "cls": "min-w-0 overflow-hidden rounded-lg border border-i",
+    "top": 3689,
+    "height": 442,
+    "inView": false,
+    "text": "Piso de 2 dormitorios con terraza\n\n315.000 €\n\nEstepona · zon"
+   },
+   {
+    "cls": "min-w-0 overflow-hidden rounded-lg border border-i",
+    "top": 3689,
+    "height": 442,
+    "inView": false,
+    "text": "Ático de 2 dormitorios con vistas\n\n319.000 €\n\nEstepona · Seg"
+   }
+  ],
+  "plans": {
+   "names": [
+    "Essential",
+    "Growth"
+   ],
+   "heads": [
+    "En qué se diferencian los planes",
+    "Essential",
+    "Growth",
+    "Enterprise",
+    "Qué incluye cada plan",
+    "Precio y periodo de facturación",
+    "Una factura, pagada por transferencia",
+    "PREGUNTAS",
+    "Tu próxima consulta ya está en camino"
+   ],
+   "capacity": [
+    "se construye sobre el anterior y crece en tamaño: oficinas, puestos y capacidad de consultas al mes."
+   ],
+   "numbers": [
+    "14",
+    "14",
+    "14",
+    "50",
+    "50",
+    "14",
+    "14",
+    "2026"
+   ]
+  },
+  "three_d__es": {
+   "section": true,
+   "html": "<div data-depth=\"\" class=\"relative hero-world-scene\" style=\"--depth: 0.5779;\"><div data-depth-layer=\"sky\" class=\"hero-sky\" aria-hidden=\"true\"><picture class=\"hero-sky-photo\"><source media=\"(max-width: 639px)\" srcset=\"/media/world/hero-dusk-800.webp\"><img src=\"/media/world/hero-dusk-1400.webp\" alt=\"\" width=\"1400\" height=\"933\" fetchpriority=\"high\" decoding=\"async\" aria-hidden=\"true\" class=\"h-full w-full object-cover object-[50%_62%]\"></picture><div class=\"hero-sky-tone\"></div></div><svg aria-hidden=\"true\" class=\"hero-world-stars\" viewBox=\"0 0 1440 300\" preserveAspectRatio=\"xMidYMin slice\" focusable=\"false\" data-depth-layer=\"far\"><circle cx=\"80\" cy=\"40\" r=\"1\" fill=\"#f8f6f1\" opacity=\"0.35\"></cir",
+   "text": "PARA AGENCIAS INMOBILIARIAS EN ESPAÑA Mientras enseñas una vivienda, Nuova atiende tus consultas. Responde a lo que llega por WhatsApp y email con los datos de tu cartera, guarda lo que busca cada cliente y avisa a tu equipo cuando una consulta importa. Ver cómo funciona Probar gratis 14 días gratis · Sin tarjeta Nuova · asistente de IA WhatsApp Email Formulario web Teléfono Ejemplo con personas e inmuebles inventados Reproducir otra vez Martes 11:20 · Marcos está en una visita hasta las 12:00 ·",
+   "imgCount": 1,
+   "videoCount": 0,
+   "canvasCount": 0,
+   "svgCount": 13,
+   "backgrounds": [
+    "linear-gradient(rgba(19, 20, 22, 0.97), rgba(19, 20, 22, 0.84) 24%, rgba(19, 20, 22, 0.42) 48%, rgba(24, 26, 32, 0.22) 62%, rgba(23, 26, 30, 0.7) 84%, rgb(23, 26, 30)), linear-gradient(90deg, rgba(19, 20, 22, 0.4), rgba(19, 20, 22, 0) 32%, rgba(19, 20, 22, 0) 68%, rgba(19, 20, 22, 0.4)), linear-gradient(rgba(40, 52, 78, 0.18), rgba(40, 52, 78, 0) 60%)",
+    "linear-gradient(rgb(23, 26, 30), rgb(21, 23, 27) 50%, rgb(19, 20, 22))",
+    "linear-gradient(rgba(246, 236, 218, 0), rgba(240, 225, 199, 0.5) 28%, rgba(248, 244, 237, 0.92) 54%, rgb(248, 246, 241) 72%, rgb(248, 246, 241))"
+   ]
+  },
+  "three_d__es_platform": {
+   "section": true,
+   "html": "<div class=\"container-default\"><div class=\"grid gap-12 lg:grid-cols-2 lg:gap-x-16 lg:gap-y-14\" data-platform-sections=\"true\"><section id=\"answer\" aria-labelledby=\"po-answer\" class=\"scroll-mt-[var(--header-h)]\" data-platform-section=\"answer\"><p class=\"tnum t-caption text-text-accent\">0<!-- -->1</p><h2 id=\"po-answer\" class=\"mt-2 t-display-m text-text-primary\">Atender consultas</h2><p class=\"mt-3 max-w-[48ch] t-body-m text-text-secondary\">Cada consulta recibe respuesta por el canal por el que llegó. Hoy en español; otro idioma queda como tarea para tu equipo.</p><ul class=\"mt-6 divide-y divide-line-hairline border-y border-line-hairline\"><li data-platform-entry=\"whatsapp\"><a class=\"group flex m",
+   "text": "01 Atender consultas Cada consulta recibe respuesta por el canal por el que llegó. Hoy en español; otro idioma queda como tarea para tu equipo. WhatsApp Respuesta con el nombre de tu agencia; hoy en español. Email La misma respuesta para lo que llega por correo. Formularios web Lo que entra por tu web se trata como una consulta más. Asistente telefónico Una llamada que no se pierde: lo que pide, anotado, y una tarea. Paso a una persona Cuando alguien pide hablar con una persona, la consulta pasa",
+   "imgCount": 0,
+   "videoCount": 0,
+   "canvasCount": 0,
+   "svgCount": 18,
+   "backgrounds": []
+  },
+  "social": {
+   "path": "/es/social/post",
+   "text": "Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa SOCIAL Crear una publicación Elige un inmueble, revisa el texto, apruébalo y publícalo. Conectar Publicar Entrada Conexión y datos 1 Elegir un inmueble 2 Crear el texto 3 Aprobar 4 Publicar Tus inmuebles Este inmueble no tiene imagen Villa in Nerja (synthetic) Nerja · 545.000 € Se puede publicar Datos del inmueble del 28 sept 2026, 15:00 Crear el texto Datos de demostración: esta acción no envía nada aquí. Este inmueble no tiene imagen Apartment in Torrox Costa (synthetic) Torrox Costa · 219.000 € Se puede publicar Datos del inmueble del 28 sept 2026, 15:00 Crear el texto Datos de demostración: esta acción no envía nada aquí. Este inmueble no tiene imagen Townhouse in Frigiliana (synthetic) Frigiliana · 389.000 € Este inmueble no se puede publicar: Los datos ",
+   "images": [],
+   "noImageNotes": 4
+  }
+ }
+}

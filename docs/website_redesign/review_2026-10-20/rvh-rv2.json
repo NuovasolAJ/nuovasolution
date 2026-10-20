@@ -1,0 +1,387 @@
+{
+ "deployment": "https://nuovasolution-design-preview-7p2xkf9hm-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-20T08:38:08.497Z",
+ "checks": [
+  {
+   "id": "RV2-01",
+   "what": "hero and panel at five scroll positions: nothing clipped, nothing pushed off screen (1440 and 390)",
+   "verdict": "FAIL",
+   "evidence": {
+    "bad": [
+     {
+      "t": "d1440",
+      "i": 0,
+      "clipped": 1,
+      "panel": {
+       "top": 109,
+       "bottom": 13694,
+       "inView": false,
+       "textLen": 18118,
+       "scrollsInside": false
+      },
+      "offscreenText": 0,
+      "scrollY": 0
+     },
+     {
+      "t": "d1440",
+      "i": 1,
+      "clipped": 1,
+      "panel": {
+       "top": -152,
+       "bottom": 13433,
+       "inView": false,
+       "textLen": 18118,
+       "scrollsInside": false
+      },
+      "offscreenText": 0,
+      "scrollY": 261
+     },
+     {
+      "t": "d1440",
+      "i": 2,
+      "clipped": 1,
+      "panel": {
+       "top": -413,
+       "bottom": 13172,
+       "inView": false,
+       "textLen": 18118,
+       "scrollsInside": false
+      },
+      "offscreenText": 0,
+      "scrollY": 522
+     },
+     {
+      "t": "d1440",
+      "i": 3,
+      "clipped": 1,
+      "panel": {
+       "top": -674,
+       "bottom": 12911,
+       "inView": false,
+       "textLen": 18118,
+       "scrollsInside": false
+      },
+      "offscreenText": 0,
+      "scrollY": 783
+     }
+    ],
+    "panel_1440_step0": {
+     "top": 109,
+     "bottom": 13694,
+     "inView": false,
+     "textLen": 18118,
+     "scrollsInside": false
+    },
+    "panel_390_step0": {
+     "top": 136,
+     "bottom": 24335,
+     "inView": false,
+     "textLen": 18052,
+     "scrollsInside": false
+    }
+   }
+  },
+  {
+   "id": "RV2-02",
+   "what": "no late-loading jump: the first twelve text blocks keep their position after the first paint",
+   "verdict": "PASS",
+   "evidence": {
+    "moved_count": 0,
+    "max_shift": 0
+   }
+  },
+  {
+   "id": "RV2-03",
+   "what": "the packages are understandable: three plans, what differs is named, no invented price",
+   "verdict": "FAIL",
+   "evidence": {
+    "plans": [],
+    "differentiators": "e diferencian los planes Cada paquete se construye sobre el anterior y crece en tamaño: oficinas, puestos y capacidad de consultas al mes.",
+    "price_shown": false,
+    "trial": "14 días 14 días gratis, sin método de"
+   }
+  },
+  {
+   "id": "RV2-04",
+   "what": "the 3D moment shows the empty/furnished pair and a turn view that really runs",
+   "verdict": "FAIL",
+   "evidence": {
+    "section": true,
+    "images": [],
+    "pair_candidates": 0,
+    "videos": [],
+    "canvas": 0,
+    "pending_marks": 1
+   }
+  },
+  {
+   "id": "RV2-05",
+   "what": "regression: the report still labels the figures before showing them and claims no estimate",
+   "verdict": "PASS",
+   "evidence": {
+    "label_present": true,
+    "estimation_claim": false
+   }
+  },
+  {
+   "id": "RV2-06",
+   "what": "regression: the session area names the package next to the trial",
+   "verdict": "PASS",
+   "evidence": {
+    "line": "Prueba activa · paquete Essential · quedan 9 días Informe semanal "
+   }
+  },
+  {
+   "id": "RV2-07",
+   "what": "F-R16-3: a cover image reaches the social screen",
+   "verdict": "FAIL",
+   "evidence": {
+    "images": [],
+    "sample": "Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vi"
+   }
+  },
+  {
+   "id": "RV2-08",
+   "what": "the morning brief renders the mail shell with the weekly report block",
+   "verdict": "INFO",
+   "evidence": {
+    "path": "/es/app/brief",
+    "chars": 700,
+    "images": 1,
+    "sample": "Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa TU MAÑANA Así llega el resumen de la mañana Un email corto a cada per"
+   }
+  },
+  {
+   "id": "RV2-09",
+   "what": "no application error in the console",
+   "verdict": "PASS",
+   "evidence": {
+    "errors": []
+   }
+  }
+ ],
+ "detail": {
+  "hero": {
+   "d1440": {
+    "heroHeight": 1044,
+    "steps": [
+     {
+      "clipped": 1,
+      "panel": {
+       "top": 109,
+       "bottom": 13694,
+       "inView": false,
+       "textLen": 18118,
+       "scrollsInside": false
+      },
+      "offscreenText": 0,
+      "scrollY": 0
+     },
+     {
+      "clipped": 1,
+      "panel": {
+       "top": -152,
+       "bottom": 13433,
+       "inView": false,
+       "textLen": 18118,
+       "scrollsInside": false
+      },
+      "offscreenText": 0,
+      "scrollY": 261
+     },
+     {
+      "clipped": 1,
+      "panel": {
+       "top": -413,
+       "bottom": 13172,
+       "inView": false,
+       "textLen": 18118,
+       "scrollsInside": false
+      },
+      "offscreenText": 0,
+      "scrollY": 522
+     },
+     {
+      "clipped": 1,
+      "panel": {
+       "top": -674,
+       "bottom": 12911,
+       "inView": false,
+       "textLen": 18118,
+       "scrollsInside": false
+      },
+      "offscreenText": 0,
+      "scrollY": 783
+     },
+     {
+      "clipped": 1,
+      "panel": {
+       "top": -935,
+       "bottom": 12650,
+       "inView": false,
+       "textLen": 18118,
+       "scrollsInside": false
+      },
+      "offscreenText": 0,
+      "scrollY": 1044
+     }
+    ]
+   },
+   "m390": {
+    "heroHeight": 1661,
+    "steps": [
+     {
+      "clipped": 1,
+      "panel": {
+       "top": 136,
+       "bottom": 24335,
+       "inView": false,
+       "textLen": 18052,
+       "scrollsInside": false
+      },
+      "offscreenText": 0,
+      "scrollY": 0
+     },
+     {
+      "clipped": 1,
+      "panel": {
+       "top": -279,
+       "bottom": 23920,
+       "inView": false,
+       "textLen": 18052,
+       "scrollsInside": false
+      },
+      "offscreenText": 0,
+      "scrollY": 415
+     },
+     {
+      "clipped": 1,
+      "panel": {
+       "top": -695,
+       "bottom": 23504,
+       "inView": false,
+       "textLen": 18052,
+       "scrollsInside": false
+      },
+      "offscreenText": 0,
+      "scrollY": 831
+     },
+     {
+      "clipped": 1,
+      "panel": {
+       "top": -1110,
+       "bottom": 23089,
+       "inView": false,
+       "textLen": 18052,
+       "scrollsInside": false
+      },
+      "offscreenText": 0,
+      "scrollY": 1246
+     },
+     {
+      "clipped": 1,
+      "panel": {
+       "top": -1525,
+       "bottom": 22674,
+       "inView": false,
+       "textLen": 18052,
+       "scrollsInside": false
+      },
+      "offscreenText": 0,
+      "scrollY": 1661
+     }
+    ]
+   }
+  },
+  "lateLoading": {
+   "early": [
+    72,
+    131,
+    161,
+    318,
+    498,
+    745,
+    746,
+    778,
+    821,
+    851,
+    890,
+    925
+   ],
+   "late": [
+    72,
+    131,
+    161,
+    318,
+    498,
+    745,
+    746,
+    778,
+    821,
+    851,
+    890,
+    925
+   ],
+   "moved": []
+  },
+  "packages": {
+   "cards": [],
+   "hasPrice": false,
+   "trialSticker": "14 días 14 días gratis, sin método de",
+   "differentiators": "e diferencian los planes Cada paquete se construye sobre el anterior y crece en tamaño: oficinas, puestos y capacidad de consultas al mes."
+  },
+  "three_d__es": {
+   "section": true,
+   "text": "PARA AGENCIAS INMOBILIARIAS EN ESPAÑA Mientras enseñas una vivienda, Nuova atiende tus consultas. Responde a lo que llega por WhatsApp y email con los datos de tu cartera, guarda lo que busca cada cliente y avisa a tu equipo cuando una consulta importa. Ver cómo funciona Probar gratis 14 días gratis · Sin tarjeta Nuova · asistente de IA WhatsApp Email Formulario web Teléfono Ejemplo con personas e",
+   "imgs": [
+    {
+     "src": "hero-dusk-1400.webp",
+     "alt": "",
+     "w": 1400,
+     "h": 933
+    }
+   ],
+   "vids": [],
+   "canvas": 0,
+   "pending": 0
+  },
+  "three_d__es_platform": {
+   "section": true,
+   "text": "01 Atender consultas Cada consulta recibe respuesta por el canal por el que llegó. Hoy en español; otro idioma queda como tarea para tu equipo. WhatsApp Respuesta con el nombre de tu agencia; hoy en español. Email La misma respuesta para lo que llega por correo. Formularios web Lo que entra por tu web se trata como una consulta más. Asistente telefónico Una llamada que no se pierde: lo que pide, a",
+   "imgs": [],
+   "vids": [],
+   "canvas": 0,
+   "pending": 1
+  },
+  "app": {
+   "path": "/es/app",
+   "text": "Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa TU AGENCIA · DEMO AGENCY (STUB) Hola. Esto es lo que tienes hoy. Tu configuración, tus informes y las conexiones de tu agencia, en un solo sitio. Prueba activa · paquete Essential · quedan 9 días Informe semanal Qué atendió Nuova, qué chances hay abiertas y qué toca hacer. Ver el informe Configuración de la agencia Datos, equipo, canales y CRM. El progreso se guarda. Abrir la configuración Instagram Publicaciones, comentarios y mensajes de tu cuenta conectada. Abri"
+  },
+  "reports": {
+   "path": "/es/app/reports",
+   "text": "Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa INFORME SEMANAL Lo que pasó esta semana en tu agencia Recuentos de los registros que Nuova guarda en los canales conectados. Lo que no se mide no aparece como cero. Volver a tu agencia Ver el email del lunes Datos de demostración: la semana del ejemplo de la página de inicio. No son datos de ninguna agencia. Lo que atendió Nuova 23 23 consultas respondidas y registradas de 23 recibidas Chances que han surgido 6 6 visitas pedidas, 4 confirmadas por el equipo · 2 valoraciones pedidas Lo que toca hacer 2 2 cosas esperan a una persona de tu equipo Acciones pendientes Peter y Anna Keller · Valoración de una villa en Elviria · falta fijar la cita desde 6 oct 2026, 11:24 Sofía Lamas · Alquiler de larga temporada en Fuengirola · esperando su respuesta desde 6 oct 202"
+  },
+  "brief": {
+   "path": "/es/app/brief",
+   "text": "Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa TU MAÑANA Así llega el resumen de la mañana Un email corto a cada persona del equipo: la consulta que más importa hoy, por qué, y las tareas con su siguiente paso. La misma hülle que el resumen semanal, con otro contenido. Datos de demostración. El email del lunes Volver a tu agencia Vista previa con datos de demostración: nadie recibe este correo. NuovaSolution TU MAÑANA · DEMO AGENCY Buenos días, Elena: una consulta importante para hoy Hola Elena, Desde ayer han llegado cuatro consultas. La que más importa hoy: Laura Serrano quiere ver el piso de Estepona la se",
+   "frames": 0,
+   "mailShell": true,
+   "images": 1
+  },
+  "socialPost": {
+   "text": "Vista previa. No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie. Vista previa SOCIAL Crear una publicación Elige un inmueble, revisa el texto, apruébalo y publícalo. Conectar Publicar Entrada Conexión y datos 1 Elegir un inmueble 2 Crear el texto 3 Aprobar 4 Publicar Tus inmuebles Este inmueble no tiene imagen Villa in Nerja (synthetic) Nerja · 545.000 € Se puede publicar Datos del inmueble del 28 sept 2026, 15:00 Crear el texto Datos de demostración: esta acción no envía nada aquí. Este inmueble no tiene imagen Apartment in Torrox Costa (sy",
+   "images": []
+  },
+  "errors": [
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-s",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-s",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-s",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-s",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-s",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-s",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-s",
+   "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive: \"script-s"
+  ]
+ },
+ "finished_utc": "2026-10-20T08:39:24.188Z"
+}
