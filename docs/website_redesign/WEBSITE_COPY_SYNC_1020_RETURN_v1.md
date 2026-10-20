@@ -78,6 +78,24 @@ E19 working hours, which do not exist in production. **Prepared, not active.**
 | 6 | E19 working hours in production, for reminder and escalation | Lead, Hosting |
 | 7 | E10 | Owner and counsel |
 
+## 6b. An error of mine in this round, and its correction
+
+**Commit `81234e5` carried a deletion of `.staging-hold` that this lane never made.** I committed without a
+pathspec, so `git commit` took the whole shared index, including a deletion another lane had staged and not
+yet committed. `.staging-hold` stops the staging preview from building, and its own text says it is
+deleted "in the commit that follows the owner's decision".
+
+**Corrected in `1b7d3e1`**, a path-limited commit that returns the file to its last committed state. No
+history was rewritten. **Nothing was pushed in between** (origin stood at `83f428c`), so no build ever saw
+the hold lifted. The copy lane's net effect on operational files is zero.
+
+**For the lane that staged the deletion:** your change was not lost through any decision of mine; it was
+swept into my commit and then reverted. If the owner has released staging, delete the file again in your
+own commit with the reference to that decision, which is what the file asks for.
+
+**For this lane, recorded as a rule:** every commit names its paths — `git commit -- <paths>` — because the
+index is shared with other lanes. This happened once before, in August (`138a946`), for the same reason.
+
 ## 7. What I did not do
 
 No design work, no acceptance, no publication. No company data, legal form or register entry invented. No
