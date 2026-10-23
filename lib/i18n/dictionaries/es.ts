@@ -156,7 +156,7 @@ export const es: Dictionary = {
           text: "Hola Laura, gracias por escribir. He anotado tu interés por el piso de Estepona y el jueves por la mañana. ¿Os viene mejor a las 10 o a las 12? Un agente de la agencia te lo confirma.", // WORKING (owner 2026-10-06 §3: shorter, one targeted question; for Copy and Lead to confirm)
           // D-79: sin disclosureNote; flow.stepsDetail (D-77) lo dice una vez.
         },
-        record: { label: "Ficha del cliente", name: "Laura Serrano", lines: ["Pide: 2 dormitorios, Estepona · EST-204", "Quiere ver: el jueves por la mañana", "Escribe en: inglés"], next: "Siguiente: una tarea para tu equipo" },
+        record: { label: "Ficha del cliente", name: "Laura Serrano", lines: ["Pide: 2 dormitorios, Estepona", "Quiere ver: la semana que viene", "Escribe en: español"], next: "Siguiente: una tarea para tu equipo" },
         task: {
           label: "Las tareas de tu equipo, hoy",
           title: "Confirmar con Laura Serrano la visita del jueves",
@@ -467,7 +467,7 @@ export const es: Dictionary = {
       { title: "Marca", line: "Tu logo y el banner de tus emails, para los mensajes que salen con tu marca." },
       { title: "Equipo", line: "Añade a tu equipo y asigna roles: agente, jefe de equipo, responsable de oficina, administrador de la agencia." },
       { title: "Canales", line: "Conecta tus canales, según los permisos que tengas." },
-      { title: "Fuentes de leads", line: "Conecta los sitios de donde ya te llegan los leads." },
+      { title: "Fuentes de leads", line: "Dinos de dónde te llegan hoy los leads. Conectar esas fuentes está en preparación." },
       { title: "CRM", line: "Hay un CRM incluido desde el principio. Si usas otro, dinos cuál: conectarlo todavía no se ofrece y mientras tanto sigues con el CRM incluido." },
       { title: "Fuente de propiedades", line: "Apunta a tu propia web, a un feed compatible o al inventario de tu CRM." },
       { title: "Preparación", line: "Una comprobación clara antes de salir en vivo. Un paso que espera a un proveedor nunca se muestra como hecho." },

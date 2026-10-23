@@ -3,7 +3,7 @@ import Link from "next/link";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { publishedCapabilities } from "@/lib/content/capabilities";
-import { entryHref, platformTasks } from "@/lib/content/platform-map";
+import { entryHref, platformTasks, stateWords } from "@/lib/content/platform-map";
 import { Display, Eyebrow, Lead } from "@/components/ui/type";
 import { Reveal } from "@/components/ui/reveal";
 import { ClosingBand } from "@/components/site/closing-band";
@@ -56,6 +56,8 @@ export default function PlatformPage({ params }: { params: { locale: string } })
                         <span className="min-w-0">
                           <span className="block t-body-m font-medium text-text-primary">{e.name[locale]}</span>
                           <span className="block t-body-s text-text-secondary">{e.line[locale]}</span>
+                          {/* COPY_SYNC_1023 W-3: every row carries its state */}
+                          <span className="state-line mt-1" data-state={e.state} data-platform-entry-state>{stateWords[e.state][locale]}</span>
                         </span>
                         <StatusGlyph glyph="arrow-right" size={14} className="shrink-0 text-text-muted transition-transform duration-micro group-hover:translate-x-0.5" />
                       </Link>

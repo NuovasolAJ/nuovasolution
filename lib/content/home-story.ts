@@ -38,7 +38,7 @@ export const people = {
   buyer: { name: "Laura Serrano", short: "Laura", city: "Madrid" },
   sellers: { name: "Peter y Anna Keller", nameEn: "Peter and Anna Keller", short: "Keller" },
   tenant: { name: "Sofía Lamas", short: "Sofía" },
-  caller: { name: "Álvaro Pons", short: "Álvaro", phone: "+34 600 123 456" },
+  caller: { name: "Álvaro Pons", short: "Álvaro", phone: "+34600123456" },
 };
 
 /** The listings of the example portfolio. Photos: licensed stock (docs/website_redesign/MEDIA_SOURCES_1010.md), never a real listing. */
@@ -256,12 +256,12 @@ export const heroWords = {
     es: [
       { k: "Lo que busca, guardado", v: "2 dormitorios con terraza · Estepona · hasta 320.000 €" },
       { k: "Ficha de cliente actualizada", v: "Laura Serrano · WhatsApp · martes 11:21" },
-      { k: "Aviso de consulta importante", v: "Email a tu equipo: nombró inmueble, zona y presupuesto" },
+      { k: "Aviso por email a tu equipo", v: "Consulta importante: nombró inmueble, zona y presupuesto" }, // COPY_SYNC_1023 W-5
     ],
     en: [
       { k: "What she wants, saved", v: "2 bedrooms with a terrace · Estepona · up to €320,000" },
       { k: "Customer record updated", v: "Laura Serrano · WhatsApp · Tuesday 11:21" },
-      { k: "Important-enquiry alert", v: "E-mail to your team: she named a property, an area and a budget" },
+      { k: "E-mail alert to your team", v: "Important enquiry: she named a property, an area and a budget" },
     ],
   },
   /** The situation, as one line inside the panel. */
@@ -303,7 +303,7 @@ export const chapters: Chapter[] = [
     title: { es: "El cliente recibe una respuesta concreta, y lo que pide queda en su ficha.", en: "The customer gets a concrete reply, and what they ask for goes on their record." }, // COPY_1019 R-4
     line: { es: "Zona, presupuesto, uso y plazo quedan claros desde la primera respuesta. Nada se compromete: ni precio, ni fecha, ni disponibilidad.", en: "Area, budget, use and timing are clear from the first reply. Nothing is committed: no price, no date, no availability." }, // COPY_1019 R-5: the customer-code sentence removed (not present in production)
     inbound: { es: "Una pregunta por WhatsApp, un email en alemán, un formulario, una llamada.", en: "A WhatsApp question, a German email, a web form, a call." },
-    did: { es: "Responde en español con los datos de tu cartera y guarda lo que pide cada cliente; en otro idioma deja la consulta en la ficha para tu equipo.", en: "Replies in Spanish with your portfolio's data and keeps what each customer asks for; in another language it leaves the enquiry on the record for your team." },
+    did: { es: "Responde en español con los datos de tu cartera y guarda lo que pide cada cliente; en otro idioma no envía nada.", en: "Replies in Spanish with your portfolio's data and keeps what each customer asks for; in another language it sends nothing." }, // COPY_SYNC_1023 W-9
     result: { es: "Una ficha al día por consulta y, donde hace falta, una tarea con fecha.", en: "An up-to-date record per enquiry and, where needed, a dated task." }, // HANDOVER_1021 A-5
     state: { es: "Disponible hoy: respuestas en español por WhatsApp y email, y la ficha. En otro idioma no se envía nada automáticamente.", en: "Available today: replies in Spanish on WhatsApp and e-mail, and the record. In another language nothing is sent automatically." }, // HANDOVER_1021 A-3
   },
@@ -412,8 +412,8 @@ export const storyWords = {
     yours: { es: "Tu cartera", en: "Your portfolio" },
     rights: { es: "Se muestra solo lo que tu fuente marca como publicable y actual. Sin disponibilidad confirmada no se afirma disponibilidad.", en: "Only what your source marks as publishable and current is shown. Without confirmed availability, no availability is claimed." },
     sent: { es: "Propuesta enviada a Laura por WhatsApp · martes 11:25", en: "Proposal sent to Laura on WhatsApp · Tuesday 11:25" },
-    proposal: "Laura, dos pisos de la cartera encajan con lo que describes: el de la terraza al sur, por 315.000 €, y un ático con terraza de 22 m² en Seghers, por 319.000 €. Te paso las dos fichas.",
-    proposalTranslated: { es: "Laura, dos pisos de la cartera encajan con lo que describes: el de la terraza al sur, por 315.000 €, y un ático con terraza de 22 m² en Seghers, por 319.000 €. Te paso las dos fichas.", en: "Laura, two flats from the portfolio fit what you describe: the one with the south-facing terrace at €315,000, and a penthouse with a 22 m² terrace in Seghers at €319,000. Here are both listings." },
+    proposal: "Laura, tenemos dos pisos que encajan con lo que buscas: el de la terraza al sur, por 315.000 €, y un ático con terraza de 22 m² en Seghers, por 319.000 €. Te paso las dos fichas.",
+    proposalTranslated: { es: "Laura, tenemos dos pisos que encajan con lo que buscas: el de la terraza al sur, por 315.000 €, y un ático con terraza de 22 m² en Seghers, por 319.000 €. Te paso las dos fichas.", en: "Laura, we have two flats that fit what you are looking for: the one with the south-facing terrace at €315,000, and a penthouse with a 22 m² terrace in Seghers at €319,000. Here are both listings." },
     details: { es: "Ver ficha", en: "See details" },
   },
   task: {
@@ -436,13 +436,13 @@ export const storyWords = {
       es: [
         { who: "Laura Serrano", what: "Quiere ver el piso de Estepona la semana que viene · vivienda habitual", why: "Nombró inmueble, zona y presupuesto", next: "Proponerle día y hora por WhatsApp" },
         { who: "Peter y Anna Keller", what: "Valoración de una villa en Elviria · email en alemán, sin respuesta automática", why: "Propietarios que quieren vender; piden cita esta semana", next: "Contestar al cliente y proponer una fecha para la visita" },
-        { who: "Álvaro Pons", what: "Rellamada por la villa de Elviria · precio y margen", why: "Pidió que le llamen por la tarde (+34 600 123 456)", next: "Llamar a partir de las 16:00" },
+        { who: "Álvaro Pons", what: "Rellamada por la villa de Elviria · precio y margen", why: "Pidió que le llamen por la tarde (+34600123456)", next: "Llamar a partir de las 16:00" },
         { who: "Sofía Lamas", what: "Alquiler de larga temporada en Fuengirola", why: "Sin fecha; a partir de enero", next: "Enviar lo disponible en alquiler" },
       ],
       en: [
         { who: "Laura Serrano", what: "Wants to see the flat in Estepona next week · main home", why: "She named a property, an area and a budget", next: "Propose a day and time on WhatsApp" },
         { who: "Peter and Anna Keller", what: "Valuation of a villa in Elviria · e-mail in German, no automatic reply", why: "Owners who want to sell; they ask for an appointment this week", next: "Answer the customer and propose a date for the viewing" },
-        { who: "Álvaro Pons", what: "Callback about the villa in Elviria · price and room to negotiate", why: "He asked to be called in the afternoon (+34 600 123 456)", next: "Call from 16:00" },
+        { who: "Álvaro Pons", what: "Callback about the villa in Elviria · price and room to negotiate", why: "He asked to be called in the afternoon (+34600123456)", next: "Call from 16:00" },
         { who: "Sofía Lamas", what: "Long-term rental in Fuengirola", why: "No date; from January", next: "Send what is available to rent" },
       ],
     },

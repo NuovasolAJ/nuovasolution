@@ -174,7 +174,7 @@ export const en = {
           // D-79: the former disclosureNote is gone; flow.stepsDetail (D-77) says it once.
         },
         // D-12: no priority and no qualification (not in production, LEAD_TRUTH_INPUT_v1 §1); the record shows what the customer asked for.
-        record: { label: "Customer record", name: "Laura Serrano", lines: ["Asked for: 2 bedrooms, Estepona · EST-204", "Wants to view: Thursday morning", "Writes in: English"], next: "Next: a task for your team" },
+        record: { label: "Customer record", name: "Laura Serrano", lines: ["Asked for: 2 bedrooms, Estepona", "Wants to view: next week", "Writes in: Spanish"], next: "Next: a task for your team" },
         task: {
           label: "Your team's tasks, today",
           title: "Confirm Thursday's viewing with Laura Serrano",
@@ -506,7 +506,7 @@ export const en = {
       { title: "Branding", line: "Your logo and your email banner, for the messages that go out under your brand." },
       { title: "Team", line: "Add your team and set their roles: agent, team lead, office manager, agency admin." },
       { title: "Channels", line: "Connect your channels, based on the permissions you hold." },
-      { title: "Lead sources", line: "Connect the places your leads already come from." },
+      { title: "Lead sources", line: "Tell us where your leads come from today. Connecting those sources is in preparation." },
       { title: "CRM", line: "A CRM is included from the start. If you use another one, tell us which: connecting it is not offered yet, and you stay on the included CRM meanwhile." },
       { title: "Property source", line: "Point it at your own website, a supported feed or your CRM inventory." },
       { title: "Readiness", line: "A clear readiness check before you go live. A step waiting on a provider is never shown as done." },

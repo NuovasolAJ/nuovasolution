@@ -92,7 +92,8 @@ export function HeroWorld({ locale }: { locale: Locale }) {
               <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-ink-100 px-5 py-3 md:px-7">
                 <p className="min-w-0 text-[0.9375rem] font-medium text-ink-950">{l(sw.common.assistant)}</p>
                 <ul className="order-3 flex basis-full flex-wrap items-center gap-1.5 md:order-none md:ml-2 md:basis-auto" aria-label={l(sw.common.channelLabel)}>
-                  {channels.map((c) => {
+                  {/* COPY_SYNC_1023 W-4: only WhatsApp and e-mail in the first screen; the web form and the call stay in story A as prototypes */}
+                  {channels.filter((c) => c.key === "whatsapp" || c.key === "email").map((c) => {
                     const Icon = ICON[c.key];
                     const on = c.key === "whatsapp";
                     return (

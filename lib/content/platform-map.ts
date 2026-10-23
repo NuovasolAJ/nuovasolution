@@ -107,6 +107,6 @@ export function entryHref(e: PlatformEntry): string {
 
 export const stateWords: Record<EntryState, L> = {
   available: { es: "Disponible", en: "Available" },
-  preparing: { es: "En preparación", en: "In preparation" },
-  request: { es: "Por encargo", en: "Per order" },
+  preparing: { es: "En preparación · todavía no contratable", en: "In preparation · not bookable yet" }, // COPY_SYNC_1023 W-3
+  request: { es: "Por encargo", en: "To order" },
 };

@@ -67,8 +67,8 @@ export const faqGroups: FaqGroup[] = [
         kb: "Q-06",
         q: { en: "In which language does it answer my customers?", es: "¿En qué idioma responde a mis clientes?" },
         a: {
-          en: "In the language the customer wrote in. You set a default for the cases where that cannot be determined.",
-          es: "En el idioma en el que escribió el cliente. Tú defines un idioma por defecto para los casos en que no se pueda determinar.",
+          en: "In Spanish. In another language nothing is sent automatically.", // COPY_SYNC_1023 W-1
+          es: "En español. En otro idioma no se envía nada automáticamente.",
         },
       },
       {
@@ -121,8 +121,8 @@ export const faqGroups: FaqGroup[] = [
         kb: "Q-31",
         q: { en: "Does it tell me which leads are hot?", es: "¿Me dice qué leads están calientes?" },
         a: {
-          en: "Not as a score or a label, and we will not invent one. What your team gets is the task: the customer, the property and the time they asked for. No alert message is sent to you.",
-          es: "No como una puntuación ni una etiqueta, y no la vamos a inventar. Lo que recibe tu equipo es la tarea: el cliente, el inmueble y la hora que ha pedido. No se te envía ningún mensaje de alerta.",
+          en: "Yes, by e-mail. When an enquiry looks important, the right person on your team gets an alert with the reason. No office hours yet.", // COPY_SYNC_1023 W-2
+          es: "Sí, por email. Cuando una consulta parece importante, la persona adecuada de tu equipo recibe un aviso con el motivo. Todavía sin horario de oficina.",
         },
       },
       {
@@ -313,7 +313,7 @@ export const faqGroups: FaqGroup[] = [
       {
         kb: "Q-30",
         q: { en: "Do you bring me leads from advertising?", es: "¿Me traéis leads de publicidad?" },
-        a: { en: "No. Nuova works on the enquiries that reach your agency.", es: "No. Nuova trabaja sobre las consultas que llegan a tu agencia." },
+        a: { en: "No. We do not run campaigns or buy leads. Later we will take in the leads from the ads you already run.", es: "No. No hacemos campañas ni compramos leads. Más adelante recogeremos los leads de los anuncios que ya tienes." }, // COPY_SYNC_1023 W-10
       },
     ],
   },
