@@ -47,10 +47,10 @@ export const platformTasks: PlatformTask[] = [
     title: { es: "Atender consultas", en: "Answer enquiries" },
     short: { es: "Atender", en: "Answer" },
     href: "/platform#answer",
-    line: { es: "Cada consulta recibe respuesta por el canal por el que llegó. Hoy en español; otro idioma queda como tarea para tu equipo.", en: "Every enquiry gets a reply on the channel it came in on. Today in Spanish; another language becomes a task for your team." },
+    line: { es: "Las consultas por WhatsApp y email se responden en español. Una consulta en otro idioma no recibe respuesta automática.", en: "Enquiries on WhatsApp and e-mail are answered in Spanish. An enquiry in another language gets no automatic reply." }, // COPY_1019 R-12
     entries: [
       { key: "whatsapp", name: { es: "WhatsApp", en: "WhatsApp" }, line: { es: "Respuesta con el nombre de tu agencia; hoy en español.", en: "A reply under your agency's name; today in Spanish." }, state: "available", slug: "ai-sales-agent", anchor: "#story-b" },
-      { key: "email", name: { es: "Email", en: "Email" }, line: { es: "La misma respuesta para lo que llega por correo.", en: "The same reply for what arrives by email." }, state: "available", slug: "ai-sales-agent", anchor: "#story-b" },
+      { key: "email", name: { es: "Email", en: "Email" }, line: { es: "La misma respuesta para lo que llega por correo, a un buzón que operamos para ti.", en: "The same reply for what arrives by e-mail, to a mailbox we operate for you." } /* COPY_1019 R-13 */, state: "available", slug: "ai-sales-agent", anchor: "#story-b" },
       { key: "webform", name: { es: "Formularios web", en: "Web forms" }, line: { es: "Lo que entra por tu web se trata como una consulta más.", en: "What comes in through your website is treated as an enquiry." }, state: "preparing", anchor: "#story-b" },
       { key: "phone", name: { es: "Asistente telefónico", en: "Phone assistant" }, line: { es: "Una llamada que no se pierde: lo que pide, anotado, y una tarea.", en: "A call that is not lost: what they want, noted, and a task." }, state: "preparing", anchor: "#story-b" },
       { key: "handover", name: { es: "Paso a una persona", en: "Handover to a person" }, line: { es: "Cuando alguien pide hablar con una persona, la consulta pasa al equipo.", en: "When somebody asks for a person, the enquiry goes to the team." }, state: "available", slug: "ai-sales-agent", anchor: "#story-d" },
@@ -63,9 +63,9 @@ export const platformTasks: PlatformTask[] = [
     href: "/platform#manage",
     line: { es: "Lo que pide cada cliente, en un solo sitio y con lo que toca hacer.", en: "What each customer asks for, in one place, with what to do next." },
     entries: [
-      { key: "crm", name: { es: "CRM y ficha del cliente", en: "CRM and customer record" }, line: { es: "Una ficha por cliente con lo que pidió y lo que pasó después.", en: "One record per customer, with what they asked for and what happened next." }, state: "available", slug: "crm", anchor: "#story-b" },
-      { key: "labels", name: { es: "Etiquetas de email", en: "Email labels" }, line: { es: "Cada correo lleva su etiqueta: visita, valoración, alquiler.", en: "Every email carries its label: viewing, valuation, rental." }, state: "available", slug: "lead-intelligence", anchor: "#story-b" },
-      { key: "hot", name: { es: "Avisos de consultas importantes", en: "Alerts for important enquiries" }, line: { es: "Un aviso cuando una consulta trae fecha, inmueble y presupuesto concretos.", en: "An alert when an enquiry names a date, a property and a budget." }, state: "preparing", anchor: "#story-d" },
+      { key: "crm", name: { es: "CRM y ficha del cliente", en: "CRM and customer record" }, line: { es: "Una ficha por consulta, con lo que pidió y lo que pasó después.", en: "One record per enquiry, with what was asked for and what happened next." } /* COPY_1019 R-14 */, state: "available", slug: "crm", anchor: "#story-b" },
+      { key: "labels", name: { es: "Etiquetas de email", en: "Email labels" }, line: { es: "Los correos llevan su etiqueta: visita, valoración, alquiler.", en: "E-mails carry their label: viewing, valuation, rental." } /* COPY_1019 R-15 */, state: "available", slug: "lead-intelligence", anchor: "#story-b" },
+      { key: "hot", name: { es: "Avisos de consultas importantes", en: "Alerts for important enquiries" }, line: { es: "Un email a la persona adecuada de tu equipo cuando entra una consulta importante. Todavía sin horario de oficina.", en: "An e-mail to the right person on your team when an important enquiry comes in. No office hours yet." }, state: "available" /* COPY_1019 R-16 (H1) */, anchor: "#story-d" },
       { key: "matching", name: { es: "Propuestas de inmuebles", en: "Property suggestions" }, line: { es: "Inmuebles de tu cartera que encajan con lo que busca el cliente.", en: "Listings from your portfolio that fit what the customer wants." }, state: "preparing", anchor: "#story-c" },
       { key: "followups", name: { es: "Seguimientos", en: "Follow-ups" }, line: { es: "Un mensaje útil cuando entra algo que encaja, solo con permiso del cliente.", en: "A useful message when something fitting comes in, only with the customer's permission." }, state: "preparing", anchor: "#story-e" },
     ],
@@ -77,10 +77,10 @@ export const platformTasks: PlatformTask[] = [
     href: "/platform#team",
     line: { es: "Quién hace qué hoy, y qué ya está hecho.", en: "Who does what today, and what is already done." },
     entries: [
-      { key: "daily", name: { es: "El asistente de la mañana", en: "The morning assistant" }, line: { es: "La lista de la mañana con el motivo de cada prioridad y el siguiente paso.", en: "The morning list with the reason behind each priority and the next step." }, state: "preparing", slug: "daily-assistant", anchor: "#story-d" },
+      { key: "daily", name: { es: "El asistente de la mañana", en: "The morning assistant" }, line: { es: "La lista de la mañana: qué va primero, por qué, y el siguiente paso.", en: "The morning list: what comes first, why, and the next step." } /* COPY_1019 R-17 */, state: "preparing", slug: "daily-assistant", anchor: "#story-d" },
       { key: "tasks", name: { es: "Tareas", en: "Tasks" }, line: { es: "Una tarea con dueño por cada visita o llamada pendiente.", en: "One owned task for every viewing or callback." }, state: "available", slug: "daily-assistant", anchor: "#story-d" },
       { key: "calendar", name: { es: "Calendario", en: "Calendar" }, line: { es: "Las visitas confirmadas, en la agenda de la persona que las hace.", en: "Confirmed viewings in the diary of the person who does them." }, state: "preparing", anchor: "#story-d" },
-      { key: "reports", name: { es: "Informes", en: "Reports" }, line: { es: "Un resumen semanal por email y el informe completo en tu acceso. Lo que llega al cliente aún no se mide.", en: "A weekly summary by email and the full report in your login. What reaches the customer is not measured yet." }, state: "preparing", anchor: "#story-f" },
+      { key: "reports", name: { es: "Informes", en: "Reports" }, line: { es: "El informe completo en tu acceso de agencia. El resumen semanal por email está en preparación. Lo que llega al cliente aún no se mide.", en: "The full report in your agency login. The weekly e-mail summary is being prepared. What reaches the customer is not measured yet." }, state: "available" /* COPY_1019 R-18 (login) */, anchor: "#story-f" },
     ],
   },
   {
@@ -92,7 +92,7 @@ export const platformTasks: PlatformTask[] = [
     entries: [
       { key: "posts", name: { es: "Publicaciones en Instagram", en: "Instagram posts" }, line: { es: "Un texto preparado para cada inmueble; tú lo apruebas antes de que salga.", en: "A prepared text for each listing; you approve it before it goes out." }, state: "preparing", slug: "social-growth", anchor: "/social" },
       { key: "comments", name: { es: "Comentarios y mensajes", en: "Comments and messages" }, line: { es: "Respuestas que tú permitiste, y cada contacto en su ficha.", en: "Replies you allowed, and every contact in a record." }, state: "preparing", slug: "social-growth", anchor: "/social/inbox" },
-      { key: "ads", name: { es: "Leads de anuncios", en: "Leads from ads" }, line: { es: "Recogemos los leads que generan tus anuncios. Las campañas siguen siendo tuyas.", en: "We take in the leads your ads produce. The campaigns stay yours." }, state: "preparing", slug: "lead-acquisition", anchor: "#story-b" },
+      { key: "ads", name: { es: "Leads de anuncios", en: "Leads from ads" }, line: { es: "Recogeremos los leads de los anuncios que ya tienes. Las campañas siguen siendo tuyas.", en: "We will take in the leads from the ads you already run. The campaigns stay yours." } /* HANDOVER_1021 B-8 (owner 20.10.) */, state: "preparing", slug: "lead-acquisition", anchor: "#story-b" },
       { key: "model3d", name: { es: "Visualización 3D", en: "3D visualisation" }, line: { es: "Un modelo 3D de tu inmueble, hecho por nosotros a partir de tu plano.", en: "A 3D model of your property, built by us from your plan." }, state: "request", slug: "property-experience", anchor: "#model-3d" },
     ],
   },

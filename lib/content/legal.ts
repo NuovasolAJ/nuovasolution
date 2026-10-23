@@ -31,7 +31,7 @@ const pages: Record<Locale, Record<LegalSlug, LegalPage>> = {
       updated: "2026-09-08",
       sections: [
         { heading: "Owner", paragraphs: owner.en },
-        { heading: "Activity", paragraphs: ["NuovaSolution provides an operating layer for real estate agencies: enquiries are answered, understood and carried forward in one system with one memory of the customer."] },
+        { heading: "Activity", paragraphs: ["NuovaSolution provides real estate agencies with a system that answers their enquiries, records each one, and creates tasks for the agency's team."] }, // HANDOVER_1021 D-1
         { heading: "Acceptance of terms", paragraphs: ["By using this website you agree to the terms in this notice. If you do not agree, please do not use the site."] },
         { heading: "Liability", paragraphs: ["We do our best to keep information accurate, but we cannot guarantee it. We are not responsible for any issues arising from use of this website."] },
         { heading: "Intellectual property", paragraphs: ["All content on this site, including text, visuals and code, belongs to NuovaSolution. Please do not reproduce it without written permission."] },
@@ -82,7 +82,7 @@ const pages: Record<Locale, Record<LegalSlug, LegalPage>> = {
       updated: "2026-09-08",
       sections: [
         { heading: "Titular", paragraphs: owner.es },
-        { heading: "Actividad", paragraphs: ["NuovaSolution ofrece una capa operativa para agencias inmobiliarias: las consultas se responden, se entienden y se llevan hacia adelante en un solo sistema con una sola memoria del cliente."] },
+        { heading: "Actividad", paragraphs: ["NuovaSolution ofrece a las agencias inmobiliarias un sistema que responde a sus consultas, registra cada una en una ficha y crea tareas para el equipo de la agencia."] }, // HANDOVER_1021 D-1
         { heading: "Aceptación de condiciones", paragraphs: ["Al usar este sitio web aceptas las condiciones recogidas en este aviso. Si no estás de acuerdo, te pedimos que no lo utilices."] },
         { heading: "Responsabilidad", paragraphs: ["Intentamos mantener la información actualizada y correcta, pero no podemos garantizarlo. No nos hacemos responsables de los problemas que puedan surgir del uso de este sitio."] },
         { heading: "Propiedad intelectual", paragraphs: ["Todo el contenido de este sitio, incluyendo textos, imágenes y código, pertenece a NuovaSolution. No puede reproducirse sin permiso por escrito."] },

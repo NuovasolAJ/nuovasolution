@@ -52,17 +52,20 @@ export const matrix: MatrixPackage[] = [
     code: "essential",
     name: "Essential",
     line: { es: "Responder y ordenar lo que llega.", en: "Answering and ordering what arrives." }, // COPY_DELTAS_1003 §2.1
-    who: { es: "Una oficina, hasta 3 personas", en: "One office, up to 3 people" },
-    change: { es: "Ninguna consulta se queda sin respuesta mientras estás fuera.", en: "No enquiry goes unanswered while you are out." },
+    who: { es: "Para una oficina y un equipo pequeño", en: "For one office and a small team" }, // HANDOVER_1021 C-1 (owner: no limits until set)
+    // R20 (owner on deb9b66): no "ninguna … sin respuesta" while other languages are held; the claim names the channels and the language.
+    change: { es: "Las consultas en español por WhatsApp y email se responden mientras estás fuera.", en: "Enquiries in Spanish on WhatsApp and e-mail are answered while you are away." }, // HANDOVER_1021 C-7
     // R19 §11: no monthly figure until API confirms what the catalogue's number counts (ACCEPTANCE_LIST_1010 E-4).
-    limits: { es: "Hoy: WhatsApp y email, respuestas en español. Una oficina, hasta 3 personas.", en: "Today: WhatsApp and email, replies in Spanish. One office, up to 3 people." },
+    limits: { es: "Hoy: WhatsApp y email, respuestas en español.", en: "Today: WhatsApp and e-mail, replies in Spanish." }, // HANDOVER_1021 C-4
     lines: [
-      { key: "replies", name: { es: "Respuestas automáticas", en: "Automatic replies" }, state: "available", note: { es: "hoy en español", en: "today in Spanish" }, flag: "cx.baseline" },
-      { key: "channels", name: { es: "WhatsApp y email", en: "WhatsApp and email" }, state: "available", flag: "channel.whatsapp" },
-      { key: "labels", name: { es: "Etiquetas de email", en: "Email labels" }, state: "available", flag: "channel.email" },
-      { key: "crm", name: { es: "Fichas de cliente (CRM)", en: "Customer records (CRM)" }, state: "available", flag: "crm.core" },
-      { key: "hot", name: { es: "Avisos de consultas importantes", en: "Alerts for important enquiries" }, state: "preparing", flag: "lead.hot_alert" },
-      { key: "reports", name: { es: "Informe semanal", en: "Weekly report" }, state: "preparing", note: { es: "la entrega al cliente no se mide", en: "delivery to the customer is not measured" }, flag: "reporting.basic" },
+      { key: "replies", name: { es: "Respuestas automáticas", en: "Automatic replies" }, state: "available", note: { es: "Disponible · en español", en: "Available · in Spanish" }, flag: "cx.baseline" },
+      { key: "channels", name: { es: "WhatsApp y email", en: "WhatsApp and email" }, state: "available", note: { es: "Disponible · el buzón lo operamos nosotros para ti", en: "Available · we operate the mailbox for you" }, flag: "channel.whatsapp" },
+      { key: "labels", name: { es: "Etiquetas de email", en: "Email labels" }, state: "available", note: { es: "Disponible · con Gmail", en: "Available · with Gmail" }, flag: "channel.email" },
+      { key: "crm", name: { es: "Fichas de cliente (CRM)", en: "Customer records (CRM)" }, state: "available", note: { es: "Disponible · una ficha por consulta", en: "Available · one record per enquiry" }, flag: "crm.core" },
+      // COPY_1019 R-16: the alert by e-mail is proven in production (H1); its limit stands with it.
+      { key: "hot", name: { es: "Avisos de consultas importantes", en: "Alerts for important enquiries" }, state: "available", note: { es: "Disponible · por email, todavía sin horario de oficina", en: "Available · by e-mail, no office hours yet" }, flag: "lead.hot_alert" },
+      // COPY_1019 R-18: the report in the login is available; the weekly e-mail is being prepared.
+      { key: "reports", name: { es: "Informe semanal", en: "Weekly report" }, state: "available", note: { es: "Disponible: el informe en tu acceso · En preparación: el resumen semanal por email", en: "Available: the report in your login · In preparation: the weekly e-mail summary" }, flag: "reporting.basic" },
     ],
     cta: { es: "Probar gratis", en: "Try free" },
     href: "/signup",
@@ -71,17 +74,18 @@ export const matrix: MatrixPackage[] = [
     code: "growth",
     name: "Growth",
     line: { es: "Seguir, proponer y coordinar.", en: "Follow up, propose and coordinate." },
-    who: { es: "Un equipo de hasta 8 personas", en: "A team of up to 8 people" },
-    change: { es: "Cada mañana el equipo sabe qué va primero, y los clientes reciben propuestas que encajan.", en: "Every morning the team knows what comes first, and customers get proposals that fit." },
+    who: { es: "Para un equipo que crece", en: "For a growing team" }, // HANDOVER_1021 C-2
+    change: { es: "Cada mañana tu equipo ve sus tareas con el motivo de cada una.", en: "Every morning your team sees its tasks with the reason for each." }, // HANDOVER_1021 C-8
     limits: { es: "Seguimientos solo con permiso del cliente; propuestas solo de tu propia cartera.", en: "Follow-ups only with the customer's permission; proposals only from your own portfolio." },
     plus: { es: "Todo lo de Essential, y además:", en: "Everything in Essential, plus:" },
     lines: [
-      { key: "followups", name: { es: "Seguimientos con permiso del cliente", en: "Follow-ups with the customer's permission" }, state: "preparing", flag: "followup.basic" },
-      { key: "matching", name: { es: "Propuestas de inmuebles de tu cartera", en: "Property suggestions from your portfolio" }, state: "preparing", flag: "property.matching" },
-      { key: "daily", name: { es: "El asistente de la mañana: la lista del día con prioridades", en: "The morning assistant: the day's list with priorities" }, state: "partial", note: { es: "ver, tomar, completar", en: "see, take, complete" } },
-      { key: "ads", name: { es: "Recogida de leads de anuncios", en: "Intake of leads from ads" }, state: "preparing", flag: "lead.engine.orchestrate" },
-      { key: "calendar", name: { es: "Agenda y citas", en: "Calendar and appointments" }, state: "preparing" },
-      { key: "reportsAdv", name: { es: "Informe con evolución y canales", en: "Report with trend and channels" }, state: "preparing", flag: "reporting.advanced" },
+      // R20 (owner on deb9b66): the availability stands with the line, not only in a hidden proof state.
+      { key: "followups", name: { es: "Seguimientos con permiso del cliente", en: "Follow-ups with the customer's permission" }, state: "preparing", note: { es: "En preparación · todavía no contratable", en: "In preparation · not bookable yet" }, flag: "followup.basic" },
+      { key: "matching", name: { es: "Propuestas de inmuebles de tu cartera", en: "Property suggestions from your portfolio" }, state: "preparing", note: { es: "En preparación · todavía no contratable", en: "In preparation · not bookable yet" }, flag: "property.matching" },
+      { key: "daily", name: { es: "La lista de la mañana: qué va primero y por qué", en: "The morning list: what comes first and why" }, state: "partial", note: { es: "Disponible: ver, tomar y completar tareas · En preparación: el correo de la mañana", en: "Available: see, take and complete tasks · In preparation: the morning e-mail" } }, // HANDOVER_1021 C.3
+      { key: "ads", name: { es: "Recogida de leads de tus anuncios actuales", en: "Intake of leads from your existing ads" }, state: "preparing", note: { es: "En preparación · todavía no contratable", en: "In preparation · not bookable yet" }, flag: "lead.engine.orchestrate" }, // HANDOVER_1021 C.3 (owner: ads after the launch)
+      { key: "calendar", name: { es: "Agenda y citas", en: "Calendar and appointments" }, state: "preparing", note: { es: "En preparación · todavía no contratable", en: "In preparation · not bookable yet" } },
+      { key: "reportsAdv", name: { es: "Informe con evolución y canales", en: "Report with trend and channels" }, state: "preparing", note: { es: "En preparación · todavía no contratable", en: "In preparation · not bookable yet" }, flag: "reporting.advanced" },
     ],
     cta: { es: "Solicita una propuesta", en: "Request a proposal" },
     href: "/contact",
@@ -90,13 +94,13 @@ export const matrix: MatrixPackage[] = [
     code: "scale",
     name: "Enterprise",
     line: { es: "Captar y presentar en 3D.", en: "Attract and present in 3D." },
-    who: { es: "Varias oficinas, hasta 50 personas", en: "Several offices, up to 50 people" },
-    change: { es: "Instagram y modelos 3D desde el mismo sitio que las consultas.", en: "Instagram and 3D models from the same place as the enquiries." },
+    who: { es: "Para varias oficinas", en: "For several offices" }, // HANDOVER_1021 C-3
+    change: { es: "Modelos 3D por encargo, y más adelante Instagram desde el mismo sitio.", en: "3D models to order, and later Instagram from the same place." }, // HANDOVER_1021 C-9
     limits: { es: "Instagram depende de la aprobación de la plataforma; cada modelo 3D se hace por encargo a partir de tus planos.", en: "Instagram depends on the platform's approval; each 3D model is made to order from your plans." },
     plus: { es: "Todo lo de Growth, y además:", en: "Everything in Growth, plus:" },
     lines: [
-      { key: "social", name: { es: "Instagram desde el mismo sitio", en: "Instagram from the same place" }, state: "preparing" },
-      { key: "model3d", name: { es: "Modelos 3D incluidos por encargo", en: "3D models included, per order" }, state: "request" },
+      { key: "social", name: { es: "Instagram desde el mismo sitio", en: "Instagram from the same place" }, state: "preparing", note: { es: "En preparación · depende de la aprobación de la plataforma", en: "In preparation · depends on the platform's approval" } },
+      { key: "model3d", name: { es: "Modelos 3D incluidos por encargo", en: "3D models included, per order" }, state: "request", note: { es: "Por encargo · a partir de tus planos", en: "To order · from your plans" } },
     ],
     cta: { es: "Solicita una propuesta", en: "Request a proposal" },
     href: "/contact",
@@ -122,7 +126,7 @@ export const matrixWords = {
     detail: { es: "Cada modelo es un encargo: nos envías los planos, lo construimos y lo comprobamos.", en: "Each model is an order: you send the plans, we build it and we check it." },
     cta: { es: "Pide un modelo", en: "Ask for a model" },
   },
-  adsNote: { es: "Recogemos los leads que generan tus anuncios. Las campañas y el presupuesto publicitario siguen siendo tuyos.", en: "We take in the leads your ads produce. The campaigns and the advertising budget stay yours." },
+  adsNote: { es: "Más adelante recogeremos los leads de los anuncios que ya tienes. Las campañas y el presupuesto publicitario siguen siendo tuyos.", en: "Later we will take in the leads from the ads you already run. The campaigns and the advertising budget stay yours." }, // HANDOVER_1021 C-10
   // TEXTS_1013 §6b M-4, M-5, M-6: the included CRM; the four CRMs certified on staging with no production connection; no Google Sheets line.
   crmNote: { es: "Tus leads viven en el CRM incluido. Si ya usas HubSpot, Pipedrive, Zoho o Salesforce, lo preparamos contigo cuando esté listo.", en: "Your leads live in the included CRM. If you already use HubSpot, Pipedrive, Zoho or Salesforce, we prepare it with you when it is ready." },
   crmNoteProof: { es: "HubSpot, Pipedrive, Zoho y Salesforce están certificados en nuestro entorno de pruebas; en producción no hay ninguna conexión.", en: "HubSpot, Pipedrive, Zoho and Salesforce are certified in our test environment; in production there is no connection." },

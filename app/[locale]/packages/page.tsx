@@ -41,7 +41,6 @@ export default async function PackagesPage({ params }: { params: { locale: strin
   const pk = d.packages;
   const p = (path: string) => localePath(locale, path);
   const featureName = (k: string) => (pk.featureNames as Record<string, string>)[k] ?? k;
-  const limitName = (k: string) => (pk.limits as Record<string, string>)[k] ?? k;
   const planLine = (k: string) => (pk.planLines as Record<string, string>)[k] ?? "";
   const aligned = trialPlanAligned();
 
@@ -95,18 +94,8 @@ export default async function PackagesPage({ params }: { params: { locale: strin
                         </ul>
                       </>
                     )}
-                    <dl className="mt-6 divide-y divide-line-hairline border-y border-line-hairline">
-                      {/* R19 §11: the monthly figure is not printed until API confirms what it counts (E-4). */}
-                      {(["offices", "seats"] as const).map((k) => {
-                        const v = plan.limits[k];
-                        return (
-                          <div key={k} className="flex items-baseline justify-between gap-4 py-3">
-                            <dt className="t-body-s text-text-secondary">{limitName(k)}</dt>
-                            <dd className="t-heading-m tnum text-text-primary">{v === null ? pk.limits.unlimited : new Intl.NumberFormat(locale === "es" ? "es-ES" : "en-GB", { useGrouping: "always" } as Intl.NumberFormatOptions).format(v)}</dd>
-                          </div>
-                        );
-                      })}
-                    </dl>
+                    {/* HANDOVER_1021 C-6 (owner 20.10.): no field of the catalogue's limits renders on a public page until the owner sets them
+                        (OWNER_TEMPLATE_PACKAGE_LIMITS_1021_v1). The amount block below says where the price is stated. */}
                     <div className="mt-6 rounded-lg bg-surface-sunken px-4 py-3">
                       <p className="t-body-s font-medium text-text-primary">{pk.amount}</p>
                       <p className="mt-0.5 t-caption text-text-muted">{pk.amountLine}</p>

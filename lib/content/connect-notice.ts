@@ -50,8 +50,8 @@ export const connectNoticeSheets: {
     {
       heading: { en: "What it is used for", es: "Para qué se usa" },
       text: {
-        en: "Answering enquiries on your agency's behalf, qualifying and prioritising them, keeping each customer as one record, and creating tasks for your team. Follow up messages are sent only where the person has given permission for that channel.",
-        es: "Para responder a las consultas en nombre de tu agencia, cualificarlas y priorizarlas, mantener a cada cliente como una sola ficha y crear tareas para tu equipo. Los mensajes de seguimiento solo se envían cuando la persona ha dado su permiso para ese canal.",
+        en: "Answering enquiries on your agency's behalf, qualifying and prioritising them, keeping each enquiry on its record, and creating tasks for your team. Follow up messages are sent only where the person has given permission for that channel.",
+        es: "Para responder a las consultas en nombre de tu agencia, cualificarlas y priorizarlas, guardar cada consulta en su ficha y crear tareas para tu equipo. Los mensajes de seguimiento solo se envían cuando la persona ha dado su permiso para ese canal.",
       },
     },
     { heading: { en: "AI", es: "IA" }, pending: true },

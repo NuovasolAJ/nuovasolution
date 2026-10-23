@@ -31,7 +31,7 @@ export const appWords = {
     demo: { es: "Datos de demostración: la semana del ejemplo de la página de inicio. No son datos de ninguna agencia.", en: "Demonstration data: the week of the home page example. Not any agency's data." },
     /** The three questions (final order §8). */
     handled: { title: { es: "Lo que atendió Nuova", en: "What Nuova handled" }, line: { es: "{answered} consultas respondidas y registradas de {received} recibidas", en: "{answered} enquiries answered and recorded out of {received} received" } },
-    chances: { title: { es: "Chances que han surgido", en: "Chances that came up" }, line: { es: "{viewings} visitas pedidas, {confirmed} confirmadas por el equipo · {valuations} valoraciones pedidas", en: "{viewings} viewings asked for, {confirmed} confirmed by the team · {valuations} valuations asked for" } },
+    chances: { title: { es: "Chances que han surgido", en: "Chances that came up" }, line: { es: "{viewings} visitas pedidas, {confirmed} acordadas por el equipo · {valuations} valoraciones pedidas", en: "{viewings} viewings asked for, {confirmed} agreed by the team · {valuations} valuations asked for" } /* HANDOVER_1021 A-16 */ },
     next: { title: { es: "Lo que toca hacer", en: "What to do next" }, line: { es: "{open} cosas esperan a una persona de tu equipo", en: "{open} things wait for a person in your team" } },
     detailsTitle: { es: "Los detalles", en: "The details" },
     period: { es: "Periodo", en: "Period" },
@@ -43,7 +43,7 @@ export const appWords = {
       received: { es: "Consultas recibidas", en: "Enquiries received" },
       answered: { es: "Respondidas", en: "Answered" },
       viewings_requested: { es: "Visitas pedidas", en: "Viewings asked for" },
-      viewings_confirmed: { es: "Visitas confirmadas por el equipo", en: "Viewings confirmed by the team" },
+      viewings_confirmed: { es: "Visitas acordadas por el equipo", en: "Viewings agreed by the team" }, // COPY_1019 R-10
       valuations_requested: { es: "Valoraciones pedidas", en: "Valuations asked for" },
       tasks_closed: { es: "Tareas cerradas por el equipo", en: "Tasks closed by the team" },
       tasks_open: { es: "Tareas abiertas", en: "Tasks open" },

@@ -182,7 +182,7 @@ export const enquiries: Enquiry[] = [
       { k: { es: "Plazo", en: "Timing" }, v: { es: "visita de valoración esta semana", en: "valuation visit this week" } },
       { k: { es: "Escriben en", en: "Write in" }, v: { es: "alemán", en: "German" } },
     ],
-    next: { es: "Resultado: la ficha está abierta y el borrador espera a una persona que lo revise y lo envíe.", en: "Result: the record is open and the draft waits for a person to review and send it." },
+    next: { es: "Resultado: la consulta está en la ficha, sin respuesta automática; la contesta una persona de tu equipo.", en: "Result: the enquiry is on the record, without an automatic reply; a person on your team answers it." },
   },
   {
     channel: "webform",
@@ -267,7 +267,7 @@ export const heroWords = {
   /** The situation, as one line inside the panel. */
   situationLine: { es: "Martes 11:20 · Marcos está en una visita hasta las 12:00 · Nuova atiende lo que llega", en: "Tuesday 11:20 · Marcos is at a viewing until 12:00 · Nuova handles what arrives" },
   /** The limit, with the claim (R19 §7): what runs today, said inside the product. Copy checks the wording (C1). */
-  stateToday: { es: "Hoy: WhatsApp y email, respuestas en español. En otro idioma no se envía nada automáticamente.", en: "Today: WhatsApp and email, replies in Spanish. In another language nothing is sent automatically." },
+  stateToday: { es: "Hoy respondemos en español. En otro idioma no se envía nada automáticamente.", en: "Today we answer in Spanish. In another language nothing is sent automatically." }, // WEBSITE_COPY_HANDOVER_1021 §E
   surfaceLabel: { es: "Ejemplo: una consulta por WhatsApp, la respuesta con los datos del inmueble, lo que queda guardado y el aviso al equipo", en: "Example: a WhatsApp enquiry, the reply with the listing's data, what is saved and the alert to the team" },
 };
 
@@ -293,19 +293,19 @@ export const chapters: Chapter[] = [
     title: { es: "Cuatro consultas en una hora, mientras estás con un cliente.", en: "Four enquiries in one hour, while you are with a customer." },
     line: { es: "Marcos enseña la villa de Elviria de 11:00 a 12:00. En ese rato escriben una compradora por WhatsApp, unos propietarios por email, una inquilina por el formulario web y llama un comprador.", en: "Marcos is showing the villa in Elviria from 11:00 to 12:00. In that hour a buyer writes on WhatsApp, two owners by email, a tenant through the web form, and a buyer calls." },
     inbound: { es: "Cuatro consultas por cuatro canales, con nadie en la oficina.", en: "Four enquiries on four channels, with nobody at the desk." },
-    did: { es: "Las atiende por el canal por el que llegaron y abre una ficha por cliente.", en: "Handles each on the channel it arrived on and opens a record per customer." },
-    result: { es: "Cuando Marcos termina, las cuatro tienen respuesta o borrador, y ficha.", en: "When Marcos finishes, all four have a reply or a draft, and a record." },
+    did: { es: "Las atiende por el canal por el que llegaron y abre una ficha por consulta.", en: "Handles each on the channel it arrived on and opens a record per enquiry." }, // COPY_1019 R-11
+    result: { es: "Cuando Marcos termina, las cuatro tienen ficha y tres tienen respuesta.", en: "When Marcos finishes, all four have a record and three have a reply." },
     state: { es: "Disponible hoy: WhatsApp y email. Prototipo: el formulario web y la llamada.", en: "Available today: WhatsApp and email. Prototype: the web form and the phone call." },
   },
   {
     key: "reply",
     eyebrow: { es: "Nuova responde y actualiza la ficha", en: "Nuova answers and updates the record" },
-    title: { es: "Cada cliente recibe una respuesta concreta, y lo que pide queda en su ficha.", en: "Every customer gets a concrete reply, and what they ask for goes on their record." },
-    line: { es: "Zona, presupuesto, uso y plazo quedan claros desde la primera respuesta. Nada se compromete: ni precio, ni fecha, ni disponibilidad. Si el cliente escribe más tarde por otro canal, con su código queda en la misma ficha.", en: "Area, budget, use and timing are clear from the first reply. Nothing is committed: no price, no date, no availability. If the customer writes later on another channel, their code keeps them on the same record." },
+    title: { es: "El cliente recibe una respuesta concreta, y lo que pide queda en su ficha.", en: "The customer gets a concrete reply, and what they ask for goes on their record." }, // COPY_1019 R-4
+    line: { es: "Zona, presupuesto, uso y plazo quedan claros desde la primera respuesta. Nada se compromete: ni precio, ni fecha, ni disponibilidad.", en: "Area, budget, use and timing are clear from the first reply. Nothing is committed: no price, no date, no availability." }, // COPY_1019 R-5: the customer-code sentence removed (not present in production)
     inbound: { es: "Una pregunta por WhatsApp, un email en alemán, un formulario, una llamada.", en: "A WhatsApp question, a German email, a web form, a call." },
-    did: { es: "Responde con los datos de tu cartera o prepara el borrador, y guarda lo que pide cada cliente.", en: "Replies with your portfolio's data or prepares the draft, and keeps what each customer asks for." },
-    result: { es: "Una ficha al día por cliente y, donde hace falta, una tarea con fecha.", en: "An up-to-date record per customer and, where needed, a dated task." },
-    state: { es: "Disponible hoy: respuestas en español por WhatsApp y email, y la ficha. En otro idioma no se envía nada automáticamente; el borrador y la tarea están en pruebas. El código de cliente entre canales está implementado y pendiente de aceptación.", en: "Available today: replies in Spanish on WhatsApp and email, and the record. In another language nothing is sent automatically; the draft and the task are in testing. The customer code across channels is implemented and awaiting acceptance." },
+    did: { es: "Responde en español con los datos de tu cartera y guarda lo que pide cada cliente; en otro idioma deja la consulta en la ficha para tu equipo.", en: "Replies in Spanish with your portfolio's data and keeps what each customer asks for; in another language it leaves the enquiry on the record for your team." },
+    result: { es: "Una ficha al día por consulta y, donde hace falta, una tarea con fecha.", en: "An up-to-date record per enquiry and, where needed, a dated task." }, // HANDOVER_1021 A-5
+    state: { es: "Disponible hoy: respuestas en español por WhatsApp y email, y la ficha. En otro idioma no se envía nada automáticamente.", en: "Available today: replies in Spanish on WhatsApp and e-mail, and the record. In another language nothing is sent automatically." }, // HANDOVER_1021 A-3
   },
   {
     key: "match",
@@ -320,12 +320,12 @@ export const chapters: Chapter[] = [
   {
     key: "task",
     eyebrow: { es: "El aviso y la mañana siguiente", en: "The alert and the next morning" },
-    title: { es: "Cuando una consulta importa, tu equipo lo sabe al momento. A la mañana siguiente sabe qué va primero y por qué.", en: "When an enquiry matters, your team knows at once. The next morning it knows what comes first and why." },
-    line: { es: "El aviso llega por email a la persona que toca, con el motivo. El asistente de la mañana ordena el día: la consulta importante, por qué, y el siguiente paso. Elena la toma, propone la hora a Laura y la cierra: tres pasos, cada uno visible.", en: "The alert reaches the right person by email, with the reason. The morning assistant orders the day: the important enquiry, why, and the next step. Elena takes it, proposes the time to Laura and closes it: three steps, each one visible." },
+    title: { es: "Cuando una consulta importa, tu equipo recibe un aviso por email. A la mañana siguiente sabe qué va primero y por qué.", en: "When an enquiry matters, your team gets an e-mail alert. The next morning it knows what comes first and why." }, // COPY_1019 R-7
+    line: { es: "El aviso llega por email a la persona que toca, con el motivo, todavía sin horario de oficina. El asistente de la mañana ordena el día: la consulta importante, por qué, y el siguiente paso. Elena la toma, propone la hora a Laura y la cierra: tres pasos, cada uno visible.", en: "The alert reaches the right person by email, with the reason. The morning assistant orders the day: the important enquiry, why, and the next step. Elena takes it, proposes the time to Laura and closes it: three steps, each one visible." },
     inbound: { es: "La consulta de Laura, con inmueble, zona y presupuesto concretos.", en: "Laura's enquiry, with a property, an area and a budget named." },
-    did: { es: "Avisa a Elena al momento y, a la mañana siguiente, le dice qué va primero y por qué.", en: "Alerts Elena at once and, the next morning, tells her what comes first and why." },
+    did: { es: "Avisa a Elena por email y, a la mañana siguiente, le dice qué va primero y por qué.", en: "Alerts Elena by e-mail and, the next morning, tells her what comes first and why." }, // HANDOVER_1021 A-15
     result: { es: "Elena propone el jueves a las 10:00; Laura acepta; queda en la ficha.", en: "Elena proposes Thursday at 10:00; Laura accepts; it goes on the record." },
-    state: { es: "Disponible hoy: el aviso por email y la tarea (tomar, cerrar). En pruebas: el asistente que explica el orden.", en: "Available today: the alert by email and the task (take, close). In testing: the assistant that explains the order." },
+    state: { es: "Disponible hoy: el aviso por email y la tarea (tomar, cerrar). El aviso llega cuando entra la consulta, todavía sin horario de oficina. En pruebas: el asistente que explica el orden.", en: "Available today: the alert by e-mail and the task (take, close). The alert arrives when the enquiry does, without office hours yet. In testing: the assistant that explains the order." }, // COPY_1019 R-8
   },
   {
     key: "followup",
@@ -341,10 +341,10 @@ export const chapters: Chapter[] = [
     key: "result",
     eyebrow: { es: "La semana, en cifras", en: "The week, in figures" },
     title: { es: "Al final de la semana sabes qué atendió Nuova, qué oportunidades hay y qué toca hacer.", en: "At the end of the week you know what Nuova handled, which opportunities there are and what to do next." },
-    line: { es: "Un resumen corto llega el lunes por email. El informe completo, con el periodo, la base de datos y las acciones pendientes, está en tu acceso de agencia. Respondida no es lo mismo que entregada: lo que llega al cliente aún no se mide.", en: "A short summary arrives on Monday by email. The full report, with the period, the data behind it and the open actions, is in your agency login. Answered is not delivered: what reaches the customer is not measured yet." },
+    line: { es: "El informe completo, con el periodo, la base de datos y las acciones pendientes, está en tu acceso de agencia. Un resumen por email está en preparación. Respondida no es lo mismo que entregada: lo que llega al cliente aún no se mide.", en: "The full report, with the period, the data behind it and the open actions, is in your agency login. An e-mail summary is being prepared. Answered is not the same as delivered: what reaches the customer is not measured yet." }, // HANDOVER_1021 A-11
     inbound: { es: "Todo lo registrado en la semana en los canales conectados.", en: "Everything recorded in the week on the connected channels." },
     did: { es: "Cuenta lo atendido, las oportunidades y lo que espera a una persona.", en: "Counts what was handled, the opportunities and what waits for a person." },
-    result: { es: "Tres cifras el lunes y el informe completo en tu acceso.", en: "Three figures on Monday and the full report in your login." },
+    result: { es: "Tres cifras y el informe completo en tu acceso; el email del lunes, en preparación.", en: "Three figures and the full report in your login; Monday's e-mail, in preparation." },
     state: { es: "El informe en el acceso está disponible; el email del lunes se ha enviado una vez y aún no es un envío regular.", en: "The report in the login is available; Monday's email has been sent once and is not a regular send yet." },
   },
 ];
@@ -379,9 +379,9 @@ export const storyWords = {
     desk: { es: "Nadie en la oficina", en: "Nobody at the desk" },
     arriving: { es: "Mientras tanto, llega", en: "Meanwhile, arriving" },
     answered: { es: "Respondida", en: "Replied" },
-    drafted: { es: "Borrador", en: "Draft" },
+    drafted: { es: "Registrada", en: "Recorded" },
     noted: { es: "Anotada", en: "Noted" },
-    after: { es: "Cuando Marcos termina la visita, las cuatro consultas tienen ficha: tres con respuesta, una con borrador.", en: "When Marcos finishes the viewing, all four enquiries have a record: three with a reply, one with a draft." },
+    after: { es: "Cuando Marcos termina la visita, las cuatro consultas tienen ficha: tres con respuesta, y la que llegó en alemán sin respuesta automática, porque hoy solo respondemos en español.", en: "When Marcos finishes the viewing, all four enquiries have a record: three with a reply, and the one in German without an automatic reply, because today we only answer in Spanish." }, // HANDOVER_1021 A-6
   },
   reply: {
     pick: { es: "Elige el canal", en: "Pick the channel" },
@@ -391,15 +391,14 @@ export const storyWords = {
     repliedPhone: { es: "Lo que hace el asistente", en: "What the assistant does" },
     noted: { es: "Ficha actualizada", en: "Record updated" },
     notedAt: { es: "martes 11:23", en: "Tuesday 11:23" },
-    continuity: { es: "Si Laura escribe después por email, su código de cliente la deja en esta misma ficha.", en: "If Laura writes later by email, her customer code keeps her on this same record." },
     formTitle: { es: "Formulario de tu web", en: "Your website's form" },
     formReply: { es: "Respuesta por email", en: "Reply by email" },
     emailSubject: { es: "Asunto", en: "Subject" },
     emailSubjectKeller: "Re: Bewertung unserer Villa in Elviria",
     emailSubjectKellerTranslated: { es: "Re: Valoración de nuestra villa en Elviria", en: "Re: Valuation of our villa in Elviria" },
     /** The held reply (R19 §2, §7): a draft is a draft, never shown as sent. */
-    heldTitle: { es: "Borrador preparado · no enviado", en: "Draft prepared · not sent" },
-    heldLine: { es: "El aviso de IA solo está aprobado en español, así que Nuova no envía nada en alemán: deja el borrador y una tarea para una persona.", en: "The AI notice is approved in Spanish only, so Nuova sends nothing in German: it leaves the draft and a task for a person." },
+    heldTitle: { es: "Sin respuesta automática", en: "No automatic reply" },
+    heldLine: { es: "El email llegó en alemán y hoy solo respondemos en español: Nuova no envía nada. La consulta queda registrada en la ficha y la contesta una persona de tu equipo.", en: "The e-mail arrived in German and today we only answer in Spanish: Nuova sends nothing. The enquiry is recorded and a person on your team answers it." }, // HANDOVER_1021 §E
     earlier: { es: "Antes, a las 11:20: la pregunta de Laura y la respuesta con los datos del piso (la del primer bloque de la página).", en: "Earlier, at 11:20: Laura's question and the reply with the flat's data (the one in the first block of the page)." },
     callIncoming: { es: "Llamada entrante", en: "Incoming call" },
     callAnswered: { es: "Atendida por el asistente · en español", en: "Answered by the assistant · in Spanish" },
@@ -436,13 +435,13 @@ export const storyWords = {
     items: {
       es: [
         { who: "Laura Serrano", what: "Quiere ver el piso de Estepona la semana que viene · para vivir todo el año", why: "Nombró inmueble, zona y presupuesto", next: "Proponerle día y hora por WhatsApp" },
-        { who: "Peter y Anna Keller", what: "Valoración de una villa en Elviria · borrador en alemán pendiente", why: "Propietarios que quieren vender; piden cita esta semana", next: "Revisar el borrador, enviarlo y proponer la visita" },
+        { who: "Peter y Anna Keller", what: "Valoración de una villa en Elviria · email en alemán, sin respuesta automática", why: "Propietarios que quieren vender; piden cita esta semana", next: "Contestar al cliente y proponer una fecha para la visita" },
         { who: "Álvaro Pons", what: "Rellamada por la villa de Elviria · precio y margen", why: "Pidió que le llamen por la tarde (+34 600 123 456)", next: "Llamar a partir de las 16:00" },
         { who: "Sofía Lamas", what: "Alquiler de larga temporada en Fuengirola", why: "Sin fecha; a partir de enero", next: "Enviar lo disponible en alquiler" },
       ],
       en: [
         { who: "Laura Serrano", what: "Wants to see the flat in Estepona next week · to live all year round", why: "She named a property, an area and a budget", next: "Propose a day and time on WhatsApp" },
-        { who: "Peter and Anna Keller", what: "Valuation of a villa in Elviria · German draft pending", why: "Owners who want to sell; they ask for an appointment this week", next: "Review the draft, send it and propose the visit" },
+        { who: "Peter and Anna Keller", what: "Valuation of a villa in Elviria · e-mail in German, no automatic reply", why: "Owners who want to sell; they ask for an appointment this week", next: "Answer the customer and propose a date for the viewing" },
         { who: "Álvaro Pons", what: "Callback about the villa in Elviria · price and room to negotiate", why: "He asked to be called in the afternoon (+34 600 123 456)", next: "Call from 16:00" },
         { who: "Sofía Lamas", what: "Long-term rental in Fuengirola", why: "No date; from January", next: "Send what is available to rent" },
       ],
@@ -485,16 +484,16 @@ export const storyWords = {
     period: { es: "Semana del lunes al domingo", en: "Monday to Sunday" },
     basis: { es: "Base: consultas registradas en Nuova en los canales conectados", en: "Basis: enquiries recorded in Nuova on the connected channels" },
     demo: { es: "Cifras de ejemplo · no son datos de ninguna agencia", en: "Example figures · not any agency's data" },
-    handled: { title: { es: "Lo que atendió Nuova", en: "What Nuova handled" }, value: "23", line: { es: "consultas respondidas y registradas · WhatsApp 11 · email 7 · web 3 · teléfono 2 · la entrega al cliente no se mide", en: "enquiries answered and recorded · WhatsApp 11 · email 7 · web 3 · phone 2 · delivery to the customer is not measured" } },
-    chances: { title: { es: "Oportunidades que han surgido", en: "Opportunities that came up" }, value: "6", line: { es: "visitas pedidas, 4 confirmadas por el equipo (la de Laura entre ellas) · 2 valoraciones pedidas · 4 propuestas enviadas", en: "viewings asked for, 4 confirmed by the team (Laura's among them) · 2 valuations asked for · 4 proposals sent" } },
-    next: { title: { es: "Lo que toca hacer", en: "What to do next" }, value: "2", line: { es: "cosas esperan a una persona: la cita de los Keller y la respuesta de Sofía", en: "things wait for a person: the Kellers' appointment and Sofía's reply" } },
+    handled: { title: { es: "Lo que atendió Nuova", en: "What Nuova handled" }, value: "23", line: { es: "consultas respondidas y registradas · WhatsApp 13 · email 10 · la entrega al cliente no se mide", en: "enquiries answered and recorded · WhatsApp 13 · email 10 · delivery to the customer is not measured" } /* COPY_1019 R-10 */ },
+    chances: { title: { es: "Oportunidades que han surgido", en: "Opportunities that came up" }, value: "6", line: { es: "visitas pedidas, 4 acordadas por el equipo (la de Laura entre ellas) · 2 valoraciones pedidas", en: "viewings asked for, 4 agreed by the team (Laura's among them) · 2 valuations asked for" } /* HANDOVER_1021 A-13 */ },
+    next: { title: { es: "Lo que toca hacer", en: "What to do next" }, value: "2", line: { es: "cosas esperan a una persona: la valoración de los Keller y la respuesta de Sofía", en: "things wait for a person: the Kellers' valuation and Sofía's reply" } },
     openTitle: { es: "Sigue abierto", en: "Still open" },
     open: {
-      es: ["Valoración Keller · falta fijar la cita", "Sofía Lamas · esperando su respuesta"],
-      en: ["Keller valuation · appointment still to fix", "Sofía Lamas · waiting for her reply"],
+      es: ["Valoración Keller · falta proponer la visita", "Sofía Lamas · esperando su respuesta"],
+      en: ["Keller valuation · the visit still to propose", "Sofía Lamas · waiting for her reply"],
     },
-    emailTitle: { es: "El email del lunes", en: "Monday's email" },
-    emailLine: { es: "Lo esencial en tres cifras y un botón.", en: "The essentials in three figures and one button." },
+    emailTitle: { es: "El email del lunes · en preparación", en: "Monday's email · in preparation" },
+    emailLine: { es: "Lo esencial en tres cifras y un botón, cuando el envío semanal esté activo.", en: "The essentials in three figures and one button, once the weekly send is active." },
     button: { es: "Ver el informe completo", en: "See the full report" },
     inLogin: { es: "En tu acceso de agencia: periodo, base de datos, evolución y acciones pendientes.", en: "In your agency login: the period, the data behind it, the trend and the open actions." },
   },

@@ -81,8 +81,8 @@ export const capabilities: Capability[] = [
       // Outlook and Microsoft 365: no line (TEXTS_1013 §6b M-3: no credential, no entry point). Copy's FAQ answers the question.
     ],
     scenario: {
-      en: "A buyer writes on WhatsApp on a Tuesday morning, while the agent is at a viewing, asking whether the flat in Estepona can be viewed. The message is answered on WhatsApp in her language, and the conversation is recorded against the buyer for the agent after the viewing.", // WORKING (master order 2026-10-10); was WCR-055
-      es: "Una compradora escribe por WhatsApp un martes por la mañana, mientras el agente está en una visita, para preguntar si se puede ver el piso de Estepona. El mensaje se responde por WhatsApp en su idioma, y la conversación queda registrada en la ficha de la compradora para el agente al terminar la visita.",
+      en: "A buyer writes on WhatsApp on a Tuesday morning, while the agent is at a viewing, asking whether the flat in Estepona can be viewed. The message is answered on WhatsApp in Spanish, and the conversation is recorded against the buyer for the agent after the viewing.", // WORKING (master order 2026-10-10); was WCR-055
+      es: "Una compradora escribe por WhatsApp un martes por la mañana, mientras el agente está en una visita, para preguntar si se puede ver el piso de Estepona. El mensaje se responde por WhatsApp en español, y la conversación queda registrada en la ficha de la compradora para el agente al terminar la visita.",
     },
     fits: [
       { en: "Gmail", es: "Gmail" },
@@ -137,7 +137,7 @@ export const capabilities: Capability[] = [
     // Public H1 and lead limited to what is proven (audit Z07, R27, LAUNCH_COPY_v1 §6.1): the connected channels on one record, included
     // from the start. Cross-channel identity, the team's CRM view, Google Sheets and external CRMs are
     // tracked in the launch blocker register, not stated on the page.
-    h1: { en: "Your connected channels, on one record.", es: "Tus canales conectados, en una sola ficha." }, // COPY_DELTAS_1001 D-84
+    h1: { en: "Your connected channels, one record per enquiry.", es: "Tus canales conectados, una ficha por consulta." }, // COPY_DELTAS_1001 D-84; COPY_1019 R-11
     lead: {
       // WCR-070, first sentence; final wording COPY_DELTAS_1001 D-85 (no qualification claim, LEAD_TRUTH_INPUT_v1 §1).
       en: "A CRM is included from the start. Each enquiry becomes a lead with what the customer asked for and the conversation so far.",

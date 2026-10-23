@@ -40,12 +40,11 @@ export function briefTasks(locale: Locale, listHref: string): MailTask[] {
       open,
     },
     {
-      kind: es ? "Respuesta en espera" : "Reply on hold",
+      kind: es ? "Sin respuesta automática" : "No automatic reply",
       who: es ? "Peter y Anna Keller · Email" : "Peter and Anna Keller · Email",
-      lines: es ? ["Quieren vender su villa en Elviria y piden una valoración esta semana.", "Escriben en alemán: Nuova no envía nada en alemán."] : ["They want to sell their villa in Elviria and ask for a valuation this week.", "They write in German: Nuova sends nothing in German."],
-      draft: { label: es ? "Borrador preparado · no enviado" : "Draft prepared · not sent", text: "Hallo Anna, hallo Peter, vielen Dank für Ihre Nachricht. Für die Bewertung Ihrer Villa in Elviria meldet sich ein Kollege unserer Agentur bei Ihnen …" },
+      lines: es ? ["Quieren vender su villa en Elviria y piden una valoración esta semana.", "Escriben en alemán: hoy solo respondemos en español, así que Nuova no ha enviado nada."] : ["They want to sell their villa in Elviria and ask for a valuation this week.", "They write in German: today we only answer in Spanish, so Nuova has sent nothing."],
       state: es ? "Abierta · desde ayer 11:24" : "Open · since yesterday 11:24",
-      step: es ? "Revisar el borrador, enviarlo y proponer la visita" : "Review the draft, send it and propose the visit",
+      step: es ? "Contestar al cliente y proponer una fecha para la visita" : "Answer the customer and propose a date for the viewing", // HANDOVER_1021 A-8
       href: listHref,
       open,
     },

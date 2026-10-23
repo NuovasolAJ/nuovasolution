@@ -259,13 +259,12 @@ export function Story({ locale }: { locale: Locale }) {
                             </div>
                             <Rise delay={0.25}>
                               {e.held ? (
-                                // The held reply (R19 §2, §7): a draft, labelled as a draft, with the reason. Nothing was sent.
+                                // The held e-mail (HANDOVER_1021 §E, A-6/A-7): nothing is sent and no draft exists in production; the enquiry is
+                                // on the record and a person answers it. The notice is what a Spanish reply would carry; here nothing was sent.
                                 <div className="rounded-lg border border-dashed border-ink-300 bg-[#fbfaf7] p-4" data-story-reply data-story-held>
                                   <p className="flex flex-wrap items-baseline justify-between gap-x-3 t-caption"><span className="font-semibold text-ink-950">{l(W.reply.heldTitle)}</span><span className="text-text-muted">{l(W.common.assistant)}</span></p>
-                                  <p className="mt-2 t-caption text-text-muted"><span className="font-medium text-text-secondary">{l(W.reply.emailSubject)}:</span> <Translated locale={locale} lang="de" original={W.reply.emailSubjectKeller} translated={l(W.reply.emailSubjectKellerTranslated)} as="span" /></p>
-                                  {notice && <p className="mt-2 border-b border-ink-100 pb-2 text-[0.9375rem] leading-[1.5] text-ink-800" lang={e.lang} data-story-notice>{e.notice}</p>}
-                                  <Translated locale={locale} lang={e.lang} original={e.reply} translated={l(e.translation.reply)} className="mt-2 text-[1rem] leading-[1.55] text-ink-900" />
-                                  <p className="mt-3 border-t border-ink-100 pt-2 t-caption text-text-secondary">{l(W.reply.heldLine)}</p>
+                                  <p className="mt-2 text-[1rem] leading-[1.55] text-ink-900">{l(W.reply.heldLine)}</p>
+                                  {notice && <p className="mt-3 border-t border-ink-100 pt-2 text-[0.9375rem] leading-[1.5] text-ink-800" data-story-notice>{l(W.common.noticeSample)} {e.notice}</p>}
                                 </div>
                               ) : (
                                 <div className="rounded-lg border border-[#b9dcc0] bg-[#eef8f0] p-4" data-story-reply>
@@ -308,7 +307,6 @@ export function Story({ locale }: { locale: Locale }) {
                         <p className="mt-1 text-[1.125rem] font-semibold leading-tight text-ink-950">{e.who}</p>
                         <div className="mt-3"><Fields rows={e.recorded.map((r) => ({ k: l(r.k), v: l(r.v) }))} /></div>
                         <p className="mt-3 flex items-start gap-2 t-body-s text-text-secondary"><ArrowRight size={14} className="mt-1 shrink-0 text-text-accent" aria-hidden="true" />{l(e.next)}</p>
-                        {channel === "whatsapp" && <p className="mt-3 border-t border-ink-100 pt-3 t-caption text-text-muted" data-story-continuity>{l(W.reply.continuity)}</p>}
                       </div>
                     </m.div>
                   </AnimatePresence>

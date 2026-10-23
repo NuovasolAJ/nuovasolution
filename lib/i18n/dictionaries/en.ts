@@ -6,9 +6,9 @@
 export const en = {
   meta: {
     siteName: "NuovaSolution",
-    title: "NuovaSolution. The operating layer of a real estate agency",
+    title: "NuovaSolution · Enquiries answered and organised for real estate agencies", // HANDOVER_1021 D-2
     description:
-      "Enquiries answered, understood and carried forward in one system, with one record of each customer. Built for real estate agencies in Spain.",
+      "We answer enquiries on WhatsApp and e-mail in Spanish, record each one and leave your team a clear task. Built for real estate agencies in Spain." /* HANDOVER_1021 D-3 */,
   },
 
   nav: {
@@ -155,7 +155,7 @@ export const en = {
     hero: {
       eyebrow: "For real estate agencies in Spain",
       h1: "Answered when it arrives", // COPY_DELTAS_1001 D-81
-      lead: "A buyer writes while you are at a viewing. Nuova answers in her language, records what she asked for and leaves your team one task.", // WORKING (master order 2026-10-10 §4, §5); was COPY_HERO_1003 §1
+      lead: "A buyer writes while you are at a viewing. Nuova answers her in Spanish, records what she asked for and leaves your team one task.", // COPY_1019 R-2 // WORKING (master order 2026-10-10 §4, §5); was COPY_HERO_1003 §1
       state: "Today in Spanish, for text enquiries on WhatsApp and email.", // COPY_HERO_1003 §1, the state line under the buttons
       qualifier: "On the channels you connect.",
       note: "14 days free. No payment.",
@@ -203,7 +203,7 @@ export const en = {
       eyebrow: "What Nuova does",
       // COPY_DELTAS_0929 D-02 to D-08: one journey of four steps that ends with a person acting; setup is not a step.
       h2: "From a message to a finished task",
-      lead: "The enquiry is answered in the customer's language. It becomes one record with what they asked for. A viewing request becomes a task, and one of your people takes it and closes it.",
+      lead: "The enquiry is answered in Spanish. It becomes a record with what was asked for, and a viewing request becomes a task one of your people takes and closes.", // COPY_1019 R-3
       steps: ["Answered", "Recorded", "Handed over", "Done"],
       stepsDetail: "Written by the assistant, and it says so. It agrees no price, no date and no condition.", // D-77
       cards: {
@@ -436,7 +436,7 @@ export const en = {
     // Interim implementer wording until COPY_DELTAS_0929; amounts and the period come from PRICING_AUTHORITY (O-7).
     noPaymentMethod: "No payment method",
     compareHeading: "What differs between the plans",
-    compareLead: "Each package builds on the one before and grows in size: offices, seats and the capacity of enquiries a month.", // final order 2026-10-12 §9: staged functions, not the same parts
+    compareLead: "Each package includes everything in the one before and adds features.", // final order 2026-10-12 §9: staged functions, not the same parts
     planColumn: "Plan",
     periodHeading: "Price and billing period",
     periodLine: "We state the price and the billing period in your proposal and on every invoice. Nothing is charged automatically.",

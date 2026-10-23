@@ -7,9 +7,9 @@ import type { Dictionary } from "./index";
 export const es: Dictionary = {
   meta: {
     siteName: "NuovaSolution",
-    title: "NuovaSolution. La capa operativa de una agencia inmobiliaria",
+    title: "NuovaSolution · Consultas respondidas y ordenadas para agencias inmobiliarias", // HANDOVER_1021 D-2
     description:
-      "Consultas respondidas, entendidas y llevadas hacia adelante en un solo sistema, con una sola ficha por cliente. Hecho para agencias inmobiliarias en España.",
+      "Respondemos en español a las consultas por WhatsApp y email, las registramos en una ficha y dejamos a tu equipo una tarea clara. Hecho para agencias inmobiliarias en España." /* HANDOVER_1021 D-3 */,
   },
 
   nav: {
@@ -139,7 +139,7 @@ export const es: Dictionary = {
     hero: {
       eyebrow: "Para agencias inmobiliarias en España",
       h1: "Respondida cuando llega", // COPY_DELTAS_1001 D-81
-      lead: "Una compradora escribe mientras estás en una visita. Nuova responde en su idioma, registra lo que ha pedido y deja una tarea a tu equipo.", // WORKING (orden maestra 2026-10-10 §4, §5); antes COPY_HERO_1003 §1
+      lead: "Una compradora escribe mientras estás en una visita. Nuova le responde en español, registra lo que ha pedido y deja una tarea a tu equipo.", // COPY_1019 R-2 (the home hero renders lib/content/home-story.ts) // WORKING (orden maestra 2026-10-10 §4, §5); antes COPY_HERO_1003 §1
       state: "Hoy en español, para consultas de texto por WhatsApp y email.", // COPY_HERO_1003 §1
       qualifier: "En los canales que conectes.",
       note: "14 días gratis. Sin pago.",
@@ -181,7 +181,7 @@ export const es: Dictionary = {
     flow: {
       eyebrow: "Qué hace Nuova",
       h2: "De un mensaje a una tarea terminada",
-      lead: "La consulta se responde en el idioma del cliente. Pasa a ser una ficha con lo que ha pedido. Una petición de visita pasa a ser una tarea, y alguien de tu equipo la toma y la cierra.",
+      lead: "La consulta se responde en español. Pasa a ser una ficha con lo que ha pedido, y una petición de visita pasa a ser una tarea que alguien de tu equipo toma y cierra.", // COPY_1019 R-3
       steps: ["Respondida", "Registrada", "Asignada", "Hecha"],
       stepsDetail: "Lo escribe el asistente, y lo dice. No acuerda precio, ni fecha, ni condición.", // D-77
       cards: {
@@ -399,7 +399,7 @@ export const es: Dictionary = {
     ],
     noPaymentMethod: "Sin método de pago",
     compareHeading: "En qué se diferencian los planes",
-    compareLead: "Cada paquete se construye sobre el anterior y crece en tamaño: oficinas, puestos y capacidad de consultas al mes.",
+    compareLead: "Cada paquete incluye todo lo del anterior y añade funciones.", // HANDOVER_1021 C-5
     planColumn: "Plan",
     periodHeading: "Precio y periodo de facturación",
     periodLine: "Indicamos el precio y el periodo de facturación en tu propuesta y en cada factura. No se cobra nada de forma automática.",

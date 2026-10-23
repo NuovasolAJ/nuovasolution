@@ -1,5 +1,6 @@
 import "server-only";
 import { integrationMode } from "./mode";
+import { siteUrl } from "@/lib/i18n/config";
 import { sessionToken } from "./server";
 import { BackendRefusal, tenantApi, type Json } from "./supabase";
 
@@ -271,10 +272,12 @@ export async function lookupSocialTarget(kind: "post" | "signal" | "listing", ke
  * Case "empty": a fresh workspace. Default: every state a screen can show, once.
  */
 function stubState(screen: SocialScreen, which: string | undefined): SocialState {
+  // The stub covers point at this deployment’s own sample photos (an https link, as the contract requires): the deployment host first, the site URL otherwise.
+  const own = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : siteUrl;
   const t = (h: number) => new Date(Date.UTC(2026, 8, 29, 9, 0, 0) - h * 3600 * 1000).toISOString();
   const listings = [
-    { title: "Villa in Nerja (synthetic)", location: "Nerja", price: 545000, last_seen_at: t(20), readiness: { ready: true, reasons: [], max_age_hours: 168 }, cover_url: null, cover_expires_at: null },
-    { title: "Apartment in Torrox Costa (synthetic)", location: "Torrox Costa", price: 219000, last_seen_at: t(20), readiness: { ready: true, reasons: [], max_age_hours: 168 }, cover_url: null, cover_expires_at: null },
+    { title: "Villa in Nerja (synthetic)", location: "Nerja", price: 545000, last_seen_at: t(20), readiness: { ready: true, reasons: [], max_age_hours: 168 }, cover_url: `${own}/media/world/listing-est118.webp`, cover_expires_at: t(-24 * 365 * 3) }, // F-R16-3: a cover on the stub (the site’s own licensed sample photo, an https link as the contract requires)
+    { title: "Apartment in Torrox Costa (synthetic)", location: "Torrox Costa", price: 219000, last_seen_at: t(20), readiness: { ready: true, reasons: [], max_age_hours: 168 }, cover_url: `${own}/media/world/listing-est204.webp`, cover_expires_at: t(-24 * 365 * 3) },
     { title: "Townhouse in Frigiliana (synthetic)", location: "Frigiliana", price: 389000, last_seen_at: t(200), readiness: { ready: false, reasons: ["listing_stale:200h"], max_age_hours: 168 } },
     { title: "Flat in Nerja, rights not documented (synthetic)", location: "Nerja", price: 175000, last_seen_at: t(1), readiness: { ready: false, reasons: ["source_rights_missing"], max_age_hours: 168 } },
   ];

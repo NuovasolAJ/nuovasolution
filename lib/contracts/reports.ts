@@ -86,11 +86,11 @@ function stubReport(): WeeklyReport {
     {
       period: { from: monday.toISOString(), to: sunday.toISOString(), timezone: "Europe/Madrid", label: null },
       generated_at: new Date(Date.UTC(2026, 9, 12, 6, 0, 0)).toISOString(),
-      basis: { channels: ["whatsapp", "email", "webform", "phone"], source: "nuova_records" },
-      counts: { received: 23, answered: 23, by_channel: { whatsapp: 11, email: 7, webform: 3, phone: 2 }, viewings_requested: 6, viewings_confirmed: 4, valuations_requested: 2, tasks_closed: 11, tasks_open: 2, proposals_sent: 4 },
+      basis: { channels: ["whatsapp", "email"], source: "nuova_records" }, // COPY_1019 R-10: only the channels that exist
+      counts: { received: 23, answered: 23, by_channel: { whatsapp: 13, email: 10 }, viewings_requested: 6, viewings_confirmed: 4, valuations_requested: 2, tasks_closed: 11, tasks_open: 2, proposals_sent: 4 },
       previous: { received: 19, answered: 19, tasks_closed: 9 },
       open_actions: [
-        { who: "Peter y Anna Keller", what: "Valoración de una villa en Elviria · falta fijar la cita", since: new Date(Date.UTC(2026, 9, 6, 9, 24)).toISOString() },
+        { who: "Peter y Anna Keller", what: "Valoración de una villa en Elviria · falta proponer la visita", since: new Date(Date.UTC(2026, 9, 6, 9, 24)).toISOString() },
         { who: "Sofía Lamas", what: "Alquiler de larga temporada en Fuengirola · esperando su respuesta", since: new Date(Date.UTC(2026, 9, 6, 9, 31)).toISOString() },
       ],
       plan: { code: "growth", trial: false },
