@@ -102,6 +102,17 @@ lane truth sheets, this repository); **Needed** is the signal that closes the ro
 | X-5 | 3D: no design variant as a furniture comparison; the viewer capture without its title bar; the slots prepared | **built**; the rotation and the pair are **missing** | `3D_ASSETS_REQUEST_1017.md` A-1, A-2 | 3D |
 | X-6 | Platform, packages, reporting and FAQ aligned: the phone out of the packages, "Capacidad: consultas al mes", limits with the claim, the setup answer | **built** | Copy's confirmation; the owner on prices | Copy, Owner |
 
+## F7. R20 incl. R20.1 (on deb9b66; build a76e6e1 = cba9ca6 + the cover-timer fix)
+
+| # | Point | State | Needed | Lane |
+|---|---|---|---|---|
+| S-1 | W1 Copy's one handover `WEBSITE_COPY_HANDOVER_1021.md`: the 38 rows and the feature-state table applied as written (`WEBSITE_R20_RETURN_v1.md` §2 names each) | **built** | Copy's and the Reviewer's reading of the rendered build | Copy, Reviewer |
+| S-2 | W1 F-R16-3: two stub listings carry a cover (the site's own licensed sample photos as https links) | **built** | the Reviewer on `/es/social/post`; Social's read model carries a real `cover_url` later | Reviewer, Social |
+| S-3 | W2 3D: the pair and the turn stay "Pendiente del equipo 3D" | unchanged, **open** | 3D's R20-11 | 3D |
+| S-4 | W3 the separate staging-backend build: `a76e6e1` / `dpl_3n3TwzpayrxptkGYNuWCih8qBJjW`, `/api/build` `mode: staging` | **built** | API's E28 browser test (two runs) and the Reviewer on that deployment | API, Reviewer |
+| S-5 | W4 the weekly report in a new layout on MAIL_SHELL_v3 (tiles, detail, open actions, one button), desktop and phone previews, Spanish shown (`mail/WEEKLY_REPORT_LAYOUT_1020.md`) | **built** | the owner's visual verdict, then Hosting H16 (one marked test mail to the owner's test address) | Owner, Hosting |
+| S-6 | Legal pages: Copy's v4 texts for a natural person are drafted; the pages on the build stay provisional and unlinked | unchanged | E14 signal, retention decision, counsel (DPA, liability), the purge path | Owner, API, Counsel, Hosting |
+
 ## F6. The R19 closing order of 2026-10-19 (on 4110566; build deb9b66)
 
 | # | Point (order §) | State | Needed | Lane |

@@ -40,3 +40,20 @@ holds no secret key, every user action is authorised by the user's own token). T
 
 Reply in `docs/website_redesign/` or in governance as you prefer; a one-line signal with the target ref's approval
 state is enough to start.
+
+## Delivered 2026-10-23 (R20 W3)
+
+The staging hold is released in `cba9ca6`; the staging preview project built the same commit against the pinned staging
+target with the variables it already held in Vercel (none named here, none in the repo):
+
+| | |
+|---|---|
+| Staging build (final) | `a76e6e1` / `dpl_3n3TwzpayrxptkGYNuWCih8qBJjW` · https://nuovasolution-staging-preview-j7f6e9t1u-nuovasolajs-projects.vercel.app (the first one of the day, `cba9ca6` / `dpl_7p5QvPY37bBjC5euejaQfrJaZMKp`, differs only by one client component of the social screen) |
+| `/api/build` | `{"commit":"a76e6e1a…","deployment":"dpl_3n3TwzpayrxptkGYNuWCih8qBJjW","env":"preview","mode":"staging"}` |
+| Ribbon | `data-env="staging"` on every page |
+| Routes | `/es/signup` 200 · `/es/login` 200 · `/es/onboarding` 307 → login (gate) |
+| Presentation build (stub), separate | `a76e6e1` / `dpl_GLRzbYXujgTNW1MvS6TboEyF889m` · https://nuovasolution-design-preview-n67lo7zbl-nuovasolajs-projects.vercel.app |
+
+No account was created and nothing was sent from this session: the E28 browser test (two runs, the fixture agency of §2) is
+API's and the Reviewer's on exactly this staging deployment. The staging project now builds on every push of the branch
+again; if a hold is wanted for a later state, it is one commit that re-adds `.staging-hold`.
