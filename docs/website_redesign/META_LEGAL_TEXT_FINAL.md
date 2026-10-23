@@ -231,26 +231,26 @@ This is the page Meta is given as the Data Deletion Instructions URL:
 
 > **How to ask us to delete your data**
 >
-> **Who this is.** NuovaSolution is the trading name of Antonio Jesus Diaz Gomez, Prolongación Hernando de
-> Carabeo, Nerja, Málaga, Spain, antonio@nuovasolution.com. The full privacy notice is at
+> **Who this is.** NuovaSolution is the trading name of ⟦E14: NAME⟧, NIF ⟦E14: NIF⟧, ⟦E14: ADDRESS⟧,
+> ⟦E14: EMAIL⟧. The full privacy notice is at
 > https://nuovasolution.com/privacy-policy.
 >
 > **If you wrote to an estate agency that uses Nuova.** That agency decides about your data and we act on
-> its instructions. Write to antonio@nuovasolution.com from the e-mail address or phone number you used,
+> its instructions. Write to ⟦E14: EMAIL⟧ from the e-mail address or phone number you used,
 > and say that you want your data deleted. We pass your request to the agency, help it answer, and tell you
 > the outcome.
 >
-> **If you are an agency using Nuova.** Write to antonio@nuovasolution.com from the address of your
+> **If you are an agency using Nuova.** Write to ⟦E14: EMAIL⟧ from the address of your
 > account, or ask us inside your account. We confirm what will be deleted, what we have to keep by law, and
 > when it is done.
 >
 > **If your agency connected Instagram.** Open NuovaSolution, go to Social and choose Disconnect. The
 > access token is deleted immediately and we stop reading and publishing. Removing the app in your
 > Instagram settings also ends our access. Neither of those deletes the data already stored: for that,
-> write to antonio@nuovasolution.com from the address of your account and name your agency. We then delete
+> write to ⟦E14: EMAIL⟧ from the address of your account and name your agency. We then delete
 > the posts, comments, messages and the leads created from them for that connection.
 >
-> **If you commented on or wrote to an agency on Instagram.** Write to antonio@nuovasolution.com and name
+> **If you commented on or wrote to an agency on Instagram.** Write to ⟦E14: EMAIL⟧ and name
 > the agency and the approximate date of your message. We do not store your Instagram username or your
 > original Instagram identifier, so the agency and the time frame are what let us find your data.
 >
@@ -270,27 +270,27 @@ This is the page Meta is given as the Data Deletion Instructions URL:
 
 > **Cómo pedirnos que eliminemos tus datos**
 >
-> **Quién responde.** NuovaSolution es el nombre comercial de Antonio Jesus Diaz Gomez, Prolongación
-> Hernando de Carabeo, Nerja, Málaga, España, antonio@nuovasolution.com. El aviso de privacidad completo
+> **Quién responde.** NuovaSolution es el nombre comercial de ⟦E14: NOMBRE⟧, NIF ⟦E14: NIF⟧,
+> ⟦E14: DIRECCIÓN⟧, ⟦E14: EMAIL⟧. El aviso de privacidad completo
 > está en https://nuovasolution.com/politica-privacidad.
 >
 > **Si escribiste a una inmobiliaria que usa Nuova.** Esa agencia decide sobre tus datos y nosotros
-> actuamos según sus instrucciones. Escribe a antonio@nuovasolution.com desde el email o el teléfono que
+> actuamos según sus instrucciones. Escribe a ⟦E14: EMAIL⟧ desde el email o el teléfono que
 > usaste e indica que quieres que se eliminen tus datos. Trasladamos tu solicitud a la agencia, la ayudamos
 > a responderla y te comunicamos el resultado.
 >
-> **Si eres una agencia que usa Nuova.** Escribe a antonio@nuovasolution.com desde la dirección de tu
+> **Si eres una agencia que usa Nuova.** Escribe a ⟦E14: EMAIL⟧ desde la dirección de tu
 > cuenta, o pídenoslo dentro de tu cuenta. Confirmamos qué se va a eliminar, qué tenemos que conservar por
 > ley y cuándo está hecho.
 >
 > **Si tu agencia conectó Instagram.** Abre NuovaSolution, entra en Social y pulsa Desconectar. El token se
 > elimina de inmediato y dejamos de leer y de publicar. Eliminar la app en los ajustes de Instagram también
 > termina nuestro acceso. Ninguna de las dos cosas suprime los datos ya guardados: para eso, escribe a
-> antonio@nuovasolution.com desde la dirección de tu cuenta e indica el nombre de la agencia. Entonces
+> ⟦E14: EMAIL⟧ desde la dirección de tu cuenta e indica el nombre de la agencia. Entonces
 > suprimimos las publicaciones, los comentarios, los mensajes y las oportunidades creadas a partir de ellos
 > para esa conexión.
 >
-> **Si has comentado o escrito por Instagram a una agencia.** Escribe a antonio@nuovasolution.com e indica
+> **Si has comentado o escrito por Instagram a una agencia.** Escribe a ⟦E14: EMAIL⟧ e indica
 > la agencia y la fecha aproximada de tu mensaje. No guardamos tu nombre de usuario ni tu identificador
 > original de Instagram, así que la agencia y el periodo son lo que nos permite encontrar tus datos.
 >

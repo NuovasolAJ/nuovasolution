@@ -1,7 +1,28 @@
-# LEGAL PAGES FINAL v3 — legal notice, privacy, terms, data deletion, EN and ES
+# LEGAL PAGES FINAL v4 — legal notice, privacy, terms, data deletion, EN and ES
 
-**Version:** **v3**, 2026-09-30 (v2 was 2026-09-29, v1 2026-09-28) · **State:** `2026-09-30` ·
-**Copy version:** `legal-v3`
+**Version:** **v4**, 2026-10-23 (v3 2026-09-30, v2 2026-09-29, v1 2026-09-28) · **Copy version:** `legal-v4`
+**Marking:** technical and editorial draft. **Not a legal approval, not a Meta approval.**
+
+**What v4 changes (R22, on the E14 card of 2026-10-20).** The operator is a **natural person** trading as
+NuovaSolution, with no register entry (LSSI-CE Art. 10.1; `OWNER_CARD_E14_1020_v1.md`). Therefore:
+
+- **One identity block, five fields, all from the E14 file:** `⟦E14: NAME⟧` / `⟦E14: NOMBRE⟧`,
+  `⟦E14: NIF⟧`, `⟦E14: ADDRESS⟧` / `⟦E14: DIRECCIÓN⟧`, `⟦E14: EMAIL⟧`, `⟦E14: PHONE⟧` / `⟦E14: TELÉFONO⟧`.
+  The name, the address fragment and the e-mail address that were written into v3 are **removed** from the
+  page text. They come back only from `owner_e14_public.txt`, after API's E14 completeness signal, and only
+  the implementer fills them in, at build time. This lane does not read that file.
+- **Telephone added.** Art. 10.1 a) asks for a second direct contact besides e-mail.
+- **"NuovaSolution" is named as the trading name of the person** in the notice, the privacy notice, the
+  terms and the deletion page, so that the WhatsApp display name and the legal name can be linked for
+  Meta's business verification.
+- **No register line.** A natural person is not in the Registro Mercantil (Art. 10.1 b) does not apply);
+  nothing is written instead.
+- **No price line.** The site shows no prices ("Sin precios en esta página"). If prices are shown later,
+  Art. 10.1 f) requires a sentence saying whether VAT is included, and that sentence must be added then.
+- **"with a qualification and a priority" removed** from the notice and the terms: there is no priority
+  value in production. The privacy table keeps "qualification and priority" as a **data category**, since a
+  hot-lead assessment is stored; that describes processing, not a feature.
+- The deletion page in `META_LEGAL_TEXT_FINAL.md` §3 is changed the same way.
 
 **What v3 adds.** Section 6 now names **every service in the customer path**, what it receives and where it
 runs, from Hosting's reading of the active workflows
@@ -63,8 +84,9 @@ implementer at publication and waits on nobody.
 
 | # | Mark | Occurrences | Who | What is missing | Recommendation to approve or correct |
 |---|---|---|---|---|---|
-| 1 | ⟦OWNER: NIF⟧ | 6 (3 pages × 2 languages) | Owner, O-6 | the tax number, NIF or CIF | required in Spain for a legal notice, for invoices, and for Meta's business verification |
-| 2 | ⟦OWNER: ADDRESS_FULL⟧ | 4 | Owner, O-6 | street number and postal code | today only "Prolongación Hernando de Carabeo, Nerja, Málaga" is published. The legal form is **no longer a gap**: the party is the individual trading under his own name, exactly as the live site has published for months. If a company is founded, its name replaces his everywhere |
+| 1+2 | **v4: replaced by `⟦E14: …⟧`** (name, NIF, address, e-mail, telephone) | see the v4 header | Owner fills `owner_e14_public.txt`; API signals it complete; the implementer fills the fields | the identity block of a natural person | **the rows below are the v3 history** |
+| 1 | ~~⟦OWNER: NIF⟧~~ | 6 (3 pages × 2 languages) | Owner, O-6 | the tax number, NIF or CIF | required in Spain for a legal notice, for invoices, and for Meta's business verification |
+| 2 | ~~⟦OWNER: ADDRESS_FULL⟧~~ | 4 | Owner, O-6 | street number and postal code | today only "Prolongación Hernando de Carabeo, Nerja, Málaga" is published. The legal form is **no longer a gap**: the party is the individual trading under his own name, exactly as the live site has published for months. If a company is founded, its name replaces his everywhere |
 | 3 | ⟦OWNER+COUNSEL: RETENTION⟧ | 2 | Owner, O-8, then counsel | retention periods per data class | the proposal in §2.7 is written to be approved or corrected. **Not** applicable to the Instagram section, which now carries its own implementable rule |
 | 4 | ~~⟦HOSTING: SUBPROCESSOR_LIST⟧~~ | **0, closed in v3** | Hosting delivered it 2026-09-29 | — | section 6 now names all seven services with purpose, data and location; section 10 names the four that may process outside the EEA. What remains is a **counsel** question, not a gap in the text: whether stating the providers' own standard contractual clauses is a sufficient transfer basis (CQ-20) |
 | 5 | ⟦COUNSEL: DPA⟧ | 2 | counsel | whether the processing agreement is an annex and when the agency accepts it | sheet D5 |
@@ -84,13 +106,12 @@ Listed as questions in `COUNSEL_PACKAGE_v2.md` §7.
 
 **Legal notice**
 
-*Who runs this website.* Antonio Jesus Diaz Gomez, trading as NuovaSolution.
-Tax number: ⟦OWNER: NIF⟧. Address: ⟦OWNER: ADDRESS_FULL⟧ Prolongación Hernando de Carabeo, Nerja,
-Málaga, Spain. E-mail: antonio@nuovasolution.com.
+*Who runs this website.* ⟦E14: NAME⟧, a natural person, trading as NuovaSolution.
+Tax number (NIF): ⟦E14: NIF⟧. Address: ⟦E14: ADDRESS⟧. E-mail: ⟦E14: EMAIL⟧.
+Telephone: ⟦E14: PHONE⟧.
 
 *What we do.* NuovaSolution provides real estate agencies with a system that answers their
-enquiries, records each one as a customer record with a qualification and a priority, and creates
-tasks for the agency's team.
+enquiries, records each one, and creates tasks for the agency's team.
 
 *Using this site.* By using this website you accept this notice. We keep the information here as
 accurate as we can, and we do not guarantee that it is complete or current at every moment.
@@ -98,20 +119,19 @@ accurate as we can, and we do not guarantee that it is complete or current at ev
 *Content.* The text, images and code on this site belong to NuovaSolution. Please ask before
 reproducing them.
 
-*Complaints and disputes.* Write to antonio@nuovasolution.com. Spanish law applies and the courts of
+*Complaints and disputes.* Write to ⟦E14: EMAIL⟧. Spanish law applies and the courts of
 Málaga, Spain are competent.
 
 **ES, `/aviso-legal`**
 
 **Aviso legal**
 
-*Quién gestiona este sitio web.* Antonio Jesus Diaz Gomez, que opera como
-NuovaSolution. NIF: ⟦OWNER: NIF⟧. Dirección: ⟦OWNER: ADDRESS_FULL⟧ Prolongación Hernando de Carabeo,
-Nerja, Málaga, España. Email: antonio@nuovasolution.com.
+*Quién gestiona este sitio web.* ⟦E14: NOMBRE⟧, persona física, que opera con el nombre comercial
+NuovaSolution. NIF: ⟦E14: NIF⟧. Dirección: ⟦E14: DIRECCIÓN⟧. Email: ⟦E14: EMAIL⟧.
+Teléfono: ⟦E14: TELÉFONO⟧.
 
 *Qué hacemos.* NuovaSolution ofrece a las agencias inmobiliarias un sistema que responde a sus
-consultas, registra cada una como una ficha de cliente con su cualificación y su prioridad y crea
-tareas para el equipo de la agencia.
+consultas, registra cada una en una ficha y crea tareas para el equipo de la agencia.
 
 *Uso de este sitio.* Al usar este sitio web aceptas este aviso. Mantenemos la información lo más
 exacta que podemos y no garantizamos que esté completa o actualizada en todo momento.
@@ -119,7 +139,7 @@ exacta que podemos y no garantizamos que esté completa o actualizada en todo mo
 *Contenido.* Los textos, las imágenes y el código de este sitio pertenecen a NuovaSolution. Pide
 permiso antes de reproducirlos.
 
-*Reclamaciones y conflictos.* Escribe a antonio@nuovasolution.com. Se aplica la ley española y son
+*Reclamaciones y conflictos.* Escribe a ⟦E14: EMAIL⟧. Se aplica la ley española y son
 competentes los tribunales de Málaga, España.
 
 ---
@@ -133,9 +153,8 @@ for our own visitors and agency users, and the processor for the people who writ
 
 **Privacy notice**
 
-**1 · Who is responsible.** Antonio Jesus Diaz Gomez, trading as NuovaSolution,
-⟦OWNER: NIF⟧, ⟦OWNER: ADDRESS_FULL⟧ Prolongación Hernando de Carabeo, Nerja, Málaga, Spain,
-antonio@nuovasolution.com.
+**1 · Who is responsible.** ⟦E14: NAME⟧, trading as NuovaSolution, NIF ⟦E14: NIF⟧,
+⟦E14: ADDRESS⟧, ⟦E14: EMAIL⟧, ⟦E14: PHONE⟧.
 
 **2 · Two different situations.** If you are visiting this site, asking us a question or using an
 agency account, we decide how your data is handled and this notice applies to you. If you wrote to an
@@ -189,7 +208,7 @@ answer and organise your enquiry for that agency. You can ask us and we will pas
 agency and help it answer; you can also ask the agency directly. The data deletion page explains how.
 
 **9 · Your rights.** You can ask for a copy of your data, a correction, deletion, restriction, or to
-object, and you can withdraw a consent you gave. Write to antonio@nuovasolution.com from the address
+object, and you can withdraw a consent you gave. Write to ⟦E14: EMAIL⟧ from the address
 you used with us. You can also complain to the Spanish data protection authority, the AEPD.
 
 **10 · Transfers outside the EU.** Of the services in section 6, Meta, Google, OpenRouter and OpenAI may
@@ -251,9 +270,8 @@ account holders by e-mail.
 
 **Aviso de privacidad**
 
-**1 · Quién es responsable.** Antonio Jesus Diaz Gomez, que opera como
-NuovaSolution, ⟦OWNER: NIF⟧, ⟦OWNER: ADDRESS_FULL⟧ Prolongación Hernando de Carabeo, Nerja, Málaga,
-España, antonio@nuovasolution.com.
+**1 · Quién es responsable.** ⟦E14: NOMBRE⟧, que opera con el nombre comercial NuovaSolution,
+NIF ⟦E14: NIF⟧, ⟦E14: DIRECCIÓN⟧, ⟦E14: EMAIL⟧, ⟦E14: TELÉFONO⟧.
 
 **2 · Dos situaciones distintas.** Si visitas este sitio, nos haces una pregunta o usas una cuenta de
 agencia, nosotros decidimos cómo se tratan tus datos y este aviso se aplica a ti. Si escribiste a una
@@ -309,7 +327,7 @@ directamente a la agencia. La página de eliminación de datos explica cómo.
 
 **9 · Tus derechos.** Puedes pedir una copia de tus datos, su corrección, su eliminación, la
 limitación del tratamiento u oponerte, y puedes retirar un consentimiento que hayas dado. Escribe a
-antonio@nuovasolution.com desde la dirección que usaste con nosotros. También puedes reclamar ante la
+⟦E14: EMAIL⟧ desde la dirección que usaste con nosotros. También puedes reclamar ante la
 Agencia Española de Protección de Datos (AEPD).
 
 **10 · Transferencias fuera de la UE.** De los servicios del apartado 6, Meta, Google, OpenRouter y OpenAI
@@ -395,12 +413,12 @@ sentences. They are proposals from how the product actually works, not legal adv
 
 **Terms of service**
 
-**1 · Who these are between.** Antonio Jesus Diaz Gomez, trading as
-NuovaSolution, ⟦OWNER: NIF⟧, and the agency that uses the service. The service is for businesses. It
+**1 · Who these are between.** ⟦E14: NAME⟧, trading as
+NuovaSolution, NIF ⟦E14: NIF⟧, and the agency that uses the service. The service is for businesses. It
 is not offered to consumers.
 
-**2 · What the service is.** Nuova answers the enquiries your agency receives, records each as a
-customer record with a qualification and a priority, and creates tasks for your team. What your plan
+**2 · What the service is.** Nuova answers the enquiries your agency receives, records each one
+with what was asked for, and creates tasks for your team. What your plan
 includes is what the plan states when you agree it.
 
 **3 · The trial.** 14 days, with no payment method and no card. It does not turn into a paid plan on
@@ -459,12 +477,12 @@ takes effect.
 
 **Términos del servicio**
 
-**1 · Entre quiénes.** Antonio Jesus Diaz Gomez, que opera como NuovaSolution,
-⟦OWNER: NIF⟧, y la agencia que usa el servicio. El servicio es para empresas. No se ofrece a
+**1 · Entre quiénes.** ⟦E14: NOMBRE⟧, que opera con el nombre comercial NuovaSolution,
+NIF ⟦E14: NIF⟧, y la agencia que usa el servicio. El servicio es para empresas. No se ofrece a
 consumidores.
 
 **2 · Qué es el servicio.** Nuova responde a las consultas que recibe tu agencia, registra cada una
-como una ficha de cliente con su cualificación y su prioridad y crea tareas para tu equipo. Lo que
+con lo que se ha pedido y crea tareas para tu equipo. Lo que
 incluye tu plan es lo que ese plan indica cuando lo acuerdas.
 
 **3 · La prueba.** 14 días, sin método de pago y sin tarjeta. No se convierte en un plan de pago por sí
@@ -532,21 +550,21 @@ agency and a private person can each find their own path in it.
 **How to ask us to delete your data**
 
 **If you wrote to an estate agency.** That agency decides about your data and we act on its
-instructions. Write to antonio@nuovasolution.com from the e-mail address or phone number you used, and
+instructions. Write to ⟦E14: EMAIL⟧ from the e-mail address or phone number you used, and
 say that you want your data deleted. We pass your request to the agency, help it answer, and tell you
 the outcome.
 
-**If you are an agency using Nuova.** Write to antonio@nuovasolution.com from your account address, or
+**If you are an agency using Nuova.** Write to ⟦E14: EMAIL⟧ from your account address, or
 ask us inside your account. We confirm what will be deleted, what we have to keep by law, and when it
 is done.
 
 **If your agency connected Instagram.** Open NuovaSolution, go to Social and choose Disconnect. The access
 token is deleted immediately and we stop reading and publishing. To have the data already stored deleted as
 well, which means posts, comments, messages and the leads from this channel, write to
-antonio@nuovasolution.com from the address of your account and name your agency.
+⟦E14: EMAIL⟧ from the address of your account and name your agency.
 
 **If you commented on or wrote to an agency that uses Nuova on Instagram.** Write to
-antonio@nuovasolution.com and name the agency and the approximate date of your message. We do not store
+⟦E14: EMAIL⟧ and name the agency and the approximate date of your message. We do not store
 your Instagram username or your original Instagram identifier, so the agency and the time frame are what
 let us find your data.
 
@@ -571,21 +589,21 @@ which is normally one month.
 **Cómo pedirnos que eliminemos tus datos**
 
 **Si escribiste a una inmobiliaria.** Esa agencia decide sobre tus datos y nosotros actuamos según sus
-instrucciones. Escribe a antonio@nuovasolution.com desde el email o el teléfono que usaste e indica que
+instrucciones. Escribe a ⟦E14: EMAIL⟧ desde el email o el teléfono que usaste e indica que
 quieres que se eliminen tus datos. Trasladamos tu solicitud a la agencia, la ayudamos a responderla y te
 comunicamos el resultado.
 
-**Si eres una agencia que usa Nuova.** Escribe a antonio@nuovasolution.com desde la dirección de tu
+**Si eres una agencia que usa Nuova.** Escribe a ⟦E14: EMAIL⟧ desde la dirección de tu
 cuenta, o pídenoslo dentro de tu cuenta. Confirmamos qué se va a eliminar, qué tenemos que conservar por
 ley y cuándo está hecho.
 
 **Si tu agencia conectó Instagram.** Abre NuovaSolution, entra en Social y pulsa Desconectar. El token se
 elimina de inmediato y dejamos de leer y de publicar. Para que además se supriman los datos ya guardados,
 es decir las publicaciones, los comentarios, los mensajes y las oportunidades de este canal, escribe a
-antonio@nuovasolution.com desde la dirección de tu cuenta e indica el nombre de la agencia.
+⟦E14: EMAIL⟧ desde la dirección de tu cuenta e indica el nombre de la agencia.
 
 **Si has comentado o escrito por Instagram a una agencia que usa Nuova.** Escribe a
-antonio@nuovasolution.com e indica la agencia y la fecha aproximada de tu mensaje. No guardamos tu nombre
+⟦E14: EMAIL⟧ e indica la agencia y la fecha aproximada de tu mensaje. No guardamos tu nombre
 de usuario ni tu identificador original de Instagram, así que la agencia y el periodo son lo que nos
 permite encontrar tus datos.
 
