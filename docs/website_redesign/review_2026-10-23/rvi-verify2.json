@@ -1,0 +1,202 @@
+{
+ "deployment": "https://nuovasolution-design-preview-n67lo7zbl-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-23T13:19:40.599Z",
+ "detail": {
+  "panel": {
+   "d1440": {
+    "heroHeight": 1044,
+    "steps": [
+     {
+      "top": 728,
+      "bottom": 1160,
+      "fullyInView": false,
+      "visiblePart": 222,
+      "height": 432,
+      "opacity": 1,
+      "transform": "matrix3d(0.9, 0, 0, 0, 0, 0.855951, 0.27",
+      "clippedText": 0,
+      "outside": 0,
+      "textLen": 1014
+     },
+     {
+      "top": 411,
+      "bottom": 883,
+      "fullyInView": true,
+      "visiblePart": 472,
+      "height": 472,
+      "opacity": 1,
+      "transform": "matrix3d(0.943197, 0, 0, 0, 0, 0.919698,",
+      "clippedText": 0,
+      "outside": 0,
+      "textLen": 1014
+     },
+     {
+      "top": 91,
+      "bottom": 606,
+      "fullyInView": true,
+      "visiblePart": 515,
+      "height": 515,
+      "opacity": 1,
+      "transform": "matrix3d(0.986394, 0, 0, 0, 0, 0.977654,",
+      "clippedText": 0,
+      "outside": 0,
+      "textLen": 1014
+     },
+     {
+      "top": -230,
+      "bottom": 329,
+      "fullyInView": false,
+      "visiblePart": 329,
+      "height": 559,
+      "opacity": 1,
+      "transform": "matrix3d(1.02959, 0, 0, 0, 0, 1.02865, 0",
+      "clippedText": 0,
+      "outside": 0,
+      "textLen": 1014
+     },
+     {
+      "top": -520,
+      "bottom": 60,
+      "fullyInView": false,
+      "visiblePart": 60,
+      "height": 580,
+      "opacity": 1,
+      "transform": "matrix3d(1.05, 0, 0, 0, 0, 1.05, 0, 0, 0",
+      "clippedText": 0,
+      "outside": 0,
+      "textLen": 1014
+     }
+    ]
+   },
+   "m390": {
+    "heroHeight": 1661,
+    "steps": [
+     {
+      "top": 854,
+      "bottom": 1773,
+      "fullyInView": false,
+      "visiblePart": 0,
+      "height": 919,
+      "opacity": 1,
+      "transform": "matrix3d(0.95, 0, 0, 0, 0, 0.940755, 0.1",
+      "clippedText": 0,
+      "outside": 0,
+      "textLen": 948
+     },
+     {
+      "top": 378,
+      "bottom": 1351,
+      "fullyInView": false,
+      "visiblePart": 466,
+      "height": 973,
+      "opacity": 1,
+      "transform": "matrix3d(0.968216, 0, 0, 0, 0, 0.964405,",
+      "clippedText": 0,
+      "outside": 0,
+      "textLen": 948
+     },
+     {
+      "top": -102,
+      "bottom": 927,
+      "fullyInView": false,
+      "visiblePart": 844,
+      "height": 1030,
+      "opacity": 1,
+      "transform": "matrix3d(0.986487, 0, 0, 0, 0, 0.985785,",
+      "clippedText": 0,
+      "outside": 0,
+      "textLen": 948
+     },
+     {
+      "top": -567,
+      "bottom": 507,
+      "fullyInView": false,
+      "visiblePart": 507,
+      "height": 1074,
+      "opacity": 1,
+      "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1",
+      "clippedText": 0,
+      "outside": 0,
+      "textLen": 948
+     },
+     {
+      "top": -982,
+      "bottom": 92,
+      "fullyInView": false,
+      "visiblePart": 92,
+      "height": 1074,
+      "opacity": 1,
+      "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1",
+      "clippedText": 0,
+      "outside": 0,
+      "textLen": 948
+     }
+    ]
+   }
+  },
+  "planRows": [
+   {
+    "name": "Essential",
+    "rows": [
+     "14 días gratis\nSin método de pago",
+     "Para una oficina y un equipo pequeño",
+     "Las consultas en español por WhatsApp y email se responden mientras estás fuera.",
+     "Hoy: WhatsApp y email, respuestas en español.",
+     "Incluido",
+     "Respuestas automáticas · Disponible · en español",
+     "WhatsApp y email · Disponible · el buzón lo operamos nosotros para ti",
+     "Etiquetas de email · Disponible · con Gmail",
+     "Fichas de cliente (CRM) · Disponible · una ficha por consulta",
+     "Avisos de consultas importantes · Disponible · por email, todavía sin horario de oficina",
+     "Informe semanal · Disponible: el informe en tu acceso · En preparación: el resumen semanal por email",
+     "Precio para tu agencia",
+     "Te decimos el precio y el periodo de facturación antes de acordar nada."
+    ]
+   },
+   {
+    "name": "Growth",
+    "rows": [
+     "Para un equipo que crece",
+     "Cada mañana tu equipo ve sus tareas con el motivo de cada una.",
+     "Seguimientos solo con permiso del cliente; propuestas solo de tu propia cartera.",
+     "Todo lo de Essential, y además:",
+     "Seguimientos con permiso del cliente · En preparación · todavía no contratable",
+     "Propuestas de inmuebles de tu cartera · En preparación · todavía no contratable",
+     "La lista de la mañana: qué va primero y por qué · Disponible: ver, tomar y completar tareas · En preparación: el correo de la mañana",
+     "Recogida de leads de tus anuncios actuales · En preparación · todavía no contratable",
+     "Agenda y citas · En preparación · todavía no contratable",
+     "Informe con evolución y canales · En preparación · todavía no contratable",
+     "Precio para tu agencia",
+     "Te decimos el precio y el periodo de facturación antes de acordar nada.",
+     "Cuéntanos tus oficinas, tu equipo y tus canales y te enviamos una propuesta."
+    ]
+   },
+   {
+    "name": "Enterprise",
+    "rows": [
+     "Para varias oficinas",
+     "Modelos 3D por encargo, y más adelante Instagram desde el mismo sitio.",
+     "Instagram depende de la aprobación de la plataforma; cada modelo 3D se hace por encargo a partir de tus planos.",
+     "Todo lo de Growth, y además:",
+     "Instagram desde el mismo sitio · En preparación · depende de la aprobación de la plataforma",
+     "Modelos 3D incluidos por encargo · Por encargo · a partir de tus planos",
+     "Precio para tu agencia",
+     "Te decimos el precio y el periodo de facturación antes de acordar nada.",
+     "Cuéntanos tus oficinas, tu equipo y tus canales y te enviamos una propuesta."
+    ]
+   }
+  ],
+  "td__es": {
+   "found": true,
+   "heading": "De tu plano a una vivienda que el cliente puede recorrer con",
+   "text": "UN SERVICIO APARTE: PRESENTAR EN 3D De tu plano a una vivienda que el cliente puede recorrer con la mirada Nos envías el plano acotado y, si las tienes, fotos. Construimos el modelo, lo mostramos vacío y amueblado desde la misma cámara y lo comprobamos contra tu plano. Cada modelo es un encargo, con o sin paquete.",
+   "imgs": [],
+   "vids": [],
+   "canvas": 0,
+   "buttons": []
+  },
+  "td__es_platform": {
+   "found": false
+  }
+ }
+}

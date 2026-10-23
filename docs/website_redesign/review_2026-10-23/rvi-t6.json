@@ -1,0 +1,56 @@
+{
+ "deployment": "https://nuovasolution-staging-preview-j7f6e9t1u-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-23T12:54:53.673Z",
+ "parsed": {
+  "email_found": true,
+  "password_found": true,
+  "lines": 2
+ },
+ "checks": [
+  {
+   "id": "T6-1",
+   "what": "the reserved identity signs in against the real identity server",
+   "verdict": "FAIL",
+   "evidence": {
+    "status": 400,
+    "code": "invalid_grant",
+    "cookie": false
+   }
+  },
+  {
+   "id": "T6-7",
+   "what": "a brand-new identity: sign-up is accepted and the confirmation gate behaves as contracted",
+   "verdict": "PASS",
+   "evidence": {
+    "signup": {
+     "status": 201,
+     "code": "ok"
+    },
+    "login": {
+     "status": 400,
+     "code": "email_not_confirmed",
+     "session": false
+    }
+   }
+  }
+ ],
+ "detail": {
+  "login": {
+   "status": 400,
+   "code": "invalid_grant",
+   "cookie": false
+  },
+  "fresh": {
+   "signup": {
+    "status": 201,
+    "code": "ok"
+   },
+   "login": {
+    "status": 400,
+    "code": "email_not_confirmed",
+    "session": false
+   }
+  }
+ },
+ "finished_utc": "2026-10-23T12:54:59.223Z"
+}

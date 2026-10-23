@@ -1,0 +1,92 @@
+{
+ "deployment": "https://nuovasolution-staging-preview-j7f6e9t1u-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-23T12:54:02.921Z",
+ "checks": [
+  {
+   "id": "S1",
+   "what": "the staging build identifies itself",
+   "verdict": "PASS",
+   "evidence": {
+    "commit": "a76e6e1aac0118a7e5c2047b615d539c6c649a53",
+    "ref": "website_enterprise_redesign",
+    "deployment": "dpl_3n3TwzpayrxptkGYNuWCih8qBJjW",
+    "env": "preview",
+    "mode": "staging"
+   }
+  },
+  {
+   "id": "S2",
+   "what": "no session: the onboarding read is refused",
+   "verdict": "PASS",
+   "evidence": {
+    "status": 401,
+    "code": "no_session"
+   }
+  },
+  {
+   "id": "S3",
+   "what": "a self-made token is refused",
+   "verdict": "PASS",
+   "evidence": {
+    "status": 401,
+    "code": "no_session"
+   }
+  },
+  {
+   "id": "S4",
+   "what": "the reserved test identity signs in against the real identity server",
+   "verdict": "FAIL",
+   "evidence": {
+    "status": 400,
+    "code": "invalid_grant",
+    "cookie_present": false
+   }
+  },
+  {
+   "id": "S10",
+   "what": "a valid session from a foreign origin is refused",
+   "verdict": "PASS",
+   "evidence": {
+    "status": 403,
+    "code": "forbidden"
+   }
+  },
+  {
+   "id": "S11",
+   "what": "the agent role cannot write business data",
+   "verdict": "PASS",
+   "evidence": {
+    "status": 403,
+    "code": "forbidden"
+   }
+  },
+  {
+   "id": "S12",
+   "what": "a new identity can sign up on this deployment",
+   "verdict": "PASS",
+   "evidence": {
+    "status": 201,
+    "code": "ok"
+   }
+  }
+ ],
+ "detail": {
+  "build": {
+   "commit": "a76e6e1aac0118a7e5c2047b615d539c6c649a53",
+   "ref": "website_enterprise_redesign",
+   "deployment": "dpl_3n3TwzpayrxptkGYNuWCih8qBJjW",
+   "env": "preview",
+   "mode": "staging"
+  },
+  "t6_login": {
+   "status": 400,
+   "code": "invalid_grant",
+   "cookie_present": false
+  },
+  "signup": {
+   "status": 201,
+   "code": "ok"
+  }
+ },
+ "finished_utc": "2026-10-23T12:54:10.364Z"
+}

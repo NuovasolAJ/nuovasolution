@@ -1,0 +1,465 @@
+{
+  "deployment": "https://nuovasolution-design-preview-n67lo7zbl-nuovasolajs-projects.vercel.app",
+  "started_utc": "2026-10-23T12:55:59.476Z",
+  "routes": {
+    "/en": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": null,
+      "h1_count": 1,
+      "words": 3570,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": true,
+      "sample": "NuovaSolution · Enquiries answered and organised for real estate agencies Skip to content Platform Answer Manage Coordinate Attract Platform overview Packages T"
+    },
+    "/es": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": null,
+      "h1_count": 1,
+      "words": 3578,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [
+        "todo",
+        "todo",
+        "todo"
+      ],
+      "login_gate_words": true,
+      "sample": "NuovaSolution · Consultas respondidas y ordenadas para agencias inmobiliarias Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paque"
+    },
+    "/en/platform": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Everything one enquiry needs, in one place",
+      "h1_count": 1,
+      "words": 655,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": true,
+      "sample": "Platform overview · NuovaSolution Skip to content Platform Answer Manage Coordinate Attract Platform overview Packages Trial Contact EN English ES Español Log i"
+    },
+    "/es/platform": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Todo lo que necesita una consulta, en un solo lugar",
+      "h1_count": 1,
+      "words": 698,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [
+        "Todo",
+        "Todo"
+      ],
+      "login_gate_words": true,
+      "sample": "Visión general · NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Prueba Contacto EN English ES Español Inici"
+    },
+    "/en/packages": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Try it free for 14 days",
+      "h1_count": 1,
+      "words": 803,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": true,
+      "sample": "Packages · NuovaSolution Skip to content Platform Answer Manage Coordinate Attract Platform overview Packages Trial Contact EN English ES Español Log in Try fre"
+    },
+    "/es/packages": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Pruébalo gratis 14 días",
+      "h1_count": 1,
+      "words": 831,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [
+        "todo",
+        "todo",
+        "todo"
+      ],
+      "login_gate_words": true,
+      "sample": "Paquetes · NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Prueba Contacto EN English ES Español Iniciar ses"
+    },
+    "/en/trial": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Try free for 14 days.",
+      "h1_count": 1,
+      "words": 430,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": true,
+      "sample": "Trial · NuovaSolution Skip to content Platform Answer Manage Coordinate Attract Platform overview Packages Trial Contact EN English ES Español Log in Try free T"
+    },
+    "/es/trial": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Prueba gratis durante 14 días.",
+      "h1_count": 1,
+      "words": 451,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [
+        "todo",
+        "todo",
+        "Todo"
+      ],
+      "login_gate_words": true,
+      "sample": "Prueba · NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Prueba Contacto EN English ES Español Iniciar sesió"
+    },
+    "/en/contact": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Talk to a person.",
+      "h1_count": 1,
+      "words": 187,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": true,
+      "sample": "Contact · NuovaSolution Skip to content Platform Answer Manage Coordinate Attract Platform overview Packages Trial Contact EN English ES Español Log in Try free"
+    },
+    "/es/contact": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Habla con una persona.",
+      "h1_count": 1,
+      "words": 194,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [
+        "todo",
+        "Todo"
+      ],
+      "login_gate_words": true,
+      "sample": "Contacto · NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Prueba Contacto EN English ES Español Iniciar ses"
+    },
+    "/en/signup": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Create your agency account",
+      "h1_count": 1,
+      "words": 195,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": true,
+      "sample": "Create your agency account · NuovaSolution Skip to content Platform Answer Manage Coordinate Attract Platform overview Packages Trial Contact EN English ES Espa"
+    },
+    "/es/signup": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Crea la cuenta de tu agencia",
+      "h1_count": 1,
+      "words": 217,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [
+        "Todo"
+      ],
+      "login_gate_words": true,
+      "sample": "Crea la cuenta de tu agencia · NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Prueba Contacto EN English ES"
+    },
+    "/en/login": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Log in",
+      "h1_count": 1,
+      "words": 145,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": true,
+      "sample": "Log in · NuovaSolution Skip to content Platform Answer Manage Coordinate Attract Platform overview Packages Trial Contact EN English ES Español Log in Try free "
+    },
+    "/es/login": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Iniciar sesión",
+      "h1_count": 1,
+      "words": 162,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [
+        "Todo"
+      ],
+      "login_gate_words": true,
+      "sample": "Iniciar sesión · NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Prueba Contacto EN English ES Español Inici"
+    },
+    "/en/app": {
+      "status": 307,
+      "location": "/en/login?next=%2Fen%2Fapp",
+      "robots": "noindex, nofollow",
+      "h1": null,
+      "h1_count": 0,
+      "words": 9,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": false,
+      "sample": "Hello. This is what you have today. · NuovaSolution"
+    },
+    "/es/app": {
+      "status": 307,
+      "location": "/es/login?next=%2Fes%2Fapp",
+      "robots": "noindex, nofollow",
+      "h1": null,
+      "h1_count": 0,
+      "words": 9,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": false,
+      "sample": "Hola. Esto es lo que tienes hoy. · NuovaSolution"
+    },
+    "/en/app/reports": {
+      "status": 307,
+      "location": "/en/login?next=%2Fen%2Fapp%2Freports",
+      "robots": "noindex, nofollow",
+      "h1": null,
+      "h1_count": 0,
+      "words": 9,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": false,
+      "sample": "What happened in your agency this week · NuovaSolution"
+    },
+    "/es/app/reports": {
+      "status": 307,
+      "location": "/es/login?next=%2Fes%2Fapp%2Freports",
+      "robots": "noindex, nofollow",
+      "h1": null,
+      "h1_count": 0,
+      "words": 10,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": false,
+      "sample": "Lo que pasó esta semana en tu agencia · NuovaSolution"
+    },
+    "/en/app/social": {
+      "status": 404,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "404",
+      "h1_count": 1,
+      "words": 14,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": false,
+      "sample": "404: This page could not be found. 404 This page could not be found."
+    },
+    "/es/app/social": {
+      "status": 404,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "404",
+      "h1_count": 1,
+      "words": 14,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": false,
+      "sample": "404: This page could not be found. 404 This page could not be found."
+    },
+    "/en/onboarding": {
+      "status": 307,
+      "location": "/en/login?next=%2Fen%2Fonboarding",
+      "robots": "noindex, nofollow",
+      "h1": null,
+      "h1_count": 0,
+      "words": 6,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": false,
+      "sample": "Set your agency up. · NuovaSolution"
+    },
+    "/es/onboarding": {
+      "status": 307,
+      "location": "/es/login?next=%2Fes%2Fonboarding",
+      "robots": "noindex, nofollow",
+      "h1": null,
+      "h1_count": 0,
+      "words": 5,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": false,
+      "sample": "Configura tu agencia. · NuovaSolution"
+    },
+    "/en/legal/privacy": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Privacy notice",
+      "h1_count": 1,
+      "words": 386,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [
+        "Placeholder",
+        "PLACEHOLDER"
+      ],
+      "login_gate_words": true,
+      "sample": "Privacy notice · NuovaSolution Skip to content Platform Answer Manage Coordinate Attract Platform overview Packages Trial Contact EN English ES Español Log in T"
+    },
+    "/es/legal/privacy": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Aviso de privacidad",
+      "h1_count": 1,
+      "words": 393,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [
+        "Provisional",
+        "PROVISIONAL",
+        "Todo"
+      ],
+      "login_gate_words": true,
+      "sample": "Aviso de privacidad · NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Prueba Contacto EN English ES Español "
+    },
+    "/en/legal/terms": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Terms of service",
+      "h1_count": 1,
+      "words": 251,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [
+        "Placeholder",
+        "PLACEHOLDER"
+      ],
+      "login_gate_words": true,
+      "sample": "Terms of service · NuovaSolution Skip to content Platform Answer Manage Coordinate Attract Platform overview Packages Trial Contact EN English ES Español Log in"
+    },
+    "/es/legal/terms": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Términos del servicio",
+      "h1_count": 1,
+      "words": 267,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [
+        "Provisional",
+        "PROVISIONAL",
+        "todo"
+      ],
+      "login_gate_words": true,
+      "sample": "Términos del servicio · NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Prueba Contacto EN English ES Españo"
+    },
+    "/en/legal/data-deletion": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Your data, and how to ask about it",
+      "h1_count": 1,
+      "words": 306,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [
+        "Placeholder",
+        "PLACEHOLDER"
+      ],
+      "login_gate_words": true,
+      "sample": "Your data, and how to ask about it · NuovaSolution Skip to content Platform Answer Manage Coordinate Attract Platform overview Packages Trial Contact EN English"
+    },
+    "/es/legal/data-deletion": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": "Tus datos, y cómo preguntar por ellos",
+      "h1_count": 1,
+      "words": 312,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [
+        "Provisional",
+        "PROVISIONAL",
+        "Todo"
+      ],
+      "login_gate_words": true,
+      "sample": "Tus datos, y cómo preguntar por ellos · NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Prueba Contacto EN E"
+    },
+    "/en/legal/imprint": {
+      "status": 308,
+      "location": "https://nuovasolution-design-preview-n67lo7zbl-nuovasolajs-projects.vercel.app/en/legal/notice",
+      "robots": "noindex, nofollow",
+      "h1": null,
+      "h1_count": 0,
+      "words": 1,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": false,
+      "sample": ""
+    },
+    "/es/legal/imprint": {
+      "status": 308,
+      "location": "https://nuovasolution-design-preview-n67lo7zbl-nuovasolajs-projects.vercel.app/es/legal/notice",
+      "robots": "noindex, nofollow",
+      "h1": null,
+      "h1_count": 0,
+      "words": 1,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": false,
+      "sample": ""
+    },
+    "/robots.txt": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": null,
+      "h1_count": 0,
+      "words": 14,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": false,
+      "sample": "User-Agent: ChatGPT-User User-Agent: Claude-User User-Agent: Perplexity-User Allow: / Disallow: /api/ User-Agent: * Disallow: /"
+    },
+    "/sitemap.xml": {
+      "status": 200,
+      "location": null,
+      "robots": "noindex, nofollow",
+      "h1": null,
+      "h1_count": 0,
+      "words": 1,
+      "awaiting_contract": false,
+      "digits_near_contract": null,
+      "placeholder_marks": [],
+      "login_gate_words": false,
+      "sample": ""
+    }
+  }
+}
