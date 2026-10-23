@@ -19,6 +19,8 @@ export function ListingCover({ url, expiresAt, alt, labels }: { locale: Locale; 
     if (!url || !expiresAt) return;
     const ms = Date.parse(expiresAt) - Date.now();
     if (ms <= 0) { setExpired(true); return; }
+    // A timer longer than 2^31-1 ms (24.8 days) overflows and fires at once; a link that far out is simply not watched here.
+    if (ms > 0x7fffffff) return;
     const id = window.setTimeout(() => setExpired(true), ms);
     return () => window.clearTimeout(id);
   }, [url, expiresAt]);
