@@ -59,10 +59,8 @@ export default function HomePage({ params }: { params: { locale: string } }) {
       {/* 3 3D: the living room, from the plan to the rotatable view. */}
       <Model3dSection locale={locale} />
 
-      {/* 4 Trust and conversion: the real way in. */}
-      <TrustSection locale={locale} />
-
-      {/* 5 The packages */}
+      {/* 4 The packages (R23, owner picture 08: the packages before the way in and the questions, so the reader knows what is on
+          offer before reading how to start) */}
       <section id="packages" aria-labelledby="packages-h" className="scroll-mt-[var(--header-h)] pb-[var(--section-default)]">
         <div className="container-default">
           <Reveal className="max-w-[720px]">
@@ -79,6 +77,9 @@ export default function HomePage({ params }: { params: { locale: string } }) {
           </div>
         </div>
       </section>
+
+      {/* 5 Trust and conversion: the real way in, and the questions people ask before starting. */}
+      <TrustSection locale={locale} />
     </div>
   );
 }

@@ -89,7 +89,11 @@ export default async function PackagesPage({ params }: { params: { locale: strin
                         <p className="mt-5 t-caption font-medium text-text-muted">{ladder(plan.code)!.plus ? ladder(plan.code)!.plus![locale] : pk.included}</p>
                         <ul className="mt-2 space-y-1.5" data-plan-lines>
                           {ladder(plan.code)!.lines.map((ln) => (
-                            <li key={ln.key} className="flex items-start gap-2 t-body-s text-text-primary"><Check size={14} strokeWidth={2.5} className="mt-1 shrink-0 text-signal-positive" aria-hidden="true" /><span className="min-w-0">{ln.name[locale]}{ln.note && <span className="text-text-muted"> · {ln.note[locale]}</span>}</span></li>
+                            <li key={ln.key} className={cn("flex items-start gap-2 t-body-s", ln.state === "available" || ln.state === "partial" ? "text-text-primary" : "text-text-secondary")} data-state={ln.state}>
+                              {/* R23 (owner, picture 07): a filled check only for what is available; a hollow ring for what is planned or to order */}
+                              {ln.state === "available" || ln.state === "partial" ? <Check size={14} strokeWidth={2.5} className="mt-1 shrink-0 text-signal-positive" aria-hidden="true" /> : <span aria-hidden="true" className="mt-1.5 inline-block h-3 w-3 shrink-0 rounded-pill border-[1.5px] border-ink-350" />}
+                              <span className="min-w-0">{ln.name[locale]}{ln.note && <span className="text-text-muted"> · {ln.note[locale]}</span>}</span>
+                            </li>
                           ))}
                         </ul>
                       </>

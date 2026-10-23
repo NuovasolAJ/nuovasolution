@@ -35,9 +35,15 @@ export function PackageMatrix({ locale }: { locale: Locale }) {
               <ul className="mt-2 divide-y divide-line-hairline border-y border-line-hairline">
                 {pk.lines.map((l) => (
                   <li key={l.key} className="flex items-start gap-3 py-3" data-line={l.key} data-state={l.state}>
-                    <span aria-hidden="true" className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-pill bg-signal-positive text-ivory"><Check size={12} strokeWidth={3} /></span>
+                    {/* R23 (owner, picture 07): available and planned told apart by the mark, not only by the note — a filled check for what
+                        is available, a hollow ring for what is being prepared or made to order. */}
+                    {l.state === "available" || l.state === "partial" ? (
+                      <span aria-hidden="true" className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-pill bg-signal-positive text-ivory"><Check size={12} strokeWidth={3} /></span>
+                    ) : (
+                      <span aria-hidden="true" className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-pill border-[1.5px] border-ink-350 bg-transparent" />
+                    )}
                     <span className="min-w-0 flex-1">
-                      <span className="block t-body-m text-text-primary">{l.name[locale]}{l.note && <span className="text-text-muted"> · {l.note[locale]}</span>}</span>
+                      <span className={cn("block t-body-m", l.state === "available" || l.state === "partial" ? "text-text-primary" : "text-text-secondary")}>{l.name[locale]}{l.note && <span className="text-text-muted"> · {l.note[locale]}</span>}</span>
                       {proof && <span className="block t-caption text-text-muted" data-proof-state>{w.states[l.state][locale]}</span>}
                     </span>
                   </li>

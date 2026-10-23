@@ -20,6 +20,7 @@ const F = {
   render: "/media/3d/living-render-1600.webp",
   clay: "/media/3d/living-clay-1200.webp",
   ride: "/media/3d/living-camera-ride.mp4",
+  ridePoster: "/media/3d/living-ride-poster.webp",
 };
 
 function Img({ src, alt, w, h, className, eager = false }: { src: string; alt: string; w: number; h: number; className?: string; eager?: boolean }) {
@@ -57,9 +58,10 @@ export function Model3dSection({ locale }: { locale: Locale }) {
                 )}
                 {i === 3 && (
                   <div className="h-full w-full bg-[#f3f1ec]" data-model3d-film data-model3d-turn-slot="waiting">
-                    {/* no poster: the ride's own frame at 4 s stands here (media fragment), so the render of step 03 is not shown twice */}
-                    <video controls muted playsInline preload="metadata" className="h-full w-full object-cover" aria-label={l(w.film)}>
-                      <source src={`${F.ride}#t=4`} type="video/mp4" />
+                    {/* the poster is the ride's own frame at 4 s (public/media/3d/living-ride-poster.webp), so the render of step 03 is not
+                        shown twice and the video still starts at 0:00 (owner 23.10., picture 06) */}
+                    <video controls muted playsInline preload="metadata" poster={F.ridePoster} className="h-full w-full object-cover" aria-label={l(w.film)}>
+                      <source src={F.ride} type="video/mp4" />
                     </video>
                   </div>
                 )}

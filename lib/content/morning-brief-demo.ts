@@ -32,7 +32,7 @@ export function briefTasks(locale: Locale, listHref: string): MailTask[] {
     {
       kind: es ? "Visita pedida" : "Viewing requested",
       who: "Laura Serrano · WhatsApp",
-      lines: es ? ["Quiere ver el piso de Estepona la semana que viene · para vivir todo el año.", "Presupuesto hasta 320.000 €."] : ["Wants to see the flat in Estepona next week · to live all year round.", "Budget up to €320,000."],
+      lines: es ? ["Quiere ver el piso de Estepona la semana que viene · vivienda habitual.", "Presupuesto hasta 320.000 €."] : ["Wants to see the flat in Estepona next week · main home.", "Budget up to €320,000."],
       priority: es ? "Prioridad alta · nombró inmueble, zona y presupuesto" : "High priority · she named a property, an area and a budget",
       state: es ? "Abierta · nadie la ha tomado" : "Open · nobody has taken it",
       step: es ? "Proponerle día y hora por WhatsApp" : "Propose a day and time on WhatsApp",
