@@ -1,6 +1,6 @@
 # Abnahmekarte — für die manuelle Sichtprüfung des Owners
 
-**Stand:** 2026-10-23 (R20 auf `deb9b66`; Build `a76e6e1`) ·
+**Stand:** 2026-10-24 (R23 auf `a76e6e1`; Build `9f6c65e`) ·
 Website-Implementierer → Owner. Status: implementiert, wartet auf unabhängige technische und finale Prüfung.
 
 ## Link
@@ -9,10 +9,18 @@ Vorschau (immer der neueste Build, ohne Login erreichbar, nicht indexiert):
 
 - Spanisch: https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app/es
 - Englisch: https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app/en
-- Festes Deployment dieses Builds: https://nuovasolution-design-preview-n67lo7zbl-nuovasolajs-projects.vercel.app
-- Welcher Stand läuft: `/api/build` nennt den Commit (`a76e6e1`, `mode: stub`).
+- Festes Deployment dieses Builds: https://nuovasolution-design-preview-1pfs923d9-nuovasolajs-projects.vercel.app
+- Welcher Stand läuft: `/api/build` nennt den Commit (`9f6c65e`, `mode: stub`).
 - Zweiter Build gegen das Staging-Backend (nur für den Onboarding-Test von API/Reviewer, nicht für die Sichtabnahme):
-  https://nuovasolution-staging-preview-j7f6e9t1u-nuovasolajs-projects.vercel.app (`/api/build`: `mode: staging`).
+  https://nuovasolution-staging-preview-dq8btlwhe-nuovasolajs-projects.vercel.app (`/api/build`: `mode: staging`).
+
+## Mail-Vorschauen ohne Login (neu, dein Bild 14)
+
+- Wochenbericht: https://nuovasolution-design-preview-1pfs923d9-nuovasolajs-projects.vercel.app/es/preview/weekly
+- Morgenbrief: https://nuovasolution-design-preview-1pfs923d9-nuovasolajs-projects.vercel.app/es/preview/brief
+
+Beide mit Demodaten, niemand erhält diese Mails. Dein Urteil zum Wochenbericht ist die Freigabe für Hosting (H16:
+markierte Testmail an deine Testadresse, dann Prüfung im echten Mailclient am PC und am Handy).
 
 ## Testkonto
 
@@ -22,25 +30,33 @@ Keines nötig. Demo-Sitzung auf dem Präsentations-Build (es entsteht kein Konto
 
 Abmelden: oben rechts „Cerrar sesión“.
 
-## Fünf Schritte
+## Fünf Schritte am PC
 
-1. **Erster Bildschirm** (Desktop und Handy): Lauras Frage, die Antwort mit den Daten des Inmuebles und einer Rückfrage,
-   rechts drei Ergebnisse; unter dem Panel der Satz „Hoy respondemos en español. En otro idioma no se envía nada
-   automáticamente.“ Langsam scrollen: Fernkette, Küste mit Baumreihe, das Panel richtet sich auf, der Vordergrund sinkt,
-   darunter der helle Boden der Seite. Kein Streifen, keine Kante, nichts lädt nach.
-2. **Story ohne Klick**: unter jeder Szene „Qué llega · Qué hace Nuova · Resultado“. In **B** Email: der deutsche Brief
-   der Kellers bekommt keine automatische Antwort („Sin respuesta automática“), es gibt keinen Entwurf; die Consulta
-   steht in der Ficha. In **D** der Aviso per Email mit Grund, dann der Morgen: Tomar → Proponer la hora a Laura → Hecha.
-3. **Paquetes** (Startseite und `/es/packages`): keine Zahlen mehr (Büros/Plätze/Monat), bei jeder Funktion ihr Stand
-   („Disponible · …“ / „En preparación · todavía no contratable“), Anzeigen nur als künftige Übernahme vorhandener Leads.
-4. **Mail-Vorschauen** in der Demo-Sitzung: `/es/app/reports/email` = der **neue Wochenbericht** (drei Kacheln, Detail,
-   „Sigue abierto“ mit Namen, ein Knopf) und `/es/app/brief` = Morgenbrief; beide auf Desktop und Handy ansehen. Dein
-   Urteil zum Wochenbericht ist die Freigabe für Hosting (H16: markierte Testmail an deine Testadresse).
-5. **Social** in der Demo-Sitzung `/es/social/post`: die ersten zwei Inmuebles tragen jetzt ein Titelbild (F-R16-3).
-   **3D** bleibt mit „Pendiente del equipo 3D“ bis 3D liefert (W2).
+1. **Erster Bildschirm** (Bild 01): Fernkette mit Lichtkante, Küste mit Baumreihe, Panel richtet sich beim Scrollen auf,
+   Vordergrund sinkt, darunter der helle Boden. Im Panel nur WhatsApp und Email als Kanäle; rechts „Aviso por email a tu
+   equipo“. Wenn an den Ebenen etwas stört, bitte benennen, was: der Build ist hier seit `deb9b66` unverändert.
+2. **Dialoge** (Bilder 02, 04): Lauras Frage und die Antwort im Hero, Lauras zweite Nachricht in B, Elenas Nachricht in D.
+   Telefon-Szene in B: „solo en español“ (Bild 03). Der Aviso heißt überall gleich: „Aviso de consulta importante · por email“.
+3. **Social** (Bild 05): die öffentliche Antwort schreibt eine Person; der Kommentar wird zum neuen Kontakt in der Ficha.
+4. **Paquetes** (Bilder 07, 08): volle Haken nur bei Verfügbarem, leere Ringe bei Geplantem; Paquetes stehen jetzt vor
+   „Cómo empiezas“ und den Fragen. FAQ: „¿En qué idioma…?“ und „¿Me dice qué leads están calientes?“ neu.
+5. **3D** (Bild 06): das Video startet bei 0:00, Startbild ist die eigene Szene bei 4 s; Stufe 3 und 4 bleiben
+   „Pendiente del equipo 3D“ bis 3D liefert.
+
+## Schritte am echten Handy (sobald dein Handy verfügbar ist)
+
+Link: https://nuovasolution-design-preview-1pfs923d9-nuovasolajs-projects.vercel.app/es (Safari oder Chrome, Hochformat).
+
+1. Startseite: beide Überschriftzeilen lesbar, Panel vollständig lesbar beim Scrollen (es ist höher als der Bildschirm,
+   nichts darf abgeschnitten sein), kein Nachladen beim schnellen Scrollen bis zum Ende und zurück.
+2. In B die vier Kanal-Knöpfe antippen; in D Tomar → Proponer la hora a Laura → Marcar como hecha.
+3. 3D: Video antippen, Start bei 0:00, Pause.
+4. `/es/preview/weekly` und `/es/preview/brief` öffnen: drei Kacheln nebeneinander lesbar, kein Querscrollen.
+5. Was anders aussieht als am PC: Bildschirmfoto mit Seite und Stelle.
 
 ## Was nur du entscheiden kannst
 
-Freigabe des Wochenbericht-Layouts (dann H16) · Paketgrenzen (`OWNER_TEMPLATE_PACKAGE_LIMITS_1021_v1.md`) · Name des
-Morgen-Assistenten · Preise · Firmenangaben E14 für die Rechtsseiten (bis dahin bleiben sie als vorläufig markiert und
-unverlinkt). Alles Weitere: `WEBSITE_R20_RETURN_v1.md` §2.
+Freigabe des Wochenbericht-Layouts (dann H16) · englische Modulnamen „AI Sales Agent“, „Lead Intelligence“ auf den
+spanischen Seiten behalten oder nicht (Copy W-13) · Paketgrenzen · Name des Morgen-Assistenten · Preise · E14 für das
+Impressum (dann Veröffentlichung auf nuovasolution.com) · die Testseite `/es/prueba-objeto` (E-FU2): eigener Text und
+eigenes Bild, Freigabe der Adresse. Alles Weitere: `WEBSITE_R23_RETURN_v1.md` §2.

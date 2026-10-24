@@ -102,6 +102,21 @@ lane truth sheets, this repository); **Needed** is the signal that closes the ro
 | X-5 | 3D: no design variant as a furniture comparison; the viewer capture without its title bar; the slots prepared | **built**; the rotation and the pair are **missing** | `3D_ASSETS_REQUEST_1017.md` A-1, A-2 | 3D |
 | X-6 | Platform, packages, reporting and FAQ aligned: the phone out of the packages, "Capacidad: consultas al mes", limits with the claim, the setup answer | **built** | Copy's confirmation; the owner on prices | Copy, Owner |
 
+## F8. R23 (on a76e6e1; build 9f6c65e = 2dd80da + Copy's W-rows)
+
+| # | Point | State | Needed | Lane |
+|---|---|---|---|---|
+| T-1 | The owner's picture findings 02–08 (dialogues, one alert wording, social follow path, phone Spanish only, package marks, packages before the questions, 3D video from 0:00) | **built** (`WEBSITE_R23_RETURN_v1.md` §1) | the owner's look | Owner |
+| T-2 | Picture 01 (hero layers and transition) | **unchanged since `deb9b66`**; RV2/RV3 design PASS | the owner names what disturbs, if anything still does | Owner |
+| T-3 | Mail previews without a login: `/preview/weekly`, `/preview/brief` (stub build only) | **built** | the owner's verdict on the weekly layout → Hosting H16 | Owner, Hosting |
+| T-4 | Copy's W-1…W-12 (COPY_SYNC_1023) | **built** | Copy's and the Reviewer's reading of this build | Copy, Reviewer |
+| T-5 | Copy's W-13 (English module names on the Spanish pages) | **open** | the owner's decision | Owner |
+| T-6 | Copy's Q-1…Q-4 (listing facts in a prod reply; hand-off to a person; held enquiry recorded; task visibility) | **open**; fallbacks ready | API, Lead, Daily | API, Lead, Daily |
+| T-7 | E-FU2 test listing `/es/prueba-objeto` ([PRUEBA], not linked, noindex, stub build only) | **built as a skeleton** | PM's minimum fields; the owner's own text and picture; the owner's release of the address; removal after the test | PM, Owner, API |
+| T-8 | 3D pair and turn | unchanged, **open** | 3D's material | 3D |
+| T-9 | Legal notice on nuovasolution.com | **waits** | E14 complete (API signal), Copy fills, then publication | Owner, API, Copy |
+| T-10 | Real phone, real mail client | **open**, separate from the headless checks | the owner's card steps; Hosting's test mail | Owner, Hosting |
+
 ## F7. R20 incl. R20.1 (on deb9b66; build a76e6e1 = cba9ca6 + the cover-timer fix)
 
 | # | Point | State | Needed | Lane |
