@@ -17,13 +17,15 @@ import { publishedCapability } from "@/lib/content/capabilities";
  * Texts: WORKING by the implementer until Copy confirms.
  */
 type L = Record<Locale, string>;
-export type EntryState = "available" | "preparing" | "request";
+export type EntryState = "available" | "partial" | "preparing" | "request";
 
 export interface PlatformEntry {
   key: string;
   name: L;
   line: L;
   state: EntryState;
+  /** The state said in the entry's own words where one word is not enough (a partly available entry). */
+  stateLine?: L;
   /** Where the entry is explained today, if a public page exists. */
   slug?: string;
   /** Where the entry is shown otherwise: a chapter or section of the home page. */
@@ -77,7 +79,8 @@ export const platformTasks: PlatformTask[] = [
     href: "/platform#team",
     line: { es: "Quién hace qué hoy, y qué ya está hecho.", en: "Who does what today, and what is already done." },
     entries: [
-      { key: "daily", name: { es: "El asistente de la mañana", en: "The morning assistant" }, line: { es: "La lista de la mañana: qué va primero, por qué, y el siguiente paso.", en: "The morning list: what comes first, why, and the next step." } /* COPY_1019 R-17 */, state: "preparing", slug: "daily-assistant", anchor: "#story-d" },
+      // R24 picture 08 (1): the same state as the package line "La lista de la mañana" (package-matrix.ts): the list is available, the morning e-mail in preparation.
+      { key: "daily", name: { es: "La lista de la mañana", en: "The morning list" }, line: { es: "Qué va primero, por qué, y el siguiente paso; cada tarea se toma y se completa.", en: "What comes first, why, and the next step; every task is taken and completed." } /* COPY_1019 R-17 */, state: "partial", stateLine: { es: "Disponible: ver, tomar y completar tareas · En preparación: el correo de la mañana", en: "Available: see, take and complete tasks · In preparation: the morning e-mail" }, slug: "daily-assistant", anchor: "#story-d" },
       { key: "tasks", name: { es: "Tareas", en: "Tasks" }, line: { es: "Una tarea con dueño por cada visita o llamada pendiente.", en: "One owned task for every viewing or callback." }, state: "available", slug: "daily-assistant", anchor: "#story-d" },
       { key: "calendar", name: { es: "Calendario", en: "Calendar" }, line: { es: "Las visitas confirmadas, en la agenda de la persona que las hace.", en: "Confirmed viewings in the diary of the person who does them." }, state: "preparing", anchor: "#story-d" },
       { key: "reports", name: { es: "Informes", en: "Reports" }, line: { es: "El informe completo en tu acceso de agencia. El resumen semanal por email está en preparación. Lo que llega al cliente aún no se mide.", en: "The full report in your agency login. The weekly e-mail summary is being prepared. What reaches the customer is not measured yet." }, state: "available" /* COPY_1019 R-18 (login) */, anchor: "#story-f" },
@@ -107,6 +110,7 @@ export function entryHref(e: PlatformEntry): string {
 
 export const stateWords: Record<EntryState, L> = {
   available: { es: "Disponible", en: "Available" },
+  partial: { es: "Disponible en parte", en: "Partly available" },
   preparing: { es: "En preparación · todavía no contratable", en: "In preparation · not bookable yet" }, // COPY_SYNC_1023 W-3
   request: { es: "Por encargo", en: "To order" },
 };

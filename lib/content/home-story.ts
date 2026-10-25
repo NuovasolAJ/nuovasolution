@@ -241,7 +241,27 @@ export const heroWords = {
   lead: { es: "Responde a lo que llega por WhatsApp y email con los datos de tu cartera, guarda lo que busca cada cliente y avisa a tu equipo cuando una consulta importa.", en: "Answers what arrives on WhatsApp and email with your portfolio's data, keeps what each customer is looking for and alerts your team when an enquiry matters." },
   ctaStory: { es: "Ver cómo funciona", en: "See how it works" },
   trialLine: { es: "14 días gratis · Sin tarjeta", en: "14 days free · No card" },
-  labels: { enquiry: { es: "Llega por WhatsApp", en: "Arrives on WhatsApp" }, reply: { es: "Nuova responde", en: "Nuova replies" }, done: { es: "Lo que ya está hecho", en: "What is already done" } },
+  labels: { enquiry: { es: "Llega por WhatsApp", en: "Arrives on WhatsApp" }, reply: { es: "Nuova responde", en: "Nuova replies" }, done: { es: "Su ficha, ya al día", en: "Her record, already up to date" } },
+  /** R24 (owner 24.10.): the customer record instead of three general checks. What stands on Laura's record at 11:21, and the alert. */
+  record: {
+    title: { es: "Ficha de cliente", en: "Customer record" },
+    who: { es: "Laura Serrano · compradora", en: "Laura Serrano · buyer" },
+    updated: { es: "Actualizada · WhatsApp · martes 11:21", en: "Updated · WhatsApp · Tuesday 11:21" },
+    fields: {
+      es: [
+        { k: "Busca", v: "2 dormitorios con terraza · Estepona" },
+        { k: "Presupuesto", v: "hasta 320.000 €" },
+        { k: "Escribe en", v: "español" },
+      ],
+      en: [
+        { k: "Looking for", v: "2 bedrooms with a terrace · Estepona" },
+        { k: "Budget", v: "up to €320,000" },
+        { k: "Writes in", v: "Spanish" },
+      ],
+    },
+    alert: { es: "Aviso por email a tu equipo", en: "E-mail alert to your team" }, // COPY_SYNC_1023 W-5
+    alertWhy: { es: "Consulta importante: nombró inmueble, zona y presupuesto", en: "Important enquiry: she named a property, an area and a budget" },
+  },
   replay: { es: "Reproducir otra vez", en: "Play again" },
   /** The hero's exchange: the question, the answer from the listing's data, one question back. Laura writes in Spanish. */
   heroEnquiry: "Hola, he visto el piso de dos dormitorios con terraza en Estepona. ¿La terraza da al sur? ¿Tiene garaje? Nuestro presupuesto llega hasta 320.000 €.",
@@ -251,19 +271,6 @@ export const heroWords = {
   heroWho: { es: "Laura Serrano · compradora", en: "Laura Serrano · buyer" },
   heroTime: { es: "martes 11:20", en: "Tuesday 11:20" },
   heroReplyTime: { es: "martes 11:21", en: "Tuesday 11:21" },
-  /** The results of the processing (R19 §2): few, visible, each one true to the released function. */
-  results: {
-    es: [
-      { k: "Lo que busca, guardado", v: "2 dormitorios con terraza · Estepona · hasta 320.000 €" },
-      { k: "Ficha de cliente actualizada", v: "Laura Serrano · WhatsApp · martes 11:21" },
-      { k: "Aviso por email a tu equipo", v: "Consulta importante: nombró inmueble, zona y presupuesto" }, // COPY_SYNC_1023 W-5
-    ],
-    en: [
-      { k: "What she wants, saved", v: "2 bedrooms with a terrace · Estepona · up to €320,000" },
-      { k: "Customer record updated", v: "Laura Serrano · WhatsApp · Tuesday 11:21" },
-      { k: "E-mail alert to your team", v: "Important enquiry: she named a property, an area and a budget" },
-    ],
-  },
   /** The situation, as one line inside the panel. */
   situationLine: { es: "Martes 11:20 · Marcos está en una visita hasta las 12:00 · Nuova atiende lo que llega", en: "Tuesday 11:20 · Marcos is at a viewing until 12:00 · Nuova handles what arrives" },
   /** The limit, with the claim (R19 §7): what runs today, said inside the product. Copy checks the wording (C1). */
@@ -446,6 +453,8 @@ export const storyWords = {
         { who: "Sofía Lamas", what: "Long-term rental in Fuengirola", why: "No date; from January", next: "Send what is available to rent" },
       ],
     },
+    listTitle: { es: "Tareas", en: "Tasks" },
+    listSubtitle: { es: "Tu equipo · miércoles por la mañana", en: "Your team · Wednesday morning" },
     take: { es: "Tomar", en: "Take" },
     taken: { es: "Tomada por Elena", en: "Taken by Elena" },
     confirm: { es: "Proponer la hora a Laura", en: "Propose the time to Laura" },
@@ -515,6 +524,8 @@ export const storyWords = {
       nextTitle: { es: "Siguiente paso", en: "Next step" },
       next: { es: "Marta queda como contacto nuevo en su ficha, con el inmueble y su pregunta. Una persona del equipo le escribe por privado; nada se responde en público sin una persona.", en: "Marta is a new contact on a record, with the listing and her question. A person from the team writes to her privately; nothing is answered in public without a person." },
     },
+    example: { es: "Ejemplo · prototipo", en: "Example · prototype" }, // R24 picture 04 (4): the published post is an example of a prototype
+    photoSource: { es: "Foto de muestra con licencia (Pexels 12715501), no es un inmueble real.", en: "Licensed sample photo (Pexels 12715501), not a real listing." },
     commentLabel: { es: "Comentario público", en: "Public comment" },
     comment: "¿Sigue disponible? Me interesa.",
     commenter: "Marta G.",

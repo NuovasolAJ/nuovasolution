@@ -68,19 +68,22 @@ export default async function PackagesPage({ params }: { params: { locale: strin
             <Reveal className="xl:max-w-[62%]">
               <SectionHead title={pk.compareHeading} lead={pk.compareLead} size="m" id="pk-plans" />
             </Reveal>
-            <ol className="mt-12 grid gap-6 lg:grid-cols-3" data-plan-cards>
+            {/* R24 picture 10: each card as tall as its content (no empty Enterprise card), the trial mark inside the card instead of a
+                sticker over its edge, in the home ladder's words (14 días gratis · Sin tarjeta) */}
+            <ol className="mt-12 grid gap-6 lg:grid-cols-3 lg:items-start" data-plan-cards>
               {catalogPlans.map((plan, i) => {
                 const essential = plan.code === "essential";
                 const trialHere = aligned && essential;
                 return (
                   <Reveal key={plan.code} delay={i * 70} as="li" className={cn("stage relative flex flex-col p-7", trialHere && "border-ink-950")} data-plan={plan.code} data-trial={trialHere ? "yes" : "no"}>
-                    {trialHere && (
-                      <p className="absolute -top-4 right-5 inline-flex -rotate-2 flex-col items-start rounded-lg bg-ink-950 px-4 py-2 text-ivory shadow-overlay" data-trial-sticker>
-                        <span className="t-body-s font-semibold leading-tight">{pk.trialBadgeAligned}</span>
-                        <span className="t-caption text-ink-300">{pk.noPaymentMethod}</span>
-                      </p>
-                    )}
-                    <Heading size="l" as="h3">{backendName(plan.code) ?? plan.display_name}</Heading>
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <Heading size="l" as="h3">{backendName(plan.code) ?? plan.display_name}</Heading>
+                      {trialHere && (
+                        <p className="inline-flex shrink-0 items-center rounded-pill bg-ink-950 px-3 py-1 t-caption font-medium text-ivory" data-trial-sticker>
+                          {pk.trialBadgeAligned} · {pk.noPaymentMethod}
+                        </p>
+                      )}
+                    </div>
                     <p className="mt-1 t-caption font-medium text-text-muted">{ladder(plan.code)?.who[locale]}</p>
                     <p className="mt-3 t-body-m text-text-primary">{ladder(plan.code)?.change[locale] ?? planLine(plan.code)}</p>
                     {ladder(plan.code) && <p className="mt-2 t-caption text-text-secondary" data-package-limits>{ladder(plan.code)!.limits[locale]}</p>}

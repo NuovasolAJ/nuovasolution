@@ -397,7 +397,7 @@ export const es: Dictionary = {
       "14 días, gratis y sin método de pago.",
       "Tu cuenta y tus datos siguen ahí. Las funciones de pago se pausan hasta que elijas un plan. Puedes seguir entrando.",
     ],
-    noPaymentMethod: "Sin método de pago",
+    noPaymentMethod: "Sin tarjeta", // R24 picture 07/10: one wording with the home page's ladder
     compareHeading: "En qué se diferencian los planes",
     compareLead: "Cada paquete incluye todo lo del anterior y añade funciones.", // HANDOVER_1021 C-5
     planColumn: "Plan",

@@ -25,15 +25,18 @@ export function SocialFlow({ locale }: { locale: Locale }) {
         <p className="state-line mt-5" data-state="preparing" data-chapter-state>{storyWords.common.stateLabel[locale]}: {l(S.state)}</p>
       </Reveal>
       <Reveal mode="opacity" delay={100} className="mt-8">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10" data-social-strip>
+        {/* R24 picture 04: the post is marked as an example on the card itself (the "published" line is part of the example, the function is
+            a prototype); the card is shorter (3:2 picture, 380 px), so no empty field stands under the comment column */}
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,380px)_minmax(0,1fr)] lg:items-start lg:gap-10" data-social-strip>
           {/* The post: the listing's own photo and data as a finished draft, approved, published */}
           <article className="overflow-hidden rounded-lg border border-line-contour bg-surface-raised" data-social-post>
             <div className="flex items-center gap-3 px-4 py-3">
               <span aria-hidden="true" className="inline-flex h-8 w-8 items-center justify-center rounded-pill bg-ink-950 text-[0.75rem] font-semibold text-ivory">N</span>
               <p className="t-body-s font-semibold text-ink-950">{P.account}</p>
+              <span className="ml-auto inline-flex h-6 shrink-0 items-center whitespace-nowrap rounded-pill border border-line-hairline bg-surface-raised px-2.5 t-caption text-text-secondary" data-social-example>{l(S.example)}</span>
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={li.photo} alt={l(li.photoAlt)} width={800} height={533} loading="eager" decoding="async" className="aspect-[4/3] w-full bg-[#ece9e2] object-cover" />
+            <img src={li.photo} alt={l(li.photoAlt)} width={800} height={533} loading="eager" decoding="async" className="aspect-[3/2] w-full bg-[#ece9e2] object-cover" />
             <div className="px-4 pb-4 pt-3">
               <p className="flex items-center gap-4 text-text-muted" aria-hidden="true"><Heart size={18} /><MessageCircle size={18} /><Send size={18} /></p>
               <p className="mt-3 t-body-s text-ink-950"><span className="font-semibold">{P.account}</span> {l(P.caption)}</p>
@@ -66,7 +69,7 @@ export function SocialFlow({ locale }: { locale: Locale }) {
               <p className="t-caption font-medium text-text-muted">{l(P.nextTitle)}</p>
               <p className="mt-1 t-body-m text-ink-950">{l(P.next)}</p>
             </div>
-            <p className="t-caption text-text-muted">{l(S.noAds)}</p>
+            <p className="t-caption text-text-muted">{l(S.noAds)} {l(S.photoSource)}</p>
           </div>
         </div>
       </Reveal>

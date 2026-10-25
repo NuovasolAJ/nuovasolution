@@ -55,11 +55,19 @@ export default function ProductPage({ params }: { params: { locale: string; slug
           <div className="grid grid-cols-1 items-center gap-12 xl:grid-cols-12 xl:gap-16">
             <Reveal className="xl:col-span-6">
               <Eyebrow className="mb-4">{d.product.eyebrowPrefix} · {c.name[locale]}</Eyebrow>
-              <Display size="xl" id="pd-h1" className="max-w-[18ch]">{c.h1[locale]}</Display>
-              <Lead className="mt-6">{c.lead[locale]}</Lead>
+              {/* R24 picture 09 (1): the module headline one step smaller than the home page's; the lead, then for whom and what it saves (3) */}
+              <Display size="l" as="h1" id="pd-h1" className="max-w-[22ch]">{c.h1[locale]}</Display>
+              <Lead className="mt-5">{c.lead[locale]}</Lead>
+              {c.why && (
+                <ul className="mt-5 space-y-2 measure-lead" data-product-why>
+                  {c.why.map((w, i) => (
+                    <li key={i} className="flex items-start gap-2.5 t-body-m text-text-primary"><StatusGlyph glyph="check" size={16} className="mt-1.5 shrink-0 text-signal-positive" />{w[locale]}</li>
+                  ))}
+                </ul>
+              )}
               {c.note && <p className="mt-4 border-l-2 border-line-strong pl-4 t-body-m text-text-secondary measure-lead">{c.note[locale]}</p>}
               <Caption className="mt-3">{d.common.qualifiers.q2}</Caption>
-              <CtaRow className="mt-10">
+              <CtaRow className="mt-8">
                 <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
                 <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
               </CtaRow>

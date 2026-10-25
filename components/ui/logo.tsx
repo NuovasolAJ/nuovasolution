@@ -1,30 +1,12 @@
 import { cn } from "@/lib/utils";
 
 /**
- * The NuovaSolution lockup, preserved exactly. The official artwork is a
- * black-on-transparent PNG (1600 × 320). It is rendered through a CSS alpha
- * mask filled with currentColor, so it takes the ivory of a dark surface or
- * the ink of an ivory surface without any invert filter and without
- * re-drawing the mark. Height 28 px below 640, 32 px above.
- *
- * Open item: an SVG lockup from the owner would replace this mask.
+ * The NuovaSolution lockup, the official artwork itself (public/images/logo-tight.png, black on transparent, 1600 × 320),
+ * as a plain image (R24, owner 24.10.: the actual logo; the earlier CSS mask did not show in the owner's browser). On a
+ * dark surface the page inverts it to ivory with a filter (globals.css `.site-logo`), the mark itself is never redrawn.
+ * Height 28 px below 640, 32 px above.
  */
 export function Logo({ className, label = "NuovaSolution" }: { className?: string; label?: string }) {
-  return (
-    <span
-      role="img"
-      aria-label={label}
-      className={cn("inline-block h-7 md:h-8 aspect-[5/1] bg-current text-text-primary", className)}
-      style={{
-        WebkitMaskImage: "url(/images/logo-tight.png)",
-        maskImage: "url(/images/logo-tight.png)",
-        WebkitMaskSize: "contain",
-        maskSize: "contain",
-        WebkitMaskRepeat: "no-repeat",
-        maskRepeat: "no-repeat",
-        WebkitMaskPosition: "left center",
-        maskPosition: "left center",
-      }}
-    />
-  );
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src="/images/logo-tight.png" alt={label} width={1600} height={320} decoding="async" fetchPriority="high" className={cn("site-logo h-7 w-auto md:h-8", className)} data-site-logo />;
 }

@@ -55,6 +55,8 @@ export interface Capability {
   honesty?: L;
   /** A material limit the buyer needs for the decision, said on the page (COPY_DELTAS_0929 D-39). */
   note?: L;
+  /** R24 (owner 24.10.: an understandable benefit on every page): for whom, and what it saves, in the proven present tense only. */
+  why?: L[];
   video?: string;
   related: string[];
 }
@@ -72,6 +74,12 @@ export const capabilities: Capability[] = [
       en: "Text enquiries on Gmail and WhatsApp are answered and carried forward on the same channel, without anyone in the office having to be free at that moment.",
       es: "Las consultas de texto por Gmail y WhatsApp se responden y se llevan hacia adelante por el mismo canal, sin que nadie de la oficina tenga que estar libre en ese momento.",
     },
+    // R24 picture 09 (3): the benefit, for whom and what it saves (proven behaviour only: the reply while nobody is free, the record, the alert by e-mail)
+    why: [
+      { en: "For agencies whose enquiries arrive while everybody is at a viewing: the customer gets a concrete reply in Spanish at once, not in the evening.", es: "Para agencias cuyas consultas llegan mientras todos están en una visita: el cliente recibe una respuesta concreta en español al momento, no por la noche." },
+      { en: "What the customer asked for is on their record without anybody typing it over.", es: "Lo que pide el cliente queda en su ficha sin que nadie lo pase a mano." },
+      { en: "When an enquiry names a property, an area and a budget, the right person on your team gets an e-mail with the reason.", es: "Cuando una consulta nombra inmueble, zona y presupuesto, la persona adecuada de tu equipo recibe un email con el motivo." },
+    ],
     points: [
       { text: { en: "Gmail text intake and reply.", es: "Recepción y respuesta de texto por Gmail." }, status: "live" },
       { text: { en: "WhatsApp text intake and reply.", es: "Recepción y respuesta de texto por WhatsApp." }, status: "live" },
@@ -108,6 +116,10 @@ export const capabilities: Capability[] = [
       en: "A client who writes twice on the same channel stays one person in Nuova, with what they asked for kept on their record.",
       es: "Un cliente que escribe dos veces por el mismo canal sigue siendo una sola persona en Nuova, con lo que ha pedido guardado en su ficha.",
     },
+    why: [
+      { en: "For teams where the second message lands with somebody else: the record says what was asked for before, so nobody asks the customer twice.", es: "Para equipos donde el segundo mensaje le llega a otra persona: la ficha dice qué se pidió antes, así que nadie pregunta dos veces al cliente." },
+      { en: "Area, budget, use and timing are read from the conversation and kept; a person decides what to do with them.", es: "Zona, presupuesto, uso y plazo se leen de la conversación y se guardan; una persona decide qué hacer con ellos." },
+    ],
     points: [
       { text: { en: "One canonical customer identity across channels.", es: "Una identidad de cliente única en todos los canales." }, status: "in_implementation" }, // WCR-063
       { text: { en: "What the customer asked for, kept on their record.", es: "Lo que ha pedido el cliente, guardado en su ficha." }, status: "live" }, // D-26
@@ -143,6 +155,10 @@ export const capabilities: Capability[] = [
       en: "A CRM is included from the start. Each enquiry becomes a lead with what the customer asked for and the conversation so far.",
       es: "Hay un CRM incluido desde el principio. Cada consulta pasa a ser un lead con lo que ha pedido el cliente y la conversación hasta ahora.",
     },
+    why: [
+      { en: "For agencies that keep leads in a mailbox and a notebook: one record per enquiry, included from the first day, nothing to connect.", es: "Para agencias que llevan los leads en el buzón y en una libreta: una ficha por consulta, incluida desde el primer día, sin nada que conectar." },
+      { en: "Whoever opens a record sees the conversation and what the customer asked for, without asking a colleague.", es: "Quien abre una ficha ve la conversación y lo que pidió el cliente, sin preguntar a un compañero." },
+    ],
     points: [
       { text: { en: "Leads recorded with what each customer asked for, included.", es: "Leads registrados con lo que ha pedido cada cliente, incluido." }, status: "live" }, // WCR-071, interim wording 2026-10-01 (no qualification claim)
       // WCR-072 Google Sheets: no line until the contradiction of MAIL_CRM_MATRIX_v1 is resolved (TEXTS_1013 §6b M-6).
@@ -212,8 +228,14 @@ export const capabilities: Capability[] = [
       en: "Every viewing request and every callback becomes a task with the customer, the property and the time they asked for.",
       es: "Cada petición de visita y cada llamada pendiente pasa a ser una tarea con el cliente, el inmueble y la hora que ha pedido.",
     },
+    why: [
+      { en: "For teams where somebody asked for a viewing and nobody knows who calls back: every request has an owner, and the others see who.", es: "Para equipos donde alguien pidió una visita y nadie sabe quién devuelve la llamada: cada petición tiene dueño, y los demás ven quién." },
+      { en: "The customer, the property and the time they asked for are on the task; nothing stays in somebody's head.", es: "El cliente, el inmueble y la hora que pidió están en la tarea; nada se queda en la cabeza de nadie." },
+    ],
     points: [
-      { text: { en: "Whoever takes a task owns it. It leaves the lists of the others, so nobody takes it twice.", es: "Quien toma una tarea se hace cargo de ella. Desaparece de las listas de los demás, así que nadie la toma dos veces." }, status: "live" }, // measured rule, daily_clip_v3/MANIFEST.md (2026-10-02); the 09-28 sheet said the others see the claimant, Daily to confirm
+      // R24 (Q-4, picture 03/11): one sentence everywhere. Daily's read model (DAILY_TEAM_TODAY_READ_MODEL_1012 §2 `claimed_by`, §3: the team
+      // scope "returns the tenant's open work including requests a colleague has claimed") — the others see it as taken, and by whom.
+      { text: { en: "Whoever takes a task owns it. The others see it as taken, and by whom, so nobody takes it twice.", es: "Quien toma una tarea se hace cargo de ella. Los demás la ven como tomada, y por quién, así que nadie la toma dos veces." }, status: "live" },
       { text: { en: "One tap takes it, one tap completes it.", es: "Un toque la toma, un toque la completa." }, status: "live" },
       { text: { en: "Nobody can take the same task twice, and only the person who took it can close it.", es: "Nadie puede tomar la misma tarea dos veces, y solo quien la tomó puede cerrarla." }, status: "live" },
       { text: { en: "In Spanish or in English, chosen in the app.", es: "En español o en inglés, elegido en la aplicación." }, status: "live" },
@@ -223,8 +245,8 @@ export const capabilities: Capability[] = [
       { text: { en: "An employee assistant for internal tasks.", es: "Una asistente para los empleados y sus tareas internas." }, status: "in_implementation" },
     ],
     scenario: {
-      en: "An agent opens the list, takes Laura Serrano's viewing task, and completes it once a person has agreed the time with her. For the others the task is gone from their lists.",
-      es: "Un agente abre la lista, toma la tarea de la visita de Laura Serrano y la completa cuando una persona ha acordado la hora con ella. Para los demás, la tarea desaparece de su lista.",
+      en: "An agent opens the list, takes Laura Serrano's viewing task, and completes it once a person has agreed the time with her. The others see it as taken by her until it is done.",
+      es: "Un agente abre la lista, toma la tarea de la visita de Laura Serrano y la completa cuando una persona ha acordado la hora con ella. Los demás la ven como tomada por ella hasta que está hecha.",
     },
     fits: [
       { en: "Desktop and mobile", es: "Escritorio y móvil" },

@@ -434,7 +434,7 @@ export const en = {
     ],
     // Pricing comparison (owner order 2026-09-29): what differs is shown once per plan, what is shared is said once.
     // Interim implementer wording until COPY_DELTAS_0929; amounts and the period come from PRICING_AUTHORITY (O-7).
-    noPaymentMethod: "No payment method",
+    noPaymentMethod: "No card", // R24 picture 07/10: one wording with the home page's ladder
     compareHeading: "What differs between the plans",
     compareLead: "Each package includes everything in the one before and adds features.", // final order 2026-10-12 §9: staged functions, not the same parts
     planColumn: "Plan",

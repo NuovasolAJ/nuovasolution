@@ -57,7 +57,7 @@ export default function PlatformPage({ params }: { params: { locale: string } })
                           <span className="block t-body-m font-medium text-text-primary">{e.name[locale]}</span>
                           <span className="block t-body-s text-text-secondary">{e.line[locale]}</span>
                           {/* COPY_SYNC_1023 W-3: every row carries its state */}
-                          <span className="state-line mt-1" data-state={e.state} data-platform-entry-state>{stateWords[e.state][locale]}</span>
+                          <span className="state-line mt-1" data-state={e.state} data-platform-entry-state>{e.stateLine ? e.stateLine[locale] : stateWords[e.state][locale]}</span>
                         </span>
                         <StatusGlyph glyph="arrow-right" size={14} className="shrink-0 text-text-muted transition-transform duration-micro group-hover:translate-x-0.5" />
                       </Link>

@@ -12,7 +12,7 @@ type L = Record<Locale, string>;
 export const briefWords = {
   eyebrow: { es: "Tu mañana", en: "Your morning" },
   h1: { es: "Así llega el resumen de la mañana", en: "How the morning brief arrives" },
-  lead: { es: "Un email corto a cada persona del equipo: la consulta que más importa hoy, por qué, y las tareas con su siguiente paso. La misma hülle que el resumen semanal, con otro contenido. Datos de demostración.", en: "A short email to each person on the team: the enquiry that matters most today, why, and the tasks with their next step. The same shell as the weekly summary, with other contents. Demonstration data." },
+  lead: { es: "Un email corto a cada persona del equipo: la consulta que más importa hoy, por qué, y las tareas con su siguiente paso. El mismo formato que el resumen semanal, con otro contenido. Datos de demostración.", en: "A short email to each person on the team: the enquiry that matters most today, why, and the tasks with their next step. The same format as the weekly summary, with other contents. Demonstration data." }, // R24 (owner 25.10.): no German word in the Spanish text
   subject: { es: "Buenos días, Elena: una consulta importante para hoy", en: "Good morning, Elena: one important enquiry for today" },
   greeting: { es: "Hola Elena,", en: "Hello Elena," },
   summary: { es: "Desde ayer han llegado cuatro consultas. La que más importa hoy: Laura Serrano quiere ver el piso de Estepona la semana que viene y nombró inmueble, zona y presupuesto.", en: "Four enquiries came in since yesterday. The one that matters most today: Laura Serrano wants to see the flat in Estepona next week and named a property, an area and a budget." },

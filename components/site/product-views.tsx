@@ -124,6 +124,53 @@ export function RecordView({ locale, className }: { locale: Locale; className?: 
   );
 }
 
+/**
+ * The team's task list as the daily page's product view (R24 picture 11 (3): the page is about tasks, so the picture shows tasks, not
+ * leads): the home page's morning list (lib/content/home-story.ts), Laura's task taken by Elena, the others open, each with its owner
+ * state and its next step. The same names and the same clock as the story.
+ */
+export function TasksView({ locale, className }: { locale: Locale; className?: string }) {
+  const d = getDictionary(locale);
+  const W = storyWords.task;
+  const items = W.items[locale];
+  const es = locale === "es";
+  return (
+    <div className={cn("mx-auto w-full max-w-[460px]", className)} data-view="tasks">
+      <div className="overflow-hidden rounded-xl border border-line-hairline bg-surface-raised shadow-card">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line-hairline px-4 py-3">
+          <div className="min-w-0">
+            <p className="t-body-s font-medium text-text-primary">{W.listTitle[locale]}</p>
+            <p className="t-caption text-text-muted">{W.listSubtitle[locale]}</p>
+          </div>
+          <LabelChip className="ml-auto">{d.home.views.conversation.synthetic}</LabelChip>
+        </div>
+        <ol className="hairline-list">
+          {items.map((it, i) => {
+            const taken = i === 0;
+            return (
+              <li key={it.who} className={cn("grid grid-cols-[auto_minmax(0,1fr)] gap-3 px-4 py-3", taken && "bg-[color:rgba(246,239,226,0.55)]")} data-task-row={taken ? "taken" : "open"}>
+                <span className="tnum inline-flex h-7 w-7 items-center justify-center rounded-pill bg-ink-950 text-[0.8125rem] font-semibold text-ivory" aria-hidden="true">{i + 1}</span>
+                <span className="min-w-0">
+                  <span className="block t-body-s font-medium text-text-primary">{it.who}</span>
+                  <span className="block t-caption text-text-secondary">{it.what}</span>
+                  <span className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 t-caption">
+                    <span className={cn("inline-flex items-center gap-1.5 font-medium", taken ? "text-signal-positive" : "text-text-muted")}>
+                      <StatusGlyph glyph={taken ? "check" : "clock"} size={13} />
+                      {taken ? W.taken[locale] : W.open[locale]}
+                    </span>
+                    <span className="text-text-muted">{W.nextStep[locale]}: {it.next}</span>
+                  </span>
+                </span>
+              </li>
+            );
+          })}
+        </ol>
+        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{es ? "Datos sintéticos. Los demás ven la tarea de Laura como tomada por Elena; solo ella puede cerrarla." : "Synthetic data. The others see Laura's task as taken by Elena; only she can close it."}</p>
+      </div>
+    </div>
+  );
+}
+
 type Shot = "tasks" | "task-action" | "task-done" | "task-card";
 
 /**
@@ -219,7 +266,7 @@ export function ProductView({ slug, locale }: { slug: string; locale: Locale }) 
     case "crm":
       return <BoardView locale={locale} />;
     case "daily-assistant":
-      return <DailyShot locale={locale} shot="task-action" />;
+      return <TasksView locale={locale} />;
     default:
       return <RecordView locale={locale} />;
   }

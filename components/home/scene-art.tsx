@@ -27,31 +27,85 @@ export function TerracePhoto({ variant = 0, className }: { variant?: 0 | 1; clas
   );
 }
 
-/** The dimensioned plan: five rooms, the terrace, a few measurements. */
-export function FloorPlan({ rooms, className }: { rooms: readonly string[]; className?: string }) {
-  const [living, kitchen, bedroom, bath, terrace] = rooms;
+/**
+ * The ground floor of the 3D lane's demonstration house, drawn to scale from its own specification
+ * (nuova-3d deliverables/demo-two-storey/build/demo_spec.json, 2026-10-24: walls, openings, door swings, zones and the stair
+ * in millimetres). It is the plan the model of step 02 and the turn of step 04 are built from, so plan and model show the
+ * same house (R24, audit picture 05 (3), (4)). Room names in the page's language; no label stands on a door swing.
+ * Decorative (aria-hidden); the words beside it say what it is.
+ */
+const PLAN_WALLS: [number, number, number, number][] = [
+  [0, 0, 1500, 200], [3500, 0, 6800, 200], [7800, 0, 10000, 200], [0, 7800, 1500, 8000], [4000, 7800, 10000, 8000], [0, 200, 200, 1200], [0, 3400, 200, 7800],
+  [9800, 200, 10000, 6200], [9800, 7200, 10000, 7800], [5900, 200, 6000, 800], [5900, 1700, 6000, 5300], [5900, 6300, 6000, 7800], [8700, 200, 8800, 4950],
+  [6000, 2900, 8700, 3000], [6000, 4850, 7000, 4950], [7800, 4850, 8700, 4950], [200, 4400, 1000, 4500], [4500, 4400, 5900, 4500], [8800, 1100, 9800, 1200],
+];
+/** windows and the glazed terrace door: [x0, y0, x1, y1] */
+const PLAN_GLAZING: [number, number, number, number][] = [[0, 1200, 200, 3400], [1500, 0, 3500, 200], [1500, 7800, 4000, 8000], [6800, 0, 7800, 200]];
+/** door swings: hinge, direction along the wall, direction into the room, leaf width */
+const PLAN_DOORS: { h: [number, number]; a: [number, number]; i: [number, number]; w: number }[] = [
+  { h: [9800, 6200], a: [0, 1], i: [-1, 0], w: 1000 },
+  { h: [6000, 800], a: [0, 1], i: [1, 0], w: 900 },
+  { h: [7800, 4850], a: [-1, 0], i: [0, -1], w: 800 },
+];
+const PLAN_ROOMS: { key: string; x: number; y: number; dims?: string; es: string; en: string }[] = [
+  { key: "living", x: 3050, y: 2200, dims: "5,70 × 4,20 m", es: "Salón", en: "Living room" },
+  { key: "kitchen", x: 3050, y: 6200, es: "Cocina / Comedor", en: "Kitchen / Dining" },
+  { key: "utility", x: 7350, y: 2350, es: "Lavadero", en: "Utility room" },
+  { key: "wc", x: 7350, y: 3700, es: "Aseo", en: "WC" },
+  { key: "hall", x: 7300, y: 6450, es: "Recibidor", en: "Hall" },
+  { key: "terrace", x: -1900, y: 2450, dims: "3,80 × 3,60 m", es: "Terraza", en: "Terrace" },
+];
+export function DemoPlan({ locale, className }: { locale: "es" | "en"; className?: string }) {
+  const font = "ui-sans-serif, system-ui, sans-serif";
+  const doorPath = ({ h, a, i, w }: (typeof PLAN_DOORS)[number]) => {
+    const p1 = [h[0] + a[0] * w, h[1] + a[1] * w];
+    const p2 = [h[0] + i[0] * w, h[1] + i[1] * w];
+    const sweep = a[0] * i[1] - a[1] * i[0] > 0 ? 1 : 0;
+    return `M${p1[0]} ${p1[1]}A${w} ${w} 0 0 ${sweep} ${p2[0]} ${p2[1]}L${h[0]} ${h[1]}`;
+  };
   return (
-    <svg aria-hidden="true" viewBox="0 0 320 240" className={className} focusable="false">
-      <rect width="320" height="240" fill="#f7f5ef" />
-      <g fill="#fff" stroke="#1a1917" strokeWidth="2.5">
-        <rect x="24" y="24" width="150" height="110" />
-        <rect x="174" y="24" width="102" height="60" />
-        <rect x="174" y="84" width="102" height="50" />
-        <rect x="24" y="134" width="130" height="70" />
-        <rect x="154" y="134" width="122" height="70" />
+    <svg aria-hidden="true" viewBox="-4300 -1000 14900 9500" className={className} focusable="false" data-demo-plan>
+      <rect x="-4300" y="-1000" width="14900" height="9500" fill="#f7f5ef" />
+      {/* the floor slab and the terrace deck */}
+      <rect x="0" y="0" width="10000" height="8000" fill="#fff" />
+      <rect x="-3800" y="700" width="3800" height="3600" fill="#efe9db" stroke="#8f887b" strokeWidth="30" strokeDasharray="160 120" />
+      {/* the stair: treads from the hall up to the landing */}
+      <g stroke="#8f887b" strokeWidth="30">
+        {Array.from({ length: 15 }, (_, k) => 4950 - 250 * (k + 1)).map((y) => <path key={y} d={`M8800 ${y}H9800`} />)}
       </g>
-      <g stroke="#1a1917" strokeWidth="2.5" strokeDasharray="6 5"><path d="M24 204H276" /></g>
-      <rect x="24" y="204" width="252" height="18" fill="#efe9db" stroke="#1a1917" strokeWidth="2.5" />
-      {/* doors */}
-      <g fill="none" stroke="#1a1917" strokeWidth="1.6"><path d="M174 60a20 20 0 0 1 -20 -20" /><path d="M120 134a20 20 0 0 0 20 20" /><path d="M200 134a20 20 0 0 1 20 20" /></g>
-      <g fontFamily="ui-sans-serif, system-ui" fontSize="11" fill="#1a1917" fontWeight="600">
-        <text x="32" y="44">{living}</text><text x="182" y="44">{kitchen}</text><text x="182" y="104">{bath}</text><text x="32" y="154">{bedroom}</text><text x="162" y="154">{bedroom} 2</text><text x="32" y="217">{terrace}</text>
+      <path d="M9300 4700V1500M9140 1700L9300 1500L9460 1700" fill="none" stroke="#5d5952" strokeWidth="40" />
+      {/* the walls */}
+      <g fill="#1a1917">
+        {PLAN_WALLS.map(([x0, y0, x1, y1]) => <rect key={`${x0}-${y0}`} x={x0} y={y0} width={x1 - x0} height={y1 - y0} />)}
       </g>
-      <g fontFamily="ui-sans-serif, system-ui" fontSize="10" fill="#5d5952">
-        <text x="78" y="126">5,20 m</text><text x="200" y="126">3,40 m</text><text x="60" y="196">4,30 m</text><text x="190" y="196">4,10 m</text>
+      {/* windows and the glazed door to the terrace */}
+      <g fill="#dfe9ef" stroke="#1a1917" strokeWidth="40">
+        {PLAN_GLAZING.map(([x0, y0, x1, y1]) => <rect key={`${x0}-${y0}`} x={x0} y={y0} width={x1 - x0} height={y1 - y0} />)}
       </g>
-      <g stroke="#5d5952" strokeWidth="1"><path d="M24 12H174M24 8v8M174 8v8" /></g>
-      <text x="80" y="10" fontFamily="ui-sans-serif, system-ui" fontSize="10" fill="#5d5952">5,20 m</text>
+      <g stroke="#1a1917" strokeWidth="30">
+        {PLAN_GLAZING.map(([x0, y0, x1, y1]) => (x1 - x0 > y1 - y0 ? <path key={`${x0}-${y0}`} d={`M${x0} ${(y0 + y1) / 2}H${x1}`} /> : <path key={`${x0}-${y0}`} d={`M${(x0 + x1) / 2} ${y0}V${y1}`} />))}
+      </g>
+      {/* door swings */}
+      <g fill="none" stroke="#1a1917" strokeWidth="40">
+        {PLAN_DOORS.map((d, k) => <path key={k} d={doorPath(d)} />)}
+      </g>
+      {/* room names and two inner measurements */}
+      <g fontFamily={font} fontSize="430" fontWeight="600" fill="#1a1917" textAnchor="middle">
+        {PLAN_ROOMS.map((r) => <text key={r.key} x={r.x} y={r.y}>{r[locale]}</text>)}
+      </g>
+      <g fontFamily={font} fontSize="340" fill="#5d5952" textAnchor="middle">
+        {PLAN_ROOMS.filter((r) => r.dims).map((r) => <text key={r.key} x={r.x} y={r.y + 480}>{r.dims}</text>)}
+        <text x="9300" y="3300" transform="rotate(-90 9300 3300)">{locale === "es" ? "Escalera" : "Stair"}</text>
+      </g>
+      {/* the outer dimensions */}
+      <g stroke="#5d5952" strokeWidth="30">
+        <path d="M0 -500H10000M0 -620V-380M10000 -620V-380" />
+        <path d="M10450 0V8000M10330 0H10570M10330 8000H10570" />
+      </g>
+      <g fontFamily={font} fontSize="360" fill="#5d5952" textAnchor="middle">
+        <text x="5000" y="-640">10,00 m</text>
+        <text x="10600" y="4000" transform="rotate(-90 10600 4000)" dy="-120">8,00 m</text>
+      </g>
     </svg>
   );
 }

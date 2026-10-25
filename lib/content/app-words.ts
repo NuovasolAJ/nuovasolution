@@ -69,7 +69,7 @@ export const appWords = {
   email: {
     eyebrow: { es: "El email del lunes", en: "Monday's email" },
     h1: { es: "Así llega el resumen semanal", en: "How the weekly summary arrives" },
-    lead: { es: "Un email corto con las cifras principales y un botón al informe completo. Lo que ves es la plantilla que recibe tu agencia, en la hülle común de todos los correos de Nuova.", en: "A short email with the main figures and one button to the full report. What you see is the template your agency receives, in the shared shell of every Nuova mail." },
+    lead: { es: "Un email corto con las cifras principales y un botón al informe completo. Lo que ves es la plantilla que recibe tu agencia, con el mismo formato que todos los correos de Nuova.", en: "A short email with the main figures and one button to the full report. What you see is the template your agency receives, in the same format as every Nuova mail." }, // R24 (owner 25.10.): no German word in the Spanish text
     subjectAnswered: { es: "Tu semana en Nuova: {answered} consultas atendidas", en: "Your week in Nuova: {answered} enquiries answered" },
     subjectReceived: { es: "Tu semana en Nuova: {received} consultas recibidas", en: "Your week in Nuova: {received} enquiries received" },
     subjectNone: { es: "Tu semana en Nuova", en: "Your week in Nuova" },
