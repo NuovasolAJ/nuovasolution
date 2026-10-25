@@ -1,0 +1,456 @@
+{
+ "deployment": "https://nuovasolution-design-preview-1pfs923d9-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-25T08:33:09.680Z",
+ "images": {
+  "10": {
+   "verdict": "NOT_REPRODUCED",
+   "evidence": {
+    "sticker": {
+     "stickerTop": 329,
+     "cardTop": 205,
+     "crossesEdge": false
+    },
+    "enterprise_lines": 9
+   }
+  },
+  "11": {
+   "verdict": "CONFIRMED",
+   "evidence": {
+    "disappear": [
+     " Desaparece de las listas de los demás, así que nadie la toma dos veces",
+     " Para los demás, la tarea desaparece de su lista"
+    ],
+    "language_pick": [
+     " En español o en inglés, elegido en la aplicación"
+    ]
+   }
+  },
+  "12": {
+   "verdict": "NOT_REPRODUCED",
+   "evidence": {
+    "pages_without_accent": [],
+    "sample": {
+     "withAccent": [
+      "envía nada autom",
+      "envía nada autom"
+     ],
+     "sentence": "En otro idioma no se envía nada automáticamente."
+    }
+   }
+  },
+  "13": {
+   "verdict": "NOT_REPRODUCED",
+   "evidence": {
+    "found": true,
+    "overlapX": 7,
+    "overlapY": -3626,
+    "overlapping": false,
+    "hit": null
+   }
+  },
+  "01": {
+   "verdict": "CONFIRMED",
+   "evidence": {
+    "covered": [
+     {
+      "w": "390",
+      "label": "Ver el aviso de IA",
+      "top": 5261,
+      "headerBottom": 60,
+      "overlapPx": 0,
+      "hitIsSelf": false,
+      "hitLabel": null
+     },
+     {
+      "w": "390",
+      "label": "Pedir ver este piso el",
+      "top": 12527,
+      "headerBottom": 60,
+      "overlapPx": 0,
+      "hitIsSelf": false,
+      "hitLabel": null
+     },
+     {
+      "w": "390",
+      "label": "Ver el informe complet",
+      "top": 14376,
+      "headerBottom": 60,
+      "overlapPx": 0,
+      "hitIsSelf": false,
+      "hitLabel": null
+     },
+     {
+      "w": "390",
+      "label": "Probar gratis",
+      "top": 20168,
+      "headerBottom": 60,
+      "overlapPx": 0,
+      "hitIsSelf": false,
+      "hitLabel": null
+     }
+    ],
+    "header": {
+     "390": {
+      "h": 60,
+      "pos": "fixed"
+     },
+     "1440": {
+      "h": 72,
+      "pos": "fixed"
+     }
+    }
+   }
+  },
+  "03": {
+   "verdict": "CONFIRMED",
+   "evidence": {
+    "clipped": [
+     {
+      "cls": "hero-world",
+      "sw": 1433,
+      "cw": 1425,
+      "t": "PARA AGENCIAS INMOBILIARIAS EN ESPAÑA\n\nM"
+     }
+    ],
+    "narrow": [],
+    "after_take": "mueble, zona y presupuesto\n\nSiguiente paso: Proponerle día y hora por WhatsApp\n\nTomada por Elena\nProponer la hora a Laura\n2\n\nPeter y Anna Keller\n\nValoración de una vi"
+   }
+  },
+  "04": {
+   "verdict": "CONFIRMED",
+   "evidence": {
+    "stateLine": "Estado: Prototipo · depende de la aprobación de la plataform",
+    "stateUnderHeader": true,
+    "bigGaps": []
+   }
+  },
+  "05": {
+   "verdict": "CONFIRMED",
+   "evidence": {
+    "hiddenByHeader": false,
+    "headingTop": 96,
+    "headerBottom": 72,
+    "pending": [],
+    "media": {
+     "img": 0,
+     "video": 0,
+     "canvas": 0
+    }
+   }
+  },
+  "07": {
+   "verdict": "CONFIRMED",
+   "evidence": {
+    "cards": [
+     {
+      "name": "Essential",
+      "lines": 13,
+      "prep": 1,
+      "available": 6
+     },
+     {
+      "name": "Growth",
+      "lines": 13,
+      "prep": 6,
+      "available": 1
+     },
+     {
+      "name": "Enterprise",
+      "lines": 9,
+      "prep": 1,
+      "available": 0
+     }
+    ]
+   }
+  },
+  "08": {
+   "verdict": "NOT_REPRODUCED",
+   "evidence": {
+    "platform": [
+     " El asistente de la mañana La lista de la mañana: qué va primero, por qué, y el siguiente paso"
+    ],
+    "packages": [
+     " todavía no contratable La lista de la mañana: qué va primero y por qué · Disponible: ver, tomar y completar tareas · En prep"
+    ]
+   }
+  },
+  "09": {
+   "verdict": "CONFIRMED",
+   "evidence": {
+    "h1": "Tus consultas de texto se responden en los canales que conec",
+    "h1FontPx": 68,
+    "queHaceItems": 0,
+    "gmail": true,
+    "outlook": false
+   }
+  },
+  "02": {
+   "verdict": "REFERENCE",
+   "evidence": {
+    "note": "owner marks it in order; used only as the before-state for 03 and 11",
+    "before": "Abierta · nadie la ha tomado\n2\n\nPeter y Anna Keller\n\nValoración de "
+   }
+  }
+ },
+ "detail": {
+  "headerCover": {
+   "390": {
+    "headerHeight": 60,
+    "headerPosition": "fixed",
+    "ctas": [
+     {
+      "label": "Ver cómo funciona",
+      "top": 487,
+      "headerBottom": 60,
+      "overlapPx": 0,
+      "hitIsSelf": true,
+      "hitLabel": "Ver cómo funciona"
+     },
+     {
+      "label": "Probar gratis",
+      "top": 555,
+      "headerBottom": 60,
+      "overlapPx": 0,
+      "hitIsSelf": true,
+      "hitLabel": "Probar gratis"
+     },
+     {
+      "label": "Ver el aviso de IA",
+      "top": 5261,
+      "headerBottom": 60,
+      "overlapPx": 0,
+      "hitIsSelf": false,
+      "hitLabel": null
+     },
+     {
+      "label": "Pedir ver este piso el",
+      "top": 12527,
+      "headerBottom": 60,
+      "overlapPx": 0,
+      "hitIsSelf": false,
+      "hitLabel": null
+     },
+     {
+      "label": "Ver el informe complet",
+      "top": 14376,
+      "headerBottom": 60,
+      "overlapPx": 0,
+      "hitIsSelf": false,
+      "hitLabel": null
+     },
+     {
+      "label": "Probar gratis",
+      "top": 20168,
+      "headerBottom": 60,
+      "overlapPx": 0,
+      "hitIsSelf": false,
+      "hitLabel": null
+     }
+    ]
+   },
+   "1440": {
+    "headerHeight": 72,
+    "headerPosition": "fixed",
+    "ctas": [
+     {
+      "label": "Ver cómo funciona",
+      "top": 426,
+      "headerBottom": 72,
+      "overlapPx": 0,
+      "hitIsSelf": true,
+      "hitLabel": "Ver cómo funciona"
+     },
+     {
+      "label": "Probar gratis",
+      "top": 426,
+      "headerBottom": 72,
+      "overlapPx": 0,
+      "hitIsSelf": true,
+      "hitLabel": "Probar gratis"
+     },
+     {
+      "label": "Ver el aviso de IA",
+      "top": 3223,
+      "headerBottom": 72,
+      "overlapPx": 0,
+      "hitIsSelf": false,
+      "hitLabel": null
+     },
+     {
+      "label": "Pedir ver este piso el",
+      "top": 6727,
+      "headerBottom": 72,
+      "overlapPx": 0,
+      "hitIsSelf": false,
+      "hitLabel": null
+     },
+     {
+      "label": "Ver el informe complet",
+      "top": 7637,
+      "headerBottom": 72,
+      "overlapPx": 0,
+      "hitIsSelf": false,
+      "hitLabel": null
+     },
+     {
+      "label": "Probar gratis",
+      "top": 11680,
+      "headerBottom": 72,
+      "overlapPx": 0,
+      "hitIsSelf": false,
+      "hitLabel": null
+     }
+    ]
+   }
+  },
+  "daily": {
+   "takeFound": true,
+   "before": "Abierta · nadie la ha tomado\n2\n\nPeter y Anna Keller\n\nValoración de ",
+   "after": "mueble, zona y presupuesto\n\nSiguiente paso: Proponerle día y hora por WhatsApp\n\nTomada por Elena\nProponer la hora a Laura\n2\n\nPeter y Anna Keller\n\nValoración de una vi",
+   "clipped": [
+    {
+     "cls": "hero-world",
+     "sw": 1433,
+     "cw": 1425,
+     "t": "PARA AGENCIAS INMOBILIARIAS EN ESPAÑA\n\nM"
+    }
+   ],
+   "narrowColumns": []
+  },
+  "language": {
+   "/es": {
+    "withAccent": [
+     "envía nada autom",
+     "envía nada autom"
+    ],
+    "sentence": "En otro idioma no se envía nada automáticamente."
+   },
+   "/es/faq": {
+    "withAccent": [],
+    "sentence": null
+   },
+   "/es/platform": {
+    "withAccent": [],
+    "sentence": "Una consulta en otro idioma no recibe respuesta automática."
+   },
+   "/es/packages": {
+    "withAccent": [],
+    "sentence": null
+   }
+  },
+  "social": {
+   "found": true,
+   "heading": "Una publicación de tu inmueble, aprobada por ti, y",
+   "stateLine": "Estado: Prototipo · depende de la aprobación de la plataform",
+   "stateTop": -3887,
+   "headerBottom": 72,
+   "stateUnderHeader": true,
+   "bigGaps": []
+  },
+  "threeD": {
+   "found": true,
+   "heading": "De tu plano a una vivienda que el cliente puede re",
+   "headingTop": 96,
+   "headerBottom": 72,
+   "hiddenByHeader": false,
+   "pendingMarks": [],
+   "media": {
+    "img": 0,
+    "video": 0,
+    "canvas": 0
+   }
+  },
+  "packages": {
+   "cards": [
+    {
+     "name": "Essential",
+     "lines": 13,
+     "prep": 1,
+     "available": 6,
+     "sample": [
+      "14 días gratis\nSin método de pago",
+      "Para una oficina y un equipo pequeño",
+      "Las consultas en español por WhatsApp y email se responden mientras estás fuera.",
+      "Hoy: WhatsApp y email, respuestas en español.",
+      "Incluido",
+      "Respuestas automáticas · Disponible · en español"
+     ]
+    },
+    {
+     "name": "Growth",
+     "lines": 13,
+     "prep": 6,
+     "available": 1,
+     "sample": [
+      "Para un equipo que crece",
+      "Cada mañana tu equipo ve sus tareas con el motivo de cada una.",
+      "Seguimientos solo con permiso del cliente; propuestas solo de tu propia cartera.",
+      "Todo lo de Essential, y además:",
+      "Seguimientos con permiso del cliente · En preparación · todavía no contratable",
+      "Propuestas de inmuebles de tu cartera · En preparación · todavía no contratable"
+     ]
+    },
+    {
+     "name": "Enterprise",
+     "lines": 9,
+     "prep": 1,
+     "available": 0,
+     "sample": [
+      "Para varias oficinas",
+      "Modelos 3D por encargo, y más adelante Instagram desde el mismo sitio.",
+      "Instagram depende de la aprobación de la plataforma; cada modelo 3D se hace por encargo a partir de tus planos.",
+      "Todo lo de Growth, y además:",
+      "Instagram desde el mismo sitio · En preparación · depende de la aprobación de la plataforma",
+      "Modelos 3D incluidos por encargo · Por encargo · a partir de tus planos"
+     ]
+    }
+   ],
+   "sticker": {
+    "stickerTop": 329,
+    "cardTop": 205,
+    "crossesEdge": false
+   }
+  },
+  "wording": {
+   "/es/platform": {
+    "morning": [
+     " El asistente de la mañana La lista de la mañana: qué va primero, por qué, y el siguiente paso"
+    ],
+    "disappear": [],
+    "langPick": []
+   },
+   "/es/packages": {
+    "morning": [
+     " todavía no contratable La lista de la mañana: qué va primero y por qué · Disponible: ver, tomar y completar tareas · En prep"
+    ],
+    "disappear": [],
+    "langPick": []
+   },
+   "/es/platform/daily-assistant": {
+    "morning": [],
+    "disappear": [
+     " Desaparece de las listas de los demás, así que nadie la toma dos veces",
+     " Para los demás, la tarea desaparece de su lista"
+    ],
+    "langPick": [
+     " En español o en inglés, elegido en la aplicación"
+    ]
+   }
+  },
+  "agentPage": {
+   "h1": "Tus consultas de texto se responden en los canales que conec",
+   "h1FontPx": 68,
+   "queHaceItems": 0,
+   "gmail": true,
+   "outlook": false
+  },
+  "matching": {
+   "found": true,
+   "overlapX": 7,
+   "overlapY": -3626,
+   "overlapping": false,
+   "hit": null
+  }
+ },
+ "finished_utc": "2026-10-25T08:34:31.194Z"
+}

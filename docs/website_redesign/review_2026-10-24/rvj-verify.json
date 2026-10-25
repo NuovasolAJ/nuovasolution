@@ -1,0 +1,248 @@
+{
+ "deployment": "https://nuovasolution-design-preview-1pfs923d9-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-25T08:41:33.100Z",
+ "detail": {
+  "hero_ctas": {
+   "390": {
+    "headerBottom": 60,
+    "position": "fixed",
+    "ctas": [
+     {
+      "label": "Ver cómo funciona",
+      "top": 487,
+      "bottom": 543,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Ver cómo funci"
+     },
+     {
+      "label": "Probar gratis",
+      "top": 555,
+      "bottom": 611,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Probar gratis"
+     }
+    ]
+   },
+   "768": {
+    "headerBottom": 64,
+    "position": "fixed",
+    "ctas": [
+     {
+      "label": "Ver cómo funciona",
+      "top": 395,
+      "bottom": 451,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Ver cómo funci"
+     },
+     {
+      "label": "Probar gratis",
+      "top": 395,
+      "bottom": 451,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Probar gratis"
+     },
+     {
+      "label": "Reproducir otra vez",
+      "top": 785,
+      "bottom": 815,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "SPAN Reproducir otr"
+     }
+    ]
+   },
+   "1280": {
+    "headerBottom": 72,
+    "position": "fixed",
+    "ctas": [
+     {
+      "label": "Ver cómo funciona",
+      "top": 416,
+      "bottom": 472,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Ver cómo funci"
+     },
+     {
+      "label": "Probar gratis",
+      "top": 416,
+      "bottom": 472,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Probar gratis"
+     },
+     {
+      "label": "Reproducir otra vez",
+      "top": 734,
+      "bottom": 765,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "SPAN Reproducir otr"
+     }
+    ]
+   },
+   "1440": {
+    "headerBottom": 72,
+    "position": "fixed",
+    "ctas": [
+     {
+      "label": "Ver cómo funciona",
+      "top": 426,
+      "bottom": 482,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Ver cómo funci"
+     },
+     {
+      "label": "Probar gratis",
+      "top": 426,
+      "bottom": 482,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Probar gratis"
+     },
+     {
+      "label": "Reproducir otra vez",
+      "top": 744,
+      "bottom": 775,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "SPAN Reproducir otr"
+     }
+    ]
+   }
+  },
+  "narrow_columns": {
+   "768": [],
+   "1024": [
+    {
+     "w": 47,
+     "h": 96,
+     "t": "Formulario web · martes 11",
+     "cls": "t-caption tnum text-text-muted"
+    },
+    {
+     "w": 54,
+     "h": 142,
+     "t": "Peter y Anna Keller · Prop",
+     "cls": "text-[0.9375rem] font-semibold leadi"
+    },
+    {
+     "w": 48,
+     "h": 165,
+     "t": "Laura Serrano · Compradora",
+     "cls": "text-[0.9375rem] font-semibold leadi"
+    }
+   ],
+   "1280": [],
+   "1440": []
+  },
+  "social_state": {
+   "found": true,
+   "text": "Estado: Disponible hoy: WhatsApp y email, en español. Prototipo: el fo",
+   "top": 1017,
+   "headerBottom": 72,
+   "underHeader": false,
+   "visible": true,
+   "coveredBy": null
+  },
+  "three_d": {
+   "found": true,
+   "headingTop": 96,
+   "headerBottom": 72,
+   "underHeader": false,
+   "pending": [
+    "Pendiente del equipo 3D",
+    "Pendiente del equipo 3D"
+   ],
+   "text": "UN SERVICIO APARTE: PRESENTAR EN 3D De tu plano a una vivienda que el cliente puede recorrer con la mirada Nos envías el plano acotado y, si las tienes, fotos. Construimos el modelo, lo mostramos vacío y amueblado desde la misma cámara y lo comprobamos contra tu plano. Cada modelo es un encargo, con",
+   "media": {
+    "img": 2,
+    "video": 1,
+    "canvas": 0
+   }
+  },
+  "sticker": {
+   "390": {
+    "found": true,
+    "sticker": {
+     "top": 318,
+     "left": 16,
+     "right": 374
+    },
+    "card": null,
+    "crossesTop": null,
+    "crossesSide": null,
+    "onTopOf": "14 días gratis, sin méto"
+   },
+   "1440": {
+    "found": true,
+    "sticker": {
+     "top": 329,
+     "left": 113,
+     "right": 736
+    },
+    "card": null,
+    "crossesTop": null,
+    "crossesSide": null,
+    "onTopOf": "14 días gratis, sin méto"
+   }
+  },
+  "morning_rows": {
+   "/es/platform": [
+    "El asistente de la mañana La lista de la mañana: qué va primero, por qué, y el siguiente paso. En preparación · todavía no contratable"
+   ],
+   "/es/packages": [
+    "Cada mañana tu equipo ve sus tareas con el motivo de cada una.",
+    "La lista de la mañana: qué va primero y por qué · Disponible: ver, tomar y completar tareas · En preparación: el correo de la mañana"
+   ]
+  },
+  "que_hace": {
+   "found": true,
+   "items": [],
+   "count": 0,
+   "h1FontPx": 68,
+   "h1Lines": 5
+  },
+  "matching": {
+   "found": true,
+   "noteText": "El inmueble está marcado como publicable y actual",
+   "candidates": [
+    {
+     "t": "Laura Serrano · comprado",
+     "ox": 7,
+     "oy": -5843,
+     "overlapping": false
+    },
+    {
+     "t": "Laura Serrano · WhatsApp",
+     "ox": 78,
+     "oy": -5827,
+     "overlapping": false
+    },
+    {
+     "t": "Laura Serrano",
+     "ox": -234,
+     "oy": -3961,
+     "overlapping": false
+    },
+    {
+     "t": "Laura Serrano",
+     "ox": 49,
+     "oy": -3916,
+     "overlapping": false
+    },
+    {
+     "t": "Laura Serrano",
+     "ox": 97,
+     "oy": -2165,
+     "overlapping": false
+    }
+   ]
+  }
+ }
+}

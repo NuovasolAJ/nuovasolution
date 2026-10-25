@@ -1,0 +1,19 @@
+{
+ "base": "https://nuovasolution-design-preview-1pfs923d9-nuovasolajs-projects.vercel.app",
+ "video": {
+  "x": 1169,
+  "y": 599,
+  "label": "Vídeo: recorrido de cámara por el salón · 8 segundos · sin sonido",
+  "poster": "/media/3d/living-ride-poster.webp",
+  "src": "living-camera-ride.mp4",
+  "duration": 7.9
+ },
+ "state": {
+  "playing": true,
+  "currentTime": 6.49,
+  "muted": true,
+  "readyState": 4,
+  "viaScript": true
+ },
+ "utc": "2026-10-25T09:10:50.734Z"
+}
