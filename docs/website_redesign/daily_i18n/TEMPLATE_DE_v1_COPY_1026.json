@@ -1,0 +1,3624 @@
+{
+ "lang": "de",
+ "at": "2026-10-26T09:24:20.950Z",
+ "rule": "fill \"de\" only; keep every {placeholder}; Copy writes, owner releases, Daily wires",
+ "surfaces": {
+  "staff_app": {
+   "source": "build/daily_goals/web/assistant.html",
+   "keys": 356,
+   "missing_in_en": [],
+   "only_in_en": [],
+   "already_in_target": 0,
+   "entries": [
+    {
+     "key": "chan_web",
+     "es": "web",
+     "en": "web",
+     "de": "Web",
+     "placeholders": []
+    },
+    {
+     "key": "chan_mobile",
+     "es": "móvil",
+     "en": "mobile",
+     "de": "Mobil",
+     "placeholders": []
+    },
+    {
+     "key": "ent_active",
+     "es": "activo",
+     "en": "active",
+     "de": "aktiv",
+     "placeholders": []
+    },
+    {
+     "key": "ent_none",
+     "es": "sin acceso",
+     "en": "not entitled",
+     "de": "kein Zugang",
+     "placeholders": []
+    },
+    {
+     "key": "role_agent",
+     "es": "agente",
+     "en": "agent",
+     "de": "Beratung",
+     "placeholders": []
+    },
+    {
+     "key": "role_team_lead",
+     "es": "responsable de equipo",
+     "en": "team lead",
+     "de": "Teamleitung",
+     "placeholders": []
+    },
+    {
+     "key": "role_office_manager",
+     "es": "responsable de oficina",
+     "en": "office manager",
+     "de": "Büroleitung",
+     "placeholders": []
+    },
+    {
+     "key": "role_agency_admin",
+     "es": "administración",
+     "en": "agency admin",
+     "de": "Agenturverwaltung",
+     "placeholders": []
+    },
+    {
+     "key": "tasks_title",
+     "es": "Visitas y llamadas pendientes",
+     "en": "Viewing and callback requests",
+     "de": "Besichtigungen und Rückrufe",
+     "placeholders": []
+    },
+    {
+     "key": "tasks_order",
+     "es": "Arriba, las que tienen el plazo vencido; después, las más recientes.",
+     "en": "Overdue first; then the newest.",
+     "de": "Oben die überfälligen, danach die neuesten.",
+     "placeholders": []
+    },
+    {
+     "key": "tasks_empty",
+     "es": "Ahora mismo no tienes nada pendiente.",
+     "en": "Nothing waiting for you right now.",
+     "de": "Gerade wartet nichts auf dich.",
+     "placeholders": []
+    },
+    {
+     "key": "tasks_failed",
+     "es": "No se ha podido cargar: {reason}",
+     "en": "Could not load: {reason}",
+     "de": "Konnte nicht geladen werden: {reason}",
+     "placeholders": [
+      "{reason}"
+     ]
+    },
+    {
+     "key": "focus_opened",
+     "es": "Esta es la solicitud de tu resumen.",
+     "en": "This is the request from your briefing.",
+     "de": "Das ist die Anfrage aus deiner Übersicht.",
+     "placeholders": []
+    },
+    {
+     "key": "focus_missing",
+     "es": "La solicitud que has abierto desde tu resumen ya no está en tu lista de pendientes.",
+     "en": "The request you opened from your briefing is not in your open list any more.",
+     "de": "Die Anfrage, die du aus deiner Übersicht geöffnet hast, ist nicht mehr in deiner offenen Liste.",
+     "placeholders": []
+    },
+    {
+     "key": "card_callback",
+     "es": "Solicitud de llamada",
+     "en": "Callback request",
+     "de": "Rückrufwunsch",
+     "placeholders": []
+    },
+    {
+     "key": "card_viewing",
+     "es": "Solicitud de visita",
+     "en": "Viewing request",
+     "de": "Besichtigungswunsch",
+     "placeholders": []
+    },
+    {
+     "key": "card_property",
+     "es": "Solicitud de información",
+     "en": "Property request",
+     "de": "Anfrage zu einer Immobilie",
+     "placeholders": []
+    },
+    {
+     "key": "meta_callback",
+     "es": "llamada",
+     "en": "callback",
+     "de": "Rückruf",
+     "placeholders": []
+    },
+    {
+     "key": "meta_property",
+     "es": "solicitud de información",
+     "en": "property request",
+     "de": "Immobilienanfrage",
+     "placeholders": []
+    },
+    {
+     "key": "meta_from_call",
+     "es": "desde una llamada",
+     "en": "from a phone call",
+     "de": "aus einem Anruf",
+     "placeholders": []
+    },
+    {
+     "key": "meta_via",
+     "es": "por {channel}",
+     "en": "via {channel}",
+     "de": "über {channel}",
+     "placeholders": [
+      "{channel}"
+     ]
+    },
+    {
+     "key": "meta_age",
+     "es": "hace {n} h",
+     "en": "{n}h old",
+     "de": "vor {n} h",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "staff_app",
+     "es": "Nuova equipo",
+     "en": "Nuova staff",
+     "de": "Nuova Team",
+     "placeholders": []
+    },
+    {
+     "key": "the_customer",
+     "es": "el cliente",
+     "en": "the customer",
+     "de": "der Kunde",
+     "placeholders": []
+    },
+    {
+     "key": "step_call_back",
+     "es": "llamar a {name} al {phone}",
+     "en": "call {name} on {phone}",
+     "de": "{name} unter {phone} anrufen",
+     "placeholders": [
+      "{name}",
+      "{phone}"
+     ]
+    },
+    {
+     "key": "step_call_back_noname",
+     "es": "devolver la llamada al {phone}",
+     "en": "call {phone} back",
+     "de": "{phone} zurückrufen",
+     "placeholders": [
+      "{phone}"
+     ]
+    },
+    {
+     "key": "step_call_back_no_number",
+     "es": "devolver la llamada a {name} — no hay número registrado",
+     "en": "call {name} back — no number was recorded",
+     "de": "{name} zurückrufen — es ist keine Nummer erfasst",
+     "placeholders": [
+      "{name}"
+     ]
+    },
+    {
+     "key": "step_call_back_no_number_noname",
+     "es": "devolver la llamada — no hay número registrado",
+     "en": "call them back — no number was recorded",
+     "de": "zurückrufen — es ist keine Nummer erfasst",
+     "placeholders": []
+    },
+    {
+     "key": "step_call_and_record_outcome",
+     "es": "llamar a {name} y registrar cómo ha ido",
+     "en": "call {name} and record how it went",
+     "de": "{name} anrufen und festhalten, wie es gelaufen ist",
+     "placeholders": [
+      "{name}"
+     ]
+    },
+    {
+     "key": "step_call_and_record_outcome_noname",
+     "es": "llamar al {phone} y registrar cómo ha ido",
+     "en": "call {phone} and record how it went",
+     "de": "{phone} anrufen und festhalten, wie es gelaufen ist",
+     "placeholders": [
+      "{phone}"
+     ]
+    },
+    {
+     "key": "step_agree_a_new_date",
+     "es": "escribir al cliente para acordar una fecha nueva",
+     "en": "write to the customer to agree a new date",
+     "de": "dem Kunden schreiben und einen neuen Termin vereinbaren",
+     "placeholders": []
+    },
+    {
+     "key": "step_propose_a_date",
+     "es": "proponer al cliente una fecha para la visita",
+     "en": "propose a date for the viewing to the customer",
+     "de": "dem Kunden einen Termin für die Besichtigung vorschlagen",
+     "placeholders": []
+    },
+    {
+     "key": "step_answer_the_enquiry",
+     "es": "responder a la consulta",
+     "en": "answer the enquiry",
+     "de": "die Anfrage beantworten",
+     "placeholders": []
+    },
+    {
+     "key": "step_answer_and_propose_a_time",
+     "es": "responder y proponer una hora",
+     "en": "answer and propose a time",
+     "de": "antworten und eine Uhrzeit vorschlagen",
+     "placeholders": []
+    },
+    {
+     "key": "step_finish_and_complete",
+     "es": "terminarla y marcarla como hecha",
+     "en": "finish it and mark it complete",
+     "de": "abschließen und als erledigt markieren",
+     "placeholders": []
+    },
+    {
+     "key": "step_colleague_has_it",
+     "es": "la está llevando un compañero",
+     "en": "a colleague is on it",
+     "de": "jemand aus dem Team kümmert sich darum",
+     "placeholders": []
+    },
+    {
+     "key": "next_label",
+     "es": "Siguiente paso",
+     "en": "Next step",
+     "de": "Nächster Schritt",
+     "placeholders": []
+    },
+    {
+     "key": "state_label",
+     "es": "Estado",
+     "en": "Status",
+     "de": "Status",
+     "placeholders": []
+    },
+    {
+     "key": "wish_period",
+     "es": "Pidió una fecha {period}.",
+     "en": "They asked for {period}.",
+     "de": "Gewünscht: {period}.",
+     "placeholders": [
+      "{period}"
+     ]
+    },
+    {
+     "key": "wish_period_passed",
+     "es": "Pidió una fecha {period}; esa fecha ya ha pasado.",
+     "en": "They asked for {period}; that date has passed.",
+     "de": "Gewünscht: {period}; dieser Termin ist vorbei.",
+     "placeholders": [
+      "{period}"
+     ]
+    },
+    {
+     "key": "wish_unresolved",
+     "es": "Indicó cuándo con sus propias palabras.",
+     "en": "They named a time in their own words.",
+     "de": "Die Zeit wurde in eigenen Worten genannt.",
+     "placeholders": []
+    },
+    {
+     "key": "wish_words",
+     "es": "Sus palabras ({lang}, {date}): «{v}»",
+     "en": "Their words ({lang}, {date}): “{v}”",
+     "de": "Wortlaut ({lang}, {date}): „{v}“",
+     "placeholders": [
+      "{lang}",
+      "{date}",
+      "{v}"
+     ]
+    },
+    {
+     "key": "wish_words_nolang",
+     "es": "Sus palabras ({date}): «{v}»",
+     "en": "Their words ({date}): “{v}”",
+     "de": "Wortlaut ({date}): „{v}“",
+     "placeholders": [
+      "{date}",
+      "{v}"
+     ]
+    },
+    {
+     "key": "p_range",
+     "es": "entre el {from} y el {to}",
+     "en": "between {from} and {to}",
+     "de": "zwischen {from} und {to}",
+     "placeholders": [
+      "{from}",
+      "{to}"
+     ]
+    },
+    {
+     "key": "p_day",
+     "es": "para el {from}",
+     "en": "{from}",
+     "de": "am {from}",
+     "placeholders": [
+      "{from}"
+     ]
+    },
+    {
+     "key": "held_draft_label",
+     "es": "Borrador sin enviar",
+     "en": "Unsent draft",
+     "de": "Nicht gesendeter Entwurf",
+     "placeholders": []
+    },
+    {
+     "key": "held_draft_more",
+     "es": "el borrador completo está en la tarea",
+     "en": "the full draft is on the task",
+     "de": "der vollständige Entwurf steht in der Aufgabe",
+     "placeholders": []
+    },
+    {
+     "key": "att_notice",
+     "es": "Aviso enviado a {who} {at}",
+     "en": "Notice sent to {who} {at}",
+     "de": "Hinweis an {who} gesendet, {at}",
+     "placeholders": [
+      "{who}",
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_notice_noone",
+     "es": "Aviso enviado al equipo {at}",
+     "en": "Notice sent to the team {at}",
+     "de": "Hinweis an das Team gesendet, {at}",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_notice_deferred",
+     "es": "Llegó fuera de horario ({from}); el aviso salió al abrir, {at}",
+     "en": "It arrived outside working hours ({from}); the notice went out at opening, {at}",
+     "de": "Kam außerhalb der Arbeitszeit ({from}); der Hinweis ging bei Arbeitsbeginn raus, {at}",
+     "placeholders": [
+      "{from}",
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_reminder",
+     "es": "Recordatorio enviado {at}: nadie la había tomado",
+     "en": "Reminder sent {at}, nobody had taken it",
+     "de": "Erinnerung gesendet, {at}: niemand hatte sie übernommen",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_escalated",
+     "es": "Escalada a {who} {at}",
+     "en": "Escalated to {who} {at}",
+     "de": "Weitergegeben an {who}, {at}",
+     "placeholders": [
+      "{who}",
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_escalated_none",
+     "es": "Escalada {at}: no hay otro compañero, así que sigue visible aquí",
+     "en": "Escalated {at}: there is no other colleague, so it stays visible here",
+     "de": "Weitergegeben, {at}: Es gibt niemanden sonst im Team, deshalb bleibt sie hier sichtbar",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_owner_mailed",
+     "es": "se escribió al responsable de la agencia {at}",
+     "en": "the agency’s responsible person was emailed {at}",
+     "de": "die verantwortliche Person der Agentur hat eine E-Mail bekommen, {at}",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_notice_scheduled",
+     "es": "Llegó fuera de horario; se avisará al equipo al abrir, {at}",
+     "en": "It arrived outside working hours; the team is told at opening, {at}",
+     "de": "Kam außerhalb der Arbeitszeit; das Team erfährt es bei Arbeitsbeginn, {at}",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_reminder_due",
+     "es": "Si nadie la toma, se envía un recordatorio {at}",
+     "en": "If nobody takes it, a reminder goes out {at}",
+     "de": "Übernimmt sie niemand, geht {at} eine Erinnerung raus",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_escalation_due",
+     "es": "Si nadie la toma, se escala {at}",
+     "en": "If nobody takes it, it is escalated {at}",
+     "de": "Übernimmt sie niemand, wird sie {at} weitergegeben",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_notice_overdue",
+     "es": "El aviso estaba previsto {at} y todavía no ha salido",
+     "en": "The notice was due {at} and has not gone out yet",
+     "de": "Der Hinweis war für {at} geplant und ist noch nicht rausgegangen",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_reminder_overdue",
+     "es": "El recordatorio estaba previsto {at} y todavía no ha salido",
+     "en": "The reminder was due {at} and has not gone out yet",
+     "de": "Die Erinnerung war für {at} geplant und ist noch nicht rausgegangen",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_escalation_overdue",
+     "es": "La escalada estaba prevista {at} y todavía no ha ocurrido",
+     "en": "The escalation was due {at} and has not happened yet",
+     "de": "Die Weitergabe war für {at} geplant und ist noch nicht passiert",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_notice_skipped",
+     "es": "No hay nadie del equipo a quien avisar; la tarea sigue visible aquí",
+     "en": "There is nobody on the team to notify; the task stays visible here",
+     "de": "Im Team gibt es niemanden, der benachrichtigt werden kann; die Aufgabe bleibt hier sichtbar",
+     "placeholders": []
+    },
+    {
+     "key": "att_reminder_skipped",
+     "es": "No hay nadie a quien enviar el recordatorio; sigue visible aquí",
+     "en": "There is nobody to send the reminder to; it stays visible here",
+     "de": "Es gibt niemanden, an den die Erinnerung gehen kann; sie bleibt hier sichtbar",
+     "placeholders": []
+    },
+    {
+     "key": "att_escalated_visible",
+     "es": "Escalada sin destinatario: no hay otro compañero, así que sigue visible aquí",
+     "en": "Escalated with nobody to send it to: there is no other colleague, so it stays visible here",
+     "de": "Weitergegeben ohne Empfänger: Es gibt niemanden sonst im Team, deshalb bleibt sie hier sichtbar",
+     "placeholders": []
+    },
+    {
+     "key": "oc_question",
+     "es": "¿Qué ha pasado con la llamada?",
+     "en": "What happened on the call?",
+     "de": "Wie ist der Anruf gelaufen?",
+     "placeholders": []
+    },
+    {
+     "key": "oc_called_reached",
+     "es": "Llamada realizada",
+     "en": "Spoke to them",
+     "de": "Erreicht",
+     "placeholders": []
+    },
+    {
+     "key": "oc_called_no_answer",
+     "es": "Sin respuesta",
+     "en": "No answer",
+     "de": "Nicht erreicht",
+     "placeholders": []
+    },
+    {
+     "key": "oc_not_called",
+     "es": "Sin llamada",
+     "en": "Did not call",
+     "de": "Nicht angerufen",
+     "placeholders": []
+    },
+    {
+     "key": "oc_cancel",
+     "es": "Cancelar",
+     "en": "Cancel",
+     "de": "Abbrechen",
+     "placeholders": []
+    },
+    {
+     "key": "oc_done_called_reached",
+     "es": "Llamada realizada",
+     "en": "Called — spoke to them",
+     "de": "Angerufen — erreicht",
+     "placeholders": []
+    },
+    {
+     "key": "oc_done_called_no_answer",
+     "es": "Llamada sin respuesta",
+     "en": "Called — no answer",
+     "de": "Angerufen — nicht erreicht",
+     "placeholders": []
+    },
+    {
+     "key": "oc_done_not_called",
+     "es": "Cerrada sin llamar",
+     "en": "Closed without calling",
+     "de": "Ohne Anruf geschlossen",
+     "placeholders": []
+    },
+    {
+     "key": "age_minutes",
+     "es": "hace unos minutos",
+     "en": "just now",
+     "de": "gerade eben",
+     "placeholders": []
+    },
+    {
+     "key": "age_hours",
+     "es": "hace {n} h",
+     "en": "{n} h ago",
+     "de": "vor {n} h",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "age_days",
+     "es": "hace {n} días",
+     "en": "{n} days ago",
+     "de": "vor {n} Tagen",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "f_customer",
+     "es": "Cliente",
+     "en": "Customer",
+     "de": "Kunde",
+     "placeholders": []
+    },
+    {
+     "key": "f_request",
+     "es": "Solicitud",
+     "en": "Request",
+     "de": "Anfrage",
+     "placeholders": []
+    },
+    {
+     "key": "f_wish",
+     "es": "Pide",
+     "en": "Asked for",
+     "de": "Wunsch",
+     "placeholders": []
+    },
+    {
+     "key": "f_next",
+     "es": "Siguiente paso",
+     "en": "Next step",
+     "de": "Nächster Schritt",
+     "placeholders": []
+    },
+    {
+     "key": "flag_deadline_passed",
+     "es": "Fuera de plazo",
+     "en": "Past its deadline",
+     "de": "Frist überschritten",
+     "placeholders": []
+    },
+    {
+     "key": "flag_deadline_near",
+     "es": "Plazo cercano",
+     "en": "Deadline close",
+     "de": "Frist bald fällig",
+     "placeholders": []
+    },
+    {
+     "key": "flag_stated_urgency",
+     "es": "El cliente dice que es urgente",
+     "en": "The customer said it is urgent",
+     "de": "Der Kunde sagt, es ist dringend",
+     "placeholders": []
+    },
+    {
+     "key": "flag_recorded_priority",
+     "es": "Marcada como prioritaria",
+     "en": "Marked as a priority",
+     "de": "Als Priorität markiert",
+     "placeholders": []
+    },
+    {
+     "key": "why_deadline_passed",
+     "es": "el plazo registrado venció {v}",
+     "en": "the deadline recorded on it passed {v}",
+     "de": "die erfasste Frist ist {v} abgelaufen",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "why_deadline_near",
+     "es": "el plazo registrado es {v}",
+     "en": "the recorded deadline is {v}",
+     "de": "die erfasste Frist ist {v}",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "why_stated_urgency",
+     "es": "el cliente escribió: «{v}»",
+     "en": "the customer wrote: “{v}”",
+     "de": "der Kunde schrieb: „{v}“",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "why_recorded_priority",
+     "es": "alguien registró la prioridad «{v}»",
+     "en": "somebody recorded the priority “{v}”",
+     "de": "jemand hat die Priorität „{v}“ erfasst",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "plain_waiting",
+     "es": "pendiente",
+     "en": "waiting",
+     "de": "offen",
+     "placeholders": []
+    },
+    {
+     "key": "plain_taken",
+     "es": "tomada",
+     "en": "taken",
+     "de": "übernommen",
+     "placeholders": []
+    },
+    {
+     "key": "plain_in_progress",
+     "es": "en curso",
+     "en": "in progress",
+     "de": "in Arbeit",
+     "placeholders": []
+    },
+    {
+     "key": "plain_done",
+     "es": "hecha",
+     "en": "done",
+     "de": "erledigt",
+     "placeholders": []
+    },
+    {
+     "key": "next_take_it",
+     "es": "Siguiente paso: tomarla",
+     "en": "Next step: take it",
+     "de": "Nächster Schritt: übernehmen",
+     "placeholders": []
+    },
+    {
+     "key": "next_do_it_then_mark_complete",
+     "es": "Siguiente paso: hacerla y marcarla como hecha",
+     "en": "Next step: do it, then mark it complete",
+     "de": "Nächster Schritt: erledigen und als erledigt markieren",
+     "placeholders": []
+    },
+    {
+     "key": "next_finish_it",
+     "es": "Siguiente paso: terminarla y marcarla como hecha",
+     "en": "Next step: finish it and mark it complete",
+     "de": "Nächster Schritt: abschließen und als erledigt markieren",
+     "placeholders": []
+    },
+    {
+     "key": "next_someone_else_has_it",
+     "es": "La está llevando un compañero",
+     "en": "A colleague is on it",
+     "de": "Jemand aus dem Team kümmert sich darum",
+     "placeholders": []
+    },
+    {
+     "key": "next_open_it",
+     "es": "Siguiente paso: abrirla",
+     "en": "Next step: open it",
+     "de": "Nächster Schritt: öffnen",
+     "placeholders": []
+    },
+    {
+     "key": "assigned_you",
+     "es": "asignada a ti",
+     "en": "assigned to you",
+     "de": "dir zugewiesen",
+     "placeholders": []
+    },
+    {
+     "key": "assigned_other",
+     "es": "asignada a {name}",
+     "en": "assigned to {name}",
+     "de": "{name} zugewiesen",
+     "placeholders": [
+      "{name}"
+     ]
+    },
+    {
+     "key": "claimed_you",
+     "es": "la has tomado tú",
+     "en": "claimed by you",
+     "de": "von dir übernommen",
+     "placeholders": []
+    },
+    {
+     "key": "claimed_other",
+     "es": "la ha tomado {name}",
+     "en": "claimed by {name}",
+     "de": "von {name} übernommen",
+     "placeholders": [
+      "{name}"
+     ]
+    },
+    {
+     "key": "colleague",
+     "es": "un compañero",
+     "en": "a colleague",
+     "de": "jemand aus dem Team",
+     "placeholders": []
+    },
+    {
+     "key": "claimed_colleague",
+     "es": "la ha tomado un compañero",
+     "en": "claimed by a colleague",
+     "de": "von jemandem aus dem Team übernommen",
+     "placeholders": []
+    },
+    {
+     "key": "btn_claim",
+     "es": "Tomar",
+     "en": "Claim",
+     "de": "Übernehmen",
+     "placeholders": []
+    },
+    {
+     "key": "btn_complete",
+     "es": "Marcar como hecha",
+     "en": "Mark complete",
+     "de": "Als erledigt markieren",
+     "placeholders": []
+    },
+    {
+     "key": "state_queued",
+     "es": "pendiente",
+     "en": "queued",
+     "de": "offen",
+     "placeholders": []
+    },
+    {
+     "key": "state_routed",
+     "es": "asignada",
+     "en": "routed",
+     "de": "zugewiesen",
+     "placeholders": []
+    },
+    {
+     "key": "state_claimed",
+     "es": "tomada",
+     "en": "claimed",
+     "de": "übernommen",
+     "placeholders": []
+    },
+    {
+     "key": "state_in_progress",
+     "es": "en curso",
+     "en": "in progress",
+     "de": "in Arbeit",
+     "placeholders": []
+    },
+    {
+     "key": "state_completed",
+     "es": "hecha",
+     "en": "completed",
+     "de": "erledigt",
+     "placeholders": []
+    },
+    {
+     "key": "state_cancelled",
+     "es": "anulada",
+     "en": "cancelled",
+     "de": "storniert",
+     "placeholders": []
+    },
+    {
+     "key": "ref_scope",
+     "es": "asignada a otra persona",
+     "en": "assigned to someone else",
+     "de": "jemand anderem zugewiesen",
+     "placeholders": []
+    },
+    {
+     "key": "ref_not_claimant",
+     "es": "no la has tomado tú",
+     "en": "you did not claim this one",
+     "de": "du hast diese nicht übernommen",
+     "placeholders": []
+    },
+    {
+     "key": "ref_not_claimable",
+     "es": "ya no se puede tomar ({state})",
+     "en": "no longer claimable ({state})",
+     "de": "kann nicht mehr übernommen werden ({state})",
+     "placeholders": [
+      "{state}"
+     ]
+    },
+    {
+     "key": "ref_not_entitled",
+     "es": "no incluido en tu plan",
+     "en": "not included in this plan",
+     "de": "nicht in deinem Paket enthalten",
+     "placeholders": []
+    },
+    {
+     "key": "ref_no_access",
+     "es": "tu acceso aún no está configurado",
+     "en": "your access has not been set up yet",
+     "de": "dein Zugang ist noch nicht eingerichtet",
+     "placeholders": []
+    },
+    {
+     "key": "ref_inactive",
+     "es": "tu acceso de personal está inactivo",
+     "en": "your staff access is inactive",
+     "de": "dein Mitarbeiterzugang ist inaktiv",
+     "placeholders": []
+    },
+    {
+     "key": "ref_generic",
+     "es": "rechazado",
+     "en": "refused",
+     "de": "abgelehnt",
+     "placeholders": []
+    },
+    {
+     "key": "ref_none",
+     "es": "No encuentro esa en tu lista de ahora.",
+     "en": "I do not find that one in your current list.",
+     "de": "Diese finde ich in deiner aktuellen Liste nicht.",
+     "placeholders": []
+    },
+    {
+     "key": "signin_h",
+     "es": "Iniciar sesión",
+     "en": "Sign in",
+     "de": "Anmelden",
+     "placeholders": []
+    },
+    {
+     "key": "signin_p",
+     "es": "Usa tu cuenta de Nuova. El asistente actúa en tu nombre y en el de nadie más.",
+     "en": "Use your Nuova account. The assistant acts as you and nobody else.",
+     "de": "Nutze dein Nuova-Konto. Der Assistent handelt in deinem Namen und in niemandes sonst.",
+     "placeholders": []
+    },
+    {
+     "key": "signin_email",
+     "es": "tu@agencia.com",
+     "en": "you@agency.com",
+     "de": "du@agentur.com",
+     "placeholders": []
+    },
+    {
+     "key": "signin_pw",
+     "es": "Contraseña",
+     "en": "Password",
+     "de": "Passwort",
+     "placeholders": []
+    },
+    {
+     "key": "signin_btn",
+     "es": "Entrar",
+     "en": "Sign in",
+     "de": "Anmelden",
+     "placeholders": []
+    },
+    {
+     "key": "signin_failed",
+     "es": "No se ha podido iniciar sesión.",
+     "en": "Sign-in failed.",
+     "de": "Die Anmeldung hat nicht geklappt.",
+     "placeholders": []
+    },
+    {
+     "key": "network",
+     "es": "Error de red.",
+     "en": "Network error.",
+     "de": "Netzwerkfehler.",
+     "placeholders": []
+    },
+    {
+     "key": "sign_out",
+     "es": "Cerrar sesión",
+     "en": "Sign out",
+     "de": "Abmelden",
+     "placeholders": []
+    },
+    {
+     "key": "pw_h_invite",
+     "es": "Crea tu contraseña",
+     "en": "Set your password",
+     "de": "Lege dein Passwort fest",
+     "placeholders": []
+    },
+    {
+     "key": "pw_h_reset",
+     "es": "Elige una contraseña nueva",
+     "en": "Choose a new password",
+     "de": "Wähle ein neues Passwort",
+     "placeholders": []
+    },
+    {
+     "key": "pw_p_invite",
+     "es": "Tu invitación está confirmada. Elige una contraseña para terminar de crear tu cuenta.",
+     "en": "Your invitation is confirmed. Choose a password to finish setting up your account.",
+     "de": "Deine Einladung ist bestätigt. Wähle ein Passwort, um dein Konto fertig einzurichten.",
+     "placeholders": []
+    },
+    {
+     "key": "pw_p_reset",
+     "es": "Tu enlace está confirmado. Elige una contraseña nueva para continuar.",
+     "en": "Your reset link is confirmed. Choose a new password to continue.",
+     "de": "Dein Link ist bestätigt. Wähle ein neues Passwort, um weiterzumachen.",
+     "placeholders": []
+    },
+    {
+     "key": "pw_new",
+     "es": "Contraseña nueva",
+     "en": "New password",
+     "de": "Neues Passwort",
+     "placeholders": []
+    },
+    {
+     "key": "pw_repeat",
+     "es": "Repite la contraseña",
+     "en": "Repeat password",
+     "de": "Passwort wiederholen",
+     "placeholders": []
+    },
+    {
+     "key": "pw_save",
+     "es": "Guardar contraseña",
+     "en": "Save password",
+     "de": "Passwort speichern",
+     "placeholders": []
+    },
+    {
+     "key": "pw_short",
+     "es": "Usa al menos 6 caracteres.",
+     "en": "Use at least 6 characters.",
+     "de": "Verwende mindestens 6 Zeichen.",
+     "placeholders": []
+    },
+    {
+     "key": "pw_mismatch",
+     "es": "Las dos contraseñas no coinciden.",
+     "en": "The two passwords do not match.",
+     "de": "Die beiden Passwörter stimmen nicht überein.",
+     "placeholders": []
+    },
+    {
+     "key": "pw_failed",
+     "es": "No se ha podido guardar la contraseña.",
+     "en": "The password could not be saved.",
+     "de": "Das Passwort konnte nicht gespeichert werden.",
+     "placeholders": []
+    },
+    {
+     "key": "link_h",
+     "es": "Este enlace no se puede usar",
+     "en": "This link cannot be used",
+     "de": "Dieser Link kann nicht verwendet werden",
+     "placeholders": []
+    },
+    {
+     "key": "link_p",
+     "es": "El enlace no es válido o ha caducado.",
+     "en": "The link is invalid or has expired.",
+     "de": "Der Link ist ungültig oder abgelaufen.",
+     "placeholders": []
+    },
+    {
+     "key": "link_p2",
+     "es": "Pide una invitación nueva, o inicia sesión si ya tienes contraseña.",
+     "en": "Ask for a new invitation, or sign in if you already set a password.",
+     "de": "Bitte um eine neue Einladung, oder melde dich an, wenn du schon ein Passwort hast.",
+     "placeholders": []
+    },
+    {
+     "key": "link_btn",
+     "es": "Ir a iniciar sesión",
+     "en": "Go to sign in",
+     "de": "Zur Anmeldung",
+     "placeholders": []
+    },
+    {
+     "key": "link_unsupported",
+     "es": "Este tipo de enlace no se admite aquí.",
+     "en": "This sign-in link type is not supported here.",
+     "de": "Diese Art von Anmeldelink wird hier nicht unterstützt.",
+     "placeholders": []
+    },
+    {
+     "key": "pending_h",
+     "es": "Tu cuenta está confirmada",
+     "en": "Your account is confirmed",
+     "de": "Dein Konto ist bestätigt",
+     "placeholders": []
+    },
+    {
+     "key": "pending_inactive",
+     "es": "Has iniciado sesión, pero tu acceso de personal está inactivo. Tu agencia puede reactivarlo.",
+     "en": "You are signed in, but your staff access is currently inactive. Your agency can re-enable it.",
+     "de": "Du bist angemeldet, aber dein Mitarbeiterzugang ist gerade inaktiv. Deine Agentur kann ihn wieder freischalten.",
+     "placeholders": []
+    },
+    {
+     "key": "pending_p",
+     "es": "Has iniciado sesión, pero tu agencia todavía no te ha dado acceso a las tareas. Tu cuenta está bien.",
+     "en": "You are signed in, but your agency has not given you access to tasks yet. Nothing is wrong with your login.",
+     "de": "Du bist angemeldet, aber deine Agentur hat dir noch keinen Zugang zu den Aufgaben gegeben. Mit deiner Anmeldung ist alles in Ordnung.",
+     "placeholders": []
+    },
+    {
+     "key": "ent_h",
+     "es": "Función premium",
+     "en": "Premium capability",
+     "de": "Premium-Funktion",
+     "placeholders": []
+    },
+    {
+     "key": "ent_p",
+     "es": "El asistente conversacional forma parte del plan premium. Está desactivado para esta agencia, no solo oculto en esta pantalla.",
+     "en": "The conversational assistant is part of the premium plan. It is switched off in the backend for this agency, not just hidden here.",
+     "de": "Der Assistent zum Fragen gehört zum Premium-Paket. Er ist für diese Agentur abgeschaltet, nicht nur auf diesem Bildschirm ausgeblendet.",
+     "placeholders": []
+    },
+    {
+     "key": "ent_status",
+     "es": "Estado: {state}",
+     "en": "Status: {state}",
+     "de": "Status: {state}",
+     "placeholders": [
+      "{state}"
+     ]
+    },
+    {
+     "key": "chat_off",
+     "es": "El chat con el asistente no está activado para tu agencia. Tus solicitudes de visita y de llamada sí están activas.",
+     "en": "Chat with the assistant is not switched on for your agency. Your viewing and callback requests above are live.",
+     "de": "Der Chat mit dem Assistenten ist für deine Agentur nicht eingeschaltet. Deine Besichtigungs- und Rückrufwünsche oben sind aktiv.",
+     "placeholders": []
+    },
+    {
+     "key": "compose_ph",
+     "es": "Pregúntame lo que quieras sobre hoy...",
+     "en": "Ask me anything about today...",
+     "de": "Frag mich, was du heute wissen willst …",
+     "placeholders": []
+    },
+    {
+     "key": "send",
+     "es": "Enviar",
+     "en": "Send",
+     "de": "Senden",
+     "placeholders": []
+    },
+    {
+     "key": "sending",
+     "es": "...",
+     "en": "...",
+     "de": "...",
+     "placeholders": []
+    },
+    {
+     "key": "mic",
+     "es": "Hablar",
+     "en": "Speak",
+     "de": "Sprechen",
+     "placeholders": []
+    },
+    {
+     "key": "msg_label",
+     "es": "Mensaje",
+     "en": "Message",
+     "de": "Nachricht",
+     "placeholders": []
+    },
+    {
+     "key": "hint",
+     "es": "Pregúntame qué tienes hoy o cuál es tu próxima cita, como lo dirías tú.",
+     "en": "Ask me what you have today, or what your next appointment is - in your own words.",
+     "de": "Frag mich, was du heute hast oder wann dein nächster Termin ist, in deinen eigenen Worten.",
+     "placeholders": []
+    },
+    {
+     "key": "greet_morning",
+     "es": "Buenos días",
+     "en": "Good morning",
+     "de": "Guten Morgen",
+     "placeholders": []
+    },
+    {
+     "key": "greet_afternoon",
+     "es": "Buenas tardes",
+     "en": "Good afternoon",
+     "de": "Guten Tag",
+     "placeholders": []
+    },
+    {
+     "key": "greet_evening",
+     "es": "Buenas noches",
+     "en": "Good evening",
+     "de": "Guten Abend",
+     "placeholders": []
+    },
+    {
+     "key": "greet_tail",
+     "es": ". ¿Qué necesitas?",
+     "en": ". What do you need?",
+     "de": ". Was brauchst du?",
+     "placeholders": []
+    },
+    {
+     "key": "greet_env",
+     "es": "Entorno de pruebas — {v}. Nada de lo que hagas aquí afecta a un cliente real.",
+     "en": "Test environment — {v}. Nothing here touches a real customer.",
+     "de": "Testumgebung — {v}. Nichts hier betrifft einen echten Kunden.",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "tab_convo",
+     "es": "Asistente",
+     "en": "Assistant",
+     "de": "Assistent",
+     "placeholders": []
+    },
+    {
+     "key": "tab_tasks",
+     "es": "Tareas ({n})",
+     "en": "Tasks ({n})",
+     "de": "Aufgaben ({n})",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "env_pill",
+     "es": "Entorno de pruebas",
+     "en": "Test environment",
+     "de": "Testumgebung",
+     "placeholders": []
+    },
+    {
+     "key": "env_title",
+     "es": "{v} — nada de lo que hagas aquí afecta a un cliente real",
+     "en": "{v} — nothing here touches a real customer",
+     "de": "{v} — nichts hier betrifft einen echten Kunden",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "g_hello",
+     "es": "{greet}, {name}.",
+     "en": "{greet}, {name}.",
+     "de": "{greet}, {name}.",
+     "placeholders": [
+      "{greet}",
+      "{name}"
+     ]
+    },
+    {
+     "key": "g_hello_noname",
+     "es": "{greet}.",
+     "en": "{greet}.",
+     "de": "{greet}.",
+     "placeholders": [
+      "{greet}"
+     ]
+    },
+    {
+     "key": "g_offer",
+     "es": "Pregúntame por tu día, por una de estas tareas o por tus citas.",
+     "en": "Ask me about your day, about one of these tasks, or about your appointments.",
+     "de": "Frag mich nach deinem Tag, nach einer dieser Aufgaben oder nach deinen Terminen.",
+     "placeholders": []
+    },
+    {
+     "key": "day_unreadable",
+     "es": "Ahora mismo no puedo leer tu lista. Vuelve a intentarlo en un momento.",
+     "en": "I cannot read your list right now. Try again in a moment.",
+     "de": "Ich kann deine Liste gerade nicht lesen. Versuch es gleich noch einmal.",
+     "placeholders": []
+    },
+    {
+     "key": "day_first_intro",
+     "es": "Empieza por esta:",
+     "en": "Start with this one:",
+     "de": "Fang mit dieser an:",
+     "placeholders": []
+    },
+    {
+     "key": "why_first_reason",
+     "es": "Va primero porque {v}.",
+     "en": "It comes first because {v}.",
+     "de": "Sie kommt zuerst, weil {v}.",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "why_first_longest",
+     "es": "Ninguna tiene el plazo vencido, así que va primero la más reciente: llegó {age}.",
+     "en": "Nothing is overdue, so the newest comes first: it arrived {age}.",
+     "de": "Nichts ist überfällig, deshalb kommt die neueste zuerst: Sie ist {age} eingegangen.",
+     "placeholders": [
+      "{age}"
+     ]
+    },
+    {
+     "key": "why_first_newest",
+     "es": "Ninguna tiene el plazo vencido, así que va primero la más reciente: llegó {age}.",
+     "en": "Nothing is overdue, so the newest comes first: it arrived {age}.",
+     "de": "Nichts ist überfällig, deshalb kommt die neueste zuerst: Sie ist {age} eingegangen.",
+     "placeholders": [
+      "{age}"
+     ]
+    },
+    {
+     "key": "why_other_newest",
+     "es": "No tiene el plazo vencido y las más recientes van primero: es la {pos} de {n} (llegó {age}).",
+     "en": "It is not overdue, and the newest come first: it is number {pos} of {n} (it arrived {age}).",
+     "de": "Sie ist nicht überfällig, und die neuesten kommen zuerst: Sie ist Nummer {pos} von {n} (eingegangen {age}).",
+     "placeholders": [
+      "{pos}",
+      "{n}",
+      "{age}"
+     ]
+    },
+    {
+     "key": "why_other_overdue",
+     "es": "Tiene el plazo vencido: {v}. Las vencidas van arriba; es la {pos} de {n}.",
+     "en": "It is overdue: {v}. Overdue tasks come first; it is number {pos} of {n}.",
+     "de": "Sie ist überfällig: {v}. Überfällige Aufgaben kommen zuerst; sie ist Nummer {pos} von {n}.",
+     "placeholders": [
+      "{v}",
+      "{pos}",
+      "{n}"
+     ]
+    },
+    {
+     "key": "why_also",
+     "es": " Además: {v}.",
+     "en": " Also: {v}.",
+     "de": " Außerdem: {v}.",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "why_other_reason",
+     "es": "Tiene un motivo registrado: {v}. Es la {pos} de {n} en tu lista.",
+     "en": "It has a recorded reason: {v}. It is number {pos} of {n} in your list.",
+     "de": "Es ist ein Grund erfasst: {v}. Sie ist Nummer {pos} von {n} in deiner Liste.",
+     "placeholders": [
+      "{v}",
+      "{pos}",
+      "{n}"
+     ]
+    },
+    {
+     "key": "why_other_none",
+     "es": "No tiene el plazo vencido y las más recientes van primero: es la {pos} de {n} (llegó {age}).",
+     "en": "It is not overdue, and the newest come first: it is number {pos} of {n} (it arrived {age}).",
+     "de": "Sie ist nicht überfällig, und die neuesten kommen zuerst: Sie ist Nummer {pos} von {n} (eingegangen {age}).",
+     "placeholders": [
+      "{pos}",
+      "{n}",
+      "{age}"
+     ]
+    },
+    {
+     "key": "see_task",
+     "es": "Ver la tarea",
+     "en": "See the task",
+     "de": "Aufgabe ansehen",
+     "placeholders": []
+    },
+    {
+     "key": "appt_none",
+     "es": "Hoy no tienes ninguna cita.",
+     "en": "You have no appointments today.",
+     "de": "Du hast heute keine Termine.",
+     "placeholders": []
+    },
+    {
+     "key": "appt_but_callback",
+     "es": "Lo que sí está esperando es una llamada — no es una cita:",
+     "en": "What is waiting is a callback — not an appointment:",
+     "de": "Was wartet, ist ein Rückruf — kein Termin:",
+     "placeholders": []
+    },
+    {
+     "key": "who_is",
+     "es": "Es {who}.",
+     "en": "It is {who}.",
+     "de": "Es ist {who}.",
+     "placeholders": [
+      "{who}"
+     ]
+    },
+    {
+     "key": "who_unknown",
+     "es": "Para este cliente no hay nombre ni teléfono registrados.",
+     "en": "No name or number was recorded for this customer.",
+     "de": "Für diesen Kunden sind weder Name noch Nummer erfasst.",
+     "placeholders": []
+    },
+    {
+     "key": "ref_which",
+     "es": "¿A cuál te refieres?",
+     "en": "Which one do you mean?",
+     "de": "Welche meinst du?",
+     "placeholders": []
+    },
+    {
+     "key": "r_slot_which",
+     "es": "Necesito saber de qué tarea hablas. Si es la primera de tu lista:",
+     "en": "I need to know which task you mean. If it is the first one in your list:",
+     "de": "Ich muss wissen, welche Aufgabe du meinst. Wenn es die erste in deiner Liste ist:",
+     "placeholders": []
+    },
+    {
+     "key": "r_unknown",
+     "es": "No ha funcionado. Lo hemos anotado para revisarlo.",
+     "en": "That did not work. We have noted it so it can be looked at.",
+     "de": "Das hat nicht geklappt. Wir haben es notiert, damit es geprüft wird.",
+     "placeholders": []
+    },
+    {
+     "key": "ref_not_claimable_plain",
+     "es": "Ya no se puede tomar.",
+     "en": "It can no longer be taken.",
+     "de": "Sie kann nicht mehr übernommen werden.",
+     "placeholders": []
+    },
+    {
+     "key": "ref_outcome_required",
+     "es": "Primero di qué ha pasado con la llamada.",
+     "en": "First say what happened on the call.",
+     "de": "Sag zuerst, wie der Anruf gelaufen ist.",
+     "placeholders": []
+    },
+    {
+     "key": "ref_outcome_not_applicable",
+     "es": "Ese resultado no corresponde a esta tarea.",
+     "en": "That outcome does not apply to this task.",
+     "de": "Dieses Ergebnis passt nicht zu dieser Aufgabe.",
+     "placeholders": []
+    },
+    {
+     "key": "ref_not_found",
+     "es": "Esa tarea ya no existe.",
+     "en": "That task does not exist any more.",
+     "de": "Diese Aufgabe gibt es nicht mehr.",
+     "placeholders": []
+    },
+    {
+     "key": "appt_cannot_read",
+     "es": "Desde aquí todavía no puedo leer tu agenda.",
+     "en": "I cannot read your calendar from here yet.",
+     "de": "Deinen Kalender kann ich von hier aus noch nicht lesen.",
+     "placeholders": []
+    },
+    {
+     "key": "appt_no_access",
+     "es": "Tu cuenta no tiene acceso a la agenda.",
+     "en": "Your account has no access to the calendar.",
+     "de": "Dein Konto hat keinen Zugang zum Kalender.",
+     "placeholders": []
+    },
+    {
+     "key": "kc_held_reply_one",
+     "es": "1 respuesta retenida",
+     "en": "1 reply held back",
+     "de": "1 zurückgehaltene Antwort",
+     "placeholders": []
+    },
+    {
+     "key": "kc_held_reply_many",
+     "es": "{n} respuestas retenidas",
+     "en": "{n} replies held back",
+     "de": "{n} zurückgehaltene Antworten",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "kind_held_reply",
+     "es": "Respuesta retenida",
+     "en": "Reply held back",
+     "de": "Zurückgehaltene Antwort",
+     "placeholders": []
+    },
+    {
+     "key": "held_no_notice",
+     "es": "No se envió la respuesta automática: no hay un aviso aprobado en {lang}",
+     "en": "The automatic reply was not sent: there is no approved notice in {lang}",
+     "de": "Die automatische Antwort wurde nicht gesendet: Es gibt keinen freigegebenen Hinweis auf {lang}",
+     "placeholders": [
+      "{lang}"
+     ]
+    },
+    {
+     "key": "held_generic",
+     "es": "No se envió la respuesta automática; tiene que contestar una persona",
+     "en": "The automatic reply was not sent; a person has to answer",
+     "de": "Die automatische Antwort wurde nicht gesendet; ein Mensch muss antworten",
+     "placeholders": []
+    },
+    {
+     "key": "lang_de",
+     "es": "alemán",
+     "en": "German",
+     "de": "Deutsch",
+     "placeholders": []
+    },
+    {
+     "key": "lang_en",
+     "es": "inglés",
+     "en": "English",
+     "de": "Englisch",
+     "placeholders": []
+    },
+    {
+     "key": "lang_it",
+     "es": "italiano",
+     "en": "Italian",
+     "de": "Italienisch",
+     "placeholders": []
+    },
+    {
+     "key": "lang_fr",
+     "es": "francés",
+     "en": "French",
+     "de": "Französisch",
+     "placeholders": []
+    },
+    {
+     "key": "lang_nl",
+     "es": "neerlandés",
+     "en": "Dutch",
+     "de": "Niederländisch",
+     "placeholders": []
+    },
+    {
+     "key": "lang_sv",
+     "es": "sueco",
+     "en": "Swedish",
+     "de": "Schwedisch",
+     "placeholders": []
+    },
+    {
+     "key": "lang_pt",
+     "es": "portugués",
+     "en": "Portuguese",
+     "de": "Portugiesisch",
+     "placeholders": []
+    },
+    {
+     "key": "lang_es",
+     "es": "español",
+     "en": "Spanish",
+     "de": "Spanisch",
+     "placeholders": []
+    },
+    {
+     "key": "draft_title",
+     "es": "Borrador sin enviar — para que lo uses tú",
+     "en": "Unsent draft — for you to use",
+     "de": "Nicht gesendeter Entwurf — zur Verwendung durch dich",
+     "placeholders": []
+    },
+    {
+     "key": "copy_draft",
+     "es": "Copiar el borrador",
+     "en": "Copy the draft",
+     "de": "Entwurf kopieren",
+     "placeholders": []
+    },
+    {
+     "key": "copied",
+     "es": "Copiado",
+     "en": "Copied",
+     "de": "Kopiert",
+     "placeholders": []
+    },
+    {
+     "key": "step_answer_the_customer_yourself",
+     "es": "contestar tú al cliente",
+     "en": "answer the customer yourself",
+     "de": "dem Kunden selbst antworten",
+     "placeholders": []
+    },
+    {
+     "key": "working",
+     "es": "Un momento…",
+     "en": "Working on it…",
+     "de": "Einen Moment …",
+     "placeholders": []
+    },
+    {
+     "key": "v_listening",
+     "es": "Te escucho…",
+     "en": "Listening…",
+     "de": "Ich höre zu …",
+     "placeholders": []
+    },
+    {
+     "key": "v_processing",
+     "es": "Procesando lo que has dicho…",
+     "en": "Processing what you said…",
+     "de": "Verarbeite, was du gesagt hast …",
+     "placeholders": []
+    },
+    {
+     "key": "v_stop",
+     "es": "Terminar y revisar",
+     "en": "Finish and check",
+     "de": "Beenden und prüfen",
+     "placeholders": []
+    },
+    {
+     "key": "v_cancel",
+     "es": "Cancelar",
+     "en": "Cancel",
+     "de": "Abbrechen",
+     "placeholders": []
+    },
+    {
+     "key": "v_review",
+     "es": "Revisa el texto, corrígelo si hace falta y pulsa Enviar.",
+     "en": "Check the text, correct it if needed, and press Send.",
+     "de": "Prüf den Text, korrigier ihn bei Bedarf und tippe auf Senden.",
+     "placeholders": []
+    },
+    {
+     "key": "v_guide",
+     "es": "Cuando acabes, pulsa «Terminar y revisar». No se envía nada hasta que pulses «Enviar».",
+     "en": "When you are done, press “Finish and check”. Nothing is sent until you press “Send”.",
+     "de": "Wenn du fertig bist, tippe auf „Beenden und prüfen“. Gesendet wird erst, wenn du auf „Senden“ tippst.",
+     "placeholders": []
+    },
+    {
+     "key": "v_denied_ios",
+     "es": "Safari no tiene permiso para usar el micrófono. Toca el botón a la izquierda de la dirección («aA» o el icono de página) › Ajustes del sitio web › Micrófono › Permitir.",
+     "en": "Safari has no permission to use the microphone. Tap the button left of the address (“aA” or the page icon) › Website Settings › Microphone › Allow.",
+     "de": "Safari darf das Mikrofon nicht verwenden. Tippe auf die Taste links neben der Adresse („aA“ oder das Seitensymbol) › Website-Einstellungen › Mikrofon › Erlauben.",
+     "placeholders": []
+    },
+    {
+     "key": "v_denied_ios_other",
+     "es": "Este navegador no tiene permiso para usar el micrófono. Actívalo en Ajustes del iPhone › este navegador › Micrófono, o abre esta página en Safari.",
+     "en": "This browser has no permission to use the microphone. Allow it in the iPhone Settings › this browser › Microphone, or open this page in Safari.",
+     "de": "Dieser Browser darf das Mikrofon nicht verwenden. Erlaube es in den iPhone-Einstellungen › dieser Browser › Mikrofon, oder öffne diese Seite in Safari.",
+     "placeholders": []
+    },
+    {
+     "key": "v_dictation_off",
+     "es": "El dictado está desactivado en este iPhone. Actívalo en Ajustes › General › Teclado › Activar Dictado y vuelve a intentarlo.",
+     "en": "Dictation is switched off on this iPhone. Turn it on in Settings › General › Keyboard › Enable Dictation, then try again.",
+     "de": "Die Diktierfunktion ist auf diesem iPhone ausgeschaltet. Schalte sie in Einstellungen › Allgemein › Tastatur › Diktierfunktion ein und versuch es noch einmal.",
+     "placeholders": []
+    },
+    {
+     "key": "v_use_safari",
+     "es": "En el iPhone, este navegador no puede dictar. Abre esta página en Safari para hablar; aquí puedes escribir tu pregunta.",
+     "en": "On the iPhone this browser cannot dictate. Open this page in Safari to speak; here you can type your question.",
+     "de": "Auf dem iPhone kann dieser Browser nicht diktieren. Öffne diese Seite in Safari, um zu sprechen; hier kannst du deine Frage tippen.",
+     "placeholders": []
+    },
+    {
+     "key": "v_nostart",
+     "es": "El dictado no ha podido empezar. Puedes escribir la pregunta.",
+     "en": "Dictation could not start. You can type the question.",
+     "de": "Das Diktat konnte nicht starten. Du kannst die Frage tippen.",
+     "placeholders": []
+    },
+    {
+     "key": "v_cut",
+     "es": "El micrófono no ha dado sonido y el dictado se ha cortado. Toca el micrófono otra vez.",
+     "en": "The microphone delivered no sound and dictation stopped. Tap the microphone again.",
+     "de": "Das Mikrofon hat keinen Ton geliefert und das Diktat ist abgebrochen. Tippe noch einmal auf das Mikrofon.",
+     "placeholders": []
+    },
+    {
+     "key": "v_silence",
+     "es": "He parado la grabación: hace un rato que no te oigo. Revisa el texto y pulsa Enviar.",
+     "en": "I stopped the recording: I have not heard you for a while. Check the text and press Send.",
+     "de": "Ich habe die Aufnahme beendet: Ich höre dich seit einer Weile nicht mehr. Prüf den Text und tippe auf Senden.",
+     "placeholders": []
+    },
+    {
+     "key": "v_nothing",
+     "es": "No he oído nada. Prueba otra vez, un poco más cerca del micrófono.",
+     "en": "I did not hear anything. Try again, a little closer to the microphone.",
+     "de": "Ich habe nichts gehört. Versuch es noch einmal, etwas näher am Mikrofon.",
+     "placeholders": []
+    },
+    {
+     "key": "v_denied",
+     "es": "El navegador no tiene permiso para usar el micrófono. Actívalo en el candado, junto a la dirección.",
+     "en": "The browser has no permission to use the microphone. Allow it in the padlock next to the address.",
+     "de": "Der Browser darf das Mikrofon nicht verwenden. Erlaube es über das Schloss neben der Adresse.",
+     "placeholders": []
+    },
+    {
+     "key": "v_nomic",
+     "es": "No encuentro ningún micrófono.",
+     "en": "I cannot find a microphone.",
+     "de": "Ich finde kein Mikrofon.",
+     "placeholders": []
+    },
+    {
+     "key": "v_network",
+     "es": "El dictado necesita conexión a internet.",
+     "en": "Dictation needs an internet connection.",
+     "de": "Das Diktat braucht eine Internetverbindung.",
+     "placeholders": []
+    },
+    {
+     "key": "v_lang",
+     "es": "Este navegador no puede dictar en este idioma.",
+     "en": "This browser cannot dictate in this language.",
+     "de": "Dieser Browser kann in dieser Sprache nicht diktieren.",
+     "placeholders": []
+    },
+    {
+     "key": "v_max",
+     "es": "He parado la grabación al llegar a un minuto. Revisa el texto y pulsa Enviar.",
+     "en": "I stopped the recording at one minute. Check the text and press Send.",
+     "de": "Ich habe die Aufnahme nach einer Minute beendet. Prüf den Text und tippe auf Senden.",
+     "placeholders": []
+    },
+    {
+     "key": "v_error",
+     "es": "El dictado ha fallado. Puedes escribir la pregunta.",
+     "en": "Dictation failed. You can type the question.",
+     "de": "Das Diktat ist fehlgeschlagen. Du kannst die Frage tippen.",
+     "placeholders": []
+    },
+    {
+     "key": "v_unsupported",
+     "es": "Este navegador no permite dictar; escribe tu pregunta.",
+     "en": "This browser cannot dictate; please type your question.",
+     "de": "Dieser Browser kann nicht diktieren; bitte tippe deine Frage.",
+     "placeholders": []
+    },
+    {
+     "key": "v_nolevel",
+     "es": "Grabando — este navegador no muestra el nivel del sonido.",
+     "en": "Recording — this browser shows no sound level.",
+     "de": "Aufnahme läuft — dieser Browser zeigt keinen Pegel an.",
+     "placeholders": []
+    },
+    {
+     "key": "kind_callback",
+     "es": "Llamada pendiente",
+     "en": "Callback",
+     "de": "Rückruf",
+     "placeholders": []
+    },
+    {
+     "key": "kind_viewing_wish",
+     "es": "Solicitud de visita",
+     "en": "Viewing request",
+     "de": "Besichtigungswunsch",
+     "placeholders": []
+    },
+    {
+     "key": "kind_property_enquiry",
+     "es": "Consulta sobre un inmueble",
+     "en": "Property enquiry",
+     "de": "Anfrage zu einer Immobilie",
+     "placeholders": []
+    },
+    {
+     "key": "kind_other",
+     "es": "Solicitud",
+     "en": "Request",
+     "de": "Anfrage",
+     "placeholders": []
+    },
+    {
+     "key": "cust_none",
+     "es": "sin nombre ni teléfono registrados",
+     "en": "no name or number recorded",
+     "de": "weder Name noch Nummer erfasst",
+     "placeholders": []
+    },
+    {
+     "key": "req_words",
+     "es": "Ha escrito: «{v}»",
+     "en": "They wrote: “{v}”",
+     "de": "Nachricht: „{v}“",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "req_note",
+     "es": "Nota: {v}",
+     "en": "Note: {v}",
+     "de": "Notiz: {v}",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "req_avail_not_verified",
+     "es": "La disponibilidad no está confirmada — compruébalo antes de concertar nada",
+     "en": "Availability is not confirmed — check the listing before arranging anything",
+     "de": "Die Verfügbarkeit ist nicht bestätigt — prüf das Inserat, bevor du etwas vereinbarst",
+     "placeholders": []
+    },
+    {
+     "key": "req_avail_verified",
+     "es": "Disponibilidad confirmada",
+     "en": "Availability is confirmed",
+     "de": "Verfügbarkeit bestätigt",
+     "placeholders": []
+    },
+    {
+     "key": "rsn_callback",
+     "es": "Ha pedido que le llamen",
+     "en": "They asked to be called back",
+     "de": "Bittet um Rückruf",
+     "placeholders": []
+    },
+    {
+     "key": "rsn_voice_handoff",
+     "es": "Pide que le llame una persona del equipo",
+     "en": "Asks for a person from the team to call back",
+     "de": "Möchte, dass jemand aus dem Team zurückruft",
+     "placeholders": []
+    },
+    {
+     "key": "rsn_send_matches",
+     "es": "Quiere que le enviemos los inmuebles que encajan",
+     "en": "They want the matching properties sent to them",
+     "de": "Möchte die passenden Immobilien zugeschickt bekommen",
+     "placeholders": []
+    },
+    {
+     "key": "rsn_viewing_request",
+     "es": "Quiere ver un inmueble",
+     "en": "They want to see a property",
+     "de": "Möchte eine Immobilie besichtigen",
+     "placeholders": []
+    },
+    {
+     "key": "rsn_viewing_request_availability_unconfirmed",
+     "es": "Quiere ver un inmueble",
+     "en": "They want to see a property",
+     "de": "Möchte eine Immobilie besichtigen",
+     "placeholders": []
+    },
+    {
+     "key": "rsn_viewing_wish_unbound",
+     "es": "Quiere ver un inmueble; todavía no consta cuál",
+     "en": "They want to see a property; which one is not recorded yet",
+     "de": "Möchte eine Immobilie besichtigen; welche, ist noch nicht erfasst",
+     "placeholders": []
+    },
+    {
+     "key": "rsn_viewing_target_unresolved",
+     "es": "Quiere ver un inmueble; todavía no consta cuál",
+     "en": "They want to see a property; which one is not recorded yet",
+     "de": "Möchte eine Immobilie besichtigen; welche, ist noch nicht erfasst",
+     "placeholders": []
+    },
+    {
+     "key": "st_waiting_mine",
+     "es": "asignada a ti, nadie la ha tomado todavía",
+     "en": "assigned to you, nobody has taken it yet",
+     "de": "dir zugewiesen, noch nicht übernommen",
+     "placeholders": []
+    },
+    {
+     "key": "st_waiting_free",
+     "es": "pendiente, nadie la ha tomado todavía",
+     "en": "waiting, nobody has taken it yet",
+     "de": "offen, noch nicht übernommen",
+     "placeholders": []
+    },
+    {
+     "key": "st_taken_mine",
+     "es": "la has tomado tú",
+     "en": "you have taken it",
+     "de": "von dir übernommen",
+     "placeholders": []
+    },
+    {
+     "key": "st_taken_other",
+     "es": "la ha tomado un compañero",
+     "en": "a colleague has taken it",
+     "de": "von jemandem aus dem Team übernommen",
+     "placeholders": []
+    },
+    {
+     "key": "st_in_progress_mine",
+     "es": "la estás trabajando",
+     "en": "you are on it",
+     "de": "du arbeitest daran",
+     "placeholders": []
+    },
+    {
+     "key": "st_in_progress_other",
+     "es": "la está trabajando un compañero",
+     "en": "a colleague is on it",
+     "de": "jemand aus dem Team arbeitet daran",
+     "placeholders": []
+    },
+    {
+     "key": "st_done",
+     "es": "hecha",
+     "en": "done",
+     "de": "erledigt",
+     "placeholders": []
+    },
+    {
+     "key": "day_none",
+     "es": "Ahora mismo no tienes nada pendiente.",
+     "en": "Nothing is waiting for you right now.",
+     "de": "Gerade wartet nichts auf dich.",
+     "placeholders": []
+    },
+    {
+     "key": "day_count_one",
+     "es": "Tienes 1 solicitud abierta.",
+     "en": "You have 1 open request.",
+     "de": "Du hast 1 offene Anfrage.",
+     "placeholders": []
+    },
+    {
+     "key": "day_count_many",
+     "es": "Tienes {n} solicitudes abiertas.",
+     "en": "You have {n} open requests.",
+     "de": "Du hast {n} offene Anfragen.",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "kc_callback_one",
+     "es": "1 por llamar",
+     "en": "1 to call back",
+     "de": "1 Rückruf",
+     "placeholders": []
+    },
+    {
+     "key": "kc_callback_many",
+     "es": "{n} por llamar",
+     "en": "{n} to call back",
+     "de": "{n} Rückrufe",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "kc_viewing_wish_one",
+     "es": "1 solicitud de visita",
+     "en": "1 viewing request",
+     "de": "1 Besichtigungswunsch",
+     "placeholders": []
+    },
+    {
+     "key": "kc_viewing_wish_many",
+     "es": "{n} solicitudes de visita",
+     "en": "{n} viewing requests",
+     "de": "{n} Besichtigungswünsche",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "kc_property_enquiry_one",
+     "es": "1 consulta",
+     "en": "1 enquiry",
+     "de": "1 Anfrage",
+     "placeholders": []
+    },
+    {
+     "key": "kc_property_enquiry_many",
+     "es": "{n} consultas",
+     "en": "{n} enquiries",
+     "de": "{n} Anfragen",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "kc_other_one",
+     "es": "1 más",
+     "en": "1 other",
+     "de": "1 weitere",
+     "placeholders": []
+    },
+    {
+     "key": "kc_other_many",
+     "es": "{n} más",
+     "en": "{n} others",
+     "de": "{n} weitere",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "day_first",
+     "es": "Empieza por {what}.",
+     "en": "Start with {what}.",
+     "de": "Fang mit {what} an.",
+     "placeholders": [
+      "{what}"
+     ]
+    },
+    {
+     "key": "day_why",
+     "es": "Por qué esta: {v}.",
+     "en": "Why this one: {v}.",
+     "de": "Warum diese: {v}.",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "why_longest_waiting",
+     "es": "aquí ninguna tiene el plazo vencido, así que va primero la más reciente",
+     "en": "nothing here is overdue, so the newest comes first",
+     "de": "hier ist nichts überfällig, deshalb kommt die neueste zuerst",
+     "placeholders": []
+    },
+    {
+     "key": "day_followup_hint",
+     "es": "Pregúntame «¿por qué?» y te digo de dónde sale.",
+     "en": "Ask “why?” and I will show you what that is read from.",
+     "de": "Frag „warum?“, dann zeige ich dir, woraus das gelesen wird.",
+     "placeholders": []
+    },
+    {
+     "key": "appt_none_but_callback",
+     "es": "Hoy no tienes ninguna cita. Lo que sí está esperando es una llamada: {what}.",
+     "en": "You have no appointments today. What is waiting is a callback: {what}.",
+     "de": "Du hast heute keine Termine. Was wartet, ist ein Rückruf: {what}.",
+     "placeholders": [
+      "{what}"
+     ]
+    },
+    {
+     "key": "appt_none_nothing",
+     "es": "Hoy no tienes ninguna cita, y tampoco tienes nada más esperando.",
+     "en": "You have no appointments today, and nothing else is waiting either.",
+     "de": "Du hast heute keine Termine, und sonst wartet auch nichts.",
+     "placeholders": []
+    },
+    {
+     "key": "appt_one",
+     "es": "Hoy tienes 1 cita.",
+     "en": "You have 1 appointment today.",
+     "de": "Du hast heute 1 Termin.",
+     "placeholders": []
+    },
+    {
+     "key": "appt_many",
+     "es": "Hoy tienes {n} citas.",
+     "en": "You have {n} appointments today.",
+     "de": "Du hast heute {n} Termine.",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "appt_unanswerable",
+     "es": "Ahora mismo no puedo consultar tus citas ({reason}).",
+     "en": "I cannot read your appointments right now ({reason}).",
+     "de": "Ich kann deine Termine gerade nicht lesen ({reason}).",
+     "placeholders": [
+      "{reason}"
+     ]
+    },
+    {
+     "key": "ask_nothing_yet",
+     "es": "Todavía no te he dicho nada; pregúntame qué tienes hoy.",
+     "en": "I have not told you anything yet — ask me what you have today.",
+     "de": "Ich habe dir noch nichts gesagt — frag mich, was du heute hast.",
+     "placeholders": []
+    },
+    {
+     "key": "ask_why_none",
+     "es": "No tiene el plazo vencido. Sin plazo vencido, las más recientes van primero.",
+     "en": "It is not overdue. Without an overdue deadline, the newest come first.",
+     "de": "Sie ist nicht überfällig. Ohne überfällige Frist kommen die neuesten zuerst.",
+     "placeholders": []
+    },
+    {
+     "key": "ask_what_is_it",
+     "es": "Es {what}, y el siguiente paso es: {step}",
+     "en": "It is {what}, and the next step is: {step}",
+     "de": "Es ist {what}, und der nächste Schritt ist: {step}",
+     "placeholders": [
+      "{what}",
+      "{step}"
+     ]
+    },
+    {
+     "key": "unknown_help",
+     "es": "Esa pregunta todavía no la sé contestar: aún no respondo preguntas libres sobre inmuebles, precios, cifras de la agencia o temas generales. Lo que sí puedo decirte: qué tienes hoy, por qué va primero una tarea, cuál es su siguiente paso, quién es el cliente y si tienes citas.",
+     "en": "I cannot answer that question yet: free questions about properties, prices, the agency’s figures or general topics are not supported. What I can tell you: what you have today, why a task comes first, its next step, who the customer is, and whether you have appointments.",
+     "de": "Diese Frage kann ich noch nicht beantworten: Freie Fragen zu Immobilien, Preisen, Zahlen der Agentur oder allgemeinen Themen gehen noch nicht. Was ich dir sagen kann: was du heute hast, warum eine Aufgabe zuerst kommt, ihren nächsten Schritt, wer der Kunde ist und ob du Termine hast.",
+     "placeholders": []
+    },
+    {
+     "key": "cv_and",
+     "es": "y",
+     "en": "and",
+     "de": "und",
+     "placeholders": []
+    },
+    {
+     "key": "cv_day_one",
+     "es": "Hoy tienes 1 cosa abierta: {list}.",
+     "en": "Today you have 1 open item: {list}.",
+     "de": "Heute hast du 1 offene Sache: {list}.",
+     "placeholders": [
+      "{list}"
+     ]
+    },
+    {
+     "key": "cv_day_many",
+     "es": "Hoy tienes {n} cosas abiertas: {list}.",
+     "en": "Today you have {n} open items: {list}.",
+     "de": "Heute hast du {n} offene Sachen: {list}.",
+     "placeholders": [
+      "{n}",
+      "{list}"
+     ]
+    },
+    {
+     "key": "cv_kc_held_reply_one",
+     "es": "1 respuesta retenida",
+     "en": "1 held reply",
+     "de": "1 zurückgehaltene Antwort",
+     "placeholders": []
+    },
+    {
+     "key": "cv_kc_held_reply_many",
+     "es": "{n} respuestas retenidas",
+     "en": "{n} held replies",
+     "de": "{n} zurückgehaltene Antworten",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "cv_kc_callback_one",
+     "es": "1 llamada por devolver",
+     "en": "1 call to return",
+     "de": "1 Rückruf",
+     "placeholders": []
+    },
+    {
+     "key": "cv_kc_callback_many",
+     "es": "{n} llamadas por devolver",
+     "en": "{n} calls to return",
+     "de": "{n} Rückrufe",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "cv_kc_viewing_wish_one",
+     "es": "1 solicitud de visita",
+     "en": "1 viewing request",
+     "de": "1 Besichtigungswunsch",
+     "placeholders": []
+    },
+    {
+     "key": "cv_kc_viewing_wish_many",
+     "es": "{n} solicitudes de visita",
+     "en": "{n} viewing requests",
+     "de": "{n} Besichtigungswünsche",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "cv_kc_property_enquiry_one",
+     "es": "1 consulta",
+     "en": "1 enquiry",
+     "de": "1 Anfrage",
+     "placeholders": []
+    },
+    {
+     "key": "cv_kc_property_enquiry_many",
+     "es": "{n} consultas",
+     "en": "{n} enquiries",
+     "de": "{n} Anfragen",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "cv_kc_other_one",
+     "es": "1 cosa más",
+     "en": "1 more",
+     "de": "1 weitere Sache",
+     "placeholders": []
+    },
+    {
+     "key": "cv_kc_other_many",
+     "es": "{n} cosas más",
+     "en": "{n} more",
+     "de": "{n} weitere Sachen",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "cv_first_card",
+     "es": "Lo primero de tu lista:",
+     "en": "First on your list:",
+     "de": "Als Erstes in deiner Liste:",
+     "placeholders": []
+    },
+    {
+     "key": "cv_what",
+     "es": "Es {what}.",
+     "en": "It is {what}.",
+     "de": "Es ist {what}.",
+     "placeholders": [
+      "{what}"
+     ]
+    },
+    {
+     "key": "cv_first_again",
+     "es": "Lo primero sigue siendo {what}, la de arriba.",
+     "en": "First is still {what}, the one above.",
+     "de": "Als Erstes steht weiter {what}, die oben.",
+     "placeholders": [
+      "{what}"
+     ]
+    },
+    {
+     "key": "cv_open_q",
+     "es": "¿Te abro la tarea?",
+     "en": "Shall I open the task?",
+     "de": "Soll ich dir die Aufgabe öffnen?",
+     "placeholders": []
+    },
+    {
+     "key": "cv_why_first",
+     "es": "Porque {v}. Por eso va la primera.",
+     "en": "Because {v}. That is why it comes first.",
+     "de": "Weil {v}. Deshalb kommt sie zuerst.",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "cv_why_other",
+     "es": "Porque {v}. Las vencidas van arriba; es la {pos} de {n}.",
+     "en": "Because {v}. Overdue tasks come first; it is number {pos} of {n}.",
+     "de": "Weil {v}. Überfällige Aufgaben kommen zuerst; sie ist Nummer {pos} von {n}.",
+     "placeholders": [
+      "{v}",
+      "{pos}",
+      "{n}"
+     ]
+    },
+    {
+     "key": "cv_why_first_none",
+     "es": "Porque es la más reciente: llegó {age}, y ninguna tiene el plazo vencido.",
+     "en": "Because it is the newest: it arrived {age}, and nothing is overdue.",
+     "de": "Weil sie die neueste ist: Sie ist {age} eingegangen, und nichts ist überfällig.",
+     "placeholders": [
+      "{age}"
+     ]
+    },
+    {
+     "key": "cv_why_other_none",
+     "es": "Porque las más recientes van primero: llegó {age}. Es la {pos} de {n}.",
+     "en": "Because the newest come first: it arrived {age}. It is number {pos} of {n}.",
+     "de": "Weil die neuesten zuerst kommen: Sie ist {age} eingegangen. Sie ist Nummer {pos} von {n}.",
+     "placeholders": [
+      "{age}",
+      "{pos}",
+      "{n}"
+     ]
+    },
+    {
+     "key": "cv_decline",
+     "es": "Eso todavía no lo sé{name}: de precios, inmuebles o cifras de la agencia aún no puedo hablarte, y no quiero inventarme nada.",
+     "en": "I do not know that yet{name}: I cannot talk about prices, properties or the agency’s figures yet, and I will not make anything up.",
+     "de": "Das weiß ich noch nicht{name}: Über Preise, Immobilien oder Zahlen der Agentur kann ich noch nicht sprechen, und ich erfinde nichts.",
+     "placeholders": [
+      "{name}"
+     ]
+    },
+    {
+     "key": "cv_decline_offer",
+     "es": "Lo que sí puedo hacer ya es ayudarte con tu día: lo primero de tu lista es {what}.",
+     "en": "What I can do right now is help with your day: first on your list is {what}.",
+     "de": "Was ich jetzt schon kann, ist dir bei deinem Tag helfen: Als Erstes in deiner Liste steht {what}.",
+     "placeholders": [
+      "{what}"
+     ]
+    },
+    {
+     "key": "cv_decline_offer_none",
+     "es": "Lo que sí puedo hacer ya es decirte qué tienes hoy, por qué va primero cada tarea y quién es cada cliente.",
+     "en": "What I can do right now is tell you what you have today, why a task comes first and who each customer is.",
+     "de": "Was ich jetzt schon kann: dir sagen, was du heute hast, warum eine Aufgabe zuerst kommt und wer jeder Kunde ist.",
+     "placeholders": []
+    },
+    {
+     "key": "cv_btn_day",
+     "es": "¿Qué tengo hoy?",
+     "en": "What do I have today?",
+     "de": "Was habe ich heute?",
+     "placeholders": []
+    },
+    {
+     "key": "cv_btn_why",
+     "es": "¿Por qué va primero?",
+     "en": "Why does it come first?",
+     "de": "Warum kommt sie zuerst?",
+     "placeholders": []
+    },
+    {
+     "key": "cv_callback_phone",
+     "es": "la llamada al {who}",
+     "en": "the call to {who}",
+     "de": "der Rückruf an {who}",
+     "placeholders": [
+      "{who}"
+     ]
+    },
+    {
+     "key": "cv_callback_name",
+     "es": "la llamada a {who}",
+     "en": "the call to {who}",
+     "de": "der Rückruf an {who}",
+     "placeholders": [
+      "{who}"
+     ]
+    },
+    {
+     "key": "cv_callback_none",
+     "es": "una llamada sin número registrado",
+     "en": "a call with no number recorded",
+     "de": "ein Rückruf ohne erfasste Nummer",
+     "placeholders": []
+    },
+    {
+     "key": "cv_viewing_wish_phone",
+     "es": "la solicitud de visita del {who}",
+     "en": "the viewing request from {who}",
+     "de": "der Besichtigungswunsch von {who}",
+     "placeholders": [
+      "{who}"
+     ]
+    },
+    {
+     "key": "cv_viewing_wish_name",
+     "es": "la solicitud de visita de {who}",
+     "en": "the viewing request from {who}",
+     "de": "der Besichtigungswunsch von {who}",
+     "placeholders": [
+      "{who}"
+     ]
+    },
+    {
+     "key": "cv_viewing_wish_none",
+     "es": "una solicitud de visita",
+     "en": "a viewing request",
+     "de": "ein Besichtigungswunsch",
+     "placeholders": []
+    },
+    {
+     "key": "cv_property_enquiry_phone",
+     "es": "la consulta del {who}",
+     "en": "the enquiry from {who}",
+     "de": "die Anfrage von {who}",
+     "placeholders": [
+      "{who}"
+     ]
+    },
+    {
+     "key": "cv_property_enquiry_name",
+     "es": "la consulta de {who}",
+     "en": "the enquiry from {who}",
+     "de": "die Anfrage von {who}",
+     "placeholders": [
+      "{who}"
+     ]
+    },
+    {
+     "key": "cv_property_enquiry_none",
+     "es": "una consulta",
+     "en": "an enquiry",
+     "de": "eine Anfrage",
+     "placeholders": []
+    },
+    {
+     "key": "cv_held_reply_phone",
+     "es": "la respuesta retenida para el {who}",
+     "en": "the held reply to {who}",
+     "de": "die zurückgehaltene Antwort an {who}",
+     "placeholders": [
+      "{who}"
+     ]
+    },
+    {
+     "key": "cv_held_reply_name",
+     "es": "la respuesta retenida para {who}",
+     "en": "the held reply to {who}",
+     "de": "die zurückgehaltene Antwort an {who}",
+     "placeholders": [
+      "{who}"
+     ]
+    },
+    {
+     "key": "cv_held_reply_none",
+     "es": "una respuesta retenida",
+     "en": "a held reply",
+     "de": "eine zurückgehaltene Antwort",
+     "placeholders": []
+    },
+    {
+     "key": "cv_other_phone",
+     "es": "la solicitud del {who}",
+     "en": "the request from {who}",
+     "de": "die Anfrage von {who}",
+     "placeholders": [
+      "{who}"
+     ]
+    },
+    {
+     "key": "cv_other_name",
+     "es": "la solicitud de {who}",
+     "en": "the request from {who}",
+     "de": "die Anfrage von {who}",
+     "placeholders": [
+      "{who}"
+     ]
+    },
+    {
+     "key": "cv_other_none",
+     "es": "una solicitud",
+     "en": "a request",
+     "de": "eine Anfrage",
+     "placeholders": []
+    },
+    {
+     "key": "no_response",
+     "es": "Sin respuesta.",
+     "en": "No response.",
+     "de": "Keine Antwort.",
+     "placeholders": []
+    },
+    {
+     "key": "confirm_needed",
+     "es": "Esto necesita tu confirmación.",
+     "en": "This needs your confirmation.",
+     "de": "Das braucht deine Bestätigung.",
+     "placeholders": []
+    },
+    {
+     "key": "confirm_nothing",
+     "es": "Todavía no ha pasado nada.",
+     "en": "Nothing has happened yet.",
+     "de": "Es ist noch nichts passiert.",
+     "placeholders": []
+    },
+    {
+     "key": "confirm_btn",
+     "es": "Confirmar",
+     "en": "Confirm",
+     "de": "Bestätigen",
+     "placeholders": []
+    },
+    {
+     "key": "confirm_phrase",
+     "es": "Di «{phrase}» o toca para confirmar",
+     "en": "Say \"{phrase}\" or tap to confirm",
+     "de": "Sag „{phrase}“ oder tippe zum Bestätigen",
+     "placeholders": [
+      "{phrase}"
+     ]
+    },
+    {
+     "key": "cancel",
+     "es": "Cancelar",
+     "en": "Cancel",
+     "de": "Abbrechen",
+     "placeholders": []
+    },
+    {
+     "key": "cancelled",
+     "es": "Cancelado. No se ha hecho nada.",
+     "en": "Cancelled. Nothing was done.",
+     "de": "Abgebrochen. Es wurde nichts gemacht.",
+     "placeholders": []
+    },
+    {
+     "key": "h_goals",
+     "es": "{who}estas son tus {n} prioridades.",
+     "en": "{who}here are your {n} priorities.",
+     "de": "{who}das sind deine {n} Prioritäten.",
+     "placeholders": [
+      "{who}",
+      "{n}"
+     ]
+    },
+    {
+     "key": "h_goals_none",
+     "es": "{who}ahora mismo no tienes nada en la lista.",
+     "en": "{who}nothing is on your list right now.",
+     "de": "{who}gerade steht nichts auf deiner Liste.",
+     "placeholders": [
+      "{who}"
+     ]
+    },
+    {
+     "key": "h_sched_one",
+     "es": "Tienes 1 cita.",
+     "en": "You have 1 appointment.",
+     "de": "Du hast 1 Termin.",
+     "placeholders": []
+    },
+    {
+     "key": "h_sched_many",
+     "es": "Tienes {n} citas.",
+     "en": "You have {n} appointments.",
+     "de": "Du hast {n} Termine.",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "h_sched_none",
+     "es": "No hay citas en tu ámbito.",
+     "en": "No appointments in scope.",
+     "de": "Keine Termine in deinem Bereich.",
+     "placeholders": []
+    },
+    {
+     "key": "h_pending",
+     "es": "Esto es lo que sigue esperando a una persona.",
+     "en": "Here is what is still waiting on a person.",
+     "de": "Das wartet noch auf einen Menschen.",
+     "placeholders": []
+    },
+    {
+     "key": "h_attention_one",
+     "es": "1 cosa necesita atención.",
+     "en": "1 thing needs attention.",
+     "de": "1 Sache braucht Aufmerksamkeit.",
+     "placeholders": []
+    },
+    {
+     "key": "h_attention_many",
+     "es": "{n} cosas necesitan atención.",
+     "en": "{n} things need attention.",
+     "de": "{n} Sachen brauchen Aufmerksamkeit.",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "h_attention_none",
+     "es": "Nada necesita atención.",
+     "en": "Nothing needs attention.",
+     "de": "Nichts braucht Aufmerksamkeit.",
+     "placeholders": []
+    },
+    {
+     "key": "h_team",
+     "es": "Estado del equipo.",
+     "en": "Team status.",
+     "de": "Stand des Teams.",
+     "placeholders": []
+    },
+    {
+     "key": "h_why",
+     "es": "Este es el motivo.",
+     "en": "Here is why.",
+     "de": "Das ist der Grund.",
+     "placeholders": []
+    },
+    {
+     "key": "h_brief",
+     "es": "Aquí tienes tu resumen.",
+     "en": "Here is your brief.",
+     "de": "Hier ist deine Übersicht.",
+     "placeholders": []
+    },
+    {
+     "key": "h_buyers_one",
+     "es": "1 comprador coincide.",
+     "en": "1 matching buyer.",
+     "de": "1 Käufer passt.",
+     "placeholders": []
+    },
+    {
+     "key": "h_buyers_many",
+     "es": "{n} compradores coinciden.",
+     "en": "{n} matching buyers.",
+     "de": "{n} Käufer passen.",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "h_buyers_none",
+     "es": "Ningún comprador coincide.",
+     "en": "No matching buyers.",
+     "de": "Kein Käufer passt.",
+     "placeholders": []
+    },
+    {
+     "key": "h_done",
+     "es": "Hecho.",
+     "en": "Done.",
+     "de": "Erledigt.",
+     "placeholders": []
+    },
+    {
+     "key": "r_not_entitled",
+     "es": "El asistente conversacional es una función premium y no está activada para esta agencia.",
+     "en": "The conversational assistant is a premium capability and is not enabled for this agency.",
+     "de": "Der Assistent zum Fragen ist eine Premium-Funktion und für diese Agentur nicht eingeschaltet.",
+     "placeholders": []
+    },
+    {
+     "key": "r_no_session",
+     "es": "Tu sesión ha caducado. Inicia sesión otra vez.",
+     "en": "Your session has expired. Sign in again.",
+     "de": "Deine Sitzung ist abgelaufen. Melde dich noch einmal an.",
+     "placeholders": []
+    },
+    {
+     "key": "r_unresolved",
+     "es": "Esta cuenta todavía no está vinculada a un empleado de ninguna agencia.",
+     "en": "This account is not linked to an employee in any agency yet.",
+     "de": "Dieses Konto ist noch keinem Mitarbeiter einer Agentur zugeordnet.",
+     "placeholders": []
+    },
+    {
+     "key": "r_out_of_scope",
+     "es": "Ese compañero queda fuera de lo que puedes gestionar.",
+     "en": "That colleague is outside what you can act on.",
+     "de": "Diese Person liegt außerhalb dessen, was du bearbeiten kannst.",
+     "placeholders": []
+    },
+    {
+     "key": "r_not_reachable",
+     "es": "No he encontrado a ese compañero en tu oficina.",
+     "en": "I could not find that colleague in your office.",
+     "de": "Ich habe diese Person in deinem Büro nicht gefunden.",
+     "placeholders": []
+    },
+    {
+     "key": "r_ambiguous",
+     "es": "Hay más de una persona con ese nombre: {names}",
+     "en": "There is more than one person by that name: {names}",
+     "de": "Es gibt mehr als eine Person mit diesem Namen: {names}",
+     "placeholders": [
+      "{names}"
+     ]
+    },
+    {
+     "key": "r_unsupported",
+     "es": "Solo puedo hacer lo que tengo en mi lista. Pregúntame por hoy, por tu agenda o por un compañero.",
+     "en": "I can only do the things on my list. Try asking about today, your schedule, or a colleague.",
+     "de": "Ich kann nur, was auf meiner Liste steht. Frag mich nach heute, nach deinen Terminen oder nach jemandem aus dem Team.",
+     "placeholders": []
+    },
+    {
+     "key": "r_role",
+     "es": "Tu rol no cubre eso.",
+     "en": "Your role does not cover that.",
+     "de": "Deine Rolle deckt das nicht ab.",
+     "placeholders": []
+    },
+    {
+     "key": "r_confirm_mismatch",
+     "es": "Esa confirmación no coincide con lo que te ofrecí, así que no he hecho nada.",
+     "en": "That confirmation did not match what I offered, so I did nothing.",
+     "de": "Diese Bestätigung passt nicht zu dem, was ich angeboten habe, deshalb habe ich nichts gemacht.",
+     "placeholders": []
+    },
+    {
+     "key": "r_confirm_used",
+     "es": "Eso ya se confirmó una vez.",
+     "en": "That was already confirmed once.",
+     "de": "Das wurde schon einmal bestätigt.",
+     "placeholders": []
+    },
+    {
+     "key": "r_slot",
+     "es": "Necesito un dato más para poder hacerlo.",
+     "en": "I need one more detail before I can do that.",
+     "de": "Ich brauche noch eine Angabe, bevor ich das machen kann.",
+     "placeholders": []
+    },
+    {
+     "key": "r_generic",
+     "es": "No he podido hacerlo.",
+     "en": "I could not do that.",
+     "de": "Das konnte ich nicht machen.",
+     "placeholders": []
+    },
+    {
+     "key": "unknown_ask",
+     "es": "Solo puedo hacer lo que tengo en mi lista. Prueba: «¿Qué tengo que hacer hoy?» o «¿Cuál es mi próxima cita?».",
+     "en": "I can only do the things on my list. Try: \"What do I need to do today?\" or \"What is my next appointment?\".",
+     "de": "Ich kann nur, was auf meiner Liste steht. Versuch es mit: „Was muss ich heute machen?“ oder „Wann ist mein nächster Termin?“.",
+     "placeholders": []
+    },
+    {
+     "key": "no_speech",
+     "es": "Este navegador no permite dictar. Escríbelo.",
+     "en": "Speech input is not available in this browser. Type instead.",
+     "de": "In diesem Browser gibt es keine Spracheingabe. Bitte tippen.",
+     "placeholders": []
+    },
+    {
+     "key": "mic_error",
+     "es": "Error del micrófono: {error}",
+     "en": "Microphone error: {error}",
+     "de": "Mikrofonfehler: {error}",
+     "placeholders": [
+      "{error}"
+     ]
+    },
+    {
+     "key": "origin_note",
+     "es": "Esta página está abierta en {here}. Los enlaces de invitación y de contraseña vuelven a {allowed}, no aquí.",
+     "en": "This page is open at {here}. Invitation and password links return to {allowed}, not here.",
+     "de": "Diese Seite ist unter {here} geöffnet. Einladungs- und Passwortlinks führen zu {allowed} zurück, nicht hierher.",
+     "placeholders": [
+      "{here}",
+      "{allowed}"
+     ]
+    }
+   ]
+  },
+  "morning_letter": {
+   "source": "build/daily_goals/jarvis/digest_render.mjs",
+   "keys": 111,
+   "missing_in_en": [],
+   "only_in_en": [],
+   "already_in_target": 0,
+   "entries": [
+    {
+     "key": "eyebrow",
+     "es": "Tu mañana en {agency}",
+     "en": "Your morning at {agency}",
+     "de": "Dein Morgen bei {agency}",
+     "placeholders": [
+      "{agency}"
+     ]
+    },
+    {
+     "key": "eyebrow_noagency",
+     "es": "Tu mañana",
+     "en": "Your morning",
+     "de": "Dein Morgen",
+     "placeholders": []
+    },
+    {
+     "key": "subject_many",
+     "es": "{name}, tienes {n} solicitudes esperándote",
+     "en": "{name}, {n} requests are waiting for you",
+     "de": "{name}, {n} Anfragen warten auf dich",
+     "placeholders": [
+      "{name}",
+      "{n}"
+     ]
+    },
+    {
+     "key": "subject_one",
+     "es": "{name}, tienes una solicitud esperándote",
+     "en": "{name}, one request is waiting for you",
+     "de": "{name}, eine Anfrage wartet auf dich",
+     "placeholders": [
+      "{name}"
+     ]
+    },
+    {
+     "key": "subject_many_noname",
+     "es": "Tienes {n} solicitudes esperándote",
+     "en": "{n} requests are waiting for you",
+     "de": "{n} Anfragen warten auf dich",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "subject_one_noname",
+     "es": "Tienes una solicitud esperándote",
+     "en": "One request is waiting for you",
+     "de": "Eine Anfrage wartet auf dich",
+     "placeholders": []
+    },
+    {
+     "key": "subject_zero",
+     "es": "Nada pendiente esta mañana",
+     "en": "Nothing pending this morning",
+     "de": "Heute Morgen ist nichts offen",
+     "placeholders": []
+    },
+    {
+     "key": "greeting",
+     "es": "Buenos días, {name}.",
+     "en": "Good morning, {name}.",
+     "de": "Guten Morgen, {name}.",
+     "placeholders": [
+      "{name}"
+     ]
+    },
+    {
+     "key": "greeting_noname",
+     "es": "Buenos días.",
+     "en": "Good morning.",
+     "de": "Guten Morgen.",
+     "placeholders": []
+    },
+    {
+     "key": "summary_many_longest",
+     "es": "Esto es lo que sigue abierto. Ninguna tiene el plazo vencido, así que arriba está la más reciente.",
+     "en": "Here is what is still open. Nothing is overdue, so the newest is on top.",
+     "de": "Das ist noch offen. Nichts ist überfällig, deshalb steht die neueste oben.",
+     "placeholders": []
+    },
+    {
+     "key": "summary_many",
+     "es": "Esto es lo que sigue abierto. Empieza por la primera.",
+     "en": "Here is what is still open. Start with the first one.",
+     "de": "Das ist noch offen. Fang mit der ersten an.",
+     "placeholders": []
+    },
+    {
+     "key": "summary_one",
+     "es": "Queda una sola cosa abierta.",
+     "en": "There is one thing still open.",
+     "de": "Eine Sache ist noch offen.",
+     "placeholders": []
+    },
+    {
+     "key": "why_now",
+     "es": "Por qué ahora: {v}",
+     "en": "Why now: {v}",
+     "de": "Warum jetzt: {v}",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "next",
+     "es": "Lo siguiente: {v}.",
+     "en": "Next: {v}.",
+     "de": "Als Nächstes: {v}.",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "next_generic",
+     "es": "Lo siguiente: {kind} de {customer}.",
+     "en": "Next: {kind} for {customer}.",
+     "de": "Als Nächstes: {kind} für {customer}.",
+     "placeholders": [
+      "{kind}",
+      "{customer}"
+     ]
+    },
+    {
+     "key": "button",
+     "es": "Abrir mis tareas",
+     "en": "Open my tasks",
+     "de": "Meine Aufgaben öffnen",
+     "placeholders": []
+    },
+    {
+     "key": "button_zero",
+     "es": "Ver mi lista",
+     "en": "See my list",
+     "de": "Meine Liste ansehen",
+     "placeholders": []
+    },
+    {
+     "key": "button_under",
+     "es": "Entras con tu cuenta de agencia.",
+     "en": "You sign in with your agency account.",
+     "de": "Du meldest dich mit deinem Agenturkonto an.",
+     "placeholders": []
+    },
+    {
+     "key": "footer",
+     "es": "Lo recibes porque trabajas en {agency}. Las tareas se toman y se cierran en tu lista.",
+     "en": "You receive this because you work at {agency}. Tasks are taken and closed in your list.",
+     "de": "Du bekommst diese E-Mail, weil du bei {agency} arbeitest. Aufgaben werden in deiner Liste übernommen und geschlossen.",
+     "placeholders": [
+      "{agency}"
+     ]
+    },
+    {
+     "key": "footer_noagency",
+     "es": "Lo recibes porque formas parte del equipo de tu agencia en Nuova. Las tareas se toman y se cierran en tu lista.",
+     "en": "You receive this because you are part of your agency's team at Nuova. Tasks are taken and closed in your list.",
+     "de": "Du bekommst diese E-Mail, weil du zum Team deiner Agentur bei Nuova gehörst. Aufgaben werden in deiner Liste übernommen und geschlossen.",
+     "placeholders": []
+    },
+    {
+     "key": "zero_summary",
+     "es": "Esta mañana no hay nada esperando a una persona.",
+     "en": "This morning nothing is waiting for a person.",
+     "de": "Heute Morgen wartet nichts auf einen Menschen.",
+     "placeholders": []
+    },
+    {
+     "key": "zero_useful",
+     "es": "Si esperabas algo, dínoslo y lo miramos: a veces lo que falta es un canal, no una tarea.",
+     "en": "If you expected something, tell us and we will look: sometimes what is missing is a channel, not a task.",
+     "de": "Wenn du etwas erwartet hast, sag uns Bescheid, und wir sehen nach: Manchmal fehlt ein Kanal, keine Aufgabe.",
+     "placeholders": []
+    },
+    {
+     "key": "open_task",
+     "es": "Abrir",
+     "en": "Open",
+     "de": "Öffnen",
+     "placeholders": []
+    },
+    {
+     "key": "new_mark",
+     "es": "Nueva",
+     "en": "New",
+     "de": "Neu",
+     "placeholders": []
+    },
+    {
+     "key": "more",
+     "es": "Y {n} más en tu lista.",
+     "en": "And {n} more in your list.",
+     "de": "Und {n} weitere in deiner Liste.",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "good_to_know",
+     "es": "Para que lo sepas: {v}",
+     "en": "Good to know: {v}",
+     "de": "Gut zu wissen: {v}",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "env_note",
+     "es": "Entorno de pruebas — {v}. Nada de este correo es un cliente real.",
+     "en": "Test environment — {v}. Nothing in this mail is a real customer.",
+     "de": "Testumgebung — {v}. Nichts in dieser E-Mail ist ein echter Kunde.",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "why_deadline_passed",
+     "es": "el plazo registrado venció {v}",
+     "en": "the deadline recorded on it passed {v}",
+     "de": "die erfasste Frist ist {v} abgelaufen",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "why_deadline_near",
+     "es": "el plazo registrado es {v}",
+     "en": "the recorded deadline is {v}",
+     "de": "die erfasste Frist ist {v}",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "why_stated_urgency",
+     "es": "el cliente escribió: «{v}»",
+     "en": "the customer wrote: “{v}”",
+     "de": "der Kunde schrieb: „{v}“",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "why_recorded_priority",
+     "es": "alguien registró la prioridad «{v}»",
+     "en": "somebody recorded the priority “{v}”",
+     "de": "jemand hat die Priorität „{v}“ erfasst",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "i_customer_named_time",
+     "es": "pidió «{v}»",
+     "en": "they asked for “{v}”",
+     "de": "gewünscht war „{v}“",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "i_budget",
+     "es": "el presupuesto que dijo es «{v}»",
+     "en": "the budget they named is “{v}”",
+     "de": "das genannte Budget ist „{v}“",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "dur_minutes",
+     "es": "menos de una hora",
+     "en": "less than an hour",
+     "de": "weniger als eine Stunde",
+     "placeholders": []
+    },
+    {
+     "key": "dur_hours",
+     "es": "{n} h",
+     "en": "{n} h",
+     "de": "{n} h",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "dur_days",
+     "es": "{n} días",
+     "en": "{n} days",
+     "de": "{n} Tage",
+     "placeholders": [
+      "{n}"
+     ]
+    },
+    {
+     "key": "kind_callback",
+     "es": "Llamada pendiente",
+     "en": "Callback",
+     "de": "Rückruf",
+     "placeholders": []
+    },
+    {
+     "key": "kind_viewing_wish",
+     "es": "Solicitud de visita",
+     "en": "Viewing request",
+     "de": "Besichtigungswunsch",
+     "placeholders": []
+    },
+    {
+     "key": "kind_property_enquiry",
+     "es": "Consulta sobre un inmueble",
+     "en": "Property enquiry",
+     "de": "Anfrage zu einer Immobilie",
+     "placeholders": []
+    },
+    {
+     "key": "kind_other",
+     "es": "Solicitud",
+     "en": "Request",
+     "de": "Anfrage",
+     "placeholders": []
+    },
+    {
+     "key": "kind_held_reply",
+     "es": "Respuesta retenida",
+     "en": "Reply held back",
+     "de": "Zurückgehaltene Antwort",
+     "placeholders": []
+    },
+    {
+     "key": "held_no_notice",
+     "es": "No se envió la respuesta automática: no hay un aviso aprobado en {lang}",
+     "en": "The automatic reply was not sent: there is no approved notice in {lang}",
+     "de": "Die automatische Antwort wurde nicht gesendet: Es gibt keinen freigegebenen Hinweis auf {lang}",
+     "placeholders": [
+      "{lang}"
+     ]
+    },
+    {
+     "key": "held_generic",
+     "es": "No se envió la respuesta automática; tiene que contestar una persona",
+     "en": "The automatic reply was not sent; a person has to answer",
+     "de": "Die automatische Antwort wurde nicht gesendet; ein Mensch muss antworten",
+     "placeholders": []
+    },
+    {
+     "key": "held_draft_note",
+     "es": "El borrador sin enviar está en la tarea, para que lo uses tú",
+     "en": "The unsent draft is on the task, for you to use",
+     "de": "Der nicht gesendete Entwurf steht in der Aufgabe, zur Verwendung durch dich",
+     "placeholders": []
+    },
+    {
+     "key": "lang_de",
+     "es": "alemán",
+     "en": "German",
+     "de": "Deutsch",
+     "placeholders": []
+    },
+    {
+     "key": "lang_en",
+     "es": "inglés",
+     "en": "English",
+     "de": "Englisch",
+     "placeholders": []
+    },
+    {
+     "key": "lang_it",
+     "es": "italiano",
+     "en": "Italian",
+     "de": "Italienisch",
+     "placeholders": []
+    },
+    {
+     "key": "lang_fr",
+     "es": "francés",
+     "en": "French",
+     "de": "Französisch",
+     "placeholders": []
+    },
+    {
+     "key": "lang_nl",
+     "es": "neerlandés",
+     "en": "Dutch",
+     "de": "Niederländisch",
+     "placeholders": []
+    },
+    {
+     "key": "lang_sv",
+     "es": "sueco",
+     "en": "Swedish",
+     "de": "Schwedisch",
+     "placeholders": []
+    },
+    {
+     "key": "lang_pt",
+     "es": "portugués",
+     "en": "Portuguese",
+     "de": "Portugiesisch",
+     "placeholders": []
+    },
+    {
+     "key": "lang_es",
+     "es": "español",
+     "en": "Spanish",
+     "de": "Spanisch",
+     "placeholders": []
+    },
+    {
+     "key": "step_answer_the_customer_yourself",
+     "es": "contestar tú al cliente",
+     "en": "answer the customer yourself",
+     "de": "dem Kunden selbst antworten",
+     "placeholders": []
+    },
+    {
+     "key": "cust_none",
+     "es": "sin nombre ni teléfono registrados",
+     "en": "no name or number recorded",
+     "de": "weder Name noch Nummer erfasst",
+     "placeholders": []
+    },
+    {
+     "key": "req_words",
+     "es": "Ha escrito: «{v}»",
+     "en": "They wrote: “{v}”",
+     "de": "Nachricht: „{v}“",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "req_note",
+     "es": "Nota: {v}",
+     "en": "Note: {v}",
+     "de": "Notiz: {v}",
+     "placeholders": [
+      "{v}"
+     ]
+    },
+    {
+     "key": "req_avail_not_verified",
+     "es": "La disponibilidad no está confirmada — compruébalo antes de concertar nada",
+     "en": "Availability is not confirmed — check the listing before arranging anything",
+     "de": "Die Verfügbarkeit ist nicht bestätigt — prüf das Inserat, bevor du etwas vereinbarst",
+     "placeholders": []
+    },
+    {
+     "key": "req_avail_verified",
+     "es": "Disponibilidad confirmada",
+     "en": "Availability is confirmed",
+     "de": "Verfügbarkeit bestätigt",
+     "placeholders": []
+    },
+    {
+     "key": "rsn_callback",
+     "es": "Ha pedido que le llamen",
+     "en": "They asked to be called back",
+     "de": "Bittet um Rückruf",
+     "placeholders": []
+    },
+    {
+     "key": "rsn_voice_handoff",
+     "es": "Pide que le llame una persona del equipo",
+     "en": "Asks for a person from the team to call back",
+     "de": "Möchte, dass jemand aus dem Team zurückruft",
+     "placeholders": []
+    },
+    {
+     "key": "rsn_send_matches",
+     "es": "Quiere que le enviemos los inmuebles que encajan",
+     "en": "They want the matching properties sent to them",
+     "de": "Möchte die passenden Immobilien zugeschickt bekommen",
+     "placeholders": []
+    },
+    {
+     "key": "rsn_viewing_request",
+     "es": "Quiere ver un inmueble",
+     "en": "They want to see a property",
+     "de": "Möchte eine Immobilie besichtigen",
+     "placeholders": []
+    },
+    {
+     "key": "rsn_viewing_request_availability_unconfirmed",
+     "es": "Quiere ver un inmueble",
+     "en": "They want to see a property",
+     "de": "Möchte eine Immobilie besichtigen",
+     "placeholders": []
+    },
+    {
+     "key": "rsn_viewing_wish_unbound",
+     "es": "Quiere ver un inmueble; todavía no consta cuál",
+     "en": "They want to see a property; which one is not recorded yet",
+     "de": "Möchte eine Immobilie besichtigen; welche, ist noch nicht erfasst",
+     "placeholders": []
+    },
+    {
+     "key": "rsn_viewing_target_unresolved",
+     "es": "Quiere ver un inmueble; todavía no consta cuál",
+     "en": "They want to see a property; which one is not recorded yet",
+     "de": "Möchte eine Immobilie besichtigen; welche, ist noch nicht erfasst",
+     "placeholders": []
+    },
+    {
+     "key": "st_waiting_mine",
+     "es": "asignada a ti, nadie la ha tomado todavía",
+     "en": "assigned to you, nobody has taken it yet",
+     "de": "dir zugewiesen, noch nicht übernommen",
+     "placeholders": []
+    },
+    {
+     "key": "st_waiting_free",
+     "es": "pendiente, nadie la ha tomado todavía",
+     "en": "waiting, nobody has taken it yet",
+     "de": "offen, noch nicht übernommen",
+     "placeholders": []
+    },
+    {
+     "key": "st_taken_mine",
+     "es": "la has tomado tú",
+     "en": "you have taken it",
+     "de": "von dir übernommen",
+     "placeholders": []
+    },
+    {
+     "key": "st_taken_other",
+     "es": "la ha tomado un compañero",
+     "en": "a colleague has taken it",
+     "de": "von jemandem aus dem Team übernommen",
+     "placeholders": []
+    },
+    {
+     "key": "st_in_progress_mine",
+     "es": "la estás trabajando",
+     "en": "you are on it",
+     "de": "du arbeitest daran",
+     "placeholders": []
+    },
+    {
+     "key": "st_in_progress_other",
+     "es": "la está trabajando un compañero",
+     "en": "a colleague is on it",
+     "de": "jemand aus dem Team arbeitet daran",
+     "placeholders": []
+    },
+    {
+     "key": "st_done",
+     "es": "hecha",
+     "en": "done",
+     "de": "erledigt",
+     "placeholders": []
+    },
+    {
+     "key": "step_call_back",
+     "es": "llamar a {name} al {phone}",
+     "en": "call {name} on {phone}",
+     "de": "{name} unter {phone} anrufen",
+     "placeholders": [
+      "{name}",
+      "{phone}"
+     ]
+    },
+    {
+     "key": "step_call_back_noname",
+     "es": "devolver la llamada al {phone}",
+     "en": "call {phone} back",
+     "de": "{phone} zurückrufen",
+     "placeholders": [
+      "{phone}"
+     ]
+    },
+    {
+     "key": "step_call_back_no_number",
+     "es": "devolver la llamada a {name} — no hay número registrado",
+     "en": "call {name} back — no number was recorded",
+     "de": "{name} zurückrufen — es ist keine Nummer erfasst",
+     "placeholders": [
+      "{name}"
+     ]
+    },
+    {
+     "key": "step_call_back_no_number_noname",
+     "es": "devolver la llamada — no hay número registrado",
+     "en": "call them back — no number was recorded",
+     "de": "zurückrufen — es ist keine Nummer erfasst",
+     "placeholders": []
+    },
+    {
+     "key": "step_call_and_record_outcome",
+     "es": "llamar a {name} y registrar cómo ha ido",
+     "en": "call {name} and record how it went",
+     "de": "{name} anrufen und festhalten, wie es gelaufen ist",
+     "placeholders": [
+      "{name}"
+     ]
+    },
+    {
+     "key": "step_call_and_record_outcome_noname",
+     "es": "llamar al {phone} y registrar cómo ha ido",
+     "en": "call {phone} and record how it went",
+     "de": "{phone} anrufen und festhalten, wie es gelaufen ist",
+     "placeholders": [
+      "{phone}"
+     ]
+    },
+    {
+     "key": "step_agree_a_new_date",
+     "es": "escribir al cliente para acordar una fecha nueva",
+     "en": "write to the customer to agree a new date",
+     "de": "dem Kunden schreiben und einen neuen Termin vereinbaren",
+     "placeholders": []
+    },
+    {
+     "key": "step_propose_a_date",
+     "es": "proponer al cliente una fecha para la visita",
+     "en": "propose a date for the viewing to the customer",
+     "de": "dem Kunden einen Termin für die Besichtigung vorschlagen",
+     "placeholders": []
+    },
+    {
+     "key": "step_answer_the_enquiry",
+     "es": "responder a la consulta",
+     "en": "answer the enquiry",
+     "de": "die Anfrage beantworten",
+     "placeholders": []
+    },
+    {
+     "key": "step_answer_and_propose_a_time",
+     "es": "responder y proponer una hora",
+     "en": "answer and propose a time",
+     "de": "antworten und eine Uhrzeit vorschlagen",
+     "placeholders": []
+    },
+    {
+     "key": "step_finish_and_complete",
+     "es": "terminarla y marcarla como hecha",
+     "en": "finish it and mark it complete",
+     "de": "abschließen und als erledigt markieren",
+     "placeholders": []
+    },
+    {
+     "key": "step_colleague_has_it",
+     "es": "la está llevando un compañero",
+     "en": "a colleague is on it",
+     "de": "jemand aus dem Team kümmert sich darum",
+     "placeholders": []
+    },
+    {
+     "key": "next_label",
+     "es": "Siguiente paso",
+     "en": "Next step",
+     "de": "Nächster Schritt",
+     "placeholders": []
+    },
+    {
+     "key": "state_label",
+     "es": "Estado",
+     "en": "Status",
+     "de": "Status",
+     "placeholders": []
+    },
+    {
+     "key": "wish_period",
+     "es": "Pidió una fecha {period}.",
+     "en": "They asked for {period}.",
+     "de": "Gewünscht: {period}.",
+     "placeholders": [
+      "{period}"
+     ]
+    },
+    {
+     "key": "wish_period_passed",
+     "es": "Pidió una fecha {period}; esa fecha ya ha pasado.",
+     "en": "They asked for {period}; that date has passed.",
+     "de": "Gewünscht: {period}; dieser Termin ist vorbei.",
+     "placeholders": [
+      "{period}"
+     ]
+    },
+    {
+     "key": "wish_unresolved",
+     "es": "Indicó cuándo con sus propias palabras.",
+     "en": "They named a time in their own words.",
+     "de": "Die Zeit wurde in eigenen Worten genannt.",
+     "placeholders": []
+    },
+    {
+     "key": "wish_words",
+     "es": "Sus palabras ({lang}, {date}): «{v}»",
+     "en": "Their words ({lang}, {date}): “{v}”",
+     "de": "Wortlaut ({lang}, {date}): „{v}“",
+     "placeholders": [
+      "{lang}",
+      "{date}",
+      "{v}"
+     ]
+    },
+    {
+     "key": "wish_words_nolang",
+     "es": "Sus palabras ({date}): «{v}»",
+     "en": "Their words ({date}): “{v}”",
+     "de": "Wortlaut ({date}): „{v}“",
+     "placeholders": [
+      "{date}",
+      "{v}"
+     ]
+    },
+    {
+     "key": "p_range",
+     "es": "entre el {from} y el {to}",
+     "en": "between {from} and {to}",
+     "de": "zwischen {from} und {to}",
+     "placeholders": [
+      "{from}",
+      "{to}"
+     ]
+    },
+    {
+     "key": "p_day",
+     "es": "para el {from}",
+     "en": "{from}",
+     "de": "am {from}",
+     "placeholders": [
+      "{from}"
+     ]
+    },
+    {
+     "key": "held_draft_label",
+     "es": "Borrador sin enviar",
+     "en": "Unsent draft",
+     "de": "Nicht gesendeter Entwurf",
+     "placeholders": []
+    },
+    {
+     "key": "held_draft_more",
+     "es": "el borrador completo está en la tarea",
+     "en": "the full draft is on the task",
+     "de": "der vollständige Entwurf steht in der Aufgabe",
+     "placeholders": []
+    },
+    {
+     "key": "att_notice",
+     "es": "Aviso enviado a {who} {at}",
+     "en": "Notice sent to {who} {at}",
+     "de": "Hinweis an {who} gesendet, {at}",
+     "placeholders": [
+      "{who}",
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_notice_noone",
+     "es": "Aviso enviado al equipo {at}",
+     "en": "Notice sent to the team {at}",
+     "de": "Hinweis an das Team gesendet, {at}",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_notice_deferred",
+     "es": "Llegó fuera de horario ({from}); el aviso salió al abrir, {at}",
+     "en": "It arrived outside working hours ({from}); the notice went out at opening, {at}",
+     "de": "Kam außerhalb der Arbeitszeit ({from}); der Hinweis ging bei Arbeitsbeginn raus, {at}",
+     "placeholders": [
+      "{from}",
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_reminder",
+     "es": "Recordatorio enviado {at}: nadie la había tomado",
+     "en": "Reminder sent {at}, nobody had taken it",
+     "de": "Erinnerung gesendet, {at}: niemand hatte sie übernommen",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_escalated",
+     "es": "Escalada a {who} {at}",
+     "en": "Escalated to {who} {at}",
+     "de": "Weitergegeben an {who}, {at}",
+     "placeholders": [
+      "{who}",
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_escalated_none",
+     "es": "Escalada {at}: no hay otro compañero, así que sigue visible aquí",
+     "en": "Escalated {at}: there is no other colleague, so it stays visible here",
+     "de": "Weitergegeben, {at}: Es gibt niemanden sonst im Team, deshalb bleibt sie hier sichtbar",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_owner_mailed",
+     "es": "se escribió al responsable de la agencia {at}",
+     "en": "the agency’s responsible person was emailed {at}",
+     "de": "die verantwortliche Person der Agentur hat eine E-Mail bekommen, {at}",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_notice_scheduled",
+     "es": "Llegó fuera de horario; se avisará al equipo al abrir, {at}",
+     "en": "It arrived outside working hours; the team is told at opening, {at}",
+     "de": "Kam außerhalb der Arbeitszeit; das Team erfährt es bei Arbeitsbeginn, {at}",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_reminder_due",
+     "es": "Si nadie la toma, se envía un recordatorio {at}",
+     "en": "If nobody takes it, a reminder goes out {at}",
+     "de": "Übernimmt sie niemand, geht {at} eine Erinnerung raus",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_escalation_due",
+     "es": "Si nadie la toma, se escala {at}",
+     "en": "If nobody takes it, it is escalated {at}",
+     "de": "Übernimmt sie niemand, wird sie {at} weitergegeben",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_notice_overdue",
+     "es": "El aviso estaba previsto {at} y todavía no ha salido",
+     "en": "The notice was due {at} and has not gone out yet",
+     "de": "Der Hinweis war für {at} geplant und ist noch nicht rausgegangen",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_reminder_overdue",
+     "es": "El recordatorio estaba previsto {at} y todavía no ha salido",
+     "en": "The reminder was due {at} and has not gone out yet",
+     "de": "Die Erinnerung war für {at} geplant und ist noch nicht rausgegangen",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_escalation_overdue",
+     "es": "La escalada estaba prevista {at} y todavía no ha ocurrido",
+     "en": "The escalation was due {at} and has not happened yet",
+     "de": "Die Weitergabe war für {at} geplant und ist noch nicht passiert",
+     "placeholders": [
+      "{at}"
+     ]
+    },
+    {
+     "key": "att_notice_skipped",
+     "es": "No hay nadie del equipo a quien avisar; la tarea sigue visible aquí",
+     "en": "There is nobody on the team to notify; the task stays visible here",
+     "de": "Im Team gibt es niemanden, der benachrichtigt werden kann; die Aufgabe bleibt hier sichtbar",
+     "placeholders": []
+    },
+    {
+     "key": "att_reminder_skipped",
+     "es": "No hay nadie a quien enviar el recordatorio; sigue visible aquí",
+     "en": "There is nobody to send the reminder to; it stays visible here",
+     "de": "Es gibt niemanden, an den die Erinnerung gehen kann; sie bleibt hier sichtbar",
+     "placeholders": []
+    },
+    {
+     "key": "att_escalated_visible",
+     "es": "Escalada sin destinatario: no hay otro compañero, así que sigue visible aquí",
+     "en": "Escalated with nobody to send it to: there is no other colleague, so it stays visible here",
+     "de": "Weitergegeben ohne Empfänger: Es gibt niemanden sonst im Team, deshalb bleibt sie hier sichtbar",
+     "placeholders": []
+    }
+   ]
+  }
+ },
+ "filled_by": "Copy (Website Copy lane), 2026-10-26, R25C; register du; owner release line required before wiring"
+}
