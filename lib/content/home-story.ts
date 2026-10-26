@@ -321,7 +321,7 @@ export const chapters: Chapter[] = [
     did: { es: "Las atiende por el canal por el que llegaron y abre una ficha por consulta.", en: "Handles each on the channel it arrived on and opens a record per enquiry." }, // COPY_1019 R-11
     // Closing order 26.10. §3: the count matches the states shown (two written replies, one call answered by the assistant, the German
     // e-mail waiting for a person); "noted" is not a reply. WORKING, for Copy.
-    result: { es: "Cuando Marcos termina, las cuatro tienen ficha: dos con respuesta escrita, una llamada atendida, y el email en alemán espera a una persona.", en: "When Marcos finishes, all four have a record: two with a written reply, one call answered, and the German e-mail waits for a person." },
+    result: { es: "Cuando Marcos termina, las cuatro están registradas: dos con respuesta escrita, una llamada atendida, y el email en alemán espera a una persona.", en: "When Marcos finishes, all four are recorded: two with a written reply, one call answered, and the German e-mail waits for a person." }, // COPY_SYNC_1026 Y-3 wording
     state: { es: "Disponible hoy: WhatsApp y email, en español. Prototipo: el formulario web y la llamada (el asistente telefónico, solo en español).", en: "Available today: WhatsApp and email, in Spanish. Prototype: the web form and the phone call (the phone assistant, Spanish only)." },
   },
   {
@@ -411,7 +411,7 @@ export const storyWords = {
     answered: { es: "Respondida", en: "Replied" },
     drafted: { es: "Espera a una persona", en: "Waits for a person" },
     noted: { es: "Llamada atendida", en: "Call answered" },
-    after: { es: "Cuando Marcos termina la visita, las cuatro consultas tienen ficha: dos con respuesta escrita, una llamada atendida con nota y tarea, y la que llegó en alemán sin respuesta automática, porque hoy solo respondemos en español.", en: "When Marcos finishes the viewing, all four enquiries have a record: two with a written reply, one call answered with a note and a task, and the one in German without an automatic reply, because today we only answer in Spanish." }, // HANDOVER_1021 A-6; closing order 26.10. §3 (the count matches the states)
+    after: { es: "Cuando Marcos termina la visita, las cuatro consultas están registradas: dos con respuesta escrita, una llamada atendida con nota, y la que llegó en alemán sin respuesta automática, porque hoy solo respondemos en español.", en: "When Marcos finishes the viewing, all four enquiries are recorded: two with a written reply, one call answered with a note, and the one in German without an automatic reply, because today we only answer in Spanish." }, // HANDOVER_1021 A-6; COPY_SYNC_1026 Y-3 ("están registradas": the held German enquiry is an intake with a reason, not a record with a reply; no task before Release U); closing order 26.10. §3 (the count matches the states)
   },
   reply: {
     pick: { es: "Elige el canal", en: "Pick the channel" },
@@ -487,7 +487,7 @@ export const storyWords = {
     doneLine: { es: "Laura acepta: jueves a las 10:00. Queda en la ficha y en la lista de Elena.", en: "Laura accepts: Thursday at 10:00. It is on the record and on Elena's list." },
     open: { es: "Abierta · nadie la ha tomado", en: "Open · nobody has taken it" },
     again: { es: "Volver a empezar", en: "Start again" },
-    othersSee: { es: "En la lista de los demás ya no aparece; el asistente de la mañana dice quién la ha tomado.", en: "It no longer appears in the others' lists; the morning assistant says who took it." }, // COPY_SYNC_1024 X-10 (Q-4 proposal until Daily confirms)
+    othersSee: { es: "Al tomarla, sigue en tu lista con su historial y desaparece de la lista de tus compañeros.", en: "Once you take it, it stays in your list with its history and leaves your colleagues' lists." }, // COPY_SYNC_1026 Y-1 (Daily's sentence, API's Q-4 answer; X-10 withdrawn)
     /**
      * The appointment, step by step (closing order 26.10. §7: a request, a proposal, a person's confirmation and a booking are four
      * different things). The first three are what the story shows; the fourth is the calendar, in preparation (KALENDER decision).

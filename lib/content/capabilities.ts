@@ -237,18 +237,21 @@ export const capabilities: Capability[] = [
       // COPY_SYNC_1024 X-9 (Q-4, pictures 03/11): one sentence for both surfaces (the list rule measured 02.10., the staff-v7 assistant naming who took it);
       // Copy's proposal until Daily confirms or corrects it. Daily's read model (DAILY_TEAM_TODAY_READ_MODEL_1012 §3) also returns claimed requests in the
       // team scope; that is for Daily to settle.
-      { text: { en: "Whoever takes a task owns it: it leaves the others' lists, and the morning assistant says who took it.", es: "Quien toma una tarea se hace cargo de ella: desaparece de las listas de los demás, y el asistente de la mañana dice quién la ha tomado." }, status: "live" },
+      // COPY_SYNC_1026 Y-1 (Daily's sentence via API's Q-4 answer): the taker keeps it with its history, the colleagues lose it; nothing about the morning brief
+      { text: { en: "Once you take it, it stays in your list with its history and leaves your colleagues' lists.", es: "Al tomarla, sigue en tu lista con su historial y desaparece de la lista de tus compañeros." }, status: "live" },
       { text: { en: "One tap takes it, one tap completes it.", es: "Un toque la toma, un toque la completa." }, status: "live" },
       { text: { en: "Nobody can take the same task twice, and only the person who took it can close it.", es: "Nadie puede tomar la misma tarea dos veces, y solo quien la tomó puede cerrarla." }, status: "live" },
-      // X-8: the app-language line is out until API's SPRACH-MATRIX and the owner's SPRACHEN line
+      // COPY_SYNC_1026 Y-4 (owner: the staff app's languages shown separately): the app in Spanish or English per account
+      { text: { en: "In Spanish or English, set per person's account.", es: "En español o en inglés, según la cuenta de cada persona." }, status: "live" },
       { text: { en: "Daily Goals for each agent.", es: "Daily Goals para cada agente." }, status: "final_acceptance" },
       { text: { en: "An assistant that answers questions about your own leads, viewings and priorities.", es: "Una asistente que responde preguntas sobre tus propios leads, visitas y prioridades." }, status: "final_acceptance" },
       { text: { en: "Branded email, so what the assistant sends goes out under your agency's brand.", es: "Email con tu marca, para que lo que envíe la asistente salga con la marca de tu agencia." }, status: "final_acceptance" },
       { text: { en: "An employee assistant for internal tasks.", es: "Una asistente para los empleados y sus tareas internas." }, status: "in_implementation" },
     ],
     scenario: {
-      en: "An agent opens the list, takes Laura Serrano's viewing task, and completes it once a person has agreed the time with her. It leaves the others' lists, and the morning assistant says who took it.",
-      es: "Un agente abre la lista, toma la tarea de la visita de Laura Serrano y la completa cuando una persona ha acordado la hora con ella. Desaparece de las listas de los demás, y el asistente de la mañana dice quién la ha tomado.",
+      // COPY_SYNC_1026 Y-1
+      en: "An agent opens the list, takes Laura Serrano's viewing task and completes it once a person has agreed the time with her. While they have it, it stays in their list with its history and does not appear in their colleagues' lists.",
+      es: "Un agente abre la lista, toma la tarea de la visita de Laura Serrano y la completa cuando una persona ha acordado la hora con ella. Mientras la lleva, sigue en su lista con su historial y no aparece en la de sus compañeros.",
     },
     fits: [
       { en: "Desktop and mobile", es: "Escritorio y móvil" },

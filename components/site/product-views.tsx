@@ -289,7 +289,8 @@ export function TasksView({ locale, className }: { locale: Locale; className?: s
             );
           })}
         </ol>
-        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{es ? `Ejemplo ilustrativo. La tarea de ${people.buyer.short} ya no aparece en la lista de los demás; el asistente de la mañana dice que la ha tomado Elena, y solo ella puede cerrarla.` : `Illustrative example. ${people.buyer.short}'s task no longer appears in the others' lists; the morning assistant says Elena took it, and only she can close it.`}</p>
+        {/* COPY_SYNC_1026 Y-1: Daily's sentence (API's Q-4 answer); nothing about the morning brief */}
+        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{es ? `Ejemplo ilustrativo. Elena ha tomado la tarea de ${people.buyer.short}: sigue en su lista con su historial, ya no aparece en la de sus compañeros y solo ella puede cerrarla.` : `Illustrative example. Elena has taken ${people.buyer.short}'s task: it stays in her list with its history, no longer appears in her colleagues' lists, and only she can close it.`}</p>
       </div>
     </div>
   );
