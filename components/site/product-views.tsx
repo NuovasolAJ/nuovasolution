@@ -2,32 +2,61 @@ import type { Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { cn } from "@/lib/utils";
 import { LabelChip, StatusGlyph } from "@/components/ui/status";
-import { REFERENCE as SITE_REFERENCE, enquiries, storyWords } from "@/lib/content/home-story";
+import { REFERENCE as SITE_REFERENCE, enquiries, people, storyWords } from "@/lib/content/home-story";
 
 /**
- * Product views for the marketing pages (LAUNCH_COPY_v1 §4 and COPY_DELTAS_0929: one person,
- * Laura Serrano, one property, EST-204, one wish, Thursday morning). Rule: only what
- * actually exists is depicted, every view says that its data is synthetic, and no status chip,
- * gate sentence or internal formula appears on a sales surface (audit R27).
+ * Product views for the marketing pages (LAUNCH_COPY_v1 §4 and COPY_DELTAS_0929: one person, Laura Serrano, one property,
+ * EST-204, one wish, Thursday morning; the owner's consolidated closing order of 26.10. §6: every module page shows work
+ * that is done, in the proven present tense). Rule: only what actually exists is depicted, every view says that it is an
+ * illustrative example ("Ejemplo ilustrativo", the customer-facing mark agreed to replace the internal "datos sintéticos"),
+ * and no status chip, gate sentence or internal formula appears on a sales surface (audit R27).
  *
- * - ConversationView: the WhatsApp enquiry and the reply that goes out, with the notice it must
- *   carry (ES: the owner-approved v1.0-es text, quoted; EN: a marked sample translation). The
- *   reply confirms no availability: there is no inventory source behind the example.
- * - BoardView: a week of enquiries as records, each with what was asked for and what comes next.
- * - RecordView: one customer record. No qualification and no priority: neither exists in
- *   production (LEAD_TRUTH_INPUT_v1 §1).
- * - DailyShot: a capture of the real staff task surface (backend handoff 2026-09-29, daily_media).
- * - ReadinessView: the readiness list exactly as the onboarding page renders it, with the real gate labels.
+ * - ConversationView (AI Sales Agent): Laura's message and the reply that goes out, with the notice it must carry (kept in
+ *   full, set as a quiet line so it does not take over the demonstration), and what the reply noted on the record.
+ * - RecordGrowView (Lead Intelligence): one record, and how the second message adds to what the first one left.
+ * - RecordHistoryView (CRM): one record with what is saved and the history behind it, in order.
+ * - TasksView (Daily Tasks): the team's task list, Laura's task taken by Elena.
+ * - BoardView, RecordView, DailyShot, ReadinessView: the earlier views, still used by other surfaces.
+ * No qualification score and no cross-channel merge is shown: neither exists in production (LEAD_TRUTH_INPUT_v1 §1, §3).
  */
+
+const T = {
+  noted: { es: "Anotado en la ficha", en: "Noted on the record" },
+  firstMessage: { es: "Domingo · WhatsApp · el primer mensaje", en: "Sunday · WhatsApp · the first message" },
+  secondMessage: { es: "Martes · WhatsApp · el segundo mensaje, en la misma ficha", en: "Tuesday · WhatsApp · the second message, on the same record" },
+  added: { es: "añadido el martes", en: "added on Tuesday" },
+  growFoot: { es: "Quien abre la ficha el martes ve las dos cosas sin preguntar a nadie: lo que pidió el domingo y lo que añadió hoy.", en: "Whoever opens the record on Tuesday sees both without asking anyone: what she asked for on Sunday and what she added today." },
+  history: { es: "Historial", en: "History" },
+  historyRows: {
+    es: [
+      { at: "martes 11:20", what: "WhatsApp de Laura: pregunta por el piso con terraza de Estepona, presupuesto hasta 320.000 €" },
+      { at: "martes 11:21", what: "Respuesta de Nuova, en español; la ficha se actualiza: busca, presupuesto, idioma" },
+      { at: "martes 11:21", what: "Aviso por email a Elena: consulta importante (inmueble, zona y presupuesto)" },
+      { at: "martes 11:23", what: "WhatsApp de Laura: vivienda habitual; quiere verlo la semana que viene" },
+      { at: "martes 11:24", what: "Respuesta de Nuova: lo anota; una persona de la agencia le escribe con día y hora" },
+    ],
+    en: [
+      { at: "Tuesday 11:20", what: "WhatsApp from Laura: asks about the flat with a terrace in Estepona, budget up to €320,000" },
+      { at: "Tuesday 11:21", what: "Reply from Nuova, in Spanish; the record is updated: looking for, budget, language" },
+      { at: "Tuesday 11:21", what: "E-mail alert to Elena: important enquiry (property, area and budget named)" },
+      { at: "Tuesday 11:23", what: "WhatsApp from Laura: a main home; she wants to see it next week" },
+      { at: "Tuesday 11:24", what: "Reply from Nuova: noted; a person from the agency writes to her with a day and time" },
+    ],
+  },
+  historyFoot: { es: "Ejemplo ilustrativo. Cada mensaje, cada respuesta y cada aviso quedan en la ficha, en orden; no hay que reconstruir nada.", en: "Illustrative example. Every message, every reply and every alert stays on the record, in order; nothing has to be reconstructed." },
+  recordLabel: { es: "Ficha de cliente", en: "Customer record" },
+  who: { es: "Laura Serrano · compradora · escribe en español", en: "Laura Serrano · buyer · writes in Spanish" },
+};
 
 export function ConversationView({ locale, className }: { locale: Locale; className?: string }) {
   const d = getDictionary(locale);
   const v = d.home.views.conversation;
-  // The same conversation as the home page story (lib/content/home-story.ts): Laura writes in English, the reply is in English.
+  // The same conversation as the home page story (lib/content/home-story.ts): Laura's second message and the reply that notes it.
   const laura = enquiries[0];
   const time = laura.time[locale];
+  const noted = laura.recorded.slice(2);
   return (
-    <div className={cn("mx-auto w-full max-w-[420px]", className)} data-view="conversation">
+    <div className={cn("mx-auto w-full max-w-[440px]", className)} data-view="conversation">
       <div className="overflow-hidden rounded-xl border border-line-hairline bg-surface-raised shadow-card">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line-hairline bg-surface-sunken px-4 py-3">
           <span aria-hidden="true" className="inline-flex h-8 w-8 items-center justify-center rounded-pill bg-sage-200 text-sage-700"><StatusGlyph glyph="link" size={14} /></span>
@@ -47,13 +76,24 @@ export function ConversationView({ locale, className }: { locale: Locale; classN
           <li className="flex justify-end">
             <div className="max-w-[88%] rounded-lg rounded-br-sm bg-sage-100 px-3.5 py-2.5">
               <p className="mb-1 t-caption text-sage-700">{v.assistant}</p>
-              <p lang={laura.lang} className="mb-2 border-b border-sage-200 pb-2 t-body-s text-text-primary" data-disclosure={laura.lang}>{laura.notice}</p>
+              {/* the required notice, complete, as a quiet line: the demonstration is the reply, not the notice (closing order 26.10. §6) */}
+              <p lang={laura.lang} className="mb-1.5 border-b border-sage-200 pb-1.5 text-[0.75rem] leading-[1.4] text-text-muted" data-disclosure={laura.lang}>{laura.notice}</p>
               <p lang={laura.lang} className="t-body-s text-text-primary">{laura.reply}</p>
               <p className="mt-1 t-caption tnum text-text-muted">{time}</p>
             </div>
           </li>
         </ol>
-        {/* D-104: the sample-translation mark stands in the caption, with the synthetic-data label, not inside the sales card. */}
+        {/* what the reply noted on the record: the concrete, helpful part of the work */}
+        <dl className="border-t border-line-hairline px-4 py-3" data-conversation-noted>
+          <p className="t-caption font-medium text-text-muted">{T.noted[locale]}</p>
+          {noted.map((r) => (
+            <div key={r.k[locale]} className="mt-1 flex gap-2 t-caption">
+              <dt className="shrink-0 text-text-muted">{r.k[locale]}:</dt>
+              <dd className="text-text-primary">{r.v[locale]}</dd>
+            </div>
+          ))}
+        </dl>
+        {/* D-104: the sample-translation mark stands in the caption, with the example label, not inside the sales card. */}
         {laura.noticeIsSample && <p className="border-t border-line-hairline px-4 pt-3 t-caption text-text-muted">{storyWords.common.noticeSample[locale]}</p>}
         <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{v.footer}</p>
       </div>
@@ -124,6 +164,90 @@ export function RecordView({ locale, className }: { locale: Locale; className?: 
   );
 }
 
+function RecordHead({ locale, label }: { locale: Locale; label: string }) {
+  return (
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line-hairline px-4 py-3">
+      <div className="min-w-0">
+        <p className="t-eyebrow text-text-muted">{T.recordLabel[locale]}</p>
+        <p className="mt-1 t-body-s font-medium text-text-primary">{T.who[locale]}</p>
+      </div>
+      <LabelChip className="ml-auto">{label}</LabelChip>
+    </div>
+  );
+}
+
+/**
+ * Lead Intelligence (closing order 26.10. §6): how a further message adds to what is already on the record. The first message
+ * (Sunday) left what she looks for and her budget; the second (Tuesday) adds the use and the timing, marked as added. The same
+ * record as the home page's hero and story B (lib/content/home-story.ts, Laura's `recorded` rows).
+ */
+export function RecordGrowView({ locale, className }: { locale: Locale; className?: string }) {
+  const d = getDictionary(locale);
+  const rows = enquiries[0].recorded;
+  const first = rows.slice(0, 2);
+  const second = rows.slice(2);
+  const Rows = ({ list, added }: { list: typeof rows; added?: boolean }) => (
+    <dl className="divide-y divide-line-hairline">
+      {list.map((r) => (
+        <div key={r.k[locale]} className="grid grid-cols-[6rem_minmax(0,1fr)] gap-x-3 py-2" data-record-row={added ? "added" : "kept"}>
+          <dt className="t-caption text-text-muted">{r.k[locale]}</dt>
+          <dd className="t-body-s text-text-primary">{r.v[locale]}{added && <span className="ml-2 inline-flex rounded-pill bg-[color:var(--accent-wash)] px-2 py-0.5 text-[0.6875rem] font-medium text-[color:var(--accent-ink)]">{T.added[locale]}</span>}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+  return (
+    <div className={cn("mx-auto w-full max-w-[460px]", className)} data-view="record-grow">
+      <div className="overflow-hidden rounded-xl border border-line-hairline bg-surface-raised shadow-card">
+        <RecordHead locale={locale} label={d.home.views.conversation.synthetic} />
+        <div className="px-4 pb-1 pt-3">
+          <p className="t-caption font-medium text-text-muted">{T.firstMessage[locale]}</p>
+          <Rows list={first} />
+        </div>
+        <div className="border-t border-line-hairline bg-[color:rgba(246,239,226,0.45)] px-4 pb-1 pt-3" data-record-second>
+          <p className="t-caption font-medium text-text-muted">{T.secondMessage[locale]}</p>
+          <Rows list={second} added />
+        </div>
+        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{T.growFoot[locale]}</p>
+      </div>
+    </div>
+  );
+}
+
+/** CRM (closing order 26.10. §6): one record with what is saved and the history behind it, in order. */
+export function RecordHistoryView({ locale, className }: { locale: Locale; className?: string }) {
+  const d = getDictionary(locale);
+  const rows = enquiries[0].recorded;
+  const history = T.historyRows[locale];
+  return (
+    <div className={cn("mx-auto w-full max-w-[480px]", className)} data-view="record-history">
+      <div className="overflow-hidden rounded-xl border border-line-hairline bg-surface-raised shadow-card">
+        <RecordHead locale={locale} label={d.home.views.conversation.synthetic} />
+        <dl className="grid grid-cols-2 gap-x-4 gap-y-2 px-4 py-3">
+          {rows.map((r) => (
+            <div key={r.k[locale]} className="min-w-0">
+              <dt className="t-caption text-text-muted">{r.k[locale]}</dt>
+              <dd className="t-body-s text-text-primary">{r.v[locale]}</dd>
+            </div>
+          ))}
+        </dl>
+        <div className="border-t border-line-hairline px-4 py-3" data-record-history>
+          <p className="t-caption font-medium text-text-muted">{T.history[locale]}</p>
+          <ol className="mt-2 space-y-2">
+            {history.map((h, i) => (
+              <li key={i} className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 t-caption">
+                <span className="tnum whitespace-nowrap text-text-muted">{h.at}</span>
+                <span className="text-text-primary">{h.what}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{T.historyFoot[locale]}</p>
+      </div>
+    </div>
+  );
+}
+
 /**
  * The team's task list as the daily page's product view (R24 picture 11 (3): the page is about tasks, so the picture shows tasks, not
  * leads): the home page's morning list (lib/content/home-story.ts), Laura's task taken by Elena, the others open, each with its owner
@@ -165,7 +289,7 @@ export function TasksView({ locale, className }: { locale: Locale; className?: s
             );
           })}
         </ol>
-        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{es ? "Datos sintéticos. La tarea de Laura ya no aparece en la lista de los demás; el asistente de la mañana dice que la ha tomado Elena, y solo ella puede cerrarla." : "Synthetic data. Laura's task no longer appears in the others' lists; the morning assistant says Elena took it, and only she can close it."}</p>
+        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{es ? `Ejemplo ilustrativo. La tarea de ${people.buyer.short} ya no aparece en la lista de los demás; el asistente de la mañana dice que la ha tomado Elena, y solo ella puede cerrarla.` : `Illustrative example. ${people.buyer.short}'s task no longer appears in the others' lists; the morning assistant says Elena took it, and only she can close it.`}</p>
       </div>
     </div>
   );
@@ -176,7 +300,7 @@ type Shot = "tasks" | "task-action" | "task-done" | "task-card";
 /**
  * A capture of the real staff task surface, unedited (daily_media/MANIFEST.md). The list states
  * are 16:9 from 768 px and 4:5 below, so no interface text is cut off; "task-card" is one card
- * on its own. Every capture keeps the synthetic-data label and its caption (COPY_DELTAS_0929 §5.2).
+ * on its own. Every capture keeps the example label and its caption (COPY_DELTAS_0929 §5.2).
  */
 /**
  * The reference inside Daily's recordings and stills (clip v3 and the captures of 2026-09-28). The site's
@@ -262,9 +386,9 @@ export function ProductView({ slug, locale }: { slug: string; locale: Locale }) 
     case "ai-sales-agent":
       return <ConversationView locale={locale} />;
     case "lead-intelligence":
-      return <RecordView locale={locale} />;
+      return <RecordGrowView locale={locale} />;
     case "crm":
-      return <BoardView locale={locale} />;
+      return <RecordHistoryView locale={locale} />;
     case "daily-assistant":
       return <TasksView locale={locale} />;
     default:

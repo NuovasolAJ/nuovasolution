@@ -145,7 +145,7 @@ export const es: Dictionary = {
       note: "14 días gratis. Sin pago.",
       ctaSecondary: "Ver cómo funciona", // COPY_HERO_1003 §1
       cards: {
-        synthetic: "Ejemplo con datos sintéticos",
+        synthetic: "Ejemplo ilustrativo",
         enquiry: { channel: "WhatsApp · consulta nueva", time: "martes 11:20", text: "Hola, soy Laura Serrano. ¿Se puede ver el piso de dos dormitorios en Estepona? Estamos en Manchester y podríamos ir el jueves por la mañana.", from: "Laura Serrano" },
         answer: {
           label: "Respondido por Nuova, con el nombre de tu agencia",
@@ -196,7 +196,7 @@ export const es: Dictionary = {
       conversation: {
         agency: "Tu agencia",
         channel: "WhatsApp",
-        synthetic: "Datos sintéticos",
+        synthetic: "Ejemplo ilustrativo",
         assistant: "Nuova · asistente de IA", // D-76
         caption: "La respuesta que sale, con el aviso que debe llevar.",
         time: "21:40",
@@ -212,7 +212,7 @@ export const es: Dictionary = {
           { name: "Carlos R.", asked: "Una villa en Benahavís", next: "Responder por WhatsApp" },
           { name: "Sofía L.", asked: "Un alquiler de larga estancia en Fuengirola", next: "Esperar su respuesta" },
         ],
-        footer: "Datos sintéticos. Una semana de consultas, cada una como una ficha con lo que ha pedido el cliente.",
+        footer: "Ejemplo ilustrativo. Una semana de consultas, cada una como una ficha con lo que ha pedido el cliente.",
       },
       task: { caption: "Qué hace tu equipo primero, y por qué." },
       readiness: { label: "Ejemplo", withYou: "Lo preparamos contigo" },
@@ -233,7 +233,7 @@ export const es: Dictionary = {
           "task-card": "El cliente, el inmueble y la hora que ha pedido, en una sola tarjeta.",
         },
         mediaWithheld: "La grabación de la lista del equipo se está volviendo a cortar con la referencia EST-204 y se muestra de nuevo en cuanto Daily la entregue.", // WORKING
-        synthetic: "Datos sintéticos",
+        synthetic: "Ejemplo ilustrativo",
       },
     },
     record: {
@@ -371,7 +371,7 @@ export const es: Dictionary = {
     included: "Incluido",
     baselineHeading: "Qué incluye cada plan",
     baseline: ["CRM", "Lead Engine", "Respuestas automáticas", "Seguimiento básico", "Property matching", "Reporting básico"],
-    baselineLine: "Todos los planes incluyen las respuestas, la ficha y las tareas. El CRM está incluido desde el principio.",
+    baselineLine: "Todos los planes incluyen las respuestas y la ficha; las tareas del equipo están en preparación. El CRM está incluido desde el principio.", // closing order 26.10. §7: tasks not bookable yet (Copy X-3/X-4); WORKING, for Copy
     noPriceHeading: "Precio",
     noPriceBody: "Te decimos el precio para tu agencia antes de acordar nada. No hay facturación en autoservicio. Empieza la prueba gratis o habla con nosotros.",
     notAvailable: "La facturación en autoservicio no está disponible.",
@@ -1046,8 +1046,8 @@ export const es: Dictionary = {
   },
 
   media: {
-    conversation: "La vista de conversación: una consulta de WhatsApp, respondida y registrada. Datos sintéticos.",
-    setup: "La comprobación de preparación en la configuración. Datos sintéticos.",
+    conversation: "La vista de conversación: una consulta de WhatsApp, respondida y registrada. Ejemplo ilustrativo.",
+    setup: "La comprobación de preparación en la configuración. Ejemplo ilustrativo.",
   },
 
   footer: {

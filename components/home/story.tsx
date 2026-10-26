@@ -154,6 +154,9 @@ export function Story({ locale }: { locale: Locale }) {
   const taskItems = l(W.task.items);
   const langOf = (q: Enquiry) => LANG_NAME[q.lang][locale];
   const arrivalMark = (q: Enquiry) => (q.held ? l(W.situation.drafted) : q.channel === "phone" ? l(W.situation.noted) : l(W.situation.answered));
+  const arrivalState = (q: Enquiry) => (q.held ? "waiting" : q.channel === "phone" ? "call-answered" : "replied");
+  const agendaSteps = l(W.task.agenda.steps);
+  const agendaState = (i: number) => (i === 3 ? "preparing" : i === 0 || (i === 1 && (task === "confirmed" || task === "done")) || (i === 2 && task === "done") ? "done" : "open");
 
   function onTabKey(ev: KeyboardEvent<HTMLDivElement>) {
     const keys = channels.map((c) => c.key);
@@ -179,8 +182,12 @@ export function Story({ locale }: { locale: Locale }) {
             <Stage back="sand" front={<span className="float-chip"><span aria-hidden="true" className="h-2 w-2 rounded-pill bg-[color:var(--signal-attention)]" />{l(W.situation.desk)}</span>}>
               {/* Reviewer R24 (picture 03, 1024 px): where the chapter splits into two columns (xl) the stage is narrow, so the picture and the
                   arrivals stack there and stand side by side again from 1280 px */}
-              <div className="grid gap-5 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-7 xl:grid-cols-1 2xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]" data-stage="situation">
-                <div className="min-w-0 overflow-hidden rounded-lg border border-ink-100 bg-white">
+              {/* Closing order 26.10. §3: the arrivals as one list (one frame, hairlines between the rows, no card in a card), the name
+                  and the concern as the main line, channel · time · language as the quiet second line, the state in its own place at the
+                  right (under the text on a narrow phone), the listing card as tall as its content. Each enquiry arrives once, then shows
+                  its state; after that the scene stands still. "Play again" restarts only this list. */}
+              <div className="grid gap-5 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-start md:gap-7 xl:grid-cols-1 2xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]" data-stage="situation">
+                <div className="min-w-0 self-start overflow-hidden rounded-lg border border-ink-100 bg-white" data-viewing-card>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={listings.est118.photo} alt={l(listings.est118.photoAlt)} width={800} height={533} loading="eager" decoding="async" className="aspect-[3/2] w-full bg-[#ece9e2] object-cover" />
                   <div className="p-4">
@@ -194,15 +201,18 @@ export function Story({ locale }: { locale: Locale }) {
                     <p className="t-caption font-medium text-text-muted">{l(W.situation.arriving)}</p>
                     <button type="button" onClick={() => setReplayA((n) => n + 1)} className="inline-flex min-h-[32px] items-center gap-1.5 rounded-pill px-2 t-caption font-medium text-text-secondary hover:text-text-primary" data-story-replay="arrivals"><RotateCcw size={12} aria-hidden="true" />{l(W.common.replay)}</button>
                   </div>
-                  <AnimatedList className="mt-3" delay={700} startDelay={400} replayKey={replayA}>
+                  <AnimatedList className="arrivals mt-3" delay={900} startDelay={400} replayKey={replayA}>
                     {enquiries.map((q) => (
-                      <div key={q.channel} className="flex min-w-0 items-center gap-3 rounded-lg border border-ink-100 bg-white px-3.5 py-3" data-arrival={q.channel}>
+                      <div key={q.channel} className="arrival" data-arrival={q.channel} data-arrival-state={arrivalState(q)}>
                         <ChannelIcon channel={q.channel} on={q.channel === "whatsapp"} />
-                        <div className="min-w-0 flex-1">
-                          <p className="text-[0.9375rem] font-semibold leading-snug text-ink-950">{q.who} <span className="font-normal text-text-muted">· {l(q.role)}</span></p>
-                          <p className="t-caption tnum text-text-muted">{l(channels.find((c) => c.key === q.channel)!.name)} · {q.channel === "whatsapp" ? (locale === "es" ? "martes 11:20" : "Tuesday 11:20") : l(q.time)} · {langOf(q)}</p>
+                        <div className="min-w-0">
+                          <p className="arrival-main"><span className="font-semibold text-ink-950">{q.who}</span> <span className="text-text-secondary">{l(q.concern)}</span></p>
+                          <p className="arrival-meta t-caption tnum text-text-muted">{l(channels.find((c) => c.key === q.channel)!.name)} · {q.channel === "whatsapp" ? (locale === "es" ? "martes 11:20" : "Tuesday 11:20") : l(q.time)} · {langOf(q)}</p>
                         </div>
-                        <Mark tone={q.held ? "accent" : "positive"}><Check size={14} strokeWidth={2.5} aria-hidden="true" /><span className="hidden sm:inline">{arrivalMark(q)}</span></Mark>
+                        <p className="arrival-state" data-arrival-mark>
+                          <span className="arrival-arriving">{l(W.situation.arrivedMark)}</span>
+                          <Mark tone={q.held ? "accent" : "positive"}><Check size={14} strokeWidth={2.5} aria-hidden="true" /><span>{arrivalMark(q)}</span></Mark>
+                        </p>
                       </div>
                     ))}
                   </AnimatedList>
@@ -393,6 +403,19 @@ export function Story({ locale }: { locale: Locale }) {
                   })}
                 </ol>
                 <p className="mt-4 t-caption text-text-muted">{l(W.task.othersSee)}</p>
+                {/* The appointment, step by step (closing order 26.10. §7): request, proposal, a person's confirmation, the diary; the first
+                    three follow the take → propose → done steps above, the fourth is the calendar, in preparation. */}
+                <div className="mt-5 rounded-lg border border-ink-100 bg-white p-4" data-agenda-steps data-agenda-task={task}>
+                  <p className="t-caption font-medium text-text-muted">{l(W.task.agenda.title)}</p>
+                  <ol className="mt-2 grid gap-x-4 gap-y-2 sm:grid-cols-2">
+                    {agendaSteps.map((s, i) => (
+                      <li key={s.k} className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-2" data-agenda-step={i + 1} data-agenda-state={agendaState(i)}>
+                        <span aria-hidden="true" className={cn("mt-[5px] inline-flex h-3.5 w-3.5 items-center justify-center rounded-pill", agendaState(i) === "done" ? "bg-signal-positive text-ivory" : agendaState(i) === "preparing" ? "border-[1.5px] border-ink-400" : "border-[1.5px] border-ink-300")}>{agendaState(i) === "done" && <Check size={9} strokeWidth={3} />}</span>
+                        <span className="min-w-0 t-caption text-text-secondary"><span className="font-medium text-ink-950">{s.k}:</span> {s.v}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
               </div>
             </Stage>
           </Chapter>
@@ -410,21 +433,27 @@ export function Story({ locale }: { locale: Locale }) {
                   </AnimatedList>
                 </div>
                 <Rise delay={1.4} className="min-w-0">
-                  <div className="overflow-hidden rounded-lg border border-ink-100 bg-white" data-story-email>
-                    <div className="border-b border-ink-100 px-5 py-3">
+                  {/* Closing order 26.10. §7: the follow-up on WhatsApp, the channel Laura wrote on; her one-line reply is the demo action, and it
+                      lands with the team as a request, never as a booked appointment. */}
+                  <div className="overflow-hidden rounded-lg border border-ink-100 bg-white" data-story-email data-story-followup="whatsapp">
+                    <div className="flex items-center gap-3 border-b border-ink-100 px-5 py-3">
+                      <ChannelIcon channel="whatsapp" on size={14} />
                       <p className="t-caption text-text-muted">{l(W.followup.email)} · {l(W.followup.from)}</p>
-                      <Translated locale={locale} lang="es" original={W.followup.subject} translated={l(W.followup.subjectTranslated)} className="mt-1 text-[1.0625rem] font-semibold leading-snug text-ink-950" />
                     </div>
-                    <div className="px-5 py-4">
-                      <Translated locale={locale} lang="es" original={W.followup.body} translated={l(W.followup.bodyTranslated)} className="text-[1rem] leading-[1.55] text-ink-950" />
-                      <div className="mt-4 grid grid-cols-2 gap-3">
-                        {[listings.est240, listings.est231].map((li) => <ListingCard key={li.ref} listing={li} locale={locale} photoLabel={l(W.common.photo)} compact />)}
+                    <div className="px-4 py-4 md:px-5">
+                      <div className="flex justify-end">
+                        <Bubble out label={l(W.common.assistant)} className="max-w-full">
+                          <Translated locale={locale} lang="es" original={W.followup.body} translated={l(W.followup.bodyTranslated)} />
+                          <div className="mt-3 grid grid-cols-2 gap-2">
+                            {[listings.est240, listings.est231].map((li) => <ListingCard key={li.ref} listing={li} locale={locale} photoLabel={l(W.common.photo)} compact />)}
+                          </div>
+                        </Bubble>
                       </div>
-                      {/* The email's one action, as a demo: it shows the request landing with the team, never a booked appointment. */}
                       <div className="mt-4" aria-live="polite">
                         {requested ? (
                           <div data-story-request-sent>
-                            <Mark tone="positive"><Check size={16} strokeWidth={2.5} aria-hidden="true" />{l(W.followup.requested)}</Mark>
+                            <Bubble meta={locale === "es" ? "Laura · miércoles 17:40" : "Laura · Wednesday 17:40"} className="max-w-[80%]"><p lang="es">{l(W.followup.replyText)}</p></Bubble>
+                            <p className="mt-3"><Mark tone="positive"><Check size={16} strokeWidth={2.5} aria-hidden="true" />{l(W.followup.requested)}</Mark></p>
                             <p className="mt-1.5 t-caption text-text-secondary">{l(W.followup.requestedLine)}</p>
                             <button type="button" onClick={() => setRequested(false)} className="mt-2 inline-flex min-h-[32px] items-center gap-1.5 t-caption font-medium text-text-primary underline decoration-line-strong underline-offset-4" data-story-request-reset><RotateCcw size={12} aria-hidden="true" />{l(W.task.again)}</button>
                           </div>

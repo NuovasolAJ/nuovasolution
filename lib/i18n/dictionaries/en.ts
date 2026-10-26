@@ -161,7 +161,7 @@ export const en = {
       note: "14 days free. No payment.",
       ctaSecondary: "See how it works",
       cards: {
-        synthetic: "Example with synthetic data",
+        synthetic: "Illustrative example",
         // One person across every surface, the same as in the Daily captures (daily_media/MANIFEST.md): Laura Serrano, Thursday morning.
         enquiry: { channel: "WhatsApp · new enquiry", time: "Tuesday 11:20", text: "Hello, I am Laura Serrano. Is the two bedroom flat in Estepona still free to view? We are in Manchester and could come on Thursday morning.", from: "Laura Serrano" }, // D-09
         answer: {
@@ -218,7 +218,7 @@ export const en = {
       conversation: {
         agency: "Your agency",
         channel: "WhatsApp",
-        synthetic: "Synthetic data",
+        synthetic: "Illustrative example",
         assistant: "Nuova · AI assistant", // D-76
         caption: "The reply that goes out, with the notice it must carry.",
         time: "21:40",
@@ -235,7 +235,7 @@ export const en = {
           { name: "Carlos R.", asked: "A villa in Benahavís", next: "Reply on WhatsApp" },
           { name: "Sofía L.", asked: "A long term rental in Fuengirola", next: "Wait for her reply" },
         ],
-        footer: "Synthetic data. One week of enquiries, each one as a record with what the customer asked for.",
+        footer: "Illustrative example. One week of enquiries, each one as a record with what the customer asked for.",
       },
       task: { caption: "What your team does first, and why." },
       readiness: { label: "Example", withYou: "We set this up with you" }, // D-19
@@ -261,7 +261,7 @@ export const en = {
           "task-card": "The customer, the property and the time they asked for, on one card.",
         },
         mediaWithheld: "The recording of the staff list is being re-cut with the reference EST-204 and is shown again as soon as Daily delivers it.", // WORKING
-        synthetic: "Synthetic data",
+        synthetic: "Illustrative example",
       },
     },
     // LAUNCH_COPY_v1 §3.4: the one-system idea, kept short.
@@ -406,7 +406,7 @@ export const en = {
     included: "Included",
     baselineHeading: "What every plan includes",
     baseline: ["CRM", "Lead Engine", "Automatic replies", "Basic follow up", "Property matching", "Core reporting"],
-    baselineLine: "Every plan includes the replies, the record and the tasks. The CRM is included from the start.", // D-30
+    baselineLine: "Every plan includes the replies and the record; the team's tasks are in preparation. The CRM is included from the start.", // D-30; closing order 26.10. §7: tasks not bookable yet (Copy X-3/X-4); WORKING, for Copy
     noPriceHeading: "Pricing",
     noPriceBody: "We tell you the price for your agency before anything is agreed. There is no self-service billing. Start the free trial or talk to us.",
     notAvailable: "Billing self-service is not available.",
@@ -1107,8 +1107,8 @@ export const en = {
 
   media: {
     // Captions for the prepared media slots (audit Z14). The poster is a real product frame; a film replaces it without layout shift.
-    conversation: "The conversation view: one WhatsApp enquiry, answered and recorded. Synthetic data.",
-    setup: "The readiness check in the setup. Synthetic data.",
+    conversation: "The conversation view: one WhatsApp enquiry, answered and recorded. Illustrative example.",
+    setup: "The readiness check in the setup. Illustrative example.",
   },
 
   footer: {

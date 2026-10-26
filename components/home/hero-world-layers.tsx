@@ -1,18 +1,22 @@
 /**
- * The layers of the hero world (master order 2026-10-10 §1; R19 closing order 2026-10-19 §3): a Costa del Sol dusk
- * behind, a far range, a near headland with a tree line, the product, and a dark near ground in front. The land is
- * drawn as one connected landscape in four depths, not as four flat bands: every ridge has its own lit rim (the last
- * light from the horizon falls on the top edge of each form) and the sea glints between the far range and the
- * headland. No arches, no village, no drawn architecture.
+ * The layers of the hero world (master order 2026-10-10 §1; R19 closing order 2026-10-19 §3; the owner's consolidated
+ * closing order of 26.10. §1, §2: four visible layers that belong to NuovaSolution, as one spatial scene, no waves and no
+ * mountain bands, no straight edge and no fog between the hero and the story). Read from the back:
  *
- *   sky      one photograph of a coast at dusk (licensed stock, docs/website_redesign/MEDIA_SOURCES_1010.md), toned
- *            down to the hero's anthracite and faded into the sky at the top and into the ground at the bottom
- *   far      the far range behind the water, the softest and lightest form
- *   mid      the headland with trees, the form the panel stands against
- *   front    the near ground in front of the panel's foot, with low scrub along its top
- *   stars    a few faint points, the slowest layer of all
+ *   1 sky          one photograph of a coast at dusk (licensed stock, docs/website_redesign/MEDIA_SOURCES_1010.md),
+ *                  toned to the hero's anthracite, with one warm glow where the last light stands over the sea
+ *   2 architecture a hillside of restrained Mediterranean villas: whitewashed walls in the warm light of the terrace,
+ *                  flat roofs, a set-back upper floor with a roof terrace and a pergola, a cantilevered floor with a
+ *                  louvred screen, cypresses, lit openings and the pool between the houses; a far row of houses on
+ *                  the other shore, dark in the haze (ArchitectureFar). Drawn in the house tokens, not photographed
+ *   3 panel        the product (hero-world.tsx)
+ *   4 terrace      the stone terrace the panel stands on: the page's canvas, with its pavement joints in perspective
+ *                  and a low parapet at each side. The villas stand in the same light, so the dark of the hero is the
+ *                  sky above the roofs and the transition to the story is the villas' skyline and the lit walls, not a
+ *                  band: the walls' feet dissolve into the floor (globals.css), and the floor is the next chapter's ground
  *
- * Everything here is decoration: aria-hidden, no text, no pointer events.
+ * Everything here is decoration: aria-hidden, no text, no pointer events. The two architecture layers and the terrace
+ * are inline SVG so the phone can drop the side volumes (class hw-side) and keep a composition of its own.
  */
 export function DuskPhoto({ className }: { className?: string }) {
   return (
@@ -24,86 +28,176 @@ export function DuskPhoto({ className }: { className?: string }) {
   );
 }
 
-/** The far range: a soft, lighter form behind the water, lit along its top. */
-export function RidgesFar({ className }: { className?: string }) {
+/** The far row: houses on the far shore behind the water, dark in the haze, the softest forms, and the glint of the sea. */
+export function ArchitectureFar({ className }: { className?: string }) {
+  // [x, width, height of the block, lit?]: low cubes along the far shore, read as a village at dusk
+  const far: [number, number, number, boolean][] = [
+    [0, 90, 16, false], [96, 70, 22, true], [172, 110, 14, false], [290, 60, 26, false], [356, 120, 18, true], [484, 80, 12, false],
+    [580, 140, 18, false], [728, 70, 28, true], [804, 120, 16, false], [930, 90, 22, false], [1026, 150, 14, true], [1184, 80, 20, false],
+    [1270, 110, 16, false], [1386, 54, 24, true],
+  ];
   return (
-    <svg aria-hidden="true" className={className} viewBox="0 0 1440 220" preserveAspectRatio="none" focusable="false">
+    <svg aria-hidden="true" className={className} viewBox="0 0 1440 220" preserveAspectRatio="xMidYMax slice" focusable="false">
       <defs>
         <linearGradient id="hw-far" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#4a5062" />
-          <stop offset="0.22" stopColor="#363b48" />
-          <stop offset="1" stopColor="#262a33" />
+          <stop offset="0" stopColor="#3a3f4c" />
+          <stop offset="1" stopColor="#2a2e38" />
         </linearGradient>
         <linearGradient id="hw-sea" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#5a6478" stopOpacity="0.55" />
+          <stop offset="0" stopColor="#5a6478" stopOpacity="0.5" />
           <stop offset="1" stopColor="#2b3040" stopOpacity="0" />
         </linearGradient>
       </defs>
-      <path d="M0 220V128C70 122 130 100 210 96C300 92 350 112 430 108C520 104 570 72 660 70C750 68 790 98 870 102C960 106 1010 84 1090 80C1180 76 1230 100 1310 104C1370 107 1410 118 1440 120V220Z" fill="url(#hw-far)" />
-      {/* the water between the far range and the headland: a thin glint under the range's foot */}
-      <path d="M0 150H1440V220H0Z" fill="url(#hw-sea)" />
-      <path d="M160 160H420M520 166H700M860 162H1120M1200 168H1340" stroke="#8d97aa" strokeOpacity="0.28" strokeWidth="1.2" />
+      {/* the far hill the village stands on */}
+      <path d="M0 220V156C140 150 260 140 420 142C600 144 700 154 880 148C1060 142 1200 132 1440 142V220Z" fill="#2f333d" />
+      <g fill="url(#hw-far)">
+        {far.map(([x, w, h], i) => <rect key={i} x={x} y={156 - h * 0.7 + (i % 3) * 2} width={w} height={h * 0.7 + 40} />)}
+      </g>
+      {/* the last light along the roofs, and a few lit windows far away */}
+      <g stroke="#9aa3b6" strokeOpacity="0.2" strokeWidth="1">
+        {far.map(([x, w, h], i) => <path key={i} d={`M${x} ${156 - h * 0.7 + (i % 3) * 2}H${x + w}`} />)}
+      </g>
+      <g fill="#f1e3c4" fillOpacity="0.3">
+        {far.filter((f) => f[3]).map(([x, , h], i) => <rect key={i} x={x + 18} y={162 - h * 0.7 + 4} width="5" height="3" />)}
+      </g>
+      {/* the water between the far shore and the villas */}
+      <path d="M0 182H1440V220H0Z" fill="url(#hw-sea)" />
+      <path d="M160 194H420M520 200H700M860 196H1120M1200 202H1340" stroke="#8d97aa" strokeOpacity="0.26" strokeWidth="1.2" />
     </svg>
   );
 }
 
 /**
- * The headland (mid): the ridge the panel stands against, with a tree line along its crest and a lit rim. It is the
- * one form with a recognisable shape of its own: a rise on the left, the saddle in the middle, the wooded shoulder
- * on the right.
+ * The villas (the layer the panel stands against). Three groups: the villa at the left with its roof terrace and
+ * pergola, the low houses behind the panel with the pool in front of them (only their roof lines and the cypresses
+ * between them show above the panel), the villa at the right with its cantilevered upper floor and the louvred screen.
+ * Whitewashed walls in the terrace's warm light: the front face lighter, the side face a step darker, a thin shadow line
+ * along every roof, lit openings warm. The feet of every volume dissolve into the terrace's light (a mask in globals.css).
  */
-export function Ridges({ className }: { className?: string }) {
-  // the tree line: small irregular crowns along the crest, drawn as one path on top of the ridge
-  const crest = "M0 220V118C60 114 110 98 170 96C230 94 260 110 330 112C410 114 450 100 520 102C600 104 640 122 720 118C800 114 840 92 920 90C1000 88 1040 106 1110 104C1190 102 1230 86 1300 88C1370 90 1410 104 1440 106V220Z";
-  const trees = [
-    [40, 118, 7], [62, 114, 9], [84, 110, 6], [120, 100, 8], [146, 97, 10], [178, 95, 7], [204, 98, 9], [236, 104, 6], [268, 109, 8],
-    [500, 103, 6], [526, 101, 9], [556, 102, 7], [588, 104, 8], [616, 110, 6],
-    [862, 94, 8], [892, 91, 10], [922, 90, 7], [948, 90, 9], [978, 92, 8], [1008, 96, 6], [1036, 101, 8],
-    [1250, 92, 7], [1280, 89, 9], [1310, 88, 7], [1340, 90, 8], [1372, 94, 6],
-  ];
+export function Architecture({ className }: { className?: string }) {
+  const rim = "#8a7f6e";
+  const frame = "#7a6d5c";
+  const Cypress = ({ x, y, h }: { x: number; y: number; h: number }) => <path d={`M${x} ${y}C${x - h * 0.12} ${y - h * 0.35} ${x - h * 0.1} ${y - h * 0.8} ${x} ${y - h}C${x + h * 0.1} ${y - h * 0.8} ${x + h * 0.12} ${y - h * 0.35} ${x} ${y}Z`} fill="#2a3530" />;
   return (
-    <svg aria-hidden="true" className={className} viewBox="0 0 1440 220" preserveAspectRatio="none" focusable="false">
+    <svg aria-hidden="true" className={className} viewBox="0 0 1440 360" preserveAspectRatio="xMidYMax slice" focusable="false">
       <defs>
-        <linearGradient id="hw-mid" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#2e323b" />
-          <stop offset="0.18" stopColor="#22252c" />
-          <stop offset="1" stopColor="#171a1e" />
+        <linearGradient id="hw-front" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#cfc5b2" />
+          <stop offset="1" stopColor="#ebe5d8" />
         </linearGradient>
-        <linearGradient id="hw-mid-2" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#1f2229" />
-          <stop offset="1" stopColor="#15171b" />
+        <linearGradient id="hw-side" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#b3a893" />
+          <stop offset="1" stopColor="#d6cdbd" />
+        </linearGradient>
+        <linearGradient id="hw-glow" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#f3d9a3" />
+          <stop offset="1" stopColor="#e9c98a" />
         </linearGradient>
       </defs>
-      {/* the trees stand on the crest; preserveAspectRatio="none" stretches them a little, which silhouettes take without harm */}
-      {/* slim crowns rooted in the crest (cypress-like), not round stones standing on it */}
-      <g fill="#20232a">
-        {trees.map(([x, y, r], i) => <ellipse key={i} cx={x} cy={y - r * 0.5} rx={r * 0.42} ry={r * 1.5} />)}
+
+      {/* the low houses behind the panel: stepped roofs, the pool's edge in front of them */}
+      <g>
+        <rect x="430" y="204" width="200" height="156" fill="url(#hw-front)" />
+        <rect x="610" y="176" width="150" height="184" fill="url(#hw-side)" />
+        <rect x="760" y="196" width="130" height="164" fill="url(#hw-front)" />
+        <rect x="890" y="214" width="150" height="146" fill="url(#hw-side)" />
+        <g stroke={rim} strokeOpacity="0.55" strokeWidth="1.2">
+          <path d="M430 204H630" /><path d="M610 176H760" /><path d="M760 196H890" /><path d="M890 214H1040" />
+        </g>
+        <g fill="url(#hw-glow)">
+          <rect x="648" y="192" width="40" height="12" /><rect x="792" y="212" width="26" height="10" /><rect x="928" y="230" width="48" height="10" />
+        </g>
+        <Cypress x={412} y={360} h={190} /><Cypress x={642} y={176} h={96} /><Cypress x={776} y={196} h={76} /><Cypress x={1052} y={360} h={210} /><Cypress x={1068} y={360} h={160} />
+        {/* the pool between the houses and the terrace: its light coping, the dark water, a glint on it */}
+        <rect x="462" y="296" width="556" height="64" fill="#e6dfd0" />
+        <rect x="470" y="302" width="540" height="58" fill="#2b3d45" />
+        <path d="M520 318H700M760 330H940" stroke="#a8c4cc" strokeOpacity="0.4" strokeWidth="1" />
       </g>
-      <path d={crest} fill="url(#hw-mid)" />
-      {/* the lit rim along the crest */}
-      <path d="M0 118C60 114 110 98 170 96C230 94 260 110 330 112C410 114 450 100 520 102C600 104 640 122 720 118C800 114 840 92 920 90C1000 88 1040 106 1110 104C1190 102 1230 86 1300 88C1370 90 1410 104 1440 106" fill="none" stroke="#6a7286" strokeOpacity="0.35" strokeWidth="1.5" />
-      {/* the nearer shoulder of the headland */}
-      <path d="M0 220V162C120 158 200 146 340 150C480 154 580 170 740 164C900 158 980 142 1140 146C1300 150 1380 160 1440 158V220Z" fill="url(#hw-mid-2)" />
+
+      {/* the villa at the left: the lower volume, the set-back upper floor, the roof terrace with its rail, the pergola */}
+      <g className="hw-side">
+        <rect x="-40" y="150" width="340" height="210" fill="url(#hw-front)" />
+        <rect x="300" y="150" width="34" height="210" fill="url(#hw-side)" />
+        <rect x="0" y="92" width="236" height="60" fill="url(#hw-side)" />
+        <rect x="236" y="92" width="26" height="60" fill="url(#hw-front)" />
+        <g stroke={rim} strokeOpacity="0.6" strokeWidth="1.4"><path d="M-40 150H334" /><path d="M0 92H262" /></g>
+        {/* the rail of the roof terrace */}
+        <g stroke={rim} strokeOpacity="0.5" strokeWidth="1.2"><path d="M8 82H228" />{[20, 60, 100, 140, 180, 220].map((x) => <path key={x} d={`M${x} 82V92`} />)}</g>
+        {/* the pergola on the lower roof, right of the upper floor */}
+        <g stroke="#6b5d4c" strokeWidth="3"><path d="M268 118H348" /><path d="M276 118V150M312 118V150M346 118V150" /></g>
+        {/* lit openings: the long window of the upper floor, the glazed wall below the pergola */}
+        <rect x="60" y="112" width="120" height="16" fill="url(#hw-glow)" />
+        <rect x="150" y="178" width="110" height="64" fill="url(#hw-glow)" />
+        <rect x="150" y="178" width="110" height="64" fill="none" stroke={frame} strokeOpacity="0.5" />
+        <path d="M205 178V242" stroke={frame} strokeWidth="2" />
+        <Cypress x={350} y={360} h={220} /><Cypress x={372} y={360} h={170} />
+      </g>
+
+      {/* the villa at the right: the cantilevered upper floor with a louvred screen over the glazed lower floor */}
+      <g className="hw-side">
+        <rect x="1140" y="186" width="340" height="174" fill="url(#hw-front)" />
+        <rect x="1108" y="186" width="32" height="174" fill="url(#hw-side)" />
+        <rect x="1080" y="118" width="400" height="68" fill="url(#hw-side)" />
+        <rect x="1060" y="118" width="20" height="68" fill="url(#hw-front)" />
+        <g stroke={rim} strokeOpacity="0.6" strokeWidth="1.4"><path d="M1060 118H1480" /><path d="M1108 186H1140" /></g>
+        {/* the louvres of the upper floor */}
+        <g stroke="#9a8f7c" strokeWidth="2">{Array.from({ length: 14 }, (_, i) => <path key={i} d={`M${1116 + i * 24} 128V178`} />)}</g>
+        <rect x="1110" y="140" width="330" height="8" fill="url(#hw-glow)" />
+        {/* the glazed lower floor, lit from inside, and its slim columns */}
+        <rect x="1180" y="214" width="220" height="80" fill="url(#hw-glow)" />
+        <rect x="1180" y="214" width="220" height="80" fill="none" stroke={frame} strokeOpacity="0.5" />
+        <g stroke={frame} strokeWidth="3"><path d="M1254 214V294M1328 214V294" /></g>
+        {/* the thin slab the upper floor rests on */}
+        <path d="M1080 186H1480" stroke="#a89d89" strokeWidth="3" />
+        <Cypress x={1096} y={360} h={120} />
+      </g>
     </svg>
   );
 }
 
-/** The foreground: the near ground in front of the panel's foot, with low scrub along its top, the darkest form. */
-export function Foreground({ className }: { className?: string }) {
-  const scrub = [[60, 50, 14], [120, 44, 18], [210, 36, 12], [300, 34, 16], [420, 42, 12], [560, 56, 18], [660, 52, 12], [780, 44, 16], [920, 28, 14], [1010, 24, 18], [1130, 30, 12], [1260, 40, 16], [1380, 46, 12]];
+/**
+ * The terrace (foreground): the stone floor the panel stands on, in the page's canvas, its joints converging toward the
+ * villas, a low parapet at each side. The joints fade out toward the far side, so the floor dissolves into the light
+ * under the villas rather than meeting them on an edge; the parapets dissolve toward the viewer, so nothing ends on the
+ * hero's lower edge.
+ */
+export function Terrace({ className }: { className?: string }) {
+  const joint = "#1a1917";
+  const across = [30, 70, 118, 172, 232];
+  const along = [-200, -40, 120, 280, 440, 600, 760, 920, 1080, 1240, 1400, 1560];
   return (
-    <svg aria-hidden="true" className={className} viewBox="0 0 1440 140" preserveAspectRatio="none" focusable="false">
+    <svg aria-hidden="true" className={className} viewBox="0 0 1440 240" preserveAspectRatio="none" focusable="false">
       <defs>
-        <linearGradient id="hw-front" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#1a1c20" />
-          <stop offset="0.35" stopColor="#131416" />
-          <stop offset="1" stopColor="#0f1012" />
+        <linearGradient id="hw-floor" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fbfaf7" stopOpacity="0" />
+          <stop offset="0.42" stopColor="#fbfaf7" stopOpacity="0.9" />
+          <stop offset="1" stopColor="#fbfaf7" />
+        </linearGradient>
+        <linearGradient id="hw-joints" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={joint} stopOpacity="0" />
+          <stop offset="0.35" stopColor={joint} stopOpacity="0.05" />
+          <stop offset="1" stopColor={joint} stopOpacity="0.09" />
+        </linearGradient>
+        <linearGradient id="hw-parapet" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#ebe6da" />
+          <stop offset="0.55" stopColor="#f3efe6" />
+          <stop offset="1" stopColor="#fbfaf7" stopOpacity="0" />
         </linearGradient>
       </defs>
-      <g fill="#15171a">
-        {scrub.map(([x, y, r], i) => <ellipse key={i} cx={x} cy={y} rx={r} ry={r * 0.55} />)}
+      <rect x="0" y="0" width="1440" height="240" fill="url(#hw-floor)" />
+      <g stroke="url(#hw-joints)" strokeWidth="1.2" fill="none">
+        {across.map((y) => <path key={y} d={`M0 ${y}H1440`} />)}
+        {along.map((x) => <path key={x} d={`M${x} 240L${720 + (x - 720) * 0.42} 0`} />)}
       </g>
-      <path d="M0 140V54C120 48 220 30 360 34C500 38 560 58 700 52C840 46 920 22 1080 26C1240 30 1340 48 1440 44V140Z" fill="url(#hw-front)" />
+      {/* the parapets: a low wall at each side, its top catching the light, converging with the floor */}
+      <g className="hw-side">
+        <path d="M0 96L150 118V240H0Z" fill="url(#hw-parapet)" />
+        <path d="M0 96L150 118" stroke="#d9d2c3" strokeWidth="2" />
+        <path d="M0 94L150 116" stroke="#fffdf8" strokeWidth="1.5" />
+        <path d="M1440 96L1290 118V240H1440Z" fill="url(#hw-parapet)" />
+        <path d="M1440 96L1290 118" stroke="#d9d2c3" strokeWidth="2" />
+        <path d="M1440 94L1290 116" stroke="#fffdf8" strokeWidth="1.5" />
+      </g>
     </svg>
   );
 }

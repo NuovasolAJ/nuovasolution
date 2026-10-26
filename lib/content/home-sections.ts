@@ -20,41 +20,48 @@ export const homeWords = {
     eyebrow: { es: "Un servicio aparte: presentar en 3D", en: "A separate service: presenting in 3D" },
     h2: { es: "De tu plano a una vivienda que el cliente puede recorrer con la mirada", en: "From your plan to a home the customer can look around" },
     lead: { es: "Nos envías el plano acotado y, si las tienes, fotos. Construimos el modelo, lo mostramos vacío y amueblado desde la misma cámara y lo comprobamos contra tu plano. Cada modelo es un encargo, con o sin paquete.", en: "You send us the dimensioned plan and photos if you have them. We build the model, show it empty and furnished from the same camera and check it against your plan. Each model is an order, with or without a package." },
-    // R19 §10: the four steps as the order names them: plan → model → the same room empty and furnished → the real turn.
+    // R19 §10: the four steps as the order names them: plan → model → the same room empty and furnished → the delivery.
     // R24 (24.10.): every step shows the 3D lane's one demonstration house (handoff_2026-10-23); the lines say what each picture is.
+    // Closing order 26.10. §4: the whole house turning is the main view above the steps; step 04 is the delivery with the short ride.
     steps: {
       es: [
         { title: "Plano", line: "Tu plano acotado es la base: cada muro a escala. Aquí, la planta baja de la casa de ejemplo." },
         { title: "Modelo", line: "Muros, huecos, escalera y muebles, sin tejado para ver dentro: las dos plantas de la misma casa." },
         { title: "Vacío y amueblado", line: "El mismo salón, la misma cámara: una vez sin muebles y otra con ellos. Mueve el tirador." },
-        { title: "Vista giratoria", line: "El modelo gira en el navegador: las dos plantas, cada planta por separado, muebles fuera y dentro." },
+        { title: "Entrega", line: "Recibes el modelo listo para enseñarlo. Aquí, un paseo corto de cámara por el salón amueblado." },
       ],
       en: [
         { title: "Plan", line: "Your dimensioned plan is the base: every wall to scale. Here, the ground floor of the example house." },
         { title: "Model", line: "Walls, openings, the stair and furniture, no roof so you see inside: both floors of the same house." },
         { title: "Empty and furnished", line: "The same living room, the same camera: once without furniture, once with it. Move the handle." },
-        { title: "Rotatable view", line: "The model turns in the browser: both floors, each floor on its own, furniture off and on." },
+        { title: "Delivery", line: "You receive the model ready to show. Here, a short camera ride through the furnished living room." },
       ],
     },
+    mainTitle: { es: "La casa entera, girando", en: "The whole house, turning" },
+    mainLine: { es: "Las dos plantas sin tejado dan una vuelta completa; después, la planta baja sola. Grabado del visor real, sin acelerar.", en: "Both floors without a roof make one full turn; then the ground floor on its own. Recorded from the real viewer, not sped up." },
     /** The 3D lane's mandatory marks under each picture (handoff README 2026-10-23): a fictional house, a visualisation, the real viewer. */
     planCaption: { es: "Plano de ejemplo ficticio · dibujado a escala a partir de la especificación del modelo", en: "Fictional example plan · drawn to scale from the model's specification" },
     modelCaption: { es: "Casa de ejemplo ficticia · captura del visor real", en: "Fictional example house · a frame from the real viewer" },
     pairCaption: { es: "Casa de ejemplo ficticia · visualización: el mismo salón vacío y con mobiliario ilustrativo, desde la misma cámara", en: "Fictional example house · visualisation: the same living room empty and with illustrative furnishing, from the same camera" },
-    turnCaption: { es: "Casa de ejemplo ficticia · grabado del visor real · menos de un minuto · sin sonido", en: "Fictional example house · recorded from the real viewer · under a minute · no sound" },
+    turnCaption: { es: "Casa de ejemplo ficticia · grabado del visor real · 20 segundos · sin sonido · se ven los nombres de las estancias y los mandos del visor", en: "Fictional example house · recorded from the real viewer · 20 seconds · no sound · the viewer's room names and controls are visible" },
+    rideCaption: { es: "Casa de ejemplo ficticia · visualización del salón amueblado · 8 segundos · sin sonido", en: "Fictional example house · visualisation of the furnished living room · 8 seconds · no sound" },
+    rideFilm: { es: "Vídeo: un paseo corto de cámara por el salón amueblado · 8 segundos · sin sonido", en: "Video: a short camera ride through the furnished living room · 8 seconds · no sound" },
     modelAlt: { es: "Casa de ejemplo ficticia de dos plantas sin tejado, vista desde arriba en el visor, con los nombres de las estancias", en: "Fictional two-storey example house without a roof, seen from above in the viewer, with the room names" },
     pairAlt: { es: "Casa de ejemplo ficticia: el mismo salón vacío y con mobiliario ilustrativo", en: "Fictional example house: the same living room empty and with illustrative furnishing" },
     pairLabel: { es: "Comparar el salón vacío y amueblado desde la misma cámara", en: "Compare the living room empty and furnished from the same camera" },
     empty: { es: "Vacío", en: "Empty" },
     furnished: { es: "Amueblado", en: "Furnished" },
     viewerLine: { es: "Sin tejado, para ver dentro. Planta baja o alta, muebles fuera o dentro. Sin paseo a ojo de persona. Modelos 3D también por separado, sin ningún paquete: nos envías los planos, lo construimos y lo comprobamos.", en: "No roof, so you see inside. Ground or upper floor, furniture off or on. No eye-level walkthrough. 3D models also on their own, without a package: you send the plans, we build it and we check it." },
-    film: { es: "Vídeo: el modelo girando en el visor · menos de un minuto · sin sonido", en: "Video: the model turning in the viewer · under a minute · no sound" },
+    film: { es: "Vídeo: la casa entera girando en el visor · 20 segundos · sin sonido", en: "Video: the whole house turning in the viewer · 20 seconds · no sound" },
     demoNote: { es: "Casa de ejemplo de dos plantas sobre un plano ficticio propio. No es una vivienda real. Cada modelo se hace por encargo a partir de tus planos.", en: "A two-storey example house on a fictional plan of our own. Not a real home. Each model is made to order from your plans." },
     cta: { es: "Pide un modelo", en: "Ask for a model" },
   },
   trust: {
     eyebrow: { es: "Cómo empiezas", en: "How you start" },
     h2: { es: "Lo que hace falta de verdad para ponerlo en marcha", en: "What it really takes to get it running" },
-    lead: { es: "Sin llamada comercial. Creas la cuenta, configuras tu agencia a tu ritmo y conectamos los canales contigo. Lo que cuesta y lo que pasa con los datos está escrito aquí, no en una llamada.", en: "No sales call. You create the account, set up your agency at your own pace and we connect the channels with you. What it costs and what happens with the data is written here, not said on a call." },
+    // Closing order 26.10. §7: the page does not promise the cost "here" while the price is given per agency on request; it says how the
+    // price is given and that the data handling is written here. WORKING, for Copy.
+    lead: { es: "Sin llamada comercial. Creas la cuenta, configuras tu agencia a tu ritmo y conectamos los canales contigo. El precio te lo decimos para tu agencia antes de acordar nada; lo que pasa con los datos está escrito aquí.", en: "No sales call. You create the account, set up your agency at your own pace and we connect the channels with you. We tell you the price for your agency before anything is agreed; what happens with the data is written here." },
     stepsTitle: { es: "El camino, en orden", en: "The path, in order" },
     // Final order §9: calm and concrete; what the customer provides, what Nuova does, saved progress, the next step.
     steps: {

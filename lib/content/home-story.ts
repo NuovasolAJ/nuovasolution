@@ -113,6 +113,8 @@ export interface Enquiry {
   channel: ChannelKey;
   who: string;
   role: L;
+  /** What the enquiry is about, in a few words: with the name the main line of the arrivals (closing order 26.10. §3). */
+  concern: L;
   time: L;
   language: L;
   lang: "en" | "es" | "de";
@@ -137,6 +139,7 @@ export const enquiries: Enquiry[] = [
     channel: "whatsapp",
     who: people.buyer.name,
     role: { es: "Compradora · escribe desde Madrid", en: "Buyer · writing from Madrid" },
+    concern: { es: "Pregunta por el piso con terraza de Estepona · hasta 320.000 €", en: "Asks about the flat with a terrace in Estepona · up to €320,000" },
     time: { es: "martes 11:23", en: "Tuesday 11:23" },
     language: { es: "español", en: "Spanish" },
     lang: "es",
@@ -162,6 +165,7 @@ export const enquiries: Enquiry[] = [
     channel: "email",
     who: people.sellers.name,
     role: { es: "Propietarios · quieren vender", en: "Owners · want to sell" },
+    concern: { es: "Piden una valoración de su villa en Elviria", en: "Ask for a valuation of their villa in Elviria" },
     time: { es: "martes 11:24", en: "Tuesday 11:24" },
     language: { es: "alemán", en: "German" },
     lang: "de",
@@ -188,6 +192,7 @@ export const enquiries: Enquiry[] = [
     channel: "webform",
     who: people.tenant.name,
     role: { es: "Inquilina · alquiler de larga temporada", en: "Tenant · long-term rental" },
+    concern: { es: "Busca un alquiler de larga temporada en Fuengirola", en: "Looking for a long-term rental in Fuengirola" },
     time: { es: "martes 11:31", en: "Tuesday 11:31" },
     language: { es: "español", en: "Spanish" },
     lang: "es",
@@ -212,6 +217,7 @@ export const enquiries: Enquiry[] = [
     channel: "phone",
     who: people.caller.name,
     role: { es: "Comprador · llama por una villa", en: "Buyer · calling about a villa" },
+    concern: { es: "Llama por el precio de la villa de Elviria", en: "Calls about the price of the villa in Elviria" },
     time: { es: "martes 11:37", en: "Tuesday 11:37" },
     language: { es: "español", en: "Spanish" },
     lang: "es",
@@ -242,7 +248,11 @@ export const heroWords = {
   ctaStory: { es: "Ver cómo funciona", en: "See how it works" },
   trialLine: { es: "14 días gratis · Sin método de pago", en: "14 days free · No payment method" },
   labels: { enquiry: { es: "Llega por WhatsApp", en: "Arrives on WhatsApp" }, reply: { es: "Nuova responde", en: "Nuova replies" }, done: { es: "Su ficha, ya al día", en: "Her record, already up to date" } },
-  /** R24 (owner 24.10.): the customer record instead of three general checks. What stands on Laura's record at 11:21, and the alert. */
+  /**
+   * R24 (owner 24.10.): the customer record instead of three general checks. Closing order 26.10. §6: name and role, what she
+   * looks for, her budget, her language, the priority with its reason (the e-mail alert, proven end to end), the next step (a
+   * person's). Nothing invented: no score, no cross-channel merge.
+   */
   record: {
     title: { es: "Ficha de cliente", en: "Customer record" },
     who: { es: "Laura Serrano · compradora", en: "Laura Serrano · buyer" },
@@ -259,15 +269,23 @@ export const heroWords = {
         { k: "Writes in", v: "Spanish" },
       ],
     },
-    alert: { es: "Aviso por email a tu equipo", en: "E-mail alert to your team" }, // COPY_SYNC_1023 W-5
-    alertWhy: { es: "Consulta importante: nombró inmueble, zona y presupuesto", en: "Important enquiry: she named a property, an area and a budget" },
+    priority: { es: "Prioridad", en: "Priority" },
+    alert: { es: "Consulta importante · aviso por email a tu equipo", en: "Important enquiry · e-mail alert to your team" }, // COPY_SYNC_1023 W-5
+    alertWhy: { es: "Motivo: nombró inmueble, zona y presupuesto", en: "Reason: she named a property, an area and a budget" },
+    nextLabel: { es: "Siguiente paso", en: "Next step" },
+    next: { es: "una persona de tu equipo le confirma los datos del piso y le propone la visita", en: "a person on your team confirms the flat's details and proposes the viewing" },
   },
   replay: { es: "Reproducir otra vez", en: "Play again" },
-  /** The hero's exchange: the question, the answer from the listing's data, one question back. Laura writes in Spanish. */
+  /**
+   * The hero's exchange: the question, the reply, one question back. Laura writes in Spanish. Closing order 26.10. §7: the reply
+   * confirms no listing fact and announces no file (replies with the listing's data are in preparation, Copy's Q-1 fallback); it
+   * notes what she asks for, says who answers the facts, and asks one question back, the way the proven replies of story B do.
+   * WORKING, for Copy.
+   */
   heroEnquiry: "Hola, he visto el piso de dos dormitorios con terraza en Estepona. ¿La terraza da al sur? ¿Tiene garaje? Nuestro presupuesto llega hasta 320.000 €.",
   heroEnquiryTranslated: { es: "Hola, he visto el piso de dos dormitorios con terraza en Estepona. ¿La terraza da al sur? ¿Tiene garaje? Nuestro presupuesto llega hasta 320.000 €.", en: "Hi, I've seen the two-bedroom flat with a terrace in Estepona. Is the terrace south-facing? Is there a garage? Our budget goes up to €320,000." },
-  heroReply: "¡Hola, Laura! Sí, la terraza da al sur y el piso incluye plaza de garaje. Te envío la ficha con las fotos y el plano. ¿Buscáis vivienda habitual o segunda residencia?",
-  heroReplyTranslated: { es: "¡Hola, Laura! Sí, la terraza da al sur y el piso incluye plaza de garaje. Te envío la ficha con las fotos y el plano. ¿Buscáis vivienda habitual o segunda residencia?", en: "Hi Laura! Yes, the terrace faces south and the flat comes with a garage space. I'm sending you the listing with the photos and the plan. Are you looking for a main home or a second home?" },
+  heroReply: "¡Hola, Laura! Anoto dos dormitorios con terraza en Estepona y hasta 320.000 €. Una persona de la agencia te confirma lo de la terraza y el garaje. ¿Buscáis vivienda habitual o segunda residencia?",
+  heroReplyTranslated: { es: "¡Hola, Laura! Anoto dos dormitorios con terraza en Estepona y hasta 320.000 €. Una persona de la agencia te confirma lo de la terraza y el garaje. ¿Buscáis vivienda habitual o segunda residencia?", en: "Hi Laura! Noted: two bedrooms with a terrace in Estepona, up to €320,000. A person from the agency will confirm the terrace and the garage. Are you looking for a main home or a second home?" },
   heroWho: { es: "Laura Serrano · compradora", en: "Laura Serrano · buyer" },
   heroTime: { es: "martes 11:20", en: "Tuesday 11:20" },
   heroReplyTime: { es: "martes 11:21", en: "Tuesday 11:21" },
@@ -275,7 +293,7 @@ export const heroWords = {
   situationLine: { es: "Martes 11:20 · Marcos está en una visita hasta las 12:00 · Nuova atiende lo que llega", en: "Tuesday 11:20 · Marcos is at a viewing until 12:00 · Nuova handles what arrives" },
   /** The limit, with the claim (R19 §7): what runs today, said inside the product. Copy checks the wording (C1). */
   stateToday: { es: "Hoy respondemos en español. En otro idioma no se envía nada automáticamente. Respuestas con datos del inmueble: en preparación.", en: "Today we answer in Spanish. In another language nothing is sent automatically. Replies with the listing's data: in preparation." }, // WEBSITE_COPY_HANDOVER_1021 §E + COPY_SYNC_1024 Q-1 fallback
-  surfaceLabel: { es: "Ejemplo: una consulta por WhatsApp, la respuesta con los datos del inmueble, lo que queda guardado y el aviso al equipo", en: "Example: a WhatsApp enquiry, the reply with the listing's data, what is saved and the alert to the team" },
+  surfaceLabel: { es: "Ejemplo: una consulta por WhatsApp, la respuesta, lo que queda guardado en la ficha, el aviso al equipo y el siguiente paso", en: "Example: a WhatsApp enquiry, the reply, what is saved on the record, the alert to the team and the next step" },
 };
 
 /**
@@ -301,7 +319,9 @@ export const chapters: Chapter[] = [
     line: { es: "Marcos enseña la villa de Elviria de 11:00 a 12:00. En ese rato escriben una compradora por WhatsApp, unos propietarios por email, una inquilina por el formulario web y llama un comprador.", en: "Marcos is showing the villa in Elviria from 11:00 to 12:00. In that hour a buyer writes on WhatsApp, two owners by email, a tenant through the web form, and a buyer calls." },
     inbound: { es: "Cuatro consultas por cuatro canales, con nadie en la oficina.", en: "Four enquiries on four channels, with nobody at the desk." },
     did: { es: "Las atiende por el canal por el que llegaron y abre una ficha por consulta.", en: "Handles each on the channel it arrived on and opens a record per enquiry." }, // COPY_1019 R-11
-    result: { es: "Cuando Marcos termina, las cuatro tienen ficha y tres tienen respuesta.", en: "When Marcos finishes, all four have a record and three have a reply." },
+    // Closing order 26.10. §3: the count matches the states shown (two written replies, one call answered by the assistant, the German
+    // e-mail waiting for a person); "noted" is not a reply. WORKING, for Copy.
+    result: { es: "Cuando Marcos termina, las cuatro tienen ficha: dos con respuesta escrita, una llamada atendida, y el email en alemán espera a una persona.", en: "When Marcos finishes, all four have a record: two with a written reply, one call answered, and the German e-mail waits for a person." },
     state: { es: "Disponible hoy: WhatsApp y email, en español. Prototipo: el formulario web y la llamada (el asistente telefónico, solo en español).", en: "Available today: WhatsApp and email, in Spanish. Prototype: the web form and the phone call (the phone assistant, Spanish only)." },
   },
   {
@@ -338,10 +358,12 @@ export const chapters: Chapter[] = [
     key: "followup",
     eyebrow: { es: "Un seguimiento con sentido", en: "A follow-up that makes sense" },
     title: { es: "Entra un piso que encaja con Laura. Ella recibe un mensaje útil antes de su visita.", en: "A flat comes in that fits Laura. She gets a useful message before her viewing." },
-    line: { es: "Un inmueble nuevo no basta por sí solo. El seguimiento sale solo si Laura aceptó recibir propuestas y tú activaste los seguimientos. El mensaje es concreto: el piso, los datos y una sola acción.", en: "A new listing is not enough on its own. The follow-up goes out only if Laura agreed to receive proposals and you switched follow-ups on. The message is concrete: the flat, the facts and one action." },
+    // Closing order 26.10. §7: the follow-up goes out on WhatsApp, the channel Laura wrote on and gave her consent for (E-FU3: the owner's
+    // phone receives it), not by e-mail; no frequency figure until API's written rule. WORKING, for Copy and API.
+    line: { es: "Un inmueble nuevo no basta por sí solo. El seguimiento sale solo si Laura aceptó recibir propuestas y tú activaste los seguimientos, y va por WhatsApp, el canal en el que escribió. El mensaje es concreto: el piso, los datos y una sola pregunta.", en: "A new listing is not enough on its own. The follow-up goes out only if Laura agreed to receive proposals and you switched follow-ups on, and it goes on WhatsApp, the channel she wrote on. The message is concrete: the flat, the facts and one question." },
     inbound: { es: "Un inmueble nuevo en tu cartera que encaja con lo que busca Laura.", en: "A new listing in your portfolio that fits what Laura is looking for." },
-    did: { es: "Comprueba las tres condiciones y envía un email con el piso y una sola acción.", en: "Checks the three conditions and sends an email with the flat and one action." },
-    result: { es: "Si Laura responde, su petición llega a Elena; una petición no es una cita.", en: "If Laura answers, her request reaches Elena; a request is not an appointment." },
+    did: { es: "Comprueba las tres condiciones y envía un WhatsApp con el piso y una sola pregunta.", en: "Checks the three conditions and sends a WhatsApp message with the flat and one question." },
+    result: { es: "Si Laura responde, su respuesta llega a Elena como petición; una petición no es una cita.", en: "If Laura answers, her reply reaches Elena as a request; a request is not an appointment." },
     state: { es: "Prototipo · todavía no disponible.", en: "Prototype · not available yet." },
   },
   {
@@ -385,10 +407,11 @@ export const storyWords = {
     viewingWho: { es: "Marcos · 11:00 a 12:00", en: "Marcos · 11:00 to 12:00" },
     desk: { es: "Nadie en la oficina", en: "Nobody at the desk" },
     arriving: { es: "Mientras tanto, llega", en: "Meanwhile, arriving" },
+    arrivedMark: { es: "Llega", en: "Arrives" },
     answered: { es: "Respondida", en: "Replied" },
-    drafted: { es: "Registrada", en: "Recorded" },
-    noted: { es: "Anotada", en: "Noted" },
-    after: { es: "Cuando Marcos termina la visita, las cuatro consultas tienen ficha: tres con respuesta, y la que llegó en alemán sin respuesta automática, porque hoy solo respondemos en español.", en: "When Marcos finishes the viewing, all four enquiries have a record: three with a reply, and the one in German without an automatic reply, because today we only answer in Spanish." }, // HANDOVER_1021 A-6
+    drafted: { es: "Espera a una persona", en: "Waits for a person" },
+    noted: { es: "Llamada atendida", en: "Call answered" },
+    after: { es: "Cuando Marcos termina la visita, las cuatro consultas tienen ficha: dos con respuesta escrita, una llamada atendida con nota y tarea, y la que llegó en alemán sin respuesta automática, porque hoy solo respondemos en español.", en: "When Marcos finishes the viewing, all four enquiries have a record: two with a written reply, one call answered with a note and a task, and the one in German without an automatic reply, because today we only answer in Spanish." }, // HANDOVER_1021 A-6; closing order 26.10. §3 (the count matches the states)
   },
   reply: {
     pick: { es: "Elige el canal", en: "Pick the channel" },
@@ -465,6 +488,27 @@ export const storyWords = {
     open: { es: "Abierta · nadie la ha tomado", en: "Open · nobody has taken it" },
     again: { es: "Volver a empezar", en: "Start again" },
     othersSee: { es: "En la lista de los demás ya no aparece; el asistente de la mañana dice quién la ha tomado.", en: "It no longer appears in the others' lists; the morning assistant says who took it." }, // COPY_SYNC_1024 X-10 (Q-4 proposal until Daily confirms)
+    /**
+     * The appointment, step by step (closing order 26.10. §7: a request, a proposal, a person's confirmation and a booking are four
+     * different things). The first three are what the story shows; the fourth is the calendar, in preparation (KALENDER decision).
+     */
+    agenda: {
+      title: { es: "La cita, paso a paso", en: "The appointment, step by step" },
+      steps: {
+        es: [
+          { k: "Petición", v: "Laura quiere verlo la semana que viene (martes 11:23)" },
+          { k: "Propuesta", v: "Elena propone el jueves a las 10:00 (miércoles 08:58)" },
+          { k: "Confirmación", v: "Laura acepta; Elena la marca como hecha (09:02)" },
+          { k: "En la agenda", v: "la cita en el calendario de Elena · en preparación" },
+        ],
+        en: [
+          { k: "Request", v: "Laura wants to see it next week (Tuesday 11:23)" },
+          { k: "Proposal", v: "Elena proposes Thursday at 10:00 (Wednesday 08:58)" },
+          { k: "Confirmation", v: "Laura accepts; Elena marks it done (09:02)" },
+          { k: "In the diary", v: "the appointment in Elena's calendar · in preparation" },
+        ],
+      },
+    },
     chatConfirm: "Hola, Laura, soy Elena, de la agencia. ¿Te viene bien el jueves a las 10:00 para ver el piso de Estepona? Te paso la dirección y mi número.",
     chatConfirmTranslated: { es: "Hola, Laura, soy Elena, de la agencia. ¿Te viene bien el jueves a las 10:00 para ver el piso de Estepona? Te paso la dirección y mi número.", en: "Hi Laura, it's Elena from the agency. Does Thursday at 10:00 work for you to see the flat in Estepona? I'll send you the address and my number." },
   },
@@ -473,20 +517,21 @@ export const storyWords = {
     matches: { es: "Encaja con lo que busca Laura", en: "Fits what Laura is looking for" },
     conditions: { es: "Condiciones para enviarlo", en: "Conditions for sending it" },
     conditionList: {
-      es: ["Laura aceptó recibir propuestas (martes 11:25)", "Tienes los seguimientos activados", "El inmueble está marcado como publicable y actual"],
-      en: ["Laura agreed to receive proposals (Tuesday 11:25)", "You have follow-ups switched on", "The listing is marked publishable and current"],
+      es: ["Laura aceptó recibir propuestas por WhatsApp (martes 11:25)", "Tienes los seguimientos activados", "El inmueble está marcado como publicable y actual"],
+      en: ["Laura agreed to receive proposals on WhatsApp (Tuesday 11:25)", "You have follow-ups switched on", "The listing is marked publishable and current"],
     },
-    email: { es: "El email que recibe Laura", en: "The email Laura receives" },
-    from: { es: "De: tu agencia", en: "From: your agency" },
+    email: { es: "El WhatsApp que recibe Laura", en: "The WhatsApp message Laura receives" },
+    from: { es: "De: tu agencia · miércoles 17:32", en: "From: your agency · Wednesday 17:32" },
     subject: "Un piso nuevo en Estepona que encaja con lo que buscas",
     subjectTranslated: { es: "Un piso nuevo en Estepona que encaja con lo que buscas", en: "A new flat in Estepona that fits what you're looking for" },
-    body: "Hola Laura, antes de la visita del jueves: acaba de entrar un piso de dos dormitorios en primera línea en Estepona, dentro de tu presupuesto. Al lado, el ático de Seghers que ya tienes. Si quieres verlo el jueves también, basta un toque.",
-    bodyTranslated: { es: "Hola Laura, antes de la visita del jueves: acaba de entrar un piso de dos dormitorios en primera línea en Estepona, dentro de tu presupuesto. Al lado, el ático de Seghers que ya tienes. Si quieres verlo el jueves también, basta un toque.", en: "Hi Laura, before Thursday's viewing: a two-bedroom flat on the seafront in Estepona has just come in, within your budget. Next to it, the penthouse in Seghers you already have. If you'd like to see it on Thursday as well, one tap is enough." },
-    cta: { es: "Pedir ver este piso el jueves", en: "Ask to see this flat on Thursday" },
-    ctaDemo: { es: "Demo: pulsa para ver qué pasa", en: "Demo: press to see what happens" },
-    requested: { es: "Solicitud enviada a tu agencia · nadie ha confirmado todavía", en: "Request sent to your agency · nobody has confirmed yet" },
+    body: "Hola Laura, antes de la visita del jueves: acaba de entrar un piso de dos dormitorios en primera línea en Estepona, dentro de tu presupuesto. Te paso su ficha y, al lado, el ático de Seghers que ya tienes. ¿Quieres verlo el jueves también?",
+    bodyTranslated: { es: "Hola Laura, antes de la visita del jueves: acaba de entrar un piso de dos dormitorios en primera línea en Estepona, dentro de tu presupuesto. Te paso su ficha y, al lado, el ático de Seghers que ya tienes. ¿Quieres verlo el jueves también?", en: "Hi Laura, before Thursday's viewing: a two-bedroom flat on the seafront in Estepona has just come in, within your budget. Here is its listing and, next to it, the penthouse in Seghers you already have. Would you like to see it on Thursday as well?" },
+    cta: { es: "Responder: sí, el jueves también", en: "Reply: yes, on Thursday too" },
+    ctaDemo: { es: "Demo: pulsa para ver qué pasa con la respuesta de Laura", en: "Demo: press to see what happens with Laura's reply" },
+    replyText: { es: "Sí, el jueves también.", en: "Yes, on Thursday too." },
+    requested: { es: "Petición recibida en tu agencia · nadie ha confirmado todavía", en: "Request received by your agency · nobody has confirmed yet" },
     requestedLine: { es: "Una petición no es una cita. Elena la ve en su lista y confirma la hora con Laura.", en: "A request is not an appointment. Elena sees it on her list and confirms the time with Laura." },
-    footer: { es: "Un seguimiento por inmueble nuevo, nunca más de uno por semana por cliente, y siempre con un enlace para dejar de recibirlos.", en: "One follow-up per new listing, never more than one a week per customer, and always with a link to stop receiving them." },
+    footer: { es: "Un seguimiento por inmueble nuevo, nunca repetido, dentro del horario de contacto de tu agencia y siempre con la opción de dejar de recibirlos.", en: "One follow-up per new listing, never repeated, within your agency's contact hours and always with the option to stop receiving them." },
   },
   result: {
     weekly: { es: "Resumen semanal · tu agencia", en: "Weekly summary · your agency" },
@@ -510,10 +555,12 @@ export const storyWords = {
   social: {
     eyebrow: { es: "Captar desde lo que ya publicas", en: "Attract from what you already publish" },
     title: { es: "Una publicación de tu inmueble, aprobada por ti, y cada comentario en su ficha.", en: "A post of your listing, approved by you, and every comment in a record." },
-    line: { es: "Nuova prepara el texto con la foto y los datos del inmueble, tú lo apruebas, se publica en tu cuenta. Cada comentario público acaba como contacto nuevo en su ficha; la respuesta la escribe una persona de tu equipo.", en: "Nuova prepares the text with the listing's photo and data, you approve it, it is published on your account. Every public comment ends up as a new contact on a record; a person on your team writes the reply." },
+    // Closing order 26.10. §6: a comment lands on the commenter's record (the one they already have, or a new one); repeated comments are
+    // not shown as ever new leads. WORKING, for Copy.
+    line: { es: "Nuova prepara el texto con la foto y los datos del inmueble, tú lo apruebas, se publica en tu cuenta. Un comentario público con una pregunta queda en la ficha de quien lo escribe, con el inmueble; la respuesta la escribe una persona de tu equipo.", en: "Nuova prepares the text with the listing's photo and data, you approve it, it is published on your account. A public comment with a question lands on the commenter's record, with the listing; a person on your team writes the reply." },
     inbound: { es: "Un inmueble de tu cartera con sus fotos y datos.", en: "A listing from your portfolio with its photos and data." },
-    did: { es: "Prepara la publicación, espera tu aprobación, la publica y convierte cada comentario en un contacto nuevo con su ficha.", en: "Prepares the post, waits for your approval, publishes it and turns each comment into a new contact with a record." },
-    result: { es: "Un contacto nuevo con el inmueble y su pregunta en la ficha. No es una consulta atendida: es una consulta nueva.", en: "A new contact with the listing and the question on a record. Not an enquiry handled: a new enquiry." },
+    did: { es: "Prepara la publicación, espera tu aprobación, la publica y lleva cada pregunta pública a la ficha de quien la hace.", en: "Prepares the post, waits for your approval, publishes it and takes each public question to the record of the person asking." },
+    result: { es: "Un contacto con el inmueble y su pregunta en la ficha. No es una consulta atendida: es una consulta nueva para una persona.", en: "A contact with the listing and the question on a record. Not an enquiry handled: a new enquiry for a person." },
     state: { es: "Prototipo · depende de la aprobación de la plataforma.", en: "Prototype · depends on the platform's approval." },
     post: {
       account: "@tu_agencia",
@@ -523,7 +570,7 @@ export const storyWords = {
       approved: { es: "Aprobada por ti · miércoles 12:10", en: "Approved by you · Wednesday 12:10" },
       published: { es: "Publicada en tu cuenta · jueves 09:00", en: "Published on your account · Thursday 09:00" },
       nextTitle: { es: "Siguiente paso", en: "Next step" },
-      next: { es: "Marta queda como contacto nuevo en su ficha, con el inmueble y su pregunta. Una persona del equipo le escribe por privado; nada se responde en público sin una persona.", en: "Marta is a new contact on a record, with the listing and her question. A person from the team writes to her privately; nothing is answered in public without a person." },
+      next: { es: "Marta queda en su ficha, con el inmueble y su pregunta; si vuelve a comentar, se añade a la misma ficha. Una persona del equipo le escribe por privado; nada se responde en público sin una persona.", en: "Marta is on a record, with the listing and her question; if she comments again, it goes on the same record. A person from the team writes to her privately; nothing is answered in public without a person." },
     },
     example: { es: "Ejemplo · prototipo", en: "Example · prototype" }, // R24 picture 04 (4): the published post is an example of a prototype
     photoSource: { es: "Foto de muestra con licencia (Pexels 12715501), no es un inmueble real.", en: "Licensed sample photo (Pexels 12715501), not a real listing." },

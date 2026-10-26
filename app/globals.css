@@ -388,44 +388,54 @@ img, video, svg { display: block; max-width: 100%; }
 }
 
 /* ------------------------------------------------------------------ */
-/* The hero world (master order 2026-10-10 §1): a dark anthracite hero */
-/* with a Costa del Sol dusk behind (photograph, far), calm ridges     */
-/* (drawn, mid), the product panel, and two floating product cards in  */
-/* front. Layers: components/home/hero-world-layers.tsx. Vertical       */
-/* positions hang on --horizon, measured from the top of the stage, so */
-/* the scene keeps its shape whatever the panel's height is.           */
+/* The hero world (master order 2026-10-10 §1; closing order 26.10.    */
+/* §1, §2): a dark anthracite hero with a Costa del Sol dusk behind    */
+/* (photograph, sky), a hillside of Mediterranean villas (drawn,       */
+/* architecture), the product panel, and the stone terrace the panel  */
+/* stands on (foreground, the page's ivory). Layers:                   */
+/* components/home/hero-world-layers.tsx. Vertical positions hang on   */
+/* --horizon, measured from the top of the stage, so the scene keeps   */
+/* its shape whatever the panel's height is. The hero does not end on  */
+/* an edge: the land under the villas dissolves into the terrace's     */
+/* light, and the terrace is the story's canvas.                       */
 /* ------------------------------------------------------------------ */
 .hero-world {
   position: relative;
   overflow: hidden;
   color: var(--ivory);
+  /* the dark sky above; the stage's own layers carry the light below, so the section's ground is the story's canvas (the same
+     colour to the digit: #fbfaf7, measured on 596679b as the visible seam between the ivory band and the story) */
   background-color: #131416;
-  background-image: linear-gradient(180deg, #131416 0%, #16181c 40%, #1a1c21 70%, #1d1f24 100%);
+  background-image: linear-gradient(180deg, #131416 0%, #16181c 40%, #1a1c21 72%, #1d1f24 calc(100% - 120px), #fbfaf7 calc(100% - 120px));
   --hero-soft: var(--ivory); /* final order §3: both headline lines equally bright */
   --hero-accent: var(--champagne-300);
   --channel-whatsapp: #25a55f;
   --channel-whatsapp-ink: #1d6b42;
-  --horizon: 120px;
+  --horizon: 140px;
   --depth-far: 48px;
   --depth-sky: 30px;
-  --depth-ridge-far: 22px;
+  --depth-arch-far: 22px;
   --depth-mid: 14px;
+  --depth-front: -16px;
   --panel-tilt: 8deg;
   --panel-rise: 20px;
   --panel-scale-from: 0.95;
   --panel-scale-to: 1;
 }
+/* how far the scene has dissolved into the story (0 at the top of the page, 1 when the hero is leaving): the layers behind the
+   panel fade with it, so a still picture mid-way is a lighter scene, never a cut. Declared on the scene, where --depth is written. */
+.hero-world-scene { --dissolve: clamp(0, calc((var(--depth, 0) - 0.3) / 0.45), 1); }
 @media (min-width: 768px) {
   /* R19 §3: a visible lean (rotateX → 0°), the panel rises and grows a little while the page starts to move. R24 (owner, picture 01: the
-     hero readable earlier): the lean is light (12°, 28 px, 0.95 → 1.03), so the panel's head stands on the first screen at 1366 × 768. */
-  .hero-world { --horizon: 170px; --depth-far: 90px; --depth-sky: 56px; --depth-ridge-far: 42px; --depth-mid: 28px; --panel-tilt: 12deg; --panel-rise: 28px; --panel-scale-from: 0.95; --panel-scale-to: 1.03; }
+     hero readable earlier): the lean is light (12°, 28 px, 0.95 → 1.03). */
+  .hero-world { --horizon: 190px; --depth-far: 90px; --depth-sky: 56px; --depth-arch-far: 42px; --depth-mid: 26px; --depth-front: -34px; --panel-tilt: 12deg; --panel-rise: 28px; --panel-scale-from: 0.95; --panel-scale-to: 1.03; background-image: linear-gradient(180deg, #131416 0%, #16181c 40%, #1a1c21 72%, #1d1f24 calc(100% - 200px), #fbfaf7 calc(100% - 200px)); }
 }
 .hero-world-scene { isolation: isolate; padding-top: 16px; }
 @media (min-width: 768px) { .hero-world-scene { padding-top: 22px; } }
 .hero-world-stars { position: absolute; inset: 0 0 auto 0; z-index: 1; height: 300px; width: 100%; pointer-events: none; }
 
-/* Far: the photograph, toned to the page. It fades into the sky at the top (so the words and the
-   navigation stand on a calm ground) and into the land at the bottom. */
+/* 1 The sky: the photograph, toned to the page. It fades into the sky at the top (so the words and the navigation stand on a calm
+   ground) and into the land at the bottom; one warm glow stands where the last light is over the sea. */
 .hero-sky { position: absolute; inset: 0 0 auto 0; z-index: 0; height: 100%; max-height: 1100px; pointer-events: none; }
 .hero-sky-photo { display: block; height: 100%; width: 100%; filter: saturate(0.42) brightness(0.56) contrast(1.08); }
 .hero-sky-tone {
@@ -435,31 +445,53 @@ img, video, svg { display: block; max-width: 100%; }
     linear-gradient(90deg, rgba(19, 20, 22, 0.4) 0%, rgba(19, 20, 22, 0) 32%, rgba(19, 20, 22, 0) 68%, rgba(19, 20, 22, 0.4) 100%),
     linear-gradient(180deg, rgba(40, 52, 78, 0.18) 0%, rgba(40, 52, 78, 0) 60%);
 }
+.hero-sky-glow { position: absolute; inset: auto 0 0 0; height: 46%; background: radial-gradient(60% 70% at 50% 100%, rgba(224, 200, 147, 0.26) 0%, rgba(224, 200, 147, 0.1) 40%, rgba(224, 200, 147, 0) 100%); }
 
-/* The stage: the panel and everything of the world that is placed against it. */
-.hero-world-stage { position: relative; margin: 18px auto 0; max-width: 1140px; padding: 10px 0 36px; }
-@media (min-width: 768px) { .hero-world-stage { margin-top: 10px; padding: 16px 0 44px; } }
-.hero-world-land, .hero-ridges, .hero-ridges-far { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; pointer-events: none; }
-/* The far ridge sits higher and moves between the sky and the near ridge. */
-.hero-ridges-far { top: calc(var(--horizon) - 170px); z-index: 0; height: 220px; transform: translate3d(0, calc(var(--depth, 0) * var(--depth-ridge-far, 20px)), 0); will-change: transform; }
-.hero-ridges { top: calc(var(--horizon) - 120px); z-index: 1; height: 220px; }
-/* The ground the panel stands on (R19 §4; R24 owner picture 01: a clean transition): the page's ivory rises from the dark land
-   in one soft, straight band and is solid where the hero ends, so the hero's edge and the story's canvas are one colour.
-   No foreground scrub and no fog under the panel. The band lies under the panel and never over a word. */
-.hero-world-ground { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; bottom: -1px; z-index: 1; height: 130px; pointer-events: none; background: linear-gradient(180deg, rgba(248, 246, 241, 0) 0%, rgba(243, 238, 228, 0.55) 30%, #f8f6f1 62%, #f8f6f1 100%); }
-@media (min-width: 768px) { .hero-world-ground { height: 190px; } }
+/* The stage: the panel and everything of the world that is placed against it. The stage starts lower than the words end, so a
+   strip of the horizon (the far shore, the sea, the roofs) stands between the words and the panel's top. */
+.hero-world-stage { position: relative; margin: 18px auto 0; max-width: 1140px; padding: 44px 0 40px; }
+@media (min-width: 768px) { .hero-world-stage { margin-top: 8px; padding: 64px 0 56px; } }
+.hero-world-land, .hero-arch, .hero-arch-far, .hero-terrace { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; pointer-events: none; }
+/* 2 The far shore, highest and slowest of the land (it stands above the villas' roofs, in the strip between the words and the
+   panel); the villas in front of it. Both fade as the scene dissolves into the story. The words keep their own plane above them. */
+.hero-words { position: relative; z-index: 3; }
+.hero-arch-far { top: calc(var(--horizon) - 300px); z-index: 0; height: 220px; transform: translate3d(0, calc(var(--depth, 0) * var(--depth-arch-far, 20px)), 0); will-change: transform; opacity: calc(0.8 - var(--dissolve) * 0.75); }
+.hero-arch { top: calc(var(--horizon) - 200px); z-index: 1; height: 360px; opacity: calc(1 - var(--dissolve) * 0.9); }
+/* the feet of the villas dissolve into the light under them */
+.hero-arch { -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 56%, rgba(0, 0, 0, 0.45) 76%, transparent 96%); mask-image: linear-gradient(180deg, #000 0%, #000 56%, rgba(0, 0, 0, 0.45) 76%, transparent 96%); }
+/* The land under the villas: dark where they stand, then a short warm falloff into the terrace's light, the canvas from there
+   down (closing order 26.10. §2: no bar, no grey fog: the light of the terrace reaches the villas' feet). */
+.hero-world-land { top: calc(var(--horizon) + 40px); bottom: 0; z-index: 2; background: linear-gradient(180deg, rgba(214, 205, 189, 0) 0px, rgba(214, 205, 189, 0.85) 70px, #e6dfd2 120px, #f4f0e8 170px, #fbfaf7 220px, #fbfaf7 100%); opacity: calc(1 - var(--dissolve) * 0.55); }
+/* 4 The terrace: the stone floor the panel stands on, in the page's canvas; it runs a little ahead of the page. */
+.hero-terrace { bottom: -1px; z-index: 3; height: 150px; }
+@media (min-width: 768px) { .hero-terrace { height: 240px; } }
+/* the phone composes the scene on its own: no side villas, no parapets; the far shore, the roofs behind the panel and the terrace */
+@media (max-width: 639px) { .hw-side { display: none; } .hero-arch { height: 170px; top: calc(var(--horizon) - 110px); } .hero-arch-far { top: calc(var(--horizon) - 190px); height: 130px; } .hero-world-land { top: calc(var(--horizon) + 10px); background: linear-gradient(180deg, rgba(214, 205, 189, 0) 0px, rgba(214, 205, 189, 0.85) 40px, #e6dfd2 70px, #f4f0e8 110px, #fbfaf7 150px, #fbfaf7 100%); } }
 /* The panel's foot: a short, word-free margin under the limit line. */
 .hero-panel { padding-bottom: 12px; }
 @media (min-width: 768px) { .hero-panel { padding-bottom: 16px; } }
-.hero-world-land { top: calc(var(--horizon) + 60px); bottom: 0; background: linear-gradient(180deg, #171a1e 0%, #15171b 50%, #131416 100%); }
-/* The hero ends on the ivory band with the panel standing on it; the story continues on the same ivory. */
+/* The hero ends on the terrace with the panel standing on it; the story continues on the same ivory. */
+
+/* A short desktop window (closing order 26.10. §1: at 1366 × 768 the headline, both buttons, the enquiry and the first lines of
+   the record on the first screen): the words and the stage set tighter, the type one step smaller, nothing unreadable. */
+@media (min-width: 1024px) and (max-height: 820px) {
+  .hero-world-scene { padding-top: 10px; }
+  .hero-h1 { font-size: clamp(2rem, 1.5rem + 2.1vw, 3.4rem); line-height: 1.06; margin-top: 10px; }
+  .hero-lead { margin-top: 10px; max-width: 64ch; font-size: 1.0625rem; line-height: 1.5; }
+  .hero-ctas { margin-top: 14px; }
+  .hero-ctas .hero-cta-main, .hero-ctas .hero-cta-second { min-height: 48px; }
+  [data-hero-trial] { margin-top: 8px; }
+  .hero-world-stage { margin-top: 0; padding-top: 30px; }
+  .hero-world { --panel-tilt: 7deg; --panel-rise: 6px; --panel-scale-from: 0.98; --panel-scale-to: 1.02; }
+  .hero-panel-col { padding-top: 16px; padding-bottom: 20px; }
+}
 
 /* The panel: one light surface, large type, no frame inside a frame. It leans back and comes upright on
    scroll, rising and growing a little (the mechanics of Container Scroll Animation: perspective, rotateX to
    flat, a layered shadow), so the product visibly steps forward as the page starts to move. */
 .hero-panel {
   position: relative;
-  z-index: 2;
+  z-index: 4; /* above the terrace (3): the panel stands on it */
   overflow: hidden;
   border-radius: 18px;
   background: #fbfaf7;
@@ -491,8 +523,9 @@ img, video, svg { display: block; max-width: 100%; }
 .hero-record-head { padding: 10px 12px 8px; border-bottom: 1px solid var(--ink-100); }
 .hero-record-fields { display: grid; }
 .hero-result { display: grid; gap: 1px; padding: 7px 12px; border-bottom: 1px solid var(--ink-100); }
-.hero-record-alert { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; background: var(--accent-wash, #f6efe2); }
+.hero-record-alert { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; background: var(--accent-wash, #f6efe2); border-bottom: 1px solid var(--ink-100); }
 .hero-result-mark { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 20px; height: 20px; margin-top: 1px; border-radius: 999px; background: var(--signal-positive); color: var(--ivory); }
+.hero-record-next { display: flex; align-items: flex-start; gap: 8px; padding: 9px 12px; font-size: 0.8125rem; line-height: 1.45; color: var(--ink-700); }
 
 /* ------------------------------------------------------------------ */
 /* The story (master order 2026-10-10 §3): six chapters, each a scene  */
@@ -607,6 +640,32 @@ html:not(.js) .seq-replay { display: none; }
   .seq-replay { display: none; }
 }
 
+/* The arrivals of chapter A (closing order 26.10. §3): one list in one frame, a hairline between the rows; name and concern as the
+   main line, the quiet second line, the state in its own column (under the text on a narrow phone). A row arrives (animated-list.tsx
+   brings it to full strength), then its state appears half a second later; after that nothing moves. */
+.arrivals { gap: 0; overflow: hidden; border-radius: 12px; border: 1px solid var(--ink-100); background: var(--paper); }
+.arrivals > [data-list-item] + [data-list-item] { border-top: 1px solid var(--ink-100); }
+.arrival { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; column-gap: 12px; row-gap: 4px; padding: 10px 14px; }
+.arrival-main { font-size: 0.9375rem; line-height: 1.4; }
+.arrival-state { display: grid; justify-items: end; white-space: nowrap; }
+.arrival-state > * { grid-area: 1 / 1; transition: opacity var(--motion-element) var(--ease-out), transform var(--motion-element) var(--ease-out); }
+.arrival-arriving { font-size: 0.8125rem; font-weight: 500; color: var(--text-muted); }
+[data-list-item="quiet"] .arrival-state > :last-child { opacity: 0; transform: translateX(6px); }
+[data-list-item="arrived"] .arrival-state > :first-child { opacity: 0; transform: translateX(-6px); transition-delay: 0ms; }
+[data-list-item="arrived"] .arrival-state > :last-child { transition-delay: 520ms; }
+/* the state keeps its own column only where the list is wide enough for it; in a narrow list (the phone, the two-column
+   chapter at 1280–1500 px) it stands under the text, so no text column is squeezed */
+.arrivals { container-type: inline-size; }
+@container (max-width: 540px) {
+  .arrival { grid-template-columns: auto minmax(0, 1fr); }
+  .arrival-state { grid-column: 2; justify-items: start; }
+}
+@media (max-width: 479px) {
+  .arrival { grid-template-columns: auto minmax(0, 1fr); }
+  .arrival-state { grid-column: 2; justify-items: start; }
+}
+@media (prefers-reduced-motion: reduce) { .arrival-state > * { transition: none; } }
+
 /* The flow rail: which step of the story is on screen. */
 .flow-rail a { position: relative; display: flex; gap: 12px; align-items: baseline; padding: 10px 0 10px 18px; color: var(--text-muted); border-left: 1px solid var(--border-strong); transition: color var(--motion-control) var(--ease-standard), border-color var(--motion-control) var(--ease-standard); }
 .flow-rail a[aria-current="step"] { color: var(--text-primary); border-left-color: var(--ink-950); }
@@ -693,6 +752,8 @@ html.js .rise.is-in, html.js .is-in .rise { opacity: 1; transform: none; }
   [data-deck] > [data-deck-item] { position: relative !important; top: auto !important; }
   [data-deck] > [data-deck-item] > * { transform: none !important; filter: none !important; }
   [data-depth-layer] { transform: none !important; }
+  .hero-arch-far { transform: none !important; }
+  .hero-world .hero-world-scene { --dissolve: 0; }
   .hero-panel { transform: perspective(1400px) rotateX(2.5deg) scale(1) !important; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -819,6 +880,19 @@ html.js .rise.is-in, html.js .is-in .rise { opacity: 1; transform: none; }
 }
 .entry-pill-active { background: var(--ink-950); border-color: var(--ink-950); color: var(--ivory); }
 
-/* The viewer capture of the 3D section carries the viewer's own title bar; until the 3D lane delivers a clean capture or the
-   viewer itself, the picture is shown from its lower edge so the bar stays outside the frame. */
-.model3d-viewer-shot { transform: scale(1.12); transform-origin: 50% 100%; }
+/* The 3D section's main view (closing order 26.10. §4): the whole house, large, with its words beside it from 1024 px and under
+   it below; the recording keeps its 16:9 frame, on the viewer's own ground colour so the poster never sits on a different tone. */
+.model3d-main { display: grid; gap: 16px; overflow: hidden; border-radius: 20px; border: 1px solid var(--line-contour); background: var(--surface-raised); box-shadow: var(--shadow-stage); }
+.model3d-main-media { position: relative; aspect-ratio: 16 / 9; background: #eef0f2; }
+.model3d-main-media video { position: absolute; inset: 0; width: 100%; height: 100%; }
+.model3d-main-words { padding: 0 20px 20px; }
+@media (min-width: 1024px) {
+  .model3d-main { grid-template-columns: minmax(0, 1fr) 300px; gap: 0; }
+  .model3d-main-words { padding: 28px 28px 28px 24px; border-left: 1px solid var(--border-hairline); }
+}
+
+/* Motion with a purpose (closing order 26.10. §5): the same short response to a press on every control of the demonstrations,
+   a slight lift on hover, a slight press on tap; nothing moves on its own after a scene has settled. */
+.demo-action:active, .scene-tab:active, .entry-pill:active, .seq-replay:active, [data-story-replay]:active, [data-translation-toggle]:active { transform: translateY(0) scale(0.985); transition-duration: var(--motion-micro); }
+.demo-action, .scene-tab, .entry-pill { transition-property: background-color, border-color, color, transform, box-shadow; }
+@media (hover: hover) { .scene-tab:not(.scene-tab-active):hover { transform: translateY(-1px); } }
