@@ -129,16 +129,16 @@ export const faqGroups: FaqGroup[] = [
         kb: "Q-41",
         q: { en: "Where does my team work the tasks?", es: "¿Dónde trabaja mi equipo las tareas?" },
         a: {
-          en: "In Spanish or English, each person with their own list, signed in as themselves. There is no public address for it yet, so setting that up is part of what we do with you.",
-          es: "En español o en inglés, cada persona con su propia lista y entrando como ella misma. Todavía no hay una dirección pública para eso, así que prepararlo es parte de lo que hacemos contigo.",
+          en: "In their own list, each person signed in as themselves. That list is in preparation; until then your team gets an e-mail alert for each important enquiry.", // COPY_SYNC_1024 X-7
+          es: "En su propia lista, cada persona entrando como ella misma. Esa lista está en preparación; hasta entonces, tu equipo recibe por email el aviso de cada consulta importante.",
         },
       },
       {
         kb: "Q-42",
         q: { en: "Can my team ask the assistant what to do today?", es: "¿Puede mi equipo preguntarle al asistente qué hacer hoy?" },
         a: {
-          en: "Not today. What your team gets is the task list: take a task, close it, and see who took the others.",
-          es: "Hoy no. Lo que recibe tu equipo es la lista de tareas: tomar una tarea, cerrarla y ver quién ha tomado las demás.",
+          en: "Not today. Today your team gets an e-mail alert for each important enquiry. The task list and the assistant that explains the order are in preparation.", // COPY_SYNC_1024 X-6
+          es: "Hoy no. Hoy tu equipo recibe por email el aviso de cada consulta importante. La lista de tareas y el asistente que explica el orden están en preparación.",
         },
       },
       {

@@ -165,7 +165,7 @@ export function TasksView({ locale, className }: { locale: Locale; className?: s
             );
           })}
         </ol>
-        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{es ? "Datos sintéticos. Los demás ven la tarea de Laura como tomada por Elena; solo ella puede cerrarla." : "Synthetic data. The others see Laura's task as taken by Elena; only she can close it."}</p>
+        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{es ? "Datos sintéticos. La tarea de Laura ya no aparece en la lista de los demás; el asistente de la mañana dice que la ha tomado Elena, y solo ella puede cerrarla." : "Synthetic data. Laura's task no longer appears in the others' lists; the morning assistant says Elena took it, and only she can close it."}</p>
       </div>
     </div>
   );

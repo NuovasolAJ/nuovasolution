@@ -292,7 +292,7 @@ export const es: Dictionary = {
         h1: "Más tiempo para tus clientes.",
         lead: "Nuova responde en español a las consultas por WhatsApp y email, guarda lo que pide cada cliente y deja claro el siguiente paso.", // W-2
         ctaDemo: "Ver la demostración", // W-3
-        trialLine: "14 días · Sin tarjeta", // owner 2026-10-06 §2
+        trialLine: "14 días · Sin método de pago", // owner 2026-10-06 §2
         labels: { enquiry: "Consulta por WhatsApp", reply: "Respuesta en español", crm: "Ficha del cliente", next: "Siguiente paso" },
         example: "Ejemplo ilustrativo",
         replay: "Reproducir otra vez",
@@ -312,7 +312,7 @@ export const es: Dictionary = {
       },
       offer: {
         cta: "Probar gratis",
-        line: "14 días · Sin tarjeta",
+        line: "14 días · Sin método de pago",
         stepsTitle: "Así empiezas", // WORKING
         steps: [
           { title: "Crea tu cuenta", line: "Tu nombre, tu email de trabajo, una contraseña." }, // WORKING
@@ -397,7 +397,7 @@ export const es: Dictionary = {
       "14 días, gratis y sin método de pago.",
       "Tu cuenta y tus datos siguen ahí. Las funciones de pago se pausan hasta que elijas un plan. Puedes seguir entrando.",
     ],
-    noPaymentMethod: "Sin tarjeta", // R24 picture 07/10: one wording with the home page's ladder
+    noPaymentMethod: "Sin método de pago", // COPY_SYNC_1024 X-11: one wording everywhere
     compareHeading: "En qué se diferencian los planes",
     compareLead: "Cada paquete incluye todo lo del anterior y añade funciones.", // HANDOVER_1021 C-5
     planColumn: "Plan",

@@ -41,7 +41,8 @@ export function SocialFlow({ locale }: { locale: Locale }) {
               <p className="flex items-center gap-4 text-text-muted" aria-hidden="true"><Heart size={18} /><MessageCircle size={18} /><Send size={18} /></p>
               <p className="mt-3 t-body-s text-ink-950"><span className="font-semibold">{P.account}</span> {l(P.caption)}</p>
               <p className="mt-2 t-caption text-text-muted">{li.price} · {l(li.place)}</p>
-              <ol className="mt-4 space-y-1.5 border-t border-line-hairline pt-3" data-social-states>
+              <p className="mt-4 border-t border-line-hairline pt-3 t-caption font-medium text-text-secondary" data-social-example-caption>{l(P.exampleCaption)}</p>
+              <ol className="mt-1.5 space-y-1.5" data-social-states>
                 <li className="t-caption text-text-secondary" data-social-step="1">{l(P.draftLabel)}</li>
                 <li className="flex items-center gap-1.5 t-caption text-signal-positive" data-social-step="2"><Check size={13} strokeWidth={2.5} aria-hidden="true" />{l(P.approved)}</li>
                 <li className="flex items-center gap-1.5 t-caption text-signal-positive" data-social-step="3"><Check size={13} strokeWidth={2.5} aria-hidden="true" />{l(P.published)}</li>

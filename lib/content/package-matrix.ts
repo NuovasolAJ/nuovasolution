@@ -82,7 +82,7 @@ export const matrix: MatrixPackage[] = [
       // R20 (owner on deb9b66): the availability stands with the line, not only in a hidden proof state.
       { key: "followups", name: { es: "Seguimientos con permiso del cliente", en: "Follow-ups with the customer's permission" }, state: "preparing", note: { es: "En preparación · todavía no contratable", en: "In preparation · not bookable yet" }, flag: "followup.basic" },
       { key: "matching", name: { es: "Propuestas de inmuebles de tu cartera", en: "Property suggestions from your portfolio" }, state: "preparing", note: { es: "En preparación · todavía no contratable", en: "In preparation · not bookable yet" }, flag: "property.matching" },
-      { key: "daily", name: { es: "La lista de la mañana: qué va primero y por qué", en: "The morning list: what comes first and why" }, state: "partial", note: { es: "Disponible: ver, tomar y completar tareas · En preparación: el correo de la mañana", en: "Available: see, take and complete tasks · In preparation: the morning e-mail" } }, // HANDOVER_1021 C.3
+      { key: "daily", name: { es: "Tareas del equipo y el asistente de la mañana", en: "Team tasks and the morning assistant" }, state: "preparing", note: { es: "En preparación · todavía no contratable", en: "In preparation · not bookable yet" } }, // COPY_SYNC_1024 X-4 (the staff surface reaches production with Release U)
       { key: "ads", name: { es: "Recogida de leads de tus anuncios actuales", en: "Intake of leads from your existing ads" }, state: "preparing", note: { es: "En preparación · todavía no contratable", en: "In preparation · not bookable yet" }, flag: "lead.engine.orchestrate" }, // HANDOVER_1021 C.3 (owner: ads after the launch)
       { key: "calendar", name: { es: "Agenda y citas", en: "Calendar and appointments" }, state: "preparing", note: { es: "En preparación · todavía no contratable", en: "In preparation · not bookable yet" } },
       { key: "reportsAdv", name: { es: "Informe con evolución y canales", en: "Report with trend and channels" }, state: "preparing", note: { es: "En preparación · todavía no contratable", en: "In preparation · not bookable yet" }, flag: "reporting.advanced" },
@@ -96,7 +96,7 @@ export const matrix: MatrixPackage[] = [
     line: { es: "Captar y presentar en 3D.", en: "Attract and present in 3D." },
     who: { es: "Para varias oficinas", en: "For several offices" }, // HANDOVER_1021 C-3
     change: { es: "Modelos 3D por encargo, y más adelante Instagram desde el mismo sitio.", en: "3D models to order, and later Instagram from the same place." }, // HANDOVER_1021 C-9
-    limits: { es: "Instagram depende de la aprobación de la plataforma; cada modelo 3D se hace por encargo a partir de tus planos.", en: "Instagram depends on the platform's approval; each 3D model is made to order from your plans." },
+    limits: { es: "Hoy es una oferta por encargo: los modelos 3D se hacen ya a partir de tus planos; Instagram depende de la aprobación de la plataforma.", en: "Today it is an offer on request: the 3D models are made now from your plans; Instagram depends on the platform's approval." }, // Reviewer R24 picture 07: the card says plainly what it is
     plus: { es: "Todo lo de Growth, y además:", en: "Everything in Growth, plus:" },
     lines: [
       { key: "social", name: { es: "Instagram desde el mismo sitio", en: "Instagram from the same place" }, state: "preparing", note: { es: "En preparación · depende de la aprobación de la plataforma", en: "In preparation · depends on the platform's approval" } },
@@ -131,7 +131,7 @@ export const matrixWords = {
   crmNote: { es: "Tus leads viven en el CRM incluido. Si ya usas HubSpot, Pipedrive, Zoho o Salesforce, lo preparamos contigo cuando esté listo.", en: "Your leads live in the included CRM. If you already use HubSpot, Pipedrive, Zoho or Salesforce, we prepare it with you when it is ready." },
   crmNoteProof: { es: "HubSpot, Pipedrive, Zoho y Salesforce están certificados en nuestro entorno de pruebas; en producción no hay ninguna conexión.", en: "HubSpot, Pipedrive, Zoho and Salesforce are certified in our test environment; in production there is no connection." },
   noPrice: { es: "Sin precios en esta página. Te decimos el precio para tu agencia antes de acordar nada.", en: "No prices on this page. We tell you the price for your agency before anything is agreed." },
-  trial: { es: "14 días · Sin tarjeta", en: "14 days · No card" },
+  trial: { es: "14 días · Sin método de pago", en: "14 days · No payment method" },
 };
 
 /** The catalogue's monthly processing limit per plan, for the honest "per month" line. */

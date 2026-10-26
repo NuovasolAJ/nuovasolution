@@ -88,7 +88,7 @@ export const homeWords = {
     /** The questions answered here, by their row in Copy's FAQ (lib/content/faq.ts). Q-21 is replaced by step 2 above. */
     questions: ["Q-11", "Q-13", "Q-14", "Q-12", "Q-32", "Q-33", "Q-16"],
     allQuestions: { es: "Todas las preguntas", en: "All the questions" },
-    ctaLine: { es: "14 días gratis · Sin tarjeta · Sin llamada comercial", en: "14 days free · No card · No sales call" },
+    ctaLine: { es: "14 días gratis · Sin método de pago · Sin llamada comercial", en: "14 days free · No payment method · No sales call" },
   },
 } satisfies Record<string, Record<string, unknown>>;
 

@@ -238,9 +238,9 @@ export const enquiries: Enquiry[] = [
 export const heroWords = {
   h1Soft: { es: "Mientras enseñas una vivienda,", en: "While you show a home," },
   h1: { es: "Nuova atiende tus consultas.", en: "Nuova answers your enquiries." },
-  lead: { es: "Responde a lo que llega por WhatsApp y email con los datos de tu cartera, guarda lo que busca cada cliente y avisa a tu equipo cuando una consulta importa.", en: "Answers what arrives on WhatsApp and email with your portfolio's data, keeps what each customer is looking for and alerts your team when an enquiry matters." },
+  lead: { es: "Responde a lo que llega por WhatsApp y email, guarda lo que busca cada cliente y avisa por email a tu equipo cuando una consulta importa.", en: "Answers what arrives on WhatsApp and email, keeps what each customer is looking for and alerts your team by e-mail when an enquiry matters." }, // COPY_SYNC_1024 Q-1 fallback (no answer from API by the final build)
   ctaStory: { es: "Ver cómo funciona", en: "See how it works" },
-  trialLine: { es: "14 días gratis · Sin tarjeta", en: "14 days free · No card" },
+  trialLine: { es: "14 días gratis · Sin método de pago", en: "14 days free · No payment method" },
   labels: { enquiry: { es: "Llega por WhatsApp", en: "Arrives on WhatsApp" }, reply: { es: "Nuova responde", en: "Nuova replies" }, done: { es: "Su ficha, ya al día", en: "Her record, already up to date" } },
   /** R24 (owner 24.10.): the customer record instead of three general checks. What stands on Laura's record at 11:21, and the alert. */
   record: {
@@ -274,7 +274,7 @@ export const heroWords = {
   /** The situation, as one line inside the panel. */
   situationLine: { es: "Martes 11:20 · Marcos está en una visita hasta las 12:00 · Nuova atiende lo que llega", en: "Tuesday 11:20 · Marcos is at a viewing until 12:00 · Nuova handles what arrives" },
   /** The limit, with the claim (R19 §7): what runs today, said inside the product. Copy checks the wording (C1). */
-  stateToday: { es: "Hoy respondemos en español. En otro idioma no se envía nada automáticamente.", en: "Today we answer in Spanish. In another language nothing is sent automatically." }, // WEBSITE_COPY_HANDOVER_1021 §E
+  stateToday: { es: "Hoy respondemos en español. En otro idioma no se envía nada automáticamente. Respuestas con datos del inmueble: en preparación.", en: "Today we answer in Spanish. In another language nothing is sent automatically. Replies with the listing's data: in preparation." }, // WEBSITE_COPY_HANDOVER_1021 §E + COPY_SYNC_1024 Q-1 fallback
   surfaceLabel: { es: "Ejemplo: una consulta por WhatsApp, la respuesta con los datos del inmueble, lo que queda guardado y el aviso al equipo", en: "Example: a WhatsApp enquiry, the reply with the listing's data, what is saved and the alert to the team" },
 };
 
@@ -310,7 +310,7 @@ export const chapters: Chapter[] = [
     title: { es: "El cliente recibe una respuesta concreta, y lo que pide queda en su ficha.", en: "The customer gets a concrete reply, and what they ask for goes on their record." }, // COPY_1019 R-4
     line: { es: "Zona, presupuesto, uso y plazo quedan claros desde la primera respuesta. Nada se compromete: ni precio, ni fecha, ni disponibilidad.", en: "Area, budget, use and timing are clear from the first reply. Nothing is committed: no price, no date, no availability." }, // COPY_1019 R-5: the customer-code sentence removed (not present in production)
     inbound: { es: "Una pregunta por WhatsApp, un email en alemán, un formulario, una llamada.", en: "A WhatsApp question, a German email, a web form, a call." },
-    did: { es: "Responde en español con los datos de tu cartera y guarda lo que pide cada cliente; en otro idioma no envía nada.", en: "Replies in Spanish with your portfolio's data and keeps what each customer asks for; in another language it sends nothing." }, // COPY_SYNC_1023 W-9
+    did: { es: "Responde en español y guarda lo que pide cada cliente; en otro idioma no envía nada.", en: "Replies in Spanish and keeps what each customer asks for; in another language it sends nothing." }, // COPY_SYNC_1023 W-9; COPY_SYNC_1024 Q-1 fallback
     result: { es: "Una ficha al día por consulta y, donde hace falta, una tarea con fecha.", en: "An up-to-date record per enquiry and, where needed, a dated task." }, // HANDOVER_1021 A-5
     state: { es: "Disponible hoy: respuestas en español por WhatsApp y email, y la ficha. En otro idioma no se envía nada automáticamente.", en: "Available today: replies in Spanish on WhatsApp and e-mail, and the record. In another language nothing is sent automatically." }, // HANDOVER_1021 A-3
   },
@@ -328,11 +328,11 @@ export const chapters: Chapter[] = [
     key: "task",
     eyebrow: { es: "El aviso y la mañana siguiente", en: "The alert and the next morning" },
     title: { es: "Cuando una consulta importa, tu equipo recibe un aviso por email. A la mañana siguiente sabe qué va primero y por qué.", en: "When an enquiry matters, your team gets an e-mail alert. The next morning it knows what comes first and why." }, // COPY_1019 R-7
-    line: { es: "El aviso llega por email a la persona que toca, con el motivo, todavía sin horario de oficina. El asistente de la mañana ordena el día: la consulta importante, por qué, y el siguiente paso. Elena la toma, propone la hora a Laura y la cierra: tres pasos, cada uno visible.", en: "The alert reaches the right person by email, with the reason. The morning assistant orders the day: the important enquiry, why, and the next step. Elena takes it, proposes the time to Laura and closes it: three steps, each one visible." },
+    line: { es: "El aviso llega por email a la persona que toca, con el motivo, todavía sin horario de oficina. El asistente de la mañana ordena el día: la consulta importante, por qué, y el siguiente paso. Elena la toma, propone la hora a Laura y la cierra: tres pasos, cada uno visible.", en: "The alert reaches the right person by e-mail, with the reason, without office hours yet. The morning assistant orders the day: the important enquiry, why, and the next step. Elena takes it, proposes the time to Laura and closes it: three steps, each one visible." }, // COPY_SYNC_1024 X-12
     inbound: { es: "La consulta de Laura, con inmueble, zona y presupuesto concretos.", en: "Laura's enquiry, with a property, an area and a budget named." },
     did: { es: "Avisa a Elena por email y, a la mañana siguiente, le dice qué va primero y por qué.", en: "Alerts Elena by e-mail and, the next morning, tells her what comes first and why." }, // HANDOVER_1021 A-15
     result: { es: "Elena propone el jueves a las 10:00; Laura acepta; queda en la ficha.", en: "Elena proposes Thursday at 10:00; Laura accepts; it goes on the record." },
-    state: { es: "Disponible hoy: el aviso por email y la tarea (tomar, cerrar). El aviso llega cuando entra la consulta, todavía sin horario de oficina. En pruebas: el asistente que explica el orden.", en: "Available today: the alert by e-mail and the task (take, close). The alert arrives when the enquiry does, without office hours yet. In testing: the assistant that explains the order." }, // COPY_1019 R-8
+    state: { es: "Disponible hoy: el aviso por email. El aviso llega cuando entra la consulta, todavía sin horario de oficina. En preparación: la lista de tareas para tomarlas y cerrarlas, y el asistente que explica el orden.", en: "Available today: the alert by e-mail. The alert arrives when the enquiry does, without office hours yet. In preparation: the task list to take and close tasks, and the assistant that explains the order." }, // COPY_SYNC_1024 X-3 (Copy's correction of R-8: the staff surface reaches production with Release U)
   },
   {
     key: "followup",
@@ -453,8 +453,8 @@ export const storyWords = {
         { who: "Sofía Lamas", what: "Long-term rental in Fuengirola", why: "No date; from January", next: "Send what is available to rent" },
       ],
     },
-    listTitle: { es: "Tareas", en: "Tasks" },
-    listSubtitle: { es: "Tu equipo · miércoles por la mañana", en: "Your team · Wednesday morning" },
+    listTitle: { es: "Las tareas de tu equipo", en: "Your team's tasks" }, // COPY_SYNC_1024 X-8
+    listSubtitle: { es: "Esta semana", en: "This week" },
     take: { es: "Tomar", en: "Take" },
     taken: { es: "Tomada por Elena", en: "Taken by Elena" },
     confirm: { es: "Proponer la hora a Laura", en: "Propose the time to Laura" },
@@ -464,7 +464,7 @@ export const storyWords = {
     doneLine: { es: "Laura acepta: jueves a las 10:00. Queda en la ficha y en la lista de Elena.", en: "Laura accepts: Thursday at 10:00. It is on the record and on Elena's list." },
     open: { es: "Abierta · nadie la ha tomado", en: "Open · nobody has taken it" },
     again: { es: "Volver a empezar", en: "Start again" },
-    othersSee: { es: "Los demás ven que está tomada y por quién.", en: "The others see that it is taken and by whom." },
+    othersSee: { es: "En la lista de los demás ya no aparece; el asistente de la mañana dice quién la ha tomado.", en: "It no longer appears in the others' lists; the morning assistant says who took it." }, // COPY_SYNC_1024 X-10 (Q-4 proposal until Daily confirms)
     chatConfirm: "Hola, Laura, soy Elena, de la agencia. ¿Te viene bien el jueves a las 10:00 para ver el piso de Estepona? Te paso la dirección y mi número.",
     chatConfirmTranslated: { es: "Hola, Laura, soy Elena, de la agencia. ¿Te viene bien el jueves a las 10:00 para ver el piso de Estepona? Te paso la dirección y mi número.", en: "Hi Laura, it's Elena from the agency. Does Thursday at 10:00 work for you to see the flat in Estepona? I'll send you the address and my number." },
   },
@@ -518,6 +518,7 @@ export const storyWords = {
     post: {
       account: "@tu_agencia",
       caption: { es: "Dos dormitorios, terraza al sur y garaje en la zona del puerto de Estepona. 78 m², a dos calles del paseo. ¿Quieres verlo? Escríbenos.", en: "Two bedrooms, a south-facing terrace and a garage in Estepona's marina area. 78 m², two streets from the promenade. Want to see it? Write to us." },
+      exampleCaption: { es: "Ejemplo: así funcionará cuando la plataforma lo apruebe.", en: "Example: how it will work once the platform approves it." }, // COPY_SYNC_1024 X-13
       draftLabel: { es: "Borrador preparado por Nuova · miércoles 11:40", en: "Draft prepared by Nuova · Wednesday 11:40" },
       approved: { es: "Aprobada por ti · miércoles 12:10", en: "Approved by you · Wednesday 12:10" },
       published: { es: "Publicada en tu cuenta · jueves 09:00", en: "Published on your account · Thursday 09:00" },

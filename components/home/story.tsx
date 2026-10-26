@@ -177,7 +177,9 @@ export function Story({ locale }: { locale: Locale }) {
           {/* 1 The situation: the viewing on the left, the arrivals on the right */}
           <Chapter id="story-a" locale={locale} data={ch1}>
             <Stage back="sand" front={<span className="float-chip"><span aria-hidden="true" className="h-2 w-2 rounded-pill bg-[color:var(--signal-attention)]" />{l(W.situation.desk)}</span>}>
-              <div className="grid gap-5 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-7" data-stage="situation">
+              {/* Reviewer R24 (picture 03, 1024 px): where the chapter splits into two columns (xl) the stage is narrow, so the picture and the
+                  arrivals stack there and stand side by side again from 1280 px */}
+              <div className="grid gap-5 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-7 xl:grid-cols-1 2xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]" data-stage="situation">
                 <div className="min-w-0 overflow-hidden rounded-lg border border-ink-100 bg-white">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={listings.est118.photo} alt={l(listings.est118.photoAlt)} width={800} height={533} loading="eager" decoding="async" className="aspect-[3/2] w-full bg-[#ece9e2] object-cover" />
@@ -227,7 +229,7 @@ export function Story({ locale }: { locale: Locale }) {
                 </div>
                 <div id={panelId} role="tabpanel" className="relative mt-6">
                   <AnimatePresence mode="popLayout" initial={false}>
-                    <m.div key={channel} initial={{ opacity: 0.4, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, position: "absolute", inset: 0, transition: { duration: 0 } }} transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }} className="grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-8" data-channel-view={channel}>
+                    <m.div key={channel} initial={{ opacity: 0.4, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, position: "absolute", inset: 0, transition: { duration: 0 } }} transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }} className="grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-8 xl:grid-cols-1 2xl:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]" data-channel-view={channel}>
                       <div className="min-w-0">
                         <div className="flex items-center gap-3 border-b border-ink-100 pb-4">
                           <ChannelIcon channel={channel} on={channel === "whatsapp"} size={14} />
@@ -398,7 +400,7 @@ export function Story({ locale }: { locale: Locale }) {
           {/* 5 The follow-up: the new listing, the three conditions, the email with its one demo action */}
           <Chapter id="story-e" locale={locale} data={ch5}>
             <Stage back="sand" front={<span className="float-chip"><Mail size={14} aria-hidden="true" />{laura.who}</span>}>
-              <div className="grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-8" data-stage="followup">
+              <div className="grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-8 xl:grid-cols-1 2xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]" data-stage="followup">
                 <div className="min-w-0">
                   <p className="t-caption font-medium text-text-muted">{l(W.followup.trigger)}</p>
                   <div className="mt-3"><ListingCard listing={listings.est240} locale={locale} photoLabel={l(W.common.photo)} note={l(W.followup.matches)} /></div>

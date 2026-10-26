@@ -69,7 +69,7 @@ export default async function PackagesPage({ params }: { params: { locale: strin
               <SectionHead title={pk.compareHeading} lead={pk.compareLead} size="m" id="pk-plans" />
             </Reveal>
             {/* R24 picture 10: each card as tall as its content (no empty Enterprise card), the trial mark inside the card instead of a
-                sticker over its edge, in the home ladder's words (14 días gratis · Sin tarjeta) */}
+                sticker over its edge, in the home ladder's words (14 días gratis · Sin método de pago, COPY_SYNC_1024 X-11) */}
             <ol className="mt-12 grid gap-6 lg:grid-cols-3 lg:items-start" data-plan-cards>
               {catalogPlans.map((plan, i) => {
                 const essential = plan.code === "essential";

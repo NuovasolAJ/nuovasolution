@@ -58,6 +58,7 @@ export default function ProductPage({ params }: { params: { locale: string; slug
               {/* R24 picture 09 (1): the module headline one step smaller than the home page's; the lead, then for whom and what it saves (3) */}
               <Display size="l" as="h1" id="pd-h1" className="max-w-[22ch]">{c.h1[locale]}</Display>
               <Lead className="mt-5">{c.lead[locale]}</Lead>
+              {c.stateLine && <p className="state-line mt-4" data-state="preparing" data-product-state>{c.stateLine[locale]}</p>}
               {c.why && (
                 <ul className="mt-5 space-y-2 measure-lead" data-product-why>
                   {c.why.map((w, i) => (

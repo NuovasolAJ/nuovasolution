@@ -57,6 +57,8 @@ export interface Capability {
   note?: L;
   /** R24 (owner 24.10.: an understandable benefit on every page): for whom, and what it saves, in the proven present tense only. */
   why?: L[];
+  /** The page's own state line where the capability is not in production yet (COPY_SYNC_1024 X-8). */
+  stateLine?: L;
   video?: string;
   related: string[];
 }
@@ -69,21 +71,18 @@ export const capabilities: Capability[] = [
     status: "live",
     name: { en: "AI Sales Agent", es: "AI Sales Agent" },
     navLine: { en: "Answers text enquiries, day or night", es: "Responde consultas de texto, de día o de noche" }, // C3 §1.3
-    h1: { en: "Your text enquiries are answered on the channels you connect.", es: "Tus consultas de texto se responden en los canales que conectes." }, // LAUNCH_COPY_v1 §6.1
+    // COPY_SYNC_1024 X-14 (R24 picture 09): the benefit, for whom and what it saves, in the headline, the lead and the four points; e-mail with the
+    // mailbox limit instead of "Gmail" alone; Outlook not named before O4 and production
+    h1: { en: "Your enquiries get a reply even while you are at a viewing.", es: "Tus consultas reciben respuesta aunque estés en una visita." },
     lead: {
-      en: "Text enquiries on Gmail and WhatsApp are answered and carried forward on the same channel, without anyone in the office having to be free at that moment.",
-      es: "Las consultas de texto por Gmail y WhatsApp se responden y se llevan hacia adelante por el mismo canal, sin que nadie de la oficina tenga que estar libre en ese momento.",
+      en: "While your team is with a client or out of the office, enquiries on WhatsApp and e-mail get a reply in Spanish and land on their record. Your team starts with what matters, not with the inbox.",
+      es: "Mientras tu equipo está con un cliente o fuera de la oficina, las consultas por WhatsApp y email reciben respuesta en español y quedan en su ficha. Tu equipo empieza por lo que importa, no por la bandeja de entrada.",
     },
-    // R24 picture 09 (3): the benefit, for whom and what it saves (proven behaviour only: the reply while nobody is free, the record, the alert by e-mail)
-    why: [
-      { en: "For agencies whose enquiries arrive while everybody is at a viewing: the customer gets a concrete reply in Spanish at once, not in the evening.", es: "Para agencias cuyas consultas llegan mientras todos están en una visita: el cliente recibe una respuesta concreta en español al momento, no por la noche." },
-      { en: "What the customer asked for is on their record without anybody typing it over.", es: "Lo que pide el cliente queda en su ficha sin que nadie lo pase a mano." },
-      { en: "When an enquiry names a property, an area and a budget, the right person on your team gets an e-mail with the reason.", es: "Cuando una consulta nombra inmueble, zona y presupuesto, la persona adecuada de tu equipo recibe un email con el motivo." },
-    ],
     points: [
-      { text: { en: "Gmail text intake and reply.", es: "Recepción y respuesta de texto por Gmail." }, status: "live" },
-      { text: { en: "WhatsApp text intake and reply.", es: "Recepción y respuesta de texto por WhatsApp." }, status: "live" },
-      { text: { en: "Each conversation is recorded against the customer.", es: "Cada conversación queda registrada en la ficha del cliente." }, status: "live" }, // WCR-053
+      { text: { en: "A reply on WhatsApp, in Spanish.", es: "Respuesta por WhatsApp, en español." }, status: "live" },
+      { text: { en: "A reply by e-mail, in a mailbox we operate for you.", es: "Respuesta por email, en un buzón que operamos para ti." }, status: "live" },
+      { text: { en: "Every conversation stays on the customer's record.", es: "Cada conversación queda en la ficha del cliente." }, status: "live" }, // WCR-053
+      { text: { en: "An e-mail alert to the right person when an enquiry matters.", es: "Un aviso por email a la persona adecuada cuando una consulta importa." }, status: "live" }, // COPY_1019 R-16 (H1)
       { text: { en: "Email attachments.", es: "Adjuntos de email." }, status: "in_implementation" },
       { text: { en: "WhatsApp media understanding.", es: "Comprensión de archivos de WhatsApp." }, status: "in_implementation" },
       // Outlook and Microsoft 365: no line (TEXTS_1013 §6b M-3: no credential, no entry point). Copy's FAQ answers the question.
@@ -228,25 +227,28 @@ export const capabilities: Capability[] = [
       en: "Every viewing request and every callback becomes a task with the customer, the property and the time they asked for.",
       es: "Cada petición de visita y cada llamada pendiente pasa a ser una tarea con el cliente, el inmueble y la hora que ha pedido.",
     },
+    // COPY_SYNC_1024 X-8: the page carries its state (the staff surface reaches production with Release U, Copy's X-3)
+    stateLine: { en: "In preparation · not bookable yet", es: "En preparación · todavía no contratable" },
     why: [
-      { en: "For teams where somebody asked for a viewing and nobody knows who calls back: every request has an owner, and the others see who.", es: "Para equipos donde alguien pidió una visita y nadie sabe quién devuelve la llamada: cada petición tiene dueño, y los demás ven quién." },
+      { en: "For teams where somebody asked for a viewing and nobody knows who calls back: every request has an owner.", es: "Para equipos donde alguien pidió una visita y nadie sabe quién devuelve la llamada: cada petición tiene dueño." },
       { en: "The customer, the property and the time they asked for are on the task; nothing stays in somebody's head.", es: "El cliente, el inmueble y la hora que pidió están en la tarea; nada se queda en la cabeza de nadie." },
     ],
     points: [
-      // R24 (Q-4, picture 03/11): one sentence everywhere. Daily's read model (DAILY_TEAM_TODAY_READ_MODEL_1012 §2 `claimed_by`, §3: the team
-      // scope "returns the tenant's open work including requests a colleague has claimed") — the others see it as taken, and by whom.
-      { text: { en: "Whoever takes a task owns it. The others see it as taken, and by whom, so nobody takes it twice.", es: "Quien toma una tarea se hace cargo de ella. Los demás la ven como tomada, y por quién, así que nadie la toma dos veces." }, status: "live" },
+      // COPY_SYNC_1024 X-9 (Q-4, pictures 03/11): one sentence for both surfaces (the list rule measured 02.10., the staff-v7 assistant naming who took it);
+      // Copy's proposal until Daily confirms or corrects it. Daily's read model (DAILY_TEAM_TODAY_READ_MODEL_1012 §3) also returns claimed requests in the
+      // team scope; that is for Daily to settle.
+      { text: { en: "Whoever takes a task owns it: it leaves the others' lists, and the morning assistant says who took it.", es: "Quien toma una tarea se hace cargo de ella: desaparece de las listas de los demás, y el asistente de la mañana dice quién la ha tomado." }, status: "live" },
       { text: { en: "One tap takes it, one tap completes it.", es: "Un toque la toma, un toque la completa." }, status: "live" },
       { text: { en: "Nobody can take the same task twice, and only the person who took it can close it.", es: "Nadie puede tomar la misma tarea dos veces, y solo quien la tomó puede cerrarla." }, status: "live" },
-      { text: { en: "In Spanish or in English, chosen in the app.", es: "En español o en inglés, elegido en la aplicación." }, status: "live" },
+      // X-8: the app-language line is out until API's SPRACH-MATRIX and the owner's SPRACHEN line
       { text: { en: "Daily Goals for each agent.", es: "Daily Goals para cada agente." }, status: "final_acceptance" },
       { text: { en: "An assistant that answers questions about your own leads, viewings and priorities.", es: "Una asistente que responde preguntas sobre tus propios leads, visitas y prioridades." }, status: "final_acceptance" },
       { text: { en: "Branded email, so what the assistant sends goes out under your agency's brand.", es: "Email con tu marca, para que lo que envíe la asistente salga con la marca de tu agencia." }, status: "final_acceptance" },
       { text: { en: "An employee assistant for internal tasks.", es: "Una asistente para los empleados y sus tareas internas." }, status: "in_implementation" },
     ],
     scenario: {
-      en: "An agent opens the list, takes Laura Serrano's viewing task, and completes it once a person has agreed the time with her. The others see it as taken by her until it is done.",
-      es: "Un agente abre la lista, toma la tarea de la visita de Laura Serrano y la completa cuando una persona ha acordado la hora con ella. Los demás la ven como tomada por ella hasta que está hecha.",
+      en: "An agent opens the list, takes Laura Serrano's viewing task, and completes it once a person has agreed the time with her. It leaves the others' lists, and the morning assistant says who took it.",
+      es: "Un agente abre la lista, toma la tarea de la visita de Laura Serrano y la completa cuando una persona ha acordado la hora con ella. Desaparece de las listas de los demás, y el asistente de la mañana dice quién la ha tomado.",
     },
     fits: [
       { en: "Desktop and mobile", es: "Escritorio y móvil" },

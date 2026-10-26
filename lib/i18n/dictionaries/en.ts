@@ -323,7 +323,7 @@ export const en = {
         h1: "More time for your clients.", // W-1
         lead: "Nuova replies in Spanish to enquiries on WhatsApp and email, records what each client asks for and makes the next step clear.", // W-2
         ctaDemo: "See the demonstration", // W-3
-        trialLine: "14 days · No card", // owner 2026-10-06 §2, matches the real flow (no payment method, no card)
+        trialLine: "14 days · No payment method", // owner 2026-10-06 §2, matches the real flow (no payment method, no card)
         labels: { enquiry: "WhatsApp enquiry", reply: "Reply in Spanish", crm: "Customer record", next: "Next step" }, // COPY_HERO_1003 §2, W-4
         example: "Illustrative example",
         replay: "Play again",
@@ -344,7 +344,7 @@ export const en = {
       // The trial, offered again after the demonstrations: the real steps, in their real order (owner 2026-10-06 §2).
       offer: {
         cta: "Try free",
-        line: "14 days · No card",
+        line: "14 days · No payment method",
         stepsTitle: "How you start", // WORKING
         steps: [
           { title: "Create your account", line: "Your name, your work email, a password." }, // WORKING
@@ -434,7 +434,7 @@ export const en = {
     ],
     // Pricing comparison (owner order 2026-09-29): what differs is shown once per plan, what is shared is said once.
     // Interim implementer wording until COPY_DELTAS_0929; amounts and the period come from PRICING_AUTHORITY (O-7).
-    noPaymentMethod: "No card", // R24 picture 07/10: one wording with the home page's ladder
+    noPaymentMethod: "No payment method", // COPY_SYNC_1024 X-11: one wording everywhere
     compareHeading: "What differs between the plans",
     compareLead: "Each package includes everything in the one before and adds features.", // final order 2026-10-12 §9: staged functions, not the same parts
     planColumn: "Plan",

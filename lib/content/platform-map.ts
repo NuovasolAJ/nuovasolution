@@ -55,7 +55,7 @@ export const platformTasks: PlatformTask[] = [
       { key: "email", name: { es: "Email", en: "Email" }, line: { es: "La misma respuesta para lo que llega por correo, a un buzón que operamos para ti.", en: "The same reply for what arrives by e-mail, to a mailbox we operate for you." } /* COPY_1019 R-13 */, state: "available", slug: "ai-sales-agent", anchor: "#story-b" },
       { key: "webform", name: { es: "Formularios web", en: "Web forms" }, line: { es: "Lo que entra por tu web se trata como una consulta más.", en: "What comes in through your website is treated as an enquiry." }, state: "preparing", anchor: "#story-b" },
       { key: "phone", name: { es: "Asistente telefónico", en: "Phone assistant" }, line: { es: "Una llamada que no se pierde: lo que pide, anotado, y una tarea.", en: "A call that is not lost: what they want, noted, and a task." }, state: "preparing", anchor: "#story-b" },
-      { key: "handover", name: { es: "Paso a una persona", en: "Handover to a person" }, line: { es: "Cuando alguien pide hablar con una persona, la consulta pasa al equipo.", en: "When somebody asks for a person, the enquiry goes to the team." }, state: "available", slug: "ai-sales-agent", anchor: "#story-d" },
+      { key: "handover", name: { es: "Paso a una persona", en: "Handover to a person" }, line: { es: "Cuando alguien pide hablar con una persona, la consulta pasa al equipo.", en: "When somebody asks for a person, the enquiry goes to the team." }, state: "preparing" /* COPY_SYNC_1024 Q-2 fallback (no answer from API/Lead by the final build) */, slug: "ai-sales-agent", anchor: "#story-d" },
     ],
   },
   {
@@ -79,9 +79,9 @@ export const platformTasks: PlatformTask[] = [
     href: "/platform#team",
     line: { es: "Quién hace qué hoy, y qué ya está hecho.", en: "Who does what today, and what is already done." },
     entries: [
-      // R24 picture 08 (1): the same state as the package line "La lista de la mañana" (package-matrix.ts): the list is available, the morning e-mail in preparation.
-      { key: "daily", name: { es: "La lista de la mañana", en: "The morning list" }, line: { es: "Qué va primero, por qué, y el siguiente paso; cada tarea se toma y se completa.", en: "What comes first, why, and the next step; every task is taken and completed." } /* COPY_1019 R-17 */, state: "partial", stateLine: { es: "Disponible: ver, tomar y completar tareas · En preparación: el correo de la mañana", en: "Available: see, take and complete tasks · In preparation: the morning e-mail" }, slug: "daily-assistant", anchor: "#story-d" },
-      { key: "tasks", name: { es: "Tareas", en: "Tasks" }, line: { es: "Una tarea con dueño por cada visita o llamada pendiente.", en: "One owned task for every viewing or callback." }, state: "available", slug: "daily-assistant", anchor: "#story-d" },
+      // COPY_SYNC_1024 X-5 (R24 picture 08): two functions with two names and one state each; the staff surface reaches production with Release U (Copy's X-3)
+      { key: "daily", name: { es: "El asistente de la mañana", en: "The morning assistant" }, line: { es: "Cada mañana te explica qué va primero, por qué, y el siguiente paso.", en: "Every morning it explains what comes first, why, and the next step." }, state: "preparing", slug: "daily-assistant", anchor: "#story-d" },
+      { key: "tasks", name: { es: "Tareas", en: "Tasks" }, line: { es: "Una tarea con dueño por cada visita o llamada pendiente.", en: "One task with an owner for each viewing or callback." }, state: "preparing", slug: "daily-assistant", anchor: "#story-d" },
       { key: "calendar", name: { es: "Calendario", en: "Calendar" }, line: { es: "Las visitas confirmadas, en la agenda de la persona que las hace.", en: "Confirmed viewings in the diary of the person who does them." }, state: "preparing", anchor: "#story-d" },
       { key: "reports", name: { es: "Informes", en: "Reports" }, line: { es: "El informe completo en tu acceso de agencia. El resumen semanal por email está en preparación. Lo que llega al cliente aún no se mide.", en: "The full report in your agency login. The weekly e-mail summary is being prepared. What reaches the customer is not measured yet." }, state: "available" /* COPY_1019 R-18 (login) */, anchor: "#story-f" },
     ],
