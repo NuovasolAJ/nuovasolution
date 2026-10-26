@@ -102,6 +102,22 @@ lane truth sheets, this repository); **Needed** is the signal that closes the ro
 | X-5 | 3D: no design variant as a furniture comparison; the viewer capture without its title bar; the slots prepared | **built**; the rotation and the pair are **missing** | `3D_ASSETS_REQUEST_1017.md` A-1, A-2 | 3D |
 | X-6 | Platform, packages, reporting and FAQ aligned: the phone out of the packages, "Capacidad: consultas al mes", limits with the claim, the setup answer | **built** | Copy's confirmation; the owner on prices | Copy, Owner |
 
+## F9. R24 FINAL (on 9f6c65e; build 596679b; the owner's 18 pictures and the audit's findings per picture)
+
+| # | Point | State | Needed | Lane |
+|---|---|---|---|---|
+| U-1 | The owner's pictures 01–05, 07–13 with the audit's findings, one table row each (`WEBSITE_R24_RETURN_v1.md` §1) | **built** on `596679b`; the crops named as crops with the same cut in the evidence | the joint reading of Copy and the Reviewer on this build; the owner's look | Copy, Reviewer, Owner |
+| U-2 | The owner's points: hero readable earlier, the customer record, a clean transition, the actual logo, no overlapping labels, a fitting product picture per subpage, the benefit and the way to the trial, the take contradiction and "hülle" | **built** | as U-1 | Copy, Reviewer, Owner |
+| U-3 | The 3D lane's assets (plan to scale, whole house, empty/furnished pair, the recording) with the mandatory marks; no "pending" mark | **built** from `handoff_2026-10-23` (run `run-20261024-132933-house`) | 3D's corrected run after pictures 06, 14–18 (files replaced under the same names); the owner's look | 3D, Owner |
+| U-4 | Availability and language claims | **nothing raised; three lines down on Copy's evidence** (COPY_SYNC_1024 X-3…X-8: the task list and the morning assistant in preparation until Release U; Q-2 fallback: hand-over in preparation; Q-1 fallback: no listing-data claim, "Respuestas con datos del inmueble: en preparación"); the staff-app language line removed (X-8) | PAKETE, KALENDER, SPRACHEN sheets → owner lines; API's, Lead's answers to Q-1/Q-2 | API, Lead, Owner |
+| U-5 | Q-4 (task visibility) | **Copy's X-9/X-10 proposal in the build**: it leaves the others' lists, the morning assistant says who took it (home page, daily page, FAQ per X-6); note to Daily on its read model's team scope in the return §1/03 | Daily's written confirmation to Copy | Daily, Copy |
+| U-10 | Copy's X-1…X-16, Q-1…Q-3 fallbacks (COPY_SYNC_1024) | **built** in `596679b` (`WEBSITE_R24_RETURN_v1.md` §2a) | Copy's reading of the final build | Copy |
+| U-11 | The Reviewer's closing conditions (03: no column collapse at 1024 px; 07: Enterprise an offer on request) | **built** in `596679b` | RV4 on the final build | Reviewer |
+| U-6 | E-FU2 `/es/prueba-objeto` | **unchanged skeleton**; PM's minimum fields not received | PM's fields; the owner's text, picture, address; removal after the test | PM, Owner |
+| U-7 | Weekly report layout | **owner "Layout OK" (25.10.)**, relayed in `WEBSITE_TO_HOSTING_1025_WEEKLY_LAYOUT_OK.md` | H16 test mail; the owner in the real mail client | Hosting, Owner |
+| U-8 | The external website review | **not received** by the website lane (nor by the audit) | the document | Owner |
+| U-9 | Production domain | **not touched**; no production change by the website lane | Copy and Reviewer without an open finding, the owner's phone acceptance, then a separate owner line | Owner, Hosting |
+
 ## F8. R23 (on a76e6e1; build 9f6c65e = 2dd80da + Copy's W-rows)
 
 | # | Point | State | Needed | Lane |
