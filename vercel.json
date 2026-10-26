@@ -1,3 +1,4 @@
 {
-  "ignoreCommand": "node vercel-ignore.js"
+  "ignoreCommand": "node vercel-ignore.js",
+  "regions": ["fra1"]
 }

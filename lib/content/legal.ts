@@ -19,10 +19,31 @@ export interface LegalPage {
   sections: LegalSection[];
 }
 
-const owner = {
-  en: ["Antonio Jesus Diaz Gomez", "Prolongación Hernando de Carabeo, Nerja, Málaga, Spain", "antonio@nuovasolution.com"],
-  es: ["Antonio Jesus Diaz Gomez", "Prolongación Hernando de Carabeo, Nerja, Málaga, España", "antonio@nuovasolution.com"],
+/**
+ * The identity block (LEGAL_PAGES_FINAL_v1 v4, R22; R25C point 8): a natural person trading as NuovaSolution, five fields
+ * from the owner's E14 file. The fields reach the build only as Vercel environment values (NUOVA_E14_NAME, _NIF, _ADDRESS,
+ * _EMAIL, _PHONE) after API's "E14 complete" signal; nothing of them is written here. Until all five are set, the block
+ * carries the lines the previous site has published for months (name, address fragment, e-mail) and the pages keep their
+ * provisional label. With all five set the v4 wording renders and the label can go (NUOVA_LEGAL_E14=complete).
+ */
+const e14 = {
+  name: process.env.NUOVA_E14_NAME?.trim() || null,
+  nif: process.env.NUOVA_E14_NIF?.trim() || null,
+  address: process.env.NUOVA_E14_ADDRESS?.trim() || null,
+  email: process.env.NUOVA_E14_EMAIL?.trim() || null,
+  phone: process.env.NUOVA_E14_PHONE?.trim() || null,
 };
+export const e14Complete = Boolean(e14.name && e14.nif && e14.address && e14.email && e14.phone) && process.env.NUOVA_LEGAL_E14 === "complete";
+const mail = e14Complete ? (e14.email as string) : "antonio@nuovasolution.com";
+const owner = e14Complete
+  ? {
+      en: [`${e14.name}, a natural person, trading as NuovaSolution.`, `Tax number (NIF): ${e14.nif}. Address: ${e14.address}. E-mail: ${e14.email}. Telephone: ${e14.phone}.`],
+      es: [`${e14.name}, persona física, que opera con el nombre comercial NuovaSolution.`, `NIF: ${e14.nif}. Dirección: ${e14.address}. Email: ${e14.email}. Teléfono: ${e14.phone}.`],
+    }
+  : {
+      en: ["Antonio Jesus Diaz Gomez", "Prolongación Hernando de Carabeo, Nerja, Málaga, Spain", "antonio@nuovasolution.com"],
+      es: ["Antonio Jesus Diaz Gomez", "Prolongación Hernando de Carabeo, Nerja, Málaga, España", "antonio@nuovasolution.com"],
+    };
 
 const pages: Record<Locale, Record<LegalSlug, LegalPage>> = {
   en: {
@@ -63,16 +84,18 @@ const pages: Record<Locale, Record<LegalSlug, LegalPage>> = {
       ],
     },
     "data-deletion": {
-      title: "Your data, and how to ask about it",
-      updated: "2026-09-21",
+      title: "How to ask us to delete your data",
+      updated: "2026-10-23",
       sections: [
-        { heading: "Who to write to", paragraphs: ["Write to antonio@nuovasolution.com from the address you used with us. Say what you are asking for: a copy of your data, a correction, or deletion."] },
-        { heading: "If you dealt with an agency", paragraphs: ["If you contacted an estate agency that uses Nuova, that agency decides about your data. We pass your request to them and help them answer it."] },
-        { heading: "Checking it is you", paragraphs: ["We may ask you to confirm the request from the same email address or phone number, so nobody else can ask for your data."] },
-        { heading: "What happens", paragraphs: ["A person handles every request. We confirm receipt, then tell you the outcome, including anything we have to keep by law and why."] },
-        { heading: "Timing", paragraphs: ["We answer within the period the law sets, which is normally one month."] },
-        { heading: "This page", paragraphs: ["This page does not delete anything itself."] },
-        { heading: "Complaint", paragraphs: ["You can also complain to the Spanish data protection authority (AEPD)."] },
+        { heading: "If you wrote to an estate agency", paragraphs: [`That agency decides about your data and we act on its instructions. Write to ${mail} from the e-mail address or phone number you used, and say that you want your data deleted. We pass your request to the agency, help it answer, and tell you the outcome.`] },
+        { heading: "If you are an agency using Nuova", paragraphs: [`Write to ${mail} from your account address, or ask us inside your account. We confirm what will be deleted, what we have to keep by law, and when it is done.`] },
+        { heading: "If your agency connected Instagram", paragraphs: [`Open NuovaSolution, go to Social and choose Disconnect. The access token is deleted immediately and we stop reading and publishing. To have the data already stored deleted as well, which means posts, comments, messages and the leads from this channel, write to ${mail} from the address of your account and name your agency.`] },
+        { heading: "If you commented on or wrote to an agency that uses Nuova on Instagram", paragraphs: [`Write to ${mail} and name the agency and the approximate date of your message. We do not store your Instagram username or your original Instagram identifier, so the agency and the time frame are what let us find your data.`] },
+        { heading: "If you remove the app in Instagram", paragraphs: ["Instagram then notifies us, we delete the stored token and the data of that connection, and we give you a confirmation code. You can ask us about the status of that code at any time."] },
+        { heading: "What we need from you", paragraphs: ["The address or number you used with us, and what you want: a copy of your data, a correction, or deletion. We may ask you to confirm the request from that same address or number, so that nobody else can ask for your data."] },
+        { heading: "What happens then", paragraphs: ["A person handles every request. We confirm that we received it, then tell you the outcome, including anything we must keep by law and why. We answer within the period the law sets, which is normally one month."] },
+        { heading: "What this page does not do", paragraphs: ["This page does not delete anything by itself. It tells you how to ask."] },
+        { heading: "If you are not satisfied", paragraphs: ["You can complain to the Spanish data protection authority, the AEPD."] },
       ],
     },
   },
@@ -114,16 +137,18 @@ const pages: Record<Locale, Record<LegalSlug, LegalPage>> = {
       ],
     },
     "data-deletion": {
-      title: "Tus datos, y cómo preguntar por ellos",
-      updated: "2026-09-21",
+      title: "Cómo pedirnos que eliminemos tus datos",
+      updated: "2026-10-23",
       sections: [
-        { heading: "A quién escribir", paragraphs: ["Escribe a antonio@nuovasolution.com desde la dirección que usaste con nosotros. Indica qué pides: una copia de tus datos, una corrección o la eliminación."] },
-        { heading: "Si contactaste con una agencia", paragraphs: ["Si contactaste con una inmobiliaria que usa Nuova, es esa agencia quien decide sobre tus datos. Le pasamos tu solicitud y le ayudamos a responderla."] },
-        { heading: "Comprobar que eres tú", paragraphs: ["Podemos pedirte que confirmes la solicitud desde el mismo email o teléfono, para que nadie más pueda pedir tus datos."] },
-        { heading: "Qué pasa", paragraphs: ["Una persona gestiona cada solicitud. Confirmamos la recepción y después te comunicamos el resultado, incluido lo que tengamos que conservar por ley y por qué."] },
-        { heading: "Plazo", paragraphs: ["Respondemos dentro del plazo que marca la ley, que normalmente es de un mes."] },
-        { heading: "Esta página", paragraphs: ["Esta página no elimina nada por sí misma."] },
-        { heading: "Reclamación", paragraphs: ["También puedes reclamar ante la Agencia Española de Protección de Datos (AEPD)."] },
+        { heading: "Si escribiste a una inmobiliaria", paragraphs: [`Esa agencia decide sobre tus datos y nosotros actuamos según sus instrucciones. Escribe a ${mail} desde el email o el teléfono que usaste e indica que quieres que se eliminen tus datos. Trasladamos tu solicitud a la agencia, la ayudamos a responderla y te comunicamos el resultado.`] },
+        { heading: "Si eres una agencia que usa Nuova", paragraphs: [`Escribe a ${mail} desde la dirección de tu cuenta, o pídenoslo dentro de tu cuenta. Confirmamos qué se va a eliminar, qué tenemos que conservar por ley y cuándo está hecho.`] },
+        { heading: "Si tu agencia conectó Instagram", paragraphs: [`Abre NuovaSolution, entra en Social y pulsa Desconectar. El token se elimina de inmediato y dejamos de leer y de publicar. Para que además se supriman los datos ya guardados, es decir las publicaciones, los comentarios, los mensajes y las oportunidades de este canal, escribe a ${mail} desde la dirección de tu cuenta e indica el nombre de la agencia.`] },
+        { heading: "Si has comentado o escrito por Instagram a una agencia que usa Nuova", paragraphs: [`Escribe a ${mail} e indica la agencia y la fecha aproximada de tu mensaje. No guardamos tu nombre de usuario ni tu identificador original de Instagram, así que la agencia y el periodo son lo que nos permite encontrar tus datos.`] },
+        { heading: "Si eliminas la app en Instagram", paragraphs: ["Instagram nos lo comunica, suprimimos el token y los datos de esa conexión y te damos un código de confirmación. Puedes preguntarnos por el estado de ese código cuando quieras."] },
+        { heading: "Qué necesitamos de ti", paragraphs: ["La dirección o el número que usaste con nosotros y qué pides: una copia de tus datos, una corrección o la eliminación. Podemos pedirte que confirmes la solicitud desde esa misma dirección o número, para que nadie más pueda pedir tus datos."] },
+        { heading: "Qué pasa después", paragraphs: ["Una persona gestiona cada solicitud. Confirmamos que la hemos recibido y después te comunicamos el resultado, incluido lo que tengamos que conservar por ley y por qué. Respondemos dentro del plazo que marca la ley, que normalmente es de un mes."] },
+        { heading: "Qué no hace esta página", paragraphs: ["Esta página no elimina nada por sí misma. Te indica cómo pedirlo."] },
+        { heading: "Si no estás conforme", paragraphs: ["Puedes reclamar ante la Agencia Española de Protección de Datos (AEPD)."] },
       ],
     },
   },

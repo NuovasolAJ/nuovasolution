@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
  * or null when it may be used. The sentence for each code is in the dictionary (social.actions).
  */
 export type OffReason = "noRelease" | "notConfigured" | "needsConnection" | "limitReached" | "stub" | null;
-export type SocialActionName = "begin_connect" | "account_check" | "draft" | "approve" | "publish" | "verify_publish" | "poll_comments" | "poll_dms" | "reply_public" | "reply_private" | "dm_reply" | "disconnect";
+export type SocialActionName = "begin_connect" | "account_check" | "draft" | "approve" | "publish" | "verify_publish" | "poll_comments" | "poll_dms" | "reply_public" | "reply_private" | "dm_reply" | "lead_capture" | "disconnect";
 
 type Env = { ok: boolean; code: string; stub?: true; details?: Record<string, unknown> };
 
@@ -244,11 +244,12 @@ export function DraftApprove({ locale, listing, off, labels }: { locale: Locale;
 }
 
 /** A reply to a comment (public, or one private reply) or to a message. The target is the entry's key; the server resolves it. */
-export function ReplyBox({ locale, signal, kind, off, labels }: { locale: Locale; signal: string; kind: "comment" | "message"; off: OffReason; labels: { field: string; publicLabel: string; privateLabel: string; messageLabel: string } }) {
+export function ReplyBox({ locale, signal, kind, off, labels, initial = "", draftNote }: { locale: Locale; signal: string; kind: "comment" | "message"; off: OffReason; labels: { field: string; publicLabel: string; privateLabel: string; messageLabel: string }; initial?: string; draftNote?: string }) {
   const { a, explain } = useActions(locale);
   const router = useRouter();
   const id = useId();
-  const [text, setText] = useState("");
+  // R25C W2: Social's draft stands in the field, editable; the person sends it or writes their own
+  const [text, setText] = useState(initial);
   const [busy, setBusy] = useState<SocialActionName | null>(null);
   const [msg, setMsg] = useState<{ tone: "ok" | "error"; text: string } | null>(null);
   const [sent, setSent] = useState(false);
@@ -269,8 +270,8 @@ export function ReplyBox({ locale, signal, kind, off, labels }: { locale: Locale
   const disabled = off !== null || sent || busy !== null;
   return (
     <div data-social-reply={signal}>
-      <label htmlFor={id} className="t-caption text-text-muted">{labels.field}</label>
-      <textarea id={id} rows={2} maxLength={1000} value={text} onChange={(e) => setText(e.target.value)} disabled={disabled} className="mt-1 block w-full resize-none rounded-md border border-line-strong bg-surface-raised px-3.5 py-2.5 t-body-s text-text-primary disabled:bg-surface-sunken disabled:opacity-70" />
+      <label htmlFor={id} className="t-caption text-text-muted">{labels.field}{draftNote ? <span className="ml-2 text-text-secondary" data-social-draft-note>{draftNote}</span> : null}</label>
+      <textarea id={id} rows={initial ? 3 : 2} data-social-draft={initial ? "prefilled" : "empty"} maxLength={1000} value={text} onChange={(e) => setText(e.target.value)} disabled={disabled} className="mt-1 block w-full resize-none rounded-md border border-line-strong bg-surface-raised px-3.5 py-2.5 t-body-s text-text-primary disabled:bg-surface-sunken disabled:opacity-70" />
       <div className="mt-3 flex flex-wrap items-center gap-2">
         {kind === "comment" ? (
           <>
@@ -281,6 +282,58 @@ export function ReplyBox({ locale, signal, kind, off, labels }: { locale: Locale
           <Button type="button" size="sm" disabled={disabled || !text.trim()} busy={busy === "dm_reply"} onClick={() => void send("dm_reply")} data-social-inert={off ?? undefined}>{labels.messageLabel}</Button>
         )}
       </div>
+      {off && <div className="mt-2"><OffNote reason={off} locale={locale} /></div>}
+      {msg && <p role={msg.tone === "error" ? "alert" : "status"} className={cn("mt-2 t-caption", msg.tone === "error" ? "text-signal-critical" : "text-signal-positive")} data-social-result={msg.tone}>{msg.text}</p>}
+    </div>
+  );
+}
+
+/**
+ * R25C W5 (SOCIAL_TO_API_WEBSITE_1026 §3): "take as a contact" for a direct message. A phone (E.164) and/or an e-mail the
+ * person wrote in her own message, and the mandatory confirmation that she agreed to be contacted, which a person sets
+ * here. The server sends tenant-api `lead_capture` with our signal id; the outcome and reason are shown as returned.
+ */
+export function LeadCaptureBox({ locale, signal, off, labels }: { locale: Locale; signal: string; off: OffReason; labels: { title: string; phone: string; email: string; consent: string; submit: string; done: string } }) {
+  const { explain } = useActions(locale);
+  const router = useRouter();
+  const id = useId();
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState<{ tone: "ok" | "error"; text: string } | null>(null);
+  const [done, setDone] = useState(false);
+  const can = !busy && !done && off === null && consent && (phone.trim() !== "" || email.trim() !== "");
+  async function submit() {
+    if (!can) return;
+    setBusy(true);
+    setMsg(null);
+    const body: Record<string, unknown> = { action: "lead_capture", signal, consent_confirmed: true };
+    if (phone.trim()) body.phone = phone.trim();
+    if (email.trim()) body.email = email.trim();
+    const r = await act(body);
+    setBusy(false);
+    if (r.ok) {
+      setDone(true);
+      setMsg({ tone: "ok", text: `${labels.done}${typeof r.details?.outcome === "string" ? ` · ${r.details.outcome}` : ""}` });
+      router.refresh();
+      return;
+    }
+    setMsg({ tone: "error", text: explain(r) });
+  }
+  const input = "mt-1 block w-full rounded-md border border-line-strong bg-surface-raised px-3.5 py-2.5 t-body-s text-text-primary disabled:bg-surface-sunken disabled:opacity-70";
+  return (
+    <div className="rounded-lg border border-line-hairline bg-surface-sunken p-4" data-social-lead-capture={signal}>
+      <p className="t-body-s font-medium text-text-primary">{labels.title}</p>
+      <div className="mt-2 grid gap-3 sm:grid-cols-2">
+        <div><label htmlFor={`${id}-p`} className="t-caption text-text-muted">{labels.phone}</label><input id={`${id}-p`} type="tel" inputMode="tel" placeholder="+34600000000" value={phone} onChange={(e) => setPhone(e.target.value)} disabled={busy || done || off !== null} className={input} /></div>
+        <div><label htmlFor={`${id}-e`} className="t-caption text-text-muted">{labels.email}</label><input id={`${id}-e`} type="email" inputMode="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={busy || done || off !== null} className={input} /></div>
+      </div>
+      <label className="mt-3 flex items-start gap-2 t-body-s text-text-primary">
+        <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} disabled={busy || done || off !== null} className="mt-1" data-social-consent />
+        <span>{labels.consent}</span>
+      </label>
+      <div className="mt-3"><Button type="button" size="sm" disabled={!can} busy={busy} onClick={() => void submit()} data-social-inert={off ?? undefined} data-social-action="lead_capture">{labels.submit}</Button></div>
       {off && <div className="mt-2"><OffNote reason={off} locale={locale} /></div>}
       {msg && <p role={msg.tone === "error" ? "alert" : "status"} className={cn("mt-2 t-caption", msg.tone === "error" ? "text-signal-critical" : "text-signal-positive")} data-social-result={msg.tone}>{msg.text}</p>}
     </div>

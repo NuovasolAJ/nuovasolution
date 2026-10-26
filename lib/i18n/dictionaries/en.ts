@@ -124,7 +124,9 @@ export const en = {
       invalid_input: "Some of what you entered is not valid. Nothing was saved.",
       server_error: "Something broke on our side. Nothing was changed. Try again in a moment.",
       link_expired: "This link has expired or was already used. Ask your agency admin or us for a new one.",
+      consent_required: "Tick the confirmation: the person has to have agreed in her message.", // R25C G2
       weak_password: "Choose a longer password: at least 10 characters.",
+      email_domain_undeliverable: "This address cannot receive mail. Use an address on a domain with active mail.", // R25C (API_E28_RECONCILIATION §3)
       invalid_tax_id: "That tax number is not a valid CIF, NIF or NIE.",
       invalid_url: "One of the links is not a valid web address. Use the full address, starting with https://.",
       invalid_email: "That email address is not valid.",
@@ -756,7 +758,7 @@ export const en = {
       agencyName: "Agency name",
       agencyNameHelp: "The name your customers know.",
       language: "Main language with your customers",
-      languageHelp: "Replies are written in the language each customer writes in. This is the default when we cannot tell.",
+      languageHelp: "Today automatic replies are written in Spanish. English is planned; German is on the roadmap (the phone is separate). This is your agency's default language.", // R25C SPRACHEN S2; WORKING, for Copy
       timezone: "Time zone",
       submit: "Create agency and continue",
       submitting: "Creating your agency",
@@ -1032,6 +1034,14 @@ export const en = {
       answered: "Already answered.", // §5 already_replied_or_claimed
       answeredKinds: { public: "Public reply", private: "Private reply", message: "Reply", other: "Reply" },
       privateUsed: "One private reply per comment.",
+      // R25C W1–W6 (SOCIAL_TO_API_WEBSITE_1026 §3); WORKING, Copy delivers the final wording (SOCIAL_TO_COPY_1026_LANG_v1)
+      languageLabel: "Language",
+      languages: { es: "Spanish", en: "English", de: "German", unknown: "unknown" },
+      languageSources: { detected: "detected in the message", tenant_default: "the agency's language", unknown: "unknown source" },
+      draftIn: "Draft in",
+      confirmBeforeSending: "Check the text before sending it: the system prepared it, a person sends it.",
+      noDraft: { blocked_policy: "No draft: the content does not allow an automatic reply. Write the reply yourself.", not_renderable: "No draft: the message could not be interpreted. Write the reply yourself.", unresolved: "No draft: the message could not be interpreted. Write the reply yourself.", language_not_enabled_for_tenant: "No draft: that language is not enabled for your agency. Write the reply yourself.", no_reply_signal_only: "No draft: this message asks for no reply; it is recorded. Write one if you wish.", other: "No draft. Write the reply yourself." },
+      capture: { title: "Take as a contact", phone: "Phone (international format, +34…)", email: "E-mail", consent: "The person agreed in her message to be contacted.", submit: "Take as a contact", done: "Contact recorded" },
       windowExpired: "The reply window has expired.",
       reference: "Reference",
       received: "Events received",

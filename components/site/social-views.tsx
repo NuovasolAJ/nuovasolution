@@ -8,7 +8,7 @@ import { ButtonLink } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { Display, Eyebrow, Heading, Lead } from "@/components/ui/type";
 import { LabelChip, StatusGlyph, type Glyph } from "@/components/ui/status";
-import { ConnectAction, DraftApprove, ReplyBox, SocialAction, type OffReason } from "./social-actions";
+import { ConnectAction, DraftApprove, LeadCaptureBox, ReplyBox, SocialAction, type OffReason } from "./social-actions";
 import { ListingCover } from "./social-cover";
 
 /**
@@ -299,11 +299,20 @@ function SignalRow({ locale, x, state }: { locale: Locale; x: SocialSignal; stat
   const intents = b.intents as Record<string, string>;
   const intent = x.intent ? intents[x.intent] ?? intents.other : null;
   const status = x.reply ? "answered" : x.window_expired ? "dm_window" : "answerable";
+  // R25C W1–W3, W6 (SOCIAL_TO_API_WEBSITE_1026 §3): the language of the entry, Social's draft in the field, the reason when there is none
+  const langs = b.languages as Record<string, string>;
+  const langName = (l: string | null) => (l && langs[l]) || langs.unknown;
+  const sug = x.suggestion;
+  const draft = sug?.draft ?? "";
+  const reasons = b.noDraft as Record<string, string>;
+  const noDraft = sug && !sug.draft ? reasons[sug.outcome ?? ""] ?? reasons.other : null;
+  const draftNote = draft ? `${b.draftIn} ${langName(sug?.language ?? null)}${sug?.language_source ? ` · ${(b.languageSources as Record<string, string>)[sug.language_source] ?? sug.language_source}` : ""}` : undefined;
   return (
-    <li className="p-5 md:p-6" data-signal-state={status}>
+    <li className="p-5 md:p-6" data-signal-state={status} data-signal-language={x.language ?? "unknown"} data-signal-draft={draft ? "yes" : sug ? "no" : "none"}>
       <p className="t-body-m text-text-primary break-words">{x.text}</p>
       <div className="mt-3 flex flex-wrap items-center gap-2 t-caption text-text-muted">
         <span>{when(locale, x.created_at)}</span>
+        <LabelChip>{b.languageLabel}: {langName(x.language)}</LabelChip>
         {intent && <LabelChip>{b.intentLabel}: {intent}</LabelChip>}
         {x.became_lead && <LabelChip><StatusGlyph glyph="check" size={12} className="mr-1 text-signal-positive" />{b.lead_}</LabelChip>}
       </div>
@@ -318,9 +327,12 @@ function SignalRow({ locale, x, state }: { locale: Locale; x: SocialSignal; stat
       ) : x.window_expired ? (
         <Note glyph="clock" tone="attention" className="mt-4">{b.windowExpired}</Note>
       ) : (
-        <div className="mt-4">
+        <div className="mt-4 space-y-4">
+          {sug?.requires_human_confirmation && draft ? <Note glyph="rule" tone="attention" className="t-caption">{b.confirmBeforeSending}</Note> : null}
+          {noDraft ? <Note glyph="rule" className="t-caption">{noDraft}</Note> : null}
           {/* The target is this entry's key; the server turns it back into the comment or sender it rendered. */}
-          <ReplyBox locale={locale} signal={x.key} kind={x.kind} off={gate(state, "connected")} labels={{ field: b.replyLabel, publicLabel: b.replyPublic, privateLabel: b.replyPrivate, messageLabel: b.replyMessage }} />
+          <ReplyBox locale={locale} signal={x.key} kind={x.kind} off={gate(state, "connected")} initial={draft} draftNote={draftNote} labels={{ field: b.replyLabel, publicLabel: b.replyPublic, privateLabel: b.replyPrivate, messageLabel: b.replyMessage }} />
+          {x.kind === "message" && !x.became_lead ? <LeadCaptureBox locale={locale} signal={x.key} off={gate(state, "connected")} labels={{ title: b.capture.title, phone: b.capture.phone, email: b.capture.email, consent: b.capture.consent, submit: b.capture.submit, done: b.capture.done }} /> : null}
         </div>
       )}
     </li>
