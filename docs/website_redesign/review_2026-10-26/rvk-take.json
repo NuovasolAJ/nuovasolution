@@ -1,0 +1,11 @@
+{
+ "base": "https://nuovasolution-design-preview-chhbk3js9-nuovasolajs-projects.vercel.app",
+ "take": {
+  "button": true,
+  "before": "Tomar\nAbierta · nadie la ha tomado",
+  "after": "Tomada por Elena\nProponer la hora a Laura",
+  "clippedInCard": 0,
+  "narrowInCard": 0
+ },
+ "utc": "2026-10-26T14:06:59.049Z"
+}

@@ -1,0 +1,38 @@
+import { spawn } from "node:child_process";
+import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+const BASE = process.argv[2], OUT = process.argv[3], SHOTS = process.argv[4];
+const CDP = 9432; const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+mkdirSync(SHOTS, { recursive: true });
+const kids = [];
+const prof = join(SHOTS, "ptake"); rmSync(prof, { recursive: true, force: true });
+kids.push(spawn("C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe", ["--headless=new", "--disable-gpu", "--no-first-run", `--user-data-dir=${prof}`, `--remote-debugging-port=${CDP}`, "about:blank"], { stdio: "ignore" }));
+let list; for (let i = 0; i < 60; i++) { try { list = await (await fetch(`http://127.0.0.1:${CDP}/json`)).json(); break; } catch { await sleep(500); } }
+const ws = new WebSocket(list.find((t) => t.type === "page").webSocketDebuggerUrl); await new Promise((r) => ws.addEventListener("open", r));
+let id = 0; const pend = new Map();
+ws.addEventListener("message", (e) => { const m = JSON.parse(e.data); if (m.id && pend.has(m.id)) { pend.get(m.id)(m); pend.delete(m.id); } });
+const send = (m, p = {}) => new Promise((r) => { const i = ++id; pend.set(i, r); ws.send(JSON.stringify({ id: i, method: m, params: p })); });
+const ev = async (x) => (await send("Runtime.evaluate", { expression: x, returnByValue: true, awaitPromise: true })).result?.result?.value;
+await send("Page.enable");
+await send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 950, deviceScaleFactor: 1, mobile: false });
+await send("Page.navigate", { url: BASE + "/es" }); await sleep(3600);
+const out = await ev(`(async () => { try {
+  const b = [...document.querySelectorAll("button")].find(x => /^Tomar/i.test((x.innerText || "").trim()));
+  if (!b) return { button: false };
+  b.scrollIntoView({ block: "center" }); await new Promise(r => setTimeout(r, 700));
+  const card = b.closest("article, li, div");
+  const before = (card.innerText || "").replace(/\s+/g, " ").slice(0, 200);
+  b.click(); await new Promise(r => setTimeout(r, 2000));
+  const after = (card.innerText || "").replace(/\s+/g, " ").slice(0, 240);
+  const clipped = [...card.querySelectorAll("p, li, span, div")].filter(e => { const s = getComputedStyle(e);
+    if (!["hidden","clip"].includes(s.overflowX) && !["hidden","clip"].includes(s.overflowY)) return false;
+    if (e.clientWidth <= 4) return false; return e.scrollWidth > e.clientWidth + 2; }).length;
+  const narrow = [...card.querySelectorAll("p, li, span")].filter(e => { const r = e.getBoundingClientRect();
+    return r.width > 0 && r.width < 60 && (e.innerText || "").trim().length > 10; }).length;
+  return { button: true, before, after, clippedInCard: clipped, narrowInCard: narrow };
+} catch (e) { return { error: String(e).slice(0, 120) }; } })()`);
+console.log(JSON.stringify(out));
+const s = await send("Page.captureScreenshot", { format: "png" });
+writeFileSync(join(SHOTS, "rvk-1440-daily-after-take.png"), Buffer.from(s.result.data, "base64"));
+writeFileSync(OUT, JSON.stringify({ base: BASE, take: out, utc: new Date().toISOString() }, null, 1));
+ws.close(); for (const k of kids) k.kill(); process.exit(0);

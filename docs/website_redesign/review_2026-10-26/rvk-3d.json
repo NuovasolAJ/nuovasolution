@@ -1,0 +1,124 @@
+{
+ "deployment": "https://nuovasolution-design-preview-chhbk3js9-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-26T14:05:02.392Z",
+ "detail": {
+  "m390": {
+   "found": true,
+   "imgs": [
+    {
+     "src": "house-both-floors-es-1600.webp",
+     "alt": "Casa de ejemplo ficticia de dos plantas sin tejado, vista desde arriba",
+     "loaded": true,
+     "nw": 1600,
+     "loading": "lazy"
+    },
+    {
+     "src": "living-empty-1200.webp",
+     "alt": "Casa de ejemplo ficticia: el mismo salón vacío y con mobiliario ilustr",
+     "loaded": true,
+     "nw": 1200,
+     "loading": "lazy"
+    },
+    {
+     "src": "living-furnished-1200.webp",
+     "alt": "",
+     "loaded": true,
+     "nw": 1200,
+     "loading": "lazy"
+    }
+   ],
+   "video": {
+    "src": "house-turn-es.mp4",
+    "poster": "house-turn-poster-es.webp",
+    "label": "Vídeo: el modelo girando en el visor · menos de un minuto · sin sonido",
+    "controls": true,
+    "muted": true,
+    "autoplay": false,
+    "playsInline": true,
+    "preload": "metadata",
+    "duration": 44.4
+   },
+   "captions": [
+    "UN SERVICIO APARTE: PRESENTAR EN 3D",
+    "Nos envías el plano acotado y, si las tienes, fotos. Construimos el modelo, lo mostramos vacío y amueblado desde la misma cámara y lo comprobamos contra tu plano. Cada modelo es un encargo, con o sin paquete.",
+    "Salón\nCocina / Comedor\nLavadero\nAseo\nRecibidor\nTerraza\n5,70 × 4,20 m\n3,80 × 3,60 m\nEscalera\n10,00 m\n8,00 m\n\n01\nPlano\n\nTu plano acotado es la base: cada muro a escala. Aquí, la planta baja de la casa de ejemplo.\n\nPlano de ejemplo ficticio · dibujado a escala a partir de la especificación del modelo",
+    "01\nPlano",
+    "Tu plano acotado es la base: cada muro a escala. Aquí, la planta baja de la casa de ejemplo.",
+    "Plano de ejemplo ficticio · dibujado a escala a partir de la especificación del modelo",
+    "02\nModelo\n\nMuros, huecos, escalera y muebles, sin tejado para ver dentro: las dos plantas de la misma casa.\n\nCasa de ejemplo ficticia · captura del visor real",
+    "02\nModelo",
+    "Muros, huecos, escalera y muebles, sin tejado para ver dentro: las dos plantas de la misma casa.",
+    "Casa de ejemplo ficticia · captura del visor real"
+   ],
+   "canvas": 0,
+   "pending": 0,
+   "overflow": false,
+   "blockWidth": 390,
+   "playback": {
+    "playing": true,
+    "currentTime": 2.44,
+    "muted": true,
+    "readyState": 4
+   }
+  },
+  "d1440": {
+   "found": true,
+   "imgs": [
+    {
+     "src": "house-both-floors-es-1600.webp",
+     "alt": "Casa de ejemplo ficticia de dos plantas sin tejado, vista desde arriba",
+     "loaded": true,
+     "nw": 1600,
+     "loading": "lazy"
+    },
+    {
+     "src": "living-empty-1200.webp",
+     "alt": "Casa de ejemplo ficticia: el mismo salón vacío y con mobiliario ilustr",
+     "loaded": true,
+     "nw": 1200,
+     "loading": "lazy"
+    },
+    {
+     "src": "living-furnished-1200.webp",
+     "alt": "",
+     "loaded": true,
+     "nw": 1200,
+     "loading": "lazy"
+    }
+   ],
+   "video": {
+    "src": "house-turn-es.mp4",
+    "poster": "house-turn-poster-es.webp",
+    "label": "Vídeo: el modelo girando en el visor · menos de un minuto · sin sonido",
+    "controls": true,
+    "muted": true,
+    "autoplay": false,
+    "playsInline": true,
+    "preload": "metadata",
+    "duration": 44.4
+   },
+   "captions": [
+    "UN SERVICIO APARTE: PRESENTAR EN 3D",
+    "Nos envías el plano acotado y, si las tienes, fotos. Construimos el modelo, lo mostramos vacío y amueblado desde la misma cámara y lo comprobamos contra tu plano. Cada modelo es un encargo, con o sin paquete.",
+    "Salón\nCocina / Comedor\nLavadero\nAseo\nRecibidor\nTerraza\n5,70 × 4,20 m\n3,80 × 3,60 m\nEscalera\n10,00 m\n8,00 m\n\n01\nPlano\n\nTu plano acotado es la base: cada muro a escala. Aquí, la planta baja de la casa de ejemplo.\n\nPlano de ejemplo ficticio · dibujado a escala a partir de la especificación del modelo",
+    "01\nPlano",
+    "Tu plano acotado es la base: cada muro a escala. Aquí, la planta baja de la casa de ejemplo.",
+    "Plano de ejemplo ficticio · dibujado a escala a partir de la especificación del modelo",
+    "02\nModelo\n\nMuros, huecos, escalera y muebles, sin tejado para ver dentro: las dos plantas de la misma casa.\n\nCasa de ejemplo ficticia · captura del visor real",
+    "02\nModelo",
+    "Muros, huecos, escalera y muebles, sin tejado para ver dentro: las dos plantas de la misma casa.",
+    "Casa de ejemplo ficticia · captura del visor real"
+   ],
+   "canvas": 0,
+   "pending": 0,
+   "overflow": false,
+   "blockWidth": 1425,
+   "playback": {
+    "playing": true,
+    "currentTime": 2.42,
+    "muted": true,
+    "readyState": 4
+   }
+  }
+ }
+}

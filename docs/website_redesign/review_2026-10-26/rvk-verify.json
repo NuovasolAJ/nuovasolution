@@ -1,0 +1,226 @@
+{
+ "deployment": "https://nuovasolution-design-preview-chhbk3js9-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-26T14:01:02.064Z",
+ "detail": {
+  "hero_ctas": {
+   "390": {
+    "headerBottom": 60,
+    "position": "fixed",
+    "ctas": [
+     {
+      "label": "Ver cómo funciona",
+      "top": 487,
+      "bottom": 543,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Ver cómo funci"
+     },
+     {
+      "label": "Probar gratis",
+      "top": 555,
+      "bottom": 611,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Probar gratis"
+     }
+    ]
+   },
+   "768": {
+    "headerBottom": 64,
+    "position": "fixed",
+    "ctas": [
+     {
+      "label": "Ver cómo funciona",
+      "top": 368,
+      "bottom": 424,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Ver cómo funci"
+     },
+     {
+      "label": "Probar gratis",
+      "top": 368,
+      "bottom": 424,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Probar gratis"
+     },
+     {
+      "label": "Reproducir otra vez",
+      "top": 660,
+      "bottom": 695,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "SPAN Reproducir otr"
+     }
+    ]
+   },
+   "1280": {
+    "headerBottom": 72,
+    "position": "fixed",
+    "ctas": [
+     {
+      "label": "Ver cómo funciona",
+      "top": 388,
+      "bottom": 444,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Ver cómo funci"
+     },
+     {
+      "label": "Probar gratis",
+      "top": 388,
+      "bottom": 444,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Probar gratis"
+     },
+     {
+      "label": "Reproducir otra vez",
+      "top": 617,
+      "bottom": 653,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "SPAN Reproducir otr"
+     }
+    ]
+   },
+   "1440": {
+    "headerBottom": 72,
+    "position": "fixed",
+    "ctas": [
+     {
+      "label": "Ver cómo funciona",
+      "top": 398,
+      "bottom": 454,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Ver cómo funci"
+     },
+     {
+      "label": "Probar gratis",
+      "top": 398,
+      "bottom": 454,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "A Probar gratis"
+     },
+     {
+      "label": "Reproducir otra vez",
+      "top": 627,
+      "bottom": 663,
+      "underHeader": false,
+      "reachable": true,
+      "coveredBy": "SPAN Reproducir otr"
+     }
+    ]
+   }
+  },
+  "narrow_columns": {
+   "768": [],
+   "1024": [],
+   "1280": [],
+   "1440": []
+  },
+  "social_state": {
+   "found": true,
+   "text": "Estado: Disponible hoy: WhatsApp y email, en español. Prototipo: el fo",
+   "top": 1017,
+   "headerBottom": 72,
+   "underHeader": false,
+   "visible": true,
+   "coveredBy": null
+  },
+  "three_d": {
+   "found": true,
+   "headingTop": 96,
+   "headerBottom": 72,
+   "underHeader": false,
+   "pending": [],
+   "text": "UN SERVICIO APARTE: PRESENTAR EN 3D De tu plano a una vivienda que el cliente puede recorrer con la mirada Nos envías el plano acotado y, si las tienes, fotos. Construimos el modelo, lo mostramos vacío y amueblado desde la misma cámara y lo comprobamos contra tu plano. Cada modelo es un encargo, con",
+   "media": {
+    "img": 3,
+    "video": 1,
+    "canvas": 0
+   }
+  },
+  "sticker": {
+   "390": {
+    "found": true,
+    "sticker": {
+     "top": 318,
+     "left": 16,
+     "right": 374
+    },
+    "card": null,
+    "crossesTop": null,
+    "crossesSide": null,
+    "onTopOf": "14 días gratis, sin méto"
+   },
+   "1440": {
+    "found": true,
+    "sticker": {
+     "top": 329,
+     "left": 113,
+     "right": 736
+    },
+    "card": null,
+    "crossesTop": null,
+    "crossesSide": null,
+    "onTopOf": "14 días gratis, sin méto"
+   }
+  },
+  "morning_rows": {
+   "/es/platform": [
+    "El asistente de la mañana Cada mañana te explica qué va primero, por qué, y el siguiente paso. En preparación · todavía no contratable"
+   ],
+   "/es/packages": [
+    "Cada mañana tu equipo ve sus tareas con el motivo de cada una.",
+    "Tareas del equipo y el asistente de la mañana · En preparación · todavía no contratable"
+   ]
+  },
+  "que_hace": {
+   "found": true,
+   "items": [],
+   "count": 0,
+   "h1FontPx": 54,
+   "h1Lines": 3
+  },
+  "matching": {
+   "found": true,
+   "noteText": "El inmueble está marcado como publicable y actual",
+   "candidates": [
+    {
+     "t": "Laura Serrano · comprado",
+     "ox": 7,
+     "oy": -5886,
+     "overlapping": false
+    },
+    {
+     "t": "Laura Serrano · comprado",
+     "ox": 111,
+     "oy": -5946,
+     "overlapping": false
+    },
+    {
+     "t": "Laura Serrano",
+     "ox": -234,
+     "oy": -4021,
+     "overlapping": false
+    },
+    {
+     "t": "Laura Serrano",
+     "ox": 49,
+     "oy": -3976,
+     "overlapping": false
+    },
+    {
+     "t": "Laura Serrano",
+     "ox": 97,
+     "oy": -2185,
+     "overlapping": false
+    }
+   ]
+  }
+ }
+}
