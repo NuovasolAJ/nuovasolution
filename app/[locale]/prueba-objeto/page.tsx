@@ -19,7 +19,7 @@ export const dynamic = "force-dynamic";
  * bedrooms; they must then equal the inventory row API writes. Only on a stub build until the owner releases the page on
  * the domain (E-FU2 is its own owner decision).
  */
-export const PRUEBA = {
+const PRUEBA = {
   ref: "NS-TEST-0001",
   title: "[PRUEBA] Piso de demostración NuovaSolution",
   estado: "Disponible" as "Disponible" | "Retirado",

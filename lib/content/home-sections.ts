@@ -48,6 +48,8 @@ export const homeWords = {
     rideFilm: { es: "Vídeo: un paseo corto de cámara por el salón amueblado · 8 segundos · sin sonido", en: "Video: a short camera ride through the furnished living room · 8 seconds · no sound" },
     modelAlt: { es: "Casa de ejemplo ficticia de dos plantas sin tejado, vista desde arriba en el visor, con los nombres de las estancias", en: "Fictional two-storey example house without a roof, seen from above in the viewer, with the room names" },
     pairAlt: { es: "Casa de ejemplo ficticia: el mismo salón vacío y con mobiliario ilustrativo", en: "Fictional example house: the same living room empty and with illustrative furnishing" },
+    // Reviewer R25C (RV4 3D technique): the furnished picture of the pair carries its own description, no empty alt
+    pairAltFurnished: { es: "Casa de ejemplo ficticia: el mismo salón con mobiliario ilustrativo, desde la misma cámara", en: "Fictional example house: the same living room with illustrative furnishing, from the same camera" },
     pairLabel: { es: "Comparar el salón vacío y amueblado desde la misma cámara", en: "Compare the living room empty and furnished from the same camera" },
     empty: { es: "Vacío", en: "Empty" },
     furnished: { es: "Amueblado", en: "Furnished" },
