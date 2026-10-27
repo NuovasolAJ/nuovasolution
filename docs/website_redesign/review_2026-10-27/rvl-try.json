@@ -1,0 +1,18 @@
+{
+ "base": "https://nuovasolution-staging-preview-q98d818q2-nuovasolajs-projects.vercel.app",
+ "attempts": [
+  {
+   "emailLooksLikeMail": true,
+   "status": 400,
+   "code": "invalid_grant",
+   "session": false
+  },
+  {
+   "emailLooksLikeMail": false,
+   "status": 400,
+   "code": "invalid_grant",
+   "session": false
+  }
+ ],
+ "utc": "2026-10-27T09:12:00.074Z"
+}

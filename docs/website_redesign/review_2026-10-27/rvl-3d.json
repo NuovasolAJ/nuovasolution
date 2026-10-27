@@ -1,0 +1,124 @@
+{
+ "deployment": "https://nuovasolution-design-preview-2x7bx8vz8-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-27T09:16:24.764Z",
+ "detail": {
+  "m390": {
+   "found": true,
+   "imgs": [
+    {
+     "src": "house-both-floors-es-1600.webp",
+     "alt": "Casa de ejemplo ficticia de dos plantas sin tejado, vista desde arriba",
+     "loaded": true,
+     "nw": 1280,
+     "loading": "lazy"
+    },
+    {
+     "src": "living-empty-1200.webp",
+     "alt": "Casa de ejemplo ficticia: el mismo salón vacío y con mobiliario ilustr",
+     "loaded": true,
+     "nw": 1200,
+     "loading": "lazy"
+    },
+    {
+     "src": "living-furnished-1200.webp",
+     "alt": "",
+     "loaded": true,
+     "nw": 1200,
+     "loading": "lazy"
+    }
+   ],
+   "video": {
+    "src": "house-turn-es.mp4",
+    "poster": "house-turn-poster-es.webp",
+    "label": "Vídeo: la casa entera girando en el visor · 20 segundos · sin sonido",
+    "controls": true,
+    "muted": true,
+    "autoplay": false,
+    "playsInline": true,
+    "preload": "metadata",
+    "duration": 20.5
+   },
+   "captions": [
+    "UN SERVICIO APARTE: PRESENTAR EN 3D",
+    "Nos envías el plano acotado y, si las tienes, fotos. Construimos el modelo, lo mostramos vacío y amueblado desde la misma cámara y lo comprobamos contra tu plano. Cada modelo es un encargo, con o sin paquete.",
+    "La casa entera, girando\n\nLas dos plantas sin tejado dan una vuelta completa; después, la planta baja sola. Grabado del visor real, sin acelerar.\n\nCasa de ejemplo ficticia · grabado del visor real · 20 segundos · sin sonido · se ven los nombres de las estancias y los mandos del visor",
+    "La casa entera, girando",
+    "Las dos plantas sin tejado dan una vuelta completa; después, la planta baja sola. Grabado del visor real, sin acelerar.",
+    "Casa de ejemplo ficticia · grabado del visor real · 20 segundos · sin sonido · se ven los nombres de las estancias y los mandos del visor",
+    "Salón\nCocina / Comedor\nLavadero\nAseo\nRecibidor\nTerraza\n5,70 × 4,20 m\n3,80 × 3,60 m\nEscalera\n10,00 m\n8,00 m\n\n01\nPlano\n\nTu plano acotado es la base: cada muro a escala. Aquí, la planta baja de la casa de ejemplo.\n\nPlano de ejemplo ficticio · dibujado a escala a partir de la especificación del modelo",
+    "01\nPlano",
+    "Tu plano acotado es la base: cada muro a escala. Aquí, la planta baja de la casa de ejemplo.",
+    "Plano de ejemplo ficticio · dibujado a escala a partir de la especificación del modelo"
+   ],
+   "canvas": 0,
+   "pending": 0,
+   "overflow": false,
+   "blockWidth": 390,
+   "playback": {
+    "playing": true,
+    "currentTime": 2.42,
+    "muted": true,
+    "readyState": 4
+   }
+  },
+  "d1440": {
+   "found": true,
+   "imgs": [
+    {
+     "src": "house-both-floors-es-1600.webp",
+     "alt": "Casa de ejemplo ficticia de dos plantas sin tejado, vista desde arriba",
+     "loaded": true,
+     "nw": 1280,
+     "loading": "lazy"
+    },
+    {
+     "src": "living-empty-1200.webp",
+     "alt": "Casa de ejemplo ficticia: el mismo salón vacío y con mobiliario ilustr",
+     "loaded": true,
+     "nw": 1200,
+     "loading": "lazy"
+    },
+    {
+     "src": "living-furnished-1200.webp",
+     "alt": "",
+     "loaded": true,
+     "nw": 1200,
+     "loading": "lazy"
+    }
+   ],
+   "video": {
+    "src": "house-turn-es.mp4",
+    "poster": "house-turn-poster-es.webp",
+    "label": "Vídeo: la casa entera girando en el visor · 20 segundos · sin sonido",
+    "controls": true,
+    "muted": true,
+    "autoplay": false,
+    "playsInline": true,
+    "preload": "metadata",
+    "duration": 20.5
+   },
+   "captions": [
+    "UN SERVICIO APARTE: PRESENTAR EN 3D",
+    "Nos envías el plano acotado y, si las tienes, fotos. Construimos el modelo, lo mostramos vacío y amueblado desde la misma cámara y lo comprobamos contra tu plano. Cada modelo es un encargo, con o sin paquete.",
+    "La casa entera, girando\n\nLas dos plantas sin tejado dan una vuelta completa; después, la planta baja sola. Grabado del visor real, sin acelerar.\n\nCasa de ejemplo ficticia · grabado del visor real · 20 segundos · sin sonido · se ven los nombres de las estancias y los mandos del visor",
+    "La casa entera, girando",
+    "Las dos plantas sin tejado dan una vuelta completa; después, la planta baja sola. Grabado del visor real, sin acelerar.",
+    "Casa de ejemplo ficticia · grabado del visor real · 20 segundos · sin sonido · se ven los nombres de las estancias y los mandos del visor",
+    "Salón\nCocina / Comedor\nLavadero\nAseo\nRecibidor\nTerraza\n5,70 × 4,20 m\n3,80 × 3,60 m\nEscalera\n10,00 m\n8,00 m\n\n01\nPlano\n\nTu plano acotado es la base: cada muro a escala. Aquí, la planta baja de la casa de ejemplo.\n\nPlano de ejemplo ficticio · dibujado a escala a partir de la especificación del modelo",
+    "01\nPlano",
+    "Tu plano acotado es la base: cada muro a escala. Aquí, la planta baja de la casa de ejemplo.",
+    "Plano de ejemplo ficticio · dibujado a escala a partir de la especificación del modelo"
+   ],
+   "canvas": 0,
+   "pending": 0,
+   "overflow": false,
+   "blockWidth": 1425,
+   "playback": {
+    "playing": true,
+    "currentTime": 2.43,
+    "muted": true,
+    "readyState": 4
+   }
+  }
+ }
+}

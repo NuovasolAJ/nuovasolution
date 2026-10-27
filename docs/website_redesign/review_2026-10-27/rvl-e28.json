@@ -1,0 +1,49 @@
+{
+ "deployment": "https://nuovasolution-staging-preview-q98d818q2-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-27T09:10:40.527Z",
+ "parsed": {
+  "email_found": true,
+  "password_found": true,
+  "lines": 2
+ },
+ "checks": [
+  {
+   "id": "O1",
+   "what": "the deployment the owner used identifies itself",
+   "verdict": "PASS",
+   "evidence": {
+    "commit": "596679bd49598617cd9560895c03b96213844419",
+    "ref": "website_enterprise_redesign",
+    "deployment": "dpl_CWR3NKKTSgaNs64xi9eD469dyGyJ",
+    "env": "preview",
+    "mode": "staging"
+   }
+  },
+  {
+   "id": "O2",
+   "what": "the confirmed identity signs in on this deployment",
+   "verdict": "FAIL",
+   "evidence": {
+    "status": 400,
+    "code": "invalid_grant",
+    "session": false
+   }
+  }
+ ],
+ "detail": {
+  "build": {
+   "commit": "596679bd49598617cd9560895c03b96213844419",
+   "ref": "website_enterprise_redesign",
+   "deployment": "dpl_CWR3NKKTSgaNs64xi9eD469dyGyJ",
+   "env": "preview",
+   "mode": "staging"
+  },
+  "login": {
+   "status": 400,
+   "code": "invalid_grant",
+   "session": false,
+   "cookieFlags": null
+  }
+ },
+ "finished_utc": "2026-10-27T09:10:42.574Z"
+}
