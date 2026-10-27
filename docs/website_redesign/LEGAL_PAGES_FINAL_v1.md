@@ -542,6 +542,14 @@ términos antes de que tenga efecto.
 
 ## 4. Data deletion · Eliminación de datos
 
+> **SUPERSEDED, 2026-10-27. Do not publish this section.** The data deletion page is
+> `META_LEGAL_TEXT_FINAL.md` §3 (EN `/data-deletion`, ES `/eliminar-datos`), as the handover row D-4 already says. That
+> version names the controller (E14 block), states what is deleted at once and what stays for a while (the production
+> deletion path of 25./26.10.), and **contains no deletion callback**. The paragraph below, "If you remove the app in
+> Instagram … we give you a confirmation code", came from Social's early draft. It was struck in the Meta text on
+> 2026-09-29 (§0 there, correction 2) because no callback is built, and this copy was not brought in line. It stays below
+> only as history.
+
 Meta accepts an instruction page at a stable URL. This page is written so that a reviewer at Meta, an
 agency and a private person can each find their own path in it.
 
