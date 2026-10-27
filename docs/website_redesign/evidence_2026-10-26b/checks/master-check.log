@@ -1,0 +1,34 @@
+PASS d1440-depth four layers at four speeds: stars (far) > sky > ridges (mid) > 0 (the panel scrolls with the page)
+PASS d1440-panel the panel leans back at the top of the page and comes upright and larger after scrolling
+PASS d1440-cover no headline, button or story part of the panel is covered by anything, at five scroll positions; no floating card exists
+PASS m390-depth four layers at four speeds: stars (far) > sky > ridges (mid) > 0 (the panel scrolls with the page)
+PASS m390-panel the panel leans back at the top of the page and comes upright and larger after scrolling
+PASS m390-cover no headline, button or story part of the panel is covered by anything, at five scroll positions; no floating card exists
+PASS header the navigation has no bar at the top of the page and the light bar after scrolling
+PASS story the six chapters stand in the document with a heading and a filled stage, and the same enquiry (Laura) runs through each of them
+PASS story-texts every chapter and the social strip carry a state line and the three answers; no chapter letters; the follow-up is on Wednesday before Thursday's viewing (no Friday); the email's action is a real demo button; the alert with its reason stands in D; the German email is held without an automatic reply and without a draft (HANDOVER_1021 §E); no office/seat figures on the ladder (owner 20.10.); no Jarvis, no 'Señores Keller'
+PASS email-demo the email's demo button (a real button, visible after its entry) shows the request landing with the team, never a booked appointment
+PASS translation a foreign-language message is shown translated with the original one tap away
+PASS channels the channel selector works by click and arrow keys; the phone view carries call words and no WhatsApp step text
+PASS notice the AI notice can be shown on every channel
+PASS task the task: take, agree the time as its own step, done; the done line names who did what; the other tasks stay open
+PASS model3d-packages the 3D section: four steps of one house (the plan to scale, the whole house from the viewer, the empty/furnished pair on a compare handle, the turn as a video with its poster), every picture marked as the fictional example house, no pending mark; the ladder is there; no monthly capacity figure; no proof-state label and no state word in the menu; no internal word (clip, env, 03-done, Jarvis) in the sales flow
+PASS overflow-390 no horizontal overflow and no element wider than the viewport
+PASS overflow-768 no horizontal overflow and no element wider than the viewport
+PASS faq one question open at a time, aria-expanded and its region, no count under a category, no row id in the text
+PASS reduced reduced motion: everything visible at once, no layer moves, the panel keeps a fixed lean, the replay control is hidden
+PASS nojs without JavaScript the hero's finished picture (the exchange and the customer record with its six lines) and all six chapters with their stages are in the document
+PASS login-gate the report without a session goes to the login and remembers where it came from
+PASS reports with a session the report renders its counts and period (stub data, labelled ABOVE the figures, no 'not an estimate' sentence) with the three meaning blocks and the email preview link
+PASS app-package the session area names the package next to the trial line
+PASS session-header with a session the header shows the account link and log out instead of log in
+PASS report-email the Monday email preview is in the shared shell (v3): the logo, the subject with the figure, three tiles (answered of received, viewings with the agreed ones, waiting for a person), the open actions by name, the button to the full report; no task block; no web-form or phone figure and no booked appointment (COPY_1019 R-10)
+PASS mail-previews-open the weekly report and the morning brief can be seen without a login on the stub build, labelled as demonstration
+PASS r23-findings the 3D video starts at 0:00 with its own poster (no #t fragment); the social reply is a person's; the packages stand before the way in and the questions
+PASS r24-findings R24: the actual logo (an image, loaded, ivory on the dark hero and ink after the scroll); the customer record with the alert in the hero; the panel's head on the first screen at 1366 × 768; the hero stands on the terrace (no ivory band, no foreground scrub); state lines 14 px; no chip over the rights line in C; the social post marked as an example with its photo source; the trial mark inside the Essential card; the daily page shows tasks with its state, the benefit lines and Daily's task sentence (Y-1), no 'chosen in the app' language line; the platform rows for the morning assistant and the tasks in preparation (X-5); no German word in the Spanish mail previews
+PASS r24b-findings closing order 26.10.: four hero layers, the enquiry and the record's first field on the first screen at 1366 × 768, the hero's ground the story's colour, the panel above the terrace, the reply confirming no listing fact with a next step and the priority on the record; the arrivals as one list with four states that appear after the arrival, no nested frames, the listing card not stretched, the count matching, the replay restarting only the list; the appointment steps following the task (one done at the start, three after); the follow-up on WhatsApp without a weekly figure; the 3D main view and the ride, every video preload none, one at a time, paused off screen; Lead Intelligence shows the added rows, CRM the history, AI Sales Agent what was noted with a quiet notice; no internal 'synthetic' word; the trust and packages lines
+PASS copy-w-rows Copy's W-rows (1023): the hero shows only WhatsApp and e-mail and names the alert's channel; the FAQ answers the language and the hot lead as production does and the ads question as the packages do; every platform row carries its state; no regrouped phone number
+PASS brief-email the morning brief preview is in the same shell with the task block (kind, customer, lines, reasoned priority, held draft labelled as a draft, state, next step, open link) and no figures; labelled as demonstration
+PASS social-b Screen B shows the cover frame for every listing, at least two covers actually loaded (F-R16-3), and a draft control on the publishable ones, switched off with its reason until the release
+PASS logout log out from the header lands on the public root with a status line; the agency area asks for the login again
+33/33 checks passed -> docs\website_redesign\evidence_2026-10-26b\checks\master-check.json

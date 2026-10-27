@@ -1,0 +1,662 @@
+{
+ "started_utc": "2026-10-26T14:42:17.251Z",
+ "base": "https://nuovasolution-design-preview-2x7bx8vz8-nuovasolajs-projects.vercel.app",
+ "checks": [
+  {
+   "id": "d1440-depth",
+   "what": "four layers at four speeds: stars (far) > sky > ridges (mid) > 0 (the panel scrolls with the page)",
+   "ok": true,
+   "evidence": {
+    "moved_px_after_420_scroll": {
+     "far": 18.648,
+     "sky": 11.6032,
+     "mid": 5.3872
+    },
+    "ratios": {
+     "far_sky": 1.61,
+     "sky_mid": 2.15
+    }
+   }
+  },
+  {
+   "id": "d1440-panel",
+   "what": "the panel leans back at the top of the page and comes upright and larger after scrolling",
+   "ok": true,
+   "evidence": {
+    "top": "matrix3d(0.95, 0, 0, 0, 0, 0.92924, 0.197516, -0.000141083, 0, -0.207912, 0.978148, -0.000",
+    "down": "matrix3d(0.986467, 0, 0, 0, 0, 0.980068, 0.112183, -8.01308e-05, 0, -0.113722, 0.993513, -"
+   }
+  },
+  {
+   "id": "d1440-cover",
+   "what": "no headline, button or story part of the panel is covered by anything, at five scroll positions; no floating card exists",
+   "ok": true,
+   "evidence": {
+    "rows": [
+     {
+      "scroll": 0,
+      "hits": []
+     },
+     {
+      "scroll": 219,
+      "hits": []
+     },
+     {
+      "scroll": 438,
+      "hits": []
+     },
+     {
+      "scroll": 656,
+      "hits": []
+     },
+     {
+      "scroll": 875,
+      "hits": []
+     }
+    ],
+    "cards": 0
+   }
+  },
+  {
+   "id": "m390-depth",
+   "what": "four layers at four speeds: stars (far) > sky > ridges (mid) > 0 (the panel scrolls with the page)",
+   "ok": true,
+   "evidence": {
+    "moved_px_after_420_scroll": {
+     "far": 7.2576,
+     "sky": 4.536,
+     "mid": 2.1168
+    },
+    "ratios": {
+     "far_sky": 1.6,
+     "sky_mid": 2.14
+    }
+   }
+  },
+  {
+   "id": "m390-panel",
+   "what": "the panel leans back at the top of the page and comes upright and larger after scrolling",
+   "ok": true,
+   "evidence": {
+    "top": "matrix3d(0.95, 0, 0, 0, 0, 0.940755, 0.132214, -9.44389e-05, 0, -0.139173, 0.990268, -0.00",
+    "down": "matrix3d(0.966632, 0, 0, 0, 0, 0.962439, 0.0899415, -6.42439e-05, 0, -0.0930462, 0.995662,"
+   }
+  },
+  {
+   "id": "m390-cover",
+   "what": "no headline, button or story part of the panel is covered by anything, at five scroll positions; no floating card exists",
+   "ok": true,
+   "evidence": {
+    "rows": [
+     {
+      "scroll": 0,
+      "hits": []
+     },
+     {
+      "scroll": 433,
+      "hits": []
+     },
+     {
+      "scroll": 866,
+      "hits": []
+     },
+     {
+      "scroll": 1299,
+      "hits": []
+     },
+     {
+      "scroll": 1732,
+      "hits": []
+     }
+    ],
+    "cards": 0
+   }
+  },
+  {
+   "id": "header",
+   "what": "the navigation has no bar at the top of the page and the light bar after scrolling",
+   "ok": true,
+   "evidence": {
+    "top": "rgba(0, 0, 0, 0)",
+    "scrolled": "rgba(252, 251, 248, 0.86)"
+   }
+  },
+  {
+   "id": "story",
+   "what": "the six chapters stand in the document with a heading and a filled stage, and the same enquiry (Laura) runs through each of them",
+   "ok": true,
+   "evidence": {
+    "story-a": {
+     "heading": "Cuatro consultas en una hora, mientras e",
+     "stage": true,
+     "text": 872,
+     "laura": true
+    },
+    "story-b": {
+     "heading": "El cliente recibe una respuesta concreta",
+     "stage": true,
+     "text": 828,
+     "laura": true
+    },
+    "story-c": {
+     "heading": "De lo que busca Laura salen dos propuest",
+     "stage": true,
+     "text": 821,
+     "laura": true
+    },
+    "story-d": {
+     "heading": "Cuando una consulta importa, tu equipo r",
+     "stage": true,
+     "text": 1565,
+     "laura": true
+    },
+    "story-e": {
+     "heading": "Entra un piso que encaja con Laura. Ella",
+     "stage": true,
+     "text": 1234,
+     "laura": true
+    },
+    "story-f": {
+     "heading": "Al final de la semana sabes qué atendió ",
+     "stage": true,
+     "text": 814,
+     "laura": true
+    }
+   }
+  },
+  {
+   "id": "story-texts",
+   "what": "every chapter and the social strip carry a state line and the three answers; no chapter letters; the follow-up is on Wednesday before Thursday's viewing (no Friday); the email's action is a real demo button; the alert with its reason stands in D; the German email is held without an automatic reply and without a draft (HANDOVER_1021 §E); no office/seat figures on the ladder (owner 20.10.); no Jarvis, no 'Señores Keller'",
+   "ok": true,
+   "evidence": {
+    "states": 7,
+    "answers": 7,
+    "letters": 0,
+    "social": true,
+    "comment": true,
+    "friday": false,
+    "thursday": true,
+    "deadSpan": 0,
+    "emailBtn": true,
+    "alert": true,
+    "held": true,
+    "jarvis": false,
+    "senores": false,
+    "sent": false,
+    "figures": false
+   }
+  },
+  {
+   "id": "email-demo",
+   "what": "the email's demo button (a real button, visible after its entry) shows the request landing with the team, never a booked appointment",
+   "ok": true,
+   "evidence": {
+    "button": {
+     "exists": true,
+     "tag": "BUTTON",
+     "visible": true,
+     "text": "Responder: sí, el jueves también"
+    },
+    "state": "sent",
+    "sent": true,
+    "text": "Sí, el jueves también.\n\nLaura · miércoles 17:40\n\nPetición recibida en tu agencia · nadie ha confirmado todavía\n\nUna petición no es una cita. Elena la ve en su lista y confirma la hora con Laura.\n\nVolver a empezar"
+   }
+  },
+  {
+   "id": "translation",
+   "what": "a foreign-language message is shown translated with the original one tap away",
+   "ok": true,
+   "evidence": {
+    "toggle": "original",
+    "before": "Buenos días, queremos vender n",
+    "after": "Guten Tag, wir möchten unsere ",
+    "lang": "de"
+   }
+  },
+  {
+   "id": "channels",
+   "what": "the channel selector works by click and arrow keys; the phone view carries call words and no WhatsApp step text",
+   "ok": true,
+   "evidence": {
+    "start": "whatsapp|Laura Serrano\n\nCompradora · escribe desd",
+    "phone": {
+     "ch": "phone",
+     "view": "phone",
+     "text": "Álvaro Pons\n\nComprador · llama por una villa · martes 11:37 · +34600123456\n\nLlam",
+     "hasWhatsAppWords": false,
+     "hasCall": true
+    },
+    "after_left": "webform webform",
+    "after_two_right": "whatsapp"
+   }
+  },
+  {
+   "id": "notice",
+   "what": "the AI notice can be shown on every channel",
+   "ok": true,
+   "evidence": {
+    "whatsapp": "Soy un asistente de inteligencia artificial. Te ay",
+    "email": "Traducción de muestra; el aviso aprobado es el esp",
+    "webform": "🤖 Soy un asistente de inteligencia artificial. Te",
+    "phone": "Al descolgar, el asistente dice que es un asistent"
+   }
+  },
+  {
+   "id": "task",
+   "what": "the task: take, agree the time as its own step, done; the done line names who did what; the other tasks stay open",
+   "ok": true,
+   "evidence": {
+    "taken": "taken",
+    "done": {
+     "state": "done",
+     "line": "Laura acepta: jueves a las 10:00. Queda en la ficha y en la ",
+     "others": "done,open,open,open"
+    }
+   }
+  },
+  {
+   "id": "model3d-packages",
+   "what": "the 3D section: four steps of one house (the plan to scale, the whole house from the viewer, the empty/furnished pair on a compare handle, the turn as a video with its poster), every picture marked as the fictional example house, no pending mark; the ladder is there; no monthly capacity figure; no proof-state label and no state word in the menu; no internal word (clip, env, 03-done, Jarvis) in the sales flow",
+   "ok": true,
+   "evidence": {
+    "model3d": true,
+    "steps": 4,
+    "plan": true,
+    "house": "/media/3d/house-both-floors-es-1600.webp",
+    "pair": "delivered",
+    "pairImgs": 2,
+    "range": true,
+    "turn": "delivered",
+    "film": true,
+    "src": "/media/3d/house-turn-es.mp4",
+    "poster": "/media/3d/house-turn-poster-es.webp",
+    "pending": 0,
+    "captions": 5,
+    "packages": 4,
+    "proof": 0,
+    "menuStates": 0,
+    "labels": true,
+    "capacity": false,
+    "internal": false
+   }
+  },
+  {
+   "id": "overflow-390",
+   "what": "no horizontal overflow and no element wider than the viewport",
+   "ok": true,
+   "evidence": {
+    "sw": 390,
+    "iw": 390,
+    "wide": []
+   }
+  },
+  {
+   "id": "overflow-768",
+   "what": "no horizontal overflow and no element wider than the viewport",
+   "ok": true,
+   "evidence": {
+    "sw": 768,
+    "iw": 768,
+    "wide": []
+   }
+  },
+  {
+   "id": "faq",
+   "what": "one question open at a time, aria-expanded and its region, no count under a category, no row id in the text",
+   "ok": true,
+   "evidence": {
+    "open": 1,
+    "exp": "true",
+    "regionShown": true,
+    "counts": 0,
+    "ids_visible": false
+   }
+  },
+  {
+   "id": "reduced",
+   "what": "reduced motion: everything visible at once, no layer moves, the panel keeps a fixed lean, the replay control is hidden",
+   "ok": true,
+   "evidence": {
+    "items_visible": 9,
+    "layers_top": {
+     "far": "none",
+     "sky": "none",
+     "mid": "none",
+     "panel": "matrix3d(1, 0, 0, 0, 0, 0.999048, 0.0436194, -3.11567e-05, 0, -0.0436194, 0.999048, -0.000713606, 0, 0, 0, 1)"
+    },
+    "panel_after_scroll_same": true,
+    "replay": "none"
+   }
+  },
+  {
+   "id": "nojs",
+   "what": "without JavaScript the hero's finished picture (the exchange and the customer record with its six lines) and all six chapters with their stages are in the document",
+   "ok": true,
+   "evidence": {
+    "hero": 1,
+    "story_parts": 3,
+    "results": 6,
+    "chapters": 6,
+    "stages": 6,
+    "html_js": 0
+   }
+  },
+  {
+   "id": "login-gate",
+   "what": "the report without a session goes to the login and remembers where it came from",
+   "ok": true,
+   "evidence": {
+    "url": "/es/login?next=%2Fes%2Fapp%2Freports",
+    "hasForm": true,
+    "redirects": [
+     {
+      "from": "https://nuovasolution-design-preview-2x7bx8vz8-nuovasolajs-projects.vercel.app/es/app/reports",
+      "to": "https://nuovasolution-design-preview-2x7bx8vz8-nuovasolajs-projects.vercel.app/es/login?next=%2Fes%2Fapp%2Freports",
+      "status": 307
+     }
+    ]
+   }
+  },
+  {
+   "id": "reports",
+   "what": "with a session the report renders its counts and period (stub data, labelled ABOVE the figures, no 'not an estimate' sentence) with the three meaning blocks and the email preview link",
+   "ok": true,
+   "evidence": {
+    "stub_login_status": 303,
+    "path": "/es/app/reports",
+    "state": "report",
+    "counts": 8,
+    "nulls": 0,
+    "period": "5 oct 2026 – 12 oct 2026",
+    "emailLink": true,
+    "stubChip": true,
+    "demoFirst": true,
+    "estimate": false,
+    "meaning": 3
+   }
+  },
+  {
+   "id": "app-package",
+   "what": "the session area names the package next to the trial line",
+   "ok": true,
+   "evidence": {
+    "trial": "Prueba activa · paquete Essential · quedan 9 días"
+   }
+  },
+  {
+   "id": "session-header",
+   "what": "with a session the header shows the account link and log out instead of log in",
+   "ok": true,
+   "evidence": {
+    "nav": "in",
+    "account": true,
+    "logout": true,
+    "loginText": false
+   }
+  },
+  {
+   "id": "report-email",
+   "what": "the Monday email preview is in the shared shell (v3): the logo, the subject with the figure, three tiles (answered of received, viewings with the agreed ones, waiting for a person), the open actions by name, the button to the full report; no task block; no web-form or phone figure and no booked appointment (COPY_1019 R-10)",
+   "ok": true,
+   "evidence": {
+    "subject": "Tu semana en Nuova: 23 consultas atendidas",
+    "button": "https://nuovasolution-design-preview-2x7bx8vz8-nuovasolajs-projects.vercel.app/es/app/reports",
+    "shell": true,
+    "tiles": 3,
+    "open": 2,
+    "tasks": 0,
+    "channels": "\tNuovaSolution\n\n\n\nRESUMEN SEMANAL · DEMO AGENCY (STUB)\n\n\n\n\nTu semana en Nuova: 23 consultas atendidas\n\n\nHola,\n\n\nEsto es lo que pasó en Demo Agency (stub) del 5 oct 2026 al 12 oct 2026.\n\nCuentan los ca",
+    "logo": "NuovaSolution",
+    "n8n": false
+   }
+  },
+  {
+   "id": "mail-previews-open",
+   "what": "the weekly report and the morning brief can be seen without a login on the stub build, labelled as demonstration",
+   "ok": true,
+   "evidence": {
+    "weekly": {
+     "path": "/es/preview/weekly",
+     "tiles": 3,
+     "open": 2,
+     "demo": true,
+     "login": false
+    },
+    "brief": {
+     "path": "/es/preview/brief",
+     "tasks": 3,
+     "demo": true
+    }
+   }
+  },
+  {
+   "id": "r23-findings",
+   "what": "the 3D video starts at 0:00 with its own poster (no #t fragment); the social reply is a person's; the packages stand before the way in and the questions",
+   "ok": true,
+   "evidence": {
+    "poster": "/media/3d/house-turn-poster-es.webp",
+    "src": "/media/3d/house-turn-es.mp4",
+    "phone": "false",
+    "social": "true",
+    "packagesBeforeTrust": true
+   }
+  },
+  {
+   "id": "r24-findings",
+   "what": "R24: the actual logo (an image, loaded, ivory on the dark hero and ink after the scroll); the customer record with the alert in the hero; the panel's head on the first screen at 1366 × 768; the hero stands on the terrace (no ivory band, no foreground scrub); state lines 14 px; no chip over the rights line in C; the social post marked as an example with its photo source; the trial mark inside the Essential card; the daily page shows tasks with its state, the benefit lines and Daily's task sentence (Y-1), no 'chosen in the app' language line; the platform rows for the morning assistant and the tasks in preparation (X-5); no German word in the Spanish mail previews",
+   "ok": true,
+   "evidence": {
+    "logoImg": true,
+    "logoFilterTop": "invert(1) brightness(0.97)",
+    "record": true,
+    "recordLines": 6,
+    "alert": true,
+    "panelTop": 496,
+    "heroBottom": 1117,
+    "terrace": true,
+    "oldGround": false,
+    "front": false,
+    "stateFont": "14px",
+    "lineFont": "14px",
+    "chipOverlap": false,
+    "socialExample": true,
+    "photoSource": true,
+    "taskSentence": true,
+    "logoFilterScrolled": "none",
+    "logoVisible": true,
+    "sticker": {
+     "inside": true,
+     "text": "14 días gratis · Sin método de pago"
+    },
+    "daily": {
+     "tasksView": true,
+     "leadsView": false,
+     "sentence": true,
+     "langLine": false,
+     "state": true,
+     "why": 2
+    },
+    "platform": {
+     "daily": "En preparación · todavía no contratable",
+     "dailyState": "preparing",
+     "tasksState": "preparing"
+    },
+    "german": {
+     "brief": false,
+     "weekly": false
+    }
+   }
+  },
+  {
+   "id": "r24b-findings",
+   "what": "closing order 26.10.: four hero layers, the enquiry and the record's first field on the first screen at 1366 × 768, the hero's ground the story's colour, the panel above the terrace, the reply confirming no listing fact with a next step and the priority on the record; the arrivals as one list with four states that appear after the arrival, no nested frames, the listing card not stretched, the count matching, the replay restarting only the list; the appointment steps following the task (one done at the start, three after); the follow-up on WhatsApp without a weekly figure; the 3D main view and the ride, every video preload none, one at a time, paused off screen; Lead Intelligence shows the added rows, CRM the history, AI Sales Agent what was noted with a quiet notice; no internal 'synthetic' word; the trust and packages lines",
+   "ok": true,
+   "evidence": {
+    "hero": {
+     "layers": [
+      true,
+      true,
+      true,
+      true
+     ],
+     "enquiryTop": 635,
+     "enquiryBottom": 742,
+     "recordFieldTop": 703,
+     "heroBg": "rgb(251, 250, 247)",
+     "storyBg": "rgb(251, 250, 247)",
+     "sameGround": true,
+     "panelZ": "4",
+     "terraceZ": "3",
+     "replyNoFacts": true,
+     "replyNotes": true,
+     "nextStep": true,
+     "priority": true
+    },
+    "arrivals": {
+     "list": true,
+     "rows": 4,
+     "states": [
+      "call-answered",
+      "replied",
+      "waiting",
+      "replied"
+     ],
+     "marksVisible": [
+      "1",
+      "1",
+      "1",
+      "1"
+     ],
+     "nestedFrames": 0,
+     "cardNotStretched": true,
+     "done": "done",
+     "countMatches": true
+    },
+    "replay": {
+     "afterReplay": [
+      "quiet",
+      "quiet",
+      "quiet",
+      "quiet"
+     ],
+     "othersStill": "open"
+    },
+    "agenda": {
+     "before": [
+      "done",
+      "open",
+      "open",
+      "preparing"
+     ],
+     "after": [
+      "done",
+      "done",
+      "done",
+      "preparing"
+     ]
+    },
+    "sections": {
+     "followup": "whatsapp",
+     "weekly": false,
+     "main": true,
+     "ride": true,
+     "preload": [
+      "none",
+      "none"
+     ],
+     "videos": 2,
+     "synthetic": false,
+     "example": true,
+     "trust": true,
+     "oldGround": false
+    },
+    "videos": {
+     "firstPausedAfterSecond": true,
+     "secondPlaying": true,
+     "firstTime": 1.4484,
+     "preloadAfterView": [
+      "metadata",
+      "metadata"
+     ],
+     "secondPausedOffscreen": true
+    },
+    "pages": {
+     "grow": true,
+     "growLabel": true,
+     "history": 5,
+     "noted": 2,
+     "noticeFont": "12px",
+     "baseline": true
+    }
+   }
+  },
+  {
+   "id": "copy-w-rows",
+   "what": "Copy's W-rows (1023): the hero shows only WhatsApp and e-mail and names the alert's channel; the FAQ answers the language and the hot lead as production does and the ads question as the packages do; every platform row carries its state; no regrouped phone number",
+   "ok": true,
+   "evidence": {
+    "hero": {
+     "chips": [
+      "whatsapp",
+      "email"
+     ],
+     "alert": true,
+     "regrouped": false
+    },
+    "faq": {
+     "lang": true,
+     "oldLang": false,
+     "hot": true,
+     "noAlert": false,
+     "ads": true
+    },
+    "platform": {
+     "rows": 18,
+     "states": 18,
+     "preparing": 10
+    }
+   }
+  },
+  {
+   "id": "brief-email",
+   "what": "the morning brief preview is in the same shell with the task block (kind, customer, lines, reasoned priority, held draft labelled as a draft, state, next step, open link) and no figures; labelled as demonstration",
+   "ok": true,
+   "evidence": {
+    "shell": true,
+    "tasks": 3,
+    "figures": 0,
+    "opens": 3,
+    "draft": true,
+    "priority": true,
+    "demo": true,
+    "wide": true
+   }
+  },
+  {
+   "id": "social-b",
+   "what": "Screen B shows the cover frame for every listing, at least two covers actually loaded (F-R16-3), and a draft control on the publishable ones, switched off with its reason until the release",
+   "ok": true,
+   "evidence": {
+    "listings": 4,
+    "covers": 4,
+    "shown": 2,
+    "drafts": 2,
+    "inert": 2,
+    "off": "stub"
+   }
+  },
+  {
+   "id": "logout",
+   "what": "log out from the header lands on the public root with a status line; the agency area asks for the login again",
+   "ok": true,
+   "evidence": {
+    "path": "/es",
+    "notice": true,
+    "nav": "out",
+    "app_after_logout": "/es/login"
+   }
+  }
+ ],
+ "pass": 33,
+ "total": 33
+}

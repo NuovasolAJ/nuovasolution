@@ -1,0 +1,58 @@
+PASS route /en 200, own page (no home fallback), noindex header + meta, no forbidden string
+INFO home en ≈ 3870 words in rendered text (nav and footer included)
+PASS route /en/platform 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/platform/ai-sales-agent 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/platform/lead-intelligence 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/platform/crm 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/platform/daily-assistant 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/packages 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/trial 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/contact 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/signup 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/login 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/login?confirmed=1 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/welcome 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/faq 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/legal/privacy 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/legal/terms 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/legal/data-deletion 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /en/legal/notice 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS hidden /en/platform/voice hidden or unknown capability answers 404
+PASS hidden /en/platform/social-growth hidden or unknown capability answers 404
+PASS hidden /en/platform/lead-acquisition hidden or unknown capability answers 404
+PASS hidden /en/platform/property-matching hidden or unknown capability answers 404
+PASS hidden /en/platform/property-experience hidden or unknown capability answers 404
+PASS hidden /en/platform/does-not-exist hidden or unknown capability answers 404
+PASS route /es 200, own page (no home fallback), noindex header + meta, no forbidden string
+INFO home es ≈ 3886 words in rendered text (nav and footer included)
+PASS route /es/platform 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/platform/ai-sales-agent 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/platform/lead-intelligence 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/platform/crm 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/platform/daily-assistant 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/packages 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/trial 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/contact 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/signup 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/login 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/login?confirmed=1 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/welcome 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/faq 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/legal/privacy 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/legal/terms 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/legal/data-deletion 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS route /es/legal/notice 200, own page (no home fallback), noindex header + meta, no forbidden string
+PASS hidden /es/platform/voice hidden or unknown capability answers 404
+PASS hidden /es/platform/social-growth hidden or unknown capability answers 404
+PASS hidden /es/platform/lead-acquisition hidden or unknown capability answers 404
+PASS hidden /es/platform/property-matching hidden or unknown capability answers 404
+PASS hidden /es/platform/property-experience hidden or unknown capability answers 404
+PASS hidden /es/platform/does-not-exist hidden or unknown capability answers 404
+PASS robots.txt disallows everything, advertises no sitemap
+PASS sitemap.xml lists nothing on a preview
+PASS root redirect / redirects once to a locale
+PASS poster asset media poster is served
+PASS clip assets the four product clips are served as video, with byte ranges
+PASS clip subtitles the four subtitle files are served with five cues each
+PASS legacy redirect /live-demo redirects permanently
+55/55 route checks passed -> docs\website_redesign\evidence_2026-10-26b\routes\route-scan.json

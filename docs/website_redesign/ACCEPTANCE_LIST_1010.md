@@ -102,6 +102,21 @@ lane truth sheets, this repository); **Needed** is the signal that closes the ro
 | X-5 | 3D: no design variant as a furniture comparison; the viewer capture without its title bar; the slots prepared | **built**; the rotation and the pair are **missing** | `3D_ASSETS_REQUEST_1017.md` A-1, A-2 | 3D |
 | X-6 | Platform, packages, reporting and FAQ aligned: the phone out of the packages, "Capacidad: consultas al mes", limits with the claim, the setup answer | **built** | Copy's confirmation; the owner on prices | Copy, Owner |
 
+## F10. The owner's consolidated closing order of 26.10. (on 596679b; build `WEBSITE_R24B` = `a945fa9`, `WEBSITE_R24B_RETURN_v1.md`; Copy's Y-1…Y-4 applied)
+
+| # | Point | State | Needed | Lane |
+|---|---|---|---|---|
+| V-1 | Hero: four layers as one scene with a relation to NuovaSolution (sky, Mediterranean villas, panel, terrace); the panel's enquiry and record on the first screen at 1366 × 768; mobile composed on its own | **built** (`WEBSITE_R24B_RETURN_v1.md` §1 rows 1.1–1.3) | the owner's view on his screen | Owner |
+| V-2 | Hero → story without a cut, a bar or fog; a still mid-way; slow, fast and backwards | **built** (row 2; the real-time recording `evidence_2026-10-26b/scroll/`) | the owner's view | Owner |
+| V-3 | Arrival cards compact with a clear hierarchy, the state in its own place, no stretched listing card, the count matching, arrivals once then still | **built** (row 3) | Copy on the concern lines and the count sentence | Copy |
+| V-4 | 3D: a large main view, the flow kept, the handle kept, the living-room ride back, the recording 15–20 s with a fitting first frame, no acceleration; stutter measured in source vs playback | **built** with the 23.10. run (rows 4.1–4.3); the labels and controls remain in the recording | the 3D lane's clean take from the corrected run (`WEBSITE_TO_3D_1026_ASSET_ORDER.md`), the owner's release of that run | 3D, Owner |
+| V-5 | One motion system; press/focus/touch response; no hover-only content; reduced motion; videos pause off screen, one at a time | **built** (row 5) | — | — |
+| V-6 | The customer record (name/role → search → budget → language → priority with reason → next step) and the four module pages showing done work; "Ejemplo ilustrativo" | **built** (rows 6.1–6.7); Daily's Q&A flow not shown (not released) | Copy on the wording; Daily's release for a Q&A view | Copy, Daily |
+| V-7 | The six text contradictions | **built** on the newest evidence the website holds (rows 7.1–7.6): the hero reply confirms no fact, the packages baseline line, the trust lead, the follow-up on WhatsApp without a frequency figure, the appointment steps | API/PM's written follow-up rule; Daily's Q-4; the owner's KALENDER line | API/PM, Daily, Owner |
+| V-8 | Prices and package limits | **one owner decision point** (`WEBSITE_R24B_RETURN_v1.md` §6); no figure invented | the owner's lines via API's sheet | Owner |
+| V-9 | Hand-over to Copy and Reviewer on exactly this build | **requested** (§8) | their documents on this commit | Copy, Reviewer |
+| V-10 | Production domain | **not touched** | Copy and Reviewer without an open finding, the owner's phone acceptance, the owner's own line | Owner |
+
 ## F9. R24 FINAL (on 9f6c65e; build 596679b; the owner's 18 pictures and the audit's findings per picture)
 
 | # | Point | State | Needed | Lane |
