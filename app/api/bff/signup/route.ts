@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import dns from "node:dns";
 import { clientKey, envelope, fail, isStub, rateLimited, readJson, refusal, sameOrigin, stubRefused } from "@/lib/contracts/bff";
 import { environmentProblem } from "@/lib/contracts/mode";
 import { SESSION_COOKIE, STUB_CASE_COOKIE, STUB_REGISTERED_COOKIE } from "@/lib/contracts/server";
@@ -6,6 +7,20 @@ import { signUp } from "@/lib/contracts/supabase";
 import type { SignupRequest } from "@/lib/contracts/types";
 
 export const runtime = "nodejs";
+
+/**
+ * R25C (API_E28_RECONCILIATION_1026 §3): before signUp the address's domain is looked up, so a domain that cannot receive
+ * mail never produces a confirmation mail and a bounce. Reserved and test names are refused without a lookup; every other
+ * domain needs an MX record or, failing that, an A/AAAA record. No result ⇒ email_domain_undeliverable, nothing sent.
+ */
+const RESERVED = /(^|\.)(invalid|test|example|localhost)$|^(example\.(com|org|net)|test\.nuovasolution\.com)$/i;
+async function deliverable(domain: string): Promise<boolean> {
+  if (RESERVED.test(domain)) return false;
+  const has = async (f: () => Promise<unknown[]>) => { try { return (await f()).length > 0; } catch { return false; } };
+  if (await has(() => dns.promises.resolveMx(domain))) return true;
+  if (await has(() => dns.promises.resolve4(domain))) return true;
+  return has(() => dns.promises.resolve6(domain));
+}
 
 /**
  * POST /api/bff/signup { name, email, password, language, agency_name }
@@ -45,6 +60,7 @@ export async function POST(req: Request) {
     return envelope({ ok: true, code: "ok", message: "stub", details: { next: "onboarding", session: true } }, 201, true);
   }
   if (environmentProblem()) return fail("environment_misconfigured", 503);
+  if (!(await deliverable(email.slice(email.lastIndexOf("@") + 1)))) return fail("email_domain_undeliverable", 400);
   try {
     const redirectTo = `${new URL(req.url).origin}/${language}/login?confirmed=1`;
     await signUp(email, password, { full_name: name, agency_name, language }, redirectTo);

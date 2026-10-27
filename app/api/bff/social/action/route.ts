@@ -22,7 +22,7 @@ export const dynamic = "force-dynamic";
  *
  * Stub build: there is nothing to act on; the answer is a labelled refusal, never a faked success.
  */
-const ACTIONS = ["begin_connect", "account_check", "draft", "approve", "publish", "verify_publish", "poll_comments", "poll_dms", "reply_public", "reply_private", "dm_reply", "disconnect"] as const;
+const ACTIONS = ["begin_connect", "account_check", "draft", "approve", "publish", "verify_publish", "poll_comments", "poll_dms", "reply_public", "reply_private", "dm_reply", "lead_capture", "disconnect"] as const;
 type Action = (typeof ACTIONS)[number];
 const NEEDS_EXPORT: Action[] = ["publish", "verify_publish"];
 const NEEDS_TARGET: Action[] = ["reply_public", "reply_private", "dm_reply"];
@@ -36,13 +36,23 @@ export async function POST(req: Request) {
   const token = sessionToken();
   if (!token) return fail("no_session", 401);
 
-  const body = await readJson<{ action?: string; post?: string; signal?: string; listing?: string; draft?: string; language?: string; message?: string }>(req);
+  const body = await readJson<{ action?: string; post?: string; signal?: string; listing?: string; draft?: string; language?: string; message?: string; phone?: string; email?: string; consent_confirmed?: boolean }>(req);
   const action = body?.action as Action | undefined;
   if (!action || !ACTIONS.includes(action)) return fail("invalid_input", 400);
   if (NEEDS_EXPORT.includes(action) && !/^p\d{1,3}$/.test(body?.post ?? "")) return fail("invalid_input", 400);
   if (NEEDS_TARGET.includes(action) && !(/^s\d{1,3}$/.test(body?.signal ?? "") && body?.message?.trim())) return fail("invalid_input", 400);
   if (action === "draft" && !/^l\d{1,3}$/.test(body?.listing ?? "")) return fail("invalid_input", 400);
   if (action === "approve" && !UUID.test(body?.draft ?? "")) return fail("invalid_input", 400);
+  // R25C G2 (SOCIAL_TO_API_WEBSITE_1026 §2.3, §3 W5): our signal id, a phone (E.164) and/or an e-mail, and the consent a person confirmed on screen
+  const phone = String(body?.phone ?? "").trim();
+  const email = String(body?.email ?? "").trim().toLowerCase();
+  if (action === "lead_capture") {
+    if (!/^s\d{1,3}$/.test(body?.signal ?? "")) return fail("invalid_input", 400);
+    if (phone && !/^\+[1-9]\d{6,14}$/.test(phone)) return fail("invalid_input", 400);
+    if (email && !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254)) return fail("invalid_input", 400);
+    if (!phone && !email) return fail("invalid_input", 400);
+    if (body?.consent_confirmed !== true) return fail("consent_required", 400);
+  }
   if (body?.message && body.message.length > 1000) return fail("invalid_input", 400);
   const language = body?.language === "en" ? "en" : "es";
 
@@ -72,6 +82,14 @@ export async function POST(req: Request) {
       args.language = language;
     }
     if (action === "approve") args.variant_id = body!.draft!;
+    if (action === "lead_capture") {
+      const target = await lookupSocialTarget("signal", body!.signal!);
+      if (!target) return fail("invalid_input", 400);
+      args.target = target;
+      if (phone) args.phone = phone;
+      if (email) args.email = email;
+      args.consent_confirmed = true;
+    }
     const r = await tenantApi<Json>(token, "social.action", args);
     const details: Json = {};
     for (const k of SHOWN) if (k in r) details[k] = r[k];

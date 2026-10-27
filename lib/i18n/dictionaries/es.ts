@@ -114,7 +114,9 @@ export const es: Dictionary = {
       invalid_input: "Parte de lo que has introducido no es válido. No se ha guardado nada.",
       server_error: "Algo ha fallado por nuestra parte. No ha cambiado nada. Inténtalo de nuevo en un momento.",
       link_expired: "Este enlace ha caducado o ya se usó. Pide uno nuevo al administrador de tu agencia o a nosotros.",
+      consent_required: "Marca la confirmación: la persona tiene que haber dado su conformidad en su mensaje.", // R25C G2
       weak_password: "Elige una contraseña más larga: al menos 10 caracteres.",
+      email_domain_undeliverable: "Esta dirección no puede recibir correo. Usa una dirección de un dominio con correo activo.", // R25C (API_E28_RECONCILIATION §3)
       invalid_tax_id: "Ese número no es un CIF, NIF o NIE válido.",
       invalid_url: "Uno de los enlaces no es una dirección web válida. Usa la dirección completa, empezando por https://.",
       invalid_email: "Esa dirección de email no es válida.",
@@ -704,7 +706,7 @@ export const es: Dictionary = {
       agencyName: "Nombre de la agencia",
       agencyNameHelp: "El nombre con el que te conocen tus clientes.",
       language: "Idioma principal con tus clientes",
-      languageHelp: "Las respuestas se escriben en el idioma en el que escribe cada cliente. Este es el idioma por defecto cuando no se puede saber.",
+      languageHelp: "Hoy las respuestas automáticas se escriben en español. El inglés está previsto; el alemán está en la hoja de ruta (el teléfono es aparte). Este es el idioma por defecto de tu agencia.", // R25C SPRACHEN S2; WORKING, for Copy
       timezone: "Zona horaria",
       submit: "Crear agencia y continuar",
       submitting: "Creando tu agencia",
@@ -974,6 +976,14 @@ export const es: Dictionary = {
       answered: "Ya respondido.",
       answeredKinds: { public: "Respuesta pública", private: "Respuesta privada", message: "Respuesta", other: "Respuesta" },
       privateUsed: "Una respuesta privada por comentario.",
+      // R25C W1–W6 (SOCIAL_TO_API_WEBSITE_1026 §3); WORKING, Copy delivers the final wording (SOCIAL_TO_COPY_1026_LANG_v1)
+      languageLabel: "Idioma",
+      languages: { es: "español", en: "inglés", de: "alemán", unknown: "desconocido" },
+      languageSources: { detected: "detectado en el mensaje", tenant_default: "idioma de la agencia", unknown: "origen desconocido" },
+      draftIn: "Borrador en",
+      confirmBeforeSending: "Revisa el texto antes de enviarlo: lo ha preparado el sistema y lo envía una persona.",
+      noDraft: { blocked_policy: "Sin borrador: el contenido no permite una respuesta automática. Escribe tú la respuesta.", not_renderable: "Sin borrador: el mensaje no se pudo interpretar. Escribe tú la respuesta.", unresolved: "Sin borrador: el mensaje no se pudo interpretar. Escribe tú la respuesta.", language_not_enabled_for_tenant: "Sin borrador: ese idioma no está activado para tu agencia. Escribe tú la respuesta.", no_reply_signal_only: "Sin borrador: este mensaje no pide respuesta; queda registrado. Si quieres, escribe tú.", other: "Sin borrador. Escribe tú la respuesta." },
+      capture: { title: "Tomar como contacto", phone: "Teléfono (formato internacional, +34…)", email: "Email", consent: "La persona ha dado su conformidad en su mensaje a que la contactemos.", submit: "Tomar como contacto", done: "Contacto registrado" },
       windowExpired: "El plazo para responder ha terminado.",
       reference: "Referencia",
       received: "Eventos recibidos",

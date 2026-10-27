@@ -88,7 +88,7 @@ export function Model3dSection({ locale }: { locale: Locale }) {
                       afterLabel={l(w.furnished)}
                       className="h-full w-full rounded-none"
                       before={<Img src={F.empty} alt={l(w.pairAlt)} w={1200} h={800} className="h-full w-full object-cover" />}
-                      after={<Img src={F.furnished} alt="" w={1200} h={800} className="h-full w-full object-cover" />}
+                      after={<Img src={F.furnished} alt={l(w.pairAltFurnished)} w={1200} h={800} className="h-full w-full object-cover" />}
                     />
                   </div>
                 )}

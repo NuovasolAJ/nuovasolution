@@ -68,6 +68,10 @@ export interface SocialSignal {
   reply: { kind: "public" | "private" | "message" | "other"; at: string | null; ref: string | null } | null;
   /** A message older than 24 hours without an answer: the provider's reply window is over. */
   window_expired: boolean;
+  /** R25C W1: the language Social detected for this entry (es, en, de) or null for "unknown". */
+  language: string | null;
+  /** R25C W2/W3/W6: Social's reply draft for this entry, or the reason there is none; null until API's read model carries it. */
+  suggestion: { draft: string | null; language: string | null; language_source: string | null; outcome: string | null; requires_human_confirmation: boolean } | null;
 }
 
 /**
@@ -191,6 +195,7 @@ function reduce(raw: Json, screen: SocialScreen, stub: boolean): SocialState {
     const answered = rep && typeof rep.outcome === "string" && rep.outcome.length > 0;
     const rk = String(rep?.kind ?? "");
     const created = iso(s.created_at);
+    const sug = s.suggestion && typeof s.suggestion === "object" ? (s.suggestion as Json) : null;
     return {
       key: `s${i}`,
       kind,
@@ -200,6 +205,8 @@ function reduce(raw: Json, screen: SocialScreen, stub: boolean): SocialState {
       text: str(s.text, 400) ?? "",
       reply: answered ? { kind: /private/.test(rk) ? "private" : /public/.test(rk) ? "public" : /dm/.test(rk) ? "message" : "other", at: iso(rep?.claimed_at), ref: str(rep?.provider_ref, 64) } : null,
       window_expired: kind === "message" && !answered && created !== null && now - Date.parse(created) > 24 * 3600 * 1000,
+      language: str(s.language, 8),
+      suggestion: sug ? { draft: str(sug.draft, 1000), language: str(sug.language, 8), language_source: str(sug.language_source, 40), outcome: str(sug.outcome, 60), requires_human_confirmation: sug.requires_human_confirmation === true } : null,
     } as SocialSignal;
   });
 
@@ -296,9 +303,10 @@ function stubState(screen: SocialScreen, which: string | undefined): SocialState
         { state: "delivery_unknown", post: {} },
       ],
       inbox: [
-        { signal_type: "comment", intent: "viewing_request", became_lead: true, created_at: t(3), text: "Is the villa still available? We would like to see it on Thursday. (synthetic)", reply: null },
+        { signal_type: "comment", intent: "viewing_request", became_lead: true, created_at: t(3), text: "Is the villa still available? We would like to see it on Thursday. (synthetic)", reply: null, language: "en", suggestion: { draft: "Thank you for your interest. A person from the agency will write to you privately about a viewing on Thursday. (synthetic draft)", language: "en", language_source: "detected", outcome: "ok", requires_human_confirmation: true } },
         { signal_type: "comment", intent: "price_inquiry", became_lead: false, created_at: t(26), text: "What is the price per square metre? (synthetic)", reply: { kind: "reply_private", outcome: "sent", provider_ref: "demo-reply-0001", claimed_at: t(25) } },
-        { signal_type: "dm_inbound", intent: "location_question", became_lead: false, created_at: t(40), text: "How far is it to the beach? (synthetic)", reply: null },
+        { signal_type: "dm_inbound", intent: "location_question", became_lead: false, created_at: t(40), text: "How far is it to the beach? (synthetic)", reply: null, language: "en", suggestion: { draft: null, language: "en", language_source: "detected", outcome: "no_reply_signal_only", requires_human_confirmation: false } },
+        { signal_type: "dm_inbound", intent: "explicit_interest", became_lead: false, created_at: t(2), text: "Hola, me interesa el ático. Podéis llamarme al +34 600 000 000, estoy de acuerdo en que me contactéis. (synthetic)", reply: null, language: "es", suggestion: { draft: "Gracias por escribirnos. Una persona de la agencia te llama hoy. (borrador sintético)", language: "es", language_source: "detected", outcome: "ok", requires_human_confirmation: true } },
       ],
       webhook_health: { events: 3, last_received_at: t(3) },
     },
