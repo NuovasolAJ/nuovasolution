@@ -265,12 +265,12 @@ This is the page Meta is given as the Data Deletion Instructions URL:
 > **What we delete, and what stays for a while.** When a deletion is due, we remove the person from every
 > store of our database in one step, and then search the whole database for anything left behind. Some
 > copies sit outside that database and are removed on their own schedule: the records of our automation
-> server after 14 days, and our backups at the latest after ⟦HOSTING: longest backup period⟧. If a backup is
+> server after 14 days, and our backups at the latest after 14 days. If a backup is
 > ever restored, the deletion is applied again before the data is used. Copies held by the services we use,
 > such as Meta for WhatsApp, follow those services' own deletion periods. A copy the agency keeps itself, in
 > its own mailbox for example, is the agency's to delete, and we tell it what to remove. We keep a record that
 > the deletion was requested and done, without your messages or your contact details in readable form, and
-> the record of any consent you gave or withdrew.
+> the record of any consent you gave or withdrew. ⟦COUNSEL: F9⟧
 >
 > **What this page does not do.** This page does not delete anything by itself. It tells you how to ask.
 >
@@ -315,13 +315,13 @@ This is the page Meta is given as the Data Deletion Instructions URL:
 > **Qué eliminamos y qué se mantiene un tiempo.** Cuando toca eliminar, borramos a la persona de todos los
 > almacenes de nuestra base de datos en un solo paso y después revisamos toda la base por si queda algo.
 > Algunas copias están fuera de esa base y se eliminan según su propio plazo: los registros de nuestro
-> servidor de automatización a los 14 días, y nuestras copias de seguridad como máximo a los
-> ⟦HOSTING: plazo máximo de las copias de seguridad⟧. Si alguna vez se restaura una copia, la eliminación se
+> servidor de automatización a los 14 días, y nuestras copias de seguridad como máximo a los 14 días. Si
+> alguna vez se restaura una copia, la eliminación se
 > aplica de nuevo antes de usar los datos. Las copias que guardan los servicios que usamos, como Meta para
 > WhatsApp, siguen sus propios plazos. Una copia que conserva la propia agencia, por ejemplo en su buzón,
 > la elimina la agencia, y le decimos qué tiene que borrar. Guardamos constancia de que la eliminación se
 > pidió y se hizo, sin tus mensajes ni tus datos de contacto en forma legible, y el registro de cualquier
-> consentimiento que diste o retiraste.
+> consentimiento que diste o retiraste. ⟦COUNSEL: F9⟧
 >
 > **Qué no hace esta página.** Esta página no elimina nada por sí misma. Te indica cómo pedirlo.
 >
