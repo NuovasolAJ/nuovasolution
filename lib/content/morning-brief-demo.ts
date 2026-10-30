@@ -51,7 +51,7 @@ export function briefTasks(locale: Locale, listHref: string): MailTask[] {
     {
       kind: es ? "Rellamada" : "Callback",
       who: es ? "Álvaro Pons · Teléfono" : "Álvaro Pons · Phone",
-      lines: es ? ["Llamó por la villa de Elviria: precio y margen.", "Pidió que le llamen por la tarde · +34600123456."] : ["Called about the villa in Elviria: price and room to negotiate.", "Asked to be called in the afternoon · +34600123456."],
+      lines: es ? ["Llamó por la villa de Elviria: precio y margen.", "Pidió que le llamen por la tarde · +34 XXX XXX XXX."] : ["Called about the villa in Elviria: price and room to negotiate.", "Asked to be called in the afternoon · +34 XXX XXX XXX."],
       state: es ? "Abierta · recordatorio a las 16:00" : "Open · reminder at 16:00",
       step: es ? "Llamar a partir de las 16:00" : "Call from 16:00",
       href: listHref,

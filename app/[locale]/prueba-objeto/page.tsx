@@ -15,25 +15,26 @@ export const dynamic = "force-dynamic";
  * while the test runs, no negative availability word anywhere. The picture is the site's licensed sample with "PRUEBA"
  * burnt into the pixels, served from this page's own path (imagen-prueba.jpg).
  *
- * The values below are provisional (the site's example flat) until the owner's release line fixes price, town, type and
- * bedrooms; they must then equal the inventory row API writes. Only on a stub build until the owner releases the page on
- * the domain (E-FU2 is its own owner decision).
+ * The values are the owner's released ones (PM_TO_WEBSITE_API_LEAD_1027_EFU2_RELEASED_v1, 27.10.: the line allows only this one
+ * test page on nuovasolution.com); they equal the inventory row API writes. The picture is NuovaSolution's own drawn graphic
+ * (no third-party content). On the redesign this page exists on the stub build only; the production domain carries the same
+ * page from the branch efu2-prueba-objeto.
  */
 const PRUEBA = {
   ref: "NS-TEST-0001",
   title: "[PRUEBA] Piso de demostración NuovaSolution",
   estado: "Disponible" as "Disponible" | "Retirado",
-  actualizado: "26/10/2026",
-  precio: 315000,
-  municipio: "Estepona",
+  actualizado: "30/10/2026",
+  precio: 289000,
+  municipio: "Nerja",
   provincia: "Málaga",
   tipo: "piso",
   dormitorios: 2,
-  banos: 2,
-  superficie: 78,
+  banos: 1,
+  superficie: 75,
   operacion: "Venta",
   image: "imagen-prueba.jpg",
-  imageSource: "licencia Pexels 12715501 (Keegan Checks), marcada PRUEBA por NuovaSolution",
+  imageSource: "propia (NuovaSolution)",
 };
 
 const eur = (n: number) => `${n.toLocaleString("es-ES")} €`;

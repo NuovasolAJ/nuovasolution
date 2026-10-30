@@ -40,11 +40,13 @@ export const homeWords = {
     mainTitle: { es: "La casa entera, girando", en: "The whole house, turning" },
     mainLine: { es: "Las dos plantas sin tejado dan una vuelta completa; después, la planta baja sola. Grabado del visor real, sin acelerar.", en: "Both floors without a roof make one full turn; then the ground floor on its own. Recorded from the real viewer, not sped up." },
     /** The 3D lane's mandatory marks under each picture (handoff README 2026-10-23): a fictional house, a visualisation, the real viewer. */
-    planCaption: { es: "Plano de ejemplo ficticio · dibujado a escala a partir de la especificación del modelo", en: "Fictional example plan · drawn to scale from the model's specification" },
-    modelCaption: { es: "Casa de ejemplo ficticia · captura del visor real", en: "Fictional example house · a frame from the real viewer" },
-    pairCaption: { es: "Casa de ejemplo ficticia · visualización: el mismo salón vacío y con mobiliario ilustrativo, desde la misma cámara", en: "Fictional example house · visualisation: the same living room empty and with illustrative furnishing, from the same camera" },
-    turnCaption: { es: "Casa de ejemplo ficticia · grabado del visor real · 20 segundos · sin sonido · se ven los nombres de las estancias y los mandos del visor", en: "Fictional example house · recorded from the real viewer · 20 seconds · no sound · the viewer's room names and controls are visible" },
-    rideCaption: { es: "Casa de ejemplo ficticia · visualización del salón amueblado · 8 segundos · sin sonido", en: "Fictional example house · visualisation of the furnished living room · 8 seconds · no sound" },
+    planCaption: { es: "Dibujado a escala a partir de la especificación del modelo", en: "Drawn to scale from the model's specification" },
+    modelCaption: { es: "Captura del visor real", en: "A frame from the real viewer" },
+    pairCaption: { es: "Visualización: el mismo salón, la misma cámara, con mobiliario ilustrativo", en: "Visualisation: the same living room, the same camera, illustrative furnishing" },
+    turnCaption: { es: "Grabado del visor real · 20 segundos · sin sonido · se ven los nombres de las estancias y los mandos del visor", en: "Recorded from the real viewer · 20 seconds · no sound · the viewer's room names and controls are visible" },
+    rideCaption: { es: "Visualización del salón amueblado · 8 segundos · sin sonido", en: "Visualisation of the furnished living room · 8 seconds · no sound" },
+    /** The steps of the 20 s cut (handoff_2026-10-23 clips.json, offset by the cut's 2.2 s start), named under the video while it plays. */
+    turnCues: { es: [{ at: 0, label: "Las dos plantas" }, { at: 13.3, label: "Planta baja" }], en: [{ at: 0, label: "Both floors" }, { at: 13.3, label: "Ground floor" }] },
     rideFilm: { es: "Vídeo: un paseo corto de cámara por el salón amueblado · 8 segundos · sin sonido", en: "Video: a short camera ride through the furnished living room · 8 seconds · no sound" },
     modelAlt: { es: "Casa de ejemplo ficticia de dos plantas sin tejado, vista desde arriba en el visor, con los nombres de las estancias", en: "Fictional two-storey example house without a roof, seen from above in the viewer, with the room names" },
     pairAlt: { es: "Casa de ejemplo ficticia: el mismo salón vacío y con mobiliario ilustrativo", en: "Fictional example house: the same living room empty and with illustrative furnishing" },
@@ -55,8 +57,23 @@ export const homeWords = {
     furnished: { es: "Amueblado", en: "Furnished" },
     viewerLine: { es: "Sin tejado, para ver dentro. Planta baja o alta, muebles fuera o dentro. Sin paseo a ojo de persona. Modelos 3D también por separado, sin ningún paquete: nos envías los planos, lo construimos y lo comprobamos.", en: "No roof, so you see inside. Ground or upper floor, furniture off or on. No eye-level walkthrough. 3D models also on their own, without a package: you send the plans, we build it and we check it." },
     film: { es: "Vídeo: la casa entera girando en el visor · 20 segundos · sin sonido", en: "Video: the whole house turning in the viewer · 20 seconds · no sound" },
-    demoNote: { es: "Casa de ejemplo de dos plantas sobre un plano ficticio propio. No es una vivienda real. Cada modelo se hace por encargo a partir de tus planos.", en: "A two-storey example house on a fictional plan of our own. Not a real home. Each model is made to order from your plans." },
+    demoNote: { es: "Cada modelo se hace por encargo a partir de tus planos.", en: "Each model is made to order from your plans." },
     cta: { es: "Pide un modelo", en: "Ask for a model" },
+    /** Closing order 27.10. §8: the broker's path, three steps, no delivery-time promise and no automatic creation claimed. */
+    pathTitle: { es: "Cómo se pide", en: "How to order" },
+    path: {
+      es: [
+        { title: "Envías el plano con medidas y las fotos que tengas", line: "Un plano acotado basta; las fotos ayudan con materiales y luz." },
+        { title: "Aclaramos lo que falte y construimos el modelo", line: "Te preguntamos lo que el plano no dice y lo comprobamos contra él." },
+        { title: "Recibes la presentación comprobada por un enlace protegido", line: "Vacío y amueblado, con la vista giratoria. Una persona la revisa antes de entregarla." },
+      ],
+      en: [
+        { title: "You send the dimensioned plan and any photos you have", line: "A dimensioned plan is enough; photos help with materials and light." },
+        { title: "We clarify what is missing and build the model", line: "We ask what the plan does not say and check the model against it." },
+        { title: "You receive the checked presentation through a protected link", line: "Empty and furnished, with the rotating view. A person checks it before it is delivered." },
+      ],
+    },
+    exampleOnce: { es: "Todo lo que ves en esta sección es una casa de ejemplo ficticia de NuovaSolution, no una vivienda real.", en: "Everything in this section is NuovaSolution's fictional example house, not a real home." },
   },
   trust: {
     eyebrow: { es: "Cómo empiezas", en: "How you start" },

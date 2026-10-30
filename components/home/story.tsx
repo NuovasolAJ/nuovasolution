@@ -382,7 +382,7 @@ export function Story({ locale }: { locale: Locale }) {
                             <div className="mt-3 border-t border-ink-100 pt-3" aria-live="polite">
                               <p className="t-body-s text-text-primary"><span className="font-medium">{l(W.task.nextStep)}:</span> {it.next}</p>
                               <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-3">
-                                {task === "open" && (<><button type="button" onClick={() => setTask("taken")} className="demo-action" data-task-take>{l(W.task.take)}<ArrowRight size={16} aria-hidden="true" /></button><span className="t-body-s text-text-secondary">{l(W.task.open)}</span></>)}
+                                {task === "open" && (<><button type="button" onClick={() => setTask("taken")} className="demo-action" data-task-take data-demo-hint>{l(W.task.take)}<ArrowRight size={16} aria-hidden="true" /></button><span className="t-body-s text-text-secondary">{l(W.task.open)} · <span data-demo-hint-word>{l(W.common.demoHint)}</span></span></>)}
                                 {task === "taken" && (<><Mark tone="positive"><Check size={18} strokeWidth={2.5} aria-hidden="true" />{l(W.task.taken)}</Mark><button type="button" onClick={() => setTask("confirmed")} className="demo-action" data-task-confirm>{l(W.task.confirm)}<ArrowRight size={16} aria-hidden="true" /></button></>)}
                                 {task === "confirmed" && (<><Mark tone="positive"><Check size={18} strokeWidth={2.5} aria-hidden="true" />{l(W.task.confirmed)}</Mark><button type="button" onClick={() => setTask("done")} className="demo-action" data-task-complete>{l(W.task.complete)}</button></>)}
                                 {task === "done" && (<><Mark tone="positive"><Check size={18} strokeWidth={2.5} aria-hidden="true" />{l(W.task.done)}</Mark><button type="button" onClick={() => setTask("open")} className="inline-flex min-h-[44px] items-center gap-2 t-body-s font-medium text-text-primary underline decoration-line-strong underline-offset-4 hover:decoration-ink-950" data-task-again><RotateCcw size={14} aria-hidden="true" />{l(W.task.again)}</button></>)}
@@ -423,49 +423,54 @@ export function Story({ locale }: { locale: Locale }) {
           {/* 5 The follow-up: the new listing, the three conditions, the email with its one demo action */}
           <Chapter id="story-e" locale={locale} data={ch5}>
             <Stage back="sand" front={<span className="float-chip"><Mail size={14} aria-hidden="true" />{laura.who}</span>}>
-              <div className="grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-8 xl:grid-cols-1 2xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]" data-stage="followup">
+              <div className="grid gap-5" data-stage="followup">
                 <div className="min-w-0">
                   <p className="t-caption font-medium text-text-muted">{l(W.followup.trigger)}</p>
-                  <div className="mt-3"><ListingCard listing={listings.est240} locale={locale} photoLabel={l(W.common.photo)} note={l(W.followup.matches)} /></div>
-                  <p className="mt-5 t-caption font-medium text-text-muted">{l(W.followup.conditions)}</p>
-                  <AnimatedList className="mt-2 gap-2" delay={500} startDelay={600} keepOrder>
-                    {l(W.followup.conditionList).map((c) => <p key={c} className="flex items-start gap-2 t-body-s text-text-primary"><span aria-hidden="true" className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-pill bg-signal-positive text-ivory"><Check size={12} strokeWidth={3} /></span>{c}</p>)}
-                  </AnimatedList>
+                  <p className="mt-2 t-body-m text-text-primary">{l(W.followup.triggerLine)}</p>
                 </div>
                 <Rise delay={1.4} className="min-w-0">
-                  {/* Closing order 26.10. §7: the follow-up on WhatsApp, the channel Laura wrote on; her one-line reply is the demo action, and it
-                      lands with the team as a request, never as a booked appointment. */}
-                  <div className="overflow-hidden rounded-lg border border-ink-100 bg-white" data-story-email data-story-followup="whatsapp">
-                    <div className="flex items-center gap-3 border-b border-ink-100 px-5 py-3">
+                  {/* Closing order 27.10. §5: the follow-up as it is read: a short WhatsApp message, the two listings as full-width cards
+                      outside the bubble (stacked on the phone), Laura's one-line reply as the demo action, the conditions in a details
+                      block; the one limit that matters stays visible. No card inside a card inside a card. */}
+                  <div className="min-w-0" data-story-email data-story-followup="whatsapp">
+                    <div className="flex items-center gap-3">
                       <ChannelIcon channel="whatsapp" on size={14} />
                       <p className="t-caption text-text-muted">{l(W.followup.email)} · {l(W.followup.from)}</p>
                     </div>
-                    <div className="px-4 py-4 md:px-5">
-                      <div className="flex justify-end">
-                        <Bubble out label={l(W.common.assistant)} className="max-w-full">
-                          <Translated locale={locale} lang="es" original={W.followup.body} translated={l(W.followup.bodyTranslated)} />
-                          <div className="mt-3 grid grid-cols-2 gap-2">
-                            {[listings.est240, listings.est231].map((li) => <ListingCard key={li.ref} listing={li} locale={locale} photoLabel={l(W.common.photo)} compact />)}
-                          </div>
-                        </Bubble>
-                      </div>
-                      <div className="mt-4" aria-live="polite">
-                        {requested ? (
-                          <div data-story-request-sent>
-                            <Bubble meta={locale === "es" ? "Laura · miércoles 17:40" : "Laura · Wednesday 17:40"} className="max-w-[80%]"><p lang="es">{l(W.followup.replyText)}</p></Bubble>
-                            <p className="mt-3"><Mark tone="positive"><Check size={16} strokeWidth={2.5} aria-hidden="true" />{l(W.followup.requested)}</Mark></p>
-                            <p className="mt-1.5 t-caption text-text-secondary">{l(W.followup.requestedLine)}</p>
-                            <button type="button" onClick={() => setRequested(false)} className="mt-2 inline-flex min-h-[32px] items-center gap-1.5 t-caption font-medium text-text-primary underline decoration-line-strong underline-offset-4" data-story-request-reset><RotateCcw size={12} aria-hidden="true" />{l(W.task.again)}</button>
-                          </div>
-                        ) : (
-                          <>
-                            <button type="button" onClick={() => setRequested(true)} className="demo-action" data-story-request>{l(W.followup.cta)}<ArrowRight size={16} aria-hidden="true" /></button>
-                            <p className="mt-1.5 t-caption text-text-muted">{l(W.followup.ctaDemo)}</p>
-                          </>
-                        )}
-                      </div>
-                      <p className="mt-4 border-t border-ink-100 pt-3 t-caption text-text-muted">{l(W.followup.footer)}</p>
+                    <div className="mt-3 flex justify-end">
+                      <Bubble out label={l(W.common.assistant)} className="max-w-full md:max-w-[92%]">
+                        <Translated locale={locale} lang="es" original={W.followup.body} translated={l(W.followup.bodyTranslated)} />
+                      </Bubble>
                     </div>
+                    <div className="mt-3 grid gap-3 sm:grid-cols-2" data-followup-cards>
+                      {[listings.est240, listings.est231].map((li) => <ListingCard key={li.ref} listing={li} locale={locale} photoLabel={l(W.common.photo)} compact note={li.ref === listings.est240.ref ? l(W.followup.matches) : undefined} />)}
+                    </div>
+                    <div className="mt-4" aria-live="polite">
+                      {requested ? (
+                        <div data-story-request-sent>
+                          <Bubble meta={locale === "es" ? "Laura · miércoles 17:40" : "Laura · Wednesday 17:40"} className="max-w-[80%]"><p lang="es">{l(W.followup.replyText)}</p></Bubble>
+                          <p className="mt-3"><Mark tone="positive"><Check size={16} strokeWidth={2.5} aria-hidden="true" />{l(W.followup.requested)}</Mark></p>
+                          <p className="mt-1.5 t-caption text-text-secondary">{l(W.followup.requestedLine)}</p>
+                          <button type="button" onClick={() => setRequested(false)} className="mt-2 inline-flex min-h-[32px] items-center gap-1.5 t-caption font-medium text-text-primary underline decoration-line-strong underline-offset-4" data-story-request-reset><RotateCcw size={12} aria-hidden="true" />{l(W.task.again)}</button>
+                        </div>
+                      ) : (
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                          <button type="button" onClick={() => setRequested(true)} className="demo-action" data-story-request data-demo-hint>{l(W.followup.cta)}<ArrowRight size={16} aria-hidden="true" /></button>
+                          <span className="t-caption text-text-muted" data-demo-hint-word>{l(W.common.demoHint)}</span>
+                        </div>
+                      )}
+                    </div>
+                    <p className="mt-4 t-caption text-text-secondary" data-followup-limit>{l(W.followup.limit)}</p>
+                    <details className="mt-2 group" data-followup-details>
+                      <summary className="inline-flex min-h-[44px] cursor-pointer list-none items-center gap-2 t-caption font-medium text-text-primary underline decoration-line-strong underline-offset-4 [&::-webkit-details-marker]:hidden">{l(W.followup.detailsTitle)}</summary>
+                      <div className="mt-2 rounded-lg bg-[#f6f4ee] p-4">
+                        <p className="t-caption font-medium text-text-muted">{l(W.followup.conditions)}</p>
+                        <ul className="mt-2 space-y-1.5">
+                          {l(W.followup.conditionList).map((c) => <li key={c} className="flex items-start gap-2 t-body-s text-text-primary"><span aria-hidden="true" className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-pill bg-signal-positive text-ivory"><Check size={12} strokeWidth={3} /></span>{c}</li>)}
+                        </ul>
+                        <p className="mt-3 t-caption text-text-muted">{l(W.followup.footer)}</p>
+                      </div>
+                    </details>
                   </div>
                 </Rise>
               </div>
@@ -497,7 +502,7 @@ export function Story({ locale }: { locale: Locale }) {
                   <div className="min-w-0 rounded-lg bg-[#f6f4ee] p-4" data-story-weekly-email>
                     <p className="t-caption font-medium text-text-muted">{l(W.result.emailTitle)}</p>
                     <p className="mt-1 t-body-s text-text-secondary">{l(W.result.emailLine)}</p>
-                    <p className="mt-3"><Link href={localePath(locale, "/app/reports")} className="demo-action" data-story-report-link>{l(W.result.button)}<ArrowRight size={16} aria-hidden="true" /></Link></p>
+                    <p className="mt-3"><Link href={localePath(locale, "/example-report")} className="demo-action" data-story-report-link>{l(W.result.button)}<ArrowRight size={16} aria-hidden="true" /></Link></p>
                     <p className="mt-2 t-caption text-text-muted">{l(W.result.inLogin)}</p>
                   </div>
                 </div>

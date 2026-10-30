@@ -45,6 +45,11 @@ const T = {
   },
   historyFoot: { es: "Ejemplo ilustrativo. Cada mensaje, cada respuesta y cada aviso quedan en la ficha, en orden; no hay que reconstruir nada.", en: "Illustrative example. Every message, every reply and every alert stays on the record, in order; nothing has to be reconstructed." },
   recordLabel: { es: "Ficha de cliente", en: "Customer record" },
+  priority: { es: "Prioridad", en: "Priority" },
+  priorityValue: { es: "Consulta importante · aviso por email a tu equipo", en: "Important enquiry · e-mail alert to your team" },
+  priorityWhy: { es: "Motivo: nombró inmueble, zona y presupuesto. Nuova no calcula una puntuación.", en: "Reason: she named a property, an area and a budget. Nuova computes no score." },
+  nextStep: { es: "Siguiente paso", en: "Next step" },
+  nextValue: { es: "Una persona de tu equipo le propone la visita; Nuova ya tiene la zona, el presupuesto, el uso y el plazo en la ficha.", en: "A person on your team proposes the viewing; Nuova already has the area, the budget, the use and the timing on the record." },
   who: { es: "Laura Serrano · compradora · escribe en español", en: "Laura Serrano · buyer · writes in Spanish" },
 };
 
@@ -207,6 +212,16 @@ export function RecordGrowView({ locale, className }: { locale: Locale; classNam
         <div className="border-t border-line-hairline bg-[color:rgba(246,239,226,0.45)] px-4 pb-1 pt-3" data-record-second>
           <p className="t-caption font-medium text-text-muted">{T.secondMessage[locale]}</p>
           <Rows list={second} added />
+        </div>
+        {/* closing order 27.10. §10: the priority with its reason (the proven alert) and the next step, said on the record */}
+        <div className="border-t border-line-hairline bg-[color:var(--accent-wash)] px-4 py-3" data-record-priority>
+          <p className="t-caption font-medium uppercase tracking-[0.06em] text-text-muted">{T.priority[locale]}</p>
+          <p className="mt-0.5 t-body-s font-medium text-text-primary">{T.priorityValue[locale]}</p>
+          <p className="t-caption text-text-secondary">{T.priorityWhy[locale]}</p>
+        </div>
+        <div className="border-t border-line-hairline px-4 py-3" data-record-next>
+          <p className="t-caption font-medium uppercase tracking-[0.06em] text-text-muted">{T.nextStep[locale]}</p>
+          <p className="mt-0.5 t-caption text-text-primary">{T.nextValue[locale]}</p>
         </div>
         <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{T.growFoot[locale]}</p>
       </div>

@@ -38,7 +38,7 @@ export const people = {
   buyer: { name: "Laura Serrano", short: "Laura", city: "Madrid" },
   sellers: { name: "Peter y Anna Keller", nameEn: "Peter and Anna Keller", short: "Keller" },
   tenant: { name: "Sofía Lamas", short: "Sofía" },
-  caller: { name: "Álvaro Pons", short: "Álvaro", phone: "+34600123456" },
+  caller: { name: "Álvaro Pons", short: "Álvaro", phone: "+34 XXX XXX XXX" }, // closing order 27.10. §9: a demo contact carries no dialable number
 };
 
 /** The listings of the example portfolio. Photos: licensed stock (docs/website_redesign/MEDIA_SOURCES_1010.md), never a real listing. */
@@ -316,12 +316,12 @@ export const chapters: Chapter[] = [
     key: "situation",
     eyebrow: { es: "Llegan consultas", en: "Enquiries arrive" },
     title: { es: "Cuatro consultas en una hora, mientras estás con un cliente.", en: "Four enquiries in one hour, while you are with a customer." },
-    line: { es: "Marcos enseña la villa de Elviria de 11:00 a 12:00. En ese rato escriben una compradora por WhatsApp, unos propietarios por email, una inquilina por el formulario web y llama un comprador.", en: "Marcos is showing the villa in Elviria from 11:00 to 12:00. In that hour a buyer writes on WhatsApp, two owners by email, a tenant through the web form, and a buyer calls." },
+    line: { es: "Marcos enseña la villa de Elviria de 11:00 a 12:00. En ese rato llegan cuatro consultas por cuatro canales.", en: "Marcos is showing the villa in Elviria from 11:00 to 12:00. In that hour four enquiries arrive on four channels." }, // closing order 27.10. §6
     inbound: { es: "Cuatro consultas por cuatro canales, con nadie en la oficina.", en: "Four enquiries on four channels, with nobody at the desk." },
     did: { es: "Las atiende por el canal por el que llegaron y abre una ficha por consulta.", en: "Handles each on the channel it arrived on and opens a record per enquiry." }, // COPY_1019 R-11
     // Closing order 26.10. §3: the count matches the states shown (two written replies, one call answered by the assistant, the German
     // e-mail waiting for a person); "noted" is not a reply. WORKING, for Copy.
-    result: { es: "Cuando Marcos termina, las cuatro están registradas: dos con respuesta escrita, una llamada atendida, y el email en alemán espera a una persona.", en: "When Marcos finishes, all four are recorded: two with a written reply, one call answered, and the German e-mail waits for a person." }, // COPY_SYNC_1026 Y-3 wording
+    result: { es: "Cuando Marcos termina, las cuatro están registradas: dos con respuesta escrita, una llamada atendida, y el email en alemán sin respuesta automática.", en: "When Marcos finishes, all four are recorded: two with a written reply, one call answered, and the German e-mail without an automatic reply." }, // COPY_RV4_1027 Z-1a (Q-3: recorded without a task or a notice)
     state: { es: "Disponible hoy: WhatsApp y email, en español. Prototipo: el formulario web y la llamada (el asistente telefónico, solo en español).", en: "Available today: WhatsApp and email, in Spanish. Prototype: the web form and the phone call (the phone assistant, Spanish only)." },
   },
   {
@@ -347,8 +347,8 @@ export const chapters: Chapter[] = [
   {
     key: "task",
     eyebrow: { es: "El aviso y la mañana siguiente", en: "The alert and the next morning" },
-    title: { es: "Cuando una consulta importa, tu equipo recibe un aviso por email. A la mañana siguiente sabe qué va primero y por qué.", en: "When an enquiry matters, your team gets an e-mail alert. The next morning it knows what comes first and why." }, // COPY_1019 R-7
-    line: { es: "El aviso llega por email a la persona que toca, con el motivo, todavía sin horario de oficina. El asistente de la mañana ordena el día: la consulta importante, por qué, y el siguiente paso. Elena la toma, propone la hora a Laura y la cierra: tres pasos, cada uno visible.", en: "The alert reaches the right person by e-mail, with the reason, without office hours yet. The morning assistant orders the day: the important enquiry, why, and the next step. Elena takes it, proposes the time to Laura and closes it: three steps, each one visible." }, // COPY_SYNC_1024 X-12
+    title: { es: "Tu equipo sabe qué atender primero.", en: "Your team knows what to handle first." }, // closing order 27.10. §6 (the owner's direction; WORKING, for Copy on the real function state); was COPY_1019 R-7
+    line: { es: "Cuando una consulta importa, la persona que toca recibe un aviso por email con el motivo. A la mañana siguiente, la lista dice qué va primero y por qué; Elena la toma y propone la hora a Laura.", en: "When an enquiry matters, the right person gets an e-mail alert with the reason. The next morning the list says what comes first and why; Elena takes it and proposes the time to Laura." }, // closing order 27.10. §6: two sentences; COPY_SYNC_1024 X-12 kept in substance
     inbound: { es: "La consulta de Laura, con inmueble, zona y presupuesto concretos.", en: "Laura's enquiry, with a property, an area and a budget named." },
     did: { es: "Avisa a Elena por email y, a la mañana siguiente, le dice qué va primero y por qué.", en: "Alerts Elena by e-mail and, the next morning, tells her what comes first and why." }, // HANDOVER_1021 A-15
     result: { es: "Elena propone el jueves a las 10:00; Laura acepta; queda en la ficha.", en: "Elena proposes Thursday at 10:00; Laura accepts; it goes on the record." },
@@ -360,7 +360,7 @@ export const chapters: Chapter[] = [
     title: { es: "Entra un piso que encaja con Laura. Ella recibe un mensaje útil antes de su visita.", en: "A flat comes in that fits Laura. She gets a useful message before her viewing." },
     // Closing order 26.10. §7: the follow-up goes out on WhatsApp, the channel Laura wrote on and gave her consent for (E-FU3: the owner's
     // phone receives it), not by e-mail; no frequency figure until API's written rule. WORKING, for Copy and API.
-    line: { es: "Un inmueble nuevo no basta por sí solo. El seguimiento sale solo si Laura aceptó recibir propuestas y tú activaste los seguimientos, y va por WhatsApp, el canal en el que escribió. El mensaje es concreto: el piso, los datos y una sola pregunta.", en: "A new listing is not enough on its own. The follow-up goes out only if Laura agreed to receive proposals and you switched follow-ups on, and it goes on WhatsApp, the channel she wrote on. The message is concrete: the flat, the facts and one question." },
+    line: { es: "Un inmueble nuevo que encaja va a Laura por WhatsApp, el canal en el que escribió. El mensaje es corto: el piso y una sola pregunta.", en: "A new listing that fits goes to Laura on WhatsApp, the channel she wrote on. The message is short: the flat and one question." }, // closing order 27.10. §6; the conditions stand in the details block of the stage
     inbound: { es: "Un inmueble nuevo en tu cartera que encaja con lo que busca Laura.", en: "A new listing in your portfolio that fits what Laura is looking for." },
     did: { es: "Comprueba las tres condiciones y envía un WhatsApp con el piso y una sola pregunta.", en: "Checks the three conditions and sends a WhatsApp message with the flat and one question." },
     result: { es: "Si Laura responde, su respuesta llega a Elena como petición; una petición no es una cita.", en: "If Laura answers, her reply reaches Elena as a request; a request is not an appointment." },
@@ -370,7 +370,7 @@ export const chapters: Chapter[] = [
     key: "result",
     eyebrow: { es: "La semana, en cifras", en: "The week, in figures" },
     title: { es: "Al final de la semana sabes qué atendió Nuova, qué oportunidades hay y qué toca hacer.", en: "At the end of the week you know what Nuova handled, which opportunities there are and what to do next." },
-    line: { es: "El informe completo, con el periodo, la base de datos y las acciones pendientes, está en tu acceso de agencia. Un resumen por email está en preparación. Respondida no es lo mismo que entregada: lo que llega al cliente aún no se mide.", en: "The full report, with the period, the data behind it and the open actions, is in your agency login. An e-mail summary is being prepared. Answered is not the same as delivered: what reaches the customer is not measured yet." }, // HANDOVER_1021 A-11
+    line: { es: "Tres cifras, lo que sigue abierto y qué toca hacer. El informe de tu agencia está en tu acceso; un resumen por email está en preparación.", en: "Three figures, what is still open and what to do next. Your agency's report is in your login; an e-mail summary is being prepared." }, // closing order 27.10. §6; HANDOVER_1021 A-11 ("respondida ≠ entregada") stays in the result card's basis line
     inbound: { es: "Todo lo registrado en la semana en los canales conectados.", en: "Everything recorded in the week on the connected channels." },
     did: { es: "Cuenta lo atendido, las oportunidades y lo que espera a una persona.", en: "Counts what was handled, the opportunities and what waits for a person." },
     result: { es: "Tres cifras y el informe completo en tu acceso; el email del lunes, en preparación.", en: "Three figures and the full report in your login; Monday's e-mail, in preparation." },
@@ -397,6 +397,7 @@ export const storyWords = {
     original: { es: "Original en {lang}", en: "Original in {lang}" },
     replay: { es: "Reproducir otra vez", en: "Play again" },
     stateLabel: { es: "Estado", en: "State" },
+    demoHint: { es: "Prueba la demo", en: "Try the demo" }, // closing order 27.10. §5
     inbound: { es: "Qué llega", en: "What comes in" },
     did: { es: "Qué hace Nuova", en: "What Nuova does" },
     result: { es: "Resultado", en: "Result" },
@@ -409,7 +410,7 @@ export const storyWords = {
     arriving: { es: "Mientras tanto, llega", en: "Meanwhile, arriving" },
     arrivedMark: { es: "Llega", en: "Arrives" },
     answered: { es: "Respondida", en: "Replied" },
-    drafted: { es: "Espera a una persona", en: "Waits for a person" },
+    drafted: { es: "Sin respuesta automática", en: "No automatic reply" }, // COPY_RV4_1027 Z-1b
     noted: { es: "Llamada atendida", en: "Call answered" },
     after: { es: "Cuando Marcos termina la visita, las cuatro consultas están registradas: dos con respuesta escrita, una llamada atendida con nota, y la que llegó en alemán sin respuesta automática, porque hoy solo respondemos en español.", en: "When Marcos finishes the viewing, all four enquiries are recorded: two with a written reply, one call answered with a note, and the one in German without an automatic reply, because today we only answer in Spanish." }, // HANDOVER_1021 A-6; COPY_SYNC_1026 Y-3 ("están registradas": the held German enquiry is an intake with a reason, not a record with a reply; no task before Release U); closing order 26.10. §3 (the count matches the states)
   },
@@ -429,7 +430,7 @@ export const storyWords = {
     /** The held reply (R19 §2, §7): a draft is a draft, never shown as sent. */
     heldTitle: { es: "Sin respuesta automática", en: "No automatic reply" },
     heldLine: { es: "El email llegó en alemán y hoy solo respondemos en español: Nuova no envía nada. La consulta queda registrada en la ficha y la contesta una persona de tu equipo.", en: "The e-mail arrived in German and today we only answer in Spanish: Nuova sends nothing. The enquiry is recorded and a person on your team answers it." }, // HANDOVER_1021 §E
-    earlier: { es: "Antes, a las 11:20: la pregunta de Laura y la respuesta con los datos del piso (la del primer bloque de la página).", en: "Earlier, at 11:20: Laura's question and the reply with the flat's data (the one in the first block of the page)." },
+    earlier: { es: "Antes, a las 11:20: la pregunta de Laura y la primera respuesta (la del primer bloque de la página).", en: "Earlier, at 11:20: Laura's question and the first reply (the one in the first block of the page)." }, // COPY_RV4_1027 Z-2
     callIncoming: { es: "Llamada entrante", en: "Incoming call" },
     callAnswered: { es: "Atendida por el asistente · solo en español", en: "Answered by the assistant · Spanish only" },
     phoneCaveat: { es: "El asistente telefónico habla solo español. Una llamada atendida deja una nota y una tarea; no confirma citas ni da precios.", en: "The phone assistant speaks Spanish only. An answered call leaves a note and a task; it confirms no appointments and gives no prices." },
@@ -466,13 +467,13 @@ export const storyWords = {
       es: [
         { who: "Laura Serrano", what: "Quiere ver el piso de Estepona la semana que viene · vivienda habitual", why: "Nombró inmueble, zona y presupuesto", next: "Proponerle día y hora por WhatsApp" },
         { who: "Peter y Anna Keller", what: "Valoración de una villa en Elviria · email en alemán, sin respuesta automática", why: "Propietarios que quieren vender; piden cita esta semana", next: "Contestar al cliente y proponer una fecha para la visita" },
-        { who: "Álvaro Pons", what: "Rellamada por la villa de Elviria · precio y margen", why: "Pidió que le llamen por la tarde (+34600123456)", next: "Llamar a partir de las 16:00" },
+        { who: "Álvaro Pons", what: "Rellamada por la villa de Elviria · precio y margen", why: "Pidió que le llamen por la tarde (+34 XXX XXX XXX)", next: "Llamar a partir de las 16:00" },
         { who: "Sofía Lamas", what: "Alquiler de larga temporada en Fuengirola", why: "Sin fecha; a partir de enero", next: "Enviar lo disponible en alquiler" },
       ],
       en: [
         { who: "Laura Serrano", what: "Wants to see the flat in Estepona next week · main home", why: "She named a property, an area and a budget", next: "Propose a day and time on WhatsApp" },
         { who: "Peter and Anna Keller", what: "Valuation of a villa in Elviria · e-mail in German, no automatic reply", why: "Owners who want to sell; they ask for an appointment this week", next: "Answer the customer and propose a date for the viewing" },
-        { who: "Álvaro Pons", what: "Callback about the villa in Elviria · price and room to negotiate", why: "He asked to be called in the afternoon (+34600123456)", next: "Call from 16:00" },
+        { who: "Álvaro Pons", what: "Callback about the villa in Elviria · price and room to negotiate", why: "He asked to be called in the afternoon (+34 XXX XXX XXX)", next: "Call from 16:00" },
         { who: "Sofía Lamas", what: "Long-term rental in Fuengirola", why: "No date; from January", next: "Send what is available to rent" },
       ],
     },
@@ -514,6 +515,9 @@ export const storyWords = {
   },
   followup: {
     trigger: { es: "Miércoles · 17:30 · entra en tu cartera", en: "Wednesday · 17:30 · enters your portfolio" },
+    triggerLine: { es: "Un piso nuevo de dos dormitorios en primera línea de Estepona encaja con lo que busca Laura.", en: "A new two-bedroom flat on the seafront in Estepona fits what Laura is looking for." },
+    limit: { es: "Sale solo si Laura aceptó recibir propuestas y tú activaste los seguimientos; nunca repetido. Prototipo: todavía no disponible.", en: "It goes out only if Laura agreed to receive proposals and you switched follow-ups on; never repeated. Prototype: not available yet." },
+    detailsTitle: { es: "Ver las condiciones", en: "See the conditions" },
     matches: { es: "Encaja con lo que busca Laura", en: "Fits what Laura is looking for" },
     conditions: { es: "Condiciones para enviarlo", en: "Conditions for sending it" },
     conditionList: {
@@ -524,8 +528,8 @@ export const storyWords = {
     from: { es: "De: tu agencia · miércoles 17:32", en: "From: your agency · Wednesday 17:32" },
     subject: "Un piso nuevo en Estepona que encaja con lo que buscas",
     subjectTranslated: { es: "Un piso nuevo en Estepona que encaja con lo que buscas", en: "A new flat in Estepona that fits what you're looking for" },
-    body: "Hola Laura, antes de la visita del jueves: acaba de entrar un piso de dos dormitorios en primera línea en Estepona, dentro de tu presupuesto. Te paso su ficha y, al lado, el ático de Seghers que ya tienes. ¿Quieres verlo el jueves también?",
-    bodyTranslated: { es: "Hola Laura, antes de la visita del jueves: acaba de entrar un piso de dos dormitorios en primera línea en Estepona, dentro de tu presupuesto. Te paso su ficha y, al lado, el ático de Seghers que ya tienes. ¿Quieres verlo el jueves también?", en: "Hi Laura, before Thursday's viewing: a two-bedroom flat on the seafront in Estepona has just come in, within your budget. Here is its listing and, next to it, the penthouse in Seghers you already have. Would you like to see it on Thursday as well?" },
+    body: "Hola Laura, antes del jueves: acaba de entrar un piso de dos dormitorios en primera línea en Estepona, dentro de tu presupuesto. ¿Quieres verlo el jueves también?",
+    bodyTranslated: { es: "Hola Laura, antes del jueves: acaba de entrar un piso de dos dormitorios en primera línea en Estepona, dentro de tu presupuesto. ¿Quieres verlo el jueves también?", en: "Hi Laura, before Thursday: a two-bedroom flat on the seafront in Estepona has just come in, within your budget. Would you like to see it on Thursday as well?" }, // closing order 27.10. §5: short; the listings stand as cards under the message
     cta: { es: "Responder: sí, el jueves también", en: "Reply: yes, on Thursday too" },
     ctaDemo: { es: "Demo: pulsa para ver qué pasa con la respuesta de Laura", en: "Demo: press to see what happens with Laura's reply" },
     replyText: { es: "Sí, el jueves también.", en: "Yes, on Thursday too." },
@@ -548,8 +552,8 @@ export const storyWords = {
     },
     emailTitle: { es: "El email del lunes · en preparación", en: "Monday's email · in preparation" },
     emailLine: { es: "Lo esencial en tres cifras y un botón, cuando el envío semanal esté activo.", en: "The essentials in three figures and one button, once the weekly send is active." },
-    button: { es: "Ver el informe completo", en: "See the full report" },
-    inLogin: { es: "En tu acceso de agencia: periodo, base de datos, evolución y acciones pendientes.", en: "In your agency login: the period, the data behind it, the trend and the open actions." },
+    button: { es: "Ver el informe de ejemplo completo", en: "See the full example report" }, // closing order 27.10. §7: a public example, never a login
+    inLogin: { es: "Sin acceso: cifras, gráfico, lo abierto y los pasos siguientes de la semana de ejemplo. El informe real de tu agencia está en tu acceso.", en: "No login: the figures, the chart, what is open and the next steps of the example week. Your agency's real report is in your login." },
   },
   /** Social (R19 §8): listing → post with picture and text → approval → published → a prospect's question → the allowed reply, the next step. */
   social: {

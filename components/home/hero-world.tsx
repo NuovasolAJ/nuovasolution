@@ -8,22 +8,23 @@ import { channels, heroWords, storyWords, type ChannelKey } from "@/lib/content/
 import { cn } from "@/lib/utils";
 import { ButtonLink } from "@/components/ui/button";
 import { DepthScene } from "@/components/ui/depth-scene";
-import { Architecture, ArchitectureFar, DuskPhoto, Stars, Terrace } from "./hero-world-layers";
+import { DuskPhoto, Stars, Structure } from "./hero-world-layers";
 import { SeqReplay } from "./seq-replay";
 
 /**
  * The hero (master order 2026-10-10 §1; R19 closing order 2026-10-19 §2–§4; R24 owner pictures 01/02; the owner's
  * consolidated closing order of 26.10. §1, §2, §6): a premium real estate world with the product in the middle, and
- * the product showing work that is done. Four layers that read as one space (hero-world-layers.tsx):
+ * the product showing work that is done. Four layers that read as one space (hero-world-layers.tsx; the owner's binding
+ * closing order of 27.10. §2, §3: the product panel is the main motif, the villa backdrop is withdrawn):
  *
- *   1 sky           the coast at dusk, with its light and the stars
- *   2 architecture  a hillside of Mediterranean villas and a far shore behind the water, drawn in the house tokens
- *   3 panel         one large product surface: the situation in one line, the customer's question, the reply (what
- *                   is noted, one question back; no listing fact is confirmed, because that reply is in preparation)
- *                   and the customer's record as it stands after the reply: who, what she looks for, her budget, her
- *                   language, the alert the team received with its reason, and the next step
- *   4 terrace       the stone terrace the panel stands on, the page's ivory: it continues as the story's ground, and the
- *                   land behind the villas dissolves into its light (no straight edge, no bar, no fog)
+ *   1 sky        the coast at dusk, toned calm, one soft light low over the sea, a few stars
+ *   2 structure  a discreet spatial structure in thin lines: the horizon, the floor's joints in perspective, a slim
+ *                column edge at each side; the floor's light pool under the panel is the page's own canvas colour
+ *   3 panel      one large product surface, close and lightly leaning: the situation in one line, the customer's question,
+ *                the reply (what is noted, one question back; no listing fact is confirmed, because that reply is in
+ *                preparation)
+ *   4 results    the customer's record as it stands after the reply, lifted from the panel: who, what she looks for, her
+ *                budget, her language, the priority with its reason (the proven e-mail alert), and the next step
  *
  * On scroll the layers move apart (depth-scene.tsx measures, globals.css moves: the far shore lags most, the villas a
  * little, the terrace runs ahead) and the panel comes upright from a light lean. The words stay put. With reduced motion
@@ -83,13 +84,10 @@ export function HeroWorld({ locale }: { locale: Locale }) {
           </div>
 
           <div className="hero-world-stage" data-seq="run" data-hero-surface>
-            {/* 2 The architecture: the far shore behind the water, then the villas the panel stands against. */}
-            <div className="hero-arch-far" aria-hidden="true" data-hero-layer="far"><ArchitectureFar className="h-full w-full" /></div>
-            <div data-depth-layer="mid" className="hero-arch" aria-hidden="true" data-hero-layer="architecture"><Architecture className="h-full w-full" /></div>
-            {/* The land under the villas: dark at their feet, dissolving into the terrace's light. */}
-            <div className="hero-world-land" aria-hidden="true" data-hero-layer="land" />
-            {/* 4 The terrace: the ivory the panel stands on and the story continues on; it runs a little ahead of the page. */}
-            <div data-depth-layer="front" className="hero-terrace" aria-hidden="true" data-hero-layer="terrace"><Terrace className="h-full w-full" /></div>
+            {/* 2 The structure: the horizon, the floor in perspective, a column edge at each side; it lags a little behind the page. */}
+            <div data-depth-layer="mid" className="hero-structure" aria-hidden="true" data-hero-layer="structure"><Structure className="h-full w-full" /></div>
+            {/* The floor's light pool under the panel: the page's canvas colour, so the hero ends on no edge. */}
+            <div className="hero-world-land" aria-hidden="true" data-hero-layer="light" />
 
             {/* 3 The panel: scrolls with the page, comes upright and grows. */}
             <figure aria-label={l(w.surfaceLabel)} className="hero-panel" data-hero-panel>
@@ -137,9 +135,10 @@ export function HeroWorld({ locale }: { locale: Locale }) {
                 {/* The customer's record as it stands after the reply (R24 owner picture 02; closing order 26.10. §6: name and role,
                     what she looks for, her budget, her language, the priority with its reason, the next step): it fills after the
                     reply, field by field, then the alert, then the next step. */}
-                <div className="hero-panel-col space-y-3 border-t border-ink-100 bg-[#f6f4ee] px-5 pb-6 pt-5 md:border-l md:border-t-0 md:px-7 md:pb-7 md:pt-6">
+                <div className="hero-panel-col hero-record-col space-y-3 border-t border-ink-100 bg-[#f6f4ee] px-5 pb-6 pt-5 md:border-l md:border-t-0 md:px-7 md:pb-7 md:pt-6">
                   <StepLabel n={3} className="seq-item" style={delay(2750)}>{l(w.labels.done)}</StepLabel>
-                  <div className="seq-item hero-record" data-seq-kind="pop" style={delay(2950)} data-hero-results data-hero-record>
+                  {/* 4 The results, lifted from the panel (closing order 27.10. §2): the record with the priority and the next step */}
+                  <div className="seq-item hero-record hero-record-lift" data-seq-kind="pop" style={delay(2950)} data-hero-results data-hero-record>
                     <div className="hero-record-head">
                       <p className="t-eyebrow text-[0.6875rem] text-ink-600">{l(w.record.title)}</p>
                       <p className="mt-1 text-[1rem] font-semibold leading-snug text-ink-950">{l(w.record.who)}</p>

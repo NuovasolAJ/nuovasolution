@@ -566,19 +566,15 @@ the outcome.
 ask us inside your account. We confirm what will be deleted, what we have to keep by law, and when it
 is done.
 
-**If your agency connected Instagram.** Open NuovaSolution, go to Social and choose Disconnect. The access
-token is deleted immediately and we stop reading and publishing. To have the data already stored deleted as
-well, which means posts, comments, messages and the leads from this channel, write to
-⟦E14: EMAIL⟧ from the address of your account and name your agency.
+**If your agency connected Instagram.** Open NuovaSolution, go to Social and choose Disconnect. The
+access token is deleted immediately and we stop reading and publishing. Removing the app in your
+Instagram settings also ends our access. Neither of those deletes the data already stored: for that,
+write to ⟦E14: EMAIL⟧ from the address of your account and name your agency. We then delete
+the posts, comments, messages and the leads created from them for that connection.
 
-**If you commented on or wrote to an agency that uses Nuova on Instagram.** Write to
-⟦E14: EMAIL⟧ and name the agency and the approximate date of your message. We do not store
-your Instagram username or your original Instagram identifier, so the agency and the time frame are what
-let us find your data.
-
-**If you remove the app in Instagram.** Instagram then notifies us, we delete the stored token and the data
-of that connection, and we give you a confirmation code. You can ask us about the status of that code at
-any time.
+**If you commented on or wrote to an agency on Instagram.** Write to ⟦E14: EMAIL⟧ and name
+the agency and the approximate date of your message. We do not store your Instagram username or your
+original Instagram identifier, so the agency and the time frame are what let us find your data.
 
 **What we need from you.** The address or number you used with us, and what you want: a copy of your
 data, a correction, or deletion. We may ask you to confirm the request from that same address or
@@ -606,18 +602,15 @@ cuenta, o pídenoslo dentro de tu cuenta. Confirmamos qué se va a eliminar, qu�
 ley y cuándo está hecho.
 
 **Si tu agencia conectó Instagram.** Abre NuovaSolution, entra en Social y pulsa Desconectar. El token se
-elimina de inmediato y dejamos de leer y de publicar. Para que además se supriman los datos ya guardados,
-es decir las publicaciones, los comentarios, los mensajes y las oportunidades de este canal, escribe a
-⟦E14: EMAIL⟧ desde la dirección de tu cuenta e indica el nombre de la agencia.
+elimina de inmediato y dejamos de leer y de publicar. Eliminar la app en los ajustes de Instagram también
+termina nuestro acceso. Ninguna de las dos cosas suprime los datos ya guardados: para eso, escribe a
+⟦E14: EMAIL⟧ desde la dirección de tu cuenta e indica el nombre de la agencia. Entonces
+suprimimos las publicaciones, los comentarios, los mensajes y las oportunidades creadas a partir de ellos
+para esa conexión.
 
-**Si has comentado o escrito por Instagram a una agencia que usa Nuova.** Escribe a
-⟦E14: EMAIL⟧ e indica la agencia y la fecha aproximada de tu mensaje. No guardamos tu nombre
-de usuario ni tu identificador original de Instagram, así que la agencia y el periodo son lo que nos
-permite encontrar tus datos.
-
-**Si eliminas la app en Instagram.** Instagram nos lo comunica, suprimimos el token y los datos de esa
-conexión y te damos un código de confirmación. Puedes preguntarnos por el estado de ese código cuando
-quieras.
+**Si has comentado o escrito por Instagram a una agencia.** Escribe a ⟦E14: EMAIL⟧ e indica
+la agencia y la fecha aproximada de tu mensaje. No guardamos tu nombre de usuario ni tu identificador
+original de Instagram, así que la agencia y el periodo son lo que nos permite encontrar tus datos.
 
 **Qué necesitamos de ti.** La dirección o el número que usaste con nosotros y qué pides: una copia de
 tus datos, una corrección o la eliminación. Podemos pedirte que confirmes la solicitud desde esa misma

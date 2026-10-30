@@ -59,11 +59,13 @@ export function Model3dSection({ locale }: { locale: Locale }) {
           <p className="mt-5 t-body-l text-text-secondary">{l(w.lead)}</p>
         </Reveal>
 
+        {/* the example mark, once for the whole section (closing order 27.10. §8) */}
+        <p className="mt-6 inline-flex items-center gap-2 rounded-pill bg-[color:var(--accent-wash)] px-3 py-1 t-caption font-medium text-[color:var(--accent-ink)]" data-model3d-example>{l(w.exampleOnce)}</p>
         {/* The main view: the whole house, large, turning; the words beside it on a wide window, under it on a narrow one. */}
-        <Reveal mode="opacity" delay={60} className="mt-10">
+        <Reveal mode="opacity" delay={60} className="mt-6">
           <figure className="model3d-main" data-model3d-main>
             <div className="model3d-main-media" data-model3d-film data-model3d-turn-slot="delivered">
-              <MediaVideo src={F.turn} poster={F.turnPoster} label={l(w.film)} className="h-full w-full object-cover" />
+              <MediaVideo src={F.turn} poster={F.turnPoster} label={l(w.film)} className="h-full w-full object-cover" cues={l(w.turnCues)} />
             </div>
             <figcaption className="model3d-main-words">
               <p className="t-heading-m text-text-primary">{l(w.mainTitle)}</p>
@@ -107,9 +109,21 @@ export function Model3dSection({ locale }: { locale: Locale }) {
           ))}
         </ol>
 
-        <div className="mt-8 flex flex-col gap-4 border-t border-line-hairline pt-6 md:flex-row md:items-start md:justify-between">
-          <p className="max-w-[62ch] t-body-s text-text-secondary">{l(w.viewerLine)} {l(w.demoNote)}</p>
-          <ButtonLink href={localePath(locale, "/contact")} variant="secondary" className="shrink-0">{l(w.cta)}<ArrowRight size={16} aria-hidden="true" /></ButtonLink>
+        {/* The broker's path (closing order 27.10. §8): three steps, then the one action. */}
+        <div className="mt-10 border-t border-line-hairline pt-8" data-model3d-path>
+          <h3 className="t-heading-m text-text-primary">{l(w.pathTitle)}</h3>
+          <ol className="mt-5 grid gap-4 md:grid-cols-3">
+            {l(w.path).map((s, i) => (
+              <li key={s.title} className="rounded-lg border border-line-contour bg-surface-raised p-5">
+                <p className="flex items-baseline gap-2 t-heading-s text-text-primary"><span className="tnum t-caption text-text-accent">0{i + 1}</span>{s.title}</p>
+                <p className="mt-1.5 t-body-s text-text-secondary">{s.line}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <p className="max-w-[62ch] t-body-s text-text-secondary">{l(w.viewerLine)} {l(w.demoNote)}</p>
+            <ButtonLink href={localePath(locale, "/contact")} variant="secondary" className="shrink-0">{l(w.cta)}<ArrowRight size={16} aria-hidden="true" /></ButtonLink>
+          </div>
         </div>
       </div>
     </section>

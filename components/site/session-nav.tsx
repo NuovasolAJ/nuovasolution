@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button, ButtonLink } from "@/components/ui/button";
 
@@ -29,6 +30,9 @@ function readSession(): Promise<Session> {
 export function SessionNav({ variant, login, primary, account, logout, home, linkCls }: { variant: "bar" | "sheet"; login: { href: string; label: string }; primary: { href: string; label: string }; account: { href: string; label: string }; logout: { label: string; busy: string }; home: string; linkCls?: string }) {
   const [session, setSession] = useState<Session | null>(null);
   const [busy, setBusy] = useState(false);
+  // R26: "Mi agencia" is marked active while the agency area is open
+  const pathname = usePathname() ?? "";
+  const onAccount = pathname === account.href || pathname.startsWith(account.href + "/");
   useEffect(() => {
     let on = true;
     void readSession().then((s) => { if (on) setSession(s); });
@@ -53,7 +57,7 @@ export function SessionNav({ variant, login, primary, account, logout, home, lin
       <div className="flex flex-col gap-3" data-session-nav={signedIn ? "in" : "out"}>
         {signedIn ? (
           <>
-            <ButtonLink href={account.href} size="lg" full>{account.label}</ButtonLink>
+            <ButtonLink href={account.href} size="lg" full aria-current={onAccount ? "page" : undefined}>{account.label}</ButtonLink>
             <Button type="button" variant="secondary" size="md" full onClick={() => void signOut()} busy={busy} disabled={busy} data-logout>{busy ? logout.busy : logout.label}</Button>
           </>
         ) : (
@@ -69,7 +73,7 @@ export function SessionNav({ variant, login, primary, account, logout, home, lin
     <div className="contents" data-session-nav={signedIn ? "in" : "out"}>
       {signedIn ? (
         <>
-          <Link href={account.href} className={cn(linkCls)} data-account-link>{account.label}</Link>
+          <Link href={account.href} className={cn(linkCls, onAccount && "nav-link-active")} aria-current={onAccount ? "page" : undefined} data-account-link>{account.label}</Link>
           <Button type="button" size="sm" variant="secondary" onClick={() => void signOut()} busy={busy} disabled={busy} data-logout>{busy ? logout.busy : logout.label}</Button>
         </>
       ) : (
