@@ -5,7 +5,7 @@ import type { Metadata } from "next";
  * PM_TO_WEBSITE_1025_PRUEBA_OBJETO_FIELDS_v1). Spanish only, PM's exact labels as server-rendered text, noindex/nofollow,
  * not linked from anywhere, no form, no phone, no link out. The values are the ones the owner's release line fixes; they
  * must equal the inventory row API writes. "Estado: Disponible" stays while the test runs; afterwards "Retirado" with the
- * date, then the page answers 410 and the picture goes. The picture: the licensed sample photo with "PRUEBA" burnt in.
+ * date, then the page answers 410 and the picture goes. The picture: NuovaSolution's own drawn graphic with "PRUEBA" burnt in.
  */
 export const metadata: Metadata = {
   title: "[PRUEBA] Piso de demostración NuovaSolution",
@@ -15,13 +15,13 @@ export const metadata: Metadata = {
 const PRUEBA = {
   ref: "NS-TEST-0001",
   estado: "Disponible",
-  actualizado: "27/10/2026",
-  precio: "315.000 €",
-  ubicacion: "Estepona, Málaga",
+  actualizado: "30/10/2026",
+  precio: "289.000 €",
+  ubicacion: "Nerja, Málaga",
   tipo: "piso",
   dormitorios: "2",
-  banos: "2",
-  superficie: "78 m²",
+  banos: "1",
+  superficie: "75 m²",
   operacion: "Venta",
 };
 
@@ -57,7 +57,7 @@ export default function PruebaObjeto() {
             </dl>
             <p style={{ marginTop: 20, fontSize: "0.9375rem", color: "#4b4843" }}>Este es un inmueble de prueba de NuovaSolution. No es una oferta real.</p>
           </div>
-          <p style={{ margin: 0, padding: "12px 24px", borderTop: "1px solid rgba(26,25,23,0.12)", fontSize: "0.8125rem", color: "#635f58" }}>Imagen: licencia Pexels 12715501 (Keegan Checks), marcada PRUEBA por NuovaSolution</p>
+          <p style={{ margin: 0, padding: "12px 24px", borderTop: "1px solid rgba(26,25,23,0.12)", fontSize: "0.8125rem", color: "#635f58" }}>Imagen: propia (NuovaSolution)</p>
         </article>
       </div>
     </main>
