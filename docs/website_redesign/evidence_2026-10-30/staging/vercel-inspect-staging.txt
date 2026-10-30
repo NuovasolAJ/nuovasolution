@@ -1,0 +1,53 @@
+<claude-code-hint v="1" type="plugin" value="vercel@claude-plugins-official" />
+Vercel CLI 65.8.0 (Node.js 24.21.0)
+> Fetched deployment "nuovasolution-staging-preview-imcp8cplz-nuovasolajs-projects.vercel.app" in nuovasolajs-projects [592ms]
+
+  General
+
+    id		dpl_4deTgUf5EdY8z1TSFBsuFJMZw8oX
+    name	nuovasolution-staging-preview
+    target	preview
+    status	● Ready
+    url		https://nuovasolution-staging-preview-imcp8cplz-nuovasolajs-projects.vercel.app
+    created	Fri Oct 30 2026 08:46:35 GMT+0100 (Mitteleuropäische Normalzeit) [5h ago]
+
+
+  Build Machine
+
+    requested build machine basic
+    actual assigned cores   2 vCPU (actual assignment)
+    memory                  8192 MiB
+    selection type          fixed
+    selection source        plan-default
+
+
+  Build Cache
+
+    size       100.25 MiB / 1.5 GiB limit
+    file count ~22,226 (approx., paths selected for packing)
+
+
+  Duration
+
+    build duration	1m 41s
+    post-build duration	16s
+    billable duration	2m
+    CPU Minutes Usage	4 minutes (2m x 2vCPU)
+
+
+  Aliases
+
+    ╶ https://nuovasolution-staging-preview-git-w-44e113-nuovasolajs-projects.vercel.app
+    
+
+  Builds
+
+    ┌ .        [0ms]
+    ├── λ [locale] (1011.67KB) [fra1]
+    ├── λ [locale].rsc (1011.67KB) [fra1]
+    ├── λ [locale]/app (1011.67KB) [fra1]
+    ├── λ [locale]/app.rsc (1011.67KB) [fra1]
+    ├── λ [locale]/app/brief (1011.67KB) [fra1]
+    └── 121 output items hidden
+    
+

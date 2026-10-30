@@ -1,0 +1,15 @@
+/es {"sw":683,"iw":683,"wide":0}
+/en {"sw":683,"iw":683,"wide":0}
+/es/platform {"sw":683,"iw":683,"wide":0}
+/es/platform/ai-sales-agent {"sw":683,"iw":683,"wide":0}
+/es/platform/lead-intelligence {"sw":683,"iw":683,"wide":0}
+/es/platform/crm {"sw":683,"iw":683,"wide":0}
+/es/platform/daily-assistant {"sw":683,"iw":683,"wide":0}
+/es/packages {"sw":683,"iw":683,"wide":0}
+/es/faq {"sw":683,"iw":683,"wide":0}
+/es/contact {"sw":683,"iw":683,"wide":0}
+/es/trial {"sw":683,"iw":683,"wide":0}
+/es/example-report {"sw":683,"iw":683,"wide":0}
+/es/legal/data-deletion {"sw":683,"iw":683,"wide":0}
+/es/login {"sw":683,"iw":683,"wide":0}
+/es/signup {"sw":683,"iw":683,"wide":0}

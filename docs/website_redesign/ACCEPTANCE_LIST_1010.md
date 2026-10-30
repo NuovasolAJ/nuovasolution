@@ -102,6 +102,23 @@ lane truth sheets, this repository); **Needed** is the signal that closes the ro
 | X-5 | 3D: no design variant as a furniture comparison; the viewer capture without its title bar; the slots prepared | **built**; the rotation and the pair are **missing** | `3D_ASSETS_REQUEST_1017.md` A-1, A-2 | 3D |
 | X-6 | Platform, packages, reporting and FAQ aligned: the phone out of the packages, "Capacidad: consultas al mes", limits with the claim, the setup answer | **built** | Copy's confirmation; the owner on prices | Copy, Owner |
 
+## F11. The owner's binding closing order of 27.10. + R26 (on a945fa9; build `WEBSITE_R26`, `WEBSITE_R26_RETURN_v1.md`)
+
+| # | Point | State | Needed | Lane |
+|---|---|---|---|---|
+| X-1 | The villa backdrop replaced: calm sky, a structure in thin lines, the panel as the main motif, the record lifted | **built** (return §1 row 2) | the owner's view | Owner |
+| X-2 | The panel closer and more upright, the enquiry and the record on the first screen at 1366 × 768, a phone composition of its own, the hero flowing into the story | **built** (row 3; no lean on the phone) | the owner's view | Owner |
+| X-3 | The squeezed follow-up section rebuilt; the demo actions inviting and resettable | **built** (row 5) | Copy on the lines | Copy |
+| X-4 | Shorter texts, the Daily headline split, no jargon, Nuova's prework visible, nothing unproven | **built** (row 6) | Copy | Copy |
+| X-5 | A complete public example report instead of the login | **built** `/example-report` (row 7) | Copy on the words | Copy |
+| X-6 | 3D: the clean take, the floor named outside the video, the ride and the handle kept, the broker's path, the example mark once | **built with the corrected run's recording**; the clean take **open** (asset order v2) | 3D's delivery with run, commit, sha | 3D |
+| X-7 | Demo contact data without any dialable number or real mailbox | **built** (row 9) | — | — |
+| X-8 | Every public ES/EN route with benefit, view, scope, next action; packages before FAQ; "Probar gratis" consistent | **built** (row 10) | PAKETE/PREISE/TRIAL lines | Owner |
+| X-9 | Self-check at 390/768/1024/1366/1920, 200 % zoom, keyboard, reduced motion, videos, real scroll and playback | **done, headless Edge** (§3, §5) | Safari and iPhone by the owner | Owner |
+| X-10 | ZIEL 2: website_r25c, Z-1a/Z-1b/Z-2, the alt, "Mi agencia" active, R26-j | **built** | RV5 (Copy + Reviewer) on this build | Copy, Reviewer |
+| X-11 | ZIEL 1: the E-FU2 page on nuovasolution.com | **live** (dpl_4xQt97aFfKzNBpsmXzKxNwZeHTCq; `WEBSITE_TO_API_PM_1030_PRUEBA_OBJETO_URL.md`) | API's binding, Hosting's observation | API, Hosting |
+| X-12 | Production domain | **untouched except the one E-FU2 page** | Copy and Reviewer without an open finding, the owner's phone acceptance, the owner's own line | Owner |
+
 ## F10. The owner's consolidated closing order of 26.10. (on 596679b; build `WEBSITE_R24B` = `a945fa9`, `WEBSITE_R24B_RETURN_v1.md`; Copy's Y-1…Y-4 applied)
 
 | # | Point | State | Needed | Lane |

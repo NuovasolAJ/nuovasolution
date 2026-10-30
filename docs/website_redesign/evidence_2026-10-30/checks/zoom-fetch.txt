@@ -1,0 +1,2 @@
+eval: {"/es":200,"/en":200,"/es/platform":200,"/es/platform/ai-sales-agent":200,"/es/platform/lead-intelligence":200,"/es/platform/crm":200,"/es/platform/daily-assistant":200,"/es/packages":200,"/es/faq":200,"/es/contact":200,"/es/trial":200,"/es/example-report":200,"/es/legal/data-deletion":200,"/es/login":200,"/es/signup":200}
+wrote docs/website_redesign/evidence_2026-10-30/checks/zoom-probe.png
