@@ -1,0 +1,1 @@
+wrote docs/website_redesign/evidence_2026-11-02_stage1/recordings/desktop-1440-reduced-motion.mp4: 739 frames over 37.37 s real time, 14862 kB (reduced motion emulated)
