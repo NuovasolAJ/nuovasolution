@@ -10,10 +10,11 @@ type L = Record<Locale, string>;
 
 export const homeWords = {
   story: {
-    eyebrow: { es: "Así trabaja Nuova", en: "How Nuova works" },
-    h2: { es: "Una consulta, de principio a fin", en: "One enquiry, from start to finish" },
+    // Owner 30.10. (stage 1): the sequence above is the main demonstration; the chapters go into the detail with the same clock. WORKING, for Copy.
+    eyebrow: { es: "Con más detalle", en: "In more detail" },
+    h2: { es: "Cada paso, de cerca", en: "Each step, up close" },
     // D-103: the promise at the top lands on the proven part; the story still ends at the week with its state line.
-    lead: { es: "Sigue a Laura Serrano desde su primer mensaje hasta la tarea que cierra tu equipo. Los mismos nombres, el mismo inmueble, el mismo reloj.", en: "Follow Laura Serrano from her first message to the task your team closes. The same names, the same property, the same clock." },
+    lead: { es: "Los cuatro canales, la respuesta en cada uno, la propuesta, la mañana de Elena, el seguimiento y la semana. Los mismos nombres, el mismo inmueble, el mismo reloj.", en: "The four channels, the reply on each, the proposal, Elena's morning, the follow-up and the week. The same names, the same property, the same clock." },
     demo: { es: "Demostración con personas e inmuebles inventados. Bajo cada paso: qué está disponible hoy.", en: "Demonstration with invented people and listings. Under each step: what is available today." },
   },
   model3d: {

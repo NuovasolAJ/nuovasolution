@@ -7,6 +7,7 @@ import { homeWords } from "@/lib/content/home-sections";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { HeroWorld } from "@/components/home/hero-world";
+import { SequenceSection } from "@/components/home/sequence";
 import { SocialStrip, Story } from "@/components/home/story";
 import { Model3dSection } from "@/components/home/model-3d";
 import { TrustSection } from "@/components/home/trust";
@@ -41,7 +42,10 @@ export default function HomePage({ params }: { params: { locale: string } }) {
     <div data-style="v3" data-working-text={HOME_V3_WORKING_TEXT ? "true" : undefined}>
       <HeroWorld locale={locale} />
 
-      {/* 2 The story. The hero's ground is already the ivory of this section (the panel bridges the two). */}
+      {/* 1b The central product sequence (owner 30.10., point 2): the heart of the page, on the canvas the hero already stands on. */}
+      <SequenceSection locale={locale} />
+
+      {/* 2 The story in detail: the four channels, the proposal, Elena's morning with the interactive demo, the follow-up, the week. */}
       <section id="story" aria-labelledby="story-h" className="relative scroll-mt-[var(--header-h)] bg-[color:var(--surface-canvas)] pb-[var(--section-compact)] pt-[var(--section-compact)]">
         <div className="container-default">
           <Reveal className="max-w-[760px]">

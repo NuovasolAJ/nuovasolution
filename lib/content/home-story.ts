@@ -244,7 +244,10 @@ export const enquiries: Enquiry[] = [
 export const heroWords = {
   h1Soft: { es: "Mientras enseñas una vivienda,", en: "While you show a home," },
   h1: { es: "Nuova atiende tus consultas.", en: "Nuova answers your enquiries." },
-  lead: { es: "Responde a lo que llega por WhatsApp y email, guarda lo que busca cada cliente y avisa por email a tu equipo cuando una consulta importa.", en: "Answers what arrives on WhatsApp and email, keeps what each customer is looking for and alerts your team by e-mail when an enquiry matters." }, // COPY_SYNC_1024 Q-1 fallback (no answer from API by the final build)
+  // The owner's order of 30.10., point 1 (the five-second test): what Nuova does with an enquiry on WhatsApp and email (answered, recorded,
+  // handed to the right person) and the benefit (fewer enquiries left unattended). WORKING, for Copy; the alert's production state stands in
+  // the claims register. Was COPY_SYNC_1024 Q-1 fallback.
+  lead: { es: "Responde a lo que llega por WhatsApp y email, guarda lo que busca cada cliente y lo pasa a la persona de tu equipo que toca. Menos consultas que se quedan sin atender.", en: "Answers what arrives on WhatsApp and email, keeps what each customer is looking for and hands it to the right person on your team. Fewer enquiries left unattended." },
   ctaStory: { es: "Ver cómo funciona", en: "See how it works" },
   trialLine: { es: "14 días gratis · Sin método de pago", en: "14 days free · No payment method" },
   labels: { enquiry: { es: "Llega por WhatsApp", en: "Arrives on WhatsApp" }, reply: { es: "Nuova responde", en: "Nuova replies" }, done: { es: "Su ficha, ya al día", en: "Her record, already up to date" } },
@@ -276,6 +279,11 @@ export const heroWords = {
     next: { es: "una persona de tu equipo le confirma los datos del piso y le propone la visita", en: "a person on your team confirms the flat's details and proposes the viewing" },
   },
   replay: { es: "Reproducir otra vez", en: "Play again" },
+  /** The object layer of the hero (order of 30.10., point 1): the listing Laura asks about, from the agency's own portfolio. */
+  listing: {
+    label: { es: "El inmueble de la consulta · tu cartera", en: "The listing she asks about · your portfolio" },
+    note: { es: "Los datos del piso los confirma una persona de tu equipo", en: "The flat's details are confirmed by a person on your team" },
+  },
   /**
    * The hero's exchange: the question, the reply, one question back. Laura writes in Spanish. Closing order 26.10. §7: the reply
    * confirms no listing fact and announces no file (replies with the listing's data are in preparation, Copy's Q-1 fallback); it

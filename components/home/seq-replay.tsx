@@ -13,7 +13,7 @@ export function SeqReplay({ label, compact = false }: { label: string; compact?:
       type="button"
       data-seq-replay
       aria-label={label}
-      className="seq-replay inline-flex min-h-[44px] items-center gap-2 rounded-pill px-3 t-caption font-medium text-text-secondary transition-colors duration-micro hover:text-text-primary"
+      className="seq-replay inline-flex min-h-[44px] items-center gap-2 rounded-pill px-3 text-[0.875rem] font-medium text-text-secondary transition-colors duration-micro hover:text-text-primary"
       onClick={(e) => {
         const root = e.currentTarget.closest<HTMLElement>("[data-seq]");
         if (!root) return;
