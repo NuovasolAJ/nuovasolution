@@ -486,7 +486,9 @@ img, video, svg { display: block; max-width: 100%; }
 /* 3 and 2: the record and the object. On the phone they follow the app surface; from 768 px they stand against it, the record
    offset behind the app at the right (its padding keeps every word clear of the app's edge), the object set back further, lower
    and smaller. */
-.hero-side { position: relative; z-index: 3; display: grid; gap: 14px; margin-top: 14px; }
+/* the record and the object are light surfaces inside the dark hero: their text reads the light tokens again (the dark hero's muted and
+   accent tones would be light on white; measured 1.4–2.2:1 on dpl_HJwHZxe5GE2CgC2suSnjX3UTaA13) */
+.hero-side { position: relative; z-index: 3; display: grid; gap: 14px; margin-top: 14px; --text-primary: var(--ink-950); --text-secondary: var(--ink-700); --text-muted: #635f58; --text-accent: var(--accent-ink); --focus-ring: var(--ink-950); }
 /* below the two-column stage the record and the object follow the app surface in flow: no depth travel of their own (a few pixels of
    drift on a stacked card would read as jitter, not depth) */
 @media (max-width: 1023px) { .hero-record-layer[data-depth-layer="mid"], .hero-listing-layer[data-depth-layer="far"] { transform: none; } }
