@@ -1,5 +1,9 @@
 # WEBSITE COPY HANDOVER 1102 — one file for the redesign chat: RV5 lines, the English seal, the launch scope
 
+> **SUPERSEDED on 2026-11-02 by `WEBSITE_COPY_HANDOVER_1102_v2.md`.** After the owner's verdict (WEBSITE_STAGE1 not accepted) and
+> the report "02_NuovaSolution_Review.pdf", v2 is the only copy source. It carries over §A, §B and §C of this file, aligned with
+> the new direction. Do not apply this file.
+
 **For:** the redesign chat, the only writer of the website source files. **One file, one pass.** Every row gives the file and
 line on **`845429e`** (`dpl_8WBTUP8TGPDX3snnMp2zM9YTeru1`, the stage-1 build, read 02.11. through its fixed URL), the current
 text, and the exact new ES and EN text. The EN text sits at the same key as the ES text unless a row says otherwise.
