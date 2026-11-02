@@ -1,0 +1,176 @@
+{
+ "deployment": "https://nuovasolution-staging-preview-imcp8cplz-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-30T14:45:32.799Z",
+ "parsed": {
+  "lines": 2,
+  "pairs": [
+   "email",
+   "password"
+  ],
+  "email_valid": true,
+  "password_len": 24
+ },
+ "checks": [
+  {
+   "id": "O1",
+   "what": "the build under review identifies itself",
+   "verdict": "PASS",
+   "evidence": {
+    "commit": "3dbafd6d6b3f3e9106701ba26ec981069fcec027",
+    "ref": "website_enterprise_redesign",
+    "deployment": "dpl_4deTgUf5EdY8z1TSFBsuFJMZw8oX",
+    "env": "preview",
+    "mode": "staging"
+   }
+  },
+  {
+   "id": "O0",
+   "what": "the stored identity is readable",
+   "verdict": "PASS",
+   "evidence": {
+    "lines": 2,
+    "pairs": [
+     "email",
+     "password"
+    ],
+    "email_valid": true,
+    "password_len": 24
+   }
+  },
+  {
+   "id": "O2",
+   "what": "the reviewer identity signs in on this deployment",
+   "verdict": "PASS",
+   "evidence": {
+    "status": 200,
+    "code": "ok",
+    "session": true,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "SameSite=lax"
+   }
+  },
+  {
+   "id": "O3",
+   "what": "the backend names the next step",
+   "verdict": "PASS",
+   "evidence": {
+    "status": 200,
+    "next": "onboarding",
+    "business_tz": "Europe/Madrid"
+   }
+  },
+  {
+   "id": "O4",
+   "what": "the trial line is backend data",
+   "verdict": "PASS",
+   "evidence": {
+    "status": 200,
+    "state": "not_started",
+    "has_horizon": false
+   }
+  },
+  {
+   "id": "O5",
+   "what": "onboarding writes to the real backend and reads the value back",
+   "verdict": "PASS",
+   "evidence": {
+    "write": 200,
+    "code": "ok",
+    "after_tz": "Europe/Madrid"
+   }
+  },
+  {
+   "id": "O6",
+   "what": "readiness is backend data and activation refuses while gates are open",
+   "verdict": "PASS",
+   "evidence": {
+    "gates": 25,
+    "activatable": false,
+    "outcome": "blocked",
+    "activated": false
+   }
+  },
+  {
+   "id": "O7",
+   "what": "with the session the inner pages open instead of redirecting",
+   "verdict": "PASS",
+   "evidence": {
+    "/es/app": {
+     "status": 200,
+     "location": null
+    },
+    "/es/onboarding": {
+     "status": 200,
+     "location": null
+    },
+    "/es/app/reports": {
+     "status": 200,
+     "location": null
+    }
+   }
+  },
+  {
+   "id": "O8",
+   "what": "logout ends the session",
+   "verdict": "PASS",
+   "evidence": {
+    "logout": 200,
+    "reuse": 401
+   }
+  }
+ ],
+ "detail": {
+  "build": {
+   "commit": "3dbafd6d6b3f3e9106701ba26ec981069fcec027",
+   "ref": "website_enterprise_redesign",
+   "deployment": "dpl_4deTgUf5EdY8z1TSFBsuFJMZw8oX",
+   "env": "preview",
+   "mode": "staging"
+  },
+  "login": {
+   "status": 200,
+   "code": "ok",
+   "session": true,
+   "httpOnly": true,
+   "secure": true,
+   "sameSite": "SameSite=lax"
+  },
+  "state": {
+   "status": 200,
+   "next": "onboarding",
+   "business_tz": "Europe/Madrid"
+  },
+  "trial": {
+   "status": 200,
+   "state": "not_started",
+   "has_horizon": false
+  },
+  "onboarding": {
+   "write": 200,
+   "code": "ok",
+   "after_tz": "Europe/Madrid"
+  },
+  "activation": {
+   "gates": 25,
+   "activatable": false,
+   "outcome": "blocked",
+   "activated": false
+  },
+  "pages": {
+   "/es/app": {
+    "status": 200,
+    "location": null
+   },
+   "/es/onboarding": {
+    "status": 200,
+    "location": null
+   },
+   "/es/app/reports": {
+    "status": 200,
+    "location": null
+   }
+  }
+ },
+ "finished_utc": "2026-10-30T14:45:48.670Z"
+}

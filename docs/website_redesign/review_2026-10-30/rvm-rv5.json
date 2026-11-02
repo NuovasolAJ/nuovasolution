@@ -1,0 +1,320 @@
+{
+ "deployment": "https://nuovasolution-design-preview-2368s4mjg-nuovasolajs-projects.vercel.app",
+ "started_utc": "2026-10-30T14:48:32.879Z",
+ "checks": [
+  {
+   "id": "RV5-1",
+   "what": "every picture in the 3D block carries its own alt text",
+   "verdict": "PASS",
+   "evidence": {
+    "images": [
+     {
+      "src": "house-both-floors-es-1600.webp",
+      "altLen": 116
+     },
+     {
+      "src": "living-empty-1200.webp",
+      "altLen": 75
+     },
+     {
+      "src": "living-furnished-1200.webp",
+      "altLen": 90
+     }
+    ],
+    "without_alt": []
+   }
+  },
+  {
+   "id": "RV5-2",
+   "what": "the 3D videos keep poster, controls and silence",
+   "verdict": "PASS",
+   "evidence": [
+    {
+     "src": "house-turn-es.mp4",
+     "poster": "house-turn-poster-es.webp",
+     "label": "Vídeo: la casa entera girando en el visor · 20 segundos · sin sonido",
+     "controls": true,
+     "muted": true,
+     "autoplay": false,
+     "duration": 20.5
+    },
+    {
+     "src": "living-camera-ride.mp4",
+     "poster": "living-ride-poster.webp",
+     "label": "Vídeo: un paseo corto de cámara por el salón amueblado · 8 segundos · sin sonido",
+     "controls": true,
+     "muted": true,
+     "autoplay": false,
+     "duration": 7.9
+    }
+   ]
+  },
+  {
+   "id": "RV5-3",
+   "what": "no legal page carries a placeholder marking",
+   "verdict": "FAIL",
+   "evidence": {
+    "pages_with_marks": [
+     {
+      "p": "/es/legal/privacy",
+      "marks": 2,
+      "brackets": 0
+     },
+     {
+      "p": "/es/legal/terms",
+      "marks": 2,
+      "brackets": 0
+     },
+     {
+      "p": "/es/legal/data-deletion",
+      "marks": 2,
+      "brackets": 0
+     },
+     {
+      "p": "/es/legal/notice",
+      "marks": 2,
+      "brackets": 0
+     },
+     {
+      "p": "/en/legal/privacy",
+      "marks": 2,
+      "brackets": 0
+     },
+     {
+      "p": "/en/legal/terms",
+      "marks": 2,
+      "brackets": 0
+     },
+     {
+      "p": "/en/legal/data-deletion",
+      "marks": 2,
+      "brackets": 0
+     }
+    ],
+    "checked": 7
+   }
+  },
+  {
+   "id": "RV5-4",
+   "what": "\"Mi agencia\" is an active control that leads somewhere",
+   "verdict": "FAIL",
+   "evidence": {
+    "found": false,
+    "header": [
+     "",
+     "Plataforma",
+     "Atender",
+     "Gestionar",
+     "Coordinar",
+     "Captar",
+     "Visión general",
+     "Paquetes",
+     "Prueba",
+     "Contacto"
+    ]
+   }
+  },
+  {
+   "id": "RV5-5",
+   "what": "every public subpage at 390 px: one h1, no overflow, no clipped text",
+   "verdict": "PASS",
+   "evidence": {
+    "checked": 14,
+    "bad": []
+   }
+  }
+ ],
+ "detail": {
+  "three_d": {
+   "found": true,
+   "imgs": [
+    {
+     "src": "house-both-floors-es-1600.webp",
+     "altLen": 116,
+     "alt": "Casa de ejemplo ficticia de dos plantas sin tejado, vista de",
+     "loaded": true
+    },
+    {
+     "src": "living-empty-1200.webp",
+     "altLen": 75,
+     "alt": "Casa de ejemplo ficticia: el mismo salón vacío y con mobilia",
+     "loaded": true
+    },
+    {
+     "src": "living-furnished-1200.webp",
+     "altLen": 90,
+     "alt": "Casa de ejemplo ficticia: el mismo salón con mobiliario ilus",
+     "loaded": true
+    }
+   ],
+   "vids": [
+    {
+     "src": "house-turn-es.mp4",
+     "poster": "house-turn-poster-es.webp",
+     "label": "Vídeo: la casa entera girando en el visor · 20 segundos · sin sonido",
+     "controls": true,
+     "muted": true,
+     "autoplay": false,
+     "duration": 20.5
+    },
+    {
+     "src": "living-camera-ride.mp4",
+     "poster": "living-ride-poster.webp",
+     "label": "Vídeo: un paseo corto de cámara por el salón amueblado · 8 segundos · sin sonido",
+     "controls": true,
+     "muted": true,
+     "autoplay": false,
+     "duration": 7.9
+    }
+   ],
+   "canvas": 0,
+   "pendingWords": 0
+  },
+  "legal": {
+   "/es/legal/privacy": {
+    "h1": "Aviso de privacidad",
+    "words": 361,
+    "marks": 2,
+    "brackets": 0
+   },
+   "/es/legal/terms": {
+    "h1": "Términos del servicio",
+    "words": 236,
+    "marks": 2,
+    "brackets": 0
+   },
+   "/es/legal/data-deletion": {
+    "h1": "Cómo pedirnos que eliminemos tus datos",
+    "words": 479,
+    "marks": 2,
+    "brackets": 0
+   },
+   "/es/legal/notice": {
+    "h1": "Aviso legal",
+    "words": 240,
+    "marks": 2,
+    "brackets": 0
+   },
+   "/en/legal/privacy": {
+    "h1": "Privacy notice",
+    "words": 355,
+    "marks": 2,
+    "brackets": 0
+   },
+   "/en/legal/terms": {
+    "h1": "Terms of service",
+    "words": 220,
+    "marks": 2,
+    "brackets": 0
+   },
+   "/en/legal/data-deletion": {
+    "h1": "How to ask us to delete your data",
+    "words": 465,
+    "marks": 2,
+    "brackets": 0
+   }
+  },
+  "mi_agencia": {
+   "found": false,
+   "header": [
+    "",
+    "Plataforma",
+    "Atender",
+    "Gestionar",
+    "Coordinar",
+    "Captar",
+    "Visión general",
+    "Paquetes",
+    "Prueba",
+    "Contacto"
+   ]
+  },
+  "mobile": {
+   "/es": {
+    "overflow": false,
+    "maxScrollWidth": 390,
+    "clipped": 0,
+    "h1": 1
+   },
+   "/es/platform": {
+    "overflow": false,
+    "maxScrollWidth": 390,
+    "clipped": 0,
+    "h1": 1
+   },
+   "/es/platform/ai-sales-agent": {
+    "overflow": false,
+    "maxScrollWidth": 390,
+    "clipped": 0,
+    "h1": 1
+   },
+   "/es/platform/crm": {
+    "overflow": false,
+    "maxScrollWidth": 390,
+    "clipped": 0,
+    "h1": 1
+   },
+   "/es/platform/lead-intelligence": {
+    "overflow": false,
+    "maxScrollWidth": 390,
+    "clipped": 0,
+    "h1": 1
+   },
+   "/es/platform/daily-assistant": {
+    "overflow": false,
+    "maxScrollWidth": 390,
+    "clipped": 0,
+    "h1": 1
+   },
+   "/es/packages": {
+    "overflow": false,
+    "maxScrollWidth": 390,
+    "clipped": 0,
+    "h1": 1
+   },
+   "/es/trial": {
+    "overflow": false,
+    "maxScrollWidth": 390,
+    "clipped": 0,
+    "h1": 1
+   },
+   "/es/contact": {
+    "overflow": false,
+    "maxScrollWidth": 390,
+    "clipped": 0,
+    "h1": 1
+   },
+   "/es/faq": {
+    "overflow": false,
+    "maxScrollWidth": 390,
+    "clipped": 0,
+    "h1": 1
+   },
+   "/es/signup": {
+    "overflow": false,
+    "maxScrollWidth": 390,
+    "clipped": 0,
+    "h1": 1
+   },
+   "/es/login": {
+    "overflow": false,
+    "maxScrollWidth": 390,
+    "clipped": 0,
+    "h1": 1
+   },
+   "/es/legal/privacy": {
+    "overflow": false,
+    "maxScrollWidth": 390,
+    "clipped": 0,
+    "h1": 1
+   },
+   "/es/legal/notice": {
+    "overflow": false,
+    "maxScrollWidth": 390,
+    "clipped": 0,
+    "h1": 1
+   }
+  }
+ },
+ "finished_utc": "2026-10-30T14:50:27.817Z"
+}

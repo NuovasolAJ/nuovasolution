@@ -1,0 +1,51 @@
+{
+ "base": "https://nuovasolution-design-preview-2368s4mjg-nuovasolajs-projects.vercel.app",
+ "path": "/es/app",
+ "headerButtons": [
+  {
+   "label": "Plataforma",
+   "expanded": "false",
+   "controls": ":Rajsq:"
+  },
+  {
+   "label": "Cerrar sesión",
+   "expanded": null,
+   "controls": null
+  },
+  {
+   "label": "Menú",
+   "expanded": "false",
+   "controls": ":RajsqH1:"
+  }
+ ],
+ "before": {
+  "href": "/es/app",
+  "rect": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "visibility": "visible",
+  "display": "inline-flex",
+  "inViewport": false,
+  "reachable": false,
+  "coveredBy": null
+ },
+ "openerLabel": "Plataforma",
+ "afterOpen": {
+  "href": "/es/app",
+  "rect": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "visibility": "visible",
+  "display": "inline-flex",
+  "inViewport": false,
+  "reachable": false,
+  "coveredBy": null
+ },
+ "utc": "2026-10-30T15:00:48.763Z"
+}

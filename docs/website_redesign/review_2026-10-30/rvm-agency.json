@@ -1,0 +1,28 @@
+{
+ "base": "https://nuovasolution-design-preview-2368s4mjg-nuovasolajs-projects.vercel.app",
+ "result": {
+  "d1440": {
+   "path": "/es/app",
+   "found": true,
+   "tag": "A",
+   "href": "/es/app",
+   "text": "Mi agencia",
+   "disabled": false,
+   "pointerEvents": "auto",
+   "reachable": true,
+   "logoutPresent": true
+  },
+  "m390": {
+   "path": "/es/app",
+   "found": true,
+   "tag": "A",
+   "href": "/es/app",
+   "text": "Mi agencia",
+   "disabled": false,
+   "pointerEvents": "auto",
+   "reachable": false,
+   "logoutPresent": true
+  }
+ },
+ "utc": "2026-10-30T14:57:20.077Z"
+}

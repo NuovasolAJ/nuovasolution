@@ -1,0 +1,92 @@
+{
+ "base": "https://nuovasolution-design-preview-2368s4mjg-nuovasolajs-projects.vercel.app",
+ "menu": true,
+ "expanded": "true",
+ "panel": true,
+ "linkCount": 12,
+ "agencyInSheet": {
+  "t": "Mi agencia",
+  "href": "/es/app",
+  "w": 358,
+  "h": 56
+ },
+ "logoutInSheet": {
+  "t": "Cerrar sesión",
+  "href": null,
+  "w": 358,
+  "h": 48
+ },
+ "sheetLinks": [
+  {
+   "t": "Mi agencia",
+   "href": "/es/app",
+   "w": 358,
+   "h": 56
+  },
+  {
+   "t": "Cerrar sesión",
+   "href": null,
+   "w": 358,
+   "h": 48
+  },
+  {
+   "t": "Atender",
+   "href": "/es/platform#answer",
+   "w": 358,
+   "h": 48
+  },
+  {
+   "t": "Gestionar",
+   "href": "/es/platform#manage",
+   "w": 358,
+   "h": 48
+  },
+  {
+   "t": "Coordinar",
+   "href": "/es/platform#team",
+   "w": 358,
+   "h": 48
+  },
+  {
+   "t": "Captar",
+   "href": "/es/platform#attract",
+   "w": 358,
+   "h": 48
+  },
+  {
+   "t": "Visión general",
+   "href": "/es/platform",
+   "w": 358,
+   "h": 44
+  },
+  {
+   "t": "Paquetes",
+   "href": "/es/packages",
+   "w": 358,
+   "h": 56
+  },
+  {
+   "t": "Prueba",
+   "href": "/es/trial",
+   "w": 358,
+   "h": 56
+  },
+  {
+   "t": "Contacto",
+   "href": "/es/contact",
+   "w": 358,
+   "h": 56
+  }
+ ],
+ "mainLinks": [
+  {
+   "t": "Informe semanal\nQué atendi",
+   "href": "/es/app/reports"
+  },
+  {
+   "t": "Configuración de la agenci",
+   "href": "/es/onboarding"
+  }
+ ],
+ "utc": "2026-10-30T15:01:24.750Z"
+}
