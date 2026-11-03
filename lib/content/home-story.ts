@@ -240,68 +240,20 @@ export const enquiries: Enquiry[] = [
   },
 ];
 
-/** The first screen (R19 §2): one short product case, the work Nuova did, no appointment as the main case. */
+/**
+ * The hero's words (the owner's review of 02.11.2026, §3, work package 1): the report's working version in Spanish, the English
+ * counterpart by the implementer; Copy delivers the final wording. The demonstration's texts stand in lib/content/home-demo.ts.
+ *
+ * Claims (governance/API_CLAIMS_LINES_1102_v1.md): public registration is not released, so the main action is the demonstration and
+ * the second action is the contact (access by invitation); no trial promise and no "Probar gratis" in the hero. "avisa a tu equipo"
+ * is the report's working line and depends on the alert's state (held back in production today; Copy decides the final verb).
+ */
 export const heroWords = {
-  h1Soft: { es: "Mientras enseñas una vivienda,", en: "While you show a home," },
-  h1: { es: "Nuova atiende tus consultas.", en: "Nuova answers your enquiries." },
-  // The owner's order of 30.10., point 1 (the five-second test): what Nuova does with an enquiry on WhatsApp and email (answered, recorded,
-  // handed to the right person) and the benefit (fewer enquiries left unattended). WORKING, for Copy; the alert's production state stands in
-  // the claims register. Was COPY_SYNC_1024 Q-1 fallback.
-  lead: { es: "Responde a lo que llega por WhatsApp y email, guarda lo que busca cada cliente y lo pasa a la persona de tu equipo que toca. Menos consultas que se quedan sin atender.", en: "Answers what arrives on WhatsApp and email, keeps what each customer is looking for and hands it to the right person on your team. Fewer enquiries left unattended." },
-  ctaStory: { es: "Ver cómo funciona", en: "See how it works" },
-  trialLine: { es: "14 días gratis · Sin método de pago", en: "14 days free · No payment method" },
-  labels: { enquiry: { es: "Llega por WhatsApp", en: "Arrives on WhatsApp" }, reply: { es: "Nuova responde", en: "Nuova replies" }, done: { es: "Su ficha, ya al día", en: "Her record, already up to date" } },
-  /**
-   * R24 (owner 24.10.): the customer record instead of three general checks. Closing order 26.10. §6: name and role, what she
-   * looks for, her budget, her language, the priority with its reason (the e-mail alert, proven end to end), the next step (a
-   * person's). Nothing invented: no score, no cross-channel merge.
-   */
-  record: {
-    title: { es: "Ficha de cliente", en: "Customer record" },
-    who: { es: "Laura Serrano · compradora", en: "Laura Serrano · buyer" },
-    updated: { es: "Actualizada · WhatsApp · martes 11:21", en: "Updated · WhatsApp · Tuesday 11:21" },
-    fields: {
-      es: [
-        { k: "Busca", v: "2 dormitorios con terraza · Estepona" },
-        { k: "Presupuesto", v: "hasta 320.000 €" },
-        { k: "Escribe en", v: "español" },
-      ],
-      en: [
-        { k: "Looking for", v: "2 bedrooms with a terrace · Estepona" },
-        { k: "Budget", v: "up to €320,000" },
-        { k: "Writes in", v: "Spanish" },
-      ],
-    },
-    priority: { es: "Prioridad", en: "Priority" },
-    alert: { es: "Consulta importante · aviso por email a tu equipo", en: "Important enquiry · e-mail alert to your team" }, // COPY_SYNC_1023 W-5
-    alertWhy: { es: "Motivo: nombró inmueble, zona y presupuesto", en: "Reason: she named a property, an area and a budget" },
-    nextLabel: { es: "Siguiente paso", en: "Next step" },
-    next: { es: "una persona de tu equipo le confirma los datos del piso y le propone la visita", en: "a person on your team confirms the flat's details and proposes the viewing" },
-  },
-  replay: { es: "Reproducir otra vez", en: "Play again" },
-  /** The object layer of the hero (order of 30.10., point 1): the listing Laura asks about, from the agency's own portfolio. */
-  listing: {
-    label: { es: "El inmueble de la consulta · tu cartera", en: "The listing she asks about · your portfolio" },
-    note: { es: "Los datos del piso los confirma una persona de tu equipo", en: "The flat's details are confirmed by a person on your team" },
-  },
-  /**
-   * The hero's exchange: the question, the reply, one question back. Laura writes in Spanish. Closing order 26.10. §7: the reply
-   * confirms no listing fact and announces no file (replies with the listing's data are in preparation, Copy's Q-1 fallback); it
-   * notes what she asks for, says who answers the facts, and asks one question back, the way the proven replies of story B do.
-   * WORKING, for Copy.
-   */
-  heroEnquiry: "Hola, he visto el piso de dos dormitorios con terraza en Estepona. ¿La terraza da al sur? ¿Tiene garaje? Nuestro presupuesto llega hasta 320.000 €.",
-  heroEnquiryTranslated: { es: "Hola, he visto el piso de dos dormitorios con terraza en Estepona. ¿La terraza da al sur? ¿Tiene garaje? Nuestro presupuesto llega hasta 320.000 €.", en: "Hi, I've seen the two-bedroom flat with a terrace in Estepona. Is the terrace south-facing? Is there a garage? Our budget goes up to €320,000." },
-  heroReply: "¡Hola, Laura! Anoto dos dormitorios con terraza en Estepona y hasta 320.000 €. Una persona de la agencia te confirma lo de la terraza y el garaje. ¿Buscáis vivienda habitual o segunda residencia?",
-  heroReplyTranslated: { es: "¡Hola, Laura! Anoto dos dormitorios con terraza en Estepona y hasta 320.000 €. Una persona de la agencia te confirma lo de la terraza y el garaje. ¿Buscáis vivienda habitual o segunda residencia?", en: "Hi Laura! Noted: two bedrooms with a terrace in Estepona, up to €320,000. A person from the agency will confirm the terrace and the garage. Are you looking for a main home or a second home?" },
-  heroWho: { es: "Laura Serrano · compradora", en: "Laura Serrano · buyer" },
-  heroTime: { es: "martes 11:20", en: "Tuesday 11:20" },
-  heroReplyTime: { es: "martes 11:21", en: "Tuesday 11:21" },
-  /** The situation, as one line inside the panel. */
-  situationLine: { es: "Martes 11:20 · Marcos está en una visita hasta las 12:00 · Nuova atiende lo que llega", en: "Tuesday 11:20 · Marcos is at a viewing until 12:00 · Nuova handles what arrives" },
-  /** The limit, with the claim (R19 §7): what runs today, said inside the product. Copy checks the wording (C1). */
-  stateToday: { es: "Hoy respondemos en español. En otro idioma no se envía nada automáticamente. Respuestas con datos del inmueble: en preparación.", en: "Today we answer in Spanish. In another language nothing is sent automatically. Replies with the listing's data: in preparation." }, // WEBSITE_COPY_HANDOVER_1021 §E + COPY_SYNC_1024 Q-1 fallback
-  surfaceLabel: { es: "Ejemplo: una consulta por WhatsApp, la respuesta, lo que queda guardado en la ficha, el aviso al equipo y el siguiente paso", en: "Example: a WhatsApp enquiry, the reply, what is saved on the record, the alert to the team and the next step" },
+  h1: { es: "Mientras enseñas, Nuova atiende.", en: "While you show, Nuova answers." },
+  lead: { es: "Responde consultas por WhatsApp y email, guarda lo importante y avisa a tu equipo.", en: "Answers enquiries on WhatsApp and email, keeps what matters and tells your team." },
+  ctaDemo: { es: "Ver la demo", en: "See the demo" },
+  ctaContact: { es: "Hablar con nosotros", en: "Talk to us" },
+  accessLine: { es: "Acceso a la plataforma con invitación. Te escribimos nosotros.", en: "Access to the platform by invitation. We get in touch with you." },
 };
 
 /**

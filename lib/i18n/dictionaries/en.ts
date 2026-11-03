@@ -65,6 +65,7 @@ export const en = {
     // LAUNCH_COPY_v1 §7.1: "Book a demo" only after the Reviewer's test booking (DEMO_PATH = PASS).
     bookDemo: "Request a demo",
     startFree: "Try free", // owner 2026-10-06 §2
+    seeDemo: "See the demo", // owner review 02.11.
     tryFree: "Try free for 14 days",
     noPayment: "No payment method required.",
     noSalesCall: "No sales call required.",

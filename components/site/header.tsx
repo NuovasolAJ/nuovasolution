@@ -3,7 +3,6 @@ import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { platformTasks } from "@/lib/content/platform-map";
-import { startLabel } from "@/lib/content/plans";
 import { Logo } from "@/components/ui/logo";
 import { LanguageSwitcher } from "./language-switcher";
 import { HeaderShell } from "./header-shell";
@@ -53,7 +52,9 @@ export function Header({ locale }: { locale: Locale }) {
       nav={nav}
       utilities={<LanguageSwitcher locale={locale} labels={{ en: d.common.english, es: d.common.spanish, group: d.common.language }} />}
       login={{ href: p("/login"), label: d.nav.login }}
-      primary={{ href: p("/signup"), label: startLabel(locale) }}
+      // The owner's review of 02.11. with API's claims lines: public registration is not released, so the header's one general button
+      // leads to the demonstration, not to a sign-up ("Probar gratis" is not a main action).
+      primary={{ href: `${localePath(locale)}#demo`, label: d.common.seeDemo }}
       account={{ href: p("/app"), label: d.nav.account }}
       logout={{ label: d.nav.logout, busy: d.nav.loggingOut }}
       home={localePath(locale)}

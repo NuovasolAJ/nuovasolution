@@ -6,8 +6,7 @@ import { HOME_V3_WORKING_TEXT } from "@/lib/content/home-v3";
 import { homeWords } from "@/lib/content/home-sections";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
-import { HeroWorld } from "@/components/home/hero-world";
-import { SequenceSection } from "@/components/home/sequence";
+import { Hero } from "@/components/home/hero";
 import { SocialStrip, Story } from "@/components/home/story";
 import { Model3dSection } from "@/components/home/model-3d";
 import { TrustSection } from "@/components/home/trust";
@@ -20,13 +19,13 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
 }
 
 /**
- * Home (master order 2026-10-10):
+ * Home (the owner's review of 02.11.2026; work package 1 built, work packages 2 and 3 pending the owner's view of 1):
  *
- *   1 Hero      dark anthracite · the dusk, the ridges, the product panel, the situation in two cards
- *   2 Story     warm ivory · six chapters A to F, the same enquiry through the whole product, in the scroll
- *   3 3D        the living room of the 3D lane: plan → furnishing → render → the rotatable view
- *   4 Trust     the real setup path, with or without an external CRM, cost, effort, data, the trial
- *   5 Packages  three packages, each on top of the last; 3D on its own
+ *   1 Hero      light canvas · the words at the left, the demonstration (one conversation, three visible consequences) at the right
+ *   2 Story     the six chapters A to F (work package 2 removes them from the home page; the detail pages may go deeper)
+ *   3 3D        the living room of the 3D lane: plan → furnishing → render → the rotatable view (work package 2: the clean media)
+ *   4 Packages  three packages (work package 2: one row order and the status words)
+ *   5 Trust     the real setup path, with or without an external CRM, cost, effort, data
  *
  * The style foundation v3 (tokens in globals.css) applies to every document that contains [data-style="v3"].
  */
@@ -40,10 +39,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
 
   return (
     <div data-style="v3" data-working-text={HOME_V3_WORKING_TEXT ? "true" : undefined}>
-      <HeroWorld locale={locale} />
-
-      {/* 1b The central product sequence (owner 30.10., point 2): the heart of the page, on the canvas the hero already stands on. */}
-      <SequenceSection locale={locale} />
+      <Hero locale={locale} />
 
       {/* 2 The story in detail: the four channels, the proposal, Elena's morning with the interactive demo, the follow-up, the week. */}
       <section id="story" aria-labelledby="story-h" className="relative scroll-mt-[var(--header-h)] bg-[color:var(--surface-canvas)] pb-[var(--section-compact)] pt-[var(--section-compact)]">

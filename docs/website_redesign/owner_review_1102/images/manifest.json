@@ -1,0 +1,155 @@
+[
+  {
+    "picture": "B01",
+    "page": 12,
+    "original": "image(20261102-140820).png",
+    "file": "B01_image_20261102-140820.png",
+    "width": 1918,
+    "height": 1159,
+    "sha256": "ffc6192c51bd38c0d607c62395f71966f4a0e2b0d39108586b8ce2c0eabe6eab"
+  },
+  {
+    "picture": "B02",
+    "page": 13,
+    "original": "image(20261102-141823).png",
+    "file": "B02_image_20261102-141823.png",
+    "width": 1912,
+    "height": 1150,
+    "sha256": "c19133bb4e11cc8c0afba68fc33def0b226279a0e8b7a7ac7a7ad0f510b2a742"
+  },
+  {
+    "picture": "B03",
+    "page": 14,
+    "original": "image(20261102-141930).png",
+    "file": "B03_image_20261102-141930.png",
+    "width": 1882,
+    "height": 1159,
+    "sha256": "a9901ece07381d521da4ed5ba716a9962cd5e095bf494f721f0e4c6e8a31100f"
+  },
+  {
+    "picture": "B04",
+    "page": 15,
+    "original": "image(20261102-141941).png",
+    "file": "B04_image_20261102-141941.png",
+    "width": 1918,
+    "height": 1168,
+    "sha256": "69172ac7febf7268853657bd76f6d66fb7d536d8e4a2e8814ad8c228d0b11559"
+  },
+  {
+    "picture": "B05",
+    "page": 16,
+    "original": "image(20261102-142037).png",
+    "file": "B05_image_20261102-142037.png",
+    "width": 828,
+    "height": 1792,
+    "sha256": "66b71fa752f415c837a3719bb350abc8bd6d7355242160303a930b04746f46fe"
+  },
+  {
+    "picture": "B06",
+    "page": 17,
+    "original": "image(20261102-142044).png",
+    "file": "B06_image_20261102-142044.png",
+    "width": 828,
+    "height": 1792,
+    "sha256": "acacfe5b8a4cfe3e04b762d2b38f46eea50f4124e029264adbc358142cedc038"
+  },
+  {
+    "picture": "B07",
+    "page": 18,
+    "original": "image(20261102-142050).png",
+    "file": "B07_image_20261102-142050.png",
+    "width": 828,
+    "height": 1792,
+    "sha256": "150aa91c0573da9aed57f6510a63eb65d53aeca024726216b1207fa79bedc3e1"
+  },
+  {
+    "picture": "B08",
+    "page": 19,
+    "original": "image(20261102-142224).png",
+    "file": "B08_image_20261102-142224.png",
+    "width": 1912,
+    "height": 1189,
+    "sha256": "cf6ce98896861310a202e28c46c15b3194e1dbf8a869671fac07b977d5de5d10"
+  },
+  {
+    "picture": "B09",
+    "page": 20,
+    "original": "image(20261102-142306).png",
+    "file": "B09_image_20261102-142306.png",
+    "width": 1362,
+    "height": 1123,
+    "sha256": "55b8c0ac9e7f0dbff7ccbe07a5b548aab8d686082c46bcc697ed695560956205"
+  },
+  {
+    "picture": "B10",
+    "page": 21,
+    "original": "image(20261102-142335).png",
+    "file": "B10_image_20261102-142335.png",
+    "width": 1519,
+    "height": 1167,
+    "sha256": "0ed1ed392a1451599192a0a72c1e8812fc9fed2afc4564f46f40fe7999465edb"
+  },
+  {
+    "picture": "B11",
+    "page": 22,
+    "original": "image(20261102-142433).png",
+    "file": "B11_image_20261102-142433.png",
+    "width": 1917,
+    "height": 1198,
+    "sha256": "2ac38c357f22087d231c045deab50a6ff92fa5c6d16d7f68d4215dc70acee92e"
+  },
+  {
+    "picture": "B12",
+    "page": 23,
+    "original": "image(20261102-142513).png",
+    "file": "B12_image_20261102-142513.png",
+    "width": 1375,
+    "height": 1066,
+    "sha256": "00a0d8e49da231c53fd14d94ff720789e6cff2a7c93ea5bda60155e0b5026fdf"
+  },
+  {
+    "picture": "B13",
+    "page": 24,
+    "original": "image(20261102-142550).png",
+    "file": "B13_image_20261102-142550.png",
+    "width": 1498,
+    "height": 1012,
+    "sha256": "2ef0783d66939e1e97c342836214e8e622aaeabd2575058c9f83ec0227a12945"
+  },
+  {
+    "picture": "B14",
+    "page": 25,
+    "original": "image(20261102-142636).png",
+    "file": "B14_image_20261102-142636.png",
+    "width": 1516,
+    "height": 1023,
+    "sha256": "9646cd0ba106892e49180a6ad0ac43b97f94fe393238b70ae99bae7f0d2fb25d"
+  },
+  {
+    "picture": "B15",
+    "page": 26,
+    "original": "image(20261102-142712).png",
+    "file": "B15_image_20261102-142712.png",
+    "width": 1614,
+    "height": 985,
+    "sha256": "1a4efe6d1a1ffc7a1b9a7a165f180d779a13da6666e1d7c96ddd39d0b6bfc22a"
+  },
+  {
+    "picture": "B16",
+    "page": 27,
+    "original": "image(20261102-142825).png",
+    "file": "B16_image_20261102-142825.png",
+    "width": 1378,
+    "height": 970,
+    "sha256": "9c958ab6e26e0fcb039d65432b6fd3a69010fb3f552c19a5a8aa9bff78302741"
+  },
+  {
+    "picture": "B17",
+    "page": 28,
+    "original": "image(20261102-143115).png",
+    "file": "B17_image_20261102-143115.png",
+    "width": 1515,
+    "height": 1015,
+    "sha256": "4737c88944078a0a7a0d9ee561d65baff6ec7385d8b6c2a14ea3b7269f1675e8"
+  }
+]

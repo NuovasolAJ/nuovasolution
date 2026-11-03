@@ -137,7 +137,7 @@ try {
       await sleep(5000);
       await page.send("Animation.setPlaybackRate", { playbackRate: RATE });
       // The hero world: from the top of the page (headline on the sky), down until the demonstration begins.
-      const sceneBottom = await page.ev("Math.round(document.querySelector('.hero-world').getBoundingClientRect().bottom + scrollY)");
+      const sceneBottom = await page.ev("Math.round(document.querySelector('[data-hero]').getBoundingClientRect().bottom + scrollY)");
       const start = 0;
       const plan = [["hold", 6.2, start, start], ["scroll", PHONE ? 7.0 : 5.0, start, Math.max(start, sceneBottom - Math.round(VH * 0.55))], ["hold", 0.8, 0, 0]];
       plan[2][2] = plan[2][3] = plan[1][3];

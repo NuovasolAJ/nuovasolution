@@ -59,6 +59,7 @@ export const es: Dictionary = {
     spanish: "Español",
     bookDemo: "Solicitar una demo",
     startFree: "Probar gratis", // owner 2026-10-06 §2: the one general entry button
+    seeDemo: "Ver la demo", // owner review 02.11.: the header's one general button leads to the demonstration (no public sign-up)
     tryFree: "Prueba gratis durante 14 días",
     noPayment: "Sin método de pago.",
     noSalesCall: "Sin llamada comercial.",
