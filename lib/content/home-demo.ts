@@ -10,8 +10,9 @@ import { people } from "./home-story";
  *   state 3  the team knows what is next: the record's state, a priority as a category with its reason (no number), the next step
  *
  * Every item carries the phase (`at`) in which it appears; `timings` is the pause before each phase in milliseconds, so the whole run
- * takes 6–9 s and the end state stays. Nothing shown is a real person, listing or agency ("Demo con datos ficticios"). The texts are
- * the report's working version (ES) with the EN counterpart; Copy delivers the final wording.
+ * takes 6–9 s and the end state stays. Nothing shown is a real person, listing or agency ("Demo con datos ficticios"). The WhatsApp
+ * channel carries Copy's final lines (WEBSITE_COPY_HANDOVER_1102_v2.md §1.2; Laura's message in two bubbles at its sentence end, report §3);
+ * the e-mail, web-form and phone channels are the implementer's WORKING lines on the same pattern, for Copy.
  *
  * Claims (governance/API_CLAIMS_LINES_1102_v1.md, 02.11.): WhatsApp and Gmail stand as channels of today; the web form and the phone
  * are marked as prototypes; the priority is shown on the record with its reason and no alert is claimed as available; a reply is a
@@ -53,23 +54,26 @@ export interface DemoChannel {
   /** A call: what the assistant did on the line. */
   call?: { title: L; line: L; at: number };
   record: {
+    /** The record's title where Copy names it ("Ficha de Laura"); otherwise the generic one. */
+    title?: L;
     updated: L;
     fields: DemoField[];
     state: { v: L; at: number };
     priority: { v: L; why: L; at: number };
     next: { v: L; sub: L; at: number };
   };
+  /** The state lines of the end phase (Copy's handover 1102 v2 §1.2): what runs today, what is in preparation. */
+  states: { v: L; kind: "available" | "preparing" | "prototype"; at: number }[];
   /** The pause before each phase (index = the phase reached), in milliseconds. */
   timings: number[];
 }
 
 export const demoWords = {
-  pick: { es: "Elige un canal", en: "Pick a channel" },
+  pick: { es: "Elige un canal", en: "Choose a channel" },
   replay: { es: "Repetir demo", en: "Replay demo" },
   fictional: { es: "Demo con datos ficticios", en: "Demo with fictional data" },
-  assistant: { es: "Nuova · asistente automático", en: "Nuova · automated assistant" },
-  /** The one place the automated assistant is named outside a bubble (report §3: at a sensible place, once). */
-  assistantNote: { es: "Nuova responde como asistente automático y lo dice en su primer mensaje.", en: "Nuova answers as an automated assistant and says so in its first message." },
+  /** The one automation mark (Copy 1102 v2 §1.2): on the reply bubble, nowhere else. */
+  assistant: { es: "Asistente automático de la agencia", en: "The agency's automated assistant" },
   record: { es: "Ficha de cliente", en: "Customer record" },
   state: { es: "Estado", en: "State" },
   priority: { es: "Prioridad", en: "Priority" },
@@ -85,34 +89,40 @@ export const demoChannels: DemoChannel[] = [
   {
     key: "whatsapp",
     name: { es: "WhatsApp", en: "WhatsApp" },
-    who: people.buyer.name,
+    who: "Laura",
     role: { es: "compradora", en: "buyer" },
-    meta: { es: "WhatsApp · martes 11:20", en: "WhatsApp · Tuesday 11:20" },
+    meta: { es: "WhatsApp · 11:20", en: "WhatsApp · 11:20" },
     inbound: [
       { text: "Hola, soy Laura. Busco un piso de 2 dormitorios en Estepona, hasta 320.000 €.", lang: "es", translation: { es: "Hola, soy Laura. Busco un piso de 2 dormitorios en Estepona, hasta 320.000 €.", en: "Hi, I'm Laura. I'm looking for a 2-bedroom flat in Estepona, up to €320,000." }, at: 0 },
-      { text: "¿Podemos verlo la semana que viene?", lang: "es", translation: { es: "¿Podemos verlo la semana que viene?", en: "Could we see it next week?" }, at: 1 },
+      { text: "¿Podría ver alguno la semana que viene?", lang: "es", translation: { es: "¿Podría ver alguno la semana que viene?", en: "Could I see one next week?" }, at: 1 },
     ],
     typingAt: 2,
     reply: {
-      text: "Hola, Laura. Anoto Estepona, 2 dormitorios y hasta 320.000 €. ¿Buscas vivienda habitual o segunda residencia?",
+      text: "Hola, Laura. Anoto Estepona, 2 dormitorios y hasta 320.000 €, y que quieres ver pisos la semana que viene. ¿Buscas vivienda habitual o segunda residencia?",
       lang: "es",
-      translation: { es: "Hola, Laura. Anoto Estepona, 2 dormitorios y hasta 320.000 €. ¿Buscas vivienda habitual o segunda residencia?", en: "Hi Laura. Noted: Estepona, 2 bedrooms, up to €320,000. Are you looking for a main home or a second home?" },
+      translation: { es: "Hola, Laura. Anoto Estepona, 2 dormitorios y hasta 320.000 €, y que quieres ver pisos la semana que viene. ¿Buscas vivienda habitual o segunda residencia?", en: "Hi Laura. I've noted Estepona, 2 bedrooms, up to €320,000, and that you'd like to see flats next week. Is it for living in or a second home?" },
       at: 3,
-      meta: { es: "martes 11:21", en: "Tuesday 11:21" },
+      meta: { es: "11:21", en: "11:21" },
     },
     record: {
-      updated: { es: "Nueva · WhatsApp · martes 11:21", en: "New · WhatsApp · Tuesday 11:21" },
+      title: { es: "Ficha de Laura", en: "Laura's record" },
+      updated: { es: "WhatsApp · 11:21", en: "WhatsApp · 11:21" },
       fields: [
-        { k: { es: "Nombre", en: "Name" }, v: { es: "Laura Serrano", en: "Laura Serrano" }, at: 3 },
-        { k: { es: "Busca", en: "Looking for" }, v: { es: "comprar · 2 dormitorios", en: "to buy · 2 bedrooms" }, at: 4 },
-        { k: { es: "Idioma", en: "Language" }, v: { es: "español", en: "Spanish" }, at: 4 },
-        { k: { es: "Zona", en: "Area" }, v: { es: "Estepona", en: "Estepona" }, at: 5 },
-        { k: { es: "Presupuesto", en: "Budget" }, v: { es: "hasta 320.000 €", en: "up to €320,000" }, at: 5 },
+        { k: { es: "Intención", en: "Intent" }, v: { es: "compra", en: "buying" }, at: 3 },
+        { k: { es: "Zona", en: "Area" }, v: { es: "Estepona", en: "Estepona" }, at: 4 },
+        { k: { es: "Dormitorios", en: "Bedrooms" }, v: { es: "2", en: "2" }, at: 4 },
+        { k: { es: "Presupuesto", en: "Budget" }, v: { es: "hasta 320.000 €", en: "up to €320,000" }, at: 4 },
+        { k: { es: "Idioma", en: "Language" }, v: { es: "español", en: "Spanish" }, at: 5 },
+        { k: { es: "Visita", en: "Viewing" }, v: { es: "la pide para la semana que viene", en: "asked for next week" }, at: 5 },
       ],
       state: { v: { es: "Consulta registrada", en: "Enquiry recorded" }, at: 6 },
-      priority: { v: { es: "Alta", en: "High" }, why: { es: "nombró zona, tipo y presupuesto", en: "she named an area, a type and a budget" }, at: 6 },
-      next: { v: { es: "Confirmar la visita", en: "Confirm the viewing" }, sub: { es: "Tarea para tu equipo · la visita la confirma una persona", en: "A task for your team · a person confirms the viewing" }, at: 6 },
+      priority: { v: { es: "Alta", en: "High" }, why: { es: "pide zona, presupuesto y visita", en: "names area, budget and a viewing" }, at: 6 },
+      next: { v: { es: "Elena le propone día y hora para la visita.", en: "Elena proposes a day and time for the viewing." }, sub: { es: "Una petición de visita no es una cita: la confirma una persona.", en: "A viewing request is not an appointment: a person confirms it." }, at: 6 },
     },
+    states: [
+      { v: { es: "Hoy: respuesta en español y ficha guardada.", en: "Today: a reply in Spanish and the record saved." }, kind: "available", at: 6 },
+      { v: { es: "En preparación: el aviso a Elena y su lista de tareas.", en: "In preparation: the alert to Elena and her task list." }, kind: "preparing", at: 6 },
+    ],
     timings: [0, 900, 900, 1400, 750, 750, 900],
   },
   {
@@ -147,6 +157,10 @@ export const demoChannels: DemoChannel[] = [
       priority: { v: { es: "Alta", en: "High" }, why: { es: "propietarios que quieren vender y piden cita", en: "owners who want to sell and ask for an appointment" }, at: 5 },
       next: { v: { es: "Contestar y proponer la visita", en: "Answer and propose the visit" }, sub: { es: "Tarea para tu equipo · la respuesta la escribe una persona", en: "A task for your team · a person writes the reply" }, at: 5 },
     },
+    states: [
+      { v: { es: "Hoy: en otro idioma no se envía nada automáticamente; la consulta queda en la ficha.", en: "Today: in another language nothing is sent automatically; the enquiry stays on the record." }, kind: "available", at: 5 },
+      { v: { es: "En preparación: el aviso a Elena y su lista de tareas.", en: "In preparation: the alert to Elena and her task list." }, kind: "preparing", at: 5 },
+    ],
     timings: [0, 900, 1000, 750, 750, 900],
   },
   {
@@ -181,6 +195,9 @@ export const demoChannels: DemoChannel[] = [
       priority: { v: { es: "Media", en: "Medium" }, why: { es: "alquiler con zona y presupuesto, sin fecha de visita", en: "a rental with an area and a budget, no viewing date" }, at: 5 },
       next: { v: { es: "Enviar lo disponible en alquiler", en: "Send what is available to rent" }, sub: { es: "Tarea para tu equipo · lo envía una persona", en: "A task for your team · a person sends it" }, at: 5 },
     },
+    states: [
+      { v: { es: "Prototipo: el formulario web todavía no está disponible.", en: "Prototype: the web form is not available yet." }, kind: "prototype", at: 5 },
+    ],
     timings: [0, 900, 1400, 750, 750, 900],
   },
   {
@@ -212,6 +229,9 @@ export const demoChannels: DemoChannel[] = [
       priority: { v: { es: "Alta", en: "High" }, why: { es: "pregunta por un inmueble concreto y pide que le llamen", en: "he asks about a specific property and asks for a call back" }, at: 5 },
       next: { v: { es: "Devolver la llamada", en: "Return the call" }, sub: { es: "Tarea para tu equipo · a partir de las 16:00", en: "A task for your team · from 16:00" }, at: 5 },
     },
+    states: [
+      { v: { es: "Prototipo: el asistente telefónico todavía no está disponible; solo en español.", en: "Prototype: the phone assistant is not available yet; Spanish only." }, kind: "prototype", at: 5 },
+    ],
     timings: [0, 1100, 1000, 750, 750, 900],
   },
 ];

@@ -241,19 +241,16 @@ export const enquiries: Enquiry[] = [
 ];
 
 /**
- * The hero's words (the owner's review of 02.11.2026, §3, work package 1): the report's working version in Spanish, the English
- * counterpart by the implementer; Copy delivers the final wording. The demonstration's texts stand in lib/content/home-demo.ts.
- *
- * Claims (governance/API_CLAIMS_LINES_1102_v1.md): public registration is not released, so the main action is the demonstration and
- * the second action is the contact (access by invitation); no trial promise and no "Probar gratis" in the hero. "avisa a tu equipo"
- * is the report's working line and depends on the alert's state (held back in production today; Copy decides the final verb).
+ * The hero's words: Copy's final lines (WEBSITE_COPY_HANDOVER_1102_v2.md §1.1, on the owner's review of 02.11. and API's claims lines).
+ * The demonstration's texts stand in lib/content/home-demo.ts. "…y avisa a tu equipo" of the report's working version is dropped: the
+ * alert is held back in production (HA1); it returns with V3-DEPLOY and a production probe.
  */
 export const heroWords = {
-  h1: { es: "Mientras enseñas, Nuova atiende.", en: "While you show, Nuova answers." },
-  lead: { es: "Responde consultas por WhatsApp y email, guarda lo importante y avisa a tu equipo.", en: "Answers enquiries on WhatsApp and email, keeps what matters and tells your team." },
+  h1: { es: "Mientras enseñas, Nuova atiende.", en: "While you show a home, Nuova answers." },
+  lead: { es: "Responde consultas por WhatsApp y email y guarda lo importante en una ficha.", en: "Answers enquiries on WhatsApp and e-mail and keeps what matters on a record." },
   ctaDemo: { es: "Ver la demo", en: "See the demo" },
-  ctaContact: { es: "Hablar con nosotros", en: "Talk to us" },
-  accessLine: { es: "Acceso a la plataforma con invitación. Te escribimos nosotros.", en: "Access to the platform by invitation. We get in touch with you." },
+  ctaContact: { es: "Pedir acceso", en: "Request access" },
+  accessLine: { es: "Acceso por invitación mientras preparamos el registro público.", en: "Access by invitation while public registration is being prepared." },
 };
 
 /**

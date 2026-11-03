@@ -516,6 +516,8 @@ img, video, svg { display: block; max-width: 100%; }
 .demo-next { display: grid; gap: 2px; padding: 10px 14px 12px; border-left: 3px solid var(--brand-green); }
 .demo-next-value { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; color: var(--ink-950); }
 .demo-next-sub { font-size: 0.875rem; line-height: 1.4; color: var(--text-secondary); }
+.demo-states { display: grid; gap: 4px; padding: 10px 14px 12px; border-top: 1px solid var(--border-hairline); }
+.demo-state-line { display: flex; }
 .demo-foot { display: flex; flex-wrap: wrap; gap: 4px 10px; padding: 10px 16px 12px; border-top: 1px solid var(--border-hairline); font-size: 0.875rem; line-height: 1.45; color: var(--text-secondary); }
 .demo-foot-mark { font-weight: 600; color: var(--text-primary); }
 @media (max-width: 479px) { .demo-field, .demo-outcome-row { grid-template-columns: 1fr; gap: 1px; } }

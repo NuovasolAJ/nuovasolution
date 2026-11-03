@@ -111,7 +111,6 @@ export function HeroDemo({ locale }: { locale: Locale }) {
     tabsRef.current?.querySelector<HTMLButtonElement>(`[data-demo-tab="${keys[next]}"]`)?.focus();
   };
 
-  const es = locale === "es";
   const langName = (code: "es" | "de") => W.langs[code][locale];
   const msgText = (m: { text: string; lang: "es" | "de"; translation?: { es: string; en: string } }) => (m.lang === locale || !m.translation ? m.text : l(m.translation));
   const chat = !script.surfaceTitle;
@@ -220,7 +219,7 @@ export function HeroDemo({ locale }: { locale: Locale }) {
         {/* the record exists only once the reply is there: until then the column stays empty */}
         <Item n={script.record.fields[0].at} phase={phase} className="demo-record" data-hero-record="">
           <div className="demo-record-head">
-            <p className="demo-key">{l(W.record)}</p>
+            <p className="demo-key">{script.record.title ? l(script.record.title) : l(W.record)}</p>
             <p className="demo-record-updated tnum">{l(script.record.updated)}</p>
           </div>
           <dl className="demo-fields">
@@ -245,13 +244,20 @@ export function HeroDemo({ locale }: { locale: Locale }) {
               <span className="demo-next-value">{l(script.record.next.v)}</span>
               <span className="demo-next-sub">{l(script.record.next.sub)}</span>
             </Item>
+            {/* the state lines of the end phase: what runs today, what is in preparation (Copy 1102 v2 §1.2) */}
+            <div className="demo-states" data-hero-states>
+              {script.states.map((st, i) => (
+                <Item key={i} n={st.at} phase={phase} as="p" className="state-line demo-state-line" data-state={st.kind === "prototype" ? "preparing" : st.kind} data-hero-state-line={st.kind}>
+                  {l(st.v)}
+                </Item>
+              ))}
+            </div>
           </div>
         </Item>
       </div>
 
       <p className="demo-foot" data-hero-state>
         <span className="demo-foot-mark">{l(W.fictional)}</span>
-        <span>{es ? W.assistantNote.es : W.assistantNote.en}</span>
       </p>
     </div>
   );
