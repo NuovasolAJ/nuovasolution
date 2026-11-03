@@ -22,7 +22,7 @@ export function Footer({ locale }: { locale: Locale }) {
     {
       heading: d.footer.getStarted,
       items: [
-        { href: p("/signup"), label: startLabel(locale) },
+        { href: p("/contact"), label: startLabel(locale) },
         { href: p("/trial"), label: d.nav.trial },
         { href: p("/packages"), label: d.nav.packages },
         { href: p("/login"), label: d.nav.login },

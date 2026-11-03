@@ -33,7 +33,7 @@ export function ClosingBand({
           <Reveal mode="opacity">
             <Display size="l" id={id} className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
             <CtaRow align="center" className="mt-10">
-              <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
+              <ButtonLink href={p("/contact")} size="lg">{startLabel(locale)}</ButtonLink>
               {secondary === "demo" ? (
                 <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
               ) : (

@@ -58,9 +58,9 @@ export const es: Dictionary = {
     english: "English",
     spanish: "Español",
     bookDemo: "Solicitar una demo",
-    startFree: "Probar gratis", // owner 2026-10-06 §2: the one general entry button
+    startFree: "Pedir acceso", // Copy 1102 v2 C-8 (claims lines 02.11.: no public sign-up promise): every former "Probar gratis" button
     seeDemo: "Ver la demo", // owner review 02.11.: the header's one general button leads to the demonstration (no public sign-up)
-    tryFree: "Prueba gratis durante 14 días",
+    tryFree: "Prueba gratuita de 14 días: en preparación", // C-16a
     noPayment: "Sin método de pago.",
     noSalesCall: "Sin llamada comercial.",
     readModule: "Ver el módulo",
@@ -368,8 +368,8 @@ export const es: Dictionary = {
     eyebrow: "Planes",
     h1Neutral: "Empieza con 14 días de prueba",
     leadNeutral: "14 días, sin método de pago. Después eliges un plan con nosotros y te decimos el precio para tu agencia antes de acordar nada.",
-    h1: "Pruébalo gratis 14 días", // D-105
-    lead: "14 días gratis, sin método de pago, con el paquete Essential. Después eliges un plan con nosotros y te decimos el precio y el periodo de facturación antes de acordar nada.", // D-106
+    h1: "Tres paquetes, con su estado real", // C-10
+    lead: "Hoy los paquetes todavía no se pueden contratar: el registro y la prueba de 14 días están en preparación. Te decimos el precio para tu agencia antes de acordar nada.", // C-11
     plansEyebrow: "Los planes",
     included: "Incluido",
     baselineHeading: "Qué incluye cada plan",
@@ -386,7 +386,7 @@ export const es: Dictionary = {
     faq: [
       { q: "¿Necesito una tarjeta para empezar?", a: "No. Durante la prueba no se cobra nada ni se pide método de pago." },
       { q: "¿Puedo pagar online?", a: "En este sitio no. Te enviamos una factura y la pagas por transferencia." },
-      { q: "¿Tengo que hablar con alguien antes?", a: "No. Puedes empezar por tu cuenta. La demo es opcional." },
+      { q: "¿Tengo que hablar con alguien antes?", a: "No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. Empezar por tu cuenta llega con el registro público, en preparación." }, // C-14
       { q: "¿Qué pasa después de los 14 días?", a: "Conservas tu cuenta y tus datos. Las funciones de pago se pausan hasta que elijas un plan." },
     ],
     tiersEyebrow: "Tres planes, uno al lado del otro",
@@ -409,7 +409,7 @@ export const es: Dictionary = {
     planLines: { essential: "Responder y ordenar lo que llega. Una oficina, un equipo pequeño.", growth: "Seguir, proponer y coordinar. Un equipo más grande.", scale: "Captar, atender llamadas y presentar en 3D. Varias oficinas." },
     trialBadge: "14 días de prueba",
     trialBadgeAligned: "14 días gratis",
-    ctaTrialEssential: "Prueba Essential gratis",
+    ctaTrialEssential: "Solicita una propuesta", // C-12
     limitsHeading: "Límites",
     limits: { offices: "Oficinas", seats: "Puestos", leads_month: "Capacidad: consultas al mes", crm_connections: "Conexiones de CRM", voice_minutes: "Minutos de voz", unlimited: "Sin límite", none: "Ninguno" },
     featuresHeading: "Incluido",
@@ -443,7 +443,8 @@ export const es: Dictionary = {
 
   trial: {
     eyebrow: "Prueba",
-    h1: "Prueba gratis durante 14 días.",
+    h1: "La prueba gratuita de 14 días, en preparación.", // C-16
+    state: "Estado: El registro público y la prueba de 14 días están en preparación.", // C-16
     lead: "Configura tu agencia y decide con el sistema en marcha.",
     ctaPrimary: "Empieza gratis",
     ctaSecondary: "Ver los paquetes",
@@ -487,7 +488,7 @@ export const es: Dictionary = {
     demoBody: "Te guiamos por el sistema con un ejemplo real y puedes preguntar lo que quieras. Sin presentación.",
     demoCta: "Solicitar una demo",
     trialH2: "O simplemente empieza",
-    trialBody: "Prueba gratis durante 14 días. Sin método de pago, sin llamada comercial.",
+    trialBody: "La prueba gratuita de 14 días, sin método de pago, llega con el registro público, en preparación.", // C-16b
     planInterest: "Plan que te interesa: {plan}",
     planInterestBody: "Escríbenos con el nombre de tu agencia y te enviamos una propuesta para este plan.",
     proposalSubject: "Solicitud de propuesta: {plan}",

@@ -1,45 +1,55 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
-import { getDictionary } from "@/lib/i18n/dictionaries";
-import { heroWords } from "@/lib/content/home-story";
-import { ButtonLink } from "@/components/ui/button";
+import { home1103 } from "@/lib/content/home-1103";
+import { HeroBenefits, HeroFilm, HeroScrollHint } from "./hero-film";
 import { HeroDemo } from "./hero-demo";
 
 /**
- * The hero (the owner's review of 02.11.2026, §3; work package 1): a calm light ground, dark type, the house green as the accent,
- * WhatsApp green only for the channel. The words at the left (about 40 % from 1024 px): for whom, what Nuova does, the benefit; one
- * main action ("Ver la demo") and one quiet second action (contact; the platform is reached by invitation today). The product
- * demonstration at the right (about 60 %): one conversation and three visible consequences (hero-demo.tsx).
+ * The hero (the owner's order of 03.11.2026, point 1; research 1103 R1 FIND, S6 Lev, S7 STILL/FORM): the 7-second film of the
+ * furnished living room (C01) runs dimmed in a loop behind one strong sentence and the one main action; three benefits appear
+ * while it runs; the demonstration follows directly underneath as a floating product card that rises into the film's lower
+ * edge (the transition from the brand moment to the message → record). The header stands transparent over the film with the
+ * logo in white and turns into the light bar on scroll (header-shell.tsx).
  *
- * No background photograph, no leaning surface, no layers (the owner's decision of 02.11.: the four-layer concept is withdrawn). On a
- * phone: headline, benefit line, main action, then the compact demonstration, in that order. At 1366 × 768 the benefit, the main
- * action, the enquiry and the record's first lines stand on the first screen (measured in the master check, "ap1-hero-demo").
+ * The words at the left (Copy 1102 v2 §1.1): for whom, the headline, the benefit, "Ver la demo" as the main action, "Pedir
+ * acceso" as the quiet second action, access by invitation. No trial promise (claims lines 02.11.).
  */
+const FILM = "/media/3d/living-camera-ride.mp4";
+const POSTER = "/media/3d/living-ride-poster.webp";
+
 export function Hero({ locale }: { locale: Locale }) {
-  const d = getDictionary(locale);
-  const w = heroWords;
-  const p = (path: string) => localePath(locale, path);
+  const w = home1103.hero;
   const l = <T,>(x: Record<Locale, T>) => x[locale];
+  const p = (path: string) => localePath(locale, path);
 
   return (
-    <section aria-labelledby="hero-h1" data-hero="light" className="hero">
-      <div className="container-default hero-grid">
-        <div className="hero-words" data-hero-words>
-          <p className="t-eyebrow t-eyebrow-l text-text-accent">{d.home.hero.eyebrow}</p>
-          <h1 id="hero-h1" className="hero-h1 text-text-primary">{l(w.h1)}</h1>
-          <p className="hero-lead text-text-secondary" data-hero-lead>{l(w.lead)}</p>
-          <div className="hero-ctas">
-            <a href="#demo" className="hero-cta-main" data-hero-cta="demo">
-              {l(w.ctaDemo)}
-              <ArrowDown size={18} strokeWidth={2} aria-hidden="true" className="hero-cta-arrow" />
-            </a>
-            <ButtonLink href={p("/contact")} size="lg" variant="secondary" className="hero-cta-second">{l(w.ctaContact)}</ButtonLink>
+    <>
+      <section aria-labelledby="hero-h1" data-hero="film" className="hf">
+        <HeroFilm src={FILM} poster={POSTER} label={l(w.film)} pause={l(w.pause)} play={l(w.play)} />
+        <div className="container-default hf-content">
+          <div className="hf-words" data-hero-words>
+            <p className="hf-eyebrow t-eyebrow t-eyebrow-l">{l(w.eyebrow)}</p>
+            <h1 id="hero-h1" className="hf-h1">
+              {l(w.h1).split(" ").map((word, i) => (
+                <span key={i}><span className="hf-word" style={{ ["--w" as string]: i }}><span>{word}</span></span>{" "}</span>
+              ))}
+            </h1>
+            <p className="hf-lead" data-hero-lead>{l(w.lead)}</p>
+            <div className="hf-ctas">
+              <a href="#demo" className="hf-cta-main" data-hero-cta="demo">{l(w.ctaDemo)}<ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" /></a>
+              <a href={p("/contact")} className="hf-cta-second" data-hero-cta="contact">{l(w.ctaContact)}</a>
+            </div>
+            <p className="hf-access" data-hero-access>{l(w.access)}</p>
           </div>
-          <p className="hero-access" data-hero-access>{l(w.accessLine)}</p>
+          <HeroBenefits benefits={l(w.benefits)} />
+          <HeroScrollHint label={l(w.scroll)} />
         </div>
+      </section>
+      {/* The product card rises into the film's lower edge: the transition from the house to the message and the record. */}
+      <div className="container-default hero-demo-wrap" data-hero-demo-wrap>
         <HeroDemo locale={locale} />
       </div>
-    </section>
+    </>
   );
 }

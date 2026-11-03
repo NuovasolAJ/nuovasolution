@@ -69,7 +69,7 @@ export default function ProductPage({ params }: { params: { locale: string; slug
               {c.note && <p className="mt-4 border-l-2 border-line-strong pl-4 t-body-m text-text-secondary measure-lead">{c.note[locale]}</p>}
               <Caption className="mt-3">{d.common.qualifiers.q2}</Caption>
               <CtaRow className="mt-8">
-                <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
+                <ButtonLink href={p("/contact")} size="lg">{startLabel(locale)}</ButtonLink>
                 <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
               </CtaRow>
             </Reveal>

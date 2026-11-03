@@ -62,7 +62,7 @@ export default function ContactPage({ params, searchParams }: { params: { locale
           <Reveal delay={120} className="stage flex flex-col p-6 md:p-8">
             <Heading size="l" as="h2">{c.trialH2}</Heading>
             <p className="mt-3 t-body-m text-text-secondary">{c.trialBody}</p>
-            <div className="mt-auto pt-6"><ButtonLink href={p("/signup")}>{startLabel(locale)}</ButtonLink></div>
+            <div className="mt-auto pt-6"><ButtonLink href={mailto} external>{startLabel(locale)}</ButtonLink></div>
           </Reveal>
         </div>
       </div>

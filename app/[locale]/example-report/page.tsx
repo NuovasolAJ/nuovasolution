@@ -110,7 +110,7 @@ export default function ExampleReportPage({ params }: { params: { locale: string
           <p className="mt-1 t-body-s text-text-secondary">{w.ctaLine}</p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
-          <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
+          <ButtonLink href={p("/contact")} size="lg">{startLabel(locale)}</ButtonLink>
           <Link href={p("/login")} className="inline-flex min-h-[44px] items-center gap-1.5 t-body-s font-medium text-text-primary underline decoration-line-strong underline-offset-4" data-example-login>{w.realReport}<ArrowRight size={14} aria-hidden="true" /></Link>
         </div>
       </div>

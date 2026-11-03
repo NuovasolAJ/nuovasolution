@@ -158,7 +158,10 @@ export const faqGroups: FaqGroup[] = [
       {
         kb: "Q-11",
         q: { en: "How long is the trial and what does it cost?", es: "¿Cuánto dura la prueba y qué cuesta?" },
-        a: { en: "14 days of Essential, free, with no payment method and no card. You create the account yourself.", es: "14 días de Essential, gratis, sin método de pago y sin tarjeta. Creas la cuenta tú mismo." },
+        a: {
+          en: "It will be 14 days of Essential, free and with no payment method. Public registration is in preparation; until then, write to us and we will show you the system.",
+          es: "Será de 14 días de Essential, gratis y sin método de pago. El registro público está en preparación; hasta entonces, escríbenos y te enseñamos el sistema.",
+        }, // Copy 1102 v2 C-13
       },
       {
         kb: "Q-12",
@@ -192,7 +195,7 @@ export const faqGroups: FaqGroup[] = [
       {
         kb: "Q-16",
         q: { en: "Do I have to talk to a salesperson first?", es: "¿Tengo que hablar antes con un comercial?" },
-        a: { en: "No. You can start on your own. A demo is optional and never a condition.", es: "No. Puedes empezar por tu cuenta. La demo es opcional y nunca una condición." },
+        a: { en: "No sales call is needed: write to us and we will show you the system. Starting on your own comes with public registration, in preparation.", es: "No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. Empezar por tu cuenta llega con el registro público, en preparación." }, // Copy 1102 v2 C-14
       },
       {
         kb: "Q-21",

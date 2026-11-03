@@ -34,10 +34,11 @@ export default function TrialPage({ params }: { params: { locale: string } }) {
             <Reveal className="xl:col-span-6">
               <Eyebrow className="mb-4">{t.eyebrow}</Eyebrow>
               <Display size="xl" id="tr-h1">{t.h1}</Display>
+              <p className="state-line mt-4" data-state="preparing" data-trial-state>{t.state}</p>
               <Lead className="mt-6">{t.lead}</Lead>
-              {aligned && <Caption className="mt-3">{d.packages.ctaTrialEssential}: {t.how[0].line}</Caption>}
+              {aligned && <Caption className="mt-3">{t.how[0].title}: {t.how[0].line}</Caption>}
               <CtaRow className="mt-10">
-                <ButtonLink href={p("/signup")} size="lg">{aligned ? d.packages.ctaTrialEssential : t.ctaPrimary}</ButtonLink>
+                <ButtonLink href={p("/contact")} size="lg">{d.common.startFree}</ButtonLink>
                 <ButtonLink href={p("/packages")} size="lg" variant="secondary">{t.ctaSecondary}</ButtonLink>
               </CtaRow>
               <Caption className="mt-4">{d.common.noPayment} {d.common.noSalesCall}</Caption>

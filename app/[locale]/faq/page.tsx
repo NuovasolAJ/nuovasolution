@@ -76,7 +76,7 @@ export default function FaqPage({ params }: { params: { locale: string } }) {
               <Display size="l" id="faq-close" className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
               <p className="mx-auto mt-6 max-w-[48ch] t-body-l text-text-secondary">{d.home.closing.body}</p>
               <CtaRow align="center" className="mt-10">
-                <ButtonLink href={p("/signup")} size="lg">{startLabel(locale)}</ButtonLink>
+                <ButtonLink href={p("/contact")} size="lg">{startLabel(locale)}</ButtonLink>
                 <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
               </CtaRow>
             </Reveal>

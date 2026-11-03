@@ -40,7 +40,7 @@ export function LanguageSwitcher({ locale, labels, className }: { locale: Locale
   const to = (l: Locale) => `/${l}${rest}${suffix}`;
 
   return (
-    <div role="group" aria-label={labels.group} className={cn("inline-flex h-10 items-center rounded-pill border border-line-hairline p-0.5", className)}>
+    <div role="group" aria-label={labels.group} data-language-switcher className={cn("inline-flex h-10 items-center rounded-pill border border-line-hairline p-0.5", className)}>
       {(["en", "es"] as Locale[]).map((l) => (
         <Link
           key={l}

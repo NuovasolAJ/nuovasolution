@@ -64,9 +64,9 @@ export const en = {
     spanish: "Español",
     // LAUNCH_COPY_v1 §7.1: "Book a demo" only after the Reviewer's test booking (DEMO_PATH = PASS).
     bookDemo: "Request a demo",
-    startFree: "Try free", // owner 2026-10-06 §2
+    startFree: "Request access", // Copy 1102 v2 C-8
     seeDemo: "See the demo", // owner review 02.11.
-    tryFree: "Try free for 14 days",
+    tryFree: "14-day free trial: in preparation", // C-16a
     noPayment: "No payment method required.",
     noSalesCall: "No sales call required.",
     readModule: "Read the module",
@@ -403,8 +403,8 @@ export const en = {
     h1Neutral: "Start with 14 days of trial",
     leadNeutral: "14 days, no payment method. After that you choose a plan with us, and we tell you the price for your agency before anything is agreed.",
     // COPY_DELTAS_0929 D-20, D-21: the Essential wording is released (PRODUCT_TRUTH_TABLE_v1 §G).
-    h1: "Try it free for 14 days", // D-105
-    lead: "14 days free, with no payment method, on the Essential package. After that you choose a plan with us, and we tell you the price and the billing period before anything is agreed.", // D-106
+    h1: "Three packages, with their real state", // C-10
+    lead: "The packages cannot be booked yet: registration and the 14-day trial are in preparation. We tell you the price for your agency before anything is agreed.", // C-11 // D-106
     plansEyebrow: "The plans",
     included: "Included",
     baselineHeading: "What every plan includes",
@@ -421,7 +421,7 @@ export const en = {
     faq: [
       { q: "Do I need a card to start?", a: "No. Nothing is charged during the trial and no payment method is asked for." },
       { q: "Can I pay online?", a: "Not on this site. We send an invoice and you pay by bank transfer." },
-      { q: "Do I have to talk to someone first?", a: "No. You can start on your own. A demo is optional." },
+      { q: "Do I have to talk to someone first?", a: "No sales call is needed: write to us and we will show you the system. Starting on your own comes with public registration, in preparation." }, // C-14
       { q: "What happens after 14 days?", a: "You keep your account and your data. Paid features pause until you choose a plan." },
     ],
     tiersEyebrow: "Three plans, side by side",
@@ -447,7 +447,7 @@ export const en = {
     // Trial badge and CTA move onto Essential only after the API signal TRIAL_PLAN_ALIGNED (audit R26).
     trialBadge: "14 days of trial",
     trialBadgeAligned: "14 days free", // D-22: the chip sits on the Essential card only
-    ctaTrialEssential: "Try Essential free",
+    ctaTrialEssential: "Request a proposal", // C-12
     limitsHeading: "Limits",
     limits: { offices: "Offices", seats: "Seats", leads_month: "Capacity: enquiries a month", crm_connections: "CRM connections", voice_minutes: "Voice minutes", unlimited: "Unlimited", none: "None" },
     featuresHeading: "Included",
@@ -482,7 +482,8 @@ export const en = {
 
   trial: {
     eyebrow: "Trial",
-    h1: "Try free for 14 days.",
+    h1: "The 14-day free trial, in preparation.", // C-16
+    state: "State: Public registration and the 14-day trial are in preparation.", // C-16
     lead: "Set your agency up and decide with the system running.",
     ctaPrimary: "Start free",
     ctaSecondary: "See the packages",
@@ -526,7 +527,7 @@ export const en = {
     demoBody: "We walk you through the system on a real example and you can ask anything. No slide deck.", // D-32
     demoCta: "Request a demo",
     trialH2: "Or just start",
-    trialBody: "Try free for 14 days. No payment method required, no sales call required.",
+    trialBody: "The 14-day free trial, with no payment method, comes with public registration, in preparation.", // C-16b
     // A plan interest from the packages page is carried into the request (audit Z03, Z11). The plan name comes from the catalog.
     planInterest: "Plan of interest: {plan}",
     planInterestBody: "Write to us with your agency's name and we send you a proposal for this plan.",

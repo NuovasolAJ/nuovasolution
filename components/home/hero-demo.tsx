@@ -1,31 +1,28 @@
 "use client";
 
 import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
-import { ArrowRight, Mail, MessageCircle, PanelsTopLeft, Phone, RotateCcw } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, Inbox, Mail, MessageCircle, Mic, PanelsTopLeft, Phone, PhoneOff, RotateCcw, Send, Star } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
-import { demoChannels, demoWords, endPhase, type DemoChannel, type DemoChannelKey } from "@/lib/content/home-demo";
+import { demoChannels, demoWords, endPhase, recordStart, type DemoChannel, type DemoChannelKey } from "@/lib/content/home-demo";
 
 /**
- * The hero's demonstration (the owner's review of 02.11.2026, §3 "ein Gespräch, drei sichtbare Folgen", §8): the enquiry arrives on a
- * realistic messenger surface, Nuova types once and answers, the customer record fills beside it, and the team sees state, priority
- * and the next step. The end state stays; "Repetir demo" runs it again.
+ * The demonstration under the hero (the owner's order of 03.11.2026, points 2 and 3): four channels, each on a surface that
+ * looks like its channel, and beside each the customer record filling field by field.
  *
- * How it runs: the root carries the phase as a number (`--phase`) and as an attribute; every item knows the phase it belongs to
- * (`--at`), and one CSS rule (globals.css ".demo") derives its visibility from the two, so the markup is complete from the first
- * paint. JavaScript only advances the phase on a few timers once the surface is in view. Without JavaScript and with reduced motion
- * the finished picture stands at once (CSS), and the replay control is hidden.
+ * How it runs: the root carries the phase as a number (`--phase`) and as an attribute; every item knows the phase it belongs
+ * to (`--at`), and one CSS rule (globals.css ".demo .d-at") derives its visibility from the two, so the markup is complete from
+ * the first paint. JavaScript only advances the phase on a few timers once the surface is in view. Without JavaScript and with
+ * reduced motion the finished picture stands at once (CSS), and the replay control is hidden.
  *
- * The channel selector is a native tablist (icon and name, a filled active state, arrow keys, no automatic change). Choosing a
- * channel runs that channel's sequence.
+ * The channel selector is a native tablist (icon and full name, a filled active state, arrow keys, no automatic change).
  */
 const ICON: Record<DemoChannelKey, typeof MessageCircle> = { whatsapp: MessageCircle, email: Mail, webform: PanelsTopLeft, phone: Phone };
 const REDUCE = "(prefers-reduced-motion: reduce)";
-
 const at = (n: number, extra?: CSSProperties): CSSProperties => ({ ["--at" as string]: n, ...extra });
 
 /** An item of the sequence: appears in its phase; `fresh` flashes the moment it has just arrived. */
-function Item({ n, phase, className, children, as: Tag = "div", ...rest }: { n: number; phase: number; className?: string; children: ReactNode; as?: "div" | "p" | "li" } & Record<string, unknown>) {
+function Item({ n, phase, className, children, as: Tag = "div", ...rest }: { n: number; phase: number; className?: string; children: ReactNode; as?: "div" | "p" | "li" | "span" } & Record<string, unknown>) {
   return (
     <Tag className={cn("d-at", className, phase === n && "is-fresh")} style={at(n)} data-at={n} {...rest}>
       {children}
@@ -62,7 +59,7 @@ export function HeroDemo({ locale }: { locale: Locale }) {
     });
   }, []);
 
-  // The first run starts when the surface is in view (on a phone it stands below the words).
+  // The first run starts when the surface is in view.
   useEffect(() => {
     const el = rootRef.current;
     if (!el) return;
@@ -78,13 +75,12 @@ export function HeroDemo({ locale }: { locale: Locale }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // "Ver la demo" (the hero's main action) runs the demonstration again and lets the anchor bring it into view.
+  // "Ver la demo" (the hero's main action and the header's button) runs the demonstration again.
   useEffect(() => {
-    const cta = document.querySelector<HTMLAnchorElement>("[data-hero-cta=\"demo\"]");
-    if (!cta) return;
+    const ctas = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-hero-cta=\"demo\"], [data-demo-run]"));
     const onClick = () => { started.current = true; run(script); };
-    cta.addEventListener("click", onClick);
-    return () => cta.removeEventListener("click", onClick);
+    for (const c of ctas) c.addEventListener("click", onClick);
+    return () => { for (const c of ctas) c.removeEventListener("click", onClick); };
   }, [run, script]);
 
   useEffect(() => clear, []);
@@ -111,10 +107,8 @@ export function HeroDemo({ locale }: { locale: Locale }) {
     tabsRef.current?.querySelector<HTMLButtonElement>(`[data-demo-tab="${keys[next]}"]`)?.focus();
   };
 
-  const langName = (code: "es" | "de") => W.langs[code][locale];
-  const msgText = (m: { text: string; lang: "es" | "de"; translation?: { es: string; en: string } }) => (m.lang === locale || !m.translation ? m.text : l(m.translation));
-  const chat = !script.surfaceTitle;
   const panelId = `${id}-panel`;
+  const lit = phase >= recordStart(script);
 
   return (
     <div
@@ -122,6 +116,7 @@ export function HeroDemo({ locale }: { locale: Locale }) {
       id="demo"
       className="demo"
       data-demo
+      data-demo-kind={script.kind}
       data-demo-channel={channel}
       data-demo-phase={phase}
       data-demo-done={done ? "true" : "false"}
@@ -153,71 +148,23 @@ export function HeroDemo({ locale }: { locale: Locale }) {
       </div>
 
       <div role="tabpanel" id={panelId} aria-labelledby={`${id}-tab-${channel}`} className="demo-body" data-demo-view={channel}>
-        {/* 1 The enquiry: a messenger surface (or the form / the call), the customer's words */}
-        <div className={cn("demo-chat", !chat && "demo-chat-plain")} data-hero-chat>
-          <div className="demo-chat-head">
-            {chat ? (
-              <span aria-hidden="true" className="demo-avatar" data-channel={channel}>{script.who.charAt(0)}</span>
-            ) : (
-              <span aria-hidden="true" className="demo-avatar demo-avatar-plain" data-channel={channel}>{(() => { const I = ICON[channel]; return <I size={16} strokeWidth={2} />; })()}</span>
-            )}
-            <div className="min-w-0">
-              <p className="demo-chat-name">{script.surfaceTitle ? l(script.surfaceTitle) : script.who}</p>
-              {/* a prototype channel says so here, on its own surface (claims lines 02.11.: the web form and the phone are prototypes) */}
-              <p className="demo-chat-meta">{script.mark && <span className="demo-chat-mark" data-demo-prototype>{l(script.mark)} · </span>}{script.surfaceTitle ? `${script.who} · ${l(script.role)} · ${l(script.meta)}` : `${l(script.role)} · ${l(script.meta)}`}</p>
-            </div>
-          </div>
-
-          <div className="demo-thread">
-            {script.inbound.map((m, i) => (
-              <Item key={i} n={m.at} phase={phase} className="demo-msg demo-msg-in" data-hero-enquiry={i === 0 ? "" : undefined}>
-                <p lang={m.lang === locale ? undefined : m.lang === "de" ? "de" : m.lang}>{msgText(m)}</p>
-                {m.lang !== locale && (
-                  <p className="demo-msg-meta">{l(W.translationOf)} · {l(W.writtenIn).replace("{lang}", langName(m.lang))}</p>
-                )}
-              </Item>
-            ))}
-
-            {script.reply && (
-              <div className="demo-reply-slot">
-                {script.typingAt !== undefined && (
-                  <span className="d-typing demo-msg demo-msg-out demo-typing" style={at(script.typingAt)} data-at={script.typingAt} aria-hidden="true">
-                    <i /><i /><i />
-                  </span>
-                )}
-                <Item n={script.reply.at} phase={phase} className="demo-msg demo-msg-out demo-reply" data-hero-reply="">
-                  <p className="demo-msg-label">{l(W.assistant)}</p>
-                  <p>{msgText(script.reply)}</p>
-                  <p className="demo-msg-meta">{l(script.reply.meta)}</p>
-                </Item>
-              </div>
-            )}
-
-            {script.held && (
-              <Item n={script.held.at} phase={phase} className="demo-note" data-hero-reply="" data-hero-held="">
-                <p className="demo-note-title">{l(script.held.title)}</p>
-                <p>{l(script.held.line)}</p>
-              </Item>
-            )}
-            {script.call && (
-              <Item n={script.call.at} phase={phase} className="demo-note" data-hero-reply="" data-hero-call="">
-                <p className="demo-note-title">{l(script.call.title)}</p>
-                <p>{l(script.call.line)}</p>
-              </Item>
-            )}
-          </div>
+        {/* 1 The enquiry on its channel's surface */}
+        <div className="demo-surface" data-hero-chat data-surface={script.kind}>
+          {script.kind === "chat" && script.chat && <ChatSurface c={script} phase={phase} locale={locale} />}
+          {script.kind === "mail" && script.mail && <MailSurface c={script} phase={phase} locale={locale} />}
+          {script.kind === "form" && script.form && <FormSurface c={script} phase={phase} locale={locale} />}
+          {script.kind === "call" && script.call && <CallSurface c={script} phase={phase} locale={locale} />}
         </div>
 
         {/* The link from the conversation to the record: lights up when the record starts to fill */}
         <div className="demo-link" aria-hidden="true">
-          <span className={cn("demo-link-mark", phase >= script.record.fields[0].at && "is-lit")} data-demo-link={phase >= script.record.fields[0].at ? "lit" : "quiet"}><ArrowRight size={14} strokeWidth={2.4} /></span>
+          <span className={cn("demo-link-mark", lit && "is-lit")} data-demo-link={lit ? "lit" : "quiet"}><ArrowRight size={14} strokeWidth={2.4} /></span>
           <span className="demo-link-line" />
           <span className="demo-link-word">{l(W.toRecord)}</span>
         </div>
 
-        {/* 2 and 3 The record: what was noted, grouped; then the state, the priority with its reason, the next step */}
-        {/* the record exists only once the reply is there: until then the column stays empty */}
-        <Item n={script.record.fields[0].at} phase={phase} className="demo-record" data-hero-record="">
+        {/* 2 and 3 The record: what was noted, field by field; then the state, the priority with its reason, the next step */}
+        <Item n={recordStart(script)} phase={phase} className="demo-record" data-hero-record="">
           <div className="demo-record-head">
             <p className="demo-key">{script.record.title ? l(script.record.title) : l(W.record)}</p>
             <p className="demo-record-updated tnum">{l(script.record.updated)}</p>
@@ -231,20 +178,19 @@ export function HeroDemo({ locale }: { locale: Locale }) {
             ))}
           </dl>
           <div className="demo-outcome">
-            <Item n={script.record.state.at} phase={phase} className="demo-outcome-row" data-hero-result={6} data-hero-recorded="">
+            <Item n={script.record.state.at} phase={phase} className="demo-outcome-row" data-hero-recorded="">
               <span className="demo-key">{l(W.state)}</span>
               <span className="demo-value demo-state"><span aria-hidden="true" className="demo-state-dot" />{l(script.record.state.v)}</span>
             </Item>
-            <Item n={script.record.priority.at} phase={phase} className="demo-outcome-row" data-hero-result={7} data-hero-priority="">
+            <Item n={script.record.priority.at} phase={phase} className="demo-outcome-row" data-hero-priority="">
               <span className="demo-key">{l(W.priority)}</span>
               <span className="demo-value"><span className="demo-priority">{l(script.record.priority.v)}</span> · {l(script.record.priority.why)}</span>
             </Item>
-            <Item n={script.record.next.at} phase={phase} className="demo-next" data-hero-result={8} data-hero-next="">
+            <Item n={script.record.next.at} phase={phase} className="demo-next" data-hero-next="">
               <span className="demo-key">{l(W.next)}</span>
               <span className="demo-next-value">{l(script.record.next.v)}</span>
               <span className="demo-next-sub">{l(script.record.next.sub)}</span>
             </Item>
-            {/* the state lines of the end phase: what runs today, what is in preparation (Copy 1102 v2 §1.2) */}
             <div className="demo-states" data-hero-states>
               {script.states.map((st, i) => (
                 <Item key={i} n={st.at} phase={phase} as="p" className="state-line demo-state-line" data-state={st.kind === "prototype" ? "preparing" : st.kind} data-hero-state-line={st.kind}>
@@ -259,6 +205,163 @@ export function HeroDemo({ locale }: { locale: Locale }) {
       <p className="demo-foot" data-hero-state>
         <span className="demo-foot-mark">{l(W.fictional)}</span>
       </p>
+    </div>
+  );
+}
+
+/* ---------------------------------------------------------------------------------------------------------------------- */
+/* The surfaces                                                                                                            */
+/* ---------------------------------------------------------------------------------------------------------------------- */
+type S = { c: DemoChannel; phase: number; locale: Locale };
+
+/** WhatsApp: a chat with the contact's header, one message with its time, typing dots once, the reply with its time and one tick. */
+function ChatSurface({ c, phase, locale }: S) {
+  const l = <T,>(x: Record<Locale, T>) => x[locale];
+  const ch = c.chat!;
+  return (
+    <div className="demo-chat" data-chat>
+      <div className="demo-chat-head">
+        <span aria-hidden="true" className="demo-avatar" data-channel="whatsapp">{c.who.charAt(0)}</span>
+        <div className="min-w-0">
+          <p className="demo-chat-name">{c.who} <span className="demo-chat-role">· {l(c.role)}</span></p>
+          <p className="demo-chat-meta"><span className="demo-online" aria-hidden="true" />{l(ch.status)}</p>
+        </div>
+        <Phone size={16} strokeWidth={2} aria-hidden="true" className="demo-chat-tool" />
+      </div>
+      <div className="demo-thread">
+        <Item n={0} phase={phase} className="demo-msg demo-msg-in" data-hero-enquiry="">
+          <p>{l(ch.message)}</p>
+          <span className="demo-msg-time tnum">{ch.time}</span>
+        </Item>
+        <div className="demo-reply-slot">
+          <span className="d-typing demo-msg demo-msg-out demo-typing" style={at(ch.typingAt)} data-at={ch.typingAt} aria-hidden="true"><i /><i /><i /></span>
+          <Item n={ch.replyAt} phase={phase} className="demo-msg demo-msg-out demo-reply" data-hero-reply="">
+            <p className="demo-msg-label">{l(demoWords.assistant)}</p>
+            <p>{l(ch.reply)}</p>
+            <span className="demo-msg-time tnum">{ch.replyTime} <Check size={13} strokeWidth={2.4} aria-hidden="true" className="demo-tick" /><span className="sr-only">{l(demoWords.sent)}</span></span>
+          </Item>
+        </div>
+      </div>
+      <div className="demo-chat-input" aria-hidden="true"><span className="demo-chat-input-box" /><Mic size={16} strokeWidth={2} /></div>
+    </div>
+  );
+}
+
+/** E-mail: a mailbox with its list, the open message with sender, subject and time, then the reply in the thread. */
+function MailSurface({ c, phase, locale }: S) {
+  const l = <T,>(x: Record<Locale, T>) => x[locale];
+  const m = c.mail!;
+  return (
+    <div className="demo-mail" data-mail>
+      <div className="demo-mail-list" aria-hidden="true">
+        <p className="demo-mail-folder"><Inbox size={14} strokeWidth={2} />{l(m.folder)}</p>
+        {m.inbox.map((row) => (
+          <div key={row.from} className={cn("demo-mail-row", row.selected && "is-selected", row.unread && "is-unread")}>
+            <span className="demo-mail-row-from">{row.from}</span>
+            <span className="demo-mail-row-subject">{l(row.subject)}</span>
+            <span className="demo-mail-row-time tnum">{row.time}</span>
+          </div>
+        ))}
+      </div>
+      <div className="demo-mail-read">
+        <Item n={0} phase={phase} className="demo-mail-msg" data-hero-enquiry="">
+          <p className="demo-mail-subject">{l(m.subject)}<Star size={14} strokeWidth={2} aria-hidden="true" className="demo-mail-star" /></p>
+          <div className="demo-mail-from">
+            <span aria-hidden="true" className="demo-avatar demo-avatar-mail">{m.from.charAt(0)}</span>
+            <div className="min-w-0">
+              <p className="demo-mail-from-name">{m.from} <span className="demo-mail-addr">&lt;{l(m.fromLine)}&gt;</span></p>
+              <p className="demo-chat-meta">{l(m.to)} · {l(m.time)}</p>
+            </div>
+          </div>
+          <p className="demo-mail-body">{l(m.body)}</p>
+        </Item>
+        <span className="d-typing demo-mail-typing" style={at(m.replyAt - 1)} data-at={m.replyAt - 1} aria-hidden="true"><i /><i /><i /></span>
+        <Item n={m.replyAt} phase={phase} className="demo-mail-msg demo-mail-reply demo-reply" data-hero-reply="">
+          <div className="demo-mail-from">
+            <span aria-hidden="true" className="demo-avatar demo-avatar-agency">N</span>
+            <div className="min-w-0">
+              <p className="demo-mail-from-name demo-msg-label">{l(demoWords.assistant)}</p>
+              <p className="demo-chat-meta">{l(m.replyTime)} · <Check size={12} strokeWidth={2.4} aria-hidden="true" className="inline" /> {l(demoWords.sent)}</p>
+            </div>
+          </div>
+          <p className="demo-mail-body">{l(m.reply)}</p>
+        </Item>
+      </div>
+    </div>
+  );
+}
+
+/** The web form: real fields that fill in one after another, then the send button is pressed and the form reports "sent". */
+function FormSurface({ c, phase, locale }: S) {
+  const l = <T,>(x: Record<Locale, T>) => x[locale];
+  const f = c.form!;
+  const sent = phase >= f.sentAt;
+  return (
+    <div className="demo-form" data-form data-form-sent={sent ? "true" : "false"}>
+      <div className="demo-form-head">
+        <span aria-hidden="true" className="demo-browser-dots"><i /><i /><i /></span>
+        <p className="demo-form-title">{l(f.title)}</p>
+        {c.mark && <span className="demo-mark" data-demo-prototype>{l(c.mark)}</span>}
+      </div>
+      <div className="demo-form-fields" aria-hidden="true">
+        {f.fields.map((fd, i) => (
+          <div key={i} className={cn("demo-form-field", fd.kind === "textarea" && "is-wide")} data-form-field={i + 1}>
+            <span className="demo-form-label">{l(fd.label)}</span>
+            <span className={cn("demo-form-input", phase >= fd.at && "is-filled", phase === fd.at && "is-typing", fd.kind === "textarea" && "is-area")}>
+              <Item n={fd.at} phase={phase} as="span" className="demo-form-value">{l(fd.value)}</Item>
+              {fd.kind === "select" && <ChevronDown size={14} strokeWidth={2} className="demo-form-chev" />}
+            </span>
+          </div>
+        ))}
+      </div>
+      <div className="demo-form-foot">
+        <span className={cn("demo-form-submit", phase >= f.submitAt && "is-pressed", sent && "is-sent")} aria-hidden="true">
+          {sent ? <Check size={15} strokeWidth={2.6} /> : <Send size={15} strokeWidth={2} />}
+          {sent ? l(f.sent) : l(f.submit)}
+        </span>
+        {/* the enquiry as text for assistive technology */}
+        <p className="sr-only" data-hero-enquiry="">{f.fields.map((fd) => `${l(fd.label)}: ${l(fd.value)}`).join(". ")}</p>
+        <Item n={f.sentAt} phase={phase} as="p" className="demo-form-sent-line" data-hero-reply="">{l(f.sent)}</Item>
+      </div>
+    </div>
+  );
+}
+
+/** The phone: a call view with the caller, a running duration, a waveform while the line is open and the live transcript. */
+function CallSurface({ c, phase, locale }: S) {
+  const l = <T,>(x: Record<Locale, T>) => x[locale];
+  const k = c.call!;
+  const live = phase >= k.answeredAt && phase < k.endedAt;
+  const ended = phase >= k.endedAt;
+  const [sec, setSec] = useState(0);
+  useEffect(() => {
+    if (ended) { setSec(k.seconds); return; }
+    if (!live) { setSec(0); return; }
+    const t0 = Date.now();
+    const iv = window.setInterval(() => setSec(Math.min(k.seconds, Math.floor((Date.now() - t0) / 1000))), 250);
+    return () => window.clearInterval(iv);
+  }, [live, ended, k.seconds]);
+  const mmss = `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
+  return (
+    <div className="demo-call" data-call data-call-state={ended ? "ended" : live ? "live" : "ringing"}>
+      <div className="demo-call-head">
+        <span aria-hidden="true" className="demo-avatar demo-avatar-call">{c.who.charAt(0)}</span>
+        <p className="demo-call-name">{c.who} <span className="demo-chat-role">· {l(c.role)}</span></p>
+        <p className="demo-call-state tnum" data-call-duration={sec}>
+          {ended ? `${l(k.ended)} · ${mmss}` : live ? mmss : l(k.incoming)}
+          {c.mark && <span className="demo-mark" data-demo-prototype>{l(c.mark)}</span>}
+        </p>
+        <span className={cn("demo-wave", live && "is-live")} aria-hidden="true">{Array.from({ length: 18 }, (_, i) => <i key={i} style={{ ["--n" as string]: i }} />)}</span>
+        <span className={cn("demo-call-button", ended && "is-ended")} aria-hidden="true">{ended ? <PhoneOff size={16} strokeWidth={2.2} /> : <Phone size={16} strokeWidth={2.2} />}</span>
+      </div>
+      <ol className="demo-transcript">
+        {k.transcript.map((t, i) => (
+          <Item key={i} n={t.at} phase={phase} as="li" className={cn("demo-line", t.speaker === "assistant" ? "demo-line-assistant demo-reply" : "demo-line-customer")} data-hero-enquiry={i === 0 ? "" : undefined} data-hero-reply={t.speaker === "assistant" ? "" : undefined}>
+            <span className="demo-line-who">{t.speaker === "assistant" ? l(k.assistantLabel) : c.who}</span>
+            <span>{l(t.text)}</span>
+          </Item>
+        ))}
+      </ol>
     </div>
   );
 }

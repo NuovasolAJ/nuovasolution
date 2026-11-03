@@ -45,6 +45,8 @@ export function HeaderShell({
   const [menuOpen, setMenuOpen] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // the home page's film hero (03.11.): the header stands transparent over it with the logo in white until the page scrolls
+  const [overFilm, setOverFilm] = useState(false);
   const menuId = useId();
   const sheetId = useId();
   const pathname = usePathname();
@@ -59,7 +61,13 @@ export function HeaderShell({
   }, [pathname]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      // the film hero: the header is transparent only while the film stands under it (on a phone the preview band comes first)
+      const hero = document.querySelector('[data-hero="film"]');
+      const r = hero?.getBoundingClientRect();
+      setOverFilm(Boolean(r && r.top <= 4 && r.bottom > 60));
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -144,6 +152,7 @@ export function HeaderShell({
     <>
       <header
         data-scrolled={scrolled ? "true" : "false"}
+        data-over-film={overFilm && !menuOpen && !sheetOpen ? "true" : "false"}
         className={cn(
           "fixed inset-x-0 top-0 z-[100] h-[var(--header-h)] bg-[color:rgba(251,250,247,0.86)] backdrop-blur-md transition-[box-shadow,border-color] duration-control",
           scrolled || menuOpen || sheetOpen ? "border-b border-line-hairline" : "border-b border-transparent",
