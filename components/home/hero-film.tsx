@@ -31,9 +31,12 @@ export function HeroFilm({ src, poster, label, pause, play }: { src: string; pos
       v.play().then(() => { if (!cancelled) setState("playing"); }).catch(() => { /* the poster stays */ });
     };
     // a phone gets its first paint before the film is fetched
+    // a phone gets its first paint and its scripts before the film is fetched: after the window has loaded, plus a pause
     const small = window.innerWidth < 768;
-    const t = window.setTimeout(attach, small ? 1200 : 0);
-    return () => { cancelled = true; window.clearTimeout(t); };
+    let t = 0;
+    const later = () => { t = window.setTimeout(attach, small ? 2500 : 0); };
+    if (document.readyState === "complete") later(); else window.addEventListener("load", later, { once: true });
+    return () => { cancelled = true; window.clearTimeout(t); window.removeEventListener("load", later); };
   }, [src]);
 
   const toggle = () => {

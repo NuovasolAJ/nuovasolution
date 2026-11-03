@@ -807,6 +807,8 @@ html.js .demo .demo-reply.is-fresh { box-shadow: 0 0 0 2px var(--brand-green-was
 /* Section rhythm of the page                                          */
 /* ------------------------------------------------------------------ */
 .flow, .fn, .rep, .m3d, .plans, .trust, .faqs, .closing { position: relative; scroll-margin-top: var(--header-h); }
+/* the sections below the fold are laid out only when they come near the window (no sticky inside them) */
+.rep, .m3d, .plans, .trust, .faqs, .closing { content-visibility: auto; contain-intrinsic-size: auto 900px; }
 .flow { padding-top: 96px; padding-bottom: 24px; }
 .fn { padding-top: 72px; padding-bottom: 48px; }
 .rep { padding-top: 72px; padding-bottom: 72px; }
@@ -867,7 +869,9 @@ html:not(.js) .mrise { opacity: 1 !important; transform: none !important; }
   .fn-item-button { border-color: transparent; background: transparent; padding: 22px 22px 20px; }
   .fn-item.is-active .fn-item-button { background: var(--paper); border-color: var(--line-contour); box-shadow: var(--shadow-card); }
   .fn-item:not(.is-active) .fn-item-title { color: var(--ink-600); }
-  .fn-item:not(.is-active) .fn-item-line, .fn-item:not(.is-active) .fn-item-state { opacity: 0.62; }
+  /* the quiet items keep readable colour (contrast 4.5:1), no opacity */
+  .fn-item:not(.is-active) .fn-item-line { color: var(--ink-600); }
+  .fn-item:not(.is-active) .fn-item-note { color: var(--ink-600); }
   .fn-item-surface { display: none; }
   .fn-stage { display: block; position: sticky; top: calc(var(--header-h) + 28px); }
   .fn-stage-inner { position: relative; min-height: 520px; padding: 28px; border-radius: 28px; background: linear-gradient(160deg, #f2efe6, #e8e5db); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7); overflow: hidden; }

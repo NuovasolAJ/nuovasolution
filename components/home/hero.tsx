@@ -1,3 +1,4 @@
+import { preload } from "react-dom";
 import { ArrowRight } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
@@ -22,6 +23,8 @@ export function Hero({ locale }: { locale: Locale }) {
   const w = home1103.hero;
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const p = (path: string) => localePath(locale, path);
+  // the poster is the first picture of the page: preloaded so the largest paint does not wait for it
+  preload(POSTER, { as: "image" });
 
   return (
     <>
