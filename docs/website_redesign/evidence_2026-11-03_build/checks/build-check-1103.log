@@ -1,0 +1,27 @@
+PASS 1-hero-film the film of the furnished living room runs muted in a loop behind the words, with its poster set and a visible pause control
+PASS 1-hero-words one sentence and the main action 'Ver la demo' over the film, the quiet second action 'Pedir acceso' to the contact page, access by invitation; on the first screen at 1366 × 768
+PASS 1-hero-logo the NuovaSolution logo stands in the header as a loaded image
+PASS 1-hero-benefits three benefits appear one after another while the film runs and stand on the first screen
+PASS 1-hero-header over the film the header is transparent with the logo in white and a readable button; at the page's top (the preview band) and below the film it is the light bar with the black logo
+PASS 1-hero-reduced with reduced motion the poster stands instead of the film, the benefits stand, and the demonstration shows its end state without typing dots or replay
+PASS 2-demo-run the demonstration runs once from the message to the record's end state (6–9 s): the reply at about 2 s, the fields field by field, the end state after about 7 s, and it stays
+PASS 2-demo-whatsapp Laura writes ONE message with its time; the reply carries its time, one grey tick and the one assistant mark; no 'Anoto', no 'habitual o segunda residencia'; the record fills six fields, the priority with its reason (no score), the next step and the two state lines
+PASS 3-channel-email the e-mail channel is a mailbox: the inbox list with three rows, the open message with subject and sender, then the reply in the thread with the assistant mark and 'enviado'; the record fills; the state line names Gmail
+PASS 3-channel-webform the web form is a real form with six fields that fill one after another, then it is sent ('Enviado'); no chat bubbles; marked 'Prototipo'; the record fills; the state line says prototype
+PASS 3-channel-phone the phone is a call view: a live waveform and a running duration while the line is open, the transcript line by line, the assistant's line; then 'Llamada atendida · 0:38'; marked 'Prototipo'; the record with a masked number
+PASS 3-channels-keyboard arrow keys move between the four channels with the focus following; a channel never changes on its own after the run
+PASS 4-flow the flow stands in four words (Consulta → Nuova → Ficha → Tu equipo) and its line is drawn once the ribbon is in view
+PASS 4-functions six functions with one line and a status word each; the stage beside the list is sticky and shows the product surface of the function in view (the priority list, the listings that fit, the team's day)
+PASS 5-report the report as the agency reads it: eight bars grown in view (no zero-height bar), two channel bars, six figures with their definitions of which two read 'No medido', the week in the header, 'Datos de ejemplo', what is open, the link to the example report; no 'Disponible', no box of three numbers
+PASS 6-3d-stage one stage walks once from the plan to the clean model and to the empty/furnished pair on a handle; the steps switch by button
+PASS 6-3d-film the whole house is the clean take of 30.10. (1080p, about 25 s), loaded only on request behind its own poster; nothing of the labelled house-turn remains; the section is marked in preparation and as a fictional example
+PASS 7-plans sixteen rows in six groups (Canales, CRM, Equipo, Informes, Integraciones, Servicios) with a function icon each and one status word in every cell: Incluido with a check, No incluido, En preparación; no empty circle, no price, no 'Disponible', no 'Probar gratis'; Essential marked as the plan to start with; every action leads to a person
+PASS 8-claims no public sign-up link, no 'Probar gratis', no status 'Disponible', no price, no score, no 'your own number' claim outside its 'En preparación' row; the assistant is named on the demonstration surface only
+PASS 8-trust-faq-close three trust lines, seven questions, the close with 'Ver la demo' (runs the demonstration) and 'Pedir acceso'
+PASS 8-fonts nothing under 13 px on the page and nothing under 14 px in the demonstration
+PASS 8-words the Spanish home page's prose stays within about 650–900 visible words (FAQ answers closed; the plans' status words count; the words inside the three product surfaces, the demonstration, the functions stage and the report sheet, are counted separately)
+PASS 8-packages /packages carries the same table (sixteen rows, the same status words), the opening of Copy C-10, no sign-up link and no trial button
+PASS 8-en the English page carries the same ten sections with English words (tabs, status words, the hero)
+PASS 8-nojs without JavaScript the poster, the demonstration's end state, every section, the plans and the report stand
+PASS 8-phone at 390 px: the headline, the benefit line and the main action on the first screen, the film attached after the first paint, the demonstration stacked (chat then record, full width), the functions as a linear stack, the plans as cards, no horizontal overflow anywhere
+26/26 checks passed -> docs\website_redesign\evidence_2026-11-03_build\checks\build-check-1103.json

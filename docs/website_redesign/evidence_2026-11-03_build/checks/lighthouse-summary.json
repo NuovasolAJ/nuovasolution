@@ -1,0 +1,88 @@
+[
+  {
+    "file": "lighthouse-mobile-run1.json",
+    "url": "https://nuovasolution-design-preview-qx416se64-nuovasolajs-projects.vercel.app/es",
+    "perf": 0.91,
+    "a11y": 1,
+    "bp": 0.92,
+    "fcp": "1.1 s",
+    "lcp": "3.5 s",
+    "tbt": "90 ms",
+    "cls": "0",
+    "si": "1.9 s",
+    "bytes": "Total size was 3,899 KiB",
+    "a11yFails": [],
+    "bpFails": [
+      "errors-in-console",
+      "inspector-issues"
+    ]
+  },
+  {
+    "file": "lighthouse-mobile-run2.json",
+    "url": "https://nuovasolution-design-preview-qx416se64-nuovasolajs-projects.vercel.app/es",
+    "perf": 0.89,
+    "a11y": 1,
+    "bp": 0.92,
+    "fcp": "1.2 s",
+    "lcp": "3.6 s",
+    "tbt": "130 ms",
+    "cls": "0",
+    "si": "1.4 s",
+    "bytes": "Total size was 545 KiB",
+    "a11yFails": [],
+    "bpFails": [
+      "errors-in-console",
+      "inspector-issues"
+    ]
+  },
+  {
+    "file": "lighthouse-mobile-run3.json",
+    "url": "https://nuovasolution-design-preview-qx416se64-nuovasolajs-projects.vercel.app/es",
+    "perf": 0.88,
+    "a11y": 1,
+    "bp": 0.92,
+    "fcp": "1.1 s",
+    "lcp": "3.6 s",
+    "tbt": "150 ms",
+    "cls": "0",
+    "si": "1.4 s",
+    "bytes": "Total size was 545 KiB",
+    "a11yFails": [],
+    "bpFails": [
+      "errors-in-console",
+      "inspector-issues"
+    ]
+  },
+  {
+    "file": "lighthouse-desktop.json",
+    "url": "https://nuovasolution-design-preview-qx416se64-nuovasolajs-projects.vercel.app/es",
+    "perf": 1,
+    "a11y": 1,
+    "bp": 0.92,
+    "fcp": "0.4 s",
+    "lcp": "0.8 s",
+    "tbt": "0 ms",
+    "cls": "0",
+    "si": "0.6 s",
+    "bytes": "Total size was 3,899 KiB",
+    "a11yFails": [],
+    "bpFails": [
+      "errors-in-console",
+      "inspector-issues"
+    ]
+  },
+  {
+    "file": "lighthouse-mobile-packages.json",
+    "url": "https://nuovasolution-design-preview-qx416se64-nuovasolajs-projects.vercel.app/es/packages",
+    "perf": 1,
+    "a11y": 1,
+    "fcp": "1.1 s",
+    "lcp": "1.1 s",
+    "tbt": "40 ms",
+    "cls": "0",
+    "si": "1.1 s",
+    "bytes": "Total size was 459 KiB",
+    "a11yFails": [],
+    "bpFails": []
+  }
+]

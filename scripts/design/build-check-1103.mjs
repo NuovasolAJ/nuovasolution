@@ -45,6 +45,8 @@ try {
   const scrollTo = async (sel, off = 0, ms = 900) => { await ev(`window.scrollTo(0, document.querySelector(${JSON.stringify(sel)}).getBoundingClientRect().top + window.scrollY + ${off})`); await sleep(ms); };
   const shot = async (name) => { const s = await send("Page.captureScreenshot", { format: "png" }); writeFileSync(join(OUT, name), Buffer.from(s.result.data, "base64")); };
   await send("Page.enable"); await send("Runtime.enable"); await send("Network.enable");
+  // the sections below the fold use content-visibility: auto (faf2dbb); a probe that reads innerText of the whole page first makes them render
+  const renderAll = () => ev("(()=>{if(!document.getElementById('probe-cv')){const st=document.createElement('style');st.id='probe-cv';st.textContent='[data-home] section, [data-style] section { content-visibility: visible !important; }';document.head.appendChild(st);}return document.body.offsetHeight})()");
   const demoRun = async () => { await ev("document.querySelector('[data-hero-cta=demo]').click()"); };
   const phaseOf = () => J(() => ({ phase: Number(document.querySelector("[data-demo]").dataset.demoPhase), done: document.querySelector("[data-demo]").dataset.demoDone, visible: [...document.querySelectorAll("[data-hero-record] .d-at")].filter((e) => getComputedStyle(e).opacity === "1").length }));
 
@@ -173,6 +175,7 @@ try {
   await shot("7-plans-1366.png");
 
   /* ---------------------------------------------------------------- 8 overall: claims, links, trust, FAQ, close, fonts ---------------------------------------------------------------- */
+  await renderAll(); await sleep(300);
   const page = await J(() => {
     const text = document.querySelector("main").innerText; const wc = (t) => (t.match(/[\p{L}\p{N}][\p{L}\p{N}'’.,%€-]*/gu) || []).length; const words = wc(document.querySelector("[data-home]").innerText); const ui = ["[data-demo]", "[data-fn-stage]", "[data-report-sheet]"].reduce((n, s) => n + wc(document.querySelector(s)?.innerText ?? ""), 0); const prose = words - ui;
     return { signup: document.querySelectorAll('main a[href*="/signup"]').length, forbidden: [...(text.match(/Probar gratis|con tu número|desde tu número|Coming soon|Próximamente|puntuación|score/gi) || []), ...(text.match(/\bDisponible\b/g) || [])], ownNumber: /número de tu agencia/.test(text) && !/WhatsApp con el número de tu agencia/.test(text), prices: (text.match(/\b(349|649|999)\s?€/g) || []), words,
@@ -195,7 +198,7 @@ try {
   await shot("8-packages-1366.png");
 
   // EN in sync
-  await nav("/en", 4000);
+  await nav("/en", 4000); await renderAll(); await sleep(300);
   const en = await J(() => ({ h1: document.getElementById("hero-h1")?.innerText.replace(/\s+/g, " "), sections: ["[data-hero]", "[data-demo]", "[data-flow]", "[data-functions]", "[data-report]", "[data-model3d]", "[data-plans]", "[data-trust]", "[data-faq]", "[data-closing]"].map((s) => !!document.querySelector(s)), tabs: [...document.querySelectorAll("[data-demo-tab]")].map((e) => e.innerText.trim()), statuses: [...new Set([...document.querySelectorAll("[data-plans-table] [data-plan-cell]")].map((e) => e.innerText.trim()))].sort(), spanishLeak: /Elige un canal|Pedir acceso|En preparación/.test(document.querySelector("main").innerText) }));
   check("8-en", "the English page carries the same ten sections with English words (tabs, status words, the hero)", en.h1 === "While you show a home, Nuova answers." && en.sections.every(Boolean) && en.tabs.join("|") === "WhatsApp|E-mail|Web form|Phone" && en.statuses.join("|") === "In preparation|Included|Not included" && !en.spanishLeak, en);
 

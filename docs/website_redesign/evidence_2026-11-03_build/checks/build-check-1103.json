@@ -1,0 +1,737 @@
+{
+  "started_utc": "2026-11-03T21:22:20.346Z",
+  "base": "https://nuovasolution-design-preview-qx416se64-nuovasolajs-projects.vercel.app",
+  "checks": [
+    {
+      "id": "1-hero-film",
+      "what": "the film of the furnished living room runs muted in a loop behind the words, with its poster set and a visible pause control",
+      "ok": true,
+      "evidence": {
+        "state": "playing",
+        "src": "living-camera-ride.mp4",
+        "poster": "living-ride-poster.webp",
+        "playing": true,
+        "muted": true,
+        "loop": true,
+        "time": 2.7637,
+        "h1": "Mientras enseñas, Nuova atiende.",
+        "h1Bottom": 565,
+        "ctaBottom": 718,
+        "ctaText": "Ver la demo",
+        "secondText": "Pedir acceso",
+        "secondHref": "/es/contact",
+        "lead": "Responde consultas por WhatsApp y email y guarda lo importante en una ficha.",
+        "access": "Acceso por invitación mientras preparamos el registro público.",
+        "logo": true,
+        "logoLoaded": true,
+        "pause": true,
+        "shade": true,
+        "wordsColor": "rgb(255, 255, 255)"
+      }
+    },
+    {
+      "id": "1-hero-words",
+      "what": "one sentence and the main action 'Ver la demo' over the film, the quiet second action 'Pedir acceso' to the contact page, access by invitation; on the first screen at 1366 × 768",
+      "ok": true,
+      "evidence": {
+        "state": "playing",
+        "src": "living-camera-ride.mp4",
+        "poster": "living-ride-poster.webp",
+        "playing": true,
+        "muted": true,
+        "loop": true,
+        "time": 2.7637,
+        "h1": "Mientras enseñas, Nuova atiende.",
+        "h1Bottom": 565,
+        "ctaBottom": 718,
+        "ctaText": "Ver la demo",
+        "secondText": "Pedir acceso",
+        "secondHref": "/es/contact",
+        "lead": "Responde consultas por WhatsApp y email y guarda lo importante en una ficha.",
+        "access": "Acceso por invitación mientras preparamos el registro público.",
+        "logo": true,
+        "logoLoaded": true,
+        "pause": true,
+        "shade": true,
+        "wordsColor": "rgb(255, 255, 255)"
+      }
+    },
+    {
+      "id": "1-hero-logo",
+      "what": "the NuovaSolution logo stands in the header as a loaded image",
+      "ok": true,
+      "evidence": {
+        "state": "playing",
+        "src": "living-camera-ride.mp4",
+        "poster": "living-ride-poster.webp",
+        "playing": true,
+        "muted": true,
+        "loop": true,
+        "time": 2.7637,
+        "h1": "Mientras enseñas, Nuova atiende.",
+        "h1Bottom": 565,
+        "ctaBottom": 718,
+        "ctaText": "Ver la demo",
+        "secondText": "Pedir acceso",
+        "secondHref": "/es/contact",
+        "lead": "Responde consultas por WhatsApp y email y guarda lo importante en una ficha.",
+        "access": "Acceso por invitación mientras preparamos el registro público.",
+        "logo": true,
+        "logoLoaded": true,
+        "pause": true,
+        "shade": true,
+        "wordsColor": "rgb(255, 255, 255)"
+      }
+    },
+    {
+      "id": "1-hero-benefits",
+      "what": "three benefits appear one after another while the film runs and stand on the first screen",
+      "ok": true,
+      "evidence": [
+        {
+          "text": "Responde en español, también fuera de horario",
+          "opacity": "1",
+          "top": 593.5
+        },
+        {
+          "text": "Guarda zona, presupuesto e intención en la ficha",
+          "opacity": "1",
+          "top": 641.5
+        },
+        {
+          "text": "Tu equipo ve la prioridad y el siguiente paso",
+          "opacity": "1",
+          "top": 706.5
+        }
+      ]
+    },
+    {
+      "id": "1-hero-header",
+      "what": "over the film the header is transparent with the logo in white and a readable button; at the page's top (the preview band) and below the film it is the light bar with the black logo",
+      "ok": true,
+      "evidence": {
+        "over": {
+          "over": "true",
+          "bg": "rgba(0, 0, 0, 0)",
+          "logoFilter": "invert(1) brightness(0.98)",
+          "cta": "rgb(26, 25, 23)"
+        },
+        "atTop": {
+          "over": "false",
+          "logoFilter": "none"
+        }
+      }
+    },
+    {
+      "id": "1-hero-reduced",
+      "what": "with reduced motion the poster stands instead of the film, the benefits stand, and the demonstration shows its end state without typing dots or replay",
+      "ok": true,
+      "evidence": {
+        "state": "poster",
+        "videoDisplay": "none",
+        "posterBg": true,
+        "demoDone": "true",
+        "hidden": 0,
+        "typing": "none",
+        "replay": "none",
+        "benefits": true
+      }
+    },
+    {
+      "id": "2-demo-run",
+      "what": "the demonstration runs once from the message to the record's end state (6–9 s): the reply at about 2 s, the fields field by field, the end state after about 7 s, and it stays",
+      "ok": true,
+      "evidence": {
+        "p1": {
+          "phase": 0,
+          "done": "false",
+          "visible": 0
+        },
+        "p2": {
+          "phase": 4,
+          "done": "false",
+          "visible": 1
+        },
+        "p3": {
+          "phase": 8,
+          "done": "false",
+          "visible": 5
+        },
+        "p4": {
+          "phase": 11,
+          "done": "true",
+          "visible": 11
+        }
+      }
+    },
+    {
+      "id": "2-demo-whatsapp",
+      "what": "Laura writes ONE message with its time; the reply carries its time, one grey tick and the one assistant mark; no 'Anoto', no 'habitual o segunda residencia'; the record fills six fields, the priority with its reason (no score), the next step and the two state lines",
+      "ok": true,
+      "evidence": {
+        "kind": "chat",
+        "inbound": 1,
+        "inText": "Hola, soy Laura. Busco un piso de 2 dormitorios en Estepona, hasta 320.000 €. ¿Podría ver alguno la semana que viene? 11:20",
+        "times": [
+          "11:20",
+          "11:21\nenviado"
+        ],
+        "reply": "Asistente automático de la agencia Perfecto, Laura: Estepona, 2 dormitorios, hasta 320.000 €. ¿Ya tienes la financiación resuelta o te ayudamos a valorarlo? 11:21 enviado",
+        "ticks": 1,
+        "assistant": 1,
+        "fields": [
+          "INTENCIÓN compra",
+          "ZONA Estepona",
+          "DORMITORIOS 2",
+          "PRESUPUESTO hasta 320.000 €",
+          "IDIOMA español",
+          "VISITA la pide para la semana que viene"
+        ],
+        "priority": "PRIORIDAD Alta · pide zona, presupuesto y visita",
+        "next": "SIGUIENTE PASO Elena le propone día y hora para la visita. Una petición de visita no es una cita: la confirma una persona.",
+        "states": [
+          "available",
+          "preparing"
+        ],
+        "fictional": "Demo con datos ficticios",
+        "score": false
+      }
+    },
+    {
+      "id": "3-channel-email",
+      "what": "the e-mail channel is a mailbox: the inbox list with three rows, the open message with subject and sender, then the reply in the thread with the assistant mark and 'enviado'; the record fills; the state line names Gmail",
+      "ok": true,
+      "evidence": {
+        "mailEarly": {
+          "kind": "mail",
+          "list": true,
+          "rows": 3,
+          "subject": "Valoración de mi piso en Fuengirola",
+          "from": "Carmen Ortega <carmen.ortega@ejemplo.es>",
+          "replyOpacity": "0"
+        },
+        "mail": {
+          "replyOpacity": "1",
+          "reply": "N Asistente automático de la agencia martes 11:25 · enviado Hola, Carmen. Gracias por escribirnos: un piso de 3 dormitorios en Fuengirola para vender, con valoración esta semana. ¿Qué día te viene mejor para la visita, por la mañana o por la tarde?",
+          "fields": 5,
+          "done": "true",
+          "state": "Hoy: respuesta en español por email (Gmail) y ficha guardada."
+        }
+      }
+    },
+    {
+      "id": "3-channel-webform",
+      "what": "the web form is a real form with six fields that fill one after another, then it is sent ('Enviado'); no chat bubbles; marked 'Prototipo'; the record fills; the state line says prototype",
+      "ok": true,
+      "evidence": {
+        "formEarly": {
+          "kind": "form",
+          "fields": 6,
+          "filled": 3,
+          "sent": "false",
+          "mark": "Prototipo",
+          "bubbles": 0
+        },
+        "form": {
+          "filled": 6,
+          "sent": "true",
+          "submit": "Enviado · martes 11:31",
+          "fields": 5,
+          "done": "true",
+          "state": "Prototipo: el formulario web todavía no está disponible."
+        }
+      }
+    },
+    {
+      "id": "3-channel-phone",
+      "what": "the phone is a call view: a live waveform and a running duration while the line is open, the transcript line by line, the assistant's line; then 'Llamada atendida · 0:38'; marked 'Prototipo'; the record with a masked number",
+      "ok": true,
+      "evidence": {
+        "callLive": {
+          "kind": "call",
+          "state": "live",
+          "wave": true,
+          "bars": 18,
+          "duration": 1,
+          "lines": 1,
+          "mark": "Prototipo"
+        },
+        "call": {
+          "state": "ended",
+          "duration": 38,
+          "text": "Llamada atendida · 0:38 Prototipo",
+          "lines": 4,
+          "assistant": "Asistente automático de la agencia Perfecto, Álvaro: la villa de Elviria, precio y margen. Una persona de la agencia te llama esta tarde.",
+          "fields": 5,
+          "done": "true",
+          "phone": true
+        }
+      }
+    },
+    {
+      "id": "3-channels-keyboard",
+      "what": "arrow keys move between the four channels with the focus following; a channel never changes on its own after the run",
+      "ok": true,
+      "evidence": {
+        "k1": {
+          "ch": "whatsapp",
+          "focus": "whatsapp",
+          "visible": "solid"
+        },
+        "k2": {
+          "ch": "phone",
+          "focus": "phone"
+        },
+        "k3": {
+          "ch": "phone",
+          "done": "true"
+        }
+      }
+    },
+    {
+      "id": "4-flow",
+      "what": "the flow stands in four words (Consulta → Nuova → Ficha → Tu equipo) and its line is drawn once the ribbon is in view",
+      "ok": true,
+      "evidence": {
+        "nodes": [
+          "Consulta",
+          "Nuova",
+          "Ficha",
+          "Tu equipo"
+        ],
+        "drawn": 0,
+        "pathLength": "1",
+        "visible": true
+      }
+    },
+    {
+      "id": "4-functions",
+      "what": "six functions with one line and a status word each; the stage beside the list is sticky and shows the product surface of the function in view (the priority list, the listings that fit, the team's day)",
+      "ok": true,
+      "evidence": {
+        "fn1": {
+          "items": 6,
+          "active": "record",
+          "stage": "sticky",
+          "surface": "record",
+          "ps": "record",
+          "pills": [
+            "preparing",
+            "included",
+            "included",
+            "preparing",
+            "preparing",
+            "preparing"
+          ],
+          "titles": [
+            "Leads importantes, con motivo",
+            "Consultas respondidas",
+            "Lo importante, guardado",
+            "Inmuebles que encajan",
+            "Seguimiento con permiso",
+            "El día de tu equipo"
+          ]
+        },
+        "fn2": {
+          "active": "matching",
+          "surface": "matching",
+          "listings": 2,
+          "text": "Encajan con Laura · de tu cartera Estepona · 2 dormitorios · hasta 320.000 € Piso de 2 dormitorios con terraza EST-204 · Estepona · zona puerto zona, dormitorio"
+        },
+        "fn3": {
+          "active": "team",
+          "surface": "team",
+          "tasks": 3
+        }
+      }
+    },
+    {
+      "id": "5-report",
+      "what": "the report as the agency reads it: eight bars grown in view (no zero-height bar), two channel bars, six figures with their definitions of which two read 'No medido', the week in the header, 'Datos de ejemplo', what is open, the link to the example report; no 'Disponible', no box of three numbers",
+      "ok": true,
+      "evidence": {
+        "bars": [
+          {
+            "h": 128,
+            "t": "none"
+          },
+          {
+            "h": 114,
+            "t": "none"
+          },
+          {
+            "h": 161,
+            "t": "none"
+          },
+          {
+            "h": 148,
+            "t": "none"
+          },
+          {
+            "h": 141,
+            "t": "none"
+          },
+          {
+            "h": 134,
+            "t": "none"
+          },
+          {
+            "h": 168,
+            "t": "none"
+          },
+          {
+            "h": 155,
+            "t": "none"
+          }
+        ],
+        "fills": [
+          484.65625,
+          372.53125
+        ],
+        "metrics": [
+          "25",
+          "23",
+          "2",
+          "4",
+          "No medido",
+          "No medido"
+        ],
+        "unmeasured": 2,
+        "example": "Datos de ejemplo",
+        "header": "Agencia de ejemplo · Semana del 26 oct al 1 nov · WhatsApp y email · Demo con datos ficticios",
+        "link": "/es/example-report",
+        "open": 2,
+        "disponible": false,
+        "tiles": 0
+      }
+    },
+    {
+      "id": "6-3d-stage",
+      "what": "one stage walks once from the plan to the clean model and to the empty/furnished pair on a handle; the steps switch by button",
+      "ok": true,
+      "evidence": {
+        "m0": {
+          "step": "0",
+          "pane": "plan"
+        },
+        "m1": {
+          "step": "1",
+          "pane": "model",
+          "src": "/media/3d/house-model-clean-1600.webp"
+        },
+        "m2": {
+          "step": "2",
+          "pane": "pair",
+          "range": true,
+          "imgs": [
+            "living-empty-1200.webp",
+            "living-furnished-1200.webp"
+          ]
+        },
+        "m3": {
+          "step": "3",
+          "pane": "film",
+          "src": null,
+          "poster": "house-clean-take-poster.webp",
+          "play": true,
+          "old": false
+        },
+        "m5": {
+          "status": [
+            "En preparación · todavía no contratable",
+            "Casa de ejemplo ficticia"
+          ],
+          "example": "Casa de ejemplo ficticia",
+          "cta": "/es/contact",
+          "steps": [
+            "01 Plano",
+            "02 Modelo",
+            "03 Vacío y amueblado",
+            "04 Entrega"
+          ]
+        }
+      }
+    },
+    {
+      "id": "6-3d-film",
+      "what": "the whole house is the clean take of 30.10. (1080p, about 25 s), loaded only on request behind its own poster; nothing of the labelled house-turn remains; the section is marked in preparation and as a fictional example",
+      "ok": true,
+      "evidence": {
+        "m3": {
+          "step": "3",
+          "pane": "film",
+          "src": null,
+          "poster": "house-clean-take-poster.webp",
+          "play": true,
+          "old": false
+        },
+        "m4": {
+          "src": "house-clean-take.mp4",
+          "state": "on",
+          "playing": true,
+          "w": 1920,
+          "h": 1080,
+          "duration": 25
+        },
+        "m5": {
+          "status": [
+            "En preparación · todavía no contratable",
+            "Casa de ejemplo ficticia"
+          ],
+          "example": "Casa de ejemplo ficticia",
+          "cta": "/es/contact",
+          "steps": [
+            "01 Plano",
+            "02 Modelo",
+            "03 Vacío y amueblado",
+            "04 Entrega"
+          ]
+        }
+      }
+    },
+    {
+      "id": "7-plans",
+      "what": "sixteen rows in six groups (Canales, CRM, Equipo, Informes, Integraciones, Servicios) with a function icon each and one status word in every cell: Incluido with a check, No incluido, En preparación; no empty circle, no price, no 'Disponible', no 'Probar gratis'; Essential marked as the plan to start with; every action leads to a person",
+      "ok": true,
+      "evidence": {
+        "rows": 16,
+        "cells": 48,
+        "statuses": [
+          "excluded",
+          "included",
+          "preparing"
+        ],
+        "checks": [
+          "included",
+          "included",
+          "included",
+          "included",
+          "included",
+          "included",
+          "included",
+          "included",
+          "included"
+        ],
+        "icons": 16,
+        "circles": 0,
+        "reco": [
+          "Recomendado para empezar"
+        ],
+        "groups": [
+          "Canales",
+          "CRM",
+          "Equipo",
+          "Informes",
+          "Integraciones",
+          "Servicios"
+        ],
+        "price": false,
+        "forbidden": false,
+        "ctas": [
+          "/es/contact",
+          "/es/contact",
+          "/es/contact"
+        ],
+        "display": "block",
+        "cards": "none"
+      }
+    },
+    {
+      "id": "8-claims",
+      "what": "no public sign-up link, no 'Probar gratis', no status 'Disponible', no price, no score, no 'your own number' claim outside its 'En preparación' row; the assistant is named on the demonstration surface only",
+      "ok": true,
+      "evidence": {
+        "signup": 0,
+        "forbidden": [],
+        "ownNumber": false,
+        "prices": [],
+        "words": 1051,
+        "faq": 7,
+        "trust": 3,
+        "close": 2,
+        "closeDemo": "#demo",
+        "prose": 650,
+        "ui": 401,
+        "assistantOnceOnPage": 1,
+        "minFont": 13,
+        "minFontDemo": 14
+      }
+    },
+    {
+      "id": "8-trust-faq-close",
+      "what": "three trust lines, seven questions, the close with 'Ver la demo' (runs the demonstration) and 'Pedir acceso'",
+      "ok": true,
+      "evidence": {
+        "signup": 0,
+        "forbidden": [],
+        "ownNumber": false,
+        "prices": [],
+        "words": 1051,
+        "faq": 7,
+        "trust": 3,
+        "close": 2,
+        "closeDemo": "#demo",
+        "prose": 650,
+        "ui": 401,
+        "assistantOnceOnPage": 1,
+        "minFont": 13,
+        "minFontDemo": 14
+      }
+    },
+    {
+      "id": "8-fonts",
+      "what": "nothing under 13 px on the page and nothing under 14 px in the demonstration",
+      "ok": true,
+      "evidence": {
+        "minFont": 13,
+        "minFontDemo": 14
+      }
+    },
+    {
+      "id": "8-words",
+      "what": "the Spanish home page's prose stays within about 650–900 visible words (FAQ answers closed; the plans' status words count; the words inside the three product surfaces, the demonstration, the functions stage and the report sheet, are counted separately)",
+      "ok": true,
+      "evidence": {
+        "total": 1051,
+        "prose": 650,
+        "product_ui": 401
+      }
+    },
+    {
+      "id": "8-packages",
+      "what": "/packages carries the same table (sixteen rows, the same status words), the opening of Copy C-10, no sign-up link and no trial button",
+      "ok": true,
+      "evidence": {
+        "pk": {
+          "rows": 16,
+          "cells": 48,
+          "statuses": [
+            "excluded",
+            "included",
+            "preparing"
+          ],
+          "checks": [
+            "included",
+            "included",
+            "included",
+            "included",
+            "included",
+            "included",
+            "included",
+            "included",
+            "included"
+          ],
+          "icons": 16,
+          "circles": 0,
+          "reco": [
+            "Recomendado para empezar"
+          ],
+          "groups": [
+            "Canales",
+            "CRM",
+            "Equipo",
+            "Informes",
+            "Integraciones",
+            "Servicios"
+          ],
+          "price": false,
+          "forbidden": false,
+          "ctas": [
+            "/es/contact",
+            "/es/contact",
+            "/es/contact"
+          ],
+          "display": "block",
+          "cards": "none"
+        },
+        "pkHead": {
+          "h1": "Tres paquetes, con su estado real",
+          "signup": 0,
+          "trial": false
+        }
+      }
+    },
+    {
+      "id": "8-en",
+      "what": "the English page carries the same ten sections with English words (tabs, status words, the hero)",
+      "ok": true,
+      "evidence": {
+        "h1": "While you show a home, Nuova answers.",
+        "sections": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "tabs": [
+          "WhatsApp",
+          "E-mail",
+          "Web form",
+          "Phone"
+        ],
+        "statuses": [
+          "In preparation",
+          "Included",
+          "Not included"
+        ],
+        "spanishLeak": false
+      }
+    },
+    {
+      "id": "8-nojs",
+      "what": "without JavaScript the poster, the demonstration's end state, every section, the plans and the report stand",
+      "ok": true,
+      "evidence": {
+        "js": false,
+        "hero": true,
+        "poster": "living-ride-poster.webp",
+        "demoHidden": 0,
+        "typing": "none",
+        "risesHidden": 0,
+        "plans": 48,
+        "report": 6,
+        "fnInline": 6
+      }
+    },
+    {
+      "id": "8-phone",
+      "what": "at 390 px: the headline, the benefit line and the main action on the first screen, the film attached after the first paint, the demonstration stacked (chat then record, full width), the functions as a linear stack, the plans as cards, no horizontal overflow anywhere",
+      "ok": true,
+      "evidence": {
+        "ph": {
+          "overflow": true,
+          "h1Bottom": 371.921875,
+          "ctaBottom": 529.171875,
+          "leadBottom": 445.171875,
+          "film": "playing",
+          "stage": "none",
+          "inline": true,
+          "cards": "grid",
+          "table": "none"
+        },
+        "phDemo": {
+          "done": "true",
+          "chatThenRecord": true,
+          "overflow": true,
+          "fullWidth": true
+        },
+        "phEnd": {
+          "overflow": true,
+          "closing": true
+        }
+      }
+    }
+  ],
+  "words_es": {
+    "total": 1051,
+    "prose": 650,
+    "product_ui": 401
+  },
+  "summary": "26/26 checks passed"
+}
