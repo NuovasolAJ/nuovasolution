@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type ReactNode } from "react";
+import { useEffect, useId, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 /**
@@ -10,9 +10,17 @@ import { cn } from "@/lib/utils";
  * API key), so this is our own implementation: a native range input drives the split, which makes it
  * keyboard-operable (arrow keys) and screen-reader-labelled without extra code; no pointer tracking of our own.
  */
-export function CompareSlider({ before, after, label, beforeLabel, afterLabel, className, initial = 50 }: { before: ReactNode; after: ReactNode; label: string; beforeLabel: string; afterLabel: string; className?: string; initial?: number }) {
-  const [pos, setPos] = useState(initial);
+export function CompareSlider({ before, after, label, beforeLabel, afterLabel, className, initial = 50, sweepFrom }: { before: ReactNode; after: ReactNode; label: string; beforeLabel: string; afterLabel: string; className?: string; initial?: number; /** the handle sweeps from here to `initial` once on mount (the owner's order of 03.11., point 6: empty → furnished as a movement); not with reduced motion */ sweepFrom?: number }) {
+  const [pos, setPos] = useState(sweepFrom ?? initial);
   const id = useId();
+  useEffect(() => {
+    if (sweepFrom === undefined || window.matchMedia("(prefers-reduced-motion: reduce)").matches) { setPos(initial); return; }
+    let raf = 0; const t0 = performance.now(); const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+    const step = () => { const p = Math.min(1, (performance.now() - t0) / 1400); setPos(sweepFrom + (initial - sweepFrom) * ease(p)); if (p < 1) raf = requestAnimationFrame(step); };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className={cn("relative select-none overflow-hidden rounded-lg", className)} data-compare={Math.round(pos)}>
       <div className="relative">{before}</div>

@@ -44,10 +44,27 @@ style, not a reconstruction. The page says so under the section.
 
 New pictures and films from the 3D lane replace these files under the same names; nothing else on the page changes.
 
+## 2b. The 3D media of the build of 03.11.2026 (3D lane, handoff_2026-10-30, with checksums)
+
+Source: `C:\src
+uova-3d\deliverables\website-assets\handoff_2026-10-30\` (README and `SHA256SUMS.txt` of the 3D lane; run
+`run-20261102-092500-house`, commit `caf044a`). The owner's order of 03.11. (point 6): the whole house without room names or
+viewer controls, and the labelled `house-turn-{es,en}.mp4` with its posters and the labelled `house-both-floors-*.webp` removed.
+
+| File (public/media/3d/) | From (handoff) | sha256 of the source | sha256 of the published file | Shows |
+|---|---|---|---|---|
+| `house-clean-take.mp4` | `media/clean_take_fullhd.mp4` (1920 × 1080, 25 fps, 25 s, H.264) | `e9ba714b40761e829f88cee6c4b0ed7ba1f8acc140f22eb3f63509a3843867a6` | identical (copied byte for byte) | the whole house from above: upper floor, lower floor, furniture off and on; no labels, no menus (`?ui=0`); plays on request only |
+| `house-clean-take-poster.webp` | the film's own frame at 1.5 s (browser canvas, 1600 px) | — | see the evidence folder's `checks/media-sha256.txt` | the poster of the film |
+| `house-model-clean-1600.webp` | `media/modelo_both_floors.png` (3840 × 2160, `ui=0`) | `533231f02eb27e0688fbcf46449f46d23b982c59ce2f58104331ee03921a079f` | see `checks/media-sha256.txt` | the "02 Modelo" view: both floors without a roof, no labels |
+| `living-empty-1200.webp`, `living-furnished-1200.webp` (unchanged since 30.10.) | `pair/living_empty.jpg`, `pair/living_furnished.jpg` (3000 × 2000, Cycles) | `aa2f54f5…9a8c`, `d87d8f84…fdba393` | see `checks/media-sha256.txt` | the same living room empty and furnished from the same camera, on the compare handle |
+| `living-camera-ride.mp4`, `living-ride-poster.webp` (unchanged since 26.10.) | the 3D lane's living-room study, `living_camera_ride.mp4` (1280 × 720, 8 s) | `c3c56a9c3e6b982068e3f44a0171c17fe0eacbe83e1fbecd3acf3ad2b08baaa0` (published file) | — | the hero's background film (the owner's picture C01), muted, in a loop, dimmed; the poster stands with reduced motion and on slow connections |
+
+The page carries the 3D lane's mandatory mark itself ("Casa de ejemplo ficticia"); nothing is burnt into these files.
+
 ## 3. Drawn, not photographed
 
-- The hero's ridges (`components/home/hero-world-layers.tsx`): two soft hills in the page's own dark tones.
-- The dimensioned floor plan of the 3D section (`components/home/scene-art.tsx`, `FloorPlan`): a drawing with five rooms.
+- (removed 02.11.) the hero's ridges of the four-layer concept.
+- The dimensioned floor plan of the 3D stage (`components/home/scene-art.tsx`, `DemoPlan`): the ground floor of the 3D lane's demonstration house, drawn to scale from its specification.
 - Every product surface (the panel, the stages of the story, the report, the email) is the site's own markup with
   invented people and figures, labelled "Ejemplo con personas e inmuebles inventados" / "Cifras de ejemplo".
 

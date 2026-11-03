@@ -85,7 +85,7 @@ export function Stage3d({ locale }: { locale: Locale }) {
                 )}
                 {step === 2 && (
                   <m.div key="pair" className="m3d-pane" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={reduce ? undefined : { opacity: 0 }} transition={{ duration: 0.5 }} data-m3d-pane="pair">
-                    <CompareSlider label={l(w.pairLabel)} beforeLabel={l(w.empty)} afterLabel={l(w.furnished)} className="h-full w-full rounded-none" initial={reduce ? 50 : 62} before={<Img src={MEDIA.empty} alt={l(w.emptyAlt)} w={1200} h={800} className="h-full w-full object-cover" />} after={<Img src={MEDIA.furnished} alt={l(w.furnishedAlt)} w={1200} h={800} className="h-full w-full object-cover" />} />
+                    <CompareSlider label={l(w.pairLabel)} beforeLabel={l(w.empty)} afterLabel={l(w.furnished)} className="h-full w-full rounded-none" initial={62} sweepFrom={reduce ? undefined : 6} before={<Img src={MEDIA.empty} alt={l(w.emptyAlt)} w={1200} h={800} className="h-full w-full object-cover" />} after={<Img src={MEDIA.furnished} alt={l(w.furnishedAlt)} w={1200} h={800} className="h-full w-full object-cover" />} />
                   </m.div>
                 )}
                 {step === 3 && (
