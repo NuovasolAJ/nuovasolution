@@ -238,7 +238,7 @@ function ChatSurface({ c, phase, locale }: S) {
           <Item n={ch.replyAt} phase={phase} className="demo-msg demo-msg-out demo-reply" data-hero-reply="">
             <p className="demo-msg-label">{l(demoWords.assistant)}</p>
             <p>{l(ch.reply)}</p>
-            <span className="demo-msg-time tnum">{ch.replyTime} <Check size={13} strokeWidth={2.4} aria-hidden="true" className="demo-tick" /><span className="sr-only">{l(demoWords.sent)}</span></span>
+            <span className="demo-msg-time tnum">{ch.replyTime}</span>
           </Item>
         </div>
       </div>
@@ -281,7 +281,7 @@ function MailSurface({ c, phase, locale }: S) {
             <span aria-hidden="true" className="demo-avatar demo-avatar-agency">N</span>
             <div className="min-w-0">
               <p className="demo-mail-from-name demo-msg-label">{l(demoWords.assistant)}</p>
-              <p className="demo-chat-meta">{l(m.replyTime)} · <Check size={12} strokeWidth={2.4} aria-hidden="true" className="inline" /> {l(demoWords.sent)}</p>
+              <p className="demo-chat-meta">{l(m.replyTime)}</p>
             </div>
           </div>
           <p className="demo-mail-body">{l(m.reply)}</p>

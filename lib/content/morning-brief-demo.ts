@@ -19,7 +19,7 @@ export const briefWords = {
   nextAction: { es: "Toma la tarea de Laura en tu lista y proponle día y hora por WhatsApp.", en: "Take Laura's task on your list and propose a day and time on WhatsApp." },
   button: { es: "Abrir mi lista", en: "Open my list" },
   underButton: { es: "Entras con tu cuenta de agencia.", en: "You sign in with your agency account." },
-  footer: { es: "Recibes este email porque formas parte del equipo de tu agencia en Nuova. Si algo no cuadra, respóndenos a este correo.", en: "You receive this email because you are part of your agency's team in Nuova. If something does not add up, reply to this mail." },
+  footer: { es: "Recibes este email porque formas parte del equipo de tu agencia en NuovaSolution. Si algo no cuadra, respóndenos a este correo.", en: "You receive this email because you are part of your agency's team in NuovaSolution. If something does not add up, reply to this mail." },
   open: { es: "Abrir", en: "Open" },
   demo: { es: "Vista previa con datos de demostración: nadie recibe este correo.", en: "Preview with demonstration data: nobody receives this mail." },
   logoAlt: "NuovaSolution",
@@ -42,7 +42,7 @@ export function briefTasks(locale: Locale, listHref: string): MailTask[] {
     {
       kind: es ? "Sin respuesta automática" : "No automatic reply",
       who: es ? "Peter y Anna Keller · Email" : "Peter and Anna Keller · Email",
-      lines: es ? ["Quieren vender su villa en Elviria y piden una valoración esta semana.", "Escriben en alemán: hoy solo respondemos en español, así que Nuova no ha enviado nada."] : ["They want to sell their villa in Elviria and ask for a valuation this week.", "They write in German: today we only answer in Spanish, so Nuova has sent nothing."],
+      lines: es ? ["Quieren vender su villa en Elviria y piden una valoración esta semana.", "Escriben en alemán: hoy solo respondemos en español, así que NuovaSolution no ha enviado nada."] : ["They want to sell their villa in Elviria and ask for a valuation this week.", "They write in German: today we only answer in Spanish, so NuovaSolution has sent nothing."],
       state: es ? "Abierta · desde ayer 11:24" : "Open · since yesterday 11:24",
       step: es ? "Contestar al cliente y proponer una fecha para la visita" : "Answer the customer and propose a date for the viewing", // HANDOVER_1021 A-8
       href: listHref,

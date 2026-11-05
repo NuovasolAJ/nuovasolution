@@ -46,8 +46,8 @@ export const videoSlots: VideoSlot[] = [
     page: "/[locale]",
     section: "H-04 Sixty seconds",
     purpose: {
-      en: "One uninterrupted view of Nuova inside a normal agency day.",
-      es: "Una vista continua de Nuova dentro de un día normal de agencia.",
+      en: "One uninterrupted view of NuovaSolution inside a normal agency day.",
+      es: "Una vista continua de NuovaSolution dentro de un día normal de agencia.",
     },
     coreMessage: {
       en: "One enquiry, carried from arrival to a ready agent, without anyone remembering to do it.",
@@ -219,7 +219,7 @@ export const videoSlots: VideoSlot[] = [
     page: "/[locale]/platform/property-experience",
     section: "PD-03 The film",
     purpose: { en: "Show a finished Property Experience as a buyer receives it.", es: "Mostrar una Property Experience terminada tal como la recibe un comprador." },
-    coreMessage: { en: "The finished result, created by Nuova and checked by a person.", es: "El resultado terminado, creado por Nuova y revisado por una persona." },
+    coreMessage: { en: "The finished result, created by NuovaSolution and checked by a person.", es: "El resultado terminado, creado por NuovaSolution y revisado por una persona." },
     duration: [30, 40],
     aspectDesktop: "16:9",
     aspectMobile: "4:5",

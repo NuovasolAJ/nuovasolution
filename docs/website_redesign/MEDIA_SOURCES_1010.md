@@ -61,6 +61,24 @@ viewer controls, and the labelled `house-turn-{es,en}.mp4` with its posters and 
 
 The page carries the 3D lane's mandatory mark itself ("Casa de ejemplo ficticia"); nothing is burnt into these files.
 
+## 2c. The 3D media of the round of 05.11.2026 (3D lane, handoff_2026-11-02; the owner's F2 and point 9)
+
+Source: `C:\src\nuova-3d\deliverables\website-assets\handoff_2026-11-02\` (README `REDESIGN_3D_MEDIEN_1102_v1.md`). The owner's
+finding F2 (the 1080p delivery clip stuttered, D10) and point 9 (02 Modelo as a turn of the ground floor). The 3D lane has not
+delivered a native ground-floor turn yet: until it does, 02 Modelo is the clean take's own ground-floor segment (12.3–25.04 s),
+re-encoded as a loop. Both clips were re-encoded with the browser's H.264 encoder (`cut-1105.mjs`: every presented frame once at
+its media time, 25 fps even, keyframe every 50 frames, faststart). Superseded and removed: `house-clean-take.mp4` (the 1080p
+original, 15 MB), `house-clean-take-poster.webp`, `house-model-clean-1600.webp` (both floors; no longer shown).
+
+| File (public/media/3d/) | From (handoff) | sha256 of the source | sha256 of the published file (first 16) | Shows |
+|---|---|---|---|---|
+| `house-clean-take-720.mp4` (6.5 MB) | `entrega/clean_take_fullhd.mp4` (1920 × 1080, 25 s) re-encoded to 1280 × 720, 2 600 kbps, 625 frames at 40 000 µs each | `e9ba714b40761e82…` | `9013746be48b393f` | 04 Entrega: the whole house, plays on request behind its poster |
+| `house-clean-take-poster-1600.webp` | `entrega/clean_take_poster.jpg` (1600 px) | `e3fe77a7b4be95c1…` | `c15d1ff90ccbcd5e` | the poster of 04 Entrega |
+| `house-ground-turn.mp4` (3.2 MB) | `entrega/clean_take_fullhd.mp4`, the segment 12.3–25.04 s (the ground floor turning), 1280 × 720, 2 200 kbps, 318 frames | `e9ba714b40761e82…` | `735cbebb8126ee37` | 02 Modelo: the ground floor turning, muted, in a loop; only while the step is on the stage |
+| `house-ground-turn-poster.webp` | the clip's own frame at 0.2 s (browser canvas, 1280 px) | — | `e2f57012f58d0e3b` | the poster of 02 Modelo |
+| `house-ground-near-1600.webp` | `modelo/modelo_planta_baja_cerca.png` (furnished ground floor, near) | `e97b4e847f27ca07…` | `346146597f023bda` | 02 Modelo with reduced motion (the still) |
+| `house-ground-near-empty-1600.webp` | `modelo/modelo_planta_baja_cerca_vacio.png` | `ff1dc903…` | `c0b45e8fc7287dac` | filed for the stage's next step; not shown yet |
+
 ## 3. Drawn, not photographed
 
 - (removed 02.11.) the hero's ridges of the four-layer concept.

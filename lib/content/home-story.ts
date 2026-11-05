@@ -7,7 +7,7 @@ import type { Locale } from "@/lib/i18n/config";
  *
  *   Tuesday 11:00–12:00  Marcos (agent) shows the villa EST-118 in Marbella; nobody is at the desk.
  *   Tuesday 11:20        Laura Serrano (buyer, Madrid) writes on WhatsApp about the flat EST-204: a question and her budget.
- *   Tuesday 11:21        Nuova answers from the listing's own data, asks one question, saves what she wants, updates her
+ *   Tuesday 11:21        NuovaSolution answers from the listing's own data, asks one question, saves what she wants, updates her
  *                        record and alerts the team: an important enquiry (a property, an area and a budget named).
  *   Tuesday 11:23        Laura answers: to live all year; she would like to see it next week.
  *   Tuesday 11:24        Peter and Anna Keller (sellers, Elviria) write by email in German for a valuation: the reply is
@@ -106,7 +106,7 @@ export const channels: { key: ChannelKey; name: L }[] = [
 
 /**
  * One enquiry per channel. `text` and `reply` are in the customer's language; `translation` gives the page's reader
- * the same in Spanish and English (shown by default, the original one tap away). `held` marks the case where Nuova
+ * the same in Spanish and English (shown by default, the original one tap away). `held` marks the case where NuovaSolution
  * prepares a draft and sends nothing: the notice is approved in Spanish only, so a German email waits for a person.
  */
 export interface Enquiry {
@@ -122,7 +122,7 @@ export interface Enquiry {
   text: string;
   /** The short form for the chapter that must not repeat the hero's dialogue. */
   textShort: L;
-  /** Nuova's reply (or the draft) in the customer's language; phone: what the assistant noted. */
+  /** NuovaSolution's reply (or the draft) in the customer's language; phone: what the assistant noted. */
   reply: string;
   translation: { text: L; reply: L };
   /** The reply is a draft held for a person, not a sent message. */
@@ -143,7 +143,7 @@ export const enquiries: Enquiry[] = [
     time: { es: "martes 11:23", en: "Tuesday 11:23" },
     language: { es: "español", en: "Spanish" },
     lang: "es",
-    // Laura's second message: she answers Nuova's one question and says what she wants next.
+    // Laura's second message: she answers NuovaSolution's one question and says what she wants next.
     text: "Vivienda habitual. Nos gustaría verlo la semana que viene, si puede ser.",
     textShort: { es: "Laura contesta: vivienda habitual, y quiere ver el piso la semana que viene.", en: "Laura answers: a main home, and she would like to see the flat next week." },
     reply: "Perfecto, Laura, lo anoto. Una compañera de la agencia te escribe con día y hora para la visita.",
@@ -246,7 +246,7 @@ export const enquiries: Enquiry[] = [
  * alert is held back in production (HA1); it returns with V3-DEPLOY and a production probe.
  */
 export const heroWords = {
-  h1: { es: "Mientras enseñas, Nuova atiende.", en: "While you show a home, Nuova answers." },
+  h1: { es: "Mientras enseñas, NuovaSolution atiende.", en: "While you show a home, NuovaSolution answers." },
   lead: { es: "Responde consultas por WhatsApp y email y guarda lo importante en una ficha.", en: "Answers enquiries on WhatsApp and e-mail and keeps what matters on a record." },
   ctaDemo: { es: "Ver la demo", en: "See the demo" },
   ctaContact: { es: "Pedir acceso", en: "Request access" },
@@ -255,7 +255,7 @@ export const heroWords = {
 
 /**
  * The chapters (R19 §6): a short benefit headline, one paragraph, the three answers every chapter gives (what came
- * in, what Nuova did, the result) and the state line.
+ * in, what NuovaSolution did, the result) and the state line.
  */
 export interface Chapter {
   key: ChapterKey;
@@ -283,7 +283,7 @@ export const chapters: Chapter[] = [
   },
   {
     key: "reply",
-    eyebrow: { es: "Nuova responde y actualiza la ficha", en: "Nuova answers and updates the record" },
+    eyebrow: { es: "NuovaSolution responde y actualiza la ficha", en: "NuovaSolution answers and updates the record" },
     title: { es: "El cliente recibe una respuesta concreta, y lo que pide queda en su ficha.", en: "The customer gets a concrete reply, and what they ask for goes on their record." }, // COPY_1019 R-4
     line: { es: "Zona, presupuesto, uso y plazo quedan claros desde la primera respuesta. Nada se compromete: ni precio, ni fecha, ni disponibilidad.", en: "Area, budget, use and timing are clear from the first reply. Nothing is committed: no price, no date, no availability." }, // COPY_1019 R-5: the customer-code sentence removed (not present in production)
     inbound: { es: "Una pregunta por WhatsApp, un email en alemán, un formulario, una llamada.", en: "A WhatsApp question, a German email, a web form, a call." },
@@ -326,7 +326,7 @@ export const chapters: Chapter[] = [
   {
     key: "result",
     eyebrow: { es: "La semana, en cifras", en: "The week, in figures" },
-    title: { es: "Al final de la semana sabes qué atendió Nuova, qué oportunidades hay y qué toca hacer.", en: "At the end of the week you know what Nuova handled, which opportunities there are and what to do next." },
+    title: { es: "Al final de la semana sabes qué atendió NuovaSolution, qué oportunidades hay y qué toca hacer.", en: "At the end of the week you know what NuovaSolution handled, which opportunities there are and what to do next." },
     line: { es: "Tres cifras, lo que sigue abierto y qué toca hacer. El informe de tu agencia está en tu acceso; un resumen por email está en preparación.", en: "Three figures, what is still open and what to do next. Your agency's report is in your login; an e-mail summary is being prepared." }, // closing order 27.10. §6; HANDOVER_1021 A-11 ("respondida ≠ entregada") stays in the result card's basis line
     inbound: { es: "Todo lo registrado en la semana en los canales conectados.", en: "Everything recorded in the week on the connected channels." },
     did: { es: "Cuenta lo atendido, las oportunidades y lo que espera a una persona.", en: "Counts what was handled, the opportunities and what waits for a person." },
@@ -340,7 +340,7 @@ export const storyWords = {
   common: {
     example: { es: "Ejemplo con personas e inmuebles inventados", en: "Example with invented people and listings" },
     photo: { es: "Foto de muestra", en: "Sample photo" },
-    assistant: { es: "Nuova · asistente de IA", en: "Nuova · AI assistant" },
+    assistant: { es: "NuovaSolution · asistente de IA", en: "NuovaSolution · AI assistant" },
     record: { es: "Ficha del cliente", en: "Customer record" },
     noticeTitle: { es: "El aviso que lleva la respuesta", en: "The notice the reply carries" },
     noticeSample: { es: "Traducción de muestra; el aviso aprobado es el español.", en: "Sample translation; the approved notice is the Spanish one." },
@@ -356,7 +356,7 @@ export const storyWords = {
     stateLabel: { es: "Estado", en: "State" },
     demoHint: { es: "Prueba la demo", en: "Try the demo" }, // closing order 27.10. §5
     inbound: { es: "Qué llega", en: "What comes in" },
-    did: { es: "Qué hace Nuova", en: "What Nuova does" },
+    did: { es: "Qué hace NuovaSolution", en: "What NuovaSolution does" },
     result: { es: "Resultado", en: "Result" },
   },
   situation: {
@@ -375,7 +375,7 @@ export const storyWords = {
     pick: { es: "Elige el canal", en: "Pick the channel" },
     incoming: { es: "Lo que escribe el cliente", en: "What the customer writes" },
     incomingPhone: { es: "Lo que dice al llamar", en: "What they say on the call" },
-    replied: { es: "Lo que responde Nuova", en: "What Nuova replies" },
+    replied: { es: "Lo que responde NuovaSolution", en: "What NuovaSolution replies" },
     repliedPhone: { es: "Lo que hace el asistente", en: "What the assistant does" },
     noted: { es: "Ficha actualizada", en: "Record updated" },
     notedAt: { es: "martes 11:23", en: "Tuesday 11:23" },
@@ -386,7 +386,7 @@ export const storyWords = {
     emailSubjectKellerTranslated: { es: "Re: Valoración de nuestra villa en Elviria", en: "Re: Valuation of our villa in Elviria" },
     /** The held reply (R19 §2, §7): a draft is a draft, never shown as sent. */
     heldTitle: { es: "Sin respuesta automática", en: "No automatic reply" },
-    heldLine: { es: "El email llegó en alemán y hoy solo respondemos en español: Nuova no envía nada. La consulta queda registrada en la ficha y la contesta una persona de tu equipo.", en: "The e-mail arrived in German and today we only answer in Spanish: Nuova sends nothing. The enquiry is recorded and a person on your team answers it." }, // HANDOVER_1021 §E
+    heldLine: { es: "El email llegó en alemán y hoy solo respondemos en español: NuovaSolution no envía nada. La consulta queda registrada en la ficha y la contesta una persona de tu equipo.", en: "The e-mail arrived in German and today we only answer in Spanish: NuovaSolution sends nothing. The enquiry is recorded and a person on your team answers it." }, // HANDOVER_1021 §E
     earlier: { es: "Antes, a las 11:20: la pregunta de Laura y la primera respuesta (la del primer bloque de la página).", en: "Earlier, at 11:20: Laura's question and the first reply (the one in the first block of the page)." }, // COPY_RV4_1027 Z-2
     callIncoming: { es: "Llamada entrante", en: "Incoming call" },
     callAnswered: { es: "Atendida por el asistente · solo en español", en: "Answered by the assistant · Spanish only" },
@@ -497,9 +497,9 @@ export const storyWords = {
   result: {
     weekly: { es: "Resumen semanal · tu agencia", en: "Weekly summary · your agency" },
     period: { es: "Semana del lunes al domingo", en: "Monday to Sunday" },
-    basis: { es: "Base: consultas registradas en Nuova en los canales conectados", en: "Basis: enquiries recorded in Nuova on the connected channels" },
+    basis: { es: "Base: consultas registradas en NuovaSolution en los canales conectados", en: "Basis: enquiries recorded in NuovaSolution on the connected channels" },
     demo: { es: "Cifras de ejemplo · no son datos de ninguna agencia", en: "Example figures · not any agency's data" },
-    handled: { title: { es: "Lo que atendió Nuova", en: "What Nuova handled" }, value: "23", line: { es: "consultas respondidas y registradas · WhatsApp 13 · email 10 · la entrega al cliente no se mide", en: "enquiries answered and recorded · WhatsApp 13 · email 10 · delivery to the customer is not measured" } /* COPY_1019 R-10 */ },
+    handled: { title: { es: "Lo que atendió NuovaSolution", en: "What NuovaSolution handled" }, value: "23", line: { es: "consultas respondidas y registradas · WhatsApp 13 · email 10 · la entrega al cliente no se mide", en: "enquiries answered and recorded · WhatsApp 13 · email 10 · delivery to the customer is not measured" } /* COPY_1019 R-10 */ },
     chances: { title: { es: "Oportunidades que han surgido", en: "Opportunities that came up" }, value: "6", line: { es: "visitas pedidas, 4 acordadas por el equipo (la de Laura entre ellas) · 2 valoraciones pedidas", en: "viewings asked for, 4 agreed by the team (Laura's among them) · 2 valuations asked for" } /* HANDOVER_1021 A-13 */ },
     next: { title: { es: "Lo que toca hacer", en: "What to do next" }, value: "2", line: { es: "cosas esperan a una persona: la valoración de los Keller y la respuesta de Sofía", en: "things wait for a person: the Kellers' valuation and Sofía's reply" } },
     openTitle: { es: "Sigue abierto", en: "Still open" },
@@ -518,7 +518,7 @@ export const storyWords = {
     title: { es: "Una publicación de tu inmueble, aprobada por ti, y cada comentario en su ficha.", en: "A post of your listing, approved by you, and every comment in a record." },
     // Closing order 26.10. §6: a comment lands on the commenter's record (the one they already have, or a new one); repeated comments are
     // not shown as ever new leads. WORKING, for Copy.
-    line: { es: "Nuova prepara el texto con la foto y los datos del inmueble, tú lo apruebas, se publica en tu cuenta. Un comentario público con una pregunta queda en la ficha de quien lo escribe, con el inmueble; la respuesta la escribe una persona de tu equipo.", en: "Nuova prepares the text with the listing's photo and data, you approve it, it is published on your account. A public comment with a question lands on the commenter's record, with the listing; a person on your team writes the reply." },
+    line: { es: "NuovaSolution prepara el texto con la foto y los datos del inmueble, tú lo apruebas, se publica en tu cuenta. Un comentario público con una pregunta queda en la ficha de quien lo escribe, con el inmueble; la respuesta la escribe una persona de tu equipo.", en: "NuovaSolution prepares the text with the listing's photo and data, you approve it, it is published on your account. A public comment with a question lands on the commenter's record, with the listing; a person on your team writes the reply." },
     inbound: { es: "Un inmueble de tu cartera con sus fotos y datos.", en: "A listing from your portfolio with its photos and data." },
     did: { es: "Prepara la publicación, espera tu aprobación, la publica y lleva cada pregunta pública a la ficha de quien la hace.", en: "Prepares the post, waits for your approval, publishes it and takes each public question to the record of the person asking." },
     result: { es: "Un contacto con el inmueble y su pregunta en la ficha. No es una consulta atendida: es una consulta nueva para una persona.", en: "A contact with the listing and the question on a record. Not an enquiry handled: a new enquiry for a person." },
@@ -527,7 +527,7 @@ export const storyWords = {
       account: "@tu_agencia",
       caption: { es: "Dos dormitorios, terraza al sur y garaje en la zona del puerto de Estepona. 78 m², a dos calles del paseo. ¿Quieres verlo? Escríbenos.", en: "Two bedrooms, a south-facing terrace and a garage in Estepona's marina area. 78 m², two streets from the promenade. Want to see it? Write to us." },
       exampleCaption: { es: "Ejemplo: así funcionará cuando la plataforma lo apruebe.", en: "Example: how it will work once the platform approves it." }, // COPY_SYNC_1024 X-13
-      draftLabel: { es: "Borrador preparado por Nuova · miércoles 11:40", en: "Draft prepared by Nuova · Wednesday 11:40" },
+      draftLabel: { es: "Borrador preparado por NuovaSolution · miércoles 11:40", en: "Draft prepared by NuovaSolution · Wednesday 11:40" },
       approved: { es: "Aprobada por ti · miércoles 12:10", en: "Approved by you · Wednesday 12:10" },
       published: { es: "Publicada en tu cuenta · jueves 09:00", en: "Published on your account · Thursday 09:00" },
       nextTitle: { es: "Siguiente paso", en: "Next step" },
@@ -540,7 +540,7 @@ export const storyWords = {
     commenter: "Marta G.",
     replyLabel: { es: "Respuesta pública · la escribe una persona de tu equipo", en: "Public reply · written by a person on your team" },
     reply: "Gracias por tu interés, Marta. Te escribimos por privado.",
-    noAvailability: { es: "Nuova no responde en público por sí sola; deja el comentario como contacto nuevo en su ficha. La respuesta no afirma disponibilidad.", en: "Nuova does not reply in public on its own; it leaves the comment as a new contact on a record. The reply claims no availability." },
+    noAvailability: { es: "NuovaSolution no responde en público por sí sola; deja el comentario como contacto nuevo en su ficha. La respuesta no afirma disponibilidad.", en: "NuovaSolution does not reply in public on its own; it leaves the comment as a new contact on a record. The reply claims no availability." },
     noAds: { es: "No se crea ninguna campaña ni se gasta nada: solo lo que ya publicas. Los comentarios y las cifras son de ejemplo.", en: "No campaign is created and nothing is spent: only what you already publish. The comments and the figures are examples." },
   },
 };

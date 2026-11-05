@@ -30,6 +30,11 @@ export function Hero({ locale }: { locale: Locale }) {
     <>
       <section aria-labelledby="hero-h1" data-hero="film" className="hf">
         <HeroFilm src={FILM} poster={POSTER} label={l(w.film)} pause={l(w.pause)} play={l(w.play)} />
+        {/* the brand moment (05.11., point 2): the logo alone over the film for a breath, then the words rise (CSS; none with reduced motion) */}
+        <div className="hf-brand" aria-hidden="true" data-hero-brand>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/logo-tight.png" alt="" width={1600} height={320} decoding="async" fetchPriority="high" />
+        </div>
         <div className="container-default hf-content">
           <div className="hf-words" data-hero-words>
             <p className="hf-eyebrow t-eyebrow t-eyebrow-l">{l(w.eyebrow)}</p>

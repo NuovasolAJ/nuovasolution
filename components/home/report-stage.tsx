@@ -1,19 +1,21 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock, Eye, Trophy } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
+import { claim, claimWords } from "@/lib/claims";
 import { CountUp } from "@/components/ui/count-up";
 import { Rise, useSeen } from "@/components/ui/motion";
 import { cn } from "@/lib/utils";
 
 /**
- * The report (the owner's order of 03.11.2026, point 5; Copy 1102 v2 §4): no box of three numbers but the report itself as
- * the agency reads it: the week's trend as a chart that draws when it comes into view, the channels, the opportunities and
- * what is still open, each figure with its definition, "No medido" as text and never as 0. The look follows the weekly report
- * of the agency login (components/app/weekly-report.tsx) and /example-report. Labelled "Datos de ejemplo".
+ * The report (the owner's orders of 03.11. point 5 and 05.11. point 8; Copy 1102 v2 §4): the report itself as the agency
+ * reads it: the week's trend as a chart that draws when it comes into view, every channel (WhatsApp, e-mail, web form, phone,
+ * Instagram; the ones not live marked quietly from lib/claims.ts), three insights the product can measure (the best channel,
+ * the peak hour, from enquiry to viewing), the figures with their definitions, "No medido" as text and never as 0. Labelled
+ * "Datos de ejemplo". The look follows the weekly report of the agency login and /example-report.
  */
 export function ReportStage({ locale }: { locale: Locale }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
@@ -25,7 +27,10 @@ export function ReportStage({ locale }: { locale: Locale }) {
   const metrics = l(w.metrics);
   const channels = l(w.channels);
   const chMax = Math.max(...channels.map((c) => c.v));
+  const insights = l(w.insights);
+  const insightIcons = [Trophy, Clock, Eye];
   const grow = (i: number) => (reduce ? {} : { initial: { scaleY: 0 }, animate: seen ? { scaleY: 1 } : { scaleY: 0 }, transition: { delay: 0.15 + i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } });
+  const soonWord = (k: Parameters<typeof claim>[0]) => (claim(k) === "included" ? null : <span className="rep-soon" data-report-soon={k}>{claimWords[claim(k)][locale].toLowerCase()}</span>);
 
   return (
     <section id="report" aria-labelledby="rep-h" className="rep" data-report>
@@ -42,6 +47,20 @@ export function ReportStage({ locale }: { locale: Locale }) {
               <p className="rep-paper-title tnum">{l(w.header)}</p>
               <span className="rep-example" data-report-example>{l(w.example)}</span>
             </div>
+
+            {/* the insights: what the information brings (05.11., point 8) */}
+            <ul className="rep-insights" data-report-insights>
+              {insights.map((it, i) => {
+                const Icon = insightIcons[i];
+                return (
+                  <m.li key={it.k} className="rep-insight" data-report-insight={i + 1} {...(reduce ? {} : { initial: { opacity: 0, y: 10 }, animate: seen ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }, transition: { delay: 0.1 + i * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } })}>
+                    <span className="rep-insight-icon" aria-hidden="true"><Icon size={16} strokeWidth={2} /></span>
+                    <span className="rep-insight-k">{it.k}{soonWord(it.claim)}</span>
+                    <span className="rep-insight-v tnum">{it.v}</span>
+                  </m.li>
+                );
+              })}
+            </ul>
 
             <div className="rep-grid">
               {/* the trend */}
@@ -77,17 +96,20 @@ export function ReportStage({ locale }: { locale: Locale }) {
                 })}
               </dl>
 
-              {/* by channel */}
+              {/* by channel: every channel, the ones not live marked quietly */}
               <div className="rep-channels" data-report-chart="channels">
                 <p className="rep-chart-title">{l(w.channelsTitle)}</p>
                 <ul>
-                  {channels.map((c, i) => (
-                    <li key={c.name} className="rep-channel">
-                      <span className="rep-channel-name">{c.name}</span>
-                      <span className="rep-channel-track"><m.span className="rep-channel-fill" data-channel={c.name.toLowerCase()} style={{ width: `${(c.v / chMax) * 100}%`, transformOrigin: "left" }} {...(reduce ? {} : { initial: { scaleX: 0 }, animate: seen ? { scaleX: 1 } : { scaleX: 0 }, transition: { delay: 0.5 + i * 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } })} /></span>
-                      <span className="rep-channel-value tnum">{c.v}</span>
-                    </li>
-                  ))}
+                  {channels.map((c, i) => {
+                    const live = claim(c.claim) === "included";
+                    return (
+                      <li key={c.name} className={cn("rep-channel", !live && "is-soon")} data-report-channel={c.name.toLowerCase().replace(/\s+/g, "-")} data-channel-state={claim(c.claim)}>
+                        <span className="rep-channel-name">{c.name}{soonWord(c.claim)}</span>
+                        <span className="rep-channel-track"><m.span className="rep-channel-fill" data-channel={c.name.toLowerCase()} style={{ width: `${Math.max(1, (c.v / chMax) * 100)}%`, transformOrigin: "left" }} {...(reduce ? {} : { initial: { scaleX: 0 }, animate: seen ? { scaleX: 1 } : { scaleX: 0 }, transition: { delay: 0.5 + i * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } })} /></span>
+                        <span className="rep-channel-value tnum">{c.v}</span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
 

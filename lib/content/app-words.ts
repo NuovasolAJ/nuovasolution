@@ -2,7 +2,7 @@ import type { Locale } from "@/lib/i18n/config";
 
 /**
  * Words of the agency login area (master order 2026-10-10 §8; final order 2026-10-12 §8): the agency home and the
- * weekly report. The report answers three questions first (what Nuova handled, which chances came up, what to do
+ * weekly report. The report answers three questions first (what NuovaSolution handled, which chances came up, what to do
  * next) and keeps the details under them. WORKING text by the implementer; the mail wording follows Copy's
  * WEEKLY_REPORT_MAIL_v1.md.
  */
@@ -16,7 +16,7 @@ export const appWords = {
     trial: { es: "Prueba activa · paquete {plan} · quedan {days} días", en: "Trial active · {plan} package · {days} days left" },
     trialNoDays: { es: "Prueba activa · paquete {plan}", en: "Trial active · {plan} package" },
     cards: {
-      reports: { title: { es: "Informe semanal", en: "Weekly report" }, line: { es: "Qué atendió Nuova, qué chances hay abiertas y qué toca hacer.", en: "What Nuova handled, which chances are open and what to do next." }, cta: { es: "Ver el informe", en: "See the report" } },
+      reports: { title: { es: "Informe semanal", en: "Weekly report" }, line: { es: "Qué atendió NuovaSolution, qué chances hay abiertas y qué toca hacer.", en: "What NuovaSolution handled, which chances are open and what to do next." }, cta: { es: "Ver el informe", en: "See the report" } },
       setup: { title: { es: "Configuración de la agencia", en: "Agency setup" }, line: { es: "Datos, equipo, canales y CRM. El progreso se guarda.", en: "Details, team, channels and CRM. Progress is saved." }, cta: { es: "Abrir la configuración", en: "Open the setup" } },
       social: { title: { es: "Instagram", en: "Instagram" }, line: { es: "Publicaciones, comentarios y mensajes de tu cuenta conectada.", en: "Posts, comments and messages of your connected account." }, cta: { es: "Abrir", en: "Open" } },
     },
@@ -27,17 +27,17 @@ export const appWords = {
   report: {
     eyebrow: { es: "Informe semanal", en: "Weekly report" },
     h1: { es: "Lo que pasó esta semana en tu agencia", en: "What happened in your agency this week" },
-    lead: { es: "Recuentos de los registros que Nuova guarda en los canales conectados. Lo que no se mide no aparece como cero.", en: "Counts of the records Nuova keeps on the connected channels. What is not measured never appears as zero." },
+    lead: { es: "Recuentos de los registros que NuovaSolution guarda en los canales conectados. Lo que no se mide no aparece como cero.", en: "Counts of the records NuovaSolution keeps on the connected channels. What is not measured never appears as zero." },
     demo: { es: "Datos de demostración: la semana del ejemplo de la página de inicio. No son datos de ninguna agencia.", en: "Demonstration data: the week of the home page example. Not any agency's data." },
     /** The three questions (final order §8). */
-    handled: { title: { es: "Lo que atendió Nuova", en: "What Nuova handled" }, line: { es: "{answered} consultas respondidas y registradas de {received} recibidas", en: "{answered} enquiries answered and recorded out of {received} received" } },
+    handled: { title: { es: "Lo que atendió NuovaSolution", en: "What NuovaSolution handled" }, line: { es: "{answered} consultas respondidas y registradas de {received} recibidas", en: "{answered} enquiries answered and recorded out of {received} received" } },
     chances: { title: { es: "Chances que han surgido", en: "Chances that came up" }, line: { es: "{viewings} visitas pedidas, {confirmed} acordadas por el equipo · {valuations} valoraciones pedidas", en: "{viewings} viewings asked for, {confirmed} agreed by the team · {valuations} valuations asked for" } /* HANDOVER_1021 A-16 */ },
     next: { title: { es: "Lo que toca hacer", en: "What to do next" }, line: { es: "{open} cosas esperan a una persona de tu equipo", en: "{open} things wait for a person in your team" } },
     detailsTitle: { es: "Los detalles", en: "The details" },
     period: { es: "Periodo", en: "Period" },
     generated: { es: "Generado", en: "Generated" },
     basis: { es: "Base de datos", en: "Data basis" },
-    basisLine: { es: "Consultas registradas en Nuova en los canales conectados: {channels}.", en: "Enquiries recorded in Nuova on the connected channels: {channels}." },
+    basisLine: { es: "Consultas registradas en NuovaSolution en los canales conectados: {channels}.", en: "Enquiries recorded in NuovaSolution on the connected channels: {channels}." },
     channels: { whatsapp: { es: "WhatsApp", en: "WhatsApp" }, email: { es: "email", en: "email" }, webform: { es: "formulario web", en: "web form" }, phone: { es: "teléfono", en: "phone" } },
     counts: {
       received: { es: "Consultas recibidas", en: "Enquiries received" },
@@ -69,11 +69,11 @@ export const appWords = {
   email: {
     eyebrow: { es: "El email del lunes", en: "Monday's email" },
     h1: { es: "Así llega el resumen semanal", en: "How the weekly summary arrives" },
-    lead: { es: "Un email corto con las cifras principales y un botón al informe completo. Es la plantilla que recibirá tu agencia cuando el envío semanal esté activo, con el mismo diseño que todos los correos de Nuova.", en: "A short email with the main figures and one button to the full report. It is the template your agency will receive once the weekly send is active, in the same design as every Nuova email." }, // COPY_SYNC_1024 X-1 (owner 25.10.: no German word)
-    subjectAnswered: { es: "Tu semana en Nuova: {answered} consultas atendidas", en: "Your week in Nuova: {answered} enquiries answered" },
-    subjectReceived: { es: "Tu semana en Nuova: {received} consultas recibidas", en: "Your week in Nuova: {received} enquiries received" },
-    subjectNone: { es: "Tu semana en Nuova", en: "Your week in Nuova" },
-    subjectZero: { es: "Tu semana en Nuova: ninguna consulta esta semana", en: "Your week in Nuova: no enquiries this week" },
+    lead: { es: "Un email corto con las cifras principales y un botón al informe completo. Es la plantilla que recibirá tu agencia cuando el envío semanal esté activo, con el mismo diseño que todos los correos de NuovaSolution.", en: "A short email with the main figures and one button to the full report. It is the template your agency will receive once the weekly send is active, in the same design as every NuovaSolution email." }, // COPY_SYNC_1024 X-1 (owner 25.10.: no German word)
+    subjectAnswered: { es: "Tu semana en NuovaSolution: {answered} consultas atendidas", en: "Your week in NuovaSolution: {answered} enquiries answered" },
+    subjectReceived: { es: "Tu semana en NuovaSolution: {received} consultas recibidas", en: "Your week in NuovaSolution: {received} enquiries received" },
+    subjectNone: { es: "Tu semana en NuovaSolution", en: "Your week in NuovaSolution" },
+    subjectZero: { es: "Tu semana en NuovaSolution: ninguna consulta esta semana", en: "Your week in NuovaSolution: no enquiries this week" },
     eyebrowMail: { es: "Resumen semanal", en: "Weekly summary" },
     greeting: { es: "Hola {name},", en: "Hello {name}," },
     opening: { es: "Esto es lo que pasó en {agency} del {from} al {to}.", en: "Here is what happened at {agency} from {from} to {to}." },
@@ -94,7 +94,7 @@ export const appWords = {
     button: { es: "Ver el informe completo", en: "See the full report" },
     underButton: { es: "Entras con tu cuenta de agencia.", en: "You sign in with your agency account." },
     close: { es: "Si algo no cuadra, respóndenos a este correo.", en: "If something does not add up, reply to this mail." },
-    footer: { es: "Recibes este email porque eres administrador de tu agencia en Nuova. Las cifras son recuentos de los registros de Nuova en tus canales conectados.", en: "You receive this email because you are an administrator of your agency in Nuova. The figures are counts of Nuova's records on your connected channels." },
+    footer: { es: "Recibes este email porque eres administrador de tu agencia en NuovaSolution. Las cifras son recuentos de los registros de NuovaSolution en tus canales conectados.", en: "You receive this email because you are an administrator of your agency in NuovaSolution. The figures are counts of NuovaSolution's records on your connected channels." },
     logoAlt: "NuovaSolution",
   },
 } as const satisfies Record<string, Record<string, unknown>>;

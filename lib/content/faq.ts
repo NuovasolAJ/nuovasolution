@@ -21,7 +21,7 @@ export interface FaqGroup {
 
 export const faqFrame = {
   eyebrow: { en: "Questions", es: "Preguntas" },
-  h1: { en: "Straight answers about what Nuova does today", es: "Respuestas claras sobre lo que hace Nuova hoy" },
+  h1: { en: "Straight answers about what NuovaSolution does today", es: "Respuestas claras sobre lo que hace NuovaSolution hoy" },
   lead: {
     en: "If something is not part of the product yet, this page says so. Nothing here is a plan for later.",
     es: "Si algo todavía no forma parte del producto, esta página lo dice. Nada de lo que hay aquí es un plan para más adelante.",
@@ -32,11 +32,11 @@ export const faqFrame = {
 export const faqGroups: FaqGroup[] = [
   {
     id: "what",
-    title: { en: "What Nuova does", es: "Qué hace Nuova" },
+    title: { en: "What NuovaSolution does", es: "Qué hace NuovaSolution" },
     items: [
       {
         kb: "Q-01",
-        q: { en: "What does Nuova actually do?", es: "¿Qué hace Nuova exactamente?" },
+        q: { en: "What does NuovaSolution actually do?", es: "¿Qué hace NuovaSolution exactamente?" },
         a: {
           en: "It answers the enquiries your agency receives, records each one with what the customer asked for, and turns a viewing request into a task your team takes and closes.",
           es: "Responde a las consultas que recibe tu agencia, registra cada una con lo que ha pedido el cliente y convierte una petición de visita en una tarea que tu equipo toma y cierra.",

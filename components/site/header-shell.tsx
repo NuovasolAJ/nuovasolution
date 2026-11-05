@@ -64,9 +64,12 @@ export function HeaderShell({
     const onScroll = () => {
       setScrolled(window.scrollY > 8);
       // the film hero: the header is transparent only while the film stands under it (on a phone the preview band comes first)
+      // the owner's finding D01 (05.11.): transparent only while the page stands at its top over the film; from the first scroll the bar
+      // has its own ground (glass with blur), so nothing of the page runs over the logo and the menu
       const hero = document.querySelector('[data-hero="film"]');
       const r = hero?.getBoundingClientRect();
-      setOverFilm(Boolean(r && r.top <= 4 && r.bottom > 60));
+      // (the preview deployments carry a band above the hero, so the hero's own top edge is the measure, not scrollY)
+      setOverFilm(Boolean(r && r.top <= 4 && r.top >= -12 && r.bottom > 60));
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -154,7 +157,7 @@ export function HeaderShell({
         data-scrolled={scrolled ? "true" : "false"}
         data-over-film={overFilm && !menuOpen && !sheetOpen ? "true" : "false"}
         className={cn(
-          "fixed inset-x-0 top-0 z-[100] h-[var(--header-h)] bg-[color:rgba(251,250,247,0.86)] backdrop-blur-md transition-[box-shadow,border-color] duration-control",
+          "fixed inset-x-0 top-0 z-[100] h-[var(--header-h)] bg-[color:rgba(255,255,255,0.88)] backdrop-blur-md transition-[background-color,box-shadow,border-color] duration-control",
           scrolled || menuOpen || sheetOpen ? "border-b border-line-hairline" : "border-b border-transparent",
         )}
       >

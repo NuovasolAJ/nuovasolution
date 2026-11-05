@@ -1,30 +1,33 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
-import { Bell, Check, Clock, Mail, MessageCircle, Phone, PanelsTopLeft, Send, ShieldCheck } from "lucide-react";
+import { Bell, Check, ChevronRight, Clock, Instagram, Mail, MessageCircle, Mic, Phone, PanelsTopLeft, Send, ShieldCheck, Tag, X } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { home1103, statusWords, type Status } from "@/lib/content/home-1103";
+import { claim, claimWords, type ClaimKey } from "@/lib/claims";
 import { Rise } from "@/components/ui/motion";
 import { cn } from "@/lib/utils";
 
 /**
- * The core functions as product surfaces (the owner's order of 03.11.2026, point 4; research 1103 R5 Attio, S1 Linear,
- * Aceternity's sticky scroll reveal): at the left the six functions, each with one line and its state; at the right one sticky
- * stage that shows the product surface of the function in view. On a phone every function stands with its own surface in a
- * linear stack (report §8: no scroll trap on mobile). Every surface shows the one story (Laura, Elena, the example agency);
- * the states follow the claims lines (the alert, the task list, matching and follow-ups are in preparation).
+ * The eight functions as product surfaces (the owner's orders of 03.11. point 4 and 05.11. points 5–7): at the left the eight
+ * scenes with one line and their state, a progress mark 01–08 and the active card lifted; at the right one sticky stage that
+ * swaps the product surface of the scene in view with a soft rise. The stage is clickable: it advances to the next scene (and
+ * the keyboard does the same). "Inmuebles que encajan" shows the licensed sample photographs of the media register; "El día de
+ * tu equipo" opens a small Daily view after the team's app (staff-v13) with the voice bar when "Tomar" is pressed. On a phone
+ * every scene stands with its own surface in a linear stack. Every state word comes from lib/claims.ts.
  */
 type Key = (typeof home1103.functions.items)[number]["key"];
 
 export function Functions({ locale }: { locale: Locale }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const w = home1103.functions;
+  const keys = w.items.map((i) => i.key);
   const [active, setActive] = useState<Key>("priority");
   const reduce = useReducedMotion();
   const refs = useRef<Record<string, HTMLLIElement | null>>({});
+  const idx = keys.indexOf(active);
 
-  // the function nearest the middle of the window is the active one (desktop only: the stage is sticky from 1024 px)
   useEffect(() => {
     if (typeof IntersectionObserver === "undefined") return;
     const io = new IntersectionObserver((entries) => {
@@ -34,8 +37,11 @@ export function Functions({ locale }: { locale: Locale }) {
     return () => io.disconnect();
   }, []);
 
+  const go = (k: Key) => { setActive(k); refs.current[k]?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); };
+  const next = () => go(keys[(idx + 1) % keys.length]);
+
   return (
-    <section id="functions" aria-labelledby="fn-h" className="fn" data-functions data-fn-active={active}>
+    <section id="functions" aria-labelledby="fn-h" className="fn" data-functions data-fn-active={active} data-fn-index={idx + 1}>
       <div className="container-default">
         <Rise className="fn-head">
           <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
@@ -45,27 +51,36 @@ export function Functions({ locale }: { locale: Locale }) {
           <ol className="fn-list">
             {w.items.map((it, i) => (
               <li key={it.key} ref={(el) => { refs.current[it.key] = el; }} data-fn={it.key} className={cn("fn-item", active === it.key && "is-active")}>
-                <button type="button" className="fn-item-button" onClick={() => { setActive(it.key); refs.current[it.key]?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); }} aria-pressed={active === it.key} data-fn-button={it.key}>
+                <button type="button" className="fn-item-button" onClick={() => go(it.key)} aria-pressed={active === it.key} data-fn-button={it.key}>
                   <span className="fn-item-no tnum">0{i + 1}</span>
                   <span className="fn-item-words">
                     <span className="fn-item-title">{l(it.title)}</span>
                     <span className="fn-item-line">{l(it.line)}</span>
-                    <span className="fn-item-state"><StatusPill status={it.status} locale={locale} />{it.statusLine && <span className="fn-item-note">{l(it.statusLine)}</span>}</span>
+                    <span className="fn-item-state">
+                      <StatusPill status={claim(it.claim)} locale={locale} />
+                      {it.soon && <span className="fn-item-note" data-fn-soon={it.soon.claim}>{l(it.soon)} · {claimWords[claim(it.soon.claim)][locale].toLowerCase()}</span>}
+                    </span>
                   </span>
                 </button>
-                {/* on a phone the surface stands with its function */}
                 <div className="fn-item-surface" data-fn-surface-inline={it.key}><Surface k={it.key} locale={locale} /></div>
               </li>
             ))}
           </ol>
           <div className="fn-stage" data-fn-stage>
-            <div className="fn-stage-inner">
+            {/* the progress of the scenes (05.11., point 5): 01–08, the active one filled */}
+            <ol className="fn-progress" aria-label={l(w.progress)} data-fn-progress>
+              {keys.map((k, i) => (
+                <li key={k}><button type="button" className={cn("fn-progress-dot", i === idx && "is-on", i < idx && "is-past")} onClick={() => go(k)} aria-label={`${l(w.progress)} ${i + 1}`} aria-current={i === idx ? "step" : undefined}><span className="tnum">0{i + 1}</span></button></li>
+              ))}
+            </ol>
+            <button type="button" className="fn-stage-inner" onClick={next} aria-label={l(w.next)} data-fn-stage-button>
               <AnimatePresence mode="wait" initial={false}>
-                <m.div key={active} initial={reduce ? false : { opacity: 0, y: 18, scale: 0.985 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={reduce ? undefined : { opacity: 0, y: -12, scale: 0.99 }} transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }} className="fn-stage-surface" data-fn-surface={active}>
+                <m.div key={active} initial={reduce ? false : { opacity: 0, y: 22, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={reduce ? undefined : { opacity: 0, y: -16, scale: 0.99 }} transition={{ duration: 0.46, ease: [0.22, 1, 0.36, 1] }} className="fn-stage-surface" data-fn-surface={active}>
                   <Surface k={active} locale={locale} />
                 </m.div>
               </AnimatePresence>
-            </div>
+              <span className="fn-stage-next" aria-hidden="true">{l(w.next)}<ChevronRight size={14} strokeWidth={2.2} /></span>
+            </button>
           </div>
         </div>
       </div>
@@ -87,6 +102,16 @@ export function StatusPill({ status, locale, className }: { status: Status; loca
 /* ---------------------------------------------------------------------------------------------------------------------- */
 const CH_ICON: Record<string, typeof Mail> = { WhatsApp: MessageCircle, Email: Mail, "E-mail": Mail, "Formulario web": PanelsTopLeft, "Web form": PanelsTopLeft, Teléfono: Phone, Phone: Phone };
 
+function Photo({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={src} alt={alt} width={320} height={200} loading="lazy" decoding="async" className={className} />;
+}
+
+function SoonLine({ k, locale, children }: { k: ClaimKey; locale: Locale; children: ReactNode }) {
+  const s = claim(k);
+  return <span className={cn("ps-soon", s === "included" && "is-included")} data-claim={k} data-state={s}>{children} · {claimWords[s][locale].toLowerCase()}</span>;
+}
+
 function Surface({ k, locale }: { k: Key; locale: Locale }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const u = home1103.functions.ui;
@@ -107,7 +132,7 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
             </m.li>
           ))}
         </ul>
-        <m.p className="ps-foot ps-foot-prep" {...stagger(5)}><Bell size={14} strokeWidth={2} aria-hidden="true" />{l(p.alert)}</m.p>
+        <m.p className="ps-foot" {...stagger(4)}><Bell size={14} strokeWidth={2} aria-hidden="true" /><SoonLine k="alert" locale={locale}>{l(p.alert)}</SoonLine></m.p>
       </div>
     );
   }
@@ -139,15 +164,33 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
         <div className="ps-head"><span className="ps-title">{l(p.title)}</span><span className="ps-meta">CRM</span></div>
         <dl className="ps-fields">
           {l(p.fields).map(([kk, v], i) => (
-            <m.div key={kk} className="ps-field" {...stagger(i)}><dt>{kk}</dt><dd>{v}</dd></m.div>
+            <m.div key={kk} className={cn("ps-field", /reconocido|recognised/.test(v) && "is-lit")} {...stagger(i)}><dt>{kk}</dt><dd>{v}</dd></m.div>
           ))}
         </dl>
         <p className="ps-sub">{l(p.history)}</p>
         <ul className="ps-events">
           {l(p.events).map((e, i) => (
-            <m.li key={e.t} {...stagger(6 + i)}><span className="tnum">{e.t}</span><span className="ps-chip"><MessageCircle size={12} strokeWidth={2} aria-hidden="true" className="text-[color:var(--channel-whatsapp)]" />{e.ch}</span><span>{e.what}</span></m.li>
+            <m.li key={i} {...stagger(6 + i)}><span className="tnum">{e.t}</span><span className="ps-chip"><Mail size={12} strokeWidth={2} aria-hidden="true" />{e.ch}</span><span>{e.what}</span></m.li>
           ))}
         </ul>
+        <p className="ps-foot"><SoonLine k="otherLanguages" locale={locale}>{locale === "es" ? "Respuesta en otros idiomas" : "Replies in other languages"}</SoonLine></p>
+      </div>
+    );
+  }
+  if (k === "inbox") {
+    const p = u.inbox;
+    return (
+      <div className="ps" data-ps="inbox">
+        <div className="ps-head"><span className="ps-title">{l(p.title)}</span><span className="ps-meta">Gmail</span></div>
+        <ul className="ps-rows">
+          {l(p.rows).map((r, i) => (
+            <m.li key={r.from} className="ps-row ps-row-inbox" {...stagger(i)}>
+              <span className="ps-row-main"><span className="ps-row-who">{r.from}</span><span className="ps-row-sub">{r.subject}</span></span>
+              <span className="ps-tags"><span className="ps-tag"><Tag size={11} strokeWidth={2.2} aria-hidden="true" />{r.label}</span><span className="ps-tag ps-tag-origin" data-origin>{l(p.originHead)}: {r.origin}</span></span>
+            </m.li>
+          ))}
+        </ul>
+        <p className="ps-foot"><SoonLine k="origin" locale={locale}>{locale === "es" ? "El origen en la ficha" : "The origin on the record"}</SoonLine></p>
       </div>
     );
   }
@@ -155,12 +198,12 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
     const p = u.matching;
     return (
       <div className="ps" data-ps="matching">
-        <div className="ps-head"><span className="ps-title">{l(p.title)}</span></div>
+        <div className="ps-head"><span className="ps-title">{l(p.title)}</span><span className="ps-meta">{l(p.photoNote)}</span></div>
         <p className="ps-because">{l(p.because)}</p>
         <ul className="ps-listings">
           {l(p.rows).map((r, i) => (
             <m.li key={r.ref} className="ps-listing" {...stagger(i)}>
-              <span className="ps-listing-art" aria-hidden="true" data-art={i} />
+              <Photo src={r.photo} alt={r.alt} className="ps-listing-photo" />
               <span className="ps-listing-main"><span className="ps-row-who">{r.t}</span><span className="ps-row-sub">{r.ref} · {r.place}</span><span className="ps-fit"><Check size={12} strokeWidth={3} aria-hidden="true" />{r.fit}</span></span>
               <span className="ps-price tnum">{r.price}</span>
             </m.li>
@@ -176,7 +219,7 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
       <div className="ps" data-ps="followup">
         <div className="ps-head"><span className="ps-title">{l(p.title)}</span></div>
         <m.div className="ps-listing ps-listing-new" {...stagger(0)}>
-          <span className="ps-listing-art" aria-hidden="true" data-art={2} />
+          <Photo src={p.photo} alt={locale === "es" ? "Salón de un piso reformado · foto de muestra" : "Living room of a renovated flat · sample photo"} className="ps-listing-photo" />
           <span className="ps-listing-main"><span className="ps-row-who">{l(p.listing)}</span><span className="ps-fit"><Check size={12} strokeWidth={3} aria-hidden="true" />{l(p.fits)}</span></span>
         </m.div>
         <m.p className="ps-permission" {...stagger(1)}><ShieldCheck size={15} strokeWidth={2} aria-hidden="true" />{l(p.permission)}</m.p>
@@ -185,19 +228,79 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
       </div>
     );
   }
-  const p = u.team;
+  if (k === "social") {
+    const p = u.social;
+    return (
+      <div className="ps" data-ps="social">
+        <div className="ps-head"><span className="ps-title"><Instagram size={14} strokeWidth={2} aria-hidden="true" className="inline -mt-0.5 mr-1.5" />{l(p.title)}</span><span className="ps-meta">{l(p.state)}</span></div>
+        <m.div className="ps-post" {...stagger(0)}>
+          <Photo src={p.photo} alt={locale === "es" ? "Villa con piscina · foto de muestra" : "Villa with pool · sample photo"} className="ps-post-photo" />
+          <p className="ps-post-caption">{l(p.caption)}</p>
+        </m.div>
+        <m.div className="ps-post-actions" {...stagger(1)}>
+          <span className="ps-action ps-action-inline"><Check size={14} strokeWidth={2.4} aria-hidden="true" />{l(p.approve)}</span>
+          <span className="ps-action-quiet">{l(p.edit)}</span>
+        </m.div>
+        <p className="ps-foot">{l(p.rule)} <SoonLine k="instagram" locale={locale}>Instagram</SoonLine></p>
+      </div>
+    );
+  }
+  return <TeamSurface locale={locale} />;
+}
+
+/** The team's day with the small Daily view (after staff-v13): "Tomar" opens the list with the voice bar. */
+function TeamSurface({ locale }: { locale: Locale }) {
+  const l = <T,>(x: Record<Locale, T>) => x[locale];
+  const p = home1103.functions.ui.team;
+  const reduce = useReducedMotion();
+  const [open, setOpen] = useState(false);
+  const [taken, setTaken] = useState<number | null>(null);
+  const stagger = (i: number) => (reduce ? {} : { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, transition: { delay: 0.08 + i * 0.09, duration: 0.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } });
+  const rows = l(p.rows);
   return (
-    <div className="ps" data-ps="team">
-      <div className="ps-head"><span className="ps-title">{l(p.title)}</span><span className="ps-meta">3</span></div>
-      <m.p className="ps-assistant" {...stagger(0)}>{l(p.assistant)}</m.p>
-      <ul className="ps-rows">
-        {l(p.rows).map((r, i) => (
-          <m.li key={r.who} className="ps-task" {...stagger(1 + i)}>
-            <span className="ps-task-main"><span className="ps-task-kind">{r.kind}</span><span className="ps-row-who">{r.who}</span><span className="ps-row-sub">{r.why}</span><span className="ps-task-step">{r.step}</span></span>
-            <span className={cn("ps-take", r.state.startsWith("Tomada") || r.state.startsWith("Taken") ? "is-taken" : "")}>{r.state.startsWith("Tomada") || r.state.startsWith("Taken") ? r.state : l(p.take)}</span>
-          </m.li>
-        ))}
-      </ul>
+    <div className="ps" data-ps="team" data-daily={open ? "open" : "closed"}>
+      <div className="ps-head"><span className="ps-title">{l(p.title)}</span><span className="ps-meta">{rows.length}</span></div>
+      {!open ? (
+        <>
+          <m.p className="ps-assistant" {...stagger(0)}>{l(p.assistant)}</m.p>
+          <ul className="ps-rows">
+            {rows.map((r, i) => {
+              const isTaken = r.state.startsWith("Tomada") || r.state.startsWith("Taken");
+              return (
+                <m.li key={r.who} className="ps-task" {...stagger(1 + i)}>
+                  <span className="ps-task-main"><span className="ps-task-kind">{r.kind}</span><span className="ps-row-who">{r.who}</span><span className="ps-row-sub">{r.why}</span><span className="ps-task-step">{r.step}</span></span>
+                  {isTaken ? <span className="ps-take is-taken">{r.state}</span> : <span role="button" tabIndex={0} className="ps-take" onClick={(e) => { e.stopPropagation(); setTaken(i); setOpen(true); }} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); setTaken(i); setOpen(true); } }} data-ps-take={i}>{l(p.take)}</span>}
+                </m.li>
+              );
+            })}
+          </ul>
+        </>
+      ) : (
+        <div className="daily" onClick={(e) => e.stopPropagation()} data-daily-view>
+          <div className="daily-top"><span className="daily-app">{l(p.daily.app)}</span><span className="daily-title">{l(p.daily.title)}</span><span role="button" tabIndex={0} className="daily-close" aria-label={l(p.daily.close)} onClick={() => setOpen(false)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setOpen(false); }}><X size={16} strokeWidth={2.2} /></span></div>
+          <p className="daily-section">{l(p.daily.sections)[0]}</p>
+          <div className="daily-card is-urgent">
+            <p className="daily-card-title">{rows[0].kind}: {rows[0].who}</p>
+            <p className="daily-card-line">{rows[0].why} · {rows[0].step}</p>
+            <span className={cn("daily-chip", taken === 0 && "is-taken")}>{taken === 0 ? l(p.taken) : rows[0].state}</span>
+          </div>
+          <p className="daily-section">{l(p.daily.sections)[1]}</p>
+          {rows.slice(1).map((r, i) => (
+            <div key={r.who} className="daily-card">
+              <p className="daily-card-title">{r.kind}: {r.who}</p>
+              <p className="daily-card-line">{r.why} · {r.step}</p>
+              <span className={cn("daily-chip", (taken === i + 1 || r.state.startsWith("Tomada") || r.state.startsWith("Taken")) && "is-taken")}>{taken === i + 1 ? l(p.taken) : r.state}</span>
+            </div>
+          ))}
+          <div className="daily-voice" data-daily-voice>
+            <span className="daily-mic" aria-hidden="true"><Mic size={16} strokeWidth={2.2} /></span>
+            <span className="daily-question">«{l(p.daily.question)}»</span>
+            <span className="daily-wave" aria-hidden="true"><i /><i /><i /><i /><i /></span>
+          </div>
+          <p className="daily-answer">{l(p.daily.answer)}</p>
+          <p className="ps-foot">{l(p.daily.note)} <SoonLine k="taskList" locale={locale}>{locale === "es" ? "Lista y asistente" : "List and assistant"}</SoonLine></p>
+        </div>
+      )}
     </div>
   );
 }

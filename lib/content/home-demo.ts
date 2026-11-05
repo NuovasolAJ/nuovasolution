@@ -91,7 +91,7 @@ export const demoWords = {
   replay: { es: "Repetir demo", en: "Replay demo" },
   fictional: { es: "Demo con datos ficticios", en: "Demo with fictional data" },
   /** The one automation mark (Copy 1102 v2 §1.2): on the reply, nowhere else. */
-  assistant: { es: "Asistente automático de la agencia", en: "The agency's automated assistant" },
+  assistant: { es: "Asistente automático", en: "Automated assistant" },
   record: { es: "Ficha de cliente", en: "Customer record" },
   state: { es: "Estado", en: "State" },
   priority: { es: "Prioridad", en: "Priority" },
@@ -119,7 +119,8 @@ export const demoChannels: DemoChannel[] = [
       typingAt: 1,
       replyAt: 2,
       // the owner's wording of 03.11. (no "Anoto…", no question that contradicts a buyer)
-      reply: T("Perfecto, Laura: Estepona, 2 dormitorios, hasta 320.000 €. ¿Ya tienes la financiación resuelta o te ayudamos a valorarlo?", "Perfect, Laura: Estepona, 2 bedrooms, up to €320,000. Is your financing sorted, or shall we help you look at it?"),
+      // the owner's wording of 05.11.: human, no promise beyond what the team does
+      reply: T("¡Hola Laura! Gracias por escribirnos. Buscas en Estepona, 2 dormitorios y hasta 320.000 €, ¿verdad? Elena, de nuestro equipo, te escribe hoy con opciones. ¿Te viene mejor por la mañana o por la tarde?", "Hi Laura! Thank you for writing. You are looking in Estepona, 2 bedrooms, up to €320,000, right? Elena from our team will write to you today with options. Is the morning or the afternoon better for you?"),
       replyTime: "11:21",
     },
     record: {
@@ -138,8 +139,8 @@ export const demoChannels: DemoChannel[] = [
       next: { v: T("Elena le propone día y hora para la visita.", "Elena proposes a day and time for the viewing."), sub: T("Una petición de visita no es una cita: la confirma una persona.", "A viewing request is not an appointment: a person confirms it."), at: 11 },
     },
     states: [
-      { v: T("Hoy: respuesta en español y ficha guardada.", "Today: a reply in Spanish and the record saved."), kind: "available", at: 11 },
-      { v: T("En preparación: el aviso a Elena y su lista de tareas.", "In preparation: the alert to Elena and her task list."), kind: "preparing", at: 11 },
+      { v: T("Incluido: la respuesta y la ficha con su prioridad.", "Included: the reply and the record with its priority."), kind: "available", at: 11 },
+      { v: T("Próximamente: el aviso a Elena y su lista de tareas.", "Coming soon: the alert to Elena and her task list."), kind: "preparing", at: 11 },
     ],
     timings: [0, 900, 1100, 500, 350, 350, 350, 350, 350, 600, 500, 600],
   },
@@ -164,7 +165,7 @@ export const demoChannels: DemoChannel[] = [
       body: T("Buenos días, quiero vender mi piso en Fuengirola, 3 dormitorios cerca del paseo marítimo, y me gustaría una valoración. ¿Podrían venir esta semana?", "Good morning, I want to sell my flat in Fuengirola, 3 bedrooms near the seafront, and I would like a valuation. Could you come this week?"),
       replyAt: 2,
       replyTime: T("martes 11:25", "Tuesday 11:25"),
-      reply: T("Hola, Carmen. Gracias por escribirnos: un piso de 3 dormitorios en Fuengirola para vender, con valoración esta semana. ¿Qué día te viene mejor para la visita, por la mañana o por la tarde?", "Hello Carmen. Thank you for writing: a 3-bedroom flat in Fuengirola to sell, with a valuation this week. Which day suits you best for the visit, morning or afternoon?"),
+      reply: T("¡Hola Carmen! Gracias por escribirnos. Un piso de 3 dormitorios en Fuengirola para vender, con valoración esta semana, ¿verdad? Elena, de nuestro equipo, te escribe hoy para proponerte día y hora. ¿Te viene mejor por la mañana o por la tarde?", "Hi Carmen! Thank you for writing. A 3-bedroom flat in Fuengirola to sell, with a valuation this week, right? Elena from our team will write to you today to propose a day and time. Is the morning or the afternoon better for you?"),
     },
     record: {
       title: T("Ficha de Carmen", "Carmen's record"),
@@ -181,8 +182,8 @@ export const demoChannels: DemoChannel[] = [
       next: { v: T("Elena le propone día y hora para la valoración.", "Elena proposes a day and time for the valuation."), sub: T("Una petición de visita no es una cita: la confirma una persona.", "A visit request is not an appointment: a person confirms it."), at: 10 },
     },
     states: [
-      { v: T("Hoy: respuesta en español por email (Gmail) y ficha guardada.", "Today: a reply in Spanish by e-mail (Gmail) and the record saved."), kind: "available", at: 10 },
-      { v: T("En preparación: el aviso a Elena y su lista de tareas.", "In preparation: the alert to Elena and her task list."), kind: "preparing", at: 10 },
+      { v: T("Incluido: la respuesta por email (Gmail) y la ficha con su prioridad.", "Included: the e-mail reply (Gmail) and the record with its priority."), kind: "available", at: 10 },
+      { v: T("Próximamente: el aviso a Elena y su lista de tareas.", "Coming soon: the alert to Elena and her task list."), kind: "preparing", at: 10 },
     ],
     timings: [0, 900, 1200, 500, 350, 350, 350, 350, 600, 500, 600],
   },
@@ -222,7 +223,7 @@ export const demoChannels: DemoChannel[] = [
       priority: { v: T("Media", "Medium"), why: T("alquiler con zona y presupuesto, sin fecha de visita", "a rental with an area and a budget, no viewing date"), at: 15 },
       next: { v: T("Enviar a Sofía lo disponible en alquiler.", "Send Sofía what is available to rent."), sub: T("Tarea para tu equipo · lo envía una persona.", "A task for your team · a person sends it."), at: 16 },
     },
-    states: [{ v: T("Prototipo: el formulario web todavía no está disponible.", "Prototype: the web form is not available yet."), kind: "prototype", at: 16 }],
+    states: [{ v: T("Próximamente: el formulario web. Hoy es un prototipo.", "Coming soon: the web form. Today it is a prototype."), kind: "prototype", at: 16 }],
     timings: [0, 500, 450, 450, 450, 450, 600, 500, 500, 500, 350, 350, 350, 350, 600, 500, 600],
   },
   {
@@ -241,7 +242,7 @@ export const demoChannels: DemoChannel[] = [
         { speaker: "customer", text: T("Hola, llamo por la villa de Elviria.", "Hello, I'm calling about the villa in Elviria."), at: 2 },
         { speaker: "customer", text: T("Quería saber el precio y si hay margen.", "I'd like to know the price and whether there is room to negotiate."), at: 3 },
         { speaker: "customer", text: T("Me viene mejor que me llamen por la tarde.", "The afternoon suits me better for a call back."), at: 4 },
-        { speaker: "assistant", text: T("Perfecto, Álvaro: la villa de Elviria, precio y margen. Una persona de la agencia te llama esta tarde.", "Perfect, Álvaro: the villa in Elviria, price and room to negotiate. A person from the agency will call you this afternoon."), at: 5 },
+        { speaker: "assistant", text: T("Gracias, Álvaro. La villa de Elviria, precio y margen: lo anoto para el equipo. Marcos te llama esta tarde, a partir de las cuatro.", "Thank you, Álvaro. The villa in Elviria, price and room to negotiate: I am noting it for the team. Marcos will call you this afternoon, from four."), at: 5 },
       ],
       assistantLabel: T("Asistente automático de la agencia", "The agency's automated assistant"),
       ended: T("Llamada atendida", "Call answered"),
@@ -260,7 +261,7 @@ export const demoChannels: DemoChannel[] = [
       priority: { v: T("Alta", "High"), why: T("pregunta por un inmueble concreto y pide que le llamen", "asks about a specific property and asks for a call back"), at: 13 },
       next: { v: T("Devolver la llamada a partir de las 16:00.", "Return the call from 16:00."), sub: T("Tarea para tu equipo · el precio lo da una persona.", "A task for your team · a person gives the price."), at: 14 },
     },
-    states: [{ v: T("Prototipo: el asistente telefónico todavía no está disponible; solo en español.", "Prototype: the phone assistant is not available yet; Spanish only."), kind: "prototype", at: 14 }],
+    states: [{ v: T("Próximamente: el asistente telefónico, en español. Hoy es un prototipo.", "Coming soon: the phone assistant, in Spanish. Today it is a prototype."), kind: "prototype", at: 14 }],
     timings: [0, 900, 700, 900, 900, 1100, 900, 450, 350, 350, 350, 350, 600, 500, 600],
   },
 ];

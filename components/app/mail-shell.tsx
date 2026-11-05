@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 /**
  * The shared mail shell (MAIL_SHELL_v3, owner decision R16-9, audit order 2026-10-12 R16-K; R19 §11; R20 W4): one
- * wrapper for every mail Nuova sends to an agency, used here for the login previews of the weekly report and the
+ * wrapper for every mail NuovaSolution sends to an agency, used here for the login previews of the weekly report and the
  * morning brief and, as the static file docs/website_redesign/mail/MAIL_SHELL_v3.html with the same slots, by
  * Hosting (weekly report) and Daily (morning brief). Table layout, inline styles, no web font, readable with images
  * blocked (the logo has an alt text and the wordmark stands beside it), one column that fits a phone. Brand colours

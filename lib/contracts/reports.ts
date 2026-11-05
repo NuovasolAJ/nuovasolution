@@ -14,7 +14,7 @@ import { BackendRefusal, tenantApi, type Json } from "./supabase";
  * and reduces the backend's answer to exactly those. Until the op exists, a staging build renders the
  * "awaiting contract" state; nothing is ever shown as zero when it is simply not there.
  *
- * Every figure is a count of records Nuova itself keeps. Nothing here is a revenue, a time saving or a
+ * Every figure is a count of records NuovaSolution itself keeps. Nothing here is a revenue, a time saving or a
  * "best source": those claims need a measurement first (CLAIMS_MATRIX R-13, R-14 rejected).
  */
 export type ReportChannel = "whatsapp" | "email" | "webform" | "phone";

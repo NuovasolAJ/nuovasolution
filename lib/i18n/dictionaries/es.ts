@@ -15,7 +15,7 @@ export const es: Dictionary = {
   nav: {
     platform: "Plataforma",
     overview: "Visión general",
-    menuTitle: "Todo lo que hace Nuova",
+    menuTitle: "Todo lo que hace NuovaSolution",
     overviewLine: "Mira cómo encajan las piezas",
     packages: "Paquetes",
     trial: "Prueba",
@@ -39,8 +39,8 @@ export const es: Dictionary = {
     },
     stageLines: {
       attract: "",
-      answer: "AI Sales Agent",
-      understand: "Lead Intelligence, CRM",
+      answer: "Agente de ventas",
+      understand: "Inteligencia de leads, CRM",
       advance: "Property Experience, a petición",
       handover: "Daily Assistant",
     },
@@ -142,7 +142,7 @@ export const es: Dictionary = {
     hero: {
       eyebrow: "Para agencias inmobiliarias en España",
       h1: "Respondida cuando llega", // COPY_DELTAS_1001 D-81
-      lead: "Una compradora escribe mientras estás en una visita. Nuova le responde en español, registra lo que ha pedido y deja una tarea a tu equipo.", // COPY_1019 R-2 (the home hero renders lib/content/home-story.ts) // WORKING (orden maestra 2026-10-10 §4, §5); antes COPY_HERO_1003 §1
+      lead: "Una compradora escribe mientras estás en una visita. NuovaSolution le responde en español, registra lo que ha pedido y deja una tarea a tu equipo.", // COPY_1019 R-2 (the home hero renders lib/content/home-story.ts) // WORKING (orden maestra 2026-10-10 §4, §5); antes COPY_HERO_1003 §1
       state: "Hoy en español, para consultas de texto por WhatsApp y email.", // COPY_HERO_1003 §1
       qualifier: "En los canales que conectes.",
       note: "14 días gratis. Sin pago.",
@@ -151,7 +151,7 @@ export const es: Dictionary = {
         synthetic: "Ejemplo ilustrativo",
         enquiry: { channel: "WhatsApp · consulta nueva", time: "martes 11:20", text: "Hola, soy Laura Serrano. ¿Se puede ver el piso de dos dormitorios en Estepona? Estamos en Manchester y podríamos ir el jueves por la mañana.", from: "Laura Serrano" },
         answer: {
-          label: "Respondido por Nuova, con el nombre de tu agencia",
+          label: "Respondido por NuovaSolution, con el nombre de tu agencia",
           time: "martes 11:20",
           // Owner-approved WhatsApp disclosure v1.0-es, quoted verbatim (LAUNCH_COPY_v1 §4.2). Any change is an owner and counsel matter.
           disclosure: "🤖 Soy un asistente de inteligencia artificial. Te ayudaré con tu consulta inmobiliaria. Si prefieres hablar con un agente humano, indícamelo en cualquier momento.",
@@ -178,11 +178,11 @@ export const es: Dictionary = {
         { label: "Contexto disperso", pain: "El lunes empieza con la bandeja llena y sin ningún orden.", benefit: "La conversación y lo que ha pedido el cliente se quedan en una sola ficha, así que quien la abra después lo ve todo sin preguntar." },
         { label: "Responsabilidad poco clara", pain: "Alguien pidió una visita y nadie sabe quién devuelve la llamada.", benefit: "Quien toma una tarea se hace cargo de ella. Los demás ven que está tomada y por quién." },
       ],
-      benefitLabel: "Con Nuova",
+      benefitLabel: "Con NuovaSolution",
       close: "Nada de eso es un problema de disciplina. Simplemente no hay nadie libre un domingo a las 21:40.",
     },
     flow: {
-      eyebrow: "Qué hace Nuova",
+      eyebrow: "Qué hace NuovaSolution",
       h2: "De un mensaje a una tarea terminada",
       lead: "La consulta se responde en español. Pasa a ser una ficha con lo que ha pedido, y una petición de visita pasa a ser una tarea que alguien de tu equipo toma y cierra.", // COPY_1019 R-3
       steps: ["Respondida", "Registrada", "Asignada", "Hecha"],
@@ -191,7 +191,7 @@ export const es: Dictionary = {
         answer: { step: "Respondida", title: "WhatsApp y email", line: "Las consultas de texto se responden y se registran con el nombre de tu agencia." },
         understand: { step: "Registrada", title: "Una ficha por consulta", line: "La conversación y lo que ha pedido el cliente se quedan en una sola ficha, así que quien la abra después lo ve todo sin preguntar." },
         handover: { step: "Asignada", title: "Una tarea clara, no un recordatorio", line: "Una petición de visita pasa a ser una tarea con nombre, motivo y responsable. Tu equipo la toma y la completa." },
-        done: { step: "Hecha", title: "Nuova prepara; tu equipo asesora y cierra", line: "Un toque la toma, un toque la completa. La tarjeta muestra quién la ha tomado, y nadie puede tomar la misma tarea dos veces. La visita, la negociación y la relación siguen siendo de tu gente." }, // orden final 2026-10-12 §6
+        done: { step: "Hecha", title: "NuovaSolution prepara; tu equipo asesora y cierra", line: "Un toque la toma, un toque la completa. La tarjeta muestra quién la ha tomado, y nadie puede tomar la misma tarea dos veces. La visita, la negociación y la relación siguen siendo de tu gente." }, // orden final 2026-10-12 §6
         setup: { step: "Tu configuración", title: "Tu agencia, configurada por ti", line: "Los datos de tu agencia, tus datos legales y tu logo, más tu equipo y sus roles. Tu progreso se guarda entre sesiones." },
       },
     },
@@ -200,7 +200,7 @@ export const es: Dictionary = {
         agency: "Tu agencia",
         channel: "WhatsApp",
         synthetic: "Ejemplo ilustrativo",
-        assistant: "Nuova · asistente de IA", // D-76
+        assistant: "NuovaSolution · asistente de IA", // D-76
         caption: "La respuesta que sale, con el aviso que debe llevar.",
         time: "21:40",
         footer: "Nombres y horas son inventados.",
@@ -265,7 +265,7 @@ export const es: Dictionary = {
     },
     ask: {
       eyebrow: "Pregunta",
-      h2: "Pregúntale a Nuova lo que quieras sobre el producto.",
+      h2: "Pregúntale a NuovaSolution lo que quieras sobre el producto.",
       lead: "Las respuestas salen de lo que NuovaSolution ha confirmado sobre su producto. Precios, cuestiones legales y fiscales las responde una persona.",
       points: ["Responde en español o en inglés."],
     },
@@ -293,7 +293,7 @@ export const es: Dictionary = {
       hero: {
         h1Soft: "Menos gestión.", // dirección del owner 2026-10-05
         h1: "Más tiempo para tus clientes.",
-        lead: "Nuova responde en español a las consultas por WhatsApp y email, guarda lo que pide cada cliente y deja claro el siguiente paso.", // W-2
+        lead: "NuovaSolution responde en español a las consultas por WhatsApp y email, guarda lo que pide cada cliente y deja claro el siguiente paso.", // W-2
         ctaDemo: "Ver la demostración", // W-3
         trialLine: "14 días · Sin método de pago", // owner 2026-10-06 §2
         labels: { enquiry: "Consulta por WhatsApp", reply: "Respuesta en español", crm: "Ficha del cliente", next: "Siguiente paso" },
@@ -303,7 +303,7 @@ export const es: Dictionary = {
       },
       demo: {
         eyebrow: "El producto en acción",
-        h2: "Lo que hace Nuova, en cinco escenas", // WORKING
+        h2: "Lo que hace NuovaSolution, en cinco escenas", // WORKING
         lead: "Elige una escena. Cada una dice qué está disponible hoy y qué es todavía un prototipo.", // WORKING
         controls: { prev: "Paso anterior", next: "Paso siguiente", pause: "Pausar", play: "Reproducir", step: "Paso", of: "de", scenes: "Escenas" },
         short: "Vista abreviada",
@@ -337,9 +337,9 @@ export const es: Dictionary = {
   platform: {
     eyebrow: "Plataforma",
     h1: "Todo lo que necesita una consulta, en un solo lugar", // D-47
-    lead: "Cada parte de Nuova hace bien una cosa, y comparten una misma ficha, así que la respuesta, el contexto y la tarea nunca están en tres sitios distintos.", // D-47
+    lead: "Cada parte de NuovaSolution hace bien una cosa, y comparten una misma ficha, así que la respuesta, el contexto y la tarea nunca están en tres sitios distintos.", // D-47
     indexEyebrow: "Capacidades",
-    indexH2: "Qué hace Nuova por tu agencia.",
+    indexH2: "Qué hace NuovaSolution por tu agencia.",
     exampleEyebrow: "Una consulta, de principio a fin",
     exampleH2: "De un mensaje a una tarea terminada",
     tenant: {
@@ -422,7 +422,7 @@ export const es: Dictionary = {
       "followup.basic": "Seguimiento básico",
       "consent.handling": "Gestión de consentimientos",
       "reporting.basic": "Reporting básico",
-      "property.matching": "Property Matching",
+      "property.matching": "Inmuebles que encajan",
       "lead.engine.orchestrate": "Recepción de Meta Lead Ads y Google Lead Forms",
       "reporting.advanced": "Reporting avanzado",
       "channel.voice": "Voz",
@@ -596,21 +596,21 @@ export const es: Dictionary = {
     crm: {
       heading: "Dónde se guardan tus leads",
       lead: "Hay un CRM incluido desde el principio.",
-      nativeTitle: "Sin CRM externo. Usa el CRM incluido en Nuova.",
+      nativeTitle: "Sin CRM externo. Usa el CRM incluido en NuovaSolution.",
       nativeTag: "Incluido · Recomendado",
       nativeBody: "Cada consulta pasa a ser un lead con los datos de contacto, lo que ha pedido la persona y la conversación hasta ahora. Las peticiones de visita pasan a ser tareas para tu equipo. No hay que conectar nada ni pagar nada más.", // D-86
       nativeLimits: "No sustituye a un sistema contable o de gestión de operaciones, y no importa fichas de otro CRM.",
       sheetsTitle: "Guardar también una copia en Google Sheets",
-      sheetsBody: "Nuova sigue siendo el sitio donde se guardan los leads. Una hoja de Google Sheets recibe una copia que puedes abrir, filtrar y compartir.",
+      sheetsBody: "NuovaSolution sigue siendo el sitio donde se guardan los leads. Una hoja de Google Sheets recibe una copia que puedes abrir, filtrar y compartir.",
       externalGroup: "Tu propio CRM",
       externalSoon: "Solo interés", // D-60
-      externalBody: "Conectar {provider} no se ofrece. Seleccionarlo registra tu interés, no se envía nada a {provider} y tus leads siguen en el CRM incluido en Nuova.", // D-61
+      externalBody: "Conectar {provider} no se ofrece. Seleccionarlo registra tu interés, no se envía nada a {provider} y tus leads siguen en el CRM incluido en NuovaSolution.", // D-61
       registerInterest: "Uso {provider}",
       interestSaved: "Interés registrado. No se envía nada a {provider}.", // D-62
       unavailable: "No disponible",
       other: "Mi CRM no aparece",
-      otherBody: "Ese CRM no se ofrece. Estás en el CRM incluido en Nuova, y puedes cambiarlo más adelante.",
-      done: "Usando el CRM incluido en Nuova.",
+      otherBody: "Ese CRM no se ofrece. Estás en el CRM incluido en NuovaSolution, y puedes cambiarlo más adelante.",
+      done: "Usando el CRM incluido en NuovaSolution.",
       chooseLabel: "Tu selección", // D-59
       save: "Guardar elección",
       saved: "Guardado. Esto es lo que el backend tiene ahora para tu agencia.",
@@ -619,7 +619,7 @@ export const es: Dictionary = {
       savedStub: "Guardado solo en esta demostración. No ha llegado nada a ningún backend.",
       sheetsChosen: "Seleccionado, sin conectar", // D-63
       sheetsConnected: "Conectado",
-      sheetsOffUnavailable: "Desactivar la copia en Google Sheets todavía no está disponible en este sitio. Tus leads siguen en el CRM incluido en Nuova en cualquier caso.",
+      sheetsOffUnavailable: "Desactivar la copia en Google Sheets todavía no está disponible en este sitio. Tus leads siguen en el CRM incluido en NuovaSolution en cualquier caso.",
     },
     progressSteps: "{done} de {total} pasos hechos",
     progressRequired: "{done} de {total} pasos necesarios guardados",
@@ -741,9 +741,9 @@ export const es: Dictionary = {
       },
       legal: {
         heading: "Datos legales",
-        lead: "Estos datos van en los emails que tu agencia envía a través de Nuova y en las facturas que te enviamos. Sin ellos no podemos enviar en tu nombre.", // D-68
+        lead: "Estos datos van en los emails que tu agencia envía a través de NuovaSolution y en las facturas que te enviamos. Sin ellos no podemos enviar en tu nombre.", // D-68
         addressHelp: "Tu dirección aparece en el pie legal de esos emails y en tus facturas.", // D-69
-        linksHelp: "Estos enlaces se incluyen en los emails enviados en tu nombre, para que quien te escribe pueda acceder a tus propios avisos. Los avisos de Nuova son aparte.", // D-70
+        linksHelp: "Estos enlaces se incluyen en los emails enviados en tu nombre, para que quien te escribe pueda acceder a tus propios avisos. Los avisos de NuovaSolution son aparte.", // D-70
         notReadable: "Los datos legales guardados todavía no se pueden volver a mostrar aquí, así que el formulario empieza vacío. Si están completos se indica en \"Qué falta para salir en vivo\".",
         legalName: "Razón social",
         taxId: "CIF o NIF",
@@ -759,7 +759,7 @@ export const es: Dictionary = {
         fields: { legal_name: "razón social", tax_id: "CIF o NIF", address: "dirección", privacy_url: "enlace de privacidad", terms_url: "enlace de términos", logo: "logo" },
       },
       branding: {
-        lead: "Tu logo y el banner de email aparecen en los emails que tu agencia envía a través de Nuova.",
+        lead: "Tu logo y el banner de email aparecen en los emails que tu agencia envía a través de NuovaSolution.",
         logoHelp: "Usa un PNG con fondo transparente, de al menos 48 píxeles por lado. En los emails se muestra con un ancho máximo de 180 píxeles.",
         darkHelp: "Mucha gente lee el email en modo oscuro. Un logo oscuro sobre fondo transparente puede desaparecer ahí. Revisa la vista previa sobre los dos fondos de abajo.",
         previewLight: "Sobre fondo claro",
@@ -914,12 +914,12 @@ export const es: Dictionary = {
       manage: "Conexión y datos",
       usesH: "Para qué se usa la conexión",
       uses: [
-        "Mostrar tu cuenta en Nuova.",
+        "Mostrar tu cuenta en NuovaSolution.",
         "Publicar las publicaciones de inmuebles que apruebas.",
         "Leer comentarios, responder en público y una respuesta privada por comentario.",
         "Leer mensajes y responderlos en un plazo de 24 horas.",
       ],
-      never: "Nuova nunca escribe primero a nadie.",
+      never: "NuovaSolution nunca escribe primero a nadie.",
     },
     post: {
       h1: "Crear una publicación",
@@ -1036,8 +1036,8 @@ export const es: Dictionary = {
   qa: {
     open: "Haz una pregunta",
     close: "Cerrar",
-    title: "Pregunta a Nuova",
-    intro: "Preguntas sobre qué hace Nuova y si encaja con tu agencia.",
+    title: "Pregunta a NuovaSolution",
+    intro: "Preguntas sobre qué hace NuovaSolution y si encaja con tu agencia.",
     placeholder: "Escribe tu pregunta",
     send: "Enviar",
     sending: "Enviando",
@@ -1054,7 +1054,7 @@ export const es: Dictionary = {
     error: "No se ha enviado. Inténtalo otra vez o contacta con una persona.",
     tooLong: "Por favor, menos de 4000 caracteres.",
     suggestionsLabel: "Preguntas habituales",
-    suggestions: ["¿Nuova responde consultas de WhatsApp por la noche?", "¿Tengo que cambiar de CRM?", "¿Qué pasa después de los 14 días de prueba?"],
+    suggestions: ["¿NuovaSolution responde consultas de WhatsApp por la noche?", "¿Tengo que cambiar de CRM?", "¿Qué pasa después de los 14 días de prueba?"],
   },
 
   media: {
@@ -1063,7 +1063,7 @@ export const es: Dictionary = {
   },
 
   footer: {
-    brandLine: "Nuova responde a las consultas de tu agencia y deja claro el siguiente paso. Hecho para agencias en España.", // W-9
+    brandLine: "NuovaSolution responde a las consultas de tu agencia y deja claro el siguiente paso. Hecho para agencias en España.", // W-9
     platform: "Plataforma",
     getStarted: "Empezar",
     legal: "Legal",

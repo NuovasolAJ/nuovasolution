@@ -1,5 +1,5 @@
-import { getDictionary } from "@/lib/i18n/dictionaries";
 import type { Locale } from "@/lib/i18n/config";
+import { entryAction } from "@/lib/claims";
 
 /**
  * Plan catalog as it exists on the staging billing plane (system repo
@@ -87,5 +87,7 @@ export function isPlanCode(v: string | undefined): v is PlanCode {
  * and trial pages, which use packages.ctaTrialEssential themselves).
  */
 export function startLabel(locale: Locale): string {
-  return getDictionary(locale).common.startFree;
+  // the owner's order of 05.11., point 7/10: the entry action follows the central claims file (lib/claims.ts): "Pedir acceso"
+  // until the trial and public registration are live in production, then "Pruébalo gratis" by one commit there
+  return entryAction(locale).label;
 }

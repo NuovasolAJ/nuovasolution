@@ -69,7 +69,7 @@ export const capabilities: Capability[] = [
     stage: "answer",
     publish: "live",
     status: "live",
-    name: { en: "AI Sales Agent", es: "AI Sales Agent" },
+    name: { en: "AI Sales Agent", es: "Agente de ventas" },
     navLine: { en: "Answers text enquiries, day or night", es: "Responde consultas de texto, de día o de noche" }, // C3 §1.3
     // COPY_SYNC_1024 X-14 (R24 picture 09): the benefit, for whom and what it saves, in the headline, the lead and the four points; e-mail with the
     // mailbox limit instead of "Gmail" alone; Outlook not named before O4 and production
@@ -105,15 +105,15 @@ export const capabilities: Capability[] = [
     stage: "understand",
     publish: "live",
     status: "live",
-    name: { en: "Lead Intelligence", es: "Lead Intelligence" },
+    name: { en: "Lead Intelligence", es: "Inteligencia de leads" },
     // COPY_DELTAS_0929 L-03, D-38: qualification and priority are not in production, so they are not claimed.
     // The h1 is the D-38 line; scenario and lead are limited to the proven same-channel identity (interim implementer wording).
     navLine: { en: "Keeps what each customer told you", es: "Guarda lo que te ha contado cada cliente" },
     h1: { en: "Keeps what each customer told you.", es: "Guarda lo que te ha contado cada cliente." },
     lead: {
       // WCR-062 = WCR-020, first sentence; the cross-channel sentence is a status formula (R27)
-      en: "A client who writes twice on the same channel stays one person in Nuova, with what they asked for kept on their record.",
-      es: "Un cliente que escribe dos veces por el mismo canal sigue siendo una sola persona en Nuova, con lo que ha pedido guardado en su ficha.",
+      en: "A client who writes twice on the same channel stays one person in NuovaSolution, with what they asked for kept on their record.",
+      es: "Un cliente que escribe dos veces por el mismo canal sigue siendo una sola persona en NuovaSolution, con lo que ha pedido guardado en su ficha.",
     },
     why: [
       { en: "For teams where the second message lands with somebody else: the record says what was asked for before, so nobody asks the customer twice.", es: "Para equipos donde el segundo mensaje le llega a otra persona: la ficha dice qué se pidió antes, así que nadie pregunta dos veces al cliente." },
@@ -184,13 +184,13 @@ export const capabilities: Capability[] = [
     stage: "advance",
     publish: "hidden", // in development: not published until it is proven (R27)
     status: "in_implementation", // WCR-080
-    name: { en: "Property Matching", es: "Property Matching" },
+    name: { en: "Property Matching", es: "Inmuebles que encajan" },
     navLine: { en: "A short, honest selection. In development", es: "Una selección corta y honesta. En desarrollo" }, // C3 §1.3
     h1: { en: "A short, relevant selection, with availability the agency can stand behind.", es: "Una selección corta y relevante, con una disponibilidad que la agencia puede defender." },
     lead: {
       // WCR-081
-      en: "Being built. Not offered yet. Nuova understands what the customer is looking for and matches it against your own authorised inventory. The customer receives a short selection. Your agent sees the wider set.",
-      es: "En construcción. Todavía no se ofrece. Nuova entiende qué busca el cliente y lo cruza con tu propio inventario autorizado. El cliente recibe una selección corta. Tu agente ve el conjunto completo.",
+      en: "Being built. Not offered yet. NuovaSolution understands what the customer is looking for and matches it against your own authorised inventory. The customer receives a short selection. Your agent sees the wider set.",
+      es: "En construcción. Todavía no se ofrece. NuovaSolution entiende qué busca el cliente y lo cruza con tu propio inventario autorizado. El cliente recibe una selección corta. Tu agente ve el conjunto completo.",
     },
     points: [
       { text: { en: "Understands what the customer is actually looking for.", es: "Entiende qué busca realmente el cliente." }, status: "in_implementation" }, // WCR-080
@@ -200,8 +200,8 @@ export const capabilities: Capability[] = [
     ],
     scenario: {
       // WCR-083 (F-03: no fixed count)
-      en: "A buyer asks for a two bedroom apartment near the beach with a terrace. Nuova sends a short selection from the agency's own inventory that matches, marks the one whose availability could not be confirmed, and the viewing request lands with the agent as a task.",
-      es: "Un comprador pide un piso de dos dormitorios cerca de la playa con terraza. Nuova envía una selección corta del inventario propio de la agencia que encaja, marca la que no pudo confirmar como disponible y la petición de visita llega al agente como una tarea.",
+      en: "A buyer asks for a two bedroom apartment near the beach with a terrace. NuovaSolution sends a short selection from the agency's own inventory that matches, marks the one whose availability could not be confirmed, and the viewing request lands with the agent as a task.",
+      es: "Un comprador pide un piso de dos dormitorios cerca de la playa con terraza. NuovaSolution envía una selección corta del inventario propio de la agencia que encaja, marca la que no pudo confirmar como disponible y la petición de visita llega al agente como una tarea.",
     },
     fits: [
       { en: "Your agency website as a property source", es: "La web de tu agencia como fuente de propiedades" },
@@ -295,13 +295,13 @@ export const capabilities: Capability[] = [
     stage: "attract",
     publish: "hidden", // waits on the Meta review (R27)
     status: "certified_gate_pending",
-    name: { en: "Social Growth", es: "Social Growth" },
+    name: { en: "Social Growth", es: "Crecimiento en redes" },
     navLine: { en: "Comments and posts. Not offered yet", es: "Comentarios y publicaciones. Todavía no se ofrece" }, // WCR-110, C3 §1.3
     h1: { en: "Present in public, restrained by design.", es: "Presente en público, contenido por diseño." },
     lead: {
       // WCR-110
       en: "Built and tested internally. The Meta review has not been submitted yet. Until it clears, Social Growth is not offered.",
-      es: "Construido y probado internamente. La revisión de Meta todavía no se ha solicitado. Hasta que se resuelva, Social Growth no se ofrece.",
+      es: "Construido y probado internamente. La revisión de Meta todavía no se ha solicitado. Hasta que se resuelva, Crecimiento en redes no se ofrece.",
     },
     points: [
       { text: { en: "Content help for property and social posts in your brand voice.", es: "Ayuda con el contenido de propiedades y publicaciones en la voz de tu marca." }, status: "certified_gate_pending" },
@@ -343,8 +343,8 @@ export const capabilities: Capability[] = [
       { text: { en: "Each lead carries the campaign and source it came from.", es: "Cada lead lleva la campaña y la fuente de la que viene." }, status: "certified_gate_pending" },
     ],
     scenario: {
-      en: "A lead form on a Meta campaign is submitted. It arrives in Nuova with its campaign attached and is answered like any other enquiry. This is the certified behaviour, not an offer.",
-      es: "Se envía un formulario de una campaña de Meta. Llega a Nuova con su campaña adjunta y se responde como cualquier otra consulta. Este es el comportamiento certificado, no una oferta.",
+      en: "A lead form on a Meta campaign is submitted. It arrives in NuovaSolution with its campaign attached and is answered like any other enquiry. This is the certified behaviour, not an offer.",
+      es: "Se envía un formulario de una campaña de Meta. Llega a NuovaSolution con su campaña adjunta y se responde como cualquier otra consulta. Este es el comportamiento certificado, no una oferta.",
     },
     fits: [
       { en: "Meta Lead Ads", es: "Meta Lead Ads" },
@@ -352,7 +352,7 @@ export const capabilities: Capability[] = [
     ],
     bothHalves: {
       certified: { en: "Certified on our internal test harness.", es: "Certificado en nuestro entorno interno de pruebas." },
-      pending: { en: "The provider test is pending. Nuova never runs, manages or optimises your advertising. It receives and attributes leads.", es: "La prueba del proveedor está pendiente. Nuova nunca gestiona ni optimiza tu publicidad. Recibe y atribuye leads." },
+      pending: { en: "The provider test is pending. NuovaSolution never runs, manages or optimises your advertising. It receives and attributes leads.", es: "La prueba del proveedor está pendiente. NuovaSolution nunca gestiona ni optimiza tu publicidad. Recibe y atribuye leads." },
     },
     related: ["social-growth", "lead-intelligence"],
   },
@@ -368,20 +368,20 @@ export const capabilities: Capability[] = [
     navLine: { en: "Room by room, on request", es: "Habitación por habitación, bajo petición" }, // C3 §1.3
     h1: { en: "Room by room, through the real doorways.", es: "Habitación por habitación, por las puertas reales." },
     lead: {
-      en: "A finished property experience, created by Nuova and checked by a person before it reaches a buyer. A premium service, on request, in preparation.",
-      es: "Una experiencia de la propiedad terminada, creada por Nuova y revisada por una persona antes de llegar a un comprador. Un servicio premium, bajo petición, en preparación.",
+      en: "A finished property experience, created by NuovaSolution and checked by a person before it reaches a buyer. A premium service, on request, in preparation.",
+      es: "Una experiencia de la propiedad terminada, creada por NuovaSolution y revisada por una persona antes de llegar a un comprador. Un servicio premium, bajo petición, en preparación.",
     },
     points: [
       { text: { en: "A real panorama for every room, floor to ceiling.", es: "Un panorama real de cada habitación, del suelo al techo." }, status: "premium_on_request" },
       { text: { en: "Movement between rooms through the real doorways. Structured by design. No joystick, no getting lost.", es: "Movimiento entre habitaciones por las puertas reales. Estructurado por diseño. Sin joystick, sin perderse." }, status: "premium_on_request" },
       { text: { en: "The real floor plan alongside, with the current room and the direction you are facing.", es: "El plano real al lado, con la habitación actual y hacia dónde miras." }, status: "premium_on_request" },
-      { text: { en: "Created by Nuova and quality checked by a person.", es: "Creado por Nuova y revisado en calidad por una persona." }, status: "premium_on_request" },
+      { text: { en: "Created by NuovaSolution and quality checked by a person.", es: "Creado por NuovaSolution y revisado en calidad por una persona." }, status: "premium_on_request" },
     ],
     scenario: {
-      en: "An agency requests an experience for a villa. Nuova creates it, a person checks it, and the accepted delivery reaches the agency. The buyer walks through it room by room before booking a flight.",
-      es: "Una agencia solicita una experiencia para una villa. Nuova la crea, una persona la revisa y la entrega aceptada llega a la agencia. El comprador la recorre habitación por habitación antes de reservar un vuelo.",
+      en: "An agency requests an experience for a villa. NuovaSolution creates it, a person checks it, and the accepted delivery reaches the agency. The buyer walks through it room by room before booking a flight.",
+      es: "Una agencia solicita una experiencia para una villa. NuovaSolution la crea, una persona la revisa y la entrega aceptada llega a la agencia. El comprador la recorre habitación por habitación antes de reservar un vuelo.",
     },
-    fits: [{ en: "Property Matching, which links the finished experience to the customer", es: "Property Matching, que enlaza la experiencia terminada con el cliente" }],
+    fits: [{ en: "Property Matching, which links the finished experience to the customer", es: "Inmuebles que encajan, que enlaza la experiencia terminada con el cliente" }],
     honesty: {
       en: "This is a service we prepare, not a tool you operate. There is no automatic floor plan generation and no self-service creation. A request is a request, and a delivery is an accepted delivery. Upload and delivery access follows your package. If it is not enabled, it never blocks your agency from going live.",
       es: "Es un servicio que preparamos, no una herramienta que manejas tú. No hay generación automática de planos ni creación en autoservicio. Una petición es una petición, y una entrega es una entrega aceptada. El acceso a subida y entrega depende de tu paquete. Si no está activado, nunca impide que tu agencia salga en vivo.",

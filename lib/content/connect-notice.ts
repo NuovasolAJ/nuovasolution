@@ -29,12 +29,12 @@ export const connectNoticeSheets: {
   short: [
     {
       // COUNSEL_PACKAGE_v2 §D7.1: direction of the data flow corrected (the sheet receives a copy).
-      en: "Connecting Google Sheets gives your team a copy of your leads in a spreadsheet you control. Nuova answers and qualifies the enquiries it receives, and writes each lead to your sheet. To do that, Nuova processes the messages and the details people send you, including with AI services that understand the message and draft the reply.",
-      es: "Al conectar Google Sheets, tu equipo tiene una copia de tus leads en una hoja que controlas tú. Nuova responde y cualifica las consultas que recibe, y escribe cada lead en tu hoja. Para ello, Nuova trata los mensajes y los datos que te envían las personas, también con servicios de inteligencia artificial que entienden el mensaje y redactan la respuesta.",
+      en: "Connecting Google Sheets gives your team a copy of your leads in a spreadsheet you control. NuovaSolution answers and qualifies the enquiries it receives, and writes each lead to your sheet. To do that, NuovaSolution processes the messages and the details people send you, including with AI services that understand the message and draft the reply.",
+      es: "Al conectar Google Sheets, tu equipo tiene una copia de tus leads en una hoja que controlas tú. NuovaSolution responde y cualifica las consultas que recibe, y escribe cada lead en tu hoja. Para ello, NuovaSolution trata los mensajes y los datos que te envían las personas, también con servicios de inteligencia artificial que entienden el mensaje y redactan la respuesta.",
     },
     {
-      en: "Nuova uses this data to provide the service to your agency, not to sell it or to advertise to anyone. You can disconnect at any time.",
-      es: "Nuova usa estos datos para prestar el servicio a tu agencia, no para venderlos ni para hacer publicidad a nadie. Puedes desconectar en cualquier momento.",
+      en: "NuovaSolution uses this data to provide the service to your agency, not to sell it or to advertise to anyone. You can disconnect at any time.",
+      es: "NuovaSolution usa estos datos para prestar el servicio a tu agencia, no para venderlos ni para hacer publicidad a nadie. Puedes desconectar en cualquier momento.",
     },
   ],
   more: { en: "What is shared, who processes it and how long it is kept", es: "Qué se comparte, quién lo trata y cuánto tiempo se guarda" },
@@ -43,8 +43,8 @@ export const connectNoticeSheets: {
       heading: { en: "What is shared", es: "Qué se comparte" },
       text: {
         // COUNSEL_PACKAGE_v2 §D7.1: the sheet is a copy sink; leads flow TO it.
-        en: "To Google Sheets: a copy of each lead: contact details, what they are looking for, qualification and status. What Nuova keeps: the same lead, its qualification and priority, the conversation history, and tasks such as a viewing request.",
-        es: "A Google Sheets: una copia de cada lead: datos de contacto, lo que busca, cualificación y estado. Lo que Nuova conserva: el mismo lead, su cualificación y prioridad, el historial de conversación y tareas como una petición de visita.",
+        en: "To Google Sheets: a copy of each lead: contact details, what they are looking for, qualification and status. What NuovaSolution keeps: the same lead, its qualification and priority, the conversation history, and tasks such as a viewing request.",
+        es: "A Google Sheets: una copia de cada lead: datos de contacto, lo que busca, cualificación y estado. Lo que NuovaSolution conserva: el mismo lead, su cualificación y prioridad, el historial de conversación y tareas como una petición de visita.",
       },
     },
     {
@@ -60,15 +60,15 @@ export const connectNoticeSheets: {
     {
       heading: { en: "Disconnecting", es: "Desconectar" },
       text: {
-        en: "New leads stop going to the sheet. Everything stays in Nuova, and the sheet keeps what it already has.",
-        es: "Los nuevos leads dejan de llegar a la hoja. Todo sigue en Nuova y la hoja conserva lo que ya tiene.",
+        en: "New leads stop going to the sheet. Everything stays in NuovaSolution, and the sheet keeps what it already has.",
+        es: "Los nuevos leads dejan de llegar a la hoja. Todo sigue en NuovaSolution y la hoja conserva lo que ya tiene.",
       },
     },
     {
       heading: { en: "Your customers' rights", es: "Derechos de tus clientes" },
       text: {
-        en: "People whose enquiries you receive can ask for a copy of their data, a correction or deletion. Nuova helps your agency answer those requests.",
-        es: "Las personas cuyas consultas recibes pueden pedir una copia de sus datos, una corrección o su eliminación. Nuova ayuda a tu agencia a responder a esas solicitudes.",
+        en: "People whose enquiries you receive can ask for a copy of their data, a correction or deletion. NuovaSolution helps your agency answer those requests.",
+        es: "Las personas cuyas consultas recibes pueden pedir una copia de sus datos, una corrección o su eliminación. NuovaSolution ayuda a tu agencia a responder a esas solicitudes.",
       },
     },
   ],

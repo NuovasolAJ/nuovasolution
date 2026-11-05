@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * The weekly report as the agency reads it in its login (master order 2026-10-10 §8; final order 2026-10-12 §8).
- * Three questions first, each with one figure and its meaning: what Nuova handled, which chances came up, what to
+ * Three questions first, each with one figure and its meaning: what NuovaSolution handled, which chances came up, what to
  * do next. Then the details: by channel, the trend (only on enough data), the open actions, the period and the data
  * basis. A figure the backend did not send is "not measured", never zero. A trial or a smaller package sees only the
  * counts its functions can produce. Demonstration data is labelled above the figures, never after them.

@@ -2,30 +2,47 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Link2, MessageCircleQuestion, Play, Upload } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
+import { claim } from "@/lib/claims";
 import { CompareSlider } from "@/components/ui/compare-slider";
 import { Rise, useSeen } from "@/components/ui/motion";
 import { DemoPlan } from "./scene-art";
 import { cn } from "@/lib/utils";
 
 /**
- * The 3D stage (the owner's order of 03.11.2026, point 6; Copy 1102 v2 §5; research 1103 R3 Pyzhevsky, S5 Belgrade Arbor):
- * one large stage, one house, the steps plan → model → empty/furnished as one movement through the same object. When the
- * stage comes into view it walks once from the plan to the model and on to the pair (the handle then belongs to the visitor);
- * the step buttons switch at any time. The whole house without room names or viewer controls is the clean take of the 3D
- * lane's handoff of 30.10. (media/clean_take_fullhd.mp4, 25 s, 1080p) and plays on request with its own poster: nothing of
- * 15 MB loads before a click. Media with their checksums: docs/website_redesign/WEBSITE_BUILD_1103_RETURN_v1.md.
+ * The 3D stage (the owner's orders of 03.11. point 6 and 05.11. point 9; Copy 1102 v2 §5): one large stage, one house, the
+ * steps plan → model → empty/furnished → delivery as one movement through the same object. 02 Modelo is the ground floor
+ * turning: the clean take's ground-floor segment (12.3–25 s) re-encoded as a 13-second loop at 720p, with the near view of the
+ * furnished ground floor as its poster and as the still with reduced motion (3D delivers a native ground-floor turn later; the
+ * segment is the real viewer's recording). 04 Entrega is the whole clean take re-encoded to 720p H.264 at a fixed 25 fps with
+ * a keyframe every two seconds and its own poster (F2: the 1080p original stuttered). Under the stage the broker's path in
+ * three steps. The status word comes from lib/claims.ts.
  */
 const MEDIA = {
-  model: "/media/3d/house-model-clean-1600.webp",
+  modelFilm: "/media/3d/house-ground-turn.mp4",
+  modelPoster: "/media/3d/house-ground-turn-poster.webp",
+  modelStill: "/media/3d/house-ground-near-1600.webp",
   empty: "/media/3d/living-empty-1200.webp",
   furnished: "/media/3d/living-furnished-1200.webp",
-  film: "/media/3d/house-clean-take.mp4",
-  filmPoster: "/media/3d/house-clean-take-poster.webp",
+  film: "/media/3d/house-clean-take-720.mp4",
+  filmPoster: "/media/3d/house-clean-take-poster-1600.webp",
 };
+
+/** 02 Modelo: the ground floor turning; the bytes are fetched only when the pane mounts (AnimatePresence mounts it after the plan's exit). */
+function TurnClip({ label }: { label: string }) {
+  const turn = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const v = turn.current;
+    if (!v) return;
+    v.src = MEDIA.modelFilm; v.load(); v.play().catch(() => {});
+    return () => { v.pause(); };
+  }, []);
+  // eslint-disable-next-line jsx-a11y/media-has-caption
+  return <video ref={turn} poster={MEDIA.modelPoster} muted loop playsInline preload="none" aria-label={label} className="h-full w-full object-cover" data-model3d-turn />;
+}
 
 function Img({ src, alt, w, h, className }: { src: string; alt: string; w: number; h: number; className?: string }) {
   // eslint-disable-next-line @next/next/no-img-element
@@ -42,6 +59,8 @@ export function Stage3d({ locale }: { locale: Locale }) {
   const walked = useRef(false);
   const [filmOn, setFilmOn] = useState(false);
   const video = useRef<HTMLVideoElement>(null);
+  const state = claim("model3d");
+  const pathIcons = [Upload, MessageCircleQuestion, Link2];
 
   // once in view: plan → model → pair, one walk, then the visitor decides
   useEffect(() => {
@@ -49,7 +68,7 @@ export function Stage3d({ locale }: { locale: Locale }) {
     walked.current = true;
     if (reduce) { setStep(2); return; }
     const a = window.setTimeout(() => setStep(1), 1400);
-    const b = window.setTimeout(() => setStep(2), 3000);
+    const b = window.setTimeout(() => setStep(2), 4200);
     return () => { window.clearTimeout(a); window.clearTimeout(b); };
   }, [seen, reduce]);
 
@@ -65,7 +84,7 @@ export function Stage3d({ locale }: { locale: Locale }) {
           <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
           <h2 id="m3d-h" className="t-display-m mt-3 text-text-primary">{l(w.h2)}</h2>
           <p className="mt-4 t-body-l text-text-secondary max-w-[52ch]">{l(w.lead)}</p>
-          <p className="mt-4 flex flex-wrap gap-2"><span className="status-pill" data-status="preparing">{l(w.status)}</span><span className="status-pill" data-status="example" data-model3d-example>{l(w.example)}</span></p>
+          <p className="mt-4 flex flex-wrap gap-x-4 gap-y-2"><span className="status-pill" data-status={state} data-model3d-status>{l(w.status)}</span><span className="status-pill" data-status="example" data-model3d-example>{l(w.example)}</span></p>
         </Rise>
 
         <Rise className="m3d-stage" y={24} delay={0.1}>
@@ -79,8 +98,13 @@ export function Stage3d({ locale }: { locale: Locale }) {
                   </m.div>
                 )}
                 {step === 1 && (
-                  <m.div key="model" className="m3d-pane" initial={reduce ? false : { opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={reduce ? undefined : { opacity: 0 }} transition={{ duration: 0.55 }} data-m3d-pane="model">
-                    <Img src={MEDIA.model} alt={l(w.modelAlt)} w={1600} h={900} className="h-full w-full object-cover" />
+                  <m.div key="model" className="m3d-pane m3d-pane-model" initial={reduce ? false : { opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={reduce ? undefined : { opacity: 0 }} transition={{ duration: 0.55 }} data-m3d-pane="model">
+                    {reduce ? (
+                      <Img src={MEDIA.modelStill} alt={l(w.modelAlt)} w={1600} h={900} className="h-full w-full object-cover" />
+                    ) : (
+                      <TurnClip label={l(w.modelFilm)} />
+                    )}
+                    <span className="m3d-caption">{l(w.modelLine)}</span>
                   </m.div>
                 )}
                 {step === 2 && (
@@ -115,7 +139,22 @@ export function Stage3d({ locale }: { locale: Locale }) {
           </div>
         </Rise>
 
-        <Rise className="m3d-foot" delay={0.05}>
+        {/* the broker's path in three steps (05.11., point 9) */}
+        <Rise className="m3d-path" delay={0.05} y={16}>
+          <p className="m3d-path-title">{l(w.pathTitle)}</p>
+          <ol className="m3d-path-steps" data-model3d-path>
+            {l(w.path).map((s, i) => {
+              const Icon = pathIcons[i];
+              return (
+                <li key={s} className="m3d-path-step" data-model3d-path-step={i + 1}>
+                  <span className="m3d-path-icon" aria-hidden="true"><Icon size={18} strokeWidth={1.9} /></span>
+                  <span className="m3d-path-no tnum" aria-hidden="true">{i + 1}</span>
+                  <span className="m3d-path-words">{s}</span>
+                  {i < 2 && <ArrowRight size={16} strokeWidth={2} aria-hidden="true" className="m3d-path-arrow" />}
+                </li>
+              );
+            })}
+          </ol>
           <a href={localePath(locale, "/contact")} className="m3d-cta" data-model3d-cta>{l(w.cta)}<ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" /></a>
         </Rise>
       </div>

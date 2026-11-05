@@ -30,26 +30,26 @@ const T = {
   historyRows: {
     es: [
       { at: "martes 11:20", what: "WhatsApp de Laura: pregunta por el piso con terraza de Estepona, presupuesto hasta 320.000 €" },
-      { at: "martes 11:21", what: "Respuesta de Nuova, en español; la ficha se actualiza: busca, presupuesto, idioma" },
+      { at: "martes 11:21", what: "Respuesta de NuovaSolution, en español; la ficha se actualiza: busca, presupuesto, idioma" },
       { at: "martes 11:21", what: "Aviso por email a Elena: consulta importante (inmueble, zona y presupuesto)" },
       { at: "martes 11:23", what: "WhatsApp de Laura: vivienda habitual; quiere verlo la semana que viene" },
-      { at: "martes 11:24", what: "Respuesta de Nuova: lo anota; una persona de la agencia le escribe con día y hora" },
+      { at: "martes 11:24", what: "Respuesta de NuovaSolution: lo anota; una persona de la agencia le escribe con día y hora" },
     ],
     en: [
       { at: "Tuesday 11:20", what: "WhatsApp from Laura: asks about the flat with a terrace in Estepona, budget up to €320,000" },
-      { at: "Tuesday 11:21", what: "Reply from Nuova, in Spanish; the record is updated: looking for, budget, language" },
+      { at: "Tuesday 11:21", what: "Reply from NuovaSolution, in Spanish; the record is updated: looking for, budget, language" },
       { at: "Tuesday 11:21", what: "E-mail alert to Elena: important enquiry (property, area and budget named)" },
       { at: "Tuesday 11:23", what: "WhatsApp from Laura: a main home; she wants to see it next week" },
-      { at: "Tuesday 11:24", what: "Reply from Nuova: noted; a person from the agency writes to her with a day and time" },
+      { at: "Tuesday 11:24", what: "Reply from NuovaSolution: noted; a person from the agency writes to her with a day and time" },
     ],
   },
   historyFoot: { es: "Ejemplo ilustrativo. Cada mensaje, cada respuesta y cada aviso quedan en la ficha, en orden; no hay que reconstruir nada.", en: "Illustrative example. Every message, every reply and every alert stays on the record, in order; nothing has to be reconstructed." },
   recordLabel: { es: "Ficha de cliente", en: "Customer record" },
   priority: { es: "Prioridad", en: "Priority" },
   priorityValue: { es: "Consulta importante · aviso por email a tu equipo", en: "Important enquiry · e-mail alert to your team" },
-  priorityWhy: { es: "Motivo: nombró inmueble, zona y presupuesto. Nuova no calcula una puntuación.", en: "Reason: she named a property, an area and a budget. Nuova computes no score." },
+  priorityWhy: { es: "Motivo: nombró inmueble, zona y presupuesto. NuovaSolution no calcula una puntuación.", en: "Reason: she named a property, an area and a budget. NuovaSolution computes no score." },
   nextStep: { es: "Siguiente paso", en: "Next step" },
-  nextValue: { es: "Una persona de tu equipo le propone la visita; Nuova ya tiene la zona, el presupuesto, el uso y el plazo en la ficha.", en: "A person on your team proposes the viewing; Nuova already has the area, the budget, the use and the timing on the record." },
+  nextValue: { es: "Una persona de tu equipo le propone la visita; NuovaSolution ya tiene la zona, el presupuesto, el uso y el plazo en la ficha.", en: "A person on your team proposes the viewing; NuovaSolution already has the area, the budget, the use and the timing on the record." },
   who: { es: "Laura Serrano · compradora · escribe en español", en: "Laura Serrano · buyer · writes in Spanish" },
 };
 

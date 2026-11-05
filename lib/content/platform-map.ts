@@ -3,7 +3,7 @@ import { publishedCapability } from "@/lib/content/capabilities";
 
 /**
  * The platform in four tasks (owner follow-up order 2026-10-06 §4; master order 2026-10-10 §10): what an
- * agency does with Nuova, each entry with one benefit line. Every entry is clickable (master order: a menu must
+ * agency does with NuovaSolution, each entry with one benefit line. Every entry is clickable (master order: a menu must
  * show plainly what can be clicked): to its own page where one exists, otherwise to the chapter of the home
  * page story or the section that shows it.
  *

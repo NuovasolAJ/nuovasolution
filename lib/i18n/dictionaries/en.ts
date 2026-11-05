@@ -14,7 +14,7 @@ export const en = {
   nav: {
     platform: "Platform",
     overview: "Platform overview",
-    menuTitle: "Everything Nuova does",
+    menuTitle: "Everything NuovaSolution does",
     overviewLine: "See how the parts fit together",
     packages: "Packages",
     trial: "Trial",
@@ -150,7 +150,7 @@ export const en = {
 
   home: {
     // Section texts: PRODUCT_TEXTS_C3_v1 §2 (H1 to H9). Card and view data: synthetic, labelled.
-    // One sales path (owner criteria 2026-09-28): the pain of an agency, what Nuova does on one
+    // One sales path (owner criteria 2026-09-28): the pain of an agency, what NuovaSolution does on one
     // continuous example (Laura M., a two bedroom flat in Estepona), the visible benefit, the next
     // step. Texts PRODUCT_TEXTS_C3_v1 §2; status sentences are not rendered (audit R27).
     // Texts LAUNCH_COPY_v1 §3 and §4 (2026-09-28): one person (Laura M.), one property (a two bedroom flat
@@ -158,7 +158,7 @@ export const en = {
     hero: {
       eyebrow: "For real estate agencies in Spain",
       h1: "Answered when it arrives", // COPY_DELTAS_1001 D-81
-      lead: "A buyer writes while you are at a viewing. Nuova answers her in Spanish, records what she asked for and leaves your team one task.", // COPY_1019 R-2 // WORKING (master order 2026-10-10 §4, §5); was COPY_HERO_1003 §1
+      lead: "A buyer writes while you are at a viewing. NuovaSolution answers her in Spanish, records what she asked for and leaves your team one task.", // COPY_1019 R-2 // WORKING (master order 2026-10-10 §4, §5); was COPY_HERO_1003 §1
       state: "Today in Spanish, for text enquiries on WhatsApp and email.", // COPY_HERO_1003 §1, the state line under the buttons
       qualifier: "On the channels you connect.",
       note: "14 days free. No payment.",
@@ -168,7 +168,7 @@ export const en = {
         // One person across every surface, the same as in the Daily captures (daily_media/MANIFEST.md): Laura Serrano, Thursday morning.
         enquiry: { channel: "WhatsApp · new enquiry", time: "Tuesday 11:20", text: "Hello, I am Laura Serrano. Is the two bedroom flat in Estepona still free to view? We are in Manchester and could come on Thursday morning.", from: "Laura Serrano" }, // D-09
         answer: {
-          label: "Answered by Nuova, under your agency's name",
+          label: "Answered by NuovaSolution, under your agency's name",
           time: "Tuesday 11:20",
           disclosure: "I am an AI assistant. I will help you with your property enquiry. If you prefer to speak to a human agent, tell me at any time.",
           disclosureMark: "Sample translation. The approved notice is the Spanish one.", // D-78
@@ -199,11 +199,11 @@ export const en = {
         { label: "Scattered context", pain: "Monday starts with a full inbox and no order to it.", benefit: "The conversation and what the customer asked for stay on one record, so the next person to open it sees everything without asking." },
         { label: "Unclear ownership", pain: "A viewing was asked for, and nobody knows who calls back.", benefit: "Whoever takes a task owns it. The others can see that it is taken and by whom." },
       ],
-      benefitLabel: "With Nuova",
+      benefitLabel: "With NuovaSolution",
       close: "None of that is a discipline problem. There is simply nobody free at 21:40 on a Sunday.",
     },
     flow: {
-      eyebrow: "What Nuova does",
+      eyebrow: "What NuovaSolution does",
       // COPY_DELTAS_0929 D-02 to D-08: one journey of four steps that ends with a person acting; setup is not a step.
       h2: "From a message to a finished task",
       lead: "The enquiry is answered in Spanish. It becomes a record with what was asked for, and a viewing request becomes a task one of your people takes and closes.", // COPY_1019 R-3
@@ -213,7 +213,7 @@ export const en = {
         answer: { step: "Answered", title: "WhatsApp and e-mail", line: "Text enquiries are answered and recorded under your agency's name." },
         understand: { step: "Recorded", title: "One record per enquiry", line: "The conversation and what the customer asked for stay on one record, so the next person to open it sees everything without asking." },
         handover: { step: "Handed over", title: "One clear task, not a reminder", line: "A viewing request becomes a task with a name, a reason and an owner. Your team claims it and completes it." },
-        done: { step: "Done", title: "Nuova prepares, your team advises and closes", line: "One tap takes the task, one tap completes it. The card shows who took it, and nobody can take the same task twice. The viewing, the negotiation and the relationship stay with your people." }, // final order 2026-10-12 §6
+        done: { step: "Done", title: "NuovaSolution prepares, your team advises and closes", line: "One tap takes the task, one tap completes it. The card shows who took it, and nobody can take the same task twice. The viewing, the negotiation and the relationship stay with your people." }, // final order 2026-10-12 §6
         setup: { step: "Your setup", title: "Your agency, set up by you", line: "Your agency details, your legal details and your logo, plus your team and their roles. Your progress is saved between sessions." },
       },
     },
@@ -222,7 +222,7 @@ export const en = {
         agency: "Your agency",
         channel: "WhatsApp",
         synthetic: "Illustrative example",
-        assistant: "Nuova · AI assistant", // D-76
+        assistant: "NuovaSolution · AI assistant", // D-76
         caption: "The reply that goes out, with the notice it must carry.",
         time: "21:40",
         footer: "Names and times are invented.",
@@ -294,7 +294,7 @@ export const en = {
     },
     ask: {
       eyebrow: "Ask",
-      h2: "Ask Nuova anything about the product.",
+      h2: "Ask NuovaSolution anything about the product.",
       lead: "Answers come from what NuovaSolution has confirmed about its product. Prices, legal and tax questions go to a person.",
       points: ["Answers in English or Spanish."],
     },
@@ -324,7 +324,7 @@ export const en = {
       hero: {
         h1Soft: "Less admin.", // W-1
         h1: "More time for your clients.", // W-1
-        lead: "Nuova replies in Spanish to enquiries on WhatsApp and email, records what each client asks for and makes the next step clear.", // W-2
+        lead: "NuovaSolution replies in Spanish to enquiries on WhatsApp and email, records what each client asks for and makes the next step clear.", // W-2
         ctaDemo: "See the demonstration", // W-3
         trialLine: "14 days · No payment method", // owner 2026-10-06 §2, matches the real flow (no payment method, no card)
         labels: { enquiry: "WhatsApp enquiry", reply: "Reply in Spanish", crm: "Customer record", next: "Next step" }, // COPY_HERO_1003 §2, W-4
@@ -334,7 +334,7 @@ export const en = {
       },
       demo: {
         eyebrow: "The product in action",
-        h2: "What Nuova does, in five scenes", // WORKING
+        h2: "What NuovaSolution does, in five scenes", // WORKING
         lead: "Choose a scene. Each one says what is available today and what is still a prototype.", // WORKING
         controls: { prev: "Previous step", next: "Next step", pause: "Pause", play: "Play", step: "Step", of: "of", scenes: "Scenes" },
         short: "Shortened view",
@@ -369,9 +369,9 @@ export const en = {
   platform: {
     eyebrow: "Platform",
     h1: "Everything one enquiry needs, in one place", // D-47
-    lead: "Each part of Nuova does one job properly, and they share one record, so the answer, the context and the task are never in three different places.",
+    lead: "Each part of NuovaSolution does one job properly, and they share one record, so the answer, the context and the task are never in three different places.",
     indexEyebrow: "Capabilities",
-    indexH2: "What Nuova does for your agency.",
+    indexH2: "What NuovaSolution does for your agency.",
     exampleEyebrow: "One enquiry, end to end",
     exampleH2: "From a message to a finished task",
     tenant: {
@@ -642,21 +642,21 @@ export const en = {
       // PRODUCT_TEXTS_C2_v1 §1.2. UI state lines (save, saved, sheetsNext, notReadable, registerInterest) are the implementer's, not claims.
       heading: "Where your leads are kept",
       lead: "A CRM is included from the start.",
-      nativeTitle: "No external CRM. Use the CRM included in Nuova.",
+      nativeTitle: "No external CRM. Use the CRM included in NuovaSolution.",
       nativeTag: "Included · Recommended",
       nativeBody: "Each enquiry becomes a lead with the contact details, what the person asked for and the conversation so far. Viewing requests become tasks for your team. Nothing to connect and nothing extra to pay.", // D-86
       nativeLimits: "It is not a replacement for an accounting or transaction system, and it does not import records from another CRM.",
       sheetsTitle: "Also keep a copy in Google Sheets",
-      sheetsBody: "Nuova stays the place where leads are kept. A Google Sheet receives a copy you can open, filter and share.",
+      sheetsBody: "NuovaSolution stays the place where leads are kept. A Google Sheet receives a copy you can open, filter and share.",
       externalGroup: "Your own CRM",
       externalSoon: "Interest only", // D-60
-      externalBody: "Connecting {provider} is not offered. Selecting it records your interest, nothing is sent to {provider}, and your leads stay in the CRM included in Nuova.", // D-61
+      externalBody: "Connecting {provider} is not offered. Selecting it records your interest, nothing is sent to {provider}, and your leads stay in the CRM included in NuovaSolution.", // D-61
       registerInterest: "I use {provider}",
       interestSaved: "Interest recorded. Nothing is sent to {provider}.", // D-62
       unavailable: "Not offered",
       other: "My CRM is not listed",
-      otherBody: "That CRM is not offered. You are on the CRM included in Nuova, and you can change this later.",
-      done: "Using the CRM included in Nuova.",
+      otherBody: "That CRM is not offered. You are on the CRM included in NuovaSolution, and you can change this later.",
+      done: "Using the CRM included in NuovaSolution.",
       chooseLabel: "Your selection", // D-59
       save: "Save choice",
       saved: "Saved. This is what the backend now holds for your agency.",
@@ -665,7 +665,7 @@ export const en = {
       savedStub: "Saved in this demonstration only. Nothing reached a backend.",
       sheetsChosen: "Selected, not connected", // D-63
       sheetsConnected: "Connected",
-      sheetsOffUnavailable: "Turning the Google Sheets copy off is not available on this site yet. Your leads stay in the CRM included in Nuova either way.",
+      sheetsOffUnavailable: "Turning the Google Sheets copy off is not available on this site yet. Your leads stay in the CRM included in NuovaSolution either way.",
     },
     progressSteps: "{done} of {total} steps done",
     // Five areas (owner order 2026-10-01 §7); the progress counts only the steps that are really needed.
@@ -793,9 +793,9 @@ export const en = {
       },
       legal: {
         heading: "Legal details",
-        lead: "These details go into the emails your agency sends through Nuova and onto the invoices we send you. Without them we cannot send in your name.", // D-68
+        lead: "These details go into the emails your agency sends through NuovaSolution and onto the invoices we send you. Without them we cannot send in your name.", // D-68
         addressHelp: "Your address appears in the legal footer of those emails and on your invoices.", // D-69
-        linksHelp: "These links are placed in the emails sent in your name, so the people who write to you can reach your own notices. Nuova's own notices are separate.", // D-70
+        linksHelp: "These links are placed in the emails sent in your name, so the people who write to you can reach your own notices. NuovaSolution's own notices are separate.", // D-70
         notReadable: "Saved legal details cannot be shown again here yet, so the form starts empty. Whether they are complete is shown under \"What is needed to go live\".",
         legalName: "Legal name",
         taxId: "Tax number (CIF or NIF)",
@@ -811,7 +811,7 @@ export const en = {
         fields: { legal_name: "legal name", tax_id: "tax number", address: "address", privacy_url: "privacy link", terms_url: "terms link", logo: "logo" },
       },
       branding: {
-        lead: "Your logo and email banner go on the emails your agency sends through Nuova.",
+        lead: "Your logo and email banner go on the emails your agency sends through NuovaSolution.",
         logoHelp: "Use a PNG with a transparent background, at least 48 pixels on each side. In emails it is shown up to 180 pixels wide.",
         darkHelp: "Many people read email in dark mode. A dark logo on a transparent background can disappear there. Check the preview on both backgrounds below.",
         previewLight: "On a light background",
@@ -972,12 +972,12 @@ export const en = {
       // The four uses are the four requested permissions in plain words (META_PERMISSION_MATRIX_v1 §1); interim wording.
       usesH: "What the connection is used for",
       uses: [
-        "Showing your account in Nuova.",
+        "Showing your account in NuovaSolution.",
         "Publishing the listing posts you approve.",
         "Reading comments, replying in public, and one private reply per comment.",
         "Reading messages and answering them within 24 hours.",
       ],
-      never: "Nuova never writes to anyone first.",
+      never: "NuovaSolution never writes to anyone first.",
     },
     post: {
       h1: "Create a post",
@@ -1094,8 +1094,8 @@ export const en = {
   qa: {
     open: "Ask a question",
     close: "Close",
-    title: "Ask Nuova",
-    intro: "Questions about what Nuova does and whether it fits your agency.",
+    title: "Ask NuovaSolution",
+    intro: "Questions about what NuovaSolution does and whether it fits your agency.",
     placeholder: "Type your question",
     send: "Send",
     sending: "Sending",
@@ -1114,7 +1114,7 @@ export const en = {
     error: "That did not send. Try once more, or contact a person.",
     tooLong: "Please keep it under 4000 characters.",
     suggestionsLabel: "Common questions",
-    suggestions: ["Does Nuova answer WhatsApp enquiries at night?", "Do I need to change my CRM?", "What happens after the 14 day trial?"],
+    suggestions: ["Does NuovaSolution answer WhatsApp enquiries at night?", "Do I need to change my CRM?", "What happens after the 14 day trial?"],
   },
 
   media: {
@@ -1124,7 +1124,7 @@ export const en = {
   },
 
   footer: {
-    brandLine: "Nuova answers your agency's enquiries and makes the next step clear. Built for agencies in Spain.", // W-9
+    brandLine: "NuovaSolution answers your agency's enquiries and makes the next step clear. Built for agencies in Spain.", // W-9
     platform: "Platform",
     getStarted: "Get started",
     legal: "Legal",
