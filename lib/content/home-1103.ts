@@ -1,97 +1,99 @@
-import type { Locale } from "@/lib/i18n/config";
 import { claim, claimWords, type ClaimKey, type ClaimState } from "@/lib/claims";
 
 /**
- * The words of the home page (the owner's orders of 03.11. and 05.11.2026; one build for the home page and /packages).
- *
- * Sources: Copy's handover `docs/website_redesign/WEBSITE_COPY_HANDOVER_1102_v2.md` where it has a line; the owner's own
- * wording of 05.11. for the hero's benefit line, the three chips, the WhatsApp reply, the flow's last step and the plans'
- * highlight; the lines marked WORKING are the implementer's and stand for Copy's check. Every status word comes from
- * lib/claims.ts (one file; on launch day one commit there turns "Próximamente" into "Incluido" everywhere). The brand is
- * written "NuovaSolution" throughout (05.11., point 1).
+ * The words of the home page of 03.11.2026 in the round of 05.11. (the owner's verdict and correction of 05.11.; the text source
+ * is Copy's WEBSITE_COPY_HANDOVER_1105_v3.md, §2–§10, the only one after the owner's verdict on faf2dbb): the hero, the flow, the
+ * ten scenes with their product surfaces, the report, 3D, the plans, trust, the short FAQ and the close. Every status word comes
+ * from lib/claims.ts (§1 of the handover). The words inside the product surfaces (`ui`) are the implementer's WORKING lines on the
+ * handover's facts. Claims: governance/API_CLAIMS_LINES_1102_v1.md (no "Disponible", no price, no public sign-up, WhatsApp as
+ * our own agency's channel, no alert claimed, no contact promise).
  */
-export type L = Record<Locale, string>;
+type L = Record<"es" | "en", string>;
+const T = (es: string, en: string): L => ({ es, en });
+
 export type Status = ClaimState;
 export const statusWords = claimWords;
 
 export const home1103 = {
   hero: {
-    eyebrow: { es: "Para agencias inmobiliarias en España", en: "For real estate agencies in Spain" },
-    h1: { es: "Mientras enseñas, NuovaSolution atiende.", en: "While you show a home, NuovaSolution answers." },
-    // the owner's line of 05.11.
-    lead: { es: "Responde al momento cada consulta, la guarda en su ficha y le dice a tu equipo qué hacer primero.", en: "Answers every enquiry at once, keeps it on its record and tells your team what to do first." },
-    ctaDemo: { es: "Ver la demo", en: "See the demo" },
-    ctaContact: { es: "Pedir acceso", en: "Request access" },
-    access: { es: "Acceso por invitación mientras preparamos el registro público.", en: "Access by invitation while public registration is being prepared." },
-    // the owner's chips of 05.11.: the benefit, not the technique
+    eyebrow: T("Para agencias inmobiliarias en España", "For real estate agencies in Spain"),
+    h1: T("Mientras enseñas, NuovaSolution atiende.", "While you show a home, NuovaSolution answers."),
+    // Copy 1105 v3 §2 (the benefit line)
+    lead: T("Tus clientes reciben respuesta aunque estés en una visita, y lo que piden te espera ordenado en su ficha.", "Your clients get a reply even while you are at a viewing, and what they ask for is waiting for you on their record."),
+    ctaDemo: T("Ver la demo", "See the demo"),
+    ctaContact: T("Pedir acceso", "Request access"),
+    access: T("Acceso por invitación mientras preparamos el registro público.", "Access by invitation while public registration is being prepared."),
+    // Copy 1105 v3 §2, the three chips (chip 3 replaces "Tu equipo ve la prioridad…": the staff surface is not in production)
     benefits: {
-      es: ["Respuesta al momento, también fuera de horario", "Cada consulta, en su ficha", "Prioridad con motivo"],
-      en: ["An answer at once, also out of hours", "Every enquiry on its record", "Priority with the reason"],
+      es: ["Responde en español, también fuera de horario", "Guarda zona, presupuesto e intención", "Marca la prioridad y su motivo"],
+      en: ["Replies in Spanish, also out of hours", "Keeps area, budget and intent", "Marks the priority and its reason"],
     },
-    film: { es: "Vídeo de fondo: un salón amueblado de la casa de ejemplo ficticia de NuovaSolution, 8 segundos en bucle, sin sonido", en: "Background video: a furnished living room of NuovaSolution's fictional example house, 8 seconds on a loop, no sound" },
-    pause: { es: "Pausar el vídeo", en: "Pause the video" },
-    play: { es: "Reproducir el vídeo", en: "Play the video" },
-    scroll: { es: "Ver la demo", en: "See the demo" },
-    brandMoment: { es: "NuovaSolution", en: "NuovaSolution" },
+    film: T("Vídeo de fondo: un salón amueblado de la casa de ejemplo ficticia de NuovaSolution, 8 segundos en bucle, sin sonido", "Background video: a furnished living room of NuovaSolution's fictional example house, 8 seconds on a loop, no sound"),
+    pause: T("Pausar el vídeo", "Pause the video"),
+    play: T("Reproducir el vídeo", "Play the video"),
+    scroll: T("Ver la demo", "See the demo"),
+    brandMoment: T("NuovaSolution", "NuovaSolution"),
   },
 
-  /** The flow (05.11., point 4): NuovaSolution does the work, the team only closes. */
+  /** Copy 1105 v3 §4: the work done, and the human step that remains. */
   flow: {
-    eyebrow: { es: "Cómo funciona", en: "How it works" },
-    // PLACEHOLDER (the owner's correction of 05.11.): the final wording comes from Copy, WEBSITE_COPY_HANDOVER_1105_v3; human steps remain
-    h2: { es: "NuovaSolution hace el trabajo previo. Tu equipo atiende a las personas.", en: "NuovaSolution does the groundwork. Your team looks after the people." },
+    eyebrow: T("Cómo funciona", "How it works"),
+    h2: T("De la consulta a tu equipo, con el trabajo previo hecho.", "From the enquiry to your team, with the groundwork done."),
     nodes: {
       es: [
-        { title: "Llega la consulta", line: "WhatsApp, email, formulario o teléfono" },
-        { title: "NuovaSolution", line: "Responde, entiende y guarda" },
-        { title: "La ficha", line: "Zona, presupuesto, prioridad y siguiente paso" },
-        { title: "Tu equipo", line: "Atiende la visita y decide" }, // PLACEHOLDER until Copy 1105 v3
+        { title: "Llega la consulta", line: "Por WhatsApp o email, a cualquier hora." },
+        { title: "NuovaSolution responde", line: "En español, con una pregunta útil de vuelta." },
+        { title: "La ficha se completa", line: "Zona, presupuesto, idioma, prioridad y su motivo." },
+        { title: "Tu equipo continúa", line: "Llamar, acordar la cita y enseñar el inmueble: eso lo hace una persona." },
       ],
       en: [
-        { title: "The enquiry arrives", line: "WhatsApp, e-mail, web form or phone" },
-        { title: "NuovaSolution", line: "Answers, understands and keeps" },
-        { title: "The record", line: "Area, budget, priority and next step" },
-        { title: "Your team", line: "Attends the viewing and decides" }, // PLACEHOLDER until Copy 1105 v3
+        { title: "The enquiry arrives", line: "On WhatsApp or e-mail, at any hour." },
+        { title: "NuovaSolution replies", line: "In Spanish, with one useful question back." },
+        { title: "The record fills in", line: "Area, budget, language, priority and its reason." },
+        { title: "Your team takes over", line: "Calling, agreeing the appointment and showing the property: a person does that." },
       ],
     },
   },
 
-  /** The eight functions (05.11., points 5–7), each with its state from lib/claims.ts. */
+  /** Copy 1105 v3 §5: the ten scenes, each with its state from lib/claims.ts (and the quiet part that comes later). */
   functions: {
-    eyebrow: { es: "Lo que tu agencia gana", en: "What your agency gains" },
-    h2: { es: "Cada consulta, atendida y en su sitio.", en: "Every enquiry, answered and in its place." },
-    progress: { es: "Escena", en: "Scene" },
-    next: { es: "Siguiente escena", en: "Next scene" },
+    eyebrow: T("Lo que tu agencia gana", "What your agency gains"),
+    h2: T("Cada consulta, atendida y en su sitio.", "Every enquiry, answered and in its place."),
+    hint: T("Elige una escena", "Choose a scene"),
+    progress: T("Escena", "Scene"),
+    next: T("Siguiente escena", "Next scene"),
     items: [
-      { key: "priority", claim: "priorityWithReason" as ClaimKey, title: { es: "Leads importantes, con motivo", en: "Important leads, with the reason" }, line: { es: "La ficha marca la prioridad de cada consulta y por qué.", en: "The record marks each enquiry's priority and why." }, soon: { claim: "alert" as ClaimKey, es: "El aviso a la persona que toca", en: "The alert to the right person" } },
-      { key: "reply", claim: "replySpanish" as ClaimKey, title: { es: "Respuesta al momento", en: "An answer at once" }, line: { es: "También fuera de horario, por WhatsApp y email.", en: "Also out of hours, on WhatsApp and e-mail." } },
-      { key: "record", claim: "crm" as ClaimKey, title: { es: "Cada consulta, en su ficha", en: "Every enquiry on its record" }, line: { es: "Zona, presupuesto, idioma y lo que pide, en el CRM integrado. Cualquier idioma se reconoce y se anota.", en: "Area, budget, language and the ask, in the built-in CRM. Any language is recognised and noted." }, soon: { claim: "otherLanguages" as ClaimKey, es: "La respuesta en otros idiomas", en: "Replies in other languages" } },
-      { key: "inbox", claim: "labels" as ClaimKey, title: { es: "Orden en el buzón", en: "Order in the mailbox" }, line: { es: "Etiquetas automáticas en cada consulta y de dónde viene: portal, anuncio o tu web.", en: "Automatic labels on every enquiry and where it comes from: a portal, an ad or your website." }, soon: { claim: "origin" as ClaimKey, es: "El origen en la ficha", en: "The origin on the record" } },
-      { key: "matching", claim: "matching" as ClaimKey, title: { es: "Inmuebles que encajan", en: "Listings that fit" }, line: { es: "NuovaSolution compara lo que busca Laura con tu cartera y propone solo inmuebles tuyos.", en: "NuovaSolution compares what Laura is looking for with your portfolio and proposes only your own listings." } },
-      { key: "followup", claim: "followup" as ClaimKey, title: { es: "Seguimiento con permiso", en: "Follow-up with permission" }, line: { es: "Un inmueble nuevo que encaja se propone solo con permiso del cliente.", en: "A new listing that fits is proposed only with the customer's permission." } },
-      { key: "team", claim: "taskList" as ClaimKey, title: { es: "El día de tu equipo", en: "Your team's day" }, line: { es: "Cada persona ve sus tareas con el motivo y pregunta en voz alta: «¿Qué tengo hoy?»", en: "Each person sees their tasks with the reason and asks out loud: \"What do I have today?\"" } },
-      { key: "social", claim: "instagram" as ClaimKey, title: { es: "Publicar en Instagram", en: "Posting on Instagram" }, line: { es: "NuovaSolution prepara la publicación de un inmueble; tú la apruebas antes de que salga.", en: "NuovaSolution prepares a listing's post; you approve it before it goes out." } },
+      { key: "priority", claim: "priorityWithReason" as ClaimKey, title: T("Leads importantes, con motivo", "Important leads, with a reason"), line: T("La ficha marca la prioridad y por qué. El aviso a la persona que toca llega próximamente.", "The record marks the priority and why. The alert to the right person is coming soon."), soon: { claim: "alert" as ClaimKey, es: "El aviso a la persona que toca", en: "The alert to the right person" } },
+      { key: "reply", claim: "replySpanish" as ClaimKey, title: T("Consultas respondidas", "Enquiries answered"), line: T("En español, por WhatsApp y email, también fuera de horario.", "In Spanish, on WhatsApp and e-mail, also out of hours.") },
+      { key: "record", claim: "crm" as ClaimKey, title: T("Lo importante, guardado", "What matters, kept"), line: T("Zona, presupuesto, idioma y lo que pide quedan en su ficha, en el CRM integrado.", "Area, budget, language and what they ask for stay on their record, in the built-in CRM.") },
+      { key: "origin", claim: "origin" as ClaimKey, title: T("De dónde llega cada consulta", "Where each enquiry comes from"), line: T("La ficha guarda el canal de origen. Portales y anuncios, próximamente.", "The record keeps the channel of origin. Portals and ads, coming soon."), soon: { claim: "adsLeads" as ClaimKey, es: "Portales y anuncios", en: "Portals and ads" } },
+      { key: "language", claim: "languageNoted" as ClaimKey, title: T("El idioma de cada cliente", "Each client's language"), line: T("NuovaSolution detecta el idioma y lo guarda. Hoy responde en español; en otro idioma no se envía nada automáticamente.", "NuovaSolution detects the language and keeps it. Today it replies in Spanish; in another language nothing is sent automatically."), soon: { claim: "otherLanguages" as ClaimKey, es: "Respuestas en otros idiomas", en: "Replies in other languages" } },
+      { key: "inbox", claim: "labels" as ClaimKey, title: T("Tu buzón, ordenado", "Your inbox, sorted"), line: T("Cada correo llega con su etiqueta: visita, valoración, alquiler.", "Every e-mail arrives with its label: viewing, valuation, rental.") },
+      { key: "matching", claim: "matching" as ClaimKey, title: T("Inmuebles que encajan", "Listings that fit"), line: T("NuovaSolution compara lo que busca el cliente con tu cartera y propone solo inmuebles tuyos.", "NuovaSolution compares what the client is looking for with your portfolio and proposes only your own listings.") },
+      { key: "followup", claim: "followup" as ClaimKey, title: T("Seguimiento con permiso", "Follow-up with permission"), line: T("Cuando entra un inmueble que encaja, se propone solo si el cliente lo permitió.", "When a listing that fits comes in, it is proposed only if the client allowed it.") },
+      { key: "social", claim: "instagram" as ClaimKey, title: T("Publicar en Instagram", "Posting on Instagram"), line: T("Preparas la publicación con los datos del inmueble y sale cuando tú la apruebas.", "You prepare the post with the listing's details and it goes out when you approve it.") },
+      { key: "team", claim: "taskList" as ClaimKey, title: T("El día de tu equipo", "Your team's day"), line: T("Cada persona ve sus tareas y por qué va primero cada una, y puede preguntar «¿Qué tengo hoy?».", "Each person sees their tasks and why each comes first, and can ask \"What do I have today?\"."), soon: { claim: "dailyVoice" as ClaimKey, es: "«¿Qué tengo hoy?»", en: "\"What do I have today?\"" } },
     ],
     /** WORKING: the words inside the product surfaces. */
     ui: {
       priority: {
-        title: { es: "Consultas de hoy", en: "Today's enquiries" },
+        title: T("Consultas de hoy", "Today's enquiries"),
         rows: {
           es: [
             { who: "Laura Serrano", channel: "WhatsApp · 11:20", p: "Alta", why: "pide zona, presupuesto y visita" },
             { who: "Carmen Ortega", channel: "Email · 11:24", p: "Alta", why: "propietaria que quiere vender y pide cita" },
-            { who: "Sofía Lamas", channel: "Formulario web · 11:31", p: "Media", why: "alquiler con zona y presupuesto, sin fecha" },
+            { who: "Sofía Lamas", channel: "Email · 11:31", p: "Media", why: "alquiler con zona y presupuesto, sin fecha" },
           ],
           en: [
             { who: "Laura Serrano", channel: "WhatsApp · 11:20", p: "High", why: "names area, budget and a viewing" },
             { who: "Carmen Ortega", channel: "E-mail · 11:24", p: "High", why: "an owner who wants to sell and asks for a visit" },
-            { who: "Sofía Lamas", channel: "Web form · 11:31", p: "Medium", why: "a rental with area and budget, no date" },
+            { who: "Sofía Lamas", channel: "E-mail · 11:31", p: "Medium", why: "a rental with area and budget, no date" },
           ],
         },
-        alert: { es: "Aviso a Elena", en: "Alert to Elena" },
+        alert: T("Aviso a la persona que toca", "Alert to the right person"),
       },
       reply: {
-        title: { es: "Respondidas hoy", en: "Answered today" },
+        title: T("Respondidas hoy", "Answered today"),
         rows: {
           es: [
             { t: "23:40", ch: "WhatsApp", who: "Marta R.", what: "Ático en Benalmádena, hasta 280.000 €", s: "Respondida 23:41" },
@@ -104,100 +106,120 @@ export const home1103 = {
             { t: "11:20", ch: "WhatsApp", who: "Laura S.", what: "2 bedrooms in Estepona, up to €320,000", s: "Answered 11:21" },
           ],
         },
-        foot: { es: "Hora de envío, no de entrega", en: "Time sent, not delivered" },
+        foot: T("Hora de envío, no de entrega", "Time sent, not delivered"),
       },
+      /** Scene 3: Laura's record (the demonstration's fields, Copy §3). */
       record: {
-        title: { es: "Ficha de Peter y Anna Keller", en: "Peter and Anna Keller's record" },
+        title: T("Ficha de Laura", "Laura's record"),
         fields: {
-          es: [["Intención", "vender"], ["Zona", "Marbella · Elviria"], ["Inmueble", "villa"], ["Presupuesto", "valoración pedida"], ["Idioma", "alemán · reconocido"], ["Visita", "valoración esta semana"]],
-          en: [["Intent", "selling"], ["Area", "Marbella · Elviria"], ["Property", "villa"], ["Budget", "valuation asked for"], ["Language", "German · recognised"], ["Visit", "valuation this week"]],
+          es: [["Intención", "compra"], ["Zona", "Estepona"], ["Dormitorios", "2"], ["Presupuesto", "hasta 320.000 €"], ["Idioma", "español"], ["Canal", "WhatsApp"], ["Visita", "la pide para la semana que viene"]],
+          en: [["Intent", "buying"], ["Area", "Estepona"], ["Bedrooms", "2"], ["Budget", "up to €320,000"], ["Language", "Spanish"], ["Channel", "WhatsApp"], ["Viewing", "asked for next week"]],
         },
-        history: { es: "Historial", en: "History" },
+        priority: T("Prioridad alta · pide zona, presupuesto y visita", "High priority · names area, budget and a viewing"),
+        next: T("Siguiente paso: una persona de tu equipo le propone día y hora.", "Next step: someone on your team proposes a day and time."),
+      },
+      /** Scene 4: the channel of origin on every record. */
+      origin: {
+        title: T("Canal de origen", "Channel of origin"),
+        rows: {
+          es: [{ who: "Laura Serrano", what: "Piso de 2 dormitorios en Estepona", origin: "WhatsApp" }, { who: "Carmen Ortega", what: "Valoración de su piso en Fuengirola", origin: "Email" }, { who: "Peter y Anna Keller", what: "Valoración de una villa en Elviria", origin: "Email" }],
+          en: [{ who: "Laura Serrano", what: "Two-bedroom flat in Estepona", origin: "WhatsApp" }, { who: "Carmen Ortega", what: "Valuation of her flat in Fuengirola", origin: "E-mail" }, { who: "Peter and Anna Keller", what: "Valuation of a villa in Elviria", origin: "E-mail" }],
+        },
+        soonRows: { es: ["Portal", "Anuncio"], en: ["Portal", "Ad"] },
+      },
+      /** Scene 5: the Kellers' record, the language recognised, nothing sent automatically. */
+      language: {
+        title: T("Ficha de Peter y Anna Keller", "Peter and Anna Keller's record"),
+        fields: {
+          es: [["Intención", "vender"], ["Zona", "Marbella · Elviria"], ["Inmueble", "villa"], ["Idioma", "alemán · reconocido"], ["Respuesta", "ninguna automática · la escribe una persona"]],
+          en: [["Intent", "selling"], ["Area", "Marbella · Elviria"], ["Property", "villa"], ["Language", "German · recognised"], ["Reply", "none automatic · a person writes it"]],
+        },
+        history: T("Historial", "History"),
         events: {
-          es: [{ t: "mar 11:24", ch: "Email", what: "Consulta en alemán: quieren vender su villa" }, { t: "mar 11:24", ch: "Email", what: "Idioma reconocido: alemán · respuesta para una persona" }],
-          en: [{ t: "Tue 11:24", ch: "E-mail", what: "Enquiry in German: they want to sell their villa" }, { t: "Tue 11:24", ch: "E-mail", what: "Language recognised: German · reply left to a person" }],
+          es: [{ t: "mar 11:24", ch: "Email", what: "Consulta en alemán: quieren vender su villa" }, { t: "mar 11:24", ch: "Email", what: "Idioma reconocido: alemán · no se envía nada automáticamente" }],
+          en: [{ t: "Tue 11:24", ch: "E-mail", what: "Enquiry in German: they want to sell their villa" }, { t: "Tue 11:24", ch: "E-mail", what: "Language recognised: German · nothing sent automatically" }],
         },
       },
       inbox: {
-        title: { es: "Buzón de la agencia", en: "The agency's mailbox" },
+        title: T("Buzón de la agencia", "The agency's mailbox"),
+        note: T("En el buzón que operamos para ti", "In the mailbox we operate for you"),
         rows: {
           es: [
-            { from: "Laura Serrano", subject: "Piso de 2 dormitorios en Estepona", label: "Compra · Estepona", origin: "Portal", soon: false },
-            { from: "Carmen Ortega", subject: "Valoración de mi piso en Fuengirola", label: "Venta · Valoración", origin: "Web", soon: false },
-            { from: "Sofía Lamas", subject: "Alquiler de larga temporada", label: "Alquiler · Fuengirola", origin: "Anuncio", soon: false },
+            { from: "Laura Serrano", subject: "Piso de 2 dormitorios en Estepona", label: "Visita" },
+            { from: "Carmen Ortega", subject: "Valoración de mi piso en Fuengirola", label: "Valoración" },
+            { from: "Sofía Lamas", subject: "Alquiler de larga temporada", label: "Alquiler" },
           ],
           en: [
-            { from: "Laura Serrano", subject: "Two-bedroom flat in Estepona", label: "Buying · Estepona", origin: "Portal", soon: false },
-            { from: "Carmen Ortega", subject: "Valuation of my flat in Fuengirola", label: "Selling · Valuation", origin: "Website", soon: false },
-            { from: "Sofía Lamas", subject: "Long-term rental", label: "Rental · Fuengirola", origin: "Ad", soon: false },
+            { from: "Laura Serrano", subject: "Two-bedroom flat in Estepona", label: "Viewing" },
+            { from: "Carmen Ortega", subject: "Valuation of my flat in Fuengirola", label: "Valuation" },
+            { from: "Sofía Lamas", subject: "Long-term rental", label: "Rental" },
           ],
         },
-        originHead: { es: "Origen", en: "Origin" },
-        labelHead: { es: "Etiqueta", en: "Label" },
       },
       matching: {
-        title: { es: "Encajan con Laura · de tu cartera", en: "Fit Laura · from your portfolio" },
-        because: { es: "Estepona · 2 dormitorios · hasta 320.000 €", en: "Estepona · 2 bedrooms · up to €320,000" },
+        title: T("Encajan con Laura · de tu cartera", "Fit Laura · from your portfolio"),
+        because: T("Estepona · 2 dormitorios · hasta 320.000 €", "Estepona · 2 bedrooms · up to €320,000"),
         rows: {
           es: [{ ref: "EST-204", t: "Piso de 2 dormitorios con terraza", place: "Estepona · zona puerto", price: "315.000 €", fit: "zona, dormitorios, precio", photo: "/media/world/listing-est204.webp", alt: "Salón abierto a una terraza · foto de muestra" }, { ref: "EST-231", t: "Ático de 2 dormitorios con vistas", place: "Estepona · Seghers", price: "319.000 €", fit: "zona, dormitorios, precio", photo: "/media/world/listing-est231.webp", alt: "Edificio blanco con balcones · foto de muestra" }],
           en: [{ ref: "EST-204", t: "Two bedroom flat with terrace", place: "Estepona · marina area", price: "€315,000", fit: "area, bedrooms, price", photo: "/media/world/listing-est204.webp", alt: "Living room opening onto a terrace · sample photo" }, { ref: "EST-231", t: "Two bedroom penthouse with views", place: "Estepona · Seghers", price: "€319,000", fit: "area, bedrooms, price", photo: "/media/world/listing-est231.webp", alt: "White building with balconies · sample photo" }],
         },
-        action: { es: "Proponer a Laura", en: "Propose to Laura" },
-        photoNote: { es: "Fotos de muestra", en: "Sample photos" },
+        action: T("Proponer a Laura", "Propose to Laura"),
+        photoNote: T("Fotos de muestra", "Sample photos"),
       },
       followup: {
-        title: { es: "Nuevo en tu cartera", en: "New in your portfolio" },
-        listing: { es: "EST-240 · Piso de 2 dormitorios · Estepona · 309.000 €", en: "EST-240 · Two bedroom flat · Estepona · €309,000" },
+        title: T("Nuevo en tu cartera", "New in your portfolio"),
+        listing: T("EST-240 · Piso de 2 dormitorios · Estepona · 309.000 €", "EST-240 · Two bedroom flat · Estepona · €309,000"),
         photo: "/media/world/listing-est240.webp",
-        fits: { es: "Encaja con Laura: zona, dormitorios y presupuesto", en: "Fits Laura: area, bedrooms and budget" },
-        permission: { es: "Permiso de Laura para avisos: sí · martes 11:23", en: "Laura's permission for updates: yes · Tuesday 11:23" },
-        action: { es: "Enviar la propuesta por email", en: "Send the proposal by e-mail" },
-        noPermission: { es: "Sin permiso no se envía nada.", en: "Without permission nothing is sent." },
+        fits: T("Encaja con Laura: zona, dormitorios y presupuesto", "Fits Laura: area, bedrooms and budget"),
+        permission: T("Permiso de Laura para avisos: sí · martes 11:23", "Laura's permission for updates: yes · Tuesday 11:23"),
+        action: T("Enviar la propuesta por email", "Send the proposal by e-mail"),
+        noPermission: T("Sin permiso no se envía nada.", "Without permission nothing is sent."),
       },
       team: {
-        title: { es: "Elena · miércoles", en: "Elena · Wednesday" },
+        title: T("Elena · miércoles", "Elena · Wednesday"),
         rows: {
           es: [{ kind: "Visita pedida", who: "Laura Serrano · WhatsApp", why: "nombró inmueble, zona y presupuesto", step: "Proponerle día y hora", state: "Abierta" }, { kind: "Valoración", who: "Carmen Ortega · Email", why: "propietaria que pide cita esta semana", step: "Proponer una fecha", state: "Abierta" }, { kind: "Rellamada", who: "Álvaro Pons · Teléfono", why: "pidió que le llamen por la tarde", step: "Llamar a partir de las 16:00", state: "Tomada · Marcos" }],
           en: [{ kind: "Viewing requested", who: "Laura Serrano · WhatsApp", why: "named a property, an area and a budget", step: "Propose a day and time", state: "Open" }, { kind: "Valuation", who: "Carmen Ortega · E-mail", why: "an owner asking for a visit this week", step: "Propose a date", state: "Open" }, { kind: "Callback", who: "Álvaro Pons · Phone", why: "asked to be called in the afternoon", state: "Taken · Marcos", step: "Call from 16:00" }],
         },
-        take: { es: "Tomar", en: "Take" },
-        taken: { es: "Tomada · Elena", en: "Taken · Elena" },
-        assistant: { es: "Primero Laura: pidió visita y nombró zona y presupuesto.", en: "Laura first: she asked for a viewing and named area and budget." },
+        take: T("Tomar", "Take"),
+        demo: T("Demo", "Demo"),
+        taken: T("Tomada · Elena", "Taken · Elena"),
+        assistant: T("Primero Laura: pidió visita y nombró zona y presupuesto.", "Laura first: she asked for a viewing and named area and budget."),
         /** The small Daily view (after the team's app, staff-v13): the list with the voice bar. */
         daily: {
-          title: { es: "Tareas · Elena", en: "Tasks · Elena" },
-          app: { es: "La app del equipo", en: "The team's app" },
+          title: T("Tareas · Elena", "Tasks · Elena"),
+          app: T("La app del equipo", "The team's app"),
           sections: { es: ["Urgentes (1)", "Hoy (2)"], en: ["Urgent (1)", "Today (2)"] },
-          question: { es: "¿Qué tengo hoy?", en: "What do I have today?" },
-          answer: { es: "Tienes 3 tareas. Primero Laura Serrano: pidió visita y nombró zona y presupuesto. Después la valoración de Carmen Ortega y la llamada a Álvaro Pons a partir de las 16:00.", en: "You have 3 tasks. Laura Serrano first: she asked for a viewing and named area and budget. Then Carmen Ortega's valuation and the call to Álvaro Pons from 16:00." },
-          mic: { es: "Pregunta en voz alta", en: "Ask out loud" },
-          close: { es: "Cerrar", en: "Close" },
-          note: { es: "Vista de ejemplo de la app del equipo", en: "Example view of the team's app" },
+          question: T("¿Qué tengo hoy?", "What do I have today?"),
+          answer: T("Tienes 3 tareas. Primero Laura Serrano: pidió visita y nombró zona y presupuesto. Después la valoración de Carmen Ortega y la llamada a Álvaro Pons a partir de las 16:00.", "You have 3 tasks. Laura Serrano first: she asked for a viewing and named area and budget. Then Carmen Ortega's valuation and the call to Álvaro Pons from 16:00."),
+          mic: T("Pregunta en voz alta", "Ask out loud"),
+          close: T("Cerrar", "Close"),
+          note: T("Vista de ejemplo de la app del equipo", "Example view of the team's app"),
         },
       },
       social: {
-        title: { es: "Instagram · publicación preparada", en: "Instagram · post prepared" },
-        listing: { es: "Villa con piscina y vistas al mar · Marbella · Elviria", en: "Villa with pool and sea views · Marbella · Elviria" },
+        title: T("Instagram · publicación preparada", "Instagram · post prepared"),
+        listing: T("Villa con piscina y vistas al mar · Marbella · Elviria", "Villa with pool and sea views · Marbella · Elviria"),
         photo: "/media/world/listing-est118.webp",
-        caption: { es: "Villa con piscina y vistas al mar en Elviria. Tres dormitorios, terraza al sur. Visitas con cita. #Marbella #Elviria", en: "Villa with pool and sea views in Elviria. Three bedrooms, south-facing terrace. Viewings by appointment. #Marbella #Elviria" },
-        state: { es: "Pendiente de tu aprobación", en: "Waiting for your approval" },
-        approve: { es: "Aprobar y publicar", en: "Approve and publish" },
-        edit: { es: "Editar", en: "Edit" },
-        rule: { es: "Nada se publica sin tu aprobación.", en: "Nothing is published without your approval." },
+        caption: T("Villa con piscina y vistas al mar en Elviria. Tres dormitorios, terraza al sur. Visitas con cita. #Marbella #Elviria", "Villa with pool and sea views in Elviria. Three bedrooms, south-facing terrace. Viewings by appointment. #Marbella #Elviria"),
+        state: T("Pendiente de tu aprobación", "Waiting for your approval"),
+        approve: T("Aprobar y publicar", "Approve and publish"),
+        edit: T("Editar", "Edit"),
+        rule: T("Nada se publica sin tu aprobación.", "Nothing is published without your approval."),
       },
     },
   },
 
-  /** Copy §4 and the owner's point 8: the report. */
+  /** Copy 1105 v3 §6: the report on the home page; one set of example figures, the same on /example-report. */
   report: {
-    eyebrow: { es: "Informe", en: "Report" },
-    h2: { es: "Tu semana, en un informe", en: "Your week, in one report" },
-    lead: { es: "Qué atendió NuovaSolution, qué sigue abierto y qué hacer después.", en: "What NuovaSolution handled, what is still open and what to do next." },
-    header: { es: "Agencia de ejemplo · Semana del 26 oct al 1 nov · Demo con datos ficticios", en: "Example agency · Week of 26 Oct to 1 Nov · Demo with fictional data" },
-    chartTitle: { es: "Consultas por semana", en: "Enquiries per week" },
-    chartNote: { es: "Cuatro semanas de ejemplo. La evolución por semanas forma parte del informe ampliado.", en: "Four example weeks. The week-by-week trend is part of the extended report." },
-    received: { es: "Recibidas", en: "Received" },
-    answered: { es: "Respondidas", en: "Answered" },
+    eyebrow: T("Informe", "Report"),
+    h2: T("Tu semana, en un informe", "Your week, in one report"),
+    lead: T("Qué atendió NuovaSolution, qué sigue abierto y qué hacer después.", "What NuovaSolution handled, what is still open and what to do next."),
+    header: T("Agencia de ejemplo · Semana del 26 oct al 1 nov · WhatsApp y email · Demo con datos ficticios", "Example agency · Week of 26 Oct to 1 Nov · WhatsApp and e-mail · Demo with fictional data"),
+    chartTitle: T("Consultas por semana", "Enquiries per week"),
+    chartNote: T("Cuatro semanas de ejemplo. La evolución por semanas forma parte del informe ampliado: próximamente.", "Four example weeks. The week-by-week trend is part of the extended report: coming soon."),
+    received: T("Recibidas", "Received"),
+    answered: T("Respondidas", "Answered"),
     weeks: { es: ["Sem. 1", "Sem. 2", "Sem. 3", "Sem. 4"], en: ["Wk 1", "Wk 2", "Wk 3", "Wk 4"] },
     series: [
       { received: 19, answered: 17 },
@@ -205,133 +227,143 @@ export const home1103 = {
       { received: 21, answered: 20 },
       { received: 25, answered: 23 },
     ],
-    channelsTitle: { es: "Por canal", en: "By channel" },
-    /** 05.11., point 8: every channel, the ones not live marked quietly. */
+    channelsTitle: T("Por canal", "By channel"),
+    channelsNote: T("Las mismas 25, según el canal de llegada", "The same 25, by the channel they arrived on"),
+    /** §6 "Por canal": WhatsApp and e-mail with their figures (the channels in production); the others only as "Próximamente", no figure invented. */
     channels: {
-      es: [{ name: "WhatsApp", v: 13, claim: "replySpanish" as ClaimKey }, { name: "Email", v: 9, claim: "replySpanish" as ClaimKey }, { name: "Formulario web", v: 2, claim: "webform" as ClaimKey }, { name: "Teléfono", v: 1, claim: "phoneAssistant" as ClaimKey }, { name: "Instagram", v: 0, claim: "instagram" as ClaimKey }],
-      en: [{ name: "WhatsApp", v: 13, claim: "replySpanish" as ClaimKey }, { name: "E-mail", v: 9, claim: "replySpanish" as ClaimKey }, { name: "Web form", v: 2, claim: "webform" as ClaimKey }, { name: "Phone", v: 1, claim: "phoneAssistant" as ClaimKey }, { name: "Instagram", v: 0, claim: "instagram" as ClaimKey }],
+      es: [{ name: "WhatsApp", v: 14, claim: "replySpanish" as ClaimKey }, { name: "Email", v: 11, claim: "replySpanish" as ClaimKey }, { name: "Formulario web", v: null, claim: "webform" as ClaimKey }, { name: "Teléfono", v: null, claim: "phoneAssistant" as ClaimKey }, { name: "Portales y anuncios", v: null, claim: "adsLeads" as ClaimKey }],
+      en: [{ name: "WhatsApp", v: 14, claim: "replySpanish" as ClaimKey }, { name: "E-mail", v: 11, claim: "replySpanish" as ClaimKey }, { name: "Web form", v: null, claim: "webform" as ClaimKey }, { name: "Phone", v: null, claim: "phoneAssistant" as ClaimKey }, { name: "Portals and ads", v: null, claim: "adsLeads" as ClaimKey }],
     },
-    /** 05.11., point 8: three insights the product can measure (received per channel, the hour of each enquiry, viewings asked for). */
+    /** §7: the insight lines, computed from the figures above; in the agency's report "Próximamente" (report_extended). */
     insights: {
-      es: [{ k: "Tu mejor canal", v: "WhatsApp · 13 de 25", claim: "reportInLogin" as ClaimKey }, { k: "Hora punta de consultas", v: "11–13 h", claim: "reportTrend" as ClaimKey }, { k: "De consulta a visita", v: "4 de 25 piden visita", claim: "reportInLogin" as ClaimKey }],
-      en: [{ k: "Your best channel", v: "WhatsApp · 13 of 25", claim: "reportInLogin" as ClaimKey }, { k: "Peak hour of enquiries", v: "11–13 h", claim: "reportTrend" as ClaimKey }, { k: "From enquiry to viewing", v: "4 of 25 ask for a viewing", claim: "reportInLogin" as ClaimKey }],
+      es: [{ k: "Tu mejor canal", v: "WhatsApp · 14 de 25 consultas", d: "El canal por el que llegaron más consultas en la semana.", claim: "reportTrend" as ClaimKey }, { k: "Hora punta", v: "11:00–12:00 · 6 consultas", d: "La franja de una hora en la que llegaron más consultas.", claim: "reportTrend" as ClaimKey }, { k: "De consulta a visita", v: "24 % · 6 de 25", d: "Visitas pedidas sobre consultas recibidas. No es una tasa de venta.", claim: "reportTrend" as ClaimKey }],
+      en: [{ k: "Your top channel", v: "WhatsApp · 14 of 25 enquiries", d: "The channel that brought the most enquiries in the week.", claim: "reportTrend" as ClaimKey }, { k: "Peak hour", v: "11:00–12:00 · 6 enquiries", d: "The one-hour slot in which most enquiries arrived.", claim: "reportTrend" as ClaimKey }, { k: "Enquiry to viewing", v: "24% · 6 of 25", d: "Viewings asked for out of enquiries received. Not a sales rate.", claim: "reportTrend" as ClaimKey }],
     },
+    insightsState: T("Estas conclusiones forman parte del informe ampliado: próximamente.", "These insights are part of the extended report: coming soon."),
     metrics: {
       es: [
-        { k: "Consultas recibidas", d: "Mensajes nuevos registrados en la semana.", v: "25" },
-        { k: "Respondidas", d: "Consultas con una respuesta automática enviada.", v: "23" },
+        { k: "Consultas recibidas", d: "Mensajes nuevos por WhatsApp y email registrados en la semana.", v: "25" },
+        { k: "Respondidas", d: "Consultas con una respuesta automática enviada. Las otras 2 llegaron en otro idioma: no se envía nada automáticamente.", v: "23" },
         { k: "Esperan a una persona", d: "Consultas abiertas que necesitan a alguien del equipo.", v: "2" },
-        { k: "Visitas pedidas", d: "Clientes que pidieron ver un inmueble. Pedida no es acordada.", v: "4" },
+        { k: "Visitas pedidas", d: "Clientes que pidieron ver un inmueble; 4 ya acordadas por el equipo. Pedida no es acordada.", v: "6" },
         { k: "Entregadas al cliente", d: "Si la respuesta llegó al teléfono o al buzón del cliente.", v: "No medido" },
         { k: "Tiempo de respuesta", d: "Minutos entre la consulta y la respuesta.", v: "No medido" },
       ],
       en: [
-        { k: "Enquiries received", d: "New messages recorded in the week.", v: "25" },
-        { k: "Answered", d: "Enquiries with an automatic reply sent.", v: "23" },
+        { k: "Enquiries received", d: "New WhatsApp and e-mail messages recorded in the week.", v: "25" },
+        { k: "Answered", d: "Enquiries with an automatic reply sent. The other 2 arrived in another language: nothing is sent automatically.", v: "23" },
         { k: "Waiting for a person", d: "Open enquiries that need someone on the team.", v: "2" },
-        { k: "Viewings asked for", d: "Customers who asked to see a property. Asked is not agreed.", v: "4" },
+        { k: "Viewings asked for", d: "Customers who asked to see a property; 4 already agreed by the team. Asked is not agreed.", v: "6" },
         { k: "Delivered to the customer", d: "Whether the reply reached the customer's phone or inbox.", v: "Not measured" },
         { k: "Response time", d: "Minutes between the enquiry and the reply.", v: "Not measured" },
       ],
     },
-    openTitle: { es: "Sigue abierto", en: "Still open" },
+    openTitle: T("Sigue abierto", "Still open"),
     open: { es: ["Peter y Anna Keller · valoración de una villa · falta proponer una fecha", "Sofía Lamas · alquiler desde enero · esperando su respuesta"], en: ["Peter and Anna Keller · villa valuation · a date still to propose", "Sofía Lamas · rental from January · waiting for her reply"] },
-    nextTitle: { es: "Qué hacer ahora", en: "What to do now" },
+    nextTitle: T("Qué hacer ahora", "What to do now"),
     next: { es: ["Proponer a los Keller una fecha para la valoración.", "Recordar a Laura la visita del jueves a las 10:00."], en: ["Propose a date to the Kellers for the valuation.", "Remind Laura of Thursday's 10:00 viewing."] },
-    link: { es: "Ver el informe de ejemplo", en: "See the example report" },
-    state: { es: "Incluido: el informe en el acceso de tu agencia. Próximamente: el resumen semanal por email.", en: "Included: the report in your agency's login. Coming soon: the weekly e-mail summary." },
-    example: { es: "Datos de ejemplo", en: "Example data" },
-    soon: { es: "próximamente", en: "coming soon" },
+    link: T("Ver el informe de ejemplo", "See the example report"),
+    state: T("Incluido: el informe en el acceso de tu agencia. Próximamente: el resumen semanal por email y el informe ampliado.", "Included: the report in your agency's login. Coming soon: the weekly e-mail summary and the extended report."),
+    example: T("Datos de ejemplo", "Example data"),
+    soon: T("próximamente", "coming soon"),
   },
 
-  /** Copy §5 and the owner's point 9: 3D, a separate service. */
+  /** Copy 1105 v3 §8 and the owner's point 9: 3D, a separate service. */
   model3d: {
-    eyebrow: { es: "Un servicio aparte", en: "A separate service" },
-    h2: { es: "Presentar un inmueble en 3D", en: "Present a property in 3D" },
-    lead: { es: "Del plano acotado a un modelo que el cliente recorre con la mirada, vacío y amueblado.", en: "From the measured plan to a model the client can look around, empty and furnished." },
+    eyebrow: T("Un servicio aparte", "A separate service"),
+    h2: T("Presentar un inmueble en 3D", "Present a property in 3D"),
+    lead: T("Del plano acotado a un modelo que el cliente recorre con la mirada, vacío y amueblado.", "From the measured plan to a model the client can look around, empty and furnished."),
     steps: { es: ["Plano", "Modelo", "Vacío y amueblado", "Entrega"], en: ["Plan", "Model", "Empty and furnished", "Delivery"] },
-    status: { es: "Próximamente · todavía no contratable", en: "Coming soon · not bookable yet" },
-    example: { es: "Casa de ejemplo ficticia", en: "Fictional example house" },
-    cta: { es: "Pregúntanos por el 3D", en: "Ask us about 3D" },
-    /** 05.11., point 9: the broker's simple path. */
-    pathTitle: { es: "El camino, en tres pasos", en: "The path, in three steps" },
-    path: { es: ["Subes el plano en la app", "Te preguntamos lo que falte", "Recibes el enlace"], en: ["You upload the plan in the app", "We ask what is missing", "You receive the link"] },
-    planAlt: { es: "Plano acotado de la planta baja de la casa de ejemplo, dibujado a escala", en: "Dimensioned plan of the example house's ground floor, drawn to scale" },
-    modelAlt: { es: "Casa de ejemplo ficticia: la planta baja de cerca, amueblada, vista del visor", en: "Fictional example house: the ground floor up close, furnished, a view from the viewer" },
-    modelFilm: { es: "Vídeo: la planta baja de la casa de ejemplo girando en el visor · 13 segundos · sin sonido", en: "Video: the example house's ground floor turning in the viewer · 13 seconds · no sound" },
-    modelLine: { es: "La planta baja, girando. Grabado del visor real.", en: "The ground floor, turning. Recorded from the real viewer." },
-    emptyAlt: { es: "Casa de ejemplo ficticia: el mismo salón vacío, desde la misma cámara", en: "Fictional example house: the same living room, empty, from the same camera" },
-    furnishedAlt: { es: "Casa de ejemplo ficticia: el mismo salón con mobiliario ilustrativo, desde la misma cámara", en: "Fictional example house: the same living room with illustrative furnishing, from the same camera" },
-    pairLabel: { es: "Comparar el salón vacío y amueblado desde la misma cámara", en: "Compare the living room empty and furnished from the same camera" },
-    empty: { es: "Vacío", en: "Empty" },
-    furnished: { es: "Amueblado", en: "Furnished" },
-    filmTitle: { es: "La casa entera", en: "The whole house" },
-    filmLine: { es: "Las dos plantas, luego cada planta, con y sin muebles. Grabado del visor real, 25 segundos, sin sonido.", en: "Both floors, then each floor, with and without furniture. Recorded from the real viewer, 25 seconds, no sound." },
-    film: { es: "Vídeo: la casa de ejemplo entera en el visor · 25 segundos · sin sonido", en: "Video: the whole example house in the viewer · 25 seconds · no sound" },
-    playFilm: { es: "Ver la casa entera", en: "Watch the whole house" },
+    example: T("Casa de ejemplo ficticia", "Fictional example house"),
+    cta: T("Pregúntanos por el 3D", "Ask us about 3D"),
+    /** §8: the agent's path (D10), one line; drawn as three stations. */
+    pathTitle: T("Tu camino", "Your path"),
+    pathLine: T("Tú envías el plano; nosotros construimos el modelo y te entregamos el enlace.", "You send the plan; we build the model and send you the link."),
+    path: { es: ["Tú envías el plano", "Nosotros construimos el modelo", "Te entregamos el enlace"], en: ["You send the plan", "We build the model", "We send you the link"] },
+    planAlt: T("Plano acotado de la planta baja de la casa de ejemplo, dibujado a escala", "Dimensioned plan of the example house's ground floor, drawn to scale"),
+    modelAlt: T("Casa de ejemplo ficticia: la planta baja de cerca, amueblada, vista del visor", "Fictional example house: the ground floor up close, furnished, a view from the viewer"),
+    modelFilm: T("Vídeo: la planta baja de la casa de ejemplo girando en el visor · 13 segundos · sin sonido", "Video: the example house's ground floor turning in the viewer · 13 seconds · no sound"),
+    modelLine: T("La planta baja, girando. Grabado del visor real.", "The ground floor, turning. Recorded from the real viewer."),
+    emptyAlt: T("Casa de ejemplo ficticia: el mismo salón vacío, desde la misma cámara", "Fictional example house: the same living room, empty, from the same camera"),
+    furnishedAlt: T("Casa de ejemplo ficticia: el mismo salón con mobiliario ilustrativo, desde la misma cámara", "Fictional example house: the same living room with illustrative furnishing, from the same camera"),
+    pairLabel: T("Comparar el salón vacío y amueblado desde la misma cámara", "Compare the living room empty and furnished from the same camera"),
+    empty: T("Vacío", "Empty"),
+    furnished: T("Amueblado", "Furnished"),
+    filmTitle: T("La casa entera", "The whole house"),
+    filmLine: T("Las dos plantas, luego cada planta, con y sin muebles. Grabado del visor real, 25 segundos, sin sonido.", "Both floors, then each floor, with and without furniture. Recorded from the real viewer, 25 seconds, no sound."),
+    film: T("Vídeo: la casa de ejemplo entera en el visor · 25 segundos · sin sonido", "Video: the whole example house in the viewer · 25 seconds · no sound"),
+    playFilm: T("Ver la casa entera", "Watch the whole house"),
   },
 
-  /** Copy §6.1 and the owner's point 10: the plans. */
+  /** Copy 1105 v3 §9 and the owner's point 10 (corrected): the plans. */
   plans: {
-    eyebrow: { es: "Planes", en: "Plans" },
-    h2: { es: "Planes", en: "Plans" },
-    lead: { es: "Hoy, acceso por invitación. Los planes se podrán contratar con el registro público, próximamente.", en: "Today, access by invitation. Plans can be booked once public registration opens, coming soon." },
+    eyebrow: T("Planes", "Plans"),
+    h2: T("Planes", "Plans"),
+    lead: T("Hoy, acceso por invitación. Los planes se podrán contratar con el registro público.", "Today, access by invitation. Plans can be booked once public registration opens."),
     names: ["Essential", "Growth", "Enterprise"],
     codes: ["essential", "growth", "enterprise"] as const,
-    who: { es: ["Una oficina y un equipo pequeño", "Un equipo que crece", "Varias oficinas"], en: ["One office and a small team", "A growing team", "Several offices"] },
-    inherits: { es: "Cada plan incluye todo lo del anterior.", en: "Each plan includes everything in the one before." },
-    price: { es: "Te decimos el precio para tu agencia antes de acordar nada.", en: "We tell you the price for your agency before anything is agreed." },
-    cta: { es: "Solicita una propuesta", en: "Request a proposal" },
-    /** 05.11., point 10, corrected the same day: Growth stands out, but is not called "the most complete" (Enterprise holds more); the line is a PLACEHOLDER until Copy's WEBSITE_COPY_HANDOVER_1105_v3. */
-    highlight: { plan: "growth", es: "Plan destacado", en: "Highlighted plan" },
+    /** §9: the positioning, checkable against the table; no badge, no popularity claim. */
+    lines: {
+      es: ["Respuestas, fichas e informe para una oficina.", "Todo lo de Essential, más el trabajo del equipo: tareas, propuestas y seguimientos.", "Todo lo de Growth, para varias oficinas, con Instagram y 3D."],
+      en: ["Replies, records and report for one office.", "Everything in Essential, plus the team's work: tasks, proposals and follow-ups.", "Everything in Growth, for several offices, with Instagram and 3D."],
+    },
+    inherits: T("Cada plan incluye todo lo del anterior.", "Each plan includes everything in the one before."),
+    price: T("Te decimos el precio para tu agencia antes de acordar nada.", "We tell you the price for your agency before anything is agreed."),
+    cta: T("Solicita una propuesta", "Request a proposal"),
+    /** The owner's point 10: Growth stands out (its column), without a badge (Copy §9). */
+    highlight: { plan: "growth" },
     groups: { es: ["Canales", "CRM", "Equipo", "Informes", "Integraciones", "Servicios"], en: ["Channels", "CRM", "Team", "Reporting", "Integrations", "Services"] },
     rows: [
-      { g: 0, icon: "reply", key: "replySpanish" as ClaimKey, name: { es: "Respuestas en español por WhatsApp y email", en: "Replies in Spanish on WhatsApp and e-mail" } },
-      { g: 0, icon: "whatsapp", key: "whatsappOwnNumber" as ClaimKey, name: { es: "WhatsApp con el número de tu agencia", en: "WhatsApp with your agency's own number" } },
-      { g: 0, icon: "languages", key: "otherLanguages" as ClaimKey, name: { es: "Otros idiomas", en: "Other languages" } },
-      { g: 0, icon: "phone", key: "phoneAssistant" as ClaimKey, name: { es: "Asistente telefónico", en: "Phone assistant" } },
-      { g: 0, icon: "instagram", key: "instagram" as ClaimKey, name: { es: "Instagram: publicar y comentarios", en: "Instagram: posts and comments" } },
-      { g: 1, icon: "crm", key: "crm" as ClaimKey, name: { es: "CRM integrado: fichas e historial", en: "Built-in CRM: records and history" } },
-      { g: 1, icon: "person", key: "oneRecordAcrossChannels" as ClaimKey, name: { es: "Una ficha por persona entre WhatsApp y email", en: "One record per person across WhatsApp and e-mail" } },
-      { g: 2, icon: "alert", key: "alert" as ClaimKey, name: { es: "Aviso de consultas importantes", en: "Alert for important enquiries" } },
-      { g: 2, icon: "tasks", key: "taskList" as ClaimKey, name: { es: "Lista de tareas y asistente de la mañana", en: "Task list and morning assistant" } },
-      { g: 2, icon: "matching", key: "matching" as ClaimKey, name: { es: "Propuestas de tu cartera y seguimientos", en: "Proposals from your portfolio and follow-ups" } },
-      { g: 3, icon: "report", key: "reportInLogin" as ClaimKey, name: { es: "Informe en el acceso de tu agencia", en: "Report in your agency's login" } },
-      { g: 3, icon: "mail", key: "weeklyEmail" as ClaimKey, name: { es: "Resumen semanal por email", en: "Weekly e-mail summary" } },
-      { g: 3, icon: "trend", key: "reportTrend" as ClaimKey, name: { es: "Informe con evolución y canales", en: "Report with trend and channels" } },
-      { g: 4, icon: "integrations", key: "integrations" as ClaimKey, name: { es: "HubSpot, Pipedrive, Zoho, Salesforce, Outlook", en: "HubSpot, Pipedrive, Zoho, Salesforce, Outlook" } },
-      { g: 4, icon: "ads", key: "adsLeads" as ClaimKey, name: { es: "Leads de tus anuncios actuales", en: "Leads from your existing ads" } },
-      { g: 5, icon: "model3d", key: "model3d" as ClaimKey, name: { es: "Modelos 3D", en: "3D models" } },
+      { g: 0, icon: "reply", key: "replySpanish" as ClaimKey, name: T("Respuestas en español por WhatsApp y email", "Replies in Spanish on WhatsApp and e-mail") },
+      { g: 0, icon: "languages", key: "languageNoted" as ClaimKey, name: T("Detección del idioma", "Language detection") },
+      { g: 0, icon: "mail", key: "labels" as ClaimKey, name: T("Etiquetas en el buzón", "Labels in the mailbox") },
+      { g: 0, icon: "whatsapp", key: "whatsappOwnNumber" as ClaimKey, name: T("WhatsApp con el número de tu agencia", "WhatsApp with your agency's own number") },
+      { g: 0, icon: "languages", key: "otherLanguages" as ClaimKey, name: T("Respuestas en otros idiomas", "Replies in other languages") },
+      { g: 0, icon: "phone", key: "phoneAssistant" as ClaimKey, name: T("Asistente telefónico", "Phone assistant") },
+      { g: 0, icon: "instagram", key: "instagram" as ClaimKey, name: T("Publicar en Instagram", "Posting on Instagram") },
+      { g: 1, icon: "crm", key: "crm" as ClaimKey, name: T("Ficha en el CRM integrado, con canal de origen", "Record in the built-in CRM, with channel of origin") },
+      { g: 1, icon: "priority", key: "priorityWithReason" as ClaimKey, name: T("Prioridad con motivo", "Priority with its reason") },
+      { g: 1, icon: "person", key: "oneRecordAcrossChannels" as ClaimKey, name: T("Una ficha por persona entre canales", "One record per person across channels") },
+      { g: 2, icon: "alert", key: "alert" as ClaimKey, name: T("Aviso a la persona que toca", "Alert to the right person") },
+      { g: 2, icon: "tasks", key: "taskList" as ClaimKey, name: T("Lista de tareas y «¿Qué tengo hoy?»", "Task list and \"What do I have today?\"") },
+      { g: 2, icon: "matching", key: "matching" as ClaimKey, name: T("Inmuebles que encajan y seguimiento con permiso", "Listings that fit and follow-up with permission") },
+      { g: 3, icon: "report", key: "reportInLogin" as ClaimKey, name: T("Informe en el acceso de tu agencia", "Report in your agency's login") },
+      { g: 3, icon: "mail", key: "weeklyEmail" as ClaimKey, name: T("Resumen semanal por email", "Weekly e-mail summary") },
+      { g: 3, icon: "trend", key: "reportTrend" as ClaimKey, name: T("Informe ampliado: evolución, canales y conclusiones", "Extended report: trend, channels and insights") },
+      { g: 4, icon: "integrations", key: "integrations" as ClaimKey, name: T("HubSpot, Pipedrive, Zoho, Salesforce, Outlook", "HubSpot, Pipedrive, Zoho, Salesforce, Outlook") },
+      { g: 4, icon: "ads", key: "adsLeads" as ClaimKey, name: T("Leads de portales y anuncios", "Leads from portals and ads") },
+      { g: 5, icon: "model3d", key: "model3d" as ClaimKey, name: T("Modelos 3D", "3D models") },
     ],
-    legend: { es: "Un ✓ solo donde la función está incluida hoy.", en: "A ✓ only where the function is included today." },
+    legend: T("Un ✓ solo donde la función está incluida hoy.", "A ✓ only where the function is included today."),
   },
 
   trust: {
-    h2: { es: "Cómo empezar y qué pasa con los datos", en: "How to start and what happens with the data" },
+    h2: T("Cómo empezar y qué pasa con los datos", "How to start and what happens with the data"),
     lines: {
       es: ["Pides acceso, te enseñamos el sistema y conectamos los canales contigo.", "La base de datos está en la Unión Europea (Fráncfort).", "Cada respuesta automática indica que la escribe un asistente."],
       en: ["You request access, we show you the system and connect the channels with you.", "The database is in the European Union (Frankfurt).", "Every automatic reply says that an assistant wrote it."],
     },
   },
 
+  /** Copy 1105 v3 §10.2. */
   faq: {
-    h2: { es: "Preguntas", en: "Questions" },
-    all: { es: "Todas las preguntas", en: "All the questions" },
+    h2: T("Preguntas", "Questions"),
+    all: T("Todas las preguntas", "All the questions"),
     items: {
       es: [
-        { q: "¿Qué hace NuovaSolution?", a: "Responde en español las consultas que llegan por WhatsApp y email y guarda lo importante de cada una en su ficha." },
-        { q: "¿En qué idiomas responde?", a: "En español. Cualquier otro idioma se reconoce y se anota en la ficha; la respuesta en otros idiomas llega próximamente." },
+        { q: "¿Qué hace NuovaSolution?", a: "Responde en español las consultas que llegan por WhatsApp y email y guarda lo importante de cada una en su ficha, con su prioridad y su motivo." },
+        { q: "¿En qué idiomas responde?", a: "En español. Detecta el idioma de cada consulta; en otro idioma no se envía nada automáticamente." },
         { q: "¿Sabe el cliente que responde un asistente?", a: "Sí. Cada respuesta automática lo indica." },
-        { q: "¿Avisa a mi equipo?", a: "Todavía no: el aviso por email a la persona adecuada llega próximamente. Hoy la prioridad y el motivo están en la ficha." },
+        { q: "¿Avisa a mi equipo?", a: "Próximamente. Hoy la prioridad y su motivo quedan en la ficha." },
         { q: "¿Cómo empiezo?", a: "Hoy por invitación: pide acceso y te enseñamos el sistema. El registro público y la prueba de 14 días llegan próximamente." },
         { q: "¿Funciona con mi CRM?", a: "Incluye un CRM. HubSpot, Pipedrive, Zoho y Salesforce, próximamente." },
         { q: "¿Cuánto cuesta?", a: "Te decimos el precio para tu agencia antes de acordar nada." },
       ],
       en: [
-        { q: "What does NuovaSolution do?", a: "It answers the enquiries that arrive on WhatsApp and e-mail in Spanish and keeps what matters from each one on its record." },
-        { q: "Which languages does it answer in?", a: "Spanish. Any other language is recognised and noted on the record; replies in other languages are coming soon." },
+        { q: "What does NuovaSolution do?", a: "It answers the enquiries that arrive on WhatsApp and e-mail in Spanish and keeps what matters from each one on its record, with its priority and reason." },
+        { q: "Which languages does it answer in?", a: "Spanish. It detects each enquiry's language; in another language nothing is sent automatically." },
         { q: "Does the customer know an assistant is answering?", a: "Yes. Every automatic reply says so." },
-        { q: "Does it alert my team?", a: "Not yet: the e-mail alert to the right person is coming soon. Today the priority and its reason are on the record." },
+        { q: "Does it alert my team?", a: "Coming soon. Today the priority and its reason stay on the record." },
         { q: "How do I start?", a: "By invitation today: request access and we will show you the system. Public registration and the 14-day trial are coming soon." },
         { q: "Does it work with my CRM?", a: "It includes a CRM. HubSpot, Pipedrive, Zoho and Salesforce, coming soon." },
         { q: "What does it cost?", a: "We tell you the price for your agency before anything is agreed." },
@@ -339,11 +371,12 @@ export const home1103 = {
     },
   },
 
+  /** Copy 1105 v3 §10.3. */
   close: {
-    h2: { es: "Mira cómo atiende NuovaSolution tus consultas", en: "See how NuovaSolution answers your enquiries" },
-    line: { es: "Te enseñamos la demo con tus canales y respondemos tus preguntas.", en: "We show you the demo with your channels and answer your questions." },
-    ctaDemo: { es: "Ver la demo", en: "See the demo" },
-    ctaContact: { es: "Pedir acceso", en: "Request access" },
+    h2: T("Mira cómo NuovaSolution atiende tus consultas", "See how NuovaSolution answers your enquiries"),
+    line: T("Te enseñamos la demo con tus canales y respondemos tus preguntas.", "We show you the demo with your channels and answer your questions."),
+    ctaDemo: T("Ver la demo", "See the demo"),
+    ctaContact: T("Pedir acceso", "Request access"),
   },
 };
 

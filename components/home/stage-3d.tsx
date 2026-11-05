@@ -6,7 +6,7 @@ import { ArrowRight, Link2, MessageCircleQuestion, Play, Upload } from "lucide-r
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
-import { claim } from "@/lib/claims";
+import { claim, claimWords } from "@/lib/claims";
 import { CompareSlider } from "@/components/ui/compare-slider";
 import { Rise, useSeen } from "@/components/ui/motion";
 import { DemoPlan } from "./scene-art";
@@ -84,7 +84,7 @@ export function Stage3d({ locale }: { locale: Locale }) {
           <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
           <h2 id="m3d-h" className="t-display-m mt-3 text-text-primary">{l(w.h2)}</h2>
           <p className="mt-4 t-body-l text-text-secondary max-w-[52ch]">{l(w.lead)}</p>
-          <p className="mt-4 flex flex-wrap gap-x-4 gap-y-2"><span className="status-pill" data-status={state} data-model3d-status>{l(w.status)}</span><span className="status-pill" data-status="example" data-model3d-example>{l(w.example)}</span></p>
+          <p className="mt-4 flex flex-wrap gap-x-4 gap-y-2"><span className="status-pill" data-status={state} data-model3d-status>{claimWords[state][locale]}</span><span className="status-pill" data-status="example" data-model3d-example>{l(w.example)}</span></p>
         </Rise>
 
         <Rise className="m3d-stage" y={24} delay={0.1}>
@@ -142,6 +142,7 @@ export function Stage3d({ locale }: { locale: Locale }) {
         {/* the broker's path in three steps (05.11., point 9) */}
         <Rise className="m3d-path" delay={0.05} y={16}>
           <p className="m3d-path-title">{l(w.pathTitle)}</p>
+          <p className="m3d-path-line" data-model3d-path-line>{l(w.pathLine)}</p>
           <ol className="m3d-path-steps" data-model3d-path>
             {l(w.path).map((s, i) => {
               const Icon = pathIcons[i];

@@ -129,16 +129,16 @@ export const faqGroups: FaqGroup[] = [
         kb: "Q-41",
         q: { en: "Where does my team work the tasks?", es: "¿Dónde trabaja mi equipo las tareas?" },
         a: {
-          en: "In their own list, each person signed in as themselves. That list is in preparation; until then your team gets an e-mail alert for each important enquiry.", // COPY_SYNC_1024 X-7
-          es: "En su propia lista, cada persona entrando como ella misma. Esa lista está en preparación; hasta entonces, tu equipo recibe por email el aviso de cada consulta importante.",
+          en: "In their own list, each person signed in as themselves. That list is coming soon; until then your team gets an e-mail alert for each important enquiry.", // COPY_SYNC_1024 X-7
+          es: "En su propia lista, cada persona entrando como ella misma. Esa lista está próximamente; hasta entonces, tu equipo recibe por email el aviso de cada consulta importante.",
         },
       },
       {
         kb: "Q-42",
         q: { en: "Can my team ask the assistant what to do today?", es: "¿Puede mi equipo preguntarle al asistente qué hacer hoy?" },
         a: {
-          en: "Not today. Today your team gets an e-mail alert for each important enquiry. The task list and the assistant that explains the order are in preparation.", // COPY_SYNC_1024 X-6
-          es: "Hoy no. Hoy tu equipo recibe por email el aviso de cada consulta importante. La lista de tareas y el asistente que explica el orden están en preparación.",
+          en: "Not today. Today your team gets an e-mail alert for each important enquiry. The task list and the assistant that explains the order are coming soon.", // COPY_SYNC_1024 X-6
+          es: "Hoy no. Hoy tu equipo recibe por email el aviso de cada consulta importante. La lista de tareas y el asistente que explica el orden están próximamente.",
         },
       },
       {
@@ -159,8 +159,8 @@ export const faqGroups: FaqGroup[] = [
         kb: "Q-11",
         q: { en: "How long is the trial and what does it cost?", es: "¿Cuánto dura la prueba y qué cuesta?" },
         a: {
-          en: "It will be 14 days of Essential, free and with no payment method. Public registration is in preparation; until then, write to us and we will show you the system.",
-          es: "Será de 14 días de Essential, gratis y sin método de pago. El registro público está en preparación; hasta entonces, escríbenos y te enseñamos el sistema.",
+          en: "It will be 14 days of Essential, free and with no payment method. Public registration is coming soon; until then, write to us and we will show you the system.",
+          es: "Será de 14 días de Essential, gratis y sin método de pago. El registro público está próximamente; hasta entonces, escríbenos y te enseñamos el sistema.",
         }, // Copy 1102 v2 C-13
       },
       {
@@ -195,7 +195,7 @@ export const faqGroups: FaqGroup[] = [
       {
         kb: "Q-16",
         q: { en: "Do I have to talk to a salesperson first?", es: "¿Tengo que hablar antes con un comercial?" },
-        a: { en: "No sales call is needed: write to us and we will show you the system. Starting on your own comes with public registration, in preparation.", es: "No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. Empezar por tu cuenta llega con el registro público, en preparación." }, // Copy 1102 v2 C-14
+        a: { en: "No sales call is needed: write to us and we will show you the system. Starting on your own comes with public registration, coming soon.", es: "No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. Empezar por tu cuenta llega con el registro público, próximamente." }, // Copy 1102 v2 C-14
       },
       {
         kb: "Q-21",

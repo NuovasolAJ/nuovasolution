@@ -10,12 +10,13 @@ import { Rise } from "@/components/ui/motion";
 import { cn } from "@/lib/utils";
 
 /**
- * The eight functions as product surfaces (the owner's orders of 03.11. point 4 and 05.11. points 5–7): at the left the eight
- * scenes with one line and their state, a progress mark 01–08 and the active card lifted; at the right one sticky stage that
- * swaps the product surface of the scene in view with a soft rise. The stage is clickable: it advances to the next scene (and
- * the keyboard does the same). "Inmuebles que encajan" shows the licensed sample photographs of the media register; "El día de
- * tu equipo" opens a small Daily view after the team's app (staff-v13) with the voice bar when "Tomar" is pressed. On a phone
- * every scene stands with its own surface in a linear stack. Every state word comes from lib/claims.ts.
+ * The ten scenes as product surfaces (Copy 1105 v3 §5; the owner's orders of 03.11. point 4 and 05.11. points 5–7): at the left
+ * the scenes with one line and their state, a progress mark 01–10 and the active card lifted; at the right one sticky stage that
+ * swaps the product surface of the scene in view with a soft rise. The stage is clickable: it advances to the next scene (and the
+ * keyboard does the same). "Inmuebles que encajan" shows the licensed sample photographs of the media register with "Proponer a
+ * Laura · Próximamente"; "El día de tu equipo" opens a small Daily view after the team's app (staff-v13) with the voice bar when
+ * "Tomar" (marked "Demo") is pressed. On a phone every scene stands with its own surface in a linear stack. Every state word
+ * comes from lib/claims.ts.
  */
 type Key = (typeof home1103.functions.items)[number]["key"];
 
@@ -39,6 +40,7 @@ export function Functions({ locale }: { locale: Locale }) {
 
   const go = (k: Key) => { setActive(k); refs.current[k]?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); };
   const next = () => go(keys[(idx + 1) % keys.length]);
+  const no = (i: number) => String(i + 1).padStart(2, "0");
 
   return (
     <section id="functions" aria-labelledby="fn-h" className="fn" data-functions data-fn-active={active} data-fn-index={idx + 1}>
@@ -46,19 +48,20 @@ export function Functions({ locale }: { locale: Locale }) {
         <Rise className="fn-head">
           <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
           <h2 id="fn-h" className="t-display-m mt-3 text-text-primary">{l(w.h2)}</h2>
+          <p className="fn-hint t-body-s text-text-muted">{l(w.hint)}</p>
         </Rise>
         <div className="fn-grid">
           <ol className="fn-list">
             {w.items.map((it, i) => (
               <li key={it.key} ref={(el) => { refs.current[it.key] = el; }} data-fn={it.key} className={cn("fn-item", active === it.key && "is-active")}>
                 <button type="button" className="fn-item-button" onClick={() => go(it.key)} aria-pressed={active === it.key} data-fn-button={it.key}>
-                  <span className="fn-item-no tnum">0{i + 1}</span>
+                  <span className="fn-item-no tnum">{no(i)}</span>
                   <span className="fn-item-words">
                     <span className="fn-item-title">{l(it.title)}</span>
                     <span className="fn-item-line">{l(it.line)}</span>
                     <span className="fn-item-state">
                       <StatusPill status={claim(it.claim)} locale={locale} />
-                      {it.soon && <span className="fn-item-note" data-fn-soon={it.soon.claim}>{l(it.soon)} · {claimWords[claim(it.soon.claim)][locale].toLowerCase()}</span>}
+                      {it.soon && claim(it.soon.claim) !== "included" && <span className="fn-item-note" data-fn-soon={it.soon.claim}>{l(it.soon)} · {claimWords[claim(it.soon.claim)][locale].toLowerCase()}</span>}
                     </span>
                   </span>
                 </button>
@@ -67,10 +70,10 @@ export function Functions({ locale }: { locale: Locale }) {
             ))}
           </ol>
           <div className="fn-stage" data-fn-stage>
-            {/* the progress of the scenes (05.11., point 5): 01–08, the active one filled */}
+            {/* the progress of the scenes (05.11., point 5): 01–10, the active one filled */}
             <ol className="fn-progress" aria-label={l(w.progress)} data-fn-progress>
               {keys.map((k, i) => (
-                <li key={k}><button type="button" className={cn("fn-progress-dot", i === idx && "is-on", i < idx && "is-past")} onClick={() => go(k)} aria-label={`${l(w.progress)} ${i + 1}`} aria-current={i === idx ? "step" : undefined}><span className="tnum">0{i + 1}</span></button></li>
+                <li key={k}><button type="button" className={cn("fn-progress-dot", i === idx && "is-on", i < idx && "is-past")} onClick={() => go(k)} aria-label={`${l(w.progress)} ${i + 1}`} aria-current={i === idx ? "step" : undefined}><span className="tnum">{no(i)}</span></button></li>
               ))}
             </ol>
             <button type="button" className="fn-stage-inner" onClick={next} aria-label={l(w.next)} data-fn-stage-button>
@@ -112,11 +115,15 @@ function SoonLine({ k, locale, children }: { k: ClaimKey; locale: Locale; childr
   return <span className={cn("ps-soon", s === "included" && "is-included")} data-claim={k} data-state={s}>{children} · {claimWords[s][locale].toLowerCase()}</span>;
 }
 
+function useStagger() {
+  const reduce = useReducedMotion();
+  return (i: number) => (reduce ? {} : { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, transition: { delay: 0.08 + i * 0.09, duration: 0.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } });
+}
+
 function Surface({ k, locale }: { k: Key; locale: Locale }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const u = home1103.functions.ui;
-  const reduce = useReducedMotion();
-  const stagger = (i: number) => (reduce ? {} : { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, transition: { delay: 0.08 + i * 0.09, duration: 0.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } });
+  const stagger = useStagger();
 
   if (k === "priority") {
     const p = u.priority;
@@ -164,16 +171,57 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
         <div className="ps-head"><span className="ps-title">{l(p.title)}</span><span className="ps-meta">CRM</span></div>
         <dl className="ps-fields">
           {l(p.fields).map(([kk, v], i) => (
+            <m.div key={kk} className="ps-field" {...stagger(i)}><dt>{kk}</dt><dd>{v}</dd></m.div>
+          ))}
+        </dl>
+        <m.p className="ps-assistant" {...stagger(7)}>{l(p.priority)}</m.p>
+        <p className="ps-foot">{l(p.next)}</p>
+      </div>
+    );
+  }
+  if (k === "origin") {
+    const p = u.origin;
+    return (
+      <div className="ps" data-ps="origin">
+        <div className="ps-head"><span className="ps-title">{l(p.title)}</span><span className="ps-meta">CRM</span></div>
+        <ul className="ps-rows">
+          {l(p.rows).map((r, i) => {
+            const Icon = CH_ICON[r.origin] ?? Mail;
+            return (
+              <m.li key={r.who} className="ps-row ps-row-inbox" {...stagger(i)}>
+                <span className="ps-row-main"><span className="ps-row-who">{r.who}</span><span className="ps-row-sub">{r.what}</span></span>
+                <span className="ps-tags"><span className="ps-tag" data-origin><Icon size={11} strokeWidth={2.2} aria-hidden="true" />{r.origin}</span></span>
+              </m.li>
+            );
+          })}
+          {l(p.soonRows).map((o, i) => (
+            <m.li key={o} className="ps-row ps-row-inbox is-quiet" {...stagger(3 + i)}>
+              <span className="ps-row-main"><span className="ps-row-sub">{o}</span></span>
+              <span className="ps-tags"><span className="ps-tag ps-tag-origin" data-origin-soon>{claimWords[claim("adsLeads")][locale]}</span></span>
+            </m.li>
+          ))}
+        </ul>
+        <p className="ps-foot"><SoonLine k="adsLeads" locale={locale}>{locale === "es" ? "Portales y anuncios" : "Portals and ads"}</SoonLine></p>
+      </div>
+    );
+  }
+  if (k === "language") {
+    const p = u.language;
+    return (
+      <div className="ps" data-ps="language">
+        <div className="ps-head"><span className="ps-title">{l(p.title)}</span><span className="ps-meta">CRM</span></div>
+        <dl className="ps-fields">
+          {l(p.fields).map(([kk, v], i) => (
             <m.div key={kk} className={cn("ps-field", /reconocido|recognised/.test(v) && "is-lit")} {...stagger(i)}><dt>{kk}</dt><dd>{v}</dd></m.div>
           ))}
         </dl>
         <p className="ps-sub">{l(p.history)}</p>
         <ul className="ps-events">
           {l(p.events).map((e, i) => (
-            <m.li key={i} {...stagger(6 + i)}><span className="tnum">{e.t}</span><span className="ps-chip"><Mail size={12} strokeWidth={2} aria-hidden="true" />{e.ch}</span><span>{e.what}</span></m.li>
+            <m.li key={i} {...stagger(5 + i)}><span className="tnum">{e.t}</span><span className="ps-chip"><Mail size={12} strokeWidth={2} aria-hidden="true" />{e.ch}</span><span>{e.what}</span></m.li>
           ))}
         </ul>
-        <p className="ps-foot"><SoonLine k="otherLanguages" locale={locale}>{locale === "es" ? "Respuesta en otros idiomas" : "Replies in other languages"}</SoonLine></p>
+        <p className="ps-foot"><SoonLine k="otherLanguages" locale={locale}>{locale === "es" ? "Respuestas en otros idiomas" : "Replies in other languages"}</SoonLine></p>
       </div>
     );
   }
@@ -186,11 +234,11 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
           {l(p.rows).map((r, i) => (
             <m.li key={r.from} className="ps-row ps-row-inbox" {...stagger(i)}>
               <span className="ps-row-main"><span className="ps-row-who">{r.from}</span><span className="ps-row-sub">{r.subject}</span></span>
-              <span className="ps-tags"><span className="ps-tag"><Tag size={11} strokeWidth={2.2} aria-hidden="true" />{r.label}</span><span className="ps-tag ps-tag-origin" data-origin>{l(p.originHead)}: {r.origin}</span></span>
+              <span className="ps-tags"><span className="ps-tag"><Tag size={11} strokeWidth={2.2} aria-hidden="true" />{r.label}</span></span>
             </m.li>
           ))}
         </ul>
-        <p className="ps-foot"><SoonLine k="origin" locale={locale}>{locale === "es" ? "El origen en la ficha" : "The origin on the record"}</SoonLine></p>
+        <p className="ps-foot">{l(p.note)}</p>
       </div>
     );
   }
@@ -209,7 +257,7 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
             </m.li>
           ))}
         </ul>
-        <m.p className="ps-action" {...stagger(3)}><Send size={14} strokeWidth={2} aria-hidden="true" />{l(p.action)}</m.p>
+        <m.p className="ps-action-row" {...stagger(3)}><span className="ps-action ps-action-inline"><Send size={14} strokeWidth={2} aria-hidden="true" />{l(p.action)}</span><span className="ps-soon" data-claim="matching">{claimWords[claim("matching")][locale]}</span></m.p>
       </div>
     );
   }
@@ -248,15 +296,15 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
   return <TeamSurface locale={locale} />;
 }
 
-/** The team's day with the small Daily view (after staff-v13): "Tomar" opens the list with the voice bar. */
+/** The team's day with the small Daily view (after staff-v13): "Tomar" (marked "Demo") opens the list with the voice bar. */
 function TeamSurface({ locale }: { locale: Locale }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const p = home1103.functions.ui.team;
-  const reduce = useReducedMotion();
+  const stagger = useStagger();
   const [open, setOpen] = useState(false);
   const [taken, setTaken] = useState<number | null>(null);
-  const stagger = (i: number) => (reduce ? {} : { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, transition: { delay: 0.08 + i * 0.09, duration: 0.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } });
   const rows = l(p.rows);
+  const isTaken = (s: string) => s.startsWith("Tomada") || s.startsWith("Taken");
   return (
     <div className="ps" data-ps="team" data-daily={open ? "open" : "closed"}>
       <div className="ps-head"><span className="ps-title">{l(p.title)}</span><span className="ps-meta">{rows.length}</span></div>
@@ -264,20 +312,17 @@ function TeamSurface({ locale }: { locale: Locale }) {
         <>
           <m.p className="ps-assistant" {...stagger(0)}>{l(p.assistant)}</m.p>
           <ul className="ps-rows">
-            {rows.map((r, i) => {
-              const isTaken = r.state.startsWith("Tomada") || r.state.startsWith("Taken");
-              return (
-                <m.li key={r.who} className="ps-task" {...stagger(1 + i)}>
-                  <span className="ps-task-main"><span className="ps-task-kind">{r.kind}</span><span className="ps-row-who">{r.who}</span><span className="ps-row-sub">{r.why}</span><span className="ps-task-step">{r.step}</span></span>
-                  {isTaken ? <span className="ps-take is-taken">{r.state}</span> : <span role="button" tabIndex={0} className="ps-take" onClick={(e) => { e.stopPropagation(); setTaken(i); setOpen(true); }} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); setTaken(i); setOpen(true); } }} data-ps-take={i}>{l(p.take)}</span>}
-                </m.li>
-              );
-            })}
+            {rows.map((r, i) => (
+              <m.li key={r.who} className="ps-task" {...stagger(1 + i)}>
+                <span className="ps-task-main"><span className="ps-task-kind">{r.kind}</span><span className="ps-row-who">{r.who}</span><span className="ps-row-sub">{r.why}</span><span className="ps-task-step">{r.step}</span></span>
+                {isTaken(r.state) ? <span className="ps-take is-taken">{r.state}</span> : <span role="button" tabIndex={0} className="ps-take" onClick={(e) => { e.stopPropagation(); setTaken(i); setOpen(true); }} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); setTaken(i); setOpen(true); } }} data-ps-take={i}>{l(p.take)}<span className="ps-take-demo">{l(p.demo)}</span></span>}
+              </m.li>
+            ))}
           </ul>
         </>
       ) : (
         <div className="daily" onClick={(e) => e.stopPropagation()} data-daily-view>
-          <div className="daily-top"><span className="daily-app">{l(p.daily.app)}</span><span className="daily-title">{l(p.daily.title)}</span><span role="button" tabIndex={0} className="daily-close" aria-label={l(p.daily.close)} onClick={() => setOpen(false)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setOpen(false); }}><X size={16} strokeWidth={2.2} /></span></div>
+          <div className="daily-top"><span className="daily-app">{l(p.daily.app)} · {l(p.demo)}</span><span className="daily-title">{l(p.daily.title)}</span><span role="button" tabIndex={0} className="daily-close" aria-label={l(p.daily.close)} onClick={() => setOpen(false)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setOpen(false); }}><X size={16} strokeWidth={2.2} /></span></div>
           <p className="daily-section">{l(p.daily.sections)[0]}</p>
           <div className="daily-card is-urgent">
             <p className="daily-card-title">{rows[0].kind}: {rows[0].who}</p>
@@ -289,7 +334,7 @@ function TeamSurface({ locale }: { locale: Locale }) {
             <div key={r.who} className="daily-card">
               <p className="daily-card-title">{r.kind}: {r.who}</p>
               <p className="daily-card-line">{r.why} · {r.step}</p>
-              <span className={cn("daily-chip", (taken === i + 1 || r.state.startsWith("Tomada") || r.state.startsWith("Taken")) && "is-taken")}>{taken === i + 1 ? l(p.taken) : r.state}</span>
+              <span className={cn("daily-chip", (taken === i + 1 || isTaken(r.state)) && "is-taken")}>{taken === i + 1 ? l(p.taken) : r.state}</span>
             </div>
           ))}
           <div className="daily-voice" data-daily-voice>

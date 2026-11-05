@@ -12,10 +12,11 @@ import { cn } from "@/lib/utils";
 
 /**
  * The report (the owner's orders of 03.11. point 5 and 05.11. point 8; Copy 1102 v2 §4): the report itself as the agency
- * reads it: the week's trend as a chart that draws when it comes into view, every channel (WhatsApp, e-mail, web form, phone,
- * Instagram; the ones not live marked quietly from lib/claims.ts), three insights the product can measure (the best channel,
- * the peak hour, from enquiry to viewing), the figures with their definitions, "No medido" as text and never as 0. Labelled
- * "Datos de ejemplo". The look follows the weekly report of the agency login and /example-report.
+ * reads it (Copy 1105 v3 §6): the week's trend as a chart that draws when it comes into view, the channels in production
+ * (WhatsApp 14, e-mail 11 of the 25 received) and the others only as "Próximamente" with no figure invented, three insight lines
+ * computed from the figures with their definitions (in the agency's report "Próximamente"), the figures with their definitions,
+ * "No medido" as text and never as 0. Labelled "Datos de ejemplo". The look follows the weekly report of the agency login and
+ * /example-report.
  */
 export function ReportStage({ locale }: { locale: Locale }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
@@ -26,7 +27,7 @@ export function ReportStage({ locale }: { locale: Locale }) {
   const max = Math.max(...w.series.map((s) => s.received));
   const metrics = l(w.metrics);
   const channels = l(w.channels);
-  const chMax = Math.max(...channels.map((c) => c.v));
+  const chMax = Math.max(...channels.map((c) => c.v ?? 0));
   const insights = l(w.insights);
   const insightIcons = [Trophy, Clock, Eye];
   const grow = (i: number) => (reduce ? {} : { initial: { scaleY: 0 }, animate: seen ? { scaleY: 1 } : { scaleY: 0 }, transition: { delay: 0.15 + i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } });
@@ -55,12 +56,14 @@ export function ReportStage({ locale }: { locale: Locale }) {
                 return (
                   <m.li key={it.k} className="rep-insight" data-report-insight={i + 1} {...(reduce ? {} : { initial: { opacity: 0, y: 10 }, animate: seen ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }, transition: { delay: 0.1 + i * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } })}>
                     <span className="rep-insight-icon" aria-hidden="true"><Icon size={16} strokeWidth={2} /></span>
-                    <span className="rep-insight-k">{it.k}{soonWord(it.claim)}</span>
+                    <span className="rep-insight-k">{it.k}</span>
                     <span className="rep-insight-v tnum">{it.v}</span>
+                    <span className="rep-insight-d">{it.d}</span>
                   </m.li>
                 );
               })}
             </ul>
+            <p className="rep-insights-state" data-report-insights-state>{l(w.insightsState)}</p>
 
             <div className="rep-grid">
               {/* the trend */}
@@ -99,14 +102,21 @@ export function ReportStage({ locale }: { locale: Locale }) {
               {/* by channel: every channel, the ones not live marked quietly */}
               <div className="rep-channels" data-report-chart="channels">
                 <p className="rep-chart-title">{l(w.channelsTitle)}</p>
+                <p className="rep-note">{l(w.channelsNote)}</p>
                 <ul>
                   {channels.map((c, i) => {
-                    const live = claim(c.claim) === "included";
+                    const live = claim(c.claim) === "included" && c.v !== null;
                     return (
                       <li key={c.name} className={cn("rep-channel", !live && "is-soon")} data-report-channel={c.name.toLowerCase().replace(/\s+/g, "-")} data-channel-state={claim(c.claim)}>
-                        <span className="rep-channel-name">{c.name}{soonWord(c.claim)}</span>
-                        <span className="rep-channel-track"><m.span className="rep-channel-fill" data-channel={c.name.toLowerCase()} style={{ width: `${Math.max(1, (c.v / chMax) * 100)}%`, transformOrigin: "left" }} {...(reduce ? {} : { initial: { scaleX: 0 }, animate: seen ? { scaleX: 1 } : { scaleX: 0 }, transition: { delay: 0.5 + i * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } })} /></span>
-                        <span className="rep-channel-value tnum">{c.v}</span>
+                        <span className="rep-channel-name">{c.name}</span>
+                        {live ? (
+                          <>
+                            <span className="rep-channel-track"><m.span className="rep-channel-fill" data-channel={c.name.toLowerCase()} style={{ width: `${Math.max(1, ((c.v ?? 0) / chMax) * 100)}%`, transformOrigin: "left" }} {...(reduce ? {} : { initial: { scaleX: 0 }, animate: seen ? { scaleX: 1 } : { scaleX: 0 }, transition: { delay: 0.5 + i * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } })} /></span>
+                            <span className="rep-channel-value tnum">{c.v}</span>
+                          </>
+                        ) : (
+                          <span className="rep-channel-soon">{soonWord(c.claim)}</span>
+                        )}
                       </li>
                     );
                   })}

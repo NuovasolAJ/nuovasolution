@@ -18,7 +18,7 @@ export const es: Dictionary = {
     menuTitle: "Todo lo que hace NuovaSolution",
     overviewLine: "Mira cómo encajan las piezas",
     packages: "Paquetes",
-    trial: "Prueba",
+    trial: "Acceso",
     contact: "Contacto",
     login: "Iniciar sesión",
     startFree: "Empieza gratis",
@@ -39,8 +39,8 @@ export const es: Dictionary = {
     },
     stageLines: {
       attract: "",
-      answer: "Agente de ventas",
-      understand: "Inteligencia de leads, CRM",
+      answer: "Asistente de consultas",
+      understand: "Ficha y prioridad, CRM",
       advance: "Property Experience, a petición",
       handover: "Daily Assistant",
     },
@@ -60,7 +60,7 @@ export const es: Dictionary = {
     bookDemo: "Solicitar una demo",
     startFree: "Pedir acceso", // Copy 1102 v2 C-8 (claims lines 02.11.: no public sign-up promise): every former "Probar gratis" button
     seeDemo: "Ver la demo", // owner review 02.11.: the header's one general button leads to the demonstration (no public sign-up)
-    tryFree: "Prueba gratuita de 14 días: en preparación", // C-16a
+    tryFree: "Prueba gratuita de 14 días: próximamente", // C-16a
     noPayment: "Sin método de pago.",
     noSalesCall: "Sin llamada comercial.",
     readModule: "Ver el módulo",
@@ -369,12 +369,12 @@ export const es: Dictionary = {
     h1Neutral: "Empieza con 14 días de prueba",
     leadNeutral: "14 días, sin método de pago. Después eliges un plan con nosotros y te decimos el precio para tu agencia antes de acordar nada.",
     h1: "Tres paquetes, con su estado real", // C-10
-    lead: "Hoy los paquetes todavía no se pueden contratar: el registro y la prueba de 14 días están en preparación. Te decimos el precio para tu agencia antes de acordar nada.", // C-11
+    lead: "Hoy los paquetes todavía no se pueden contratar: el registro y la prueba de 14 días están próximamente. Te decimos el precio para tu agencia antes de acordar nada.", // C-11
     plansEyebrow: "Los planes",
     included: "Incluido",
     baselineHeading: "Qué incluye cada plan",
     baseline: ["CRM", "Lead Engine", "Respuestas automáticas", "Seguimiento básico", "Property matching", "Reporting básico"],
-    baselineLine: "Todos los planes incluyen las respuestas y la ficha; las tareas del equipo están en preparación. El CRM está incluido desde el principio.", // closing order 26.10. §7: tasks not bookable yet (Copy X-3/X-4); WORKING, for Copy
+    baselineLine: "Todos los planes incluyen las respuestas y la ficha; las tareas del equipo están próximamente. El CRM está incluido desde el principio.", // closing order 26.10. §7: tasks not bookable yet (Copy X-3/X-4); WORKING, for Copy
     noPriceHeading: "Precio",
     noPriceBody: "Te decimos el precio para tu agencia antes de acordar nada. No hay facturación en autoservicio. Empieza la prueba gratis o habla con nosotros.",
     notAvailable: "La facturación en autoservicio no está disponible.",
@@ -386,7 +386,7 @@ export const es: Dictionary = {
     faq: [
       { q: "¿Necesito una tarjeta para empezar?", a: "No. Durante la prueba no se cobra nada ni se pide método de pago." },
       { q: "¿Puedo pagar online?", a: "En este sitio no. Te enviamos una factura y la pagas por transferencia." },
-      { q: "¿Tengo que hablar con alguien antes?", a: "No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. Empezar por tu cuenta llega con el registro público, en preparación." }, // C-14
+      { q: "¿Tengo que hablar con alguien antes?", a: "No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. Empezar por tu cuenta llega con el registro público, próximamente." }, // C-14
       { q: "¿Qué pasa después de los 14 días?", a: "Conservas tu cuenta y tus datos. Las funciones de pago se pausan hasta que elijas un plan." },
     ],
     tiersEyebrow: "Tres planes, uno al lado del otro",
@@ -443,8 +443,8 @@ export const es: Dictionary = {
 
   trial: {
     eyebrow: "Prueba",
-    h1: "La prueba gratuita de 14 días, en preparación.", // C-16
-    state: "Estado: El registro público y la prueba de 14 días están en preparación.", // C-16
+    h1: "La prueba gratuita de 14 días, próximamente.", // C-16
+    state: "Estado: El registro público y la prueba de 14 días están próximamente.", // C-16
     lead: "Configura tu agencia y decide con el sistema en marcha.",
     ctaPrimary: "Empieza gratis",
     ctaSecondary: "Ver los paquetes",
@@ -471,7 +471,7 @@ export const es: Dictionary = {
       { title: "Marca", line: "Tu logo y el banner de tus emails, para los mensajes que salen con tu marca." },
       { title: "Equipo", line: "Añade a tu equipo y asigna roles: agente, jefe de equipo, responsable de oficina, administrador de la agencia." },
       { title: "Canales", line: "Conecta tus canales, según los permisos que tengas." },
-      { title: "Fuentes de leads", line: "Dinos de dónde te llegan hoy los leads. Conectar esas fuentes está en preparación." },
+      { title: "Fuentes de leads", line: "Dinos de dónde te llegan hoy los leads. Conectar esas fuentes está próximamente." },
       { title: "CRM", line: "Hay un CRM incluido desde el principio. Si usas otro, dinos cuál: conectarlo todavía no se ofrece y mientras tanto sigues con el CRM incluido." },
       { title: "Fuente de propiedades", line: "Apunta a tu propia web, a un feed compatible o al inventario de tu CRM." },
       { title: "Preparación", line: "Una comprobación clara antes de salir en vivo. Un paso que espera a un proveedor nunca se muestra como hecho." },
@@ -488,7 +488,7 @@ export const es: Dictionary = {
     demoBody: "Te guiamos por el sistema con un ejemplo real y puedes preguntar lo que quieras. Sin presentación.",
     demoCta: "Solicitar una demo",
     trialH2: "O simplemente empieza",
-    trialBody: "La prueba gratuita de 14 días, sin método de pago, llega con el registro público, en preparación.", // C-16b
+    trialBody: "La prueba gratuita de 14 días, sin método de pago, llega con el registro público, próximamente.", // C-16b
     planInterest: "Plan que te interesa: {plan}",
     planInterestBody: "Escríbenos con el nombre de tu agencia y te enviamos una propuesta para este plan.",
     proposalSubject: "Solicitud de propuesta: {plan}",
@@ -953,7 +953,7 @@ export const es: Dictionary = {
         published: "Publicada",
         delivery_unknown: "Resultado incierto. Comprueba el estado: no publiques de nuevo.",
         blocked: "No publicada",
-        other: "En preparación",
+        other: "Próximamente",
       },
       checkStatus: "Comprobar estado",
       scheduled: "Prevista para el",
@@ -1063,7 +1063,7 @@ export const es: Dictionary = {
   },
 
   footer: {
-    brandLine: "NuovaSolution responde a las consultas de tu agencia y deja claro el siguiente paso. Hecho para agencias en España.", // W-9
+    brandLine: "NuovaSolution responde a las consultas de tu agencia y guarda lo importante en su ficha. Hecho para agencias en España.", // Copy 1105 v3 §10.4
     platform: "Plataforma",
     getStarted: "Empezar",
     legal: "Legal",

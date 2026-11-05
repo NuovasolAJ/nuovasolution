@@ -279,7 +279,7 @@ export const chapters: Chapter[] = [
     // Closing order 26.10. §3: the count matches the states shown (two written replies, one call answered by the assistant, the German
     // e-mail waiting for a person); "noted" is not a reply. WORKING, for Copy.
     result: { es: "Cuando Marcos termina, las cuatro están registradas: dos con respuesta escrita, una llamada atendida, y el email en alemán sin respuesta automática.", en: "When Marcos finishes, all four are recorded: two with a written reply, one call answered, and the German e-mail without an automatic reply." }, // COPY_RV4_1027 Z-1a (Q-3: recorded without a task or a notice)
-    state: { es: "Disponible hoy: WhatsApp y email, en español. Prototipo: el formulario web y la llamada (el asistente telefónico, solo en español).", en: "Available today: WhatsApp and email, in Spanish. Prototype: the web form and the phone call (the phone assistant, Spanish only)." },
+    state: { es: "Disponible hoy: WhatsApp y email, en español. Próximamente: el formulario web y la llamada (el asistente telefónico, solo en español).", en: "Available today: WhatsApp and email, in Spanish. Coming soon: the web form and the phone call (the phone assistant, Spanish only)." },
   },
   {
     key: "reply",
@@ -299,7 +299,7 @@ export const chapters: Chapter[] = [
     inbound: { es: "Lo que Laura dejó claro en dos mensajes.", en: "What Laura made clear in two messages." },
     did: { es: "Compara con tu cartera y prepara una propuesta con dos inmuebles.", en: "Compares it with your portfolio and prepares a proposal with two listings." },
     result: { es: "Laura tiene dos fichas concretas; la visita sigue siendo una tarea de tu equipo.", en: "Laura has two concrete listings; the viewing is still your team's task." },
-    state: { es: "Implementado; todavía sin activar para ninguna agencia.", en: "Implemented; not yet switched on for any agency." },
+    state: { es: "Próximamente.", en: "Coming soon." },
   },
   {
     key: "task",
@@ -309,7 +309,7 @@ export const chapters: Chapter[] = [
     inbound: { es: "La consulta de Laura, con inmueble, zona y presupuesto concretos.", en: "Laura's enquiry, with a property, an area and a budget named." },
     did: { es: "Avisa a Elena por email y, a la mañana siguiente, le dice qué va primero y por qué.", en: "Alerts Elena by e-mail and, the next morning, tells her what comes first and why." }, // HANDOVER_1021 A-15
     result: { es: "Elena propone el jueves a las 10:00; Laura acepta; queda en la ficha.", en: "Elena proposes Thursday at 10:00; Laura accepts; it goes on the record." },
-    state: { es: "Disponible hoy: el aviso por email. El aviso llega cuando entra la consulta, todavía sin horario de oficina. En preparación: la lista de tareas para tomarlas y cerrarlas, y el asistente que explica el orden.", en: "Available today: the alert by e-mail. The alert arrives when the enquiry does, without office hours yet. In preparation: the task list to take and close tasks, and the assistant that explains the order." }, // COPY_SYNC_1024 X-3 (Copy's correction of R-8: the staff surface reaches production with Release U)
+    state: { es: "Disponible hoy: el aviso por email. El aviso llega cuando entra la consulta, todavía sin horario de oficina. Próximamente: la lista de tareas para tomarlas y cerrarlas, y el asistente que explica el orden.", en: "Available today: the alert by e-mail. The alert arrives when the enquiry does, without office hours yet. Coming soon: the task list to take and close tasks, and the assistant that explains the order." }, // COPY_SYNC_1024 X-3 (Copy's correction of R-8: the staff surface reaches production with Release U)
   },
   {
     key: "followup",
@@ -321,16 +321,16 @@ export const chapters: Chapter[] = [
     inbound: { es: "Un inmueble nuevo en tu cartera que encaja con lo que busca Laura.", en: "A new listing in your portfolio that fits what Laura is looking for." },
     did: { es: "Comprueba las tres condiciones y envía un WhatsApp con el piso y una sola pregunta.", en: "Checks the three conditions and sends a WhatsApp message with the flat and one question." },
     result: { es: "Si Laura responde, su respuesta llega a Elena como petición; una petición no es una cita.", en: "If Laura answers, her reply reaches Elena as a request; a request is not an appointment." },
-    state: { es: "Prototipo · todavía no disponible.", en: "Prototype · not available yet." },
+    state: { es: "Próximamente.", en: "Coming soon." },
   },
   {
     key: "result",
     eyebrow: { es: "La semana, en cifras", en: "The week, in figures" },
     title: { es: "Al final de la semana sabes qué atendió NuovaSolution, qué oportunidades hay y qué toca hacer.", en: "At the end of the week you know what NuovaSolution handled, which opportunities there are and what to do next." },
-    line: { es: "Tres cifras, lo que sigue abierto y qué toca hacer. El informe de tu agencia está en tu acceso; un resumen por email está en preparación.", en: "Three figures, what is still open and what to do next. Your agency's report is in your login; an e-mail summary is being prepared." }, // closing order 27.10. §6; HANDOVER_1021 A-11 ("respondida ≠ entregada") stays in the result card's basis line
+    line: { es: "Tres cifras, lo que sigue abierto y qué toca hacer. El informe de tu agencia está en tu acceso; un resumen por email está próximamente.", en: "Three figures, what is still open and what to do next. Your agency's report is in your login; an e-mail summary is being prepared." }, // closing order 27.10. §6; HANDOVER_1021 A-11 ("respondida ≠ entregada") stays in the result card's basis line
     inbound: { es: "Todo lo registrado en la semana en los canales conectados.", en: "Everything recorded in the week on the connected channels." },
     did: { es: "Cuenta lo atendido, las oportunidades y lo que espera a una persona.", en: "Counts what was handled, the opportunities and what waits for a person." },
-    result: { es: "Tres cifras y el informe completo en tu acceso; el email del lunes, en preparación.", en: "Three figures and the full report in your login; Monday's e-mail, in preparation." },
+    result: { es: "Tres cifras y el informe completo en tu acceso; el email del lunes, próximamente.", en: "Three figures and the full report in your login; Monday's e-mail, coming soon." },
     state: { es: "El informe en el acceso está disponible; el email del lunes se ha enviado una vez y aún no es un envío regular.", en: "The report in the login is available; Monday's email has been sent once and is not a regular send yet." },
   },
 ];
@@ -448,7 +448,7 @@ export const storyWords = {
     othersSee: { es: "Al tomarla, sigue en tu lista con su historial y desaparece de la lista de tus compañeros.", en: "Once you take it, it stays in your list with its history and leaves your colleagues' lists." }, // COPY_SYNC_1026 Y-1 (Daily's sentence, API's Q-4 answer; X-10 withdrawn)
     /**
      * The appointment, step by step (closing order 26.10. §7: a request, a proposal, a person's confirmation and a booking are four
-     * different things). The first three are what the story shows; the fourth is the calendar, in preparation (KALENDER decision).
+     * different things). The first three are what the story shows; the fourth is the calendar, coming soon (KALENDER decision).
      */
     agenda: {
       title: { es: "La cita, paso a paso", en: "The appointment, step by step" },
@@ -457,13 +457,13 @@ export const storyWords = {
           { k: "Petición", v: "Laura quiere verlo la semana que viene (martes 11:23)" },
           { k: "Propuesta", v: "Elena propone el jueves a las 10:00 (miércoles 08:58)" },
           { k: "Confirmación", v: "Laura acepta; Elena la marca como hecha (09:02)" },
-          { k: "En la agenda", v: "la cita en el calendario de Elena · en preparación" },
+          { k: "En la agenda", v: "la cita en el calendario de Elena · próximamente" },
         ],
         en: [
           { k: "Request", v: "Laura wants to see it next week (Tuesday 11:23)" },
           { k: "Proposal", v: "Elena proposes Thursday at 10:00 (Wednesday 08:58)" },
           { k: "Confirmation", v: "Laura accepts; Elena marks it done (09:02)" },
-          { k: "In the diary", v: "the appointment in Elena's calendar · in preparation" },
+          { k: "In the diary", v: "the appointment in Elena's calendar · coming soon" },
         ],
       },
     },
@@ -473,7 +473,7 @@ export const storyWords = {
   followup: {
     trigger: { es: "Miércoles · 17:30 · entra en tu cartera", en: "Wednesday · 17:30 · enters your portfolio" },
     triggerLine: { es: "Un piso nuevo de dos dormitorios en primera línea de Estepona encaja con lo que busca Laura.", en: "A new two-bedroom flat on the seafront in Estepona fits what Laura is looking for." },
-    limit: { es: "Sale solo si Laura aceptó recibir propuestas y tú activaste los seguimientos; nunca repetido. Prototipo: todavía no disponible.", en: "It goes out only if Laura agreed to receive proposals and you switched follow-ups on; never repeated. Prototype: not available yet." },
+    limit: { es: "Sale solo si Laura aceptó recibir propuestas y tú activaste los seguimientos; nunca repetido. Próximamente.", en: "It goes out only if Laura agreed to receive proposals and you switched follow-ups on; never repeated. Coming soon." },
     detailsTitle: { es: "Ver las condiciones", en: "See the conditions" },
     matches: { es: "Encaja con lo que busca Laura", en: "Fits what Laura is looking for" },
     conditions: { es: "Condiciones para enviarlo", en: "Conditions for sending it" },
@@ -507,7 +507,7 @@ export const storyWords = {
       es: ["Valoración Keller · falta proponer la visita", "Sofía Lamas · esperando su respuesta"],
       en: ["Keller valuation · the visit still to propose", "Sofía Lamas · waiting for her reply"],
     },
-    emailTitle: { es: "El email del lunes · en preparación", en: "Monday's email · in preparation" },
+    emailTitle: { es: "El email del lunes · próximamente", en: "Monday's email · coming soon" },
     emailLine: { es: "Lo esencial en tres cifras y un botón, cuando el envío semanal esté activo.", en: "The essentials in three figures and one button, once the weekly send is active." },
     button: { es: "Ver el informe de ejemplo completo", en: "See the full example report" }, // closing order 27.10. §7: a public example, never a login
     inLogin: { es: "Sin acceso: cifras, gráfico, lo abierto y los pasos siguientes de la semana de ejemplo. El informe real de tu agencia está en tu acceso.", en: "No login: the figures, the chart, what is open and the next steps of the example week. Your agency's real report is in your login." },
@@ -522,7 +522,7 @@ export const storyWords = {
     inbound: { es: "Un inmueble de tu cartera con sus fotos y datos.", en: "A listing from your portfolio with its photos and data." },
     did: { es: "Prepara la publicación, espera tu aprobación, la publica y lleva cada pregunta pública a la ficha de quien la hace.", en: "Prepares the post, waits for your approval, publishes it and takes each public question to the record of the person asking." },
     result: { es: "Un contacto con el inmueble y su pregunta en la ficha. No es una consulta atendida: es una consulta nueva para una persona.", en: "A contact with the listing and the question on a record. Not an enquiry handled: a new enquiry for a person." },
-    state: { es: "Prototipo · depende de la aprobación de la plataforma.", en: "Prototype · depends on the platform's approval." },
+    state: { es: "Próximamente · depende de la aprobación de la plataforma.", en: "Coming soon · depends on the platform's approval." },
     post: {
       account: "@tu_agencia",
       caption: { es: "Dos dormitorios, terraza al sur y garaje en la zona del puerto de Estepona. 78 m², a dos calles del paseo. ¿Quieres verlo? Escríbenos.", en: "Two bedrooms, a south-facing terrace and a garage in Estepona's marina area. 78 m², two streets from the promenade. Want to see it? Write to us." },

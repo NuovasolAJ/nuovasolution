@@ -43,7 +43,7 @@ export function ExampleReportCharts({ locale }: { locale: Locale }) {
   const anim = (seen: boolean) => Boolean(mounted && seen && !reduce);
   const soonMark = (k: Parameters<typeof claim>[0]) => (claim(k) === "included" ? null : <span className="xr-soon">{claimWords[claim(k)][locale].toLowerCase()}</span>);
   const insightIcons = [Trophy, Clock, Eye];
-  const chTotal = w.channels.rows.reduce((a, r) => a + r.v, 0);
+  const chTotal = w.channels.rows.reduce((a, r) => a + (r.v ?? 0), 0);
   const fmax = w.funnel.steps[0].v;
   const rise = (i: number) => (reduce ? {} : { initial: { opacity: 0, y: 12 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.2 }, transition: { delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } });
 
@@ -67,12 +67,14 @@ export function ExampleReportCharts({ locale }: { locale: Locale }) {
           return (
             <m.li key={it.k} className="xr-insight" {...rise(i)}>
               <span className="xr-insight-icon" aria-hidden="true"><Icon size={16} strokeWidth={2} /></span>
-              <span className="xr-insight-k">{it.k}{soonMark(it.claim)}</span>
+              <span className="xr-insight-k">{it.k}</span>
               <span className="xr-insight-v tnum">{it.v}</span>
+              <span className="xr-insight-d">{it.d}</span>
             </m.li>
           );
         })}
       </ul>
+      <p className="xr-insights-state" data-example-insights-state>{w.insightsState}</p>
 
       <div className="xr-grid">
         {/* the trend: two lines over four weeks */}
@@ -80,10 +82,10 @@ export function ExampleReportCharts({ locale }: { locale: Locale }) {
           <div ref={trend.ref} className="xr-chart xr-chart-trend" role="img" aria-label={w.trend.alt}>
             {mounted && (
               <ResponsiveContainer width="100%" height={260}>
-                <LineChart data={w.weeks} margin={{ top: 18, right: 18, bottom: 4, left: -12 }}>
+                <LineChart data={w.weeks} margin={{ top: 18, right: 18, bottom: 4, left: 0 }}>
                   <CartesianGrid vertical={false} stroke={C.ink200} strokeDasharray="0" />
                   <XAxis dataKey="label" tickLine={false} axisLine={{ stroke: C.ink200 }} tick={{ fontSize: 13, fill: C.ink600 }} dy={6} />
-                  <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 13, fill: C.ink600 }} domain={[0, 30]} ticks={[0, 10, 20, 30]} />
+                  <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 13, fill: C.ink600 }} domain={[0, 30]} ticks={[0, 10, 20, 30]} label={{ value: w.trend.axisY, angle: -90, position: "insideLeft", offset: 22, fontSize: 12, fill: C.ink600 }} />
                   <Tooltip contentStyle={tipStyle} cursor={{ stroke: C.ink300 }} />
                   <Line type="monotone" dataKey="received" name={w.trend.received} stroke={C.ink500} strokeWidth={2.5} dot={{ r: 4, fill: "#fff", strokeWidth: 2 }} activeDot={{ r: 6 }} isAnimationActive={anim(trend.seen)} animationDuration={1100} animationEasing="ease-out" />
                   <Line type="monotone" dataKey="answered" name={w.trend.answered} stroke={C.brand} strokeWidth={3} dot={{ r: 4, fill: "#fff", strokeWidth: 2 }} activeDot={{ r: 6 }} isAnimationActive={anim(trend.seen)} animationDuration={1100} animationBegin={200} animationEasing="ease-out" />
@@ -92,6 +94,7 @@ export function ExampleReportCharts({ locale }: { locale: Locale }) {
             )}
           </div>
           <p className="xr-legend"><span><i style={{ background: C.ink500 }} />{w.trend.received}</span><span><i style={{ background: C.brand }} />{w.trend.answered}</span></p>
+          <p className="xr-note">{w.trend.note}</p>
         </Panel>
 
         {/* the channels: a donut of the 25 received */}
@@ -101,8 +104,8 @@ export function ExampleReportCharts({ locale }: { locale: Locale }) {
               {mounted && (
                 <ResponsiveContainer width="100%" height={220}>
                   <PieChart>
-                    <Pie data={w.channels.rows.filter((r) => r.v > 0)} dataKey="v" nameKey="name" cx="50%" cy="50%" innerRadius={64} outerRadius={100} paddingAngle={2} stroke="#fff" strokeWidth={2} isAnimationActive={anim(chan.seen)} animationDuration={1000} animationEasing="ease-out">
-                      {w.channels.rows.filter((r) => r.v > 0).map((r, i) => <Cell key={r.name} fill={CH_COLORS[i]} />)}
+                    <Pie data={w.channels.rows.filter((r) => (r.v ?? 0) > 0)} dataKey="v" nameKey="name" cx="50%" cy="50%" innerRadius={64} outerRadius={100} paddingAngle={2} stroke="#fff" strokeWidth={2} isAnimationActive={anim(chan.seen)} animationDuration={1000} animationEasing="ease-out">
+                      {w.channels.rows.filter((r) => (r.v ?? 0) > 0).map((r, i) => <Cell key={r.name} fill={CH_COLORS[i]} />)}
                     </Pie>
                     <Tooltip contentStyle={tipStyle} />
                   </PieChart>
@@ -112,11 +115,15 @@ export function ExampleReportCharts({ locale }: { locale: Locale }) {
             </div>
             <ul className="xr-channel-list">
               {w.channels.rows.map((r, i) => (
-                <li key={r.name} className={cn("xr-channel", claim(r.claim) !== "included" && "is-soon")} data-example-channel={r.name.toLowerCase().replace(/\s+/g, "-")}>
-                  <i style={{ background: CH_COLORS[i] }} aria-hidden="true" />
-                  <span className="xr-channel-name">{r.name}{soonMark(r.claim)}</span>
-                  <span className="xr-channel-v tnum">{r.v}</span>
-                  <span className="xr-channel-pct tnum">{chTotal ? Math.round((r.v / chTotal) * 100) : 0} %</span>
+                <li key={r.name} className={cn("xr-channel", r.v === null && "is-soon")} data-example-channel={r.name.toLowerCase().replace(/\s+/g, "-")} data-example-channel-value={r.v ?? "soon"}>
+                  <i style={{ background: r.v === null ? "transparent" : CH_COLORS[i], border: r.v === null ? `1px dashed ${C.ink300}` : undefined }} aria-hidden="true" />
+                  <span className="xr-channel-name">{r.name}</span>
+                  {r.v === null ? <span className="xr-channel-soon">{claimWords[claim(r.claim)][locale].toLowerCase()}</span> : (
+                    <>
+                      <span className="xr-channel-v tnum">{r.v}</span>
+                      <span className="xr-channel-pct tnum">{chTotal ? Math.round((r.v / chTotal) * 100) : 0} %</span>
+                    </>
+                  )}
                 </li>
               ))}
             </ul>
@@ -162,7 +169,7 @@ export function ExampleReportCharts({ locale }: { locale: Locale }) {
               </ResponsiveContainer>
             )}
           </div>
-          <p className="xr-note"><strong className="text-text-primary">{w.hours.peak}</strong> · {w.insights[1].k}{soonMark(w.insights[1].claim)}</p>
+          <p className="xr-note"><strong className="text-text-primary">{w.hours.peak}</strong> · {w.insights[1].d}</p>
         </Panel>
       </div>
 

@@ -1,4 +1,4 @@
-import { ArrowRight, Bell, Box, Check, ClipboardList, Database, Globe, Instagram, Languages, Mail, MessageCircle, Phone, Plug, Reply, TrendingUp, UserRound, type LucideIcon } from "lucide-react";
+import { ArrowRight, Bell, Box, Check, ClipboardList, Database, Flag, Globe, Instagram, Languages, Mail, MessageCircle, Phone, Plug, Reply, TrendingUp, UserRound, type LucideIcon } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103, statusWords, type Status } from "@/lib/content/home-1103";
@@ -7,14 +7,15 @@ import { Rise } from "@/components/ui/motion";
 import { cn } from "@/lib/utils";
 
 /**
- * The plans (Copy 1102 v2 §6.1; the owner's orders of 03.11. point 7 and 05.11. point 10): three plans in the same row order,
- * every row with a function icon and, per plan, one status word from lib/claims.ts: Incluido with a check, No incluido where
- * the plan leaves the function out, Próximamente quietly. Growth stands out with a true line ("the most complete for one
- * office": Enterprise adds several offices on top). Nothing is called recommended or popular. Type from 14 px up. No price,
- * no "Disponible". The same component serves the home page and /packages.
+ * The plans (Copy 1105 v3 §9; the owner's orders of 03.11. point 7 and 05.11. point 10, corrected the same day): three plans
+ * in the same row order, every row with a function icon and, per plan, one status word from lib/claims.ts: Incluido with a
+ * check, No incluido where the plan leaves the function out, Próximamente quietly. Every plan carries its positioning line,
+ * checkable against the table; no badge, no "Recomendado", no "más completo", no popularity claim. Growth's column stands
+ * lifted (the owner's point 10). Type from 14 px up. No price, no "Disponible". The same component serves the home page and
+ * /packages.
  */
 const ICONS: Record<string, LucideIcon> = {
-  reply: Reply, whatsapp: MessageCircle, languages: Languages, phone: Phone, instagram: Instagram, crm: Database, person: UserRound,
+  reply: Reply, whatsapp: MessageCircle, languages: Languages, phone: Phone, instagram: Instagram, crm: Database, person: UserRound, priority: Flag,
   alert: Bell, tasks: ClipboardList, matching: Globe, report: TrendingUp, mail: Mail, trend: TrendingUp, integrations: Plug, ads: Globe, model3d: Box,
 };
 
@@ -32,7 +33,7 @@ export function PlansTable({ locale, headed = true }: { locale: Locale; headed?:
   const w = home1103.plans;
   const names = w.names;
   const codes = w.codes as unknown as PlanCode[];
-  const who = l(w.who);
+  const who = l(w.lines);
   const groups = l(w.groups);
   const contact = localePath(locale, "/contact");
   const hi = (code: PlanCode) => code === w.highlight.plan;
@@ -54,7 +55,6 @@ export function PlansTable({ locale, headed = true }: { locale: Locale; headed?:
               <div className="plans-cell plans-cell-name" role="columnheader" />
               {names.map((n, i) => (
                 <div key={n} className={cn("plans-cell plans-cell-plan", hi(codes[i]) && "is-highlight")} role="columnheader" data-plan={codes[i]}>
-                  {hi(codes[i]) && <span className="plans-reco" data-plan-highlight>{l(w.highlight)}</span>}
                   <span className="plans-name">{n}</span>
                   <span className="plans-who">{who[i]}</span>
                 </div>
@@ -89,7 +89,6 @@ export function PlansTable({ locale, headed = true }: { locale: Locale; headed?:
           <ol className="plans-cards" data-plans-cards>
             {names.map((n, pi) => (
               <li key={n} className={cn("plans-card", hi(codes[pi]) && "is-highlight")} data-plan-card={codes[pi]}>
-                {hi(codes[pi]) && <span className="plans-reco">{l(w.highlight)}</span>}
                 <p className="plans-name">{n}</p>
                 <p className="plans-who">{who[pi]}</p>
                 {groups.map((g, gi) => (

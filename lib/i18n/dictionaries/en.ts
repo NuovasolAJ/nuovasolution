@@ -17,7 +17,7 @@ export const en = {
     menuTitle: "Everything NuovaSolution does",
     overviewLine: "See how the parts fit together",
     packages: "Packages",
-    trial: "Trial",
+    trial: "Access",
     contact: "Contact",
     login: "Log in",
     startFree: "Start free",
@@ -66,7 +66,7 @@ export const en = {
     bookDemo: "Request a demo",
     startFree: "Request access", // Copy 1102 v2 C-8
     seeDemo: "See the demo", // owner review 02.11.
-    tryFree: "14-day free trial: in preparation", // C-16a
+    tryFree: "14-day free trial: coming soon", // C-16a
     noPayment: "No payment method required.",
     noSalesCall: "No sales call required.",
     readModule: "Read the module",
@@ -78,7 +78,7 @@ export const en = {
     illustrative: "Illustrative",
     example: "Example",
     stubData: "Local stub data",
-    placeholder: "Placeholder",
+    placeholder: "Provisional", // Copy 1105 v3 §11 B
     statusToday: "Status today",
     pending: {
       productView: "Product view. Capture pending.",
@@ -404,12 +404,12 @@ export const en = {
     leadNeutral: "14 days, no payment method. After that you choose a plan with us, and we tell you the price for your agency before anything is agreed.",
     // COPY_DELTAS_0929 D-20, D-21: the Essential wording is released (PRODUCT_TRUTH_TABLE_v1 §G).
     h1: "Three packages, with their real state", // C-10
-    lead: "The packages cannot be booked yet: registration and the 14-day trial are in preparation. We tell you the price for your agency before anything is agreed.", // C-11 // D-106
+    lead: "The packages cannot be booked yet: registration and the 14-day trial are coming soon. We tell you the price for your agency before anything is agreed.", // C-11 // D-106
     plansEyebrow: "The plans",
     included: "Included",
     baselineHeading: "What every plan includes",
     baseline: ["CRM", "Lead Engine", "Automatic replies", "Basic follow up", "Property matching", "Core reporting"],
-    baselineLine: "Every plan includes the replies and the record; the team's tasks are in preparation. The CRM is included from the start.", // D-30; closing order 26.10. §7: tasks not bookable yet (Copy X-3/X-4); WORKING, for Copy
+    baselineLine: "Every plan includes the replies and the record; the team's tasks are coming soon. The CRM is included from the start.", // D-30; closing order 26.10. §7: tasks not bookable yet (Copy X-3/X-4); WORKING, for Copy
     noPriceHeading: "Pricing",
     noPriceBody: "We tell you the price for your agency before anything is agreed. There is no self-service billing. Start the free trial or talk to us.",
     notAvailable: "Billing self-service is not available.",
@@ -421,7 +421,7 @@ export const en = {
     faq: [
       { q: "Do I need a card to start?", a: "No. Nothing is charged during the trial and no payment method is asked for." },
       { q: "Can I pay online?", a: "Not on this site. We send an invoice and you pay by bank transfer." },
-      { q: "Do I have to talk to someone first?", a: "No sales call is needed: write to us and we will show you the system. Starting on your own comes with public registration, in preparation." }, // C-14
+      { q: "Do I have to talk to someone first?", a: "No sales call is needed: write to us and we will show you the system. Starting on your own comes with public registration, coming soon." }, // C-14
       { q: "What happens after 14 days?", a: "You keep your account and your data. Paid features pause until you choose a plan." },
     ],
     tiersEyebrow: "Three plans, side by side",
@@ -482,8 +482,8 @@ export const en = {
 
   trial: {
     eyebrow: "Trial",
-    h1: "The 14-day free trial, in preparation.", // C-16
-    state: "State: Public registration and the 14-day trial are in preparation.", // C-16
+    h1: "The 14-day free trial, coming soon.", // C-16
+    state: "State: Public registration and the 14-day trial are coming soon.", // C-16
     lead: "Set your agency up and decide with the system running.",
     ctaPrimary: "Start free",
     ctaSecondary: "See the packages",
@@ -510,7 +510,7 @@ export const en = {
       { title: "Branding", line: "Your logo and your email banner, for the messages that go out under your brand." },
       { title: "Team", line: "Add your team and set their roles: agent, team lead, office manager, agency admin." },
       { title: "Channels", line: "Connect your channels, based on the permissions you hold." },
-      { title: "Lead sources", line: "Tell us where your leads come from today. Connecting those sources is in preparation." },
+      { title: "Lead sources", line: "Tell us where your leads come from today. Connecting those sources is coming soon." },
       { title: "CRM", line: "A CRM is included from the start. If you use another one, tell us which: connecting it is not offered yet, and you stay on the included CRM meanwhile." },
       { title: "Property source", line: "Point it at your own website, a supported feed or your CRM inventory." },
       { title: "Readiness", line: "A clear readiness check before you go live. A step waiting on a provider is never shown as done." },
@@ -527,7 +527,7 @@ export const en = {
     demoBody: "We walk you through the system on a real example and you can ask anything. No slide deck.", // D-32
     demoCta: "Request a demo",
     trialH2: "Or just start",
-    trialBody: "The 14-day free trial, with no payment method, comes with public registration, in preparation.", // C-16b
+    trialBody: "The 14-day free trial, with no payment method, comes with public registration, coming soon.", // C-16b
     // A plan interest from the packages page is carried into the request (audit Z03, Z11). The plan name comes from the catalog.
     planInterest: "Plan of interest: {plan}",
     planInterestBody: "Write to us with your agency's name and we send you a proposal for this plan.",
@@ -896,7 +896,7 @@ export const en = {
   },
 
   legal: {
-    placeholderBanner: "PLACEHOLDER. This text is not final and has not been reviewed by counsel. It is published so the route exists and is clearly labelled.",
+    placeholderBanner: "PROVISIONAL. This text is not final and has not been reviewed by a lawyer. It is published so that the route exists and is clearly marked.", // Copy 1105 v3 §11 B
     updated: "Last updated",
     privacy: { title: "Privacy notice" },
     terms: { title: "Terms of service" },
@@ -1011,7 +1011,7 @@ export const en = {
         published: "Published",
         delivery_unknown: "Outcome unclear. Check status — do not publish again.", // §5
         blocked: "Not published",
-        other: "In preparation", // interim
+        other: "Coming soon", // interim
       },
       checkStatus: "Check status",
       scheduled: "Planned for",
@@ -1124,7 +1124,7 @@ export const en = {
   },
 
   footer: {
-    brandLine: "NuovaSolution answers your agency's enquiries and makes the next step clear. Built for agencies in Spain.", // W-9
+    brandLine: "NuovaSolution answers your agency's enquiries and keeps what matters on its record. Built for agencies in Spain.", // Copy 1105 v3 §10.4
     platform: "Platform",
     getStarted: "Get started",
     legal: "Legal",
