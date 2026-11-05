@@ -1,5 +1,8 @@
 # WEBSITE COPY HANDOVER 1102 v2 — the short text for the new direction, ES and EN, in one file
 
+> **SUPERSEDED on 2026-11-05 by `WEBSITE_COPY_HANDOVER_1105_v3.md`** (the owner's verdict on `faf2dbb`, pictures D01–D12,
+> PROMPTS_R26 §24/§25b). v3 is the only text source and carries over §8 and the appendix of this file. Do not apply this file.
+
 **For:** the redesign chat, the only writer of the website code. **This file replaces `WEBSITE_COPY_HANDOVER_1102.md`** (`c984d22`)
 completely. Everything still valid from it is carried over here (§6, §7, appendix), so there is **one** copy source.
 **Basis:**
