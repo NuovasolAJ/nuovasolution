@@ -12,16 +12,19 @@ the footer need is here; the legal lines and the detail-page rows from v2 are ca
 - API's product card `API_PRODUKTKARTE_1026_v1.md`: Q-3 language detection and Gmail labels in production;
 - Hosting's W44 signal `5121cf3`: weekly mail proven for our own agency only;
 - **addition 05.11.:** API's `governance/ERSTE_FREMDE_AGENTUR_1105_v1.md` (`3d97372`). "Incluido" in production only for what an
-  invited external agency can use (§1b, §13).
+  invited external agency can use (§1b, §13);
+- **addendum 06.11.:** the owner's round on `2dfa67d` (§14–§22): no readiness word on the site, every sentence written for the target
+  state, public view strictly from `lib/claims.ts`. **§14–§23 take precedence** where they differ from an earlier section; §1b and §13
+  are rewritten in place, and §23 lists every earlier place with its old and new wording.
 
 **Read on:** `faf2dbb` / `dpl_FnoR4QFTNPg1E9ws4g28gj2FdzkC`, through its fixed URL, 05.11., GET only.
 
 **Rules:**
 - the brand is **NuovaSolution** everywhere in visible text (not "Nuova");
-- status words come from §1 only;
+- no status word on any visible text (§1, §14), also not inside a whole sentence;
 - no prices, no popularity claim, no "Disponible" per plan;
 - a figure appears only with a definition; a new figure or a language claim appears only with current product evidence, otherwise
-  it is marked as an example or "Próximamente".
+  it is marked as an example or not shown.
 
 **Marking:** editorial and technical. **Not a legal approval, not a Meta approval. No publication released.**
 
@@ -29,9 +32,12 @@ the footer need is here; the legal lines and the detail-page rows from v2 are ca
 
 ## 1. The central status file (one source for every status on the site)
 
-**Two status words** for functions, plus one for the plans table:
+**Addendum 06.11. (owner):** the status words apply only internally, in this register and in `lib/claims.ts`. They do not appear on the
+site, in either view.
 
-| Word ES | Word EN | Means | Used where |
+**Internal states:** two for functions, plus one for what a plan leaves out:
+
+| State ES | State EN | Means | Used where (until 05.11.; now internal) |
 |---|---|---|---|
 | **Incluido** | **Included** | works today and the register allows saying so | everywhere |
 | **Próximamente** | **Coming soon** | built or planned, not yet covered by evidence in production | everywhere; replaces "En preparación", "Prototipo", "Implementado; todavía sin activar" |
@@ -63,36 +69,41 @@ the footer need is here; the legal lines and the detail-page rows from v2 are ca
 | `model3d` | Modelos 3D | 3D models | **Próximamente** | | | T6 not accepted | T6 + scope and price per order |
 | `signup` | Registro y prueba de 14 días | Registration and 14-day trial | **Próximamente** | | | not released | owner registration line + E28-Prod |
 
-### 1b. Prod go-live: "Incluido" only for what an invited **external** agency can use in production
+### 1b. The public view: checked by state, not by status word
 
-**Owner, 05.11. (addition to v3):**
-- "Incluido" applies only to what an invited agency other than nuovasolution can use in production.
-- The basis is `governance/ERSTE_FREMDE_AGENTUR_1105_v1.md` (API repo, `3d97372`).
-- The direct mailbox connection of an agency (owner D5-DIREKT) **is not built**.
-- **On the preview** the statuses of §1 may stay as they are.
-- **Before the production go-live**, the Reviewer checks every "Incluido" against the condition below. A row whose condition is not
-  met shows **"Próximamente"** in production.
+**Owner, 05.11. and 06.11. (replaces the earlier "shows Próximamente in production"):**
+- A key is `included` in the public build only for what an invited agency other than nuovasolution can use in production. The basis is `governance/ERSTE_FREMDE_AGENTUR_1105_v1.md` (API repo, `3d97372`).
+- **A key whose condition is not met is not shown at all** in the public build. There is no status word for it (§14).
+- **The preview** shows the target state with the notice at the top. It is not checked against this table.
+- **Before the production go-live**, the Reviewer checks the rendered public view: every visible function has its key set, every key set has its condition met, and nothing from a key that is off is visible, also not in a card, the report, the FAQ or the table.
 
-What the table states today:
-- **Production knows exactly one tenant until V3-DEPLOY.**
-- **Mail of an external agency does not arrive in production at all yet** (K5): production reads the one Gmail account of
-  nuovasolution.
-- The single-mailbox guard (D5) is live since 05.11. 13:40Z.
+**What the sources state, read 06.11.:**
+- Production knows exactly one tenant until V3-DEPLOY.
+- Mail of an external agency does not arrive in production yet (K5). The direct mailbox connection is not finished; the owner's internal target for the test run A12 is 20.11. (`API_D5_DIREKT_1106_v1.md` §7).
+- An agency cannot yet finish the mailbox connection alone in its browser (same file, §3). A pure @gmail.com mailbox only follows Google's review (§1).
 - Release U is in production since 05.11. 13:32Z.
 
-| Key | Condition for "Incluido" in production (external agency) | Table row |
-|---|---|---|
-| `replies` (email part) | **the agency's mailbox connected in production (D5)**, route A or B built and tested with a test mailbox of the agency; V3-DEPLOY; an approved ES notice for the agency (K4) | K5, K4 |
-| `replies` (WhatsApp part) | the agency's own number registered and routed (K1–K3), M1–M10 green, Meta approvals; V3-DEPLOY | K1–K3 |
-| `origin` | **the agency's mailbox connected in production (D5)** for e-mail; K1–K3 for WhatsApp; V3-DEPLOY | K5, K2 |
-| `language_detect` | **the agency's mailbox connected in production (D5)** for e-mail; K2 for WhatsApp; V3-DEPLOY | K5, F7 |
-| `labels` | **the agency's mailbox connected in production (D5)**, with labels in **that** mailbox (route A); route B has no agency mailbox to label | K5 |
-| every other function at the agency's mail intake (reply by e-mail, attachments, held reply) | **the agency's mailbox connected in production (D5)** | K5 |
-| `record`, `priority` | V3-DEPLOY; ONBOARDING-PROD (F1); tenant isolation green after cleaning the 13 rows (F12); one channel connected (D5 or K1–K3) | F1, F12 |
-| `report_login` | ONBOARDING-PROD; report entitlement for the agency (B1) | F1, B1 |
-| `team_list`, `daily_voice` | V3-DEPLOY + ONBOARDING-PROD; staff access for the agency (Release U is in production since 05.11.) | F2, B2 |
+**Today no key below meets its condition.** The seven `included` values in `lib/claims.ts` are the preview-era states of §1. Pictures of
+the public view taken on them are a rehearsal of the layout, not the go-live state, and the floor of §15 is not met today.
 
-**No "Gmail verbinden" / "Conecta tu Gmail" / "conectamos los canales contigo" anywhere** while D5 is not built (§13).
+| Key | Condition for `included` in the public build (external agency) | Source row |
+|---|---|---|
+| `replyEmail` | **the agency's mailbox connected in production (D5)**; A12 passed; V3-DEPLOY; an approved ES notice for the agency (K4) | K5, K4 |
+| `replyWhatsapp`, `whatsappOwnNumber` | the agency's own number registered and routed (K1–K3); the gates of the multi-agency plan green; Meta approvals; V3-DEPLOY. For an external agency these two keys turn together | K1–K3 |
+| `replyOutOfHours` | a reply key on, and one real automatic reply outside the agency's hours in production, per connected channel | new |
+| `mailboxConnection` | the connection done and tested with a test mailbox of an external agency (A12), in the joint appointment; the sentence names no provider that has not passed | K5 |
+| `origin` | **the agency's mailbox connected in production (D5)** for e-mail; K1–K3 for WhatsApp; V3-DEPLOY | K5, K2 |
+| `languageNoted` | **the agency's mailbox connected in production (D5)** for e-mail; K2 for WhatsApp; V3-DEPLOY | K5, F7 |
+| `labels` | **the agency's mailbox connected in production (D5)**, with labels in **that** mailbox (owner `GMAIL-UMFANG` = A-voll, 06.11.; A12 check 4); Gmail only until Outlook has its own line | K5 |
+| every other function at the agency's mail intake (reply by e-mail, attachments, held reply) | **the agency's mailbox connected in production (D5)** | K5 |
+| `crm`, `priorityWithReason` | V3-DEPLOY; ONBOARDING-PROD (F1); tenant isolation green (F12); one channel connected | F1, F12 |
+| `reportInLogin` | ONBOARDING-PROD; report entitlement for the agency (B1) | F1, B1 |
+| `taskList`, `dailyVoice` | V3-DEPLOY + ONBOARDING-PROD; staff access for the agency | F2, B2 |
+| `plans`, `trial`, `publicSignup` | E28-Prod P1/P4/P5 + the owner's registration line | register |
+| all others | the column "Turns into Incluido when" in §1 | §1 |
+
+**No button or line "Conecta tu Gmail" / "Connect your Gmail" anywhere, in either view.** The connection is done together with the
+agency, not by one click (§13).
 
 ---
 
@@ -299,6 +310,11 @@ No delivery time and no price is given (owner, 26.10.: 2 working days is an inte
 ---
 
 ## 9. Plans
+
+**Addendum 06.11. (owner).** The table shows what each plan contains:
+- a ✓ where the plan holds the function, a "—" where it does not, and **no status word in a cell**. For screen readers: "En este plan" · "In this plan" and "No en este plan" · "Not in this plan";
+- **no fixed 19 rows in the public state**: a row whose key is off is absent, and the number of rows follows the keys (§20 P-5). The preview shows the rows below without "Respuestas en otros idiomas" (§15);
+- the columns of the table below are the internal map of which plan holds which row, not visible words. Its census is no pass condition.
 
 | | ES | EN |
 |---|---|---|
@@ -541,8 +557,7 @@ phrasings. **New:** the text below, which is §3 of `META_LEGAL_TEXT_FINAL.md` a
 | EX-1 | `lib/content/example-report.ts:27` (ES), `:55` (EN), `chart.note` | "Cuatro semanas de ejemplo" · "Four example weeks" | Cuatro semanas de ejemplo. La evolución por semanas forma parte del informe ampliado, en preparación. | Four example weeks. The week-by-week trend is part of the extended report, in preparation. |
 | EX-2 | `example-report.ts:40` (ES), `:68` (EN), `next[2]` | "Confirmar con Laura la visita del jueves a las 10:00." · "Confirm Thursday's 10:00 viewing with Laura." | Recordar a Laura la visita del jueves a las 10:00. | Remind Laura of Thursday's 10:00 viewing. |
 
-EX-1 falls if API confirms that the agency login already shows several weeks. API's register says the extended report tier is
-empty in production.
+EX-1 is **superseded by §19 R-5** (no readiness clause). EX-2 stands.
 
 ---
 
@@ -562,6 +577,8 @@ exista y esté claramente identificada." (`es.ts:842`).
 
 ## 12. What returns on evidence, and never before
 
+**Addendum 06.11.:** "returns" now means that the key turns on and the element appears. The sentences are in §16–§21.
+
 | Evidence | Text that returns |
 |---|---|
 | V3-DEPLOY + production probe with a real alert to staff | "…y avisa a tu equipo" in the benefit line; `alert` → Incluido; scene 1 without "próximamente" |
@@ -576,27 +593,612 @@ exista y esté claramente identificada." (`es.ts:842`).
 
 ---
 
-## 13. Connection wording: nothing promises a connection that does not work (owner, 05.11.)
+## 13. Connection wording: written for the target state, hidden in public until it works (owner, 05.11. and 06.11.)
 
-Read in the source of `faf2dbb`. These rows apply on the preview **and** in production until D5 is built and tested.
+The target sentence says what will be true once the connection is built: it is done **together with the agency** and tested with a real
+message (API's `API_D5_DIREKT_1106_v1.md` §3 and §6). Each row names the key and what stands in public while it is off. "En un buzón
+que operamos para ti" is gone, because route B is stopped (D5-DIREKT).
 
-| # | File on `faf2dbb` | Current | New ES | New EN |
+| # | File on `2dfa67d` | Target ES | Target EN | Keys | Public when a key is off |
+|---|---|---|---|---|---|
+| N-1 | `lib/content/home-1103.ts:346`, trust line 1 | Conectamos contigo el buzón y el WhatsApp de tu agencia y probamos cada canal con un mensaje real. | We connect your agency's mailbox and WhatsApp with you and test each channel with a real message. | `mailboxConnection`, `whatsappOwnNumber` | mailbox only: "Conectamos contigo el buzón de tu agencia y lo probamos con un mensaje real." · "We connect your agency's mailbox with you and test it with a real message." WhatsApp only: "Conectamos contigo el WhatsApp de tu agencia y lo probamos con un mensaje real." · "We connect your agency's WhatsApp with you and test it with a real message." Neither: "Pides acceso y te enseñamos el sistema." · "You request access and we show you the system." |
+| N-2 | `lib/content/faq.ts:205`, Q-21 | Tú preparas los datos de tu agencia, tu logo y tu equipo. Conectamos contigo el buzón y el WhatsApp y probamos cada canal con un mensaje real antes de darlo por conectado. | You prepare your agency's details, your logo and your team. We connect the mailbox and WhatsApp with you and test each channel with a real message before calling it connected. | as N-1 | one channel: the same sentence with that channel. Neither: "Te enseñamos el sistema con datos de ejemplo." · "We show you the system with example data." |
+| N-3 | `lib/i18n/dictionaries/es.ts:323` (and EN), onboarding step | Tus canales · Conectamos contigo el buzón y el WhatsApp de tu agencia y probamos cada canal con un mensaje real. | Your channels · We connect your agency's mailbox and WhatsApp with you and test each channel with a real message. | as N-1 | one channel: that channel. Neither: hide the step |
+| N-4 | `es.ts:473` (and EN), trial step "Canales" | Canales · the same sentence as N-3 | Channels · the same sentence as N-3 | as N-1 | the route follows §21 |
+| N-5 | `lib/content/capabilities.ts:83`; `lib/content/platform-map.ts:55` | Respuesta por email, en el buzón de tu agencia. · La misma respuesta para lo que llega al buzón de tu agencia. | A reply by e-mail, in your agency's mailbox. · The same reply for what arrives in your agency's mailbox. | `replyEmail` | hide the row |
+| N-6 | `lib/content/home-demo.ts`, the state lines on the Email tab | **removed in both views** (§14) | **removed** | | the tab follows `replyEmail` |
+
+The channel labels "Email con Gmail" / "Email through Gmail" (`es.ts:418`, `en.ts:456`) name a channel, promise no connection, and stay
+while `replyEmail` is on.
+
+---
+
+## 14. Addendum 06.11.: two views, no readiness word (the owner's round on `2dfa67d`)
+
+**Owner, 06.11.:** "Próximamente / Coming soon" stands nowhere on the site, also not in the report. Every sentence is written for
+the target state. Redesign hides in public what `lib/claims.ts` does not carry as included. §14–§23 take precedence over the
+earlier sections where they differ.
+
+| View | Shows | Mark |
+|---|---|---|
+| **Preview** | the target state: the "Target" column of §16–§21 | the preview notice at the top (below) |
+| **Public** | only what `lib/claims.ts` carries as `included`. Everything else is **not shown at all**: scene, row, chip, sentence, channel | none |
+
+| Preview notice (`es.ts:97`, and EN) | ES | EN |
+|---|---|---|
+| line, no date and no promise, on every route of the preview | Vista previa, no pública. Muestra el producto completo, incluidas funciones que no están activas. Datos de ejemplo: nada de lo que introduzcas crea una cuenta ni llega a nadie. | Preview, not public. It shows the complete product, including functions that are not active. Example data: nothing you enter creates an account or reaches anyone. |
+
+**The internal words.** The status words apply only in §1 and in `lib/claims.ts`. A statement on connecting a mailbox or WhatsApp
+appears in public only when it is true.
+
+**How to read §16–§21.** "Keys" are `lib/claims.ts` keys; the sentence needs all of them. The last column says what stands in public
+when a key is off. "Hide" means the element disappears with no replacement.
+
+**Gone from all visible text, in both views:**
+- Incluido, No incluido, Próximamente, Coming soon, En preparación, Prototipo, also inside a whole sentence;
+- "Hoy no", and "hoy" or "todavía" where they promise something later;
+- every pill and every cell word that states a status;
+- the state lines under the demo, the scenes and the report.
+
+**What stays, because it is not a status word:**
+- "No medido", twice, in both views (owner; §6);
+- "Demo con datos ficticios", "Datos de ejemplo", "Casa de ejemplo ficticia";
+- "Provisional" on the legal pages.
+
+**Limits that stay in public.** They bound a function that is shown, so hiding them would mislead:
+- in another language nothing is sent automatically;
+- a viewing request is not an appointment, a person confirms it;
+- answered is not delivered;
+- two records until `oneRecordAcrossChannels` is on (API's register requires this);
+- the retention answer Q-44 stays word for word until counsel has answered.
+
+**Not shown in either view for now.** There is no owner line or evidence for a target sentence:
+- `otherLanguages` (follows the owner's Question B, §16; when it turns on, the rows in §15 apply);
+- the calendar row (KALENDER first stage is a wish that a person confirms; writing into a diary is undecided);
+- reading photos and PDFs (Q-26: MM names the behaviour first).
+
+---
+
+## 15. Keys and shared rules
+
+**New keys for `lib/claims.ts`** (Redesign writes the file):
+
+| New key | Why | Value today |
+|---|---|---|
+| `replyEmail`, `replyWhatsapp` | §1b has separate conditions for the two. `replySpanish` becomes "either of them" | included, included (as `replySpanish` today) |
+| `replyOutOfHours` | the owner's example. The reply goes out when the message arrives (FAQ Q-03, Q-46); there is no separate switch in the product, but the public claim needs its own evidence (§1b) | included (as `replySpanish` today) |
+| `mailboxConnection` | the sentence on connecting the agency's mailbox (D5-DIREKT) | soon |
+| `outlook` | split from `integrations`; it has its own path (O4, MM) | soon |
+| `plans` | plan names and the comparison table. API's register: production has no package system yet (E28-Prod P4) | soon |
+
+**The channel list `⟦canales⟧`.** Every sentence that names channels builds them from the keys, in this order, with "y" / "and"
+before the last:
+
+| Key | ES | EN |
+|---|---|---|
+| `replyWhatsapp` | WhatsApp | WhatsApp |
+| `replyEmail` | email | e-mail |
+| `webform` | formulario web | web form |
+| `phoneAssistant` | teléfono | phone |
+| `adsLeads` | portales y anuncios | portals and ads |
+
+**The language rule.** Every reply sentence says "en español" in both views while `otherLanguages` is off. This is the one exception
+to "preview = target", and it follows the owner's Question B ("en español" is the true limit). When the key turns on (SPRACHEN S2:
+ES + EN), these change together:
+
+| Place | ES | EN |
+|---|---|---|
+| "en español" in a reply sentence | en español e inglés | in Spanish and English |
+| the limit sentence | Si no es español ni inglés, no se envía nada automáticamente. | If it is neither Spanish nor English, nothing is sent automatically. |
+| plans row (returns) | Respuestas también en inglés | Replies in English too |
+
+**The floor of the public view.** With `replySpanish` or `crm` off there is no public product page at all. No text is needed for that
+case: the public build does not go live.
+
+---
+
+## 16. Hero and demo (Questions A and B)
+
+**Question A (owner: Redesign's proposal, no contact promise).** The reply in §3 is replaced:
+
+| Element | ES | EN |
+|---|---|---|
+| WhatsApp reply (`replyWhatsapp`) | ¡Hola, Laura! Gracias por escribirnos. Buscas en Estepona, 2 dormitorios y hasta 320.000 €, ¿verdad? ¿Te viene mejor por la mañana o por la tarde para una visita? | Hi Laura, thanks for writing to us. You're looking in Estepona, 2 bedrooms, up to €320,000, is that right? Would the morning or the afternoon suit you better for a viewing? |
+
+- It promises no contact and no availability, and "Apunto" and "segunda residencia" (struck on 03.11.) are gone.
+- It asks for a wish, in line with the owner's KALENDER line. So the record keeps its next step and the small line of §3: "Una petición de visita no es una cita: la confirma una persona."
+
+**Question B (owner: Copy's chip stays).** Chip 1 stays word for word in both views.
+
+| # | Element | Target ES | Target EN | Keys | Public when a key is off |
+|---|---|---|---|---|---|
+| H-1 | Chip 1 | Responde en español, también fuera de horario | Replies in Spanish, also out of hours | `replySpanish`, `replyOutOfHours` | `replyOutOfHours` off: "Responde en español" · "Replies in Spanish" |
+| H-2 | Chip 2 | Guarda zona, presupuesto e intención | Keeps area, budget and intent | `crm` | floor (§15) |
+| H-3 | Chip 3 | Marca la prioridad y avisa a tu equipo | Marks the priority and alerts your team | `priorityWithReason`, `alert` | `alert` off: "Marca la prioridad y su motivo" · "Marks the priority and its reason". Both off: hide |
+| H-4 | Benefit line | as §2, unchanged | as §2 | `replySpanish`, `crm` | floor |
+| H-5 | Secondary action | Pruébalo gratis 14 días | Try it free for 14 days | `trial`, `publicSignup` | "Pedir acceso" · "Request access" |
+| H-6 | Line under the actions | Sin método de pago y sin renovación automática. | No payment method and no automatic renewal. | `trial`, `publicSignup` | "Acceso por invitación." · "Access by invitation." |
+| H-7 | Nav and footer link (§10.4) | Prueba | Trial | `trial`, `publicSignup` | "Acceso" · "Access" |
+
+**Invitation on the channel tabs (replaces "Elige un canal"):**
+
+| ES | EN | Keys | Public |
+|---|---|---|---|
+| Elige un canal y mira cómo responde. | Choose a channel and see how it replies. | at least two of `replyWhatsapp`, `replyEmail`, `webform`, `phoneAssistant` | one channel on: no tabs, no invitation |
+
+| Tab | Key | Public when off |
+|---|---|---|
+| WhatsApp | `replyWhatsapp` | hide the tab |
+| Email | `replyEmail` | hide the tab |
+| Formulario web | `webform` | hide the tab |
+| Teléfono | `phoneAssistant` | hide the tab |
+
+No tab carries a mark, a pill or a state line in either view.
+
+---
+
+## 17. Cómo funciona
+
+**Step 4: "Tu equipo continúa" is replaced.** I take the audit's title. In the line I write "qué prioridad tiene", because the record
+holds a priority with its reason, not an urgency measure. The second sentence keeps the human step that remains.
+
+| # | Step | Target ES | Target EN | Keys | Public when a key is off |
+|---|---|---|---|---|---|
+| F-1 | 1, line | Por ⟦canales⟧, a cualquier hora. | On ⟦canales⟧, at any hour. | list, `replyOutOfHours` | off: "Por ⟦canales⟧." · "On ⟦canales⟧." |
+| F-2 | 2 | as §4, unchanged | as §4 | `replySpanish` | floor |
+| F-3 | 3, line | Zona, presupuesto, idioma, prioridad y su motivo. | Area, budget, language, priority and its reason. | `crm`, `priorityWithReason` | off: "Zona, presupuesto e idioma." · "Area, budget and language." |
+| F-4 | 4, title | **Tu equipo llega preparado** | **Your team arrives prepared** | `crm` | floor |
+| F-5 | 4, line | Abre la ficha y ya sabe quién es, qué busca y qué prioridad tiene. La cita la acuerda una persona. | They open the record and already know who it is, what they want and what priority it has. A person agrees the appointment. | `crm`, `priorityWithReason` | off: "Abre la ficha y ya sabe quién es y qué busca. La cita la acuerda una persona." · "They open the record and already know who it is and what they want. A person agrees the appointment." |
+
+---
+
+## 18. Scenes in three chapters
+
+**The chapters.** "Crece" carries the message: not only faster, but growing. It says what the agency gains in knowledge and reach. It
+gives no figure and no promise of sales.
+
+| Chapter ES | Chapter EN | Line ES | Line EN | Scenes, in this order | Public |
+|---|---|---|---|---|---|
+| Atiende | Answer | Responde cuando tú no puedes: en una visita, de noche o el fin de semana. | It replies when you can't: during a viewing, at night or at the weekend. | Consultas respondidas · El idioma de cada cliente | `replyOutOfHours` off: "Responde cuando tú no puedes, también durante una visita." · "It replies when you can't, also during a viewing." |
+| Organiza | Organise | Lo que pide cada cliente queda en su ficha, con su prioridad y su motivo, y tu equipo sabe por dónde empezar. | What each client asks for stays on their record, with its priority and reason, and your team knows where to start. | Lo importante, guardado · Leads importantes, con motivo · Tu buzón, ordenado · El día de tu equipo | `priorityWithReason` off: "Lo que pide cada cliente queda en su ficha." · "What each client asks for stays on their record." |
+| Crece | Grow | No es solo responder antes. Sabes de dónde llegan tus clientes, vuelves a ellos cuando entra un inmueble que encaja y das a conocer tu cartera. | It's not just replying sooner. You know where your clients come from, you go back to them when a listing that fits comes in, and you get your portfolio seen. | De dónde llega cada consulta · Inmuebles que encajan · Seguimiento con permiso · Publicar en Instagram · Tu semana, en un informe | composed below |
+
+**"Crece" in public.** The first sentence always stands. The second is composed:
+
+| Keys on | Second sentence ES | Second sentence EN |
+|---|---|---|
+| `origin`, `followup`, `instagram` | as the target | as the target |
+| `origin`, `followup` | Sabes de dónde llegan tus clientes y vuelves a ellos cuando entra un inmueble que encaja. | You know where your clients come from and you go back to them when a listing that fits comes in. |
+| `origin`, `matching` | Sabes de dónde llegan tus clientes y les propones inmuebles que encajan. | You know where your clients come from and you propose listings that fit. |
+| `origin` only | Sabes de dónde llegan tus clientes y qué sigue abierto cada semana. | You know where your clients come from and what is still open each week. |
+| only the report entry remains | hide the chapter; the report section stands alone | the same |
+
+A chapter with no visible scene is hidden.
+
+**The scenes** (titles as §5):
+
+| # | Scene | Target ES | Target EN | Keys | Public when a key is off |
+|---|---|---|---|---|---|
+| S-1 | Consultas respondidas | En español, por ⟦canales⟧, también fuera de horario. | In Spanish, on ⟦canales⟧, also out of hours. | `replySpanish`, list, `replyOutOfHours` | off: "En español, por ⟦canales⟧." · "In Spanish, on ⟦canales⟧." |
+| S-2 | El idioma de cada cliente | NuovaSolution detecta el idioma de cada cliente y lo guarda en su ficha. Si no es español, no se envía nada automáticamente: lo escribe una persona. | NuovaSolution detects each client's language and keeps it on their record. If it is not Spanish, nothing is sent automatically: a person writes it. | `languageNoted` | hide |
+| S-3 | Lo importante, guardado | as §5, unchanged | as §5 | `crm` | floor |
+| S-4 | Leads importantes, con motivo | La ficha marca la prioridad y por qué, y avisa a la persona que toca. | The record marks the priority and why, and alerts the right person. | `priorityWithReason`, `alert` | `alert` off: "La ficha marca la prioridad y por qué." · "The record marks the priority and why."; hide the alert row in the surface. `priorityWithReason` off: hide |
+| S-5 | Tu buzón, ordenado | as §5, unchanged | as §5 | `labels` | hide |
+| S-6 | El día de tu equipo | as §5, unchanged | as §5 | `taskList`, `dailyVoice` | `dailyVoice` off: "Cada persona ve sus tareas y por qué va primero cada una." · "Each person sees their tasks and why each comes first."; hide the voice bar. `taskList` off: hide |
+| S-7 | De dónde llega cada consulta | La ficha guarda de dónde llega cada consulta: ⟦canales⟧. Así ves qué canal te trae clientes. | The record keeps where each enquiry comes from: ⟦canales⟧. So you see which channel brings you clients. | `origin`, list | one channel on: hide |
+| S-8 | Inmuebles que encajan | as §5, unchanged; the button "Proponer a Laura" without a mark | as §5 | `matching` | hide |
+| S-9 | Seguimiento con permiso | as §5, unchanged | as §5 | `followup` | hide |
+| S-10 | Publicar en Instagram | as §5, unchanged | as §5 | `instagram` | hide |
+| S-11 | Tu semana, en un informe | Qué entró, de dónde llegó y qué sigue abierto, para decidir dónde poner tu tiempo. | What came in, where it came from and what is still open, so you can decide where to put your time. | `reportInLogin`, `reportTrend` | `reportTrend` off: "Qué entró y qué sigue abierto, para decidir dónde poner tu tiempo." · "What came in and what is still open, so you can decide where to put your time." `reportInLogin` off: hide |
+
+---
+
+## 19. The report: one example week, on the home page and on `/example-report`
+
+The figures of §6 stay: **25 received · 23 answered · 2 waiting for a person · 6 viewings asked for · 4 agreed · chart 19/17, 24/22,
+21/20, 25/23 · No medido twice.**
+
+**"Por canal", target state.** It is an example with fictional data, and it sums to the same 25:
+
+| Channel ES | Channel EN | Enquiries |
+|---|---|---|
+| WhatsApp | WhatsApp | **10** |
+| Email | E-mail | **6** |
+| Formulario web | Web form | **3** |
+| Teléfono | Phone | **2** |
+| Portales y anuncios | Portals and ads | **4** |
+| **Total** | **Total** | **25** |
+
+**"Por canal" in public.** It is part of the extended report, so it needs `reportTrend`; then it shows only the channels that run. The
+sum stays 25:
+
+| Channels on | Figures |
+|---|---|
+| all five | as above |
+| WhatsApp and Email only | WhatsApp 14 · Email 11 (§6) |
+| one channel only | the block is hidden (one channel compares nothing) |
+| any other set | the figure of each channel that is off is added to Email (to WhatsApp if Email is off) |
+
+**The hours of arrival** replace Redesign's working row. The peak stays 11:00–12:00 · 6, the sum stays 25, and the rows now also hold
+the 23:40 and 07:15 of the scene "Consultas respondidas":
+
+| Hour | 7 | 9 | 10 | 11 | 12 | 13 | 14 | 16 | 18 | 19 | 20 | 21 | 23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Enquiries | 1 | 1 | 2 | 6 | 3 | 2 | 1 | 1 | 2 | 1 | 2 | 2 | 1 |
+
+| Line | ES | EN |
+|---|---|---|
+| Office hours of the example agency, under the chart | Horario de la agencia de ejemplo: de 10:00 a 14:00 y de 17:00 a 20:00. | Hours of the example agency: 10:00 to 14:00 and 17:00 to 20:00. |
+
+**Texts that change** (home page and `/example-report`):
+
+| # | Element | Target ES | Target EN | Keys | Public when a key is off |
+|---|---|---|---|---|---|
+| R-1 | Header (home) | Agencia de ejemplo · Semana del 26 oct al 1 nov · Demo con datos ficticios | Example agency · Week of 26 Oct to 1 Nov · Demo with fictional data | `reportInLogin` | hide the section |
+| R-2 | Status line, §6 | **removed in both views** | **removed** | | |
+| R-3 | Consultas recibidas, definition | Consultas nuevas registradas en la semana. | New enquiries recorded in the week. | `reportInLogin` | hide the section |
+| R-4 | Respondidas, definition | Consultas con una respuesta automática. Las otras 2 llegaron en otro idioma: no se envía nada automáticamente. | Enquiries with an automatic reply. The other 2 arrived in another language: nothing is sent automatically. | `replySpanish` | floor |
+| R-5 | Chart note | Cuatro semanas de ejemplo. | Four example weeks. | `reportTrend` | hide the chart |
+| R-6 | Channel note and basis | Las mismas 25, según el canal de llegada. | The same 25, by the channel they arrived on. | `reportTrend` | hide with the block |
+| R-7 | Insight: Tu mejor canal | WhatsApp · 10 de 25 consultas | WhatsApp · 10 of 25 enquiries | `reportTrend` | hide all three insights |
+| R-8 | Insight state line | **removed in both views** | **removed** | | |
+| R-9 | Base line, `/example-report` | Base: consultas registradas en NuovaSolution, de lunes a domingo. Respondida no es lo mismo que entregada: el informe no mide lo que llega al cliente. | Basis: enquiries recorded in NuovaSolution, Monday to Sunday. Answered is not the same as delivered: the report does not measure what reaches the customer. | `reportInLogin` | hide the section |
+| R-10 | Close, `/example-report`, line | El informe de tu agencia se crea con tus consultas; no hay cifras que rellenar. | Your agency's report is built from your enquiries; there are no figures to fill in. | `trial`, `publicSignup` | with "Acceso por invitación." · "Access by invitation." in front |
+| R-11 | Funnel, the rates | every rate on the 25 received: 92 % · 24 % · 16 %, with the note "Porcentajes sobre las 25 consultas recibidas." | the same, "Percentages of the 25 enquiries received." | `reportTrend` | hide |
+
+R-11 fixes a mismatch on `2dfa67d`: the funnel shows "26 %" for viewings (6 of 23) next to the insight "24 % · 6 de 25".
+
+**The switch "Sin / Con NuovaSolution"** (home page and `/example-report`). It is one fictional week and the same as above. The block
+names no channel, so it holds in every channel set.
+
+| Element | ES | EN |
+|---|---|---|
+| Switch | Sin NuovaSolution · Con NuovaSolution | Without NuovaSolution · With NuovaSolution |
+| Mark, in sight of the figures | Ejemplo con datos ficticios · la misma semana | Example with fictional data · the same week |
+| Lead | 25 consultas de la agencia de ejemplo, que abre de 10:00 a 14:00 y de 17:00 a 20:00. | 25 enquiries to the example agency, which is open 10:00 to 14:00 and 17:00 to 20:00. |
+| Assumption, small | En este ejemplo nadie contesta con la oficina cerrada. Tu agencia puede trabajar de otra forma. | In this example nobody answers while the office is closed. Your agency may work differently. |
+
+| Row ES | Row EN | Sin | Con | Definition ES | Definition EN |
+|---|---|---|---|---|---|
+| Consultas de la semana | Enquiries in the week | **25** | **25** | Las mismas en los dos casos. | The same in both cases. |
+| Llegaron con la oficina cerrada | Arrived while the office was closed | **9** | **9** | Antes de abrir 2, a mediodía 2, después de cerrar 5. | Before opening 2, at midday 2, after closing 5. |
+| De ellas, pedían visita | Of those, asking for a viewing | **2** | **2** | Dos de las 6 visitas pedidas de la semana. | Two of the week's 6 viewings asked for. |
+| Sin respuesta hasta que abre la oficina | No reply until the office opens | **9** | **0** | Con NuovaSolution, esas 9 reciben la respuesta automática al llegar. | With NuovaSolution, those 9 get the automatic reply when they arrive. |
+| Esperan al día siguiente | Waiting until the next day | **5** | **0** | Las que llegaron después de las 20:00. | Those that arrived after 20:00. |
+| Esperan a una persona para la primera respuesta | Waiting for a person for the first reply | **25** | **2** | Con NuovaSolution, las 2 que llegaron en otro idioma. | With NuovaSolution, the 2 that arrived in another language. |
+| En su ficha, con prioridad y motivo | On their record, with priority and reason | **lo que alguien anote** · **whatever someone notes down** | **25** | Las 25, sin copiar nada a mano. | All 25, with nothing copied by hand. |
+
+| Close of the state | ES | EN |
+|---|---|---|
+| Sin | 9 consultas esperan a que abra la oficina; 5 de ellas, hasta el día siguiente. 2 de esas 9 pedían visita. | 9 enquiries wait for the office to open; 5 of them until the next day. 2 of those 9 were asking for a viewing. |
+| Con, first sentence | Ninguna consulta se pierde de vista: 23 respondidas, 2 esperando a una persona y las 25 en su ficha. | No enquiry slips out of sight: 23 answered, 2 waiting for a person and all 25 on their record. |
+| Con, second sentence (`reportTrend`) | Y cada semana ves de dónde llegan tus clientes, para decidir dónde crecer. | And each week you see where your clients come from, so you can decide where to grow. |
+| Con, second sentence, `reportTrend` off | Y cada semana ves qué sigue abierto. | And each week you see what is still open. |
+
+**Keys of the block:** `replySpanish`, `crm`, `replyOutOfHours`. If any of them is off, hide the whole block. With
+`priorityWithReason` off, the last row reads "En su ficha" · "On their record".
+
+**Not in this block, as the owner orders:** no €, no %, no revenue, sales or commission line, no time-saved figure, no statement about
+real agencies, and no change to the 6 viewings (Sin and Con are the same 6: the example claims no extra viewing).
+
+**The sums, for the check:**
+
+| Check | Sum |
+|---|---|
+| Channels | 10 + 6 + 3 + 2 + 4 = **25**; public 14 + 11 = **25** |
+| Answered | 23 + 2 = **25** |
+| Hours | 13 rows = **25**; peak 6 |
+| Office hours | open 16 + closed 9 = **25**; closed 2 + 2 + 5 = **9** |
+| Answered, split | the 2 in another language arrived with the office open, so 14 open + 9 closed = **23** |
+| Viewings | 4 agreed ≤ 6 asked for; 2 asked for while closed ≤ 6 |
+| Rates | 23/25 = 92 %, 6/25 = 24 %, 4/25 = 16 % |
+| Chart | last week 25 / 23 |
+
+---
+
+## 20. Entry, plans, trust, FAQ, close, 3D
+
+**The way in: 14 days in 3 steps, for the target state, no technique.**
+
+| Element | ES | EN |
+|---|---|---|
+| Title | 14 días gratis, en 3 pasos | 14 days free, in 3 steps |
+| Step 1 | **Crea tu cuenta.** Tu nombre, tu email de trabajo y una contraseña. | **Create your account.** Your name, your work e-mail and a password. |
+| Step 2 | **Configura tu agencia.** Tus datos, tu logo y tu equipo, a tu ritmo. | **Set up your agency.** Your details, your logo and your team, at your own pace. |
+| Step 3 | **Conectamos tu buzón contigo.** Lo hacemos juntos y lo probamos con un mensaje real. | **We connect your mailbox with you.** We do it together and test it with a real message. |
+| Line | Los 14 días empiezan cuando tu agencia está lista. Sin método de pago y sin renovación automática. | The 14 days start when your agency is ready. No payment method and no automatic renewal. |
+| Small line | Te decimos antes de empezar si tu buzón ya se puede conectar. | We tell you before you start whether your mailbox can be connected yet. |
+| Action | Pruébalo gratis 14 días | Try it free for 14 days |
+
+- **Facts:** the trial start and "no payment method" are in API's register. The joint connection and the check before registering are in API's `API_D5_DIREKT_1106_v1.md` §3 and §6.
+- **Keys:** `trial`, `publicSignup`, `mailboxConnection`.
+
+**In public while the trial is off** (the way in becomes a request):
+
+| Keys on | Title ES · EN | Steps | Line |
+|---|---|---|---|
+| `mailboxConnection` | Cómo empezar · How to start | 1 **Pides acceso.** · **You request access.** 2 **Te enseñamos el sistema.** · **We show you the system.** 3 as step 3 above | "Acceso por invitación." · "Access by invitation." |
+| none | the same | 1 and 2 only | the same |
+
+**Plans (§9):**
+
+| # | Element | Target ES | Target EN | Keys | Public when a key is off |
+|---|---|---|---|---|---|
+| P-1 | Intro | Empieza con 14 días de Essential, gratis. Después eliges el plan que encaja con tu agencia. | Start with 14 days of Essential, free. Then choose the plan that fits your agency. | `trial`, `plans` | see P-5 |
+| P-2 | Action, Essential | Pruébalo gratis 14 días | Try it free for 14 days | `trial`, `publicSignup` | Solicita una propuesta · Request a proposal |
+| P-3 | Action, Growth and Enterprise | Solicita una propuesta | Request a proposal | | |
+| P-4 | Legend | Un ✓ donde el plan incluye la función. | A ✓ where the plan includes the function. | `plans` | see P-5 |
+| P-5 | The table | §9: ✓ or —, no status word | §9 | `plans`, each row its key | a row with its key off is hidden. With `plans` off, or when the plans no longer differ: **no plan names and no table**. One block: H2 "Qué incluye" · "What's included", the rows that are on as a list, the price line of §9, the action of H-5 |
+| P-6 | Line, Growth | as §9 | as §9 | `taskList`, `matching`, `followup` | names only the parts that are on |
+| P-7 | Line, Enterprise | as §9 | as §9 | `instagram`, `model3d` | names only the parts that are on |
+| P-8 | Row, integrations | HubSpot, Pipedrive, Zoho, Salesforce, Outlook | the same | `integrations`, `outlook` | names only the parts that are on |
+
+**Trust (§10.1).** Lines 2 and 3 are unchanged. Line 1 is §13 N-1.
+
+**FAQ, home page (§10.2):**
+
+| Question | Target ES | Target EN | Keys | Public when a key is off |
 |---|---|---|---|---|
-| N-1 | `lib/content/home-1103.ts:291`, trust line 1 | "Pides acceso, te enseñamos el sistema y conectamos los canales contigo." | Pides acceso y te enseñamos el sistema. La conexión del buzón y del WhatsApp de tu agencia llega próximamente. | You request access and we show you the system. Connecting your agency's mailbox and WhatsApp is coming soon. |
-| N-2 | `lib/content/faq.ts:205`, FAQ "¿Cuánto se tarda en configurarlo?" | "Tú preparas los datos de tu agencia, tu logo, tu equipo y el acceso a WhatsApp y a tu email; nosotros conectamos los canales contigo y probamos cada uno con un mensaje real. …" | Hoy te enseñamos el sistema con datos de ejemplo. La conexión del buzón y del WhatsApp de tu agencia llega próximamente; cuando esté lista, probaremos cada canal con un mensaje real antes de darlo por conectado. | Today we show you the system with example data. Connecting your agency's mailbox and WhatsApp is coming soon; once it is ready, we will test each channel with a real message before calling it connected. |
-| N-3 | `lib/i18n/dictionaries/es.ts:323` (and EN at the same key), the onboarding step | "Conecta tus canales con nosotros · WhatsApp y email se conectan junto con nosotros; es un paso distinto de la cuenta." | Tus canales · La conexión del buzón y del WhatsApp de tu agencia llega próximamente. | Your channels · Connecting your agency's mailbox and WhatsApp is coming soon. |
-| N-4 | `es.ts:473` (and EN), trial step "Canales" | "Conecta tus canales, según los permisos que tengas." | Próximamente: conectar el buzón y el WhatsApp de tu agencia. | Coming soon: connecting your agency's mailbox and WhatsApp. |
-| N-5 | `lib/content/capabilities.ts:83`; `lib/content/platform-map.ts:55` | "…en un buzón que operamos para ti." | **preview:** may stay. **Production:** only with D5 route B built; otherwise the line is: Respuesta por email: próximamente para el buzón de tu agencia. | **Production** otherwise: Reply by e-mail: coming soon for your agency's mailbox. |
-| N-6 | `lib/content/home-demo.ts:184`, demo state on the Email tab | "Hoy: respuesta en español por email (Gmail) y ficha guardada." | **preview:** may stay (demo with fictional data). **Production** before D5: Demo: así funcionará con el buzón de tu agencia (próximamente). | Demo: this is how it will work with your agency's mailbox (coming soon). |
+| ¿Qué hace NuovaSolution? | Responde en español las consultas que llegan por ⟦canales⟧ y guarda lo importante de cada una en su ficha, con su prioridad y su motivo. | It answers the enquiries that arrive on ⟦canales⟧ in Spanish and keeps what matters from each one on its record, with its priority and reason. | `replySpanish`, `crm`, `priorityWithReason` | off: end after "en su ficha." · "on its record." |
+| ¿En qué idiomas responde? | En español. Detecta el idioma de cada consulta; en otro idioma no se envía nada automáticamente. | as §10.2 | `languageNoted` | off: "En español." · "Spanish." |
+| ¿Sabe el cliente que responde un asistente? | as §10.2 | as §10.2 | `replySpanish` | floor |
+| ¿Avisa a mi equipo? | Sí. Cuando una consulta es importante, avisa por email a la persona que toca, con el motivo. | Yes. When an enquiry is important, it alerts the right person by e-mail, with the reason. | `alert` | hide |
+| ¿Cómo empiezo? | Pruébalo gratis 14 días, sin método de pago: creas tu cuenta, configuras tu agencia y conectamos tu buzón contigo. | Try it free for 14 days, with no payment method: you create your account, set up your agency and we connect your mailbox with you. | `trial`, `publicSignup`, `mailboxConnection` | "Por invitación: pide acceso y te enseñamos el sistema." · "By invitation: request access and we will show you the system." |
+| ¿Funciona con mi CRM? | Incluye un CRM. También se conecta con HubSpot, Pipedrive, Zoho y Salesforce. | It includes a CRM. It also connects to HubSpot, Pipedrive, Zoho and Salesforce. | `crm`, `integrations` | off: "Incluye un CRM." · "It includes a CRM." |
+| ¿Cuánto cuesta? | as §10.2 | as §10.2 | | stays |
 
-The channel labels "Email con Gmail" / "Email through Gmail" (`es.ts:418`, `en.ts:456`) name a channel. They promise no connection
-and stay.
+**Close (§10.3), the line:**
+
+| Target ES | Target EN | Keys | Public when off |
+|---|---|---|---|
+| Te enseñamos la demo con tus canales y respondemos tus preguntas. | We show you the demo with your channels and answer your questions. | `mailboxConnection` | "Te enseñamos la demo y respondemos tus preguntas." · "We show you the demo and answer your questions." |
+
+**3D (§8).** The status word is gone. The texts stay. The whole section, including the action, hangs on `model3d`; off means hide.
+
+---
+
+## 21. The detail pages
+
+The same rule applies. On `2dfa67d`, the delivered HTML holds these counts of the readiness word (GET, fixed URL, 06.11.; hidden panels
+included): home 94, `/packages` 66, `/platform` 15, `/example-report` 7, `/faq` 5, `/trial` 4, `/contact` 1, `/platform/daily-assistant` 1.
+EN has the same counts.
+
+**A finding, independent of the status word.** `faq.ts:125`, `:133` and `:141` still say the team **gets an e-mail alert today**. API's
+register holds the alert back in production, and row C-6 was not applied. The three rows below put them under `alert`.
+
+**FAQ page (`lib/content/faq.ts`):**
+
+| Q | Target ES | Target EN | Keys | Public when a key is off |
+|---|---|---|---|---|
+| frame, h1 | Respuestas claras sobre lo que hace NuovaSolution | Straight answers about what NuovaSolution does | | stays |
+| frame, lead | Aquí está lo que hace el producto, sin promesas de más. | This is what the product does, with no promises beyond that. | | stays |
+| Q-01 | Responde a las consultas que recibe tu agencia, registra cada una con lo que ha pedido el cliente y convierte una petición de visita en una tarea que tu equipo toma y cierra. | as today | `replySpanish`, `crm`, `taskList` | off: end after "lo que ha pedido el cliente." · "what the customer asked for." |
+| Q-02 | Consultas por ⟦canales⟧. | Enquiries on ⟦canales⟧. | list | stays, with the list |
+| Q-03 | as today | as today | `replyOutOfHours` | hide |
+| Q-06 | as today | as today | `replySpanish` | floor |
+| Q-08 | No. Lo que responde sale de lo que escribió el cliente y de lo que tu agencia ha confirmado. Solo propone inmuebles de tu cartera. | No. What it answers comes from what the customer wrote and what your agency has confirmed. It proposes only listings from your portfolio. | `matching` | off: without the last sentence |
+| Q-09 | as today | as today | `taskList` | off: end after "de tu gente." · "with your people." |
+| Q-31 | Sí, por email. Cuando una consulta parece importante, la persona adecuada de tu equipo recibe un aviso con el motivo. | Yes, by e-mail. When an enquiry looks important, the right person on your team gets an alert with the reason. | `alert` | hide |
+| Q-41 | En su propia lista, cada persona entrando como ella misma. | In their own list, each person signed in as themselves. | `taskList` | hide |
+| Q-42 | Sí. Cada persona puede preguntar «¿Qué tengo hoy?» y el asistente le explica qué va primero y por qué. | Yes. Each person can ask "What do I have today?" and the assistant explains what comes first and why. | `dailyVoice` | hide |
+| Q-43 | Una. Si la misma persona escribe por los dos canales, todo queda en una sola ficha. | One. If the same person writes on both channels, everything stays on one record. | `oneRecordAcrossChannels` | **limit stays:** "Dos, hasta que algo las una. Preferimos decírtelo ahora y no que lo descubras en tu segunda semana." · "Two, until something ties them together. We would rather tell you now than let you find it in your second week." |
+| Q-11 | 14 días de Essential, gratis y sin método de pago. Creas la cuenta tú mismo. | 14 days of Essential, free and with no payment method. You create the account yourself. | `trial`, `publicSignup` | hide, with Q-12 |
+| Q-13 | Te decimos el precio y el periodo de facturación para tu agencia antes de acordar nada. | We tell you the price and the billing period for your agency before anything is agreed. | | stays |
+| Q-16 | No. Puedes empezar por tu cuenta. | No. You can start on your own. | `trial`, `publicSignup` | "No hace falta una llamada comercial: escríbenos y te enseñamos el sistema." · "No sales call is needed: write to us and we will show you the system." |
+| Q-21 | §13 N-2 | §13 N-2 | | |
+| Q-22 | as today | as today | `taskList` | hide |
+| Q-44 | **unchanged** (no retention period is published until counsel has answered) | **unchanged** | | stays |
+| Q-46 | En los mensajes no: una consulta de texto se responde cuando llega. En el teléfono, tu horario dirige el asistente. | In messages, no: a text enquiry is answered whenever it arrives. On the phone, your hours steer the assistant. | `replySpanish`, `phoneAssistant` | off: "No: una consulta de texto se responde cuando llega, a cualquier hora." · "No: a text enquiry is answered whenever it arrives, at any hour." |
+| group title | Otras preguntas | Other questions | | hide if the group is empty |
+| Q-18/19 | Sí. Se incluye un CRM y, si ya usas uno de estos, lo conectamos contigo. | Yes. A CRM is included and, if you already use one of these, we connect it with you. | `integrations` | hide |
+| Q-20 | Sí, con el buzón de tu agencia, junto con nosotros. | Yes, with your agency's mailbox, together with us. | `outlook` | hide |
+| Q-26 | not shown (§14) | not shown | | hide |
+| Q-27 | Sí. El asistente telefónico atiende la llamada, deja lo que pide el cliente en su ficha y una tarea a tu equipo. El precio lo da una persona. | Yes. The phone assistant answers the call, leaves what the customer asks for on their record and a task for your team. A person gives the price. | `phoneAssistant` | hide |
+| Q-28 | No lo gestiona solo: preparas la publicación con los datos del inmueble y sale en tu cuenta cuando tú la apruebas. | Not on its own: you prepare the post with the listing's details and it goes out on your account when you approve it. | `instagram` | hide |
+| Q-29 | as today | as today | `model3d` | hide |
+| Q-30 | No hacemos campañas ni compramos leads. Recogemos los leads de los anuncios que ya tienes. | We do not run campaigns or buy leads. We take in the leads from the ads you already run. | `adsLeads` | off: "No. No hacemos campañas ni compramos leads." · "No. We do not run campaigns or buy leads." |
+
+**Platform and modules (`platform-map.ts`, `capabilities.ts`).** No state chip in either view. A row with its key off is hidden in
+public, and so is a group with no row left.
+
+| Place | Target ES | Target EN | Keys | Public when a key is off |
+|---|---|---|---|---|
+| group line, answers | Las consultas por ⟦canales⟧ se responden en español. Una consulta en otro idioma no recibe respuesta automática. | Enquiries on ⟦canales⟧ are answered in Spanish. An enquiry in another language gets no automatic reply. | list | stays, with the list |
+| row WhatsApp | Respuesta por WhatsApp, con el número de tu agencia. | Replies on WhatsApp, on your agency's own number. | `replyWhatsapp`, `whatsappOwnNumber` | hide |
+| row Email | §13 N-5 | §13 N-5 | | |
+| row Paso a una persona, state line | La petición queda registrada, aparece en la lista de tareas y avisa en cada traspaso. | The request is recorded, appears in the task list and alerts at each handover. | `crm`, `taskList`, `alert` | off: "La petición queda registrada." · "The request is recorded." |
+| row Avisos, Propuestas, Seguimientos, Tareas, Asistente de la mañana, Formularios web, Asistente telefónico, Instagram, Comentarios, 3D | the line as today | as today | `alert`, `matching`, `followup`, `taskList`, `dailyVoice`, `webform`, `phoneAssistant`, `instagram`, `instagram`, `model3d` | hide |
+| row Calendario | not shown (§14) | not shown | | hide |
+| row Informes | El informe completo en tu acceso de agencia y un resumen semanal por email. Lo que llega al cliente no se mide. | The full report in your agency login and a weekly e-mail summary. What reaches the customer is not measured. | `reportInLogin`, `weeklyEmail` | off: "El informe completo en tu acceso de agencia. Lo que llega al cliente no se mide." · "The full report in your agency login. What reaches the customer is not measured." |
+| row Leads de anuncios | Recoge los leads de los anuncios que ya tienes. Las campañas siguen siendo tuyas. | It takes in the leads from the ads you already run. The campaigns stay yours. | `adsLeads` | hide |
+| block "En construcción" (`es.ts:49–50`) | **removed in both views** | **removed** | | |
+| `capabilities.ts:85` | Un aviso por email a la persona adecuada cuando una consulta importa. | An e-mail alert to the right person when an enquiry matters. | `alert` | hide |
+| `capabilities.ts:231`, state line | **removed in both views** | **removed** | | |
+| `capabilities.ts:304`, `:319`, Social module | no target text; scene S-10 covers it | | `instagram` | hide |
+| `capabilities.ts:372` | Una experiencia de la propiedad terminada, creada por NuovaSolution y revisada por una persona antes de llegar a un comprador. Un servicio premium, bajo petición. | A finished property experience, created by NuovaSolution and checked by a person before it reaches a buyer. A premium service, on request. | `model3d` | hide |
+| `es.ts:90`, `q5`, module pages | Funciona con ⟦canales⟧, con respuestas en español. | Works with ⟦canales⟧, with replies in Spanish. | list | stays, with the list; removed on `/platform/daily-assistant` (C-30) |
+| `es.ts:146` | En español, por ⟦canales⟧. | In Spanish, on ⟦canales⟧. | list | stays, with the list |
+| `es.ts:307` | Elige una escena. | Choose a scene. | | stays |
+
+**Trial, packages, contact (`es.ts`, and EN at the same keys):**
+
+| Place | Target ES | Target EN | Keys | Public when a key is off |
+|---|---|---|---|---|
+| `/packages` h1 and lead | the existing `h1Neutral` and `leadNeutral` | the same | `trial`, `publicSignup` | h1 "Qué incluye NuovaSolution" · "What NuovaSolution includes"; lead "Acceso por invitación. Te decimos el precio para tu agencia antes de acordar nada." · "Access by invitation. We tell you the price for your agency before anything is agreed." |
+| `baselineLine` | Todos los planes incluyen las respuestas, la ficha y el CRM. Las tareas del equipo, desde Growth. | All plans include the replies, the record and the CRM. The team's tasks, from Growth. | `plans`, `taskList` | hide with the table (P-5) |
+| packages FAQ, the C-14 answer | No. Puedes empezar por tu cuenta. | No. You can start on your own. | `trial`, `publicSignup` | as Q-16 |
+| packages FAQ, card and 14-day answers | as today | as today | `trial` | hide |
+| `/trial` h1, state line | h1 "Prueba gratis durante 14 días."; **state line removed** | h1 "Try it free for 14 days."; **removed** | `trial`, `publicSignup` | the route leads to `/contact` |
+| `/trial` step Canales | Conectamos contigo el buzón y el WhatsApp de tu agencia y probamos cada canal con un mensaje real. | We connect your agency's mailbox and WhatsApp with you and test each channel with a real message. | §13 N-4 | |
+| `/trial` step Fuentes de leads | Dinos de dónde te llegan los leads y los conectamos contigo. | Tell us where your leads come from and we connect them with you. | `adsLeads` | off: "Dinos de dónde te llegan los leads." · "Tell us where your leads come from." |
+| `/trial` step CRM | Hay un CRM incluido desde el principio. Si usas otro, dinos cuál y lo conectamos contigo. | A CRM is included from the start. If you use another, tell us which and we connect it with you. | `integrations` | off: first sentence only |
+| `tryFree` (`es.ts:63`) | Prueba gratis durante 14 días | Try it free for 14 days | `trial`, `publicSignup` | hide |
+| `/contact` `trialBody` (`es.ts:491`) | Prueba gratis durante 14 días. Sin método de pago, sin llamada comercial. | Try it free for 14 days. No payment method, no sales call. | `trial`, `publicSignup` | hide the block |
+
+**Appendix C.** Rows C-2, C-3, C-6, C-7, C-9, C-10, C-11, C-13, C-14, C-15, C-16, C-16a, C-16b, C-19, C-22, C-23, C-24, C-26 and C-27 are
+replaced: §23 gives their old and new wording.
+
+---
+
+## 22. The brand sentence and the WORKING lines
+
+**The brand sentence** (Social's list, point 4; `/legal-notice`, `/aviso-legal`):
+
+| ES | EN |
+|---|---|
+| NuovaSolution es una marca de ⟦E14: NOMBRE⟧. | NuovaSolution is a brand of ⟦E14: NAME⟧. |
+
+- The name comes from the owner, with its accents exactly as on the DNI. It is not filled in here, and no sentence is live until the owner's line `WEBSITE-KLEINFIX = JA`.
+- `META_LEGAL_TEXT_FINAL.md` §3 says "nombre comercial". I leave that as it is. **For counsel:** whether "marca" is acceptable without a registered mark. No missing legal text is written here: privacy, terms and the deletion page stay with counsel and E14 (L-1).
+
+**The WORKING lines of Redesign's return §6, each with a verdict:**
+
+| Line | Verdict | ES | EN |
+|---|---|---|---|
+| E-mail reply | **changed** ("Apunto" struck, as in Question A) | ¡Hola, Carmen! Gracias por escribirnos. Quieres vender tu piso de 3 dormitorios en Fuengirola, cerca del paseo marítimo, y te gustaría una valoración esta semana, ¿verdad? ¿Te viene mejor por la mañana o por la tarde? | Hi Carmen, thanks for writing to us. You want to sell your 3-bedroom flat in Fuengirola, near the seafront, and you'd like a valuation this week, is that right? Would the morning or the afternoon suit you better? |
+| E-mail next step | accepted | Una persona de tu equipo le propone día y hora para la valoración. | Someone on your team proposes a day and time for the valuation. |
+| Phone, the assistant | **changed** ("lo anoto" sounds like the struck "Anoto") | Gracias, Álvaro. Queda para el equipo: la villa de Elviria, el precio y el margen, y que prefieres que te llamen por la tarde. | Thank you, Álvaro. It's with the team now: the villa in Elviria, the price and the room to negotiate, and that you'd prefer a call in the afternoon. |
+| Surface `priority` | accepted, except Sofía: `webform` on: "Formulario web · 11:31"; off: "Email · 11:31" (the demo's form sends her enquiry at 11:31) | | |
+| Surface `reply` | accepted, with the foot "Hora de envío, no de entrega" | | |
+| Surface `record` | accepted | | |
+| Surface `origin` | accepted; the two "Próximamente" rows become rows with content, below | | |
+| Surface `language` | accepted | | |
+| Surface `inbox` | **note changed** | En el buzón de tu agencia | In your agency's mailbox |
+| Surface `matching`, `followup`, `social` | accepted; no status mark; "Fotos de muestra" stays | | |
+| Surface `team` and the Daily view | accepted; "Tomar · Demo" and "Vista de ejemplo de la app del equipo" stay | | |
+| Channel note | accepted | Las mismas 25, según el canal de llegada | The same 25, by the channel they arrived on |
+| Funnel step lines | accepted, except "respuesta automática enviada" becomes "respuesta automática"; rates per R-11 | | |
+| Hours' note | accepted; rows per §19 | | |
+| Open-cases table | accepted; Sofía's channel follows `webform` as above | | |
+| Demo state lines (`home-demo.ts`) | **removed in both views** | | |
+
+**The two new rows of the surface `origin`** (fictional people; each row needs its key):
+
+| Who | What ES | What EN | Origin ES · EN | Key |
+|---|---|---|---|---|
+| Inés Navarro | Piso con terraza en Estepona · EST-204 | Flat with terrace in Estepona · EST-204 | Portal · Portal | `adsLeads` |
+| Daniel Ruiz | Adosado en Mijas | Townhouse in Mijas | Anuncio · Ad | `adsLeads` |
+
+**Marking:** editorial and technical. Not a legal approval, not a Meta approval. No publication released.
+
+---
+
+## 23. Answer to the Reviewer's §G-6, and every earlier place with its old and new wording
+
+**For:** Redesign (applies it) and the Reviewer (checks against it).
+
+| §G-6 | Answer (owner, 06.11.) | Where |
+|---|---|---|
+| 1 | Status words apply only internally, in the register (§1) and in `lib/claims.ts`, not on the page. | §1 |
+| 2 | The table shows what a plan contains, with no status word per cell and no fixed 19 rows in the public state. | §9 |
+| 3 | Follows from 2: the condition "a status word in every cell" (C03) does not stand. | §9 |
+| 4 | "Próximamente" also goes from whole sentences. "Informe ampliado: próximamente" and N-1 … N-4 are replaced by true sentences with no such word and no commitment. A statement on connecting a mailbox or WhatsApp appears in public only when it is true. **The reading in §G-6.4 (full sentences stay) therefore does not apply.** | §13, §19, this list |
+| 5 | The notice is in §14, with no date and no promise. | §14 |
+| 6 | "No medido" stays, twice, in both views. | §14, §19 |
+| 7 | Not answered here: how thin the public view may be is the owner's decision. | |
+
+**How to read the list.** "New" is what stands **in public while the key is off**. "No text" means the element is not there. The target
+sentence for the preview is in the row named in the last column. Files named in a C-row that no longer exist on `2dfa67d`
+(`home-sections.ts`, `home-sequence.ts`, `package-matrix.ts`) are listed only so the old wording cannot return.
+
+**A. §2–§10 of this file**
+
+| # | Place | Old ES | Old EN | New ES | New EN | Preview |
+|---|---|---|---|---|---|---|
+| V-1 | §2, line under the actions; C-9 | Acceso por invitación mientras preparamos el registro público. | Access by invitation while public registration is being prepared. | Acceso por invitación. | Access by invitation. | H-6 |
+| V-2 | §3, mark on Formulario web and Teléfono | Próximamente | Coming soon | no text | no text | no mark |
+| V-3 | §3, demo state lines, `home-demo.ts` | Incluido: la respuesta por email (Gmail) y la ficha con su prioridad. · Próximamente: el aviso a la persona que toca y la lista de tareas. · Próximamente: el formulario web. · Próximamente: el asistente telefónico, en español. | Included: the e-mail reply (Gmail) and the record with its priority. · Coming soon: the alert to the right person and the task list. · Coming soon: the web form. · Coming soon: the phone assistant, in Spanish. | no text | no text | no text |
+| V-4 | §5, scene 1 | La ficha marca la prioridad y por qué. El aviso a la persona que toca llega próximamente. | The record marks the priority and why. The alert to the right person is coming soon. | La ficha marca la prioridad y por qué. | The record marks the priority and why. | S-4 |
+| V-5 | §5, scene 4 | La ficha guarda el canal de origen. Portales y anuncios, próximamente. | The record keeps the channel of origin. Portals and ads, coming soon. | La ficha guarda de dónde llega cada consulta: ⟦canales⟧. Así ves qué canal te trae clientes. | The record keeps where each enquiry comes from: ⟦canales⟧. So you see which channel brings you clients. | S-7 |
+| V-6 | §5, scene 5 | NuovaSolution detecta el idioma y lo guarda. Hoy responde en español; en otro idioma no se envía nada automáticamente. | NuovaSolution detects the language and keeps it. Today it replies in Spanish; in another language nothing is sent automatically. | NuovaSolution detecta el idioma de cada cliente y lo guarda en su ficha. Si no es español, no se envía nada automáticamente: lo escribe una persona. | NuovaSolution detects each client's language and keeps it on their record. If it is not Spanish, nothing is sent automatically: a person writes it. | S-2 |
+| V-7 | §5, scenes 7–10, the status; scene 1 and 4 quiet notes | Próximamente · El aviso a la persona que toca · próximamente · Portales y anuncios · próximamente | Coming soon · The alert to the right person · coming soon · Portals and ads · coming soon | no text; the scene follows its key | no text | S-6, S-8, S-9, S-10 |
+| V-8 | §5, button in scene 7 | Proponer a Laura · Próximamente | Propose to Laura · Coming soon | no text (the scene is hidden) | no text | Proponer a Laura · Propose to Laura |
+| V-9 | §6, status line | Incluido: el informe en el acceso de tu agencia. Próximamente: el resumen semanal por email y el informe ampliado. | Included: the report in your agency's login. Coming soon: the weekly e-mail summary and the extended report. | no text | no text | no text |
+| V-10 | §6, chart note | Cuatro semanas de ejemplo. La evolución por semanas forma parte del informe ampliado: próximamente. | Four example weeks. The week-by-week trend is part of the extended report: coming soon. | no text (the chart follows `reportTrend`) | no text | Cuatro semanas de ejemplo. · Four example weeks. |
+| V-11 | §6, "Por canal", marks | próximamente | coming soon | figures per §19 | figures per §19 | §19 |
+| V-12 | §7, line under the insights | Estas conclusiones forman parte del informe ampliado: próximamente. | These insights are part of the extended report: coming soon. | no text | no text | no text |
+| V-13 | §7, close | Acceso por invitación mientras preparamos el registro público. El informe de tu agencia se crea con tus consultas; no hay cifras que rellenar. | Access by invitation while public registration is being prepared. Your agency's report is built from your enquiries; there are no figures to fill in. | Acceso por invitación. El informe de tu agencia se crea con tus consultas; no hay cifras que rellenar. | Access by invitation. Your agency's report is built from your enquiries; there are no figures to fill in. | R-10 |
+| V-14 | `example-report.ts`, channel basis | Las mismas 25, según el canal de llegada. Los canales marcados como próximamente no tienen cifras: no están en producción. | The same 25, by the channel they arrived on. Channels marked coming soon carry no figure: they are not in production. | Las mismas 25, según el canal de llegada. | The same 25, by the channel they arrived on. | R-6 |
+| V-15 | §8, status | Próximamente | Coming soon | no text (the section follows `model3d`) | no text | no text |
+| V-16 | §9, intro | Hoy, acceso por invitación. Los planes se podrán contratar con el registro público. | Today, access by invitation. Plans can be booked once public registration opens. | Acceso por invitación. | Access by invitation. | P-1 |
+| V-17 | §9, every cell | Incluido · No incluido · Próximamente | Included · Not included · Coming soon | ✓ · — · the row is absent | ✓ · — · the row is absent | ✓ · — |
+| V-18 | legend, `home-1103.ts` | Un ✓ solo donde la función está incluida hoy. | A ✓ only where the function is included today. | Un ✓ donde el plan incluye la función. | A ✓ where the plan includes the function. | P-4 |
+| V-19 | §10.1, line 1 | Pides acceso y te enseñamos el sistema. La conexión del buzón y del WhatsApp de tu agencia llega próximamente. | You request access and we show you the system. Connecting your agency's mailbox and WhatsApp is coming soon. | Pides acceso y te enseñamos el sistema. | You request access and we show you the system. | N-1 |
+| V-20 | §10.2, ¿Avisa a mi equipo? | Próximamente. Hoy la prioridad y su motivo quedan en la ficha. | Coming soon. Today the priority and its reason stay on the record. | no text (the question is hidden) | no text | §20 |
+| V-21 | §10.2, ¿Cómo empiezo? | Hoy por invitación: pide acceso y te enseñamos el sistema. El registro público y la prueba de 14 días llegan próximamente. | By invitation today: request access and we will show you the system. Public registration and the 14-day trial are coming soon. | Por invitación: pide acceso y te enseñamos el sistema. | By invitation: request access and we will show you the system. | §20 |
+| V-22 | §10.2, ¿Funciona con mi CRM? | Incluye un CRM. HubSpot, Pipedrive, Zoho y Salesforce, próximamente. | It includes a CRM. HubSpot, Pipedrive, Zoho and Salesforce, coming soon. | Incluye un CRM. | It includes a CRM. | §20 |
+| V-23 | §11, EX-1 | Cuatro semanas de ejemplo. La evolución por semanas forma parte del informe ampliado, en preparación. | Four example weeks. The week-by-week trend is part of the extended report, in preparation. | as V-10 | as V-10 | R-5 |
+
+**B. §13, the addition `702a11d`**
+
+| # | Place | Old ES | Old EN | New ES | New EN | Preview |
+|---|---|---|---|---|---|---|
+| V-24 | N-1 | as V-19 | as V-19 | as V-19 | as V-19 | N-1 |
+| V-25 | N-2, FAQ Q-21 | Hoy te enseñamos el sistema con datos de ejemplo. La conexión del buzón y del WhatsApp de tu agencia llega próximamente; cuando esté lista, probaremos cada canal con un mensaje real antes de darlo por conectado. | Today we show you the system with example data. Connecting your agency's mailbox and WhatsApp is coming soon; once it is ready, we will test each channel with a real message before calling it connected. | Te enseñamos el sistema con datos de ejemplo. | We show you the system with example data. | N-2 |
+| V-26 | N-3, onboarding step | Tus canales · La conexión del buzón y del WhatsApp de tu agencia llega próximamente. | Your channels · Connecting your agency's mailbox and WhatsApp is coming soon. | no text (the step is hidden) | no text | N-3 |
+| V-27 | N-4, trial step | Próximamente: conectar el buzón y el WhatsApp de tu agencia. | Coming soon: connecting your agency's mailbox and WhatsApp. | no text (`/trial` leads to `/contact`) | no text | N-4 |
+| V-28 | N-5 | Respuesta por email: próximamente para el buzón de tu agencia. (and "…en un buzón que operamos para ti.") | Reply by e-mail: coming soon for your agency's mailbox. (and "…a mailbox we operate for you.") | no text | no text | N-5 |
+| V-29 | N-6 | Demo: así funcionará con el buzón de tu agencia (próximamente). | Demo: this is how it will work with your agency's mailbox (coming soon). | no text | no text | no text |
+
+**C. The appendix, and the same wording in the code on `2dfa67d`**
+
+| # | Place | Old ES | Old EN | New ES | New EN | Preview |
+|---|---|---|---|---|---|---|
+| V-30 | C-2, C-3 | En preparación: el aviso por email y la lista de tareas. · En preparación: el aviso por email a la persona que toca, la lista de tareas para tomarlas y cerrarlas, y el asistente que explica el orden. | In preparation: the e-mail alert and the task list. · In preparation: the e-mail alert to the right person, the task list to take and close tasks, and the assistant that explains the order. | no text | no text | no text |
+| V-31 | C-4, C-5, C-20, C-21, state chips (`platform-map.ts`) | Próximamente · Por encargo · Disponible en parte · Disponible | Coming soon · To order · Partly available · Available | no text; the row follows its key | no text | no chip |
+| V-32 | C-6; `faq.ts:125` | Todavía no. El aviso por email a la persona adecuada de tu equipo, con el motivo, está en preparación. Hoy la consulta queda en su ficha. (code: Sí, por email. … Todavía sin horario de oficina.) | Not yet. The e-mail alert to the right person on your team, with the reason, is in preparation. Today the enquiry is kept on its record. (code: Yes, by e-mail. … No office hours yet.) | no text (the question is hidden) | no text | Q-31 |
+| V-33 | C-7; `capabilities.ts:85` | Un aviso por email a la persona adecuada cuando una consulta importa (próximamente). | An e-mail alert to the right person when an enquiry matters (coming soon). | no text | no text | §21 |
+| V-34 | C-10 | Tres paquetes, con su estado real | Three packages, with their real state | Qué incluye NuovaSolution | What NuovaSolution includes | §21 |
+| V-35 | C-11; `es.ts:372` | Hoy los paquetes todavía no se pueden contratar: el registro y la prueba de 14 días están próximamente. Te decimos el precio para tu agencia antes de acordar nada. | The packages cannot be booked yet: registration and the 14-day trial are coming soon. We tell you the price for your agency before anything is agreed. | Acceso por invitación. Te decimos el precio para tu agencia antes de acordar nada. | Access by invitation. We tell you the price for your agency before anything is agreed. | §21 |
+| V-36 | C-13; `faq.ts:163` | Será de 14 días de Essential, gratis y sin método de pago. El registro público está próximamente; hasta entonces, escríbenos y te enseñamos el sistema. | It will be 14 days of Essential, free and with no payment method. Public registration is coming soon; until then, write to us and we will show you the system. | no text (the question is hidden) | no text | Q-11 |
+| V-37 | C-14; `faq.ts:198`; `es.ts:389` | No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. Empezar por tu cuenta llega con el registro público, próximamente. | No sales call is needed: write to us and we will show you the system. Starting on your own comes with public registration, coming soon. | No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. | No sales call is needed: write to us and we will show you the system. | Q-16 |
+| V-38 | C-15 | Así será el arranque cuando abra el registro: creas la cuenta y configuras tu agencia a tu ritmo. La conexión del buzón y del WhatsApp de tu agencia llega próximamente. El precio te lo decimos para tu agencia antes de acordar nada; lo que pasa con los datos está escrito aquí. | This is how it will start once registration opens: you create the account and set up your agency at your own pace. Connecting your agency's mailbox and WhatsApp is coming soon. We tell you the price for your agency before anything is agreed; what happens with the data is written here. | Pides acceso y te enseñamos el sistema. Te decimos el precio para tu agencia antes de acordar nada. | You request access and we show you the system. We tell you the price for your agency before anything is agreed. | §20 |
+| V-39 | C-16; `es.ts:446–447` | La prueba gratuita de 14 días, próximamente. · Estado: El registro público y la prueba de 14 días están próximamente. | The 14-day free trial, coming soon. · State: Public registration and the 14-day trial are coming soon. | no text (`/trial` leads to `/contact`) | no text | §21 |
+| V-40 | C-16a; `es.ts:63` | Prueba gratuita de 14 días: próximamente | 14-day free trial: coming soon | no text | no text | §21 |
+| V-41 | C-16b; `es.ts:491` | La prueba gratuita de 14 días, sin método de pago, llega con el registro público, próximamente. | The 14-day free trial, with no payment method, comes with public registration, coming soon. | no text (the block is hidden) | no text | §21 |
+| V-42 | C-19 | En preparación · todavía no contratable | In preparation · not bookable yet | no text | no text | no text |
+| V-43 | C-22 | Los modelos 3D y la publicación en Instagram están en preparación; Instagram depende además de la aprobación de la plataforma. | 3D models and Instagram publishing are in preparation; Instagram also depends on the platform's approval. | no text | no text | no text |
+| V-44 | C-23 | …Cada modelo será un encargo, con o sin paquete. Estado: En preparación · todavía no contratable. | …Each model will be an order, with or without a package. State: In preparation · not bookable yet. | no text (the section follows `model3d`) | no text | …Cada modelo es un encargo, con o sin paquete. · …Each model is an order, with or without a package. |
+| V-45 | C-24 | Más adelante, los modelos 3D también se podrán encargar por separado, sin ningún paquete. | Later, 3D models can also be ordered on their own, without a package. | no text | no text | Los modelos 3D también se encargan por separado, sin ningún paquete. · 3D models can also be ordered on their own, without a package. |
+| V-46 | C-26; `platform-map.ts:54` | Respuesta por WhatsApp, hoy en español. Conectar el número de tu agencia, próximamente. | Replies on WhatsApp, in Spanish today. Connecting your agency's own number, coming soon. | no text (the row is hidden) | no text | §21 |
+| V-47 | C-27 | Conectar la cuenta de WhatsApp Business de tu agencia está en preparación. | Connecting your agency's own WhatsApp Business account is in preparation. | no text | no text | no text |
+| V-48 | `faq.ts:133` | En su propia lista, cada persona entrando como ella misma. Esa lista está próximamente; hasta entonces, tu equipo recibe por email el aviso de cada consulta importante. | In their own list, each person signed in as themselves. That list is coming soon; until then your team gets an e-mail alert for each important enquiry. | no text (the question is hidden) | no text | Q-41 |
+| V-49 | `faq.ts:141` | Hoy no. Hoy tu equipo recibe por email el aviso de cada consulta importante. La lista de tareas y el asistente que explica el orden están próximamente. | Not today. Today your team gets an e-mail alert for each important enquiry. The task list and the assistant that explains the order are coming soon. | no text (the question is hidden) | no text | Q-42 |
+| V-50 | `platform-map.ts:58`, state line | Incluido: la petición queda registrada · Próximamente: verla en la lista de tareas y un aviso en cada traspaso | Included: the request is recorded · Coming soon: seeing it in the task list, and a notice on every handover | La petición queda registrada. | The request is recorded. | §21 |
+| V-51 | `platform-map.ts:86` | El informe completo en tu acceso de agencia. El resumen semanal por email, próximamente. Lo que llega al cliente aún no se mide. | The full report in your agency login. The weekly e-mail summary, coming soon. What reaches the customer is not measured yet. | El informe completo en tu acceso de agencia. Lo que llega al cliente no se mide. | The full report in your agency login. What reaches the customer is not measured. | §21 |
+| V-52 | `capabilities.ts:231`, state line | Próximamente | Coming soon | no text | no text | no text |
+| V-53 | `capabilities.ts:372` | …Un servicio premium, bajo petición, próximamente. | …A premium service, on request, coming soon. | no text (follows `model3d`) | no text | §21 |
+| V-54 | `es.ts:377`, `baselineLine` | Todos los planes incluyen las respuestas y la ficha; las tareas del equipo están próximamente. El CRM está incluido desde el principio. | Every plan includes the replies and the record; the team's tasks are coming soon. The CRM is included from the start. | no text (with the table) | no text | §21 |
+| V-55 | `es.ts:474`, `en.ts:513` | Dinos de dónde te llegan hoy los leads. Conectar esas fuentes está próximamente. | Tell us where your leads come from today. Connecting those sources is coming soon. | Dinos de dónde te llegan los leads. | Tell us where your leads come from. | §21 |
+| V-56 | `es.ts:50`, `en.ts:56` | Un asistente telefónico que atiende llamadas está en construcción. Hoy no forma parte de lo que se puede contratar, y lo diremos claramente hasta que lo sea. | A phone assistant that answers calls is being built. It is not part of what you can order today, and we will say so plainly until it is. | no text | no text | no text |
+| V-57 | `faq.ts:27`, frame lead | Si algo todavía no forma parte del producto, esta página lo dice. Nada de lo que hay aquí es un plan para más adelante. | If something is not part of the product yet, this page says so. Nothing here is a plan for later. | Aquí está lo que hace el producto, sin promesas de más. | This is what the product does, with no promises beyond that. | the same |
+| V-58 | `faq.ts:319`, Q-30 | No. No hacemos campañas ni compramos leads. Más adelante recogeremos los leads de los anuncios que ya tienes. | No. We do not run campaigns or buy leads. Later we will take in the leads from the ads you already run. | No. No hacemos campañas ni compramos leads. | No. We do not run campaigns or buy leads. | Q-30 |
+| V-59 | `home-1103.ts`, `report.soon`; `claimWords.soon` | próximamente | coming soon | not rendered anywhere; the words stay only as internal state | the same | the same |
+
+`home-story.ts` holds more of these lines ("Disponible hoy: el aviso por email", "Próximamente."). They were not rendered on the routes
+read on `2dfa67d`. If any of them is used again, the same rule applies, and they carry no target text from this file.
+
+**What the Reviewer's list has to follow:**
+
+| Row | Now |
+|---|---|
+| C03, E-1, E-2, Q-4 | §9: no status word in a cell; no fixed 19 rows in public; the census of status words is no pass condition |
+| C06 | the reply of §16, not §3 |
+| C08, C09 | no "Próximamente" mark on the tabs |
+| D, insights | "WhatsApp · 10 de 25" in the target state; the line "informe ampliado" is gone |
+| D-2 | §13 and V-24 … V-29 |
+| D-3a P-1 | also holds for whole sentences (§G-6 point 4) |
+| D-3a P-2, P-3 | the notice of §14 |
+| Q-5 | "No medido" stays, in both views |
+| A-19 | the sums of §19 |
+
+**Marking:** editorial and technical. Not a legal approval, not a Meta approval. No publication released.
 
 ---
 
 ## Appendix: the detail pages (carried over from v2)
 
-**Vocabulary:** where a row below says "En preparación" or "En preparación · todavía no contratable", the site shows **"Próximamente"** (§1). Where it says "Reservar una demo", "Probar gratis" or a trial line, §2, §7 and §9 of this file decide. Where a row concerns the home page, the example report, the plans or the footer, §2–§10 **supersede** it.
+**Vocabulary (addendum 06.11.):** no row below puts "En preparación" or "Próximamente" on the site any more. §23 replaces the rows that carry such a clause. Where it says "Reservar una demo", "Probar gratis" or a trial line, §2, §7 and §9 of this file decide. Where a row concerns the home page, the example report, the plans or the footer, §2–§10 **supersede** it.
 
 The rows below come from `WEBSITE_COPY_HANDOVER_1102.md` §C. They apply to the pages **outside** the new home page and plans
 section: `/platform`, the four module pages, `/faq` (full), `/trial`, `/signup`, `/contact` and the packages page, where it is
