@@ -2,9 +2,15 @@
 
 **Role:** independent reviewer. No application code written or changed. **Status:** prepared, **not yet run**.
 **Written for:** Redesign (so it can build against it), Copy, 3D, API and Audit. **Date:** 2026-11-05,
-**extended 2026-11-06** for Copy's addition `702a11d` (§D-2 connection wording), and **again 2026-11-06 (evening)**
-for the owner's change order: hero = A (C01), **§D-3 replaced** by the two views of the status words, and five new
-checks A-16 … A-20.
+**extended 2026-11-06** for Copy's addition `702a11d` (§D-2 connection wording), **again 2026-11-06 (evening)** for
+the owner's change order (hero = A, §D-3 replaced by the two views, A-16 … A-20), and **again 2026-11-06 (late)** for
+the owner's answer to §G-6 and **Copy's addendum `e072d18` (§14–§23)**: P-1 holds strictly — "próximamente" /
+"coming soon" stands in **no** view, not even inside a whole sentence; §D-2 is rebuilt as the **register of places**
+(bound to Copy's V-1 … V-59) with a **view-aware** false-promise test; the claims ceiling splits into "forbidden
+everywhere" and "target state, hidden in public while the key is off"; the report's figures follow the addendum's
+§19 (five channels, 10 · 6 · 3 · 2 · 4, rates on 25); §E drops the 19-row census; D12 holds over C03; "No medido"
+stays; the notice is Copy's, quoted word for word. **All seven collisions of §G-6 are answered; one new point is
+recorded in §G-7.**
 
 **RV6 runs on exactly one build:** the next one Redesign names, with **commit, fixed URL and both deployment ids**.
 `faf2dbb` / `dpl_FnoR4QFTNPg1E9ws4g28gj2FdzkC` was **not accepted** by the owner (D01–D12) and is not an end state.
@@ -23,6 +29,7 @@ the build named after it. Earlier verdicts stay on their own builds: `WEBSITE_TE
 | The only text source (Copy) | `docs/website_redesign/WEBSITE_COPY_HANDOVER_1105_v3.md`, **`04f4981`**, **with the addition `702a11d`** (§1b prod conditions, §13 connection wording, the new first trust line, C-15 re-worded) |
 | What "Incluido" means in production (API) | `ERSTE_FREMDE_AGENTUR_1105_v1.md`, `3d97372` — **in the API repo**, `governance/` |
 | Owner's change order of 06.11. (evening) | hero = A, status words hidden in two views, five new checks — carried into C01, D02, §D-3 and A-16 … A-20 of this list |
+| **Copy's addendum of 06.11.** — §14–§23, **takes precedence** where it differs from §1–§13 | same file, **`e072d18`**: the two views and the preview notice (§14), the new keys (§15), the new demo reply and the chips (§16), the report's five channels and sums (§19), plans and the way in (§20), and **§23 = the register V-1 … V-59 plus the rows this list had to follow** |
 | What may be visible publicly | the build's own `lib/claims.ts` — the single list; read read-only from the named commit |
 
 **Three separate grades, as ordered.** **Design** · **operation** · **technique**. A technical PASS is not a design
@@ -54,7 +61,8 @@ client and matters of taste stay the owner's view.
 | A-17 | **the tab icon** | the `<link rel="icon">` (and the apple touch icon, if present) resolves **200** with a real image of a declared size; the icon is the NuovaSolution mark, not a framework default; the tab title is the page's own, in the page's language, on **every** route ES and EN |
 | A-18 | **Spanish at 1440 px in the path** | the steps of the path ("Cómo se pide" / plan → model → delivery) at **1440 px** in ES: per line `getClientRects()` — no clipped line, no `overflow: hidden` cutting text, no line crossing a neighbouring box, no step label breaking into an orphan. ES runs longer than EN, so EN alone is not evidence; measured at 1440 **and** at 1280 |
 | A-19 | **the example figures add up** | the arithmetic is checked, not only the single values: 14 + 11 = **25**; 23 + 2 = **25**; agreed **4** ≤ asked **6**; the chart's last week = **25 · 23**; 6 of 25 = **24 %**; and the same values stand on the home page and on `/es/example-report`. Any sum that does not close is a finding, even if each figure matches §D |
-| A-20 | **the switch "Sin / Con NuovaSolution"** | both states are reachable by mouse, touch and keyboard with a visible focus ring; the switch carries **no money and no revenue promise** — no €, no %, no "más ingresos", "más ventas", "más comisiones", "ROI", "recuperas", "ahorras X horas" as a claim; and the block is marked as an example in sight of the figures ("Ejemplo ilustrativo" / "Ejemplo con datos ficticios"), not in a footnote further down the page |
+| A-20 | **the switch "Sin / Con NuovaSolution"** | both states are reachable by mouse, touch and keyboard with a visible focus ring; the switch carries **no money and no revenue promise** — no €, no %, no "más ingresos", "más ventas", "más comisiones", "ROI", "recuperas", "ahorras X horas", no time-saved figure, no statement about real agencies (§19); the mark "Ejemplo con datos ficticios · la misma semana" stands **in sight of the figures**, not in a footnote further down; the seven rows and both closing sentences are §19's, and the 6 viewings are **the same** in Sin and Con |
+| A-21 | **how the preview is reached, and whether it is protected** | recorded, not graded: does the preview URL answer **without** authentication, is `X-Robots-Tag` / `<meta name="robots">` actually set to noindex, and is Copy's notice on every preview route. This is the measurement behind §G-7 — with the target state now carrying trial and connection sentences, the owner and API need the facts to decide whether the view belongs behind Vercel's protection |
 
 **Routes in the sweep** (as discovered on 05.11., re-discovered on the named build): `/es`, `/en` and for each
 language `platform`, `platform/ai-sales-agent`, `platform/lead-intelligence`, `platform/crm`,
@@ -82,14 +90,14 @@ finding does not change — what changes is whether the honest answer is a word 
 | D02 | direction right, the picture too soft, the text not convincing | the hero **picture's** real pixel width per source, its rendered size against the device pixel ratio (a 960 px file stretched over 1440 px is the softness, measured), the file's checksum against 3D's handoff, and the words against Copy v3 §2 | M for the media facts · O for "cool enough" |
 | D03 | four identical boxes with a grey line; "Nuova" instead of NuovaSolution; the last step looks like work for the team | the four steps' geometry and whether they differ; **0** visible "Nuova" not followed by "Solution" (Copy v3 §10.5, 161 places); the last step names a person as Copy v3 §4 does | M |
 | D04 | listing pictures missing (grey placeholders); the right surface not clickable | in the matching panel: every listing has a loaded picture with `naturalWidth > 0` and an alt; count of empty surfaces ≥ 90 × 70 px; the far side of the stage is either interactive (hit-tested) or carries no click affordance | M |
-| D05 | the scene change on scroll is good but not recognisable; "Leads importantes" carries a blanket "En preparación" although the priority is on the record | the state word per scene against Copy v3 §1 (`priority` = **Incluido**, so the priority line must not read "Próximamente"); the scene change has a visible marker (progress, number or title) | M for the words · O for recognisable enough |
-| D06 | "Tomar" not clickable; Daily's voice question not shown | "Tomar" is a real control (button/link or `role` + `tabindex`), reachable by hit-test and by keyboard, **or** it is honestly marked as a demo; `daily_voice` ("¿Qué tengo hoy?") is present with its state **Próximamente** (Copy v3 §1) | M |
-| D07 | the report's "Por canal" names only WhatsApp/Email | the block names exactly WhatsApp and Email as figures; any further channel appears **without a figure** and marked **Próximamente** (Copy v3 §6) | M |
+| D05 | the scene change on scroll is good but not recognisable; "Leads importantes" carries a blanket "En preparación" although the priority is on the record | **0** state words on any scene (V-4, V-7: no text; the scene follows its key); the scene change has a visible marker (progress, number or title); scene 4 and scene 5 carry their new sentences (V-5, V-6) | M for the words · O for recognisable enough |
+| D06 | "Tomar" not clickable; Daily's voice question not shown | "Tomar" is a real control (button/link or `role` + `tabindex`), reachable by hit-test and by keyboard, **or** it is honestly marked as a demo. The voice question and the task list carry **no state word**: in the preview they stand as §21's Q-41/Q-42, in public they are hidden (V-48, V-49) | M |
+| D07 | the report's "Por canal" names only WhatsApp/Email | **preview:** five channels with figures, 10 · 6 · 3 · 2 · 4 = 25 (§19). **Public:** only the channels that run, 14 · 11 with two on, the block hidden with one. **0** "próximamente" marks on any channel (V-11, V-14) | M |
 | D08 | `/es/example-report` unprofessional: small bars, much white space, no real charts | real chart elements exist (axes, scale, legend, labels) and are not decorative strips; every figure matches §D below; the page's empty space is recorded as a measurement, the verdict stays the owner's | M+O |
 | D09 | the rotation should show the ground floor only | which media the step "Modelo" loads, its duration, loop and whether the segment shown is the ground floor as delivered by 3D | M for the media · O for the choice |
 | D10 | the delivery clip stutters; the path "plan → finished" is not visible for the agent | the clip's codec, resolution, fixed frame rate, poster, duration, dropped versus total frames while it plays; the agent's path line from Copy v3 §8 is present | M for the figures · O for the feel on their machine |
 | D11 | the dark green does not fit the brand; English labels in the Spanish footer | **0** English module labels on Spanish pages — "Asistente de consultas", "Ficha y prioridad", "CRM", "Tareas diarias", footer link and nav "Acceso" (Copy v3 §10.4); the closing section's colour recorded as a token value | M for the labels · O for the colour |
-| D12 | "Recomendado para empezar" holds back the upsell; the table is small; too many "En preparación" | **0** occurrences of "Recomendado", "Más popular", "El más completo"; the positioning lines are Copy v3 §9; no cell under 14 px; the status census against §E below | M |
+| D12 | "Recomendado para empezar" holds back the upsell; the table is small; too many "En preparación" | **0** occurrences of "Recomendado", "Más popular", "El más completo"; no cell under 14 px; **0** status words in the table (the census is withdrawn — §E) and, with `plans` off, no table at all | M |
 
 ### C01–C09 (03.11., on `f6315c1`) — re-checked for regression
 
@@ -100,93 +108,183 @@ finding does not change — what changes is whether the honest answer is a word 
 | C03 | empty circles without ticks; "Probar gratis" | **0** empty circles in the plans; "Pruébalo gratis" stays **off** (Copy v3 §9). The condition "every cell carries a status word" is **withdrawn** by the order of 06.11. — see §G-6, conflict 3 | M |
 | C04 | "Cómo se pide" is text instead of picture and arrows | the 3D path is shown in steps, not as a paragraph | M+O |
 | C05 | the week's figures are a statistics box instead of a chart from the real reporting | the chart is a chart (see D08) and its figures are §6's | M+O |
-| C06 | two messages from Laura, time only on our reply, "Anoto" sounds like a machine, the second-home question is illogical | **one** message from Laura, a time on **both** sides, **0** "Anoto", the reply exactly Copy v3 §3 (which keeps the year-round/second-home question in the agency's voice) | M |
+| C06 | two messages from Laura, time only on our reply, "Anoto" sounds like a machine, the second-home question is illogical | **one** message from Laura, a time on **both** sides, **0** "Anoto", **0** "segunda residencia", and the reply is the **new** one of §16 Question A word for word — "¡Hola, Laura! Gracias por escribirnos. Buscas en Estepona, 2 dormitorios y hasta 320.000 €, ¿verdad? ¿Te viene mejor por la mañana o por la tarde para una visita?" (**not** Copy v3 §3 any more), plus the small line "Una petición de visita no es una cita: la confirma una persona." | M |
 | C07 | e-mail channel must look like a mailbox | the e-mail panel shows a mailbox (list, sender, subject), not a chat | M+O |
-| C08 | the web form looked like a WhatsApp chat | the form panel is a real form, and it is marked **Próximamente** (Copy v3 §3) | M |
-| C09 | the phone channel is weak, the call view missing | the phone panel shows a call, and it is marked **Próximamente** | M+O |
+| C08 | the web form looked like a WhatsApp chat | the form panel is a real form. **The "Próximamente" mark is withdrawn** (V-2): no tab carries a mark, a pill or a state line in either view (§16); the tab itself stands in the preview and follows `webform` in public | M |
+| C09 | the phone channel is weak, the call view missing | the phone panel shows a call, **with no mark** (as C08); the tab follows `phoneAssistant` in public | M+O |
+| C-tabs | — | the invitation above the tabs is "Elige un canal y mira cómo responde." (§16, replacing "Elige un canal"); with only one channel on in public there are **no tabs and no invitation** | M |
 | C-all | logo missing, no animations, not modern, too much text | the logo is in the header; the word count of the Spanish home page; the motion is recorded in real-time captures, normal and reduced | M for logo and counts · **O for modern enough** |
 
 ---
 
 ## C. Claims ceiling — nothing may be said beyond the register and Copy v3
 
-Checked on **every** route, ES and EN.
+Checked on **every** route, ES and EN. **With the addendum `e072d18` the ceiling splits in two:** some lines are
+forbidden everywhere, and others are the **target state** that the preview may show while the **public** view must
+hide them until their key in `lib/claims.ts` is on. Both halves are checked separately, and a line in the wrong half
+is a finding.
+
+### C-1. Forbidden in **both** views
 
 | Must **not** appear | Why |
 |---|---|
+| **"próximamente" / "coming soon" in any wording** — the status word, and equally inside a whole sentence ("informe ampliado: próximamente", "llega próximamente", "Próximamente: conectar…"), plus "pronto", "en breve", "en preparación", "Prototipo" | the owner's answer of 06.11.; §14 of the addendum: gone from all visible text in both views. The register of the places is §D-2 |
+| **"Incluido" / "No incluido" / "Included" / "Not included"** as a word next to a function | the status words live only in §1 of the handover and in `lib/claims.ts` — internal, never on the page (§14) |
+| **"Hoy no"**, and "hoy" or "todavía" wherever they promise something later | §14: these are readiness words in disguise |
 | "Disponible" per function or plan | the register allows it only where the column "may say today" does |
 | the prices 349 / 649 / 999 € | internal calculation only; "Te decimos el precio para tu agencia" instead |
 | "Recomendado", "Más popular", "El más completo" | no popularity claim; Enterprise holds more than Growth |
-| "14 días gratis", "Sin método de pago", "Probar gratis", "Pruébalo gratis", "Regístrate", "Crear cuenta" | registration is not released; `trialCta` is a prepared switch and stays off |
 | a numeric score such as "98/100" | only with a real scale and calculation; otherwise a priority category with its reason |
 | "todos los datos en la UE" | only **the database** is in Frankfurt |
-| HubSpot / Pipedrive / Zoho / Salesforce / Outlook as available | **Próximamente** only |
 | "tu propio número" for WhatsApp | production has our own number only |
-| "multilingüe", "en su idioma" | production replies in **Spanish**; language detection is included, other languages are **Próximamente** |
-| an alert as available ("avisa a tu equipo", "Aviso … Incluido") | held back in production (HA1) |
-| "visita confirmada" for an asked viewing | "Una petición de visita no es una cita" |
+| "multilingüe", "en su idioma" — and any reply sentence without "en español" | §15: every reply sentence says "en español" in **both** views while `otherLanguages` is off. This is Copy's one stated exception to "preview = target" |
+| "visita confirmada" for an asked viewing | "Una petición de visita no es una cita: la confirma una persona" |
+| "en un buzón que operamos para ti" / "a mailbox we operate for you" | route B is stopped (D5-DIREKT), so the sentence is gone in **both** views (§13) |
 | a delivery time or price for 3D | neither is given |
 | "60 fps", "Lighthouse 100" without a measurement | no unmeasured performance claim |
-| **any promise of a connection** — "conectamos los canales contigo", "Conecta tus canales", "Conecta tu Gmail", "Gmail verbinden" | the agency's own mailbox connection (D5) **is not built**; §13 of the addition `702a11d` |
-| **money or revenue from the comparison** — a € figure, a percentage of revenue, "más ingresos", "más ventas", "más comisiones", "ROI", "recuperas … €", "ahorras X horas" | nothing of the kind is measured; the switch "Sin / Con NuovaSolution" shows an illustrative example, not an earning (A-20) |
+| **money or revenue from the comparison** — a € figure, a percentage of revenue, "más ingresos", "más ventas", "más comisiones", "ROI", "recuperas … €", "ahorras X horas", a time-saved figure, a statement about real agencies | §19 closes this explicitly; the switch shows one fictional week, not an earning (A-20) |
+| the three things with no owner line yet — `otherLanguages`, the calendar row, reading photos and PDFs (Q-26) | §14: not shown in **either** view for now |
 
-**Must appear, in both views:** the first trust line in its new wording (`702a11d`) — "Pides acceso y te enseñamos el
-sistema. La conexión del buzón y del WhatsApp de tu agencia llega próximamente." / "You request access and we show you
-the system. Connecting your agency's mailbox and WhatsApp is coming soon."; "NuovaSolution" instead of "Nuova" in
-every visible text except the demo's sender label; the demo mark "Demo con datos ficticios"; the hero mark "Casa de
-ejemplo ficticia, visualización"; the automation mark "Asistente automático de la agencia" **once**; the invitation
-line "Acceso por invitación mientras preparamos el registro público."
+### C-2. Target state — the preview may show it, the public view must hide it while the key is off
 
-**The status words are now view-dependent** and are checked in §D-3, not here. Where a status word **is** shown, it is
-one of Copy v3 §1's three — **Incluido** / **Próximamente** / **No incluido** — and never "En preparación",
-"Prototipo" or "Implementado; todavía sin activar".
+Each row is checked twice: present in the preview, and **absent** in the public view unless `lib/claims.ts` carries
+the named key as included. The fallback wording in the last column is Copy's.
+
+| Line | Key(s) | What the public view shows instead |
+|---|---|---|
+| "Conectamos contigo el buzón y el WhatsApp de tu agencia y probamos cada canal con un mensaje real." (trust line, FAQ Q-21, onboarding and trial step, "Cómo empezar" step 3, the close) | `mailboxConnection`, `whatsappOwnNumber` | one channel on: the same sentence with that channel only · neither: "Pides acceso y te enseñamos el sistema." / the step is hidden / the close drops "con tus canales" |
+| "14 días gratis, en 3 pasos", "Pruébalo gratis 14 días", "Sin método de pago y sin renovación automática.", "Crea tu cuenta." | `trial`, `publicSignup` | "Cómo empezar" with steps 1–2, "Solicita una propuesta" / "Pedir acceso", "Acceso por invitación." |
+| "Sí. Cuando una consulta es importante, avisa por email a la persona que toca, con el motivo." and the chip "Marca la prioridad y avisa a tu equipo" | `alert` | the FAQ question is hidden; the chip reads "Marca la prioridad y su motivo" |
+| "También se conecta con HubSpot, Pipedrive, Zoho y Salesforce." / the integrations row incl. Outlook | `integrations`, `outlook` | the sentence ends at "Incluye un CRM."; the row names only the parts that are on |
+| the plan names and the comparison table | `plans` | **no plan names and no table** — one block "Qué incluye" with the rows that are on, the price line and the action (§E) |
+| "Por canal", the chart, the three insights, the funnel rates | `reportTrend` | the block, the chart and the insights are hidden |
+| the whole 3D section including its action | `model3d` | hidden |
+| the report section | `reportInLogin` | hidden |
+
+**The floor (§15):** with `replySpanish` or `crm` off there is no public product page at all. If the named build's
+`lib/claims.ts` has either off, the public view is not a page to grade — I record that and stop there.
+
+### C-3. Must appear
+
+**In both views:** "NuovaSolution" instead of "Nuova" in every visible text except the demo's sender label; the demo
+mark "Demo con datos ficticios"; the hero mark "Casa de ejemplo ficticia, visualización"; the automation mark
+"Asistente automático de la agencia" **once**; "No medido" **twice**; and the five limits that §14 keeps in public
+because hiding them would mislead — in another language nothing is sent automatically · a viewing request is not an
+appointment, a person confirms it · answered is not delivered · two records until `oneRecordAcrossChannels` is on ·
+the retention answer Q-44 word for word until counsel has answered.
+
+**In the preview view only:** Copy's notice, word for word (§14) — "Vista previa, no pública. Muestra el producto
+completo, incluidas funciones que no están activas. Datos de ejemplo: nada de lo que introduzcas crea una cuenta ni
+llega a nadie." / "Preview, not public. It shows the complete product, including functions that are not active.
+Example data: nothing you enter creates an account or reaches anyone."
+
+**Withdrawn as a must-appear row:** the old invitation line "Acceso por invitación mientras preparamos el registro
+público." — V-1 shortens it to "Acceso por invitación.", and in the preview's target state H-6 replaces it with "Sin
+método de pago y sin renovación automática."
 
 ---
 
 ## D. The figures of the report and `/es/example-report`
 
-One set of values, identical on the home page and on the report page (Copy v3 §6, §7). Each must carry its
+One set of values, identical on the home page and on the report page. The four head figures of §6 stay; the channel
+split, the insight and the rates are **re-cut by the addendum's §19** (`e072d18`). Each figure must carry its
 definition; a figure without one is a finding.
 
-| Figure | Expected | Note |
-|---|---|---|
-| Consultas recibidas | **25** | new WhatsApp and e-mail messages in the week |
-| por canal | **WhatsApp 14 · Email 11** | the same 25, by arrival channel — **not** a count of answers |
-| Respondidas | **23** | the other 2 arrived in another language, nothing sent automatically |
-| Esperan a una persona | **2** | |
-| Visitas pedidas | **6** | asked is not agreed — the home page must not say 4 here |
-| acordadas por el equipo | **4** | |
-| Entregadas al cliente | **No medido** | as text, not as a number |
-| Tiempo de respuesta | **No medido** | as text |
-| weekly chart | 19·17 · 24·22 · 21·20 · **25·23** | week 4 equals the figures above |
-| insights | WhatsApp 14 de 25 · 11:00–12:00 · 6 · 24 % (6 de 25) | each with its definition. The line "informe ampliado: próximamente" collides with P-1 — see §G-6, conflict 4; RV6 records it rather than failing it |
-| base line | "Base: … Respondida no es lo mismo que entregada: lo que llega al cliente aún no se mide." | present on the report page |
-| example marks | "Informe de ejemplo · no son datos de ninguna agencia" and a fictional-data mark | present |
-| the page's close | "Míralo con los datos de tu agencia" + the invitation line | **no** "14 días gratis · Sin método de pago" |
+| Figure | Target state (preview) | Public view | Note |
+|---|---|---|---|
+| Consultas recibidas | **25** | the same | new enquiries recorded in the week |
+| **Por canal** | WhatsApp **10** · Email **6** · Formulario web **3** · Teléfono **2** · Portales y anuncios **4** | only the channels that run: with WhatsApp and Email on → **14 · 11**; one channel only → the block is hidden; any other set → each off channel's figure is added to Email (to WhatsApp if Email is off) | sums to **25** in every set — this is the point of the row |
+| Respondidas | **23** | the same | the other 2 arrived in another language, nothing sent automatically |
+| Esperan a una persona | **2** | the same | |
+| Visitas pedidas | **6** | the same | asked is not agreed — nothing may say 4 here |
+| acordadas por el equipo | **4** | the same | |
+| Entregadas al cliente · Tiempo de respuesta | **No medido** ×2 | **No medido** ×2 | as text, not as a number; stays in **both** views |
+| weekly chart | 19·17 · 24·22 · 21·20 · **25·23** | hidden with `reportTrend` off | week 4 equals the figures above |
+| **insight "Tu mejor canal"** | **WhatsApp · 10 de 25 consultas** | with WhatsApp + Email on it must agree with the channel block (14), not stand at 10 | a mismatch between the insight and the block is a finding |
+| insight, hours | peak **11:00–12:00 · 6**, the 13 hour rows summing **25**, plus the line "Horario de la agencia de ejemplo: de 10:00 a 14:00 y de 17:00 a 20:00." | hidden with `reportTrend` off | the hours replace Redesign's working row |
+| **funnel rates** | every rate on the 25 received: **92 % · 24 % · 16 %** with "Porcentajes sobre las 25 consultas recibidas." | hidden with `reportTrend` off | R-11 fixes the mismatch on `2dfa67d` (funnel "26 %" beside the insight "24 %") — **0** occurrences of 26 % |
+| status line and insight state line | **removed** | **removed** | R-2 and R-8 are gone in both views |
+| base line | "Base: consultas registradas en NuovaSolution, de lunes a domingo. Respondida no es lo mismo que entregada: el informe no mide lo que llega al cliente." | the same | word for word on the report page |
+| example marks | "Informe de ejemplo · no son datos de ninguna agencia" and a fictional-data mark | the same | present |
+| the page's close | the line "El informe de tu agencia se crea con tus consultas; no hay cifras que rellenar." | with "Acceso por invitación." in front | **no** "Míralo con los datos de tu agencia" is required any more; no trial line in the public view |
 
-**Note for the run:** Redesign's commit `f3dcdbf` describes the funnel as 25 → 23 → **4 → 3**, while Copy v3 and the
-later commit `22cf04e` give 25 → 23 → **6 → 4**. RV6 checks which of the two the named build shows; the figures above
-are the binding ones.
+**A-19 runs exactly Copy's own sum list (§19):** channels 10+6+3+2+4 = 25 and public 14+11 = 25 · answered 23+2 = 25 ·
+hours 13 rows = 25 with peak 6 · office hours open 16 + closed 9 = 25 and closed 2+2+5 = 9 · answered split
+14 open + 9 closed = 23 · viewings 4 ≤ 6 and 2 asked while closed ≤ 6 · rates 23/25 = 92 %, 6/25 = 24 %, 4/25 = 16 % ·
+chart last week 25/23. **The switch's own rows** (§19): 25/25 · 9/9 · 2/2 · 9→0 · 5→0 · 25→2 · "lo que alguien anote"→25,
+and the 6 viewings are the same in both states — a switch that claims an extra viewing is a finding.
+
+**Settled:** the funnel discrepancy of `f3dcdbf` (25 → 23 → 4 → 3) is closed by §19 — 6 asked, 4 agreed, and the rates
+all on 25.
 
 ---
 
-## D-2. Connection wording — nothing promises a connection that does not work
+## D-2. The register of places — where "próximamente" stood, and what stands there now
 
-Copy's addition `702a11d` §13. The agency's own mailbox connection (owner D5-DIREKT) **is not built**, so these rows
-hold **on the preview as well as in production**. Each is checked as a string on every route, ES and EN.
+The owner's answer of 06.11. (late): **P-1 holds strictly.** "próximamente" / "coming soon" stands in **no** view, not
+as a status word next to a function and **not inside a whole sentence** — so the sentences that Copy's addition
+`702a11d` §13 made mandatory are now themselves to be removed. Two things must therefore be true at the same time at
+every one of these places, and RV6 checks both:
 
-| ID | Must no longer read | Must read |
+- **(a) the word is gone** — `próximamente`, `proximamente`, `coming soon`, `pronto`, `en breve`, `en preparación`,
+  case-insensitive, in text, `title`, `alt`, `aria-label`, `placeholder` and hover layers, in both views, ES and EN;
+- **(b) no false promise took its place** — see the test below. A place that is merely emptied and now reads as if the
+  connection already worked is a **finding**, not a pass.
+
+### The places, one by one
+
+**No longer open: Copy delivered the wording in `e072d18` §23** — 59 rows **V-1 … V-59** (A: §2–§10 · B: §13's
+N-rows · C: the appendix and the same wording in the code on `2dfa67d`), each with place, old ES, old EN, new ES,
+new EN and the preview row. **That table is the register; RV6 runs it row by row** and writes three columns per row
+into the return: what the named build shows, whether (a) and (b) hold, and which view it was measured in. My N-rows
+below stay as the short index into it.
+
+| ID | Place | What stood there (and must now go) | Copy's new wording |
+|---|---|---|---|
+| N-1 | the first trust line, home page (`home-1103.ts:346`) | "Pides acceso y te enseñamos el sistema. La conexión … **llega próximamente**." | **V-19, V-24 · §13 N-1:** target "Conectamos contigo el buzón y el WhatsApp de tu agencia y probamos cada canal con un mensaje real."; public with both keys off "Pides acceso y te enseñamos el sistema." |
+| N-2 | the FAQ Q-21 (`faq.ts:205`) | "Hoy te enseñamos el sistema … **llega próximamente**; cuando esté lista, probaremos cada canal…" | **V-25 · §13 N-2:** target "Tú preparas los datos de tu agencia, tu logo y tu equipo. Conectamos contigo el buzón y el WhatsApp y probamos cada canal con un mensaje real antes de darlo por conectado."; public, neither key "Te enseñamos el sistema con datos de ejemplo." |
+| N-3 | the onboarding step "Tus canales" (`es.ts:323`) | "La conexión … **llega próximamente**." | **V-26 · §13 N-3:** target as N-1; public, neither key: **hide the step** |
+| N-4 | the trial step "Canales" (`es.ts:473`) | "**Próximamente**: conectar el buzón y el WhatsApp de tu agencia." | **V-27 · §13 N-4:** target as N-3; public: `/trial` leads to `/contact` (§21), no text |
+| N-5 | the e-mail answer line (`capabilities.ts:83`, `platform-map.ts:55`) | "Respuesta por email: **próximamente** para el buzón de tu agencia." **and** "…en un buzón que operamos para ti." | **V-28 · §13 N-5:** target "Respuesta por email, en el buzón de tu agencia." / "La misma respuesta para lo que llega al buzón de tu agencia."; `replyEmail` off: hide the row. **"en un buzón que operamos para ti" is gone in both views** — route B stopped |
+| N-6 | the Email tab's state line (`home-demo.ts`) | "Demo: así funcionará con el buzón de tu agencia (**próximamente**)." | **V-29 · §13 N-6: removed in both views**; the tab follows `replyEmail`, and **no tab carries a mark, a pill or a state line in either view** (§16) |
+| N-7 | the insight and chart lines on the report and `/es/example-report` | "informe ampliado: **próximamente**", "La evolución por semanas forma parte del informe ampliado: próximamente", "Estas conclusiones forman parte del informe ampliado: próximamente" | **V-10, V-12, V-23 · R-5/R-8:** chart note "Cuatro semanas de ejemplo."; the insight state line and the "informe ampliado" lines are **gone**; the chart follows `reportTrend` |
+| N-8 | Daily's voice question, the team list, the task list (`faq.ts:133`, `faq.ts:141`) | the state **Próximamente** beside them | **V-48, V-49:** no text — the questions are hidden; in the preview they stand as Q-41/Q-42 of §21 |
+| N-9 | the further channels in the report's "Por canal" (`example-report.ts`) | a channel without a figure, marked **Próximamente** | **V-11, V-14 · §19:** five channels with figures in the target state, "Las mismas 25, según el canal de llegada."; in public only the channels that run |
+| N-10 | the web-form and phone marks on the demo tabs (§3) | the mark **Próximamente** / **Coming soon** | **V-2, V-9, V-3:** no mark and no state line at all; the tab itself follows `webform` / `phoneAssistant` |
+| N-11 | the demo's four state lines (`home-demo.ts`) | "Incluido: la respuesta por email … · Próximamente: el aviso …" | **V-3:** no text, in either view |
+| N-12 | the scene state lines of the sticky stages | the state word per scene (Copy v3 §1, owner finding D05) | open — the scenes keep their marker (D05), without a state word |
+| N-13 | the plans table's cells | **Próximamente** per cell (Copy v3 §9) | settled: no status word per cell at all (D12 over C03) |
+| N-14 | the claims ceiling's conditional rows — CRMs (HubSpot, Pipedrive, Zoho, Salesforce, Outlook), other languages, the alert | each was allowed **only** carrying "Próximamente" | with the word gone, the only honest places are: **absent** in the public view unless `lib/claims.ts` includes it, and in the preview view present **without** the word, covered by the top notice (P-2) |
+
+RV6 writes this table out in the return with three columns filled per row: what the named build actually shows, whether
+(a) and (b) hold, and whether Copy's wording had landed at the time of the run.
+
+### The false-promise test (b) — and why it is not the same in both views
+
+The owner's point of 06.11.: where the "próximamente" sentence falls away, **no false promise may take its place** —
+above all nothing saying the mailbox connection already runs. Copy's answer puts the affirmative sentence
+("Conectamos contigo el buzón … y probamos cada canal con un mensaje real") into the **target state**, where the
+preview notice carries it, and hides it in **public** while `mailboxConnection` is off. So the test has two halves:
+
+| View | What the connection sentence may say | Pass condition |
 |---|---|---|
-| N-1 | trust line "…y conectamos los canales contigo." | "Pides acceso y te enseñamos el sistema. La conexión del buzón y del WhatsApp de tu agencia llega próximamente." |
-| N-2 | the FAQ "¿Cuánto se tarda en configurarlo?" promising "nosotros conectamos los canales contigo y probamos cada uno con un mensaje real" | "Hoy te enseñamos el sistema con datos de ejemplo. La conexión … llega próximamente; cuando esté lista, probaremos cada canal con un mensaje real antes de darlo por conectado." |
-| N-3 | the onboarding step "Conecta tus canales con nosotros" | "Tus canales · La conexión del buzón y del WhatsApp de tu agencia llega próximamente." |
-| N-4 | the trial step "Conecta tus canales, según los permisos que tengas." | "Próximamente: conectar el buzón y el WhatsApp de tu agencia." |
-| N-5 | — | "…en un buzón que operamos para ti." **may stay on the preview**; in production only with D5 route B built, otherwise "Respuesta por email: próximamente para el buzón de tu agencia." |
-| N-6 | — | the Email tab's state line **may stay on the preview** (demo with fictional data); in production before D5 it reads "Demo: así funcionará con el buzón de tu agencia (próximamente)." |
+| **Preview** | the affirmative target sentence **is** the expected text | it is there **and** Copy's notice stands above it (P-2). The notice is what makes the sentence honest; **without the notice the sentence is exactly the false promise the owner named**, and RV6 reports it under P-2 *and* (b) |
+| **Public** | nothing about connecting the agency's mailbox or WhatsApp while `mailboxConnection` / `whatsappOwnNumber` are off | the fallback of §13 stands instead ("Pides acceso y te enseñamos el sistema.", the step hidden, the close without "con tus canales"), and **none** of the rows below appears |
 
-The channel labels "Email con Gmail" / "Email through Gmail" name a channel, promise no connection, and stay.
-**N-5 and N-6 are therefore the only two rows where the preview and production differ; RV6 on a preview build checks
-N-1 to N-4 as findings and records N-5/N-6 as the production condition.**
+**Forbidden in the public view while the keys are off — and in the preview too, because no sentence may claim it is
+already done:**
+
+| What must not stand | Examples |
+|---|---|
+| a past or completed state | "tus canales están conectados", "ya recibimos tus consultas", "tu buzón ya responde", "conectado" as a state on a channel |
+| an instruction that invites the act now, or a surface to do it on | "Conecta tus canales", "Conecta tu Gmail", a button or link into a connect flow, a form field asking for the mailbox or an OAuth entry |
+| a step the reader can take today, in the public view | the onboarding step and the trial step are checked for exactly this; in public they are hidden or lead to `/contact` |
+| the agency's own number or mailbox as the demo's source | the demo's sender label stays "Asistente automático de la agencia"; the marks "Demo con datos ficticios" / "Datos de ejemplo" stay |
+| a date or a horizon anywhere | "en semanas", "este mes", "en la próxima versión" — the notice itself must carry none (P-3) |
+
+The channel labels "Email con Gmail" / "Email through Gmail" name a channel, promise no connection, and stay while
+`replyEmail` is on. The small line of the way in, "Te decimos antes de empezar si tu buzón ya se puede conectar.", is
+Copy's and is **not** a promise — it is checked as present wherever the three steps stand.
 
 ---
 
@@ -199,9 +297,9 @@ apart.
 
 | ID | Check | Pass condition |
 |---|---|---|
-| P-1 | **no status word anywhere** | `Incluido`, `Próximamente`, `No incluido`, `Included`, `Coming soon`, `Not included` and the retired "En preparación", "Prototipo", "Implementado; todavía sin activar" appear **0** times in visible text — not in a card, not in the report, not in the FAQ, not in the plans table, not in a tooltip or an `aria-label`, not on a hover-only layer |
-| P-2 | **the notice stands at the top** | one notice above the fold, visible at scroll 0 at 1366 × 768 **and** at 390 px, saying that this view shows the target state including functions that are not live yet. It is not a cookie-style strip that can be dismissed away, not placed under the hero, and it is present on every route of the preview, ES and EN |
-| P-3 | **the notice carries no promise** | no date, no "en semanas", no "pronto estará", no connection promise (§D-2), no "ya disponible"; its wording is Copy's, quoted as delivered |
+| P-1 | **no status word and no coming-soon sentence anywhere** | `Incluido`, `Próximamente`, `proximamente`, `No incluido`, `Included`, `Coming soon`, `Not included`, `pronto`, `en breve` and the retired "En preparación", "Prototipo", "Implementado; todavía sin activar" appear **0** times — not in a card, not in the report, not in the FAQ, not in the plans table, not in a tooltip, `title`, `alt`, `placeholder` or `aria-label`, not on a hover-only layer. **Strictly, per the owner's answer of 06.11.: also not inside a whole sentence** — "informe ampliado: próximamente", "llega próximamente", "Próximamente: conectar el buzón…" fall too. Every such place is registered in §D-2 and must pass the false-promise test (b) |
+| P-2 | **the notice stands at the top** | Copy's line (`es.ts:97` and EN), **word for word**: "Vista previa, no pública. Muestra el producto completo, incluidas funciones que no están activas. Datos de ejemplo: nada de lo que introduzcas crea una cuenta ni llega a nadie." It stands above the fold at scroll 0 at **1366 × 768 and at 390 px**, on **every** route of the preview in ES and EN, is not a dismissible cookie-style strip, and is not placed under the hero. **This notice is load-bearing:** it is what makes the preview's affirmative target sentences honest (§D-2 (b)), so a missing, shortened or scrolled-away notice is a finding against the whole view, not a cosmetic one |
+| P-3 | **the notice carries no promise** | no date, no "en semanas", no "pronto estará", no "ya disponible", and none of the struck words of C-1 — measured against Copy's wording character for character, EN included |
 | P-4 | **the view is recognisable as the preview** | the view is reached in a defined way (a path, a parameter or an env mode) and the way is written down in the return, so the owner can open exactly the same thing. The preview view must **not** be what an anonymous visitor on the public URL gets (P-5 proves that) |
 | P-5 | **the two views really differ** | the same route, fetched both ways, differs in the expected direction: the preview shows the fuller target state, the public view shows only the included set. If both deliver the same HTML, the gate is not implemented — regardless of what either page says |
 
@@ -209,11 +307,12 @@ apart.
 
 | ID | Check | Pass condition |
 |---|---|---|
-| Q-1 | **the list is read first** | `lib/claims.ts` is read read-only from the named commit and the **included** set is written out key by key in the return. It is the single reference; a key missing from it counts as not included |
+| Q-1 | **the list is read first** | `lib/claims.ts` is read read-only from the named commit and the **included** set is written out key by key in the return. It is the single reference; a key missing from it counts as not included. The addendum's §15 adds keys Redesign must have written — `replyEmail`, `replyWhatsapp`, `replyOutOfHours` (included), `mailboxConnection`, `outlook`, `plans` (**soon**) — and RV6 records each one's value as found, because **`plans` = soon means the public view carries no plan names and no table at all** (§E) |
+| Q-1b | **the floor** | with `replySpanish` **or** `crm` off there is no public product page at all (§15). RV6 reads that off `lib/claims.ts` first; if either is off, the public view is not graded and the return says so |
 | Q-2 | **nothing beyond the included set is visible** | every function named in visible text maps to an included key. Checked surface by surface: the hero and its chips, the feature cards, the channel tabs and their panels, the record and the priority block, **the report and `/es/example-report`**, **the FAQ answers**, **the plans table**, the navigation and the footer, the demo's labels, the sticky stages' scenes, and the `platform/*` subpages |
 | Q-3 | **nothing hidden only to the eye** | a function removed from sight must be gone from the delivered HTML's text, not merely `opacity: 0`, `visibility: hidden`, `display: none`, off-screen, zero-height or covered. Measured on the delivered HTML **and** on the live DOM, including the no-JavaScript pass (A-6) |
-| Q-4 | **the plans table under the new rule** | a row whose function is not included is **absent**, not shown as an empty or struck cell; the table's own sums and its "19 rows" claim move with that (see the conflict note in §G-6) |
-| Q-5 | **the figures follow the same rule** | a report figure for a function that is not included is absent, not shown as "No medido" next to a coming-soon function; §D's figures stay the binding set for what **is** shown |
+| Q-4 | **the plans table under the new rule** | per §20 P-5: a row whose key is off is **absent**, not an empty or struck cell; and with **`plans` off — its value today — there are no plan names and no table**, but one block instead: H2 "Qué incluye" / "What's included", the rows that are on as a list, the price line of §9 and the action of H-5. A plans table still standing in the public view while `plans` is off is a finding |
+| Q-5 | **the figures follow the same rule** | a report figure for a function that is not included is absent; **"No medido" stays in both views** (the owner's point 3 — it is a measurement statement, not a status); §D's figures stay the binding set for what **is** shown |
 | Q-6 | **no leftovers in the seams** | `<title>`, meta description, OG image text, JSON-LD, `alt` texts, form placeholders, the sitemap and any `data-*` label carry no function outside the included set |
 
 ### D-3c. What may stand in `lib/claims.ts` as included — unchanged, and still a production check
@@ -239,12 +338,19 @@ included there without its condition is visible as a question to API.
 
 | Check | Pass condition |
 |---|---|
-| E-1 | the preview view carries all **19 rows** in the order channels, CRM, team, reporting, integrations, services (Copy v3 §9); the public view carries the included subset of them in the same order, with no gap in the sequence |
-| E-2 | **under the new rule:** in the preview view no cell carries a status word (P-1); in the public view only the included rows stand (Q-4). In neither view is there an empty circle or a wrong tick, and no cell is left blank where a reader would expect a value |
-| E-3 | the rows that **are** shown are Copy v3 §9's, in §9's order and wording; the count of shown rows and which of the 19 are absent is written out in the return, so Copy and the owner can see what the hiding rule removed |
-| E-4 | no price, no badge, no popularity line; the three positioning lines are §9's |
-| E-5 | nothing under 14 px; the same table on the home page and on `/packages`, ES and EN |
-| E-6 | the action is "Solicita una propuesta"; `trialCta` is **off** |
+Re-cut by the addendum's §20 (P-1 … P-8). Copy states it plainly: **"no status word in a cell; no fixed 19 rows in
+public; the census of status words is no pass condition."** The old E-1/E-3 census is therefore withdrawn.
+
+| Check | Pass condition |
+|---|---|
+| E-1 | **preview:** the rows of §9 in §9's order and wording, each cell a **✓** or a **—**, nothing else. **Public:** a row whose key is off is **absent**; with **`plans` off** there is no table and no plan name at all (Q-4) |
+| E-2 | **0** status words in any cell in either view (P-1); no empty circle, no struck cell, no blank where a reader expects a value |
+| E-3 | the legend is V-18's new wording — "Un ✓ donde el plan incluye la función." / "A ✓ where the plan includes the function." — **not** the old "Un ✓ solo donde la función está incluida hoy." |
+| E-4 | no price, no badge, no popularity line; the intro is P-1's ("Empieza con 14 días de Essential, gratis…" in the target state, V-16's "Acceso por invitación." in public while `trial`/`plans` are off); the Growth and Enterprise lines name only the parts whose keys are on (P-6, P-7) |
+| E-5 | nothing under 14 px; the same table in the same state on the home page and on `/packages`, ES and EN |
+| E-6 | **preview:** Essential's action is "Pruébalo gratis 14 días", Growth and Enterprise "Solicita una propuesta". **Public with `trial`/`publicSignup` off:** every action is "Solicita una propuesta" / "Pedir acceso", and the words "14 días gratis", "Sin método de pago", "Crea tu cuenta" appear **0** times |
+| E-7 | the integrations row names only the parts whose keys are on — `integrations` **and** the new separate `outlook` key (P-8); Outlook standing while `outlook` is off is a finding |
+| E-8 | the whole block "14 días gratis, en 3 pasos" follows the same rule: in public with the trial off it is "Cómo empezar" with steps 1–2 (plus step 3 only while `mailboxConnection` is on) and the line "Acceso por invitación." (§20) |
 
 ---
 
@@ -272,39 +378,38 @@ included there without its condition is visible as a question to API.
    rotation's choice, and whether the texts convince.
 3. The database half of the backend evidence stays with API; 3D delivers the media and its own checksums; Copy owns
    the wording. A figure's product truth comes from the register, not from me.
-4. This list is bound to Copy v3 (`04f4981`) **and its addition `702a11d`**. If a newer text source lands, the rows
-   that quote it move with it.
+4. This list is bound to Copy v3 (`04f4981`), its addition `702a11d` **and the addendum `e072d18` (§14–§23), which
+   takes precedence where they differ**. If a newer text source lands, the rows that quote it move with it.
 5. Section **D-3c** is a **production** check, not a preview check. A preview PASS says nothing about whether an
    invited external agency could use a function in production.
 
-### G-6. Where the new hiding rule collides with a rule already in force
+### G-6. The seven collisions — all answered
 
-Reported, not silently passed over. Each needs one decision, and the decision belongs to the owner with Copy and API —
-not to me.
+Copy answered each one in `e072d18` §23, on the owner's decisions of 06.11. Nothing here is open any more; the rows
+are kept so it stays visible what was decided and why.
 
-1. **Copy v3 §1 is the only text source and it is built on the three status words** over 23 keys; the hiding rule
-   takes those words off the page. §1 therefore needs a sentence from Copy saying where the words still apply (the
-   preview notice? the internal register only?) — otherwise Copy's binding source and the visible page disagree by
-   construction.
-2. **Copy v3 §9's plans table is defined as 19 fixed rows with one status word per cell**, and its census (Incluido
-   7 rows × 3, the "No incluido" cells in their places) is a pass condition. In the public view most of that table
-   disappears. Copy owns the question of what the public table then is — the included rows only, or a differently
-   written table.
-3. **Owner finding D12** asked for "fewer *En preparación*" and **C03** for a status word in every cell. The hiding
-   rule answers D12 and withdraws C03's condition. I read the later order as the stronger one and have marked C03
-   accordingly; if the owner meant C03 to survive, say so and I restore it.
-4. **Two "próximamente" lines are not function statuses but sentences Copy wrote deliberately:** the insight line
-   "informe ampliado: próximamente" (§6) and the connection wording N-1 … N-4 of the addition `702a11d`, whose whole
-   point is that the page must say the connection is *not yet* there. A literal P-1 would delete exactly the honest
-   sentences. **My reading:** P-1 strikes the status word **next to a function** (card, cell, tab, FAQ status mark);
-   it does not strike a full sentence about what the product does not do yet. RV6 will check it that way and list
-   every such sentence separately, so the owner can strike more if that is the intent.
-5. **D-3a's P-2 notice and the claims ceiling** meet each other: the notice has to say "target state, not all live"
-   without becoming a promise (P-3). The wording must come from Copy; I do not invent it, and a notice written by
-   Redesign is a finding against §C if it dates anything.
-6. **Hiding and the figures:** `/es/example-report` shows "No medido" twice by Copy's design (§6). That is an honest
-   statement about a measurement, not a coming-soon status, so Q-5 keeps it. If the owner wants those two rows gone
-   from the public view as well, the report's four-figure story changes and Copy has to rewrite §6.
-7. **If the public view is the one with fewer functions, the public site becomes thinner than what the owner rejected
-   as "too little" on 03.11. (C-all).** That is a product decision, not a review finding — I record what each view
-   shows and leave the judgement with the owner.
+| # | What I raised | The answer, and where this list now stands |
+|---|---|---|
+| 1 | Copy v3 §1 is built on the three status words, which the hiding rule takes off the page | **Status words are internal only** — §1 and `lib/claims.ts`, never on the page. My §C-1 now forbids them in both views |
+| 2 | §9's plans table is 19 fixed rows with one status word per cell | **No status word per cell and no fixed 19 rows in public.** §E is re-cut; the census is withdrawn |
+| 3 | D12 against C03 | **D12 holds; C03's condition does not stand.** My withdrawal is confirmed |
+| 4 | the two "próximamente" **sentences** are honest statements, not statuses | **The owner overruled my reading:** the word goes from whole sentences too, and a statement about connecting a mailbox appears in public only when it is true. §D-2 is rebuilt accordingly, and the affirmative target sentence moves into the preview, where the notice carries it |
+| 5 | the notice's wording | **Copy's, in §14**, without date or promise; quoted in P-2 word for word |
+| 6 | the report's two "No medido" | **Stay, in both views** |
+| 7 | the thinner public view | **A deliberate product decision, not a finding.** I keep recording what each view shows |
+
+### G-7. The one thing the answers opened
+
+Not a collision between rules, but a consequence worth naming once, because nobody else is positioned to see it: with
+the addendum, the **preview** view now carries the full target state — "Pruébalo gratis 14 días", "Crea tu cuenta",
+"Conectamos contigo el buzón y el WhatsApp de tu agencia", "Sí. … avisa por email a la persona que toca". These are
+exactly the lines API's register (`25a6382`) holds back from the public. What keeps them honest is one line of notice
+at the top of the page.
+
+The preview is served from a Vercel preview URL. On the builds I have measured, such a URL is reachable by **anyone
+who has the link** — there is no password and no sign-in in front of it, and it is only `noindex`. So the question for
+the owner and API, before the next named build is shared outside the lanes: **should the preview view be put behind
+Vercel's protection** (or behind the same gate as `/app`), so that the target state cannot be read as an offer by
+someone who was sent the link? RV6 will measure and report three things either way: that the notice is present on
+every preview route, whether the preview URL answers without authentication, and whether any `robots`/`noindex`
+header is actually set. The decision is not mine.
