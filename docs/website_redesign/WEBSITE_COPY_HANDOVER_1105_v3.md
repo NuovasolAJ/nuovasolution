@@ -10,7 +10,9 @@ the footer need is here; the legal lines and the detail-page rows from v2 are ca
   "Tu equipo: solo atender la visita");
 - API's register `governance/API_CLAIMS_LINES_1102_v1.md` (`25a6382`);
 - API's product card `API_PRODUKTKARTE_1026_v1.md`: Q-3 language detection and Gmail labels in production;
-- Hosting's W44 signal `5121cf3`: weekly mail proven for our own agency only.
+- Hosting's W44 signal `5121cf3`: weekly mail proven for our own agency only;
+- **addition 05.11.:** API's `governance/ERSTE_FREMDE_AGENTUR_1105_v1.md` (`3d97372`). "Incluido" in production only for what an
+  invited external agency can use (§1b, §13).
 
 **Read on:** `faf2dbb` / `dpl_FnoR4QFTNPg1E9ws4g28gj2FdzkC`, through its fixed URL, 05.11., GET only.
 
@@ -60,6 +62,37 @@ the footer need is here; the legal lines and the detail-page rows from v2 are ca
 | `crm_external` | HubSpot, Pipedrive, Zoho, Salesforce, Outlook | HubSpot, Pipedrive, Zoho, Salesforce, Outlook | **Próximamente** | | | not in prod | certified connection per provider |
 | `model3d` | Modelos 3D | 3D models | **Próximamente** | | | T6 not accepted | T6 + scope and price per order |
 | `signup` | Registro y prueba de 14 días | Registration and 14-day trial | **Próximamente** | | | not released | owner registration line + E28-Prod |
+
+### 1b. Prod go-live: "Incluido" only for what an invited **external** agency can use in production
+
+**Owner, 05.11. (addition to v3):**
+- "Incluido" applies only to what an invited agency other than nuovasolution can use in production.
+- The basis is `governance/ERSTE_FREMDE_AGENTUR_1105_v1.md` (API repo, `3d97372`).
+- The direct mailbox connection of an agency (owner D5-DIREKT) **is not built**.
+- **On the preview** the statuses of §1 may stay as they are.
+- **Before the production go-live**, the Reviewer checks every "Incluido" against the condition below. A row whose condition is not
+  met shows **"Próximamente"** in production.
+
+What the table states today:
+- **Production knows exactly one tenant until V3-DEPLOY.**
+- **Mail of an external agency does not arrive in production at all yet** (K5): production reads the one Gmail account of
+  nuovasolution.
+- The single-mailbox guard (D5) is live since 05.11. 13:40Z.
+- Release U is in production since 05.11. 13:32Z.
+
+| Key | Condition for "Incluido" in production (external agency) | Table row |
+|---|---|---|
+| `replies` (email part) | **the agency's mailbox connected in production (D5)**, route A or B built and tested with a test mailbox of the agency; V3-DEPLOY; an approved ES notice for the agency (K4) | K5, K4 |
+| `replies` (WhatsApp part) | the agency's own number registered and routed (K1–K3), M1–M10 green, Meta approvals; V3-DEPLOY | K1–K3 |
+| `origin` | **the agency's mailbox connected in production (D5)** for e-mail; K1–K3 for WhatsApp; V3-DEPLOY | K5, K2 |
+| `language_detect` | **the agency's mailbox connected in production (D5)** for e-mail; K2 for WhatsApp; V3-DEPLOY | K5, F7 |
+| `labels` | **the agency's mailbox connected in production (D5)**, with labels in **that** mailbox (route A); route B has no agency mailbox to label | K5 |
+| every other function at the agency's mail intake (reply by e-mail, attachments, held reply) | **the agency's mailbox connected in production (D5)** | K5 |
+| `record`, `priority` | V3-DEPLOY; ONBOARDING-PROD (F1); tenant isolation green after cleaning the 13 rows (F12); one channel connected (D5 or K1–K3) | F1, F12 |
+| `report_login` | ONBOARDING-PROD; report entitlement for the agency (B1) | F1, B1 |
+| `team_list`, `daily_voice` | V3-DEPLOY + ONBOARDING-PROD; staff access for the agency (Release U is in production since 05.11.) | F2, B2 |
+
+**No "Gmail verbinden" / "Conecta tu Gmail" / "conectamos los canales contigo" anywhere** while D5 is not built (§13).
 
 ---
 
@@ -324,7 +357,7 @@ propuesta".
 
 | ES | EN |
 |---|---|
-| Pides acceso, te enseñamos el sistema y conectamos los canales contigo. | You request access, we show you the system and connect the channels with you. |
+| Pides acceso y te enseñamos el sistema. La conexión del buzón y del WhatsApp de tu agencia llega próximamente. | You request access and we show you the system. Connecting your agency's mailbox and WhatsApp is coming soon. |
 | La base de datos está en la Unión Europea (Fráncfort). | The database is in the European Union (Frankfurt). |
 | Cada respuesta automática indica que la escribe un asistente. | Every automatic reply says that an assistant wrote it. |
 
@@ -543,13 +576,31 @@ exista y esté claramente identificada." (`es.ts:842`).
 
 ---
 
+## 13. Connection wording: nothing promises a connection that does not work (owner, 05.11.)
+
+Read in the source of `faf2dbb`. These rows apply on the preview **and** in production until D5 is built and tested.
+
+| # | File on `faf2dbb` | Current | New ES | New EN |
+|---|---|---|---|---|
+| N-1 | `lib/content/home-1103.ts:291`, trust line 1 | "Pides acceso, te enseñamos el sistema y conectamos los canales contigo." | Pides acceso y te enseñamos el sistema. La conexión del buzón y del WhatsApp de tu agencia llega próximamente. | You request access and we show you the system. Connecting your agency's mailbox and WhatsApp is coming soon. |
+| N-2 | `lib/content/faq.ts:205`, FAQ "¿Cuánto se tarda en configurarlo?" | "Tú preparas los datos de tu agencia, tu logo, tu equipo y el acceso a WhatsApp y a tu email; nosotros conectamos los canales contigo y probamos cada uno con un mensaje real. …" | Hoy te enseñamos el sistema con datos de ejemplo. La conexión del buzón y del WhatsApp de tu agencia llega próximamente; cuando esté lista, probaremos cada canal con un mensaje real antes de darlo por conectado. | Today we show you the system with example data. Connecting your agency's mailbox and WhatsApp is coming soon; once it is ready, we will test each channel with a real message before calling it connected. |
+| N-3 | `lib/i18n/dictionaries/es.ts:323` (and EN at the same key), the onboarding step | "Conecta tus canales con nosotros · WhatsApp y email se conectan junto con nosotros; es un paso distinto de la cuenta." | Tus canales · La conexión del buzón y del WhatsApp de tu agencia llega próximamente. | Your channels · Connecting your agency's mailbox and WhatsApp is coming soon. |
+| N-4 | `es.ts:473` (and EN), trial step "Canales" | "Conecta tus canales, según los permisos que tengas." | Próximamente: conectar el buzón y el WhatsApp de tu agencia. | Coming soon: connecting your agency's mailbox and WhatsApp. |
+| N-5 | `lib/content/capabilities.ts:83`; `lib/content/platform-map.ts:55` | "…en un buzón que operamos para ti." | **preview:** may stay. **Production:** only with D5 route B built; otherwise the line is: Respuesta por email: próximamente para el buzón de tu agencia. | **Production** otherwise: Reply by e-mail: coming soon for your agency's mailbox. |
+| N-6 | `lib/content/home-demo.ts:184`, demo state on the Email tab | "Hoy: respuesta en español por email (Gmail) y ficha guardada." | **preview:** may stay (demo with fictional data). **Production** before D5: Demo: así funcionará con el buzón de tu agencia (próximamente). | Demo: this is how it will work with your agency's mailbox (coming soon). |
+
+The channel labels "Email con Gmail" / "Email through Gmail" (`es.ts:418`, `en.ts:456`) name a channel. They promise no connection
+and stay.
+
+---
+
 ## Appendix: the detail pages (carried over from v2)
 
 **Vocabulary:** where a row below says "En preparación" or "En preparación · todavía no contratable", the site shows **"Próximamente"** (§1). Where it says "Reservar una demo", "Probar gratis" or a trial line, §2, §7 and §9 of this file decide. Where a row concerns the home page, the example report, the plans or the footer, §2–§10 **supersede** it.
 
 The rows below come from `WEBSITE_COPY_HANDOVER_1102.md` §C. They apply to the pages **outside** the new home page and plans
 section: `/platform`, the four module pages, `/faq` (full), `/trial`, `/signup`, `/contact` and the packages page, where it is
-not rebuilt from §6.1. Where a row concerns the home page or the plans, §1–§6 above **supersede** it.
+not rebuilt from §9. Where a row concerns the home page or the plans, §1–§10 above **supersede** it.
 
 ### C. The launch scope, against API's register
 
@@ -574,7 +625,7 @@ Register: "public registration **not released** · **no** public sign-up promise
 live (E28-Prod P1/P5)"; trial "not before the prod onboarding core (E28-Prod P4 + owner)". **Valid until those two lines exist;
 then the current wording comes back.** The primary call to action becomes the demo, which is also the brief's primary CTA ("Book a
 
-**Aligned with v2:** C-8 and C-9 now carry the v2 wording (§1.1). C-10, C-11, C-18 and C-19 are **superseded** by §6.1 (the plans: section intro and status words). C-15 is superseded by §6.2. The rest stays as written.
+**Aligned with v3:** C-8 and C-9 carry the wording of §2. C-10, C-11, C-18 and C-19 are **superseded** by §9 (the plans: intro and status words). C-15 is superseded by §10.1 and §13 on the home page; its text above applies only where the sentence remains on a detail page. The rest stays as written.
 Demo").
 
 | # | File | Current | New ES | New EN |
@@ -586,7 +637,7 @@ Demo").
 | C-12 | `es.ts:411`, the Essential card button | "Prueba Essential gratis" | Solicita una propuesta | Request a proposal |
 | C-13 | `faq.ts:161`, "¿Cuánto dura la prueba y qué cuesta?" | "14 días de Essential, gratis, sin método de pago y sin tarjeta. Creas la cuenta tú mismo." | Será de 14 días de Essential, gratis y sin método de pago. El registro público está en preparación; hasta entonces, escríbenos y te enseñamos el sistema. | It will be 14 days of Essential, free and with no payment method. Public registration is in preparation; until then, write to us and we will show you the system. |
 | C-14 | `faq.ts:195`, "¿Tengo que hablar antes con un comercial?", and `es.ts:388` ("¿Tengo que hablar con alguien antes?", the same answer shortened) | "No. Puedes empezar por tu cuenta. La demo es opcional y nunca una condición." | No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. Empezar por tu cuenta llega con el registro público, en preparación. | No sales call is needed: write to us and we will show you the system. Starting on your own comes with public registration, in preparation. |
-| C-15 | `lib/content/home-sections.ts:84`, "Cómo empiezas" lead | "Sin llamada comercial. Creas la cuenta, configuras tu agencia a tu ritmo y conectamos los canales contigo. El precio…" | Así será el arranque cuando abra el registro: creas la cuenta, configuras tu agencia a tu ritmo y conectamos los canales contigo. Hoy el registro está en preparación. El precio te lo decimos para tu agencia antes de acordar nada; lo que pasa con los datos está escrito aquí. | This is how it will start once registration opens: you create the account, set up your agency at your own pace and we connect the channels with you. Registration is in preparation today. We tell you the price for your agency before anything is agreed; what happens with the data is written here. |
+| C-15 | `lib/content/home-sections.ts:84`, "Cómo empiezas" lead | "Sin llamada comercial. Creas la cuenta, configuras tu agencia a tu ritmo y conectamos los canales contigo. El precio…" | Así será el arranque cuando abra el registro: creas la cuenta y configuras tu agencia a tu ritmo. La conexión del buzón y del WhatsApp de tu agencia llega próximamente. El precio te lo decimos para tu agencia antes de acordar nada; lo que pasa con los datos está escrito aquí. | This is how it will start once registration opens: you create the account and set up your agency at your own pace. Connecting your agency's mailbox and WhatsApp is coming soon. We tell you the price for your agency before anything is agreed; what happens with the data is written here. |
 | C-16 | `es.ts:445`, the `h1` of `/trial`, and the top of that page | "Prueba gratis durante 14 días." · no state | h1: **La prueba gratuita de 14 días, en preparación.** · state line under it: **Estado: El registro público y la prueba de 14 días están en preparación.** | h1: **The 14-day free trial, in preparation.** · **State: Public registration and the 14-day trial are in preparation.** |
 | C-16a | `es.ts:62`, `tryFree` | "Prueba gratis durante 14 días" | Prueba gratuita de 14 días: en preparación | 14-day free trial: in preparation |
 | C-16b | `es.ts:489`, `trialBody` (the contact page, "O simplemente empieza") | "Prueba gratis durante 14 días. Sin método de pago, sin llamada comercial." | La prueba gratuita de 14 días, sin método de pago, llega con el registro público, en preparación. | The 14-day free trial, with no payment method, comes with public registration, in preparation. |
