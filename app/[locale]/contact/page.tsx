@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { catalogPlans, isPlanCode, startLabel } from "@/lib/content/plans";
+import { catalogPlans, isPlanCode } from "@/lib/content/plans";
+import { entryAction, live } from "@/lib/claims";
+import { resolveSwitches } from "@/lib/view";
 import { Display, Eyebrow, Lead, Heading } from "@/components/ui/type";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
@@ -27,6 +29,10 @@ export default function ContactPage({ params, searchParams }: { params: { locale
   const c = d.contact;
   const p = (path: string) => localePath(locale, path);
   const cal = process.env.NEXT_PUBLIC_CAL_URL || "https://cal.com/nuovasolution/demo";
+  const view = resolveSwitches().view;
+  const entry = entryAction(locale, view);
+  // Copy 1105 v3 §21: the trial block hangs on the trial and public registration
+  const trialBlock = live(["trial", "publicSignup"], view);
   const plan = isPlanCode(searchParams?.plan) ? catalogPlans.find((x) => x.code === searchParams!.plan) : undefined;
   const mailto = plan ? `mailto:antonio@nuovasolution.com?subject=${encodeURIComponent(c.proposalSubject.replace("{plan}", plan.display_name))}` : "mailto:antonio@nuovasolution.com";
 
@@ -59,11 +65,13 @@ export default function ContactPage({ params, searchParams }: { params: { locale
             <p className="mt-3 t-body-m text-text-secondary">{c.demoBody}</p>
             <div className="mt-auto pt-6"><ButtonLink href={cal} variant="secondary" external>{c.demoCta}</ButtonLink></div>
           </Reveal>
-          <Reveal delay={120} className="stage flex flex-col p-6 md:p-8">
-            <Heading size="l" as="h2">{c.trialH2}</Heading>
-            <p className="mt-3 t-body-m text-text-secondary">{c.trialBody}</p>
-            <div className="mt-auto pt-6"><ButtonLink href={mailto} external>{startLabel(locale)}</ButtonLink></div>
-          </Reveal>
+          {trialBlock && (
+            <Reveal delay={120} className="stage flex flex-col p-6 md:p-8" data-contact-trial>
+              <Heading size="l" as="h2">{c.trialH2}</Heading>
+              <p className="mt-3 t-body-m text-text-secondary">{c.trialBody}</p>
+              <div className="mt-auto pt-6"><ButtonLink href={p(entry.href)}>{entry.label}</ButtonLink></div>
+            </Reveal>
+          )}
         </div>
       </div>
 

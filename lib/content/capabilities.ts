@@ -82,7 +82,7 @@ export const capabilities: Capability[] = [
       { text: { en: "A reply on WhatsApp, in Spanish.", es: "Respuesta por WhatsApp, en español." }, status: "live" },
       { text: { en: "A reply by e-mail, in a mailbox we operate for you.", es: "Respuesta por email, en un buzón que operamos para ti." }, status: "live" },
       { text: { en: "Every conversation stays on the customer's record.", es: "Cada conversación queda en la ficha del cliente." }, status: "live" }, // WCR-053
-      { text: { en: "An e-mail alert to the right person when an enquiry matters (coming soon).", es: "Un aviso por email a la persona adecuada cuando una consulta importa (próximamente)." }, status: "in_implementation" }, // Copy 1102 v2 C-7, vocabulary 1105 v3 §1
+      { text: { en: "An e-mail alert to the right person when an enquiry matters.", es: "Un aviso por email a la persona adecuada cuando una consulta importa." }, status: "in_implementation" }, // Copy 1105 v3 §21 (key alert: held back in production, so not among the public points)
       { text: { en: "Email attachments.", es: "Adjuntos de email." }, status: "in_implementation" },
       { text: { en: "WhatsApp media understanding.", es: "Comprensión de archivos de WhatsApp." }, status: "in_implementation" },
       // Outlook and Microsoft 365: no line (TEXTS_1013 §6b M-3: no credential, no entry point). Copy's FAQ answers the question.
@@ -227,8 +227,6 @@ export const capabilities: Capability[] = [
       en: "Every viewing request and every callback becomes a task with the customer, the property and the time they asked for.",
       es: "Cada petición de visita y cada llamada pendiente pasa a ser una tarea con el cliente, el inmueble y la hora que ha pedido.",
     },
-    // COPY_SYNC_1024 X-8: the page carries its state (the staff surface reaches production with Release U, Copy's X-3)
-    stateLine: { en: "Coming soon", es: "Próximamente" },
     why: [
       { en: "For teams where somebody asked for a viewing and nobody knows who calls back: every request has an owner.", es: "Para equipos donde alguien pidió una visita y nadie sabe quién devuelve la llamada: cada petición tiene dueño." },
       { en: "The customer, the property and the time they asked for are on the task; nothing stays in somebody's head.", es: "El cliente, el inmueble y la hora que pidió están en la tarea; nada se queda en la cabeza de nadie." },
@@ -368,8 +366,8 @@ export const capabilities: Capability[] = [
     navLine: { en: "Room by room, on request", es: "Habitación por habitación, bajo petición" }, // C3 §1.3
     h1: { en: "Room by room, through the real doorways.", es: "Habitación por habitación, por las puertas reales." },
     lead: {
-      en: "A finished property experience, created by NuovaSolution and checked by a person before it reaches a buyer. A premium service, on request, coming soon.",
-      es: "Una experiencia de la propiedad terminada, creada por NuovaSolution y revisada por una persona antes de llegar a un comprador. Un servicio premium, bajo petición, próximamente.",
+      en: "A finished property experience, created by NuovaSolution and checked by a person before it reaches a buyer. A premium service, on request.",
+      es: "Una experiencia de la propiedad terminada, creada por NuovaSolution y revisada por una persona antes de llegar a un comprador. Un servicio premium, bajo petición.",
     },
     points: [
       { text: { en: "A real panorama for every room, floor to ceiling.", es: "Un panorama real de cada habitación, del suelo al techo." }, status: "premium_on_request" },

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { Analytics } from "@vercel/analytics/react";
-import { inter } from "@/lib/fonts";
+import { fraunces, inter } from "@/lib/fonts";
 import { isLocale, locales, siteUrl, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Header } from "@/components/site/header";
@@ -24,13 +24,6 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     metadataBase: new URL(siteUrl),
     title: { default: d.meta.title, template: `%s · ${d.meta.siteName}` },
     description: d.meta.description,
-    icons: {
-      icon: [
-        { url: "/favicon-v2.svg", type: "image/svg+xml" },
-        { url: "/favicon-v2.png", type: "image/png" },
-      ],
-      apple: "/favicon-v2.png",
-    },
     alternates: {
       canonical: `/${params.locale}`,
       languages: { en: "/en", es: "/es", "x-default": "/en" },
@@ -55,7 +48,7 @@ export default function LocaleLayout({ children, params }: { children: ReactNode
   const d = getDictionary(locale);
 
   return (
-    <html lang={locale} className={inter.variable} suppressHydrationWarning>
+    <html lang={locale} className={`${inter.variable} ${fraunces.variable}`} suppressHydrationWarning>
       <head>
         {/* Marks JS availability so scroll reveals only ever hide content when they can reveal it. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />

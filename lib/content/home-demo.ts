@@ -1,6 +1,6 @@
 import type { ChannelKey, L } from "./home-story";
 import { people } from "./home-story";
-import { claimWords } from "@/lib/claims";
+import type { ClaimKey } from "@/lib/claims";
 
 /**
  * The product demonstration under the hero (the owner's order of 03.11.2026, points 2 and 3; Copy's handover 1105 v3 §3 for the
@@ -13,7 +13,8 @@ import { claimWords } from "@/lib/claims";
  * dialogue and record are Copy's (1105 v3 §3); the other three channels are the implementer's WORKING lines on the same rules.
  *
  * Claims (governance/API_CLAIMS_LINES_1102_v1.md; Copy §3): WhatsApp and Gmail reply in Spanish today; the web form and the phone
- * are marked "Próximamente" on their surface (lib/claims.ts); the priority stands on the record with its reason and no score; no
+ * carry their claim key, so the public view leaves them out and the target view shows them without any mark (owner 06.11.: no
+ * status words); the priority stands on the record with its reason and no score; no
  * alert is claimed; no availability promise, no contact promise ("te llamamos", "se pondrá en contacto"); one question back in the
  * agency's voice; no ticks, no "enviado"/"entregado" on the messages; a viewing request is not an appointment.
  */
@@ -30,8 +31,8 @@ export interface DemoChannel {
   key: DemoChannelKey;
   kind: DemoKind;
   name: L;
-  /** A short mark on the surface, where the function is not in production yet (the word from lib/claims.ts). */
-  mark?: L;
+  /** The claim key of the channel (lib/claims.ts): the public view shows only channels that are included; no mark, no status word on any surface (owner 06.11.). */
+  claim: ClaimKey;
   who: string;
   role: L;
   chat?: {
@@ -81,14 +82,16 @@ export interface DemoChannel {
     priority: { v: L; why: L; at: number };
     next: { v: L; sub: L; at: number };
   };
-  /** The state lines of the end phase: what is included, what comes soon (the words of lib/claims.ts). */
-  states: { v: L; kind: "available" | "preparing" | "prototype"; at: number }[];
   /** The pause before each phase (index = the phase reached), in milliseconds. */
   timings: number[];
 }
 
 export const demoWords = {
   pick: { es: "Elige un canal", en: "Choose a channel" },
+  /** Copy 1105 v3 §16: the invitation over the channel tabs (replaces "Elige un canal"; no tabs and no invitation with one channel). */
+  invite: { es: "Elige un canal y mira cómo responde.", en: "Choose a channel and see how it replies." },
+  /** The tabs change on their own until the first click (owner point 4); the bar on the active tab shows the time to the next one. */
+  autoLabel: { es: "Siguiente canal en unos segundos; un clic lo detiene", en: "Next channel in a few seconds; one click stops it" },
   replay: { es: "Repetir demo", en: "Replay demo" },
   fictional: { es: "Demo con datos ficticios", en: "Demo with fictional data" },
   /** The one automation mark (Copy 1105 v3 §3): on the reply, nowhere else, small. */
@@ -105,12 +108,12 @@ export const demoWords = {
 };
 
 const T = (es: string, en: string): L => ({ es, en });
-const SOON = claimWords.soon;
 
 export const demoChannels: DemoChannel[] = [
   {
     key: "whatsapp",
     kind: "chat",
+    claim: "replyWhatsapp",
     name: T("WhatsApp", "WhatsApp"),
     who: "Laura",
     role: T("compradora", "buyer"),
@@ -120,8 +123,8 @@ export const demoChannels: DemoChannel[] = [
       message: T("Hola, soy Laura. Busco un piso de 2 dormitorios en Estepona, hasta 320.000 €. ¿Podría ver alguno la semana que viene?", "Hi, I'm Laura. I'm looking for a 2-bedroom flat in Estepona, up to €320,000. Could I see one next week?"),
       typingAt: 1,
       replyAt: 2,
-      // Copy 1105 v3 §3: one question back in the agency's voice; no availability promise, no contact promise
-      reply: T("¡Hola, Laura! Gracias por escribirnos. Apunto Estepona, 2 dormitorios y hasta 320.000 €, y que te gustaría ver pisos la semana que viene. ¿Lo buscas para vivir todo el año o como segunda residencia?", "Hi Laura, thanks for writing to us. I've noted Estepona, 2 bedrooms, up to €320,000, and that you'd like to see flats next week. Is it for living in all year or a second home?"),
+      // Copy 1105 v3 §16, Question A (the owner, 06.11.): no contact promise, no availability promise, a wish asked
+      reply: T("¡Hola, Laura! Gracias por escribirnos. Buscas en Estepona, 2 dormitorios y hasta 320.000 €, ¿verdad? ¿Te viene mejor por la mañana o por la tarde para una visita?", "Hi Laura, thanks for writing to us. You're looking in Estepona, 2 bedrooms, up to €320,000, is that right? Would the morning or the afternoon suit you better for a viewing?"),
       replyTime: "11:21",
     },
     record: {
@@ -140,15 +143,12 @@ export const demoChannels: DemoChannel[] = [
       priority: { v: T("Alta", "High"), why: T("pide zona, presupuesto y visita", "names area, budget and a viewing"), at: 11 },
       next: { v: T("Una persona de tu equipo le propone día y hora.", "Someone on your team proposes a day and time."), sub: T("Una petición de visita no es una cita: la confirma una persona.", "A viewing request is not an appointment: a person confirms it."), at: 12 },
     },
-    states: [
-      { v: T("Incluido: la respuesta y la ficha con su prioridad.", "Included: the reply and the record with its priority."), kind: "available", at: 12 },
-      { v: T("Próximamente: el aviso a la persona que toca y la lista de tareas.", "Coming soon: the alert to the right person and the task list."), kind: "preparing", at: 12 },
-    ],
-    timings: [0, 900, 1100, 500, 350, 350, 350, 350, 350, 350, 600, 500, 600],
+    timings: [0, 700, 2300, 500, 350, 350, 350, 350, 350, 350, 600, 500, 600],
   },
   {
     key: "email",
     kind: "mail",
+    claim: "replyEmail",
     name: T("Email", "E-mail"),
     who: "Carmen Ortega",
     role: T("propietaria", "owner"),
@@ -167,8 +167,8 @@ export const demoChannels: DemoChannel[] = [
       body: T("Buenos días, quiero vender mi piso en Fuengirola, 3 dormitorios cerca del paseo marítimo, y me gustaría una valoración. ¿Podrían venir esta semana?", "Good morning, I want to sell my flat in Fuengirola, 3 bedrooms near the seafront, and I would like a valuation. Could you come this week?"),
       replyAt: 2,
       replyTime: T("martes 11:25", "Tuesday 11:25"),
-      // WORKING on Copy's rules (§3): one question back, no contact promise
-      reply: T("¡Hola, Carmen! Gracias por escribirnos. Apunto que quieres vender tu piso de 3 dormitorios en Fuengirola, cerca del paseo marítimo, y que te gustaría una valoración esta semana. ¿Te viene mejor por la mañana o por la tarde?", "Hi Carmen, thanks for writing to us. I've noted that you want to sell your 3-bedroom flat in Fuengirola, near the seafront, and that you'd like a valuation this week. Is the morning or the afternoon better for you?"),
+      // Copy 1105 v3 §22 ("Apunto" struck, as in Question A)
+      reply: T("¡Hola, Carmen! Gracias por escribirnos. Quieres vender tu piso de 3 dormitorios en Fuengirola, cerca del paseo marítimo, y te gustaría una valoración esta semana, ¿verdad? ¿Te viene mejor por la mañana o por la tarde?", "Hi Carmen, thanks for writing to us. You want to sell your 3-bedroom flat in Fuengirola, near the seafront, and you'd like a valuation this week, is that right? Would the morning or the afternoon suit you better?"),
     },
     record: {
       title: T("Ficha de Carmen", "Carmen's record"),
@@ -185,17 +185,13 @@ export const demoChannels: DemoChannel[] = [
       priority: { v: T("Alta", "High"), why: T("propietaria que quiere vender y pide cita", "an owner who wants to sell and asks for a visit"), at: 10 },
       next: { v: T("Una persona de tu equipo le propone día y hora para la valoración.", "Someone on your team proposes a day and time for the valuation."), sub: T("Una petición de visita no es una cita: la confirma una persona.", "A visit request is not an appointment: a person confirms it."), at: 11 },
     },
-    states: [
-      { v: T("Incluido: la respuesta por email (Gmail) y la ficha con su prioridad.", "Included: the e-mail reply (Gmail) and the record with its priority."), kind: "available", at: 11 },
-      { v: T("Próximamente: el aviso a la persona que toca y la lista de tareas.", "Coming soon: the alert to the right person and the task list."), kind: "preparing", at: 11 },
-    ],
-    timings: [0, 900, 1200, 500, 350, 350, 350, 350, 350, 600, 500, 600],
+    timings: [0, 800, 2200, 500, 350, 350, 350, 350, 350, 600, 500, 600],
   },
   {
     key: "webform",
     kind: "form",
     name: T("Formulario web", "Web form"),
-    mark: SOON,
+    claim: "webform",
     who: people.tenant.name,
     role: T("inquilina", "tenant"),
     form: {
@@ -227,14 +223,13 @@ export const demoChannels: DemoChannel[] = [
       priority: { v: T("Media", "Medium"), why: T("alquiler con zona y presupuesto, sin fecha de visita", "a rental with an area and a budget, no viewing date"), at: 15 },
       next: { v: T("Enviar a Sofía lo disponible en alquiler.", "Send Sofía what is available to rent."), sub: T("Tarea para tu equipo · lo envía una persona.", "A task for your team · a person sends it."), at: 16 },
     },
-    states: [{ v: T("Próximamente: el formulario web.", "Coming soon: the web form."), kind: "prototype", at: 16 }],
     timings: [0, 500, 450, 450, 450, 450, 600, 500, 500, 500, 350, 350, 350, 350, 600, 500, 600],
   },
   {
     key: "phone",
     kind: "call",
     name: T("Teléfono", "Phone"),
-    mark: SOON,
+    claim: "phoneAssistant",
     who: people.caller.name,
     role: T("comprador", "buyer"),
     call: {
@@ -246,8 +241,8 @@ export const demoChannels: DemoChannel[] = [
         { speaker: "customer", text: T("Hola, llamo por la villa de Elviria.", "Hello, I'm calling about the villa in Elviria."), at: 2 },
         { speaker: "customer", text: T("Quería saber el precio y si hay margen.", "I'd like to know the price and whether there is room to negotiate."), at: 3 },
         { speaker: "customer", text: T("Me viene mejor que me llamen por la tarde.", "The afternoon suits me better for a call back."), at: 4 },
-        // WORKING on Copy's rules: no contact promise; the preference is noted for the team
-        { speaker: "assistant", text: T("Gracias, Álvaro. La villa de Elviria, el precio y el margen: lo anoto para el equipo, con tu preferencia de llamada por la tarde.", "Thank you, Álvaro. The villa in Elviria, the price and the room to negotiate: I am noting it for the team, with your preference for a call in the afternoon."), at: 5 },
+        // Copy 1105 v3 §22: no contact promise; "lo anoto" struck
+        { speaker: "assistant", text: T("Gracias, Álvaro. Queda para el equipo: la villa de Elviria, el precio y el margen, y que prefieres que te llamen por la tarde.", "Thank you, Álvaro. It's with the team now: the villa in Elviria, the price and the room to negotiate, and that you'd prefer a call in the afternoon."), at: 5 },
       ],
       assistantLabel: T("Asistente automático de la agencia", "The agency's automated assistant"),
       ended: T("Llamada atendida", "Call answered"),
@@ -266,10 +261,11 @@ export const demoChannels: DemoChannel[] = [
       priority: { v: T("Alta", "High"), why: T("pregunta por un inmueble concreto y pide que le llamen", "asks about a specific property and asks for a call back"), at: 13 },
       next: { v: T("Devolver la llamada a partir de las 16:00.", "Return the call from 16:00."), sub: T("Tarea para tu equipo · el precio lo da una persona.", "A task for your team · a person gives the price."), at: 14 },
     },
-    states: [{ v: T("Próximamente: el asistente telefónico, en español.", "Coming soon: the phone assistant, in Spanish."), kind: "prototype", at: 14 }],
     timings: [0, 900, 700, 900, 900, 1100, 900, 450, 350, 350, 350, 350, 600, 500, 600],
   },
 ];
 
 export const endPhase = (c: DemoChannel) => c.timings.length - 1;
 export const recordStart = (c: DemoChannel) => c.record.fields[0].at;
+/** The length of one run in milliseconds (the sum of the pauses). */
+export const runLength = (c: DemoChannel) => c.timings.reduce((a, b) => a + b, 0);

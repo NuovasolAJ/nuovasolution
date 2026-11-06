@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale, localePath, locales, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { startLabel } from "@/lib/content/plans";
+import { entryAction, withChannels } from "@/lib/claims";
+import { resolveSwitches } from "@/lib/view";
 import { publishedCapabilities, publishedCapability, publicPoints } from "@/lib/content/capabilities";
 import { SectionHead, Display, Eyebrow, Lead, Caption, Heading } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
@@ -44,6 +45,8 @@ export default function ProductPage({ params }: { params: { locale: string; slug
   if (!c) notFound();
   const d = getDictionary(locale);
   const p = (path: string) => localePath(locale, path);
+  const view = resolveSwitches().view;
+  const entry = entryAction(locale, view);
   const points = publicPoints(c);
   const related = c.related.map(publishedCapability).filter((r): r is NonNullable<typeof r> => Boolean(r));
 
@@ -58,7 +61,6 @@ export default function ProductPage({ params }: { params: { locale: string; slug
               {/* R24 picture 09 (1): the module headline one step smaller than the home page's; the lead, then for whom and what it saves (3) */}
               <Display size="l" as="h1" id="pd-h1" className="max-w-[22ch]">{c.h1[locale]}</Display>
               <Lead className="mt-5">{c.lead[locale]}</Lead>
-              {c.stateLine && <p className="state-line mt-4" data-state="preparing" data-product-state>{c.stateLine[locale]}</p>}
               {c.why && (
                 <ul className="mt-5 space-y-2 measure-lead" data-product-why>
                   {c.why.map((w, i) => (
@@ -69,7 +71,7 @@ export default function ProductPage({ params }: { params: { locale: string; slug
               {c.note && <p className="mt-4 border-l-2 border-line-strong pl-4 t-body-m text-text-secondary measure-lead">{c.note[locale]}</p>}
               <Caption className="mt-3">{d.common.qualifiers.q2}</Caption>
               <CtaRow className="mt-8">
-                <ButtonLink href={p("/contact")} size="lg">{startLabel(locale)}</ButtonLink>
+                <ButtonLink href={p(entry.href)} size="lg">{entry.label}</ButtonLink>
                 <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
               </CtaRow>
             </Reveal>
@@ -141,7 +143,7 @@ export default function ProductPage({ params }: { params: { locale: string; slug
               <li key={i} className="py-4 t-body-m text-text-secondary">{f[locale]}</li>
             ))}
           </ul>
-          <Caption className="mt-4">{d.common.qualifiers.q5}</Caption>
+          <Caption className="mt-4">{withChannels(d.common.qualifiers.q5, locale, view)}</Caption>
         </div>
       </section>
 

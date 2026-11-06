@@ -14,6 +14,8 @@ const PORT = 3113;
 const BASE = (process.env.BASE ?? `http://localhost:${PORT}`).replace(/\/$/, "");
 const EXPECT_INDEXABLE = process.env.EXPECT_INDEXABLE === "1";
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const BYPASS = process.env.BYPASS ?? ""; // the preview protection's automation bypass (middleware.ts), read by the caller from the secrets store, never printed
+
 mkdirSync(OUT, { recursive: true });
 
 const PUBLISHED = ["ai-sales-agent", "lead-intelligence", "crm", "daily-assistant"];
@@ -32,9 +34,9 @@ try {
   if (!process.env.BASE) {
     const p = spawn(process.execPath, [join(ROOT, "node_modules", "next", "dist", "bin", "next"), "start", "-p", String(PORT)], { cwd: ROOT, env: process.env, stdio: ["ignore", "pipe", "pipe"] });
     p.stdout.on("data", () => {}); p.stderr.on("data", () => {}); kids.push(p);
-    for (let i = 0; i < 120; i++) { try { const r = await fetch(`${BASE}/en`, { redirect: "manual" }); if (r.status) break; } catch { /* not up */ } await sleep(500); }
+    for (let i = 0; i < 120; i++) { try { const r = await fetch(`${BASE}/en`, { redirect: "manual", headers: BYPASS ? { "x-vercel-protection-bypass": BYPASS } : {} }); if (r.status) break; } catch { /* not up */ } await sleep(500); }
   }
-  const get = (path) => fetch(`${BASE}${path}`, { redirect: "manual", headers: { "user-agent": "nuova-route-scan" } });
+  const get = (path) => fetch(`${BASE}${path}`, { redirect: "manual", headers: { "user-agent": "nuova-route-scan", ...(BYPASS ? { "x-vercel-protection-bypass": BYPASS } : {}) } });
 
   // Routes: 200 and the page's own H1 (no home fallback), noindex header, no forbidden string.
   for (const locale of ["en", "es"]) {
@@ -78,7 +80,7 @@ try {
   // Clip v2: desktop and phone MP4 per language, plus the subtitle files.
   const clips = [];
   for (const f of ["en-desktop", "en-mobile", "es-desktop", "es-mobile"]) {
-    const r = await fetch(`${BASE}/media/daily/daily-laura-${f}.mp4`, { headers: { range: "bytes=0-1023" } });
+    const r = await fetch(`${BASE}/media/daily/daily-laura-${f}.mp4`, { headers: { range: "bytes=0-1023", ...(BYPASS ? { "x-vercel-protection-bypass": BYPASS } : {}) } });
     clips.push({ f, status: r.status, type: r.headers.get("content-type"), range: r.headers.get("content-range"), ok: (r.status === 206 || r.status === 200) && (r.headers.get("content-type") ?? "").startsWith("video/mp4") });
   }
   check("clip assets", "the four product clips are served as video, with byte ranges", clips.every((c) => c.ok), clips);

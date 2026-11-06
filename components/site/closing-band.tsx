@@ -1,7 +1,8 @@
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { startLabel } from "@/lib/content/plans";
+import { entryAction } from "@/lib/claims";
+import { resolveSwitches } from "@/lib/view";
 import { cn } from "@/lib/utils";
 import { Display } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
@@ -26,6 +27,7 @@ export function ClosingBand({
 }) {
   const d = getDictionary(locale);
   const p = (path: string) => localePath(locale, path);
+  const entry = entryAction(locale, resolveSwitches().view);
   return (
     <section aria-labelledby={id} className="pb-[var(--section-default)] pt-[var(--section-compact)]">
       <div className="container-wide">
@@ -33,7 +35,7 @@ export function ClosingBand({
           <Reveal mode="opacity">
             <Display size="l" id={id} className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
             <CtaRow align="center" className="mt-10">
-              <ButtonLink href={p("/contact")} size="lg">{startLabel(locale)}</ButtonLink>
+              <ButtonLink href={p(entry.href)} size="lg">{entry.label}</ButtonLink>
               {secondary === "demo" ? (
                 <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
               ) : (

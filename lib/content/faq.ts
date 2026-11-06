@@ -1,17 +1,22 @@
 import type { Locale } from "@/lib/i18n/config";
+import { live, withChannels, type ClaimKey, type ClaimView } from "@/lib/claims";
 
 /**
- * The static FAQ (COPY_DELTAS_0930 §3, FAQ_PAGE_COPY). It replaces the question box until Hosting reports
- * `WEBQA_MODEL_ROUTE`, the Reviewer's browser end to end has passed and the backend answers from
- * `faq-kb-v1.2`. Every answer is Copy's text, traced to its row in PRODUCT_FAQ_KB_v1.md (v1.2) by `kb`.
+ * The static FAQ (COPY_DELTAS_0930 §3, FAQ_PAGE_COPY; Copy 1105 v3 §21 of 06.11.: every answer written for the target state,
+ * bound to its keys in lib/claims.ts, with the public wording where Copy gives one; a question whose key is off is left out in
+ * public, and a group with no question left is hidden; no status word, no "hoy"/"todavía" that promises something later). Every
+ * answer is Copy's text, traced to its row in PRODUCT_FAQ_KB_v1.md by `kb`. ⟦canales⟧ is filled from the keys at render.
  * Nothing here promises a reply: the contact line offers an address and no more.
- * The Spanish group titles are the implementer's interim wording (Copy gave the groups in English).
  */
 type L = Record<Locale, string>;
 export interface FaqItem {
   kb: string;
   q: L;
+  /** The target answer. */
   a: L;
+  /** The keys the target answer needs; with one off, `pub` stands in public, or the question is left out when there is no `pub`. */
+  keys?: ClaimKey[];
+  pub?: L;
 }
 export interface FaqGroup {
   id: string;
@@ -21,10 +26,10 @@ export interface FaqGroup {
 
 export const faqFrame = {
   eyebrow: { en: "Questions", es: "Preguntas" },
-  h1: { en: "Straight answers about what NuovaSolution does today", es: "Respuestas claras sobre lo que hace NuovaSolution hoy" },
+  h1: { en: "Straight answers about what NuovaSolution does", es: "Respuestas claras sobre lo que hace NuovaSolution" },
   lead: {
-    en: "If something is not part of the product yet, this page says so. Nothing here is a plan for later.",
-    es: "Si algo todavía no forma parte del producto, esta página lo dice. Nada de lo que hay aquí es un plan para más adelante.",
+    en: "This is what the product does, with no promises beyond that.",
+    es: "Aquí está lo que hace el producto, sin promesas de más.",
   },
   contact: { en: "Not answered here? Write to antonio@nuovasolution.com.", es: "¿No está aquí la respuesta? Escribe a antonio@nuovasolution.com." },
 } satisfies Record<string, L>;
@@ -41,11 +46,13 @@ export const faqGroups: FaqGroup[] = [
           en: "It answers the enquiries your agency receives, records each one with what the customer asked for, and turns a viewing request into a task your team takes and closes.",
           es: "Responde a las consultas que recibe tu agencia, registra cada una con lo que ha pedido el cliente y convierte una petición de visita en una tarea que tu equipo toma y cierra.",
         },
+        keys: ["taskList"],
+        pub: { en: "It answers the enquiries your agency receives and records each one with what the customer asked for.", es: "Responde a las consultas que recibe tu agencia y registra cada una con lo que ha pedido el cliente." },
       },
       {
         kb: "Q-02",
         q: { en: "Which channels are answered?", es: "¿Qué canales se responden?" },
-        a: { en: "Text enquiries on WhatsApp and by e-mail. Other channels are not part of the offer today.", es: "Consultas de texto por WhatsApp y por email. Otros canales no forman parte de la oferta hoy." },
+        a: { en: "Enquiries on ⟦canales⟧.", es: "Consultas por ⟦canales⟧." },
       },
       {
         kb: "Q-03",
@@ -54,6 +61,7 @@ export const faqGroups: FaqGroup[] = [
           en: "Yes. The reply is written when the message arrives rather than when somebody is free. We do not promise a number of minutes, because we do not measure one.",
           es: "Sí. La respuesta se escribe cuando llega el mensaje, no cuando alguien tiene tiempo. No prometemos un número de minutos porque no lo medimos.",
         },
+        keys: ["replyOutOfHours"],
       },
       {
         kb: "Q-05",
@@ -86,14 +94,18 @@ export const faqGroups: FaqGroup[] = [
           en: "No. It answers first and organises the enquiry. The viewing, the negotiation and the relationship stay with your people, and the task tells them where to start.",
           es: "No. Responde primero y organiza la consulta. La visita, la negociación y la relación siguen siendo de tu gente, y la tarea les dice por dónde empezar.",
         },
+        keys: ["taskList"],
+        pub: { en: "No. It answers first and organises the enquiry. The viewing, the negotiation and the relationship stay with your people.", es: "No. Responde primero y organiza la consulta. La visita, la negociación y la relación siguen siendo de tu gente." },
       },
       {
         kb: "Q-08",
         q: { en: "Will it invent details about a property?", es: "¿Se inventa datos de una propiedad?" },
         a: {
-          en: "It does not put property suggestions in replies today; that part is switched off until it passes our own tests. What it answers comes from what the customer wrote and what your agency has confirmed.",
-          es: "Hoy no incluye propuestas de propiedades en las respuestas; esa parte está desactivada hasta que supere nuestras propias pruebas. Lo que responde sale de lo que escribió el cliente y de lo que tu agencia ha confirmado.",
+          en: "No. What it answers comes from what the customer wrote and what your agency has confirmed. It proposes only listings from your portfolio.",
+          es: "No. Lo que responde sale de lo que escribió el cliente y de lo que tu agencia ha confirmado. Solo propone inmuebles de tu cartera.",
         },
+        keys: ["matching"],
+        pub: { en: "No. What it answers comes from what the customer wrote and what your agency has confirmed.", es: "No. Lo que responde sale de lo que escribió el cliente y de lo que tu agencia ha confirmado." },
       },
     ],
   },
@@ -113,33 +125,39 @@ export const faqGroups: FaqGroup[] = [
         kb: "Q-43",
         q: { en: "If the same person writes by e-mail and then by WhatsApp, is that one record?", es: "Si la misma persona escribe por email y luego por WhatsApp, ¿es una sola ficha?" },
         a: {
-          en: "Two, until something ties them together. There is no automatic merge across channels today, and we would rather tell you now than let you find it in your second week.",
-          es: "Dos, hasta que algo las una. Hoy no hay una unión automática entre canales, y preferimos decírtelo ahora y no que lo descubras en tu segunda semana.",
+          en: "One. If the same person writes on both channels, everything stays on one record.",
+          es: "Una. Si la misma persona escribe por los dos canales, todo queda en una sola ficha.",
         },
+        keys: ["oneRecordAcrossChannels"],
+        // the limit stays (API's register requires it, §14)
+        pub: { en: "Two, until something ties them together. We would rather tell you now than let you find it in your second week.", es: "Dos, hasta que algo las una. Preferimos decírtelo ahora y no que lo descubras en tu segunda semana." },
       },
       {
         kb: "Q-31",
         q: { en: "Does it tell me which leads are hot?", es: "¿Me dice qué leads están calientes?" },
         a: {
-          en: "Yes, by e-mail. When an enquiry looks important, the right person on your team gets an alert with the reason. No office hours yet.", // COPY_SYNC_1023 W-2
-          es: "Sí, por email. Cuando una consulta parece importante, la persona adecuada de tu equipo recibe un aviso con el motivo. Todavía sin horario de oficina.",
+          en: "Yes, by e-mail. When an enquiry looks important, the right person on your team gets an alert with the reason.",
+          es: "Sí, por email. Cuando una consulta parece importante, la persona adecuada de tu equipo recibe un aviso con el motivo.",
         },
+        keys: ["alert"],
       },
       {
         kb: "Q-41",
         q: { en: "Where does my team work the tasks?", es: "¿Dónde trabaja mi equipo las tareas?" },
         a: {
-          en: "In their own list, each person signed in as themselves. That list is coming soon; until then your team gets an e-mail alert for each important enquiry.", // COPY_SYNC_1024 X-7
-          es: "En su propia lista, cada persona entrando como ella misma. Esa lista está próximamente; hasta entonces, tu equipo recibe por email el aviso de cada consulta importante.",
+          en: "In their own list, each person signed in as themselves.",
+          es: "En su propia lista, cada persona entrando como ella misma.",
         },
+        keys: ["taskList"],
       },
       {
         kb: "Q-42",
         q: { en: "Can my team ask the assistant what to do today?", es: "¿Puede mi equipo preguntarle al asistente qué hacer hoy?" },
         a: {
-          en: "Not today. Today your team gets an e-mail alert for each important enquiry. The task list and the assistant that explains the order are coming soon.", // COPY_SYNC_1024 X-6
-          es: "Hoy no. Hoy tu equipo recibe por email el aviso de cada consulta importante. La lista de tareas y el asistente que explica el orden están próximamente.",
+          en: "Yes. Each person can ask \"What do I have today?\" and the assistant explains what comes first and why.",
+          es: "Sí. Cada persona puede preguntar «¿Qué tengo hoy?» y el asistente le explica qué va primero y por qué.",
         },
+        keys: ["dailyVoice"],
       },
       {
         kb: "Q-22",
@@ -148,6 +166,7 @@ export const faqGroups: FaqGroup[] = [
           en: "Yes. You invite your team and set a role for each person, and the roles decide what they see and do.",
           es: "Sí. Invitas a tu equipo y defines un rol para cada persona, y los roles deciden qué ven y qué hacen.",
         },
+        keys: ["taskList"],
       },
     ],
   },
@@ -159,9 +178,10 @@ export const faqGroups: FaqGroup[] = [
         kb: "Q-11",
         q: { en: "How long is the trial and what does it cost?", es: "¿Cuánto dura la prueba y qué cuesta?" },
         a: {
-          en: "It will be 14 days of Essential, free and with no payment method. Public registration is coming soon; until then, write to us and we will show you the system.",
-          es: "Será de 14 días de Essential, gratis y sin método de pago. El registro público está próximamente; hasta entonces, escríbenos y te enseñamos el sistema.",
-        }, // Copy 1102 v2 C-13
+          en: "14 days of Essential, free and with no payment method. You create the account yourself.",
+          es: "14 días de Essential, gratis y sin método de pago. Creas la cuenta tú mismo.",
+        },
+        keys: ["trial", "publicSignup"],
       },
       {
         kb: "Q-12",
@@ -170,13 +190,14 @@ export const faqGroups: FaqGroup[] = [
           en: "Your account and your data stay. The paid parts pause until you choose a plan, and you can still log in.",
           es: "Tu cuenta y tus datos se quedan. Las partes de pago se pausan hasta que elijas un plan, y puedes seguir entrando.",
         },
+        keys: ["trial", "publicSignup"],
       },
       {
         kb: "Q-13",
         q: { en: "What does it cost after that?", es: "¿Cuánto cuesta después?" },
         a: {
-          en: "We tell you the price and the billing period for your agency before anything is agreed. There is no price on this site yet.",
-          es: "Te decimos el precio y el periodo de facturación para tu agencia antes de acordar nada. Todavía no hay ningún precio en este sitio.",
+          en: "We tell you the price and the billing period for your agency before anything is agreed.",
+          es: "Te decimos el precio y el periodo de facturación para tu agencia antes de acordar nada.",
         },
       },
       {
@@ -195,15 +216,19 @@ export const faqGroups: FaqGroup[] = [
       {
         kb: "Q-16",
         q: { en: "Do I have to talk to a salesperson first?", es: "¿Tengo que hablar antes con un comercial?" },
-        a: { en: "No sales call is needed: write to us and we will show you the system. Starting on your own comes with public registration, coming soon.", es: "No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. Empezar por tu cuenta llega con el registro público, próximamente." }, // Copy 1102 v2 C-14
+        a: { en: "No. You can start on your own.", es: "No. Puedes empezar por tu cuenta." },
+        keys: ["trial", "publicSignup"],
+        pub: { en: "No sales call is needed: write to us and we will show you the system.", es: "No hace falta una llamada comercial: escríbenos y te enseñamos el sistema." },
       },
       {
         kb: "Q-21",
         q: { en: "How long does setting up take?", es: "¿Cuánto se tarda en configurarlo?" },
         a: {
-          en: "Today we show you the system with example data. Connecting your agency's mailbox and WhatsApp is coming soon; once it is ready, we will test each channel with a real message before calling it connected.",
-          es: "Hoy te enseñamos el sistema con datos de ejemplo. La conexión del buzón y del WhatsApp de tu agencia llega próximamente; cuando esté lista, probaremos cada canal con un mensaje real antes de darlo por conectado.",
+          en: "You prepare your agency's details, your logo and your team. We connect the mailbox and WhatsApp with you and test each channel with a real message before calling it connected.",
+          es: "Tú preparas los datos de tu agencia, tu logo y tu equipo. Conectamos contigo el buzón y el WhatsApp y probamos cada canal con un mensaje real antes de darlo por conectado.",
         },
+        keys: ["mailboxConnection", "whatsappOwnNumber"],
+        pub: { en: "We show you the system with example data.", es: "Te enseñamos el sistema con datos de ejemplo." },
       },
     ],
   },
@@ -239,6 +264,7 @@ export const faqGroups: FaqGroup[] = [
         kb: "Q-44",
         q: { en: "How long do you keep the data, and do you keep backups?", es: "¿Cuánto tiempo guardáis los datos y hacéis copias de seguridad?" },
         a: {
+          // unchanged until counsel has answered (§14, §21)
           en: "We do not publish a retention period yet, and we will not print one we do not keep to. Ask us and you get the answer that applies to your agency in writing.",
           es: "Todavía no publicamos un plazo de conservación y no vamos a imprimir uno que no cumplamos. Pregúntanos y recibes por escrito la respuesta que se aplica a tu agencia.",
         },
@@ -255,55 +281,50 @@ export const faqGroups: FaqGroup[] = [
         kb: "Q-46",
         q: { en: "If I enter my opening hours, does the assistant respect them?", es: "Si indico mi horario, ¿lo respeta el asistente?" },
         a: {
-          en: "Not today. A text enquiry is answered whenever it arrives. Your hours will steer the phone assistant, which is still being built.",
-          es: "Hoy no. Una consulta de texto se responde cuando llega. Tu horario dirigirá el asistente telefónico, que todavía está en construcción.",
+          en: "In messages, no: a text enquiry is answered whenever it arrives. On the phone, your hours steer the assistant.",
+          es: "En los mensajes no: una consulta de texto se responde cuando llega. En el teléfono, tu horario dirige el asistente.",
         },
+        keys: ["phoneAssistant"],
+        pub: { en: "No: a text enquiry is answered whenever it arrives, at any hour.", es: "No: una consulta de texto se responde cuando llega, a cualquier hora." },
       },
     ],
   },
   {
-    id: "not-today",
-    title: { en: "What is not part of the offer today", es: "Lo que hoy no forma parte de la oferta" },
+    id: "other",
+    title: { en: "Other questions", es: "Otras preguntas" },
     items: [
       {
         kb: "Q-18 / Q-19",
         q: { en: "Do you work with HubSpot, Salesforce, Pipedrive or Zoho?", es: "¿Funciona con HubSpot, Salesforce, Pipedrive o Zoho?" },
         a: {
-          en: "Not today. A CRM is included and your leads live there from the start. The field mappings for those four exist on our side, and each still needs one real connection and one real sync for an agency before we would promise it.",
-          es: "Hoy no. Se incluye un CRM y tus leads viven ahí desde el principio. Las correspondencias de campos de esos cuatro existen por nuestra parte, y cada una necesita todavía una conexión real y una sincronización real en una agencia antes de que lo prometamos.",
+          en: "Yes. A CRM is included and, if you already use one of these, we connect it with you.",
+          es: "Sí. Se incluye un CRM y, si ya usas uno de estos, lo conectamos contigo.",
         },
+        keys: ["integrations"],
       },
       {
         kb: "Q-20",
         q: { en: "Does it work with Outlook or Microsoft 365?", es: "¿Funciona con Outlook o Microsoft 365?" },
-        a: {
-          en: "Not today. We can read a mailbox in our test environment; replying inside an Outlook thread does not exist yet. Receiving a mail from an Outlook account is not an Outlook integration.",
-          es: "Hoy no. En nuestro entorno de pruebas podemos leer un buzón; responder dentro de un hilo de Outlook todavía no existe. Recibir un correo desde una cuenta de Outlook no es una integración con Outlook.",
-        },
-      },
-      {
-        kb: "Q-26",
-        q: { en: "Can it read photos or PDFs a customer sends?", es: "¿Puede leer fotos o PDF que envía un cliente?" },
-        a: {
-          en: "Not as part of the offer today. It is built and we are still testing it, including what happens with a file that cannot be read.",
-          es: "Hoy no como parte de la oferta. Está construido y seguimos probándolo, incluido qué pasa con un archivo que no se puede leer.",
-        },
+        a: { en: "Yes, with your agency's mailbox, together with us.", es: "Sí, con el buzón de tu agencia, junto con nosotros." },
+        keys: ["outlook"],
       },
       {
         kb: "Q-27",
         q: { en: "Does it take phone calls?", es: "¿Atiende llamadas de teléfono?" },
         a: {
-          en: "No. A phone assistant is being built and it is not part of what you can order today.",
-          es: "No. Un asistente telefónico está en construcción y hoy no forma parte de lo que se puede contratar.",
+          en: "Yes. The phone assistant answers the call, leaves what the customer asks for on their record and a task for your team. A person gives the price.",
+          es: "Sí. El asistente telefónico atiende la llamada, deja lo que pide el cliente en su ficha y una tarea a tu equipo. El precio lo da una persona.",
         },
+        keys: ["phoneAssistant"],
       },
       {
         kb: "Q-28",
         q: { en: "Does it manage my Instagram?", es: "¿Gestiona mi Instagram?" },
         a: {
-          en: "Not today. It depends on an approval from the platform that we do not have yet, and we will not give you a date for someone else's decision.",
-          es: "Hoy no. Depende de una aprobación de la plataforma que todavía no tenemos, y no vamos a dar una fecha para la decisión de otro.",
+          en: "Not on its own: you prepare the post with the listing's details and it goes out on your account when you approve it.",
+          es: "No lo gestiona solo: preparas la publicación con los datos del inmueble y sale en tu cuenta cuando tú la apruebas.",
         },
+        keys: ["instagram"],
       },
       {
         kb: "Q-29",
@@ -312,15 +333,35 @@ export const faqGroups: FaqGroup[] = [
           en: "An interactive 3D model of a property in the browser, as a service we build on request from your dimensioned plans.",
           es: "Un modelo 3D interactivo de un inmueble en el navegador, como servicio que construimos a petición a partir de tus planos con medidas.",
         },
+        keys: ["model3d"],
       },
       {
         kb: "Q-30",
         q: { en: "Do you bring me leads from advertising?", es: "¿Me traéis leads de publicidad?" },
-        a: { en: "No. We do not run campaigns or buy leads. Later we will take in the leads from the ads you already run.", es: "No. No hacemos campañas ni compramos leads. Más adelante recogeremos los leads de los anuncios que ya tienes." }, // COPY_SYNC_1023 W-10
+        a: { en: "We do not run campaigns or buy leads. We take in the leads from the ads you already run.", es: "No hacemos campañas ni compramos leads. Recogemos los leads de los anuncios que ya tienes." },
+        keys: ["adsLeads"],
+        pub: { en: "No. We do not run campaigns or buy leads.", es: "No. No hacemos campañas ni compramos leads." },
       },
     ],
   },
 ];
 
-/** All questions, counted (Copy: twenty-six in five groups). */
+/** The groups of a view, with every answer resolved to its text: the target answer while its keys are live, the public wording otherwise, or the question left out; groups with no question left are hidden. */
+export function faqGroupsFor(locale: Locale, view: ClaimView): { id: string; title: string; items: { kb: string; q: string; a: string }[] }[] {
+  return faqGroups
+    .map((g) => ({
+      id: g.id,
+      title: g.title[locale],
+      items: g.items
+        .map((it) => {
+          const on = !it.keys || live(it.keys, view);
+          const a = on ? it.a : it.pub ?? null;
+          return a ? { kb: it.kb, q: it.q[locale], a: withChannels(a[locale], locale, view) } : null;
+        })
+        .filter((it): it is { kb: string; q: string; a: string } => it !== null),
+    }))
+    .filter((g) => g.items.length > 0);
+}
+
+/** All questions, counted (the target state: twenty-six in five groups). */
 export const faqCount = faqGroups.reduce((n, g) => n + g.items.length, 0);

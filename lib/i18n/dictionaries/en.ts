@@ -53,7 +53,7 @@ export const en = {
     onRequestLines: ["An interactive 3D model of your property in the browser, built by us on request. To scale from your plans; furniture and materials are illustrative. Tap a room, choose a floor, switch the furnishing on and off. You send us a dimensioned floor plan, and photos if you have them. We build the model from the plan, check it against your drawings, and you get a link. Furniture and materials are illustrative and can be switched off."],
     // COPY_DELTAS_0930 D-48: the phone is not something you can order; it has its own heading.
     beingBuilt: "Being built",
-    beingBuiltLines: ["A phone assistant that answers calls is being built. It is not part of what you can order today, and we will say so plainly until it is."],
+    beingBuiltLines: [] as string[], // Copy 1105 v3 V-56: removed in both views
     faq: "Questions",
   },
 
@@ -66,7 +66,7 @@ export const en = {
     bookDemo: "Request a demo",
     startFree: "Request access", // Copy 1102 v2 C-8
     seeDemo: "See the demo", // owner review 02.11.
-    tryFree: "14-day free trial: coming soon", // C-16a
+    tryFree: "Try it free for 14 days", // Copy 1105 v3 V-40
     noPayment: "No payment method required.",
     noSalesCall: "No sales call required.",
     readModule: "Read the module",
@@ -93,7 +93,7 @@ export const en = {
       q2: "Based on agency permissions and configuration.",
       q3: "Subject to applicable communication rules.",
       q4: "With human oversight and customer handling rules you define.",
-      q5: "Available on the channels you have connected.",
+      q5: "Works with ⟦canales⟧, with replies in Spanish.", // Copy 1105 v3 §21
     },
     bothHalves: "What is certified and what is still pending, stated plainly.",
     notAvailable: "Not available",
@@ -103,7 +103,7 @@ export const en = {
       stub: { label: "Demonstration only", line: "Nothing you enter creates an account or reaches anyone." },
       staging: { label: "Test environment", line: "Accounts and data here are for testing and may be reset." },
       // Review preview (audit R24): visible on every page of a deployment that is not the released production site.
-      preview: { label: "Preview", line: "Not public. Demonstration data only: nothing you enter creates an account or reaches anyone." },
+      preview: { label: "Preview, not public", line: "It shows the complete product, including functions that are not active. Example data: nothing you enter creates an account or reaches anyone." }, // Copy 1105 v3 §14
     },
     errors: {
       no_session: "Your session has ended. Log in again to continue.",
@@ -159,7 +159,7 @@ export const en = {
       eyebrow: "For real estate agencies in Spain",
       h1: "Answered when it arrives", // COPY_DELTAS_1001 D-81
       lead: "A buyer writes while you are at a viewing. NuovaSolution answers her in Spanish, records what she asked for and leaves your team one task.", // COPY_1019 R-2 // WORKING (master order 2026-10-10 §4, §5); was COPY_HERO_1003 §1
-      state: "Today in Spanish, for text enquiries on WhatsApp and email.", // COPY_HERO_1003 §1, the state line under the buttons
+      state: "In Spanish, on WhatsApp and e-mail.", // Copy 1105 v3 §21, the state line under the buttons
       qualifier: "On the channels you connect.",
       note: "14 days free. No payment.",
       ctaSecondary: "See how it works",
@@ -352,7 +352,7 @@ export const en = {
         steps: [
           { title: "Create your account", line: "Your name, your work email, a password." }, // WORKING
           { title: "Name your agency and set it up", line: "Your details, your legal details, your logo, your team." }, // WORKING
-          { title: "Your channels", line: "Connecting your agency's mailbox and WhatsApp is coming soon." }, // Copy 1105 v3 addition §13 N-3
+          { title: "Your channels", line: "We connect your agency's mailbox and WhatsApp with you and test each channel with a real message." }, // Copy 1105 v3 addition §13 N-3
         ],
         note: "No minutes are promised: setting up takes as long as your details take.", // WORKING
       },
@@ -403,13 +403,13 @@ export const en = {
     h1Neutral: "Start with 14 days of trial",
     leadNeutral: "14 days, no payment method. After that you choose a plan with us, and we tell you the price for your agency before anything is agreed.",
     // COPY_DELTAS_0929 D-20, D-21: the Essential wording is released (PRODUCT_TRUTH_TABLE_v1 §G).
-    h1: "Three packages, with their real state", // C-10
-    lead: "The packages cannot be booked yet: registration and the 14-day trial are coming soon. We tell you the price for your agency before anything is agreed.", // C-11 // D-106
+    h1: "What NuovaSolution includes", // Copy 1105 v3 V-34 (the public wording; the target state shows h1Neutral)
+    lead: "Access by invitation. We tell you the price for your agency before anything is agreed.", // Copy 1105 v3 V-35
     plansEyebrow: "The plans",
     included: "Included",
     baselineHeading: "What every plan includes",
     baseline: ["CRM", "Lead Engine", "Automatic replies", "Basic follow up", "Property matching", "Core reporting"],
-    baselineLine: "Every plan includes the replies and the record; the team's tasks are coming soon. The CRM is included from the start.", // D-30; closing order 26.10. §7: tasks not bookable yet (Copy X-3/X-4); WORKING, for Copy
+    baselineLine: "All plans include the replies, the record and the CRM. The team's tasks, from Growth.", // Copy 1105 v3 §21
     noPriceHeading: "Pricing",
     noPriceBody: "We tell you the price for your agency before anything is agreed. There is no self-service billing. Start the free trial or talk to us.",
     notAvailable: "Billing self-service is not available.",
@@ -421,9 +421,10 @@ export const en = {
     faq: [
       { q: "Do I need a card to start?", a: "No. Nothing is charged during the trial and no payment method is asked for." },
       { q: "Can I pay online?", a: "Not on this site. We send an invoice and you pay by bank transfer." },
-      { q: "Do I have to talk to someone first?", a: "No sales call is needed: write to us and we will show you the system. Starting on your own comes with public registration, coming soon." }, // C-14
+      { q: "Do I have to talk to someone first?", a: "No. You can start on your own." }, // Copy 1105 v3 §21
       { q: "What happens after 14 days?", a: "You keep your account and your data. Paid features pause until you choose a plan." },
     ],
+    faqPublicAnswer: "No sales call is needed: write to us and we will show you the system.", // Copy 1105 v3 V-37
     tiersEyebrow: "Three plans, side by side",
     tiersLead: "What each plan includes, read from the plan catalogue.",
     proposalLine: "Tell us your offices, your team and your channels, and we send you a proposal.",
@@ -482,8 +483,8 @@ export const en = {
 
   trial: {
     eyebrow: "Trial",
-    h1: "The 14-day free trial, coming soon.", // C-16
-    state: "State: Public registration and the 14-day trial are coming soon.", // C-16
+    h1: "Try it free for 14 days.", // Copy 1105 v3 §21
+    state: "",
     lead: "Set your agency up and decide with the system running.",
     ctaPrimary: "Start free",
     ctaSecondary: "See the packages",
@@ -509,9 +510,9 @@ export const en = {
       { title: "Agency details", line: "Company name, address, contact details and the languages you work in." },
       { title: "Branding", line: "Your logo and your email banner, for the messages that go out under your brand." },
       { title: "Team", line: "Add your team and set their roles: agent, team lead, office manager, agency admin." },
-      { title: "Channels", line: "Coming soon: connecting your agency's mailbox and WhatsApp." }, // Copy 1105 v3 addition §13 N-4
-      { title: "Lead sources", line: "Tell us where your leads come from today. Connecting those sources is coming soon." },
-      { title: "CRM", line: "A CRM is included from the start. If you use another one, tell us which: connecting it is not offered yet, and you stay on the included CRM meanwhile." },
+      { title: "Channels", line: "We connect your agency's mailbox and WhatsApp with you and test each channel with a real message." }, // Copy 1105 v3 §13 N-4
+      { title: "Lead sources", line: "Tell us where your leads come from and we connect them with you." }, // §21
+      { title: "CRM", line: "A CRM is included from the start. If you use another, tell us which and we connect it with you." }, // §21
       { title: "Property source", line: "Point it at your own website, a supported feed or your CRM inventory." },
       { title: "Readiness", line: "A clear readiness check before you go live. A step waiting on a provider is never shown as done." },
     ],
@@ -527,7 +528,7 @@ export const en = {
     demoBody: "We walk you through the system on a real example and you can ask anything. No slide deck.", // D-32
     demoCta: "Request a demo",
     trialH2: "Or just start",
-    trialBody: "The 14-day free trial, with no payment method, comes with public registration, coming soon.", // C-16b
+    trialBody: "Try it free for 14 days. No payment method, no sales call.", // Copy 1105 v3 §21
     // A plan interest from the packages page is carried into the request (audit Z03, Z11). The plan name comes from the catalog.
     planInterest: "Plan of interest: {plan}",
     planInterestBody: "Write to us with your agency's name and we send you a proposal for this plan.",

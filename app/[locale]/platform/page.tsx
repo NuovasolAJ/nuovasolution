@@ -3,7 +3,9 @@ import Link from "next/link";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { publishedCapabilities } from "@/lib/content/capabilities";
-import { entryHref, platformTasks, stateWords } from "@/lib/content/platform-map";
+import { live } from "@/lib/claims";
+import { platformTasksFor } from "@/lib/content/platform-map";
+import { resolveSwitches } from "@/lib/view";
 import { Display, Eyebrow, Lead } from "@/components/ui/type";
 import { Reveal } from "@/components/ui/reveal";
 import { ClosingBand } from "@/components/site/closing-band";
@@ -26,6 +28,8 @@ export default function PlatformPage({ params }: { params: { locale: string } })
   const d = getDictionary(locale);
   const p = (path: string) => localePath(locale, path);
   const caps = publishedCapabilities();
+  const view = resolveSwitches().view;
+  const tasks = platformTasksFor(locale, view);
   const hrefOf = (href: string) => (href.startsWith("/") && !href.startsWith("/#") ? p(href) : `${localePath(locale)}${href.slice(1)}`);
 
   return (
@@ -44,20 +48,18 @@ export default function PlatformPage({ params }: { params: { locale: string } })
       <section aria-label={d.nav.menuTitle} className="pb-[var(--section-default)]">
         <div className="container-default">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-x-16 lg:gap-y-14" data-platform-sections>
-            {platformTasks.map((task, i) => (
+            {tasks.map((task, i) => (
               <section key={task.key} id={task.key} aria-labelledby={`po-${task.key}`} className="scroll-mt-[var(--header-h)]" data-platform-section={task.key}>
                 <p className="tnum t-caption text-text-accent">0{i + 1}</p>
-                <h2 id={`po-${task.key}`} className="mt-2 t-display-m text-text-primary">{task.title[locale]}</h2>
-                <p className="mt-3 max-w-[48ch] t-body-m text-text-secondary">{task.line[locale]}</p>
+                <h2 id={`po-${task.key}`} className="mt-2 t-display-m text-text-primary">{task.title}</h2>
+                <p className="mt-3 max-w-[48ch] t-body-m text-text-secondary">{task.line}</p>
                 <ul className="mt-6 divide-y divide-line-hairline border-y border-line-hairline">
                   {task.entries.map((e) => (
                     <li key={e.key} data-platform-entry={e.key}>
-                      <Link href={hrefOf(entryHref(e))} className="group flex min-h-[56px] items-center justify-between gap-4 py-3">
+                      <Link href={hrefOf(e.href)} className="group flex min-h-[56px] items-center justify-between gap-4 py-3">
                         <span className="min-w-0">
-                          <span className="block t-body-m font-medium text-text-primary">{e.name[locale]}</span>
-                          <span className="block t-body-s text-text-secondary">{e.line[locale]}</span>
-                          {/* COPY_SYNC_1023 W-3: every row carries its state */}
-                          <span className="state-line mt-1" data-state={e.state} data-platform-entry-state>{e.stateLine ? e.stateLine[locale] : stateWords[e.state][locale]}</span>
+                          <span className="block t-body-m font-medium text-text-primary">{e.name}</span>
+                          <span className="block t-body-s text-text-secondary">{e.line}</span>
                         </span>
                         <StatusGlyph glyph="arrow-right" size={14} className="shrink-0 text-text-muted transition-transform duration-micro group-hover:translate-x-0.5" />
                       </Link>
@@ -97,8 +99,8 @@ export default function PlatformPage({ params }: { params: { locale: string } })
         </div>
       </section>
 
-      {/* Per order, and being built: said once, plainly. */}
-      <section aria-label={`${d.nav.onRequest} · ${d.nav.beingBuilt}`} className="pb-[var(--section-compact)]">
+      {/* Per order: said once, plainly (the "being built" block is gone, Copy 1105 v3 V-56). */}
+      {live("model3d", view) && <section aria-label={d.nav.onRequest} className="pb-[var(--section-compact)]">
         <div className="container-default">
           <div className="grid gap-8 border-t border-line-hairline pt-8 lg:grid-cols-2 lg:gap-12">
             <div data-on-request>
@@ -109,17 +111,9 @@ export default function PlatformPage({ params }: { params: { locale: string } })
                 ))}
               </ul>
             </div>
-            <div data-being-built>
-              <p className="t-eyebrow text-text-muted">{d.nav.beingBuilt}</p>
-              <ul className="mt-4 space-y-3">
-                {d.nav.beingBuiltLines.map((l) => (
-                  <li key={l} className="flex items-start gap-2 t-body-m text-text-secondary"><StatusGlyph glyph="rule" size={12} className="mt-2 shrink-0 text-text-muted" />{l}</li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
-      </section>
+      </section>}
 
       <ClosingBand locale={locale} id="po-close" />
     </>

@@ -2,8 +2,9 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { startLabel } from "@/lib/content/plans";
 import { publishedCapabilities } from "@/lib/content/capabilities";
+import { entryAction } from "@/lib/claims";
+import { resolveSwitches } from "@/lib/view";
 import { Logo } from "@/components/ui/logo";
 
 /**
@@ -13,6 +14,7 @@ import { Logo } from "@/components/ui/logo";
 export function Footer({ locale }: { locale: Locale }) {
   const d = getDictionary(locale);
   const p = (path: string) => localePath(locale, path);
+  const entry = entryAction(locale, resolveSwitches().view);
 
   const cols: { heading: string; items: { href: string; label: string; note?: string }[] }[] = [
     {
@@ -22,8 +24,8 @@ export function Footer({ locale }: { locale: Locale }) {
     {
       heading: d.footer.getStarted,
       items: [
-        { href: p("/contact"), label: startLabel(locale) },
-        { href: p("/trial"), label: d.nav.trial },
+        { href: p(entry.href), label: entry.label },
+        { href: p("/trial"), label: entry.nav },
         { href: p("/packages"), label: d.nav.packages },
         { href: p("/login"), label: d.nav.login },
       ],

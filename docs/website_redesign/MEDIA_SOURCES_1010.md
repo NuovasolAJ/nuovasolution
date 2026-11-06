@@ -102,6 +102,52 @@ alt is the lane's ("Casa de ejemplo ficticia: salón amueblado, ilustrativo"). T
 art and will be replaced by the lane with public-domain art (the owner's order of 05.11.); the new render arrives with its checksum
 and replaces the files under the same names.
 
+## 2e. The 3D lane's handoff_2026-11-06 (the owner's `WANDBILD = 1`; the verdict of 06.11., point 3: only the lane's delivery)
+
+The lane's addendum `NACHTRAG_WANDBILD_1106_v1.md` (`C:\src
+uova-3d\deliverables\website-assets\handoff_2026-11-06\`, `SHA256SUMS.txt`
+verified on 06.11. with `sha256sum -c`: every file OK) replaces exactly three media of the 05.11. handoff. The wall painting in the
+living room is now **Vincent van Gogh, "Cypresses", 1889, The Metropolitan Museum of Art 49.30, public domain / CC0**
+(objectID 437980; the lane's file `assets_cc0/art/met_437980_vangogh_cypresses.jpg`). The credit is not mandatory under CC0; the lane
+recommends it, and the site carries it as the title of the hero's mark ("Cuadro: Vincent van Gogh, Cypresses (1889), The Metropolitan
+Museum of Art, dominio público"). Same camera, light and settings as on 05.11.; the file names on the site stay the same.
+
+| Site file | Lane file (handoff_2026-11-06) | Lane sha256 (first 16) | On the site | Use |
+|---|---|---|---|---|
+| `hero-a-2560.webp` / `-1920` / `-1280` / `hero-a-poster-960.webp` | `hero/hero_A.png` (3840 × 2160, 8 bit) | `9cb1bae44abcf248…` | WebP 80 (poster 78) by sharp 0.34, resized from the PNG | the hero picture (HERO = A) |
+| `house-ground-loop.mp4` (12.7 MB) | `modelo/modelo_planta_baja_loop.mp4` (H.264, 1920 × 1080, 30 fps constant, 10.0 s, 300 frames) | `239d2e44d41dab78…` | identical (sha256 verified on the site and on the deployment) | 02 Modelo, the first `<source>` |
+| `house-ground-loop.webm` (10.5 MB) | `modelo/modelo_planta_baja_loop.webm` (VP9) | `3e1a2c3967bdf495…` | identical | the second `<source>` of 02 |
+| `house-ground-loop-poster-1600.webp` | `modelo/modelo_planta_baja_loop_poster.jpg` (the first frame) | `93d7b7fbb0d7c66f…` | WebP 80 at 1600 px | the poster of 02; it stands over the clip until the clip can play |
+| `house-delivery.mp4` (14.6 MB) | `entrega/entrega_clip.mp4` (H.264, 1920 × 1080, 30 fps constant, 18.4 s, 552 frames) | `2f1e2a70de1fbd77…` | identical (sha256 verified) | 04 Entrega, the first `<source>`, loaded on request |
+| `house-delivery.webm` (8.9 MB) | `entrega/entrega_clip.webm` (VP9) | `4c0d7e6bc88c313…` | identical | the second `<source>` of 04 |
+| `house-delivery-poster-1600.webp` | `entrega/entrega_clip_poster.jpg` (the frame at 1.0 s) | `b183f902a5b8b3f2…` | WebP 80 at 1600 px | the poster of 04 |
+
+The lane's play check (installed Chrome and Edge, phone-like emulation): both clips play to the end; dropped frames 2–6 of 300 /
+552 (the lane's own threshold "≤ 2 or ≤ 1 %" is met or just missed by one frame on the installed browsers, met on the phone-like
+emulation); MP4 stays the first `<source>`. The earlier placeholder painting ("the abstract picture", the lane's `abstract_art()`
+fallback) is gone from every medium on the site. FRAGE D (a calm hero video with the painting): not delivered yet; the still picture
+stays until the lane's hero video arrives with its checksum.
+
+### The owner's addition of 06.11. evening: the wall paintings apply to every medium
+
+Per medium on the site after this round (the owner: "no medium with the old picture stays"; the swap only from the 3D lane's
+handoff with checksums):
+
+| Medium on the site | Wall painting | Source |
+|---|---|---|
+| `hero-a-*.webp` (the hero) | **new** (Van Gogh, Cypresses) | handoff_2026-11-06 `hero/hero_A.png` |
+| `house-ground-loop.mp4/.webm` + poster (02 Modelo) | **new** | handoff_2026-11-06 `modelo/` |
+| `house-delivery.mp4/.webm` + poster (04 Entrega) | **new** | handoff_2026-11-06 `entrega/` |
+| `living-empty-1200.webp`, `living-furnished-1200.webp` (03 Vacío y amueblado) | **old** (the lane's earlier placeholder art) | handoff_2026-10-30; the lane re-renders after the hero video (the owner's line of 06.11.), then they are swapped by checksum |
+| `living-camera-ride.mp4`, `living-ride-poster.webp`, `house-ground-near-1600.webp`, `house-ground-near-empty-1600.webp` | old, **not used by any page** | removed from `public/media/3d/` in this round |
+
+### The tab icon (06.11., point 1)
+
+`app/icon0.svg` (the mark traced from the official artwork `public/images/nuova-icon.png` with potrace, 3.7 kB, black on a light
+tab and white on a dark one by `prefers-color-scheme`), `app/icon1.png` (the white mark on the black tile, 512 px) and
+`app/apple-icon.png` (180 px); Next serves them with a content hash in the URL (a new cache name on every change). The old
+`public/favicon-v2.*` are removed. The same path serves `components/ui/mark.tsx` (the mark in the flow's second field, exactly centred).
+
 ## 3. Drawn, not photographed
 
 - (removed 02.11.) the hero's ridges of the four-layer concept.

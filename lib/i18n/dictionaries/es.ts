@@ -47,7 +47,7 @@ export const es: Dictionary = {
     allCapabilities: "Ver todas las capacidades",
     onRequest: "A petición",
     beingBuilt: "En construcción",
-    beingBuiltLines: ["Un asistente telefónico que atiende llamadas está en construcción. Hoy no forma parte de lo que se puede contratar, y lo diremos claramente hasta que lo sea."],
+    beingBuiltLines: [] as string[], // Copy 1105 v3 V-56: removed in both views
     faq: "Preguntas",
     onRequestLines: ["Un modelo 3D interactivo de tu inmueble en el navegador, hecho por nosotros a petición. A escala según tus planos; los muebles y los materiales son ilustrativos. Toca una habitación, elige una planta, activa y desactiva el mobiliario. Nos envías un plano con medidas y, si las tienes, fotos. Construimos el modelo a partir del plano, lo comprobamos contra tus planos y recibes un enlace. Los muebles y los materiales son ilustrativos y se pueden desactivar."], // D-49
   },
@@ -60,7 +60,7 @@ export const es: Dictionary = {
     bookDemo: "Solicitar una demo",
     startFree: "Pedir acceso", // Copy 1102 v2 C-8 (claims lines 02.11.: no public sign-up promise): every former "Probar gratis" button
     seeDemo: "Ver la demo", // owner review 02.11.: the header's one general button leads to the demonstration (no public sign-up)
-    tryFree: "Prueba gratuita de 14 días: próximamente", // C-16a
+    tryFree: "Prueba gratis durante 14 días", // Copy 1105 v3 V-40 (hangs on trial + publicSignup)
     noPayment: "Sin método de pago.",
     noSalesCall: "Sin llamada comercial.",
     readModule: "Ver el módulo",
@@ -87,14 +87,14 @@ export const es: Dictionary = {
       q2: "Según los permisos y la configuración de tu agencia.",
       q3: "Conforme a la normativa de comunicación aplicable.",
       q4: "Con supervisión humana y reglas de atención que defines tú.",
-      q5: "Disponible según los canales que tengas conectados.",
+      q5: "Funciona con ⟦canales⟧, con respuestas en español.", // Copy 1105 v3 §21
     },
     bothHalves: "Lo que está certificado y lo que sigue pendiente, dicho con claridad.",
     notAvailable: "No disponible",
     env: {
       stub: { label: "Solo demostración", line: "Nada de lo que introduzcas crea una cuenta ni llega a nadie." },
       staging: { label: "Entorno de pruebas", line: "Las cuentas y los datos de aquí son de prueba y pueden borrarse." },
-      preview: { label: "Vista previa", line: "No es pública. Solo datos de demostración: nada de lo que introduzcas crea una cuenta ni llega a nadie." },
+      preview: { label: "Vista previa, no pública", line: "Muestra el producto completo, incluidas funciones que no están activas. Datos de ejemplo: nada de lo que introduzcas crea una cuenta ni llega a nadie." }, // Copy 1105 v3 §14
     },
     errors: {
       no_session: "Tu sesión ha terminado. Inicia sesión otra vez para continuar.",
@@ -143,7 +143,7 @@ export const es: Dictionary = {
       eyebrow: "Para agencias inmobiliarias en España",
       h1: "Respondida cuando llega", // COPY_DELTAS_1001 D-81
       lead: "Una compradora escribe mientras estás en una visita. NuovaSolution le responde en español, registra lo que ha pedido y deja una tarea a tu equipo.", // COPY_1019 R-2 (the home hero renders lib/content/home-story.ts) // WORKING (orden maestra 2026-10-10 §4, §5); antes COPY_HERO_1003 §1
-      state: "Hoy en español, para consultas de texto por WhatsApp y email.", // COPY_HERO_1003 §1
+      state: "En español, por WhatsApp y email.", // Copy 1105 v3 §21 (es.ts:146)
       qualifier: "En los canales que conectes.",
       note: "14 días gratis. Sin pago.",
       ctaSecondary: "Ver cómo funciona", // COPY_HERO_1003 §1
@@ -320,7 +320,7 @@ export const es: Dictionary = {
         steps: [
           { title: "Crea tu cuenta", line: "Tu nombre, tu email de trabajo, una contraseña." }, // WORKING
           { title: "Pon nombre a tu agencia y configúrala", line: "Tus datos, tus datos legales, tu logo, tu equipo." }, // WORKING
-          { title: "Tus canales", line: "La conexión del buzón y del WhatsApp de tu agencia llega próximamente." }, // Copy 1105 v3 addition §13 N-3
+          { title: "Tus canales", line: "Conectamos contigo el buzón y el WhatsApp de tu agencia y probamos cada canal con un mensaje real." }, // Copy 1105 v3 addition §13 N-3
         ],
         note: "No prometemos minutos: configurar tarda lo que tarden tus datos.", // WORKING
       },
@@ -368,13 +368,13 @@ export const es: Dictionary = {
     eyebrow: "Planes",
     h1Neutral: "Empieza con 14 días de prueba",
     leadNeutral: "14 días, sin método de pago. Después eliges un plan con nosotros y te decimos el precio para tu agencia antes de acordar nada.",
-    h1: "Tres paquetes, con su estado real", // C-10
-    lead: "Hoy los paquetes todavía no se pueden contratar: el registro y la prueba de 14 días están próximamente. Te decimos el precio para tu agencia antes de acordar nada.", // C-11
+    h1: "Qué incluye NuovaSolution", // Copy 1105 v3 V-34 (the public wording; the target state shows h1Neutral)
+    lead: "Acceso por invitación. Te decimos el precio para tu agencia antes de acordar nada.", // Copy 1105 v3 V-35
     plansEyebrow: "Los planes",
     included: "Incluido",
     baselineHeading: "Qué incluye cada plan",
     baseline: ["CRM", "Lead Engine", "Respuestas automáticas", "Seguimiento básico", "Property matching", "Reporting básico"],
-    baselineLine: "Todos los planes incluyen las respuestas y la ficha; las tareas del equipo están próximamente. El CRM está incluido desde el principio.", // closing order 26.10. §7: tasks not bookable yet (Copy X-3/X-4); WORKING, for Copy
+    baselineLine: "Todos los planes incluyen las respuestas, la ficha y el CRM. Las tareas del equipo, desde Growth.", // Copy 1105 v3 §21 (hangs on plans + taskList)
     noPriceHeading: "Precio",
     noPriceBody: "Te decimos el precio para tu agencia antes de acordar nada. No hay facturación en autoservicio. Empieza la prueba gratis o habla con nosotros.",
     notAvailable: "La facturación en autoservicio no está disponible.",
@@ -386,9 +386,10 @@ export const es: Dictionary = {
     faq: [
       { q: "¿Necesito una tarjeta para empezar?", a: "No. Durante la prueba no se cobra nada ni se pide método de pago." },
       { q: "¿Puedo pagar online?", a: "En este sitio no. Te enviamos una factura y la pagas por transferencia." },
-      { q: "¿Tengo que hablar con alguien antes?", a: "No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. Empezar por tu cuenta llega con el registro público, próximamente." }, // C-14
+      { q: "¿Tengo que hablar con alguien antes?", a: "No. Puedes empezar por tu cuenta." }, // Copy 1105 v3 §21 (target; public: faqPublicAnswer)
       { q: "¿Qué pasa después de los 14 días?", a: "Conservas tu cuenta y tus datos. Las funciones de pago se pausan hasta que elijas un plan." },
     ],
+    faqPublicAnswer: "No hace falta una llamada comercial: escríbenos y te enseñamos el sistema.", // Copy 1105 v3 V-37
     tiersEyebrow: "Tres planes, uno al lado del otro",
     tiersLead: "Qué incluye cada plan, según el catálogo de planes.",
     proposalLine: "Cuéntanos tus oficinas, tu equipo y tus canales y te enviamos una propuesta.",
@@ -443,8 +444,8 @@ export const es: Dictionary = {
 
   trial: {
     eyebrow: "Prueba",
-    h1: "La prueba gratuita de 14 días, próximamente.", // C-16
-    state: "Estado: El registro público y la prueba de 14 días están próximamente.", // C-16
+    h1: "Prueba gratis durante 14 días.", // Copy 1105 v3 §21 (the state line is gone; the route leads to /contact while the trial is off)
+    state: "",
     lead: "Configura tu agencia y decide con el sistema en marcha.",
     ctaPrimary: "Empieza gratis",
     ctaSecondary: "Ver los paquetes",
@@ -470,9 +471,9 @@ export const es: Dictionary = {
       { title: "Datos de la agencia", line: "Nombre de la empresa, dirección, datos de contacto y los idiomas en los que trabajas." },
       { title: "Marca", line: "Tu logo y el banner de tus emails, para los mensajes que salen con tu marca." },
       { title: "Equipo", line: "Añade a tu equipo y asigna roles: agente, jefe de equipo, responsable de oficina, administrador de la agencia." },
-      { title: "Canales", line: "Próximamente: conectar el buzón y el WhatsApp de tu agencia." }, // Copy 1105 v3 addition §13 N-4
-      { title: "Fuentes de leads", line: "Dinos de dónde te llegan hoy los leads. Conectar esas fuentes está próximamente." },
-      { title: "CRM", line: "Hay un CRM incluido desde el principio. Si usas otro, dinos cuál: conectarlo todavía no se ofrece y mientras tanto sigues con el CRM incluido." },
+      { title: "Canales", line: "Conectamos contigo el buzón y el WhatsApp de tu agencia y probamos cada canal con un mensaje real." }, // Copy 1105 v3 §13 N-4
+      { title: "Fuentes de leads", line: "Dinos de dónde te llegan los leads y los conectamos contigo." }, // §21 (adsLeads; public: "Dinos de dónde te llegan los leads.")
+      { title: "CRM", line: "Hay un CRM incluido desde el principio. Si usas otro, dinos cuál y lo conectamos contigo." }, // §21 (integrations; public: first sentence only)
       { title: "Fuente de propiedades", line: "Apunta a tu propia web, a un feed compatible o al inventario de tu CRM." },
       { title: "Preparación", line: "Una comprobación clara antes de salir en vivo. Un paso que espera a un proveedor nunca se muestra como hecho." },
     ],
@@ -488,7 +489,7 @@ export const es: Dictionary = {
     demoBody: "Te guiamos por el sistema con un ejemplo real y puedes preguntar lo que quieras. Sin presentación.",
     demoCta: "Solicitar una demo",
     trialH2: "O simplemente empieza",
-    trialBody: "La prueba gratuita de 14 días, sin método de pago, llega con el registro público, próximamente.", // C-16b
+    trialBody: "Prueba gratis durante 14 días. Sin método de pago, sin llamada comercial.", // Copy 1105 v3 §21 (the block hangs on trial + publicSignup)
     planInterest: "Plan que te interesa: {plan}",
     planInterestBody: "Escríbenos con el nombre de tu agencia y te enviamos una propuesta para este plan.",
     proposalSubject: "Solicitud de propuesta: {plan}",

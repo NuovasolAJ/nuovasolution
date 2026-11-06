@@ -3,37 +3,43 @@ import { ArrowRight } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
+import { entryAction, type ClaimView } from "@/lib/claims";
 import { HeroBenefits, HeroImage, HeroScrollHint } from "./hero-image";
 import { HeroDemo } from "./hero-demo";
+import { BrandMoment } from "./brand-moment";
 
 /**
- * The hero (the owner's orders of 03.11. point 1 and 05.11. point 2 + "HERO = A"; Copy 1105 v3 §2): the 3D lane's render of the
- * furnished living room (hero_A) dimmed behind one strong sentence and the one main action; the brand moment with the logo on
- * load; three benefits appearing one after another; the demonstration follows directly underneath as a floating product card
- * that rises into the picture's lower edge. The header stands transparent over the picture only while the picture's top edge
- * is under it (header-shell.tsx).
+ * The hero (the owner's orders of 03.11. point 1, 05.11. point 2 + "HERO = A", 06.11. points 2 and 3 + FRAGE D; Copy 1105 v3 §2 and
+ * §16): the 3D lane's render of the furnished living room (hero_A of handoff_2026-11-06, with the public-domain wall painting)
+ * dimmed behind one strong sentence and the one main action; the brand moment with the logo on load, which then travels into the
+ * header's logo; the three chips of §16 (H-1 … H-3, per view) appearing one after another; the demonstration follows directly
+ * underneath as a floating product card that rises into the picture's lower edge. The header stands transparent over the picture
+ * only while the picture's top edge is under it (header-shell.tsx). The still picture stays until the 3D lane delivers the calm
+ * hero video (FRAGE D = JA).
  *
- * The words at the left (Copy §2): for whom, the headline, the benefit line, "Ver la demo" as the main action, "Pedir acceso" as
- * the quiet second action, access by invitation. No trial promise (claims lines 02.11.).
+ * The words at the left: for whom, the headline, the benefit line (H-4), "Ver la demo" as the main action; the second action and the
+ * line under it follow the view (H-5/H-6, lib/claims.ts): the trial in the target state, "Pedir acceso" with "Acceso por invitación."
+ * on the public view.
  */
 const PICTURE = "/media/3d/hero-a-1920.webp";
+/** Sets the brand-moment attribute before the first paint, so the header's logo never flashes before the moment; the client component takes over. */
+const BRAND_MOMENT_SCRIPT = "if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.setAttribute('data-brand-moment','on');setTimeout(function(){document.documentElement.removeAttribute('data-brand-moment')},7000)}";
 
-export function Hero({ locale }: { locale: Locale }) {
+export function Hero({ locale, view }: { locale: Locale; view: ClaimView }) {
   const w = home1103.hero;
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const p = (path: string) => localePath(locale, path);
+  const entry = entryAction(locale, view);
   // the picture is the first paint of the page: preloaded so the largest paint does not wait for it
   preload(PICTURE, { as: "image" });
 
   return (
     <>
+      <script dangerouslySetInnerHTML={{ __html: BRAND_MOMENT_SCRIPT }} />
       <section aria-labelledby="hero-h1" data-hero="film" className="hf">
-        <HeroImage alt={l(w.image)} mark={l(w.imageMark)} />
-        {/* the brand moment (05.11., point 2): the logo alone over the picture for a breath, then the words rise (CSS; none with reduced motion) */}
-        <div className="hf-brand" aria-hidden="true" data-hero-brand>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/logo-tight.png" alt="" width={1600} height={320} decoding="async" fetchPriority="high" />
-        </div>
+        <HeroImage alt={l(w.image)} mark={l(w.imageMark)} credit={l(w.artCredit)} />
+        {/* the brand moment (06.11., point 2): the logo alone over the picture, then it travels into the header's logo (none with reduced motion) */}
+        <BrandMoment />
         <div className="container-default hf-content">
           <div className="hf-words" data-hero-words>
             <p className="hf-eyebrow t-eyebrow t-eyebrow-l">{l(w.eyebrow)}</p>
@@ -45,17 +51,17 @@ export function Hero({ locale }: { locale: Locale }) {
             <p className="hf-lead" data-hero-lead>{l(w.lead)}</p>
             <div className="hf-ctas">
               <a href="#demo" className="hf-cta-main" data-hero-cta="demo">{l(w.ctaDemo)}<ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" /></a>
-              <a href={p("/contact")} className="hf-cta-second" data-hero-cta="contact">{l(w.ctaContact)}</a>
+              <a href={p(entry.href)} className="hf-cta-second" data-hero-cta={entry.kind === "trial" ? "trial" : "contact"}>{entry.label}</a>
             </div>
-            <p className="hf-access" data-hero-access>{l(w.access)}</p>
+            <p className="hf-access" data-hero-access={entry.kind}>{entry.line}</p>
           </div>
-          <HeroBenefits benefits={l(w.benefits)} />
+          <HeroBenefits benefits={w.chips(view).map((c) => c[locale])} />
           <HeroScrollHint label={l(w.scroll)} />
         </div>
       </section>
       {/* The product card rises into the picture's lower edge: the transition from the house to the message and the record. */}
       <div className="container-default hero-demo-wrap" data-hero-demo-wrap>
-        <HeroDemo locale={locale} />
+        <HeroDemo locale={locale} view={view} />
       </div>
     </>
   );

@@ -4,7 +4,8 @@ import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, ty
 import { ArrowRight, Check, ChevronDown, Inbox, Mail, MessageCircle, Mic, PanelsTopLeft, Phone, PhoneOff, RotateCcw, Send, Star } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
-import { demoChannels, demoWords, endPhase, recordStart, type DemoChannel, type DemoChannelKey } from "@/lib/content/home-demo";
+import { demoChannels, demoWords, endPhase, recordStart, runLength, type DemoChannel, type DemoChannelKey } from "@/lib/content/home-demo";
+import { shows, type ClaimView } from "@/lib/claims";
 
 /**
  * The demonstration under the hero (the owner's order of 03.11.2026, points 2 and 3): four channels, each on a surface that
@@ -15,7 +16,10 @@ import { demoChannels, demoWords, endPhase, recordStart, type DemoChannel, type 
  * the first paint. JavaScript only advances the phase on a few timers once the surface is in view. Without JavaScript and with
  * reduced motion the finished picture stands at once (CSS), and the replay control is hidden.
  *
- * The channel selector is a native tablist (icon and full name, a filled active state, arrow keys, no automatic change).
+ * The channel selector is a native tablist (icon and full name, a filled active state, arrow keys). The owner's point 4 of
+ * 06.11.: the tabs are visibly clickable (larger, a clear hover, Copy's invitation above them) and change on their own after each
+ * run with a progress bar on the active tab, until the first click or key press stops the rotation. The public view shows only the
+ * channels that are included (lib/claims.ts); no mark and no status word stands on any surface (points 5 and "coming soon").
  */
 const ICON: Record<DemoChannelKey, typeof MessageCircle> = { whatsapp: MessageCircle, email: Mail, webform: PanelsTopLeft, phone: Phone };
 const REDUCE = "(prefers-reduced-motion: reduce)";
@@ -30,26 +34,38 @@ function Item({ n, phase, className, children, as: Tag = "div", ...rest }: { n: 
   );
 }
 
-export function HeroDemo({ locale }: { locale: Locale }) {
+const PAUSE_AFTER_RUN = 2600;
+
+export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: ClaimView }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const W = demoWords;
+  const channels = demoChannels.filter((c) => shows(c.claim, view));
   const [channel, setChannel] = useState<DemoChannelKey>("whatsapp");
   const [phase, setPhase] = useState(0);
+  // the rotation: on until the first click or key on the tabs (or the replay); `turn` restarts the bar on every run
+  const [auto, setAuto] = useState(true);
+  const [turn, setTurn] = useState(0);
+  const manual = useRef(false);
+  const inView = useRef(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
   const timers = useRef<number[]>([]);
   const started = useRef(false);
   const id = useId();
-  const script = demoChannels.find((c) => c.key === channel) as DemoChannel;
+  const script = (channels.find((c) => c.key === channel) ?? channels[0]) as DemoChannel;
   const end = endPhase(script);
   const done = phase >= end;
 
   const clear = () => { for (const t of timers.current) window.clearTimeout(t); timers.current = []; };
 
-  /** Runs the chosen channel's sequence from its first phase; with reduced motion the end state is set at once. */
+  /**
+   * Runs the chosen channel's sequence from its first phase; with reduced motion the end state is set at once (and nothing rotates).
+   * While the rotation is on, the next channel follows a pause after the run (the bar on the active tab shows that time).
+   */
   const run = useCallback((c: DemoChannel) => {
     clear();
-    if (window.matchMedia(REDUCE).matches) { setPhase(endPhase(c)); return; }
+    setTurn((n) => n + 1);
+    if (window.matchMedia(REDUCE).matches) { setPhase(endPhase(c)); setAuto(false); return; }
     setPhase(0);
     let t = 0;
     c.timings.forEach((ms, i) => {
@@ -57,18 +73,27 @@ export function HeroDemo({ locale }: { locale: Locale }) {
       t += ms;
       timers.current.push(window.setTimeout(() => setPhase(i), t));
     });
-  }, []);
+    timers.current.push(window.setTimeout(() => {
+      if (manual.current || !inView.current) return;
+      const keys = channels.map((x) => x.key);
+      const nextKey = keys[(keys.indexOf(c.key) + 1) % keys.length];
+      const nc = channels.find((x) => x.key === nextKey) as DemoChannel;
+      setChannel(nextKey);
+      run(nc);
+    }, t + PAUSE_AFTER_RUN));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [channels.map((c) => c.key).join()]);
 
   // The first run starts when the surface is in view.
   useEffect(() => {
     const el = rootRef.current;
     if (!el) return;
-    if (window.matchMedia(REDUCE).matches) { setPhase(endPhase(script)); started.current = true; return; }
+    if (window.matchMedia(REDUCE).matches) { setPhase(endPhase(script)); started.current = true; setAuto(false); return; }
     const io = new IntersectionObserver((entries) => {
-      if (started.current || !entries.some((e) => e.isIntersecting)) return;
+      inView.current = entries.some((e) => e.isIntersecting);
+      if (started.current || !inView.current) return;
       started.current = true;
       run(script);
-      io.disconnect();
     }, { threshold: 0.3 });
     io.observe(el);
     return () => io.disconnect();
@@ -78,23 +103,27 @@ export function HeroDemo({ locale }: { locale: Locale }) {
   // "Ver la demo" (the hero's main action and the header's button) runs the demonstration again.
   useEffect(() => {
     const ctas = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-hero-cta=\"demo\"], [data-demo-run]"));
-    const onClick = () => { started.current = true; run(script); };
+    const onClick = () => { started.current = true; inView.current = true; run(script); };
     for (const c of ctas) c.addEventListener("click", onClick);
     return () => { for (const c of ctas) c.removeEventListener("click", onClick); };
   }, [run, script]);
 
   useEffect(() => clear, []);
 
+  /** A person's choice stops the rotation for good (owner point 4). */
+  const stopAuto = () => { manual.current = true; setAuto(false); };
   const choose = (key: DemoChannelKey) => {
+    stopAuto();
     if (key === channel) return;
-    const c = demoChannels.find((x) => x.key === key) as DemoChannel;
+    const c = channels.find((x) => x.key === key) as DemoChannel;
     setChannel(key);
     started.current = true;
+    inView.current = true;
     run(c);
   };
 
   const onTabKey = (e: KeyboardEvent<HTMLDivElement>) => {
-    const keys = demoChannels.map((c) => c.key);
+    const keys = channels.map((c) => c.key);
     const i = keys.indexOf(channel);
     let next: number | null = null;
     if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (i + 1) % keys.length;
@@ -120,31 +149,35 @@ export function HeroDemo({ locale }: { locale: Locale }) {
       data-demo-channel={channel}
       data-demo-phase={phase}
       data-demo-done={done ? "true" : "false"}
-      style={{ ["--phase" as string]: phase, ["--end" as string]: end }}
+      data-demo-auto={auto && started.current ? "true" : "false"}
+      data-demo-view={view}
+      style={{ ["--phase" as string]: phase, ["--end" as string]: end, ["--run" as string]: `${runLength(script) + PAUSE_AFTER_RUN}ms` }}
       aria-label={l(W.surfaceLabel)}
       role="group"
     >
       {/* The bar: the channel choice with its hint, the replay. */}
       <div className="demo-bar">
         <div className="demo-bar-top">
-          <p id={`${id}-pick`} className="demo-pick-label">{l(W.pick)}</p>
-          <button type="button" className="demo-replay" data-demo-replay onClick={() => { started.current = true; run(script); }}>
+          <p id={`${id}-pick`} className="demo-pick-label" data-demo-invite>{channels.length > 1 ? <><span className="demo-pick-word">{l(W.pick)}</span><span className="demo-invite">{l(W.invite)}</span></> : <span className="demo-invite">{l(W.surfaceLabel)}</span>}</p>
+          <button type="button" className="demo-replay" data-demo-replay onClick={() => { stopAuto(); started.current = true; inView.current = true; run(script); }}>
             <RotateCcw size={14} strokeWidth={2.2} aria-hidden="true" />
             {l(W.replay)}
           </button>
         </div>
-        <div ref={tabsRef} role="tablist" aria-labelledby={`${id}-pick`} className="demo-tabs" data-demo-tabs onKeyDown={onTabKey}>
-          {demoChannels.map((c) => {
+        {channels.length > 1 && <div ref={tabsRef} role="tablist" aria-labelledby={`${id}-pick`} className="demo-tabs" data-demo-tabs onKeyDown={onTabKey}>
+          {channels.map((c) => {
             const Icon = ICON[c.key];
             const on = c.key === channel;
             return (
-              <button key={c.key} type="button" role="tab" id={`${id}-tab-${c.key}`} aria-selected={on} aria-controls={panelId} tabIndex={on ? 0 : -1} onClick={() => choose(c.key)} className={cn("demo-tab", on && "demo-tab-on")} data-demo-tab={c.key} data-demo-mark={c.mark ? "prototype" : undefined}>
-                <Icon size={16} strokeWidth={2} aria-hidden="true" />
+              <button key={c.key} type="button" role="tab" id={`${id}-tab-${c.key}`} aria-selected={on} aria-controls={panelId} tabIndex={on ? 0 : -1} onClick={() => choose(c.key)} className={cn("demo-tab", on && "demo-tab-on")} data-demo-tab={c.key} title={auto ? l(W.autoLabel) : undefined}>
+                <Icon size={18} strokeWidth={2} aria-hidden="true" />
                 <span>{l(c.name)}</span>
+                {/* the time to the next channel while the rotation is on: a thin bar at the tab's foot (CSS animation over --run; restarted per run) */}
+                {on && auto && started.current && <span key={turn} className="demo-tab-bar" aria-hidden="true" data-demo-tab-bar />}
               </button>
             );
           })}
-        </div>
+        </div>}
       </div>
 
       <div role="tabpanel" id={panelId} aria-labelledby={`${id}-tab-${channel}`} className="demo-body" data-demo-view={channel}>
@@ -191,13 +224,6 @@ export function HeroDemo({ locale }: { locale: Locale }) {
               <span className="demo-next-value">{l(script.record.next.v)}</span>
               <span className="demo-next-sub">{l(script.record.next.sub)}</span>
             </Item>
-            <div className="demo-states" data-hero-states>
-              {script.states.map((st, i) => (
-                <Item key={i} n={st.at} phase={phase} as="p" className="state-line demo-state-line" data-state={st.kind === "prototype" ? "preparing" : st.kind} data-hero-state-line={st.kind}>
-                  {l(st.v)}
-                </Item>
-              ))}
-            </div>
           </div>
         </Item>
       </div>
@@ -301,7 +327,6 @@ function FormSurface({ c, phase, locale }: S) {
       <div className="demo-form-head">
         <span aria-hidden="true" className="demo-browser-dots"><i /><i /><i /></span>
         <p className="demo-form-title">{l(f.title)}</p>
-        {c.mark && <span className="demo-mark" data-demo-prototype>{l(c.mark)}</span>}
       </div>
       <div className="demo-form-fields" aria-hidden="true">
         {f.fields.map((fd, i) => (
@@ -349,7 +374,6 @@ function CallSurface({ c, phase, locale }: S) {
         <p className="demo-call-name">{c.who} <span className="demo-chat-role">· {l(c.role)}</span></p>
         <p className="demo-call-state tnum" data-call-duration={sec}>
           {ended ? `${l(k.ended)} · ${mmss}` : live ? mmss : l(k.incoming)}
-          {c.mark && <span className="demo-mark" data-demo-prototype>{l(c.mark)}</span>}
         </p>
         <span className={cn("demo-wave", live && "is-live")} aria-hidden="true">{Array.from({ length: 18 }, (_, i) => <i key={i} style={{ ["--n" as string]: i }} />)}</span>
         <span className={cn("demo-call-button", ended && "is-ended")} aria-hidden="true">{ended ? <PhoneOff size={16} strokeWidth={2.2} /> : <Phone size={16} strokeWidth={2.2} />}</span>

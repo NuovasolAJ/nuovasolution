@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { startLabel } from "@/lib/content/plans";
-import { faqFrame, faqGroups } from "@/lib/content/faq";
+import { entryAction } from "@/lib/claims";
+import { resolveSwitches } from "@/lib/view";
+import { faqFrame, faqGroupsFor } from "@/lib/content/faq";
 import { Display, Eyebrow, Lead, Heading } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
@@ -25,6 +26,9 @@ export default function FaqPage({ params }: { params: { locale: string } }) {
   const locale = params.locale as Locale;
   const d = getDictionary(locale);
   const p = (path: string) => localePath(locale, path);
+  const view = resolveSwitches().view;
+  const entry = entryAction(locale, view);
+  const faqGroups = faqGroupsFor(locale, view);
 
   return (
     <>
@@ -40,7 +44,7 @@ export default function FaqPage({ params }: { params: { locale: string } }) {
               {faqGroups.map((g) => (
                 <li key={g.id}>
                   <a href={`#${g.id}`} className="inline-flex min-h-[44px] items-center rounded-pill border border-line-hairline bg-surface-raised px-4 t-body-s text-text-primary transition-colors duration-micro hover:border-line-interactive">
-                    {g.title[locale]}
+                    {g.title}
                   </a>
                 </li>
               ))}
@@ -55,10 +59,10 @@ export default function FaqPage({ params }: { params: { locale: string } }) {
             <section key={g.id} id={g.id} aria-labelledby={`${g.id}-h`} className="stage scroll-mt-[calc(var(--header-h)+24px)] overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-12">
                 <div className="border-b border-line-hairline p-6 md:p-8 lg:col-span-4 lg:border-b-0 lg:border-r">
-                  <Heading size="m" as="h2" id={`${g.id}-h`}>{g.title[locale]}</Heading>
+                  <Heading size="m" as="h2" id={`${g.id}-h`}>{g.title}</Heading>
                 </div>
                 <div className="px-6 py-2 md:px-8 lg:col-span-8">
-                  <Accordion items={g.items.map((it) => ({ id: it.kb.replace(/[^A-Za-z0-9]/g, "-"), question: it.q[locale], answer: it.a[locale] }))} className="border-y-0" />
+                  <Accordion items={g.items.map((it) => ({ id: it.kb.replace(/[^A-Za-z0-9]/g, "-"), question: it.q, answer: it.a }))} className="border-y-0" />
                 </div>
               </div>
             </section>
@@ -76,7 +80,7 @@ export default function FaqPage({ params }: { params: { locale: string } }) {
               <Display size="l" id="faq-close" className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
               <p className="mx-auto mt-6 max-w-[48ch] t-body-l text-text-secondary">{d.home.closing.body}</p>
               <CtaRow align="center" className="mt-10">
-                <ButtonLink href={p("/contact")} size="lg">{startLabel(locale)}</ButtonLink>
+                <ButtonLink href={p(entry.href)} size="lg">{entry.label}</ButtonLink>
                 <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
               </CtaRow>
             </Reveal>

@@ -16,6 +16,8 @@ const NEXT = join(ROOT, "node_modules", "next", "dist", "bin", "next");
 const PORT = 3141, CDP_PORT = 9385;
 const BASE = (process.env.BASE ?? `http://localhost:${PORT}`).replace(/\/$/, "");
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const BYPASS = process.env.BYPASS ?? ""; // the preview protection's automation bypass (middleware.ts), read by the caller from the secrets store, never printed
+
 mkdirSync(OUT, { recursive: true });
 
 // The light grounds of the site (globals.css): canvas, white, sunken, the band gradients' stops and the fields.
@@ -34,7 +36,7 @@ try {
   if (!process.env.BASE) {
     const p = spawn(process.execPath, [NEXT, "start", "-p", String(PORT)], { cwd: ROOT, env: process.env, stdio: ["ignore", "pipe", "pipe"] });
     p.stdout.on("data", () => {}); p.stderr.on("data", () => {}); kids.push(p);
-    for (let i = 0; i < 120; i++) { try { const r = await fetch(`${BASE}/en`, { redirect: "manual" }); if (r.status) break; } catch { /* not up */ } await sleep(500); }
+    for (let i = 0; i < 120; i++) { try { const r = await fetch(`${BASE}/en`, { redirect: "manual", headers: BYPASS ? { "x-vercel-protection-bypass": BYPASS } : {} }); if (r.status) break; } catch { /* not up */ } await sleep(500); }
   }
   const prof = join(tmpdir(), `nuova-contrast-${Date.now()}`);
   kids.push(spawn(EDGE, ["--headless=new", "--disable-gpu", "--no-first-run", "--hide-scrollbars", `--user-data-dir=${prof}`, `--remote-debugging-port=${CDP_PORT}`, "about:blank"], { stdio: "ignore" }));
@@ -47,7 +49,7 @@ try {
   ws.addEventListener("message", (e) => { const m = JSON.parse(e.data); if (m.id && pend.has(m.id)) { pend.get(m.id)(m); pend.delete(m.id); } });
   const send = (method, params = {}) => new Promise((res) => { const i = ++mid; pend.set(i, res); ws.send(JSON.stringify({ id: i, method, params })); });
   const ev = async (x) => (await send("Runtime.evaluate", { expression: x, returnByValue: true, awaitPromise: true })).result?.result?.value;
-  await send("Page.enable");
+  await send("Page.enable"); await send("Network.enable"); if (BYPASS) await send("Network.setExtraHTTPHeaders", { headers: { "x-vercel-protection-bypass": BYPASS } });
   await send("Runtime.enable");
 
   // Per text element: colour (rgba), size, weight, and the nearest ancestor background that is opaque enough.

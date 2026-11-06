@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
+import { redirect } from "next/navigation";
 import { trialPlanAligned } from "@/lib/content/plans";
+import { entryAction, live } from "@/lib/claims";
+import { resolveSwitches } from "@/lib/view";
 import { SectionHead, Display, Eyebrow, Lead, Caption, Heading } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
@@ -25,6 +28,16 @@ export default function TrialPage({ params }: { params: { locale: string } }) {
   const p = (path: string) => localePath(locale, path);
   const t = d.trial;
   const aligned = trialPlanAligned();
+  const view = resolveSwitches().view;
+  const entry = entryAction(locale, view);
+  // Copy 1105 v3 §21: while the trial is off, the route leads to /contact
+  if (entry.kind !== "trial") redirect(p("/contact"));
+  // §21: the steps "Fuentes de leads" and "CRM" name the connection only while their keys are live
+  const stepLine = (title: string, line: string) => {
+    if (title === d.trial.steps[5].title && !live("adsLeads", view)) return locale === "es" ? "Dinos de dónde te llegan los leads." : "Tell us where your leads come from.";
+    if (title === d.trial.steps[6].title && !live("integrations", view)) return line.split(". ")[0] + ".";
+    return line;
+  };
 
   return (
     <>
@@ -34,11 +47,10 @@ export default function TrialPage({ params }: { params: { locale: string } }) {
             <Reveal className="xl:col-span-6">
               <Eyebrow className="mb-4">{t.eyebrow}</Eyebrow>
               <Display size="xl" id="tr-h1">{t.h1}</Display>
-              <p className="state-line mt-4" data-state="preparing" data-trial-state>{t.state}</p>
               <Lead className="mt-6">{t.lead}</Lead>
               {aligned && <Caption className="mt-3">{t.how[0].title}: {t.how[0].line}</Caption>}
               <CtaRow className="mt-10">
-                <ButtonLink href={p("/contact")} size="lg">{d.common.startFree}</ButtonLink>
+                <ButtonLink href={p(entry.href)} size="lg">{entry.label}</ButtonLink>
                 <ButtonLink href={p("/packages")} size="lg" variant="secondary">{t.ctaSecondary}</ButtonLink>
               </CtaRow>
               <Caption className="mt-4">{d.common.noPayment} {d.common.noSalesCall}</Caption>
@@ -92,7 +104,7 @@ export default function TrialPage({ params }: { params: { locale: string } }) {
                     <span className="pt-1 t-caption tnum text-text-accent">{String(i + 1).padStart(2, "0")}</span>
                     <span>
                       <span className="block t-heading-s text-text-primary">{s.title}</span>
-                      <span className="mt-1 block t-body-s text-text-secondary">{s.line}</span>
+                      <span className="mt-1 block t-body-s text-text-secondary">{stepLine(s.title, s.line)}</span>
                     </span>
                   </li>
                 ))}

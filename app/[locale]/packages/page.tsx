@@ -8,6 +8,9 @@ import { Reveal } from "@/components/ui/reveal";
 import { StatusGlyph } from "@/components/ui/status";
 import { Motion } from "@/components/ui/motion";
 import { PlansTable } from "@/components/home/plans-table";
+import { PreviewSwitch } from "@/components/site/preview-switch";
+import { resolveSwitches } from "@/lib/view";
+import { entryAction, live, plansTableShown, trialCta } from "@/lib/claims";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   if (!isLocale(params.locale)) return {};
@@ -23,6 +26,10 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
  */
 export default function PackagesPage({ params }: { params: { locale: string } }) {
   const locale = params.locale as Locale;
+  const s = resolveSwitches();
+  const entry = entryAction(locale, s.view);
+  const trial = entry.kind === "trial";
+  const table = plansTableShown(s.view);
   const d = getDictionary(locale);
   const pk = d.packages;
   const p = (path: string) => localePath(locale, path);
@@ -30,19 +37,21 @@ export default function PackagesPage({ params }: { params: { locale: string } })
   const c = home1103.close;
 
   return (
-    <div data-style="v3">
+    <div data-style="v3" data-view={s.view} data-palette={s.palette} data-display={s.display}>
+      {!s.live && <PreviewSwitch locale={locale} switches={s} />}
       <section aria-labelledby="pk-h1" className="pb-[var(--section-compact)] pt-[var(--section-compact)] xl:pt-[var(--section-default)]">
         <div className="container-default">
           <Reveal className="xl:max-w-[62%]">
             <Eyebrow className="mb-4">{pk.eyebrow}</Eyebrow>
-            <Display size="xl" id="pk-h1">{pk.h1}</Display>
-            <Lead className="mt-6">{pk.lead}</Lead>
+            <Display size="xl" id="pk-h1">{trial ? pk.h1Neutral : pk.h1}</Display>
+            <Lead className="mt-6">{trial ? pk.leadNeutral : pk.lead}</Lead>
+            {table && live("taskList", s.view) && <p className="mt-4 t-body-m text-text-secondary" data-packages-baseline>{pk.baselineLine}</p>}
           </Reveal>
         </div>
       </section>
 
       <Motion>
-        <PlansTable locale={locale} headed={false} />
+        <PlansTable locale={locale} view={s.view} headed={false} />
       </Motion>
 
       <section aria-labelledby="pk-pay" className="py-[var(--section-default)]">
@@ -70,12 +79,17 @@ export default function PackagesPage({ params }: { params: { locale: string } })
             <div className="mx-auto max-w-[1200px]">
               <Eyebrow as="h2" id="pk-faq">{pk.faqEyebrow}</Eyebrow>
               <dl className="mt-6 grid gap-4 md:grid-cols-2">
-                {pk.faq.map((f) => (
-                  <div key={f.q} className="stage p-6">
-                    <dt className="t-heading-s text-text-primary">{f.q}</dt>
-                    <dd className="mt-2 t-body-s text-text-secondary">{f.a}</dd>
-                  </div>
-                ))}
+                {pk.faq.map((f, i) => {
+                  // Copy §21: the card and the 14-day answers hang on the trial; the C-14 answer has its public wording
+                  if (!trial && (i === 0 || i === 3)) return null;
+                  const a = i === 2 && !trial ? pk.faqPublicAnswer : f.a;
+                  return (
+                    <div key={f.q} className="stage p-6">
+                      <dt className="t-heading-s text-text-primary">{f.q}</dt>
+                      <dd className="mt-2 t-body-s text-text-secondary">{a}</dd>
+                    </div>
+                  );
+                })}
               </dl>
               <div className="mt-8"><ButtonLink href={p("/faq")} variant="secondary">{d.home.faqTeaser.link}</ButtonLink></div>
             </div>
@@ -87,12 +101,12 @@ export default function PackagesPage({ params }: { params: { locale: string } })
         <div className="container-wide">
           <div className="band band-sand band-panel px-6 py-14 text-center md:px-12 md:py-20">
             <Display size="l" id="pk-close" className="mx-auto max-w-[20ch]">{l(c.h2)}</Display>
-            <p className="mx-auto mt-5 max-w-[44ch] t-body-l text-text-secondary">{l(c.line)}</p>
+            <p className="mx-auto mt-5 max-w-[44ch] t-body-l text-text-secondary">{l(c.line(s.view))}</p>
             <CtaRow align="center" className="mt-10">
               <ButtonLink href={`${localePath(locale)}#demo`} size="lg">{l(c.ctaDemo)}</ButtonLink>
-              <ButtonLink href={p("/contact")} size="lg" variant="secondary">{l(c.ctaContact)}</ButtonLink>
+              <ButtonLink href={p(entry.href)} size="lg" variant="secondary">{entry.label}</ButtonLink>
             </CtaRow>
-            <Caption className="mt-4">{l(home1103.hero.access)}</Caption>
+            <Caption className="mt-4">{entry.kind === "trial" ? trialCta.line[locale] : entry.line}</Caption>
           </div>
         </div>
       </section>

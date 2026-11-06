@@ -1,119 +1,179 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
-import { Bell, Check, ChevronRight, Clock, Instagram, Mail, MessageCircle, Mic, Phone, PanelsTopLeft, Send, ShieldCheck, Tag, X } from "lucide-react";
+import { ArrowRight, Bell, Check, ChevronRight, Clock, Instagram, Mail, MessageCircle, Mic, Phone, PanelsTopLeft, Globe, Send, ShieldCheck, Tag, X } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
-import { home1103, statusWords, type Status } from "@/lib/content/home-1103";
-import { claim, claimWords, type ClaimKey } from "@/lib/claims";
-import { Rise } from "@/components/ui/motion";
+import { localePath } from "@/lib/i18n/config";
+import { home1103 } from "@/lib/content/home-1103";
+import { live, withChannels, type ClaimView } from "@/lib/claims";
 import { cn } from "@/lib/utils";
 
 /**
- * The ten scenes as product surfaces (Copy 1105 v3 §5; the owner's orders of 03.11. point 4 and 05.11. points 5–7): at the left
- * the scenes with one line and their state, a progress mark 01–10 and the active card lifted; at the right one sticky stage that
- * swaps the product surface of the scene in view with a soft rise. The stage is clickable: it advances to the next scene (and the
- * keyboard does the same). "Inmuebles que encajan" shows the licensed sample photographs of the media register with "Proponer a
- * Laura · Próximamente"; "El día de tu equipo" opens a small Daily view after the team's app (staff-v13) with the voice bar when
- "Tomar" (marked "Demo", a real button) is pressed. On a phone every scene stands with its own surface in a linear stack. Every state word
- * comes from lib/claims.ts.
+ * The scenes as a pinned stage (the owner's points 7, 8 and 9 of 06.11.2026; Copy 1105 v3 §18 for the chapters, the order and the
+ * words): on the wide window the whole block sticks to the screen while the page scrolls through one segment of 90 vh per scene,
+ * so every scene stands at least about a second at a normal scrolling speed; the surface on the stage changes with a soft crossfade
+ * that never blocks (no "wait": a fast scroll runs through without a jump), and a click on a segment of the rail, on a scene's
+ * name or on the stage jumps (an instant scroll inside the pinned block: on screen only the stage and the words change). The
+ * scenes stand in three chapters, Atiende · Organiza · Crece; the progress is one connected rail of segments grouped by chapter.
+ * On a narrow window every chapter is a heading and every scene stands with its own surface in a linear stack. Every scene hangs
+ * on its keys (lib/claims.ts): the public view shows only what is included; a chapter with no scene left is hidden. No status word.
  */
-type Key = (typeof home1103.functions.items)[number]["key"];
+type Item = (typeof home1103.functions.items)[number];
+type Key = Item["key"];
+const SEG = 0.9; // window heights per scene (the owner's guide: 70–100 vh)
 
-export function Functions({ locale }: { locale: Locale }) {
+const headerHeight = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 72;
+
+export function Functions({ locale, view }: { locale: Locale; view: ClaimView }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const w = home1103.functions;
-  const keys = w.items.map((i) => i.key);
-  const [active, setActive] = useState<Key>("priority");
+  const items = w.items.filter((it) => live(it.keys, view));
+  const chapters = w.chapters.filter((c) => items.some((it) => it.chapter === c.key));
+  const keys = items.map((i) => i.key);
+  const n = items.length;
+  const [idx, setIdx] = useState(0);
   const reduce = useReducedMotion();
-  const refs = useRef<Record<string, HTMLLIElement | null>>({});
-  const idx = keys.indexOf(active);
-
-  useEffect(() => {
-    if (typeof IntersectionObserver === "undefined") return;
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) if (e.isIntersecting) setActive((e.target as HTMLElement).dataset.fn as Key);
-    }, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
-    Object.values(refs.current).forEach((el) => el && io.observe(el));
-    return () => io.disconnect();
-  }, []);
-
-  const go = (k: Key) => { setActive(k); refs.current[k]?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); };
-  const next = () => go(keys[(idx + 1) % keys.length]);
+  const track = useRef<HTMLDivElement>(null);
+  const active = items[idx];
+  const chapter = chapters.find((c) => c.key === active.chapter) ?? chapters[0];
   const no = (i: number) => String(i + 1).padStart(2, "0");
+  const line = (it: Item) => withChannels(l(it.line(view)), locale, view);
+
+  // the scene from the scroll position: the pin holds from the track's top, each scene owns one segment
+  useEffect(() => {
+    const el = track.current;
+    if (!el) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      if (!window.matchMedia("(min-width: 1024px)").matches) return;
+      const y = headerHeight() - el.getBoundingClientRect().top;
+      const seg = window.innerHeight * SEG;
+      setIdx(Math.min(n - 1, Math.max(0, Math.floor(y / seg))));
+    };
+    const on = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", on, { passive: true });
+    window.addEventListener("resize", on);
+    return () => { window.removeEventListener("scroll", on); window.removeEventListener("resize", on); if (raf) cancelAnimationFrame(raf); };
+  }, [n]);
+
+  /** Jumps to a scene: scrolls the window to the scene's segment (the pin shows it at once). */
+  const go = (i: number) => {
+    const el = track.current;
+    const t = Math.min(n - 1, Math.max(0, i));
+    setIdx(t);
+    if (!el) return;
+    if (!window.matchMedia("(min-width: 1024px)").matches) { document.querySelector<HTMLElement>(`[data-fn="${keys[t]}"]`)?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" }); return; }
+    const top = el.getBoundingClientRect().top + window.scrollY - headerHeight();
+    window.scrollTo({ top: top + t * window.innerHeight * SEG + 2, behavior: "auto" });
+  };
+  const next = () => go((idx + 1) % n);
 
   return (
-    <section id="functions" aria-labelledby="fn-h" className="fn" data-functions data-fn-active={active} data-fn-index={idx + 1}>
-      <div className="container-default">
-        <Rise className="fn-head">
-          <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
-          <h2 id="fn-h" className="t-display-m mt-3 text-text-primary">{l(w.h2)}</h2>
-          <p className="fn-hint t-body-s text-text-muted">{l(w.hint)}</p>
-        </Rise>
-        <div className="fn-grid">
-          <ol className="fn-list">
-            {w.items.map((it, i) => (
-              <li key={it.key} ref={(el) => { refs.current[it.key] = el; }} data-fn={it.key} className={cn("fn-item", active === it.key && "is-active")}>
-                <button type="button" className="fn-item-button" onClick={() => go(it.key)} aria-pressed={active === it.key} data-fn-button={it.key}>
-                  <span className="fn-item-no tnum">{no(i)}</span>
-                  <span className="fn-item-words">
-                    <span className="fn-item-title">{l(it.title)}</span>
-                    <span className="fn-item-line">{l(it.line)}</span>
-                    <span className="fn-item-state">
-                      <StatusPill status={claim(it.claim)} locale={locale} />
-                      {it.soon && claim(it.soon.claim) !== "included" && <span className="fn-item-note" data-fn-soon={it.soon.claim}>{l(it.soon)} · {claimWords[claim(it.soon.claim)][locale].toLowerCase()}</span>}
-                    </span>
-                  </span>
-                </button>
-                <div className="fn-item-surface" data-fn-surface-inline={it.key}><Surface k={it.key} locale={locale} /></div>
-              </li>
-            ))}
-          </ol>
-          <div className="fn-stage" data-fn-stage>
-            {/* the progress of the scenes (05.11., point 5): 01–10, the active one filled */}
-            <ol className="fn-progress" aria-label={l(w.progress)} data-fn-progress>
-              {keys.map((k, i) => (
-                <li key={k}><button type="button" className={cn("fn-progress-dot", i === idx && "is-on", i < idx && "is-past")} onClick={() => go(k)} aria-label={`${l(w.progress)} ${i + 1}`} aria-current={i === idx ? "step" : undefined}><span className="tnum">{no(i)}</span></button></li>
-              ))}
-            </ol>
-            {/* the stage: a click anywhere on it advances (mouse convenience); the real control is the "Siguiente escena" button, so the surfaces may carry their own buttons (Reviewer: "Tomar" as a real button) */}
-            <div className="fn-stage-inner" onClick={next} data-fn-stage-button>
-              <AnimatePresence mode="wait" initial={false}>
-                <m.div key={active} initial={reduce ? false : { opacity: 0, y: 22, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={reduce ? undefined : { opacity: 0, y: -16, scale: 0.99 }} transition={{ duration: 0.46, ease: [0.22, 1, 0.36, 1] }} className="fn-stage-surface" data-fn-surface={active}>
-                  <Surface k={active} locale={locale} />
-                </m.div>
-              </AnimatePresence>
-              <button type="button" className="fn-stage-next" onClick={(e) => { e.stopPropagation(); next(); }} data-fn-stage-next>{l(w.next)}<ChevronRight size={14} strokeWidth={2.2} aria-hidden="true" /></button>
+    <section id="functions" aria-labelledby="fn-h" className="fn" data-functions data-fn-active={active.key} data-fn-index={idx + 1} data-fn-count={n} data-fn-chapter={chapter.key} data-fn-view={view}>
+      <div ref={track} className="fn-track" style={{ ["--n" as string]: n }} data-fn-track>
+        <div className="fn-pin" data-fn-pin>
+          <div className="container-default fn-pin-grid">
+            <div className="fn-side">
+              <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
+              <h2 id="fn-h" className="fn-h2 text-text-primary">{l(w.h2)}</h2>
+
+              {/* the rail (point 9): one connected bar of n segments in the chapter groups; the past segments filled */}
+              <nav className="fn-rail" aria-label={l(w.progress)} data-fn-progress>
+                {chapters.map((ch) => {
+                  const its = items.filter((it) => it.chapter === ch.key);
+                  return (
+                    <div key={ch.key} className={cn("fn-rail-chapter", ch.key === chapter.key && "is-on")} style={{ flexGrow: its.length }} data-fn-chapter-group={ch.key}>
+                      <button type="button" className="fn-rail-name" onClick={() => go(keys.indexOf(its[0].key))} aria-current={ch.key === chapter.key ? "true" : undefined}>{l(ch.name)}</button>
+                      <span className="fn-rail-segments">
+                        {its.map((it) => {
+                          const i = keys.indexOf(it.key);
+                          return <button key={it.key} type="button" className={cn("fn-rail-seg", i <= idx && "is-past", i === idx && "is-on")} onClick={() => go(i)} aria-label={`${l(w.progress)} ${i + 1}: ${l(it.title)}`} aria-current={i === idx ? "step" : undefined} data-fn-seg={it.key} />;
+                        })}
+                      </span>
+                    </div>
+                  );
+                })}
+              </nav>
+              <p className="fn-counter tnum" aria-hidden="true" data-fn-counter><span className="fn-counter-now">{no(idx)}</span> / {no(n - 1)}</p>
+
+              {/* the chapter line and the active scene's words: a crossfade that never blocks */}
+              <div className="fn-copy" data-fn-copy>
+                <AnimatePresence mode="sync" initial={false}>
+                  <m.div key={active.key} className="fn-copy-pane" initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, transition: { duration: 0.18 } }} transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }} data-fn-copy-pane={active.key}>
+                    <p className="fn-chapter-line">{l(chapter.line(view))}</p>
+                    <h3 className="fn-title">{l(active.title)}</h3>
+                    <p className="fn-line">{line(active)}</p>
+                  </m.div>
+                </AnimatePresence>
+              </div>
+
+              {/* the chapter's scenes by name, the active one marked; a click jumps */}
+              <ol className="fn-mini" data-fn-mini>
+                {items.filter((it) => it.chapter === chapter.key).map((it) => {
+                  const i = keys.indexOf(it.key);
+                  return (
+                    <li key={it.key}><button type="button" className={cn("fn-mini-item", i === idx && "is-on")} onClick={() => go(i)} aria-current={i === idx ? "step" : undefined} data-fn-button={it.key}><span className="fn-mini-no tnum">{no(i)}</span><span>{l(it.title)}</span></button></li>
+                  );
+                })}
+              </ol>
+            </div>
+
+            {/* the stage: a click anywhere on it advances (a convenience); the real control is the "Siguiente escena" button */}
+            <div className="fn-stage" data-fn-stage>
+              <div className="fn-stage-inner" onClick={next} data-fn-stage-button>
+                <AnimatePresence mode="sync" initial={false}>
+                  <m.div key={active.key} className="fn-stage-surface" initial={reduce ? false : { opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, transition: { duration: 0.22 } }} transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }} data-fn-surface={active.key}>
+                    <Surface k={active.key} locale={locale} view={view} />
+                  </m.div>
+                </AnimatePresence>
+                <button type="button" className="fn-stage-next" onClick={(e) => { e.stopPropagation(); next(); }} data-fn-stage-next>{l(w.next)}<ChevronRight size={14} strokeWidth={2.2} aria-hidden="true" /></button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
-}
 
-export function StatusPill({ status, locale, className }: { status: Status; locale: Locale; className?: string }) {
-  return (
-    <span className={cn("status-pill", className)} data-status={status}>
-      {status === "included" && <Check size={12} strokeWidth={3} aria-hidden="true" />}
-      {statusWords[status][locale]}
-    </span>
+      {/* the narrow window: chapters as headings, every scene with its surface */}
+      <div className="container-default fn-linear" data-fn-linear>
+        <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
+        <h2 className="t-display-m mt-3 text-text-primary">{l(w.h2)}</h2>
+        {chapters.map((ch) => (
+          <div key={ch.key} className="fn-chapter" data-fn-chapter-block={ch.key}>
+            <p className="fn-chapter-name">{l(ch.name)}</p>
+            <p className="fn-chapter-line">{l(ch.line(view))}</p>
+            <ol className="fn-list">
+              {items.filter((it) => it.chapter === ch.key).map((it) => {
+                const i = keys.indexOf(it.key);
+                return (
+                  <li key={it.key} data-fn={it.key} className="fn-item">
+                    <div className="fn-item-words">
+                      <span className="fn-item-no tnum">{no(i)}</span>
+                      <h3 className="fn-item-title">{l(it.title)}</h3>
+                      <p className="fn-item-line">{line(it)}</p>
+                    </div>
+                    <div className="fn-item-surface" data-fn-surface-inline={it.key}><Surface k={it.key} locale={locale} view={view} /></div>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
 /* ---------------------------------------------------------------------------------------------------------------------- */
 /* The product surfaces                                                                                                    */
 /* ---------------------------------------------------------------------------------------------------------------------- */
-const CH_ICON: Record<string, typeof Mail> = { WhatsApp: MessageCircle, Email: Mail, "E-mail": Mail, "Formulario web": PanelsTopLeft, "Web form": PanelsTopLeft, Teléfono: Phone, Phone: Phone };
+const CH_ICON: Record<string, typeof Mail> = { WhatsApp: MessageCircle, Email: Mail, "E-mail": Mail, "Formulario web": PanelsTopLeft, "Web form": PanelsTopLeft, Teléfono: Phone, Phone: Phone, Portal: Globe, Anuncio: Globe, Ad: Globe };
 
 function Photo({ src, alt, className }: { src: string; alt: string; className?: string }) {
   // eslint-disable-next-line @next/next/no-img-element
   return <img src={src} alt={alt} width={320} height={200} loading="lazy" decoding="async" className={className} />;
-}
-
-function SoonLine({ k, locale, children }: { k: ClaimKey; locale: Locale; children: ReactNode }) {
-  const s = claim(k);
-  return <span className={cn("ps-soon", s === "included" && "is-included")} data-claim={k} data-state={s}>{children} · {claimWords[s][locale].toLowerCase()}</span>;
 }
 
 function useStagger() {
@@ -121,7 +181,7 @@ function useStagger() {
   return (i: number) => (reduce ? {} : { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, transition: { delay: 0.08 + i * 0.09, duration: 0.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } });
 }
 
-function Surface({ k, locale }: { k: Key; locale: Locale }) {
+function Surface({ k, locale, view }: { k: Key; locale: Locale; view: ClaimView }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const u = home1103.functions.ui;
   const stagger = useStagger();
@@ -135,12 +195,12 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
           {l(p.rows).map((r, i) => (
             <m.li key={r.who} className="ps-row" {...stagger(i)}>
               <span className="ps-avatar" aria-hidden="true">{r.who.charAt(0)}</span>
-              <span className="ps-row-main"><span className="ps-row-who">{r.who}</span><span className="ps-row-sub">{r.channel}</span></span>
+              <span className="ps-row-main"><span className="ps-row-who">{r.who}</span><span className="ps-row-sub">{r.channel.replace("⟦sofia⟧", p.sofia(locale, view))}</span></span>
               <span className="ps-row-prio"><span className="demo-priority" data-prio={r.p}>{r.p}</span><span className="ps-row-why">{r.why}</span></span>
             </m.li>
           ))}
         </ul>
-        <m.p className="ps-foot" {...stagger(4)}><Bell size={14} strokeWidth={2} aria-hidden="true" /><SoonLine k="alert" locale={locale}>{l(p.alert)}</SoonLine></m.p>
+        {live("alert", view) && <m.p className="ps-foot ps-foot-lit" {...stagger(4)} data-ps-alert><Bell size={14} strokeWidth={2} aria-hidden="true" />{l(p.alert)}</m.p>}
       </div>
     );
   }
@@ -171,8 +231,8 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
       <div className="ps" data-ps="record">
         <div className="ps-head"><span className="ps-title">{l(p.title)}</span><span className="ps-meta">CRM</span></div>
         <dl className="ps-fields">
-          {l(p.fields).map(([kk, v], i) => (
-            <m.div key={kk} className="ps-field" {...stagger(i)}><dt>{kk}</dt><dd>{v}</dd></m.div>
+          {l(p.fields).map(([kk, vv], i) => (
+            <m.div key={kk} className="ps-field" {...stagger(i)}><dt>{kk}</dt><dd>{vv}</dd></m.div>
           ))}
         </dl>
         <m.p className="ps-assistant" {...stagger(7)}>{l(p.priority)}</m.p>
@@ -182,11 +242,12 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
   }
   if (k === "origin") {
     const p = u.origin;
+    const rows = [...l(p.rows), ...(live("adsLeads", view) ? l(p.adsRows) : [])];
     return (
       <div className="ps" data-ps="origin">
         <div className="ps-head"><span className="ps-title">{l(p.title)}</span><span className="ps-meta">CRM</span></div>
         <ul className="ps-rows">
-          {l(p.rows).map((r, i) => {
+          {rows.map((r, i) => {
             const Icon = CH_ICON[r.origin] ?? Mail;
             return (
               <m.li key={r.who} className="ps-row ps-row-inbox" {...stagger(i)}>
@@ -195,14 +256,7 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
               </m.li>
             );
           })}
-          {l(p.soonRows).map((o, i) => (
-            <m.li key={o} className="ps-row ps-row-inbox is-quiet" {...stagger(3 + i)}>
-              <span className="ps-row-main"><span className="ps-row-sub">{o}</span></span>
-              <span className="ps-tags"><span className="ps-tag ps-tag-origin" data-origin-soon>{claimWords[claim("adsLeads")][locale]}</span></span>
-            </m.li>
-          ))}
         </ul>
-        <p className="ps-foot"><SoonLine k="adsLeads" locale={locale}>{locale === "es" ? "Portales y anuncios" : "Portals and ads"}</SoonLine></p>
       </div>
     );
   }
@@ -212,8 +266,8 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
       <div className="ps" data-ps="language">
         <div className="ps-head"><span className="ps-title">{l(p.title)}</span><span className="ps-meta">CRM</span></div>
         <dl className="ps-fields">
-          {l(p.fields).map(([kk, v], i) => (
-            <m.div key={kk} className={cn("ps-field", /reconocido|recognised/.test(v) && "is-lit")} {...stagger(i)}><dt>{kk}</dt><dd>{v}</dd></m.div>
+          {l(p.fields).map(([kk, vv], i) => (
+            <m.div key={kk} className={cn("ps-field", /reconocido|recognised/.test(vv) && "is-lit")} {...stagger(i)}><dt>{kk}</dt><dd>{vv}</dd></m.div>
           ))}
         </dl>
         <p className="ps-sub">{l(p.history)}</p>
@@ -222,7 +276,6 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
             <m.li key={i} {...stagger(5 + i)}><span className="tnum">{e.t}</span><span className="ps-chip"><Mail size={12} strokeWidth={2} aria-hidden="true" />{e.ch}</span><span>{e.what}</span></m.li>
           ))}
         </ul>
-        <p className="ps-foot"><SoonLine k="otherLanguages" locale={locale}>{locale === "es" ? "Respuestas en otros idiomas" : "Replies in other languages"}</SoonLine></p>
       </div>
     );
   }
@@ -258,7 +311,7 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
             </m.li>
           ))}
         </ul>
-        <m.p className="ps-action-row" {...stagger(3)}><span className="ps-action ps-action-inline"><Send size={14} strokeWidth={2} aria-hidden="true" />{l(p.action)}</span><span className="ps-soon" data-claim="matching">{claimWords[claim("matching")][locale]}</span></m.p>
+        <m.p className="ps-action-row" {...stagger(3)}><span className="ps-action ps-action-inline"><Send size={14} strokeWidth={2} aria-hidden="true" />{l(p.action)}</span></m.p>
       </div>
     );
   }
@@ -290,21 +343,37 @@ function Surface({ k, locale }: { k: Key; locale: Locale }) {
           <span className="ps-action ps-action-inline"><Check size={14} strokeWidth={2.4} aria-hidden="true" />{l(p.approve)}</span>
           <span className="ps-action-quiet">{l(p.edit)}</span>
         </m.div>
-        <p className="ps-foot">{l(p.rule)} <SoonLine k="instagram" locale={locale}>Instagram</SoonLine></p>
+        <p className="ps-foot">{l(p.rule)}</p>
       </div>
     );
   }
-  return <TeamSurface locale={locale} />;
+  if (k === "report") {
+    const p = u.reportScene;
+    return (
+      <div className="ps" data-ps="report">
+        <div className="ps-head"><span className="ps-title">{l(p.title)}</span><span className="ps-meta">{l(home1103.report.example)}</span></div>
+        <dl className="ps-figures">
+          {l(p.figures).map(([kk, vv], i) => (
+            <m.div key={kk} className="ps-figure" {...stagger(i)}><dt>{kk}</dt><dd className="tnum">{vv}</dd></m.div>
+          ))}
+        </dl>
+        <m.p className="ps-assistant" {...stagger(3)}><strong>{l(p.nextTitle)}:</strong> {l(p.next)}</m.p>
+        <p className="ps-foot"><a href={localePath(locale, "/example-report")} className="ps-link" onClick={(e) => e.stopPropagation()} data-ps-report-link>{l(p.link)}<ArrowRight size={13} strokeWidth={2.2} aria-hidden="true" /></a></p>
+      </div>
+    );
+  }
+  return <TeamSurface locale={locale} view={view} />;
 }
 
-/** The team's day with the small Daily view (after staff-v13): "Tomar" (marked "Demo") opens the list with the voice bar. */
-function TeamSurface({ locale }: { locale: Locale }) {
+/** The team's day with the small Daily view (after staff-v13): "Tomar" (marked "Demo") opens the list; the voice bar only while `dailyVoice` is live (§18 S-6). */
+function TeamSurface({ locale, view }: { locale: Locale; view: ClaimView }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const p = home1103.functions.ui.team;
   const stagger = useStagger();
   const [open, setOpen] = useState(false);
   const [taken, setTaken] = useState<number | null>(null);
   const rows = l(p.rows);
+  const voice = live("dailyVoice", view);
   const isTaken = (s: string) => s.startsWith("Tomada") || s.startsWith("Taken");
   return (
     <div className="ps" data-ps="team" data-daily={open ? "open" : "closed"}>
@@ -338,13 +407,17 @@ function TeamSurface({ locale }: { locale: Locale }) {
               <span className={cn("daily-chip", (taken === i + 1 || isTaken(r.state)) && "is-taken")}>{taken === i + 1 ? l(p.taken) : r.state}</span>
             </div>
           ))}
-          <div className="daily-voice" data-daily-voice>
-            <span className="daily-mic" aria-hidden="true"><Mic size={16} strokeWidth={2.2} /></span>
-            <span className="daily-question">«{l(p.daily.question)}»</span>
-            <span className="daily-wave" aria-hidden="true"><i /><i /><i /><i /><i /></span>
-          </div>
-          <p className="daily-answer">{l(p.daily.answer)}</p>
-          <p className="ps-foot">{l(p.daily.note)} <SoonLine k="taskList" locale={locale}>{locale === "es" ? "Lista y asistente" : "List and assistant"}</SoonLine></p>
+          {voice && (
+            <>
+              <div className="daily-voice" data-daily-voice>
+                <span className="daily-mic" aria-hidden="true"><Mic size={16} strokeWidth={2.2} /></span>
+                <span className="daily-question">«{l(p.daily.question)}»</span>
+                <span className="daily-wave" aria-hidden="true"><i /><i /><i /><i /><i /></span>
+              </div>
+              <p className="daily-answer">{l(p.daily.answer)}</p>
+            </>
+          )}
+          <p className="ps-foot">{l(p.daily.note)}</p>
         </div>
       )}
     </div>

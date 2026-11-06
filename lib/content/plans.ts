@@ -1,5 +1,5 @@
 import type { Locale } from "@/lib/i18n/config";
-import { entryAction } from "@/lib/claims";
+import { entryAction, type ClaimView } from "@/lib/claims";
 
 /**
  * Plan catalog as it exists on the staging billing plane (system repo
@@ -86,8 +86,9 @@ export function isPlanCode(v: string | undefined): v is PlanCode {
  * owner 2026-10-06 §2: "Probar gratis", the package name only where it is relevant, i.e. on the packages
  * and trial pages, which use packages.ctaTrialEssential themselves).
  */
-export function startLabel(locale: Locale): string {
+export function startLabel(locale: Locale, view: ClaimView = "public"): string {
   // the owner's order of 05.11., point 7/10: the entry action follows the central claims file (lib/claims.ts): "Pedir acceso"
-  // until the trial and public registration are live in production, then "Pruébalo gratis" by one commit there
-  return entryAction(locale).label;
+  // until the trial and public registration are live in production (the preview's target view shows the trial), then
+  // "Pruébalo gratis" by one commit there
+  return entryAction(locale, view).label;
 }

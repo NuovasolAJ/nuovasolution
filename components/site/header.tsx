@@ -7,6 +7,8 @@ import { Logo } from "@/components/ui/logo";
 import { LanguageSwitcher } from "./language-switcher";
 import { HeaderShell } from "./header-shell";
 import { StatusGlyph } from "@/components/ui/status";
+import { entryAction } from "@/lib/claims";
+import { resolveSwitches } from "@/lib/view";
 
 /**
  * Identical on every page. Left: logo. Centre: Platform (menu), Packages, Trial, Contact. Right: language, Log in,
@@ -18,10 +20,12 @@ import { StatusGlyph } from "@/components/ui/status";
 export function Header({ locale }: { locale: Locale }) {
   const d = getDictionary(locale);
   const p = (path: string) => localePath(locale, path);
+  // Copy 1105 v3 §16 H-7: "Prueba" in the target state, "Acceso" while the trial is off
+  const entry = entryAction(locale, resolveSwitches().view);
 
   const nav = [
     { href: p("/packages"), label: d.nav.packages },
-    { href: p("/trial"), label: d.nav.trial },
+    { href: p("/trial"), label: entry.nav },
     { href: p("/contact"), label: d.nav.contact },
   ];
 

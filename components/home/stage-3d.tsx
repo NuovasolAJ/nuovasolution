@@ -6,20 +6,21 @@ import { ArrowRight, Link2, MessageCircleQuestion, Play, Upload } from "lucide-r
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
-import { claim, claimWords } from "@/lib/claims";
 import { CompareSlider } from "@/components/ui/compare-slider";
 import { Rise, useSeen } from "@/components/ui/motion";
 import { DemoPlan } from "./scene-art";
 import { cn } from "@/lib/utils";
 
 /**
- * The 3D stage (the owner's orders of 03.11. point 6 and 05.11. point 9; Copy 1105 v3 §8; the 3D lane's handoff_2026-11-05):
- * one large stage, one house, the steps plan → model → empty/furnished → delivery as one movement through the same object.
- * 02 Modelo is the lane's `modelo_planta_baja_loop` (the ground floor only, one full turn, 10 s, seamless, 1920 × 1080 at a
- * fixed 30 fps; MP4 as the first source, WebM as the second) behind its own poster; it is fetched only while the step is on
- * the stage, and with reduced motion the poster stands. 04 Entrega is the lane's `entrega_clip` (18.4 s, 30 fps fixed, the
- * floor change as a cut with a standing camera) behind its own poster, loaded only on request. Under the stage the agent's
- * path of Copy §8. The status word comes from lib/claims.ts; the lane's mandatory mark stands on the stage.
+ * The 3D stage (the owner's orders of 03.11. point 6, 05.11. point 9 and 06.11. points 11 and 12; Copy 1105 v3 §8; the 3D lane's
+ * handoff_2026-11-06 with the public-domain wall painting): one large stage, one house, the steps plan → model → empty/furnished
+ * → delivery as one movement through the same object. On the wide window the stage is pinned and the steps follow the scroll
+ * (one segment of 70 vh each, no clock, no jump: a crossfade that never blocks); a click on a step still jumps. On a narrow window
+ * the stage walks once by itself when it comes into view and the steps are tabs. 02 Modelo is the lane's `modelo_planta_baja_loop`
+ * (1920 × 1080, 30 fps, 10 s seamless; MP4 first, WebM second); its poster stands until the clip can play, then the clip fades in.
+ * 04 Entrega is the lane's `entrega_clip` (18.4 s) behind its poster, loaded only on request, shown when it can play. Under the
+ * stage the agent's path of Copy §8 as one connected run of three stations (point 12). The lane's mandatory mark stands on the
+ * stage. No status word (the public view leaves the whole section out while 3D is not included; see app/[locale]/page.tsx).
  */
 const MEDIA = {
   loopMp4: "/media/3d/house-ground-loop.mp4",
@@ -31,11 +32,15 @@ const MEDIA = {
   filmWebm: "/media/3d/house-delivery.webm",
   filmPoster: "/media/3d/house-delivery-poster-1600.webp",
 };
+const SEG = 0.7; // window heights per step on the wide window
+const headerHeight = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 72;
+const wide = () => window.matchMedia("(min-width: 1024px)").matches;
 
-/** 02 Modelo: the ground floor turning; the sources are attached only when the pane mounts (AnimatePresence mounts it after the plan's exit). */
-function TurnClip({ label }: { label: string }) {
+/** 02 Modelo: the ground floor turning; the poster stands over the clip until it can play (owner point 11: no video before it is ready). */
+function TurnClip({ label, posterAlt }: { label: string; posterAlt: string }) {
   const turn = useRef<HTMLVideoElement>(null);
   const [on, setOn] = useState(false);
+  const [ready, setReady] = useState(false);
   useEffect(() => {
     const v = turn.current;
     setOn(true);
@@ -43,11 +48,15 @@ function TurnClip({ label }: { label: string }) {
     return () => { window.clearTimeout(t); v?.pause(); };
   }, []);
   return (
-    // eslint-disable-next-line jsx-a11y/media-has-caption
-    <video ref={turn} poster={MEDIA.loopPoster} muted loop playsInline preload="none" aria-label={label} className="h-full w-full object-cover" data-model3d-turn>
-      {on && <source src={MEDIA.loopMp4} type="video/mp4" />}
-      {on && <source src={MEDIA.loopWebm} type="video/webm" />}
-    </video>
+    <div className="m3d-clip" data-model3d-turn-ready={ready ? "true" : "false"}>
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+      <video ref={turn} muted loop playsInline preload="none" aria-label={label} className="h-full w-full object-cover" data-model3d-turn onPlaying={() => setReady(true)} onCanPlay={() => { if (turn.current && !turn.current.paused) setReady(true); }}>
+        {on && <source src={MEDIA.loopMp4} type="video/mp4" />}
+        {on && <source src={MEDIA.loopWebm} type="video/webm" />}
+      </video>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={MEDIA.loopPoster} alt={posterAlt} width={1600} height={900} decoding="async" className={cn("m3d-clip-poster", ready && "is-gone")} data-model3d-turn-poster />
+    </div>
   );
 }
 
@@ -62,22 +71,52 @@ export function Stage3d({ locale }: { locale: Locale }) {
   const steps = l(w.steps);
   const reduce = useReducedMotion();
   const { ref, seen } = useSeen(0.4);
+  const track = useRef<HTMLDivElement>(null);
   const [step, setStep] = useState(0);
   const walked = useRef(false);
   const [filmOn, setFilmOn] = useState(false);
+  const [filmReady, setFilmReady] = useState(false);
   const video = useRef<HTMLVideoElement>(null);
-  const state = claim("model3d");
   const pathIcons = [Upload, MessageCircleQuestion, Link2];
 
-  // once in view: plan → the ground floor turning → the pair, one walk, then the visitor decides
+  // the wide window: the step from the scroll position (the pin holds from the track's top, each step owns one segment)
   useEffect(() => {
-    if (!seen || walked.current) return;
+    const el = track.current;
+    if (!el) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      if (!wide()) return;
+      const y = headerHeight() + 24 - el.getBoundingClientRect().top;
+      const seg = window.innerHeight * SEG;
+      setStep(Math.min(3, Math.max(0, Math.floor(y / seg))));
+    };
+    const on = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", on, { passive: true });
+    window.addEventListener("resize", on);
+    return () => { window.removeEventListener("scroll", on); window.removeEventListener("resize", on); if (raf) cancelAnimationFrame(raf); };
+  }, []);
+
+  // the narrow window: once in view, plan → the ground floor turning → the pair, one walk, then the visitor decides
+  useEffect(() => {
+    if (!seen || walked.current || wide()) return;
     walked.current = true;
     if (reduce) { setStep(2); return; }
     const a = window.setTimeout(() => setStep(1), 1400);
     const b = window.setTimeout(() => setStep(2), 7400);
     return () => { window.clearTimeout(a); window.clearTimeout(b); };
   }, [seen, reduce]);
+
+  /** A click on a step: on the wide window the window scrolls to the step's segment (the pin shows it), otherwise the step is set. */
+  const go = (i: number) => {
+    walked.current = true;
+    setStep(i);
+    const el = track.current;
+    if (!el || !wide()) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - headerHeight() - 24;
+    window.scrollTo({ top: top + i * window.innerHeight * SEG + 2, behavior: "auto" });
+  };
 
   const playFilm = () => {
     setFilmOn(true);
@@ -91,45 +130,48 @@ export function Stage3d({ locale }: { locale: Locale }) {
           <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
           <h2 id="m3d-h" className="t-display-m mt-3 text-text-primary">{l(w.h2)}</h2>
           <p className="mt-4 t-body-l text-text-secondary max-w-[52ch]">{l(w.lead)}</p>
-          <p className="mt-4 flex flex-wrap gap-x-4 gap-y-2"><span className="status-pill" data-status={state} data-model3d-status>{claimWords[state][locale]}</span><span className="status-pill" data-status="example" data-model3d-example>{l(w.example)}</span></p>
+          <p className="mt-4"><span className="status-pill" data-status="example" data-model3d-example>{l(w.example)}</span></p>
         </Rise>
+      </div>
 
-        <Rise className="m3d-stage" y={24} delay={0.1}>
+      {/* the scroll track: four segments on the wide window, the pinned stage inside it */}
+      <div ref={track} className="m3d-track" data-model3d-track>
+        <div className="m3d-pin container-default">
           <div ref={ref} className="m3d-frame" data-model3d-stage data-m3d-step={step}>
             <div className="m3d-view">
-              <AnimatePresence mode="wait" initial={false}>
+              <AnimatePresence mode="sync" initial={false}>
                 {step === 0 && (
-                  <m.div key="plan" className="m3d-pane m3d-pane-plan" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={reduce ? undefined : { opacity: 0, scale: 1.02 }} transition={{ duration: 0.5 }} data-m3d-pane="plan">
+                  <m.div key="plan" className="m3d-pane m3d-pane-plan" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={reduce ? undefined : { opacity: 0, transition: { duration: 0.3 } }} transition={{ duration: 0.5 }} data-m3d-pane="plan">
                     <DemoPlan locale={locale} className="h-full w-full" />
                     <span className="sr-only">{l(w.planAlt)}</span>
                   </m.div>
                 )}
                 {step === 1 && (
-                  <m.div key="model" className="m3d-pane m3d-pane-model" initial={reduce ? false : { opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={reduce ? undefined : { opacity: 0 }} transition={{ duration: 0.55 }} data-m3d-pane="model">
+                  <m.div key="model" className="m3d-pane m3d-pane-model" initial={reduce ? false : { opacity: 0, scale: 0.985 }} animate={{ opacity: 1, scale: 1 }} exit={reduce ? undefined : { opacity: 0, transition: { duration: 0.3 } }} transition={{ duration: 0.55 }} data-m3d-pane="model">
                     {reduce ? (
                       <Img src={MEDIA.loopPoster} alt={l(w.modelAlt)} w={1600} h={900} className="h-full w-full object-cover" />
                     ) : (
-                      <TurnClip label={l(w.modelFilm)} />
+                      <TurnClip label={l(w.modelFilm)} posterAlt={l(w.modelAlt)} />
                     )}
                     <span className="m3d-caption">{l(w.modelLine)}</span>
                   </m.div>
                 )}
                 {step === 2 && (
-                  <m.div key="pair" className="m3d-pane" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={reduce ? undefined : { opacity: 0 }} transition={{ duration: 0.5 }} data-m3d-pane="pair">
+                  <m.div key="pair" className="m3d-pane" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={reduce ? undefined : { opacity: 0, transition: { duration: 0.3 } }} transition={{ duration: 0.5 }} data-m3d-pane="pair">
                     <CompareSlider label={l(w.pairLabel)} beforeLabel={l(w.empty)} afterLabel={l(w.furnished)} className="h-full w-full rounded-none" initial={62} sweepFrom={reduce ? undefined : 6} before={<Img src={MEDIA.empty} alt={l(w.emptyAlt)} w={1200} h={800} className="h-full w-full object-cover" />} after={<Img src={MEDIA.furnished} alt={l(w.furnishedAlt)} w={1200} h={800} className="h-full w-full object-cover" />} />
                   </m.div>
                 )}
                 {step === 3 && (
-                  <m.div key="film" className="m3d-pane m3d-pane-film" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={reduce ? undefined : { opacity: 0 }} transition={{ duration: 0.5 }} data-m3d-pane="film" data-model3d-film data-model3d-turn-slot="clean-take">
+                  <m.div key="film" className="m3d-pane m3d-pane-film" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={reduce ? undefined : { opacity: 0, transition: { duration: 0.3 } }} transition={{ duration: 0.5 }} data-m3d-pane="film" data-model3d-film>
                     {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-                    <video ref={video} poster={MEDIA.filmPoster} controls={filmOn} muted playsInline preload="none" aria-label={l(w.film)} className="h-full w-full object-cover" data-media-video data-model3d-video={filmOn ? "on" : "poster"}>
+                    <video ref={video} poster={MEDIA.filmPoster} controls={filmReady} muted playsInline preload="none" aria-label={l(w.film)} className="h-full w-full object-cover" data-media-video data-model3d-video={filmReady ? "on" : filmOn ? "loading" : "poster"} onPlaying={() => setFilmReady(true)}>
                       {filmOn && <source src={MEDIA.filmMp4} type="video/mp4" />}
                       {filmOn && <source src={MEDIA.filmWebm} type="video/webm" />}
                     </video>
-                    {!filmOn && (
-                      <button type="button" className="m3d-play" onClick={playFilm} data-model3d-play>
-                        <span className="m3d-play-mark" aria-hidden="true"><Play size={20} strokeWidth={2.2} /></span>
-                        <span className="m3d-play-words"><span className="m3d-play-title">{l(w.playFilm)}</span><span className="m3d-play-line">{l(w.filmLine)}</span></span>
+                    {!filmReady && (
+                      <button type="button" className="m3d-play" onClick={playFilm} disabled={filmOn} data-model3d-play aria-busy={filmOn}>
+                        <span className="m3d-play-mark" aria-hidden="true">{filmOn ? <span className="busy-ring" /> : <Play size={20} strokeWidth={2.2} />}</span>
+                        <span className="m3d-play-words"><span className="m3d-play-title">{filmOn ? l(w.loading) : l(w.playFilm)}</span><span className="m3d-play-line">{l(w.filmLine)}</span></span>
                       </button>
                     )}
                   </m.div>
@@ -140,7 +182,7 @@ export function Stage3d({ locale }: { locale: Locale }) {
             <ol className="m3d-steps" role="tablist" aria-label={l(w.h2)}>
               {steps.map((s, i) => (
                 <li key={s} role="presentation">
-                  <button type="button" role="tab" aria-selected={step === i} className={cn("m3d-step", step === i && "is-on")} onClick={() => { walked.current = true; setStep(i); }} data-m3d-step-button={i}>
+                  <button type="button" role="tab" aria-selected={step === i} className={cn("m3d-step", step === i && "is-on", i < step && "is-past")} onClick={() => go(i)} data-m3d-step-button={i}>
                     <span className="m3d-step-no tnum">0{i + 1}</span>
                     <span className="m3d-step-name">{s}</span>
                   </button>
@@ -148,21 +190,22 @@ export function Stage3d({ locale }: { locale: Locale }) {
               ))}
             </ol>
           </div>
-        </Rise>
+        </div>
+      </div>
 
-        {/* the agent's path (Copy 1105 v3 §8; the owner's point 9): one line, drawn as three stations */}
+      {/* the agent's path (Copy 1105 v3 §8; the owner's point 12): one line, one connected run of three stations, the action at its end */}
+      <div className="container-default">
         <Rise className="m3d-path" delay={0.05} y={16}>
           <p className="m3d-path-title">{l(w.pathTitle)}</p>
           <p className="m3d-path-line" data-model3d-path-line>{l(w.pathLine)}</p>
-          <ol className="m3d-path-steps" data-model3d-path>
+          <ol className="m3d-path-run" data-model3d-path>
             {l(w.path).map((s, i) => {
               const Icon = pathIcons[i];
               return (
                 <li key={s} className="m3d-path-step" data-model3d-path-step={i + 1}>
-                  <span className="m3d-path-icon" aria-hidden="true"><Icon size={18} strokeWidth={1.9} /></span>
+                  <span className="m3d-path-node" aria-hidden="true"><Icon size={18} strokeWidth={1.9} /></span>
                   <span className="m3d-path-no tnum" aria-hidden="true">{i + 1}</span>
                   <span className="m3d-path-words">{s}</span>
-                  {i < 2 && <ArrowRight size={16} strokeWidth={2} aria-hidden="true" className="m3d-path-arrow" />}
                 </li>
               );
             })}
