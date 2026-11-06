@@ -28,9 +28,9 @@ export const home1103 = {
       es: ["Responde en español, también fuera de horario", "Guarda zona, presupuesto e intención", "Marca la prioridad y su motivo"],
       en: ["Replies in Spanish, also out of hours", "Keeps area, budget and intent", "Marks the priority and its reason"],
     },
-    film: T("Vídeo de fondo: un salón amueblado de la casa de ejemplo ficticia de NuovaSolution, 8 segundos en bucle, sin sonido", "Background video: a furnished living room of NuovaSolution's fictional example house, 8 seconds on a loop, no sound"),
-    pause: T("Pausar el vídeo", "Pause the video"),
-    play: T("Reproducir el vídeo", "Play the video"),
+    /** The hero picture (owner 05.11.: HERO = A; the 3D lane's hero_A of handoff_2026-11-05, with the lane's mandatory mark and alt). */
+    image: T("Casa de ejemplo ficticia: salón amueblado, ilustrativo", "Fictional demo house: furnished living room, illustrative"),
+    imageMark: T("Casa de ejemplo ficticia, visualización", "Fictional demo house, visualisation"),
     scroll: T("Ver la demo", "See the demo"),
     brandMoment: T("NuovaSolution", "NuovaSolution"),
   },
@@ -282,16 +282,18 @@ export const home1103 = {
     path: { es: ["Tú envías el plano", "Nosotros construimos el modelo", "Te entregamos el enlace"], en: ["You send the plan", "We build the model", "We send you the link"] },
     planAlt: T("Plano acotado de la planta baja de la casa de ejemplo, dibujado a escala", "Dimensioned plan of the example house's ground floor, drawn to scale"),
     modelAlt: T("Casa de ejemplo ficticia: la planta baja de cerca, amueblada, vista del visor", "Fictional example house: the ground floor up close, furnished, a view from the viewer"),
-    modelFilm: T("Vídeo: la planta baja de la casa de ejemplo girando en el visor · 13 segundos · sin sonido", "Video: the example house's ground floor turning in the viewer · 13 seconds · no sound"),
-    modelLine: T("La planta baja, girando. Grabado del visor real.", "The ground floor, turning. Recorded from the real viewer."),
+    modelFilm: T("Vídeo: la planta baja de la casa de ejemplo dando una vuelta completa · 10 segundos en bucle · sin sonido", "Video: the example house's ground floor in one full turn · 10 seconds on a loop · no sound"),
+    modelLine: T("La planta baja, girando.", "The ground floor, turning."),
+    /** The 3D lane's mandatory mark on every medium (handoff_2026-11-05). */
+    mark: T("Casa de ejemplo ficticia, visualización", "Fictional demo house, visualisation"),
     emptyAlt: T("Casa de ejemplo ficticia: el mismo salón vacío, desde la misma cámara", "Fictional example house: the same living room, empty, from the same camera"),
     furnishedAlt: T("Casa de ejemplo ficticia: el mismo salón con mobiliario ilustrativo, desde la misma cámara", "Fictional example house: the same living room with illustrative furnishing, from the same camera"),
     pairLabel: T("Comparar el salón vacío y amueblado desde la misma cámara", "Compare the living room empty and furnished from the same camera"),
     empty: T("Vacío", "Empty"),
     furnished: T("Amueblado", "Furnished"),
     filmTitle: T("La casa entera", "The whole house"),
-    filmLine: T("Las dos plantas, luego cada planta, con y sin muebles. Grabado del visor real, 25 segundos, sin sonido.", "Both floors, then each floor, with and without furniture. Recorded from the real viewer, 25 seconds, no sound."),
-    film: T("Vídeo: la casa de ejemplo entera en el visor · 25 segundos · sin sonido", "Video: the whole example house in the viewer · 25 seconds · no sound"),
+    filmLine: T("La casa, la planta baja sola, sin muebles y con muebles, cada una girando despacio. 18 segundos, sin sonido.", "The house, the ground floor alone, without and with furniture, each turning slowly. 18 seconds, no sound."),
+    film: T("Vídeo: la casa de ejemplo entera · 18 segundos · sin sonido", "Video: the whole example house · 18 seconds · no sound"),
     playFilm: T("Ver la casa entera", "Watch the whole house"),
   },
 
@@ -337,11 +339,12 @@ export const home1103 = {
     legend: T("Un ✓ solo donde la función está incluida hoy.", "A ✓ only where the function is included today."),
   },
 
+  /** Copy 1105 v3 §10.1 with the addition 702a11d §13 N-1 (no promise of a connection while D5 is not built). */
   trust: {
     h2: T("Cómo empezar y qué pasa con los datos", "How to start and what happens with the data"),
     lines: {
-      es: ["Pides acceso, te enseñamos el sistema y conectamos los canales contigo.", "La base de datos está en la Unión Europea (Fráncfort).", "Cada respuesta automática indica que la escribe un asistente."],
-      en: ["You request access, we show you the system and connect the channels with you.", "The database is in the European Union (Frankfurt).", "Every automatic reply says that an assistant wrote it."],
+      es: ["Pides acceso y te enseñamos el sistema. La conexión del buzón y del WhatsApp de tu agencia llega próximamente.", "La base de datos está en la Unión Europea (Fráncfort).", "Cada respuesta automática indica que la escribe un asistente."],
+      en: ["You request access and we show you the system. Connecting your agency's mailbox and WhatsApp is coming soon.", "The database is in the European Union (Frankfurt).", "Every automatic reply says that an assistant wrote it."],
     },
   },
 

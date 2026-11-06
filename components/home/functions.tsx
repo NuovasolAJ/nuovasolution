@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
  * swaps the product surface of the scene in view with a soft rise. The stage is clickable: it advances to the next scene (and the
  * keyboard does the same). "Inmuebles que encajan" shows the licensed sample photographs of the media register with "Proponer a
  * Laura · Próximamente"; "El día de tu equipo" opens a small Daily view after the team's app (staff-v13) with the voice bar when
- * "Tomar" (marked "Demo") is pressed. On a phone every scene stands with its own surface in a linear stack. Every state word
+ "Tomar" (marked "Demo", a real button) is pressed. On a phone every scene stands with its own surface in a linear stack. Every state word
  * comes from lib/claims.ts.
  */
 type Key = (typeof home1103.functions.items)[number]["key"];
@@ -76,14 +76,15 @@ export function Functions({ locale }: { locale: Locale }) {
                 <li key={k}><button type="button" className={cn("fn-progress-dot", i === idx && "is-on", i < idx && "is-past")} onClick={() => go(k)} aria-label={`${l(w.progress)} ${i + 1}`} aria-current={i === idx ? "step" : undefined}><span className="tnum">{no(i)}</span></button></li>
               ))}
             </ol>
-            <button type="button" className="fn-stage-inner" onClick={next} aria-label={l(w.next)} data-fn-stage-button>
+            {/* the stage: a click anywhere on it advances (mouse convenience); the real control is the "Siguiente escena" button, so the surfaces may carry their own buttons (Reviewer: "Tomar" as a real button) */}
+            <div className="fn-stage-inner" onClick={next} data-fn-stage-button>
               <AnimatePresence mode="wait" initial={false}>
                 <m.div key={active} initial={reduce ? false : { opacity: 0, y: 22, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={reduce ? undefined : { opacity: 0, y: -16, scale: 0.99 }} transition={{ duration: 0.46, ease: [0.22, 1, 0.36, 1] }} className="fn-stage-surface" data-fn-surface={active}>
                   <Surface k={active} locale={locale} />
                 </m.div>
               </AnimatePresence>
-              <span className="fn-stage-next" aria-hidden="true">{l(w.next)}<ChevronRight size={14} strokeWidth={2.2} /></span>
-            </button>
+              <button type="button" className="fn-stage-next" onClick={(e) => { e.stopPropagation(); next(); }} data-fn-stage-next>{l(w.next)}<ChevronRight size={14} strokeWidth={2.2} aria-hidden="true" /></button>
+            </div>
           </div>
         </div>
       </div>
@@ -315,14 +316,14 @@ function TeamSurface({ locale }: { locale: Locale }) {
             {rows.map((r, i) => (
               <m.li key={r.who} className="ps-task" {...stagger(1 + i)}>
                 <span className="ps-task-main"><span className="ps-task-kind">{r.kind}</span><span className="ps-row-who">{r.who}</span><span className="ps-row-sub">{r.why}</span><span className="ps-task-step">{r.step}</span></span>
-                {isTaken(r.state) ? <span className="ps-take is-taken">{r.state}</span> : <span role="button" tabIndex={0} className="ps-take" onClick={(e) => { e.stopPropagation(); setTaken(i); setOpen(true); }} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); setTaken(i); setOpen(true); } }} data-ps-take={i}>{l(p.take)}<span className="ps-take-demo">{l(p.demo)}</span></span>}
+                {isTaken(r.state) ? <span className="ps-take is-taken">{r.state}</span> : <button type="button" className="ps-take" onClick={(e) => { e.stopPropagation(); setTaken(i); setOpen(true); }} data-ps-take={i}>{l(p.take)}<span className="ps-take-demo">{l(p.demo)}</span></button>}
               </m.li>
             ))}
           </ul>
         </>
       ) : (
         <div className="daily" onClick={(e) => e.stopPropagation()} data-daily-view>
-          <div className="daily-top"><span className="daily-app">{l(p.daily.app)} · {l(p.demo)}</span><span className="daily-title">{l(p.daily.title)}</span><span role="button" tabIndex={0} className="daily-close" aria-label={l(p.daily.close)} onClick={() => setOpen(false)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setOpen(false); }}><X size={16} strokeWidth={2.2} /></span></div>
+          <div className="daily-top"><span className="daily-app">{l(p.daily.app)} · {l(p.demo)}</span><span className="daily-title">{l(p.daily.title)}</span><button type="button" className="daily-close" aria-label={l(p.daily.close)} onClick={(e) => { e.stopPropagation(); setOpen(false); }}><X size={16} strokeWidth={2.2} /></button></div>
           <p className="daily-section">{l(p.daily.sections)[0]}</p>
           <div className="daily-card is-urgent">
             <p className="daily-card-title">{rows[0].kind}: {rows[0].who}</p>

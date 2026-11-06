@@ -320,7 +320,7 @@ export const es: Dictionary = {
         steps: [
           { title: "Crea tu cuenta", line: "Tu nombre, tu email de trabajo, una contraseña." }, // WORKING
           { title: "Pon nombre a tu agencia y configúrala", line: "Tus datos, tus datos legales, tu logo, tu equipo." }, // WORKING
-          { title: "Conecta tus canales con nosotros", line: "WhatsApp y email se conectan junto con nosotros; es un paso distinto de la cuenta." }, // WORKING, FAQ Q-40
+          { title: "Tus canales", line: "La conexión del buzón y del WhatsApp de tu agencia llega próximamente." }, // Copy 1105 v3 addition §13 N-3
         ],
         note: "No prometemos minutos: configurar tarda lo que tarden tus datos.", // WORKING
       },
@@ -470,7 +470,7 @@ export const es: Dictionary = {
       { title: "Datos de la agencia", line: "Nombre de la empresa, dirección, datos de contacto y los idiomas en los que trabajas." },
       { title: "Marca", line: "Tu logo y el banner de tus emails, para los mensajes que salen con tu marca." },
       { title: "Equipo", line: "Añade a tu equipo y asigna roles: agente, jefe de equipo, responsable de oficina, administrador de la agencia." },
-      { title: "Canales", line: "Conecta tus canales, según los permisos que tengas." },
+      { title: "Canales", line: "Próximamente: conectar el buzón y el WhatsApp de tu agencia." }, // Copy 1105 v3 addition §13 N-4
       { title: "Fuentes de leads", line: "Dinos de dónde te llegan hoy los leads. Conectar esas fuentes está próximamente." },
       { title: "CRM", line: "Hay un CRM incluido desde el principio. Si usas otro, dinos cuál: conectarlo todavía no se ofrece y mientras tanto sigues con el CRM incluido." },
       { title: "Fuente de propiedades", line: "Apunta a tu propia web, a un feed compatible o al inventario de tu CRM." },

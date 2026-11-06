@@ -79,6 +79,29 @@ original, 15 MB), `house-clean-take-poster.webp`, `house-model-clean-1600.webp` 
 | `house-ground-near-1600.webp` | `modelo/modelo_planta_baja_cerca.png` (furnished ground floor, near) | `e97b4e847f27ca07…` | `346146597f023bda` | 02 Modelo with reduced motion (the still) |
 | `house-ground-near-empty-1600.webp` | `modelo/modelo_planta_baja_cerca_vacio.png` | `ff1dc903…` | `c0b45e8fc7287dac` | filed for the stage's next step; not shown yet |
 
+## 2d. The three media of the 3D lane's handoff_2026-11-05 (the owner's order of 05.11.: HERO = A, 02 Modelo, 04 Entrega)
+
+Source: `C:\src\nuova-3d\deliverables\website-assets\handoff_2026-11-05\` (README `REDESIGN_3D_MEDIEN_1105_v1.md`, `SHA256SUMS.txt`,
+commit `a881c88`; every checksum verified with `sha256sum -c` on 06.11.). Superseded and removed: the cuts of §2c
+(`house-ground-turn.mp4` + poster, `house-clean-take-720.mp4` + poster). The hero film `living-camera-ride.mp4` and its poster stay
+in the repository but are no longer shown on the home page (the hero is the still picture now).
+
+| File (public/media/3d/) | From (handoff) | sha256 of the source | sha256 of the published file (first 16) | Shows |
+|---|---|---|---|---|
+| `hero-a-2560.webp`, `hero-a-1920.webp`, `hero-a-1280.webp` | `hero/hero_A.jpg` (3840 × 2160, Cycles, "tarde cálida") scaled in the browser's canvas, WebP q0.8 | `b59710aae571d1de…` | `b6c3a188434edbaf`, `a4c0ae92f322a52e`, `aa845d8e12ced2d9` | the hero's picture in three widths (`srcset`) |
+| `hero-a-poster-960.webp` | `hero/hero_A_poster.jpg` (1920 × 1080) | `a18aabcf28a04f45…` | `d308e31ddfb24c14` | the hero's picture on the smallest screens |
+| `house-ground-loop.mp4` (13.2 MB) | `modelo/modelo_planta_baja_loop.mp4` (1920 × 1080, 30 fps, 10 s, seamless) | `2c650aeed765bb99…` | identical (copied byte for byte) | 02 Modelo: the ground floor in one full turn; the first `<source>` |
+| `house-ground-loop.webm` (11.0 MB) | `modelo/modelo_planta_baja_loop.webm` (VP9) | `dc9ac2c3e31c9fbb…` | identical | the second `<source>` of 02 |
+| `house-ground-loop-poster-1600.webp` | `modelo/modelo_planta_baja_loop_poster.jpg` (the loop's first frame) | `22674d6935185392…` | see `checks/media-sha256.txt` | the poster of 02; the still with reduced motion |
+| `house-delivery.mp4` (15.3 MB) | `entrega/entrega_clip.mp4` (1920 × 1080, 30 fps fixed, 18.4 s, GOP 60, faststart) | `14bf2dc4e8a188d7…` | identical | 04 Entrega, on request; the first `<source>` |
+| `house-delivery.webm` (9.2 MB) | `entrega/entrega_clip.webm` (VP9) | `3906a2bdf6a1ca04…` | identical | the second `<source>` of 04 |
+| `house-delivery-poster-1600.webp` | `entrega/entrega_clip_poster.jpg` (the frame at 1.0 s) | `2cc405f1df15971551…` | see `checks/media-sha256.txt` | the poster of 04 |
+
+The lane's mandatory mark "Casa de ejemplo ficticia, visualización" stands on the hero picture and on the 3D stage; the hero's
+alt is the lane's ("Casa de ejemplo ficticia: salón amueblado, ilustrativo"). The wall painting in `hero_A` is the lane's placeholder
+art and will be replaced by the lane with public-domain art (the owner's order of 05.11.); the new render arrives with its checksum
+and replaces the files under the same names.
+
 ## 3. Drawn, not photographed
 
 - (removed 02.11.) the hero's ridges of the four-layer concept.

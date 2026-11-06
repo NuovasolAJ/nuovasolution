@@ -13,35 +13,42 @@ import { DemoPlan } from "./scene-art";
 import { cn } from "@/lib/utils";
 
 /**
- * The 3D stage (the owner's orders of 03.11. point 6 and 05.11. point 9; Copy 1102 v2 §5): one large stage, one house, the
- * steps plan → model → empty/furnished → delivery as one movement through the same object. 02 Modelo is the ground floor
- * turning: the clean take's ground-floor segment (12.3–25 s) re-encoded as a 13-second loop at 720p, with the near view of the
- * furnished ground floor as its poster and as the still with reduced motion (3D delivers a native ground-floor turn later; the
- * segment is the real viewer's recording). 04 Entrega is the whole clean take re-encoded to 720p H.264 at a fixed 25 fps with
- * a keyframe every two seconds and its own poster (F2: the 1080p original stuttered). Under the stage the broker's path in
- * three steps. The status word comes from lib/claims.ts.
+ * The 3D stage (the owner's orders of 03.11. point 6 and 05.11. point 9; Copy 1105 v3 §8; the 3D lane's handoff_2026-11-05):
+ * one large stage, one house, the steps plan → model → empty/furnished → delivery as one movement through the same object.
+ * 02 Modelo is the lane's `modelo_planta_baja_loop` (the ground floor only, one full turn, 10 s, seamless, 1920 × 1080 at a
+ * fixed 30 fps; MP4 as the first source, WebM as the second) behind its own poster; it is fetched only while the step is on
+ * the stage, and with reduced motion the poster stands. 04 Entrega is the lane's `entrega_clip` (18.4 s, 30 fps fixed, the
+ * floor change as a cut with a standing camera) behind its own poster, loaded only on request. Under the stage the agent's
+ * path of Copy §8. The status word comes from lib/claims.ts; the lane's mandatory mark stands on the stage.
  */
 const MEDIA = {
-  modelFilm: "/media/3d/house-ground-turn.mp4",
-  modelPoster: "/media/3d/house-ground-turn-poster.webp",
-  modelStill: "/media/3d/house-ground-near-1600.webp",
+  loopMp4: "/media/3d/house-ground-loop.mp4",
+  loopWebm: "/media/3d/house-ground-loop.webm",
+  loopPoster: "/media/3d/house-ground-loop-poster-1600.webp",
   empty: "/media/3d/living-empty-1200.webp",
   furnished: "/media/3d/living-furnished-1200.webp",
-  film: "/media/3d/house-clean-take-720.mp4",
-  filmPoster: "/media/3d/house-clean-take-poster-1600.webp",
+  filmMp4: "/media/3d/house-delivery.mp4",
+  filmWebm: "/media/3d/house-delivery.webm",
+  filmPoster: "/media/3d/house-delivery-poster-1600.webp",
 };
 
-/** 02 Modelo: the ground floor turning; the bytes are fetched only when the pane mounts (AnimatePresence mounts it after the plan's exit). */
+/** 02 Modelo: the ground floor turning; the sources are attached only when the pane mounts (AnimatePresence mounts it after the plan's exit). */
 function TurnClip({ label }: { label: string }) {
   const turn = useRef<HTMLVideoElement>(null);
+  const [on, setOn] = useState(false);
   useEffect(() => {
     const v = turn.current;
-    if (!v) return;
-    v.src = MEDIA.modelFilm; v.load(); v.play().catch(() => {});
-    return () => { v.pause(); };
+    setOn(true);
+    const t = window.setTimeout(() => { if (v) { v.load(); v.play().catch(() => {}); } }, 0);
+    return () => { window.clearTimeout(t); v?.pause(); };
   }, []);
-  // eslint-disable-next-line jsx-a11y/media-has-caption
-  return <video ref={turn} poster={MEDIA.modelPoster} muted loop playsInline preload="none" aria-label={label} className="h-full w-full object-cover" data-model3d-turn />;
+  return (
+    // eslint-disable-next-line jsx-a11y/media-has-caption
+    <video ref={turn} poster={MEDIA.loopPoster} muted loop playsInline preload="none" aria-label={label} className="h-full w-full object-cover" data-model3d-turn>
+      {on && <source src={MEDIA.loopMp4} type="video/mp4" />}
+      {on && <source src={MEDIA.loopWebm} type="video/webm" />}
+    </video>
+  );
 }
 
 function Img({ src, alt, w, h, className }: { src: string; alt: string; w: number; h: number; className?: string }) {
@@ -62,19 +69,19 @@ export function Stage3d({ locale }: { locale: Locale }) {
   const state = claim("model3d");
   const pathIcons = [Upload, MessageCircleQuestion, Link2];
 
-  // once in view: plan → model → pair, one walk, then the visitor decides
+  // once in view: plan → the ground floor turning → the pair, one walk, then the visitor decides
   useEffect(() => {
     if (!seen || walked.current) return;
     walked.current = true;
     if (reduce) { setStep(2); return; }
     const a = window.setTimeout(() => setStep(1), 1400);
-    const b = window.setTimeout(() => setStep(2), 4200);
+    const b = window.setTimeout(() => setStep(2), 7400);
     return () => { window.clearTimeout(a); window.clearTimeout(b); };
   }, [seen, reduce]);
 
   const playFilm = () => {
     setFilmOn(true);
-    requestAnimationFrame(() => { const v = video.current; if (v) { v.src = MEDIA.film; v.load(); v.play().catch(() => {}); } });
+    requestAnimationFrame(() => { const v = video.current; if (v) { v.load(); v.play().catch(() => {}); } });
   };
 
   return (
@@ -100,7 +107,7 @@ export function Stage3d({ locale }: { locale: Locale }) {
                 {step === 1 && (
                   <m.div key="model" className="m3d-pane m3d-pane-model" initial={reduce ? false : { opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={reduce ? undefined : { opacity: 0 }} transition={{ duration: 0.55 }} data-m3d-pane="model">
                     {reduce ? (
-                      <Img src={MEDIA.modelStill} alt={l(w.modelAlt)} w={1600} h={900} className="h-full w-full object-cover" />
+                      <Img src={MEDIA.loopPoster} alt={l(w.modelAlt)} w={1600} h={900} className="h-full w-full object-cover" />
                     ) : (
                       <TurnClip label={l(w.modelFilm)} />
                     )}
@@ -115,7 +122,10 @@ export function Stage3d({ locale }: { locale: Locale }) {
                 {step === 3 && (
                   <m.div key="film" className="m3d-pane m3d-pane-film" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={reduce ? undefined : { opacity: 0 }} transition={{ duration: 0.5 }} data-m3d-pane="film" data-model3d-film data-model3d-turn-slot="clean-take">
                     {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-                    <video ref={video} poster={MEDIA.filmPoster} controls={filmOn} muted playsInline preload="none" aria-label={l(w.film)} className="h-full w-full object-cover" data-media-video data-model3d-video={filmOn ? "on" : "poster"} />
+                    <video ref={video} poster={MEDIA.filmPoster} controls={filmOn} muted playsInline preload="none" aria-label={l(w.film)} className="h-full w-full object-cover" data-media-video data-model3d-video={filmOn ? "on" : "poster"}>
+                      {filmOn && <source src={MEDIA.filmMp4} type="video/mp4" />}
+                      {filmOn && <source src={MEDIA.filmWebm} type="video/webm" />}
+                    </video>
                     {!filmOn && (
                       <button type="button" className="m3d-play" onClick={playFilm} data-model3d-play>
                         <span className="m3d-play-mark" aria-hidden="true"><Play size={20} strokeWidth={2.2} /></span>
@@ -125,6 +135,7 @@ export function Stage3d({ locale }: { locale: Locale }) {
                   </m.div>
                 )}
               </AnimatePresence>
+              <span className="m3d-mark" data-model3d-mark>{l(w.mark)}</span>
             </div>
             <ol className="m3d-steps" role="tablist" aria-label={l(w.h2)}>
               {steps.map((s, i) => (
@@ -139,7 +150,7 @@ export function Stage3d({ locale }: { locale: Locale }) {
           </div>
         </Rise>
 
-        {/* the broker's path in three steps (05.11., point 9) */}
+        {/* the agent's path (Copy 1105 v3 §8; the owner's point 9): one line, drawn as three stations */}
         <Rise className="m3d-path" delay={0.05} y={16}>
           <p className="m3d-path-title">{l(w.pathTitle)}</p>
           <p className="m3d-path-line" data-model3d-path-line>{l(w.pathLine)}</p>

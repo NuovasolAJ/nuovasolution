@@ -352,7 +352,7 @@ export const en = {
         steps: [
           { title: "Create your account", line: "Your name, your work email, a password." }, // WORKING
           { title: "Name your agency and set it up", line: "Your details, your legal details, your logo, your team." }, // WORKING
-          { title: "Connect your channels with us", line: "WhatsApp and email are connected together with us; that is a separate step from the account." }, // WORKING, FAQ Q-40
+          { title: "Your channels", line: "Connecting your agency's mailbox and WhatsApp is coming soon." }, // Copy 1105 v3 addition §13 N-3
         ],
         note: "No minutes are promised: setting up takes as long as your details take.", // WORKING
       },
@@ -509,7 +509,7 @@ export const en = {
       { title: "Agency details", line: "Company name, address, contact details and the languages you work in." },
       { title: "Branding", line: "Your logo and your email banner, for the messages that go out under your brand." },
       { title: "Team", line: "Add your team and set their roles: agent, team lead, office manager, agency admin." },
-      { title: "Channels", line: "Connect your channels, based on the permissions you hold." },
+      { title: "Channels", line: "Coming soon: connecting your agency's mailbox and WhatsApp." }, // Copy 1105 v3 addition §13 N-4
       { title: "Lead sources", line: "Tell us where your leads come from today. Connecting those sources is coming soon." },
       { title: "CRM", line: "A CRM is included from the start. If you use another one, tell us which: connecting it is not offered yet, and you stay on the included CRM meanwhile." },
       { title: "Property source", line: "Point it at your own website, a supported feed or your CRM inventory." },

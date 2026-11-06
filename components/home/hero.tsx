@@ -3,34 +3,33 @@ import { ArrowRight } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
-import { HeroBenefits, HeroFilm, HeroScrollHint } from "./hero-film";
+import { HeroBenefits, HeroImage, HeroScrollHint } from "./hero-image";
 import { HeroDemo } from "./hero-demo";
 
 /**
- * The hero (the owner's order of 03.11.2026, point 1; research 1103 R1 FIND, S6 Lev, S7 STILL/FORM): the 7-second film of the
- * furnished living room (C01) runs dimmed in a loop behind one strong sentence and the one main action; three benefits appear
- * while it runs; the demonstration follows directly underneath as a floating product card that rises into the film's lower
- * edge (the transition from the brand moment to the message → record). The header stands transparent over the film with the
- * logo in white and turns into the light bar on scroll (header-shell.tsx).
+ * The hero (the owner's orders of 03.11. point 1 and 05.11. point 2 + "HERO = A"; Copy 1105 v3 §2): the 3D lane's render of the
+ * furnished living room (hero_A) dimmed behind one strong sentence and the one main action; the brand moment with the logo on
+ * load; three benefits appearing one after another; the demonstration follows directly underneath as a floating product card
+ * that rises into the picture's lower edge. The header stands transparent over the picture only while the picture's top edge
+ * is under it (header-shell.tsx).
  *
- * The words at the left (Copy 1102 v2 §1.1): for whom, the headline, the benefit, "Ver la demo" as the main action, "Pedir
- * acceso" as the quiet second action, access by invitation. No trial promise (claims lines 02.11.).
+ * The words at the left (Copy §2): for whom, the headline, the benefit line, "Ver la demo" as the main action, "Pedir acceso" as
+ * the quiet second action, access by invitation. No trial promise (claims lines 02.11.).
  */
-const FILM = "/media/3d/living-camera-ride.mp4";
-const POSTER = "/media/3d/living-ride-poster.webp";
+const PICTURE = "/media/3d/hero-a-1920.webp";
 
 export function Hero({ locale }: { locale: Locale }) {
   const w = home1103.hero;
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const p = (path: string) => localePath(locale, path);
-  // the poster is the first picture of the page: preloaded so the largest paint does not wait for it
-  preload(POSTER, { as: "image" });
+  // the picture is the first paint of the page: preloaded so the largest paint does not wait for it
+  preload(PICTURE, { as: "image" });
 
   return (
     <>
       <section aria-labelledby="hero-h1" data-hero="film" className="hf">
-        <HeroFilm src={FILM} poster={POSTER} label={l(w.film)} pause={l(w.pause)} play={l(w.play)} />
-        {/* the brand moment (05.11., point 2): the logo alone over the film for a breath, then the words rise (CSS; none with reduced motion) */}
+        <HeroImage alt={l(w.image)} mark={l(w.imageMark)} />
+        {/* the brand moment (05.11., point 2): the logo alone over the picture for a breath, then the words rise (CSS; none with reduced motion) */}
         <div className="hf-brand" aria-hidden="true" data-hero-brand>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/logo-tight.png" alt="" width={1600} height={320} decoding="async" fetchPriority="high" />
@@ -54,7 +53,7 @@ export function Hero({ locale }: { locale: Locale }) {
           <HeroScrollHint label={l(w.scroll)} />
         </div>
       </section>
-      {/* The product card rises into the film's lower edge: the transition from the house to the message and the record. */}
+      {/* The product card rises into the picture's lower edge: the transition from the house to the message and the record. */}
       <div className="container-default hero-demo-wrap" data-hero-demo-wrap>
         <HeroDemo locale={locale} />
       </div>

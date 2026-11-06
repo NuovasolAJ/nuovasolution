@@ -107,6 +107,16 @@ const nextConfig = {
       { source: "/politica-privacidad", destination: "/es/legal/privacy", permanent: true },
       { source: "/live-demo", destination: "/en", permanent: true },
       { source: "/v2", destination: "/en", permanent: true },
+      // The legal routes Meta's verification expects (Social's list of 05.11., owner D-5): the pages exist under /legal/<slug>;
+      // these short paths lead there. Not linked from any public page until counsel's texts replace the provisional ones.
+      { source: "/:locale(es|en)/terms", destination: "/:locale/legal/terms", permanent: false },
+      { source: "/:locale(es|en)/data-deletion", destination: "/:locale/legal/data-deletion", permanent: false },
+      { source: "/:locale(es|en)/privacy", destination: "/:locale/legal/privacy", permanent: false },
+      { source: "/:locale(es|en)/legal-notice", destination: "/:locale/legal/notice", permanent: false },
+      { source: "/terms", has: prefersEs, destination: "/es/legal/terms", permanent: false },
+      { source: "/terms", destination: "/en/legal/terms", permanent: false },
+      { source: "/data-deletion", has: prefersEs, destination: "/es/legal/data-deletion", permanent: false },
+      { source: "/data-deletion", destination: "/en/legal/data-deletion", permanent: false },
       // Locale prefix.
       { source: "/", has: prefersEs, destination: "/es", permanent: false },
       { source: "/", destination: "/en", permanent: false },
