@@ -683,14 +683,19 @@ before the last:
 | `adsLeads` | portales y anuncios | portals and ads |
 
 **The language rule.** Every reply sentence says "en español" in both views while `otherLanguages` is off. This is the one exception
-to "preview = target", and it follows the owner's Question B ("en español" is the true limit). When the key turns on (SPRACHEN S2:
-ES + EN), these change together:
+to "preview = target", and it follows the owner's Question B ("en español" is the true limit). When the key turns on (owner
+`SPRACHEN-NEU`, 06.11.: ES + EN + DE for mail, WhatsApp and phone, each language with its evidence and its approved notice; this
+replaces S2 for German), these change together. If only one more language is proven, the sentences name only that one:
 
 | Place | ES | EN |
 |---|---|---|
-| "en español" in a reply sentence | en español e inglés | in Spanish and English |
-| the limit sentence | Si no es español ni inglés, no se envía nada automáticamente. | If it is neither Spanish nor English, nothing is sent automatically. |
-| plans row (returns) | Respuestas también en inglés | Replies in English too |
+| "en español" in a reply sentence, also chip 1 | en español, inglés y alemán | in Spanish, English and German |
+| the limit sentence | En otro idioma no se envía nada automáticamente. | In another language nothing is sent automatically. |
+| plans row (returns) | Respuestas también en inglés y alemán | Replies in English and German too |
+| the example of a language that gets no automatic reply (scene "El idioma", the report's 2, the open cases): today the Kellers write in German | the Kellers become **Claire y Paul Renard**, "francés · reconocido", "Consulta en francés: quieren vender su villa" | **Claire and Paul Renard**, "French · recognised", "Enquiry in French: they want to sell their villa" |
+
+**Why the example moves:** with German on, an enquiry in German gets an automatic reply, so the 2 of the example week need a language
+the product does not answer. The figures do not change. If French is later proven (the owner's next stage), the example moves again.
 
 **The floor of the public view.** With `replySpanish` or `crm` off there is no public product page at all. No text is needed for that
 case: the public build does not go live.
