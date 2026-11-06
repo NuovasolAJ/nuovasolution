@@ -1,7 +1,9 @@
 # REVIEWER RV6 — the check list, written before the build exists
 
 **Role:** independent reviewer. No application code written or changed. **Status:** prepared, **not yet run**.
-**Written for:** Redesign (so it can build against it), Copy, 3D, API and Audit. **Date:** 2026-11-05.
+**Written for:** Redesign (so it can build against it), Copy, 3D, API and Audit. **Date:** 2026-11-05,
+**extended 2026-11-06** for Copy's addition `702a11d` (§D-2 connection wording, §D-3 the production meaning of
+"Incluido").
 
 **RV6 runs on exactly one build:** the next one Redesign names, with **commit, fixed URL and both deployment ids**.
 `faf2dbb` / `dpl_FnoR4QFTNPg1E9ws4g28gj2FdzkC` was **not accepted** by the owner (D01–D12) and is not an end state.
@@ -16,7 +18,8 @@ production deployment is **not** part of this round.
 | Owner's findings C01–C09 on `f6315c1` | `docs/website_redesign/owner_review_1103/README.md` |
 | Owner's findings D01–D12 on `faf2dbb` | `docs/website_redesign/owner_review_1105/README.md` |
 | Claims ceiling (API) | `API_CLAIMS_LINES_1102_v1.md`, `25a6382` — **in the API repo**, `governance/` |
-| The only text source (Copy) | `docs/website_redesign/WEBSITE_COPY_HANDOVER_1105_v3.md`, **`04f4981`** |
+| The only text source (Copy) | `docs/website_redesign/WEBSITE_COPY_HANDOVER_1105_v3.md`, **`04f4981`**, **with the addition `702a11d`** (§1b prod conditions, §13 connection wording, the new first trust line, C-15 re-worded) |
+| What "Incluido" means in production (API) | `ERSTE_FREMDE_AGENTUR_1105_v1.md`, `3d97372` — **in the API repo**, `governance/` |
 
 **Three separate grades, as ordered.** **Design** · **operation** · **technique**. A technical PASS is not a design
 acceptance, and **there is no overall PASS without the owner's design verdict**. Real iPhone/Safari, the real mail
@@ -110,8 +113,12 @@ Checked on **every** route, ES and EN.
 | "visita confirmada" for an asked viewing | "Una petición de visita no es una cita" |
 | a delivery time or price for 3D | neither is given |
 | "60 fps", "Lighthouse 100" without a measurement | no unmeasured performance claim |
+| **any promise of a connection** — "conectamos los canales contigo", "Conecta tus canales", "Conecta tu Gmail", "Gmail verbinden" | the agency's own mailbox connection (D5) **is not built**; §13 of the addition `702a11d` |
 
-**Must appear:** the status words of Copy v3 §1 — **Incluido** / **Próximamente** / **No incluido** (and **no**
+**Must appear:** the first trust line in its new wording (`702a11d`) — "Pides acceso y te enseñamos el sistema. La
+conexión del buzón y del WhatsApp de tu agencia llega próximamente." / "You request access and we show you the system.
+Connecting your agency's mailbox and WhatsApp is coming soon."; the status words of Copy v3 §1 —
+**Incluido** / **Próximamente** / **No incluido** (and **no**
 "En preparación", "Prototipo", "Implementado; todavía sin activar"); "NuovaSolution" instead of "Nuova" in every
 visible text except the demo's sender label; the demo mark "Demo con datos ficticios"; the automation mark
 "Asistente automático de la agencia" **once**; the invitation line "Acceso por invitación mientras preparamos el
@@ -143,6 +150,51 @@ definition; a figure without one is a finding.
 **Note for the run:** Redesign's commit `f3dcdbf` describes the funnel as 25 → 23 → **4 → 3**, while Copy v3 and the
 later commit `22cf04e` give 25 → 23 → **6 → 4**. RV6 checks which of the two the named build shows; the figures above
 are the binding ones.
+
+---
+
+## D-2. Connection wording — nothing promises a connection that does not work
+
+Copy's addition `702a11d` §13. The agency's own mailbox connection (owner D5-DIREKT) **is not built**, so these rows
+hold **on the preview as well as in production**. Each is checked as a string on every route, ES and EN.
+
+| ID | Must no longer read | Must read |
+|---|---|---|
+| N-1 | trust line "…y conectamos los canales contigo." | "Pides acceso y te enseñamos el sistema. La conexión del buzón y del WhatsApp de tu agencia llega próximamente." |
+| N-2 | the FAQ "¿Cuánto se tarda en configurarlo?" promising "nosotros conectamos los canales contigo y probamos cada uno con un mensaje real" | "Hoy te enseñamos el sistema con datos de ejemplo. La conexión … llega próximamente; cuando esté lista, probaremos cada canal con un mensaje real antes de darlo por conectado." |
+| N-3 | the onboarding step "Conecta tus canales con nosotros" | "Tus canales · La conexión del buzón y del WhatsApp de tu agencia llega próximamente." |
+| N-4 | the trial step "Conecta tus canales, según los permisos que tengas." | "Próximamente: conectar el buzón y el WhatsApp de tu agencia." |
+| N-5 | — | "…en un buzón que operamos para ti." **may stay on the preview**; in production only with D5 route B built, otherwise "Respuesta por email: próximamente para el buzón de tu agencia." |
+| N-6 | — | the Email tab's state line **may stay on the preview** (demo with fictional data); in production before D5 it reads "Demo: así funcionará con el buzón de tu agencia (próximamente)." |
+
+The channel labels "Email con Gmail" / "Email through Gmail" name a channel, promise no connection, and stay.
+**N-5 and N-6 are therefore the only two rows where the preview and production differ; RV6 on a preview build checks
+N-1 to N-4 as findings and records N-5/N-6 as the production condition.**
+
+---
+
+## D-3. Before the production go-live: every "Incluido" against its condition
+
+Copy's addition `702a11d` §1b, on API's `ERSTE_FREMDE_AGENTUR_1105_v1.md` (`3d97372`). **"Incluido" means what an
+invited agency other than nuovasolution can use in production.** On the preview the statuses of §1 may stay as they
+are, so **this section is not part of RV6 on a preview build** — it is the check the reviewer owes **before** the
+production go-live. A key whose condition is not met must read **"Próximamente"** in production.
+
+| Key | Condition for "Incluido" in production |
+|---|---|
+| `replies`, e-mail part | the agency's mailbox connected in production (D5), route A or B built and tested with a test mailbox of the agency; V3-DEPLOY; an approved ES notice for the agency (K4) |
+| `replies`, WhatsApp part | the agency's own number registered and routed (K1–K3), M1–M10 green, Meta approvals; V3-DEPLOY |
+| `origin` | the agency's mailbox connected in production (D5) for e-mail; K1–K3 for WhatsApp; V3-DEPLOY |
+| `language_detect` | the agency's mailbox connected in production (D5) for e-mail; K2 for WhatsApp; V3-DEPLOY |
+| `labels` | the agency's mailbox connected in production (D5) with labels in **that** mailbox (route A); route B has no agency mailbox to label |
+| every other function at the agency's mail intake | the agency's mailbox connected in production (D5) |
+| `record`, `priority` | V3-DEPLOY; ONBOARDING-PROD (F1); tenant isolation green after the 13 rows are cleaned (F12); one channel connected (D5 or K1–K3) |
+| `report_login` | ONBOARDING-PROD; the report entitlement for the agency (B1) |
+| `team_list`, `daily_voice` | V3-DEPLOY + ONBOARDING-PROD; staff access for the agency (Release U in production since 05.11.) |
+
+State of the record as given to me: production knows exactly **one** tenant until V3-DEPLOY; mail of an external
+agency does not arrive in production at all yet (K5); the single-mailbox guard (D5) is live since 05.11. 13:40Z;
+Release U is in production since 05.11. 13:32Z. These are API's and Hosting's statements, not my measurements.
 
 ---
 
@@ -183,4 +235,7 @@ are the binding ones.
    rotation's choice, and whether the texts convince.
 3. The database half of the backend evidence stays with API; 3D delivers the media and its own checksums; Copy owns
    the wording. A figure's product truth comes from the register, not from me.
-4. This list is bound to Copy v3 (`04f4981`). If a newer text source lands, the rows that quote it move with it.
+4. This list is bound to Copy v3 (`04f4981`) **and its addition `702a11d`**. If a newer text source lands, the rows
+   that quote it move with it.
+5. Section D-3 is a **production** check, not a preview check. A preview PASS says nothing about whether an invited
+   external agency could use a function in production.
