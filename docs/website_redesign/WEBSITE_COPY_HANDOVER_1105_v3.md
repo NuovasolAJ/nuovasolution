@@ -1054,6 +1054,8 @@ replaced: §23 gives their old and new wording.
 | NuovaSolution es una marca de ⟦E14: NOMBRE⟧. | NuovaSolution is a brand of ⟦E14: NAME⟧. |
 
 - The name comes from the owner, with its accents exactly as on the DNI. It is not filled in here, and no sentence is live until the owner's line `WEBSITE-KLEINFIX = JA`.
+- **Owner, 06.11. evening:** the values are in `C:\Users\Usuario\.nuova-secrets\owner_firmendaten_1106.txt`, **not in the repo**. Redesign fills `⟦E14: NOMBRE⟧` from the file's name line when the live fix is built.
+- **Still open in that file:** the accents of the name and the street spelling (the owner confirms both from the DNI), and the phone (leave it empty). No NIF until the Alta. In the end the spelling in the official document of the Alta decides. So the filled sentence is not final until the accents are confirmed.
 - `META_LEGAL_TEXT_FINAL.md` §3 says "nombre comercial". I leave that as it is. **For counsel:** whether "marca" is acceptable without a registered mark. No missing legal text is written here: privacy, terms and the deletion page stay with counsel and E14 (L-1).
 
 **The WORKING lines of Redesign's return §6, each with a verdict:**
