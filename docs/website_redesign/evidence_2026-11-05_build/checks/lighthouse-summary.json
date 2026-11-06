@@ -1,0 +1,67 @@
+{
+  "lighthouse-desktop.json": {
+    "perf": 99,
+    "a11y": 100,
+    "bp": 92,
+    "lcp": "0.9 s",
+    "tbt": "0 ms",
+    "cls": "0",
+    "fcp": "0.4 s",
+    "bpFails": [
+      "errors-in-console",
+      "inspector-issues"
+    ]
+  },
+  "lighthouse-mobile-example-report.json": {
+    "perf": 81,
+    "a11y": 97,
+    "bp": 92,
+    "lcp": "1.1 s",
+    "tbt": "770 ms",
+    "cls": "0",
+    "fcp": "1.1 s",
+    "bpFails": [
+      "errors-in-console",
+      "inspector-issues"
+    ]
+  },
+  "lighthouse-mobile-run1.json": {
+    "perf": 94,
+    "a11y": 100,
+    "bp": 92,
+    "lcp": "2.7 s",
+    "tbt": "160 ms",
+    "cls": "0",
+    "fcp": "1.4 s",
+    "bpFails": [
+      "errors-in-console",
+      "inspector-issues"
+    ]
+  },
+  "lighthouse-mobile-run2.json": {
+    "perf": 79,
+    "a11y": 100,
+    "bp": 92,
+    "lcp": "4.3 s",
+    "tbt": "290 ms",
+    "cls": "0",
+    "fcp": "1.1 s",
+    "bpFails": [
+      "errors-in-console",
+      "inspector-issues"
+    ]
+  },
+  "lighthouse-mobile-run3.json": {
+    "perf": 81,
+    "a11y": 100,
+    "bp": 92,
+    "lcp": "4.2 s",
+    "tbt": "240 ms",
+    "cls": "0",
+    "fcp": "1.3 s",
+    "bpFails": [
+      "errors-in-console",
+      "inspector-issues"
+    ]
+  }
+}

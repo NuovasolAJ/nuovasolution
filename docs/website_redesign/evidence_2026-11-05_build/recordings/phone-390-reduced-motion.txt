@@ -1,0 +1,1 @@
+wrote docs/website_redesign/evidence_2026-11-05_build/recordings/phone-390-reduced-motion.mp4: 566 frames over 93.00 s real time, 6124 kB (reduced motion emulated)
