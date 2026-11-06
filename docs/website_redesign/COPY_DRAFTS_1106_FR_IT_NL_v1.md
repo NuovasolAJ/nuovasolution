@@ -72,6 +72,13 @@ Row numbers as in the Voice file; the ES and the rules are there. "Quelqu'un de 
 | 37 | offer to check | Souhaitez-vous que quelqu'un de l'équipe vérifie cela et vous appelle ? | Desidera che qualcuno del team lo controlli e la chiami? | Wilt u dat iemand van het team dat nakijkt en u belt? |
 | 38 | anything else | Autre chose ? | Altro? | Verder nog iets? |
 
+| 39 | `other_number` | Pour l'instant, je ne peux noter que ce numéro ; donnez l'autre à la personne de l'équipe qui vous appellera. | Per ora posso annotare solo questo numero; dia l'altro alla persona del team che la chiamerà. | Op dit moment kan ik alleen dit nummer noteren; geef het andere door wanneer iemand van het team u belt. |
+| 40 | `not_yet_sent` | Rien n'a encore été envoyé. | Finora non è stato inviato nulla. | Er is nog niets verstuurd. |
+| 41 | `noted_for_colleague` (fragment) | c'est noté pour l'équipe | è annotato per il team | het is genoteerd voor het team |
+| 42 | `word_today` | aujourd'hui | oggi | vandaag |
+| 43 | `word_tomorrow` | demain | domani | morgen |
+| 44 | `word_on_day` | {day} | {day} | op {day} |
+
 Row 15 is §1. Row 25 stays Spanish for the staff.
 
 **Acknowledgements for the prompt:**

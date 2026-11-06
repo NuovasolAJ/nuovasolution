@@ -119,6 +119,33 @@ The rule "Never say 'Vale'" has its match: no "OK" / "Okay" in EN or DE.
 
 ---
 
+## E2. The six keys that were missing (added 06.11. night; status: DRAFT)
+
+**Correction:** my signal said Voice was waiting for nothing. That was wrong for these six keys: they exist in `VOICE_PHONE_LANG_v2c.sql` and
+were not on the list I worked from, so Voice used its own marked drafts. The ES is Voice's, word for word.
+
+| # | Key | ES | EN | DE | Against Voice's draft |
+|---|---|---|---|---|---|
+| 39 | `other_number` | Ahora solo puedo dejar anotado este número; dígale el otro al compañero cuando le llame. | For now I can only note this number; please give the other one when someone from the team calls you. | Im Moment kann ich nur diese Nummer notieren; nennen Sie die andere bitte beim Anruf. | changed: no "colleague", and "Anruf" as in row 7 |
+| 40 | `not_yet_sent` | Todavía no se ha enviado nada. | Nothing has been sent yet. | Bisher wurde nichts verschickt. | EN the same; DE as in row 13 |
+| 41 | `noted_for_colleague` (a fragment) | queda anotado para el compañero | it's noted for the team | es ist für das Team notiert | EN changed: "team" as everywhere; DE the same |
+| 42 | `word_today` | hoy | today | heute | the same |
+| 43 | `word_tomorrow` | mañana | tomorrow | morgen | the same |
+| 44 | `word_on_day` | el {day} | on {day} | am {day} | the same |
+
+**→ Voice:** replace `source_ref` "Voice-Entwurf, fehlt bei Copy" with these rows. They stay `prod_approved = false`. `not_yet_sent` here is the
+key in your table; the longer sentence in row 13 is your `send_noted`.
+
+**The list, compared with `VOICE_PHONE_TEXTS_COPY_c257602.sql` (43 keys, 86 rows):**
+- 37 keys match this file word for word (checked by script, placeholders aside).
+- 6 keys are the rows above.
+- Rows here without a key of yours: 2, 3 (replaced by your 2b, 3b), 4 (the prompt says no holding phrase), 22 (your 23 + `time_confirm` + `closing_q`), 25 (stays Spanish), 15 (API's table).
+
+**Your question on row 16:** yes, asking for the call-back as a sentence of its own is right. Use `offer_callback` (row 8), which promises no
+language, so the task is not lost.
+
+---
+
 ## F. The owner's line
 
 ```
