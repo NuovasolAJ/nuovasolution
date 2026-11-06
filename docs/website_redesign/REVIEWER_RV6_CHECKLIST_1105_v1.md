@@ -62,7 +62,9 @@ client and matters of taste stay the owner's view.
 | A-18 | **Spanish at 1440 px in the path** | the steps of the path ("Cómo se pide" / plan → model → delivery) at **1440 px** in ES: per line `getClientRects()` — no clipped line, no `overflow: hidden` cutting text, no line crossing a neighbouring box, no step label breaking into an orphan. ES runs longer than EN, so EN alone is not evidence; measured at 1440 **and** at 1280 |
 | A-19 | **the example figures add up** | the arithmetic is checked, not only the single values: 14 + 11 = **25**; 23 + 2 = **25**; agreed **4** ≤ asked **6**; the chart's last week = **25 · 23**; 6 of 25 = **24 %**; and the same values stand on the home page and on `/es/example-report`. Any sum that does not close is a finding, even if each figure matches §D |
 | A-20 | **the switch "Sin / Con NuovaSolution"** | both states are reachable by mouse, touch and keyboard with a visible focus ring; the switch carries **no money and no revenue promise** — no €, no %, no "más ingresos", "más ventas", "más comisiones", "ROI", "recuperas", "ahorras X horas", no time-saved figure, no statement about real agencies (§19); the mark "Ejemplo con datos ficticios · la misma semana" stands **in sight of the figures**, not in a footnote further down; the seven rows and both closing sentences are §19's, and the 6 viewings are **the same** in Sin and Con |
-| A-21 | **how the preview is reached, and whether it is protected** | recorded, not graded: does the preview URL answer **without** authentication, is `X-Robots-Tag` / `<meta name="robots">` actually set to noindex, and is Copy's notice on every preview route. This is the measurement behind §G-7 — with the target state now carrying trial and connection sentences, the owner and API need the facts to decide whether the view belongs behind Vercel's protection |
+| A-21 | **the preview is protected** — **decided by the owner on 06.11.: yes, before the next named build** | now a pass condition, not a question: the preview **must not** answer 200 without the bypass; the owner's own way in (one password, phone-sized window) works; `X-Robots-Tag` / `<meta name="robots">` is noindex **as well**; Copy's notice stands on every preview route, ES and EN. What the protection must leave intact so the other 20 checks can run at all is in `REVIEWER_TO_REDESIGN_1106_VORSCHAU_SCHUTZ_v1.md` (six requirements; the bypass secret lives only in `C:\Users\Usuario\.nuova-secrets\`) |
+| A-22 | **only the new wall art, per medium** (the owner, 06.11., WANDBILDER-RAUMTYP = OK) | every medium the named build actually references is inventoried and checked **one by one**, not as a group: `house-delivery.mp4` / `.webm` and its poster, `house-ground-loop.mp4` / `.webm` and its poster, the living-room camera ride, the web model's assets, the hero stills `hero-a-2560/1920/1280.webp` and `hero-a-poster-960.webp`, and every other picture or video on any route. Per medium: **(a)** its sha256 **as served** matches an entry in 3D's handover manifest that 3D marks as carrying the **new** wall art — a medium whose checksum is not in that list is a finding, whatever it looks like; **(b)** a frame is captured at a moment where the wall is in shot (videos: at the stage step that plays it; stills: directly) and filed as evidence, so the owner and 3D can confirm with the eye what the checksum asserts. **The named exception:** the hero medium carries Van Gogh by the owner's line (today picture A, the hero video when it lands) and is **not** failed for it — it is recorded as the exception. **Pass condition: no medium on the site carries the old picture.** The mapping comes from 3D's handover with checksums; Redesign swaps only from that handover, so a medium in the build that no handover entry explains is a finding against the swap, not against 3D |
+| A-23 | **the alert says nothing false** (the owner, 06.11.) | `alert` is **`soon`** in `lib/claims.ts`, so no page may state the e-mail alert as something that happens today. The three lines the owner named are checked by their place: **`faq.ts:125` Q-31** ("Sí, por email. … recibe un aviso con el motivo. Todavía sin horario de oficina.") · **`faq.ts:133` Q-41** ("…hasta entonces, tu equipo recibe por email el aviso de cada consulta importante.") · **`faq.ts:141` Q-42** ("Hoy no. Hoy tu equipo recibe por email el aviso…"). All three must be gone in the **public** view (V-32, V-48, V-49: the question is hidden). In **both** views the construction "the alert happens meanwhile / today" is forbidden, because it sells a held-back function as the fallback for a hidden one — and "Todavía", "Hoy no" and "próximamente" fall under C-1 anyway. In the **preview** only the target sentence of §20 may stand: "Sí. Cuando una consulta es importante, avisa por email a la persona que toca, con el motivo." EN included (`faq.ts:124`, `:132`, `:140`) |
 
 **Routes in the sweep** (as discovered on 05.11., re-discovered on the named build): `/es`, `/en` and for each
 language `platform`, `platform/ai-sales-agent`, `platform/lead-intelligence`, `platform/crm`,
@@ -398,18 +400,39 @@ are kept so it stays visible what was decided and why.
 | 6 | the report's two "No medido" | **Stay, in both views** |
 | 7 | the thinner public view | **A deliberate product decision, not a finding.** I keep recording what each view shows |
 
-### G-7. The one thing the answers opened
+---
 
-Not a collision between rules, but a consequence worth naming once, because nobody else is positioned to see it: with
-the addendum, the **preview** view now carries the full target state — "Pruébalo gratis 14 días", "Crea tu cuenta",
-"Conectamos contigo el buzón y el WhatsApp de tu agencia", "Sí. … avisa por email a la persona que toca". These are
-exactly the lines API's register (`25a6382`) holds back from the public. What keeps them honest is one line of notice
-at the top of the page.
+## H. The small fix of the live site for Meta — character for character, and nothing else
 
-The preview is served from a Vercel preview URL. On the builds I have measured, such a URL is reachable by **anyone
-who has the link** — there is no password and no sign-in in front of it, and it is only `noindex`. So the question for
-the owner and API, before the next named build is shared outside the lanes: **should the preview view be put behind
-Vercel's protection** (or behind the same gate as `/app`), so that the target state cannot be read as an offer by
-someone who was sent the link? RV6 will measure and report three things either way: that the notice is present on
-every preview route, whether the preview URL answers without authentication, and whether any `robots`/`noindex`
-header is actually set. The decision is not mine.
+A separate errand, not part of RV6, and the owner set its scope on 06.11.: **I report only the character-for-character
+result, and only once Redesign names the preview.** Until then there is nothing from me on it.
+
+| What | How |
+|---|---|
+| Where | the **preview** deployment of the live-site project `nuovasolution` (`prj_1AXMlFaisqoNhvWYfkMDPI5UJL9D`), named by Redesign with its deployment id — **not** the production deployment, which only goes out on the owner's `WEBSITE-KLEINFIX = JA` |
+| Which pages | the four of the fix: `/legal-notice`, `/aviso-legal`, `/privacy-policy`, `/politica-privacidad` |
+| Against what | the owner's own five values as delivered — the full name **with its accents as on the DNI**, the full address (street, number, postcode, town, province), the phone that takes calls, Copy's brand sentence "NuovaSolution es una marca de …" / "… is a brand of …" |
+| Character for character means | the visible text is extracted and compared **unnormalised**: every accent and ñ, every space, every comma, the postcode's digits, and the phone in **E.164 never regrouped** (the 14.10. finding). A sha256 of each page's extracted text is recorded, LF and CRLF |
+| And the rest of the page | diffed against the text of the current production deployment `dpl_4xQt97aFfKzNBpsmXzKxNwZeHTCq`, so that **only** the intended insertions changed. An unintended change anywhere else is reported even if the five values are perfect |
+| What I report | one table: per page and per value, matches / differs, with the differing characters named; plus the four sha256 values and the diff count. **No verdict on publishing, no legal opinion, no recommendation** — the owner's line decides |
+| What stays out | the privacy text and the "we do not share your data" sentence (counsel, L22), `/terms` and `/data-deletion` on the live site, and the NIF, which comes as the second mini-deploy on day X |
+
+---
+
+### G-7. The question the owner has now answered — the preview goes behind a protection
+
+**Answered by the owner on 06.11., 19:00: yes — the preview goes behind a protection before the next named build**,
+with two conditions: the owner must be able to open it on their phone, and my checks must keep running.
+
+What I raised: with the addendum, the **preview** view carries the full target state — "Pruébalo gratis 14 días",
+"Crea tu cuenta", "Conectamos contigo el buzón y el WhatsApp de tu agencia", "Sí. … avisa por email a la persona que
+toca". These are exactly the lines API's register (`25a6382`) holds back from the public, and what keeps them honest
+is one line of notice at the top of the page — on a URL that, on every build I have measured, answers to anyone
+holding the link, with only `noindex` in front of it.
+
+What follows from the decision: **A-21 becomes a pass condition** instead of a recorded observation, and the six
+properties the protection must leave intact — so that the hero WebPs, the 3D media, `/api/build`, the icon, the
+no-JavaScript pass and Lighthouse can still be measured — are written for Redesign in
+`REVIEWER_TO_REDESIGN_1106_VORSCHAU_SCHUTZ_v1.md`. The bypass secret lives only in `C:\Users\Usuario\.nuova-secrets\`
+and appears in no report. If the protection lands in a form that blocks a check, I say which check and why rather
+than reporting a false finding.
