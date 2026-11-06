@@ -82,6 +82,9 @@ try {
         await send("Page.navigate", { url: `${BASE}/${locale}${route}` });
         await sleep(process.env.BASE ? 2600 : 1400);
         await ev("(()=>{document.querySelectorAll('.reveal,.rise').forEach(e=>e.classList.add('is-in'));return 1})()");
+        // the home page of 03.11. lays out the sections below the fold only near the window (content-visibility: auto); an
+        // unrendered element reads as empty text with no ground of its own — the page is woken before anything is measured
+        await ev("(()=>{if(!document.getElementById('probe-cv')){const st=document.createElement('style');st.id='probe-cv';st.textContent='[data-home] section, [data-style] section { content-visibility: visible !important; }';document.head.appendChild(st);}return document.body.offsetHeight})()");
         await sleep(700);
         const items = await ev(COLLECT);
         let worst = null, count = 0;
