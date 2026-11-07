@@ -1,0 +1,286 @@
+{
+  "base": "http://localhost:3153",
+  "results": [
+    {
+      "id": "A1 360 es target no overflow",
+      "ok": true,
+      "ev": "scrollWidth 360 / 360 h1 right 344"
+    },
+    {
+      "id": "A2 360 h1 lines",
+      "ok": true,
+      "ev": "3 lines"
+    },
+    {
+      "id": "A3 360 menu button",
+      "ok": true,
+      "ev": {
+        "x": 300,
+        "y": 8,
+        "w": 44,
+        "h": 44,
+        "vis": true
+      }
+    },
+    {
+      "id": "A4 360 targets",
+      "ok": true,
+      "ev": []
+    },
+    {
+      "id": "A1 360 es public no overflow",
+      "ok": true,
+      "ev": "scrollWidth 360 / 360 h1 right 344"
+    },
+    {
+      "id": "A1 360 en target no overflow",
+      "ok": true,
+      "ev": "scrollWidth 360 / 360 h1 right 344"
+    },
+    {
+      "id": "A1 390 es target no overflow",
+      "ok": true,
+      "ev": "scrollWidth 390 / 390 h1 right 374"
+    },
+    {
+      "id": "A2 390 h1 lines",
+      "ok": true,
+      "ev": "2 lines"
+    },
+    {
+      "id": "A3 390 menu button",
+      "ok": true,
+      "ev": {
+        "x": 330,
+        "y": 8,
+        "w": 44,
+        "h": 44,
+        "vis": true
+      }
+    },
+    {
+      "id": "A4 390 targets",
+      "ok": true,
+      "ev": []
+    },
+    {
+      "id": "A1 390 es public no overflow",
+      "ok": true,
+      "ev": "scrollWidth 390 / 390 h1 right 374"
+    },
+    {
+      "id": "A1 390 en target no overflow",
+      "ok": true,
+      "ev": "scrollWidth 390 / 390 h1 right 374"
+    },
+    {
+      "id": "A1 414 es target no overflow",
+      "ok": true,
+      "ev": "scrollWidth 414 / 414 h1 right 394"
+    },
+    {
+      "id": "A2 414 h1 lines",
+      "ok": true,
+      "ev": "2 lines"
+    },
+    {
+      "id": "A3 414 menu button",
+      "ok": true,
+      "ev": {
+        "x": 350,
+        "y": 8,
+        "w": 44,
+        "h": 44,
+        "vis": true
+      }
+    },
+    {
+      "id": "A4 414 targets",
+      "ok": true,
+      "ev": []
+    },
+    {
+      "id": "A1 414 es public no overflow",
+      "ok": true,
+      "ev": "scrollWidth 414 / 414 h1 right 394"
+    },
+    {
+      "id": "A1 414 en target no overflow",
+      "ok": true,
+      "ev": "scrollWidth 414 / 414 h1 right 394"
+    },
+    {
+      "id": "A1 768 es target no overflow",
+      "ok": true,
+      "ev": "scrollWidth 768 / 768 h1 right 712"
+    },
+    {
+      "id": "A2 768 h1 lines",
+      "ok": true,
+      "ev": "2 lines"
+    },
+    {
+      "id": "A3 768 menu button",
+      "ok": true,
+      "ev": {
+        "x": 692,
+        "y": 10,
+        "w": 44,
+        "h": 44,
+        "vis": true
+      }
+    },
+    {
+      "id": "A4 768 targets",
+      "ok": true,
+      "ev": []
+    },
+    {
+      "id": "A1 768 es public no overflow",
+      "ok": true,
+      "ev": "scrollWidth 768 / 768 h1 right 712"
+    },
+    {
+      "id": "A1 768 en target no overflow",
+      "ok": true,
+      "ev": "scrollWidth 768 / 768 h1 right 712"
+    },
+    {
+      "id": "A3 phone bar",
+      "ok": true,
+      "ev": {
+        "state": "shown",
+        "h": 52,
+        "inView": true
+      }
+    },
+    {
+      "id": "B1/G1 words+actions at 0.85 s",
+      "ok": true,
+      "ev": {
+        "h1min": 1,
+        "lead": 1,
+        "ctas": 1,
+        "logo": 1,
+        "brand": false
+      }
+    },
+    {
+      "id": "B4 logo from the first pixel",
+      "ok": true,
+      "ev": {
+        "h1min": 1,
+        "lead": 1,
+        "ctas": 1,
+        "logo": 1,
+        "brand": false
+      }
+    },
+    {
+      "id": "G1 hero video playing",
+      "ok": true,
+      "ev": {
+        "state": "playing",
+        "playing": true,
+        "w": 1920,
+        "src": "hero-a.mp4",
+        "opacity": 1
+      }
+    },
+    {
+      "id": "C4 no auto rotation",
+      "ok": true,
+      "ev": {
+        "c0": {
+          "ch": "whatsapp",
+          "rec": true,
+          "live": "false"
+        },
+        "c1": {
+          "ch": "whatsapp",
+          "auto": "false",
+          "bar": false,
+          "live": "true"
+        }
+      }
+    },
+    {
+      "id": "C1 record from the start",
+      "ok": true,
+      "ev": {
+        "c0": {
+          "ch": "whatsapp",
+          "rec": true,
+          "live": "false"
+        },
+        "c1": {
+          "ch": "whatsapp",
+          "auto": "false",
+          "bar": false,
+          "live": "true"
+        }
+      }
+    },
+    {
+      "id": "C2 no empty stage container",
+      "ok": true,
+      "ev": {
+        "innerH": 326,
+        "surfH": 276,
+        "bg": "none",
+        "nextOpacity": 1,
+        "nextInView": true,
+        "n": "5",
+        "fold": "6"
+      }
+    },
+    {
+      "id": "C3 five scenes + fold, next visible",
+      "ok": true,
+      "ev": {
+        "innerH": 326,
+        "surfH": 276,
+        "bg": "none",
+        "nextOpacity": 1,
+        "nextInView": true,
+        "n": "5",
+        "fold": "6"
+      }
+    },
+    {
+      "id": "C3 fold opens to eleven",
+      "ok": true,
+      "ev": {
+        "n": "11",
+        "fold": false
+      }
+    },
+    {
+      "id": "G4/F3 pair served",
+      "ok": true,
+      "ev": {
+        "bytes": 61838,
+        "sha": "4e39361f71d80e8a"
+      }
+    },
+    {
+      "id": "C5 reduced motion: nothing at opacity 0",
+      "ok": true,
+      "ev": {
+        "count": 0,
+        "sample": [],
+        "video": "off"
+      }
+    },
+    {
+      "id": "C5 no JS: nothing at opacity 0, both demo sides readable",
+      "ok": true,
+      "ev": {
+        "count": 0,
+        "sample": [],
+        "words": 1164,
+        "sin": false
+      }
+    }
+  ]
+}
