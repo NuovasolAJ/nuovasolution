@@ -957,14 +957,16 @@ html:not(.js) .flow-track-fill { transform: none !important; }
 @media (min-width: 1024px) {
   .fn-rail { display: flex; gap: 10px; margin-top: 22px; }
   .fn-rail-chapter { display: grid; gap: 6px; min-width: 0; }
-  .fn-rail-name { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-500); text-align: left; padding: 0; cursor: pointer; white-space: nowrap; }
+  /* every rail control keeps a hit area of at least 24 px (WCAG 2.5.8; Lighthouse target-size on a5f1d21); the bar stays 4 px: the
+     segment button is 24 px tall with the colour painted on its content box only */
+  .fn-rail-name { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-500); text-align: left; padding: 4px 0; min-height: 24px; line-height: 1.25; cursor: pointer; white-space: nowrap; }
   .fn-rail-name:hover, .fn-rail-chapter.is-on .fn-rail-name { color: var(--brand-ink); }
   .fn-rail-name:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; border-radius: 4px; }
-  .fn-rail-segments { display: flex; gap: 3px; height: 14px; align-items: center; }
-  .fn-rail-seg { flex: 1; height: 4px; border-radius: 2px; background: var(--ink-200); cursor: pointer; padding: 0; transition: background-color 360ms var(--ease-out), height 200ms var(--ease-out); }
-  .fn-rail-seg:hover { background: var(--ink-400); }
-  .fn-rail-seg.is-past { background: var(--brand); }
-  .fn-rail-seg.is-on { background: var(--brand); height: 8px; }
+  .fn-rail-segments { display: flex; gap: 3px; height: 24px; align-items: center; }
+  .fn-rail-seg { flex: 1; box-sizing: border-box; height: 24px; padding: 10px 0; background: var(--ink-200); background-clip: content-box; border-radius: 2px; cursor: pointer; transition: background-color 360ms var(--ease-out), padding 200ms var(--ease-out); }
+  .fn-rail-seg:hover { background-color: var(--ink-400); }
+  .fn-rail-seg.is-past { background-color: var(--brand); }
+  .fn-rail-seg.is-on { background-color: var(--brand); padding: 8px 0; }
   .fn-rail-seg:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
   .fn-rail-chapter:first-child .fn-rail-seg:first-child { border-top-left-radius: 4px; border-bottom-left-radius: 4px; }
   .fn-counter { margin-top: 8px; font-size: 0.8125rem; font-weight: 600; color: var(--ink-500); }

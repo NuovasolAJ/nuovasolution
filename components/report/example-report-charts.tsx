@@ -152,7 +152,9 @@ export function ExampleReportCharts({ locale, view }: { locale: Locale; view: Cl
         {/* the funnel: four steps, each as wide as its share of the enquiries; the rates on the 25 received (reportTrend) */}
         <Panel title={w.funnel.title} note={w.funnel.note} data="funnel" className={cn(!extended && "xr-panel-wide")}>
           <div ref={funnel.ref}>
-          <ol className="xr-funnel" role="img" aria-label={`${w.funnel.title}: ${w.funnel.steps.map((s) => `${s.name} ${s.v}`).join(" → ")}`}>
+          {/* the picture role sits on a wrapper so the list keeps its list semantics for the items (axe "listitem", a5f1d21) */}
+          <div role="img" aria-label={`${w.funnel.title}: ${w.funnel.steps.map((s) => `${s.name} ${s.v}`).join(" → ")}`}>
+          <ol className="xr-funnel" aria-hidden="true">
             {w.funnel.steps.map((s, i) => {
               const width = Math.max(18, (s.v / fmax) * 100);
               return (
@@ -167,6 +169,7 @@ export function ExampleReportCharts({ locale, view }: { locale: Locale; view: Cl
               );
             })}
           </ol>
+          </div>
           {extended && <p className="xr-note">{w.funnel.ratesNote}</p>}
           </div>
         </Panel>
