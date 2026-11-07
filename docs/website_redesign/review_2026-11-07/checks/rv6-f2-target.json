@@ -1,0 +1,206 @@
+{
+ "view": "target",
+ "A16": {
+  "found": true,
+  "stageTop": 2109,
+  "stageHeight": 7957,
+  "samples": 219,
+  "scenes": 11,
+  "dwellMs": {
+   "Re pondida  hoy\n24 h\n23:40\nMarta R": 1400,
+   "Ficha de Peter y Anna Keller\nCRM\nI": 900,
+   "Ficha de Laura\nCRM\nINTENCIÓN\ncompr": 850,
+   "Con ulta  de hoy\n3\nL\nLaura Serrano": 850,
+   "Buzón de la agencia\nGmail\nLaura Se": 900,
+   "Elena · miércole \n3\n\nPrimero Laura": 850,
+   "Canal de origen\nCRM\nLaura Serrano\n": 850,
+   "Encajan con Laura · de tu cartera\n": 850,
+   "Nuevo en tu cartera\nEST-240 · Pi o": 900,
+   "In tagram · publicación preparada\n": 850,
+   "Semana del 26 oct al 1 nov\nDato  d": 1050
+  },
+  "minDwell": 850,
+  "order": [
+   "Re pondida  hoy\n24 h\n23:40\nMarta R",
+   "Ficha de Peter y Anna Keller\nCRM\nI",
+   "Ficha de Laura\nCRM\nINTENCIÓN\ncompr",
+   "Con ulta  de hoy\n3\nL\nLaura Serrano",
+   "Buzón de la agencia\nGmail\nLaura Se",
+   "Elena · miércole \n3\n\nPrimero Laura",
+   "Canal de origen\nCRM\nLaura Serrano\n",
+   "Encajan con Laura · de tu cartera\n",
+   "Nuevo en tu cartera\nEST-240 · Pi o",
+   "In tagram · publicación preparada\n",
+   "Semana del 26 oct al 1 nov\nDato  d"
+  ]
+ },
+ "M3D": {
+  "found": true,
+  "steps": 4,
+  "log": [
+   {
+    "step": 0,
+    "label": "01\nPlano",
+    "videos": [],
+    "images": []
+   },
+   {
+    "step": 1,
+    "label": "02\nModelo",
+    "videos": [
+     {
+      "src": "house-ground-loop.mp4",
+      "dur": 10,
+      "poster": "",
+      "paused": false,
+      "loop": true,
+      "w": 1920,
+      "h": 1080,
+      "q": {
+       "dropped": 0,
+       "total": 98
+      }
+     }
+    ],
+    "images": [
+     {
+      "src": "house-ground-loop-poster-1600.webp",
+      "nw": 1600,
+      "alt": "Casa de ejemplo ficticia: la planta baja de cerca, amueblada, vista del visor"
+     }
+    ]
+   },
+   {
+    "step": 2,
+    "label": "03\nVacío y amueblado",
+    "videos": [],
+    "images": [
+     {
+      "src": "living-empty-1200.webp",
+      "nw": 1200,
+      "alt": "Casa de ejemplo ficticia: el mismo salón vacío, desde la misma cámara"
+     },
+     {
+      "src": "living-furnished-1200.webp",
+      "nw": 1200,
+      "alt": "Casa de ejemplo ficticia: el mismo salón con mobiliario ilustrativo, desde la misma cámara"
+     }
+    ]
+   },
+   {
+    "step": 3,
+    "label": "04\nEntrega",
+    "videos": [
+     {
+      "src": "",
+      "dur": 0,
+      "poster": "house-delivery-poster-1600.webp",
+      "paused": true,
+      "loop": false,
+      "w": 0,
+      "h": 0,
+      "q": {
+       "dropped": 0,
+       "total": 0
+      }
+     }
+    ],
+    "images": []
+   }
+  ]
+ },
+ "A5inView": [
+  {
+   "cls": "mrise flow-head",
+   "opacity": 1,
+   "tr": "none",
+   "h": 125
+  },
+  {
+   "cls": "fn-stage-next",
+   "opacity": 0,
+   "tr": "matrix(1, 0, 0, 1, 0, 4)",
+   "h": 36
+  },
+  {
+   "cls": "mrise rep-head",
+   "opacity": 1,
+   "tr": "none",
+   "h": 153
+  },
+  {
+   "cls": "mrise rep-sheet",
+   "opacity": 1,
+   "tr": "none",
+   "h": 1568
+  },
+  {
+   "cls": "rep-insight",
+   "opacity": 0,
+   "tr": "matrix(1, 0, 0, 1, 0, 10)",
+   "h": 120
+  },
+  {
+   "cls": "rep-insight",
+   "opacity": 0,
+   "tr": "matrix(1, 0, 0, 1, 0, 10)",
+   "h": 120
+  },
+  {
+   "cls": "rep-insight",
+   "opacity": 0,
+   "tr": "matrix(1, 0, 0, 1, 0, 10)",
+   "h": 120
+  },
+  {
+   "cls": "mrise m3d-head",
+   "opacity": 1,
+   "tr": "none",
+   "h": 199
+  },
+  {
+   "cls": "mrise m3d-path",
+   "opacity": 1,
+   "tr": "none",
+   "h": 279
+  },
+  {
+   "cls": "mrise plans-head",
+   "opacity": 1,
+   "tr": "none",
+   "h": 153
+  },
+  {
+   "cls": "mrise plans-table-wrap",
+   "opacity": 1,
+   "tr": "none",
+   "h": 1676
+  },
+  {
+   "cls": "mrise trust-words",
+   "opacity": 1,
+   "tr": "none",
+   "h": 96
+  },
+  {
+   "cls": "mrise trust-step",
+   "opacity": 1,
+   "tr": "none",
+   "h": 52
+  },
+  {
+   "cls": "mrise trust-step",
+   "opacity": 1,
+   "tr": "none",
+   "h": 52
+  }
+ ],
+ "heroInPage": {
+  "cur": "hero-a-1920.webp",
+  "nw": 1366,
+  "nh": 768,
+  "rw": 1396,
+  "sizes": "100vw"
+ },
+ "tomar": []
+}

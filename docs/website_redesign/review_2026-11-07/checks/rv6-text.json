@@ -1,0 +1,1862 @@
+{
+ "build": null,
+ "pages": {
+  "/en": {
+   "target": {
+    "status": 200,
+    "sha": "e240b5388631",
+    "title": "NuovaSolution · Enquiries answered and organised for real estate agencies",
+    "h1": [
+     "While you show a home, NuovaSolution answers."
+    ],
+    "chars": 16489,
+    "words": 2828,
+    "banned": {
+     "connectImperative": 2
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {
+     "included": 108,
+     "notIncluded": 14
+    },
+    "targetOnly": {
+     "trial14": 7,
+     "creaCuenta": 2,
+     "sinMetodoPago": 3,
+     "connectWithYou": 3,
+     "alertYes": 1,
+     "crmNames": 5,
+     "planNames": 5
+    },
+    "fig": {
+     "f25": 13,
+     "f23": 9,
+     "f6": 6,
+     "f4": 5,
+     "ch10": 2,
+     "insight10de25": 1,
+     "hoursLine": 1,
+     "peak": 1,
+     "sinCon": 8,
+     "sinConMark": 1,
+     "solicitaPropuesta": 4,
+     "enEspanol": 9,
+     "laura": 18,
+     "newReply": 1,
+     "eligeCanal": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español",
+     "Without NuovaSolution :",
+     "With NuovaSolution :",
+     "Without NuovaSolution :",
+     "With NuovaSolution :",
+     "Without NuovaSolution :",
+     "With NuovaSolution :",
+     "Without NuovaSolution :",
+     "With NuovaSolution :"
+    ],
+    "media": [
+     "/media/3d/hero-a-poster-960.webp 960w, /media/3d/hero-a-1280.webp 1280w, /media/3d/hero-a-1920.webp 1920w, /media/3d/hero-a-2560.webp 2560w",
+     "/media/world/listing-est204.webp",
+     "/media/world/listing-est231.webp",
+     "/media/world/listing-est240.webp",
+     "/media/world/listing-est118.webp"
+    ]
+   },
+   "public": {
+    "status": 200,
+    "sha": "2d003e41a408",
+    "title": "NuovaSolution · Enquiries answered and organised for real estate agencies",
+    "h1": [
+     "While you show a home, NuovaSolution answers."
+    ],
+    "chars": 9587,
+    "words": 1641,
+    "banned": {
+     "included": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "f25": 9,
+     "f23": 7,
+     "f6": 3,
+     "f4": 2,
+     "hoursLine": 1,
+     "sinCon": 8,
+     "sinConMark": 1,
+     "quieninclude": 1,
+     "pedirAcceso": 8,
+     "enEspanol": 6,
+     "laura": 11,
+     "newReply": 1,
+     "eligeCanal": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español",
+     "Without NuovaSolution :",
+     "With NuovaSolution :",
+     "Without NuovaSolution :",
+     "With NuovaSolution :",
+     "Without NuovaSolution :",
+     "With NuovaSolution :",
+     "Without NuovaSolution :",
+     "With NuovaSolution :"
+    ],
+    "media": [
+     "/media/3d/hero-a-poster-960.webp 960w, /media/3d/hero-a-1280.webp 1280w, /media/3d/hero-a-1920.webp 1920w, /media/3d/hero-a-2560.webp 2560w"
+    ]
+   }
+  },
+  "/en/contact": {
+   "target": {
+    "status": 200,
+    "sha": "abb0b18a30bf",
+    "title": "Contact · NuovaSolution",
+    "h1": [
+     "Talk to a person."
+    ],
+    "chars": 1295,
+    "words": 213,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 4,
+     "sinMetodoPago": 1
+    },
+    "fig": {
+     "enEspanol": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "4948622664a2",
+    "title": "Contact · NuovaSolution",
+    "h1": [
+     "Talk to a person."
+    ],
+    "chars": 1183,
+    "words": 184,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "pedirAcceso": 2,
+     "enEspanol": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/en/example-report": {
+   "target": {
+    "status": 200,
+    "sha": "108b841dd966",
+    "title": "What an agency sees at the end of the week · NuovaSolution",
+    "h1": [
+     "What an agency sees at the end of the week"
+    ],
+    "chars": 4837,
+    "words": 839,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 2
+    },
+    "fig": {
+     "f25": 15,
+     "f23": 3,
+     "f6": 7,
+     "f4": 6,
+     "ch10": 3,
+     "insight10de25": 1,
+     "rates": 1,
+     "hoursLine": 2,
+     "peak": 2,
+     "sinCon": 8,
+     "sinConMark": 1,
+     "laura": 2
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español",
+     "Without NuovaSolution :",
+     "With NuovaSolution :",
+     "Without NuovaSolution :",
+     "With NuovaSolution :",
+     "Without NuovaSolution :",
+     "With NuovaSolution :",
+     "Without NuovaSolution :",
+     "With NuovaSolution :"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "73e5f2e24de7",
+    "title": "What an agency sees at the end of the week · NuovaSolution",
+    "h1": [
+     "What an agency sees at the end of the week"
+    ],
+    "chars": 4010,
+    "words": 673,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "f25": 9,
+     "f23": 3,
+     "f6": 3,
+     "f4": 3,
+     "ch10": 1,
+     "hoursLine": 1,
+     "sinCon": 8,
+     "sinConMark": 1,
+     "pedirAcceso": 2,
+     "laura": 2
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español",
+     "Without NuovaSolution :",
+     "With NuovaSolution :",
+     "Without NuovaSolution :",
+     "With NuovaSolution :",
+     "Without NuovaSolution :",
+     "With NuovaSolution :",
+     "Without NuovaSolution :",
+     "With NuovaSolution :"
+    ],
+    "media": []
+   }
+  },
+  "/en/faq": {
+   "target": {
+    "status": 200,
+    "sha": "cf8cae843f8d",
+    "title": "Straight answers about what NuovaSolution does · NuovaSolution",
+    "h1": [
+     "Straight answers about what NuovaSolution does"
+    ],
+    "chars": 6633,
+    "words": 1184,
+    "banned": {
+     "included": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 2,
+     "sinMetodoPago": 1,
+     "connectWithYou": 1,
+     "crmNames": 1,
+     "planNames": 1
+    },
+    "fig": {
+     "enEspanol": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "119b95739d12",
+    "title": "Straight answers about what NuovaSolution does · NuovaSolution",
+    "h1": [
+     "Straight answers about what NuovaSolution does"
+    ],
+    "chars": 4768,
+    "words": 834,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "pedirAcceso": 2,
+     "enEspanol": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/en/legal/privacy": {
+   "target": {
+    "status": 200,
+    "sha": "feb2ac4782a7",
+    "title": "Privacy notice · NuovaSolution",
+    "h1": [
+     "Privacy notice"
+    ],
+    "chars": 2530,
+    "words": 407,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 1
+    },
+    "fig": {
+     "nuovaAlone": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "50b93bec123c",
+    "title": "Privacy notice · NuovaSolution",
+    "h1": [
+     "Privacy notice"
+    ],
+    "chars": 2524,
+    "words": 403,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "pedirAcceso": 1,
+     "nuovaAlone": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/en/login": {
+   "target": {
+    "status": 200,
+    "sha": "c0e0ddb3f83d",
+    "title": "Log in · NuovaSolution",
+    "h1": [
+     "Log in"
+    ],
+    "chars": 1045,
+    "words": 164,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 1
+    },
+    "fig": {},
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "05cc6fc4b71a",
+    "title": "Log in · NuovaSolution",
+    "h1": [
+     "Log in"
+    ],
+    "chars": 1039,
+    "words": 160,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "pedirAcceso": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/en/packages": {
+   "target": {
+    "status": 200,
+    "sha": "8fb4d6e41ee3",
+    "title": "Packages · NuovaSolution",
+    "h1": [
+     "Start with 14 days of trial"
+    ],
+    "chars": 5510,
+    "words": 897,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {
+     "included": 108,
+     "notIncluded": 14
+    },
+    "targetOnly": {
+     "trial14": 4,
+     "sinMetodoPago": 3,
+     "crmNames": 4,
+     "planNames": 4
+    },
+    "fig": {
+     "f4": 1,
+     "solicitaPropuesta": 4,
+     "enEspanol": 4
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "52372fe6611a",
+    "title": "Packages · NuovaSolution",
+    "h1": [
+     "What NuovaSolution includes"
+    ],
+    "chars": 2115,
+    "words": 349,
+    "banned": {
+     "included": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "f4": 1,
+     "quieninclude": 1,
+     "pedirAcceso": 3,
+     "enEspanol": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/en/platform": {
+   "target": {
+    "status": 200,
+    "sha": "54846aa64ab3",
+    "title": "Platform overview · NuovaSolution",
+    "h1": [
+     "Everything one enquiry needs, in one place"
+    ],
+    "chars": 3829,
+    "words": 651,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 2
+    },
+    "fig": {
+     "f4": 1,
+     "enEspanol": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "8434fc062343",
+    "title": "Platform overview · NuovaSolution",
+    "h1": [
+     "Everything one enquiry needs, in one place"
+    ],
+    "chars": 2178,
+    "words": 356,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "pedirAcceso": 2,
+     "enEspanol": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/en/platform/ai-sales-agent": {
+   "target": {
+    "status": 200,
+    "sha": "e177eb3c8608",
+    "title": "AI Sales Agent · NuovaSolution",
+    "h1": [
+     "Your enquiries get a reply even while you are at a viewing."
+    ],
+    "chars": 2552,
+    "words": 423,
+    "banned": {
+     "buzonQueOperamos": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 3
+    },
+    "fig": {
+     "f23": 2,
+     "enEspanol": 4,
+     "laura": 1,
+     "anoto": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "e6c819f42a86",
+    "title": "AI Sales Agent · NuovaSolution",
+    "h1": [
+     "Your enquiries get a reply even while you are at a viewing."
+    ],
+    "chars": 2494,
+    "words": 405,
+    "banned": {
+     "buzonQueOperamos": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "f23": 2,
+     "pedirAcceso": 3,
+     "enEspanol": 4,
+     "laura": 1,
+     "anoto": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/en/platform/crm": {
+   "target": {
+    "status": 200,
+    "sha": "433fd59bfb50",
+    "title": "CRM · NuovaSolution",
+    "h1": [
+     "Your connected channels, one record per enquiry."
+    ],
+    "chars": 3000,
+    "words": 493,
+    "banned": {
+     "included": 3
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 3
+    },
+    "fig": {
+     "f23": 1,
+     "enEspanol": 3,
+     "laura": 3
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "ec05d811eb5e",
+    "title": "CRM · NuovaSolution",
+    "h1": [
+     "Your connected channels, one record per enquiry."
+    ],
+    "chars": 2942,
+    "words": 475,
+    "banned": {
+     "included": 3
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "f23": 1,
+     "pedirAcceso": 3,
+     "enEspanol": 3,
+     "laura": 3
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/en/platform/daily-assistant": {
+   "target": {
+    "status": 200,
+    "sha": "c41d5a9e51ce",
+    "title": "Daily Tasks · NuovaSolution",
+    "h1": [
+     "The request becomes a task somebody owns."
+    ],
+    "chars": 3025,
+    "words": 524,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 3
+    },
+    "fig": {
+     "f4": 1,
+     "enEspanol": 2,
+     "laura": 3
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "4adf3f049646",
+    "title": "Daily Tasks · NuovaSolution",
+    "h1": [
+     "The request becomes a task somebody owns."
+    ],
+    "chars": 2967,
+    "words": 506,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "f4": 1,
+     "pedirAcceso": 3,
+     "enEspanol": 2,
+     "laura": 3
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/en/platform/lead-intelligence": {
+   "target": {
+    "status": 200,
+    "sha": "742e7186be5e",
+    "title": "Lead Intelligence · NuovaSolution",
+    "h1": [
+     "Keeps what each customer told you."
+    ],
+    "chars": 2771,
+    "words": 461,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 3
+    },
+    "fig": {
+     "enEspanol": 2,
+     "laura": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "ac647edc7e24",
+    "title": "Lead Intelligence · NuovaSolution",
+    "h1": [
+     "Keeps what each customer told you."
+    ],
+    "chars": 2713,
+    "words": 443,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "pedirAcceso": 3,
+     "enEspanol": 2,
+     "laura": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/en/signup": {
+   "target": {
+    "status": 200,
+    "sha": "9072abb378a7",
+    "title": "Create your agency account · NuovaSolution",
+    "h1": [
+     "Create your agency account"
+    ],
+    "chars": 1348,
+    "words": 214,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 1
+    },
+    "fig": {},
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "76666566c06d",
+    "title": "Create your agency account · NuovaSolution",
+    "h1": [
+     "Create your agency account"
+    ],
+    "chars": 1342,
+    "words": 210,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "pedirAcceso": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/en/trial": {
+   "target": {
+    "status": 200,
+    "sha": "5214f95b357c",
+    "title": "Access · NuovaSolution",
+    "h1": [
+     "Try it free for 14 days."
+    ],
+    "chars": 2621,
+    "words": 461,
+    "banned": {
+     "included": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 4,
+     "sinMetodoPago": 2,
+     "connectWithYou": 1
+    },
+    "fig": {},
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 307,
+    "location": "/en/contact"
+   }
+  },
+  "/es": {
+   "target": {
+    "status": 200,
+    "sha": "8ebe5760936b",
+    "title": "NuovaSolution · Consultas respondidas y ordenadas para agencias inmobiliarias",
+    "h1": [
+     "Mientras enseñas, NuovaSolution atiende."
+    ],
+    "chars": 16954,
+    "words": 2854,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {
+     "incluido": 108,
+     "noIncluido": 14
+    },
+    "targetOnly": {
+     "trial14": 8,
+     "creaCuenta": 1,
+     "sinMetodoPago": 3,
+     "connectWithYou": 3,
+     "alertYes": 1,
+     "crmNames": 5,
+     "planNames": 5
+    },
+    "fig": {
+     "f25": 13,
+     "f23": 9,
+     "f6": 6,
+     "f4": 5,
+     "noMedido": 2,
+     "ch10": 2,
+     "insight10de25": 1,
+     "hoursLine": 1,
+     "peak": 1,
+     "sinCon": 8,
+     "sinConMark": 1,
+     "solicitaPropuesta": 4,
+     "demoMark": 2,
+     "heroMark": 3,
+     "senderLabel": 1,
+     "enEspanol": 10,
+     "visitaNoCita": 1,
+     "laura": 18,
+     "newReply": 1,
+     "tomar": 2,
+     "eligeCanal": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :"
+    ],
+    "media": [
+     "/media/3d/hero-a-poster-960.webp 960w, /media/3d/hero-a-1280.webp 1280w, /media/3d/hero-a-1920.webp 1920w, /media/3d/hero-a-2560.webp 2560w",
+     "/media/world/listing-est204.webp",
+     "/media/world/listing-est231.webp",
+     "/media/world/listing-est240.webp",
+     "/media/world/listing-est118.webp"
+    ]
+   },
+   "public": {
+    "status": 200,
+    "sha": "7c9149eb051d",
+    "title": "NuovaSolution · Consultas respondidas y ordenadas para agencias inmobiliarias",
+    "h1": [
+     "Mientras enseñas, NuovaSolution atiende."
+    ],
+    "chars": 9717,
+    "words": 1648,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "f25": 9,
+     "f23": 7,
+     "f6": 3,
+     "f4": 2,
+     "noMedido": 2,
+     "hoursLine": 1,
+     "sinCon": 8,
+     "sinConMark": 1,
+     "quieninclude": 1,
+     "pedirAcceso": 5,
+     "accesoInvitacion": 2,
+     "demoMark": 2,
+     "heroMark": 1,
+     "senderLabel": 1,
+     "enEspanol": 7,
+     "visitaNoCita": 1,
+     "laura": 11,
+     "newReply": 1,
+     "eligeCanal": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :"
+    ],
+    "media": [
+     "/media/3d/hero-a-poster-960.webp 960w, /media/3d/hero-a-1280.webp 1280w, /media/3d/hero-a-1920.webp 1920w, /media/3d/hero-a-2560.webp 2560w"
+    ]
+   }
+  },
+  "/es/contact": {
+   "target": {
+    "status": 200,
+    "sha": "a55f847d195f",
+    "title": "Contacto · NuovaSolution",
+    "h1": [
+     "Habla con una persona."
+    ],
+    "chars": 1417,
+    "words": 214,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 3,
+     "sinMetodoPago": 1
+    },
+    "fig": {
+     "enEspanol": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "dc0e5e411de6",
+    "title": "Contacto · NuovaSolution",
+    "h1": [
+     "Habla con una persona."
+    ],
+    "chars": 1275,
+    "words": 191,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "pedirAcceso": 2,
+     "enEspanol": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/es/example-report": {
+   "target": {
+    "status": 200,
+    "sha": "5cad9407955e",
+    "title": "Lo que ve una agencia al final de la semana · NuovaSolution",
+    "h1": [
+     "Lo que ve una agencia al final de la semana"
+    ],
+    "chars": 5071,
+    "words": 879,
+    "banned": {
+     "disponible": 2
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 2
+    },
+    "fig": {
+     "f25": 15,
+     "f23": 3,
+     "f6": 7,
+     "f4": 6,
+     "ch10": 3,
+     "insight10de25": 1,
+     "rates": 1,
+     "hoursLine": 2,
+     "peak": 2,
+     "baseLine": 1,
+     "sinCon": 8,
+     "sinConMark": 1,
+     "laura": 2
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "01b0d49857c8",
+    "title": "Lo que ve una agencia al final de la semana · NuovaSolution",
+    "h1": [
+     "Lo que ve una agencia al final de la semana"
+    ],
+    "chars": 4174,
+    "words": 706,
+    "banned": {
+     "disponible": 2
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "f25": 9,
+     "f23": 3,
+     "f6": 3,
+     "f4": 3,
+     "ch10": 1,
+     "hoursLine": 1,
+     "baseLine": 1,
+     "sinCon": 8,
+     "sinConMark": 1,
+     "pedirAcceso": 2,
+     "accesoInvitacion": 1,
+     "laura": 2
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :",
+     "Sin NuovaSolution :",
+     "Con NuovaSolution :"
+    ],
+    "media": []
+   }
+  },
+  "/es/faq": {
+   "target": {
+    "status": 200,
+    "sha": "58118d97719a",
+    "title": "Respuestas claras sobre lo que hace NuovaSolution · NuovaSolution",
+    "h1": [
+     "Respuestas claras sobre lo que hace NuovaSolution"
+    ],
+    "chars": 6802,
+    "words": 1162,
+    "banned": {
+     "todavia": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 2,
+     "sinMetodoPago": 1,
+     "connectWithYou": 1,
+     "crmNames": 1,
+     "planNames": 1
+    },
+    "fig": {
+     "enEspanol": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "fa789a87e092",
+    "title": "Respuestas claras sobre lo que hace NuovaSolution · NuovaSolution",
+    "h1": [
+     "Respuestas claras sobre lo que hace NuovaSolution"
+    ],
+    "chars": 4902,
+    "words": 820,
+    "banned": {
+     "todavia": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "pedirAcceso": 2,
+     "enEspanol": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/es/legal/privacy": {
+   "target": {
+    "status": 200,
+    "sha": "1dec237ac237",
+    "title": "Aviso de privacidad · NuovaSolution",
+    "h1": [
+     "Aviso de privacidad"
+    ],
+    "chars": 2696,
+    "words": 409,
+    "banned": {
+     "todavia": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 1
+    },
+    "fig": {
+     "nuovaAlone": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "c9361113c8d6",
+    "title": "Aviso de privacidad · NuovaSolution",
+    "h1": [
+     "Aviso de privacidad"
+    ],
+    "chars": 2685,
+    "words": 407,
+    "banned": {
+     "todavia": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "pedirAcceso": 1,
+     "nuovaAlone": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/es/login": {
+   "target": {
+    "status": 200,
+    "sha": "d61662edf92c",
+    "title": "Iniciar sesión · NuovaSolution",
+    "h1": [
+     "Iniciar sesión"
+    ],
+    "chars": 1211,
+    "words": 178,
+    "banned": {
+     "todavia": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 1
+    },
+    "fig": {},
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "56fcd659385b",
+    "title": "Iniciar sesión · NuovaSolution",
+    "h1": [
+     "Iniciar sesión"
+    ],
+    "chars": 1200,
+    "words": 176,
+    "banned": {
+     "todavia": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "pedirAcceso": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/es/packages": {
+   "target": {
+    "status": 200,
+    "sha": "390f024a312e",
+    "title": "Paquetes · NuovaSolution",
+    "h1": [
+     "Empieza con 14 días de prueba"
+    ],
+    "chars": 5741,
+    "words": 912,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {
+     "incluido": 108,
+     "noIncluido": 14
+    },
+    "targetOnly": {
+     "trial14": 4,
+     "sinMetodoPago": 2,
+     "crmNames": 4,
+     "planNames": 4
+    },
+    "fig": {
+     "f4": 1,
+     "solicitaPropuesta": 4,
+     "enEspanol": 4
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "89dbd4b2b149",
+    "title": "Paquetes · NuovaSolution",
+    "h1": [
+     "Qué incluye NuovaSolution"
+    ],
+    "chars": 2181,
+    "words": 347,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "f4": 1,
+     "quieninclude": 2,
+     "pedirAcceso": 3,
+     "accesoInvitacion": 2,
+     "enEspanol": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/es/platform": {
+   "target": {
+    "status": 200,
+    "sha": "dcbcccaab680",
+    "title": "Visión general · NuovaSolution",
+    "h1": [
+     "Todo lo que necesita una consulta, en un solo lugar"
+    ],
+    "chars": 4081,
+    "words": 686,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 2
+    },
+    "fig": {
+     "f4": 1,
+     "enEspanol": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "c325057b52dd",
+    "title": "Visión general · NuovaSolution",
+    "h1": [
+     "Todo lo que necesita una consulta, en un solo lugar"
+    ],
+    "chars": 2310,
+    "words": 384,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "pedirAcceso": 2,
+     "enEspanol": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/es/platform/ai-sales-agent": {
+   "target": {
+    "status": 200,
+    "sha": "33f69d476bdc",
+    "title": "Asistente de consultas · NuovaSolution",
+    "h1": [
+     "Tus consultas reciben respuesta aunque estés en una visita."
+    ],
+    "chars": 2775,
+    "words": 443,
+    "banned": {
+     "buzonQueOperamos": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 3
+    },
+    "fig": {
+     "f23": 2,
+     "enEspanol": 4,
+     "laura": 1,
+     "anoto": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "06f67a76775c",
+    "title": "Asistente de consultas · NuovaSolution",
+    "h1": [
+     "Tus consultas reciben respuesta aunque estés en una visita."
+    ],
+    "chars": 2695,
+    "words": 431,
+    "banned": {
+     "buzonQueOperamos": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "f23": 2,
+     "pedirAcceso": 3,
+     "enEspanol": 4,
+     "laura": 1,
+     "anoto": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/es/platform/crm": {
+   "target": {
+    "status": 200,
+    "sha": "ce9cbb94f946",
+    "title": "CRM · NuovaSolution",
+    "h1": [
+     "Tus canales conectados, una ficha por consulta."
+    ],
+    "chars": 3181,
+    "words": 515,
+    "banned": {
+     "incluido": 2
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 3
+    },
+    "fig": {
+     "f23": 1,
+     "enEspanol": 3,
+     "laura": 3
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "c63307dece76",
+    "title": "CRM · NuovaSolution",
+    "h1": [
+     "Tus canales conectados, una ficha por consulta."
+    ],
+    "chars": 3101,
+    "words": 503,
+    "banned": {
+     "incluido": 2
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "f23": 1,
+     "pedirAcceso": 3,
+     "enEspanol": 3,
+     "laura": 3
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/es/platform/daily-assistant": {
+   "target": {
+    "status": 200,
+    "sha": "926d8b6a73ae",
+    "title": "Tareas diarias · NuovaSolution",
+    "h1": [
+     "La petición pasa a ser una tarea con dueño."
+    ],
+    "chars": 3230,
+    "words": 553,
+    "banned": {
+     "disponible": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 3
+    },
+    "fig": {
+     "f4": 1,
+     "enEspanol": 2,
+     "laura": 3,
+     "tomar": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "52a3d620daac",
+    "title": "Tareas diarias · NuovaSolution",
+    "h1": [
+     "La petición pasa a ser una tarea con dueño."
+    ],
+    "chars": 3150,
+    "words": 541,
+    "banned": {
+     "disponible": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "f4": 1,
+     "pedirAcceso": 3,
+     "enEspanol": 2,
+     "laura": 3,
+     "tomar": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/es/platform/lead-intelligence": {
+   "target": {
+    "status": 200,
+    "sha": "2e3a92e2763f",
+    "title": "Ficha y prioridad · NuovaSolution",
+    "h1": [
+     "Guarda lo que te ha contado cada cliente."
+    ],
+    "chars": 2969,
+    "words": 488,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 3
+    },
+    "fig": {
+     "enEspanol": 2,
+     "laura": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "cb7d4242f77e",
+    "title": "Ficha y prioridad · NuovaSolution",
+    "h1": [
+     "Guarda lo que te ha contado cada cliente."
+    ],
+    "chars": 2889,
+    "words": 476,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {},
+    "fig": {
+     "pedirAcceso": 3,
+     "enEspanol": 2,
+     "laura": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/es/signup": {
+   "target": {
+    "status": 200,
+    "sha": "572b53510595",
+    "title": "Crea la cuenta de tu agencia · NuovaSolution",
+    "h1": [
+     "Crea la cuenta de tu agencia"
+    ],
+    "chars": 1461,
+    "words": 233,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 2
+    },
+    "fig": {},
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 200,
+    "sha": "99ab306c012a",
+    "title": "Crea la cuenta de tu agencia · NuovaSolution",
+    "h1": [
+     "Crea la cuenta de tu agencia"
+    ],
+    "chars": 1450,
+    "words": 231,
+    "banned": {},
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 1
+    },
+    "fig": {
+     "pedirAcceso": 1
+    },
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   }
+  },
+  "/es/trial": {
+   "target": {
+    "status": 200,
+    "sha": "b8ba5d2bf17c",
+    "title": "Acceso · NuovaSolution",
+    "h1": [
+     "Prueba gratis durante 14 días."
+    ],
+    "chars": 2780,
+    "words": 472,
+    "banned": {
+     "incluido": 1
+    },
+    "bannedInSr": {},
+    "bannedInAttrs": {},
+    "targetOnly": {
+     "trial14": 5,
+     "sinMetodoPago": 2,
+     "connectWithYou": 1
+    },
+    "fig": {},
+    "noticeES": false,
+    "noticeEN": false,
+    "srSample": [
+     "English",
+     "Español",
+     "English",
+     "Español"
+    ],
+    "media": []
+   },
+   "public": {
+    "status": 307,
+    "location": "/es/contact"
+   }
+  }
+ },
+ "generated": "2026-11-07T08:25:43.828Z"
+}

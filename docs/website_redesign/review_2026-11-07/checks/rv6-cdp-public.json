@@ -1,0 +1,398 @@
+{
+ "view": "public",
+ "utc": "2026-11-07T10:18:12.384Z",
+ "steps": {
+  "A2_firstScreen": {
+   "h1": [
+    {
+     "t": "Mientras enseñas, NuovaSolution atiende.",
+     "r": {
+      "x": 76,
+      "y": 409,
+      "w": 680,
+      "h": 201
+     }
+    }
+   ],
+   "actionsInFold": [
+    "Plataforma",
+    "Paquetes",
+    "Acceso",
+    "Contacto",
+    "EN ENGLISH",
+    "ES ESPAÑOL",
+    "Iniciar sesión",
+    "Ver la demo",
+    "Objetivo",
+    "Público",
+    "Inter",
+    "Fraunces",
+    "Ver la demo",
+    "Pedir acceso"
+   ],
+   "primaryInFold": [
+    "Ver la demo",
+    "Ver la demo",
+    "Pedir acceso"
+   ],
+   "demoInFold": false,
+   "demoRect": {
+    "x": 76,
+    "y": 826,
+    "w": 1200,
+    "h": 702
+   },
+   "recordInFold": 0,
+   "enquiryTextInFold": false,
+   "words": 488,
+   "foldWords": 1287
+  },
+  "A11_A12": {
+   "measured": 316,
+   "fails": [],
+   "onScenes": 53,
+   "smallest": [
+    {
+     "t": "PLATAFORMA",
+     "px": 12,
+     "cls": "t-eyebrow text-text-muted mb-4"
+    },
+    {
+     "t": "EMPEZAR",
+     "px": 12,
+     "cls": "t-eyebrow text-text-muted mb-4"
+    },
+    {
+     "t": "EMPRESA",
+     "px": 12,
+     "cls": "t-eyebrow text-text-muted mb-4"
+    },
+    {
+     "t": "EN ENGLISH",
+     "px": 13,
+     "cls": "inline-flex h-full items-center rounded-"
+    },
+    {
+     "t": "ES ESPAÑOL",
+     "px": 13,
+     "cls": "inline-flex h-full items-center rounded-"
+    },
+    {
+     "t": "Vista previa, no pública.",
+     "px": 13,
+     "cls": "font-medium"
+    },
+    {
+     "t": "Muestra el producto completo, incluidas ",
+     "px": 13,
+     "cls": "text-text-secondary"
+    },
+    {
+     "t": "Vista previa, no pública",
+     "px": 13,
+     "cls": "whitespace-nowrap"
+    },
+    {
+     "t": "Solo en la vista previa",
+     "px": 13,
+     "cls": "pv-hint"
+    },
+    {
+     "t": "Vista",
+     "px": 13,
+     "cls": "pv-name"
+    },
+    {
+     "t": "Objetivo",
+     "px": 13,
+     "cls": "pv-opt"
+    },
+    {
+     "t": "Público",
+     "px": 13,
+     "cls": "pv-opt is-on"
+    },
+    {
+     "t": "Paleta",
+     "px": 13,
+     "cls": "pv-name"
+    },
+    {
+     "t": "A",
+     "px": 13,
+     "cls": "pv-opt is-on"
+    }
+   ]
+  },
+  "A7_A10_tabs": {
+   "count": 2,
+   "labels": [
+    "WhatsApp",
+    "Email"
+   ],
+   "sel": [
+    "true",
+    "false"
+   ],
+   "tabindex": [
+    "0",
+    "-1"
+   ],
+   "box": [
+    {
+     "x": 169,
+     "y": 432
+    },
+    {
+     "x": 308,
+     "y": 432
+    }
+   ],
+   "before": "L\n\nLaura · compradora\n\nen línea\n\nHola, soy Laura. Busco un p",
+   "mouse": {
+    "sel": [
+     "false",
+     "true"
+    ],
+    "panel": "Bandeja de entrada\n\nCarmen Ortega\nValoración de mi piso en F"
+   },
+   "idleAfter6s": [
+    "false",
+    "true"
+   ],
+   "touch": {
+    "sel": [
+     "false",
+     "true"
+    ],
+    "panel": "Valoración de mi piso en Fuengirola\n\nC\n\nCarmen Ort"
+   },
+   "keyboardFocus": null,
+   "arrow": null
+  },
+  "A16_scrollSpeed": {
+   "pxPerSec": 800,
+   "samples": 104,
+   "distinctScenes": 1,
+   "dwellMs": {
+    "": 10400
+   }
+  },
+  "A18_pathES": {
+   "1280": {
+    "found": true,
+    "docOverflow": false,
+    "items": 10,
+    "clipped": [],
+    "overflow": [],
+    "orphanLines": []
+   },
+   "1440": {
+    "found": true,
+    "docOverflow": false,
+    "items": 10,
+    "clipped": [],
+    "overflow": [],
+    "orphanLines": []
+   }
+  },
+  "A3_A4_viewports": {
+   "390": {
+    "docOverflow": false,
+    "wideElements": [
+     {
+      "t": "",
+      "w": 400
+     }
+    ],
+    "h1count": 1,
+    "coveredActions": [],
+    "smallTargets": [
+     {
+      "t": "",
+      "h": 28
+     },
+     {
+      "t": "Objetivo",
+      "h": 28
+     },
+     {
+      "t": "Público",
+      "h": 28
+     },
+     {
+      "t": "A",
+      "h": 28
+     },
+     {
+      "t": "B",
+      "h": 28
+     },
+     {
+      "t": "C",
+      "h": 28
+     },
+     {
+      "t": "Inter",
+      "h": 28
+     },
+     {
+      "t": "Fraunces",
+      "h": 28
+     },
+     {
+      "t": "Ver el informe completo",
+      "h": 20
+     },
+     {
+      "t": "CRM",
+      "h": 44
+     }
+    ]
+   },
+   "768": {
+    "docOverflow": false,
+    "wideElements": [],
+    "h1count": 1,
+    "coveredActions": [],
+    "smallTargets": [
+     {
+      "t": "",
+      "h": 32
+     },
+     {
+      "t": "Objetivo",
+      "h": 28
+     },
+     {
+      "t": "Público",
+      "h": 28
+     },
+     {
+      "t": "A",
+      "h": 28
+     },
+     {
+      "t": "B",
+      "h": 28
+     },
+     {
+      "t": "C",
+      "h": 28
+     },
+     {
+      "t": "Inter",
+      "h": 28
+     },
+     {
+      "t": "Fraunces",
+      "h": 28
+     },
+     {
+      "t": "Repetir demo",
+      "h": 32
+     },
+     {
+      "t": "Ver el informe completo",
+      "h": 20
+     }
+    ]
+   },
+   "1024": {
+    "docOverflow": false,
+    "wideElements": [
+     {
+      "t": "",
+      "w": 1037
+     }
+    ],
+    "h1count": 1,
+    "coveredActions": [],
+    "smallTargets": [
+     {
+      "t": "",
+      "h": 32
+     },
+     {
+      "t": "EN ENGLISH",
+      "h": 34
+     },
+     {
+      "t": "ES ESPAÑOL",
+      "h": 34
+     },
+     {
+      "t": "Objetivo",
+      "h": 28
+     },
+     {
+      "t": "Público",
+      "h": 28
+     },
+     {
+      "t": "A",
+      "h": 28
+     },
+     {
+      "t": "B",
+      "h": 28
+     },
+     {
+      "t": "C",
+      "h": 28
+     },
+     {
+      "t": "Inter",
+      "h": 28
+     },
+     {
+      "t": "Fraunces",
+      "h": 28
+     }
+    ]
+   }
+  },
+  "A5_reducedMotion": {
+   "runningAnimations": 0,
+   "videos": [],
+   "invisibleBlocks": 1,
+   "actions": 60,
+   "words": 486
+  },
+  "demo_media_footer": {
+   "demoText": "ELIGE UN CANAL Elige un canal y mira cómo responde. Repetir demo WhatsApp Email L Laura · compradora en línea Hola, soy Laura. Busco un piso de 2 dormitorios en Estepona, hasta 320.000 €. ¿Podría ver alguno la semana que viene? 11:20 Asistente automático de la agencia ¡Hola, Laura! Gracias por escribirnos. Buscas en Estepona, 2 dormitorios y hasta 320.000 €, ¿verdad? ¿Te viene mejor por la mañana o por la tarde para una visita? 11:21 FICHA DE LAURA WhatsApp · 11:21 INTENCIÓN compra ZONA Estepona DORMITORIOS 2 PRESUPUESTO hasta 320.000 € IDIOMA español CANAL WhatsApp VISITA la pide para la semana que viene ESTADO Consulta registrada PRIORIDAD Alta · pide zona, presupuesto y visita SIGUIENTE P",
+   "lauraMsgs": 3,
+   "ticks": 0,
+   "heroImgs": [
+    {
+     "src": "hero-a-1920.webp",
+     "nw": 1366,
+     "nh": 768,
+     "rw": 1390,
+     "alt": "Casa de ejemplo ficticia: salón amueblado, ilustrativo"
+    }
+   ],
+   "images": [
+    {
+     "src": "logo-tight.png",
+     "nw": 1600,
+     "alt": "NuovaSolution"
+    },
+    {
+     "src": "hero-a-1920.webp",
+     "nw": 1366,
+     "alt": "Casa de ejemplo ficticia: salón amueblad"
+    },
+    {
+     "src": "logo-tight.png",
+     "nw": 1600,
+     "alt": "NuovaSolution"
+    }
+   ],
+   "videos": [],
+   "tomarTags": [],
+   "footerText": "NuovaSolution responde a las consultas de tu agencia y guarda lo importante en su ficha. Hecho para agencias en España. PLATAFORMA Visión general Asistente de consultas Ficha y prioridad CRM Tareas diarias EMPEZAR Pedir acceso Acceso Paquetes Iniciar sesión EMPRESA Preguntas Contacto antonio@nuovasolution.com © 2026 NuovaSolution. Todos los derechos reservados.",
+   "headerOverlap": []
+  }
+ }
+}

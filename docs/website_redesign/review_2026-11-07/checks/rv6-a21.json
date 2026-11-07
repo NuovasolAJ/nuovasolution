@@ -1,0 +1,648 @@
+{
+ "generated": "2026-11-07T08:23:25.248Z",
+ "note": "no secret value appears in this file",
+ "projects": {
+  "design": {
+   "base": "https://nuovasolution-design-preview-c0ktpvgrs-nuovasolajs-projects.vercel.app",
+   "rows": [
+    {
+     "path": "/es",
+     "bare": {
+      "status": 401,
+      "ms": 1179,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 1529,
+      "metaRobots": "noindex,nofollow",
+      "looksGate": true,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": "Vista previa de NuovaSolution",
+      "sha256_8": "2d25f81b"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 1214,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 389276,
+      "metaRobots": "noindex, nofollow",
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": "NuovaSolution · Consultas respondidas y ordenadas para agencias inmobiliarias",
+      "sha256_8": "de1b9a71"
+     }
+    },
+    {
+     "path": "/en",
+     "bare": {
+      "status": 401,
+      "ms": 210,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 1494,
+      "metaRobots": "noindex,nofollow",
+      "looksGate": true,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": "NuovaSolution preview",
+      "sha256_8": "b4cc1607"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 241,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 389354,
+      "metaRobots": "noindex, nofollow",
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": "NuovaSolution · Enquiries answered and organised for real estate agencies",
+      "sha256_8": "6726bd8a"
+     }
+    },
+    {
+     "path": "/es/example-report",
+     "bare": {
+      "status": 401,
+      "ms": 72,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 1529,
+      "metaRobots": "noindex,nofollow",
+      "looksGate": true,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": "Vista previa de NuovaSolution",
+      "sha256_8": "2d25f81b"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 218,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 70113,
+      "metaRobots": "noindex, nofollow",
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": "Lo que ve una agencia al final de la semana · NuovaSolution",
+      "sha256_8": "9f532ff0"
+     }
+    },
+    {
+     "path": "/es/packages",
+     "bare": {
+      "status": 401,
+      "ms": 84,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 1529,
+      "metaRobots": "noindex,nofollow",
+      "looksGate": true,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": "Vista previa de NuovaSolution",
+      "sha256_8": "2d25f81b"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 190,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 296222,
+      "metaRobots": "noindex, nofollow",
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": "Paquetes · NuovaSolution",
+      "sha256_8": "4266f9d2"
+     }
+    },
+    {
+     "path": "/api/build",
+     "bare": {
+      "status": 401,
+      "ms": 66,
+      "robots": "noindex, nofollow",
+      "ctype": "text/plain",
+      "len": 12,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "d089c8a9"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 719,
+      "robots": "noindex, nofollow",
+      "ctype": "application/json",
+      "len": 167,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "1de6369d"
+     }
+    },
+    {
+     "path": "/media/3d/house-delivery.mp4",
+     "bare": {
+      "status": 401,
+      "ms": 91,
+      "robots": "noindex, nofollow",
+      "ctype": "text/plain",
+      "len": 12,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "d089c8a9"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 777,
+      "robots": "noindex, nofollow",
+      "ctype": "video/mp4",
+      "len": 14466391,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "d3bb66e1"
+     }
+    },
+    {
+     "path": "/media/3d/hero-a-1280.webp",
+     "bare": {
+      "status": 401,
+      "ms": 73,
+      "robots": "noindex, nofollow",
+      "ctype": "text/plain",
+      "len": 12,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "d089c8a9"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 76,
+      "robots": "noindex, nofollow",
+      "ctype": "image/webp",
+      "len": 52913,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "b017a96a"
+     }
+    },
+    {
+     "path": "/icon0.svg",
+     "bare": {
+      "status": 401,
+      "ms": 66,
+      "robots": "noindex, nofollow",
+      "ctype": "text/plain",
+      "len": 12,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "d089c8a9"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 61,
+      "robots": "noindex, nofollow",
+      "ctype": "image/svg+xml",
+      "len": 3765,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "c19e5aab"
+     }
+    },
+    {
+     "path": "/robots.txt",
+     "bare": {
+      "status": 401,
+      "ms": 66,
+      "robots": "noindex, nofollow",
+      "ctype": "text/plain",
+      "len": 12,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "d089c8a9"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 108,
+      "robots": "noindex, nofollow",
+      "ctype": "text/plain",
+      "len": 130,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "48d0fea8"
+     }
+    },
+    {
+     "path": "/sitemap.xml",
+     "bare": {
+      "status": 401,
+      "ms": 68,
+      "robots": "noindex, nofollow",
+      "ctype": "text/plain",
+      "len": 12,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "d089c8a9"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 122,
+      "robots": "noindex, nofollow",
+      "ctype": "application/xml",
+      "len": 110,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "1214c52c"
+     }
+    }
+   ],
+   "ownerCodeInLink": {
+    "status": 303,
+    "ms": 63,
+    "robots": "noindex, nofollow",
+    "ctype": "text/plain",
+    "len": 15,
+    "metaRobots": null,
+    "looksGate": false,
+    "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+    "location": "/es",
+    "firstTitle": null,
+    "sha256_8": "7c040f86"
+   },
+   "ownerWrongCode": {
+    "status": 401,
+    "ms": 80,
+    "robots": "noindex, nofollow",
+    "ctype": "text/html",
+    "len": 1573,
+    "metaRobots": "noindex,nofollow",
+    "looksGate": true,
+    "setCookie": null,
+    "location": null,
+    "firstTitle": "Vista previa de NuovaSolution",
+    "sha256_8": "8726f4ce"
+   }
+  },
+  "staging": {
+   "base": "https://nuovasolution-staging-preview-4uhy6n405-nuovasolajs-projects.vercel.app",
+   "rows": [
+    {
+     "path": "/es",
+     "bare": {
+      "status": 401,
+      "ms": 1152,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 1529,
+      "metaRobots": "noindex,nofollow",
+      "looksGate": true,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": "Vista previa de NuovaSolution",
+      "sha256_8": "2d25f81b"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 1326,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 388902,
+      "metaRobots": "noindex, nofollow",
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": "NuovaSolution · Consultas respondidas y ordenadas para agencias inmobiliarias",
+      "sha256_8": "8ee154ab"
+     }
+    },
+    {
+     "path": "/en",
+     "bare": {
+      "status": 401,
+      "ms": 73,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 1494,
+      "metaRobots": "noindex,nofollow",
+      "looksGate": true,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": "NuovaSolution preview",
+      "sha256_8": "b4cc1607"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 280,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 389002,
+      "metaRobots": "noindex, nofollow",
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": "NuovaSolution · Enquiries answered and organised for real estate agencies",
+      "sha256_8": "7435fa34"
+     }
+    },
+    {
+     "path": "/es/example-report",
+     "bare": {
+      "status": 401,
+      "ms": 232,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 1529,
+      "metaRobots": "noindex,nofollow",
+      "looksGate": true,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": "Vista previa de NuovaSolution",
+      "sha256_8": "2d25f81b"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 545,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 69739,
+      "metaRobots": "noindex, nofollow",
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": "Lo que ve una agencia al final de la semana · NuovaSolution",
+      "sha256_8": "696043d9"
+     }
+    },
+    {
+     "path": "/es/packages",
+     "bare": {
+      "status": 401,
+      "ms": 73,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 1529,
+      "metaRobots": "noindex,nofollow",
+      "looksGate": true,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": "Vista previa de NuovaSolution",
+      "sha256_8": "2d25f81b"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 192,
+      "robots": "noindex, nofollow",
+      "ctype": "text/html",
+      "len": 295848,
+      "metaRobots": "noindex, nofollow",
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": "Paquetes · NuovaSolution",
+      "sha256_8": "802210f5"
+     }
+    },
+    {
+     "path": "/api/build",
+     "bare": {
+      "status": 401,
+      "ms": 63,
+      "robots": "noindex, nofollow",
+      "ctype": "text/plain",
+      "len": 12,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "d089c8a9"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 848,
+      "robots": "noindex, nofollow",
+      "ctype": "application/json",
+      "len": 170,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "39e2182a"
+     }
+    },
+    {
+     "path": "/media/3d/house-delivery.mp4",
+     "bare": {
+      "status": 401,
+      "ms": 71,
+      "robots": "noindex, nofollow",
+      "ctype": "text/plain",
+      "len": 12,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "d089c8a9"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 1319,
+      "robots": "noindex, nofollow",
+      "ctype": "video/mp4",
+      "len": 14466391,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "d3bb66e1"
+     }
+    },
+    {
+     "path": "/media/3d/hero-a-1280.webp",
+     "bare": {
+      "status": 401,
+      "ms": 69,
+      "robots": "noindex, nofollow",
+      "ctype": "text/plain",
+      "len": 12,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "d089c8a9"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 244,
+      "robots": "noindex, nofollow",
+      "ctype": "image/webp",
+      "len": 52913,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "b017a96a"
+     }
+    },
+    {
+     "path": "/icon0.svg",
+     "bare": {
+      "status": 401,
+      "ms": 61,
+      "robots": "noindex, nofollow",
+      "ctype": "text/plain",
+      "len": 12,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "d089c8a9"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 188,
+      "robots": "noindex, nofollow",
+      "ctype": "image/svg+xml",
+      "len": 3765,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "c19e5aab"
+     }
+    },
+    {
+     "path": "/robots.txt",
+     "bare": {
+      "status": 401,
+      "ms": 63,
+      "robots": "noindex, nofollow",
+      "ctype": "text/plain",
+      "len": 12,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "d089c8a9"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 215,
+      "robots": "noindex, nofollow",
+      "ctype": "text/plain",
+      "len": 27,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "d17b6416"
+     }
+    },
+    {
+     "path": "/sitemap.xml",
+     "bare": {
+      "status": 401,
+      "ms": 65,
+      "robots": "noindex, nofollow",
+      "ctype": "text/plain",
+      "len": 12,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": null,
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "d089c8a9"
+     },
+     "withHeader": {
+      "status": 200,
+      "ms": 322,
+      "robots": "noindex, nofollow",
+      "ctype": "application/xml",
+      "len": 110,
+      "metaRobots": null,
+      "looksGate": false,
+      "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+      "location": null,
+      "firstTitle": null,
+      "sha256_8": "1214c52c"
+     }
+    }
+   ],
+   "ownerCodeInLink": {
+    "status": 303,
+    "ms": 61,
+    "robots": "noindex, nofollow",
+    "ctype": "text/plain",
+    "len": 15,
+    "metaRobots": null,
+    "looksGate": false,
+    "setCookie": "nuova-acceso=<stripped>; Path=<stripped>; Expires=<stripped>; Max-Age=<stripped>; Secure; HttpOnly; SameSite=<stripped>",
+    "location": "/es",
+    "firstTitle": null,
+    "sha256_8": "7c040f86"
+   },
+   "ownerWrongCode": {
+    "status": 401,
+    "ms": 93,
+    "robots": "noindex, nofollow",
+    "ctype": "text/html",
+    "len": 1573,
+    "metaRobots": "noindex,nofollow",
+    "looksGate": true,
+    "setCookie": null,
+    "location": null,
+    "firstTitle": "Vista previa de NuovaSolution",
+    "sha256_8": "8726f4ce"
+   }
+  }
+ }
+}

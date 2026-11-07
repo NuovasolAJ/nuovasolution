@@ -1,0 +1,134 @@
+[
+ {
+  "file": "hero-a-2560.webp",
+  "status": 200,
+  "bytes": 151922,
+  "sha256": "63aa99e0553a5f85afa327d8b02f1fdcc66fc5dd774d70403dd19d7fb3f084ac",
+  "dim": {
+   "w": 2560,
+   "h": 1440,
+   "kind": "VP8"
+  }
+ },
+ {
+  "file": "hero-a-1920.webp",
+  "status": 200,
+  "bytes": 100070,
+  "sha256": "5ede56b63ba50b1346379edf5f344587140f7a1b4806b93b6a1a919b926be99c",
+  "dim": {
+   "w": 1920,
+   "h": 1080,
+   "kind": "VP8"
+  }
+ },
+ {
+  "file": "hero-a-1280.webp",
+  "status": 200,
+  "bytes": 55910,
+  "sha256": "e235df050442777da16e91c3bf49040b7aa524c4e0cc4494e2a567ae7f4b9141",
+  "dim": {
+   "w": 1280,
+   "h": 720,
+   "kind": "VP8"
+  }
+ },
+ {
+  "file": "hero-a-poster-960.webp",
+  "status": 200,
+  "bytes": 33152,
+  "sha256": "2461f83c46b208c0f8724e983ac58a8c0425b8b1c8839213dc9c0b07b309c731",
+  "dim": {
+   "w": 960,
+   "h": 540,
+   "kind": "VP8"
+  }
+ },
+ {
+  "file": "house-ground-loop.mp4",
+  "status": 200,
+  "bytes": 13347943,
+  "sha256": "239d2e44d41dab784dbd5c217c727a7d0808bcfe153a4ebe9b3d4d1f93b9fddc",
+  "dim": {
+   "seconds": 10
+  }
+ },
+ {
+  "file": "house-ground-loop.webm",
+  "status": 200,
+  "bytes": 11045650,
+  "sha256": "3e1a2c3967bdf49577fcdb73e8dc9cb214fe0275dd2b7cbe3182ade7736d7b6c",
+  "dim": null
+ },
+ {
+  "file": "house-ground-loop-poster-1600.webp",
+  "status": 200,
+  "bytes": 161116,
+  "sha256": "5bd3ae7bc6ac1fd70588d1847f1c3627ddc212fb600ef68386ab8e53e54074bb",
+  "dim": {
+   "w": 1600,
+   "h": 900,
+   "kind": "VP8"
+  }
+ },
+ {
+  "file": "house-delivery.mp4",
+  "status": 200,
+  "bytes": 15265543,
+  "sha256": "2f1e2a70de1fbd77baf9c329075b5a93cc64166ea1b9fc3694ee61c960e16997",
+  "dim": {
+   "seconds": 18.4
+  }
+ },
+ {
+  "file": "house-delivery.webm",
+  "status": 200,
+  "bytes": 9296018,
+  "sha256": "4c0d7e6bc88c313469dc4417988ff5a8f185325d835008f3e5111b96e9ef5611",
+  "dim": null
+ },
+ {
+  "file": "house-delivery-poster-1600.webp",
+  "status": 200,
+  "bytes": 136266,
+  "sha256": "91dfc8cd6127f59384b0a96c2e50fe6719b2cc47769efd9bc15308ac396dcdd2",
+  "dim": {
+   "w": 1600,
+   "h": 900,
+   "kind": "VP8"
+  }
+ },
+ {
+  "file": "living-empty-1200.webp",
+  "status": 200,
+  "bytes": 40284,
+  "sha256": "3d1dff9e6d100a398746c86f9ee66ee92b05c7e8c376c10dfaee378bbc766714",
+  "dim": {
+   "w": 1200,
+   "h": 800,
+   "kind": "VP8X"
+  }
+ },
+ {
+  "file": "living-furnished-1200.webp",
+  "status": 200,
+  "bytes": 59170,
+  "sha256": "79ed558318779dd043da61f42c29d0a7669a146e2b27b31967e701f5de99a9f7",
+  "dim": {
+   "w": 1200,
+   "h": 800,
+   "kind": "VP8X"
+  }
+ },
+ {
+  "file": "living-camera-ride.mp4",
+  "status": 404
+ },
+ {
+  "file": "living-ride-poster.webp",
+  "status": 404
+ },
+ {
+  "file": "house-ground-near-1600.webp",
+  "status": 404
+ }
+]
