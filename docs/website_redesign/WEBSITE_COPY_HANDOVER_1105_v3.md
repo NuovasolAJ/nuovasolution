@@ -1055,7 +1055,7 @@ replaced: §23 gives their old and new wording.
 
 - The name comes from the owner, with its accents exactly as on the DNI. It is not filled in here, and no sentence is live until the owner's line `WEBSITE-KLEINFIX = JA`.
 - **Owner, 06.11. evening:** the values are in `C:\Users\Usuario\.nuova-secrets\owner_firmendaten_1106.txt`, **not in the repo**. Redesign fills `⟦E14: NOMBRE⟧` from the file's name line when the live fix is built.
-- **Still open in that file:** the accents of the name and the street spelling (the owner confirms both from the DNI), and the phone (leave it empty). No NIF until the Alta. In the end the spelling in the official document of the Alta decides. So the filled sentence is not final until the accents are confirmed.
+- **State of that file, 07.11.:** the owner has entered the name with its accents and the street. Open: the phone (leave it empty). No NIF until the Alta. In the end the spelling in the official document of the Alta decides; if it differs, every place follows it. The filled sentence went to Redesign outside the repo.
 - `META_LEGAL_TEXT_FINAL.md` §3 says "nombre comercial". I leave that as it is. **For counsel:** whether "marca" is acceptable without a registered mark. No missing legal text is written here: privacy, terms and the deletion page stay with counsel and E14 (L-1).
 
 **The WORKING lines of Redesign's return §6, each with a verdict:**
@@ -1182,8 +1182,11 @@ sentence for the preview is in the row named in the last column. Files named in 
 | V-58 | `faq.ts:319`, Q-30 | No. No hacemos campañas ni compramos leads. Más adelante recogeremos los leads de los anuncios que ya tienes. | No. We do not run campaigns or buy leads. Later we will take in the leads from the ads you already run. | No. No hacemos campañas ni compramos leads. | No. We do not run campaigns or buy leads. | Q-30 |
 | V-59 | `home-1103.ts`, `report.soon`; `claimWords.soon` | próximamente | coming soon | not rendered anywhere; the words stay only as internal state | the same | the same |
 
-`home-story.ts` holds more of these lines ("Disponible hoy: el aviso por email", "Próximamente."). They were not rendered on the routes
-read on `2dfa67d`. If any of them is used again, the same rule applies, and they carry no target text from this file.
+`home-story.ts` holds more of these lines ("Disponible hoy: el aviso por email", "Próximamente."). Their state lines were not rendered on
+the routes read on `2dfa67d`. If any of them is used again, the same rule applies, and they carry no target text from this file.
+
+**Addendum 07.11.:** the rows D-1 … D-23 in `COPY_CHECK_1107_BUILD_a5f1d21_v1.md` are part of this text source. They correct what this list
+missed on the module pages, `/signup`, `/contact` and the payment block, including the product views.
 
 **What the Reviewer's list has to follow:**
 

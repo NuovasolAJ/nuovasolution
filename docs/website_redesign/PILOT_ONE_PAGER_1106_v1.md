@@ -37,9 +37,9 @@ con dos agencias de prueba; te confirmamos la fecha por escrito.
 4. **Para las propuestas de inmuebles, te pedimos:**
    - tu permiso por escrito para usar tus datos y fotos, y tu confirmación de que tienes los derechos de las fotos;
    - una dirección web fija (https) con tu archivo de inmuebles, que podamos leer sin iniciar sesión, y quién puede cambiar la exportación en tu sistema. Lo más sencillo es Kyero V3 XML; si no, otro XML, JSON o CSV con un archivo de ejemplo, y lo comprobamos;
-   - si el archivo trae siempre todos los inmuebles o solo los cambios, y cuántos tienes activos. Si solo trae cambios, también una lista de todas las referencias;
+   - si el archivo trae siempre todos los inmuebles o solo los cambios, y cuántos tienes activos. Si solo trae cambios, también una lista de todas las referencias, al menos cada 3 días;
    - en cada inmueble: una referencia fija, precio en euros, lugar y si es venta o alquiler;
-   - que el archivo se actualice al menos cada 6 días.
+   - que el archivo se actualice al menos cada 3 días.
 
    No leemos tu web ni tus anuncios en portales.
 
@@ -80,9 +80,9 @@ agencies is finished; we confirm the date in writing.
 4. **For listing proposals, we ask for:**
    - your written permission to use your data and photos, and your confirmation that you hold the rights to the photos;
    - a fixed web address (https) with your listings file that we can read without logging in, and who can change the export in your system. Kyero V3 XML is simplest; otherwise another XML, JSON or CSV with a sample file, and we check it;
-   - whether the file always carries all listings or only the changes, and how many you have active. If only the changes, also a list of all references;
+   - whether the file always carries all listings or only the changes, and how many you have active. If only the changes, also a list of all references, at least every 3 days;
    - for each listing: a fixed reference, the price in euros, the place, and whether it is for sale or rent;
-   - that the file is refreshed at least every 6 days.
+   - that the file is refreshed at least every 3 days.
 
    We do not read your website or your portal ads.
 
