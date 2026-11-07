@@ -22,13 +22,18 @@ import { cn } from "@/lib/utils";
 type Item = (typeof home1103.functions.items)[number];
 type Key = Item["key"];
 const SEG = 0.9; // window heights per scene (the owner's guide: 70–100 vh)
+const FIRST_FIVE: Key[] = ["reply", "record", "priority", "origin", "report"];
 
 const headerHeight = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 72;
 
 export function Functions({ locale, view }: { locale: Locale; view: ClaimView }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const w = home1103.functions;
-  const items = w.items.filter((it) => live(it.keys, view));
+  const all = w.items.filter((it) => live(it.keys, view));
+  // C3 (07.11.): at most five scenes stand open — one of Atiende, two of Organiza, two of Crece — the rest unfold on one click
+  const [expanded, setExpanded] = useState(false);
+  const items = expanded ? all : all.filter((it) => FIRST_FIVE.includes(it.key));
+  const folded = all.length - items.length;
   const chapters = w.chapters.filter((c) => items.some((it) => it.chapter === c.key));
   const keys = items.map((i) => i.key);
   const n = items.length;
@@ -119,6 +124,11 @@ export function Functions({ locale, view }: { locale: Locale; view: ClaimView })
                   );
                 })}
               </ol>
+              {folded > 0 && (
+                <button type="button" className="fn-fold" onClick={() => setExpanded(true)} data-fn-fold={folded}>
+                  {l(w.fold).replace("{n}", String(folded))}<ChevronRight size={14} strokeWidth={2.2} aria-hidden="true" />
+                </button>
+              )}
             </div>
 
             {/* the stage: a click anywhere on it advances (a convenience); the real control is the "Siguiente escena" button */}
@@ -140,17 +150,19 @@ export function Functions({ locale, view }: { locale: Locale; view: ClaimView })
       <div className="container-default fn-linear" data-fn-linear>
         <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
         <h2 className="t-display-m mt-3 text-text-primary">{l(w.h2)}</h2>
-        {chapters.map((ch) => (
+        {w.chapters.filter((c) => all.some((it) => it.chapter === c.key)).map((ch) => (
           <div key={ch.key} className="fn-chapter" data-fn-chapter-block={ch.key}>
             <p className="fn-chapter-name">{l(ch.name)}</p>
             <p className="fn-chapter-line">{l(ch.line(view))}</p>
             <ol className="fn-list">
-              {items.filter((it) => it.chapter === ch.key).map((it) => {
+              {/* every scene is in the document (a reader without JavaScript sees all of them); the folded ones hide until the fold opens */}
+              {all.filter((it) => it.chapter === ch.key).map((it) => {
                 const i = keys.indexOf(it.key);
+                const foldedAway = i < 0;
                 return (
-                  <li key={it.key} data-fn={it.key} className="fn-item">
+                  <li key={it.key} data-fn={it.key} className={cn("fn-item", foldedAway && "is-folded")} aria-hidden={foldedAway || undefined}>
                     <div className="fn-item-words">
-                      <span className="fn-item-no tnum">{no(i)}</span>
+                      <span className="fn-item-no tnum">{no(foldedAway ? all.indexOf(it) : i)}</span>
                       <h3 className="fn-item-title">{l(it.title)}</h3>
                       <p className="fn-item-line">{line(it)}</p>
                     </div>
@@ -161,6 +173,11 @@ export function Functions({ locale, view }: { locale: Locale; view: ClaimView })
             </ol>
           </div>
         ))}
+        {folded > 0 && (
+          <button type="button" className="fn-fold fn-fold-linear" onClick={() => setExpanded(true)} data-fn-fold-linear={folded}>
+            {l(w.fold).replace("{n}", String(folded))}<ChevronRight size={14} strokeWidth={2.2} aria-hidden="true" />
+          </button>
+        )}
       </div>
     </section>
   );

@@ -13,6 +13,8 @@ import { ReportStage } from "@/components/home/report-stage";
 import { Stage3d } from "@/components/home/stage-3d";
 import { PlansTable } from "@/components/home/plans-table";
 import { TrustFaqClose } from "@/components/home/trust-faq";
+import { MobileCta } from "@/components/site/mobile-cta";
+import { home1103 } from "@/lib/content/home-1103";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   if (!isLocale(params.locale)) return {};
@@ -53,6 +55,8 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         <PlansTable locale={locale} view={s.view} />
         <TrustFaqClose locale={locale} view={s.view} />
       </Motion>
+      {/* A3 (07.11.): the phone's fixed bar with the main action (the hero's label and target) */}
+      <MobileCta href="#demo" label={home1103.hero.ctaDemo[locale]} />
     </div>
   );
 }

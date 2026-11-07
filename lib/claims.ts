@@ -132,7 +132,9 @@ export const planCell = (key: ClaimKey, plan: PlanCode, view: ClaimView = "targe
   if (!carried) return "excluded";
   return view === "target" ? "included" : claims[key];
 };
-export const planRowShown = (key: ClaimKey, view: ClaimView): boolean => live(key, view);
+/** The owner's E2 of 07.11.: no tick for the agency's own WhatsApp number, the phone assistant or Instagram while they are off — in either view. */
+const ROWS_ONLY_WHEN_ON: ClaimKey[] = ["whatsappOwnNumber", "phoneAssistant", "instagram"];
+export const planRowShown = (key: ClaimKey, view: ClaimView): boolean => live(key, view) && (!ROWS_ONLY_WHEN_ON.includes(key) || isIncluded(key));
 /** Copy §20 P-5: the comparison table stands only with `plans` on; otherwise one block "Qué incluye" with the rows that are on. */
 export const plansTableShown = (view: ClaimView): boolean => live("plans", view);
 

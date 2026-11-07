@@ -6,7 +6,6 @@ import { home1103 } from "@/lib/content/home-1103";
 import { entryAction, type ClaimView } from "@/lib/claims";
 import { HeroBenefits, HeroImage, HeroScrollHint } from "./hero-image";
 import { HeroDemo } from "./hero-demo";
-import { BrandMoment } from "./brand-moment";
 
 /**
  * The hero (the owner's orders of 03.11. point 1, 05.11. point 2 + "HERO = A", 06.11. points 2 and 3 + FRAGE D; Copy 1105 v3 §2 and
@@ -22,8 +21,8 @@ import { BrandMoment } from "./brand-moment";
  * on the public view.
  */
 const PICTURE = "/media/3d/hero-a-1920.webp";
-/** Sets the brand-moment attribute before the first paint, so the header's logo never flashes before the moment; the client component takes over. */
-const BRAND_MOMENT_SCRIPT = "if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.setAttribute('data-brand-moment','on');setTimeout(function(){document.documentElement.removeAttribute('data-brand-moment')},7000)}";
+/* The brand moment of 06.11. is withdrawn (the owner's master prompt of 07.11., B1/B4/G1): the headline, the lead and the actions stand
+   from the first frame and are in place within 0.8 s; the header's logo stands from the first pixel. */
 
 export function Hero({ locale, view }: { locale: Locale; view: ClaimView }) {
   const w = home1103.hero;
@@ -35,11 +34,8 @@ export function Hero({ locale, view }: { locale: Locale; view: ClaimView }) {
 
   return (
     <>
-      <script dangerouslySetInnerHTML={{ __html: BRAND_MOMENT_SCRIPT }} />
       <section aria-labelledby="hero-h1" data-hero="film" className="hf">
         <HeroImage alt={l(w.image)} mark={l(w.imageMark)} credit={l(w.artCredit)} />
-        {/* the brand moment (06.11., point 2): the logo alone over the picture, then it travels into the header's logo (none with reduced motion) */}
-        <BrandMoment />
         <div className="container-default hf-content">
           <div className="hf-words" data-hero-words>
             <p className="hf-eyebrow t-eyebrow t-eyebrow-l">{l(w.eyebrow)}</p>

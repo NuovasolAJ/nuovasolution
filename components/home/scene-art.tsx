@@ -95,7 +95,8 @@ export function DemoPlan({ locale, className }: { locale: "es" | "en"; className
       </g>
       <g fontFamily={font} fontSize="340" fill="#5d5952" textAnchor="middle">
         {PLAN_ROOMS.filter((r) => r.dims).map((r) => <text key={r.key} x={r.x} y={r.y + 480}>{r.dims}</text>)}
-        <text x="9300" y="3300" transform="rotate(-90 9300 3300)">{locale === "es" ? "Escalera" : "Stair"}</text>
+        {/* F2 (07.11.): the stair's label at the room-name size, no narrow face; it reads along the stair */}
+        <text x="9300" y="3300" transform="rotate(-90 9300 3300)" fontSize="430" fontWeight="600" fill="#1a1917" letterSpacing="10">{locale === "es" ? "Escalera" : "Stair"}</text>
       </g>
       {/* the outer dimensions */}
       <g stroke="#5d5952" strokeWidth="30">

@@ -1,0 +1,37 @@
+/*
+ * The motion rules of the site, in one place (the owner's G5/G6 of 07.11.2026): one easing curve, four durations between
+ * 120 and 600 ms, transform and opacity only. Every component reads these tokens; nothing defines its own curve.
+ *
+ *   --ease-standard   the one curve for everything that moves into place
+ *   --ease-exit       what leaves (quicker, no overshoot)
+ *   --motion-micro    120 ms  hover, press, a colour
+ *   --motion-control  200 ms  a control's state (tab, switch, menu)
+ *   --motion-element  360 ms  an element entering (a card, a row, a word)
+ *   --motion-scene    560 ms  a scene or section changing
+ *
+ * Reduced motion: every transition and animation collapses to its end state (the rule at the foot), and nothing is ever
+ * visible only through an animation — the no-JavaScript and reduced-motion nets in globals.css keep every element at its
+ * finished state.
+ */
+:root {
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: var(--ease-standard);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --motion-micro: 120ms;
+  --motion-control: 200ms;
+  --motion-element: 360ms;
+  --motion-scene: 560ms;
+}
+
+/* small interactions (G3): a control answers the pointer with a lift and the press with a settle */
+.lift { transition: transform var(--motion-micro) var(--ease-standard), box-shadow var(--motion-control) var(--ease-standard); }
+.lift:hover { transform: translateY(-2px); }
+.lift:active { transform: translateY(0) scale(0.985); transition-duration: 80ms; }
+
+/* a section's ground eases in from transparent over its first 160 px (10 of 06.11.) */
+.ground-in { -webkit-mask-image: linear-gradient(180deg, transparent, #000 160px); mask-image: linear-gradient(180deg, transparent, #000 160px); }
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-micro: 0ms; --motion-control: 0ms; --motion-element: 0ms; --motion-scene: 0ms; }
+  .lift:hover, .lift:active { transform: none; }
+}

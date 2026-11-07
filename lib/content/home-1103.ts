@@ -69,6 +69,8 @@ export const home1103 = {
     hint: T("Elige una escena.", "Choose a scene."),
     progress: T("Escena", "Scene"),
     next: T("Siguiente escena", "Next scene"),
+    // WORKING · Copy T-8 (REDESIGN_TO_COPY_1107_TEXTSTELLEN_BUILD_1108_v1): the fold control's label; {n} = the scenes still folded
+    fold: T("Ver las {n} escenas restantes", "See the {n} remaining scenes"),
     chapters: [
       { key: "attend" as ChapterKey, name: T("Atiende", "Answer"), line: (view: ClaimView): L => byKey("replyOutOfHours", view, T("Responde cuando tú no puedes: en una visita, de noche o el fin de semana.", "It replies when you can't: during a viewing, at night or at the weekend."), T("Responde cuando tú no puedes, también durante una visita.", "It replies when you can't, also during a viewing.")) },
       { key: "organise" as ChapterKey, name: T("Organiza", "Organise"), line: (view: ClaimView): L => byKey("priorityWithReason", view, T("Lo que pide cada cliente queda en su ficha, con su prioridad y su motivo, y tu equipo sabe por dónde empezar.", "What each client asks for stays on their record, with its priority and reason, and your team knows where to start."), T("Lo que pide cada cliente queda en su ficha.", "What each client asks for stays on their record.")) },

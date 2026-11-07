@@ -54,6 +54,8 @@ export default function LocaleLayout({ children, params }: { children: ReactNode
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         {/* The build mark (R19 W1): the commit this page was built from, also answered by /api/build. */}
         <meta name="nuova-build" content={process.env.VERCEL_GIT_COMMIT_SHA ?? "unknown"} />
+        {/* D2 (07.11.): Meta's domain verification tag; the value comes from Social through the Vercel environment, never from the repository */}
+        {process.env.META_DOMAIN_VERIFICATION && <meta name="facebook-domain-verification" content={process.env.META_DOMAIN_VERIFICATION.trim()} />}
       </head>
       <body>
         <a href="#main" className="skip-link t-body-s">

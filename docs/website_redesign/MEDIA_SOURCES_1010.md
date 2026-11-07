@@ -141,6 +141,20 @@ handoff with checksums):
 | `living-empty-1200.webp`, `living-furnished-1200.webp` (03 Vacío y amueblado) | **old** (the lane's earlier placeholder art) | handoff_2026-10-30; the lane re-renders after the hero video (the owner's line of 06.11.), then they are swapped by checksum |
 | `living-camera-ride.mp4`, `living-ride-poster.webp`, `house-ground-near-1600.webp`, `house-ground-near-empty-1600.webp` | old, **not used by any page** | removed from `public/media/3d/` in this round |
 
+### 2f · handoff_2026-11-07 (3D, 07.11.: the hero video and every medium with the new wall paintings; SHA256SUMS 81/81 verified with `sha256sum -c`)
+
+| File (public/media/3d/) | From (handoff_2026-11-07) | Shows | sha256 of the source (first 16) | On the site |
+|---|---|---|---|---|
+| `hero-a.mp4` (3.3 MB, byte-identical), `hero-a.webm` (1.9 MB, byte-identical) | `hero_video/hero_living_loop.*` (1920 × 1080, 30 fps, 10 s seamless, Van Gogh) | the hero's moving background (FRAGE D = JA, G1) | `99600da324e17cb4`, `be0822dfb3a4f9ff` | plays over the still picture once it can; the picture stays the first paint and the fallback |
+| `hero-a-video-poster-1920.webp` | `hero_video/hero_living_loop_poster.jpg` | the video's poster | `5add0ed3085fd6ce` | |
+| `hero-a-2560/1920/1280.webp`, `hero-a-poster-960.webp` | `hero_video/hero_A_still.jpg` = `handoff_2026-11-06/hero/hero_A.jpg` (byte-identical, `2d1f7eed55e9631c`) | the still picture | unchanged since 06.11. | |
+| `house-ground-loop.mp4/.webm` (byte-identical) + `house-ground-loop-poster-1600.webp` | `modelo/modelo_planta_baja_loop.*` (all seven paintings) | 02 Modelo | `bbcf243b7462e409`, `bb144b0b18c18083`, poster `3b9cfb85f4967348` | replaces the 06.11. loop; the lane may replace it once more on Mon 09.11. (station 54) |
+| `house-delivery.mp4/.webm` (byte-identical) + `house-delivery-poster-1600.webp` | `entrega/entrega_clip.*` | 04 Entrega | `ae3585855fdde03d`, `ab16124f2c71eac7`, poster `a0f2d8317aad041f` | the same |
+| `living-empty-1200.webp`, `living-furnished-1200.webp` | `pair/living_empty.jpg`, `pair/living_furnished.jpg` (3000 × 2000, Cycles, Van Gogh) | 03 Vacío y amueblado (the slider) | `f301f5ee7ddc6233`, `2729d31a2dc40f93` | **the last medium with the old picture is replaced**; no medium with the old art remains on the site |
+| not used on the site | `hero/hero_B.*`, `modelo/modelo_*cerca*`, `modelo/modelo_both_floors*`, `modelo/modelo_ground_floor*`, `modelo/modelo_upper_floor*`, `rooms/*` | — | — | filed with the lane; a room gallery is not part of the build |
+
+The lane's "no longer to be used" list (clean take of 02.11., every clip and poster of 10-01 … 10-30) carries nothing that is still under `public/media/`.
+
 ### The tab icon (06.11., point 1)
 
 `app/icon0.svg` (the mark traced from the official artwork `public/images/nuova-icon.png` with potrace, 3.7 kB, black on a light

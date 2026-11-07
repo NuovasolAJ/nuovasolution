@@ -4,7 +4,7 @@ import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, ty
 import { ArrowRight, Check, ChevronDown, Inbox, Mail, MessageCircle, Mic, PanelsTopLeft, Phone, PhoneOff, RotateCcw, Send, Star } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
-import { demoChannels, demoWords, endPhase, recordStart, runLength, type DemoChannel, type DemoChannelKey } from "@/lib/content/home-demo";
+import { demoChannels, demoWords, endPhase, recordStart, type DemoChannel, type DemoChannelKey } from "@/lib/content/home-demo";
 import { shows, type ClaimView } from "@/lib/claims";
 
 /**
@@ -34,7 +34,6 @@ function Item({ n, phase, className, children, as: Tag = "div", ...rest }: { n: 
   );
 }
 
-const PAUSE_AFTER_RUN = 2600;
 
 export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: ClaimView }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
@@ -42,10 +41,7 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
   const channels = demoChannels.filter((c) => shows(c.claim, view));
   const [channel, setChannel] = useState<DemoChannelKey>("whatsapp");
   const [phase, setPhase] = useState(0);
-  // the rotation: on until the first click or key on the tabs (or the replay); `turn` restarts the bar on every run
-  const [auto, setAuto] = useState(true);
-  const [turn, setTurn] = useState(0);
-  const manual = useRef(false);
+  // no rotation (the owner's decision F-3 / C4 of 07.11.): the channel changes only by a person's click or key
   const inView = useRef(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
@@ -58,14 +54,10 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
 
   const clear = () => { for (const t of timers.current) window.clearTimeout(t); timers.current = []; };
 
-  /**
-   * Runs the chosen channel's sequence from its first phase; with reduced motion the end state is set at once (and nothing rotates).
-   * While the rotation is on, the next channel follows a pause after the run (the bar on the active tab shows that time).
-   */
+  /** Runs the chosen channel's sequence from its first phase; with reduced motion the end state is set at once. No rotation (F-3 / C4, 07.11.). */
   const run = useCallback((c: DemoChannel) => {
     clear();
-    setTurn((n) => n + 1);
-    if (window.matchMedia(REDUCE).matches) { setPhase(endPhase(c)); setAuto(false); return; }
+    if (window.matchMedia(REDUCE).matches) { setPhase(endPhase(c)); return; }
     setPhase(0);
     let t = 0;
     c.timings.forEach((ms, i) => {
@@ -73,22 +65,13 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
       t += ms;
       timers.current.push(window.setTimeout(() => setPhase(i), t));
     });
-    timers.current.push(window.setTimeout(() => {
-      if (manual.current || !inView.current) return;
-      const keys = channels.map((x) => x.key);
-      const nextKey = keys[(keys.indexOf(c.key) + 1) % keys.length];
-      const nc = channels.find((x) => x.key === nextKey) as DemoChannel;
-      setChannel(nextKey);
-      run(nc);
-    }, t + PAUSE_AFTER_RUN));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [channels.map((c) => c.key).join()]);
+  }, []);
 
   // The first run starts when the surface is in view.
   useEffect(() => {
     const el = rootRef.current;
     if (!el) return;
-    if (window.matchMedia(REDUCE).matches) { setPhase(endPhase(script)); started.current = true; setAuto(false); return; }
+    if (window.matchMedia(REDUCE).matches) { setPhase(endPhase(script)); started.current = true; return; }
     const io = new IntersectionObserver((entries) => {
       inView.current = entries.some((e) => e.isIntersecting);
       if (started.current || !inView.current) return;
@@ -110,10 +93,7 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
 
   useEffect(() => clear, []);
 
-  /** A person's choice stops the rotation for good (owner point 4). */
-  const stopAuto = () => { manual.current = true; setAuto(false); };
   const choose = (key: DemoChannelKey) => {
-    stopAuto();
     if (key === channel) return;
     const c = channels.find((x) => x.key === key) as DemoChannel;
     setChannel(key);
@@ -149,9 +129,9 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
       data-demo-channel={channel}
       data-demo-phase={phase}
       data-demo-done={done ? "true" : "false"}
-      data-demo-auto={auto && started.current ? "true" : "false"}
+      data-demo-auto="false"
       data-demo-view={view}
-      style={{ ["--phase" as string]: phase, ["--end" as string]: end, ["--run" as string]: `${runLength(script) + PAUSE_AFTER_RUN}ms` }}
+      style={{ ["--phase" as string]: phase, ["--end" as string]: end }}
       aria-label={l(W.surfaceLabel)}
       role="group"
     >
@@ -159,7 +139,7 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
       <div className="demo-bar">
         <div className="demo-bar-top">
           <p id={`${id}-pick`} className="demo-pick-label" data-demo-invite>{channels.length > 1 ? <><span className="demo-pick-word">{l(W.pick)}</span><span className="demo-invite">{l(W.invite)}</span></> : <span className="demo-invite">{l(W.surfaceLabel)}</span>}</p>
-          <button type="button" className="demo-replay" data-demo-replay onClick={() => { stopAuto(); started.current = true; inView.current = true; run(script); }}>
+          <button type="button" className="demo-replay" data-demo-replay onClick={() => { started.current = true; inView.current = true; run(script); }}>
             <RotateCcw size={14} strokeWidth={2.2} aria-hidden="true" />
             {l(W.replay)}
           </button>
@@ -169,11 +149,9 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
             const Icon = ICON[c.key];
             const on = c.key === channel;
             return (
-              <button key={c.key} type="button" role="tab" id={`${id}-tab-${c.key}`} aria-selected={on} aria-controls={panelId} tabIndex={on ? 0 : -1} onClick={() => choose(c.key)} className={cn("demo-tab", on && "demo-tab-on")} data-demo-tab={c.key} title={auto ? l(W.autoLabel) : undefined}>
+              <button key={c.key} type="button" role="tab" id={`${id}-tab-${c.key}`} aria-selected={on} aria-controls={panelId} tabIndex={on ? 0 : -1} onClick={() => choose(c.key)} className={cn("demo-tab", on && "demo-tab-on")} data-demo-tab={c.key}>
                 <Icon size={18} strokeWidth={2} aria-hidden="true" />
                 <span>{l(c.name)}</span>
-                {/* the time to the next channel while the rotation is on: a thin bar at the tab's foot (CSS animation over --run; restarted per run) */}
-                {on && auto && started.current && <span key={turn} className="demo-tab-bar" aria-hidden="true" data-demo-tab-bar />}
               </button>
             );
           })}
@@ -196,36 +174,37 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
           <span className="demo-link-word">{l(W.toRecord)}</span>
         </div>
 
-        {/* 2 and 3 The record: what was noted, field by field; then the state, the priority with its reason, the next step */}
-        <Item n={recordStart(script)} phase={phase} className="demo-record" data-hero-record="">
+        {/* 2 and 3 The record: it stands from the start (C1 of 07.11.: no half-empty surface) and fills field by field; then the state, the priority with its reason, the next step */}
+        <div className="demo-record" data-hero-record="" data-record-live={phase >= recordStart(script) ? "true" : "false"}>
           <div className="demo-record-head">
             <p className="demo-key">{script.record.title ? l(script.record.title) : l(W.record)}</p>
             <p className="demo-record-updated tnum">{l(script.record.updated)}</p>
           </div>
           <dl className="demo-fields">
+            {/* C1 (07.11.): the field names stand from the start; the values arrive one by one */}
             {script.record.fields.map((f, i) => (
-              <Item key={i} n={f.at} phase={phase} className="demo-field" data-hero-result={i + 1}>
+              <div key={i} className="demo-field" data-hero-result={i + 1} data-at={f.at}>
                 <dt className="demo-key">{l(f.k)}</dt>
-                <dd className="demo-value">{l(f.v)}</dd>
-              </Item>
+                <dd className="demo-value"><Item as="span" n={f.at} phase={phase} className="demo-value-in">{l(f.v)}</Item></dd>
+              </div>
             ))}
           </dl>
           <div className="demo-outcome">
-            <Item n={script.record.state.at} phase={phase} className="demo-outcome-row" data-hero-recorded="">
+            <div className="demo-outcome-row" data-hero-recorded="" data-at={script.record.state.at}>
               <span className="demo-key">{l(W.state)}</span>
-              <span className="demo-value demo-state"><span aria-hidden="true" className="demo-state-dot" />{l(script.record.state.v)}</span>
-            </Item>
-            <Item n={script.record.priority.at} phase={phase} className="demo-outcome-row" data-hero-priority="">
+              <Item as="span" n={script.record.state.at} phase={phase} className="demo-value demo-state"><span aria-hidden="true" className="demo-state-dot" />{l(script.record.state.v)}</Item>
+            </div>
+            <div className="demo-outcome-row" data-hero-priority="" data-at={script.record.priority.at}>
               <span className="demo-key">{l(W.priority)}</span>
-              <span className="demo-value"><span className="demo-priority">{l(script.record.priority.v)}</span> · {l(script.record.priority.why)}</span>
-            </Item>
+              <Item as="span" n={script.record.priority.at} phase={phase} className="demo-value"><span className="demo-priority">{l(script.record.priority.v)}</span> · {l(script.record.priority.why)}</Item>
+            </div>
             <Item n={script.record.next.at} phase={phase} className="demo-next" data-hero-next="">
               <span className="demo-key">{l(W.next)}</span>
               <span className="demo-next-value">{l(script.record.next.v)}</span>
               <span className="demo-next-sub">{l(script.record.next.sub)}</span>
             </Item>
           </div>
-        </Item>
+        </div>
       </div>
 
       <p className="demo-foot" data-hero-state>

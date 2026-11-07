@@ -33,7 +33,7 @@
      A (the recommendation, the default) = black, white and a warm bronze/champagne from the hero picture; B = deep bottle green;
      C = near-monochrome, the accent only on active states. Every accent reads at 6.6 : 1 or better on white (today's blue: 6.6 : 1),
      and white type reads on it at the same ratio, so the contrast is at least what it was. */
-  --brand: #7a5520;
+  --brand: #8a5a16; /* 07.11. F1: the bronze a little richer, accents only; 5.9 : 1 on white, 5.5 : 1 on ivory */
   --brand-ink: #5e400f;
   --brand-wash: #f6f0e4;
   --brand-line: #e4d5b8;
@@ -88,14 +88,7 @@
   --shadow-soft: 0 1px 2px rgba(26, 25, 23, 0.04), 0 12px 32px -12px rgba(26, 25, 23, 0.14);
   --line-contour: rgba(14, 14, 15, 0.09);
 
-  /* motion */
-  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
-  --motion-micro: 120ms;
-  --motion-control: 200ms;
-  --motion-element: 360ms;
-  --motion-scene: 560ms;
+  /* motion: the tokens live in app/motion.css (one curve, four durations; G5 of 07.11.) */
 
   /* layout steps (stepped, not fluid, by design) */
   --header-h: 60px;
@@ -568,34 +561,31 @@ html:not(.js) .path-draw { stroke-dashoffset: 0; }
 /* ------------------------------------------------------------------ */
 .hf { position: relative; isolation: isolate; overflow: hidden; margin-top: calc(-1 * var(--header-h)); min-height: min(100svh, 920px); display: flex; align-items: flex-end; color: var(--ivory); background: #111113; }
 .hf-media { position: absolute; inset: 0; z-index: 0; }
-.hf-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; background: #111113; filter: saturate(0.92); }
-/* the dim: darker at the left where the words stand, darker at the foot where the demonstration rises in */
-.hf-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(12, 12, 14, 0.78) 0%, rgba(12, 12, 14, 0.55) 42%, rgba(12, 12, 14, 0.24) 100%), linear-gradient(180deg, rgba(12, 12, 14, 0.6) 0%, rgba(12, 12, 14, 0.08) 26%, rgba(12, 12, 14, 0.1) 60%, rgba(12, 12, 14, 0.72) 100%); }
+/* the hero video (FRAGE D = JA, G1): the 3D lane's living-room loop over the still picture; it is shown only once it really plays (the
+   picture is the first paint and the fallback), never with reduced motion, never without JavaScript; the same object position as the picture */
+.hf-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; background: transparent; opacity: 0; transition: opacity 900ms var(--ease-out); }
+html.js .hf-video[data-hero-video-state="playing"] { opacity: 1; }
+html:not(.js) .hf-video, .hf-video[data-hero-video-state="off"] { display: none; }
+@media (prefers-reduced-motion: reduce) { .hf-video { display: none !important; } }
+/* the dim (07.11., B3: lighter than before, one clear focal point at the painting; the words keep AA on the left): darker at the left
+   where the words stand, darker at the foot where the demonstration rises in */
+.hf-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(12, 12, 14, 0.7) 0%, rgba(12, 12, 14, 0.46) 42%, rgba(12, 12, 14, 0.12) 100%), linear-gradient(180deg, rgba(12, 12, 14, 0.5) 0%, rgba(12, 12, 14, 0.06) 26%, rgba(12, 12, 14, 0.06) 60%, rgba(12, 12, 14, 0.7) 100%); }
 .hf-content { position: relative; z-index: 1; display: grid; gap: 28px; width: 100%; padding-top: calc(var(--header-h) + 56px); padding-bottom: 150px; }
 .hf-words { max-width: 680px; }
 .hf-eyebrow { color: rgba(248, 246, 241, 0.78); }
 .hf-h1 { margin-top: 18px; font-size: clamp(2.5rem, 1.6rem + 4.2vw, 5rem); line-height: 1.02; letter-spacing: -0.035em; font-weight: 560; text-wrap: balance; color: #fff; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.25); }
 .hf-word { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.08em; margin-bottom: -0.08em; }
 .hf-word > span { display: inline-block; }
-html.js .hf-word > span { animation: hf-word-up 780ms var(--ease-out) both; animation-delay: calc(var(--brand-moment, 0ms) + 140ms + var(--w, 0) * 70ms); }
-/* the brand moment (06.11., point 2; components/home/brand-moment.tsx): the logo stands alone over the picture for about 2.5 s, large, then it
-   travels and shrinks into the header's logo (a Web Animation measured at that moment); the words rise from then. The element is fixed to the
-   window so the measurement holds while the page scrolls; the header's own logo is hidden while html[data-brand-moment] is set. */
-.hf { --brand-moment: 0ms; }
-html.js .hf { --brand-moment: 2600ms; }
-.hf-brand { position: fixed; inset: 0; z-index: 110; display: none; align-items: center; justify-content: center; pointer-events: none; }
-html.js .hf-brand { display: flex; }
-.hf-brand img { width: min(460px, 66vw); height: auto; filter: invert(1) brightness(0.98) drop-shadow(0 6px 24px rgba(0, 0, 0, 0.35)); transform-origin: 50% 50%; will-change: transform; animation: hf-brand-in 700ms var(--ease-out) both; }
-.hf-brand[data-brand-state="done"] { display: none !important; }
-html[data-brand-moment] header [data-site-logo] { opacity: 0; }
-@keyframes hf-brand-in { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: none; } }
+/* the words (07.11., B1/G1): no intro before the message; the headline's words rise one after another and everything the first screen
+   needs — eyebrow, headline, lead, the two actions — is in place within 0.8 s (word 6 lands at 760 ms, the actions at 720 ms) */
+html.js .hf-word > span { animation: hf-word-up 520ms var(--ease-out) both; animation-delay: calc(40ms + var(--w, 0) * 40ms); }
 @keyframes hf-word-up { from { transform: translateY(104%); opacity: 0; } to { transform: none; opacity: 1; } }
 .hf-lead { margin-top: 20px; max-width: 42ch; font-size: clamp(1.0625rem, 1rem + 0.45vw, 1.3125rem); line-height: 1.5; color: rgba(248, 246, 241, 0.9); text-wrap: pretty; }
-html.js .hf-lead, html.js .hf-ctas, html.js .hf-access, html.js .hf-eyebrow { animation: hf-up 760ms var(--ease-out) both; }
-html.js .hf-eyebrow { animation-delay: calc(var(--brand-moment, 0ms) + 60ms); }
-html.js .hf-lead { animation-delay: calc(var(--brand-moment, 0ms) + 520ms); }
-html.js .hf-ctas { animation-delay: calc(var(--brand-moment, 0ms) + 640ms); }
-html.js .hf-access { animation-delay: calc(var(--brand-moment, 0ms) + 760ms); }
+html.js .hf-lead, html.js .hf-ctas, html.js .hf-access, html.js .hf-eyebrow { animation: hf-up 480ms var(--ease-out) both; }
+html.js .hf-eyebrow { animation-delay: 0ms; }
+html.js .hf-lead { animation-delay: 160ms; }
+html.js .hf-ctas { animation-delay: 240ms; }
+html.js .hf-access { animation-delay: 320ms; }
 @keyframes hf-up { from { transform: translateY(14px); opacity: 0; } to { transform: none; opacity: 1; } }
 .hf-ctas { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
 @media (min-width: 640px) { .hf-ctas { flex-direction: row; align-items: center; gap: 16px; } }
@@ -613,7 +603,7 @@ html.js .hf-access { animation-delay: calc(var(--brand-moment, 0ms) + 760ms); }
 .hf-benefits { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0; padding: 0; list-style: none; }
 .hf-benefit { display: inline-flex; align-items: center; gap: 10px; min-height: 32px; color: #fff; font-size: 0.9375rem; font-weight: 500; line-height: 1.3; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45); }
 .hf-benefit-mark { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.55); color: var(--brand-soft); flex: none; background: rgba(12, 12, 14, 0.28); }
-html.js .hf-benefit { animation: hf-benefit 700ms var(--ease-out) both; animation-delay: calc(var(--brand-moment, 0ms) + 1300ms + var(--i, 0) * 900ms); }
+html.js .hf-benefit { animation: hf-benefit 520ms var(--ease-out) both; animation-delay: calc(480ms + var(--i, 0) * 260ms); }
 @keyframes hf-benefit { from { transform: translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
 @media (min-width: 1024px) {
   .hf-content { grid-template-columns: minmax(0, 1fr) minmax(0, 400px); align-items: end; }
@@ -929,7 +919,7 @@ html:not(.js) .flow-track-fill { transform: none !important; }
   .fn-linear { display: none; }
   .fn-track { display: block; height: calc(var(--n, 11) * 85vh + (100vh - var(--header-h))); }
   .fn-pin { display: block; position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); overflow: hidden; }
-  .fn-pin-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 48px; align-items: stretch; height: 100%; padding-top: 24px; padding-bottom: 24px; }
+  .fn-pin-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 48px; align-items: start; height: 100%; padding-top: 24px; padding-bottom: 24px; }
   .fn-side { display: flex; flex-direction: column; min-width: 0; }
   .fn-h2 { margin-top: 10px; font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.125rem); line-height: 1.12; letter-spacing: var(--display-tracking, -0.02em); font-weight: var(--display-weight, 600); text-wrap: balance; }
   .fn-copy { position: relative; min-height: 200px; margin-top: 18px; margin-bottom: 8px; }
@@ -945,13 +935,11 @@ html:not(.js) .flow-track-fill { transform: none !important; }
   .fn-mini-no { font-size: 0.8125rem; font-weight: 600; color: var(--ink-500); }
   .fn-mini-item.is-on .fn-mini-no { color: var(--brand-ink); }
   .fn-stage { display: block; min-width: 0; }
-  .fn-stage-inner { position: relative; display: block; width: 100%; height: 100%; min-height: 480px; padding: 24px; border-radius: 28px; background: linear-gradient(160deg, #f0f0f3, #e4e4e9); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7); overflow: hidden; text-align: left; cursor: pointer; font: inherit; color: inherit; }
-  .fn-stage-inner:hover .fn-stage-next { opacity: 1; transform: none; }
-  .fn-stage-inner::before { content: ""; position: absolute; inset: -40% 20% auto -20%; height: 70%; background: radial-gradient(closest-side, rgba(255, 255, 255, 0.8), transparent 70%); pointer-events: none; }
-  .fn-stage-surface { position: absolute; inset: 24px 24px 64px; overflow: auto; scrollbar-width: none; }
+  .fn-stage-inner { position: relative; display: flex; flex-direction: column; width: 100%; height: auto; min-height: 0; padding: 0; background: transparent; box-shadow: none; }
+  .fn-stage-surface { position: relative; inset: auto; overflow: visible; }
   .fn-stage-surface::-webkit-scrollbar { display: none; }
 }
-@media (min-width: 1280px) { .fn-pin-grid { gap: 72px; } .fn-stage-inner { padding: 32px; } .fn-stage-surface { inset: 32px 32px 68px; } }
+@media (min-width: 1280px) { .fn-pin-grid { gap: 72px; } }
 /* the rail (point 9): one connected bar, the segments grouped by chapter; the past ones filled in the accent, the active one taller */
 .fn-rail { display: none; }
 @media (min-width: 1024px) {
@@ -974,7 +962,7 @@ html:not(.js) .flow-track-fill { transform: none !important; }
 }
 .fn-counter { display: none; }
 @media (min-width: 1024px) { .fn-counter { display: block; } }
-.fn-stage-next { position: absolute; right: 18px; bottom: 16px; display: inline-flex; align-items: center; gap: 4px; min-height: 36px; padding: 6px 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.9); color: var(--ink-800); font-size: 0.875rem; font-weight: 600; opacity: 0; transform: translateY(4px); transition: opacity var(--motion-control) var(--ease-standard), transform var(--motion-control) var(--ease-standard); cursor: pointer; }
+.fn-stage-next { position: relative; align-self: flex-end; margin-top: 14px; display: inline-flex; align-items: center; gap: 4px; min-height: 36px; padding: 6px 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.9); color: var(--ink-800); font-size: 0.875rem; font-weight: 600; opacity: 1; transform: none; transition: opacity var(--motion-control) var(--ease-standard), transform var(--motion-control) var(--ease-standard); cursor: pointer; }
 .fn-stage-next:focus-visible { opacity: 1; transform: none; outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 /* the report scene's three figures */
 .ps-figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin: 0; }
@@ -1443,3 +1431,49 @@ html:not(.js) .flow-track-fill { transform: none !important; }
 .plans-included-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; margin-top: 18px; }
 .plans-included-foot .plans-cta { margin-top: 0; }
 @media (min-width: 768px) { .plans-included-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } .plans-included-row:nth-last-child(-n + 2) { border-bottom: 0; } .plans-included-row:nth-child(odd) { border-right: 1px solid var(--border-hairline); } }
+
+/* ---------------------------------------------------------------------------------------------------------------------------------- */
+/* 07.11.2026, the owner's master prompt (WEBSITE_BUILD_1108): the phone, the fold, the safety nets, the phone's bar                      */
+/* ---------------------------------------------------------------------------------------------------------------------------------- */
+/* A1/A2: no horizontal overflow at 360/390/414/768; the headline at most three lines on a phone, the comma in sight */
+.hf-h1 { overflow-wrap: anywhere; }
+@media (max-width: 639px) {
+  .hf-h1 { font-size: clamp(1.875rem, 0.9rem + 5vw, 2.5rem); line-height: 1.06; letter-spacing: -0.03em; }
+  .hf-words { max-width: 100%; }
+  .hf-lead { max-width: 100%; }
+  .hf-cta-main, .hf-cta-second { white-space: normal; width: 100%; }
+}
+.pv-row { max-width: 100%; }
+.demo, .demo-body, .demo-surface, .demo-record, .hero-demo-wrap { max-width: 100%; min-width: 0; }
+/* C3: the fold control under the scene list (desktop) and under the chapters (phone) */
+.fn-fold { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; min-height: 44px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--ink-200); background: var(--paper); color: var(--text-primary); font-size: 0.9375rem; font-weight: 500; transition: border-color var(--motion-micro) var(--ease-standard), background-color var(--motion-micro) var(--ease-standard); }
+.fn-fold:hover { border-color: var(--ink-500); }
+.fn-fold:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.fn-fold-linear { margin-top: 24px; }
+@media (min-width: 1024px) { .fn-fold-linear { display: none; } .fn-stage-surface { max-height: calc(100vh - var(--header-h) - 120px); overflow: auto; scrollbar-width: none; } .fn-stage-surface::-webkit-scrollbar { display: none; } }
+/* F-4 / G6: nothing is visible only through an animation — without JavaScript and with reduced motion every element stands at its finished state */
+html:not(.js) [data-home] [style*="opacity: 0"], html:not(.js) [data-home] [style*="opacity:0"], html:not(.js) [data-example-report] [style*="opacity: 0"] { opacity: 1 !important; transform: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  [data-home] [style*="opacity: 0"], [data-home] [style*="opacity:0"], [data-example-report] [style*="opacity: 0"] { opacity: 1 !important; transform: none !important; }
+  [data-home] .mrise, [data-home] .rep-insight, [data-home] .ps-task, [data-home] .ps-row, [data-home] .fn-stage-next { opacity: 1 !important; transform: none !important; }
+}
+/* A3: the phone's fixed bar with the main action; hidden from 1024 px and while the hero's own action or the close is on screen */
+.mcta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 80; display: flex; justify-content: center; padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom, 0px)); background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(10px); border-top: 1px solid var(--border-hairline); transform: translateY(110%); transition: transform var(--motion-element) var(--ease-standard); }
+.mcta[data-mobile-cta="shown"] { transform: none; }
+.mcta-main { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; max-width: 420px; min-height: 52px; padding: 12px 24px; border-radius: 999px; background: var(--ink-950); color: var(--ivory); font-size: 1.0625rem; font-weight: 600; }
+.mcta-main:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+@media (min-width: 1024px) { .mcta { display: none; } }
+@media (prefers-reduced-motion: reduce) { .mcta { transition: none; } }
+/* the demo's record stands from the start (C1): a quiet frame whose rows fill one by one */
+.demo-record[data-record-live="false"] .demo-fields, .demo-record[data-record-live="false"] .demo-outcome { min-height: 120px; }
+/* without JavaScript (A-6/A-26): the other close of Sin / Con stands, the whole scene list stands in a linear stack, the folded scenes too */
+html:not(.js) [data-compare-close-other][hidden] { display: block !important; margin-top: 10px; }
+.fn-item.is-folded { display: none; }
+html:not(.js) .fn-item.is-folded { display: grid; }
+html:not(.js) .fn-track { display: none !important; }
+html:not(.js) .fn-linear { display: block !important; }
+html:not(.js) .fn-fold { display: none; }
+/* A4: every control of the preview bar at least 44 px on a narrow window */
+@media (max-width: 1023px) { .pv-opt { min-height: 44px; min-width: 44px; justify-content: center; } .pv-row { gap: 4px 14px; padding-block: 6px; } }
+/* C1: the record's values arrive one by one into standing rows */
+.demo-value-in { display: inline-block; }
