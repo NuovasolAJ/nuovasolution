@@ -1,0 +1,81 @@
+{
+  "lighthouse-desktop.json": {
+    "url": "https://nuovasolution-design-preview-c0ktpvgrs-nuovasolajs-projects.vercel.app/es",
+    "perf": 99,
+    "a11y": 97,
+    "bp": 92,
+    "lcp": "0.9 s",
+    "tbt": "0 ms",
+    "cls": "0",
+    "fcp": "0.3 s",
+    "failingA11y": [
+      "target-size"
+    ],
+    "failingBP": [
+      "errors-in-console",
+      "inspector-issues"
+    ]
+  },
+  "lighthouse-mobile-example-report.json": {
+    "url": "https://nuovasolution-design-preview-c0ktpvgrs-nuovasolajs-projects.vercel.app/es/example-report",
+    "perf": 98,
+    "a11y": 97,
+    "bp": 92,
+    "lcp": "0.9 s",
+    "tbt": "140 ms",
+    "cls": "0",
+    "fcp": "0.9 s",
+    "failingA11y": [
+      "listitem"
+    ],
+    "failingBP": [
+      "errors-in-console",
+      "inspector-issues"
+    ]
+  },
+  "lighthouse-mobile-run1.json": {
+    "url": "https://nuovasolution-design-preview-c0ktpvgrs-nuovasolajs-projects.vercel.app/es",
+    "perf": 83,
+    "a11y": 100,
+    "bp": 92,
+    "lcp": "4.3 s",
+    "tbt": "160 ms",
+    "cls": "0",
+    "fcp": "1.1 s",
+    "failingA11y": [],
+    "failingBP": [
+      "errors-in-console",
+      "inspector-issues"
+    ]
+  },
+  "lighthouse-mobile-run2.json": {
+    "url": "https://nuovasolution-design-preview-c0ktpvgrs-nuovasolajs-projects.vercel.app/es",
+    "perf": 86,
+    "a11y": 100,
+    "bp": 92,
+    "lcp": "4.1 s",
+    "tbt": "80 ms",
+    "cls": "0",
+    "fcp": "1.1 s",
+    "failingA11y": [],
+    "failingBP": [
+      "errors-in-console",
+      "inspector-issues"
+    ]
+  },
+  "lighthouse-mobile-run3.json": {
+    "url": "https://nuovasolution-design-preview-c0ktpvgrs-nuovasolajs-projects.vercel.app/es",
+    "perf": 75,
+    "a11y": 100,
+    "bp": 92,
+    "lcp": "4.3 s",
+    "tbt": "400 ms",
+    "cls": "0",
+    "fcp": "1.2 s",
+    "failingA11y": [],
+    "failingBP": [
+      "errors-in-console",
+      "inspector-issues"
+    ]
+  }
+}

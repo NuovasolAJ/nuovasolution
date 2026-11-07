@@ -1,0 +1,11 @@
+design bare /api/build        -> 401
+design bare /es               -> 401
+design bare hero webp         -> 401
+design bare icon              -> 401
+design header /es             -> 200 redirects=0
+design header robots          -> X-Robots-Tag: noindex, nofollow
+design bare robots            -> X-Robots-Tag: noindex, nofollow
+design bare body has hero h1? -> 0
+design gate page noindex meta -> name="robots" content="noindex,nofollow"
+staging bare /api/build       -> 401  (re-measured 07.11. 09:30 once the staging build was Ready; during the run it was still building)
+staging header /api/build     -> 200

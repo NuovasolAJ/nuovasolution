@@ -1,0 +1,1249 @@
+{
+  "started_utc": "2026-11-06T23:31:09.828Z",
+  "base": "https://nuovasolution-design-preview-c0ktpvgrs-nuovasolajs-projects.vercel.app",
+  "checks": [
+    {
+      "id": "1-tab-icon",
+      "what": "the tab icon is the NuovaSolution mark: an SVG with the traced mark that turns white on a dark tab (prefers-color-scheme), the PNG tile 512 px and the Apple icon 180 px, all served with a content hash (a new cache name); the old favicon-v2 files are gone (404)",
+      "ok": true,
+      "evidence": {
+        "icons": [
+          {
+            "rel": "icon",
+            "href": "/icon0.svg?939b8cef67a3ff84",
+            "type": "image/svg+xml",
+            "sizes": "any"
+          },
+          {
+            "rel": "icon",
+            "href": "/icon1.png?10c3875e3d16a98d",
+            "type": "image/png",
+            "sizes": "512x512"
+          },
+          {
+            "rel": "apple-touch-icon",
+            "href": "/apple-icon.png?648f5e5bb1bfeb89",
+            "type": "image/png",
+            "sizes": "180x180"
+          }
+        ],
+        "svgStatus": 200,
+        "svgBytes": 3765,
+        "pngBytes": 25108,
+        "appleStatus": 200,
+        "oldSvg": 404,
+        "oldPng": 404
+      }
+    },
+    {
+      "id": "2-brand-moment",
+      "what": "on load the logo stands alone, large (≥ 380 px at 1366) and the header's own logo is hidden; it still stands after 1.6 s with the words below; by 2.9 s it travels (translate + scale measured against the header's logo) and by 4.6 s it has landed: the header's logo is back, the moment is gone, the words stand",
+      "ok": true,
+      "evidence": {
+        "bm0": {
+          "attr": "on",
+          "state": "hold",
+          "display": "flex",
+          "position": "fixed",
+          "imgW": 457.7927551269531,
+          "opacity": 0.920029,
+          "headerLogoOpacity": 0,
+          "h1Word": 0
+        },
+        "bm1": {
+          "state": "hold",
+          "imgW": 460,
+          "opacity": 1,
+          "headerLogoOpacity": 0,
+          "h1Word": 0
+        },
+        "bm2": {
+          "state": "travel",
+          "travel": "-555,-348,0.348",
+          "t": 3089.100000023842
+        },
+        "bm3": {
+          "state": "done",
+          "attr": null,
+          "display": "none",
+          "headerLogoOpacity": 1,
+          "logoW": 160,
+          "h1Word": 1,
+          "travel": "-555,-348,0.348"
+        }
+      }
+    },
+    {
+      "id": "2-brand-moment-scroll",
+      "what": "a scroll during the hold (after the first breath) starts the travel at once and the words' delay drops to 0; the header's logo is back afterwards",
+      "ok": true,
+      "evidence": {
+        "bmScroll": {
+          "state": "travel",
+          "moment": "0ms"
+        },
+        "bmScroll2": {
+          "state": "done",
+          "headerLogoOpacity": 1
+        }
+      }
+    },
+    {
+      "id": "3-wall-art",
+      "what": "the hero picture is the 3D lane's hero_A of 06.11. with the wall painting (Van Gogh, Cypresses, Met 49.30, CC0; the credit as the mark's title), loaded; still a picture (no hero video until the lane delivers it, FRAGE D); 02 Modelo and 04 Entrega are the lane's clips of 06.11. by checksum (239d2e44…, 2f1e2a70…)",
+      "ok": true,
+      "evidence": {
+        "art": {
+          "art": "met-437980",
+          "loaded": true,
+          "src": "hero-a-1920.webp",
+          "mark": "Casa de ejemplo ficticia, visualización",
+          "credit": "Cuadro: Vincent van Gogh, Cypresses (1889), The Metropolitan Museum of Art, dominio público",
+          "video": 0
+        },
+        "loopSha": {
+          "sha256": "239d2e44d41dab784dbd5c217c727a7d0808bcfe153a4ebe9b3d4d1f93b9fddc",
+          "bytes": 13347943
+        },
+        "filmSha": {
+          "sha256": "2f1e2a70de1fbd77baf9c329075b5a93cc64166ea1b9fc3694ee61c960e16997",
+          "bytes": 15265543
+        }
+      }
+    },
+    {
+      "id": "5-typing-no-status",
+      "what": "the typing dots stand about 2.3 s before the reply (measured ≥ 2 000 ms), no mark on any channel, no state line under the record, no status word in the demonstration",
+      "ok": true,
+      "evidence": {
+        "typ": {
+          "typingMs": 2305,
+          "toTyping": 625
+        },
+        "marks": 0,
+        "states": 0
+      }
+    },
+    {
+      "id": "4-channel-tabs",
+      "what": "four channel tabs in the target view, each ≥ 48 px tall at 16 px, with Copy's invitation above; after the first run the tabs change on their own (a bar on the active tab over --run) — WhatsApp → Email by itself; hover lifts the tab and rings it in the accent; the first click stops the rotation for good (no bar, the channel stays through a full run); the arrow key moves the focus and the channel",
+      "ok": true,
+      "evidence": {
+        "tabs": [
+          {
+            "k": "whatsapp",
+            "h": 52,
+            "w": 149.8125,
+            "fs": 16
+          },
+          {
+            "k": "email",
+            "h": 52,
+            "w": 111.015625,
+            "fs": 16
+          },
+          {
+            "k": "webform",
+            "h": 52,
+            "w": 188.4375,
+            "fs": 16
+          },
+          {
+            "k": "phone",
+            "h": 52,
+            "w": 136.625,
+            "fs": 16
+          }
+        ],
+        "invite": "ELIGE UN CANAL Elige un canal y mira cómo responde.",
+        "auto": "true",
+        "bar": true,
+        "barAnim": "demo-tab-bar",
+        "run": "9900ms",
+        "rot": {
+          "channel": "email",
+          "auto": "true",
+          "phase": "1"
+        },
+        "hover": {
+          "border": "rgb(122, 85, 32)",
+          "transform": "matrix(1, 0, 0, 1, 0, -2)",
+          "bg": "rgb(246, 240, 228)"
+        },
+        "brandHex": "#7a5520",
+        "clicked": {
+          "channel": "email",
+          "auto": "false",
+          "bar": 0
+        },
+        "stayed": {
+          "channel": "email",
+          "auto": "false",
+          "done": "true"
+        },
+        "keyed": {
+          "channel": "webform",
+          "focus": "webform",
+          "kind": "form"
+        }
+      }
+    },
+    {
+      "id": "6-flow-fields",
+      "what": "no thin path and no arrowheads; four connected fields on one 4 px track that fills in the accent as the page scrolls (not before, filled after) and lights every field; the NuovaSolution mark is a vector exactly centred in its field (< 1 px off); the four titles and the four icons stand on one line (< 1 px spread); the corrected step 4 (the team carries on prepared)",
+      "ok": true,
+      "evidence": {
+        "flowEarly": {
+          "fill": "matrix(0, 0, 0, 0, 0, 0)",
+          "lit": "0"
+        },
+        "flow": {
+          "fill": "none",
+          "lit": "4",
+          "litNodes": [
+            "true",
+            "true",
+            "true",
+            "true"
+          ],
+          "titlesSpread": 0,
+          "iconsSpread": 0,
+          "path": 0,
+          "mark": true,
+          "markCentreDx": 0,
+          "markCentreDy": 0,
+          "titlesText": [
+            "Llega la consulta",
+            "NuovaSolution responde",
+            "La ficha se completa",
+            "Tu equipo llega preparado"
+          ],
+          "last": "Abre la ficha y ya sabe quién es, qué busca y qué prioridad tiene. La cita la acuerda una persona.",
+          "firstLine": "Por WhatsApp, email, formulario web, teléfono y portales y anuncios, a cualquier hora.",
+          "fillColor": "rgb(122, 85, 32)",
+          "track": "4px"
+        }
+      }
+    },
+    {
+      "id": "7-scenes-pinned",
+      "what": "on the wide window the stage is pinned (position: sticky at the header's edge) with eleven scenes of 85 vh each; at a normal scrolling speed (640 px/s) every scene stands at least 1 s and the scenes come in their order without one skipped; a click on the rail jumps and the stage shows the scene within half a second (surfaces crossfade, nothing blocks); a click on the stage advances",
+      "ok": true,
+      "evidence": {
+        "fn0": {
+          "n": "11",
+          "pin": "sticky",
+          "pinTop": "72px",
+          "stageH": 648
+        },
+        "stays": [
+          {
+            "k": "reply",
+            "ms": 1320
+          },
+          {
+            "k": "language",
+            "ms": 1089
+          },
+          {
+            "k": "record",
+            "ms": 1046
+          },
+          {
+            "k": "priority",
+            "ms": 1114
+          },
+          {
+            "k": "inbox",
+            "ms": 1033
+          },
+          {
+            "k": "team",
+            "ms": 1116
+          },
+          {
+            "k": "origin",
+            "ms": 1087
+          },
+          {
+            "k": "matching",
+            "ms": 1050
+          },
+          {
+            "k": "followup",
+            "ms": 1101
+          },
+          {
+            "k": "social",
+            "ms": 1046
+          },
+          {
+            "k": "report",
+            "ms": 1599
+          }
+        ],
+        "order": [
+          "reply",
+          "language",
+          "record",
+          "priority",
+          "inbox",
+          "team",
+          "origin",
+          "matching",
+          "followup",
+          "social",
+          "report"
+        ],
+        "jump": {
+          "active": "matching",
+          "surfaces": [
+            {
+              "k": "matching",
+              "o": 1
+            }
+          ],
+          "on": "matching",
+          "past": 8,
+          "pastColor": "rgb(122, 85, 32)"
+        },
+        "matching": {
+          "surface": "matching",
+          "photos": [
+            true,
+            true
+          ],
+          "action": "Proponer a Laura"
+        },
+        "clickStage": {
+          "active": "followup"
+        }
+      }
+    },
+    {
+      "id": "8-9-chapters-rail",
+      "what": "three chapters Atiende (2) · Organiza (4) · Crece (5) on one connected rail of eleven segments (no single circles), Crece with its five scenes (origin, matching, follow-up, Instagram, the report); the counter; Copy's chapter line (§18) and the scene's words beside the stage; no status word anywhere in the section",
+      "ok": true,
+      "evidence": {
+        "groups": [
+          {
+            "k": "attend",
+            "name": "Atiende",
+            "segs": 2
+          },
+          {
+            "k": "organise",
+            "name": "Organiza",
+            "segs": 4
+          },
+          {
+            "k": "grow",
+            "name": "Crece",
+            "segs": 5
+          }
+        ],
+        "segs": 11,
+        "dots": 0,
+        "counter": "01 / 11",
+        "surface": "reply"
+      }
+    },
+    {
+      "id": "8-report-scene",
+      "what": "the report scene (Crece's last): three figures 25 · 23 · 6 standing, the first thing to do, the link to the example report",
+      "ok": true,
+      "evidence": {
+        "surface": "report",
+        "figures": [
+          {
+            "t": "25",
+            "o": 1
+          },
+          {
+            "t": "23",
+            "o": 1
+          },
+          {
+            "t": "6",
+            "o": 1
+          }
+        ],
+        "link": "/es/example-report"
+      }
+    },
+    {
+      "id": "7-priority-target",
+      "what": "the priority scene in the target state: the alert row stands (Aviso enviado a Elena) and Sofía's channel is the web form (Copy §22)",
+      "ok": true,
+      "evidence": {
+        "surface": "priority",
+        "alert": "Aviso enviado a Elena · 11:21 · Laura Serrano, prioridad alta",
+        "sofia": "Formulario web · 11:31"
+      }
+    },
+    {
+      "id": "7-daily",
+      "what": "'Tomar' still opens the Daily view with the voice bar inside the pinned stage; its note without a status word",
+      "ok": true,
+      "evidence": {
+        "open": "open",
+        "voice": true,
+        "note": "Vista de ejemplo de la app del equipo"
+      }
+    },
+    {
+      "id": "10-grounds",
+      "what": "the scene block, the report and the plans stand on soft grounds that feather in and out over 160 px (a gradient from transparent), no hard white bar between sections",
+      "ok": true,
+      "evidence": {
+        "fn": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgb(245, 245, 247) 160px, rgb(245, 245, 247) calc(100% - 160px), rgba(0, 0, 0, 0) ",
+        "rep": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgb(243, 243, 245) 160px, rgb(243, 243, 24",
+        "plans": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgb(245, 245, 247) 160px, rgb(245, 245, 24"
+      }
+    },
+    {
+      "id": "13-no-blue-no-glow",
+      "what": "no blue anywhere on the page (colour, ground, border or fill; the WhatsApp chat's own surface and the plan drawing excepted), no glow behind the close (its main action white on black), the hero's benefits as quiet lines without pill boxes, the icon tiles neutral (white with a hairline ring, not accent washes)",
+      "ok": true,
+      "evidence": {
+        "blueCount": 0,
+        "blues": [],
+        "closingGlow": "none",
+        "closingMainBg": "rgb(255, 255, 255)",
+        "chipBg": "rgba(0, 0, 0, 0)",
+        "tiles": [
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)"
+        ]
+      }
+    },
+    {
+      "id": "15-report-compare",
+      "what": "the block 'Sin / Con NuovaSolution' of Copy §19 on the home page: two real buttons (aria-pressed, ≥ 40 px), 'Con' first; the seven rows with both figures in sight (25/25, 9/9, 2/2, 9/0, 5/0, 25/2, lo que alguien anote/25), the chosen side lifted; the lead with the example agency's hours, the close of the state crossfading (Con: 'Ninguna consulta se pierde de vista…'; Sin: '9 consultas esperan…'), the assumption line; no €, no %, no revenue word; no status word",
+      "ok": true,
+      "evidence": {
+        "cmp1": {
+          "mode": "with",
+          "toggle": [
+            {
+              "k": "without",
+              "pressed": "false",
+              "h": 40
+            },
+            {
+              "k": "with",
+              "pressed": "true",
+              "h": 40
+            }
+          ],
+          "rows": [
+            {
+              "k": "Consultas de la semana",
+              "w": "25",
+              "c": "25"
+            },
+            {
+              "k": "Llegaron con la oficina cerrada",
+              "w": "9",
+              "c": "9"
+            },
+            {
+              "k": "De ellas, pedían visita",
+              "w": "2",
+              "c": "2"
+            },
+            {
+              "k": "Sin respuesta hasta que abre la oficina",
+              "w": "9",
+              "c": "0"
+            },
+            {
+              "k": "Esperan al día siguiente",
+              "w": "5",
+              "c": "0"
+            },
+            {
+              "k": "Esperan a una persona para la primera respuesta",
+              "w": "25",
+              "c": "2"
+            },
+            {
+              "k": "En su ficha, con prioridad y motivo",
+              "w": "lo que alguien anote",
+              "c": "25"
+            }
+          ],
+          "lead": "25 consultas de la agencia de ejemplo, que abre de 10:00 a 14:00 y de 17:00 a 20:00.",
+          "close": "Ninguna consulta se pierde de vista: 23 respondidas, 2 esperando a una persona y las 25 en su ficha. Y cada semana ves de dónde llegan tus clientes, para decidir dónde crecer.",
+          "onSide": [
+            "with",
+            "with",
+            "with",
+            "with",
+            "with",
+            "with",
+            "with"
+          ]
+        },
+        "cmp2": {
+          "mode": "without",
+          "pressed": "true",
+          "close": "9 consultas esperan a que abra la oficina; 5 de ellas, hasta el día siguiente. 2 de esas 9 pedían visita.",
+          "onSide": [
+            "without",
+            "without",
+            "without",
+            "without",
+            "without",
+            "without",
+            "without"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-channels-target",
+      "what": "FRAGE C and Copy §19: in the target view 'Por canal' carries WhatsApp 10 · Email 6 · Formulario web 3 · Teléfono 2 · Portales y anuncios 4 = 25; the top-channel insight follows (10 de 25); the header without a channel list (R-1); the figures 25 · 23 · 2 · 6 · No medido · No medido with the definitions R-3/R-4; the trend block stands (reportTrend in the target state)",
+      "ok": true,
+      "evidence": {
+        "channels": [
+          {
+            "k": "whatsapp",
+            "v": 10,
+            "w": 440.296875
+          },
+          {
+            "k": "email",
+            "v": 6,
+            "w": 268.15625
+          },
+          {
+            "k": "formulario-web",
+            "v": 3,
+            "w": 134.09375
+          },
+          {
+            "k": "teléfono",
+            "v": 2,
+            "w": 89.4375
+          },
+          {
+            "k": "portales-y-anuncios",
+            "v": 4,
+            "w": 178.609375
+          }
+        ],
+        "chSum": 25,
+        "insights": [
+          "WhatsApp · 10 de 25 consultas",
+          "11:00–12:00 · 6 consultas",
+          "24 % · 6 de 25"
+        ],
+        "header": "Agencia de ejemplo · Semana del 26 oct al 1 nov · Demo con datos ficticios",
+        "defs": [
+          "Consultas nuevas registradas en la semana.",
+          "Consultas con una respuesta automática. Las otras 2 llegaron en otro idioma: no se envía nada automáticamente."
+        ]
+      }
+    },
+    {
+      "id": "11-3d-by-scroll",
+      "what": "on the wide window the 3D stage is pinned and the steps follow the scroll in order 01 → 02 → 03 → 04 (no clock); 02 Modelo shows the lane's poster until the clip can play (poster over it, then gone within 4 s, the clip playing: house-ground-loop.mp4 1920 px, 10 s); 04 Entrega loads only on request, shows 'Cargando' while it buffers and plays once ready (dropped frames counted); no status word in the section",
+      "ok": true,
+      "evidence": {
+        "m0": {
+          "pin": "sticky",
+          "status": 0
+        },
+        "seq": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "clip0": {
+          "step": "1",
+          "pane": "model",
+          "ready": "true",
+          "posterOpacity": 0.0000911351,
+          "posterSrc": "house-ground-loop-poster-1600.webp"
+        },
+        "clip1": {
+          "ready": "true",
+          "posterOpacity": 0,
+          "playing": true,
+          "src": "house-ground-loop.mp4",
+          "w": 1920,
+          "dur": 10
+        },
+        "film0": {
+          "pane": "film",
+          "state": "poster",
+          "play": true
+        },
+        "film1": {
+          "state": "on"
+        },
+        "film2": {
+          "state": "on",
+          "playing": true,
+          "src": "house-delivery.mp4",
+          "w": 1920,
+          "duration": 18,
+          "dropped": 0,
+          "total": 206,
+          "play": false
+        }
+      }
+    },
+    {
+      "id": "12-path-run",
+      "what": "'Tu camino' as one connected run of three stations on one line (< 1 px spread), the words under each node wide enough (≥ 120 px) and at most two lines, the button on one line (≤ 60 px tall); no boxes, no arrows",
+      "ok": true,
+      "evidence": {
+        "n": 3,
+        "spread": 0,
+        "wordsW": [
+          384,
+          384,
+          384
+        ],
+        "wordsH": [
+          22,
+          43,
+          22
+        ],
+        "ctaH": 48,
+        "run": true,
+        "boxes": 0,
+        "line": "Tú envías el plano; nosotros construimos el modelo y te entregamos el enlace."
+      }
+    },
+    {
+      "id": "12-path-es-1440",
+      "what": "ES at 1440 px: the three stations on one line, no 90 px text column (the lead line ≥ 500 px wide, every station's words ≥ 160 px), 'Pregúntanos por el 3D' on one line",
+      "ok": true,
+      "evidence": {
+        "spread": 0,
+        "words": [
+          384,
+          384,
+          384
+        ],
+        "ctaH": 48,
+        "ctaW": 240.78125,
+        "lineW": 643.46875
+      }
+    },
+    {
+      "id": "14-entry-target",
+      "what": "the target state of Copy §16/§20: 'Pruébalo gratis 14 días' as the hero's second action (to /signup) with 'Sin método de pago y sin renovación automática.'; the way in '14 días gratis, en 3 pasos' with its three steps, the line 'Los 14 días empiezan…', the small line and the trial as the action; the three trust lines with N-1 first; seven questions, '¿Avisa a mi equipo?' answering yes, '¿Cómo empiezo?' with the trial; the plans' intro P-1, eighteen register rows with ✓ / — only (no word in a cell), Essential's action the trial and Growth's a proposal, Growth's line naming tareas, propuestas y seguimientos; the header's 'Prueba'; the close's line with 'con tus canales'; 'Acceso por invitación' nowhere; no status word anywhere on the page",
+      "ok": true,
+      "evidence": {
+        "second": "Pruébalo gratis 14 días",
+        "secondHref": "/es/signup",
+        "access": "Sin método de pago y sin renovación automática.",
+        "accessKind": "trial",
+        "chips": [
+          "Responde en español, también fuera de horario",
+          "Guarda zona, presupuesto e intención",
+          "Marca la prioridad y avisa a tu equipo"
+        ],
+        "entryTitle": "14 días gratis, en 3 pasos",
+        "steps": [
+          "Crea tu cuenta. Tu nombre, tu email de trabajo y una contraseña.",
+          "Configura tu agencia. Tus datos, tu logo y tu equipo, a tu ritmo.",
+          "Conectamos tu buzón contigo. Lo hacemos juntos y lo probamos con un mensaje real."
+        ],
+        "entryLine": "Los 14 días empiezan cuando tu agencia está lista. Sin método de pago y sin renovación automática.",
+        "entrySmall": "Te decimos antes de empezar si tu buzón ya se puede conectar.",
+        "trustCta": "Pruébalo gratis 14 días",
+        "lines": [
+          "Conectamos contigo el buzón y el WhatsApp de tu agencia y probamos cada canal con un mensaje real.",
+          "La base de datos está en la Unión Europea (Fráncfort).",
+          "Cada respuesta automática indica que la escribe un asistente."
+        ],
+        "faq": [
+          "¿Qué hace NuovaSolution?",
+          "¿En qué idiomas responde?",
+          "¿Sabe el cliente que responde un asistente?",
+          "¿Avisa a mi equipo?",
+          "¿Cómo empiezo?",
+          "¿Funciona con mi CRM?",
+          "¿Cuánto cuesta?"
+        ],
+        "plansLead": "Empieza con 14 días de Essential, gratis. Después eliges el plan que encaja con tu agencia.",
+        "rows": 18,
+        "cells": [
+          "excluded",
+          "included"
+        ],
+        "cellWords": 0,
+        "essentialCta": "Pruébalo gratis 14 días",
+        "growthCta": "Solicita una propuesta",
+        "who": [
+          "Respuestas, fichas e informe para una oficina.",
+          "Todo lo de Essential, más el trabajo del equipo: tareas, propuestas y seguimientos.",
+          "Todo lo de Growth, para varias oficinas, con Instagram y 3D."
+        ],
+        "closingSecond": "Pruébalo gratis 14 días",
+        "closingLine": "Te enseñamos la demo con tus canales y respondemos tus preguntas.",
+        "nav": [
+          "Atender",
+          "Gestionar",
+          "Coordinar",
+          "Captar",
+          "Visión general",
+          "Paquetes",
+          "Prueba",
+          "Contacto"
+        ],
+        "faqStart": "¿Cómo empiezo?\nPruébalo gratis 14 días, sin método de pago: creas tu cuenta, configuras tu agencia y conectamos tu buzón",
+        "faqAlert": "¿Avisa a mi equipo?\nSí. Cuando una consulta es importante, avisa por email a la persona que toca, con el motivo."
+      }
+    },
+    {
+      "id": "A-B-reply-chips",
+      "what": "FRAGE A (Copy §16): the WhatsApp reply 'Buscas en Estepona, 2 dormitorios y hasta 320.000 €, ¿verdad? ¿Te viene mejor por la mañana o por la tarde para una visita?' and the e-mail reply of §22, both without 'Apunto' and without a contact promise; FRAGE B: chip 1 'Responde en español, también fuera de horario' stays; chip 3 of the target state 'Marca la prioridad y avisa a tu equipo'",
+      "ok": true,
+      "evidence": {
+        "chips": [
+          "Responde en español, también fuera de horario",
+          "Guarda zona, presupuesto e intención",
+          "Marca la prioridad y avisa a tu equipo"
+        ],
+        "waReply": "Asistente automático de la agencia ¡Hola, Laura! Gracias por escribirnos. Buscas en Estepona, 2 dormitorios y hasta 320.000 €, ¿verdad? ¿Te viene mejor por la mañana o por la tarde para una visita? 11:21",
+        "mailReply": "N\n\nAsistente automático de la agencia\n\nmartes 11:25\n\n¡Hola, Carmen! Gracias por escribirnos. Quieres vender tu piso de 3 dormitorios en Fuengirola, cerca del paseo marítimo, y te gustaría una valoración esta semana, ¿verdad? ¿Te viene mejor por la mañana o por la tarde?"
+      }
+    },
+    {
+      "id": "claims-target",
+      "what": "the target view keeps the claims ceiling where it is not the trial: no 'con tu número', no score, no 'Disponible', no 'En preparación'; the full name everywhere",
+      "ok": true,
+      "evidence": {
+        "forbidden": [],
+        "shortName": 0,
+        "signup": 5
+      }
+    },
+    {
+      "id": "fonts-words",
+      "what": "nothing under 13 px on the page and nothing under 14 px in the demonstration; the prose within 600–1 200 words",
+      "ok": true,
+      "evidence": {
+        "minFont": 13,
+        "minFontDemo": 14,
+        "words": 1426,
+        "prose": 761,
+        "ui": 665
+      }
+    },
+    {
+      "id": "A-21-protection",
+      "what": "the preview answers 401 with the gate page (noindex, no page text) without the bypass, also on /api/build and the media; with the bypass header the first response is the real page (200, the hero's words, noindex kept)",
+      "ok": true,
+      "evidence": {
+        "bare": 401,
+        "bareApi": 401,
+        "bareMedia": 401,
+        "withHeader": 200,
+        "robots": "noindex, nofollow"
+      }
+    },
+    {
+      "id": "SOON-public-view",
+      "what": "the public view (?view=public) is strictly lib/claims.ts with Copy's public wording (§14–§21): two channels in the demonstration, seven scenes in three chapters (Atiende 2 · Organiza 3 · Crece 2) with Crece's composed line, the report without trend, channels and insights but with the figures and the block Sin / Con (its close 'Y cada semana ves qué sigue abierto.'), no 3D section, no plan names and no table but the block 'Qué incluye' with the six included rows and 'Pedir acceso', the hero with 'Pedir acceso' and 'Acceso por invitación.' and chip 3 'Marca la prioridad y su motivo', 'Cómo empezar' in two steps, the trust line 'Pides acceso y te enseñamos el sistema.', six questions ('¿Avisa a mi equipo?' left out, '¿Cómo empiezo?' by invitation), no alert row, no later origins, no voice bar, the close without 'con tus canales', the header's 'Acceso', the flow's first line with the two channels, Copy's preview notice (§14); no sign-up link; no status word; no plan name",
+      "ok": true,
+      "evidence": {
+        "view": "public",
+        "tabs": [
+          "whatsapp",
+          "email"
+        ],
+        "scenes": [
+          "reply",
+          "language",
+          "record",
+          "priority",
+          "inbox",
+          "origin",
+          "report"
+        ],
+        "count": "7",
+        "groups": [
+          "Atiende:2",
+          "Organiza:3",
+          "Crece:2"
+        ],
+        "chapterLines": [
+          "Responde cuando tú no puedes: en una visita, de noche o el fin de semana.",
+          "Lo que pide cada cliente queda en su ficha, con su prioridad y su motivo, y tu equipo sabe por dónde empezar.",
+          "No es solo responder antes. Sabes de dónde llegan tus clientes y qué sigue abierto cada semana."
+        ],
+        "trend": "false",
+        "channels": 0,
+        "insights": 0,
+        "chart": 0,
+        "metrics": [
+          "25",
+          "23",
+          "2",
+          "6",
+          "No medido",
+          "No medido"
+        ],
+        "cmpRows": 7,
+        "cmpLast": "En su ficha, con prioridad y motivo",
+        "cmpClose": "Ninguna consulta se pierde de vista: 23 respondidas, 2 esperando a una persona y las 25 en su ficha. Y cada semana ves qué sigue abierto.",
+        "m3d": 0,
+        "plansTable": "false",
+        "plansH2": "Qué incluye",
+        "included": [
+          "replyWhatsapp",
+          "languageNoted",
+          "labels",
+          "crm",
+          "priorityWithReason",
+          "reportInLogin"
+        ],
+        "includedCta": "Pedir acceso",
+        "second": "Pedir acceso",
+        "access": "Acceso por invitación.",
+        "chips": [
+          "Responde en español, también fuera de horario",
+          "Guarda zona, presupuesto e intención",
+          "Marca la prioridad y su motivo"
+        ],
+        "entryTitle": "Cómo empezar",
+        "steps": [
+          "Pides acceso.",
+          "Te enseñamos el sistema."
+        ],
+        "entryLine": "Acceso por invitación.",
+        "lines": [
+          "Pides acceso y te enseñamos el sistema.",
+          "La base de datos está en la Unión Europea (Fráncfort).",
+          "Cada respuesta automática indica que la escribe un asistente."
+        ],
+        "faq": [
+          "¿Qué hace NuovaSolution?",
+          "¿En qué idiomas responde?",
+          "¿Sabe el cliente que responde un asistente?",
+          "¿Cómo empiezo?",
+          "¿Funciona con mi CRM?",
+          "¿Cuánto cuesta?"
+        ],
+        "signup": 0,
+        "alertFoot": 0,
+        "origins": [
+          "WhatsApp",
+          "Email",
+          "Email"
+        ],
+        "voice": 0,
+        "closingLine": "Te enseñamos la demo y respondemos tus preguntas.",
+        "nav": [
+          "Atender",
+          "Gestionar",
+          "Coordinar",
+          "Captar",
+          "Visión general",
+          "Paquetes",
+          "Acceso",
+          "Contacto"
+        ],
+        "switches": "public",
+        "flowFirst": "Por WhatsApp y email, a cualquier hora.",
+        "notice": "Vista previa, no pública. Muestra el producto completo, incluidas funciones que no están activas. Datos de ejemplo: nada de lo que introduzcas crea una cuenta ni llega a nadie.",
+        "pubFaq": "¿Cómo empiezo?\nPor invitación: pide acceso y te enseñamos el sistema."
+      }
+    },
+    {
+      "id": "SOON-public-example-report",
+      "what": "/example-report in the public view (Copy §19): no trend, no channels, no insights, no hours and no rates (reportTrend off), the figures 25 · 23 · 6 · 2, the funnel 25 → 23 → 6 → 4, the block Sin / Con, the open cases with Sofía on Email, 'Pedir acceso' with 'Acceso por invitación.' in front; no status word, no trial line",
+      "ok": true,
+      "evidence": {
+        "trend": "false",
+        "panels": [
+          "funnel",
+          "open"
+        ],
+        "rates": 0,
+        "cmpRows": 7,
+        "cta": "Pedir acceso",
+        "ctaLine": "Acceso por invitación. El informe de tu agencia se crea con tus consultas; no hay cifras que rellenar.",
+        "figures": [
+          "25",
+          "23",
+          "6",
+          "2"
+        ],
+        "funnel": [
+          "25",
+          "23",
+          "6",
+          "4"
+        ],
+        "sofia": "Email"
+      }
+    },
+    {
+      "id": "15-example-report-compare",
+      "what": "/example-report (target view, Copy §19): the five channels 10 · 6 · 3 · 2 · 4 as the donut's five sectors (= 25), the figures 25 · 23 · 6 · 2, the insight 'WhatsApp · 10 de 25', the funnel's rates on the 25 received (92 · 24 · 16) with their note (R-11), the thirteen hours with the office-hours line, Sofía on the web form, the base line R-9, the trial as the way on, the block Sin / Con; no status word",
+      "ok": true,
+      "evidence": {
+        "xr1": {
+          "figures": [
+            "25",
+            "23",
+            "6",
+            "2"
+          ],
+          "channels": [
+            10,
+            6,
+            3,
+            2,
+            4
+          ],
+          "sectors": 5,
+          "cta": "Pruébalo gratis 14 días",
+          "ctaLine": "El informe de tu agencia se crea con tus consultas; no hay cifras que rellenar.",
+          "lines": 2,
+          "insight": "WhatsApp · 10 de 25 consultas",
+          "sofia": "Formulario web",
+          "basis": "Base: consultas registradas en NuovaSolution, de lunes a domingo. Respondida no es lo mismo que entregada: el informe no mide lo que llega al cliente."
+        },
+        "xr2": {
+          "rates": [
+            "92",
+            "24",
+            "16"
+          ],
+          "ratesNote": "Porcentajes sobre las 25 consultas recibidas.",
+          "bars": 13,
+          "office": "Horario de la agencia de ejemplo: de 10:00 a 14:00 y de 17:00 a 20:00.",
+          "cmp": true
+        }
+      }
+    },
+    {
+      "id": "FARBE-palettes",
+      "what": "three palettes on the same tokens, switched by ?palette=: A bronze #7a5520 (the default), B bottle green #1e4d3a, C near-monochrome #141416; each accent reads on white at 6.6 : 1 or better (today's blue: 6.64); the rail's active segment, the entry button and the included check take the accent",
+      "ok": true,
+      "evidence": {
+        "a": {
+          "attr": "a",
+          "brand": "#7a5520",
+          "ink": "#5e400f",
+          "seg": "rgb(122, 85, 32)",
+          "cta": "rgb(122, 85, 32)",
+          "check": "rgb(122, 85, 32)",
+          "switches": "a",
+          "contrast": 6.67
+        },
+        "b": {
+          "attr": "b",
+          "brand": "#1e4d3a",
+          "ink": "#163a2c",
+          "seg": "rgb(30, 77, 58)",
+          "cta": "rgb(30, 77, 58)",
+          "check": "rgb(30, 77, 58)",
+          "switches": "b",
+          "contrast": 9.64
+        },
+        "c": {
+          "attr": "c",
+          "brand": "#141416",
+          "ink": "#000",
+          "seg": "rgb(20, 20, 22)",
+          "cta": "rgb(20, 20, 22)",
+          "check": "rgb(20, 20, 22)",
+          "switches": "c",
+          "contrast": 18.4
+        }
+      }
+    },
+    {
+      "id": "13-display-variant",
+      "what": "the headline variant: with ?display=fraunces the display sizes take Fraunces (OFL) while the body stays Inter; without it everything is Inter; both pictured for the owner",
+      "ok": true,
+      "evidence": {
+        "h1": "__Fraunces_5c1908, __Fraunces_Fallback_5c1908, Georgia, \"Times New Roman\", serif",
+        "lead": "__Inter_1b85de, __Inter_Fallback_1b85de, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+        "attr": "fraunces"
+      }
+    },
+    {
+      "id": "EN",
+      "what": "the English page carries the same sections, eleven scenes in the three chapters, the switch 'Without / With NuovaSolution', English words and status words only Included / Not included, no 'coming soon', the full name",
+      "ok": true,
+      "evidence": {
+        "h1": "While you show a home, NuovaSolution answers.",
+        "sections": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "scenes": 11,
+        "groups": [
+          "Answer",
+          "Organise",
+          "Grow"
+        ],
+        "statuses": [
+          "Included",
+          "Not included"
+        ],
+        "spanishLeak": false,
+        "soon": false,
+        "compare": [
+          "Without NuovaSolution",
+          "With NuovaSolution"
+        ],
+        "shortName": 0
+      }
+    },
+    {
+      "id": "reduced-motion",
+      "what": "with reduced motion: the picture stands without its drift, no brand moment (the header's logo stays), the words stand, the demonstration's end state at once and no rotation, the flow's track stands filled, the switch Sin / Con changes the figures at once (a plain change), 02 Modelo the loop's poster",
+      "ok": true,
+      "evidence": {
+        "reduced": {
+          "drift": "none",
+          "brand": "none",
+          "brandAttr": null,
+          "headerLogo": 1,
+          "demoDone": "true",
+          "auto": "false",
+          "hidden": 0,
+          "flowFill": "none",
+          "words": 1
+        },
+        "reducedCmp": {
+          "mode": "without",
+          "close": "9 consultas esperan "
+        },
+        "reducedModel": {
+          "pane": "model",
+          "img": "house-ground-loop-poster-1600.webp",
+          "video": false
+        }
+      }
+    },
+    {
+      "id": "no-js",
+      "what": "without JavaScript every end state stands: the words, the demonstration, every section, the eleven scenes inline, the plans (57 cells) and the report; no brand moment, the header's logo visible, the flow's track filled",
+      "ok": true,
+      "evidence": {
+        "js": false,
+        "demoHidden": 0,
+        "risesHidden": 0,
+        "plans": 54,
+        "report": 6,
+        "fnInline": 11,
+        "brand": "none",
+        "headerLogo": 1,
+        "words": 1,
+        "flowFill": "none"
+      }
+    },
+    {
+      "id": "phone",
+      "what": "at 390 px: the headline and the main action on the first screen, the picture in a phone width, the brand moment runs and lands, the scenes as chapters in a linear stack with their surfaces (no pin), the flow as a vertical track, the plans as cards, the 3D stage unpinned, the tabs ≥ 44 px and switchable by touch (the rotation stops), the demonstration without marks, the switch Sin / Con full-width and ≥ 44 px and working; no horizontal overflow anywhere",
+      "ok": true,
+      "evidence": {
+        "ph": {
+          "overflow": true,
+          "h1Bottom": 547.234375,
+          "ctaBottom": 731.109375,
+          "image": "hero-a-1920.webp",
+          "imageLoaded": true,
+          "pin": "none",
+          "linear": "block",
+          "inline": true,
+          "chapters": [
+            "Atiende",
+            "Organiza",
+            "Crece"
+          ],
+          "cards": "grid",
+          "table": "none",
+          "track": "52px",
+          "m3dPin": "static",
+          "tabs": [
+            48,
+            48,
+            48,
+            48
+          ],
+          "brand": "done"
+        },
+        "phBrand": {
+          "state": "done",
+          "headerLogo": 1
+        },
+        "phDemo": {
+          "done": "true",
+          "overflow": true,
+          "marks": 0
+        },
+        "phTab": {
+          "channel": "phone",
+          "auto": "false",
+          "overflow": true
+        },
+        "phCmp0": {
+          "w": 316,
+          "h": 44
+        },
+        "phCmp": {
+          "mode": "without",
+          "overflow": true
+        },
+        "phEnd": {
+          "overflow": true,
+          "closing": true
+        }
+      }
+    }
+  ],
+  "scene_stays_ms": [
+    {
+      "k": "reply",
+      "ms": 1320
+    },
+    {
+      "k": "language",
+      "ms": 1089
+    },
+    {
+      "k": "record",
+      "ms": 1046
+    },
+    {
+      "k": "priority",
+      "ms": 1114
+    },
+    {
+      "k": "inbox",
+      "ms": 1033
+    },
+    {
+      "k": "team",
+      "ms": 1116
+    },
+    {
+      "k": "origin",
+      "ms": 1087
+    },
+    {
+      "k": "matching",
+      "ms": 1050
+    },
+    {
+      "k": "followup",
+      "ms": 1101
+    },
+    {
+      "k": "social",
+      "ms": 1046
+    },
+    {
+      "k": "report",
+      "ms": 1599
+    }
+  ],
+  "words_es_target": {
+    "total": 1426,
+    "prose": 761,
+    "product_ui": 665
+  },
+  "summary": "33/33 checks passed"
+}
