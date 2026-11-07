@@ -1,5 +1,6 @@
 import type { Locale } from "@/lib/i18n/config";
 import type { CapabilityStatus } from "./statuses";
+import { live, type ClaimKey, type ClaimView } from "@/lib/claims";
 
 /**
  * The capability registry. Every product page renders from one entry here.
@@ -29,6 +30,8 @@ export type PublishState = "live" | "on_request" | "hidden";
 export interface CapabilityPoint {
   text: L;
   status: CapabilityStatus;
+  /** Copy 1105 v3 §21 / 1107 D-23: the claim keys the point hangs on; with one off the point is left out (public view). */
+  keys?: ClaimKey[];
 }
 
 export interface Capability {
@@ -45,6 +48,12 @@ export interface Capability {
   points: CapabilityPoint[];
   /** Illustrative scenario. Always labelled. */
   scenario: L;
+  /** Copy 1107 D-10/D-11: the keys the whole page hangs on; with one off the page, its card and its links are left out in public. */
+  keys?: ClaimKey[];
+  /** Copy 1107 D-9, D-13, D-15: the public wording while a key named in the text is off. */
+  h1Public?: L;
+  navLinePublic?: L;
+  scenarioPublic?: L;
   /** Channels and systems it works with. Text only, never logos. */
   fits: L[];
   /** Both halves, where a capability is certified internally and gated externally. */
@@ -80,9 +89,9 @@ export const capabilities: Capability[] = [
     },
     points: [
       { text: { en: "A reply on WhatsApp, in Spanish.", es: "Respuesta por WhatsApp, en español." }, status: "live" },
-      { text: { en: "A reply by e-mail, in a mailbox we operate for you.", es: "Respuesta por email, en un buzón que operamos para ti." }, status: "live" },
+      { text: { en: "A reply by e-mail, in your agency's mailbox.", es: "Respuesta por email, en el buzón de tu agencia." }, status: "live", keys: ["replyEmail"] }, // Copy 1107 D-1 (§13 N-5, V-28)
       { text: { en: "Every conversation stays on the customer's record.", es: "Cada conversación queda en la ficha del cliente." }, status: "live" }, // WCR-053
-      { text: { en: "An e-mail alert to the right person when an enquiry matters.", es: "Un aviso por email a la persona adecuada cuando una consulta importa." }, status: "in_implementation" }, // Copy 1105 v3 §21 (key alert: held back in production, so not among the public points)
+      { text: { en: "An e-mail alert to the right person when an enquiry matters.", es: "Un aviso por email a la persona adecuada cuando una consulta importa." }, status: "live", keys: ["alert"] }, // Copy 1105 v3 §21, 1107 D-23: shown in the target view, hidden while `alert` is off
       { text: { en: "Email attachments.", es: "Adjuntos de email." }, status: "in_implementation" },
       { text: { en: "WhatsApp media understanding.", es: "Comprensión de archivos de WhatsApp." }, status: "in_implementation" },
       // Outlook and Microsoft 365: no line (TEXTS_1013 §6b M-3: no credential, no entry point). Copy's FAQ answers the question.
@@ -143,12 +152,14 @@ export const capabilities: Capability[] = [
     status: "live",
     name: { en: "CRM", es: "CRM" }, // "Universal" dropped: unproven universality (LAUNCH_COPY_v1 S-14)
     navLine: { en: "Leads, conversations and tasks in one place", es: "Leads, conversaciones y tareas en un solo lugar" }, // COPY_DELTAS_0929 D-38
+    navLinePublic: { en: "Leads and conversations in one place", es: "Leads y conversaciones en un solo lugar" }, // Copy 1107 D-13 (taskList off)
     // D-39: the material limit is said on the page (LEAD_TRUTH_INPUT_v1 §3: no automatic person merge across channels).
     note: { en: "A customer who writes by e-mail and later on WhatsApp starts as two records until you link them. We would rather tell you that here than let you find it.", es: "Un cliente que escribe por email y después por WhatsApp empieza como dos fichas hasta que las unes. Preferimos decírtelo aquí y no que lo descubras tú." },
     // Public H1 and lead limited to what is proven (audit Z07, R27, LAUNCH_COPY_v1 §6.1): the connected channels on one record, included
     // from the start. Cross-channel identity, the team's CRM view, Google Sheets and external CRMs are
     // tracked in the launch blocker register, not stated on the page.
     h1: { en: "Your connected channels, one record per enquiry.", es: "Tus canales conectados, una ficha por consulta." }, // COPY_DELTAS_1001 D-84; COPY_1019 R-11
+    h1Public: { en: "One record per enquiry.", es: "Una ficha por consulta." }, // Copy 1107 D-9 (mailboxConnection off: no statement on connecting in public)
     lead: {
       // WCR-070, first sentence; final wording COPY_DELTAS_1001 D-85 (no qualification claim, LEAD_TRUTH_INPUT_v1 §1).
       en: "A CRM is included from the start. Each enquiry becomes a lead with what the customer asked for and the conversation so far.",
@@ -168,6 +179,10 @@ export const capabilities: Capability[] = [
       // WCR-075
       en: "The office manager opens one record and sees the email from last week, what the customer asked for and the viewing request that became a task. Nothing has to be reconstructed.",
       es: "La responsable de oficina abre una ficha y ve el email de la semana pasada, lo que pidió el cliente y la petición de visita que pasó a ser una tarea. No hay que reconstruir nada.",
+    },
+    scenarioPublic: { // Copy 1107 D-15 (taskList off)
+      en: "The office manager opens one record and sees the email from last week, what the customer asked for and the viewing request. Nothing has to be reconstructed.",
+      es: "La responsable de oficina abre una ficha y ve el email de la semana pasada, lo que pidió el cliente y la petición de visita. No hay que reconstruir nada.",
     },
     fits: [
       { en: "Native CRM", es: "CRM propio" },
@@ -220,6 +235,7 @@ export const capabilities: Capability[] = [
     status: "final_acceptance",
     // COPY_DELTAS_0929 D-34 to D-37 and DAILY_FEATURE_TRUTH: the task surface, not a chat assistant. The slug stays, so links keep working.
     name: { en: "Daily Tasks", es: "Tareas diarias" },
+    keys: ["taskList"], // Copy 1107 D-10/D-11: the page, its card, its footer link and "Relacionado" only while the task list is on
     navLine: { en: "The tasks your team takes and closes", es: "Las tareas que tu equipo toma y cierra" },
     h1: { en: "The request becomes a task somebody owns.", es: "La petición pasa a ser una tarea con dueño." },
     lead: {
@@ -410,8 +426,22 @@ export function publishedCapability(slug: string): Capability | undefined {
 }
 
 /** The points of a published capability that may be described in the present tense. */
-export function publicPoints(c: Capability): CapabilityPoint[] {
-  return c.points.filter((p) => p.status === "live" || p.status === "premium_on_request");
+export function publicPoints(c: Capability, view: ClaimView = "public"): CapabilityPoint[] {
+  return c.points.filter((p) => (p.status === "live" || p.status === "premium_on_request") && (!p.keys || live(p.keys, view)));
+}
+
+/** The published capabilities a view shows (Copy 1107 D-10/D-11: a page whose keys are off is not listed and not linked in public). */
+export function visibleCapabilities(view: ClaimView): Capability[] {
+  return publishedCapabilities().filter((c) => !c.keys || live(c.keys, view));
+}
+export function capabilityVisible(c: Capability, view: ClaimView): boolean {
+  return !c.keys || live(c.keys, view);
+}
+/** The wording of a view: the public variant where Copy gives one and the text's key is off. */
+export function capabilityText(c: Capability, field: "h1" | "navLine" | "scenario", locale: Locale, view: ClaimView): string {
+  const pub = field === "h1" ? c.h1Public : field === "navLine" ? c.navLinePublic : c.scenarioPublic;
+  const key: ClaimKey = field === "h1" ? "mailboxConnection" : "taskList";
+  return pub && !live(key, view) ? pub[locale] : c[field][locale];
 }
 
 export function t(l: L, locale: Locale): string {

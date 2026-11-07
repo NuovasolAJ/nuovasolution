@@ -3,6 +3,7 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import { cn } from "@/lib/utils";
 import { LabelChip, StatusGlyph } from "@/components/ui/status";
 import { REFERENCE as SITE_REFERENCE, enquiries, people, storyWords } from "@/lib/content/home-story";
+import { live, type ClaimView } from "@/lib/claims";
 
 /**
  * Product views for the marketing pages (LAUNCH_COPY_v1 §4 and COPY_DELTAS_0929: one person, Laura Serrano, one property,
@@ -33,20 +34,23 @@ const T = {
       { at: "martes 11:21", what: "Respuesta de NuovaSolution, en español; la ficha se actualiza: busca, presupuesto, idioma" },
       { at: "martes 11:21", what: "Aviso por email a Elena: consulta importante (inmueble, zona y presupuesto)" },
       { at: "martes 11:23", what: "WhatsApp de Laura: vivienda habitual; quiere verlo la semana que viene" },
-      { at: "martes 11:24", what: "Respuesta de NuovaSolution: lo anota; una persona de la agencia le escribe con día y hora" },
+      { at: "martes 11:24", what: "Respuesta de NuovaSolution: lo guarda y pregunta si prefiere mañana o tarde" }, // Copy 1107 D-7
     ],
     en: [
       { at: "Tuesday 11:20", what: "WhatsApp from Laura: asks about the flat with a terrace in Estepona, budget up to €320,000" },
       { at: "Tuesday 11:21", what: "Reply from NuovaSolution, in Spanish; the record is updated: looking for, budget, language" },
       { at: "Tuesday 11:21", what: "E-mail alert to Elena: important enquiry (property, area and budget named)" },
       { at: "Tuesday 11:23", what: "WhatsApp from Laura: a main home; she wants to see it next week" },
-      { at: "Tuesday 11:24", what: "Reply from NuovaSolution: noted; a person from the agency writes to her with a day and time" },
+      { at: "Tuesday 11:24", what: "NuovaSolution's reply: it keeps this and asks whether she prefers morning or afternoon" }, // Copy 1107 D-7
     ],
   },
   historyFoot: { es: "Ejemplo ilustrativo. Cada mensaje, cada respuesta y cada aviso quedan en la ficha, en orden; no hay que reconstruir nada.", en: "Illustrative example. Every message, every reply and every alert stays on the record, in order; nothing has to be reconstructed." },
+  // Copy 1107 D-5: while the alert is off, no alert in the foot
+  historyFootPublic: { es: "Ejemplo ilustrativo. Cada mensaje y cada respuesta quedan en la ficha, en orden; no hay que reconstruir nada.", en: "Illustrative example. Every message and every reply stays on the record, in order; nothing has to be reconstructed." },
   recordLabel: { es: "Ficha de cliente", en: "Customer record" },
   priority: { es: "Prioridad", en: "Priority" },
   priorityValue: { es: "Consulta importante · aviso por email a tu equipo", en: "Important enquiry · e-mail alert to your team" },
+  priorityValuePublic: { es: "Consulta importante", en: "Important enquiry" }, // Copy 1107 D-3 (A-23: no alert claim while the key is off)
   priorityWhy: { es: "Motivo: nombró inmueble, zona y presupuesto. NuovaSolution no calcula una puntuación.", en: "Reason: she named a property, an area and a budget. NuovaSolution computes no score." },
   nextStep: { es: "Siguiente paso", en: "Next step" },
   nextValue: { es: "Una persona de tu equipo le propone la visita; NuovaSolution ya tiene la zona, el presupuesto, el uso y el plazo en la ficha.", en: "A person on your team proposes the viewing; NuovaSolution already has the area, the budget, the use and the timing on the record." },
@@ -186,9 +190,10 @@ function RecordHead({ locale, label }: { locale: Locale; label: string }) {
  * (Sunday) left what she looks for and her budget; the second (Tuesday) adds the use and the timing, marked as added. The same
  * record as the home page's hero and story B (lib/content/home-story.ts, Laura's `recorded` rows).
  */
-export function RecordGrowView({ locale, className }: { locale: Locale; className?: string }) {
+export function RecordGrowView({ locale, className, view = "public" }: { locale: Locale; className?: string; view?: ClaimView }) {
   const d = getDictionary(locale);
   const rows = enquiries[0].recorded;
+  const alert = live("alert", view);
   const first = rows.slice(0, 2);
   const second = rows.slice(2);
   const Rows = ({ list, added }: { list: typeof rows; added?: boolean }) => (
@@ -216,7 +221,7 @@ export function RecordGrowView({ locale, className }: { locale: Locale; classNam
         {/* closing order 27.10. §10: the priority with its reason (the proven alert) and the next step, said on the record */}
         <div className="border-t border-line-hairline bg-[color:var(--accent-wash)] px-4 py-3" data-record-priority>
           <p className="t-caption font-medium uppercase tracking-[0.06em] text-text-muted">{T.priority[locale]}</p>
-          <p className="mt-0.5 t-body-s font-medium text-text-primary">{T.priorityValue[locale]}</p>
+          <p className="mt-0.5 t-body-s font-medium text-text-primary">{(alert ? T.priorityValue : T.priorityValuePublic)[locale]}</p>
           <p className="t-caption text-text-secondary">{T.priorityWhy[locale]}</p>
         </div>
         <div className="border-t border-line-hairline px-4 py-3" data-record-next>
@@ -230,10 +235,12 @@ export function RecordGrowView({ locale, className }: { locale: Locale; classNam
 }
 
 /** CRM (closing order 26.10. §6): one record with what is saved and the history behind it, in order. */
-export function RecordHistoryView({ locale, className }: { locale: Locale; className?: string }) {
+export function RecordHistoryView({ locale, className, view = "public" }: { locale: Locale; className?: string; view?: ClaimView }) {
   const d = getDictionary(locale);
   const rows = enquiries[0].recorded;
-  const history = T.historyRows[locale];
+  const alert = live("alert", view);
+  // Copy 1107 D-4: the alert row of the history only while the key is on
+  const history = T.historyRows[locale].filter((_, i) => alert || i !== 2);
   return (
     <div className={cn("mx-auto w-full max-w-[480px]", className)} data-view="record-history">
       <div className="overflow-hidden rounded-xl border border-line-hairline bg-surface-raised shadow-card">
@@ -257,7 +264,7 @@ export function RecordHistoryView({ locale, className }: { locale: Locale; class
             ))}
           </ol>
         </div>
-        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{T.historyFoot[locale]}</p>
+        <p className="border-t border-line-hairline px-4 py-3 t-caption text-text-muted">{(alert ? T.historyFoot : T.historyFootPublic)[locale]}</p>
       </div>
     </div>
   );
@@ -397,14 +404,14 @@ export function ReadinessView({ locale, className }: { locale: Locale; className
 }
 
 /** The view for one published capability page, chosen by slug. Never an empty frame. */
-export function ProductView({ slug, locale }: { slug: string; locale: Locale }) {
+export function ProductView({ slug, locale, view = "public" }: { slug: string; locale: Locale; view?: ClaimView }) {
   switch (slug) {
     case "ai-sales-agent":
       return <ConversationView locale={locale} />;
     case "lead-intelligence":
-      return <RecordGrowView locale={locale} />;
+      return <RecordGrowView locale={locale} view={view} />;
     case "crm":
-      return <RecordHistoryView locale={locale} />;
+      return <RecordHistoryView locale={locale} view={view} />;
     case "daily-assistant":
       return <TasksView locale={locale} />;
     default:

@@ -54,7 +54,8 @@ export default function PackagesPage({ params }: { params: { locale: string } })
         <PlansTable locale={locale} view={s.view} headed={false} />
       </Motion>
 
-      <section aria-labelledby="pk-pay" className="py-[var(--section-default)]">
+      {/* Copy 1107 D-19: the paying block only while the plans are on (production has no billing part) */}
+      {live("plans", s.view) && <section aria-labelledby="pk-pay" className="py-[var(--section-default)]">
         <div className="container-default">
           <Reveal className="xl:max-w-[62%]"><SectionHead eyebrow={pk.payEyebrow} title={pk.payH2} id="pk-pay" size="m" /></Reveal>
           <ol className="relative mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -71,7 +72,7 @@ export default function PackagesPage({ params }: { params: { locale: string } })
             {pk.checkoutNote}
           </p>
         </div>
-      </section>
+      </section>}
 
       <section aria-labelledby="pk-faq" className="pb-[var(--section-default)]">
         <div className="container-wide">
@@ -80,8 +81,9 @@ export default function PackagesPage({ params }: { params: { locale: string } })
               <Eyebrow as="h2" id="pk-faq">{pk.faqEyebrow}</Eyebrow>
               <dl className="mt-6 grid gap-4 md:grid-cols-2">
                 {pk.faq.map((f, i) => {
-                  // Copy §21: the card and the 14-day answers hang on the trial; the C-14 answer has its public wording
+                  // Copy §21: the card and the 14-day answers hang on the trial; the C-14 answer has its public wording; 1107 D-19: the paying question on the plans
                   if (!trial && (i === 0 || i === 3)) return null;
+                  if (i === 1 && !live("plans", s.view)) return null;
                   const a = i === 2 && !trial ? pk.faqPublicAnswer : f.a;
                   return (
                     <div key={f.q} className="stage p-6">

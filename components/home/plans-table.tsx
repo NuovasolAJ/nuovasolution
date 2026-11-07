@@ -2,7 +2,7 @@ import { ArrowRight, Bell, Box, Check, ClipboardList, Database, Flag, Globe, Ins
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
-import { claimWords, entryAction, planCell, planRowShown, plansTableShown, type ClaimView, type PlanCode } from "@/lib/claims";
+import { entryAction, planCell, planCellWords, planRowShown, plansTableShown, type ClaimView, type PlanCode } from "@/lib/claims";
 import { Rise } from "@/components/ui/motion";
 import { cn } from "@/lib/utils";
 
@@ -24,7 +24,7 @@ const ICONS: Record<string, LucideIcon> = {
 function Cell({ status, locale, compact }: { status: "included" | "excluded" | "soon" | "order"; locale: Locale; compact?: boolean }) {
   const on = status === "included";
   return (
-    <span className={cn("plan-cell", compact && "plan-cell-compact", on ? "is-on" : "is-off")} data-plan-cell={status} role="img" aria-label={claimWords[on ? "included" : "excluded"][locale]}>
+    <span className={cn("plan-cell", compact && "plan-cell-compact", on ? "is-on" : "is-off")} data-plan-cell={status} role="img" aria-label={planCellWords[on ? "in" : "out"][locale]}>
       {on ? <Check size={16} strokeWidth={3} aria-hidden="true" /> : <Minus size={14} strokeWidth={2} aria-hidden="true" />}
     </span>
   );

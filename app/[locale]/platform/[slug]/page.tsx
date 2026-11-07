@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { isLocale, localePath, locales, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { entryAction, withChannels } from "@/lib/claims";
 import { resolveSwitches } from "@/lib/view";
-import { publishedCapabilities, publishedCapability, publicPoints } from "@/lib/content/capabilities";
+import { capabilityText, capabilityVisible, publishedCapabilities, publishedCapability, publicPoints } from "@/lib/content/capabilities";
 import { SectionHead, Display, Eyebrow, Lead, Caption, Heading } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
@@ -46,9 +46,12 @@ export default function ProductPage({ params }: { params: { locale: string; slug
   const d = getDictionary(locale);
   const p = (path: string) => localePath(locale, path);
   const view = resolveSwitches().view;
+  // Copy 1107 D-10: a page whose function is off leads to the overview in the public view
+  if (!capabilityVisible(c, view)) redirect(p("/platform"));
   const entry = entryAction(locale, view);
-  const points = publicPoints(c);
-  const related = c.related.map(publishedCapability).filter((r): r is NonNullable<typeof r> => Boolean(r));
+  const points = publicPoints(c, view);
+  // Copy 1107 D-11: "Relacionado" names only the pages the view shows
+  const related = c.related.map(publishedCapability).filter((r): r is NonNullable<typeof r> => Boolean(r) && capabilityVisible(r!, view));
 
   return (
     <>
@@ -59,7 +62,7 @@ export default function ProductPage({ params }: { params: { locale: string; slug
             <Reveal className="xl:col-span-6">
               <Eyebrow className="mb-4">{d.product.eyebrowPrefix} · {c.name[locale]}</Eyebrow>
               {/* R24 picture 09 (1): the module headline one step smaller than the home page's; the lead, then for whom and what it saves (3) */}
-              <Display size="l" as="h1" id="pd-h1" className="max-w-[22ch]">{c.h1[locale]}</Display>
+              <Display size="l" as="h1" id="pd-h1" className="max-w-[22ch]">{capabilityText(c, "h1", locale, view)}</Display>
               <Lead className="mt-5">{c.lead[locale]}</Lead>
               {c.why && (
                 <ul className="mt-5 space-y-2 measure-lead" data-product-why>
@@ -89,7 +92,7 @@ export default function ProductPage({ params }: { params: { locale: string; slug
               ) : (
                 <div className="stage overflow-hidden p-2 md:p-3">
                   <div className="field-sand rounded-[20px] p-4 md:p-8">
-                    <ProductView slug={c.slug} locale={locale} />
+                    <ProductView slug={c.slug} locale={locale} view={view} />
                   </div>
                 </div>
               )}
@@ -127,7 +130,7 @@ export default function ProductPage({ params }: { params: { locale: string; slug
               </Reveal>
               <Reveal delay={120} className="stage p-6 md:p-8 xl:col-span-7">
                 <LabelChip>{d.common.example}</LabelChip>
-                <p className="mt-4 t-body-l text-text-primary">{c.scenario[locale]}</p>
+                <p className="mt-4 t-body-l text-text-primary">{capabilityText(c, "scenario", locale, view)}</p>
               </Reveal>
             </div>
           </div>
@@ -158,7 +161,7 @@ export default function ProductPage({ params }: { params: { locale: string; slug
                   <Link href={p(`/platform/${r.slug}`)} className="group flex min-h-[44px] items-center justify-between gap-4 py-4">
                     <span className="flex flex-wrap items-center gap-x-4 gap-y-1">
                       <span className="t-heading-m text-text-primary">{r.name[locale]}</span>
-                      <span className="t-body-s text-text-secondary">{r.navLine[locale]}</span>
+                      <span className="t-body-s text-text-secondary">{capabilityText(r, "navLine", locale, view)}</span>
                     </span>
                     <span className="text-text-muted transition-transform duration-micro group-hover:translate-x-1"><StatusGlyph glyph="arrow-right" /></span>
                   </Link>

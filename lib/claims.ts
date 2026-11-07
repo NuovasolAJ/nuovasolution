@@ -25,6 +25,11 @@ export const claimWords: Record<ClaimState, L> = {
   excluded: { es: "No incluido", en: "Not included" },
   order: { es: "Por encargo", en: "To order" },
 };
+/** The plans table's cell words for screen readers (Copy 1107 D-2: no status word, not even in an aria-label). */
+export const planCellWords: Record<"in" | "out", L> = {
+  in: { es: "En este plan", en: "In this plan" },
+  out: { es: "No en este plan", en: "Not in this plan" },
+};
 
 /** The functions, each with its state today (Copy 1105 v3 §1 and §15, key in brackets). Keys are stable; surfaces reference them. */
 export const claims = {

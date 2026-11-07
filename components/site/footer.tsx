@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { publishedCapabilities } from "@/lib/content/capabilities";
+import { visibleCapabilities } from "@/lib/content/capabilities";
 import { entryAction } from "@/lib/claims";
 import { resolveSwitches } from "@/lib/view";
 import { Logo } from "@/components/ui/logo";
@@ -14,12 +14,14 @@ import { Logo } from "@/components/ui/logo";
 export function Footer({ locale }: { locale: Locale }) {
   const d = getDictionary(locale);
   const p = (path: string) => localePath(locale, path);
-  const entry = entryAction(locale, resolveSwitches().view);
+  const view = resolveSwitches().view;
+  const entry = entryAction(locale, view);
 
   const cols: { heading: string; items: { href: string; label: string; note?: string }[] }[] = [
     {
       heading: d.footer.platform,
-      items: [{ href: p("/platform"), label: d.nav.overview }, ...publishedCapabilities().map((c) => ({ href: p(`/platform/${c.slug}`), label: c.name[locale] }))],
+      // Copy 1107 D-11: only the module pages the view shows
+      items: [{ href: p("/platform"), label: d.nav.overview }, ...visibleCapabilities(view).map((c) => ({ href: p(`/platform/${c.slug}`), label: c.name[locale] }))],
     },
     {
       heading: d.footer.getStarted,

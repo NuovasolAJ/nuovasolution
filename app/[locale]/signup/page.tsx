@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
-import { isLocale, type Locale } from "@/lib/i18n/config";
+import { redirect } from "next/navigation";
+import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
+import { trialLive } from "@/lib/claims";
+import { resolveSwitches } from "@/lib/view";
 import { integrationMode } from "@/lib/contracts/mode";
 import { Section } from "@/components/ui/section";
 import { Display, Eyebrow, Lead } from "@/components/ui/type";
@@ -16,6 +19,8 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
 
 export default function SignupPage({ params }: { params: { locale: string } }) {
   const locale = params.locale as Locale;
+  // Copy 1107 D-16 (C-17): while the trial and the public registration are off, the way in is the contact page (as /trial)
+  if (!trialLive(resolveSwitches().view)) redirect(localePath(locale, "/contact"));
   const d = getDictionary(locale);
   const stub = integrationMode() === "stub";
   return (

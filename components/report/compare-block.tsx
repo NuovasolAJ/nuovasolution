@@ -50,6 +50,8 @@ export function CompareBlock({ locale, view, id = "cmp" }: { locale: Locale; vie
         <AnimatePresence mode="sync" initial={false}>
           <m.p key={mode} className="cmpb-close-text" initial={reduce ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, transition: { duration: 0.16 } }} transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }} data-compare-close={mode}>{close}</m.p>
         </AnimatePresence>
+        {/* the other state's close stands in the delivered HTML too (Copy 1107 §4: a reader without JavaScript sees both sides), hidden while the switch works */}
+        <p hidden className="cmpb-close-text" data-compare-close-other={mode === "with" ? "without" : "with"}>{mode === "with" ? l(w.closeWithout) : l(w.closeWith(view))}</p>
       </div>
       <p className="cmpb-assumption">{l(w.assumption)}</p>
     </section>

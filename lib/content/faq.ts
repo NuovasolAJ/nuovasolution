@@ -17,10 +17,16 @@ export interface FaqItem {
   /** The keys the target answer needs; with one off, `pub` stands in public, or the question is left out when there is no `pub`. */
   keys?: ClaimKey[];
   pub?: L;
+  /** Copy 1107 D-21: the question's public wording while `qKeys` are off (the answer stays). */
+  qPub?: L;
+  qKeys?: ClaimKey[];
 }
 export interface FaqGroup {
   id: string;
   title: L;
+  /** Copy 1107 D-20: the group's public title while `titleKeys` are off. */
+  titlePub?: L;
+  titleKeys?: ClaimKey[];
   items: FaqItem[];
 }
 
@@ -173,6 +179,8 @@ export const faqGroups: FaqGroup[] = [
   {
     id: "trial",
     title: { en: "Trial, plans and paying", es: "Prueba, planes y pago" },
+    titlePub: { en: "Price and how to start", es: "Precio y cómo empezar" }, // Copy 1107 D-20
+    titleKeys: ["plans"],
     items: [
       {
         kb: "Q-11",
@@ -195,6 +203,8 @@ export const faqGroups: FaqGroup[] = [
       {
         kb: "Q-13",
         q: { en: "What does it cost after that?", es: "¿Cuánto cuesta después?" },
+        qPub: { en: "What does it cost?", es: "¿Cuánto cuesta?" }, // Copy 1107 D-21 ("after that" points to the hidden trial)
+        qKeys: ["trial"],
         a: {
           en: "We tell you the price and the billing period for your agency before anything is agreed.",
           es: "Te decimos el precio y el periodo de facturación para tu agencia antes de acordar nada.",
@@ -207,11 +217,13 @@ export const faqGroups: FaqGroup[] = [
           en: "No. We issue an invoice and you pay it by bank transfer. There is no card payment and no automatic renewal.",
           es: "No. Emitimos una factura y la pagas por transferencia. No hay pago con tarjeta ni renovación automática.",
         },
+        keys: ["plans"], // Copy 1107 D-20: production has no billing part
       },
       {
         kb: "Q-15",
         q: { en: "When is my plan active?", es: "¿Cuándo está activo mi plan?" },
         a: { en: "When the payment is confirmed. An issued invoice does not activate anything on its own.", es: "Cuando el pago está confirmado. Una factura emitida no activa nada por sí sola." },
+        keys: ["plans"], // Copy 1107 D-20
       },
       {
         kb: "Q-16",
@@ -351,12 +363,13 @@ export function faqGroupsFor(locale: Locale, view: ClaimView): { id: string; tit
   return faqGroups
     .map((g) => ({
       id: g.id,
-      title: g.title[locale],
+      title: (g.titlePub && g.titleKeys && !live(g.titleKeys, view) ? g.titlePub : g.title)[locale],
       items: g.items
         .map((it) => {
           const on = !it.keys || live(it.keys, view);
           const a = on ? it.a : it.pub ?? null;
-          return a ? { kb: it.kb, q: it.q[locale], a: withChannels(a[locale], locale, view) } : null;
+          const q = it.qPub && it.qKeys && !live(it.qKeys, view) ? it.qPub : it.q;
+          return a ? { kb: it.kb, q: q[locale], a: withChannels(a[locale], locale, view) } : null;
         })
         .filter((it): it is { kb: string; q: string; a: string } => it !== null),
     }))

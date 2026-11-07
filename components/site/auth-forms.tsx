@@ -367,7 +367,7 @@ export function SetPasswordForm({ locale }: { locale: Locale }) {
  * A second click or Enter sends nothing. Only a failure (wrong login, a timeout, an unreachable
  * server) frees the button, with its sentence above it, so a retry is always possible.
  */
-export function LoginForm({ locale, confirmed = false, next }: { locale: Locale; confirmed?: boolean; next?: string }) {
+export function LoginForm({ locale, confirmed = false, next, showCreate = true }: { locale: Locale; confirmed?: boolean; next?: string; showCreate?: boolean }) {
   const dict = getDictionary(locale);
   const d = dict.login;
   const id = useId();
@@ -425,9 +425,12 @@ export function LoginForm({ locale, confirmed = false, next }: { locale: Locale;
       <div className="space-y-3">
         <button type="button" onClick={() => setForgot(true)} className="min-h-[44px] t-body-s text-text-accent underline underline-offset-4">{d.forgot}</button>
         {forgot && <p role="status" className="t-body-s text-text-secondary">{d.forgotUnavailable}</p>}
-        <p className="t-body-s text-text-secondary">
-          {d.noAccount} <Link href={localePath(locale, "/signup")} className="text-text-accent underline underline-offset-4">{d.createLink}</Link>
-        </p>
+        {/* Copy 1107 D-17: no sign-up line while the public registration is off */}
+        {showCreate && (
+          <p className="t-body-s text-text-secondary">
+            {d.noAccount} <Link href={localePath(locale, "/signup")} className="text-text-accent underline underline-offset-4">{d.createLink}</Link>
+          </p>
+        )}
       </div>
       {/* The running state for screen readers: announced when it changes, silent otherwise. */}
       <p role="status" aria-live="polite" className="sr-only" data-form-status>{running}</p>

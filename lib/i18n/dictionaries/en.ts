@@ -103,7 +103,7 @@ export const en = {
       stub: { label: "Demonstration only", line: "Nothing you enter creates an account or reaches anyone." },
       staging: { label: "Test environment", line: "Accounts and data here are for testing and may be reset." },
       // Review preview (audit R24): visible on every page of a deployment that is not the released production site.
-      preview: { label: "Preview, not public", line: "It shows the complete product, including functions that are not active. Example data: nothing you enter creates an account or reaches anyone." }, // Copy 1105 v3 §14
+      preview: { label: "Preview, not public", line: "It shows the complete product, including functions that are not active. Example data: nothing you enter creates an account or reaches anyone.", linePublic: "Example data: nothing you enter creates an account or reaches anyone." }, // Copy 1105 v3 §14; 1107 D-22 (the ribbon prefixes the label)
     },
     errors: {
       no_session: "Your session has ended. Log in again to continue.",
@@ -222,7 +222,7 @@ export const en = {
         agency: "Your agency",
         channel: "WhatsApp",
         synthetic: "Illustrative example",
-        assistant: "NuovaSolution · AI assistant", // D-76
+        assistant: "The agency's automated assistant", // D-76; Copy 1107 D-8
         caption: "The reply that goes out, with the notice it must carry.",
         time: "21:40",
         footer: "Names and times are invented.",
@@ -370,6 +370,7 @@ export const en = {
     eyebrow: "Platform",
     h1: "Everything one enquiry needs, in one place", // D-47
     lead: "Each part of NuovaSolution does one job properly, and they share one record, so the answer, the context and the task are never in three different places.",
+    leadPublic: "Each part of NuovaSolution does one job properly, and they share one record, so the answer and the context are never in different places.", // Copy 1107 D-14
     indexEyebrow: "Capabilities",
     indexH2: "What NuovaSolution does for your agency.",
     exampleEyebrow: "One enquiry, end to end",
@@ -522,6 +523,7 @@ export const en = {
     eyebrow: "Contact",
     h1: "Talk to a person.",
     lead: "Direct human reach, in English or in Spanish. A demo is optional and never a condition for starting the trial.",
+    leadPublic: "Direct human reach, in English or in Spanish. A demo is optional.", // Copy 1107 D-18
     emailLabel: "Email",
     demoEyebrow: "Optional",
     demoH2: "Request a demo", // D-31

@@ -1,0 +1,50 @@
+// Copy 1107 D-1…D-23 (COPY_CHECK_1107_BUILD_a5f1d21_v1.md) on the delivered HTML, both views, ES and the EN sample: BASE=https://… BYPASS=<from the secrets store> node scripts/design/copy-check-1107.mjs
+const BASE = process.env.BASE.replace(/\/$/, ""), BYPASS = process.env.BYPASS ?? "";
+const H = { "x-vercel-protection-bypass": BYPASS, "x-vercel-set-bypass-cookie": "false" };
+const get = async (path, view) => { const r = await fetch(`${BASE}${path}${path.includes("?") ? "&" : "?"}view=${view}`, { headers: H, redirect: "manual" }); return { status: r.status, loc: r.headers.get("location") || "", html: r.status === 200 ? (await r.text()).replace(/<script[\s\S]*?<\/script>/g, "") : "" }; };
+const text = (h) => h.replace(/<!--[\s\S]*?-->/g, "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " "); // React's empty comments carry no text
+let fails = 0; const out = [];
+const check = (id, ok, ev) => { out.push(`${ok ? "PASS" : "FAIL"} ${id}${ok ? "" : " · " + ev}`); if (!ok) fails++; };
+for (const view of ["target", "public"]) {
+  const pub = view === "public";
+  const agent = await get("/es/platform/ai-sales-agent", view), agentT = text(agent.html);
+  check(`D-1 ${view}`, agentT.includes("Respuesta por email, en el buzón de tu agencia.") && !agentT.includes("operamos para ti"), agentT.slice(0, 80));
+  check(`D-23 ${view}`, agentT.includes("Un aviso por email a la persona adecuada") === !pub, "alert point shown=" + agentT.includes("Un aviso por email a la persona adecuada"));
+  check(`D-6/D-8 ${view}`, agentT.includes("¿Te viene mejor por la mañana o por la tarde para una visita?") && !agentT.includes("lo anoto") && !agentT.includes("te escribe con día y hora") && agentT.includes("Asistente automático de la agencia") && !agentT.includes("asistente de IA"), agentT.match(/.{0,60}anoto.{0,60}|.{0,40}asistente de IA.{0,40}/)?.[0]);
+  const li = text((await get("/es/platform/lead-intelligence", view)).html);
+  check(`D-3 ${view}`, pub ? (li.includes("Consulta importante") && !li.includes("aviso por email a tu equipo")) : li.includes("Consulta importante · aviso por email a tu equipo"), li.match(/.{0,30}Consulta importante.{0,50}/)?.[0]);
+  const crm = await get("/es/platform/crm", view), crmT = text(crm.html);
+  check(`D-4 ${view}`, crmT.includes("Aviso por email a Elena") === !pub, "row shown=" + crmT.includes("Aviso por email a Elena"));
+  check(`D-5 ${view}`, pub ? crmT.includes("Cada mensaje y cada respuesta quedan en la ficha") : crmT.includes("cada aviso quedan en la ficha"), "");
+  check(`D-7 ${view}`, crmT.includes("lo guarda y pregunta si prefiere mañana o tarde") && !crmT.includes("le escribe con día y hora"), "");
+  check(`D-9 ${view}`, pub ? (crmT.includes("Una ficha por consulta.") && !crmT.includes("Tus canales conectados")) : crmT.includes("Tus canales conectados, una ficha por consulta."), "");
+  check(`D-15 ${view}`, pub ? (crmT.includes("y la petición de visita. No hay que reconstruir nada.") && !crmT.includes("pasó a ser una tarea")) : crmT.includes("pasó a ser una tarea"), "");
+  check(`D-11 related ${view}`, (crmT.includes("Tareas diarias")) === !pub, "Tareas diarias in crm page=" + crmT.includes("Tareas diarias"));
+  const da = await get("/es/platform/daily-assistant", view);
+  check(`D-10 ${view}`, pub ? (da.status >= 300 && da.status < 400 && /\/es\/platform$/.test(da.loc)) : da.status === 200, `${da.status} ${da.loc}`);
+  const pl = await get("/es/platform", view), plT = text(pl.html);
+  check(`D-11 card ${view}`, plT.includes("Tareas diarias") === !pub, "");
+  check(`D-11 footer ${view}`, (pl.html.match(/href="\/es\/platform\/daily-assistant"/g) || []).length > 0 === !pub, "");
+  check(`D-12 ${view}`, (pl.html.includes('data-platform-task="attract"')) === !pub, "");
+  check(`D-13 ${view}`, pub ? (plT.includes("Leads y conversaciones en un solo lugar") && !plT.includes("conversaciones y tareas")) : plT.includes("Leads, conversaciones y tareas en un solo lugar"), "");
+  check(`D-14 ${view}`, pub ? plT.includes("la respuesta y el contexto nunca están en sitios distintos") : plT.includes("en tres sitios distintos"), "");
+  const su = await get("/es/signup", view);
+  check(`D-16 ${view}`, pub ? (su.status >= 300 && su.status < 400 && /\/es\/contact$/.test(su.loc)) : su.status === 200, `${su.status} ${su.loc}`);
+  const lg = text((await get("/es/login", view)).html);
+  check(`D-17 ${view}`, lg.includes("Crea una") === !pub, "");
+  const ct = text((await get("/es/contact", view)).html);
+  check(`D-18 ${view}`, pub ? (ct.includes("La demo es opcional.") && !ct.includes("empezar la prueba")) : ct.includes("nunca es condición para empezar la prueba"), "");
+  const pk = text((await get("/es/packages", view)).html);
+  check(`D-19 ${view}`, (pk.includes("Cómo se paga") || pk.includes("¿Puedo pagar online?")) === !pub, "");
+  const fq = text((await get("/es/faq", view)).html);
+  check(`D-20 ${view}`, pub ? (fq.includes("Precio y cómo empezar") && !fq.includes("¿Puedo pagar con tarjeta") && !fq.includes("¿Cuándo está activo mi plan?")) : (fq.includes("Prueba, planes y pago") && fq.includes("¿Puedo pagar con tarjeta")), "");
+  check(`D-21 ${view}`, pub ? (fq.includes("¿Cuánto cuesta?") && !fq.includes("¿Cuánto cuesta después?")) : fq.includes("¿Cuánto cuesta después?"), "");
+  const home = await get("/es", view), homeT = text(home.html);
+  check(`D-22 ${view}`, pub ? (homeT.includes("Vista previa, no pública. Datos de ejemplo") && !homeT.includes("Muestra el producto completo")) : homeT.includes("Muestra el producto completo"), "");
+  check(`D-2 ${view}`, !/aria-label="(Incluido|No incluido|Included|Not included)"/.test(home.html + pk), "");
+  check(`Sin-close-in-html ${view}`, home.html.includes("data-compare-close-other") && homeT.includes("9 consultas esperan"), "");
+  check(`no status word ${view}`, !/Próximamente|Coming soon|En preparación/.test(homeT + plT + crmT + agentT + pk + fq + ct), "");
+  const en = text((await get("/en/platform/crm", view)).html);
+  check(`EN crm ${view}`, en.includes("it keeps this and asks whether she prefers morning or afternoon") && (pub ? en.includes("One record per enquiry.") : en.includes("Your connected channels")), "");
+}
+console.log(out.join("\n")); console.log(`${out.length - fails}/${out.length} passed`); process.exit(fails ? 1 : 0);

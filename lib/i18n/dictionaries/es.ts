@@ -94,7 +94,7 @@ export const es: Dictionary = {
     env: {
       stub: { label: "Solo demostración", line: "Nada de lo que introduzcas crea una cuenta ni llega a nadie." },
       staging: { label: "Entorno de pruebas", line: "Las cuentas y los datos de aquí son de prueba y pueden borrarse." },
-      preview: { label: "Vista previa, no pública", line: "Muestra el producto completo, incluidas funciones que no están activas. Datos de ejemplo: nada de lo que introduzcas crea una cuenta ni llega a nadie." }, // Copy 1105 v3 §14
+      preview: { label: "Vista previa, no pública", line: "Muestra el producto completo, incluidas funciones que no están activas. Datos de ejemplo: nada de lo que introduzcas crea una cuenta ni llega a nadie.", linePublic: "Datos de ejemplo: nada de lo que introduzcas crea una cuenta ni llega a nadie." }, // Copy 1105 v3 §14; 1107 D-22 (the public view of the preview: the ribbon prefixes the label, so the sentence reads "Vista previa, no pública. Datos de ejemplo: …")
     },
     errors: {
       no_session: "Tu sesión ha terminado. Inicia sesión otra vez para continuar.",
@@ -200,7 +200,7 @@ export const es: Dictionary = {
         agency: "Tu agencia",
         channel: "WhatsApp",
         synthetic: "Ejemplo ilustrativo",
-        assistant: "NuovaSolution · asistente de IA", // D-76
+        assistant: "Asistente automático de la agencia", // D-76; Copy 1107 D-8
         caption: "La respuesta que sale, con el aviso que debe llevar.",
         time: "21:40",
         footer: "Nombres y horas son inventados.",
@@ -338,6 +338,7 @@ export const es: Dictionary = {
     eyebrow: "Plataforma",
     h1: "Todo lo que necesita una consulta, en un solo lugar", // D-47
     lead: "Cada parte de NuovaSolution hace bien una cosa, y comparten una misma ficha, así que la respuesta, el contexto y la tarea nunca están en tres sitios distintos.", // D-47
+    leadPublic: "Cada parte de NuovaSolution hace bien una cosa, y comparten una misma ficha, así que la respuesta y el contexto nunca están en sitios distintos.", // Copy 1107 D-14 (taskList off)
     indexEyebrow: "Capacidades",
     indexH2: "Qué hace NuovaSolution por tu agencia.",
     exampleEyebrow: "Una consulta, de principio a fin",
@@ -483,6 +484,7 @@ export const es: Dictionary = {
     eyebrow: "Contacto",
     h1: "Habla con una persona.",
     lead: "Contacto humano directo, en español o en inglés. La demo es opcional y nunca es condición para empezar la prueba.",
+    leadPublic: "Contacto humano directo, en español o en inglés. La demo es opcional.", // Copy 1107 D-18 (trial off)
     emailLabel: "Email",
     demoEyebrow: "Opcional",
     demoH2: "Solicitar una demo",

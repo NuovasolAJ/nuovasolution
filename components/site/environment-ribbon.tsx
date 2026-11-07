@@ -1,6 +1,7 @@
 import type { Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { integrationMode, publicIndexingAllowed } from "@/lib/contracts/mode";
+import { resolveSwitches } from "@/lib/view";
 import { StatusGlyph } from "@/components/ui/status";
 
 /**
@@ -20,7 +21,9 @@ export function EnvironmentRibbon({ locale, scope }: { locale: Locale; scope: "s
   const mode = integrationMode();
   if (mode === "live" && publicIndexingAllowed()) return null;
   const kind = mode === "staging" ? "staging" : "preview";
-  const e = getDictionary(locale).common.env[kind];
+  const env = getDictionary(locale).common.env[kind];
+  // Copy 1107 D-22: the preview's public view does not show the full product, so its notice says only what is true there
+  const e = kind === "preview" && resolveSwitches().view === "public" && "linePublic" in env ? { label: env.label, line: env.linePublic } : env;
   return (
     <>
       <div data-env={kind} className="border-b border-line-hairline bg-sand-100">

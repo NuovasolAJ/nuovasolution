@@ -146,10 +146,11 @@ export const enquiries: Enquiry[] = [
     // Laura's second message: she answers NuovaSolution's one question and says what she wants next.
     text: "Vivienda habitual. Nos gustaría verlo la semana que viene, si puede ser.",
     textShort: { es: "Laura contesta: vivienda habitual, y quiere ver el piso la semana que viene.", en: "Laura answers: a main home, and she would like to see the flat next week." },
-    reply: "Perfecto, Laura, lo anoto. Una compañera de la agencia te escribe con día y hora para la visita.",
+    // Copy 1107 D-6 (the owner's Question A, §16): one question back, no contact promise, no "lo anoto"
+    reply: "Gracias, Laura. Queda en tu ficha. ¿Te viene mejor por la mañana o por la tarde para una visita?",
     translation: {
       text: { es: "Vivienda habitual. Nos gustaría verlo la semana que viene, si puede ser.", en: "A main home. We'd like to see it next week, if possible." },
-      reply: { es: "Perfecto, Laura, lo anoto. Una compañera de la agencia te escribe con día y hora para la visita.", en: "Perfect, Laura, noted. A colleague from the agency will write to you with a day and time for the viewing." },
+      reply: { es: "Gracias, Laura. Queda en tu ficha. ¿Te viene mejor por la mañana o por la tarde para una visita?", en: "Thank you, Laura. It's on your record. Would the morning or the afternoon suit you better for a viewing?" },
     },
     notice: "Soy un asistente de inteligencia artificial. Te ayudaré con tu consulta inmobiliaria. Si prefieres hablar con un agente humano, indícamelo en cualquier momento.",
     noticeIsSample: false,
@@ -340,7 +341,7 @@ export const storyWords = {
   common: {
     example: { es: "Ejemplo con personas e inmuebles inventados", en: "Example with invented people and listings" },
     photo: { es: "Foto de muestra", en: "Sample photo" },
-    assistant: { es: "NuovaSolution · asistente de IA", en: "NuovaSolution · AI assistant" },
+    assistant: { es: "Asistente automático de la agencia", en: "The agency's automated assistant" }, // Copy 1107 D-8 (§3, §10.5: the customer writes to the agency)
     record: { es: "Ficha del cliente", en: "Customer record" },
     noticeTitle: { es: "El aviso que lleva la respuesta", en: "The notice the reply carries" },
     noticeSample: { es: "Traducción de muestra; el aviso aprobado es el español.", en: "Sample translation; the approved notice is the Spanish one." },

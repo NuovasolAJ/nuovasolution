@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { platformTasks } from "@/lib/content/platform-map";
+import { platformTasksFor } from "@/lib/content/platform-map";
 import { Logo } from "@/components/ui/logo";
 import { LanguageSwitcher } from "./language-switcher";
 import { HeaderShell } from "./header-shell";
@@ -21,7 +21,10 @@ export function Header({ locale }: { locale: Locale }) {
   const d = getDictionary(locale);
   const p = (path: string) => localePath(locale, path);
   // Copy 1105 v3 §16 H-7: "Prueba" in the target state, "Acceso" while the trial is off
-  const entry = entryAction(locale, resolveSwitches().view);
+  const view = resolveSwitches().view;
+  const entry = entryAction(locale, view);
+  // Copy 1107 D-12: the menu names only the tasks that have an entry in this view (no empty "Captar" in public)
+  const tasks = platformTasksFor(locale, view);
 
   const nav = [
     { href: p("/packages"), label: d.nav.packages },
@@ -32,9 +35,9 @@ export function Header({ locale }: { locale: Locale }) {
   const item = "group flex min-h-[48px] items-center justify-between gap-4 rounded-md px-3 t-heading-s text-text-primary transition-colors duration-micro hover:bg-surface-sunken";
   const platformMenu = (
     <div className="grid gap-1" data-platform-tasks>
-      {platformTasks.map((task) => (
+      {tasks.map((task) => (
         <Link key={task.key} href={p(task.href)} className={item} data-platform-task={task.key}>
-          {task.short[locale]}
+          {task.short}
           <StatusGlyph glyph="arrow-right" size={14} className="text-text-muted opacity-0 transition-opacity duration-micro group-hover:opacity-100" />
         </Link>
       ))}

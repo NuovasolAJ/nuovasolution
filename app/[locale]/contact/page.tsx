@@ -43,7 +43,8 @@ export default function ContactPage({ params, searchParams }: { params: { locale
           <Reveal className="xl:max-w-[62%]">
             <Eyebrow className="mb-4">{c.eyebrow}</Eyebrow>
             <Display size="xl" id="ct-h1">{c.h1}</Display>
-            <Lead className="mt-6">{c.lead}</Lead>
+            {/* Copy 1107 D-18: no sentence on the trial while it is off */}
+            <Lead className="mt-6">{trialBlock ? c.lead : c.leadPublic}</Lead>
             {plan && (
               <div className="stage mt-8 p-5 md:p-6" data-plan-interest={plan.code}>
                 <p className="t-heading-s text-text-primary">{c.planInterest.replace("{plan}", plan.display_name)}</p>

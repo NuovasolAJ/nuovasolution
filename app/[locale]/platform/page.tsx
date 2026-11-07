@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { publishedCapabilities } from "@/lib/content/capabilities";
+import { capabilityText, visibleCapabilities } from "@/lib/content/capabilities";
 import { live } from "@/lib/claims";
 import { platformTasksFor } from "@/lib/content/platform-map";
 import { resolveSwitches } from "@/lib/view";
@@ -27,9 +27,10 @@ export default function PlatformPage({ params }: { params: { locale: string } })
   const locale = params.locale as Locale;
   const d = getDictionary(locale);
   const p = (path: string) => localePath(locale, path);
-  const caps = publishedCapabilities();
   const view = resolveSwitches().view;
+  const caps = visibleCapabilities(view); // Copy 1107 D-11
   const tasks = platformTasksFor(locale, view);
+  const lead = !live("taskList", view) && d.platform.leadPublic ? d.platform.leadPublic : d.platform.lead; // Copy 1107 D-14
   const hrefOf = (href: string) => (href.startsWith("/") && !href.startsWith("/#") ? p(href) : `${localePath(locale)}${href.slice(1)}`);
 
   return (
@@ -39,7 +40,7 @@ export default function PlatformPage({ params }: { params: { locale: string } })
           <Reveal className="xl:max-w-[62%]">
             <Eyebrow className="mb-4">{d.platform.eyebrow}</Eyebrow>
             <Display size="xl" id="po-h1">{d.platform.h1}</Display>
-            <Lead className="mt-6">{d.platform.lead}</Lead>
+            <Lead className="mt-6">{lead}</Lead>
           </Reveal>
         </div>
       </section>
@@ -86,7 +87,7 @@ export default function PlatformPage({ params }: { params: { locale: string } })
                   <span className="tnum t-caption text-text-accent">{String(i + 1).padStart(2, "0")}</span>
                   <span className="min-w-0">
                     <span className="block t-heading-m text-text-primary">{c.name[locale]}</span>
-                    <span className="block t-body-s text-text-secondary">{c.navLine[locale]}</span>
+                    <span className="block t-body-s text-text-secondary">{capabilityText(c, "navLine", locale, view)}</span>
                   </span>
                   <span className="inline-flex items-center gap-2 t-body-s font-medium text-text-primary">
                     {d.common.readModule}

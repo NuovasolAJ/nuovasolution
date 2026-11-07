@@ -9,6 +9,8 @@ import { Display, Eyebrow, Lead } from "@/components/ui/type";
 import { LoginForm } from "@/components/site/auth-forms";
 import { LabelChip } from "@/components/ui/status";
 import { EnvironmentRibbon } from "@/components/site/environment-ribbon";
+import { trialLive } from "@/lib/claims";
+import { resolveSwitches } from "@/lib/view";
 
 export const dynamic = "force-dynamic";
 
@@ -58,7 +60,7 @@ export default function LoginPage({ params, searchParams }: { params: { locale: 
       <div className="container-narrow relative !mx-0 pb-[var(--section-default)] pt-[var(--section-compact)] xl:!mx-auto">
         <div className="stage p-6 md:p-8">
           {searchParams.state === "expired" && <p role="status" className="mb-6 rounded-md bg-apricot-100 px-4 py-3 t-body-s text-text-primary" data-session-expired>{d.common.errors.no_session}</p>}
-          <LoginForm locale={locale} confirmed={confirmed} next={next} />
+          <LoginForm locale={locale} confirmed={confirmed} next={next} showCreate={trialLive(resolveSwitches().view)} />
         </div>
       </div>
     </div>
