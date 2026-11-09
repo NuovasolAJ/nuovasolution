@@ -65,7 +65,7 @@ export const en = {
     // LAUNCH_COPY_v1 §7.1: "Book a demo" only after the Reviewer's test booking (DEMO_PATH = PASS).
     bookDemo: "Request a demo",
     startFree: "Request access", // Copy 1102 v2 C-8
-    seeDemo: "See the demo", // owner review 02.11.
+    seeDemo: "Request a demo", // Copy 1108 H-1 (fallback wording: no real booking page yet); owner review 02.11.
     tryFree: "Try it free for 14 days", // Copy 1105 v3 V-40
     noPayment: "No payment method required.",
     noSalesCall: "No sales call required.",
@@ -1128,6 +1128,7 @@ export const en = {
 
   footer: {
     brandLine: "NuovaSolution answers your agency's enquiries and keeps what matters on its record. Built for agencies in Spain.", // Copy 1105 v3 §10.4
+    brandLineTarget: "NuovaSolution replies on behalf of your agency and keeps what matters on each client's record. Made for agencies in Spain.", // Copy 1108 V-3
     platform: "Platform",
     getStarted: "Get started",
     legal: "Legal",

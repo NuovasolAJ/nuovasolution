@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import type { Locale } from "@/lib/i18n/config";
 import { switchQuery, type PreviewSwitches } from "@/lib/view-query";
@@ -28,8 +29,11 @@ export function PreviewSwitch({ locale, switches }: { locale: Locale; switches: 
     <a href={href} className={cn("pv-opt", on && "is-on")} aria-current={on ? "true" : undefined} data-preview-switch={name}>{label}</a>
   );
 
+  // H2 (09.11.): on a narrow window the row folds behind one small button, so the first screen is the page's own
+  const [open, setOpen] = useState(false);
   return (
-    <div className="pv" data-preview-switches data-view={switches.view} data-palette={switches.palette} data-display={switches.display}>
+    <div className="pv" data-preview-switches data-view={switches.view} data-palette={switches.palette} data-display={switches.display} data-pv-open={open ? "true" : "false"}>
+      <button type="button" className="pv-toggle" aria-expanded={open} onClick={() => setOpen((v) => !v)} data-pv-toggle>{w.hint} {open ? "−" : "+"}</button>
       <div className="container-default pv-row">
         <span className="pv-hint">{w.hint}</span>
         <span className="pv-group" role="group" aria-label={w.view}>
@@ -42,6 +46,8 @@ export function PreviewSwitch({ locale, switches }: { locale: Locale; switches: 
           <Opt on={switches.palette === "a"} href={link({ palette: "a" })} label="A" name="palette-a" />
           <Opt on={switches.palette === "b"} href={link({ palette: "b" })} label="B" name="palette-b" />
           <Opt on={switches.palette === "c"} href={link({ palette: "c" })} label="C" name="palette-c" />
+          <Opt on={switches.palette === "d"} href={link({ palette: "d" })} label="D" name="palette-d" />
+          <Opt on={switches.palette === "e"} href={link({ palette: "e" })} label="E" name="palette-e" />
         </span>
         <span className="pv-group" role="group" aria-label={w.display}>
           <span className="pv-name">{w.display}</span>

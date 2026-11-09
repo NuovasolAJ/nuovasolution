@@ -21,6 +21,7 @@ import { cn } from "@/lib/utils";
  */
 type Item = (typeof home1103.functions.items)[number];
 type Key = Item["key"];
+export type SceneKey = Key;
 const SEG = 0.9; // window heights per scene (the owner's guide: 70–100 vh)
 const FIRST_FIVE: Key[] = ["reply", "record", "priority", "origin", "report"];
 
@@ -198,7 +199,7 @@ function useStagger() {
   return (i: number) => (reduce ? {} : { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, transition: { delay: 0.08 + i * 0.09, duration: 0.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } });
 }
 
-function Surface({ k, locale, view }: { k: Key; locale: Locale; view: ClaimView }) {
+export function Surface({ k, locale, view }: { k: Key; locale: Locale; view: ClaimView }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const u = home1103.functions.ui;
   const stagger = useStagger();

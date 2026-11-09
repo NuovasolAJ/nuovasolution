@@ -6,6 +6,7 @@ import { home1103 } from "@/lib/content/home-1103";
 import { entryAction, live, type ClaimView } from "@/lib/claims";
 import { Accordion } from "@/components/ui/accordion";
 import { Rise } from "@/components/ui/motion";
+import { Behind } from "./behind";
 
 /**
  * The way in, trust, the short FAQ and the close (Copy 1105 v3 §20 and §13 N-1; the owner's point 14 of 06.11.): in the target
@@ -70,6 +71,9 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
         </div>
       </section>
 
+      {/* Copy 1108 §3: "Quién está detrás" between the way in and the questions */}
+      <Behind locale={locale} />
+
       <section id="faq" aria-labelledby="faq-h" className="faqs" data-faq>
         <div className="container-default">
           <div className="faqs-grid">
@@ -90,7 +94,8 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
             <h2 id="close-h" className="closing-h2">{l(c.h2)}</h2>
             <p className="closing-line">{l(c.line(view))}</p>
             <div className="closing-ctas">
-              <a href="#demo" className="closing-cta-main" data-demo-run>{l(c.ctaDemo)}</a>
+              {/* Copy 1108 H-1: the close's main action is the demo request */}
+              <Link href={p("/contact")} className="closing-cta-main lift" data-closing-main="contact">{l(c.ctaDemo)}</Link>
               <a href={p(entry.href)} className="closing-cta-second" data-closing-second={entry.kind}>{entry.label}</a>
             </div>
           </Rise>

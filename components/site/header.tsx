@@ -61,7 +61,7 @@ export function Header({ locale }: { locale: Locale }) {
       login={{ href: p("/login"), label: d.nav.login }}
       // The owner's review of 02.11. with API's claims lines: public registration is not released, so the header's one general button
       // leads to the demonstration, not to a sign-up ("Probar gratis" is not a main action).
-      primary={{ href: `${localePath(locale)}#demo`, label: d.common.seeDemo }}
+      primary={{ href: p("/contact"), label: d.common.seeDemo }} /* Copy 1108 H-1: the header's black button is the demo request */
       account={{ href: p("/app"), label: d.nav.account }}
       logout={{ label: d.nav.logout, busy: d.nav.loggingOut }}
       home={localePath(locale)}

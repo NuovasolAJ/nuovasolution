@@ -70,7 +70,7 @@ export function Stage3d({ locale }: { locale: Locale }) {
   const w = home1103.model3d;
   const steps = l(w.steps);
   const reduce = useReducedMotion();
-  const { ref, seen } = useSeen(0.4);
+  const { ref, seen } = useSeen(0.1);
   const track = useRef<HTMLDivElement>(null);
   const [step, setStep] = useState(0);
   const walked = useRef(false);

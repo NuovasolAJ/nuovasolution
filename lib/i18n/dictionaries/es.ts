@@ -59,7 +59,7 @@ export const es: Dictionary = {
     spanish: "Español",
     bookDemo: "Solicitar una demo",
     startFree: "Pedir acceso", // Copy 1102 v2 C-8 (claims lines 02.11.: no public sign-up promise): every former "Probar gratis" button
-    seeDemo: "Ver la demo", // owner review 02.11.: the header's one general button leads to the demonstration (no public sign-up)
+    seeDemo: "Solicitar una demo", // Copy 1108 H-1 (fallback wording: no real booking page yet); owner review 02.11.: the header's one general button)
     tryFree: "Prueba gratis durante 14 días", // Copy 1105 v3 V-40 (hangs on trial + publicSignup)
     noPayment: "Sin método de pago.",
     noSalesCall: "Sin llamada comercial.",
@@ -1066,7 +1066,8 @@ export const es: Dictionary = {
   },
 
   footer: {
-    brandLine: "NuovaSolution responde a las consultas de tu agencia y guarda lo importante en su ficha. Hecho para agencias en España.", // Copy 1105 v3 §10.4
+    brandLine: "NuovaSolution responde a las consultas de tu agencia y guarda lo importante en su ficha. Hecho para agencias en España.", // Copy 1105 v3 §10.4 (public while no reply leaves the agency's own channel)
+    brandLineTarget: "NuovaSolution responde en nombre de tu agencia y guarda lo importante en la ficha de cada cliente. Hecho para agencias en España.", // Copy 1108 V-3
     platform: "Plataforma",
     getStarted: "Empezar",
     legal: "Legal",

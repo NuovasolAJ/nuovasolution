@@ -22,7 +22,7 @@ export function ReportStage({ locale, view }: { locale: Locale; view: ClaimView 
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const w = home1103.report;
   const reduce = useReducedMotion();
-  const { ref, seen } = useSeen(0.3);
+  const { ref, seen } = useSeen(0.08); // 09.11. H6: on the phone the sheet is taller than the screen, so 30 % was never reached and the insights and bars stayed hidden
   const weeks = l(w.weeks);
   const max = Math.max(...w.series.map((s) => s.received));
   const metrics = l(w.metrics);

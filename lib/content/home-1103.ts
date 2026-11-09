@@ -30,7 +30,11 @@ export const home1103 = {
     h1: T("Mientras enseñas, NuovaSolution atiende.", "While you show a home, NuovaSolution answers."),
     // §2 H-4 (the benefit line), unchanged
     lead: T("Tus clientes reciben respuesta aunque estés en una visita, y lo que piden te espera ordenado en su ficha.", "Your clients get a reply even while you are at a viewing, and what they ask for is waiting for you on their record."),
-    ctaDemo: T("Ver la demo", "See the demo"),
+    // Copy 1108 H-1: "Reservar una demo" only with a real booking page; cal.com/nuovasolution/demo answers "This page could not be found"
+    // (checked 09.11.), so the fallback wording leads to /contact
+    ctaDemo: T("Solicitar una demo", "Request a demo"),
+    /** Copy 1108 H-3 / P-1: the line under the hero's action, both views; replaces the trial and the access lines there. */
+    pilotLine: T("Piloto gratuito · precio en la demo", "Free pilot · pricing in the demo"),
     /** §16 H-1 … H-3: the chips per view (chip 1 stays word for word, FRAGE B). */
     chips: (view: ClaimView): L[] => [
       byKey("replyOutOfHours", view, T("Responde en español, también fuera de horario", "Replies in Spanish, also out of hours"), T("Responde en español", "Replies in Spanish")),
@@ -41,7 +45,7 @@ export const home1103 = {
     image: T("Casa de ejemplo ficticia: salón amueblado, ilustrativo", "Fictional demo house: furnished living room, illustrative"),
     imageMark: T("Casa de ejemplo ficticia, visualización", "Fictional demo house, visualisation"),
     artCredit: T("Cuadro: Vincent van Gogh, Cypresses (1889), The Metropolitan Museum of Art, dominio público", "Wall painting: Vincent van Gogh, Cypresses (1889), The Metropolitan Museum of Art, public domain"),
-    scroll: T("Ver la demo", "See the demo"),
+    scroll: T("Ver cómo responde", "See how it replies"), // Copy 1108 H-4
     brandMoment: T("NuovaSolution", "NuovaSolution"),
   },
 
@@ -55,7 +59,8 @@ export const home1103 = {
       const f5 = byKey("priorityWithReason", view, T("Abre la ficha y ya sabe quién es, qué busca y qué prioridad tiene. La cita la acuerda una persona.", "They open the record and already know who it is, what they want and what priority it has. A person agrees the appointment."), T("Abre la ficha y ya sabe quién es y qué busca. La cita la acuerda una persona.", "They open the record and already know who it is and what they want. A person agrees the appointment."));
       return [
         { title: T("Llega la consulta", "The enquiry arrives")[locale], line: withChannels(f1[locale], locale, view) },
-        { title: T("NuovaSolution responde", "NuovaSolution replies")[locale], line: T("En español, con una pregunta útil de vuelta.", "In Spanish, with one useful question back.")[locale] },
+        // Copy 1108 V-1/V-2: the voice "en nombre de tu agencia" once a reply leaves the agency's own channel (mailbox or number); the line in both views
+        { title: (live("mailboxConnection", view) || live("whatsappOwnNumber", view) ? T("Responde en nombre de tu agencia", "It replies on behalf of your agency") : T("NuovaSolution responde", "NuovaSolution replies"))[locale], line: T("En español, con una pregunta útil de vuelta, y dice que es un asistente.", "In Spanish, with one useful question back, and it says it is an assistant.")[locale] },
         { title: T("La ficha se completa", "The record fills in")[locale], line: f3[locale] },
         { title: T("Tu equipo llega preparado", "Your team arrives prepared")[locale], line: f5[locale] },
       ];
@@ -134,7 +139,7 @@ export const home1103 = {
             { t: "11:20", ch: "WhatsApp", who: "Laura S.", what: "2 bedrooms in Estepona, up to €320,000", s: "Answered 11:21" },
           ],
         },
-        foot: T("Hora de envío, no de entrega", "Time sent, not delivered"),
+        foot: T("Hora en que salió cada respuesta", "Time each reply was sent"), // Copy 1108 §5 T-1
       },
       record: {
         title: T("Ficha de Laura", "Laura's record"),
@@ -376,7 +381,9 @@ export const home1103 = {
     eyebrow: T("Planes", "Plans"),
     h2: T("Planes", "Plans"),
     /** P-1: the intro (target); the public wording with `plans` off is the block "Qué incluye" (P-5). */
-    lead: T("Empieza con 14 días de Essential, gratis. Después eliges el plan que encaja con tu agencia.", "Start with 14 days of Essential, free. Then choose the plan that fits your agency."),
+    // Copy 1108 P-2 (target: the table shows; public: the short line alone)
+    lead: T("Piloto gratuito · precio en la demo. Te explicamos qué plan encaja con tu agencia y su precio antes de acordar nada.", "Free pilot · pricing in the demo. We explain which plan fits your agency, and its price, before anything is agreed."),
+    leadPublic: T("Piloto gratuito · precio en la demo.", "Free pilot · pricing in the demo."),
     names: ["Essential", "Growth", "Enterprise"],
     codes: ["essential", "growth", "enterprise"] as const,
     /** §9 the positioning lines; P-6/P-7: Growth and Enterprise name only the parts that are on. */
@@ -460,13 +467,15 @@ export const home1103 = {
     all: T("Todas las preguntas", "All the questions"),
     items: (locale: Locale, view: ClaimView): { q: string; a: string }[] => {
       const items: { q: L; a: L | null }[] = [
-        { q: T("¿Qué hace NuovaSolution?", "What does NuovaSolution do?"), a: byKey("priorityWithReason", view, T("Responde en español las consultas que llegan por ⟦canales⟧ y guarda lo importante de cada una en su ficha, con su prioridad y su motivo.", "It answers the enquiries that arrive on ⟦canales⟧ in Spanish and keeps what matters from each one on its record, with its priority and reason."), T("Responde en español las consultas que llegan por ⟦canales⟧ y guarda lo importante de cada una en su ficha.", "It answers the enquiries that arrive on ⟦canales⟧ in Spanish and keeps what matters from each one on its record.")) },
+        // Copy 1108 V-4: the voice "en nombre de tu agencia" once a reply leaves the agency's own channel; the earlier answers until then
+        { q: T("¿Qué hace NuovaSolution?", "What does NuovaSolution do?"), a: live("mailboxConnection", view) || live("whatsappOwnNumber", view) ? T("Responde en nombre de tu agencia, en español, a las consultas que llegan por ⟦canales⟧, y guarda lo importante de cada una en su ficha, con su prioridad y su motivo.", "It replies on behalf of your agency, in Spanish, to the enquiries that arrive on ⟦canales⟧, and keeps what matters from each one on its record, with its priority and reason.") : byKey("priorityWithReason", view, T("Responde en español las consultas que llegan por ⟦canales⟧ y guarda lo importante de cada una en su ficha, con su prioridad y su motivo.", "It answers the enquiries that arrive on ⟦canales⟧ in Spanish and keeps what matters from each one on its record, with its priority and reason."), T("Responde en español las consultas que llegan por ⟦canales⟧ y guarda lo importante de cada una en su ficha.", "It answers the enquiries that arrive on ⟦canales⟧ in Spanish and keeps what matters from each one on its record.")) },
         { q: T("¿En qué idiomas responde?", "Which languages does it answer in?"), a: byKey("languageNoted", view, T("En español. Detecta el idioma de cada consulta; en otro idioma no se envía nada automáticamente.", "Spanish. It detects each enquiry's language; in another language nothing is sent automatically."), T("En español.", "Spanish.")) },
         { q: T("¿Sabe el cliente que responde un asistente?", "Does the customer know an assistant is answering?"), a: T("Sí. Cada respuesta automática lo indica.", "Yes. Every automatic reply says so.") },
         { q: T("¿Avisa a mi equipo?", "Does it alert my team?"), a: live("alert", view) ? T("Sí. Cuando una consulta es importante, avisa por email a la persona que toca, con el motivo.", "Yes. When an enquiry is important, it alerts the right person by e-mail, with the reason.") : null },
         { q: T("¿Cómo empiezo?", "How do I start?"), a: byKey(["trial", "publicSignup", "mailboxConnection"], view, T("Pruébalo gratis 14 días, sin método de pago: creas tu cuenta, configuras tu agencia y conectamos tu buzón contigo.", "Try it free for 14 days, with no payment method: you create your account, set up your agency and we connect your mailbox with you."), T("Por invitación: pide acceso y te enseñamos el sistema.", "By invitation: request access and we will show you the system.")) },
         { q: T("¿Funciona con mi CRM?", "Does it work with my CRM?"), a: byKey("integrations", view, T("Incluye un CRM. También se conecta con HubSpot, Pipedrive, Zoho y Salesforce.", "It includes a CRM. It also connects to HubSpot, Pipedrive, Zoho and Salesforce."), T("Incluye un CRM.", "It includes a CRM.")) },
-        { q: T("¿Cuánto cuesta?", "What does it cost?"), a: T("Te decimos el precio para tu agencia antes de acordar nada.", "We tell you the price for your agency before anything is agreed.") },
+        // Copy 1108 P-4
+        { q: T("¿Cuánto cuesta?", "What does it cost?"), a: T("El piloto es gratuito. El precio para después del piloto te lo explicamos en la demo, antes de acordar nada.", "The pilot is free. We explain the price for after the pilot in the demo, before anything is agreed.") },
       ];
       return items.filter((it): it is { q: L; a: L } => it.a !== null).map((it) => ({ q: it.q[locale], a: withChannels(it.a[locale], locale, view) }));
     },
@@ -476,7 +485,29 @@ export const home1103 = {
   close: {
     h2: T("Mira cómo NuovaSolution atiende tus consultas", "See how NuovaSolution answers your enquiries"),
     line: (view: ClaimView): L => byKey("mailboxConnection", view, T("Te enseñamos la demo con tus canales y respondemos tus preguntas.", "We show you the demo with your channels and answer your questions."), T("Te enseñamos la demo y respondemos tus preguntas.", "We show you the demo and answer your questions.")),
-    ctaDemo: T("Ver la demo", "See the demo"),
+    ctaDemo: T("Solicitar una demo", "Request a demo"), // Copy 1108 H-1 (the fallback wording; "demo" only on the request button)
+  },
+
+  /** Copy 1108 §3: the block "Quién está detrás" — the same text in both views; the holder's name is filled from the environment at build time, never committed. */
+  behind: {
+    eyebrow: T("Quién está detrás", "Who is behind it"),
+    h2: T("Detrás hay una persona a la que puedes escribir.", "Behind it is a person you can write to."),
+    /** {name} = the holder; the sentence is left out when the environment has no name (Copy: no visible placeholder). */
+    brand: T("NuovaSolution es una marca de {name}. La hemos hecho para agencias inmobiliarias en España.", "NuovaSolution is a brand of {name}. We built it for real estate agencies in Spain."),
+    brandNoName: T("La hemos hecho para agencias inmobiliarias en España.", "We built it for real estate agencies in Spain."),
+    pilot: T("Empezamos con un piloto con pocas agencias. Por eso aquí no verás logotipos de clientes, testimonios ni cifras de resultados: los mostraremos cuando sean reales y tengamos permiso para hacerlo.", "We are starting with a pilot with a few agencies. That is why you will not find client logos, testimonials or results figures here: we will show them once they are real and we have permission to."),
+    lines: [
+      T("Te contesta una persona, en español o en inglés: antonio@nuovasolution.com", "A person answers, in Spanish or English: antonio@nuovasolution.com"),
+      T("La base de datos está en la Unión Europea (Fráncfort).", "The database is in the European Union (Frankfurt)."),
+      T("Cada respuesta automática indica que la escribe un asistente.", "Every automatic reply says that an assistant wrote it."),
+    ],
+    cta: T("Solicitar una demo", "Request a demo"),
+  },
+
+  /** The three areas (the owner's P3 of 09.11.): the chapters side by side; the control words are WORKING for Copy (T-13). */
+  chapterUi: {
+    more: T("Ver {name}", "See {name}"),
+    less: T("Cerrar", "Close"),
   },
 };
 

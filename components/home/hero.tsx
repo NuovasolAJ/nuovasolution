@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
-import { entryAction, type ClaimView } from "@/lib/claims";
+import type { ClaimView } from "@/lib/claims";
 import { HeroBenefits, HeroImage, HeroScrollHint } from "./hero-image";
 import { HeroDemo } from "./hero-demo";
 
@@ -28,7 +28,6 @@ export function Hero({ locale, view }: { locale: Locale; view: ClaimView }) {
   const w = home1103.hero;
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const p = (path: string) => localePath(locale, path);
-  const entry = entryAction(locale, view);
   // the picture is the first paint of the page: preloaded so the largest paint does not wait for it
   preload(PICTURE, { as: "image" });
 
@@ -45,11 +44,12 @@ export function Hero({ locale, view }: { locale: Locale; view: ClaimView }) {
               ))}
             </h1>
             <p className="hf-lead" data-hero-lead>{l(w.lead)}</p>
+            {/* Copy 1108 §1: one action in the hero (H-1 → /contact until a real booking page exists), the pilot line under it (H-3); the WhatsApp
+                action (H-2) waits for the agency's own number (the owner, 09.11.); the trial and the access lines leave the hero */}
             <div className="hf-ctas">
-              <a href="#demo" className="hf-cta-main" data-hero-cta="demo">{l(w.ctaDemo)}<ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" /></a>
-              <a href={p(entry.href)} className="hf-cta-second" data-hero-cta={entry.kind === "trial" ? "trial" : "contact"}>{entry.label}</a>
+              <a href={p("/contact")} className="hf-cta-main lift" data-hero-cta="contact">{l(w.ctaDemo)}<ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" /></a>
             </div>
-            <p className="hf-access" data-hero-access={entry.kind}>{entry.line}</p>
+            <p className="hf-access" data-hero-pilot>{l(w.pilotLine)}</p>
           </div>
           <HeroBenefits benefits={w.chips(view).map((c) => c[locale])} />
           <HeroScrollHint label={l(w.scroll)} />

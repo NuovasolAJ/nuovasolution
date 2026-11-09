@@ -79,7 +79,7 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
           <Rise className="plans-head">
             <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
             <h2 id="plans-h" className="t-display-m mt-3 text-text-primary">{l(w.h2)}</h2>
-            <p className="mt-4 t-body-l text-text-secondary max-w-[52ch]">{l(w.lead)}</p>
+            <p className="mt-4 t-body-l text-text-secondary max-w-[52ch]">{l(plansTableShown(view) ? w.lead : w.leadPublic)}</p>
           </Rise>
         )}
 

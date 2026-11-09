@@ -40,7 +40,7 @@ export function Rise({ children, className, delay = 0, as = "div", y = 18, once 
 }
 
 /** Tells a child whether its box is in view (once), for animations that run on their own timers. */
-export function useSeen(amount = 0.35) {
+export function useSeen(amount = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
   const seen = useInView(ref, { once: true, amount });
   return { ref, seen };

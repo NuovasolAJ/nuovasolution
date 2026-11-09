@@ -23,7 +23,7 @@ export function resolveSwitches(): PreviewSwitches {
   const d = h.get("x-nuova-display");
   return {
     view: v === "public" ? "public" : "target",
-    palette: p === "b" || p === "c" ? p : "a",
+    palette: p === "b" || p === "c" || p === "d" || p === "e" ? p : "a",
     display: d === "fraunces" ? "fraunces" : "inter",
     live,
   };

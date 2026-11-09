@@ -4,7 +4,7 @@ import type { ClaimView } from "@/lib/claims";
  * The preview switches' types and the query helper, without any server import (the client component
  * components/site/preview-switch.tsx uses them; the resolution from the request lives in lib/view.ts).
  */
-export type Palette = "a" | "b" | "c";
+export type Palette = "a" | "b" | "c" | "d" | "e"; // d/e: the two proposals of 09.11. (P4) — deep Mediterranean blue + bronze, emerald + sand
 export type DisplayFace = "inter" | "fraunces";
 export type PreviewSwitches = { view: ClaimView; palette: Palette; display: DisplayFace; live: boolean };
 

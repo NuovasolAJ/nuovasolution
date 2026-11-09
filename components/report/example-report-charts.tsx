@@ -51,10 +51,10 @@ export function ExampleReportCharts({ locale, view }: { locale: Locale; view: Cl
   const reduce = useReducedMotion();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
-  const trend = useSeen(0.3);
-  const chan = useSeen(0.3);
-  const funnel = useSeen(0.3);
-  const hours = useSeen(0.3);
+  const trend = useSeen(0.12);
+  const chan = useSeen(0.12);
+  const funnel = useSeen(0.12);
+  const hours = useSeen(0.12);
   const anim = (seen: boolean) => Boolean(mounted && seen && !reduce);
   const extended = live("reportTrend", view);
   const insightIcons = [Trophy, Clock, Eye];

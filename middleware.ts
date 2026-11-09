@@ -26,7 +26,7 @@ const BYPASS_HEADER = "x-vercel-protection-bypass";
 const SET_COOKIE_HEADER = "x-vercel-set-bypass-cookie";
 const SWITCHES = [
   { param: "view", cookie: "nuova-view", header: "x-nuova-view", allowed: ["target", "public"] },
-  { param: "palette", cookie: "nuova-palette", header: "x-nuova-palette", allowed: ["a", "b", "c"] },
+  { param: "palette", cookie: "nuova-palette", header: "x-nuova-palette", allowed: ["a", "b", "c", "d", "e"] },
   { param: "display", cookie: "nuova-display", header: "x-nuova-display", allowed: ["inter", "fraunces"] },
 ] as const;
 

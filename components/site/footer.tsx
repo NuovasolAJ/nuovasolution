@@ -3,7 +3,7 @@ import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { visibleCapabilities } from "@/lib/content/capabilities";
-import { entryAction } from "@/lib/claims";
+import { entryAction, live } from "@/lib/claims";
 import { resolveSwitches } from "@/lib/view";
 import { Logo } from "@/components/ui/logo";
 
@@ -63,7 +63,8 @@ export function Footer({ locale }: { locale: Locale }) {
         <div className="grid gap-12 xl:grid-cols-[minmax(0,1.4fr)_repeat(4,minmax(0,1fr))] xl:gap-8">
           <div>
             <Logo />
-            <p className="mt-6 t-body-s text-text-secondary max-w-[36ch]">{d.footer.brandLine}</p>
+            {/* Copy 1108 V-3: the voice "en nombre de tu agencia" once a reply leaves the agency's own channel */}
+            <p className="mt-6 t-body-s text-text-secondary max-w-[36ch]">{live("mailboxConnection", view) || live("whatsappOwnNumber", view) ? d.footer.brandLineTarget : d.footer.brandLine}</p>
           </div>
           {cols.map((col) => (
             <nav key={col.heading} aria-label={col.heading}>

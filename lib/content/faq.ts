@@ -48,11 +48,12 @@ export const faqGroups: FaqGroup[] = [
       {
         kb: "Q-01",
         q: { en: "What does NuovaSolution actually do?", es: "¿Qué hace NuovaSolution exactamente?" },
+        // Copy 1108 V-4 (the voice "en nombre de tu agencia" once a reply leaves the agency's own channel); the public answer stays
         a: {
-          en: "It answers the enquiries your agency receives, records each one with what the customer asked for, and turns a viewing request into a task your team takes and closes.",
-          es: "Responde a las consultas que recibe tu agencia, registra cada una con lo que ha pedido el cliente y convierte una petición de visita en una tarea que tu equipo toma y cierra.",
+          en: "It replies on behalf of your agency, in Spanish, to the enquiries that arrive on ⟦canales⟧, and keeps what matters from each one on its record, with its priority and reason.",
+          es: "Responde en nombre de tu agencia, en español, a las consultas que llegan por ⟦canales⟧, y guarda lo importante de cada una en su ficha, con su prioridad y su motivo.",
         },
-        keys: ["taskList"],
+        keys: ["mailboxConnection", "priorityWithReason"],
         pub: { en: "It answers the enquiries your agency receives and records each one with what the customer asked for.", es: "Responde a las consultas que recibe tu agencia y registra cada una con lo que ha pedido el cliente." },
       },
       {
@@ -202,12 +203,11 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         kb: "Q-13",
-        q: { en: "What does it cost after that?", es: "¿Cuánto cuesta después?" },
-        qPub: { en: "What does it cost?", es: "¿Cuánto cuesta?" }, // Copy 1107 D-21 ("after that" points to the hidden trial)
-        qKeys: ["trial"],
+        // Copy 1108 P-3/P-4: the question and the answer in both views
+        q: { en: "What does it cost?", es: "¿Cuánto cuesta?" },
         a: {
-          en: "We tell you the price and the billing period for your agency before anything is agreed.",
-          es: "Te decimos el precio y el periodo de facturación para tu agencia antes de acordar nada.",
+          en: "The pilot is free. We explain the price for after the pilot in the demo, before anything is agreed.",
+          es: "El piloto es gratuito. El precio para después del piloto te lo explicamos en la demo, antes de acordar nada.",
         },
       },
       {

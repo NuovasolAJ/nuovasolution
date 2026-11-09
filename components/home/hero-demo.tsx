@@ -1,11 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
-import { ArrowRight, Check, ChevronDown, Inbox, Mail, MessageCircle, Mic, PanelsTopLeft, Phone, PhoneOff, RotateCcw, Send, Star } from "lucide-react";
+import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type ElementType, type KeyboardEvent, type ReactNode } from "react";
+import { ArrowRight, Check, ChevronDown, Inbox, Mail, Mic, PanelsTopLeft, Phone, PhoneOff, RotateCcw, Send, Star } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
 import { demoChannels, demoWords, endPhase, recordStart, type DemoChannel, type DemoChannelKey } from "@/lib/content/home-demo";
 import { shows, type ClaimView } from "@/lib/claims";
+import { Mark } from "@/components/ui/mark";
+import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
 
 /**
  * The demonstration under the hero (the owner's order of 03.11.2026, points 2 and 3): four channels, each on a surface that
@@ -21,7 +23,8 @@ import { shows, type ClaimView } from "@/lib/claims";
  * run with a progress bar on the active tab, until the first click or key press stops the rotation. The public view shows only the
  * channels that are included (lib/claims.ts); no mark and no status word stands on any surface (points 5 and "coming soon").
  */
-const ICON: Record<DemoChannelKey, typeof MessageCircle> = { whatsapp: MessageCircle, email: Mail, webform: PanelsTopLeft, phone: Phone };
+// H3 (09.11.): the real WhatsApp mark on its tab; the other channels keep their line icons
+const ICON: Record<DemoChannelKey, ElementType> = { whatsapp: WhatsAppMark, email: Mail, webform: PanelsTopLeft, phone: Phone };
 const REDUCE = "(prefers-reduced-motion: reduce)";
 const at = (n: number, extra?: CSSProperties): CSSProperties => ({ ["--at" as string]: n, ...extra });
 
@@ -283,7 +286,7 @@ function MailSurface({ c, phase, locale }: S) {
         <span className="d-typing demo-mail-typing" style={at(m.replyAt - 1)} data-at={m.replyAt - 1} aria-hidden="true"><i /><i /><i /></span>
         <Item n={m.replyAt} phase={phase} className="demo-mail-msg demo-mail-reply demo-reply" data-hero-reply="">
           <div className="demo-mail-from">
-            <span aria-hidden="true" className="demo-avatar demo-avatar-agency">N</span>
+            <span aria-hidden="true" className="demo-avatar demo-avatar-agency"><Mark size={20} /></span>
             <div className="min-w-0">
               <p className="demo-mail-from-name demo-msg-label">{l(demoWords.assistant)}</p>
               <p className="demo-chat-meta">{l(m.replyTime)}</p>

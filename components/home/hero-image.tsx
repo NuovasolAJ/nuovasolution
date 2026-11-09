@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
  * Starts the hero video only where it helps: not with reduced motion, not under Save-Data, not on a narrow window. `preload="none"` keeps
  * the bytes away from the first paint; the state attribute lets the checks and the CSS know whether the picture or the loop is showing.
  */
-const HERO_VIDEO_SCRIPT = `(function(){var v=document.querySelector('[data-hero-video]');if(!v)return;var ok=!matchMedia('(prefers-reduced-motion: reduce)').matches&&matchMedia('(min-width: 768px)').matches&&!(navigator.connection&&navigator.connection.saveData);if(!ok){v.removeAttribute('autoplay');v.setAttribute('data-hero-video-state','off');return;}v.setAttribute('data-hero-video-state','loading');v.addEventListener('playing',function(){v.setAttribute('data-hero-video-state','playing');},{once:true});v.addEventListener('error',function(){v.setAttribute('data-hero-video-state','error');},true);var p=v.play();if(p&&p.catch){p.catch(function(){v.setAttribute('data-hero-video-state','blocked');});}})();`;
+const HERO_VIDEO_SCRIPT = `(function(){var v=document.querySelector('[data-hero-video]');if(!v)return;var ok=!matchMedia('(prefers-reduced-motion: reduce)').matches&&!(navigator.connection&&navigator.connection.saveData);if(!ok){v.removeAttribute('autoplay');v.setAttribute('data-hero-video-state','off');return;}v.setAttribute('data-hero-video-state','loading');v.addEventListener('playing',function(){v.setAttribute('data-hero-video-state','playing');},{once:true});v.addEventListener('error',function(){v.setAttribute('data-hero-video-state','error');},true);var p=v.play();if(p&&p.catch){p.catch(function(){v.setAttribute('data-hero-video-state','blocked');});}})();`;
 
 /**
  * The hero's picture (the owner's line of 05.11.2026: HERO = A; the owner's point 3 of 06.11.: only the 3D lane's delivery): the 3D
@@ -35,7 +35,7 @@ export function HeroImage({ alt, mark, credit }: { alt: string; mark: string; cr
       {/* FRAGE D = JA, G1 (07.11.): the 3D lane's living-room loop (handoff_2026-11-07 hero_living_loop, 10 s seamless, 1920 × 1080, the Van Gogh
           painting) plays over the still picture once it can; the picture is the first paint and the fallback; with reduced motion the video
           is not attached at all (CSS hides it, the script never loads it); the sources are attached only when the window is wide enough
-          for the video to matter (≥ 768 px) and the connection is not flagged as saving data. */}
+          also on the phone (the owner's H1 of 09.11.; the portrait crop by object-position), not when the connection is flagged as saving data. */}
       <video className="hf-video" muted loop playsInline autoPlay preload="none" poster="/media/3d/hero-a-video-poster-1920.webp" aria-hidden="true" tabIndex={-1} data-hero-video="living-loop" data-hero-video-state="idle">
         <source src="/media/3d/hero-a.mp4" type="video/mp4" />
         <source src="/media/3d/hero-a.webm" type="video/webm" />

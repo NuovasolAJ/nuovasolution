@@ -853,7 +853,7 @@ html.js .demo .demo-reply.is-fresh { box-shadow: 0 0 0 2px var(--brand-green-was
 .closing { padding-top: 16px; padding-bottom: 72px; }
 @media (min-width: 1024px) { .flow { padding-top: 120px; } .rep, .m3d, .plans { padding-top: 96px; padding-bottom: 96px; } .trust { padding-top: 80px; } }
 /* the grounds (06.11., point 10): a section that needs its own ground gets a soft one that feathers in and out over 160 px, never a hard edge */
-.fn, .rep, .plans { --ground: #f5f5f7; background: linear-gradient(180deg, transparent 0, var(--ground) 160px, var(--ground) calc(100% - 160px), transparent 100%); }
+.rep, .plans { --ground: #f5f5f7; background: linear-gradient(180deg, transparent 0, var(--ground) 160px, var(--ground) calc(100% - 160px), transparent 100%); }
 .rep { --ground: #f3f3f5; }
 .m3d, .trust { background: transparent; }
 /* reveals: in the document from the first paint; Motion only moves them into place */
@@ -863,39 +863,7 @@ html:not(.js) .mrise { opacity: 1 !important; transform: none !important; }
 /* 3 The flow (components/home/flow-ribbon.tsx; 06.11., point 6)       */
 /* ------------------------------------------------------------------ */
 .flow-head { max-width: 640px; }
-.flow-ribbon { position: relative; margin-top: 44px; }
-.flow-nodes { position: relative; display: grid; gap: 18px; margin: 0; padding: 0; list-style: none; }
-.flow-node { position: relative; display: grid; grid-template-columns: 52px minmax(0, 1fr); grid-template-areas: "icon title" "icon line"; gap: 2px 16px; align-items: start; padding: 16px 18px; border-radius: 20px; background: var(--paper); border: 1px solid var(--line-contour); box-shadow: var(--shadow-card); transition: border-color 420ms var(--ease-out), box-shadow 420ms var(--ease-out), transform 420ms var(--ease-out); }
-.flow-node-icon { grid-area: icon; display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 16px; background: var(--paper); box-shadow: inset 0 0 0 1px var(--ink-200); color: var(--ink-800); transition: background-color 420ms var(--ease-out), color 420ms var(--ease-out), box-shadow 420ms var(--ease-out); }
-.flow-node-no { display: none; }
-.flow-node-title { grid-area: title; font-size: 1.125rem; font-weight: 600; line-height: 1.25; color: var(--text-primary); }
-.flow-node-line { grid-area: line; font-size: 0.9375rem; line-height: 1.45; color: var(--text-secondary); }
-.flow-node-brand .flow-node-icon { background: var(--ink-950); box-shadow: none; color: #fff; }
-.flow-node-logo { display: block; }
-.flow-node.is-lit { border-color: var(--brand-line); box-shadow: 0 0 0 1px var(--brand-line), var(--shadow-card); }
-.flow-node.is-lit .flow-node-icon { background: var(--brand); box-shadow: none; color: #fff; }
-.flow-node.is-lit.flow-node-brand .flow-node-icon { background: var(--ink-950); }
-.flow-node.is-lit .flow-node-title { color: var(--brand-ink); }
-/* the track: on the narrow window a vertical line at the icons' centre that fills from the top */
-.flow-track { position: absolute; left: 18px; top: 24px; bottom: 24px; width: 52px; display: flex; justify-content: center; pointer-events: none; z-index: 0; }
-.flow-track::before { content: ""; position: absolute; top: 0; bottom: 0; width: 3px; border-radius: 2px; background: var(--ink-200); }
-.flow-track-fill { position: absolute; top: 0; bottom: 0; width: 3px; border-radius: 2px; background: var(--brand); transform-origin: top; transform: scaleY(0); }
-.flow-node { z-index: 1; }
-@media (min-width: 768px) {
-  .flow-nodes { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
-  .flow-node { grid-template-columns: minmax(0, 1fr); grid-template-rows: 72px auto auto; grid-template-areas: "icon" "title" "line"; justify-items: center; text-align: center; padding: 26px 18px 22px; gap: 6px; }
-  .flow-node-icon { width: 72px; height: 72px; border-radius: 22px; align-self: start; }
-  .flow-node-no { display: block; position: absolute; top: 14px; left: 16px; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; color: var(--ink-500); }
-  .flow-node.is-lit .flow-node-no { color: var(--brand-ink); }
-  .flow-node-title { font-size: 1.1875rem; margin-top: 2px; }
-  /* the horizontal track behind the icon row, from the first icon's centre to the last; the fill scales from the left */
-  .flow-track { left: 12.5%; right: 12.5%; top: 62px; bottom: auto; width: auto; height: 4px; }
-  .flow-track::before { top: 0; bottom: 0; left: 0; right: 0; width: auto; height: 4px; }
-  .flow-track-fill { left: 0; right: 0; top: 0; bottom: 0; width: auto; height: 4px; transform-origin: left; transform: scaleX(0); }
-}
-@media (min-width: 1024px) { .flow-nodes { gap: 28px; } .flow-node { padding: 28px 22px 24px; } }
-@media (prefers-reduced-motion: reduce) { .flow-track-fill { transform: none !important; } .flow-node .flow-node-icon { background: var(--brand); color: #fff; box-shadow: none; } .flow-node-brand .flow-node-icon { background: var(--ink-950) !important; } }
-html:not(.js) .flow-track-fill { transform: none !important; }
+
 
 /* ------------------------------------------------------------------ */
 /* 4 The scenes on a pinned stage (components/home/functions.tsx; 06.11., points 7–9) */
@@ -1477,3 +1445,122 @@ html:not(.js) .fn-fold { display: none; }
 @media (max-width: 1023px) { .pv-opt { min-height: 44px; min-width: 44px; justify-content: center; } .pv-row { gap: 4px 14px; padding-block: 6px; } }
 /* C1: the record's values arrive one by one into standing rows */
 .demo-value-in { display: inline-block; }
+
+/* ---------------------------------------------------------------------------------------------------------------------------------- */
+/* 09.11.2026, the owner's second round (interim 2): the flow as a drawn line, the three areas, the phone, the two colour proposals     */
+/* ---------------------------------------------------------------------------------------------------------------------------------- */
+/* P1/P2 the flow: no boxes; a line draws itself through four stations, each a line icon in a thin ring (the mark in the same ring) */
+.fl { position: relative; margin-top: 36px; }
+.fl-svg { display: none; }
+.fl-vline { position: absolute; left: 27px; top: 28px; bottom: 28px; width: 2px; background: var(--ink-200); border-radius: 1px; }
+.fl-vline-fill { position: absolute; inset: 0; background: var(--brand); transform-origin: top; border-radius: 1px; }
+.fl-steps { position: relative; display: grid; gap: 26px; margin: 0; padding: 0; list-style: none; }
+.fl-step { position: relative; display: grid; grid-template-columns: 56px minmax(0, 1fr); grid-template-areas: "ring title" "ring line"; column-gap: 18px; row-gap: 4px; align-items: start; }
+.fl-ring { grid-area: ring; display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 999px; background: var(--paper); box-shadow: inset 0 0 0 1.5px var(--ink-200); color: var(--ink-700); transition: box-shadow var(--motion-element) var(--ease-standard), color var(--motion-element) var(--ease-standard), transform var(--motion-element) var(--ease-standard); }
+.fl-mark { display: block; }
+.fl-title { grid-area: title; align-self: center; font-size: 1.125rem; font-weight: 600; line-height: 1.25; color: var(--text-primary); transition: color var(--motion-element) var(--ease-standard); }
+.fl-line-text { grid-area: line; font-size: 0.9375rem; line-height: 1.45; color: var(--text-secondary); max-width: 40ch; }
+html.js .fl-step .fl-ring { transform: scale(0.86); opacity: 0.55; }
+html.js .fl-step .fl-title, html.js .fl-step .fl-line-text { opacity: 0.45; transition: opacity var(--motion-element) var(--ease-standard), color var(--motion-element) var(--ease-standard); }
+.fl-step.is-lit .fl-ring, html.js .fl-step.is-lit .fl-ring { transform: none; opacity: 1; box-shadow: inset 0 0 0 1.5px var(--brand); color: var(--brand); }
+html.js .fl-step.is-lit .fl-title, html.js .fl-step.is-lit .fl-line-text { opacity: 1; }
+.fl-step.is-lit .fl-title { color: var(--brand-ink); }
+@media (min-width: 768px) {
+  .fl { margin-top: 52px; padding-top: 10px; }
+  .fl-vline { display: none; }
+  .fl-svg { display: block; position: absolute; left: 0; right: 0; top: 0; width: 100%; height: 140px; overflow: visible; }
+  .fl-line-base { fill: none; stroke: var(--ink-200); stroke-width: 2; }
+  .fl-line { fill: none; stroke: var(--brand); stroke-width: 2.5; stroke-linecap: round; }
+  .fl-arrow path { stroke: var(--brand); opacity: 0; transition: opacity var(--motion-element) var(--ease-standard); }
+  .fl-arrow.is-on path { opacity: 1; }
+  .fl-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 20px; }
+  .fl-step { grid-template-columns: minmax(0, 1fr); grid-template-areas: "ring" "title" "line"; justify-items: center; text-align: center; row-gap: 10px; padding-top: 42px; transform: translateY(var(--fy, 0px)); }
+  .fl-ring { width: 56px; height: 56px; background: var(--canvas, #fff); }
+  .fl-title { font-size: 1.125rem; }
+  .fl-line-text { font-size: 0.9375rem; max-width: 26ch; }
+}
+@media (min-width: 1024px) { .fl-svg { height: 140px; } .fl-ring { width: 64px; height: 64px; } .fl-title { font-size: 1.1875rem; } }
+@media (prefers-reduced-motion: reduce) { .fl-line { stroke-dashoffset: 0 !important; stroke-dasharray: none !important; } .fl-vline-fill { transform: none !important; } .fl-arrow path { opacity: 1 !important; } html.js .fl-step .fl-ring, html.js .fl-step .fl-title, html.js .fl-step .fl-line-text { opacity: 1 !important; transform: none !important; } }
+html:not(.js) .fl-line { stroke-dashoffset: 0 !important; stroke-dasharray: none !important; } html:not(.js) .fl-vline-fill { transform: none !important; } html:not(.js) .fl-arrow path { opacity: 1; }
+
+/* P3 the three areas: three cards side by side, each a picture (the chapter's first surface), the chapter line, two points, one control */
+.ch { padding-top: 56px; padding-bottom: 56px; }
+.ch-head { max-width: 640px; }
+.ch-row { display: flex; gap: 16px; margin: 36px calc(-1 * var(--gutter)) 0; padding: 4px var(--gutter) 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.ch-row::-webkit-scrollbar { display: none; }
+.ch-card { flex: 0 0 min(86vw, 360px); scroll-snap-align: start; display: flex; flex-direction: column; gap: 12px; padding: 0 0 18px; border-radius: 20px; background: var(--paper); box-shadow: inset 0 0 0 1px var(--border-hairline); overflow: hidden; }
+.ch-card.is-open { box-shadow: inset 0 0 0 1.5px var(--brand); }
+.ch-visual { position: relative; height: 230px; overflow: hidden; background: linear-gradient(180deg, #f7f7f9, #efeff2); }
+.ch-visual-inner { position: absolute; left: 16px; right: 16px; top: 18px; pointer-events: none; }
+.ch-visual::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 64px; background: linear-gradient(180deg, transparent, var(--paper)); }
+.ch-name { padding: 0 20px; font-size: 1.375rem; font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); }
+.ch-line { padding: 0 20px; font-size: 1rem; line-height: 1.5; color: var(--text-secondary); }
+.ch-points { display: grid; gap: 8px; margin: 2px 0 0; padding: 0 20px; list-style: none; }
+.ch-point { display: flex; align-items: center; gap: 10px; font-size: 0.9375rem; font-weight: 500; color: var(--text-primary); }
+.ch-point-mark { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 999px; background: var(--brand-wash); color: var(--brand); flex: none; }
+.ch-more { display: inline-flex; align-items: center; gap: 6px; margin: 6px 20px 0; min-height: 44px; padding: 8px 14px; align-self: flex-start; border-radius: 999px; background: var(--ink-950); color: var(--ivory); font-size: 0.9375rem; font-weight: 600; transition: background-color var(--motion-micro) var(--ease-standard), transform var(--motion-micro) var(--ease-standard); }
+.ch-more:hover { background: var(--ink-800); transform: translateY(-1px); }
+.ch-more:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.ch-more-icon { transition: transform var(--motion-control) var(--ease-standard); }
+.ch-more-icon.is-open { transform: rotate(180deg); }
+.ch-detail { overflow: hidden; }
+.ch-detail-line { margin-top: 28px; max-width: 60ch; font-size: 1.0625rem; line-height: 1.55; color: var(--text-secondary); }
+.ch-scenes { display: grid; gap: 28px; margin: 24px 0 0; padding: 0; list-style: none; }
+.ch-scene { display: grid; gap: 14px; }
+.ch-scene-title { font-size: 1.125rem; font-weight: 600; color: var(--text-primary); }
+.ch-scene-line { margin-top: 4px; font-size: 0.9375rem; line-height: 1.5; color: var(--text-secondary); max-width: 52ch; }
+.ch-scene-surface { min-width: 0; }
+.ch-scenes-static { margin-top: 20px; }
+html.js .ch-scenes-static { display: none; }
+@media (min-width: 1024px) {
+  .ch { padding-top: 96px; padding-bottom: 96px; }
+  .ch-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 44px 0 0; padding: 0; overflow: visible; }
+  .ch-card { flex: none; }
+  .ch-visual { height: 250px; }
+  .ch-scenes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 40px; }
+}
+@media (prefers-reduced-motion: reduce) { .ch-more, .ch-more-icon { transition: none; } }
+
+/* D1 "Quién está detrás": words left, the three facts and the action right; white ground */
+.behind { padding-top: 56px; padding-bottom: 56px; }
+.behind-grid { display: grid; gap: 28px; }
+.behind-words { max-width: 620px; }
+.behind-lines { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.behind-line { display: flex; align-items: flex-start; gap: 12px; font-size: 1rem; line-height: 1.5; color: var(--text-primary); }
+.behind-check { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; margin-top: 1px; border-radius: 999px; background: var(--brand-wash); color: var(--brand); flex: none; }
+.behind-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; min-height: 48px; padding: 10px 20px; border-radius: 999px; background: var(--ink-950); color: var(--ivory); font-size: 1rem; font-weight: 600; }
+.behind-cta:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+@media (min-width: 1024px) { .behind { padding-top: 96px; padding-bottom: 96px; } .behind-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 64px; align-items: start; } .behind-facts { padding-top: 44px; } }
+
+/* P4 the two colour proposals (the owner picks, then the switch goes): D deep Mediterranean blue + bronze, E emerald + sand */
+:root:has([data-palette="d"]) { --brand: #1f4e8c; --brand-ink: #173a68; --brand-wash: #e9eff8; --brand-line: #c3d2e8; --brand-soft: #c9a86a; }
+:root:has([data-palette="e"]) { --brand: #1b6b4a; --brand-ink: #134d35; --brand-wash: #e7f1ec; --brand-line: #bcd8c8; --brand-soft: #d8c9a3; }
+:root:has([data-palette="e"]) .rep, :root:has([data-palette="e"]) .plans { --ground: #f3efe6; }
+
+/* H1 the hero video on the phone: the portrait crop keeps the painting and the sofa */
+@media (max-width: 639px) { .hf-video, .hf-image { object-position: 58% 50%; } }
+/* H2 the preview switches fold behind one small button on a narrow window */
+.pv-toggle { display: none; }
+@media (max-width: 1023px) {
+  .pv-toggle { display: inline-flex; align-items: center; gap: 6px; margin: 6px var(--gutter); min-height: 36px; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--ink-200); background: var(--paper); font-size: 0.8125rem; font-weight: 600; color: var(--signal-attention); }
+  .pv[data-pv-open="false"] .pv-row { display: none; }
+}
+/* H3 the four channels without clipping: two by two on the phone; the first run nudges the three other tabs once */
+@media (max-width: 639px) {
+  .demo-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; overflow: visible; }
+  .demo-tab { width: 100%; justify-content: center; padding: 10px 12px; min-height: 48px; }
+  html.js .demo[data-demo-done="false"] .demo-tab:not(.demo-tab-on) { animation: demo-nudge 1.6s var(--ease-standard) 2.4s 2; }
+}
+@keyframes demo-nudge { 0%, 100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); } 40% { box-shadow: 0 0 0 4px var(--brand-wash); border-color: var(--brand); } }
+@media (prefers-reduced-motion: reduce) { .demo-tab { animation: none !important; } }
+/* H4 about forty percent less text on the phone: the secondary lines stand only from 640 px; details stay one tap away */
+@media (max-width: 639px) { .m-hide { display: none !important; } .hf-benefits { display: none; } }
+/* P6 the e-mail demo's sender avatar is the mark, not a letter */
+.demo-avatar-agency { background: var(--ink-950); color: #fff; }
+.demo-avatar-agency svg { display: block; }
+/* P5 fewer frames: the 3D stage without its border and shadow */
+.m3d-frame { border: 0; box-shadow: none; }
+/* 09.11., after the first phone shots: the picture's mark sits at the picture's top on the phone (it collided with the pilot line); the
+   chapter card's picture shows more of its surface */
+@media (max-width: 639px) { .hf-mark { bottom: auto; top: 14px; right: var(--gutter); } }
+.ch-visual-inner { width: 125%; transform: scale(0.8); transform-origin: top left; }
