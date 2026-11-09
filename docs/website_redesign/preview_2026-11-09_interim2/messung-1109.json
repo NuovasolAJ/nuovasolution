@@ -1,0 +1,294 @@
+{
+  "base": "http://localhost:3169",
+  "results": [
+    {
+      "id": "H7/A1 360 es target real phone, no overflow",
+      "ok": true,
+      "ev": {
+        "sw": 360,
+        "iw": 360,
+        "touch": 5,
+        "dpr": 3,
+        "ua": true
+      }
+    },
+    {
+      "id": "H7/A1 360 es public real phone, no overflow",
+      "ok": true,
+      "ev": {
+        "sw": 360,
+        "iw": 360,
+        "touch": 5,
+        "dpr": 3,
+        "ua": true
+      }
+    },
+    {
+      "id": "H7/A1 360 en target real phone, no overflow",
+      "ok": true,
+      "ev": {
+        "sw": 360,
+        "iw": 360,
+        "touch": 5,
+        "dpr": 3,
+        "ua": true
+      }
+    },
+    {
+      "id": "H7/A1 390 es target real phone, no overflow",
+      "ok": true,
+      "ev": {
+        "sw": 390,
+        "iw": 390,
+        "touch": 5,
+        "dpr": 3,
+        "ua": true
+      }
+    },
+    {
+      "id": "H7/A1 390 es public real phone, no overflow",
+      "ok": true,
+      "ev": {
+        "sw": 390,
+        "iw": 390,
+        "touch": 5,
+        "dpr": 3,
+        "ua": true
+      }
+    },
+    {
+      "id": "H7/A1 390 en target real phone, no overflow",
+      "ok": true,
+      "ev": {
+        "sw": 390,
+        "iw": 390,
+        "touch": 5,
+        "dpr": 3,
+        "ua": true
+      }
+    },
+    {
+      "id": "H7/A1 414 es target real phone, no overflow",
+      "ok": true,
+      "ev": {
+        "sw": 414,
+        "iw": 414,
+        "touch": 5,
+        "dpr": 3,
+        "ua": true
+      }
+    },
+    {
+      "id": "H7/A1 414 es public real phone, no overflow",
+      "ok": true,
+      "ev": {
+        "sw": 414,
+        "iw": 414,
+        "touch": 5,
+        "dpr": 3,
+        "ua": true
+      }
+    },
+    {
+      "id": "H7/A1 414 en target real phone, no overflow",
+      "ok": true,
+      "ev": {
+        "sw": 414,
+        "iw": 414,
+        "touch": 5,
+        "dpr": 3,
+        "ua": true
+      }
+    },
+    {
+      "id": "A2 h1 ≤ 3 lines with its comma",
+      "ok": true,
+      "ev": 2
+    },
+    {
+      "id": "H2 preview switches folded behind a button",
+      "ok": true,
+      "ev": {
+        "lines": 2,
+        "comma": true,
+        "rowShown": false,
+        "toggleShown": true,
+        "ctas": [
+          "Solicitar una demo"
+        ],
+        "pilot": "Piloto gratuito · precio en la demo",
+        "firstScreen": true
+      }
+    },
+    {
+      "id": "B2/H-1 one action + pilot line",
+      "ok": true,
+      "ev": {
+        "lines": 2,
+        "comma": true,
+        "rowShown": false,
+        "toggleShown": true,
+        "ctas": [
+          "Solicitar una demo"
+        ],
+        "pilot": "Piloto gratuito · precio en la demo",
+        "firstScreen": true
+      }
+    },
+    {
+      "id": "H1 hero video plays on the phone",
+      "ok": true,
+      "ev": {
+        "state": "playing",
+        "playing": true,
+        "opacity": 1,
+        "w": 1920
+      }
+    },
+    {
+      "id": "H3 four channels 2×2, WhatsApp mark, ≥ 44 px",
+      "ok": true,
+      "ev": {
+        "n": 4,
+        "allIn": true,
+        "rows": 2,
+        "grid": "153px 153px",
+        "wa": true,
+        "minH": 48
+      }
+    },
+    {
+      "id": "P6 e-mail sender avatar is the mark",
+      "ok": true,
+      "ev": {
+        "svg": true,
+        "letter": ""
+      }
+    },
+    {
+      "id": "P3 phone: three swipeable cards, no counters",
+      "ok": true,
+      "ev": {
+        "n": 3,
+        "snap": "x mandatory",
+        "cardW": 335,
+        "rowScroll": true,
+        "counters": false,
+        "opacities": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "H6 report title readable on the phone",
+      "ok": true,
+      "ev": {
+        "text": "Agencia de ejemplo · Semana del 26 oct a",
+        "w": 316,
+        "h": 42,
+        "opacity": 1,
+        "color": "rgb(69, 69, 74)",
+        "visible": true,
+        "figs": [
+          "Agencia de ejemplo · Semana del 26 oct al 1 nov · Demo con datos ficticios",
+          "WhatsApp · 10 de 25 consultas",
+          "11:00–12:00 · 6 consultas",
+          "24 % · 6 de 25",
+          "19 · 17",
+          "24 · 22"
+        ]
+      }
+    },
+    {
+      "id": "H5 no pale surfaces (ficha, scenes, report)",
+      "ok": true,
+      "ev": 0
+    },
+    {
+      "id": "H4 phone words (target) — for the record",
+      "ok": true,
+      "ev": {
+        "words": 1095
+      }
+    },
+    {
+      "id": "desktop hero: one action, header action, video",
+      "ok": true,
+      "ev": {
+        "ctas": [
+          "Solicitar una demo"
+        ],
+        "header": "Solicitar una demo",
+        "video": "playing",
+        "words": 649
+      }
+    },
+    {
+      "id": "P1/P2 flow: a drawn line, four rings, no boxes, no black square, arrows",
+      "ok": true,
+      "ev": {
+        "dash": "0.767632px, 1px",
+        "offset": "0px",
+        "lit": "3",
+        "rings": 4,
+        "blackSquare": false,
+        "boxes": 0,
+        "arrows": 2,
+        "markInRing": true
+      }
+    },
+    {
+      "id": "P3 desktop: three areas side by side, ≤ 2 points, no counters, closed",
+      "ok": true,
+      "ev": {
+        "n": 3,
+        "oneRow": true,
+        "points": [
+          2,
+          2,
+          2
+        ],
+        "counters": false,
+        "open": "none"
+      }
+    },
+    {
+      "id": "P3 click opens Crece with its scenes",
+      "ok": true,
+      "ev": {
+        "open": "grow",
+        "scenes": 5
+      }
+    },
+    {
+      "id": "D1 block Quién está detrás, no visible placeholder",
+      "ok": true,
+      "ev": {
+        "lines": 3,
+        "name": "unset",
+        "placeholder": false,
+        "cta": "Solicitar una demo"
+      }
+    },
+    {
+      "id": "P4 palette d applied, chapters on white",
+      "ok": true,
+      "ev": {
+        "brand": "#1f4e8c",
+        "chBg": "none",
+        "repGround": "#f3f3f5"
+      }
+    },
+    {
+      "id": "P4 palette e applied, chapters on white",
+      "ok": true,
+      "ev": {
+        "brand": "#1b6b4a",
+        "chBg": "none",
+        "repGround": "#f3efe6"
+      }
+    }
+  ]
+}
