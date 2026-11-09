@@ -9,6 +9,14 @@
 
 ---
 
+## 0. Das Gefühl, um das es geht
+
+Wer die Seite sieht, ist ein Agenturinhaber in Spanien. Er verliert jeden Tag Anfragen: Er steht in einer Besichtigung, das Büro ist zu, es ist Wochenende, die Anfrage kommt auf Englisch. Nach 10 Sekunden auf der Seite soll er denken:
+
+**„Genau das passiert mir. Das kostet mich Kunden. Das will ich haben, und es sieht so hochwertig aus, dass ich es meinen Kunden zeigen würde.“**
+
+NuovaSolution ist kein Chatbot. Es ist ein Mitarbeiter, der nie schläft. Er antwortet in Sekunden, erkennt, was der Kunde will, trägt alles ins CRM ein, bewertet und priorisiert, sagt dem Team, was heute zu tun ist, und zeigt der Agentur, **wo sie wachsen kann**. Die Seite muss das **zeigen, nicht erzählen**: wenig Text, viel bewegtes Produkt, ruhig und teuer wie eine Luxusmarke.
+
 ## 1. Was bleibt (darf nicht schlechter werden)
 
 - **Reihenfolge der Abschnitte:**
@@ -42,6 +50,7 @@
 ## 3. Deine eigene Recherche (Pflicht, vor dem Bauen)
 
 1. Suche **selbst** Vorbilder auf awwwards.com (Sites of the Day/Month, Kategorie SaaS, Business, Real Estate), godly.website, land-book.com, saaslandingpage.com und bei Produktseiten wie Linear, Stripe, Vercel, Framer, Attio, Ramp.
+   **Dazu Luxus und Premium:** Wie arbeiten Luxusmarken und Premium-Immobilienseiten mit Weißraum, Fotografie, Typografie, Farbe, Tempo der Bewegung und Mikro-Interaktion? Startpunkte zum Selbst-Ansehen: Seiten großer Luxus-Immobilienmakler, Uhren- und Modehäuser, Apple-Produktseiten, Aesop. Leite daraus 5 Regeln „so wirkt teuer“ ab, mit Beleg-URL, und wende sie an.
 2. Notiere **je Abschnitt aus §1 mindestens 2 URLs**, mit je einem Satz: welches Muster, warum es zu NuovaSolution passt, und wie es auf dem Handy aussieht.
 3. Wähle **ein durchgehendes Bewegungs- und Gestaltungssystem** (§5). Nicht jeder Abschnitt bekommt ein eigenes Muster.
 4. Lege das als `REFERENZEN_1109_v1.md` ab, **bevor** du baust. Die Bibliotheken wählst du selbst (zum Beispiel GSAP + ScrollTrigger, Motion, Lenis). Begründe Gewicht und Ladezeit.
