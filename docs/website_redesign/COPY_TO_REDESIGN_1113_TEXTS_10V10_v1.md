@@ -3,7 +3,8 @@
 **For:** Redesign (builds with these lines), the Reviewer (checks them). **Owner order of 13.11.**, after the master prompt
 `owner_review_1109/REDESIGN_MASTERPROMPT_10V10_1109_v1.md` and the desktop review `OWNER_AUDIT_DESKTOP_REVIEW_1109_v1.md`.
 **Basis:** Copy's texts of 1108 (`16bf954`) stay. This file adds the six points of 13.11. Where it gives a text for a place, it replaces
-the earlier one.
+the earlier one. **§0 (owner, 13.11.: one offer) overrides every "demo" button in 1108**, including H-1, H-3, P-1, P-2 and the button
+of "Quién está detrás".
 **Languages:** the site has ES and EN (`lib/i18n/index.ts`). Every line is given in both.
 **Read against:** HEAD `9a10d4c` (`lib/claims.ts`, `lib/content/home-1103.ts`, `faq.ts`, the dictionaries), 3D's
 `C:\src\nuova-3d\docs\3D_FEATURE_TRUTH.md` (16.10.), MM's `MM_WA_MEDIEN_SPRACHNACHRICHT_IMAP_1106_v1.md` and `MULTIMODAL_SIGNALS_1106.md`
@@ -14,6 +15,42 @@ No number appears that the example report or a register does not carry.
 **How to read the "Proof" column:**
 - **proven:** the fact stands today in `lib/claims.ts` as `included`, or in a published line of the site, or in an owner line.
 - **open:** a named lane has to confirm. Until then the line shows in the target view only, and the public view uses the fallback.
+
+---
+
+## 0. ONE offer: the main button and the pilot line (owner decision 13.11., before 14:00)
+
+**Owner, 13.11.:** one offer everywhere, "Piloto gratuito". "Solicitar una demo", "Reservar una demo" and "14 días" leave the site. This
+section **replaces** 1108 H-1, H-3, P-1 and P-2 and every "demo" button. The live demo section stays: it shows the product, it is not an
+offer.
+
+| # | Place | ES | EN |
+|---|---|---|---|
+| B-1 | **the one main button**: hero, header, the phone's fixed bar, plans (every column), "Cómo empezar", "Quién está detrás", the closing band, `/contact`, `/faq`, the module pages | **Solicita tu piloto gratuito** | **Request your free pilot** |
+| B-1s | short form, **only** where B-1 does not fit on one line (header and fixed bar at 360–390 px) | Piloto gratuito | Free pilot |
+| B-2 | **the pilot line**, directly under B-1 in the hero (and under the button in "Cómo empezar") | Tu agencia usa NuovaSolution sin pagar, con nuestro acompañamiento. Las condiciones, por escrito. | Your agency uses NuovaSolution free of charge, with our support. The terms in writing. |
+| B-3 | `aria-label` of B-1s | Solicita tu piloto gratuito | Request your free pilot |
+
+**Why these words:**
+- **"Solicita" is honest.** The pilot is agreed, not started by a click; there is no self-service sign-up (`publicSignup` is soon).
+- **B-2 has no number.** The owner line PAKETE (free, at most 90 days, no payment method) may stand in the FAQ (Q-11). The short line does not need it.
+- **No "demo" and no price in B-2.** The demo button is gone, so "precio en la demo" goes too. The price appears only in the FAQ (Q-13 below).
+
+**Where B-1 leads:** `/contact`, to the pilot card (C-1 below). The booking page may stay behind the card's button only if it really
+lets the visitor book a slot (1108 O-3).
+
+**The second hero button (1108 H-2, WhatsApp) leaves the hero.** The master prompt asks for one main button, and Redesign's §6 shows the
+company phone as a number only, no `wa.me`. The label for that number on contact, legal notice and footer is **Teléfono** / **Phone**.
+
+### The pilot card on `/contact` (replaces "Solicitar una demo", `es.ts:490–492`)
+
+| # | ES | EN |
+|---|---|---|
+| C-0 | eyebrow: Piloto gratuito | eyebrow: Free pilot |
+| C-1 | h: Solicita tu piloto gratuito | h: Request your free pilot |
+| C-2 | Hablamos contigo, te enseñamos el sistema con un ejemplo y vemos si encaja con tu agencia. Sin presentación de ventas. | We talk with you, show you the system with an example and see whether it fits your agency. No sales pitch. |
+| C-3 | button = B-1 | button = B-1 |
+| C-4 | page lead (`es.ts:486`): Contacto humano directo, en español o en inglés. Te enseñamos el sistema y te explicamos el piloto y el precio. | Direct human contact, in Spanish or English. We show you the system and explain the pilot and the price. |
 
 ---
 
@@ -207,8 +244,9 @@ link.
 
 ## 6. "Piloto gratuito" everywhere instead of 14 days
 
-**The rule.** There is one offer: "Piloto gratuito · precio en la demo", with one main button, "Reservar una demo" (1108 H-1). In both
-views `/signup` and `/trial` lead to `/contact`.
+**The rule** (owner, 13.11., see §0). There is one offer: the free pilot, with one main button, "Solicita tu piloto gratuito" (B-1). In
+both views `/signup` and `/trial` lead to `/contact`. The words "demo" as an offer, "Reservar/Solicitar una demo" and "14 días" appear
+nowhere.
 
 **Duration and payment method.** The owner line PAKETE (desktop review 09.11. §3.7) says the pilot is free, lasts at most 90 days and
 needs no payment method. The FAQ may say that. The short line does not carry it.
@@ -217,22 +255,24 @@ needs no payment method. The FAQ may say that. The short line does not carry it.
 
 | Place at `9a10d4c` | ES | EN |
 |---|---|---|
-| `claims.ts:146–157`, entry action, both views | Reservar una demo · line: Piloto gratuito · precio en la demo · nav: Piloto | Book a demo · line: Free pilot · pricing in the demo · nav: Pilot |
+| `claims.ts:146–157`, entry action, both views | B-1 · line: B-2 · nav: Piloto | B-1 · line: B-2 · nav: Pilot |
 | `home-1103.ts:435` title | Piloto gratuito, en 3 pasos | Free pilot, in 3 steps |
-| step 1 | **Reserva una demo.** Te enseñamos el sistema y te explicamos el piloto y el precio. | **Book a demo.** We show you the system and explain the pilot and the price. |
+| step 1 | **Solicita tu piloto.** Hablamos contigo, te enseñamos el sistema y vemos si encaja. | **Request your pilot.** We talk with you, show you the system and see whether it fits. |
 | step 2 | **Preparamos tu agencia contigo.** Tus datos y tu equipo. | **We set up your agency with you.** Your details and your team. |
 | step 3, target (`mailboxConnection`) | **Conectamos tu buzón contigo.** Lo hacemos juntos y lo probamos con un mensaje real. | **We connect your mailbox with you.** We do it together and test it with a real message. |
 | step 3, public | **Empiezas el piloto.** Antes, te confirmamos por escrito qué está activo. | **You start the pilot.** Before that, we confirm in writing what is active. |
 | `home-1103.ts:445` line | Sin método de pago. Las condiciones del piloto, por escrito. | No payment method. The pilot's terms in writing. |
-| `home-1103.ts:475` "¿Cómo empiezo?" | Reserva una demo. Te enseñamos el sistema, te explicamos el piloto y, si encaja, preparamos tu agencia contigo. | Book a demo. We show you the system, explain the pilot and, if it fits, set up your agency with you. |
-| plans table, button in every column (`plans-table.tsx:47`) | Reservar una demo | Book a demo |
+| `home-1103.ts:475` "¿Cómo empiezo?" | Solicita tu piloto gratuito. Hablamos contigo, te enseñamos el sistema y, si encaja, preparamos tu agencia contigo. | Request your free pilot. We talk with you, show you the system and, if it fits, set up your agency with you. |
+| plans table, button in every column (`plans-table.tsx:47`) | B-1 | B-1 |
 | Growth badge | Recomendado | Recommended |
-| `es.ts:370` / `en.ts:404` packages h1 | Piloto gratuito · precio en la demo | Free pilot · pricing in the demo |
-| `es.ts:380` / `en.ts:415` | El precio para tu agencia te lo explicamos en la demo, antes de acordar nada. No hay pago en la web. | We explain the price for your agency in the demo, before anything is agreed. There is no payment on the website. |
+| `es.ts:370` / `en.ts:404` packages h1 | Piloto gratuito | Free pilot |
+| `es.ts:380` / `en.ts:415` | El precio para tu agencia te lo explicamos antes de acordar nada. No hay pago en la web. | We explain the price for your agency before anything is agreed. There is no payment on the website. |
 | `es.ts:388` "¿Necesito una tarjeta…?" | No. El piloto es gratuito y no pedimos método de pago. | No. The pilot is free and we ask for no payment method. |
-| `es.ts:486` / `en.ts` contact lead | Contacto humano directo, en español o en inglés. En la demo te enseñamos el sistema y te explicamos el piloto y el precio. | Direct human contact, in Spanish or English. In the demo we show you the system and explain the pilot and the price. |
+| `es.ts:486` / `en.ts` contact lead | = C-4 | = C-4 |
 | `es.ts:1060` / EN, the assistant's suggestion | ¿Cómo funciona el piloto? | How does the pilot work? |
-| login, the line under the form (target) | ¿Todavía no tienes cuenta? Reserva una demo. | No account yet? Book a demo. |
+| login, the line under the form (target) | ¿Todavía no tienes cuenta? Solicita tu piloto gratuito. | No account yet? Request your free pilot. |
+| `es.ts:60` / `en.ts:66` `bookDemo` (FAQ page, module pages, closing band) | = B-1 | = B-1 |
+| `home-1103.ts:477` closing band `ctaDemo` "Ver la demo" | = B-1 | = B-1 |
 
 ### The FAQ
 
@@ -242,8 +282,9 @@ needs no payment method. The FAQ may say that. The short line does not carry it.
 | Q-11 question | ¿Qué es el piloto? | What is the pilot? |
 | Q-11 answer | Usas NuovaSolution en tu agencia sin pagar, acompañado por nosotros, durante un máximo de 90 días. No pedimos método de pago. Antes de empezar te confirmamos por escrito qué está activo y las condiciones. | You use NuovaSolution in your agency without paying, with our support, for up to 90 days. We ask for no payment method. Before you start, we confirm in writing what is active and the terms. |
 | Q-12 question | ¿Qué pasa cuando termina el piloto? | What happens when the pilot ends? |
-| Q-12 answer | Decides si sigues. El precio te lo explicamos en la demo, antes de acordar nada. Qué pasa con tus datos lo fija el acuerdo por escrito. | You decide whether to continue. We explain the price in the demo, before anything is agreed. What happens to your data is set in the written agreement. |
-| Q-13 | 1108 P-3/P-4 | 1108 P-3/P-4 |
+| Q-12 answer | Decides si sigues. El precio te lo explicamos antes de acordar nada. Qué pasa con tus datos lo fija el acuerdo por escrito. | You decide whether to continue. We explain the price before anything is agreed. What happens to your data is set in the written agreement. |
+| Q-13 question | ¿Cuánto cuesta? | What does it cost? |
+| Q-13 answer (replaces 1108 P-4) | El piloto es gratuito. El precio para después del piloto te lo explicamos antes de acordar nada. | The pilot is free. We explain the price for after the pilot before anything is agreed. |
 
 ### Retire
 
@@ -261,12 +302,53 @@ Each place takes the matching line above or goes.
 
 ---
 
-## 7. Open, who answers by when
+## 7. The other text places of Redesign's §6 (`REFERENZEN_1109_v1.md`, `8e74ab3`)
+
+### Hero: the "message arrives" bubble (for the Ken Burns picture)
+
+| # | ES | EN | Rule |
+|---|---|---|---|
+| H-b1 | Nueva consulta · WhatsApp | New enquiry · WhatsApp | bubble title |
+| H-b2 | «Hola, soy Laura. ¿Podría ver alguno la semana que viene?» | "Hi, I'm Laura. Could I see one next week?" | the demo's own Laura, shortened |
+| H-b3 | Respondida · 11:21 | Answered · 11:21 | shows after a moment. A clock time, no "segundos", no ticks |
+
+The hero's three ticks on the photo: if they stay as a glass card, they keep their wording of §16 (H-1 to H-3).
+
+### Live demo
+
+| # | Place | ES | EN | View |
+|---|---|---|---|---|
+| D-p | line above the chips (P-6; replaces "Elige un canal y mira cómo responde.") | Pulsa un canal y mira cómo responde. | Tap a channel and see how it replies. | both |
+| D-f1 | Laura sends a file (the new moment in the WhatsApp run) | «Os mando el plano del que me gusta.» + a picture of a floor plan | "Here's the floor plan of the one I like." + a picture of a floor plan | **target only** until MM confirms (§3) |
+| D-f2 | the reply | Gracias, Laura. Veo un plano de 2 dormitorios con terraza. ¿Te viene mejor por la mañana o por la tarde para verlo? | Thank you, Laura. I can see a 2-bedroom plan with a terrace. Would the morning or the afternoon suit you better to see it? | target |
+| D-f3 | the record's new field | Archivo · plano: 2 dormitorios, terraza | File · plan: 2 bedrooms, terrace | target |
+
+**D-f2 follows MM's rule** for a photo: it states only what the picture shows and asks at most one question. It promises no contact
+and no appointment, as owner Question A requires. The plan in the picture must really show 2 bedrooms and a terrace.
+
+### Atiende / Organiza / Crece, beyond §2
+
+- **The file point** goes in Atiende as F-0 (§3), target only. If Atiende then has five points, A-3 moves to Organiza.
+- **Instagram (Redesign's Crece list) stays out of the card.** `instagram` is soon, nothing has been published at Meta, and the owner's list for Crece does not name it. It stays a row in the plans table.
+
+### 3D: correct the floor times in Redesign's plan
+
+Redesign's §6 row 6 says "Erdgeschoss 0–9 s, Obergeschoss 9–18 s". **That is not the clip.** 3D (`61b5072`) gives the order: the upper
+floor first (1.9–7.3 s), then the ground floor (7.3–18.4 s). Use the table in §5.
+
+### Phone bar and phone number
+
+- The fixed bar carries B-1, or B-1s where B-1 does not fit.
+- The company number's label is **Teléfono** / **Phone**. It shows as a number only, publicly only with the owner's acceptance (Redesign's point 14).
+
+---
+
+## 8. Open, who answers by when
 
 | # | Question | Who | By |
 |---|---|---|---|
-| Q-MM | Per medium (photo, plan, PDF, voice note) × channel (WhatsApp, e-mail): live in production today, yes or no, with the run or the step (for example `28a` / "24z"). Is the unreadable-file reply live? Voice notes: still Spanish only? | MM | today, so the lines go public on Mon |
+| Q-MM (the owner routes it) | Per medium (photo, plan, PDF, voice note) × channel (WhatsApp, e-mail): live in production today, yes or no, with the run or the step (for example `28a` / "24z"). Is the unreadable-file reply live? Voice notes: still Spanish only? | MM | today, so the lines go public on Mon |
 | Q-3D | **answered 13.11.** (`61b5072`), built into §5. 3D then confirmed Copy's 3-1 (the agency as subject), the floor seconds and card 3-t3 by message; no further deviation | 3D | done |
-| Q-A1 | "En segundos": the time from arrival to sending over real production runs (median and maximum, number of runs) | API / Lead | before the build is named |
-| Q-A2 | Intent values buy / rent / sell on the production record | API | before the build is named |
+| Q-A1 | "En segundos": the time from arrival to sending over real production runs (median and maximum, number of runs) | Lead (owner, 13.11.) | before the build is named |
+| Q-A2 | Intent values buy / rent / sell on the production record | Lead (owner, 13.11.) | before the build is named |
 | Q-L | Is there a score in production now? If not, priority with reason stays (§2) | Lead | only if it changed |
