@@ -1,0 +1,19 @@
+{
+  "sizes": [
+    [
+      1200,
+      800
+    ],
+    [
+      1200,
+      800
+    ]
+  ],
+  "global_shift_px": {
+    "dy": 0,
+    "dx": 0,
+    "peak": 0.045
+  },
+  "upper_third_edge_agreement_within_1px_pct": 55.8,
+  "same_measure_if_shifted_3px_pct": 44.2
+}
