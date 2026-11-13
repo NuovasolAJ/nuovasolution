@@ -23,7 +23,8 @@ export function CompareSlider({ before, after, label, beforeLabel, afterLabel, c
   }, []);
   return (
     <div className={cn("relative select-none overflow-hidden rounded-lg", className)} data-compare={Math.round(pos)}>
-      <div className="relative">{before}</div>
+      {/* 13.11. (RV6 D-3/D-8): both pictures take the slider's own box, so the before and the after view are the same size at every width */}
+      <div className="relative h-full">{before}</div>
       <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>{after}</div>
       <div aria-hidden="true" className="pointer-events-none absolute inset-y-0" style={{ left: `calc(${pos}% - 1px)` }}>
         <div className="h-full w-0.5 bg-ink-950" />
