@@ -336,6 +336,12 @@ and no appointment, as owner Question A requires. The plan in the picture must r
 Redesign's §6 row 6 says "Erdgeschoss 0–9 s, Obergeschoss 9–18 s". **That is not the clip.** 3D (`61b5072`) gives the order: the upper
 floor first (1.9–7.3 s), then the ground floor (7.3–18.4 s). Use the table in §5.
 
+**3D's addendum for Redesign, 13.11.** File: `C:\src\nuova-3d\deliverables\website-assets\handoff_2026-11-07\NACHTRAG_1113_v1.md`, 3D
+commit `5bae761`. It covers media, not text. Copy only points to it:
+- **The image pair:** the right-hand picture on O1109_11/12 was Hero A. It is replaced by `pair/living_furnished.jpg`, with the same crop and no re-render.
+- **The floor times:** as in §5.
+- **The hero loop for the phone:** `hero_video/hero_living_loop_960.mp4` / `.webm`.
+
 ### Phone bar and phone number
 
 - The fixed bar carries B-1, or B-1s where B-1 does not fit.
