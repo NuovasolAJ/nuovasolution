@@ -94,7 +94,84 @@ besser beschrieben als in den meisten Produktbriefings, die ich gesehen habe.
 
 ---
 
-## D. Was ich am 16. und 18.11. tue
+## D. Nachtrag 13.11., 14:00 — die Entscheidungen des Owners und die vier offenen Festlegungen
+
+**Entschieden am 13.11., damit gilt:**
+
+| # | Entscheidung | Folge für die Prüfung |
+|---|---|---|
+| 1 | **Ein Angebot: „Piloto gratuito"**, ein Hauptknopf, Wortlaut von Copy. „Solicitar una demo" und „14 días" raus | Ich zähle die Angebotswörter auf **jeder** Route in beiden Sprachen. „14 días", „Pruébalo gratis", „Solicitar una demo" = **0 Treffer**; der Hauptknopf heißt überall gleich |
+| 2 | **Farbe D** | Eine Akzentfarbe. Braun auf Knöpfen, Zahlen-Punkten und Titeln = Befund; Grün nur am WhatsApp-Zeichen; Diagramme in Tönungen **einer** Farbe |
+| 3 | **Bildpaar:** Redesign erzeugt heute das Differenzbild; weicht es ab, liefert **3D** neu aus Kamera `main` | Ich prüfe beides: gleiche gerenderte Box **und** gleicher Ausschnitt (D-4 unten) |
+| 4 | **Auto-Lauf der Demo ist gewollt** | **A-10 ist hiermit zurückgezogen.** An seine Stelle treten drei Bedingungen: Klick stoppt · kein Weiterschalten außerhalb des Bildes · `reduced-motion` stoppt |
+| 5 | Struktur bleibt, der Bericht steht **einmal** | Kein Widerspruch mehr; ich prüfe: der Bericht erscheint genau einmal |
+| 6 | Redesign bewertet sich selbst, **meine Note zählt**; unter 9 = keine Abnahme | Ich öffne Redesigns Selbstbewertung erst **nach** meiner eigenen Note |
+| 7 | Termine: **Mo 16.11. 14:00** Zwischenschau · **Mi 18.11. 14:00** Build · Rückfall **Do 19.11. 14:00** | — |
+| 8 | **Wahrheit:** die 10 gilt der **Zielsicht**; `public` wird auf **„nichts Falsches, kein Loch"** geprüft | Siehe D-5 |
+
+### D-1 Erster Bildschirm (ohne Scrollen, Vorschau-Möblierung zählt nicht mit)
+
+Gemessen auf dem Standbild bei **1366 × 768** und bei **390 × 844**. Alle fünf müssen zutreffen:
+
+1. **Headline** vollständig sichtbar, nicht abgeschnitten.
+2. **Ein Satz** darunter (Nutzen), vollständig sichtbar.
+3. **Ein Hauptknopf** — und kein zweiter Knopf mit gleichem Gewicht im selben Bildschirm. Der Kopfzeilen-Knopf zählt mit, wenn er dieselbe Füllung hat.
+4. **Bewegung läuft** — Video, Ken-Burns oder eingeblendete Bewegung; bei abgelehntem Autoplay und bei `reduced-motion` eine sanfte Überblendung. Der Hero ist nie tot.
+5. **Anschnitt der Demo sichtbar:** mindestens **120 px** des nächsten Abschnitts stehen im ersten Bildschirm, sodass erkennbar ist, dass es weitergeht.
+
+Die Vorschau-Möblierung (Banner, Leiste) wird vor der Messung abgezogen bzw. ausgeklappt gemessen; sie ist öffentlich nicht da. Heute frisst sie am Handy rund ein Viertel des Bildschirms (M1109_01), und auf `a5f1d21` begann die Demo erst bei y ≈ 826.
+
+### D-2 Handy 360 und 414, dazu 390
+
+| Regel | Messung |
+|---|---|
+| Kein seitliches Scrollen | `documentElement.scrollWidth ≤ innerWidth` auf **360, 390, 414** |
+| **Tippziele ≥ 44 × 44 px** | jedes `a`/`button`/`[role=tab]`/`[role=slider]` im sichtbaren Fluss; Ausnahme nur die Vorschau-Leiste, die öffentlich fehlt |
+| Nichts überdeckt | Der feste Kopf verdeckt **keine** Abschnittsüberschrift beim Scrollen (heute „Cada consulta," halb verdeckt, M1109_05); die feste Fußleiste verdeckt keinen Knopf und keine Angebotszeile (heute „Piloto gratuito" abgeschnitten, M1109_01) |
+| Nur nach unten | **0** seitlich wischbare Reihen in Abschnitten 4 und 7 (heute angeschnittene Karten „Fi…", „Or…", M1109_05–07) |
+| Keine Umbruch-Fehler | Kein Knopftext bricht in zwei Zeilen (heute „Repetir demo", M1109_02) |
+| Keine Schilder im Bild | **0** überlappende Marken auf Bildern (heute zwei schwarze Schilder übereinander, M1109_08); der Hinweis steht **einmal je Abschnitt** unter dem Bild |
+
+### D-3 Regression gegen `fdffcf4` — mit den Werten, die ich heute gemessen habe
+
+**Grundlage, fest:** `fdffcf4` = **`dpl_8Nj8oV6KGStECKCUU3vPs2RheTkr`**,
+`https://nuovasolution-design-preview-68obr8h1w-nuovasolajs-projects.vercel.app`, Sicht `target`,
+erreichbar mit demselben Bypass-Header. Von mir am 13.11. gemessen:
+
+| Teil | Wert auf `fdffcf4` | Bestanden ist der neue Build, wenn |
+|---|---|---|
+| **Hero** | Video `hero-a.mp4` läuft (nicht pausiert), dazu das Standbild `hero-a-1920.webp`; **5** laufende Animationen; h1 beginnt bei **y = 409**; Seitenhöhe 10 389 px | Bewegung läuft ebenfalls (Video **oder** Ken-Burns-Ersatz), die Headline beginnt **nicht tiefer** als 409 px, und bei abgelehntem Autoplay bleibt Bewegung sichtbar |
+| **Live-Demo** | 4 Reiter; **kein** Auto-Lauf (24 s beobachtet, 0 Wechsel); Klick stoppt (14 s nach dem Klick kein Wechsel) | Auto-Lauf **neu vorhanden** (Owner-Entscheidung 4), Zyklus 6–12 s je Kanal, Klick stoppt weiterhin, kein Wechsel außerhalb des Bildes, Stopp bei `reduced-motion` |
+| **Schieberegler** | bei 390: beide Bilder intrinsisch 1200 × 800, gerendert aber **358 × 239** gegen **358 × 224** — die möblierte Seite ist **15 px kürzer**, gleicher oberer Rand | **Δ Höhe = 0 px und Δ Breite = 0 px** bei 360/390/414 und 1366/1440 |
+| **Bildausschnitt** | zwei verschiedene Kamerapositionen (O1109_11 gegen O1109_12: die Tür steht an anderer Stelle und in anderer Größe) | Das Differenzbild zeigt **nur Möbel**, keine versetzten Wände, Türen oder Fenster. Weicht es ab, kommt das Paar neu von 3D aus Kamera `main`, und ich prüfe nach Prüfsumme gegen die Übergabe |
+
+Dazu, aus Owner-Regel „nichts wird schlechter": meine bestandenen Zeilen vom 07.11. bleiben bestanden — Kontrast ohne Fehler, Tastatur mit sichtbarem Fokus, 11 Szenen ohne Übersprung bei 800 px/s, keine Bereitschaftswörter, Hinweis auf jeder Vorschau-Route.
+
+### D-4 Lighthouse: Bedingungen, sonst ist die Zahl nicht vergleichbar
+
+| | Festlegung |
+|---|---|
+| URL | `…/es?view=target` **und** `…/es?view=public`, dazu `…/es/example-report` |
+| Zugang | **Bypass-Header** `x-vercel-protection-bypass` als `--extra-headers`; das Geheimnis kommt aus `.nuova-secrets`, steht in keinem Bericht und in keinem Log |
+| Umgebung | Edge headless, **allein auf der Maschine** (keine zweite Messung, keine zurückgebliebenen Browser-Prozesse — 238 davon haben am 03.11. die Werte von 91 auf 48 gedrückt), Drosselung „simulated", Handy-Profil für die Handy-Zahl |
+| Läufe | **3 Läufe, Median** zählt; alle drei werden abgelegt |
+| Ziel | Handy ≥ 90, Desktop ≥ 95, **CLS < 0,1**, **LCP < 2,5 s** (Handy, 4G simuliert). LCP messe ich aus dem Lighthouse-Bericht, nicht aus einem Einzelaufruf im Browser |
+| **Gewichtsbudget** | Neu hinzukommende Bibliotheken (GSAP/ScrollTrigger, Motion, Lenis o. a.) zusammen **≤ 100 kB gzip**; das gesamte übertragene JavaScript auf `/es` höchstens **15 %** über `fdffcf4`, gemessen aus der Ressourcen-Übersicht desselben Lighthouse-Laufs. Reißt das Budget, zählt es als Befund, auch wenn die Note noch ≥ 90 ist |
+
+### D-5 Wahrheit: die 10 gilt der Zielsicht, `public` wird auf „nichts Falsches, kein Loch" geprüft
+
+- **Zielsicht:** hier wird benotet. Ein Nutzensatz, der noch **WORKING** ist, zählt **nicht** für die Note.
+- **Öffentliche Sicht, zwei Prüfungen:**
+  - **nichts Falsches:** keine Aussage über eine Funktion, die `lib/claims.ts` nicht als enthalten führt — gemessen über **jede** Route, auch die Modulseiten (das war am 07.11. meine eigene Lücke, F-6); kein Bereitschaftswort; kein Verbindungsversprechen; das Angebot „Piloto gratuito" nur so, wie der Funktionsstand es trägt.
+  - **kein Loch:** kein leerer Abschnitt, keine Überschrift ohne Inhalt, keine Karte ohne Zeilen, kein Knopf ins Leere, keine Route, die 404 oder auf eine leere Seite führt. Wo etwas ausgeblendet wird, schließt sich der Rhythmus.
+
+### D-6 Pfad für Redesign
+
+`docs/website_redesign/REVIEWER_MASTERPROMPT_CHECK_1113_v1.md` — Abschnitt **D** ist der verbindliche Teil für den Bau, Abschnitt **B-1** die Notentabelle, nach der am 16. und 18.11. bewertet wird.
+
+---
+
+## E. Was ich am 16. und 18.11. tue
 
 Bewertung der Vorschau **ohne** Redesigns Selbstbewertung vorher zu lesen: die 9 Zeilen getrennt für Handy
 (390, 360, 414, iPhone mit abgelehntem Autoplay) und Desktop (1440, 1366), **je Note ein Bild**; dazu jede

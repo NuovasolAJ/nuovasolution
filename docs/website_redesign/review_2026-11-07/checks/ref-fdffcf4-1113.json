@@ -1,0 +1,53 @@
+{
+ "ref": "fdffcf4",
+ "dpl": "dpl_8Nj8oV6KGStECKCUU3vPs2RheTkr",
+ "hero1366": {
+  "lcpMs": null,
+  "lcpEl": null,
+  "heroImg": {
+   "file": "hero-a-1920.webp",
+   "nw": 1366,
+   "rendered": 1372
+  },
+  "heroVideo": {
+   "file": "hero-a.mp4",
+   "paused": false
+  },
+  "h1y": 409,
+  "runningAnimations": 5,
+  "docHeight": 10389
+ },
+ "demoCycle": {
+  "switchesAtMs": [],
+  "cycleMs": null,
+  "tabs": 4
+ },
+ "clickStops": {
+  "before": "whatsapp",
+  "after": "whatsapp",
+  "stopped": true
+ },
+ "slider390": {
+  "images": [
+   {
+    "f": "living-empty-1200.webp",
+    "nw": 1200,
+    "nh": 800,
+    "w": 358,
+    "h": 239,
+    "top": 203
+   },
+   {
+    "f": "living-furnished-1200.webp",
+    "nw": 1200,
+    "nh": 800,
+    "w": 358,
+    "h": 224,
+    "top": 203
+   }
+  ],
+  "handle": null,
+  "sameBox": false,
+  "sameIntrinsic": true
+ }
+}
