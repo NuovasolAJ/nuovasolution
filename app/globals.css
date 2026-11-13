@@ -599,7 +599,7 @@ html.js .hf-access { animation-delay: 320ms; }
 .hf-cta-second { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 12px 24px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.42); color: #fff; font-size: 1.0625rem; font-weight: 500; white-space: nowrap; background: rgba(255, 255, 255, 0.06); backdrop-filter: blur(8px); transition: background-color var(--motion-micro) var(--ease-standard), border-color var(--motion-micro) var(--ease-standard); }
 .hf-cta-second:hover { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.7); }
 .hf-cta-main:focus-visible, .hf-cta-second:focus-visible, .hf-pause:focus-visible, .hf-scroll:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-.hf-access { margin-top: 16px; font-size: 0.9375rem; line-height: 1.5; color: rgba(248, 246, 241, 0.72); }
+.hf-access { margin-top: 16px; max-width: 64ch; font-size: 0.9375rem; line-height: 1.5; color: rgba(248, 246, 241, 0.78); text-wrap: pretty; }
 /* 13.11. (the owner's decision): the three sentences stay, on one readable glass card: blurred picture behind, a thin light edge,
    the check in D's tint; the card rises after the words, the three lines one after another (the right column from 1024 px) */
 .hf-benefits { display: grid; gap: 10px; margin: 0; padding: 16px 18px; list-style: none; width: fit-content; max-width: 100%; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.22); background: rgba(255, 255, 255, 0.1); -webkit-backdrop-filter: blur(18px) saturate(1.3); backdrop-filter: blur(18px) saturate(1.3); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 24px 60px -30px rgba(0, 0, 0, 0.6); }
@@ -692,6 +692,8 @@ html.js .hf-image { animation: hf-drift 24s ease-in-out infinite alternate; }
 @media (prefers-reduced-motion: reduce) { .demo-tab-bar { display: none; } }
 @keyframes demo-tab-bar { to { transform: scaleX(1); } }
 @media (max-width: 639px) { .demo-tab { min-height: 48px; padding: 8px 16px; font-size: 0.9375rem; } .demo-invite { font-size: 0.9375rem; } }
+/* the phone's replay: the icon alone, 40 px, the word is its label */
+@media (max-width: 639px) { .demo-replay-word { display: none; } .demo-replay { width: 40px; min-height: 40px; margin-right: -4px; padding: 0; justify-content: center; border: 1px solid var(--border-strong); } }
 .demo-replay { display: inline-flex; align-items: center; gap: 8px; min-height: 32px; margin-right: -8px; padding: 4px 10px; border-radius: 999px; font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); transition: color var(--motion-micro) var(--ease-standard), background-color var(--motion-micro) var(--ease-standard), transform var(--motion-micro) var(--ease-standard); }
 .demo-replay:hover { color: var(--text-primary); background: var(--surface-sunken); }
 .demo-replay:active { transform: scale(0.985); }

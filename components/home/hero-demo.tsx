@@ -169,9 +169,10 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
       <div className="demo-bar">
         <div className="demo-bar-top">
           <p id={`${id}-pick`} className="demo-pick-label" data-demo-invite>{channels.length > 1 ? <><span className="demo-pick-word">{l(W.pick)}</span><span className="demo-invite">{l(W.invite)}</span></> : <span className="demo-invite">{l(W.surfaceLabel)}</span>}</p>
-          <button type="button" className="demo-replay" data-demo-replay onClick={() => { stopAuto(); started.current = true; inView.current = true; run(script); }}>
+          {/* on the phone the replay is the icon alone (the word stays as its label; REFERENZEN §6, phone) */}
+          <button type="button" className="demo-replay" data-demo-replay aria-label={l(W.replay)} onClick={() => { stopAuto(); started.current = true; inView.current = true; run(script); }}>
             <RotateCcw size={14} strokeWidth={2.2} aria-hidden="true" />
-            {l(W.replay)}
+            <span className="demo-replay-word">{l(W.replay)}</span>
           </button>
         </div>
         {channels.length > 1 && <div ref={tabsRef} role="tablist" aria-labelledby={`${id}-pick`} className="demo-tabs" data-demo-tabs onKeyDown={onTabKey}>
