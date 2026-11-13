@@ -188,6 +188,28 @@ die **Absicht/Lead-Erkennung**, die **Dateien (MM)** und **alles 3D ohne `model3
 §6.6 die vier 3D-Punkte). Wer eine 9 darauf stützt, baut auf Punkte, die ich nicht zähle — der Nutzen muss aus den
 belegten Zeilen kommen.
 
+### D-8 Bildpaar (Owner-Entscheidung 3): von mir selbst nachgemessen, **keine Abweichung** — 3D muss nicht neu rendern
+
+Redesign meldet am 13.11. (`cdc8d04`, Ablage `preview_2026-11-13_first-look/check/`): Paar stammt aus `pair/`,
+mittlere Pixeldifferenz 1,25/255, Kanten-Phasenkorrelation (0, 0). Ich habe das **nicht übernommen**, sondern
+unabhängig gemessen (Pillow/NumPy, Beleg `review_2026-11-07/checks/pair-camera-1113.json`):
+
+| Frage | Messung | Ergebnis |
+|---|---|---|
+| Stammen die ausgelieferten Bilder aus 3Ds Übergabe `handoff_2026-11-07/pair/`? | `living-empty-1200.webp` gegen `living_empty.jpg` (3000 × 2000, Lanczos auf 1200 × 800): mittlere Abweichung **1,185**/255, p99 = 7, **0,00 %** der Pixel über 16. Möbliert: **1,282**/255, p99 = 7, 0,00 % | **Ja**, beide sind skalierte Kopien derselben Übergabe. Redesigns 1,25 ist bestätigt |
+| Gleiche Kameraposition (leer gegen möbliert)? | Kanten-Kreuzkorrelation über Versatz −6…+6 px, drei Bänder: ganzes Bild **Spitze bei (0, 0)**, oberes Drittel (0, 0), oberes Sechstel (0, 0); dasselbe auf 3Ds eigenen 3000 × 2000-PNGs: **(0, 0)** | **Ja**, kein Versatz |
+| Gleiche Brennweite? (ein Zoom erscheint **nicht** als Versatz — Redesigns Korrelation allein schließt ihn nicht aus) | Zusätzlicher Maßstabstest 0,96 / 0,98 / 0,99 / **1,00** / 1,01 / 1,02 / 1,04, je mit bestem Versatz: Maximum eindeutig bei **Maßstab 1,00 und (0, 0)** (ganzes Bild 0,106 gegen 0,073 bei 1,01; Deckenband 0,164 gegen 0,163/0,096) | **Ja**, gleiche Brennweite |
+
+**Damit ist Zeile „Bildausschnitt" in D-3 erledigt:** der Unterschied im Bildpaar ist **nur Möblierung**, keine
+versetzten Wände, Türen oder Fenster. Was der Owner in O1109_11/O1109_12 gesehen hat, war **nicht** die Kamera.
+3D liefert **nicht** neu; A-22 (Prüfsumme gegen die Übergabe) bleibt davon unberührt.
+
+**Was damit nicht erledigt ist:** die **15 px** Höhenunterschied am Schieberegler bei 390 px. Beide Dateien sind
+1200 × 800, also gleiches Seitenverhältnis — ein Unterschied in der gerenderten Höhe kann nur aus dem CSS kommen.
+Redesign sieht das gleich und prüft es bis Montag. Für die Note bleibt es, was in D-3 steht: **Δ Höhe = 0 px und
+Δ Breite = 0 px** bei 360/390/414 und 1366/1440. Solange die möblierte Seite kürzer ist, vergleicht der Regler
+zwei verschieden große Ausschnitte, und der Vergleich ist unwahr — unabhängig davon, dass die Kamera stimmt.
+
 ### D-6 Pfad für Redesign
 
 `docs/website_redesign/REVIEWER_MASTERPROMPT_CHECK_1113_v1.md` — Abschnitt **D** ist der verbindliche Teil für den Bau, Abschnitt **B-1** die Notentabelle, nach der am 16. und 18.11. bewertet wird.

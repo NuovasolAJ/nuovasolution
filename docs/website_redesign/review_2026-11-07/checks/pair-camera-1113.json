@@ -1,0 +1,279 @@
+{
+  "measured_by": "reviewer, independent of redesign",
+  "date": "2026-11-13",
+  "sources": {
+    "served": "public/media/3d/living-empty-1200.webp, living-furnished-1200.webp (sha256 b1a37f4b\u2026, 4e39361f\u2026)",
+    "handoff": "C:/src/nuova-3d/deliverables/website-assets/handoff_2026-11-07/pair/"
+  },
+  "derivation": {
+    "empty": {
+      "served_px": [
+        1200,
+        800
+      ],
+      "source_px": [
+        3000,
+        2000
+      ],
+      "mean_abs_diff_255": 1.185,
+      "p99_abs_diff_255": 7.0,
+      "share_px_over_16_pct": 0.0
+    },
+    "furnished": {
+      "served_px": [
+        1200,
+        800
+      ],
+      "source_px": [
+        3000,
+        2000
+      ],
+      "mean_abs_diff_255": 1.282,
+      "p99_abs_diff_255": 7.0,
+      "share_px_over_16_pct": 0.0
+    }
+  },
+  "camera_shift_served": {
+    "full": {
+      "best_corr": 0.0936,
+      "best_dy": 0,
+      "best_dx": 0,
+      "top5": [
+        [
+          0.0936,
+          0,
+          0
+        ],
+        [
+          0.0812,
+          -1,
+          0
+        ],
+        [
+          0.0801,
+          0,
+          1
+        ],
+        [
+          0.079,
+          0,
+          -1
+        ],
+        [
+          0.0706,
+          -1,
+          1
+        ]
+      ]
+    },
+    "upper_third_ceiling": {
+      "best_corr": 0.207,
+      "best_dy": 0,
+      "best_dx": 0,
+      "top5": [
+        [
+          0.207,
+          0,
+          0
+        ],
+        [
+          0.1933,
+          -1,
+          0
+        ],
+        [
+          0.188,
+          0,
+          -1
+        ],
+        [
+          0.1849,
+          0,
+          1
+        ],
+        [
+          0.1781,
+          -1,
+          1
+        ]
+      ]
+    },
+    "upper_sixth": {
+      "best_corr": 0.5103,
+      "best_dy": 0,
+      "best_dx": 0,
+      "top5": [
+        [
+          0.5103,
+          0,
+          0
+        ],
+        [
+          0.5047,
+          1,
+          -4
+        ],
+        [
+          0.4979,
+          -1,
+          4
+        ],
+        [
+          0.4962,
+          0,
+          1
+        ],
+        [
+          0.4943,
+          1,
+          -3
+        ]
+      ]
+    }
+  },
+  "camera_shift_source_png": {
+    "best_corr": 0.2023,
+    "best_dy": 0,
+    "best_dx": 0,
+    "top5": [
+      [
+        0.2023,
+        0,
+        0
+      ],
+      [
+        0.1787,
+        0,
+        1
+      ],
+      [
+        0.1758,
+        0,
+        -1
+      ],
+      [
+        0.1697,
+        1,
+        0
+      ],
+      [
+        0.1605,
+        -1,
+        0
+      ]
+    ]
+  },
+  "ceiling_rows": {
+    "empty": [
+      [
+        301,
+        8.03
+      ],
+      [
+        302,
+        8.15
+      ],
+      [
+        303,
+        8.08
+      ],
+      [
+        323,
+        8.49
+      ],
+      [
+        324,
+        8.38
+      ]
+    ],
+    "furnished": [
+      [
+        324,
+        12.79
+      ],
+      [
+        325,
+        17.41
+      ],
+      [
+        326,
+        19.94
+      ],
+      [
+        327,
+        12.45
+      ],
+      [
+        349,
+        10.51
+      ]
+    ]
+  },
+  "scale_test_source_png": [
+    {
+      "scale": 0.96,
+      "full_corr": 0.0253,
+      "full_dy": -1,
+      "full_dx": 4,
+      "ceil_corr": 0.0512,
+      "ceil_dy": 0,
+      "ceil_dx": -2
+    },
+    {
+      "scale": 0.98,
+      "full_corr": 0.0447,
+      "full_dy": -4,
+      "full_dx": 2,
+      "ceil_corr": 0.0816,
+      "ceil_dy": -4,
+      "ceil_dx": -4
+    },
+    {
+      "scale": 0.99,
+      "full_corr": 0.0546,
+      "full_dy": -3,
+      "full_dx": 2,
+      "ceil_corr": 0.0955,
+      "ceil_dy": -3,
+      "ceil_dx": 1
+    },
+    {
+      "scale": 1.0,
+      "full_corr": 0.1059,
+      "full_dy": 0,
+      "full_dx": 0,
+      "ceil_corr": 0.1639,
+      "ceil_dy": 0,
+      "ceil_dx": 0
+    },
+    {
+      "scale": 1.01,
+      "full_corr": 0.0726,
+      "full_dy": 0,
+      "full_dx": -2,
+      "ceil_corr": 0.1627,
+      "ceil_dy": 3,
+      "ceil_dx": -1
+    },
+    {
+      "scale": 1.02,
+      "full_corr": 0.0571,
+      "full_dy": 3,
+      "full_dx": -3,
+      "ceil_corr": 0.1457,
+      "ceil_dy": 4,
+      "ceil_dx": 4
+    },
+    {
+      "scale": 1.04,
+      "full_corr": 0.0366,
+      "full_dy": 0,
+      "full_dx": -4,
+      "ceil_corr": 0.1029,
+      "ceil_dy": 0,
+      "ceil_dx": -4
+    }
+  ],
+  "verdict": "same camera position and same focal length; difference in the pair is furniture only; no re-render needed from 3D",
+  "open": "slider renders furnished 15px shorter at 390px wide - CSS, not camera (D-3 requires delta 0)"
+}
