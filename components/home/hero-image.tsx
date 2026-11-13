@@ -37,6 +37,9 @@ export function HeroImage({ alt, mark, credit }: { alt: string; mark: string; cr
           is not attached at all (CSS hides it, the script never loads it); the sources are attached only when the window is wide enough
           also on the phone (the owner's H1 of 09.11.; the portrait crop by object-position), not when the connection is flagged as saving data. */}
       <video className="hf-video" muted loop playsInline autoPlay preload="none" poster="/media/3d/hero-a-video-poster-1920.webp" aria-hidden="true" tabIndex={-1} data-hero-video="living-loop" data-hero-video-state="idle">
+        {/* 3D's addendum of 13.11. (handoff_2026-11-07 NACHTRAG_1113, sha verified): the 960 × 540 fassung of the same 300 frames for the phone (0.76 / 0.51 MB) */}
+        <source src="/media/3d/hero-a-960.mp4" type="video/mp4" media="(max-width: 768px)" />
+        <source src="/media/3d/hero-a-960.webm" type="video/webm" media="(max-width: 768px)" />
         <source src="/media/3d/hero-a.mp4" type="video/mp4" />
         <source src="/media/3d/hero-a.webm" type="video/webm" />
       </video>

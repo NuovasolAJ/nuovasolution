@@ -13,8 +13,8 @@ import { cn } from "@/lib/utils";
  * live build. The notice line itself is the preview band's (Copy §14).
  */
 const WORDS = {
-  es: { view: "Vista", target: "Objetivo", pub: "Público", palette: "Paleta", display: "Titulares", inter: "Inter", fraunces: "Fraunces", hint: "Solo en la vista previa" },
-  en: { view: "View", target: "Target", pub: "Public", palette: "Palette", display: "Headlines", inter: "Inter", fraunces: "Fraunces", hint: "Preview only" },
+  es: { view: "Vista", target: "Objetivo", pub: "Público", display: "Titulares", inter: "Inter", fraunces: "Fraunces", hint: "Solo en la vista previa" },
+  en: { view: "View", target: "Target", pub: "Public", display: "Headlines", inter: "Inter", fraunces: "Fraunces", hint: "Preview only" },
 };
 
 export function PreviewSwitch({ locale, switches }: { locale: Locale; switches: PreviewSwitches }) {
@@ -23,7 +23,7 @@ export function PreviewSwitch({ locale, switches }: { locale: Locale; switches: 
   // every link names its value outright (the middleware turns it into the cookie), so a choice can also be undone
   const link = (patch: Parameters<typeof switchQuery>[1]) => {
     const n = { ...switches, ...patch };
-    return `${pathname}?view=${n.view}&palette=${n.palette}&display=${n.display}`;
+    return `${pathname}?view=${n.view}&display=${n.display}`;
   };
   const Opt = ({ on, href, label, name }: { on: boolean; href: string; label: string; name: string }) => (
     <a href={href} className={cn("pv-opt", on && "is-on")} aria-current={on ? "true" : undefined} data-preview-switch={name}>{label}</a>
@@ -32,7 +32,7 @@ export function PreviewSwitch({ locale, switches }: { locale: Locale; switches: 
   // H2 (09.11.): on a narrow window the row folds behind one small button, so the first screen is the page's own
   const [open, setOpen] = useState(false);
   return (
-    <div className="pv" data-preview-switches data-view={switches.view} data-palette={switches.palette} data-display={switches.display} data-pv-open={open ? "true" : "false"}>
+    <div className="pv" data-preview-switches data-view={switches.view} data-display={switches.display} data-pv-open={open ? "true" : "false"}>
       <button type="button" className="pv-toggle" aria-expanded={open} onClick={() => setOpen((v) => !v)} data-pv-toggle>{w.hint} {open ? "−" : "+"}</button>
       <div className="container-default pv-row">
         <span className="pv-hint">{w.hint}</span>
@@ -41,14 +41,7 @@ export function PreviewSwitch({ locale, switches }: { locale: Locale; switches: 
           <Opt on={switches.view === "target"} href={link({ view: "target" })} label={w.target} name="view-target" />
           <Opt on={switches.view === "public"} href={link({ view: "public" })} label={w.pub} name="view-public" />
         </span>
-        <span className="pv-group" role="group" aria-label={w.palette}>
-          <span className="pv-name">{w.palette}</span>
-          <Opt on={switches.palette === "a"} href={link({ palette: "a" })} label="A" name="palette-a" />
-          <Opt on={switches.palette === "b"} href={link({ palette: "b" })} label="B" name="palette-b" />
-          <Opt on={switches.palette === "c"} href={link({ palette: "c" })} label="C" name="palette-c" />
-          <Opt on={switches.palette === "d"} href={link({ palette: "d" })} label="D" name="palette-d" />
-          <Opt on={switches.palette === "e"} href={link({ palette: "e" })} label="E" name="palette-e" />
-        </span>
+        {/* the palette group left on 13.11.2026: the owner chose D */}
         <span className="pv-group" role="group" aria-label={w.display}>
           <span className="pv-name">{w.display}</span>
           <Opt on={switches.display === "inter"} href={link({ display: "inter" })} label={w.inter} name="display-inter" />

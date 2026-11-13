@@ -23,9 +23,9 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
   const c = home1103.close;
   const p = (path: string) => localePath(locale, path);
   const entry = entryAction(locale, view);
-  const trial = entry.kind === "trial";
+  // 13.11. (Copy 1113 §6): the free pilot in 3 steps in both views; step 3 follows `mailboxConnection`
   const icons = [Handshake, Database, MessageSquareText];
-  const steps = trial ? l(e.steps) : [...l(e.stepsPublic), ...(live("mailboxConnection", view) ? [l(e.steps)[2]] : [])];
+  const steps = e.steps(locale, view);
   const lines = [l(t.line1(view)), ...l(t.lines)];
   const faqItems = f.items(locale, view);
 
@@ -40,7 +40,7 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
             <div className="trust-right">
               {/* the way in (§20) */}
               <div className="entry" data-entry={entry.kind}>
-                <p className="entry-title">{trial ? l(e.title) : l(e.titlePublic)}</p>
+                <p className="entry-title">{l(e.title)}</p>
                 <ol className="trust-steps" data-trust-steps>
                   {steps.map((s, i) => (
                     <Rise as="li" key={s.b} delay={i * 0.1} className="trust-step" data-trust-step={i + 1}>
@@ -49,8 +49,8 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
                     </Rise>
                   ))}
                 </ol>
-                <p className="entry-line" data-entry-line>{trial ? l(e.line) : entry.line}</p>
-                {trial && <p className="entry-small">{l(e.small)}</p>}
+                <p className="entry-line" data-entry-line>{l(e.line)}</p>
+                {live("mailboxConnection", view) && <p className="entry-small">{l(e.small)}</p>}
                 <p className="trust-entry">
                   <Link href={p(entry.href)} className="trust-entry-cta" data-trust-cta={entry.kind}>{entry.label}<ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" /></Link>
                 </p>
@@ -95,8 +95,8 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
             <p className="closing-line">{l(c.line(view))}</p>
             <div className="closing-ctas">
               {/* Copy 1108 H-1: the close's main action is the demo request */}
-              <Link href={p("/contact")} className="closing-cta-main lift" data-closing-main="contact">{l(c.ctaDemo)}</Link>
-              <a href={p(entry.href)} className="closing-cta-second" data-closing-second={entry.kind}>{entry.label}</a>
+              {/* 13.11.: one button, one offer (Copy 1113 §0 B-1); the second button would repeat it */}
+              <Link href={p(entry.href)} className="closing-cta-main lift" data-closing-main="pilot">{entry.label}</Link>
             </div>
           </Rise>
         </div>

@@ -31,7 +31,8 @@ export default function TrialPage({ params }: { params: { locale: string } }) {
   const view = resolveSwitches().view;
   const entry = entryAction(locale, view);
   // Copy 1105 v3 §21: while the trial is off, the route leads to /contact
-  if (entry.kind !== "trial") redirect(p("/contact"));
+  // 13.11. (Copy 1113 §6): the one offer is the free pilot; /trial leads to /contact in both views
+  if (entry.kind === "pilot") redirect(p("/contact"));
   // §21: the steps "Fuentes de leads" and "CRM" name the connection only while their keys are live
   const stepLine = (title: string, line: string) => {
     if (title === d.trial.steps[5].title && !live("adsLeads", view)) return locale === "es" ? "Dinos de dónde te llegan los leads." : "Tell us where your leads come from.";

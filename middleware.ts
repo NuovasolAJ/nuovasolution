@@ -16,7 +16,7 @@ import { NextResponse, type NextRequest } from "next/server";
  *   secrets never stand in the browser or the repository (they live in C:\Users\Usuario\.nuova-secrets\ and in Vercel's env).
  *   `noindex` stays on top (the layout's robots meta and X-Robots-Tag; the gate page carries it too).
  *
- * 2 The preview switches (lib/view.ts): `?view=`, `?palette=` and `?display=` are remembered in cookies and handed to the request
+ * 2 The preview switches (lib/view.ts): `?view=` and `?display=` are remembered in cookies and handed to the request
  *   as headers, so a choice holds across the site's links and the layout (the header's "Prueba" / "Acceso") follows it too. Both
  *   views stay separately reachable behind the protection.
  */
@@ -26,7 +26,6 @@ const BYPASS_HEADER = "x-vercel-protection-bypass";
 const SET_COOKIE_HEADER = "x-vercel-set-bypass-cookie";
 const SWITCHES = [
   { param: "view", cookie: "nuova-view", header: "x-nuova-view", allowed: ["target", "public"] },
-  { param: "palette", cookie: "nuova-palette", header: "x-nuova-palette", allowed: ["a", "b", "c", "d", "e"] },
   { param: "display", cookie: "nuova-display", header: "x-nuova-display", allowed: ["inter", "fraunces"] },
 ] as const;
 

@@ -139,20 +139,22 @@ export const planRowShown = (key: ClaimKey, view: ClaimView): boolean => live(ke
 export const plansTableShown = (view: ClaimView): boolean => live("plans", view);
 
 /**
- * The entry action of the whole site (Copy 1105 v3 §9 and §16 H-5/H-6, §20; the owner's point 14 of 06.11.): the trial in the target view
- * and once registration and the trial are live in production, access by invitation until then.
+ * The entry action of the whole site. The owner's decision of 13.11.2026 (Copy's COPY_TO_REDESIGN_1113_TEXTS_10V10 §0 and §6): ONE offer
+ * everywhere, in both views — the free pilot, agreed with a person. One black main button (B-1), its short form where a line is narrow
+ * (B-1s), the pilot line under it (B-2). "Solicitar una demo", "Reservar una demo" and "14 días" leave the site; /signup and /trial lead
+ * to /contact. The keys `trial` and `publicSignup` stay in the register (the app's own account state follows them), but no public
+ * surface hangs an offer on them any more. WORKING: Copy's working title until Copy confirms the final wording (Mon 16.11. 12:00).
  */
-export const trialCta: { label: L; line: L } = {
-  label: { es: "Pruébalo gratis 14 días", en: "Try it free for 14 days" },
-  line: { es: "Sin método de pago y sin renovación automática.", en: "No payment method and no automatic renewal." },
+export const pilotCta: { label: L; short: L; line: L; nav: L } = {
+  label: { es: "Solicita tu piloto gratuito", en: "Request your free pilot" },
+  short: { es: "Piloto gratuito", en: "Free pilot" },
+  line: { es: "Tu agencia usa NuovaSolution sin pagar, con nuestro acompañamiento. Las condiciones, por escrito.", en: "Your agency uses NuovaSolution free of charge, with our support. The terms in writing." },
+  nav: { es: "Piloto", en: "Pilot" },
 };
-export const accessWords: { label: L; line: L; nav: L } = {
-  label: { es: "Pedir acceso", en: "Request access" },
-  line: { es: "Acceso por invitación.", en: "Access by invitation." },
-  nav: { es: "Acceso", en: "Access" },
-};
+/** Kept for the pages that still read it (the app's words); no offer hangs on it any more. */
+export const trialCta: { label: L; line: L } = { label: pilotCta.label, line: pilotCta.line };
+export const accessWords: { label: L; line: L; nav: L } = { label: pilotCta.label, line: pilotCta.line, nav: pilotCta.nav };
 export const trialLive = (view: ClaimView): boolean => live(["trial", "publicSignup"], view);
-export const entryAction = (locale: Locale, view: ClaimView = "public"): { label: string; href: string; line: string; nav: string; kind: "trial" | "access" } =>
-  trialLive(view)
-    ? { label: trialCta.label[locale], href: "/signup", line: trialCta.line[locale], nav: locale === "es" ? "Prueba" : "Trial", kind: "trial" }
-    : { label: accessWords.label[locale], href: "/contact", line: accessWords.line[locale], nav: accessWords.nav[locale], kind: "access" };
+export type EntryKind = "pilot";
+export const entryAction = (locale: Locale, _view: ClaimView = "public"): { label: string; short: string; href: string; line: string; nav: string; kind: EntryKind } =>
+  ({ label: pilotCta.label[locale], short: pilotCta.short[locale], href: "/contact", line: pilotCta.line[locale], nav: pilotCta.nav[locale], kind: "pilot" });

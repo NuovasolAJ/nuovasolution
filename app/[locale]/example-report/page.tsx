@@ -39,7 +39,7 @@ export default function ExampleReportPage({ params }: { params: { locale: string
   const entry = entryAction(locale, s.view);
 
   return (
-    <div data-style="v3" data-view={s.view} data-palette={s.palette} data-display={s.display}>
+    <div data-style="v3" data-view={s.view} data-display={s.display}>
       {!s.live && <PreviewSwitch locale={locale} switches={s} />}
       <main className="container-default pb-[var(--section-feature)] pt-[var(--section-compact)]" data-example-report>
         <div className="max-w-[760px]">
@@ -66,7 +66,7 @@ export default function ExampleReportPage({ params }: { params: { locale: string
         <div className="mt-10 flex flex-col gap-4 rounded-lg border border-line-contour bg-surface-sunken p-6 md:flex-row md:items-center md:justify-between" data-example-cta>
           <div>
             <p className="t-heading-s text-text-primary">{w.ctaTitle}</p>
-            <p className="mt-1 t-body-s text-text-secondary">{entry.kind === "trial" ? w.ctaLine : w.ctaLinePublic}</p>
+            <p className="mt-1 t-body-s text-text-secondary">{w.ctaLinePublic}</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <ButtonLink href={p(entry.href)} size="lg">{entry.label}</ButtonLink>

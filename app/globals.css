@@ -33,11 +33,14 @@
      A (the recommendation, the default) = black, white and a warm bronze/champagne from the hero picture; B = deep bottle green;
      C = near-monochrome, the accent only on active states. Every accent reads at 6.6 : 1 or better on white (today's blue: 6.6 : 1),
      and white type reads on it at the same ratio, so the contrast is at least what it was. */
-  --brand: #8a5a16; /* 07.11. F1: the bronze a little richer, accents only; 5.9 : 1 on white, 5.5 : 1 on ivory */
-  --brand-ink: #5e400f;
-  --brand-wash: #f6f0e4;
-  --brand-line: #e4d5b8;
+  /* 13.11.2026, the owner's decision: colour D, deep Mediterranean blue as the ONE accent (8.3 : 1 on white), bronze only as a hint
+     (--brand-soft, never on buttons, figures or titles); --brand-tint is D for dark grounds (the hero's glass card, the demo's story bar) */
+  --brand: #1f4e8c;
+  --brand-ink: #173a68;
+  --brand-wash: #e9eff8;
+  --brand-line: #c3d2e8;
   --brand-soft: #c9a86a;
+  --brand-tint: #9dbcea;
 
   /* the earlier names stay as aliases of the one accent */
   --champagne-200: var(--brand-line);
@@ -98,8 +101,6 @@
   --section-feature: 88px;
   --reveal-y: 14px;
 }
-:root:has([data-palette="b"]) { --brand: #1e4d3a; --brand-ink: #163a2c; --brand-wash: #e8f0eb; --brand-line: #c5d9cc; --brand-soft: #7fa891; }
-:root:has([data-palette="c"]) { --brand: #141416; --brand-ink: #000000; --brand-wash: #efeff2; --brand-line: #d4d4d9; --brand-soft: #8a8a92; }
 /* the headline face variant (owner point 13; lib/fonts.ts): Fraunces for the display sizes, Inter for everything else */
 :root:has([data-display="fraunces"]) .t-display-xl, :root:has([data-display="fraunces"]) .t-display-l, :root:has([data-display="fraunces"]) .t-display-m, :root:has([data-display="fraunces"]) .hf-h1, :root:has([data-display="fraunces"]) .closing-h2, :root:has([data-display="fraunces"]) .fn-h2, :root:has([data-display="fraunces"]) .fn-title { font-family: var(--font-fraunces), Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -0.012em; }
 :root:has([data-display="fraunces"]) .hf-h1 { font-weight: 400; letter-spacing: -0.016em; }
@@ -589,8 +590,9 @@ html.js .hf-access { animation-delay: 320ms; }
 @keyframes hf-up { from { transform: translateY(14px); opacity: 0; } to { transform: none; opacity: 1; } }
 .hf-ctas { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
 @media (min-width: 640px) { .hf-ctas { flex-direction: row; align-items: center; gap: 16px; } }
-.hf-cta-main { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; padding: 12px 28px; border-radius: 999px; background: #fff; color: var(--ink-950); font-size: 1.0625rem; font-weight: 600; white-space: nowrap; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5); transition: transform var(--motion-micro) var(--ease-standard), background-color var(--motion-micro) var(--ease-standard); }
-.hf-cta-main:hover { background: var(--ivory); transform: translateY(-1px); }
+/* 13.11.: the one black main button, also on the picture (a thin light ring keeps it readable on the dark shade) */
+.hf-cta-main { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; padding: 12px 28px; border-radius: 999px; background: var(--ink-950); color: #fff; font-size: 1.0625rem; font-weight: 600; white-space: nowrap; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.34), 0 14px 34px -12px rgba(0, 0, 0, 0.7); transition: transform var(--motion-micro) var(--ease-standard), background-color var(--motion-micro) var(--ease-standard), box-shadow var(--motion-micro) var(--ease-standard); }
+.hf-cta-main:hover { background: var(--ink-800); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5), 0 16px 36px -12px rgba(0, 0, 0, 0.7); transform: translateY(-1px); }
 .hf-cta-main:active { transform: translateY(0) scale(0.985); }
 .hf-cta-main svg { transition: transform var(--motion-control) var(--ease-out); }
 .hf-cta-main:hover svg { transform: translateX(3px); }
@@ -598,16 +600,18 @@ html.js .hf-access { animation-delay: 320ms; }
 .hf-cta-second:hover { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.7); }
 .hf-cta-main:focus-visible, .hf-cta-second:focus-visible, .hf-pause:focus-visible, .hf-scroll:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .hf-access { margin-top: 16px; font-size: 0.9375rem; line-height: 1.5; color: rgba(248, 246, 241, 0.72); }
-/* the three benefits appear one after another while the film runs (the right column from 1024 px, under the words below) */
-/* quiet lines with a thin check, no pill boxes (06.11., point 13) */
-.hf-benefits { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0; padding: 0; list-style: none; }
-.hf-benefit { display: inline-flex; align-items: center; gap: 10px; min-height: 32px; color: #fff; font-size: 0.9375rem; font-weight: 500; line-height: 1.3; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45); }
-.hf-benefit-mark { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.55); color: var(--brand-soft); flex: none; background: rgba(12, 12, 14, 0.28); }
-html.js .hf-benefit { animation: hf-benefit 520ms var(--ease-out) both; animation-delay: calc(480ms + var(--i, 0) * 260ms); }
+/* 13.11. (the owner's decision): the three sentences stay, on one readable glass card: blurred picture behind, a thin light edge,
+   the check in D's tint; the card rises after the words, the three lines one after another (the right column from 1024 px) */
+.hf-benefits { display: grid; gap: 10px; margin: 0; padding: 16px 18px; list-style: none; width: fit-content; max-width: 100%; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.22); background: rgba(255, 255, 255, 0.1); -webkit-backdrop-filter: blur(18px) saturate(1.3); backdrop-filter: blur(18px) saturate(1.3); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 24px 60px -30px rgba(0, 0, 0, 0.6); }
+.hf-benefit { display: flex; align-items: center; gap: 12px; min-height: 28px; color: #fff; font-size: 0.9375rem; font-weight: 500; line-height: 1.35; }
+.hf-benefit-mark { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.3); color: var(--brand-tint); flex: none; background: rgba(31, 78, 140, 0.45); }
+html.js .hf-benefits { animation: hf-up 560ms var(--ease-out) both; animation-delay: 380ms; }
+html.js .hf-benefit { animation: hf-benefit 520ms var(--ease-out) both; animation-delay: calc(560ms + var(--i, 0) * 180ms); }
 @keyframes hf-benefit { from { transform: translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
 @media (min-width: 1024px) {
-  .hf-content { grid-template-columns: minmax(0, 1fr) minmax(0, 400px); align-items: end; }
-  .hf-benefits { flex-direction: column; align-items: flex-start; gap: 8px; padding-bottom: 10px; }
+  .hf-content { grid-template-columns: minmax(0, 1fr) minmax(0, 420px); align-items: end; }
+  .hf-benefits { justify-self: end; gap: 12px; padding: 20px 22px; margin-bottom: 6px; }
+  .hf-benefit { font-size: 1rem; }
 }
 /* the preview band stands in the flow under the header on a phone: the hero then starts under it, not under the header */
 [data-env] ~ [data-home] .hf { margin-top: 0; }
@@ -622,8 +626,8 @@ header[data-over-film="true"] { background: transparent; backdrop-filter: none; 
 header[data-over-film="true"] .site-logo { filter: invert(1) brightness(0.98); }
 header[data-over-film="true"] nav a, header[data-over-film="true"] nav button, header[data-over-film="true"] [data-session-nav] a { color: rgba(255, 255, 255, 0.86); }
 header[data-over-film="true"] nav a:hover, header[data-over-film="true"] nav button:hover, header[data-over-film="true"] [data-session-nav] a:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }
-header[data-over-film="true"] [data-session-nav] a.header-cta, header[data-over-film="true"] .header-cta { background: #fff; color: var(--ink-950); box-shadow: none; }
-header[data-over-film="true"] [data-session-nav] a.header-cta:hover { background: var(--ivory); color: var(--ink-950); }
+header[data-over-film="true"] [data-session-nav] a.header-cta, header[data-over-film="true"] .header-cta { background: var(--ink-950); color: #fff; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.34); }
+header[data-over-film="true"] [data-session-nav] a.header-cta:hover { background: var(--ink-800); color: #fff; }
 header[data-over-film="true"] [data-language-switcher] a[aria-current="true"] { color: var(--ink-950); }
 header[data-over-film="true"] [data-language-switcher] { border-color: rgba(255, 255, 255, 0.35); }
 header[data-over-film="true"] [data-language-switcher] a, header[data-over-film="true"] [data-language-switcher] button, header[data-over-film="true"] [data-language-switcher] { color: rgba(255, 255, 255, 0.86); }
@@ -640,17 +644,21 @@ header[data-over-film="true"] button[aria-controls][class*="xl:hidden"] { backgr
   .hf-scroll { bottom: 92px; }
 }
 @media (max-width: 1023px) { .hf { min-height: min(92svh, 820px); } .hf-content { gap: 22px; padding-bottom: 150px; } }
-@media (max-width: 639px) { .hf-benefit { font-size: 0.875rem; min-height: 36px; } .hf-content { padding-bottom: 140px; } }
+@media (max-width: 639px) { .hf-benefits { gap: 8px; padding: 12px 14px; border-radius: 14px; } .hf-benefit { font-size: 0.875rem; min-height: 24px; } .hf-benefit-mark { width: 22px; height: 22px; } .hf-content { gap: 20px; padding-bottom: 128px; } }
 /* the hero picture (owner 05.11.: HERO = A): the 3D lane's 4K render in three widths, a slow drift of 24 s; still with reduced motion */
 .hf-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; transform-origin: 55% 50%; }
 html.js .hf-image { animation: hf-drift 24s ease-in-out infinite alternate; }
+/* 13.11.: the fallback when the browser refuses autoplay (iOS Low Power, Save-Data): the still picture carries the motion, a little
+   livelier (Ken Burns); while the loop plays, the picture under it rests */
+.hf-media:has(.hf-video[data-hero-video-state="blocked"]) .hf-image, .hf-media:has(.hf-video[data-hero-video-state="error"]) .hf-image { animation-duration: 16s; }
+.hf-media:has(.hf-video[data-hero-video-state="playing"]) .hf-image { animation-play-state: paused; }
 @keyframes hf-drift { from { transform: scale(1); } to { transform: scale(1.06); } }
 .hf-mark { position: absolute; z-index: 2; right: var(--gutter); bottom: 118px; font-size: 0.8125rem; color: rgba(248, 246, 241, 0.72); }
 @media (max-width: 1023px) { .hf-mark { bottom: 132px; } }
 /* reduced motion: the picture stands, the words stand */
 @media (prefers-reduced-motion: reduce) {
   html.js .hf-image { animation: none; }
-  html.js .hf-word > span, html.js .hf-lead, html.js .hf-ctas, html.js .hf-access, html.js .hf-eyebrow, html.js .hf-benefit, html.js .hf-scroll { animation: none; }
+  html.js .hf-word > span, html.js .hf-lead, html.js .hf-ctas, html.js .hf-access, html.js .hf-eyebrow, html.js .hf-benefits, html.js .hf-benefit, html.js .hf-scroll { animation: none; }
   html.js .hf { --brand-moment: 0ms; }
   html.js .hf-brand { display: none; }
   html[data-brand-moment] header [data-site-logo] { opacity: 1; }
@@ -680,7 +688,8 @@ html.js .hf-image { animation: hf-drift 24s ease-in-out infinite alternate; }
 .demo-tab-on, .demo-tab-on:hover { background: var(--ink-950); border-color: var(--ink-950); color: var(--ivory); transform: none; box-shadow: none; }
 .demo-tab[data-demo-tab="whatsapp"] svg { color: var(--channel-whatsapp); }
 .demo-tab-on[data-demo-tab="whatsapp"] svg { color: #8fd3a8; }
-.demo-tab-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--brand-soft); transform-origin: left; transform: scaleX(0); animation: demo-tab-bar var(--run, 10s) linear forwards; }
+.demo-tab-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--brand-tint); transform-origin: left; transform: scaleX(0); animation: demo-tab-bar var(--run, 10s) linear forwards; }
+@media (prefers-reduced-motion: reduce) { .demo-tab-bar { display: none; } }
 @keyframes demo-tab-bar { to { transform: scaleX(1); } }
 @media (max-width: 639px) { .demo-tab { min-height: 48px; padding: 8px 16px; font-size: 0.9375rem; } .demo-invite { font-size: 0.9375rem; } }
 .demo-replay { display: inline-flex; align-items: center; gap: 8px; min-height: 32px; margin-right: -8px; padding: 4px 10px; border-radius: 999px; font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); transition: color var(--motion-micro) var(--ease-standard), background-color var(--motion-micro) var(--ease-standard), transform var(--motion-micro) var(--ease-standard); }
@@ -1192,8 +1201,8 @@ html:not(.js) .mrise { opacity: 1 !important; transform: none !important; }
 .plans-icon { background: var(--paper); box-shadow: inset 0 0 0 1px var(--ink-200); }
 .plans-cta { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; margin-top: 18px; padding: 10px 20px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--surface-raised); color: var(--text-primary); font-size: 0.9375rem; font-weight: 600; transition: background-color var(--motion-micro) var(--ease-standard), border-color var(--motion-micro) var(--ease-standard), transform var(--motion-micro) var(--ease-standard); }
 .plans-cta:hover { border-color: var(--border-interactive); background: var(--surface-hover); transform: translateY(-1px); }
-.plans-cta-main { background: var(--brand); border-color: var(--brand); color: #fff; }
-.plans-cta-main:hover { background: var(--brand-ink); border-color: var(--brand-ink); }
+.plans-cta-main { background: var(--ink-950); border-color: var(--ink-950); color: #fff; }
+.plans-cta-main:hover { background: var(--ink-800); border-color: var(--ink-800); }
 .plans-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 16px; }
 @media (min-width: 1024px) {
   .plans-cards { display: none; }
@@ -1231,8 +1240,8 @@ html:not(.js) .mrise { opacity: 1 !important; transform: none !important; }
 .trust-step { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 14px; padding: 14px 18px; border-radius: 18px; background: var(--ink-950); color: var(--ivory); font-size: 1.0625rem; line-height: 1.45; }
 .trust-step-no { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 999px; background: var(--brand); color: #fff; font-size: 0.875rem; font-weight: 600; }
 .trust-entry { display: grid; gap: 8px; margin-top: 20px; justify-items: start; }
-.trust-entry-cta { display: inline-flex; align-items: center; gap: 8px; min-height: 52px; padding: 12px 24px; border-radius: 999px; background: var(--brand); color: #fff; font-size: 1.0625rem; font-weight: 600; transition: background-color var(--motion-micro) var(--ease-standard), transform var(--motion-micro) var(--ease-standard); }
-.trust-entry-cta:hover { background: var(--brand-ink); transform: translateY(-1px); }
+.trust-entry-cta { display: inline-flex; align-items: center; gap: 8px; min-height: 52px; padding: 12px 24px; border-radius: 999px; background: var(--ink-950); color: #fff; font-size: 1.0625rem; font-weight: 600; transition: background-color var(--motion-micro) var(--ease-standard), transform var(--motion-micro) var(--ease-standard); }
+.trust-entry-cta:hover { background: var(--ink-800); transform: translateY(-1px); }
 .trust-entry-line { font-size: 0.9375rem; color: var(--text-secondary); }
 .faqs-all { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 1rem; font-weight: 600; color: var(--text-primary); text-decoration: underline; text-decoration-color: var(--ink-300); text-underline-offset: 5px; }
 .faqs-all:hover { text-decoration-color: var(--ink-950); }
@@ -1532,10 +1541,7 @@ html.js .ch-scenes-static { display: none; }
 .behind-cta:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
 @media (min-width: 1024px) { .behind { padding-top: 96px; padding-bottom: 96px; } .behind-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 64px; align-items: start; } .behind-facts { padding-top: 44px; } }
 
-/* P4 the two colour proposals (the owner picks, then the switch goes): D deep Mediterranean blue + bronze, E emerald + sand */
-:root:has([data-palette="d"]) { --brand: #1f4e8c; --brand-ink: #173a68; --brand-wash: #e9eff8; --brand-line: #c3d2e8; --brand-soft: #c9a86a; }
-:root:has([data-palette="e"]) { --brand: #1b6b4a; --brand-ink: #134d35; --brand-wash: #e7f1ec; --brand-line: #bcd8c8; --brand-soft: #d8c9a3; }
-:root:has([data-palette="e"]) .rep, :root:has([data-palette="e"]) .plans { --ground: #f3efe6; }
+/* 13.11.: the palette switch is gone; D stands in :root as the one accent */
 
 /* H1 the hero video on the phone: the portrait crop keeps the painting and the sofa */
 @media (max-width: 639px) { .hf-video, .hf-image { object-position: 58% 50%; } }
@@ -1554,7 +1560,7 @@ html.js .ch-scenes-static { display: none; }
 @keyframes demo-nudge { 0%, 100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); } 40% { box-shadow: 0 0 0 4px var(--brand-wash); border-color: var(--brand); } }
 @media (prefers-reduced-motion: reduce) { .demo-tab { animation: none !important; } }
 /* H4 about forty percent less text on the phone: the secondary lines stand only from 640 px; details stay one tap away */
-@media (max-width: 639px) { .m-hide { display: none !important; } .hf-benefits { display: none; } }
+@media (max-width: 639px) { .m-hide { display: none !important; } }
 /* P6 the e-mail demo's sender avatar is the mark, not a letter */
 .demo-avatar-agency { background: var(--ink-950); color: #fff; }
 .demo-avatar-agency svg { display: block; }

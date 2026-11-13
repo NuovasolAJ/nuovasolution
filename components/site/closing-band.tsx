@@ -36,11 +36,8 @@ export function ClosingBand({
             <Display size="l" id={id} className="mx-auto max-w-[20ch]">{d.home.closing.h2}</Display>
             <CtaRow align="center" className="mt-10">
               <ButtonLink href={p(entry.href)} size="lg">{entry.label}</ButtonLink>
-              {secondary === "demo" ? (
-                <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
-              ) : (
-                <ButtonLink href={p("/platform")} size="lg" variant="secondary">{d.common.explorePlatform}</ButtonLink>
-              )}
+              {/* 13.11. (Copy 1113 §0): one offer — the former second button "demo" would repeat the pilot button, so only the platform link stays as a second */}
+              {secondary !== "demo" && <ButtonLink href={p("/platform")} size="lg" variant="secondary">{d.common.explorePlatform}</ButtonLink>}
             </CtaRow>
             {caption && <p className="mt-4 t-caption text-text-muted">{caption}</p>}
           </Reveal>

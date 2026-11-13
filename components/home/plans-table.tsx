@@ -37,14 +37,14 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
   const codes = w.codes as unknown as PlanCode[];
   const who = w.lines(locale, view);
   const groups = l(w.groups);
-  const contact = localePath(locale, "/contact");
   const entry = entryAction(locale, view);
   const hi = (code: PlanCode) => code === w.highlight.plan;
   const rows = w.rows.filter((r) => planRowShown(r.key, view));
   const groupRows = (gi: number) => rows.filter((r) => r.g === gi);
   const name = (r: (typeof w.rows)[number]) => w.rowName(r.name, locale, view);
   const table = plansTableShown(view);
-  const action = (code: PlanCode) => (code === "essential" && entry.kind === "trial" ? { href: localePath(locale, entry.href), label: entry.label, main: true } : { href: contact, label: l(w.ctaProposal), main: hi(code) });
+  // Copy 1113 §6: the one button in every column (B-1); the lifted plan carries "Recomendado"
+  const action = (_code: PlanCode) => ({ href: localePath(locale, entry.href), label: entry.label, main: true });
 
   if (!table) {
     // P-5: no plan names, no table — one block "Qué incluye"
@@ -89,6 +89,7 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
               <div className="plans-cell plans-cell-name" role="columnheader" />
               {names.map((n, i) => (
                 <div key={n} className={cn("plans-cell plans-cell-plan", hi(codes[i]) && "is-highlight")} role="columnheader" data-plan={codes[i]}>
+                  {hi(codes[i]) && <span className="plans-reco" data-plan-reco>{l(w.recommended)}</span>}
                   <span className="plans-name">{n}</span>
                   <span className="plans-who">{who[i]}</span>
                 </div>
@@ -128,6 +129,7 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
               const a = action(codes[pi]);
               return (
                 <li key={n} className={cn("plans-card", hi(codes[pi]) && "is-highlight")} data-plan-card={codes[pi]}>
+                  {hi(codes[pi]) && <p className="plans-reco" data-plan-reco>{l(w.recommended)}</p>}
                   <p className="plans-name">{n}</p>
                   <p className="plans-who">{who[pi]}</p>
                   {groups.map((g, gi) => groupRows(gi).length === 0 ? null : (

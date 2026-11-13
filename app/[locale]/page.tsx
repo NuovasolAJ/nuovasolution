@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { isLocale, type Locale } from "@/lib/i18n/config";
+import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { HOME_V3_WORKING_TEXT } from "@/lib/content/home-v3";
 import { live } from "@/lib/claims";
@@ -44,7 +44,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
   const locale = params.locale as Locale;
   const s = resolveSwitches();
   return (
-    <div data-style="v3" data-working-text={HOME_V3_WORKING_TEXT ? "true" : undefined} data-home="1103" data-view={s.view} data-palette={s.palette} data-display={s.display}>
+    <div data-style="v3" data-working-text={HOME_V3_WORKING_TEXT ? "true" : undefined} data-home="1103" data-view={s.view} data-display={s.display}>
       {!s.live && <PreviewSwitch locale={locale} switches={s} />}
       <Motion>
         <Hero locale={locale} view={s.view} />
@@ -55,8 +55,8 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         <PlansTable locale={locale} view={s.view} />
         <TrustFaqClose locale={locale} view={s.view} />
       </Motion>
-      {/* A3 (07.11.): the phone's fixed bar with the main action (the hero's label and target) */}
-      <MobileCta href="#demo" label={home1103.hero.ctaDemo[locale]} />
+      {/* A3 (07.11.): the phone's fixed bar with the one main action; 13.11.: the pilot request (Copy 1113 §0 B-1), like the hero's button */}
+      <MobileCta href={localePath(locale, "/contact")} label={home1103.hero.ctaDemo[locale]} />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, ty
 import { ArrowRight, Check, ChevronDown, Inbox, Mail, Mic, PanelsTopLeft, Phone, PhoneOff, RotateCcw, Send, Star } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
-import { demoChannels, demoWords, endPhase, recordStart, type DemoChannel, type DemoChannelKey } from "@/lib/content/home-demo";
+import { demoChannels, demoWords, endPhase, recordStart, runLength, type DemoChannel, type DemoChannelKey } from "@/lib/content/home-demo";
 import { shows, type ClaimView } from "@/lib/claims";
 import { Mark } from "@/components/ui/mark";
 import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
@@ -18,14 +18,18 @@ import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
  * the first paint. JavaScript only advances the phase on a few timers once the surface is in view. Without JavaScript and with
  * reduced motion the finished picture stands at once (CSS), and the replay control is hidden.
  *
- * The channel selector is a native tablist (icon and full name, a filled active state, arrow keys). The owner's point 4 of
- * 06.11.: the tabs are visibly clickable (larger, a clear hover, Copy's invitation above them) and change on their own after each
- * run with a progress bar on the active tab, until the first click or key press stops the rotation. The public view shows only the
+ * The channel selector is a native tablist (icon and full name, a filled active state, arrow keys). The owner's master prompt of
+ * 13.11. (§6.2) orders the auto-run back (the Reviewer's A-10 is withdrawn, REVIEWER_MASTERPROMPT_CHECK_1113 A-6/D): once a run has
+ * finished, the demonstration pauses, then moves to the next channel of the view, a story bar on the active tab showing how far the
+ * run is. The three conditions the Reviewer checks: a click or a key stops the rotation for good; it never advances while the
+ * surface is out of view; with reduced motion there is no rotation (the finished picture stands). The public view shows only the
  * channels that are included (lib/claims.ts); no mark and no status word stands on any surface (points 5 and "coming soon").
  */
 // H3 (09.11.): the real WhatsApp mark on its tab; the other channels keep their line icons
 const ICON: Record<DemoChannelKey, ElementType> = { whatsapp: WhatsAppMark, email: Mail, webform: PanelsTopLeft, phone: Phone };
 const REDUCE = "(prefers-reduced-motion: reduce)";
+/** The pause between a finished run and the next channel (the visitor reads the record first). */
+const PAUSE = 2800;
 const at = (n: number, extra?: CSSProperties): CSSProperties => ({ ["--at" as string]: n, ...extra });
 
 /** An item of the sequence: appears in its phase; `fresh` flashes the moment it has just arrived. */
@@ -44,7 +48,10 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
   const channels = demoChannels.filter((c) => shows(c.claim, view));
   const [channel, setChannel] = useState<DemoChannelKey>("whatsapp");
   const [phase, setPhase] = useState(0);
-  // no rotation (the owner's decision F-3 / C4 of 07.11.): the channel changes only by a person's click or key
+  // the auto-run (13.11.): on until the first click or key, never while out of view, never with reduced motion
+  const [auto, setAuto] = useState(true);
+  const [seen, setSeen] = useState(false);
+  const [runNo, setRunNo] = useState(0);
   const inView = useRef(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
@@ -57,9 +64,10 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
 
   const clear = () => { for (const t of timers.current) window.clearTimeout(t); timers.current = []; };
 
-  /** Runs the chosen channel's sequence from its first phase; with reduced motion the end state is set at once. No rotation (F-3 / C4, 07.11.). */
+  /** Runs the chosen channel's sequence from its first phase; with reduced motion the end state is set at once. */
   const run = useCallback((c: DemoChannel) => {
     clear();
+    setRunNo((n) => n + 1);
     if (window.matchMedia(REDUCE).matches) { setPhase(endPhase(c)); return; }
     setPhase(0);
     let t = 0;
@@ -70,13 +78,14 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
     });
   }, []);
 
-  // The first run starts when the surface is in view.
+  // The first run starts when the surface is in view; `seen` follows the surface in and out of view for the rotation.
   useEffect(() => {
     const el = rootRef.current;
     if (!el) return;
-    if (window.matchMedia(REDUCE).matches) { setPhase(endPhase(script)); started.current = true; return; }
+    if (window.matchMedia(REDUCE).matches) { setPhase(endPhase(script)); started.current = true; setAuto(false); return; }
     const io = new IntersectionObserver((entries) => {
       inView.current = entries.some((e) => e.isIntersecting);
+      setSeen(inView.current);
       if (started.current || !inView.current) return;
       started.current = true;
       run(script);
@@ -86,10 +95,27 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // "Ver la demo" (the hero's main action and the header's button) runs the demonstration again.
+  /** The person took over: the rotation ends for good (the Reviewer's condition: a click stops). */
+  const stopAuto = () => setAuto(false);
+
+  // The rotation: a finished run, the surface in view, nobody has clicked → after the pause the next channel of the view.
   useEffect(() => {
-    const ctas = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-hero-cta=\"demo\"], [data-demo-run]"));
-    const onClick = () => { started.current = true; inView.current = true; run(script); };
+    if (!auto || !done || !seen || channels.length < 2) return;
+    const t = window.setTimeout(() => {
+      if (!inView.current) return;
+      const keys = channels.map((c) => c.key);
+      const next = keys[(keys.indexOf(channel) + 1) % keys.length];
+      setChannel(next);
+      run(channels.find((x) => x.key === next) as DemoChannel);
+    }, PAUSE);
+    return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auto, done, seen, channel]);
+
+  // The demonstration's own run links ([data-demo-run]) run it again; the person took over.
+  useEffect(() => {
+    const ctas = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-demo-run]"));
+    const onClick = () => { started.current = true; inView.current = true; setAuto(false); run(script); };
     for (const c of ctas) c.addEventListener("click", onClick);
     return () => { for (const c of ctas) c.removeEventListener("click", onClick); };
   }, [run, script]);
@@ -97,6 +123,7 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
   useEffect(() => clear, []);
 
   const choose = (key: DemoChannelKey) => {
+    stopAuto();
     if (key === channel) return;
     const c = channels.find((x) => x.key === key) as DemoChannel;
     setChannel(key);
@@ -132,7 +159,7 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
       data-demo-channel={channel}
       data-demo-phase={phase}
       data-demo-done={done ? "true" : "false"}
-      data-demo-auto="false"
+      data-demo-auto={auto ? "true" : "false"}
       data-demo-view={view}
       style={{ ["--phase" as string]: phase, ["--end" as string]: end }}
       aria-label={l(W.surfaceLabel)}
@@ -142,7 +169,7 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
       <div className="demo-bar">
         <div className="demo-bar-top">
           <p id={`${id}-pick`} className="demo-pick-label" data-demo-invite>{channels.length > 1 ? <><span className="demo-pick-word">{l(W.pick)}</span><span className="demo-invite">{l(W.invite)}</span></> : <span className="demo-invite">{l(W.surfaceLabel)}</span>}</p>
-          <button type="button" className="demo-replay" data-demo-replay onClick={() => { started.current = true; inView.current = true; run(script); }}>
+          <button type="button" className="demo-replay" data-demo-replay onClick={() => { stopAuto(); started.current = true; inView.current = true; run(script); }}>
             <RotateCcw size={14} strokeWidth={2.2} aria-hidden="true" />
             {l(W.replay)}
           </button>
@@ -155,6 +182,8 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
               <button key={c.key} type="button" role="tab" id={`${id}-tab-${c.key}`} aria-selected={on} aria-controls={panelId} tabIndex={on ? 0 : -1} onClick={() => choose(c.key)} className={cn("demo-tab", on && "demo-tab-on")} data-demo-tab={c.key}>
                 <Icon size={18} strokeWidth={2} aria-hidden="true" />
                 <span>{l(c.name)}</span>
+                {/* the story bar: fills over the run and the pause while the rotation is on (CSS hides it with reduced motion) */}
+                {on && auto && started.current && <span key={runNo} className="demo-tab-bar" style={{ ["--run" as string]: `${runLength(c) + PAUSE}ms` }} aria-hidden="true" data-demo-story-bar />}
               </button>
             );
           })}

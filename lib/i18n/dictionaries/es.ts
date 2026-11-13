@@ -57,10 +57,10 @@ export const es: Dictionary = {
     language: "Idioma",
     english: "English",
     spanish: "Español",
-    bookDemo: "Solicitar una demo",
+    bookDemo: "Solicita tu piloto gratuito", // Copy 1113 §0 B-1 (owner 13.11.: one offer)
     startFree: "Pedir acceso", // Copy 1102 v2 C-8 (claims lines 02.11.: no public sign-up promise): every former "Probar gratis" button
-    seeDemo: "Solicitar una demo", // Copy 1108 H-1 (fallback wording: no real booking page yet); owner review 02.11.: the header's one general button)
-    tryFree: "Prueba gratis durante 14 días", // Copy 1105 v3 V-40 (hangs on trial + publicSignup)
+    seeDemo: "Solicita tu piloto gratuito", // Copy 1113 §0 B-1: the header's one black button
+    tryFree: "Solicita tu piloto gratuito", // Copy 1113 §6: no "14 días" anywhere
     noPayment: "Sin método de pago.",
     noSalesCall: "Sin llamada comercial.",
     readModule: "Ver el módulo",

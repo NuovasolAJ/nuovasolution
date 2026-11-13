@@ -30,11 +30,12 @@ export const home1103 = {
     h1: T("Mientras enseñas, NuovaSolution atiende.", "While you show a home, NuovaSolution answers."),
     // §2 H-4 (the benefit line), unchanged
     lead: T("Tus clientes reciben respuesta aunque estés en una visita, y lo que piden te espera ordenado en su ficha.", "Your clients get a reply even while you are at a viewing, and what they ask for is waiting for you on their record."),
-    // Copy 1108 H-1: "Reservar una demo" only with a real booking page; cal.com/nuovasolution/demo answers "This page could not be found"
-    // (checked 09.11.), so the fallback wording leads to /contact
-    ctaDemo: T("Solicitar una demo", "Request a demo"),
-    /** Copy 1108 H-3 / P-1: the line under the hero's action, both views; replaces the trial and the access lines there. */
-    pilotLine: T("Piloto gratuito · precio en la demo", "Free pilot · pricing in the demo"),
+    // The owner's decision of 13.11. + Copy 1113 §0 B-1: the one main button of the whole site (WORKING until Copy confirms the wording)
+    ctaDemo: T("Solicita tu piloto gratuito", "Request your free pilot"),
+    /** Copy 1113 §0 B-2: the pilot line under the hero's button, both views. */
+    pilotLine: T("Tu agencia usa NuovaSolution sin pagar, con nuestro acompañamiento. Las condiciones, por escrito.", "Your agency uses NuovaSolution free of charge, with our support. The terms in writing."),
+    /** Copy 1113 §1 S-1: the pain line under the hero, with its mark (S-1m); the figures are the example report's (9 = 2 + 2 + 5 of 25). */
+    pain: { before: T("En una semana de ejemplo, ", "In an example week, "), figure: T("9 de 25", "9 of 25"), after: T(" consultas llegaron con la oficina cerrada. ¿Quién les contestó?", " enquiries arrived while the office was closed. Who answered them?"), mark: T("Ejemplo con datos ficticios", "Example with fictional data") },
     /** §16 H-1 … H-3: the chips per view (chip 1 stays word for word, FRAGE B). */
     chips: (view: ClaimView): L[] => [
       byKey("replyOutOfHours", view, T("Responde en español, también fuera de horario", "Replies in Spanish, also out of hours"), T("Responde en español", "Replies in Spanish")),
@@ -382,8 +383,9 @@ export const home1103 = {
     h2: T("Planes", "Plans"),
     /** P-1: the intro (target); the public wording with `plans` off is the block "Qué incluye" (P-5). */
     // Copy 1108 P-2 (target: the table shows; public: the short line alone)
-    lead: T("Piloto gratuito · precio en la demo. Te explicamos qué plan encaja con tu agencia y su precio antes de acordar nada.", "Free pilot · pricing in the demo. We explain which plan fits your agency, and its price, before anything is agreed."),
-    leadPublic: T("Piloto gratuito · precio en la demo.", "Free pilot · pricing in the demo."),
+    // 13.11.: "precio en la demo" leaves with the demo offer (Copy 1113 §0); the rest of Copy's P-2 sentence stays
+    lead: T("Te explicamos qué plan encaja con tu agencia y su precio antes de acordar nada.", "We explain which plan fits your agency, and its price, before anything is agreed."),
+    leadPublic: T("Te decimos el precio para tu agencia antes de acordar nada.", "We tell you the price for your agency before anything is agreed."),
     names: ["Essential", "Growth", "Enterprise"],
     codes: ["essential", "growth", "enterprise"] as const,
     /** §9 the positioning lines; P-6/P-7: Growth and Enterprise name only the parts that are on. */
@@ -402,6 +404,8 @@ export const home1103 = {
     /** P-2/P-3: the actions. */
     ctaProposal: T("Solicita una propuesta", "Request a proposal"),
     highlight: { plan: "growth" },
+    /** Copy 1113 §6: the badge on the lifted plan. */
+    recommended: T("Recomendado", "Recommended"),
     groups: { es: ["Canales", "CRM", "Equipo", "Informes", "Integraciones", "Servicios"], en: ["Channels", "CRM", "Team", "Reporting", "Integrations", "Services"] },
     rows: [
       { g: 0, icon: "reply", key: "replyWhatsapp" as ClaimKey, name: T("Respuestas en español por ⟦canales⟧", "Replies in Spanish on ⟦canales⟧") },
@@ -430,19 +434,21 @@ export const home1103 = {
     included: { h2: T("Qué incluye", "What's included"), h2Page: T("Qué incluye NuovaSolution", "What NuovaSolution includes"), leadPage: T("Acceso por invitación. Te decimos el precio para tu agencia antes de acordar nada.", "Access by invitation. We tell you the price for your agency before anything is agreed.") },
   },
 
-  /** §20: the way in (14 days in 3 steps) and its public form; §10.1 + §13 N-1: the trust lines. */
+  /** Copy 1113 §6: the way in — the free pilot in 3 steps, both views (step 3 follows `mailboxConnection`); §10.1 + §13 N-1: the trust lines. */
   entry: {
-    title: T("14 días gratis, en 3 pasos", "14 days free, in 3 steps"),
-    titlePublic: T("Cómo empezar", "How to start"),
-    steps: {
-      es: [{ b: "Crea tu cuenta.", t: "Tu nombre, tu email de trabajo y una contraseña." }, { b: "Configura tu agencia.", t: "Tus datos, tu logo y tu equipo, a tu ritmo." }, { b: "Conectamos tu buzón contigo.", t: "Lo hacemos juntos y lo probamos con un mensaje real." }],
-      en: [{ b: "Create your account.", t: "Your name, your work e-mail and a password." }, { b: "Set up your agency.", t: "Your details, your logo and your team, at your own pace." }, { b: "We connect your mailbox with you.", t: "We do it together and test it with a real message." }],
+    title: T("Piloto gratuito, en 3 pasos", "Free pilot, in 3 steps"),
+    titlePublic: T("Piloto gratuito, en 3 pasos", "Free pilot, in 3 steps"),
+    steps: (locale: Locale, view: ClaimView): { b: string; t: string }[] => {
+      const s = {
+        es: [{ b: "Solicita tu piloto.", t: "Hablamos contigo, te enseñamos el sistema y vemos si encaja." }, { b: "Preparamos tu agencia contigo.", t: "Tus datos y tu equipo." }],
+        en: [{ b: "Request your pilot.", t: "We talk with you, show you the system and see whether it fits." }, { b: "We set up your agency with you.", t: "Your details and your team." }],
+      }[locale];
+      const third = live("mailboxConnection", view)
+        ? { es: { b: "Conectamos tu buzón contigo.", t: "Lo hacemos juntos y lo probamos con un mensaje real." }, en: { b: "We connect your mailbox with you.", t: "We do it together and test it with a real message." } }
+        : { es: { b: "Empiezas el piloto.", t: "Antes, te confirmamos por escrito qué está activo." }, en: { b: "You start the pilot.", t: "Before that, we confirm in writing what is active." } };
+      return [...s, third[locale]];
     },
-    stepsPublic: {
-      es: [{ b: "Pides acceso.", t: "" }, { b: "Te enseñamos el sistema.", t: "" }],
-      en: [{ b: "You request access.", t: "" }, { b: "We show you the system.", t: "" }],
-    },
-    line: T("Los 14 días empiezan cuando tu agencia está lista. Sin método de pago y sin renovación automática.", "The 14 days start when your agency is ready. No payment method and no automatic renewal."),
+    line: T("Sin método de pago. Las condiciones del piloto, por escrito.", "No payment method. The pilot's terms in writing."),
     small: T("Te decimos antes de empezar si tu buzón ya se puede conectar.", "We tell you before you start whether your mailbox can be connected yet."),
   },
   trust: {
@@ -472,7 +478,8 @@ export const home1103 = {
         { q: T("¿En qué idiomas responde?", "Which languages does it answer in?"), a: byKey("languageNoted", view, T("En español. Detecta el idioma de cada consulta; en otro idioma no se envía nada automáticamente.", "Spanish. It detects each enquiry's language; in another language nothing is sent automatically."), T("En español.", "Spanish.")) },
         { q: T("¿Sabe el cliente que responde un asistente?", "Does the customer know an assistant is answering?"), a: T("Sí. Cada respuesta automática lo indica.", "Yes. Every automatic reply says so.") },
         { q: T("¿Avisa a mi equipo?", "Does it alert my team?"), a: live("alert", view) ? T("Sí. Cuando una consulta es importante, avisa por email a la persona que toca, con el motivo.", "Yes. When an enquiry is important, it alerts the right person by e-mail, with the reason.") : null },
-        { q: T("¿Cómo empiezo?", "How do I start?"), a: byKey(["trial", "publicSignup", "mailboxConnection"], view, T("Pruébalo gratis 14 días, sin método de pago: creas tu cuenta, configuras tu agencia y conectamos tu buzón contigo.", "Try it free for 14 days, with no payment method: you create your account, set up your agency and we connect your mailbox with you."), T("Por invitación: pide acceso y te enseñamos el sistema.", "By invitation: request access and we will show you the system.")) },
+        // Copy 1113 §6: the free pilot, both views
+        { q: T("¿Cómo empiezo?", "How do I start?"), a: T("Solicita tu piloto gratuito. Hablamos contigo, te enseñamos el sistema y, si encaja, preparamos tu agencia contigo.", "Request your free pilot. We talk with you, show you the system and, if it fits, set up your agency with you.") },
         { q: T("¿Funciona con mi CRM?", "Does it work with my CRM?"), a: byKey("integrations", view, T("Incluye un CRM. También se conecta con HubSpot, Pipedrive, Zoho y Salesforce.", "It includes a CRM. It also connects to HubSpot, Pipedrive, Zoho and Salesforce."), T("Incluye un CRM.", "It includes a CRM.")) },
         // Copy 1108 P-4
         { q: T("¿Cuánto cuesta?", "What does it cost?"), a: T("El piloto es gratuito. El precio para después del piloto te lo explicamos en la demo, antes de acordar nada.", "The pilot is free. We explain the price for after the pilot in the demo, before anything is agreed.") },
@@ -485,7 +492,7 @@ export const home1103 = {
   close: {
     h2: T("Mira cómo NuovaSolution atiende tus consultas", "See how NuovaSolution answers your enquiries"),
     line: (view: ClaimView): L => byKey("mailboxConnection", view, T("Te enseñamos la demo con tus canales y respondemos tus preguntas.", "We show you the demo with your channels and answer your questions."), T("Te enseñamos la demo y respondemos tus preguntas.", "We show you the demo and answer your questions.")),
-    ctaDemo: T("Solicitar una demo", "Request a demo"), // Copy 1108 H-1 (the fallback wording; "demo" only on the request button)
+    ctaDemo: T("Solicita tu piloto gratuito", "Request your free pilot"), // Copy 1113 §0 B-1 (13.11.)
   },
 
   /** Copy 1108 §3: the block "Quién está detrás" — the same text in both views; the holder's name is filled from the environment at build time, never committed. */
@@ -501,7 +508,7 @@ export const home1103 = {
       T("La base de datos está en la Unión Europea (Fráncfort).", "The database is in the European Union (Frankfurt)."),
       T("Cada respuesta automática indica que la escribe un asistente.", "Every automatic reply says that an assistant wrote it."),
     ],
-    cta: T("Solicitar una demo", "Request a demo"),
+    cta: T("Solicita tu piloto gratuito", "Request your free pilot"), // Copy 1113 §0 B-1 (13.11.)
   },
 
   /** The three areas (the owner's P3 of 09.11.): the chapters side by side; the control words are WORKING for Copy (T-13). */

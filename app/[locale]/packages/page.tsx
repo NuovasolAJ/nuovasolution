@@ -10,7 +10,7 @@ import { Motion } from "@/components/ui/motion";
 import { PlansTable } from "@/components/home/plans-table";
 import { PreviewSwitch } from "@/components/site/preview-switch";
 import { resolveSwitches } from "@/lib/view";
-import { entryAction, live, plansTableShown, trialCta } from "@/lib/claims";
+import { entryAction, live, plansTableShown } from "@/lib/claims";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   if (!isLocale(params.locale)) return {};
@@ -28,7 +28,7 @@ export default function PackagesPage({ params }: { params: { locale: string } })
   const locale = params.locale as Locale;
   const s = resolveSwitches();
   const entry = entryAction(locale, s.view);
-  const trial = entry.kind === "trial";
+  const trial = false; // 13.11. (Copy 1113 §6): no trial offer on any page; the pilot is the one offer
   const table = plansTableShown(s.view);
   const d = getDictionary(locale);
   const pk = d.packages;
@@ -37,7 +37,7 @@ export default function PackagesPage({ params }: { params: { locale: string } })
   const c = home1103.close;
 
   return (
-    <div data-style="v3" data-view={s.view} data-palette={s.palette} data-display={s.display}>
+    <div data-style="v3" data-view={s.view} data-display={s.display}>
       {!s.live && <PreviewSwitch locale={locale} switches={s} />}
       <section aria-labelledby="pk-h1" className="pb-[var(--section-compact)] pt-[var(--section-compact)] xl:pt-[var(--section-default)]">
         <div className="container-default">
@@ -108,7 +108,7 @@ export default function PackagesPage({ params }: { params: { locale: string } })
               <ButtonLink href={`${localePath(locale)}#demo`} size="lg">{l(c.ctaDemo)}</ButtonLink>
               <ButtonLink href={p(entry.href)} size="lg" variant="secondary">{entry.label}</ButtonLink>
             </CtaRow>
-            <Caption className="mt-4">{entry.kind === "trial" ? trialCta.line[locale] : entry.line}</Caption>
+            <Caption className="mt-4">{entry.line}</Caption>
           </div>
         </div>
       </section>

@@ -63,10 +63,10 @@ export const en = {
     english: "English",
     spanish: "Español",
     // LAUNCH_COPY_v1 §7.1: "Book a demo" only after the Reviewer's test booking (DEMO_PATH = PASS).
-    bookDemo: "Request a demo",
+    bookDemo: "Request your free pilot", // Copy 1113 §0 B-1 (owner 13.11.: one offer)
     startFree: "Request access", // Copy 1102 v2 C-8
-    seeDemo: "Request a demo", // Copy 1108 H-1 (fallback wording: no real booking page yet); owner review 02.11.
-    tryFree: "Try it free for 14 days", // Copy 1105 v3 V-40
+    seeDemo: "Request your free pilot", // Copy 1113 §0 B-1: the header's one black button
+    tryFree: "Request your free pilot", // Copy 1113 §6: no "14 days" anywhere
     noPayment: "No payment method required.",
     noSalesCall: "No sales call required.",
     readModule: "Read the module",
