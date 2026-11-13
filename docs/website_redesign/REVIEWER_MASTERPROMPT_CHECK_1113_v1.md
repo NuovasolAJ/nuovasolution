@@ -165,6 +165,29 @@ Dazu, aus Owner-Regel „nichts wird schlechter": meine bestandenen Zeilen vom 0
   - **nichts Falsches:** keine Aussage über eine Funktion, die `lib/claims.ts` nicht als enthalten führt — gemessen über **jede** Route, auch die Modulseiten (das war am 07.11. meine eigene Lücke, F-6); kein Bereitschaftswort; kein Verbindungsversprechen; das Angebot „Piloto gratuito" nur so, wie der Funktionsstand es trägt.
   - **kein Loch:** kein leerer Abschnitt, keine Überschrift ohne Inhalt, keine Karte ohne Zeilen, kein Knopf ins Leere, keine Route, die 404 oder auf eine leere Seite führt. Wo etwas ausgeblendet wird, schließt sich der Rhythmus.
 
+### D-7 Von Copy beantwortet (13.11., `90ceca0`, von mir im Repo nachgelesen) — B-7 und B-4 sind geschlossen
+
+**B-7, das öffentliche Angebot.** In **beiden** Sichten dasselbe: Hauptknopf **„Solicita tu piloto gratuito"** /
+„Request your free pilot", darunter die Pilot-Zeile „Tu agencia usa NuovaSolution sin pagar, con nuestro
+acompañamiento. Las condiciones, por escrito." Das Angebot hängt **nicht** an `trial`/`publicSignup`, sondern an der
+Owner-Zeile PAKETE vom 13.11.; `/signup` und `/trial` führen in beiden Sichten auf `/contact`. FAQ Q-11 nennt
+„máximo 90 días, sin método de pago".
+**Was ich daraus prüfe:** „14 días", „Pruébalo gratis", „Solicitar/Reservar una demo" als Angebot = **0 Treffer** auf
+jeder Route in beiden Sprachen und Sichten · der Hauptknopf heißt **überall** gleich, auch im `aria-label` · beide
+Routen landen auf `/contact` · die öffentliche Sicht hat damit **kein Loch** an dieser Stelle. Die Pilot-Zeile messe
+ich gegen die **Owner-Zeile PAKETE**, nicht gegen `claims.ts` — sie ist eine kaufmännische Zusage, kein Funktionsstand.
+
+**B-4, die Erkenntnis-Karten.** Öffentlich: K-1 (9 de 25 mit geschlossenem Büro), K-2p (6 pedidas, 4 acordadas),
+K-3p (2 warten auf eine Person) — alle an enthaltenen Schlüsseln. Nur Zielsicht: K-2 (WhatsApp 10 de 25,
+`reportTrend`) und K-3 (Portales, `reportTrend` + `adsLeads`) samt dem Budgetsatz „lo que gastas en anuncios no lo
+mide". Kein Satz verspricht Ersparnis oder Rendite — damit ist meine Sorge aus B-4 erledigt.
+
+**Folge für die Note, die Redesign kennen muss:** Copy führt als noch **nicht belegt** („WORKING"): **„en segundos"**,
+die **Absicht/Lead-Erkennung**, die **Dateien (MM)** und **alles 3D ohne `model3d`**. Nach D-5 zählen diese Zeilen
+**nicht für die Note**. Zwei davon stehen im Masterprompt als bestellte Nutzenpunkte (§6.4 „antwortet in Sekunden",
+§6.6 die vier 3D-Punkte). Wer eine 9 darauf stützt, baut auf Punkte, die ich nicht zähle — der Nutzen muss aus den
+belegten Zeilen kommen.
+
 ### D-6 Pfad für Redesign
 
 `docs/website_redesign/REVIEWER_MASTERPROMPT_CHECK_1113_v1.md` — Abschnitt **D** ist der verbindliche Teil für den Bau, Abschnitt **B-1** die Notentabelle, nach der am 16. und 18.11. bewertet wird.
