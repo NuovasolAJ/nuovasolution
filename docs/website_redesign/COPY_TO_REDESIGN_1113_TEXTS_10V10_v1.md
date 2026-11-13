@@ -266,7 +266,7 @@ Each place takes the matching line above or goes.
 | # | Question | Who | By |
 |---|---|---|---|
 | Q-MM | Per medium (photo, plan, PDF, voice note) × channel (WhatsApp, e-mail): live in production today, yes or no, with the run or the step (for example `28a` / "24z"). Is the unreadable-file reply live? Voice notes: still Spanish only? | MM | today, so the lines go public on Mon |
-| Q-3D | **answered 13.11.** (`61b5072`), built into §5 | 3D | done |
+| Q-3D | **answered 13.11.** (`61b5072`), built into §5. 3D then confirmed Copy's 3-1 (the agency as subject), the floor seconds and card 3-t3 by message; no further deviation | 3D | done |
 | Q-A1 | "En segundos": the time from arrival to sending over real production runs (median and maximum, number of runs) | API / Lead | before the build is named |
 | Q-A2 | Intent values buy / rent / sell on the production record | API | before the build is named |
 | Q-L | Is there a score in production now? If not, priority with reason stays (§2) | Lead | only if it changed |
