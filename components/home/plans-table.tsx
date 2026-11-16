@@ -2,7 +2,7 @@ import { ArrowRight, Bell, Box, Check, ClipboardList, Database, Flag, Globe, Ins
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
-import { claimWords, entryAction, planCell, planCellWords, planRowShown, plansTableShown, type ClaimView, type PlanCode } from "@/lib/claims";
+import { claimWords, entryAction, live, planCell, planCellWords, planRowShown, plansTableShown, type ClaimView, type PlanCode } from "@/lib/claims";
 import { Rise } from "@/components/ui/motion";
 import { cn } from "@/lib/utils";
 
@@ -44,7 +44,8 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
   const hi = (_code: PlanCode) => false;
   const rows = w.rows.filter((r) => planRowShown(r.key, view));
   const groupRows = (gi: number) => rows.filter((r) => r.g === gi);
-  const name = (r: (typeof w.rows)[number]) => w.rowName(r.name, locale, view);
+  // Copy 1116 §10 W-1: the replies row's public wording while the agency's own WhatsApp number is off (topic 20)
+  const name = (r: (typeof w.rows)[number]) => (r.key === "replyWhatsapp" && view === "public" && !live("whatsappOwnNumber", view) ? l(w.repliesRowPublic) : w.rowName(r.name, locale, view));
   const table = plansTableShown(view);
   // Copy 1113 §6: the one button in every column (B-1); the lifted plan carries "Recomendado"
   const action = (_code: PlanCode) => ({ href: localePath(locale, entry.href), label: entry.label, main: true });

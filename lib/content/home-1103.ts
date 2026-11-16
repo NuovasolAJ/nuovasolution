@@ -453,6 +453,8 @@ export const home1103 = {
     ],
     /** P-8: Outlook stands in the integrations row only while `outlook` is live. */
     rowName: (name: L, locale: Locale, view: ClaimView): string => withChannels(name[locale].replace("⟦outlook⟧", live("outlook", view) ? ", Outlook" : ""), locale, view),
+    /** Copy 1116 §10 W-1: the public wording of the replies row while the agency's own WhatsApp number is not registered (topic 20). */
+    repliesRowPublic: T("Respuestas en español por email. WhatsApp con el número de tu agencia: en preparación.", "Replies in Spanish by email. WhatsApp on your agency's own number: in preparation."),
     legend: T("Un ✓ donde el plan incluye la función.", "A ✓ where the plan includes the function."),
     /** P-5: the block in public while `plans` is off. */
     included: { h2: T("Qué incluye", "What's included"), h2Page: T("Qué incluye NuovaSolution", "What NuovaSolution includes"), leadPage: T("Acceso por invitación. Te decimos el precio para tu agencia antes de acordar nada.", "Access by invitation. We tell you the price for your agency before anything is agreed.") },
@@ -555,7 +557,7 @@ export const home1103 = {
     attend: {
       line: T("Contesta en cuanto llega la consulta, también de noche y en fin de semana.", "It replies as soon as the enquiry arrives, also at night and at weekends."),
       points: [
-        { t: T("Responde en segundos por WhatsApp y en minutos por email.", "Replies within seconds on WhatsApp and within minutes by email."), pub: "same" as const },
+        { t: T("Responde en segundos por WhatsApp y en minutos por email.", "Replies within seconds on WhatsApp and within minutes by email."), pub: "text" as const, pubText: T("Responde en minutos por email.", "Replies within minutes by email."), keys: ["whatsappOwnNumber"] as ClaimKey[] }, // Copy 1116 §10 W-2
         { t: T("Entiende qué busca: comprar o alquilar.", "Understands what they want: to buy or rent."), pub: "same" as const }, // the owner 16.11.: "vender" not promised until Lead confirms the intent values (Q-A2)
         { t: T("Todo entra en el CRM: zona, presupuesto, intención y canal, sin copiar nada.", "Everything goes into the CRM: area, budget, intent and channel, with nothing copied by hand."), pub: "same" as const },
         { t: T("Prioridad con su motivo, en cada ficha.", "Priority with its reason, on every record."), pub: "same" as const },

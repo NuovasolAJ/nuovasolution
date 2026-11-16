@@ -45,7 +45,7 @@ export const pilotRequest = {
   // WORKING (Copy): the confirmation and what happens next (the three steps are Copy 1113 §6, reused from the home page)
   done: {
     eyebrow: T("Solicitud recibida", "Request received"),
-    h: T("Gracias. Te contesta una persona, en español o en inglés.", "Thank you. A person answers, in Spanish or English."),
+    h: T("Gracias. Te contestará una persona del equipo, en español o en inglés.", "Thank you. A person from our team will answer, in Spanish or English."), // Copy fb1a56a §11
     next: T("Qué pasa ahora", "What happens now"),
     simulated: T("Vista previa: esta solicitud no se ha enviado a nadie.", "Preview: this request was not sent to anybody."),
     back: T("Volver al inicio", "Back to the start"),

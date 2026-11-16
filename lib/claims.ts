@@ -93,10 +93,15 @@ const CHANNELS: { key: ClaimKey; es: string; en: string }[] = [
 /** The owner's E2 of 07.11., extended 16.11. (RV6 F22 b): a held-back function is not promised in either view — not in the plans, not in the channel list, not in the FAQ. */
 export const offered = (keys: ClaimKey | ClaimKey[], view: ClaimView): boolean => live(keys, view) && (Array.isArray(keys) ? keys : [keys]).every((k) => !HELD_BACK.includes(k) || isIncluded(k));
 const HELD_BACK: ClaimKey[] = ["whatsappOwnNumber", "phoneAssistant", "instagram"];
-/** Copy 1116 (RV6 F22 b): the channel list ⟦canales⟧ names only the channels that are included today, in both views ("por WhatsApp y email"). */
-export const channelKeys = (_view: ClaimView): ClaimKey[] => CHANNELS.filter((c) => isIncluded(c.key)).map((c) => c.key);
-export const channelList = (locale: Locale, _view: ClaimView): string => {
-  const names = CHANNELS.filter((c) => isIncluded(c.key)).map((c) => c[locale]);
+/**
+ * Copy 1116 (RV6 F22 b): the channel list ⟦canales⟧ names only the channels that are included today ("por WhatsApp y email" in the target
+ * view). Copy 1116 §10 W-1 (the owner's point 6): WhatsApp replies run on NuovaSolution's own number until the agency's number is
+ * registered with Meta (topic 20), so the PUBLIC view names email only while `whatsappOwnNumber` is off.
+ */
+const channelOn = (key: ClaimKey, view: ClaimView): boolean => isIncluded(key) && (view === "target" || key !== "replyWhatsapp" || isIncluded("whatsappOwnNumber"));
+export const channelKeys = (view: ClaimView): ClaimKey[] => CHANNELS.filter((c) => channelOn(c.key, view)).map((c) => c.key);
+export const channelList = (locale: Locale, view: ClaimView): string => {
+  const names = CHANNELS.filter((c) => channelOn(c.key, view)).map((c) => c[locale]);
   if (names.length <= 1) return names[0] ?? "";
   return `${names.slice(0, -1).join(", ")} ${locale === "es" ? "y" : "and"} ${names[names.length - 1]}`;
 };

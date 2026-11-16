@@ -196,6 +196,14 @@ export const faqGroups: FaqGroup[] = [
         },
       },
       {
+        // Copy 1116 §10 W-3 (the owner's point 6): the agency's own WhatsApp number comes after its registration with Meta (topic 20)
+        kb: "Q-W3",
+        q: { en: "Does it reply from my agency's WhatsApp?", es: "¿Responde desde el WhatsApp de mi agencia?" },
+        a: { en: "Yes. We register your agency's number with you and test it with a real message.", es: "Sí. Damos de alta contigo el número de tu agencia y lo probamos con un mensaje real." },
+        keys: ["whatsappOwnNumber"],
+        pub: { en: "Not yet. To reply from your agency's number, that number has to be registered with Meta through us, and that step is in preparation. Today the assistant replies on WhatsApp on our own number, and that is where we measured replies within seconds.", es: "Todavía no. Para responder desde el número de tu agencia, ese número tiene que darse de alta con Meta a través de nosotros, y ese paso está en preparación. Hoy el asistente responde por WhatsApp en nuestro propio número: ahí medimos que contesta en segundos." },
+      },
+      {
         kb: "Q-11b",
         q: { en: "Can I start on my own, without talking to you?", es: "¿Puedo empezar yo solo, sin hablar con vosotros?" },
         a: { en: "Not yet. We set the pilot up with you: request it and we will get in touch to start.", es: "Todavía no. El piloto lo preparamos contigo: solicítalo y te contactamos para empezar." },
