@@ -1,0 +1,299 @@
+{
+ "base": "https://nuovasolution-design-preview-1uah9hjsc-nuovasolajs-projects.vercel.app",
+ "routes": {
+  "/es": {
+   "target": {
+    "status": 200,
+    "len": 17916,
+    "hits": {
+     "phoneFaqQ": false,
+     "phoneFaqYes": false,
+     "phoneFaqEnYes": false,
+     "channelListPhone": true,
+     "mmPhotoClaim": false,
+     "mmDescribePlans": false,
+     "mmAnyLanguageVoice": false,
+     "mmMediaUnderstands": false,
+     "anyPhoto": false,
+     "comingSoon": false,
+     "demoWord": false,
+     "days14": false,
+     "pilotButton": true
+    },
+    "head": "NuovaSolution · Consultas respondidas y ordenadas para agencias inmobiliarias Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu pil"
+   },
+   "public": {
+    "status": 200,
+    "len": 11115,
+    "hits": {
+     "phoneFaqQ": false,
+     "phoneFaqYes": false,
+     "phoneFaqEnYes": false,
+     "channelListPhone": false,
+     "mmPhotoClaim": false,
+     "mmDescribePlans": false,
+     "mmAnyLanguageVoice": false,
+     "mmMediaUnderstands": false,
+     "anyPhoto": false,
+     "comingSoon": false,
+     "demoWord": false,
+     "days14": false,
+     "pilotButton": true
+    },
+    "head": "NuovaSolution · Consultas respondidas y ordenadas para agencias inmobiliarias Ir al contenido Plataforma Atender Gestionar Coordinar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gra"
+   }
+  },
+  "/es/packages": {
+   "target": {
+    "status": 200,
+    "len": 5368,
+    "hits": {
+     "phoneFaqQ": false,
+     "phoneFaqYes": false,
+     "phoneFaqEnYes": false,
+     "channelListPhone": true,
+     "mmPhotoClaim": false,
+     "mmDescribePlans": false,
+     "mmAnyLanguageVoice": false,
+     "mmMediaUnderstands": false,
+     "anyPhoto": false,
+     "comingSoon": false,
+     "demoWord": false,
+     "days14": false,
+     "pilotButton": true
+    },
+    "head": "Paquetes · NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito Iniciar sesión Plataforma Atender Gestio"
+   },
+   "public": {
+    "status": 200,
+    "len": 1718,
+    "hits": {
+     "phoneFaqQ": false,
+     "phoneFaqYes": false,
+     "phoneFaqEnYes": false,
+     "channelListPhone": false,
+     "mmPhotoClaim": false,
+     "mmDescribePlans": false,
+     "mmAnyLanguageVoice": false,
+     "mmMediaUnderstands": false,
+     "anyPhoto": false,
+     "comingSoon": false,
+     "demoWord": false,
+     "days14": false,
+     "pilotButton": true
+    },
+    "head": "Paquetes · NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito Iniciar sesión Plataforma Atender Gestionar Coo"
+   }
+  },
+  "/es/faq": {
+   "target": {
+    "status": 200,
+    "len": 6891,
+    "hits": {
+     "phoneFaqQ": true,
+     "phoneFaqYes": true,
+     "phoneFaqEnYes": false,
+     "channelListPhone": true,
+     "mmPhotoClaim": false,
+     "mmDescribePlans": false,
+     "mmAnyLanguageVoice": false,
+     "mmMediaUnderstands": false,
+     "anyPhoto": false,
+     "comingSoon": false,
+     "demoWord": false,
+     "days14": true,
+     "pilotButton": true
+    },
+    "head": "Respuestas claras sobre lo que hace NuovaSolution · NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito"
+   },
+   "public": {
+    "status": 200,
+    "len": 4607,
+    "hits": {
+     "phoneFaqQ": false,
+     "phoneFaqYes": false,
+     "phoneFaqEnYes": false,
+     "channelListPhone": false,
+     "mmPhotoClaim": false,
+     "mmDescribePlans": false,
+     "mmAnyLanguageVoice": false,
+     "mmMediaUnderstands": false,
+     "anyPhoto": false,
+     "comingSoon": false,
+     "demoWord": false,
+     "days14": false,
+     "pilotButton": true
+    },
+    "head": "Respuestas claras sobre lo que hace NuovaSolution · NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito Inicia"
+   }
+  },
+  "/es/platform/voice": {
+   "target": {
+    "status": 404,
+    "len": 77,
+    "hits": {
+     "phoneFaqQ": false,
+     "phoneFaqYes": false,
+     "phoneFaqEnYes": false,
+     "channelListPhone": false,
+     "mmPhotoClaim": false,
+     "mmDescribePlans": false,
+     "mmAnyLanguageVoice": false,
+     "mmMediaUnderstands": false,
+     "anyPhoto": false,
+     "comingSoon": false,
+     "demoWord": false,
+     "days14": false,
+     "pilotButton": false
+    },
+    "head": "NuovaSolution · Consultas respondidas y ordenadas para agencias inmobiliarias"
+   },
+   "public": {
+    "status": 404,
+    "len": 77,
+    "hits": {
+     "phoneFaqQ": false,
+     "phoneFaqYes": false,
+     "phoneFaqEnYes": false,
+     "channelListPhone": false,
+     "mmPhotoClaim": false,
+     "mmDescribePlans": false,
+     "mmAnyLanguageVoice": false,
+     "mmMediaUnderstands": false,
+     "anyPhoto": false,
+     "comingSoon": false,
+     "demoWord": false,
+     "days14": false,
+     "pilotButton": false
+    },
+    "head": "NuovaSolution · Consultas respondidas y ordenadas para agencias inmobiliarias"
+   }
+  },
+  "/es/contact": {
+   "target": {
+    "status": 200,
+    "len": 1471,
+    "hits": {
+     "phoneFaqQ": false,
+     "phoneFaqYes": false,
+     "phoneFaqEnYes": false,
+     "channelListPhone": false,
+     "mmPhotoClaim": false,
+     "mmDescribePlans": false,
+     "mmAnyLanguageVoice": false,
+     "mmMediaUnderstands": false,
+     "anyPhoto": false,
+     "comingSoon": false,
+     "demoWord": true,
+     "days14": true,
+     "pilotButton": true
+    },
+    "head": "Contacto · NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito Iniciar sesión Plataforma Atender Gestio"
+   },
+   "public": {
+    "status": 200,
+    "len": 1192,
+    "hits": {
+     "phoneFaqQ": false,
+     "phoneFaqYes": false,
+     "phoneFaqEnYes": false,
+     "channelListPhone": false,
+     "mmPhotoClaim": false,
+     "mmDescribePlans": false,
+     "mmAnyLanguageVoice": false,
+     "mmMediaUnderstands": false,
+     "anyPhoto": false,
+     "comingSoon": false,
+     "demoWord": true,
+     "days14": false,
+     "pilotButton": true
+    },
+    "head": "Contacto · NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito Iniciar sesión Plataforma Atender Gestionar Coo"
+   }
+  },
+  "/en": {
+   "target": {
+    "status": 200,
+    "len": 17317,
+    "hits": {
+     "phoneFaqQ": false,
+     "phoneFaqYes": false,
+     "phoneFaqEnYes": false,
+     "channelListPhone": false,
+     "mmPhotoClaim": false,
+     "mmDescribePlans": false,
+     "mmAnyLanguageVoice": false,
+     "mmMediaUnderstands": false,
+     "anyPhoto": false,
+     "comingSoon": false,
+     "demoWord": false,
+     "days14": false,
+     "pilotButton": true
+    },
+    "head": "NuovaSolution · Enquiries answered and organised for real estate agencies Skip to content Platform Answer Manage Coordinate Attract Platform overview Packages Pilot Contact EN English ES Español Log in Request your free pilot Request your free pilot Log in Pla"
+   },
+   "public": {
+    "status": 200,
+    "len": 10811,
+    "hits": {
+     "phoneFaqQ": false,
+     "phoneFaqYes": false,
+     "phoneFaqEnYes": false,
+     "channelListPhone": false,
+     "mmPhotoClaim": false,
+     "mmDescribePlans": false,
+     "mmAnyLanguageVoice": false,
+     "mmMediaUnderstands": false,
+     "anyPhoto": false,
+     "comingSoon": false,
+     "demoWord": false,
+     "days14": false,
+     "pilotButton": true
+    },
+    "head": "NuovaSolution · Enquiries answered and organised for real estate agencies Skip to content Platform Answer Manage Coordinate Platform overview Packages Pilot Contact EN English ES Español Log in Request your free pilot Request your free pilot Log in Platform An"
+   }
+  },
+  "/en/faq": {
+   "target": {
+    "status": 200,
+    "len": 6703,
+    "hits": {
+     "phoneFaqQ": false,
+     "phoneFaqYes": false,
+     "phoneFaqEnYes": true,
+     "channelListPhone": false,
+     "mmPhotoClaim": false,
+     "mmDescribePlans": false,
+     "mmAnyLanguageVoice": false,
+     "mmMediaUnderstands": false,
+     "anyPhoto": false,
+     "comingSoon": false,
+     "demoWord": false,
+     "days14": true,
+     "pilotButton": true
+    },
+    "head": "Straight answers about what NuovaSolution does · NuovaSolution Skip to content Platform Answer Manage Coordinate Attract Platform overview Packages Pilot Contact EN English ES Español Log in Request your free pilot Request your free pilot Log in Platform Answe"
+   },
+   "public": {
+    "status": 200,
+    "len": 4435,
+    "hits": {
+     "phoneFaqQ": false,
+     "phoneFaqYes": false,
+     "phoneFaqEnYes": false,
+     "channelListPhone": false,
+     "mmPhotoClaim": false,
+     "mmDescribePlans": false,
+     "mmAnyLanguageVoice": false,
+     "mmMediaUnderstands": false,
+     "anyPhoto": false,
+     "comingSoon": false,
+     "demoWord": false,
+     "days14": false,
+     "pilotButton": true
+    },
+    "head": "Straight answers about what NuovaSolution does · NuovaSolution Skip to content Platform Answer Manage Coordinate Platform overview Packages Pilot Contact EN English ES Español Log in Request your free pilot Request your free pilot Log in Platform Answer Manage"
+   }
+  }
+ }
+}

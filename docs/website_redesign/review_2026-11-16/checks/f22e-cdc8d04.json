@@ -1,0 +1,250 @@
+{
+ "tag": "cdc8d04",
+ "note": "preview furniture (ribbon + switch bar) hidden, so this is the first screen the public build would show",
+ "1366x768": {
+  "furniturePx": 82,
+  "vh": 768,
+  "h1": {
+   "top": 305,
+   "bottom": 506,
+   "h": 201,
+   "full": true,
+   "cut": 0
+  },
+  "lead": {
+   "top": 520,
+   "bottom": 583,
+   "h": 63,
+   "full": true,
+   "cut": 0
+  },
+  "cta": {
+   "top": 603,
+   "bottom": 659,
+   "h": 56,
+   "full": true,
+   "cut": 0
+  },
+  "pilot": {
+   "top": 675,
+   "bottom": 720,
+   "h": 45,
+   "full": true,
+   "cut": 0
+  },
+  "demoWrap": {
+   "top": 744,
+   "bottom": 1446,
+   "h": 702,
+   "full": false,
+   "cut": 678
+  },
+  "demoVisiblePx": 24,
+  "anim": 4
+ },
+ "1366x625": {
+  "furniturePx": 82,
+  "vh": 625,
+  "h1": {
+   "top": 203,
+   "bottom": 403,
+   "h": 201,
+   "full": true,
+   "cut": 0
+  },
+  "lead": {
+   "top": 417,
+   "bottom": 480,
+   "h": 63,
+   "full": true,
+   "cut": 0
+  },
+  "cta": {
+   "top": 500,
+   "bottom": 556,
+   "h": 56,
+   "full": true,
+   "cut": 0
+  },
+  "pilot": {
+   "top": 572,
+   "bottom": 617,
+   "h": 45,
+   "full": true,
+   "cut": 0
+  },
+  "demoWrap": {
+   "top": 641,
+   "bottom": 1343,
+   "h": 702,
+   "full": false,
+   "cut": 718
+  },
+  "demoVisiblePx": 0,
+  "anim": 4
+ },
+ "1440x900": {
+  "furniturePx": 82,
+  "vh": 900,
+  "h1": {
+   "top": 349,
+   "bottom": 594,
+   "h": 245,
+   "full": true,
+   "cut": 0
+  },
+  "lead": {
+   "top": 614,
+   "bottom": 677,
+   "h": 63,
+   "full": true,
+   "cut": 0
+  },
+  "cta": {
+   "top": 705,
+   "bottom": 761,
+   "h": 56,
+   "full": true,
+   "cut": 0
+  },
+  "pilot": {
+   "top": 777,
+   "bottom": 822,
+   "h": 45,
+   "full": true,
+   "cut": 0
+  },
+  "demoWrap": {
+   "top": 876,
+   "bottom": 1578,
+   "h": 702,
+   "full": false,
+   "cut": 678
+  },
+  "demoVisiblePx": 24,
+  "anim": 4
+ },
+ "1440x757": {
+  "furniturePx": 82,
+  "vh": 757,
+  "h1": {
+   "top": 294,
+   "bottom": 495,
+   "h": 201,
+   "full": true,
+   "cut": 0
+  },
+  "lead": {
+   "top": 509,
+   "bottom": 572,
+   "h": 63,
+   "full": true,
+   "cut": 0
+  },
+  "cta": {
+   "top": 592,
+   "bottom": 648,
+   "h": 56,
+   "full": true,
+   "cut": 0
+  },
+  "pilot": {
+   "top": 664,
+   "bottom": 709,
+   "h": 45,
+   "full": true,
+   "cut": 0
+  },
+  "demoWrap": {
+   "top": 733,
+   "bottom": 1435,
+   "h": 702,
+   "full": false,
+   "cut": 678
+  },
+  "demoVisiblePx": 24,
+  "anim": 4
+ },
+ "390x844": {
+  "furniturePx": 144,
+  "vh": 844,
+  "h1": {
+   "top": 221,
+   "bottom": 293,
+   "h": 72,
+   "full": true,
+   "cut": 0
+  },
+  "lead": {
+   "top": 313,
+   "bottom": 393,
+   "h": 80,
+   "full": true,
+   "cut": 0
+  },
+  "cta": {
+   "top": 421,
+   "bottom": 477,
+   "h": 56,
+   "full": true,
+   "cut": 0
+  },
+  "pilot": {
+   "top": 493,
+   "bottom": 561,
+   "h": 68,
+   "full": true,
+   "cut": 0
+  },
+  "demoWrap": {
+   "top": 726,
+   "bottom": 2246,
+   "h": 1520,
+   "full": false,
+   "cut": 1402
+  },
+  "demoVisiblePx": 118,
+  "anim": 3
+ },
+ "390x664_safari": {
+  "furniturePx": 144,
+  "vh": 664,
+  "h1": {
+   "top": 211,
+   "bottom": 283,
+   "h": 72,
+   "full": true,
+   "cut": 0
+  },
+  "lead": {
+   "top": 303,
+   "bottom": 383,
+   "h": 80,
+   "full": true,
+   "cut": 0
+  },
+  "cta": {
+   "top": 411,
+   "bottom": 467,
+   "h": 56,
+   "full": true,
+   "cut": 0
+  },
+  "pilot": {
+   "top": 483,
+   "bottom": 550,
+   "h": 68,
+   "full": true,
+   "cut": 0
+  },
+  "demoWrap": {
+   "top": 716,
+   "bottom": 2236,
+   "h": 1520,
+   "full": false,
+   "cut": 1572
+  },
+  "demoVisiblePx": 0,
+  "anim": 3
+ }
+}

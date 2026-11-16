@@ -1,0 +1,220 @@
+{
+ "kickers": [
+  {
+   "t": "Plataforma",
+   "y": 0,
+   "cls": "t-eyebrow text-text-muted mb-4"
+  },
+  {
+   "t": "Para agencias inmobiliarias en España",
+   "y": 396,
+   "cls": "hf-eyebrow t-eyebrow t-eyebrow-l"
+  },
+  {
+   "t": "Elige un canal",
+   "y": 973,
+   "cls": "demo-pick-word"
+  },
+  {
+   "t": "Ficha de Laura",
+   "y": 1125,
+   "cls": "demo-key"
+  },
+  {
+   "t": "Estado",
+   "y": 1438,
+   "cls": "demo-key"
+  },
+  {
+   "t": "Prioridad",
+   "y": 1479,
+   "cls": "demo-key"
+  },
+  {
+   "t": "Siguiente paso",
+   "y": 1525,
+   "cls": "demo-key"
+  },
+  {
+   "t": "Cómo funciona",
+   "y": 1779,
+   "cls": "t-eyebrow t-eyebrow-l text-text-accent"
+  },
+  {
+   "t": "Lo que tu agencia gana",
+   "y": 2343,
+   "cls": "t-eyebrow t-eyebrow-l text-text-accent"
+  },
+  {
+   "t": "Informe",
+   "y": 3233,
+   "cls": "t-eyebrow t-eyebrow-l text-text-accent"
+  },
+  {
+   "t": "Ejemplo con datos ficticios · la misma semana",
+   "y": 4331,
+   "cls": "cmp-label"
+  },
+  {
+   "t": "Un servicio aparte",
+   "y": 5187,
+   "cls": "t-eyebrow t-eyebrow-l text-text-accent"
+  },
+  {
+   "t": "Tu camino",
+   "y": 8616,
+   "cls": "m3d-path-title"
+  },
+  {
+   "t": "Planes",
+   "y": 9087,
+   "cls": "t-eyebrow t-eyebrow-l text-text-accent"
+  },
+  {
+   "t": "Canales",
+   "y": 9435,
+   "cls": "plans-cell plans-cell-group"
+  },
+  {
+   "t": "Equipo",
+   "y": 9923,
+   "cls": "plans-cell plans-cell-group"
+  },
+  {
+   "t": "Informes",
+   "y": 10155,
+   "cls": "plans-cell plans-cell-group"
+  },
+  {
+   "t": "Integraciones",
+   "y": 10387,
+   "cls": "plans-cell plans-cell-group"
+  },
+  {
+   "t": "Servicios",
+   "y": 10560,
+   "cls": "plans-cell plans-cell-group"
+  },
+  {
+   "t": "Canales",
+   "y": 0,
+   "cls": "plans-cell-group"
+  },
+  {
+   "t": "Equipo",
+   "y": 0,
+   "cls": "plans-cell-group"
+  },
+  {
+   "t": "Informes",
+   "y": 0,
+   "cls": "plans-cell-group"
+  },
+  {
+   "t": "Integraciones",
+   "y": 0,
+   "cls": "plans-cell-group"
+  },
+  {
+   "t": "Servicios",
+   "y": 0,
+   "cls": "plans-cell-group"
+  },
+  {
+   "t": "Canales",
+   "y": 0,
+   "cls": "plans-cell-group"
+  },
+  {
+   "t": "Equipo",
+   "y": 0,
+   "cls": "plans-cell-group"
+  },
+  {
+   "t": "Informes",
+   "y": 0,
+   "cls": "plans-cell-group"
+  },
+  {
+   "t": "Integraciones",
+   "y": 0,
+   "cls": "plans-cell-group"
+  },
+  {
+   "t": "Servicios",
+   "y": 0,
+   "cls": "plans-cell-group"
+  },
+  {
+   "t": "Canales",
+   "y": 0,
+   "cls": "plans-cell-group"
+  },
+  {
+   "t": "Equipo",
+   "y": 0,
+   "cls": "plans-cell-group"
+  },
+  {
+   "t": "Informes",
+   "y": 0,
+   "cls": "plans-cell-group"
+  },
+  {
+   "t": "Integraciones",
+   "y": 0,
+   "cls": "plans-cell-group"
+  },
+  {
+   "t": "Servicios",
+   "y": 0,
+   "cls": "plans-cell-group"
+  },
+  {
+   "t": "Quién está detrás",
+   "y": 11826,
+   "cls": "t-eyebrow t-eyebrow-l text-text-accent"
+  },
+  {
+   "t": "Plataforma",
+   "y": 13916,
+   "cls": "t-eyebrow text-text-muted mb-4"
+  },
+  {
+   "t": "Empezar",
+   "y": 13916,
+   "cls": "t-eyebrow text-text-muted mb-4"
+  },
+  {
+   "t": "Empresa",
+   "y": 13916,
+   "cls": "t-eyebrow text-text-muted mb-4"
+  }
+ ],
+ "repeated": [
+  [
+   "Plataforma",
+   2
+  ],
+  [
+   "Canales",
+   4
+  ],
+  [
+   "Equipo",
+   4
+  ],
+  [
+   "Informes",
+   4
+  ],
+  [
+   "Integraciones",
+   4
+  ],
+  [
+   "Servicios",
+   4
+  ]
+ ]
+}

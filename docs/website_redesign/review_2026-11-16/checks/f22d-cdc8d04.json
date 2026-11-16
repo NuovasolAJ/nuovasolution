@@ -1,0 +1,96 @@
+{
+ "/es/contact": {
+  "target": [
+   {
+    "what": "demo",
+    "quote": "és. La demo es opcional y nunca es condición para empezar la prueba. Email antonio@nuovasolution.com Opcional Solicitar una demo Te guiamos por el sistema con un ejemplo real y puedes preguntar lo que quieras. Sin presentación. Solicitar "
+   },
+   {
+    "what": "demo",
+    "quote": "r una demo Te guiamos por el sistema con un ejemplo real y puedes preguntar lo que quieras. Sin presentación. Solicitar una demo O simplemente empieza Prueba gratis durante 14 días. Sin método de pago, sin llamada comercial. Solicita tu p"
+   },
+   {
+    "what": "14dias",
+    "quote": "es preguntar lo que quieras. Sin presentación. Solicitar una demo O simplemente empieza Prueba gratis durante 14 días. Sin método de pago, sin llamada comercial. Solicita tu piloto gratuito Tu próxima consulta ya está en camino"
+   }
+  ],
+  "public": [
+   {
+    "what": "demo",
+    "quote": "ontacto humano directo, en español o en inglés. La demo es opcional. Email antonio@nuovasolution.com Opcional Solicitar una demo Te guiamos por el sistema con un ejemplo real y puedes preguntar lo que quieras. Sin presentación. Solicitar "
+   },
+   {
+    "what": "demo",
+    "quote": "r una demo Te guiamos por el sistema con un ejemplo real y puedes preguntar lo que quieras. Sin presentación. Solicitar una demo Tu próxima consulta ya está en camino Solicita tu piloto gratuito Descubre la plataforma NuovaSolution respon"
+   }
+  ]
+ },
+ "/es/faq": {
+  "target": [
+   {
+    "what": "14dias",
+    "quote": " persona, y los roles deciden qué ven y qué hacen. Prueba, planes y pago ¿Cuánto dura la prueba y qué cuesta? 14 días de Essential, gratis y sin método de pago. Creas la cuenta tú mismo. ¿Qué pasa después de los 14 días? Tu cue"
+   },
+   {
+    "what": "14dias",
+    "quote": "cuesta? 14 días de Essential, gratis y sin método de pago. Creas la cuenta tú mismo. ¿Qué pasa después de los 14 días? Tu cuenta y tus datos se quedan. Las partes de pago se pausan hasta que elijas un plan, y puedes seguir entr"
+   },
+   {
+    "what": "telefono_channel",
+    "quote": "Responde en nombre de tu agencia, en español, a las consultas que llegan por WhatsApp, email, formulario web, teléfono y portales y anuncios, y guarda lo importante de cada una en su ficha, con su prioridad y su motivo. ¿Qué can"
+   },
+   {
+    "what": "telefono_channel",
+    "quote": "icha, con su prioridad y su motivo. ¿Qué canales se responden? Consultas por WhatsApp, email, formulario web, teléfono y portales y anuncios. ¿Responde de noche y los fines de semana? Sí. La respuesta se escribe cuando llega el "
+   },
+   {
+    "what": "telefono_channel",
+    "quote": " horario, ¿lo respeta el asistente? En los mensajes no: una consulta de texto se responde cuando llega. En el teléfono, tu horario dirige el asistente. Otras preguntas ¿Funciona con HubSpot, Salesforce, Pipedrive o Zoho? Sí. Se "
+   },
+   {
+    "what": "telefono_channel",
+    "quote": "unciona con Outlook o Microsoft 365? Sí, con el buzón de tu agencia, junto con nosotros. ¿Atiende llamadas de teléfono? Sí. El asistente telefónico atiende la llamada, deja lo que pide el cliente en su ficha y una tarea a tu equ"
+   }
+  ],
+  "public": []
+ },
+ "/en/faq": {
+  "target": [
+   {
+    "what": "14dias",
+    "quote": "d the roles decide what they see and do. Trial, plans and paying How long is the trial and what does it cost? 14 days of Essential, free and with no payment method. You create the account yourself. What happens after the 14 day"
+   },
+   {
+    "what": "14dias",
+    "quote": "4 days of Essential, free and with no payment method. You create the account yourself. What happens after the 14 days? Your account and your data stay. The paid parts pause until you choose a plan, and you can still log in. Wha"
+   }
+  ],
+  "public": []
+ },
+ "/en/contact": {
+  "target": [
+   {
+    "what": "demo",
+    "quote": "sh. A demo is optional and never a condition for starting the trial. Email antonio@nuovasolution.com Optional Request a demo We walk you through the system on a real example and you can ask anything. No slide deck. Request a demo Or j"
+   },
+   {
+    "what": "demo",
+    "quote": "onal Request a demo We walk you through the system on a real example and you can ask anything. No slide deck. Request a demo Or just start Try it free for 14 days. No payment method, no sales call. Request your free pilot Your next en"
+   },
+   {
+    "what": "14dias",
+    "quote": "ystem on a real example and you can ask anything. No slide deck. Request a demo Or just start Try it free for 14 days. No payment method, no sales call. Request your free pilot Your next enquiry is already on its way Request yo"
+   }
+  ],
+  "public": [
+   {
+    "what": "demo",
+    "quote": "n. Direct human reach, in English or in Spanish. A demo is optional. Email antonio@nuovasolution.com Optional Request a demo We walk you through the system on a real example and you can ask anything. No slide deck. Request a demo Your"
+   },
+   {
+    "what": "demo",
+    "quote": "onal Request a demo We walk you through the system on a real example and you can ask anything. No slide deck. Request a demo Your next enquiry is already on its way Request your free pilot Explore the platform NuovaSolution answers yo"
+   }
+  ]
+ }
+}

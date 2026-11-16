@@ -1,0 +1,128 @@
+{
+ "glass_w390": {
+  "card": {
+   "label": "card",
+   "background": "rgba(0, 0, 0, 0)",
+   "backgroundImage": "none",
+   "backdrop": "none",
+   "border": "0px rgb(229, 231, 235)",
+   "boxShadow": "none",
+   "cls": "hf-words"
+  },
+  "cardBefore": {
+   "content": "none",
+   "background": "rgba(0, 0, 0, 0)",
+   "backgroundImage": "none",
+   "backdrop": "none"
+  },
+  "ancestors": [
+   {
+    "label": "parent0",
+    "background": "rgba(0, 0, 0, 0)",
+    "backgroundImage": "none",
+    "backdrop": "none",
+    "border": "0px rgb(229, 231, 235)",
+    "boxShadow": "none",
+    "cls": "container-default hf-content"
+   },
+   {
+    "label": "parent1",
+    "background": "rgb(17, 17, 19)",
+    "backgroundImage": "none",
+    "backdrop": "none",
+    "border": "0px rgb(229, 231, 235)",
+    "boxShadow": "none",
+    "cls": "hf"
+   },
+   {
+    "label": "parent2",
+    "background": "rgba(0, 0, 0, 0)",
+    "backgroundImage": "none",
+    "backdrop": "none",
+    "border": "0px rgb(229, 231, 235)",
+    "boxShadow": "none",
+    "cls": ""
+   },
+   {
+    "label": "parent3",
+    "background": "rgba(0, 0, 0, 0)",
+    "backgroundImage": "none",
+    "backdrop": "none",
+    "border": "0px rgb(229, 231, 235)",
+    "boxShadow": "none",
+    "cls": ""
+   }
+  ]
+ },
+ "glass_w1366": {
+  "card": {
+   "label": "card",
+   "background": "rgba(0, 0, 0, 0)",
+   "backgroundImage": "none",
+   "backdrop": "none",
+   "border": "0px rgb(229, 231, 235)",
+   "boxShadow": "none",
+   "cls": "hf-words"
+  },
+  "cardBefore": {
+   "content": "none",
+   "background": "rgba(0, 0, 0, 0)",
+   "backgroundImage": "none",
+   "backdrop": "none"
+  },
+  "ancestors": [
+   {
+    "label": "parent0",
+    "background": "rgba(0, 0, 0, 0)",
+    "backgroundImage": "none",
+    "backdrop": "none",
+    "border": "0px rgb(229, 231, 235)",
+    "boxShadow": "none",
+    "cls": "container-default hf-content"
+   },
+   {
+    "label": "parent1",
+    "background": "rgb(17, 17, 19)",
+    "backgroundImage": "none",
+    "backdrop": "none",
+    "border": "0px rgb(229, 231, 235)",
+    "boxShadow": "none",
+    "cls": "hf"
+   },
+   {
+    "label": "parent2",
+    "background": "rgba(0, 0, 0, 0)",
+    "backgroundImage": "none",
+    "backdrop": "none",
+    "border": "0px rgb(229, 231, 235)",
+    "boxShadow": "none",
+    "cls": ""
+   },
+   {
+    "label": "parent3",
+    "background": "rgba(0, 0, 0, 0)",
+    "backgroundImage": "none",
+    "backdrop": "none",
+    "border": "0px rgb(229, 231, 235)",
+    "boxShadow": "none",
+    "cls": ""
+   }
+  ]
+ },
+ "lineBox": {
+  "top": 457,
+  "left": 16,
+  "w": 358,
+  "h": 80,
+  "color": "rgba(248, 246, 241, 0.9)",
+  "fontSizePx": 17.755,
+  "fontWeight": "400",
+  "textShadow": "none"
+ },
+ "frames": [
+  1,
+  2,
+  3,
+  4
+ ]
+}
