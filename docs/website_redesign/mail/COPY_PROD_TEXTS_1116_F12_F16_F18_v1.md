@@ -76,8 +76,11 @@ counsel wants P-0 only from the second mail on, Lead drops it from the first.
 |---|---|---|
 | Soy el asistente de inteligencia artificial de {{agency_name}}. Si prefieres hablar con una persona del equipo, dímelo y aviso al equipo. | I am the artificial intelligence assistant of {{agency_name}}. If you would rather talk to a person on the team, tell me and I will let the team know. | Ich bin der KI-Assistent von {{agency_name}}. Wenn Sie lieber mit einer Person aus dem Team sprechen möchten, sagen Sie es mir, dann gebe ich dem Team Bescheid. |
 
-**Condition for N-5.** "Aviso al equipo" holds only if such a request really creates a takeover task. Lead confirms that before the line
-goes in. It promises no time and no call.
+**Condition for N-5.**
+- "Aviso al equipo" holds only if such a request really creates a takeover task. It promises no time and no call.
+- **Owner, 16.11.:** N-5 goes live only once F28 is in production (Lead, Fri 20.11. at the earliest).
+- Until then, the truthful answer is only the first sentence: "Soy el asistente de inteligencia artificial de {{agency_name}}." /
+  "I am the artificial intelligence assistant of {{agency_name}}." / "Ich bin der KI-Assistent von {{agency_name}}."
 
 ### 1.4 What stays in any case
 

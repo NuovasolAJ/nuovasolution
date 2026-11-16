@@ -319,7 +319,10 @@ has a `pub` line. The page must render through `platformTasksFor(locale, view)` 
 | # | Question | Who | By |
 |---|---|---|---|
 | Q-1 | **answered 16.11. by the owner:** B-2 + B-2b stand as written | — | done |
-| Q-6 | Is 3D offered in public now? The packages show "Opcional · se contrata aparte" (owner, 16.11.), while `model3d` is still soon and the platform pages hide 3D in public. Either `model3d` turns "included" as a service on request, or the "Opcional" row is target view only | owner | before the build is named |
+| Q-6 | **decided 16.11. by the owner:** 3D shows in the public packages only once topic 17 is closed (possible today, after the owner's test). Then: "Opcional · se contrata aparte" in every column, plus 3D-note. Until then 3D is target view only. The owner's closing of topic 17 is the trigger; Copy tells Redesign and the Reviewer | — | done |
+| Q-3 | **decided 16.11. by the owner:** only the images are passed on, marked "Rendering / visualización". No promise of a link. 3-t4 stays "Lo ves y compartes las imágenes" | — | done |
+| Q-7 | **Instagram, owner 16.11. (Social `d2b27e5b`):** in public, Instagram appears at most as "Instagram (En preparación)" / "Instagram (In preparation)", nowhere as a function. Hidden also complies | — | done |
+| Q-6 (old wording) | Is 3D offered in public now? The packages show "Opcional · se contrata aparte" (owner, 16.11.), while `model3d` is still soon and the platform pages hide 3D in public. Either `model3d` turns "included" as a service on request, or the "Opcional" row is target view only | owner | before the build is named |
 | Q-5 | What does a pilot agency have on day one in production: automatic email replies from its own mailbox, from a NuovaSolution address, or not yet? (§10) | API | before the build is named |
 | Q-2 | Do other-language enquiries go to a person **of the agency** (task or alert), on WhatsApp and email? (L-2 public) | Lead | Tue 17.11. |
 | Q-3 | May the agency pass the protected model link on to a client? (3-t4) | 3D | before the build is named |
