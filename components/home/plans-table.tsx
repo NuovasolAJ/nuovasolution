@@ -167,7 +167,7 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
             })}
           </ol>
           {/* 16.11. (the owner's point 11): a short legend from the register's own words */}
-          <p className="plans-legend t-body-s text-text-muted" data-plans-legend><span className="plan-cell is-on" aria-hidden="true"><Check size={14} strokeWidth={3} /></span>{claimWords.included[locale]}<span className="plans-legend-sep" aria-hidden="true">·</span><span className="plan-cell is-off" aria-hidden="true"><Minus size={14} strokeWidth={2} /></span>{claimWords.excluded[locale]}{rows.some((r) => r.key === "model3d") && <><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plan-cell plan-cell-word" aria-hidden="true">{planCellWords.optional[locale]}</span>{l(w.optionalNote)}</>}</p>
+          <p className="plans-legend t-body-s text-text-muted" data-plans-legend><span className="plans-legend-item"><span className="plan-cell is-on" aria-hidden="true"><Check size={14} strokeWidth={3} /></span>{claimWords.included[locale]}</span><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plans-legend-item"><span className="plan-cell is-off" aria-hidden="true"><Minus size={14} strokeWidth={2} /></span>{claimWords.excluded[locale]}</span>{rows.some((r) => r.key === "model3d") && <><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plans-legend-item"><span className="plan-cell plan-cell-word" aria-hidden="true">{planCellWords.optional[locale]}</span>{l(w.optionalNote)}</span></>}</p>
         </Rise>
       </div>
     </section>

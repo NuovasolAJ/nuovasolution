@@ -1237,6 +1237,7 @@ html:not(.js) .mrise { opacity: 1 !important; transform: none !important; }
 .plans-cta-main:hover { background: var(--ink-800); border-color: var(--ink-800); }
 .plans-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-top: 16px; }
 .plans-legend .plan-cell-word { flex: none; }
+.plans-legend-item { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; } /* 16.11.: each legend entry stays on one line (the owner's overlap on the phone) */
 /* 16.11. 14:00 (the owner's points 2 and 3): the line above the table; the second, clearly smaller way under each pilot button */
 .plans-pilot-line { margin: 0 0 16px; font-size: 1.0625rem; font-weight: 500; line-height: 1.45; color: var(--text-primary); }
 .plans-direct { display: inline-block; margin-top: 10px; font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 4px; }
@@ -1672,7 +1673,7 @@ html.js .ch-scenes-static { display: none; }
 .prq-input:user-invalid { border-color: var(--signal-critical); }
 .prq-area { min-height: 96px; resize: vertical; }
 .prq-web { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-.prq-consent { display: flex; align-items: flex-start; gap: 10px; margin-top: 16px; font-size: 0.9375rem; line-height: 1.5; color: var(--text-secondary); }
+.prq-consent { display: block; margin-top: 16px; font-size: 0.9375rem; line-height: 1.5; color: var(--text-secondary); } /* Copy FM-pv: a notice line with its link, no box */
 .prq-check { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--ink-950); flex: none; }
 .prq-link { text-decoration: underline; text-underline-offset: 3px; color: var(--text-primary); }
 .prq-foot { display: grid; gap: 10px; margin-top: 20px; }
