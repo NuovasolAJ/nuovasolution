@@ -45,7 +45,7 @@ export function CompareBlock({ locale, view, id = "cmp" }: { locale: Locale; vie
           <div key={r.k} className="cmpb-row" data-compare-row={i + 1}>
             <dt className="cmpb-k">{r.k}</dt>
             <dd className={cn("cmpb-v cmpb-v-without", mode === "without" && "is-on")} data-compare-without={r.without}><span className="sr-only">{l(w.without)}: </span><span className="cmpb-v-figure tnum">{r.without}</span></dd>
-            <dd className={cn("cmpb-v cmpb-v-with", mode === "with" && "is-on")} data-compare-with={r.with}><span className="sr-only">{l(w.with)}: </span><span className="cmpb-v-figure tnum">{r.with}</span></dd>
+            <dd className={cn("cmpb-v cmpb-v-with", mode === "with" && "is-on", r.tone === "neutral" && "cmpb-v-neutral")} data-compare-with={r.with} data-compare-tone={r.tone}><span className="sr-only">{l(w.with)}: </span><span className="cmpb-v-figure tnum">{r.with}</span></dd>
             <dd className="cmpb-d">{r.d}</dd>
           </div>
         ))}

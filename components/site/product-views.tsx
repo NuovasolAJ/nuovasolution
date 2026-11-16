@@ -25,6 +25,9 @@ const T = {
   noted: { es: "Anotado en la ficha", en: "Noted on the record" },
   firstMessage: { es: "Domingo · WhatsApp · el primer mensaje", en: "Sunday · WhatsApp · the first message" },
   secondMessage: { es: "Martes · WhatsApp · el segundo mensaje, en la misma ficha", en: "Tuesday · WhatsApp · the second message, on the same record" },
+  // 16.11. 14:00 (the owner's point 8): in public, before the agency's number is registered (topic 20), the same scene by e-mail — WORKING (Copy)
+  firstMessagePublic: { es: "Domingo · email · el primer mensaje", en: "Sunday · e-mail · the first message" },
+  secondMessagePublic: { es: "Martes · email · el segundo mensaje, en la misma ficha", en: "Tuesday · e-mail · the second message, on the same record" },
   added: { es: "añadido el martes", en: "added on Tuesday" },
   growFoot: { es: "Quien abre la ficha el martes ve las dos cosas sin preguntar a nadie: lo que pidió el domingo y lo que añadió hoy.", en: "Whoever opens the record on Tuesday sees both without asking anyone: what she asked for on Sunday and what she added today." },
   history: { es: "Historial", en: "History" },
@@ -44,6 +47,23 @@ const T = {
       { at: "Tuesday 11:24", what: "NuovaSolution's reply: it keeps this and asks whether she prefers morning or afternoon" }, // Copy 1107 D-7
     ],
   },
+  // 16.11. 14:00 (the owner's point 8): the public history names e-mail, not WhatsApp — WORKING (Copy)
+  historyRowsPublic: {
+    es: [
+      { at: "martes 11:20", what: "Email de Laura: pregunta por el piso con terraza de Estepona, presupuesto hasta 320.000 €" },
+      { at: "martes 11:21", what: "Respuesta de NuovaSolution, en español; la ficha se actualiza: busca, presupuesto, idioma" },
+      { at: "martes 11:21", what: "Aviso por email a Elena: consulta importante (inmueble, zona y presupuesto)" },
+      { at: "martes 11:23", what: "Email de Laura: vivienda habitual; quiere verlo la semana que viene" },
+      { at: "martes 11:24", what: "Respuesta de NuovaSolution: lo guarda y pregunta si prefiere mañana o tarde" },
+    ],
+    en: [
+      { at: "Tuesday 11:20", what: "E-mail from Laura: asks about the flat with a terrace in Estepona, budget up to €320,000" },
+      { at: "Tuesday 11:21", what: "Reply from NuovaSolution, in Spanish; the record is updated: looking for, budget, language" },
+      { at: "Tuesday 11:21", what: "E-mail alert to Elena: important enquiry (property, area and budget named)" },
+      { at: "Tuesday 11:23", what: "E-mail from Laura: a main home; she wants to see it next week" },
+      { at: "Tuesday 11:24", what: "NuovaSolution's reply: it keeps this and asks whether she prefers morning or afternoon" },
+    ],
+  },
   historyFoot: { es: "Ejemplo ilustrativo. Cada mensaje, cada respuesta y cada aviso quedan en la ficha, en orden; no hay que reconstruir nada.", en: "Illustrative example. Every message, every reply and every alert stays on the record, in order; nothing has to be reconstructed." },
   // Copy 1107 D-5: while the alert is off, no alert in the foot
   historyFootPublic: { es: "Ejemplo ilustrativo. Cada mensaje y cada respuesta quedan en la ficha, en orden; no hay que reconstruir nada.", en: "Illustrative example. Every message and every reply stays on the record, in order; nothing has to be reconstructed." },
@@ -57,9 +77,11 @@ const T = {
   who: { es: "Laura Serrano · compradora · escribe en español", en: "Laura Serrano · buyer · writes in Spanish" },
 };
 
-export function ConversationView({ locale, className }: { locale: Locale; className?: string }) {
+export function ConversationView({ locale, className, view = "public" }: { locale: Locale; className?: string; view?: ClaimView }) {
   const d = getDictionary(locale);
   const v = d.home.views.conversation;
+  // 16.11. 14:00 (the owner's point 8): the public surface is labelled as the e-mail channel while the agency's WhatsApp number is off (topic 20)
+  const channel = live("whatsappOwnNumber", view) ? v.channel : v.channelPublic;
   // The same conversation as the home page story (lib/content/home-story.ts): Laura's second message and the reply that notes it.
   const laura = enquiries[0];
   const time = laura.time[locale];
@@ -71,7 +93,7 @@ export function ConversationView({ locale, className }: { locale: Locale; classN
           <span aria-hidden="true" className="inline-flex h-8 w-8 items-center justify-center rounded-pill bg-sage-200 text-sage-700"><StatusGlyph glyph="link" size={14} /></span>
           <div className="min-w-0">
             <p className="t-body-s font-medium text-text-primary">{v.agency}</p>
-            <p className="t-caption text-text-muted">{v.channel} · {laura.language[locale]}</p>
+            <p className="t-caption text-text-muted" data-conversation-channel={channel}>{channel} · {laura.language[locale]}</p>
           </div>
           <LabelChip className="ml-auto">{v.synthetic}</LabelChip>
         </div>
@@ -194,6 +216,7 @@ export function RecordGrowView({ locale, className, view = "public" }: { locale:
   const d = getDictionary(locale);
   const rows = enquiries[0].recorded;
   const alert = live("alert", view);
+  const wa = live("whatsappOwnNumber", view); // 16.11. 14:00 (the owner's point 8)
   const first = rows.slice(0, 2);
   const second = rows.slice(2);
   const Rows = ({ list, added }: { list: typeof rows; added?: boolean }) => (
@@ -211,11 +234,11 @@ export function RecordGrowView({ locale, className, view = "public" }: { locale:
       <div className="overflow-hidden rounded-xl border border-line-hairline bg-surface-raised shadow-card">
         <RecordHead locale={locale} label={d.home.views.conversation.synthetic} />
         <div className="px-4 pb-1 pt-3">
-          <p className="t-caption font-medium text-text-muted">{T.firstMessage[locale]}</p>
+          <p className="t-caption font-medium text-text-muted">{(wa ? T.firstMessage : T.firstMessagePublic)[locale]}</p>
           <Rows list={first} />
         </div>
         <div className="border-t border-line-hairline bg-[color:rgba(246,239,226,0.45)] px-4 pb-1 pt-3" data-record-second>
-          <p className="t-caption font-medium text-text-muted">{T.secondMessage[locale]}</p>
+          <p className="t-caption font-medium text-text-muted">{(wa ? T.secondMessage : T.secondMessagePublic)[locale]}</p>
           <Rows list={second} added />
         </div>
         {/* closing order 27.10. §10: the priority with its reason (the proven alert) and the next step, said on the record */}
@@ -240,7 +263,8 @@ export function RecordHistoryView({ locale, className, view = "public" }: { loca
   const rows = enquiries[0].recorded;
   const alert = live("alert", view);
   // Copy 1107 D-4: the alert row of the history only while the key is on
-  const history = T.historyRows[locale].filter((_, i) => alert || i !== 2);
+  // 16.11. 14:00 (the owner's point 8): the public history names e-mail while the agency's WhatsApp number is off
+  const history = (live("whatsappOwnNumber", view) ? T.historyRows : T.historyRowsPublic)[locale].filter((_, i) => alert || i !== 2);
   return (
     <div className={cn("mx-auto w-full max-w-[480px]", className)} data-view="record-history">
       <div className="overflow-hidden rounded-xl border border-line-hairline bg-surface-raised shadow-card">
@@ -407,7 +431,7 @@ export function ReadinessView({ locale, className }: { locale: Locale; className
 export function ProductView({ slug, locale, view = "public" }: { slug: string; locale: Locale; view?: ClaimView }) {
   switch (slug) {
     case "ai-sales-agent":
-      return <ConversationView locale={locale} />;
+      return <ConversationView locale={locale} view={view} />;
     case "lead-intelligence":
       return <RecordGrowView locale={locale} view={view} />;
     case "crm":

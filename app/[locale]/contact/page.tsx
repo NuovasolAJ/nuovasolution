@@ -59,6 +59,15 @@ export default function ContactPage({ params, searchParams }: { params: { locale
               </div>
             )}
           </dl>
+          {/* 16.11. 14:00 (the owner's point 7): the left area carries what happens after the request — the three steps of the pilot */}
+          <div className="contact-next" data-contact-next>
+            <p className="t-eyebrow text-text-muted">{l(w.done.next)}</p>
+            <ol className="prq-steps contact-steps">
+              {steps.map((st, i) => (
+                <li key={i} className="prq-step"><span className="prq-step-no tnum" aria-hidden="true">{i + 1}</span><span><strong>{st.b}</strong>{st.t ? ` ${st.t}` : ""}</span></li>
+              ))}
+            </ol>
+          </div>
         </Reveal>
 
         <Reveal delay={80} className="contact-card stage" data-pilot-card>
@@ -66,7 +75,7 @@ export default function ContactPage({ params, searchParams }: { params: { locale
           <Heading size="l" as="h2">{l(w.h)}</Heading>
           <p className="mt-3 t-body-m text-text-secondary">{l(w.body)}</p>
           <div className="mt-6">
-            <PilotRequestForm locale={locale} interest={interestFromQuery(searchParams?.interes)} steps={steps} live={s.live} planName={plan?.display_name} />
+            <PilotRequestForm locale={locale} interest={interestFromQuery(searchParams?.interes)} live={s.live} planName={plan?.display_name} />
           </div>
         </Reveal>
       </div>

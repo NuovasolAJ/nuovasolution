@@ -15,6 +15,8 @@ import { live, type ClaimKey, type ClaimView } from "@/lib/claims";
  */
 
 type L = { en: string; es: string };
+/** 16.11. 14:00 (the owner's point 8): a "fits" item may hang on keys (hidden in public while one is off) or carry its public wording. */
+type FitItem = L & { keys?: ClaimKey[]; pub?: L };
 type Stage = "attract" | "answer" | "understand" | "advance" | "handover";
 
 /**
@@ -45,6 +47,8 @@ export interface Capability {
   navLine: L;
   h1: L;
   lead: L;
+  /** 16.11. 14:00 (the owner's point 8): the public lead while the keys named in `pubKeys.lead` are off. */
+  leadPublic?: L;
   points: CapabilityPoint[];
   /** Illustrative scenario. Always labelled. */
   scenario: L;
@@ -54,8 +58,10 @@ export interface Capability {
   h1Public?: L;
   navLinePublic?: L;
   scenarioPublic?: L;
+  /** The keys each public variant hangs on; the defaults of `capabilityText` (h1: mailboxConnection, navLine/scenario: taskList) stay where none is named. */
+  pubKeys?: Partial<Record<"h1" | "navLine" | "scenario" | "lead", ClaimKey[]>>;
   /** Channels and systems it works with. Text only, never logos. */
-  fits: L[];
+  fits: FitItem[];
   /** Both halves, where a capability is certified internally and gated externally. */
   bothHalves?: { certified: L; pending: L };
   /** Explicitly not available. Stated so nobody infers it. */
@@ -64,6 +70,8 @@ export interface Capability {
   honesty?: L;
   /** A material limit the buyer needs for the decision, said on the page (COPY_DELTAS_0929 D-39). */
   note?: L;
+  /** The keys the note needs; with one off the note is left out in public (it would name a channel the view does not offer). */
+  noteKeys?: ClaimKey[];
   /** R24 (owner 24.10.: an understandable benefit on every page): for whom, and what it saves, in the proven present tense only. */
   why?: L[];
   /** The page's own state line where the capability is not in production yet (COPY_SYNC_1024 X-8). */
@@ -87,8 +95,14 @@ export const capabilities: Capability[] = [
       en: "While your team is with a client or out of the office, enquiries on WhatsApp and e-mail get a reply in Spanish and land on their record. Your team starts with what matters, not with the inbox.",
       es: "Mientras tu equipo está con un cliente o fuera de la oficina, las consultas por WhatsApp y email reciben respuesta en español y quedan en su ficha. Tu equipo empieza por lo que importa, no por la bandeja de entrada.",
     },
+    // 16.11. 14:00 (the owner's point 8 + ChatGPT 1): the public view names no WhatsApp before the agency's number is registered (topic 20) — WORKING (Copy)
+    leadPublic: {
+      en: "While your team is with a client or out of the office, enquiries by e-mail get a reply in Spanish and land on their record. Your team starts with what matters, not with the inbox.",
+      es: "Mientras tu equipo está con un cliente o fuera de la oficina, las consultas por email reciben respuesta en español y quedan en su ficha. Tu equipo empieza por lo que importa, no por la bandeja de entrada.",
+    },
+    pubKeys: { lead: ["whatsappOwnNumber"], scenario: ["whatsappOwnNumber"] },
     points: [
-      { text: { en: "A reply on WhatsApp, in Spanish.", es: "Respuesta por WhatsApp, en español." }, status: "live" },
+      { text: { en: "A reply on WhatsApp, in Spanish.", es: "Respuesta por WhatsApp, en español." }, status: "live", keys: ["whatsappOwnNumber"] }, // 16.11. 14:00 (the owner's point 8): hidden in public before topic 20
       { text: { en: "A reply by e-mail, in your agency's mailbox.", es: "Respuesta por email, en el buzón de tu agencia." }, status: "live", keys: ["replyEmail"] }, // Copy 1107 D-1 (§13 N-5, V-28)
       { text: { en: "Every conversation stays on the customer's record.", es: "Cada conversación queda en la ficha del cliente." }, status: "live" }, // WCR-053
       { text: { en: "An e-mail alert to the right person when an enquiry matters.", es: "Un aviso por email a la persona adecuada cuando una consulta importa." }, status: "live", keys: ["alert"] }, // Copy 1105 v3 §21, 1107 D-23: shown in the target view, hidden while `alert` is off
@@ -100,9 +114,13 @@ export const capabilities: Capability[] = [
       en: "A buyer writes on WhatsApp on a Tuesday morning, while the agent is at a viewing, asking whether the flat in Estepona can be viewed. The message is answered on WhatsApp in Spanish, and the conversation is recorded against the buyer for the agent after the viewing.", // WORKING (master order 2026-10-10); was WCR-055
       es: "Una compradora escribe por WhatsApp un martes por la mañana, mientras el agente está en una visita, para preguntar si se puede ver el piso de Estepona. El mensaje se responde por WhatsApp en español, y la conversación queda registrada en la ficha de la compradora para el agente al terminar la visita.",
     },
+    scenarioPublic: { // 16.11. 14:00 (the owner's point 8): the same scene by e-mail — WORKING (Copy)
+      en: "A buyer writes by e-mail on a Tuesday morning, while the agent is at a viewing, asking whether the flat in Estepona can be viewed. The message is answered by e-mail in Spanish, and the conversation is recorded against the buyer for the agent after the viewing.",
+      es: "Una compradora escribe por email un martes por la mañana, mientras el agente está en una visita, para preguntar si se puede ver el piso de Estepona. El mensaje se responde por email en español, y la conversación queda registrada en la ficha de la compradora para el agente al terminar la visita.",
+    },
     fits: [
       { en: "Gmail", es: "Gmail" },
-      { en: "WhatsApp", es: "WhatsApp" },
+      { en: "WhatsApp", es: "WhatsApp", keys: ["whatsappOwnNumber"] }, // 16.11. 14:00 (the owner's point 8): hidden in public before topic 20
       // WCR-041/056 (branded replies) is not listed until BRANDING_CHAIN_MATRIX_v1 proves it (audit Z08).
     ],
     notAvailable: [],
@@ -139,8 +157,13 @@ export const capabilities: Capability[] = [
       en: "The buyer from Sunday writes again on WhatsApp on Tuesday. Her message lands on the same record, next to what she asked for before.",
       es: "La compradora del domingo vuelve a escribir por WhatsApp el martes. Su mensaje llega a la misma ficha, junto a lo que había pedido antes.",
     },
+    scenarioPublic: { // 16.11. 14:00 (the owner's point 8): by e-mail in public — WORKING (Copy)
+      en: "The buyer from Sunday writes again by e-mail on Tuesday. Her message lands on the same record, next to what she asked for before.",
+      es: "La compradora del domingo vuelve a escribir por email el martes. Su mensaje llega a la misma ficha, junto a lo que había pedido antes.",
+    },
+    pubKeys: { scenario: ["whatsappOwnNumber"] },
     fits: [
-      { en: "Gmail and WhatsApp conversations", es: "Conversaciones de Gmail y WhatsApp" },
+      { en: "Gmail and WhatsApp conversations", es: "Conversaciones de Gmail y WhatsApp", pub: { en: "Gmail conversations", es: "Conversaciones de Gmail" }, keys: ["whatsappOwnNumber"] }, // 16.11. 14:00 (the owner's point 8) — WORKING (Copy)
       { en: "The native CRM", es: "El CRM propio" },
     ],
     related: ["ai-sales-agent", "crm", "daily-assistant"],
@@ -155,6 +178,7 @@ export const capabilities: Capability[] = [
     navLinePublic: { en: "Leads and conversations in one place", es: "Leads y conversaciones en un solo lugar" }, // Copy 1107 D-13 (taskList off)
     // D-39: the material limit is said on the page (LEAD_TRUTH_INPUT_v1 §3: no automatic person merge across channels).
     note: { en: "A customer who writes by e-mail and later on WhatsApp starts as two records until you link them. We would rather tell you that here than let you find it.", es: "Un cliente que escribe por email y después por WhatsApp empieza como dos fichas hasta que las unes. Preferimos decírtelo aquí y no que lo descubras tú." },
+    noteKeys: ["whatsappOwnNumber"], // 16.11. 14:00 (the owner's point 8): with one channel in public, the two-channel limit is not stated there
     // Public H1 and lead limited to what is proven (audit Z07, R27, LAUNCH_COPY_v1 §6.1): the connected channels on one record, included
     // from the start. Cross-channel identity, the team's CRM view, Google Sheets and external CRMs are
     // tracked in the launch blocker register, not stated on the page.
@@ -438,10 +462,18 @@ export function capabilityVisible(c: Capability, view: ClaimView): boolean {
   return !c.keys || live(c.keys, view);
 }
 /** The wording of a view: the public variant where Copy gives one and the text's key is off. */
-export function capabilityText(c: Capability, field: "h1" | "navLine" | "scenario", locale: Locale, view: ClaimView): string {
-  const pub = field === "h1" ? c.h1Public : field === "navLine" ? c.navLinePublic : c.scenarioPublic;
-  const key: ClaimKey = field === "h1" ? "mailboxConnection" : "taskList";
-  return pub && !live(key, view) ? pub[locale] : c[field][locale];
+export function capabilityText(c: Capability, field: "h1" | "navLine" | "scenario" | "lead", locale: Locale, view: ClaimView): string {
+  const pub = field === "h1" ? c.h1Public : field === "navLine" ? c.navLinePublic : field === "scenario" ? c.scenarioPublic : c.leadPublic;
+  const keys: ClaimKey[] = c.pubKeys?.[field] ?? [field === "h1" ? "mailboxConnection" : "taskList"];
+  return pub && !live(keys, view) ? pub[locale] : c[field][locale];
+}
+/** 16.11. 14:00 (the owner's point 8): the "fits" items of a view — an item whose keys are off shows its public wording or is left out. */
+export function capabilityFits(c: Capability, locale: Locale, view: ClaimView): string[] {
+  return c.fits.map((f) => (!f.keys || live(f.keys, view) ? f[locale] : f.pub ? f.pub[locale] : null)).filter((x): x is string => x !== null);
+}
+/** The note of a view: left out while its keys are off. */
+export function capabilityNote(c: Capability, locale: Locale, view: ClaimView): string | null {
+  return c.note && (!c.noteKeys || live(c.noteKeys, view)) ? c.note[locale] : null;
 }
 
 export function t(l: L, locale: Locale): string {

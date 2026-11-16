@@ -200,6 +200,7 @@ export const es: Dictionary = {
       conversation: {
         agency: "Tu agencia",
         channel: "WhatsApp",
+        channelPublic: "Email", // 16.11. 14:00 (the owner's point 8): the public label before topic 20 — WORKING (Copy)
         synthetic: "Ejemplo ilustrativo",
         assistant: "Asistente automático de la agencia", // D-76; Copy 1107 D-8
         caption: "La respuesta que sale, con el aviso que debe llevar.",

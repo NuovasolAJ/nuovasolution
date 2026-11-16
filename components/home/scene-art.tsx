@@ -64,8 +64,8 @@ export function DemoPlan({ locale, className }: { locale: "es" | "en"; className
     return `M${p1[0]} ${p1[1]}A${w} ${w} 0 0 ${sweep} ${p2[0]} ${p2[1]}L${h[0]} ${h[1]}`;
   };
   return (
-    <svg aria-hidden="true" viewBox="-4300 -1000 14900 9500" className={className} focusable="false" data-demo-plan>
-      <rect x="-4300" y="-1000" width="14900" height="9500" fill="#f7f5ef" />
+    <svg aria-hidden="true" viewBox="-4300 -1000 15400 9500" className={className} focusable="false" data-demo-plan>
+      <rect x="-4300" y="-1000" width="15400" height="9500" fill="#f7f5ef" />
       {/* the floor slab and the terrace deck */}
       <rect x="0" y="0" width="10000" height="8000" fill="#fff" />
       <rect x="-3800" y="700" width="3800" height="3600" fill="#efe9db" stroke="#8f887b" strokeWidth="30" strokeDasharray="160 120" />
@@ -105,7 +105,8 @@ export function DemoPlan({ locale, className }: { locale: "es" | "en"; className
       </g>
       <g fontFamily={font} fontSize="360" fill="#5d5952" textAnchor="middle">
         <text x="5000" y="-640">10,00 m</text>
-        <text x="10600" y="4000" transform="rotate(-90 10600 4000)" dy="-120">8,00 m</text>
+        {/* 16.11. 14:00 (Audit): the height reads clear of its dimension line */}
+        <text x="10900" y="4000" transform="rotate(-90 10900 4000)">8,00 m</text>
       </g>
     </svg>
   );

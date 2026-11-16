@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
-import { ArrowRight, Box, Link2, MessageCircleQuestion, Play, Upload } from "lucide-react";
+import { ArrowRight, FileText, Play } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
@@ -32,7 +32,7 @@ const MEDIA = {
   filmWebm: "/media/3d/house-delivery.webm",
   filmPoster: "/media/3d/house-delivery-poster-1600.webp",
 };
-const SEG = 0.7; // window heights per step on the wide window
+const SEG = 0.45; // window heights per step on the wide window (16.11. 14:00, Audit: no long held picture; the desktop no longer than before — was 0.7)
 const headerHeight = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 72;
 const wide = () => window.matchMedia("(min-width: 1024px)").matches;
 
@@ -77,7 +77,6 @@ export function Stage3d({ locale }: { locale: Locale }) {
   const [filmOn, setFilmOn] = useState(false);
   const [filmReady, setFilmReady] = useState(false);
   const video = useRef<HTMLVideoElement>(null);
-  const pathIcons = [Upload, MessageCircleQuestion, Box, Link2]; // Copy 1116 §7.2: four steps
 
   // the wide window: the step from the scroll position (the pin holds from the track's top, each step owns one segment)
   useEffect(() => {
@@ -98,15 +97,7 @@ export function Stage3d({ locale }: { locale: Locale }) {
     return () => { window.removeEventListener("scroll", on); window.removeEventListener("resize", on); if (raf) cancelAnimationFrame(raf); };
   }, []);
 
-  // the narrow window: once in view, plan → the ground floor turning → the pair, one walk, then the visitor decides
-  useEffect(() => {
-    if (!seen || walked.current || wide()) return;
-    walked.current = true;
-    if (reduce) { setStep(2); return; }
-    const a = window.setTimeout(() => setStep(1), 1400);
-    const b = window.setTimeout(() => setStep(2), 7400);
-    return () => { window.clearTimeout(a); window.clearTimeout(b); };
-  }, [seen, reduce]);
+  // 16.11. 14:00 (Audit): the narrow window starts at 01 and stays there until a tap — no walk on its own (was: plan → model → pair on timers)
 
   /** A click on a step: on the wide window the window scrolls to the step's segment (the pin shows it), otherwise the step is set. */
   const go = (i: number) => {
@@ -129,7 +120,9 @@ export function Stage3d({ locale }: { locale: Locale }) {
         <Rise className="m3d-head">
           <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
           <h2 id="m3d-h" className="t-display-m mt-3 text-text-primary">{l(w.h2)}</h2>
-          <p className="mt-4 t-body-l text-text-secondary max-w-[52ch]">{l(w.lead)}</p>
+          <p className="mt-4 t-body-l text-text-secondary max-w-[52ch] m-hide">{l(w.lead)}</p>
+          <p className="m-only sec-core" data-phone-core="model3d">{l(home1103.phoneCore.model3d.core)}</p>
+          <p className="m-only sec-proof">{l(home1103.phoneCore.model3d.proof)}</p>
           <p className="mt-4"><span className="status-pill" data-status="example" data-model3d-example>{l(w.example)}</span></p>
         </Rise>
       </div>
@@ -200,19 +193,24 @@ export function Stage3d({ locale }: { locale: Locale }) {
       <div className="container-default">
         <Rise className="m3d-path" delay={0.05} y={16}>
           <p className="m3d-path-title">{l(w.pathTitle)}</p>
-          <ol className="m3d-path-run" data-model3d-path>
-            {l(w.path).map((s, i) => {
-              const Icon = pathIcons[i];
-              return (
-                <li key={s} className="m3d-path-step" data-model3d-path-step={i + 1}>
-                  <span className="m3d-path-node" aria-hidden="true"><Icon size={18} strokeWidth={1.9} /></span>
-                  <span className="m3d-path-no tnum" aria-hidden="true">{i + 1}</span>
-                  <span className="m3d-path-words"><span className="m3d-path-name">{s}</span><span className="m3d-path-text">{l(w.pathLines)[i]}</span></span>
-                </li>
-              );
-            })}
+          {/* 16.11. 14:00 (the owner's point 1): the four steps as a short order chat in one row (stacked on the phone) — supervised, never instant */}
+          <ol className="tc-run" data-model3d-path>
+            {w.pathChat(locale).map((s, i) => (
+              <li key={s.name} className={cn("tc-step", s.from === "agency" ? "tc-from-agency" : "tc-from-us")} data-model3d-path-step={i + 1}>
+                <p className="tc-head"><span className="tc-no tnum" aria-hidden="true">{i + 1}</span><span className="tc-name">{s.name}</span></p>
+                <div className="tc-bubble">
+                  <span className="tc-who">{s.who}</span>
+                  <span className="tc-text">{s.text}</span>
+                  {s.attach && <span className="tc-attach"><FileText size={14} strokeWidth={2} aria-hidden="true" />{s.attach}</span>}
+                  {s.thumb === "model" && <Img src={MEDIA.loopPoster} alt={l(w.modelAlt)} w={1600} h={900} className="tc-thumb" />}
+                  {s.thumb === "pictures" && <span className="tc-thumbs"><Img src={MEDIA.furnished} alt={l(w.furnishedAlt)} w={1200} h={800} className="tc-thumb" /><Img src={MEDIA.empty} alt={l(w.emptyAlt)} w={1200} h={800} className="tc-thumb" /></span>}
+                  <span className="tc-time tnum">{s.time}</span>
+                </div>
+              </li>
+            ))}
           </ol>
           <p className="m3d-path-line" data-model3d-path-line>{l(w.pathLine)}</p>
+          <p className="m3d-path-mark" data-model3d-path-mark>{l(w.pathMark)}</p>
           {/* the 3D interest is preselected on the request (the owner's point 10) */}
           <a href={localePath(locale, "/contact?interes=3d")} className="m3d-cta" data-model3d-cta>{l(w.cta)}<ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" /></a>
         </Rise>

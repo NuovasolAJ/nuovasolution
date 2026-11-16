@@ -4,6 +4,7 @@ import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
 import { claimWords, entryAction, live, planCell, planCellWords, planRowShown, plansTableShown, type ClaimView, type PlanCode } from "@/lib/claims";
 import { Rise } from "@/components/ui/motion";
+import { PlanCardFold } from "./plan-card-fold";
 import { cn } from "@/lib/utils";
 
 /**
@@ -56,8 +57,8 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
       <section id="plans" aria-labelledby="plans-h" className="plans" data-plans data-plans-view={view} data-plans-table-shown="false">
         <div className="container-default">
           <Rise className="plans-head">
-            {headed && <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>}
-            <h2 id="plans-h" className="t-display-m mt-3 text-text-primary">{l(w.included.h2)}</h2>
+            {/* 16.11. 14:00 (the owner's point 2): no eyebrow over the heading — "Planes" stands once */}
+            <h2 id="plans-h" className="t-display-m text-text-primary">{l(w.included.h2)}</h2>
           </Rise>
           <Rise className="plans-included" y={24} delay={0.08}>
             <ul className="plans-included-list" data-plans-included>
@@ -81,13 +82,16 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
       <div className="container-default">
         {headed && (
           <Rise className="plans-head">
-            <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
-            <h2 id="plans-h" className="t-display-m mt-3 text-text-primary">{l(w.h2)}</h2>
-            <p className="mt-4 t-body-l text-text-secondary max-w-[52ch]">{l(plansTableShown(view) ? w.lead : w.leadPublic)}</p>
+            {/* 16.11. 14:00 (the owner's point 2): no eyebrow over the heading — "Planes" stands once */}
+            <h2 id="plans-h" className="t-display-m text-text-primary">{l(w.h2)}</h2>
+            <p className="mt-4 t-body-l text-text-secondary max-w-[52ch] m-hide">{l(plansTableShown(view) ? w.lead : w.leadPublic)}</p>
           </Rise>
         )}
 
         <Rise className="plans-table-wrap" y={24} delay={0.08}>
+          {/* 16.11. 14:00 (the owner's point 2): the line above the table, on the home page and on /packages */}
+          <p className="plans-pilot-line" data-plans-pilot-line>{l(w.pilotLine)}</p>
+          <p className="m-only sec-proof plans-proof" data-phone-core="plans">{l(home1103.phoneCore.plans.proof)}</p>
           <div className="plans-table" role="table" aria-label={l(w.h2)} data-plans-table>
             <div className="plans-row plans-row-head" role="row">
               <div className="plans-cell plans-cell-name" role="columnheader" />
@@ -121,6 +125,8 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
                 return (
                   <div key={code} className={cn("plans-cell plans-cell-cta", hi(code) && "is-highlight")} role="cell">
                     <a href={a.href} className={cn("plans-cta", a.main && "plans-cta-main")} data-plan-cta={code} data-pilot-cta="plan">{a.label}<ArrowRight size={15} strokeWidth={2.2} aria-hidden="true" /></a>
+                    {/* 16.11. 14:00 (the owner's point 3): the second, clearly smaller way — the same form with "Contratar un plan" preselected */}
+                    <a href={localePath(locale, `/contact?interes=contratar&plan=${code}`)} className="plans-direct" data-plan-direct={code}>{l(w.direct)}</a>
                   </div>
                 );
               })}
@@ -134,6 +140,7 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
                 <li key={n} className={cn("plans-card", hi(codes[pi]) && "is-highlight")} data-plan-card={codes[pi]}>
                   <p className="plans-name">{n}</p>
                   <p className="plans-who">{who[pi]}</p>
+                  <PlanCardFold code={codes[pi]} more={l(w.foldMore)} less={l(w.foldLess)}>
                   {groups.map((g, gi) => groupRows(gi).length === 0 ? null : (
                     <div key={g} className="plans-card-group">
                       <p className="plans-cell-group">{g}</p>
@@ -152,7 +159,9 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
                       </ul>
                     </div>
                   ))}
+                  </PlanCardFold>
                   <a href={a.href} className={cn("plans-cta", a.main && "plans-cta-main")} data-pilot-cta="plan-card">{a.label}<ArrowRight size={15} strokeWidth={2.2} aria-hidden="true" /></a>
+                  <a href={localePath(locale, `/contact?interes=contratar&plan=${codes[pi]}`)} className="plans-direct" data-plan-direct={`card-${codes[pi]}`}>{l(w.direct)}</a>
                 </li>
               );
             })}

@@ -38,7 +38,9 @@ export function ReportStage({ locale, view }: { locale: Locale; view: ClaimView 
         <Rise className="rep-head">
           <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
           <h2 id="rep-h" className="t-display-m mt-3 text-text-primary">{l(w.h2)}</h2>
-          <p className="mt-4 t-body-l text-text-secondary max-w-[48ch]">{l(w.lead)}</p>
+          <p className="mt-4 t-body-l text-text-secondary max-w-[48ch] m-hide">{l(w.lead)}</p>
+          <p className="m-only sec-core" data-phone-core="report">{l(home1103.phoneCore.report.core)}</p>
+          <p className="m-only sec-proof">{l(home1103.phoneCore.report.proof)}</p>
         </Rise>
 
         <Rise className="rep-sheet" delay={0.1} y={24}>

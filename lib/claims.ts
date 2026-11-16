@@ -57,6 +57,8 @@ export const claims = {
   reportTrend: "soon",             // (report_extended) extended tier empty in prod: the trend, the channels and the insights
   instagram: "soon",               // (social_posting) staging, never published at Meta
   phoneAssistant: "soon",          // (phone) staging prototype
+  listingLink: "included",         // (owner 16.11. 14:00, "Prod 13.11.") the assistant reads the listing link a customer sends; API's claims line pending (D10)
+  reminders: "included",           // (owner 16.11. 14:00, "Prod 13.11.") reminder after 1 h, escalation after 2 h when nobody answers; API's claims line pending (D10)
   webform: "soon",                 // the web form: prototype (the demonstration's third channel)
   integrations: "soon",            // (crm_external) HubSpot, Pipedrive, Zoho, Salesforce — not in prod
   outlook: "soon",                 // (§15) Outlook, split from integrations: its own path (O4, MM)

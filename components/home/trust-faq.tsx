@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Database, Handshake, MessageSquareText } from "lucide-react";
+import { ArrowRight, CreditCard, Database, FileText, Handshake } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
@@ -24,9 +24,10 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
   const p = (path: string) => localePath(locale, path);
   const entry = entryAction(locale, view);
   // 13.11. (Copy 1113 §6): the free pilot in 3 steps in both views; step 3 follows `mailboxConnection`
-  const icons = [Handshake, Database, MessageSquareText];
+  const icons = [Handshake, CreditCard, Database, FileText];
   const steps = e.steps(locale, view);
-  const lines = [l(t.line1(view)), ...l(t.lines)];
+  const points = t.points; // Copy 441ba1c §8: four points, no quotes
+  const core = home1103.phoneCore; // Copy 441ba1c §10: the phone's core and proof lines
   const faqItems = f.items(locale, view);
 
   return (
@@ -41,7 +42,9 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
               {/* the way in (§20) */}
               <div className="entry" data-entry={entry.kind}>
                 <p className="entry-title">{l(e.title)}</p>
-                <ol className="trust-steps" data-trust-steps>
+                <p className="m-only sec-core" data-phone-core="entry">{l(core.entry.core)}</p>
+                <p className="m-only sec-proof">{l(core.entry.proof)}</p>
+                <ol className="trust-steps m-hide" data-trust-steps>
                   {steps.map((s, i) => (
                     <Rise as="li" key={s.b} delay={i * 0.1} className="trust-step" data-trust-step={i + 1}>
                       <span className="trust-step-no tnum" aria-hidden="true">{i + 1}</span>
@@ -49,19 +52,19 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
                     </Rise>
                   ))}
                 </ol>
-                <p className="entry-line" data-entry-line>{l(e.line)}</p>
+                <p className="entry-line m-hide" data-entry-line>{l(e.line)}</p>
                 {live("mailboxConnection", view) && <p className="entry-small">{l(e.small)}</p>}
                 <p className="trust-entry">
                   <Link href={p(entry.href)} className="trust-entry-cta" data-trust-cta={entry.kind} data-pilot-cta="entry">{entry.label}<ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" /></Link>
                 </p>
               </div>
               <ol className="trust-lines">
-                {lines.map((line, i) => {
+                {points.map((pt, i) => {
                   const Icon = icons[i];
                   return (
-                    <Rise as="li" key={line} delay={i * 0.1} className="trust-line" data-trust-line={i + 1}>
+                    <Rise as="li" key={l(pt.t)} delay={i * 0.1} className="trust-line" data-trust-line={i + 1}>
                       <span className="trust-icon" aria-hidden="true"><Icon size={20} strokeWidth={1.9} /></span>
-                      <span>{line}</span>
+                      <span><strong className="trust-line-t">{l(pt.t)}</strong> {l(pt.l)}</span>
                     </Rise>
                   );
                 })}
@@ -92,7 +95,8 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
         <div className="container-default">
           <Rise className="closing-panel" y={24}>
             <h2 id="close-h" className="closing-h2">{l(c.h2)}</h2>
-            <p className="closing-line">{l(c.line(view))}</p>
+            <p className="closing-line m-hide">{l(c.line(view))}</p>
+            <p className="m-only closing-line" data-phone-core="close">{l(core.close.proof)}</p>
             <div className="closing-ctas">
               {/* Copy 1108 H-1: the close's main action is the demo request */}
               {/* 13.11.: one button, one offer (Copy 1113 §0 B-1); the second button would repeat it */}

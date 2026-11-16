@@ -86,8 +86,7 @@ export const faqGroups: FaqGroup[] = [
           en: "Today it replies automatically in Spanish only. It recognises the language of every enquiry and, if it is not Spanish, passes it to your team. More languages are in preparation.",
           es: "Hoy responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo. Más idiomas, en preparación.",
         },
-        keys: ["otherLanguages"],
-        pub: { en: "Replies in Spanish. In any other language, the enquiry waits for a person.", es: "Responde en español. Si es otro idioma, la consulta espera a una persona." },
+        // Copy 441ba1c (owner 16.11.): L-1 stands in both views; the public fallback is retired
       },
       {
         kb: "Q-07",
@@ -201,7 +200,7 @@ export const faqGroups: FaqGroup[] = [
         q: { en: "Does it reply from my agency's WhatsApp?", es: "¿Responde desde el WhatsApp de mi agencia?" },
         a: { en: "Yes. We register your agency's number with you and test it with a real message.", es: "Sí. Damos de alta contigo el número de tu agencia y lo probamos con un mensaje real." },
         keys: ["whatsappOwnNumber"],
-        pub: { en: "Not yet. To reply from your agency's number, that number has to be registered with Meta through us, and that step is in preparation. Today the assistant replies on WhatsApp on our own number, and that is where we measured replies within seconds.", es: "Todavía no. Para responder desde el número de tu agencia, ese número tiene que darse de alta con Meta a través de nosotros, y ese paso está en preparación. Hoy el asistente responde por WhatsApp en nuestro propio número: ahí medimos que contesta en segundos." },
+        // 16.11. 14:00 (the owner's point 8): no public mention of the agency's WhatsApp before topic 20 — Copy's W-3 public answer is withdrawn, the question leaves the public view
       },
       {
         kb: "Q-11b",

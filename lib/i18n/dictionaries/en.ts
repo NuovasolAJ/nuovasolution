@@ -222,6 +222,7 @@ export const en = {
       conversation: {
         agency: "Your agency",
         channel: "WhatsApp",
+        channelPublic: "E-mail", // 16.11. 14:00 (the owner's point 8): the public label before topic 20 — WORKING (Copy)
         synthetic: "Illustrative example",
         assistant: "The agency's automated assistant", // D-76; Copy 1107 D-8
         caption: "The reply that goes out, with the notice it must carry.",

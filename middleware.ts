@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { DISPLAY_DEFAULT } from "@/lib/view-query";
 
 /**
  * Two things for the preview deployments, nothing on a live build (the build mode is inlined by next.config.js):
@@ -82,7 +83,8 @@ export async function middleware(req: NextRequest) {
   for (const s of SWITCHES) {
     const fromParam = url.searchParams.get(s.param);
     const fromCookie = req.cookies.get(s.cookie)?.value;
-    const value = fromParam && (s.allowed as readonly string[]).includes(fromParam) ? fromParam : fromCookie && (s.allowed as readonly string[]).includes(fromCookie) ? fromCookie : s.allowed[0];
+    const fallback = s.param === "display" ? DISPLAY_DEFAULT : s.allowed[0]; // the display face's default is the one line in lib/view-query.ts
+    const value = fromParam && (s.allowed as readonly string[]).includes(fromParam) ? fromParam : fromCookie && (s.allowed as readonly string[]).includes(fromCookie) ? fromCookie : fallback;
     reqHeaders.set(s.header, value);
     if (fromParam !== null) cookiesToSet.push({ name: s.cookie, value });
   }

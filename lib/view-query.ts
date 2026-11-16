@@ -8,13 +8,15 @@ import type { ClaimView } from "@/lib/claims";
 export type Palette = "d";
 export type DisplayFace = "inter" | "fraunces";
 export type PreviewSwitches = { view: ClaimView; display: DisplayFace; live: boolean };
+/** THE one line of the display face (the owner, 16.11. 14:00: Inter everywhere). "fraunces" puts Fraunces back on H1/H2 everywhere; `?display=` compares on the same build. */
+export const DISPLAY_DEFAULT: DisplayFace = "inter";
 
 /** The query string that keeps the current switches on a link (empty when everything is at its default). */
 export function switchQuery(s: PreviewSwitches, patch: Partial<Pick<PreviewSwitches, "view" | "display">> = {}): string {
   const n = { ...s, ...patch };
   const q = new URLSearchParams();
   if (n.view === "public") q.set("view", "public");
-  if (n.display !== "fraunces") q.set("display", n.display);
+  if (n.display !== DISPLAY_DEFAULT) q.set("display", n.display);
   const str = q.toString();
   return str ? `?${str}` : "";
 }

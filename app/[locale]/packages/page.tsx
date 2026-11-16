@@ -104,9 +104,9 @@ export default function PackagesPage({ params }: { params: { locale: string } })
           <div className="band band-sand band-panel px-6 py-14 text-center md:px-12 md:py-20">
             <Display size="l" id="pk-close" className="mx-auto max-w-[20ch]">{l(c.h2)}</Display>
             <p className="mx-auto mt-5 max-w-[44ch] t-body-l text-text-secondary">{l(c.line(s.view))}</p>
+            {/* 16.11. 14:00 (ChatGPT via the owner): one button, one target — the pilot request */}
             <CtaRow align="center" className="mt-10">
-              <ButtonLink href={`${localePath(locale)}#demo`} size="lg">{l(c.ctaDemo)}</ButtonLink>
-              <ButtonLink href={p(entry.href)} size="lg" variant="secondary">{entry.label}</ButtonLink>
+              <ButtonLink href={p(entry.href)} size="lg" data-pilot-cta="packages-close">{entry.label}</ButtonLink>
             </CtaRow>
             <Caption className="mt-4">{entry.line}</Caption>
           </div>

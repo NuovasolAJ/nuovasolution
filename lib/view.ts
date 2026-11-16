@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 import { integrationMode } from "@/lib/contracts/mode";
-import type { PreviewSwitches } from "@/lib/view-query";
+import { DISPLAY_DEFAULT, type PreviewSwitches } from "@/lib/view-query";
 
 export { switchQuery, type DisplayFace, type Palette, type PreviewSwitches } from "@/lib/view-query";
 
@@ -11,15 +11,16 @@ export { switchQuery, type DisplayFace, type Palette, type PreviewSwitches } fro
  * here. On a live build nothing can be switched and nothing is read (the pages stay static): the view is "public", the display
  * face is Inter. The palette switch left on 13.11.2026: the owner chose D, which is now the one accent in globals.css.
  */
+/* the display face's default is the one line DISPLAY_DEFAULT in lib/view-query.ts (the owner, 16.11. 14:00: Inter everywhere) */
 export function resolveSwitches(): PreviewSwitches {
   const live = integrationMode() === "live";
-  if (live) return { view: "public", display: "fraunces", live };
+  if (live) return { view: "public", display: DISPLAY_DEFAULT, live };
   const h = headers();
   const v = h.get("x-nuova-view");
   const d = h.get("x-nuova-display");
   return {
     view: v === "public" ? "public" : "target",
-    display: d === "inter" ? "inter" : "fraunces", // the owner's P-11 of 16.11.: Fraunces for H1/H2
+    display: d === "fraunces" ? "fraunces" : d === "inter" ? "inter" : DISPLAY_DEFAULT,
     live,
   };
 }

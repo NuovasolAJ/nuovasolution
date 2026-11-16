@@ -77,6 +77,9 @@ export function FlowStory({ locale, view }: { locale: Locale; view: ClaimView })
         <Rise className="flow-head">
           <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
           <h2 id="flow-h" className="t-display-m mt-3 text-text-primary">{l(w.h2)}</h2>
+          {/* Copy 441ba1c §10: the phone's core and proof line */}
+          <p className="m-only sec-core" data-phone-core="flow">{l(home1103.phoneCore.flow.core)}</p>
+          <p className="m-only sec-proof">{l(home1103.phoneCore.flow.proof)}</p>
         </Rise>
         <div className="fs-grid">
           <ol ref={stepsRef} className="fs-steps">

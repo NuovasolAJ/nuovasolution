@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
  */
 type Body = { agency?: string; name?: string; email?: string; phone?: string; interest?: string; message?: string; consent?: boolean; locale?: string; web?: string };
 
-const INTERESTS = new Set(["pilot", "model3d", "other"]);
+const INTERESTS = new Set(["pilot", "contract", "model3d", "other"]);
 const clean = (v: unknown, max: number): string => (typeof v === "string" ? v.trim().slice(0, max) : "");
 
 export async function POST(req: Request) {
@@ -21,7 +21,8 @@ export async function POST(req: Request) {
   const agency = clean(b.agency, 120), name = clean(b.name, 120), email = clean(b.email, 160), phone = clean(b.phone, 40), message = clean(b.message, 2000);
   const interest = INTERESTS.has(String(b.interest)) ? String(b.interest) : "pilot";
   const locale = b.locale === "en" ? "en" : "es";
-  const missing = [!agency && "agency", !name && "name", !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && "email", b.consent !== true && "consent"].filter(Boolean) as string[];
+  // 16.11. 14:00 (the owner's point 4): required are the agency, the name and e-mail OR phone; an e-mail, when given, must look like one
+  const missing = [!agency && "agency", !name && "name", !email && !phone && "reach", email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && "email"].filter(Boolean) as string[];
   if (missing.length) return NextResponse.json({ ok: false, error: "missing", fields: missing }, { status: 422 });
 
   const url = process.env.NUOVA_PILOT_INTAKE_URL;

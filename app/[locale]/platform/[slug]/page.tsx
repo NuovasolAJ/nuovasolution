@@ -5,7 +5,7 @@ import { isLocale, localePath, locales, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { entryAction, withChannels } from "@/lib/claims";
 import { resolveSwitches } from "@/lib/view";
-import { capabilityText, capabilityVisible, publishedCapabilities, publishedCapability, publicPoints } from "@/lib/content/capabilities";
+import { capabilityFits, capabilityNote, capabilityText, capabilityVisible, publishedCapabilities, publishedCapability, publicPoints } from "@/lib/content/capabilities";
 import { SectionHead, Display, Eyebrow, Lead, Caption, Heading } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
@@ -53,6 +53,9 @@ export default function ProductPage({ params }: { params: { locale: string; slug
   const points = publicPoints(c, view);
   // Copy 1107 D-11: "Relacionado" names only the pages the view shows
   const related = c.related.map(publishedCapability).filter((r): r is NonNullable<typeof r> => Boolean(r) && capabilityVisible(r!, view));
+  // 16.11. 14:00 (the owner's point 8): the public view names no WhatsApp before topic 20 — the lead, the note and the "fits" list follow the view
+  const note = capabilityNote(c, locale, view);
+  const fits = capabilityFits(c, locale, view);
 
   return (
     <>
@@ -64,7 +67,7 @@ export default function ProductPage({ params }: { params: { locale: string; slug
               <Eyebrow className="mb-4">{d.product.eyebrowPrefix} · {c.name[locale]}</Eyebrow>
               {/* R24 picture 09 (1): the module headline one step smaller than the home page's; the lead, then for whom and what it saves (3) */}
               <Display size="l" as="h1" id="pd-h1" className="max-w-[22ch]">{capabilityText(c, "h1", locale, view)}</Display>
-              <Lead className="mt-5">{c.lead[locale]}</Lead>
+              <Lead className="mt-5">{capabilityText(c, "lead", locale, view)}</Lead>
               {c.why && (
                 <ul className="mt-5 space-y-2 measure-lead" data-product-why>
                   {c.why.map((w, i) => (
@@ -72,7 +75,7 @@ export default function ProductPage({ params }: { params: { locale: string; slug
                   ))}
                 </ul>
               )}
-              {c.note && <p className="mt-4 border-l-2 border-line-strong pl-4 t-body-m text-text-secondary measure-lead">{c.note[locale]}</p>}
+              {note && <p className="mt-4 border-l-2 border-line-strong pl-4 t-body-m text-text-secondary measure-lead">{note}</p>}
               <Caption className="mt-3">{d.common.qualifiers.q2}</Caption>
               <CtaRow className="mt-8">
                 <ButtonLink href={p(entry.href)} size="lg">{entry.label}</ButtonLink>
@@ -143,8 +146,8 @@ export default function ProductPage({ params }: { params: { locale: string; slug
         <div className="container-default">
           <Reveal><SectionHead title={d.product.fits} size="heading-l" id="pd-fits" /></Reveal>
           <ul className="mt-8 max-w-text hairline-list border-y border-line-hairline">
-            {c.fits.map((f, i) => (
-              <li key={i} className="py-4 t-body-m text-text-secondary">{f[locale]}</li>
+            {fits.map((f, i) => (
+              <li key={i} className="py-4 t-body-m text-text-secondary">{f}</li>
             ))}
           </ul>
           <Caption className="mt-4">{withChannels(d.common.qualifiers.q5, locale, view)}</Caption>

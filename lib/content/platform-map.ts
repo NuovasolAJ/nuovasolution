@@ -45,7 +45,7 @@ export const platformTasks: PlatformTask[] = [
     short: { es: "Atender", en: "Answer" },
     href: "/platform#answer",
     line: { es: "Las consultas por ⟦canales⟧ se responden en español. Una consulta en otro idioma no recibe respuesta automática.", en: "Enquiries on ⟦canales⟧ are answered in Spanish. An enquiry in another language gets no automatic reply." },
-    linePublic: { es: "Las consultas por ⟦canales⟧ se responden en español. Una consulta en otro idioma no recibe respuesta automática y espera a una persona.", en: "Enquiries on ⟦canales⟧ are answered in Spanish. An enquiry in another language gets no automatic reply and waits for a person." }, // Copy 1116 §12
+    linePublic: { es: "Las consultas por ⟦canales⟧ se responden en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo.", en: "Enquiries on ⟦canales⟧ are answered in Spanish. It recognises the language of every enquiry and, if it is not Spanish, passes it to your team." }, // Copy 441ba1c: L-1 in public too // Copy 1116 §12
     entries: [
       { key: "whatsapp", name: { es: "WhatsApp", en: "WhatsApp" }, line: { es: "Respuesta por WhatsApp, con el número de tu agencia.", en: "Replies on WhatsApp, on your agency's own number." }, keys: ["replyWhatsapp", "whatsappOwnNumber"], slug: "ai-sales-agent", anchor: "#functions" },
       { key: "email", name: { es: "Email", en: "Email" }, line: { es: "La misma respuesta para lo que llega al buzón de tu agencia.", en: "The same reply for what arrives in your agency's mailbox." }, keys: ["replyEmail", "mailboxConnection"], pub: { es: "Respuesta en español a las consultas que llegan por email.", en: "Replies in Spanish to enquiries that arrive by email." }, slug: "ai-sales-agent", anchor: "#functions" },
