@@ -212,7 +212,9 @@ Four points. No quotes, no logos, no names of clients, no figures.
 | W-1 (new public) | Respuestas en español por email. | Replies in Spanish by email. | "por WhatsApp y email", as built |
 | W-3 | the FAQ "¿Responde desde el WhatsApp de mi agencia?" is **not shown in public**. In the target view, 1116 W-3 with its target answer | — | as 1116 |
 
-W-2 "Responde en minutos por email." and W-7a stay (owner, Q-5 above).
+**To be clear (Reviewer's question, 16.11.):** the public sentence "WhatsApp con el número de tu agencia: en preparación." is **removed as a whole**. It does not lose its "en preparación"; there is no public WhatsApp line at all.
+
+The "no en preparación" rule concerns **email only**: W-2 "Responde en minutos por email." and W-7a stay (owner, Q-5 above). They are true at go-live, because the owner ties the go-live to A12. Until then the site is only a gated preview.
 
 This overrides 1116 §10 W-1 and W-3 for the public view.
 
