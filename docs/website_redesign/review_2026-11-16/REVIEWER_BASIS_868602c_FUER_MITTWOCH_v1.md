@@ -191,3 +191,22 @@ als Verstoß.
 Begründung des Owners, die ich mitprüfe: „empiezan" wäre unwahr, solange „Contratar directamente"
 als Weg ohne Piloten daneben steht; und „Nada se queda sin atender" verspricht mehr, als der Beleg
 hergibt, weil nach der letzten Erinnerung nichts mehr ausgelöst wird.
+
+### Punkt B: Prüfbedingung steht, Herkunft offengelegt
+
+Copy hat §9.1 nachgetragen (`99cd810`, von mir im Repo gelesen): **in der öffentlichen Sicht nennen
+die Plattformseiten kein WhatsApp**, genau wie die Planzeile W-1. Redesigns öffentliche Zeilen in
+`lib/content/capabilities.ts` sind von Copy als Text angenommen (E-Mail-Fassungen für
+`ai-sales-agent` und `lead-intelligence`, der Hinweis auf zwei Fichas bei `crm` öffentlich
+ausgeblendet). Die Zielsicht behält WhatsApp.
+
+**Meine Prüfbedingung für Mittwoch:** `/platform/*` in der **öffentlichen** Sicht, **0 Treffer** für
+„WhatsApp", beide Sprachen. Heute auf `216516b`: 6 (`ai-sales-agent`), 4 (`lead-intelligence`),
+3 (`crm`).
+
+**Woher die Regel kommt, offen gesagt:** Der Owner hat mir Punkt B **nicht** beantwortet. Copy
+führt sie auf „Punkt 8 des Owners, über Redesign" zurück — also eine Weitergabe über zwei Stufen.
+Ich übernehme sie trotzdem, weil beide bauenden Spuren sich darauf festgelegt haben und die
+Bedingung **nur strenger** sein kann: eine öffentliche Seite ohne WhatsApp-Nennung sagt nichts
+Falsches. Sagt der Owner etwas anderes, gilt seine Fassung, und ich messe dann nur die Zahl, ohne
+sie zu werten.
