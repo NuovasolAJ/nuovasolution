@@ -214,7 +214,12 @@ Four points. No quotes, no logos, no names of clients, no figures.
 
 **To be clear (Reviewer's question, 16.11.):** the public sentence "WhatsApp con el número de tu agencia: en preparación." is **removed as a whole**. It does not lose its "en preparación"; there is no public WhatsApp line at all.
 
-The "no en preparación" rule concerns **email only**: W-2 "Responde en minutos por email." and W-7a stay (owner, Q-5 above). They are true at go-live, because the owner ties the go-live to A12. Until then the site is only a gated preview.
+The "no en preparación" rule concerns **email only**: W-2 "Responde en minutos por email." and W-7a stay (owner, Q-5 above). They are true at go-live, because the owner ties the go-live to A12.
+
+**Correction (Reviewer, 16.11.):** the design preview has **not** been gated since 16.11. 08:40. The owner opened it without a code; it answers 200 and carries noindex.
+- W-2 therefore already stands on a reachable page before A12.
+- Whether that is accepted, gated again, or marked until A12 is the owner's decision. The Reviewer has put it to the owner.
+- Copy's fallback wording if the owner wants it marked: "Respuestas automáticas por email desde el buzón de tu agencia: en preparación." / "Automatic email replies from your agency's mailbox: in preparation."
 
 This overrides 1116 §10 W-1 and W-3 for the public view.
 
