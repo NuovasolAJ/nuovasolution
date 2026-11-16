@@ -193,3 +193,31 @@ Füllung**, und die größte Lücke ist **16 px zu groß**. Beleg `checks/gap-a6
 
 Schmerz-Band im ersten Bildschirm **128 / 128 / 136 / 128 / 128 / 128 px** bei allen sechs
 Fenstergrößen (`checks/edge-a697fb8.json`).
+
+---
+
+## 7 `b81b486`: (b) jetzt ganz bestanden
+
+`b81b4865bfa1933ea09dfceef9c89cd9d9c135ff`, `dpl_cLgcWSoAtqcMaEkVn4zjx2AhqLB2` (Code wie
+`3ae3e88`; der vorige Build war an Vercels Abruf der Schriftdaten gescheitert, nicht am CSS).
+
+| | Füllung | größte Lücke | Bedingung | Urteil |
+|---|---|---|---|---|
+| „Y además" **390** | **76 %** (vorher 59 %) | **38 px** (vorher 64 px) | ≥ 70 % · ≤ 48 px | **bestanden** |
+| „Y además" 1440 | 72 % | 44 px | ≥ 70 % · ≤ 48 px | **bestanden** |
+| Ver-Knöpfe 1440 | Abweichung **0 px** | | ≤ 4 px | **bestanden** |
+
+**Die Schrift ist wirklich geladen**, keine Ersatzschrift: 23 Überschriften auf `__Inter`, 0 ×
+Fraunces. Damit ist meine Sorge zum Schriftabruf für diesen Build ausgeräumt.
+
+**Damit sind die drei neuen Prüfpunkte des Owners vom 16.11. abends alle erfüllt:** (a) öffentlich
+= Zielsicht mit 0 fehlenden Sätzen auf elf Routen, (b) Knöpfe auf einer Linie und „Y además" ohne
+leere Fläche, (c) die Livegang-Prüfung steht als Verfahren samt vollständiger Schlüsselkarte bereit.
+
+### Eine Folge der neuen Regel, die man an der Zahl sieht
+
+Die Scrolltiefe ist jetzt in **beiden** Sichten gleich: **19,1** Bildschirme am Handy, 15,7 am
+Desktop. Vorher war die öffentliche Sicht mit 15,3 kürzer als die Zielsicht — weil sie weniger
+zeigte. Da öffentlich jetzt alles zeigt, trägt sie auch die volle Länge. **Die Tiefe bleibt damit
+der einzige offene Messpunkt** (Ziel 13, Entscheidung D11 beim Owner), und sie ist jetzt für jeden
+Besucher dieselbe.

@@ -1,0 +1,34 @@
+{
+ "build": {
+  "commit": "b81b4865bfa1933ea09dfceef9c89cd9d9c135ff",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_cLgcWSoAtqcMaEkVn4zjx2AhqLB2",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "depth": {
+  "phone390x844_target": {
+   "doc": 16152,
+   "vh": 844,
+   "screens": 19.1
+  },
+  "phone390x844_public": {
+   "doc": 16152,
+   "vh": 844,
+   "screens": 19.1
+  },
+  "desktop1440x900_target": {
+   "doc": 14163,
+   "vh": 900,
+   "screens": 15.7
+  },
+  "desktop1440x900_public": {
+   "doc": 14163,
+   "vh": 900,
+   "screens": 15.7
+  }
+ },
+ "fonts": {
+  "__Inter_65423c": 23
+ }
+}
