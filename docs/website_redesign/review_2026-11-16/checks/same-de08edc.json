@@ -1,0 +1,164 @@
+{
+ "build": {
+  "commit": "de08edc0a93f3e3f4e58d367d067ad437acc6bb6",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_4nTujuFCGekNjtKWbBLiDjX5VvWs",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "out": {
+  "/es": {
+   "targetLen": 22394,
+   "publicLen": 14927,
+   "ratio": "67%",
+   "missingCount": 101,
+   "missingSample": [
+    "Consultas respondidas y ordenadas para agencias inmobiliarias Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito Iniciar sesión Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Vista previa, no pública .",
+    "Muestra el producto completo, incluidas funciones que no están activas.",
+    "Guarda zona, presupuesto e intención Marca la prioridad y avisa a tu equipo 0 de 25 9 de 25 consultas llegaron con la oficina cerrada.",
+    "datos ficticios Pulsa un canal y mira cómo responde.",
+    "Repetir demo WhatsApp Email Formulario web Teléfono L Laura ·",
+    "compradora en línea Hola, soy Laura."
+   ]
+  },
+  "/en": {
+   "targetLen": 22039,
+   "publicLen": 14649,
+   "ratio": "66%",
+   "missingCount": 99,
+   "missingSample": [
+    "Enquiries answered and organised for real estate agencies Skip to content Platform Answer Manage Coordinate Attract Platform overview Packages Pilot Contact EN English ES Español Log in Request your free pilot Request your free pilot Log in Platform Answer Manage Coordinate Attract Platform overview Packages Pilot Contact EN English ES Español Preview, not public .",
+    "It shows the complete product, including functions that are not active.",
+    "Keeps area, budget and intent Marks the priority and alerts your team 0 of 25 9 of 25 enquiries arrived while the office was closed.",
+    "fictional data Tap a channel and see how it replies.",
+    "Replay demo WhatsApp E-mail Web form Phone L Laura ·",
+    "buyer online Hi, I'm Laura."
+   ]
+  },
+  "/es/packages": {
+   "targetLen": 5639,
+   "publicLen": 1852,
+   "ratio": "33%",
+   "missingCount": 32,
+   "missingSample": [
+    "NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito Iniciar sesión Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Vista previa, no pública .",
+    "Muestra el producto completo, incluidas funciones que no están activas.",
+    "Todos los planes incluyen las respuestas, la ficha y el CRM.",
+    "Las tareas del equipo, desde Growth.",
+    "Todos los planes pueden empezar con un piloto gratuito de 14 días.",
+    "Sin método de pago."
+   ]
+  },
+  "/es/platform": {
+   "targetLen": 3734,
+   "publicLen": 2133,
+   "ratio": "57%",
+   "missingCount": 27,
+   "missingSample": [
+    "NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito Iniciar sesión Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Vista previa, no pública .",
+    "Muestra el producto completo, incluidas funciones que no están activas.",
+    "Vista previa, no pública Plataforma Todo lo que necesita una consulta, en un solo lugar Cada parte de NuovaSolution hace bien una cosa, y comparten una misma ficha, así que la respuesta, el contexto y la tarea nunca están en tres sitios distintos.",
+    "0 1 Atender consultas Las consultas por WhatsApp y email se responden en español.",
+    "Una consulta en otro idioma no recibe respuesta automática.",
+    "Email La misma respuesta para lo que llega al buzón de tu agencia."
+   ]
+  },
+  "/es/platform/ai-sales-agent": {
+   "targetLen": 2838,
+   "publicLen": 2573,
+   "ratio": "91%",
+   "missingCount": 12,
+   "missingSample": [
+    "NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito Iniciar sesión Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Vista previa, no pública .",
+    "Muestra el producto completo, incluidas funciones que no están activas.",
+    "Mientras tu equipo está con un cliente o fuera de la oficina, las consultas por WhatsApp y email reciben respuesta en español y quedan en su ficha.",
+    "Solicita tu piloto gratuito Solicita tu piloto gratuito Tu agencia WhatsApp ·",
+    "Qué hace Respuesta por WhatsApp, en español.",
+    "Respuesta por email, en el buzón de tu agencia."
+   ]
+  },
+  "/es/platform/lead-intelligence": {
+   "targetLen": 2925,
+   "publicLen": 2691,
+   "ratio": "92%",
+   "missingCount": 8,
+   "missingSample": [
+    "NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito Iniciar sesión Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Vista previa, no pública .",
+    "Muestra el producto completo, incluidas funciones que no están activas.",
+    "el segundo mensaje, en la misma ficha Uso vivienda habitual añadido el martes Plazo quiere visitar la semana que viene añadido el martes Prioridad Consulta importante ·",
+    "aviso por email a tu equipo Motivo: nombró inmueble, zona y presupuesto.",
+    "Ejemplo La compradora del domingo vuelve a escribir por WhatsApp el martes.",
+    "Encaja con tu operación Conversaciones de Gmail y WhatsApp El CRM propio Funciona con WhatsApp y email, con respuestas en español."
+   ]
+  },
+  "/es/platform/crm": {
+   "targetLen": 3164,
+   "publicLen": 2734,
+   "ratio": "86%",
+   "missingCount": 11,
+   "missingSample": [
+    "NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito Iniciar sesión Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Vista previa, no pública .",
+    "Muestra el producto completo, incluidas funciones que no están activas.",
+    "CRM Tus canales conectados, una ficha por consulta.",
+    "Un cliente que escribe por email y después por WhatsApp empieza como dos fichas hasta que las unes.",
+    "Preferimos decírtelo aquí y no que lo descubras tú.",
+    "escribe en español Ejemplo ilustrativo Busca 2 dormitorios con terraza, Estepona Presupuesto hasta 320.000 € Uso vivienda habitual Plazo quiere visitar la semana que viene Historial martes 11:20 WhatsApp de Laura: pregunta por el piso con terraza de Estepona, presupuesto hasta 320.000 € martes 11:21 Respuesta de NuovaSolution, en español; la ficha se actualiza: busca, presupuesto, idioma martes 11:21 Aviso por email a Elena: consulta importante (inmueble, zona y presupuesto) martes 11:23 WhatsApp de Laura: vivienda habitual; quiere verlo la semana que viene martes 11:24 Respuesta de NuovaSolution: lo guarda y pregunta si prefiere mañana o tarde Ejemplo ilustrativo."
+   ]
+  },
+  "/es/platform/daily-assistant": {
+   "targetLen": 3227,
+   "publicLen": 2133,
+   "ratio": "66%",
+   "missingCount": 27,
+   "missingSample": [
+    "NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito Iniciar sesión Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Vista previa, no pública .",
+    "Muestra el producto completo, incluidas funciones que no están activas.",
+    "Vista previa, no pública Plataforma ·",
+    "Tareas diarias La petición pasa a ser una tarea con dueño.",
+    "Cada petición de visita y cada llamada pendiente pasa a ser una tarea con el cliente, el inmueble y la hora que ha pedido.",
+    "Para equipos donde alguien pidió una visita y nadie sabe quién devuelve la llamada: cada petición tiene dueño."
+   ]
+  },
+  "/es/faq": {
+   "targetLen": 6728,
+   "publicLen": 5269,
+   "ratio": "78%",
+   "missingCount": 34,
+   "missingSample": [
+    "NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito Iniciar sesión Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Vista previa, no pública .",
+    "Muestra el producto completo, incluidas funciones que no están activas.",
+    "Qué hace NuovaSolution La ficha y tu equipo Piloto, planes y precio Tus datos Otras preguntas Qué hace NuovaSolution ¿Qué hace NuovaSolution exactamente?",
+    "Responde en nombre de tu agencia, en español, a las consultas que llegan por WhatsApp y email, y guarda lo importante de cada una en su ficha, con su prioridad y su motivo.",
+    "Consultas por WhatsApp y email.",
+    "La visita, la negociación y la relación siguen siendo de tu gente, y la tarea les dice por dónde empezar."
+   ]
+  },
+  "/es/contact": {
+   "targetLen": 2178,
+   "publicLen": 2004,
+   "ratio": "92%",
+   "missingCount": 5,
+   "missingSample": [
+    "NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito Iniciar sesión Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Vista previa, no pública .",
+    "Muestra el producto completo, incluidas funciones que no están activas.",
+    "Conectamos tu buzón contigo y lo probamos con un mensaje real.",
+    "Solicita tu piloto gratuito Contratar directamente /es/contact NuovaSolution responde en nombre de tu agencia y guarda lo importante en la ficha de cada cliente.",
+    "Plataforma Visión general Asistente de consultas Ficha y prioridad CRM Tareas diarias Empezar Solicita tu piloto gratuito Piloto Paquetes Iniciar sesión Empresa Preguntas Contacto antonio@nuovasolution.com © 2026 NuovaSolution."
+   ]
+  },
+  "/es/example-report": {
+   "targetLen": 4948,
+   "publicLen": 3939,
+   "ratio": "80%",
+   "missingCount": 23,
+   "missingSample": [
+    "NuovaSolution Ir al contenido Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Iniciar sesión Solicita tu piloto gratuito Solicita tu piloto gratuito Iniciar sesión Plataforma Atender Gestionar Coordinar Captar Visión general Paquetes Piloto Contacto EN English ES Español Vista previa, no pública .",
+    "Muestra el producto completo, incluidas funciones que no están activas.",
+    "pedida no es acordada Esperan a una persona 2 consultas abiertas que necesitan a alguien del equipo Tu mejor canal WhatsApp ·",
+    "10 de 25 consultas El canal por el que llegaron más consultas en la semana.",
+    "Hora punta 11:00–12:00 ·",
+    "6 consultas La franja de una hora en la que llegaron más consultas."
+   ]
+  }
+ }
+}

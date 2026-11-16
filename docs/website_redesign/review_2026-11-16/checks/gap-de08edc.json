@@ -1,0 +1,55 @@
+{
+ "390": {
+  "found": true,
+  "blockW": 358,
+  "blockH": 358,
+  "contentBands": 6,
+  "inkPx": 211,
+  "coveragePct": 59,
+  "largestGapPx": 64,
+  "top3Gaps": [
+   {
+    "afterY": 5695,
+    "px": 64
+   },
+   {
+    "afterY": 5855,
+    "px": 36
+   },
+   {
+    "afterY": 5780,
+    "px": 10
+   }
+  ]
+ },
+ "1440": {
+  "found": true,
+  "blockW": 1200,
+  "blockH": 533,
+  "contentBands": 9,
+  "inkPx": 307,
+  "coveragePct": 58,
+  "largestGapPx": 89,
+  "top3Gaps": [
+   {
+    "afterY": 3769,
+    "px": 89
+   },
+   {
+    "afterY": 3941,
+    "px": 80
+   },
+   {
+    "afterY": 4054,
+    "px": 12
+   }
+  ]
+ },
+ "build": {
+  "commit": "de08edc0a93f3e3f4e58d367d067ad437acc6bb6",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_4nTujuFCGekNjtKWbBLiDjX5VvWs",
+  "env": "preview",
+  "mode": "stub"
+ }
+}
