@@ -288,6 +288,11 @@ automatic email replies in production, W-1 and W-2 need the same treatment. API 
 - "Visualización 3D";
 - "Formularios web", "portales y anuncios".
 
+**Corrected by the Reviewer, `8d6edbf`:** there was no public hole.
+- In public the page answers 307 to /platform, which is clean.
+- The measurement lost `?view=public` on the redirect.
+- Redesign also fixed a redirect that dropped the parameter, and built the lines below as improvements (`9dbb276`).
+
 **The fix is Redesign's.** `lib/content/platform-map.ts` already carries the rule: an entry whose key is off is hidden in public unless it
 has a `pub` line. The page must render through `platformTasksFor(locale, view)` like /platform does. No new list.
 
