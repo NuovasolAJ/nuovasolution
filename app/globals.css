@@ -1626,7 +1626,7 @@ html.js .ch-scenes-static { display: none; }
 /* 09.11., after the first phone shots: the picture's mark sits at the picture's top on the phone (it collided with the pilot line); the
    chapter card's picture shows more of its surface */
 @media (max-width: 639px) { .hf-mark { bottom: auto; top: 14px; right: var(--gutter); } }
-.ch-visual-inner { width: 125%; transform: scale(0.8); transform-origin: top left; }
+.ch-visual-inner { right: auto; width: calc(125% - 35px); transform: scale(0.8); transform-origin: top left; } /* 16.11.: the surface fits the frame exactly, nothing cut at the right edge */
 
 /* ------------------------------------------------------------------ */
 /* /contact: the pilot request (the owner's order of 16.11.2026, point 1) */
