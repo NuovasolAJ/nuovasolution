@@ -681,7 +681,7 @@ html.js .hf-image { animation: hf-drift 24s ease-in-out infinite alternate; }
 .pain-line { max-width: 30ch; font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem); line-height: 1.2; letter-spacing: -0.02em; font-weight: 500; color: var(--text-primary); text-wrap: balance; }
 .pain-figure { font-weight: 600; color: var(--brand); white-space: nowrap; }
 .pain-mark { font-size: 0.8125rem; color: var(--text-muted); }
-@media (min-width: 1024px) { .pain-inner { padding-top: 64px; padding-bottom: 144px; } .pain-line { max-width: 34ch; } }
+@media (min-width: 1024px) { .pain-inner { padding-top: 60px; padding-bottom: 124px; } .pain-line { max-width: 34ch; } }
 @media (max-width: 639px) { .pain-inner { padding-top: 40px; padding-bottom: 150px; } }
 .hero-demo-wrap { position: relative; z-index: 2; margin-top: -96px; }
 @media (max-width: 1023px) { .hero-demo-wrap { margin-top: -120px; } }
@@ -875,12 +875,12 @@ html.js .demo .demo-reply.is-fresh { box-shadow: 0 0 0 2px var(--brand-green-was
 .rep, .m3d, .plans, .trust, .faqs, .closing { content-visibility: auto; contain-intrinsic-size: auto 900px; }
 .flow { padding-top: 88px; padding-bottom: 32px; }
 .fn { padding-top: 40px; padding-bottom: 40px; }
-.rep { padding-top: 56px; padding-bottom: 72px; }
+.rep { padding-top: 56px; padding-bottom: 60px; }
 .m3d { padding-top: 64px; padding-bottom: 64px; }
 .plans { padding-top: 64px; padding-bottom: 64px; }
-.trust { padding-top: 56px; padding-bottom: 48px; }
-.faqs { padding-top: 40px; padding-bottom: 56px; }
-.closing { padding-top: 16px; padding-bottom: 56px; }
+.trust { padding-top: 56px; padding-bottom: 40px; }
+.faqs { padding-top: 40px; padding-bottom: 48px; }
+.closing { padding-top: 16px; padding-bottom: 48px; }
 @media (min-width: 1024px) { .flow { padding-top: 120px; } .rep, .m3d, .plans { padding-top: 96px; padding-bottom: 96px; } .trust { padding-top: 80px; } }
 /* the grounds (06.11., point 10): a section that needs its own ground gets a soft one that feathers in and out over 160 px, never a hard edge */
 .rep, .plans { --ground: #f5f5f7; background: linear-gradient(180deg, transparent 0, var(--ground) 160px, var(--ground) calc(100% - 160px), transparent 100%); }
@@ -1149,7 +1149,7 @@ html:not(.js) .mrise { opacity: 1 !important; transform: none !important; }
 .m3d-track { margin-top: 36px; }
 .m3d-pin { display: block; }
 @media (min-width: 1024px) {
-  .m3d-track { height: calc(4 * 45vh + 560px); } /* 16.11. 14:00 (Audit): a shorter pin — matches SEG in stage-3d.tsx */
+  .m3d-track { height: calc(4 * 45vh + 520px); } /* 16.11. 14:00 (Audit): a shorter pin — matches SEG in stage-3d.tsx */
   .m3d-pin { position: sticky; top: calc(var(--header-h) + 24px); }
 }
 /* 02 Modelo: the poster stands over the clip until it can play, then fades (point 11) */
@@ -1590,7 +1590,7 @@ html:not(.js) .fl-line { stroke-dashoffset: 0 !important; stroke-dasharray: none
 .ch-scenes-static { margin-top: 20px; }
 html.js .ch-scenes-static { display: none; }
 @media (min-width: 1024px) {
-  .ch { padding-top: 88px; padding-bottom: 80px; }
+  .ch { padding-top: 80px; padding-bottom: 72px; }
   .ch-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 44px 0 0; }
   .ch-detail-slot { order: 1; grid-column: 1 / -1; }
   .ch-visual { height: 250px; }
@@ -1599,7 +1599,7 @@ html.js .ch-scenes-static { display: none; }
 @media (prefers-reduced-motion: reduce) { .ch-more, .ch-more-icon { transition: none; } }
 
 /* D1 "Quién está detrás": words left, the three facts and the action right; white ground */
-.behind { padding-top: 56px; padding-bottom: 56px; }
+.behind { padding-top: 48px; padding-bottom: 48px; }
 .behind-grid { display: grid; gap: 28px; }
 .behind-words { max-width: 620px; }
 .behind-lines { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
@@ -1714,7 +1714,7 @@ html.js .ch-scenes-static { display: none; }
 .fs-record .demo-outcome { display: grid; }
 @media (min-width: 1024px) {
   .fs-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: start; }
-  .fs-steps { padding: 4vh 0 14vh; } /* 16.11. 14:00: the desktop no longer than before the two extra cards */
+  .fs-steps { padding: 4vh 0 10vh; } /* 16.11. 14:00: the desktop no longer than before the two extra cards */
   .fs-step { min-height: 150px; padding: 26px 0; }
   .fs-piece-inline { display: none; }
   .fs-stage { display: block; position: sticky; top: calc(var(--header-h) + 24px); }

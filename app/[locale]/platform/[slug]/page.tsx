@@ -28,7 +28,7 @@ export function generateMetadata({ params }: { params: { locale: string; slug: s
   if (!c) return {};
   return {
     title: c.name[params.locale],
-    description: c.lead[params.locale],
+    description: capabilityText(c, "lead", params.locale, resolveSwitches().view), // 16.11. (the owner's point 8): the public description names no WhatsApp either
     alternates: { canonical: `/${params.locale}/platform/${c.slug}`, languages: { en: `/en/platform/${c.slug}`, es: `/es/platform/${c.slug}` } },
   };
 }
