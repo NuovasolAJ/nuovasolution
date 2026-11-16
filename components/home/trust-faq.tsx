@@ -28,7 +28,7 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
   const steps = e.steps(locale, view);
   const points = t.points; // Copy 441ba1c §8: four points, no quotes
   const core = home1103.phoneCore; // Copy 441ba1c §10: the phone's core and proof lines
-  const faqItems = f.items(locale, view);
+  const faqItems = f.items(locale, view).slice(0, 4); // 16.11. evening (the owner's point 4): four questions on the home page, "Más preguntas" leads to /faq
 
   return (
     <>

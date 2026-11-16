@@ -166,17 +166,17 @@ export const home1103 = {
           en: [{ who: "Inés Navarro", what: "Flat with terrace in Estepona · EST-204", origin: "Portal" }, { who: "Daniel Ruiz", what: "Townhouse in Mijas", origin: "Ad" }],
         },
       },
-      /** The Kellers' record, the language recognised, nothing sent automatically (S-2; the example stays German while `otherLanguages` is off, §15). */
+      /** The Kellers' record (Copy 88143c1 §2.3, the owner's week of 16.11.: all 25 in Spanish): they write in Spanish and get the automatic reply; the language rule stays on the page through L-1/L-2; a German example may return as its own scene when `otherLanguages` goes live. */
       language: {
         title: T("Ficha de Peter y Anna Keller", "Peter and Anna Keller's record"),
         fields: {
-          es: [["Intención", "vender"], ["Zona", "Marbella · Elviria"], ["Inmueble", "villa"], ["Idioma", "alemán · reconocido"], ["Respuesta", "ninguna automática · la escribe una persona"]],
-          en: [["Intent", "selling"], ["Area", "Marbella · Elviria"], ["Property", "villa"], ["Language", "German · recognised"], ["Reply", "none automatic · a person writes it"]],
+          es: [["Intención", "vender"], ["Zona", "Marbella · Elviria"], ["Inmueble", "villa"], ["Idioma", "español"], ["Respuesta", "automática, en español"]],
+          en: [["Intent", "selling"], ["Area", "Marbella · Elviria"], ["Property", "villa"], ["Language", "Spanish"], ["Reply", "automatic, in Spanish"]],
         },
         history: T("Historial", "History"),
         events: {
-          es: [{ t: "mar 11:24", ch: "Email", what: "Consulta en alemán: quieren vender su villa" }, { t: "mar 11:24", ch: "Email", what: "Idioma reconocido: alemán · no se envía nada automáticamente" }],
-          en: [{ t: "Tue 11:24", ch: "E-mail", what: "Enquiry in German: they want to sell their villa" }, { t: "Tue 11:24", ch: "E-mail", what: "Language recognised: German · nothing sent automatically" }],
+          es: [{ t: "mar 11:24", ch: "Email", what: "Consulta: quieren vender su villa y piden una valoración" }, { t: "mar 11:25", ch: "Email", what: "Respondida en español · falta proponer una fecha" }],
+          en: [{ t: "Tue 11:24", ch: "E-mail", what: "Enquiry: they want to sell their villa and ask for a valuation" }, { t: "Tue 11:25", ch: "E-mail", what: "Answered in Spanish · a date still to propose" }],
         },
       },
       inbox: {
@@ -249,7 +249,7 @@ export const home1103 = {
       /** The report scene: the week's figures of §6 and the first thing to do. */
       reportScene: {
         title: T("Semana del 26 oct al 1 nov", "Week of 26 Oct to 1 Nov"),
-        figures: { es: [["Consultas recibidas", "25"], ["Respondidas", "23"], ["Visitas pedidas", "6"]], en: [["Enquiries received", "25"], ["Answered", "23"], ["Viewings asked for", "6"]] },
+        figures: { es: [["Consultas recibidas", "25"], ["Respondidas", "25"], ["Visitas pedidas", "6"]], en: [["Enquiries received", "25"], ["Answered", "25"], ["Viewings asked for", "6"]] }, // 16.11. evening (owner): all 25 in Spanish — WORKING, Copy's figures
         nextTitle: T("Qué hacer ahora", "What to do now"),
         next: T("Proponer a los Keller una fecha para la valoración.", "Propose a date to the Kellers for the valuation."),
         link: T("Ver el informe completo", "See the full report"),
@@ -274,7 +274,7 @@ export const home1103 = {
       const pub = [
         k1,
         { figure: T("6 de 25", "6 of 25"), insight: T("pidieron visita; 4 ya están acordadas.", "asked for a viewing; 4 are already agreed."), next: T("Propón fecha a las 2 que faltan.", "Offer a date to the 2 still open.") },
-        { figure: T("2 de 25", "2 of 25"), insight: T("llegaron en otro idioma y esperan a una persona.", "arrived in another language and are waiting for a person."), next: T("Contéstales hoy.", "Answer them today.") },
+        { figure: T("3 de 25", "3 of 25"), insight: T("tienen prioridad alta, cada una con su motivo.", "have high priority, each with its reason."), next: T("Empieza hoy por esas 3.", "Start with those 3 today.") }, // Copy 88143c1 §2.2 (Laura, Carmen, the Kellers)
       ];
       const list = live(["reportTrend", "adsLeads"], view) ? target : pub;
       return list.map((c) => ({ figure: c.figure[locale], insight: c.insight[locale], next: c.next[locale], note: "note" in c && c.note ? c.note[locale] : undefined }));
@@ -282,11 +282,12 @@ export const home1103 = {
     cardsNext: T("Qué hacer", "What to do"),
     header: T("Agencia de ejemplo · Semana del 26 oct al 1 nov · Demo con datos ficticios", "Example agency · Week of 26 Oct to 1 Nov · Demo with fictional data"),
     chartTitle: T("Consultas por semana", "Enquiries per week"),
-    chartNote: T("Cuatro semanas de ejemplo.", "Four example weeks."),
+    // Copy 88143c1 §2.4: with 25 of 25 answered the second line shows the enquiries that arrived with the office closed (all answered on arrival)
+    chartNote: T("Cuatro semanas de ejemplo. Todas recibieron respuesta al llegar.", "Four example weeks. All got a reply on arrival."),
     received: T("Recibidas", "Received"),
-    answered: T("Respondidas", "Answered"),
+    answered: T("Con la oficina cerrada", "Office closed"),
     weeks: { es: ["Sem. 1", "Sem. 2", "Sem. 3", "Sem. 4"], en: ["Wk 1", "Wk 2", "Wk 3", "Wk 4"] },
-    series: [{ received: 19, answered: 17 }, { received: 24, answered: 22 }, { received: 21, answered: 20 }, { received: 25, answered: 23 }],
+    series: [{ received: 19, answered: 7 }, { received: 24, answered: 10 }, { received: 21, answered: 8 }, { received: 25, answered: 9 }], // Copy 88143c1 §2.4: `answered` carries the "office closed" line (7 · 10 · 8 · 9)
     channelsTitle: T("Por canal", "By channel"),
     channelsNote: T("Las mismas 25, según el canal de llegada.", "The same 25, by the channel they arrived on."),
     /** §19 "Por canal": the target figures (10 · 6 · 3 · 2 · 4 = 25); in public the figures of the channels that are off are added to Email (to WhatsApp if Email is off). */
@@ -322,14 +323,14 @@ export const home1103 = {
     metrics: {
       es: [
         { k: "Consultas recibidas", d: "Consultas nuevas registradas en la semana.", v: "25" },
-        { k: "Respondidas", d: "Consultas con una respuesta automática. Las otras 2 llegaron en otro idioma: no se envía nada automáticamente.", v: "23" },
-        { k: "Esperan a una persona", d: "Consultas abiertas que necesitan a alguien del equipo.", v: "2" },
+        { k: "Respondidas", d: "Consultas con una respuesta automática en español, al llegar.", v: "25" }, // Copy 88143c1 §2.2 (the owner's week: all 25 in Spanish)
+        { k: "Esperan a una persona", d: "Consultas que todavía no han recibido ninguna respuesta. Esta semana, ninguna.", v: "0" },
         { k: "Visitas pedidas", d: "Clientes que pidieron ver un inmueble; 4 ya acordadas por el equipo. Pedida no es acordada.", v: "6" },
       ],
       en: [
         { k: "Enquiries received", d: "New enquiries recorded in the week.", v: "25" },
-        { k: "Answered", d: "Enquiries with an automatic reply. The other 2 arrived in another language: nothing is sent automatically.", v: "23" },
-        { k: "Waiting for a person", d: "Open enquiries that need someone on the team.", v: "2" },
+        { k: "Answered", d: "Enquiries with an automatic reply in Spanish, on arrival.", v: "25" },
+        { k: "Waiting for a person", d: "Enquiries that have not had any reply yet. This week, none.", v: "0" },
         { k: "Viewings asked for", d: "Customers who asked to see a property; 4 already agreed by the team. Asked is not agreed.", v: "6" },
       ],
     },
@@ -357,12 +358,12 @@ export const home1103 = {
       { k: T("De ellas, pedían visita", "Of those, asking for a viewing")[locale], without: "2", with: "2", d: T("Dos de las 6 visitas pedidas de la semana.", "Two of the week's 6 viewings asked for.")[locale] },
       { k: T("Sin respuesta hasta que abre la oficina", "No reply until the office opens")[locale], without: "9", with: "0", d: T("Con NuovaSolution, esas 9 reciben la respuesta automática al llegar.", "With NuovaSolution, those 9 get the automatic reply when they arrive.")[locale] },
       { k: T("Esperan al día siguiente", "Waiting until the next day")[locale], without: "5", with: "0", d: T("Las que llegaron después de las 20:00.", "Those that arrived after 20:00.")[locale] },
-      { k: T("Esperan a una persona para la primera respuesta", "Waiting for a person for the first reply")[locale], without: "25", with: "2", d: T("Con NuovaSolution, las 2 que llegaron en otro idioma.", "With NuovaSolution, the 2 that arrived in another language.")[locale], tone: "neutral" }, // 16.11. 14:00 (owner): the 2 are not a win — neutral grey
+      { k: T("Esperan a una persona para la primera respuesta", "Waiting for a person for the first reply")[locale], without: "25", with: "0", d: T("Con NuovaSolution, las 25 reciben la primera respuesta en español al llegar.", "With NuovaSolution, all 25 get their first reply in Spanish on arrival.")[locale] }, // Copy 88143c1 §2.2 (the owner's week: all 25 in Spanish; tone normal)
       { k: byKey("priorityWithReason", view, T("En su ficha, con prioridad y motivo", "On their record, with priority and reason"), T("En su ficha", "On their record"))[locale], without: T("lo que alguien anote", "whatever someone notes down")[locale], with: "25", d: T("Las 25, sin copiar nada a mano.", "All 25, with nothing copied by hand.")[locale] },
     ],
     closeWithout: T("9 consultas esperan a que abra la oficina; 5 de ellas, hasta el día siguiente. 2 de esas 9 pedían visita.", "9 enquiries wait for the office to open; 5 of them until the next day. 2 of those 9 were asking for a viewing."),
     closeWith: (view: ClaimView): L => {
-      const first = T("Ninguna consulta se pierde de vista: 23 respondidas, 2 esperando a una persona y las 25 en su ficha.", "No enquiry slips out of sight: 23 answered, 2 waiting for a person and all 25 on their record.");
+      const first = T("Ninguna consulta se pierde de vista: las 25 respondidas al llegar y las 25 en su ficha.", "No enquiry slips out of sight: all 25 answered on arrival and all 25 on their record."); // Copy 88143c1 §2.2
       const second = byKey("reportTrend", view, T("Y cada semana ves de dónde llegan tus clientes, para decidir dónde crecer.", "And each week you see where your clients come from, so you can decide where to grow."), T("Y cada semana ves qué sigue abierto.", "And each week you see what is still open."));
       return T(`${first.es} ${second.es}`, `${first.en} ${second.en}`);
     },
@@ -438,7 +439,7 @@ export const home1103 = {
   phoneCore: {
     flow: { core: T("Cada consulta recibe respuesta, ficha y siguiente paso.", "Every enquiry gets a reply, a record and a next step."), proof: T("Probado en producción el 13.11.", "Tested in production on 13.11.") },
     areas: (view: ClaimView): Record<"attend" | "organise" | "grow", { core: L; proof: L }> => ({
-      attend: view === "public"
+      attend: !live("whatsappOwnNumber", view)
         ? { core: T("Contesta en minutos por email, también con la oficina cerrada.", "Replies in minutes by email, even with the office closed."), proof: T("Medido en producción: respuesta por email en unos 2 minutos.", "Measured in production: email reply in about 2 minutes.") }
         : { core: T("Contesta en segundos por WhatsApp y en minutos por email.", "Replies in seconds on WhatsApp and in minutes by email."), proof: T("Medido en producción: email en unos 2 minutos, WhatsApp en el mismo minuto.", "Measured in production: email in about 2 minutes, WhatsApp within the same minute.") },
       organise: { core: T("Cada consulta, en su ficha: qué busca, zona y presupuesto.", "Every enquiry on its record: what they want, area and budget."), proof: T("Con su prioridad y el motivo, por ejemplo: «nombró inmueble, zona y presupuesto».", "With its priority and the reason, e.g. \"named a property, an area and a budget\".") },
@@ -478,9 +479,6 @@ export const home1103 = {
     pilotLine: T("Todos los planes pueden empezar con un piloto gratuito de 14 días.", "Every plan can start with a free 14-day pilot."), // Copy f276edc PK-0 (the owner's Q-9, 16.11.)
     /** 16.11. 14:00 (the owner's point 3): the second, clearly smaller way beside the pilot button — the same form with "Contratar un plan" preselected. WORKING for Copy. */
     direct: T("Contratar directamente", "Go straight to a plan"), // Copy 441ba1c §5 DC-l
-    /** the phone's plan cards fold their rows behind one tap (16.11. 14:00, depth). WORKING for Copy. */
-    foldMore: T("Ver qué incluye", "See what it includes"),
-    foldLess: T("Ocultar", "Hide"),
     price: T("Te decimos el precio para tu agencia antes de acordar nada.", "We tell you the price for your agency before anything is agreed."),
     /** P-2/P-3: the actions. */
     ctaProposal: T("Solicita una propuesta", "Request a proposal"),
@@ -568,7 +566,7 @@ export const home1103 = {
   /** §20: the FAQ of the home page; a question whose key is off is left out; ⟦canales⟧ filled at render. */
   faq: {
     h2: T("Preguntas", "Questions"),
-    all: T("Todas las preguntas", "All the questions"),
+    all: T("Más preguntas", "More questions"), // 16.11. evening (the owner's point 4): four questions on the home page, this link to the rest — WORKING for Copy
     items: (locale: Locale, view: ClaimView): { q: string; a: string }[] => {
       const items: { q: L; a: L | null }[] = [
         // Copy 1108 V-4: the voice "en nombre de tu agencia" once a reply leaves the agency's own channel; the earlier answers until then

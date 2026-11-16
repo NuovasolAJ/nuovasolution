@@ -156,7 +156,7 @@ export const demoChannels: DemoChannel[] = [
       folder: T("Bandeja de entrada", "Inbox"),
       inbox: [
         { from: "Carmen Ortega", subject: T("Valoración de mi piso en Fuengirola", "Valuation of my flat in Fuengirola"), time: "11:24", selected: true, unread: true },
-        { from: "Peter Keller", subject: T("Bewertung unserer Villa in Elviria", "Bewertung unserer Villa in Elviria"), time: "10:52", unread: true },
+        { from: "Peter Keller", subject: T("Valoración de nuestra villa en Elviria", "Valoración de nuestra villa en Elviria"), time: "10:52", unread: true }, // Copy 88143c1 §2.2: the client's own text, Spanish
         { from: "Portal · consulta", subject: T("EST-204 · piso con terraza en Estepona", "EST-204 · flat with terrace in Estepona"), time: "ayer" },
       ],
       from: "Carmen Ortega",

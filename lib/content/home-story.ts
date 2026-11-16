@@ -168,26 +168,27 @@ export const enquiries: Enquiry[] = [
     role: { es: "Propietarios · quieren vender", en: "Owners · want to sell" },
     concern: { es: "Piden una valoración de su villa en Elviria", en: "Ask for a valuation of their villa in Elviria" },
     time: { es: "martes 11:24", en: "Tuesday 11:24" },
-    language: { es: "alemán", en: "German" },
-    lang: "de",
-    text: "Guten Tag, wir möchten unsere Villa in Elviria (Marbella) verkaufen und bitten um eine Bewertung. Wann wäre ein Termin vor Ort möglich?",
+    // Copy 88143c1 §2.2/§2.3 (the owner's week of 16.11.): the Kellers write in Spanish and get the automatic reply; `translation` keeps the same words for the surfaces that read it
+    language: { es: "español", en: "Spanish" },
+    lang: "es",
+    text: "Buenos días, queremos vender nuestra villa en Elviria (Marbella) y pedimos una valoración. ¿Cuándo sería posible una visita?",
     textShort: { es: "Los Keller quieren vender su villa en Elviria y piden una valoración.", en: "The Kellers want to sell their villa in Elviria and ask for a valuation." },
     // R19 §9: a personal address, not "Señores Keller". The reply is a draft: nothing goes out in German today.
-    reply: "Hallo Anna, hallo Peter, vielen Dank für Ihre Nachricht. Für die Bewertung Ihrer Villa in Elviria meldet sich ein Kollege unserer Agentur bei Ihnen und schlägt einen Termin vor Ort vor.",
+    reply: "Hola Anna, hola Peter, gracias por vuestro mensaje. Para la valoración de vuestra villa en Elviria, una persona de nuestra agencia os escribe y os propone una visita.",
     translation: {
       text: { es: "Buenos días, queremos vender nuestra villa en Elviria (Marbella) y pedimos una valoración. ¿Cuándo sería posible una visita?", en: "Good morning, we would like to sell our villa in Elviria (Marbella) and ask for a valuation. When would a visit be possible?" },
       reply: { es: "Hola Anna, hola Peter, gracias por vuestro mensaje. Para la valoración de vuestra villa en Elviria, una persona de nuestra agencia os escribe y os propone una visita.", en: "Hi Anna, hi Peter, thank you for your message. For the valuation of your villa in Elviria a colleague from our agency will write to you and propose a visit." },
     },
-    held: true,
+    held: false, // Copy 88143c1: answered automatically, in Spanish
     notice: "Ich bin ein KI-Assistent und helfe Ihnen bei Ihrer Immobilienanfrage. Wenn Sie lieber mit einer Person sprechen möchten, sagen Sie es mir jederzeit.",
     noticeIsSample: true,
     recorded: [
       { k: { es: "Piden", en: "Ask for" }, v: { es: "valoración de una villa", en: "a villa valuation" } },
       { k: { es: "Zona", en: "Area" }, v: { es: "Marbella · Elviria", en: "Marbella · Elviria" } },
       { k: { es: "Plazo", en: "Timing" }, v: { es: "visita de valoración esta semana", en: "valuation visit this week" } },
-      { k: { es: "Escriben en", en: "Write in" }, v: { es: "alemán", en: "German" } },
+      { k: { es: "Escriben en", en: "Write in" }, v: { es: "español", en: "Spanish" } /* Copy 88143c1 §2.3 */ },
     ],
-    next: { es: "Resultado: la consulta está en la ficha, sin respuesta automática; la contesta una persona de tu equipo.", en: "Result: the enquiry is on the record, without an automatic reply; a person on your team answers it." },
+    next: { es: "Resultado: la consulta está en la ficha, respondida en español; una persona de tu equipo propone la fecha.", en: "Result: the enquiry is on the record, answered in Spanish; a person on your team proposes the date." } /* WORKING for Copy (88143c1 §2.3) */,
   },
   {
     channel: "webform",
@@ -279,7 +280,7 @@ export const chapters: Chapter[] = [
     did: { es: "Las atiende por el canal por el que llegaron y abre una ficha por consulta.", en: "Handles each on the channel it arrived on and opens a record per enquiry." }, // COPY_1019 R-11
     // Closing order 26.10. §3: the count matches the states shown (two written replies, one call answered by the assistant, the German
     // e-mail waiting for a person); "noted" is not a reply. WORKING, for Copy.
-    result: { es: "Cuando Marcos termina, las cuatro están registradas: dos con respuesta escrita, una llamada atendida, y el email en alemán sin respuesta automática.", en: "When Marcos finishes, all four are recorded: two with a written reply, one call answered, and the German e-mail without an automatic reply." }, // COPY_RV4_1027 Z-1a (Q-3: recorded without a task or a notice)
+    result: { es: "Cuando Marcos termina, las cuatro están registradas: tres con respuesta escrita y una llamada atendida.", en: "When Marcos finishes, all four are recorded: three with a written reply and one call answered." }, // COPY_RV4_1027 Z-1a (Q-3: recorded without a task or a notice)
     state: { es: "Disponible hoy: WhatsApp y email, en español. Próximamente: el formulario web y la llamada (el asistente telefónico, solo en español).", en: "Available today: WhatsApp and email, in Spanish. Coming soon: the web form and the phone call (the phone assistant, Spanish only)." },
   },
   {
@@ -287,10 +288,10 @@ export const chapters: Chapter[] = [
     eyebrow: { es: "NuovaSolution responde y actualiza la ficha", en: "NuovaSolution answers and updates the record" },
     title: { es: "El cliente recibe una respuesta concreta, y lo que pide queda en su ficha.", en: "The customer gets a concrete reply, and what they ask for goes on their record." }, // COPY_1019 R-4
     line: { es: "Zona, presupuesto, uso y plazo quedan claros desde la primera respuesta. Nada se compromete: ni precio, ni fecha, ni disponibilidad.", en: "Area, budget, use and timing are clear from the first reply. Nothing is committed: no price, no date, no availability." }, // COPY_1019 R-5: the customer-code sentence removed (not present in production)
-    inbound: { es: "Una pregunta por WhatsApp, un email en alemán, un formulario, una llamada.", en: "A WhatsApp question, a German email, a web form, a call." },
-    did: { es: "Responde en español y guarda lo que pide cada cliente; en otro idioma no envía nada.", en: "Replies in Spanish and keeps what each customer asks for; in another language it sends nothing." }, // COPY_SYNC_1023 W-9; COPY_SYNC_1024 Q-1 fallback
+    inbound: { es: "Una pregunta por WhatsApp, un email, un formulario, una llamada.", en: "A WhatsApp question, an e-mail, a web form, a call." }, // Copy 88143c1 §2.2
+    did: { es: "Responde en español y guarda lo que pide cada cliente.", en: "Replies in Spanish and keeps what each customer asks for." }, // COPY_SYNC_1023 W-9; COPY_SYNC_1024 Q-1 fallback
     result: { es: "Una ficha al día por consulta y, donde hace falta, una tarea con fecha.", en: "An up-to-date record per enquiry and, where needed, a dated task." }, // HANDOVER_1021 A-5
-    state: { es: "Disponible hoy: respuestas en español por WhatsApp y email, y la ficha. En otro idioma no se envía nada automáticamente.", en: "Available today: replies in Spanish on WhatsApp and e-mail, and the record. In another language nothing is sent automatically." }, // HANDOVER_1021 A-3
+    state: { es: "Disponible hoy: respuestas en español por WhatsApp y email, y la ficha.", en: "Available today: replies in Spanish on WhatsApp and e-mail, and the record." }, // HANDOVER_1021 A-3
   },
   {
     key: "match",
@@ -370,7 +371,7 @@ export const storyWords = {
     answered: { es: "Respondida", en: "Replied" },
     drafted: { es: "Sin respuesta automática", en: "No automatic reply" }, // COPY_RV4_1027 Z-1b
     noted: { es: "Llamada atendida", en: "Call answered" },
-    after: { es: "Cuando Marcos termina la visita, las cuatro consultas están registradas: dos con respuesta escrita, una llamada atendida con nota, y la que llegó en alemán sin respuesta automática, porque hoy solo respondemos en español.", en: "When Marcos finishes the viewing, all four enquiries are recorded: two with a written reply, one call answered with a note, and the one in German without an automatic reply, because today we only answer in Spanish." }, // HANDOVER_1021 A-6; COPY_SYNC_1026 Y-3 ("están registradas": the held German enquiry is an intake with a reason, not a record with a reply; no task before Release U); closing order 26.10. §3 (the count matches the states)
+    after: { es: "Cuando Marcos termina la visita, las cuatro consultas están registradas: tres con respuesta escrita y una llamada atendida con nota.", en: "When Marcos finishes the viewing, all four enquiries are recorded: three with a written reply and one call answered with a note." }, // HANDOVER_1021 A-6; COPY_SYNC_1026 Y-3 ("están registradas": the held German enquiry is an intake with a reason, not a record with a reply; no task before Release U); closing order 26.10. §3 (the count matches the states)
   },
   reply: {
     pick: { es: "Elige el canal", en: "Pick the channel" },
@@ -383,7 +384,7 @@ export const storyWords = {
     formTitle: { es: "Formulario de tu web", en: "Your website's form" },
     formReply: { es: "Respuesta por email", en: "Reply by email" },
     emailSubject: { es: "Asunto", en: "Subject" },
-    emailSubjectKeller: "Re: Bewertung unserer Villa in Elviria",
+    emailSubjectKeller: "Re: Valoración de nuestra villa en Elviria", // Copy 88143c1 §2.2
     emailSubjectKellerTranslated: { es: "Re: Valoración de nuestra villa en Elviria", en: "Re: Valuation of our villa in Elviria" },
     /** The held reply (R19 §2, §7): a draft is a draft, never shown as sent. */
     heldTitle: { es: "Sin respuesta automática", en: "No automatic reply" },
@@ -424,13 +425,13 @@ export const storyWords = {
     items: {
       es: [
         { who: "Laura Serrano", what: "Quiere ver el piso de Estepona la semana que viene · vivienda habitual", why: "Nombró inmueble, zona y presupuesto", next: "Proponerle día y hora por WhatsApp" },
-        { who: "Peter y Anna Keller", what: "Valoración de una villa en Elviria · email en alemán, sin respuesta automática", why: "Propietarios que quieren vender; piden cita esta semana", next: "Contestar al cliente y proponer una fecha para la visita" },
+        { who: "Peter y Anna Keller", what: "Valoración de una villa en Elviria · respondida por email", why: "Propietarios que quieren vender; piden cita esta semana", next: "Proponer una fecha para la visita" },
         { who: "Álvaro Pons", what: "Rellamada por la villa de Elviria · precio y margen", why: "Pidió que le llamen por la tarde (+34 XXX XXX XXX)", next: "Llamar a partir de las 16:00" },
         { who: "Sofía Lamas", what: "Alquiler de larga temporada en Fuengirola", why: "Sin fecha; a partir de enero", next: "Enviar lo disponible en alquiler" },
       ],
       en: [
         { who: "Laura Serrano", what: "Wants to see the flat in Estepona next week · main home", why: "She named a property, an area and a budget", next: "Propose a day and time on WhatsApp" },
-        { who: "Peter and Anna Keller", what: "Valuation of a villa in Elviria · e-mail in German, no automatic reply", why: "Owners who want to sell; they ask for an appointment this week", next: "Answer the customer and propose a date for the viewing" },
+        { who: "Peter and Anna Keller", what: "Valuation of a villa in Elviria · answered by e-mail", why: "Owners who want to sell; they ask for an appointment this week", next: "Propose a date for the viewing" },
         { who: "Álvaro Pons", what: "Callback about the villa in Elviria · price and room to negotiate", why: "He asked to be called in the afternoon (+34 XXX XXX XXX)", next: "Call from 16:00" },
         { who: "Sofía Lamas", what: "Long-term rental in Fuengirola", why: "No date; from January", next: "Send what is available to rent" },
       ],
@@ -500,9 +501,9 @@ export const storyWords = {
     period: { es: "Semana del lunes al domingo", en: "Monday to Sunday" },
     basis: { es: "Base: consultas registradas en NuovaSolution en los canales conectados", en: "Basis: enquiries recorded in NuovaSolution on the connected channels" },
     demo: { es: "Cifras de ejemplo · no son datos de ninguna agencia", en: "Example figures · not any agency's data" },
-    handled: { title: { es: "Lo que atendió NuovaSolution", en: "What NuovaSolution handled" }, value: "23", line: { es: "consultas respondidas y registradas · WhatsApp 13 · email 10 · la entrega al cliente no se mide", en: "enquiries answered and recorded · WhatsApp 13 · email 10 · delivery to the customer is not measured" } /* COPY_1019 R-10 */ },
+    handled: { title: { es: "Lo que atendió NuovaSolution", en: "What NuovaSolution handled" }, value: "25", line: { es: "consultas respondidas y registradas · WhatsApp 14 · email 11 · la entrega al cliente no se mide", en: "enquiries answered and recorded · WhatsApp 14 · e-mail 11 · delivery to the customer is not measured" } /* COPY_1019 R-10 */ },
     chances: { title: { es: "Oportunidades que han surgido", en: "Opportunities that came up" }, value: "6", line: { es: "visitas pedidas, 4 acordadas por el equipo (la de Laura entre ellas) · 2 valoraciones pedidas", en: "viewings asked for, 4 agreed by the team (Laura's among them) · 2 valuations asked for" } /* HANDOVER_1021 A-13 */ },
-    next: { title: { es: "Lo que toca hacer", en: "What to do next" }, value: "2", line: { es: "cosas esperan a una persona: la valoración de los Keller y la respuesta de Sofía", en: "things wait for a person: the Kellers' valuation and Sofía's reply" } },
+    next: { title: { es: "Lo que toca hacer", en: "What to do next" }, value: "2", line: { es: "cosas para tu equipo: proponer fecha a los Keller y la respuesta de Sofía", en: "things for your team: a date for the Kellers and Sofía's reply" } /* Copy 88143c1 §2.2 */ },
     openTitle: { es: "Sigue abierto", en: "Still open" },
     open: {
       es: ["Valoración Keller · falta proponer la visita", "Sofía Lamas · esperando su respuesta"],

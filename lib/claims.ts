@@ -70,6 +70,51 @@ export const claims = {
 
 export type ClaimKey = keyof typeof claims;
 
+/**
+ * The owner's rule of 16.11.2026 (evening, verdict on 3c2a413): the preview shows EVERYTHING in both views — all four demonstration
+ * channels, the 3D section, every graphic, both extra cards; no "Próximamente", nothing left out. ONE switch per function:
+ *   "live"  shown without a sign (today: every function);
+ *   "soon"  the public view treats the function as not live — hidden, or Copy's public wording where one exists.
+ * On the day before go-live RV6 and the owner flip only the functions that are not in production then; nothing else has to be rebuilt.
+ * The `claims` register above stays API's record of what is in production (the audit's ceiling); this map is the public view's gate.
+ */
+export const publicGate: Record<ClaimKey, "live" | "soon"> = {
+  replyWhatsapp: "live",
+  replyEmail: "live",
+  replyOutOfHours: "live",
+  whatsappOwnNumber: "live",
+  languageNoted: "live",
+  otherLanguages: "live",
+  mailboxConnection: "live",
+  crm: "live",
+  priorityWithReason: "live",
+  alert: "live",
+  origin: "live",
+  adsLeads: "live",
+  labels: "live",
+  oneRecordAcrossChannels: "live",
+  matching: "live",
+  followup: "live",
+  taskList: "live",
+  dailyVoice: "live",
+  reportInLogin: "live",
+  weeklyEmail: "live",
+  reportTrend: "live",
+  instagram: "live",
+  phoneAssistant: "live",
+  listingLink: "live",
+  reminders: "live",
+  webform: "live",
+  integrations: "live",
+  outlook: "live",
+  model3d: "live",
+  plans: "live",
+  trial: "live",
+  publicSignup: "live",
+};
+/** True while every gate is "live": the public view is the target view. */
+export const publicShowsAll = (): boolean => (Object.keys(publicGate) as ClaimKey[]).every((k) => publicGate[k] === "live");
+
 export const claim = (key: ClaimKey): ClaimState => claims[key];
 export const claimWord = (key: ClaimKey, locale: Locale): string => claimWords[claims[key]][locale];
 export const isIncluded = (key: ClaimKey): boolean => claims[key] === "included";
@@ -77,7 +122,7 @@ export const isIncluded = (key: ClaimKey): boolean => claims[key] === "included"
 export const replySpanish = (): boolean => isIncluded("replyWhatsapp") || isIncluded("replyEmail");
 
 /** Whether the keys read as live in a view: everything in the target view, only what is included in the public one. */
-export const live = (keys: ClaimKey | ClaimKey[], view: ClaimView): boolean => view === "target" || (Array.isArray(keys) ? keys : [keys]).every(isIncluded);
+export const live = (keys: ClaimKey | ClaimKey[], view: ClaimView): boolean => view === "target" || (Array.isArray(keys) ? keys : [keys]).every((k) => publicGate[k] === "live"); // 16.11. evening: the public view follows the gate, not the register
 /** Whether a surface bound to its keys is shown in a view. */
 export const shows = live;
 
@@ -100,7 +145,7 @@ const HELD_BACK: ClaimKey[] = ["whatsappOwnNumber", "phoneAssistant", "instagram
  * view). Copy 1116 §10 W-1 (the owner's point 6): WhatsApp replies run on NuovaSolution's own number until the agency's number is
  * registered with Meta (topic 20), so the PUBLIC view names email only while `whatsappOwnNumber` is off.
  */
-const channelOn = (key: ClaimKey, view: ClaimView): boolean => isIncluded(key) && (view === "target" || key !== "replyWhatsapp" || isIncluded("whatsappOwnNumber"));
+const channelOn = (key: ClaimKey, view: ClaimView): boolean => isIncluded(key) && (view === "target" || key !== "replyWhatsapp" || publicGate.whatsappOwnNumber === "live");
 export const channelKeys = (view: ClaimView): ClaimKey[] => CHANNELS.filter((c) => channelOn(c.key, view)).map((c) => c.key);
 export const channelList = (locale: Locale, view: ClaimView): string => {
   const names = CHANNELS.filter((c) => channelOn(c.key, view)).map((c) => c[locale]);
@@ -144,7 +189,7 @@ export const planCell = (key: ClaimKey, plan: PlanCode, view: ClaimView = "targe
   if (key === "model3d") return "order";
   const carried = planRows.find((r) => r.key === key)?.plans.includes(plan) ?? false;
   if (!carried) return "excluded";
-  return view === "target" ? "included" : claims[key];
+  return live(key, view) ? "included" : claims[key];
 };
 /** The owner's E2 of 07.11.: no tick for the agency's own WhatsApp number, the phone assistant or Instagram while they are off — in either view. */
 export const planRowShown = (key: ClaimKey, view: ClaimView): boolean => offered(key, view);

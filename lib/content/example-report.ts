@@ -5,8 +5,8 @@ import { live, type ClaimView } from "@/lib/claims";
 /**
  * The public example report (closing order 27.10. §7; the owner's order of 05.11. F3 and the verdict of 06.11.; Copy's handover
  * 1105 v3 §6, §7 and §19): the home page's example week as one complete report anyone can see without a login. Every figure is an
- * example and says so; nothing here is any agency's data and nothing reads the backend. Week 4 = 25 received · 23 answered (the
- * other 2 arrived in another language) · 2 waiting for a person · 6 viewings asked for, 4 agreed. The channels, the trend, the
+ * example and says so; nothing here is any agency's data and nothing reads the backend. Week 4 = 25 received · 25 answered on
+ * arrival (all in Spanish, Copy 88143c1) · 0 waiting for a person · 6 viewings asked for, 4 agreed. The channels, the trend, the
  * insights, the hours and the funnel's rates belong to the extended report (`reportTrend`); the figures, the funnel's steps, the
  * open cases and the next steps stand on every view. The channel figures and the insights are the home page's (lib/content/home-1103.ts),
  * so both add up to the same 25. No status word.
@@ -31,21 +31,22 @@ export const exampleReport: Record<Locale, {
     example: "Datos de ejemplo",
     figures: [
       { title: "Consultas recibidas", value: "25", line: "consultas nuevas registradas en la semana" },
-      { title: "Respondidas", value: "23", line: "con una respuesta automática · las otras 2 llegaron en otro idioma: no se envía nada automáticamente" },
+      { title: "Respondidas", value: "25", line: "con una respuesta automática en español, al llegar" }, // Copy 88143c1 §2.2
       { title: "Visitas pedidas", value: "6", line: "clientes que pidieron ver un inmueble · 4 acordadas por el equipo · pedida no es acordada" },
-      { title: "Esperan a una persona", value: "2", line: "consultas abiertas que necesitan a alguien del equipo" },
+      { title: "Esperan a una persona", value: "0", line: "consultas sin ninguna respuesta todavía · esta semana, ninguna" },
     ],
-    trend: { title: "Consultas por semana", note: "Cuatro semanas de ejemplo.", alt: "Gráfico de líneas: consultas recibidas y respondidas en cuatro semanas de ejemplo: 19 y 17, 24 y 22, 21 y 20, 25 y 23.", received: "Recibidas", answered: "Respondidas", axisY: "Consultas", axisX: "Semana" },
+    // Copy 88143c1 §2.4: the second line shows the enquiries that arrived with the office closed (`answered` carries it); all got a reply on arrival
+    trend: { title: "Consultas por semana", note: "Cuatro semanas de ejemplo. Todas recibieron respuesta al llegar.", alt: "Gráfico de líneas: consultas recibidas y consultas con la oficina cerrada en cuatro semanas de ejemplo: 19 y 7, 24 y 10, 21 y 8, 25 y 9.", received: "Recibidas", answered: "Con la oficina cerrada", axisY: "Consultas", axisX: "Semana" },
     weeks: [
-      { label: "Semana 1", received: 19, answered: 17 },
-      { label: "Semana 2", received: 24, answered: 22 },
-      { label: "Semana 3", received: 21, answered: 20 },
-      { label: "Semana 4", received: 25, answered: 23 },
+      { label: "Semana 1", received: 19, answered: 7 },
+      { label: "Semana 2", received: 24, answered: 10 },
+      { label: "Semana 3", received: 21, answered: 8 },
+      { label: "Semana 4", received: 25, answered: 9 },
     ],
     channels: { title: "Por canal", note: "Semana 4 · las 25 consultas recibidas", basis: "Las mismas 25, según el canal de llegada." },
     funnel: {
       title: "De consulta a visita", note: "Semana 4", ratesNote: "Porcentajes sobre las 25 consultas recibidas.",
-      steps: [{ name: "Consultas", v: 25, d: "recibidas" }, { name: "Respondidas", v: 23, d: "respuesta automática" }, { name: "Visitas pedidas", v: 6, d: "el cliente pidió ver un inmueble" }, { name: "Acordadas", v: 4, d: "día y hora fijados por una persona del equipo" }],
+      steps: [{ name: "Consultas", v: 25, d: "recibidas" }, { name: "Respondidas", v: 25, d: "respuesta automática" }, { name: "Visitas pedidas", v: 6, d: "el cliente pidió ver un inmueble" }, { name: "Acordadas", v: 4, d: "día y hora fijados por una persona del equipo" }],
     },
     hours: {
       title: "Hora punta", note: "Semana 4 · por hora de llegada", peak: "11:00–12:00 · 6 consultas", office: "Horario de la agencia de ejemplo: de 10:00 a 14:00 y de 17:00 a 20:00.",
@@ -54,7 +55,7 @@ export const exampleReport: Record<Locale, {
     openTitle: "Casos abiertos",
     openHead: { who: "Quién", what: "Qué pide", channel: "Canal", prio: "Prioridad", next: "Siguiente paso", state: "Estado" },
     open: [
-      { who: "Peter y Anna Keller", what: "valoración de una villa en Elviria", channel: "Email", prio: "Alta", next: "Proponer una fecha para la valoración", state: "Espera a una persona" },
+      { who: "Peter y Anna Keller", what: "valoración de una villa en Elviria", channel: "Email", prio: "Alta", next: "Proponer una fecha para la valoración", state: "Pendiente del equipo" }, // WORKING (owner 16.11. evening)
       { who: "Sofía Lamas", what: "alquiler de larga temporada en Fuengirola desde enero", channel: "⟦sofia⟧", prio: "Media", next: "Enviar lo disponible", state: "Esperando su respuesta" },
       { who: "Laura Serrano", what: "piso de 2 dormitorios en Estepona, hasta 320.000 €", channel: "WhatsApp", prio: "Alta", next: "Visita del jueves a las 10:00", state: "Visita acordada" },
       { who: "Carmen Ortega", what: "valoración de su piso en Fuengirola", channel: "Email", prio: "Alta", next: "Proponer una fecha", state: "Abierta" },
@@ -74,21 +75,21 @@ export const exampleReport: Record<Locale, {
     example: "Example data",
     figures: [
       { title: "Enquiries received", value: "25", line: "new enquiries recorded in the week" },
-      { title: "Answered", value: "23", line: "with an automatic reply · the other 2 arrived in another language: nothing is sent automatically" },
+      { title: "Answered", value: "25", line: "with an automatic reply in Spanish, on arrival" },
       { title: "Viewings asked for", value: "6", line: "customers who asked to see a property · 4 agreed by the team · asked is not agreed" },
-      { title: "Waiting for a person", value: "2", line: "open enquiries that need someone on the team" },
+      { title: "Waiting for a person", value: "0", line: "enquiries without any reply yet · none this week" },
     ],
-    trend: { title: "Enquiries per week", note: "Four example weeks.", alt: "Line chart: enquiries received and answered in four example weeks: 19 and 17, 24 and 22, 21 and 20, 25 and 23.", received: "Received", answered: "Answered", axisY: "Enquiries", axisX: "Week" },
+    trend: { title: "Enquiries per week", note: "Four example weeks. All got a reply on arrival.", alt: "Line chart: enquiries received and enquiries with the office closed in four example weeks: 19 and 7, 24 and 10, 21 and 8, 25 and 9.", received: "Received", answered: "Office closed", axisY: "Enquiries", axisX: "Week" },
     weeks: [
-      { label: "Week 1", received: 19, answered: 17 },
-      { label: "Week 2", received: 24, answered: 22 },
-      { label: "Week 3", received: 21, answered: 20 },
-      { label: "Week 4", received: 25, answered: 23 },
+      { label: "Week 1", received: 19, answered: 7 },
+      { label: "Week 2", received: 24, answered: 10 },
+      { label: "Week 3", received: 21, answered: 8 },
+      { label: "Week 4", received: 25, answered: 9 },
     ],
     channels: { title: "By channel", note: "Week 4 · the 25 enquiries received", basis: "The same 25, by the channel they arrived on." },
     funnel: {
       title: "From enquiry to viewing", note: "Week 4", ratesNote: "Percentages of the 25 enquiries received.",
-      steps: [{ name: "Enquiries", v: 25, d: "received" }, { name: "Answered", v: 23, d: "automatic reply" }, { name: "Viewings asked for", v: 6, d: "the customer asked to see a property" }, { name: "Agreed", v: 4, d: "day and time fixed by someone on the team" }],
+      steps: [{ name: "Enquiries", v: 25, d: "received" }, { name: "Answered", v: 25, d: "automatic reply" }, { name: "Viewings asked for", v: 6, d: "the customer asked to see a property" }, { name: "Agreed", v: 4, d: "day and time fixed by someone on the team" }],
     },
     hours: {
       title: "Peak hour", note: "Week 4 · by hour of arrival", peak: "11:00–12:00 · 6 enquiries", office: "Hours of the example agency: 10:00 to 14:00 and 17:00 to 20:00.",
@@ -97,7 +98,7 @@ export const exampleReport: Record<Locale, {
     openTitle: "Open cases",
     openHead: { who: "Who", what: "What they ask", channel: "Channel", prio: "Priority", next: "Next step", state: "State" },
     open: [
-      { who: "Peter and Anna Keller", what: "valuation of a villa in Elviria", channel: "E-mail", prio: "High", next: "Propose a date for the valuation", state: "Waiting for a person" },
+      { who: "Peter and Anna Keller", what: "valuation of a villa in Elviria", channel: "E-mail", prio: "High", next: "Propose a date for the valuation", state: "Pending with the team" },
       { who: "Sofía Lamas", what: "long-term rental in Fuengirola from January", channel: "⟦sofia⟧", prio: "Medium", next: "Send what is available", state: "Waiting for her reply" },
       { who: "Laura Serrano", what: "two-bedroom flat in Estepona, up to €320,000", channel: "WhatsApp", prio: "High", next: "Thursday's 10:00 viewing", state: "Viewing agreed" },
       { who: "Carmen Ortega", what: "valuation of her flat in Fuengirola", channel: "E-mail", prio: "High", next: "Propose a date", state: "Open" },

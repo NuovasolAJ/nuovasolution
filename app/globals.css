@@ -1572,7 +1572,7 @@ html:not(.js) .fl-line { stroke-dashoffset: 0 !important; stroke-dasharray: none
 .ch-points { display: grid; gap: 8px; margin: 2px 0 0; padding: 0 20px; list-style: none; }
 .ch-point { display: flex; align-items: center; gap: 10px; font-size: 0.9375rem; font-weight: 500; color: var(--text-primary); }
 .ch-point-mark { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 999px; background: var(--status-wash); color: var(--status-positive); flex: none; }
-.ch-more { display: inline-flex; align-items: center; gap: 6px; margin: 6px 20px 0; min-height: 44px; padding: 8px 14px; align-self: flex-start; border-radius: 999px; background: var(--ink-950); color: var(--ivory); font-size: 0.9375rem; font-weight: 600; transition: background-color var(--motion-micro) var(--ease-standard), transform var(--motion-micro) var(--ease-standard); }
+.ch-more { display: inline-flex; align-items: center; gap: 6px; margin: auto 20px 0; min-height: 44px; padding: 8px 14px; align-self: flex-start; border-radius: 999px; background: var(--ink-950); color: var(--ivory); font-size: 0.9375rem; font-weight: 600; transition: background-color var(--motion-micro) var(--ease-standard), transform var(--motion-micro) var(--ease-standard); }
 .ch-more:hover { background: var(--ink-800); transform: translateY(-1px); }
 .ch-more:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 .ch-more-icon { transition: transform var(--motion-control) var(--ease-standard); }
@@ -1772,7 +1772,7 @@ html:not(.js) .fs-step { opacity: 1; }
 .xc-tl[data-state="escalate"] .xc-tl-dot { background: var(--signal-attention); }
 .xc-tl-bell { color: var(--ink-600); }
 @media (min-width: 640px) { .ch-extra-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; } .ch-card-extra { flex: none; } }
-@media (min-width: 1024px) { .ch-extra { margin-top: 32px; } .ch-extra-row { gap: 24px; } .ch-visual-extra { height: 210px; padding: 18px 20px; } }
+@media (min-width: 1024px) { .ch-extra { margin-top: 32px; } .ch-extra-row { gap: 24px; } .ch-visual-extra { min-height: 0; padding: 18px 20px; } } /* (2) no empty area in the two cards */
 
 /* "Tu camino" as the order chat (the owner's point 1): four steps in one row, stacked on the phone */
 .tc-run { display: grid; gap: 14px; margin: 6px 0 0; padding: 0; list-style: none; }
@@ -1817,14 +1817,6 @@ html:not(.js) .fs-step { opacity: 1; }
   .pain-inner { padding-top: 32px; padding-bottom: 136px; }
 }
 
-/* the phone's plan cards: the rows behind one tap (16.11. 14:00, depth); the wide window and the no-JavaScript page show them always */
-.plans-card-fold-button { display: none; align-items: center; gap: 6px; margin-top: 12px; min-height: 44px; padding: 8px 0; font-size: 0.9375rem; font-weight: 600; color: var(--text-primary); text-align: left; }
-.plans-card-fold-icon { transition: transform var(--motion-control) var(--ease-standard); }
-.plans-card-fold-icon.is-open { transform: rotate(180deg); }
-@media (max-width: 639px) {
-  html.js .plans-card-fold-button { display: inline-flex; }
-  html.js .plans-card-fold[data-open="false"] .plans-card-fold-body { display: none; }
-}
 
 /* Copy 441ba1c §10: the phone's one core line and one proof line per section; the long paragraphs stay on the desktop */
 .m-only { display: none; }
@@ -1838,3 +1830,13 @@ html:not(.js) .fs-step { opacity: 1; }
 .trust-line-t { color: var(--text-primary); }
 .m3d-path-mark { font-size: 0.8125rem; color: var(--text-muted); }
 @media (max-width: 639px) { .m-only { display: block; } .entry .sec-core { margin-top: 4px; } .closing .m-only.closing-line { display: block; } }
+
+/* 16.11. evening (the owner's point 4, D11): no accordion on the phone — repeats become rows to swipe through; the plan cards stand whole */
+@media (max-width: 639px) {
+  .plans-cards, .trust-lines, .rep-cards { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 6px; }
+  .plans-cards::-webkit-scrollbar, .trust-lines::-webkit-scrollbar, .rep-cards::-webkit-scrollbar { display: none; }
+  .plans-card { flex: 0 0 86%; scroll-snap-align: start; }
+  .trust-line { flex: 0 0 82%; scroll-snap-align: start; align-content: start; }
+  .rep-cards { background: transparent; border-bottom: 0; }
+  .rep-card { flex: 0 0 84%; scroll-snap-align: start; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--border-hairline); }
+}

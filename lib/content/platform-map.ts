@@ -1,6 +1,6 @@
 import type { Locale } from "@/lib/i18n/config";
 import { publishedCapability } from "@/lib/content/capabilities";
-import { live, offered, withChannels, type ClaimKey, type ClaimView } from "@/lib/claims";
+import { live, offered, withChannels, type ClaimKey, type ClaimView, publicShowsAll } from "@/lib/claims";
 
 /**
  * The platform in four tasks (owner follow-up order 2026-10-06 §4; master order 2026-10-10 §10; Copy 1105 v3 §21 of 06.11.): what
@@ -104,7 +104,7 @@ export function platformTasksFor(locale: Locale, view: ClaimView): { key: Platfo
       title: t.title[locale],
       short: t.short[locale],
       href: t.href,
-      line: withChannels((view === "public" && t.linePublic ? t.linePublic : t.line)[locale], locale, view),
+      line: withChannels((view === "public" && !publicShowsAll() && t.linePublic ? t.linePublic : t.line)[locale], locale, view),
       entries: t.entries
         .map((e) => {
           const on = !e.keys || offered(e.keys, view); // E2 (16.11.): a held-back function is not promised in either view

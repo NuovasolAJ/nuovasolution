@@ -40,11 +40,11 @@ export function briefTasks(locale: Locale, listHref: string): MailTask[] {
       open,
     },
     {
-      kind: es ? "Sin respuesta automática" : "No automatic reply",
+      kind: es ? "Falta una fecha" : "A date is missing", // Copy 88143c1 §2.2
       who: es ? "Peter y Anna Keller · Email" : "Peter and Anna Keller · Email",
-      lines: es ? ["Quieren vender su villa en Elviria y piden una valoración esta semana.", "Escriben en alemán: hoy solo respondemos en español, así que NuovaSolution no ha enviado nada."] : ["They want to sell their villa in Elviria and ask for a valuation this week.", "They write in German: today we only answer in Spanish, so NuovaSolution has sent nothing."],
+      lines: es ? ["Quieren vender su villa en Elviria y piden una valoración esta semana.", "Ya tienen la respuesta automática; falta que alguien les proponga una fecha."] : ["They want to sell their villa in Elviria and ask for a valuation this week.", "They already have the automatic reply; someone still has to propose a date."],
       state: es ? "Abierta · desde ayer 11:24" : "Open · since yesterday 11:24",
-      step: es ? "Contestar al cliente y proponer una fecha para la visita" : "Answer the customer and propose a date for the viewing", // HANDOVER_1021 A-8
+      step: es ? "Proponer una fecha para la valoración" : "Propose a date for the valuation", // Copy 88143c1 §2.2
       href: listHref,
       open,
     },

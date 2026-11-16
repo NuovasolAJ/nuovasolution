@@ -5,7 +5,7 @@ import { ArrowRight, Check, ChevronDown, Inbox, Mail, Mic, PanelsTopLeft, Phone,
 import type { Locale } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
 import { demoChannels, demoWords, endPhase, recordStart, type DemoChannel, type DemoChannelKey } from "@/lib/content/home-demo";
-import { shows, type ClaimView, isIncluded } from "@/lib/claims";
+import { shows, type ClaimView, live } from "@/lib/claims";
 import { Mark } from "@/components/ui/mark";
 import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
 
@@ -46,7 +46,7 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const W = demoWords;
   // 16.11. 14:00 (the owner's point 8 + ChatGPT 1): the public view shows no WhatsApp channel while the agency's own number is not registered (topic 20)
-  const channels = demoChannels.filter((c) => shows(c.claim, view) && (view === "target" || c.key !== "whatsapp" || isIncluded("whatsappOwnNumber")));
+  const channels = demoChannels.filter((c) => shows(c.claim, view) && (c.key !== "whatsapp" || live("whatsappOwnNumber", view)));
   const [channel, setChannel] = useState<DemoChannelKey>(channels[0]?.key ?? "whatsapp");
   const [phase, setPhase] = useState(0);
   // the auto-run (13.11.): on until the first click or key, never while out of view, never with reduced motion

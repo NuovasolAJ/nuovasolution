@@ -4,7 +4,6 @@ import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
 import { claimWords, entryAction, live, planCell, planCellWords, planRowShown, plansTableShown, type ClaimView, type PlanCode } from "@/lib/claims";
 import { Rise } from "@/components/ui/motion";
-import { PlanCardFold } from "./plan-card-fold";
 import { cn } from "@/lib/utils";
 
 /**
@@ -140,7 +139,6 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
                 <li key={n} className={cn("plans-card", hi(codes[pi]) && "is-highlight")} data-plan-card={codes[pi]}>
                   <p className="plans-name">{n}</p>
                   <p className="plans-who">{who[pi]}</p>
-                  <PlanCardFold code={codes[pi]} more={l(w.foldMore)} less={l(w.foldLess)}>
                   {groups.map((g, gi) => groupRows(gi).length === 0 ? null : (
                     <div key={g} className="plans-card-group">
                       <p className="plans-cell-group">{g}</p>
@@ -159,7 +157,6 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
                       </ul>
                     </div>
                   ))}
-                  </PlanCardFold>
                   <a href={a.href} className={cn("plans-cta", a.main && "plans-cta-main")} data-pilot-cta="plan-card">{a.label}<ArrowRight size={15} strokeWidth={2.2} aria-hidden="true" /></a>
                   <a href={localePath(locale, `/contact?interes=contratar&plan=${codes[pi]}`)} className="plans-direct" data-plan-direct={`card-${codes[pi]}`}>{l(w.direct)}</a>
                 </li>
