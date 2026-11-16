@@ -10,7 +10,7 @@ while (queue.length && pages.length < 60) {
   const p = queue.shift();
   if (seen.has(p)) continue; seen.add(p);
   let res, html;
-  try { res = await fetch(`${BASE}${p}?view=public`); html = await res.text(); } catch { continue; }
+  try { res = await fetch(`${BASE}${p}?view=public`, { redirect: "manual" }); if (res.status >= 300 && res.status < 400) { const loc = res.headers.get("location"); if (loc && !seen.has(loc) && !queue.includes(loc)) queue.push(loc); continue; } html = await res.text(); } catch { continue; }
   if (res.status !== 200) continue;
   pages.push({ path: p, text: strip(html) });
   for (const m of html.matchAll(/href="(\/(?:es|en)[^"#?]*)"/g)) {

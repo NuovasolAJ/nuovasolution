@@ -273,6 +273,10 @@ Seite weg ist.
 **Durchlauf:** alle Seiten, die von `/es` und `/en` aus öffentlich erreichbar sind, Sicht `public`,
 24 Seiten gefunden und gelesen. Beleg `checks/promise-public-a7612c0.json`.
 
+> **ZURÜCKGEZOGEN am 16.11., nachmittags — P-1 und P-2 unten waren mein eigener Messfehler.**
+> Die Richtigstellung steht am Ende dieses Abschnitts unter „Korrektur". Ich lasse den Text stehen,
+> damit nachvollziehbar bleibt, was ich gemeldet hatte. **P-3 bleibt bestätigt.**
+
 ### Befund P-1: `/es/platform/daily-assistant` und `/en/platform/daily-assistant` hängen nicht an der Freigabe
 
 Diese Seite verspricht **öffentlich** vier Dinge, die nicht in Produktion sind. Wortlaut von der
@@ -318,3 +322,58 @@ Punkte der neuen Regel gleichzeitig: Demo als Angebot und Selbst-Start. `/es/con
   `/platform/daily-assistant` und fallen unter P-1 (3D), nicht unter die Medien.
 - **„Recomendado"** kommt in keiner Sicht vor.
 - **„en segundos" ohne „por WhatsApp"** kommt in keiner Sicht vor.
+
+---
+
+## Korrektur, 16.11. nachmittags: P-1 und P-2 waren mein Messfehler — kein Loch in der öffentlichen Sicht
+
+**Was falsch war.** Mein Durchlauf folgte Weiterleitungen automatisch. `/platform/daily-assistant`
+und `/trial` antworten in der öffentlichen Sicht mit **307** auf `/platform` bzw. `/contact`. Das
+`Location:` trägt **kein `?view=public`** mit, und in der Vorschau ist die Standardsicht ohne
+Cookie die **Zielsicht** (`lib/view.ts`: ohne Header `x-nuova-view` gilt `target`). Mein Abruf
+landete also auf der richtigen Zielseite, aber in der **falschen Sicht**, und ich habe deren Inhalt
+der öffentlichen Sicht zugeschrieben. Der Fehler liegt bei mir, nicht am Bau.
+
+**Nachgemessen, ohne Weiterleitungen zu folgen, auf demselben Build `a7612c0`:**
+
+| Abruf | Antwort | Ergebnis |
+|---|---|---|
+| `/es/platform/daily-assistant?view=public` | **307 → `/es/platform`** | korrekt gesperrt, hängt an `taskList` |
+| `/en/platform/daily-assistant?view=public` | **307 → `/en/platform`** | dito |
+| `/es/platform?view=public` | 200 | **sauber**: kein Instagram, keine eigene Nummer, kein Telefon-Assistent, kein „formulario web, teléfono", kein 3D, keine Formulare, keine Portale |
+| `/es/platform?view=target` | 200 | alle sieben vorhanden — richtig für die Zielsicht |
+| `/es/trial?view=public` und `?view=target` | **307 → `/es/contact`** | wie von Redesign gebaut |
+| `/en/trial`, `/es/signup` (öffentlich) | **307 → `/contact`** | dito |
+
+**Damit gilt:** Die öffentliche Sicht verspricht **nicht** die eigene Nummer der Agentur, **nicht**
+das Telefon, **nicht** Instagram und **nicht** 3D. Der Satz „Prueba gratis durante 14 días", den
+ich `/trial` zugeschrieben hatte, steht in der **Zielsicht** von `/contact`, nicht öffentlich.
+**Produktion ist davon ohnehin nicht berührt:** auf einem Live-Build erzwingt `resolveSwitches()`
+die öffentliche Sicht, und es lässt sich nichts umschalten.
+
+### Was nach der Korrektur öffentlich stehen bleibt — zwei Befunde
+
+| | Ort | Wortlaut | Warum Befund |
+|---|---|---|---|
+| **Ö-1** | `/es/platform/lead-intelligence`, `/en/…` — direkt abgerufen, 200, keine Weiterleitung | „Motivo: nombró inmueble, zona y presupuesto. **NuovaSolution no calcula una puntuación.**" · „**NuovaSolution computes no score.**" | In Prod existiert ein Score. Der Satz ist in **beiden** Sichten falsch. Vom Owner am 16.11. ausdrücklich verboten |
+| **Ö-2** | `/es/contact`, `/en/contact` | „Opcional **Solicitar una demo**" und „Sin presentación. **Solicitar una demo**" (englisch „Request a demo", zweimal) | Demo als Angebot, nach der Owner-Regel vom 16.11. verboten |
+
+Redesign meldet beides als in `9dbb276` behoben; das steckt nicht in `a7612c0`. Ich messe es auf
+dem benannten Build nach.
+
+### Ein kleiner Befund bleibt, aber ein anderer als gemeldet
+
+Die Weiterleitung verliert die Sicht: wer `…/platform/daily-assistant?view=public` aufruft, landet
+in der **Zielsicht**. Das ist kein falsches Versprechen gegenüber Besuchern — öffentlich kann die
+Vorschau niemand ohne Absicht erreichen, und live gibt es die Umschaltung nicht. Es macht aber
+**jede Prüfung über Adressen unzuverlässig**, meine eigene eingeschlossen. Redesign zieht die Sicht
+durch die Weiterleitung nach. Bis dahin prüfe ich jede gesperrte Route **am Ziel der Weiterleitung
+mit ausdrücklich gesetzter Sicht**, nicht am Ausgangspfad. Diese Regel gilt ab sofort für RV6.
+
+### Offen beim Owner (von Copy gemeldet, Q-6)
+
+Die Pakete sollen 3D öffentlich als „**Opcional · se contrata aparte**" führen, während `model3d`
+auf `soon` steht. Auf `a7612c0` steht öffentlich **weder** „Opcional" **noch** „Modelos 3D" auf
+`/packages` — die Frage betrifft also eine geplante Änderung, nicht den heutigen Stand. Ich prüfe
+„3D öffentlich" erst, wenn der Owner entschieden hat, ob 3D als Dienst auf Anfrage `included` wird
+oder die Zeile der Zielsicht vorbehalten bleibt.

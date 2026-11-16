@@ -1,0 +1,61 @@
+{
+ "measured_by": "reviewer",
+ "date": "2026-11-16 afternoon",
+ "build": "a7612c0 / dpl_35QawXBvo3cR2EpQkQxKW5WEEazt",
+ "view": "public",
+ "correction": "redirects are NOT followed in this run; the earlier run followed them and lost ?view=public, which made gated pages read as target. P-1 and P-2 of the morning run are withdrawn.",
+ "crawl": "pages scanned: 20 /es /en /es/platform /es/packages /es/contact /es/login /es/example-report /es/faq /es/platform/ai-sales-agent /es/platform/lead-intelligence /es/platform/crm /en/platform /en/packages /en/contact /en/login /en/example-report /en/faq /en/platform/ai-sales-agent /en/platform/lead-intelligence /en/platform/crm",
+ "hits": {
+  "/es": {
+   "phone": [
+    "adas por el equipo. Pedida no es acordada. Entregadas al cliente No medido Si la respuesta llegó al teléfono o al buzón del cliente. Tiempo de respuesta No medido Minutos entre la consulta y la respuesta. Sig"
+   ],
+   "languages": [
+    "na. Ficha de Peter y Anna Keller CRM Intención vender Zona Marbella · Elviria Inmueble villa Idioma alemán · reconocido Respuesta ninguna automática · la escribe una persona Historial mar 11:24 Email Consul",
+    "onocido Respuesta ninguna automática · la escribe una persona Historial mar 11:24 Email Consulta en alemán: quieren vender su villa mar 11:24 Email Idioma reconocido: alemán · no se envía nada automáticamen",
+    "rial mar 11:24 Email Consulta en alemán: quieren vender su villa mar 11:24 Email Idioma reconocido: alemán · no se envía nada automáticamente Lo importante, guardado Zona, presupuesto, idioma y lo que pide "
+   ]
+  },
+  "/es/platform": {
+   "phone": [
+    "a. Paso a una persona Cuando alguien pide hablar con una persona, queda registrada como petición de llamada para tu equipo. La petición queda registrada. 0 2 Gestionar oportunidades Lo que pide cada cliente,"
+   ]
+  },
+  "/es/packages": {
+   "phone": [
+    " nada. Solicita tu piloto gratuito Preguntas ¿Tengo que hablar con alguien antes? No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. Todas las preguntas Mira cómo NuovaSolution atiend"
+   ]
+  },
+  "/es/contact": {
+   "demoOffer": [
+    "mano directo, en español o en inglés. La demo es opcional. Email antonio@nuovasolution.com Opcional Solicitar una demo Te guiamos por el sistema con un ejemplo real y puedes preguntar lo que quieras. Sin presentación. ",
+    " Te guiamos por el sistema con un ejemplo real y puedes preguntar lo que quieras. Sin presentación. Solicitar una demo Tu próxima consulta ya está en camino Solicita tu piloto gratuito Descubre la plataforma NuovaSolut"
+   ]
+  },
+  "/es/faq": {
+   "phone": [
+    "amos en la demo, antes de acordar nada. ¿Tengo que hablar antes con un comercial? No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. ¿Cuánto se tarda en configurarlo? Te enseñamos el "
+   ],
+   "languages": [
+    "proveedor de infraestructura en Fráncfort, y los servidores que ejecutan la automatización están en Alemania. Los archivos de clientes no tienen enlace público, y cada vez que una persona abre uno queda reg",
+    "privacidad nombra cada uno y para qué sirve. Los servidores que ejecutan la automatización están en Alemania y la base de datos y los archivos en la Unión Europea. Para los canales de mensajes y el proveedo"
+   ]
+  },
+  "/es/platform/lead-intelligence": {
+   "noScore": [
+    " el martes Prioridad Consulta importante Motivo: nombró inmueble, zona y presupuesto. NuovaSolution no calcula una puntuación. Siguiente paso Una persona de tu equipo le propone la visita; NuovaSolution ya tiene la zona, el p"
+   ]
+  },
+  "/en/contact": {
+   "demoOffer": [
+    "human reach, in English or in Spanish. A demo is optional. Email antonio@nuovasolution.com Optional Request a demo We walk you through the system on a real example and you can ask anything. No slide deck. Request a",
+    "st a demo We walk you through the system on a real example and you can ask anything. No slide deck. Request a demo Your next enquiry is already on its way Request your free pilot Explore the platform NuovaSolution "
+   ]
+  },
+  "/en/platform/lead-intelligence": {
+   "noScore": [
+    "uesday Priority Important enquiry Reason: she named a property, an area and a budget. NuovaSolution computes no score. Next step A person on your team proposes the viewing; NuovaSolution already has the area, the budg"
+   ]
+  }
+ }
+}
