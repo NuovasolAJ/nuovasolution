@@ -83,3 +83,50 @@ Lighthouse nach D-4 (3 Läufe, Median, allein auf der Maschine, Bypass-Header, G
 LCP, Tippziele ≥ 44 px bei 360/390/414, `reduced-motion`, der Lauf ohne JavaScript, Copys
 Textzeilen, und die **neun Zeilen der Notentabelle B-1** mit je einem Bild, **getrennt für Handy
 und Desktop**.
+
+---
+
+## Nachtrag: die zwei offenen Fragen sind beantwortet — beide bestanden
+
+Redesign hat die Selektoren genannt; gemessen auf `b207efa` / `fbe4a4a` (Code unverändert seit
+`3c2a413`), Beleg `checks/form-rules-b207efa.json` und `checks/direct-b207efa.json`.
+
+### Formular: drei Pflichtangaben, ohne eine einzige echte Anfrage
+
+Ich habe die Regel **an der Route selbst** geprüft, nicht durch ein normales Absenden. Zuerst habe
+ich `app/api/pilot-request/route.ts` gelesen: Fehlende Pflichtangaben werden in Zeile 25/26 mit
+**422** abgewiesen — also **vor** der Stelle, an der überhaupt etwas weitergereicht würde; und ohne
+gesetzte Umgebungswerte antwortet die Route mit `delivery: "simulated"`, speichert nichts, sendet
+nichts, schreibt nichts ins Protokoll. Meine vier Proben lagen deshalb alle in Zweigen, aus denen
+nichts hinausgehen kann:
+
+| Probe | Antwort |
+|---|---|
+| nur Agentur + Name | **422** `fields: ["reach"]` |
+| Name + Telefon, ohne Agentur | **422** `fields: ["agency"]` |
+| Agentur + Name + unsinnige E-Mail | **422** `fields: ["email"]` |
+| Agentur + Name + Telefon, **mit gesetzter Honigtopf-Falle** | 200 `delivery: "simulated"` |
+
+Dazu im Browser: Agentur und Name ausgefüllt, E-Mail und Telefon leer, Absenden gedrückt → die
+Seite zeigt **„Déjanos un email o un teléfono para contestarte."**, unter den Feldern steht
+dauerhaft „Email o teléfono, como prefieras."
+
+**Ergebnis: genau drei Pflichtangaben — Agentur, Name, und E-Mail *oder* Telefon.** Das
+Einwilligungs-Häkchen ist weg. **Bestanden.** Eine echte Anfrage ist dabei nicht entstanden.
+
+### „Contratar directamente": deutlich kleiner, kein Hauptknopf, darunter
+
+Auf `/contact`, beide Breiten:
+
+| | direkter Weg | Pilot-Knopf | Verhältnis |
+|---|---|---|---|
+| 390 | `button.prq-direct`, **167 × 23 px = 3 748 px²**, 15 px, Gewicht 500, **ohne Grund**, unterstrichen, eckig | 308 × 56 px = 17 248 px², 17 px, Gewicht 600, schwarz, Pillenform | **4,6-mal kleiner** |
+| 1440 | dasselbe, 3 748 px² | 494 × 56 px = 27 664 px² | **7,4-mal kleiner** |
+
+Er steht **unter** dem Pilot-Knopf (oben 2023 gegen 1955 bei 390). **Bestanden.**
+
+In der Paket-Übersicht liegen zusätzlich **sechs** `a.plans-direct` mit den richtigen Zielen
+(`/es/contact?interes=contratar&plan=essential|growth|enterprise`), gleiche Gestalt (14 px,
+unterstrichen, ohne Grund, eckig). **Ihre gerenderte Größe konnte ich nicht messen** — sie melden
+0 × 0 px, liegen also im Moment der Messung in einem nicht ausgeklappten Behälter. Die Gestalt ist
+damit belegt, die Größe nicht; am Mittwoch messe ich sie an der Stelle, die Redesign mir nennt.

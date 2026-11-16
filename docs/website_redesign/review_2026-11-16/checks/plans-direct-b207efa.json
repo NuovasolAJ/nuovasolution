@@ -1,0 +1,97 @@
+{
+ "390": {
+  "count": 6,
+  "links": [
+   {
+    "w": 0,
+    "h": 0,
+    "area": 0,
+    "topAbs": 0,
+    "fontSize": 14,
+    "bg": "rgba(0, 0, 0, 0)",
+    "decoration": "underline",
+    "radius": "0px",
+    "href": "/es/contact?interes=contratar&plan=essential"
+   },
+   {
+    "w": 0,
+    "h": 0,
+    "area": 0,
+    "topAbs": 0,
+    "fontSize": 14,
+    "bg": "rgba(0, 0, 0, 0)",
+    "decoration": "underline",
+    "radius": "0px",
+    "href": "/es/contact?interes=contratar&plan=growth"
+   },
+   {
+    "w": 0,
+    "h": 0,
+    "area": 0,
+    "topAbs": 0,
+    "fontSize": 14,
+    "bg": "rgba(0, 0, 0, 0)",
+    "decoration": "underline",
+    "radius": "0px",
+    "href": "/es/contact?interes=contratar&plan=enterprise"
+   }
+  ],
+  "pilotNear": {
+   "w": 172,
+   "h": 44,
+   "area": 7549,
+   "topAbs": 13373
+  }
+ },
+ "1440": {
+  "count": 6,
+  "links": [
+   {
+    "w": 88,
+    "h": 42,
+    "area": 3711,
+    "topAbs": 10148,
+    "fontSize": 14,
+    "bg": "rgba(0, 0, 0, 0)",
+    "decoration": "underline",
+    "radius": "0px",
+    "href": "/es/contact?interes=contratar&plan=essential"
+   },
+   {
+    "w": 88,
+    "h": 42,
+    "area": 3711,
+    "topAbs": 10148,
+    "fontSize": 14,
+    "bg": "rgba(0, 0, 0, 0)",
+    "decoration": "underline",
+    "radius": "0px",
+    "href": "/es/contact?interes=contratar&plan=growth"
+   },
+   {
+    "w": 88,
+    "h": 42,
+    "area": 3711,
+    "topAbs": 10148,
+    "fontSize": 14,
+    "bg": "rgba(0, 0, 0, 0)",
+    "decoration": "underline",
+    "radius": "0px",
+    "href": "/es/contact?interes=contratar&plan=enterprise"
+   }
+  ],
+  "pilotNear": {
+   "w": 172,
+   "h": 44,
+   "area": 7549,
+   "topAbs": 13618
+  }
+ },
+ "build": {
+  "commit": "b207efa782a6a6647919d5115a125d5d9e017a17",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_BKiG5Nn16CYehrZBq9k3uS7dGTdu",
+  "env": "preview",
+  "mode": "stub"
+ }
+}

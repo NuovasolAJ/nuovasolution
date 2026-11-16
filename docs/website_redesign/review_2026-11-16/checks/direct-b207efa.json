@@ -1,0 +1,241 @@
+{
+ "build": {
+  "commit": "b207efa782a6a6647919d5115a125d5d9e017a17",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_BKiG5Nn16CYehrZBq9k3uS7dGTdu",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "plansDirect_390": {
+  "count": 6,
+  "sample": [
+   {
+    "text": "Contratar directamente",
+    "w": 0,
+    "h": 0,
+    "area": 0,
+    "topAbs": 0,
+    "fontSize": 14,
+    "fontWeight": "500",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(69, 69, 74)",
+    "decoration": "underline",
+    "borderRadius": "0px",
+    "tag": "A"
+   },
+   {
+    "text": "Contratar directamente",
+    "w": 0,
+    "h": 0,
+    "area": 0,
+    "topAbs": 0,
+    "fontSize": 14,
+    "fontWeight": "500",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(69, 69, 74)",
+    "decoration": "underline",
+    "borderRadius": "0px",
+    "tag": "A"
+   },
+   {
+    "text": "Contratar directamente",
+    "w": 0,
+    "h": 0,
+    "area": 0,
+    "topAbs": 0,
+    "fontSize": 14,
+    "fontWeight": "500",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(69, 69, 74)",
+    "decoration": "underline",
+    "borderRadius": "0px",
+    "tag": "A"
+   }
+  ],
+  "pilotButtons": [
+   {
+    "text": "Solicita tu piloto gratuito",
+    "w": 358,
+    "h": 56,
+    "area": 20048,
+    "topAbs": 549,
+    "fontSize": 17,
+    "fontWeight": "600",
+    "bg": "rgb(14, 14, 15)",
+    "color": "rgb(255, 255, 255)",
+    "decoration": "none",
+    "borderRadius": "999px",
+    "tag": "A"
+   },
+   {
+    "text": "Solicita tu piloto gratuito",
+    "w": 316,
+    "h": 48,
+    "area": 15168,
+    "topAbs": 11610,
+    "fontSize": 15,
+    "fontWeight": "600",
+    "bg": "rgb(14, 14, 15)",
+    "color": "rgb(255, 255, 255)",
+    "decoration": "none",
+    "borderRadius": "999px",
+    "tag": "A"
+   }
+  ]
+ },
+ "prqDirect_390": {
+  "direct": {
+   "text": "Contratar directamente",
+   "w": 167,
+   "h": 23,
+   "area": 3748,
+   "topAbs": 2023,
+   "fontSize": 15,
+   "fontWeight": "500",
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(69, 69, 74)",
+   "decoration": "underline",
+   "borderRadius": "0px",
+   "tag": "BUTTON"
+  },
+  "submit": {
+   "text": "Solicita tu piloto gratuito",
+   "w": 308,
+   "h": 56,
+   "area": 17248,
+   "topAbs": 1955,
+   "fontSize": 17,
+   "fontWeight": "600",
+   "bg": "rgb(14, 14, 15)",
+   "color": "rgb(255, 255, 255)",
+   "decoration": "none",
+   "borderRadius": "999px",
+   "tag": "BUTTON"
+  },
+  "reachLine": {
+   "text": "Email o teléfono, como prefieras.",
+   "role": null
+  },
+  "directBelowSubmit": true
+ },
+ "orRule_390": {
+  "alert": "Déjanos un email o un teléfono para contestarte.",
+  "reach": "Email o teléfono, como prefieras."
+ },
+ "plansDirect_1440": {
+  "count": 6,
+  "sample": [
+   {
+    "text": "Contratar directamente",
+    "w": 88,
+    "h": 42,
+    "area": 3711,
+    "topAbs": 11028,
+    "fontSize": 14,
+    "fontWeight": "500",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(69, 69, 74)",
+    "decoration": "underline",
+    "borderRadius": "0px",
+    "tag": "A"
+   },
+   {
+    "text": "Contratar directamente",
+    "w": 88,
+    "h": 42,
+    "area": 3711,
+    "topAbs": 11028,
+    "fontSize": 14,
+    "fontWeight": "500",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(69, 69, 74)",
+    "decoration": "underline",
+    "borderRadius": "0px",
+    "tag": "A"
+   },
+   {
+    "text": "Contratar directamente",
+    "w": 88,
+    "h": 42,
+    "area": 3711,
+    "topAbs": 11028,
+    "fontSize": 14,
+    "fontWeight": "500",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(69, 69, 74)",
+    "decoration": "underline",
+    "borderRadius": "0px",
+    "tag": "A"
+   }
+  ],
+  "pilotButtons": [
+   {
+    "text": "Solicita tu piloto gratuito",
+    "w": 212,
+    "h": 44,
+    "area": 9309,
+    "topAbs": 14,
+    "fontSize": 15,
+    "fontWeight": "400",
+    "bg": "rgb(14, 14, 15)",
+    "color": "rgb(248, 248, 249)",
+    "decoration": "none",
+    "borderRadius": "999px",
+    "tag": "A"
+   },
+   {
+    "text": "Solicita tu piloto gratuito",
+    "w": 284,
+    "h": 56,
+    "area": 15895,
+    "topAbs": 676,
+    "fontSize": 17,
+    "fontWeight": "600",
+    "bg": "rgb(14, 14, 15)",
+    "color": "rgb(255, 255, 255)",
+    "decoration": "none",
+    "borderRadius": "999px",
+    "tag": "A"
+   }
+  ]
+ },
+ "prqDirect_1440": {
+  "direct": {
+   "text": "Contratar directamente",
+   "w": 167,
+   "h": 23,
+   "area": 3748,
+   "topAbs": 993,
+   "fontSize": 15,
+   "fontWeight": "500",
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(69, 69, 74)",
+   "decoration": "underline",
+   "borderRadius": "0px",
+   "tag": "BUTTON"
+  },
+  "submit": {
+   "text": "Solicita tu piloto gratuito",
+   "w": 494,
+   "h": 56,
+   "area": 27664,
+   "topAbs": 925,
+   "fontSize": 17,
+   "fontWeight": "600",
+   "bg": "rgb(14, 14, 15)",
+   "color": "rgb(255, 255, 255)",
+   "decoration": "none",
+   "borderRadius": "999px",
+   "tag": "BUTTON"
+  },
+  "reachLine": {
+   "text": "Email o teléfono, como prefieras.",
+   "role": null
+  },
+  "directBelowSubmit": true
+ },
+ "orRule_1440": {
+  "alert": "Déjanos un email o un teléfono para contestarte.",
+  "reach": "Email o teléfono, como prefieras."
+ }
+}
