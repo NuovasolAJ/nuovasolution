@@ -1,0 +1,85 @@
+# Stand Montagabend 16.11. — gemessen auf Redesigns Korrekturen · Reviewer
+
+**Keine Note.** Der feste Build kommt Mi 18.11. 14:00. Dies ist der Vergleich gegen die
+Vergleichsbasis `868602c`, damit am Mittwoch nichts offenbleibt, was heute schon sichtbar ist.
+
+**Wichtig zur Lesart:** Der feste Link (Branch-Alias) hat sich während meiner Messungen **dreimal**
+geändert. Jede Zahl unten trägt deshalb den Commit, auf dem ich sie gemessen habe:
+`1b35d34` → `06f014d` → **`3c2a413`** (`dpl_D19yEESibmwztT1q8SbZ48FiZj2r`). Wo zwei Commits
+dieselbe Zahl ergaben, steht es dabei.
+
+---
+
+## Übersicht
+
+| Prüfpunkt | `868602c` | jetzt | gemessen auf | Urteil |
+|---|---|---|---|---|
+| **F22(a)** Band im ersten Bildschirm ≥ 120 px | 56 / 0 / 64 / 56 / 8 / 0 px | **128 / 128 / 136 / 128 / 128 / 128 px** | `1b35d34` **und** `06f014d` | **bestanden** |
+| **1** „Ver …" → Inhalt ≤ 0,15 Bildschirme | 1,62 / 0,82 / 0,02 | **0,04 / 0,04 / 0,04** (390) · **0,10 / 0,05 / 0,07** (1440) | `1b35d34` | **bestanden** |
+| **2** Scrolltiefe Handy ≤ 13 | 25,0 | **19,4** Ziel · 15,3 öffentlich | `3c2a413` | **nicht bestanden** |
+| **2** Scrolltiefe Desktop ≤ 13 | 17,5 | **16,1** Ziel · 10,3 öffentlich | `3c2a413` | **nicht bestanden** |
+| **3** Inter überall | 10 × Fraunces | **0 × Fraunces**, 26 × Inter | `1b35d34`, `3c2a413` | **bestanden** |
+| **4** 3D startet auf 01 | stand auf 02 | **01 „Plano"** (`data-m3d-step = 0`); alle vier Reiter schalten, Medien wechseln mit | `1b35d34` | **bestanden** |
+| **6** „Planes" einmal | zweimal | **einmal** (H2), öffentlich keine solche Überschrift | `3c2a413` | **bestanden** |
+| **6** kein „Gratis" bei Essential | keiner | **keiner** | `3c2a413` | **bestanden** |
+| **PK-0** „pueden empezar" | — | **„Todos los planes pueden empezar …"** / „Every plan can start …", **0 ×** „empiezan" | `3c2a413` | **bestanden** |
+| **3D-Chat ohne Lieferzeit** | — | **„Te avisamos cuando esté listo."** vorhanden; „jueves" nur noch der **Besichtigungstag** der Beispielwoche | `3c2a413` | **bestanden** |
+| **K2** Titel | — | „Ninguna consulta se queda sin aviso", alter Titel **0 ×** | `3c2a413` | **bestanden** |
+| **B** `/platform/*` öffentlich ohne WhatsApp | 6 / 4 / 3 | **0 / 0 / 0** (ES) und **0 / 0 / 0** (EN) | `3c2a413` | **bestanden** |
+| **Verbotsliste öffentlich** | sauber | **sauber** — keine Demo, kein Selbst-Start, kein „Recomendado", kein Score-Satz, kein „número de tu agencia", kein Instagram | `3c2a413` | **bestanden** |
+
+**Auf `06f014d` war zwischenzeitlich zweierlei noch offen** und ist auf `3c2a413` erledigt: PK-0
+stand dort noch als „Todos los planes **empiezan**", und die 3D-Chatblase sagte noch „Te lo
+entregamos **el jueves**." Beides habe ich gemeldet und messe es jetzt als behoben.
+
+---
+
+## Was offen bleibt
+
+### 1 Scrolltiefe — und warum meine Zahl höher ist als Redesigns
+
+Redesign misst **ohne Durchscrollen** 16,3 (Handy) und 13,1 (Desktop). Ich messe **nach dem
+Durchscrollen** 19,4 und 16,1. Beide Zahlen stimmen; sie messen nur Verschiedenes:
+
+- Ohne Durchscrollen sind die unteren Abschnitte durch `content-visibility` noch
+  zusammengeklappt, die Seite meldet eine zu kleine Höhe.
+- Nach dem Durchscrollen steht die **wirkliche** Länge da — und die bekommt der Besucher zu sehen,
+  sobald er unten ankommt.
+
+**Für die Note gilt meine Bedingung**, weil sie das misst, was der Besucher durchscrollt: Handy
+390 × 844, Zielsicht, Seite vorher einmal ganz durchgescrollt. Danach fehlen heute **6,4
+Bildschirme** zum Ziel. Redesign hält 13 ohne inhaltliche Kürzung für nicht erreichbar; das ist
+die Entscheidung des Owners (Redesigns D11), keine Messfrage. Ich melde am Mittwoch den Wert.
+
+### 2 Formular: drei Pflichtfelder — gemessen, aber nicht abgeschickt
+
+`/es/contact`, Zielsicht, `3c2a413`/`1b35d34`: **7 Felder**, davon als Pflicht ausgezeichnet
+**zwei** (`agency`, `name`). `email` und `phone` tragen **kein** `required` — die Regel „E-Mail
+**oder** Telefon" wird offenbar erst beim Absenden geprüft. Das Einwilligungs-Häkchen ist weg und
+durch eine Zeile mit Link ersetzt, wie Copys FM-pv es vorsieht.
+
+**Ich habe das Formular nicht abgeschickt.** Ein Absenden erzeugt eine Anfrage, und dafür habe ich
+keinen Auftrag. Am Mittwoch melde ich daher: die Feldstruktur (drei Angaben: Agentur, Name, E-Mail
+oder Telefon) und ausdrücklich, dass der Weg bis zur Bestätigung **nicht** durchlaufen wurde. Will
+der Owner das geprüft haben, sage er es; dann brauche ich eine Freigabe, an welche Adresse die
+Testanfrage gehen darf.
+
+### 3 „Contratar directamente" — anders gebaut als die Bedingung lautet
+
+Die Bedingung des Owners lautet „kleiner als der Pilot-Knopf". Auf dem Build ist der direkte Weg
+**kein eigener Knopf**, sondern eine **Auswahl im Formular** („¿Qué te interesa? · Piloto gratuito ·
+Contratar un plan"). Ein Flächenvergleich mit dem Pilot-Knopf (308 × 56 px, 17 248 px²) geht damit
+ins Leere.
+
+**Mein Vorschlag für die Bedingung, falls der Owner nichts anderes sagt:** der direkte Weg ist
+nicht als Hauptknopf gestaltet (kein schwarzer Grund, keine Knopfform) und steht **unter** dem
+Pilot-Knopf. Beides prüfe ich dann messbar.
+
+---
+
+## Für Mittwoch bleibt meine Liste
+
+Lighthouse nach D-4 (3 Läufe, Median, allein auf der Maschine, Bypass-Header, Gewichtsbudget), CLS,
+LCP, Tippziele ≥ 44 px bei 360/390/414, `reduced-motion`, der Lauf ohne JavaScript, Copys
+Textzeilen, und die **neun Zeilen der Notentabelle B-1** mit je einem Bild, **getrennt für Handy
+und Desktop**.

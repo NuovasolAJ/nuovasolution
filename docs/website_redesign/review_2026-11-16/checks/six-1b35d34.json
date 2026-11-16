@@ -1,0 +1,194 @@
+{
+ "tag": "1b35d34",
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "build": {
+  "commit": "1b35d34973b5b447e309608cd606fddda2d63613",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_2eGWbJ7rHfGHQqFgXhKQv52VgJk5",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "verButtons": {
+  "count": 3,
+  "out": [
+   {
+    "label": "Cerrar",
+    "btnAbsBottom": 4800,
+    "ariaControls": "ch-detail-attend",
+    "ariaExpanded": "true",
+    "contentAbsTop": 4832,
+    "gapPx": 32,
+    "gapScreens": 0.04,
+    "docGrewPx": 1200,
+    "contentTag": "DIV.ch-detail-slot"
+   },
+   {
+    "label": "Cerrar",
+    "btnAbsBottom": 6414,
+    "ariaControls": "ch-detail-organise",
+    "ariaExpanded": "true",
+    "contentAbsTop": 5246,
+    "gapPx": -1168,
+    "gapScreens": -1.38,
+    "docGrewPx": 1124,
+    "contentTag": "DIV.ch-detail-slot"
+   },
+   {
+    "label": "Cerrar",
+    "btnAbsBottom": 7952,
+    "ariaControls": "ch-detail-grow",
+    "ariaExpanded": "true",
+    "contentAbsTop": 5660,
+    "gapPx": -2292,
+    "gapScreens": -2.72,
+    "docGrewPx": 252,
+    "contentTag": "DIV.ch-detail-slot"
+   }
+  ]
+ },
+ "depthPhone": {
+  "doc": 16430,
+  "vh": 844,
+  "screens": 19.5
+ },
+ "depthDesktop": {
+  "doc": 14621,
+  "vh": 900,
+  "screens": 16.2
+ },
+ "fonts": {
+  "families": {
+   "__Inter_65423c": 26
+  },
+  "sample": [
+   {
+    "tag": "H1",
+    "cls": "hf-h1",
+    "font": "__Inter_65423c",
+    "text": "Mientras enseñas, NuovaSolution "
+   },
+   {
+    "tag": "H2",
+    "cls": "t-display-m",
+    "font": "__Inter_65423c",
+    "text": "De la consulta a tu equipo, con "
+   },
+   {
+    "tag": "H3",
+    "cls": "fs-title",
+    "font": "__Inter_65423c",
+    "text": "Llega la consulta"
+   },
+   {
+    "tag": "H3",
+    "cls": "fs-title",
+    "font": "__Inter_65423c",
+    "text": "Responde en nombre de tu agencia"
+   },
+   {
+    "tag": "H3",
+    "cls": "fs-title",
+    "font": "__Inter_65423c",
+    "text": "La ficha se completa"
+   },
+   {
+    "tag": "H3",
+    "cls": "fs-title",
+    "font": "__Inter_65423c",
+    "text": "Tu equipo llega preparado"
+   },
+   {
+    "tag": "H2",
+    "cls": "t-display-m",
+    "font": "__Inter_65423c",
+    "text": "Cada consulta, atendida y en su "
+   },
+   {
+    "tag": "H3",
+    "cls": "ch-name",
+    "font": "__Inter_65423c",
+    "text": "Atiende"
+   }
+  ],
+  "htmlDisplayAttr": null,
+  "rootHas": false
+ },
+ "model3d": {
+  "stage": true,
+  "firstStageOnScroll": "true",
+  "buttons": 4,
+  "states": [
+   {
+    "i": 0,
+    "key": "0",
+    "stageAfter": "true",
+    "label": "01Plano"
+   },
+   {
+    "i": 1,
+    "key": "1",
+    "stageAfter": "true",
+    "label": "02Modelo"
+   },
+   {
+    "i": 2,
+    "key": "2",
+    "stageAfter": "true",
+    "label": "03Vacío y amueblado"
+   },
+   {
+    "i": 3,
+    "key": "3",
+    "stageAfter": "true",
+    "label": "04Entrega"
+   }
+  ]
+ },
+ "form": {
+  "form": true,
+  "fields": 7,
+  "required": 2,
+  "requiredNames": [
+   "agency",
+   "name"
+  ],
+  "pilot": {
+   "text": "Solicita tu piloto gratuito",
+   "w": 0,
+   "h": 0,
+   "fontSize": 15,
+   "fontWeight": "400",
+   "bg": "rgb(14, 14, 15)",
+   "area": 0
+  },
+  "direct": {
+   "text": "Contratar directamente",
+   "w": 167,
+   "h": 23,
+   "fontSize": 15,
+   "fontWeight": "500",
+   "bg": "rgba(0, 0, 0, 0)",
+   "area": 3748
+  }
+ },
+ "labels": {
+  "target": {
+   "planesHeadings": [
+    "Planes"
+   ],
+   "planesCount": 1,
+   "gratisNearEssential": [],
+   "essentialSample": [
+    "PlanesTe explicamos qué plan encaja con tu agencia y su precio antes de acordar nada.Todos los planes empiezan",
+    "Todos los planes empiezan con un piloto gratuito de 14 días.Sin método de pago. Las condiciones, por escrito.E",
+    "EssentialRespuestas, fichas e informe para una oficina.GrowthTodo lo de Essential, más el trabajo del equipo: "
+   ]
+  },
+  "public": {
+   "planesHeadings": [],
+   "planesCount": 0,
+   "gratisNearEssential": [],
+   "essentialSample": []
+  }
+ }
+}

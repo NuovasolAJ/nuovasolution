@@ -1,0 +1,82 @@
+{
+ "tag": "1b35d34",
+ "build": {
+  "commit": "06f014d99d5352f09d8a394b9c8cc6caa1d13e7b",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_6RDH5tt3jWnEXs3BVvwakQuVNZkb",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "results": {
+  "390": [
+   {
+    "button": "Ver Atiende",
+    "btnBottomAbs": 4800,
+    "contentTopAbs": 4832,
+    "gapPx": 32,
+    "gapScreens": 0.04,
+    "contentHeight": 1186,
+    "ctrl": "ch-detail-attend",
+    "usedSlot": false,
+    "text": "Responde cuando tú no puedes: en una visita, de noche o el f"
+   },
+   {
+    "button": "Ver Organiza",
+    "btnBottomAbs": 5214,
+    "contentTopAbs": 5246,
+    "gapPx": 32,
+    "gapScreens": 0.04,
+    "contentHeight": 2310,
+    "ctrl": "ch-detail-organise",
+    "usedSlot": false,
+    "text": "Lo que pide cada cliente queda en su ficha, con su prioridad"
+   },
+   {
+    "button": "Ver Crece",
+    "btnBottomAbs": 5628,
+    "contentTopAbs": 5660,
+    "gapPx": 32,
+    "gapScreens": 0.04,
+    "contentHeight": 2563,
+    "ctrl": "ch-detail-grow",
+    "usedSlot": false,
+    "text": "No es solo responder antes. Sabes de dónde llegan tus client"
+   }
+  ],
+  "1440": [
+   {
+    "button": "Ver Atiende",
+    "btnBottomAbs": 3653,
+    "contentTopAbs": 3740,
+    "gapPx": 87,
+    "gapScreens": 0.1,
+    "contentHeight": 556,
+    "ctrl": "ch-detail-attend",
+    "usedSlot": false,
+    "text": "Responde cuando tú no puedes: en una visita, de noche o el f"
+   },
+   {
+    "button": "Ver Organiza",
+    "btnBottomAbs": 3698,
+    "contentTopAbs": 3740,
+    "gapPx": 42,
+    "gapScreens": 0.05,
+    "contentHeight": 1165,
+    "ctrl": "ch-detail-organise",
+    "usedSlot": false,
+    "text": "Lo que pide cada cliente queda en su ficha, con su prioridad"
+   },
+   {
+    "button": "Ver Crece",
+    "btnBottomAbs": 3675,
+    "contentTopAbs": 3740,
+    "gapPx": 65,
+    "gapScreens": 0.07,
+    "contentHeight": 1464,
+    "ctrl": "ch-detail-grow",
+    "usedSlot": false,
+    "text": "No es solo responder antes. Sabes de dónde llegan tus client"
+   }
+  ]
+ }
+}
