@@ -50,11 +50,11 @@ The daily letter "¿Qué tengo hoy?" is **not** added. It waits for Daily's prod
 - **No portal names.**
 - Redesign's WORKING "la ficha ya dice qué inmueble es" is **not** used. The owner's proof covers price, bedrooms and m², not that the system identifies which of the agency's own listings it is.
 
-### 2.2 "Nada se queda sin atender"
+### 2.2 "Ninguna consulta se queda sin aviso"
 
 | # | ES | EN |
 |---|---|---|
-| K2-t | Nada se queda sin atender | Nothing is left unattended |
+| K2-t | Ninguna consulta se queda sin aviso *(owner, 16.11.)* | No enquiry goes unflagged |
 | K2-s | Si nadie del equipo se ocupa de una consulta, al cabo de una hora se lo recordamos a la persona responsable. A las dos horas, avisamos a la siguiente. | If nobody on the team takes an enquiry, after one hour we remind the person responsible. After two hours, we tell the next person. |
 | K2-e1 | 11:20 · Laura pide una visita | 11:20 · Laura asks for a viewing |
 | K2-e2 | 12:20 · Recordatorio a Marta | 12:20 · Reminder to Marta |
@@ -69,9 +69,7 @@ The daily letter "¿Qué tengo hoy?" is **not** added. It waits for Daily's prod
   - escalation to the next person of the same agency;
   - if there is none, a last notice to the agency's admin.
 
-**Heading, for the owner:** after the last notice nothing more fires until the next daily letter, so "Nada" is a strong word.
-- A heading closer to the proof would be "Ninguna consulta se queda sin aviso" / "No enquiry goes unflagged".
-- The owner's heading stands unless the owner changes it.
+**Heading: decided 16.11. by the owner.** "Ninguna consulta se queda sin aviso" replaces "Nada se queda sin atender". After the last notice nothing more fires until the next daily letter, so "Nada" promised more than the proof shows.
 
 ---
 
@@ -84,7 +82,7 @@ The step titles 3-t1…3-t4 (1116 §7.2) stay as tabs. The bubbles replace the s
 | Step | Who | ES | EN |
 |---|---|---|---|
 | 1 Plano y deseos | Agencia | Os envío el plano. Quiero enseñar el salón y la terraza. + attachment «plano-estepona.pdf» | Here's the floor plan. I want to show the living room and the terrace. + attachment "plano-estepona.pdf" |
-| 2 Confirmamos | NuovaSolution | Recibido. Te preparamos el modelo de la vivienda, vacío y amueblado. Te lo entregamos el jueves. | Got it. We'll build the model of the home, empty and furnished. You'll have it on Thursday. |
+| 2 Confirmamos | NuovaSolution | Recibido. Te preparamos el modelo de la vivienda, vacío y amueblado. Te avisamos cuando esté listo. | Got it. We'll build the model of the home, empty and furnished. We'll let you know when it's ready. |
 | 3 Construimos el modelo | NuovaSolution | Tu modelo está listo. Entra con tu acceso y míralo. | Your model is ready. Log in and take a look. |
 | 4 Lo ves y compartes las imágenes | NuovaSolution | Aquí tienes las imágenes para tus anuncios y redes. Van marcadas como visualización. | Here are the images for your listings and social media. They are marked as a visualisation. |
 | under | — | Cada modelo lo preparamos nosotros. No se crea solo ni al instante. *(3-n, unchanged)* | Every model is prepared by us. It is not created automatically or instantly. |
@@ -92,7 +90,7 @@ The step titles 3-t1…3-t4 (1116 §7.2) stay as tabs. The bubbles replace the s
 
 **Changes from Redesign's WORKING:**
 - **Bubble 2:** "planta baja" is replaced by "la vivienda", since the plan shows a terrace and no floor is named.
-- **Bubble 2, "el jueves":** it stands as an example date inside a marked example. **3D confirms** that a few days is a realistic delivery time. If not, Copy changes it to "Te confirmamos la fecha de entrega por escrito."
+- **Bubble 2, delivery time: decided 16.11. by the owner.** The website names no delivery time anywhere, not even in the chat scene. "Te lo entregamos el jueves" becomes "Te avisamos cuando esté listo." 3D is not asked.
 - **Bubble 4:** "Van marcadas como visualización" carries the owner's rule: only images are passed on, marked "Rendering / visualización", with no link promise.
 - **Bubble 3:** "entra con tu acceso" matches the protected link.
 
@@ -102,13 +100,12 @@ The step titles 3-t1…3-t4 (1116 §7.2) stay as tabs. The bubbles replace the s
 
 | # | ES | EN |
 |---|---|---|
-| PK-0 | line over the table (owner's text, fixed): Todos los planes empiezan con un piloto gratuito de 14 días. | Every plan starts with a free 14-day pilot. |
+| PK-0 | line over the table (owner, Q-9 decided 16.11.): Todos los planes pueden empezar con un piloto gratuito de 14 días. | Every plan can start with a free 14-day pilot. |
+| PK-lead | Packages lead, overrides 1116 §1.2 "Todos los paquetes empiezan igual…" for the same reason | Cualquier plan puede empezar con 14 días de piloto, gratis y con nuestro acompañamiento, y 7 días más si nos das tu opinión. El precio para después te lo explicamos antes de acordar nada. | Any plan can start with a 14-day pilot, free and with our support, and 7 more days if you give us your feedback. We explain the price for afterwards before anything is agreed. |
 | PK-ent | Enterprise line, both views: Todo lo de Growth, para varias oficinas. | Everything in Growth, for several offices. |
 | PK-eye | the eyebrow "PLANES" goes; only the H2 "Planes" / "Plans" stays | |
 
-**For the owner, one line:** PK-0 says every plan *starts* with the pilot, while §5 adds "Contratar directamente", a way without a pilot.
-- If both stand, the truthful line is "Todos los planes pueden empezar con un piloto gratuito de 14 días." / "Every plan can start with a free 14-day pilot."
-- The owner's text stays until the owner decides.
+**Q-9 decided 16.11. by the owner:** "pueden empezar". §5 adds "Contratar directamente", a way without a pilot, so "empiezan" would no longer be true. PK-lead follows the same rule.
 
 ---
 
@@ -218,8 +215,8 @@ The "no en preparación" rule concerns **email only**: W-2 "Responde en minutos 
 
 **Correction (Reviewer, 16.11.):** the design preview has **not** been gated since 16.11. 08:40. The owner opened it without a code; it answers 200 and carries noindex.
 - W-2 therefore already stands on a reachable page before A12.
-- Whether that is accepted, gated again, or marked until A12 is the owner's decision. The Reviewer has put it to the owner.
-- Copy's fallback wording if the owner wants it marked: "Respuestas automáticas por email desde el buzón de tu agencia: en preparación." / "Automatic email replies from your agency's mailbox: in preparation."
+- **Decided 16.11. by the owner:** the preview stays open, for the owner and ChatGPT. The banner "Vista previa, no pública … funciones que no están activas" and noindex suffice.
+- W-2 stays as written. The marked fallback sentence is **not** used.
 
 This overrides 1116 §10 W-1 and W-3 for the public view.
 
@@ -237,7 +234,7 @@ Phone only: one core line of **at most 12 words**, plus **one line of proof**. L
 | Atiende | public | Contesta en minutos por email, también con la oficina cerrada. | Medido en producción: respuesta por email en unos 2 minutos. | Replies in minutes by email, even with the office closed. | Measured in production: email reply in about 2 minutes. |
 | Organiza | both | Cada consulta, en su ficha: qué busca, zona y presupuesto. | Con su prioridad y el motivo, por ejemplo: «nombró inmueble, zona y presupuesto». | Every enquiry on its record: what they want, area and budget. | With its priority and the reason, e.g. "named a property, an area and a budget". |
 | Lee el anuncio (K1) | both | = K1-t | = K1-e2 + K1-m | = K1-t | = K1-e2 + K1-m |
-| Nada sin atender (K2) | both | = K2-t | Recordatorio a la hora, aviso a las dos. En producción desde el 13.11. | = K2-t | A reminder after one hour, a notice after two. In production since 13.11. |
+| Sin aviso (K2) | both | = K2-t | Recordatorio a la hora, aviso a las dos. En producción desde el 13.11. | = K2-t | A reminder after one hour, a notice after two. In production since 13.11. |
 | Crece | both | Ves dónde se te escapa negocio y qué hacer esta semana. | Del informe: consultas con la oficina cerrada, canales y visitas acordadas. | You see where business slips away and what to do this week. | From the report: enquiries with the office closed, channels and agreed viewings. |
 | Informe | both | Tres cosas que mirar esta semana, cada una con su paso. | Informe de ejemplo · datos ficticios | Three things to look at this week, each with its step. | Example report · fictional data |
 | 3D | target | Tu plano, convertido en un modelo 3D e imágenes para anuncios. | Lo preparamos nosotros. No se crea solo ni al instante. | Your floor plan, turned into a 3D model and listing images. | Prepared by us. Not created automatically or instantly. |
@@ -260,8 +257,10 @@ Phone only: one core line of **at most 12 words**, plus **one line of proof**. L
 | # | Question | Who | By |
 |---|---|---|---|
 | Q-8 | Does the privacy line FM-pv with its link suffice without a checkbox on the request form? | counsel, via API's sheet | before go-live |
-| Q-9 | PK-0 "empiezan" vs. "pueden empezar", since "Contratar directamente" exists (§4) | owner | before Wed 14:00 |
-| Q-10 | Is "el jueves" (a few days) a realistic 3D delivery time for the example bubble? (§3) | 3D | before Wed 14:00 |
+| Q-9 | **decided 16.11. by the owner:** "pueden empezar" (§4, PK-0 and PK-lead) | — | done |
+| Q-10 | **decided 16.11. by the owner:** no delivery time on the website; bubble 2 reads "Te avisamos cuando esté listo." (§3) | — | done |
+| K2-t | **decided 16.11. by the owner:** "Ninguna consulta se queda sin aviso" (§2.2) | — | done |
+| W-2 on the open preview | **decided 16.11. by the owner:** the preview stays open with its banner and noindex; W-2 stays (§9) | — | done |
 | Q-11c | Written pilot terms: do they let the agency stop at any time? (then "Lo cancelas cuando quieras" returns, §8) | owner | open |
 | Q-2 | One third language confirmed to go to the team, like DE/EN (F07)? | Lead | Tue 17.11. 12:00 (confirmation only) |
 | topic 17 | Its closing, read in the signal of 3D/Audit → Copy tells Redesign and the Reviewer: 3D public "Opcional · se contrata aparte", `model3d` to included, "Tu camino" public | 3D / Audit → Copy | when it comes |
