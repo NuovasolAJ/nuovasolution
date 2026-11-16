@@ -91,6 +91,9 @@ The step titles 3-t1…3-t4 (1116 §7.2) stay as tabs. The bubbles replace the s
 **Changes from Redesign's WORKING:**
 - **Bubble 2:** "planta baja" is replaced by "la vivienda", since the plan shows a terrace and no floor is named.
 - **Bubble 2, delivery time: decided 16.11. by the owner.** The website names no delivery time anywhere, not even in the chat scene. "Te lo entregamos el jueves" becomes "Te avisamos cuando esté listo." 3D is not asked.
+  - **Scope of the check:** it covers delivery times only, meaning when we deliver a 3D model or anything else we produce.
+  - The viewing day in the fictional example week stays. Examples: "la visita del jueves a las 10:00" in the report, the demo task "Confirmar con Laura Serrano la visita del jueves", the record line "Quiere ver: el jueves por la mañana". The client chose that day; it is not a promise of ours.
+  - "jueves" therefore has 0 hits in the 3D section only, not on the whole site.
 - **Bubble 4:** "Van marcadas como visualización" carries the owner's rule: only images are passed on, marked "Rendering / visualización", with no link promise.
 - **Bubble 3:** "entra con tu acceso" matches the protected link.
 
