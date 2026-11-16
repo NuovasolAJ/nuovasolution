@@ -67,6 +67,12 @@ answer is no while the mail still leaves from a NuovaSolution address, the owner
 Small type, under a thin rule, after the signature. Each of P-1, P-2 and P-3 is its own short paragraph. The plain-text part says the same,
 with the links written out.
 
+### P-0 AI line (owner, 16.11.: in every customer mail, above P-1)
+
+| ES | EN | DE |
+|---|---|---|
+| Respuesta preparada por el asistente de inteligencia artificial de {{agency_name}}. | Reply prepared by the artificial intelligence assistant of {{agency_name}}. | Antwort erstellt vom KI-Assistenten von {{agency_name}}. |
+
 ### P-1 Legal notice
 
 | ES | EN | DE |
@@ -180,11 +186,11 @@ never in a different language from the mail above it.
 |---|---|---|
 | Q-1 | Is the first reply to an enquiry outside the rules for commercial communications (LSSI-CE art. 21), so that it needs no opt-out? | counsel. API puts Q-1–Q-4 on one sheet (owner, 16.11.) |
 | Q-2 | Legal basis in P-2: is "atender tu consulta" (steps at the person's request) right, and does a follow-up need consent or a legitimate interest? | counsel |
-| Q-3 | AI disclosure: is one notice per conversation enough (F12), or must every mail carry a line? Copy's proposal is in `COPY_PROD_TEXTS_1116_F12_F16_F18_v1.md` §1 | counsel |
+| Q-3 | **decided 16.11. by the owner (counsel releases):** the full notice once per contact and channel (`COPY_PROD_TEXTS_1116_F12_F16_F18_v1.md` §1), **and P-0 in the footer of every customer mail** | done |
 | Q-4 | If a required field is missing: hold the mail, or send it without the footer? | counsel + owner |
 | Q-5 | Is S-2 (a NuovaSolution address on the agency's behalf) the case in production today, for which agencies, and from when S-1? | API |
 | Q-6 | Does the opt-out stop only follow-ups and suggestions, or every mail? (U-2r depends on it) | API |
-| Q-7 | Spanish replies: tú or usted? One form per mail (P-2, P-3, the page) | Lead |
+| Q-7 | **decided 16.11. by the owner: tú.** The usted variants in §3 and §4 stay only as a reserve and are not rendered | done |
 
 **Not in the footer, on purpose:** NuovaSolution's own company data (S-2 names NuovaSolution, and its legal notice lives on the website),
 internal IDs, n8n or infrastructure words, and any figure.

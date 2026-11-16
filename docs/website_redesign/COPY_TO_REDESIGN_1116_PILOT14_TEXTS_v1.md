@@ -207,11 +207,60 @@ No price and no time for 3D. The FAQ answer on 3D (`faq.ts:346`) keeps its text,
 
 ---
 
+## 10. WhatsApp on the agency's own number: not before topic 20 (owner point 6, 16.11. afternoon)
+
+**The fact.**
+- Today the WhatsApp replies run on **NuovaSolution's own number** (`claims.ts:37`: "our own agency's channel"). The owner's
+  measurement for A-1 was taken there.
+- An agency's own number needs topic 20: the number's registration with Meta. Until then `whatsappOwnNumber` is soon and held back.
+- So in the **public view** nothing may suggest that an agency's WhatsApp customers are answered today.
+
+| # | Place | Public ES | Public EN | Target view |
+|---|---|---|---|---|
+| W-1 | channel line (`channelList`), today "por WhatsApp y email" | Respuestas en español por email. WhatsApp con el número de tu agencia: en preparación. | Replies in Spanish by email. WhatsApp on your agency's own number: in preparation. | "por WhatsApp y email" as built |
+| W-2 | A-1 in Atiende | Responde en minutos por email. | Replies within minutes by email. | A-1 as in 1113 |
+| W-3 | FAQ, new, both views: question | ¿Responde desde el WhatsApp de mi agencia? | Does it reply from my agency's WhatsApp? | the same |
+| W-3a | answer, public | Todavía no. Para responder desde el número de tu agencia, ese número tiene que darse de alta con Meta a través de nosotros, y ese paso está en preparación. Hoy el asistente responde por WhatsApp en nuestro propio número: ahí medimos que contesta en segundos. | Not yet. To reply from your agency's number, that number has to be registered with Meta through us, and that step is in preparation. Today the assistant replies on WhatsApp on our own number, and that is where we measured replies within seconds. | **target:** Sí. Damos de alta contigo el número de tu agencia y lo probamos con un mensaje real. / Yes. We register your agency's number with you and test it with a real message. |
+| W-4 | hero bubble H-b1 "Nueva consulta · WhatsApp" | Nueva consulta · Email, with H-b3 "Respondida · 11:23" | New enquiry · Email, "Answered · 11:23" | WhatsApp as in 1113 §7 |
+| W-5 | live demo, WhatsApp chip | stays: it is a marked demonstration. Its caption must not say "tu WhatsApp" | | |
+| W-6 | packages row "WhatsApp con el número de tu agencia" | stays hidden (E2, `HELD_BACK`). W-3 explains it | | shows when the key is on |
+
+**About W-4.**
+- The hero picture reads as "this happens at your agency".
+- The 11:23 is a clock time in the example, not a measurement. It is two minutes after the enquiry, as in the owner's email runs.
+- If Redesign keeps WhatsApp in the public hero, the bubble needs the mark "Ejemplo" in view.
+
+**Retire in the public view (any place still shipped):**
+- `es.ts:316–325` and its EN twin, the old trial offer: "Probar gratis", "14 días · Sin método de pago", "Crea tu cuenta", "Conectamos
+  contigo el buzón y el WhatsApp de tu agencia". It is a self-start, and it promises the agency's own WhatsApp.
+- `es.ts:475` and its EN twin, onboarding "Canales": the public text becomes "Conectamos contigo el buzón de tu agencia y lo probamos con
+  un mensaje real.", but only once `mailboxConnection` is on; until then the line goes.
+- Gated already by key, no change: `faq.ts:247–250`, `platform-map.ts:47`, `home-1103.ts:489–491`, 1108 V-1/V-3/V-4.
+
+**Same question for email (Q-5).** An agency's own mailbox (`mailboxConnection`) is soon too. If a pilot agency cannot yet receive
+automatic email replies in production, W-1 and W-2 need the same treatment. API says what a pilot agency has on day one (footer file Q-5).
+
+---
+
+## 11. Redesign's return of 16.11. (session nuovasolution-23), checked by Copy
+
+- **A-2 "Entiende qué busca: comprar o alquilar."** Accepted (owner, 16.11.). "Vender" comes back when Lead proves it (Q-A2).
+- **No area buttons A-btn/O-btn/C-btn; a quiet "Ver {área}" toggle per card instead.** Accepted: one main button.
+- **"Ver menos"**, the second state of "Ver la semana completa": accepted. EN "See less".
+- **FAQ "¿Atiende llamadas?" hidden in both views (E2).** Accepted: nothing false, nothing promised. The owner's "Todavía no" stays ready
+  for when the owner wants calls named as in preparation.
+- **The pilot request form (`lib/content/pilot-request.ts`):** confirmed, with one change. Done heading: "Gracias. Te contestará una persona
+  del equipo, en español o en inglés." / "Thank you. A person from our team will answer, in Spanish or English." It says who answers, and
+  it gives no time.
+
+---
+
 ## 9. Open
 
 | # | Question | Who | By |
 |---|---|---|---|
-| Q-1 | PAKETE: is "sin método de pago" still valid with the 14 + 7 pilot? (B-2b, E-s) | owner | before the build is named |
+| Q-1 | **answered 16.11. by the owner:** B-2 + B-2b stand as written | — | done |
+| Q-5 | What does a pilot agency have on day one in production: automatic email replies from its own mailbox, from a NuovaSolution address, or not yet? (§10) | API | before the build is named |
 | Q-2 | Do other-language enquiries go to a person **of the agency** (task or alert), on WhatsApp and email? (L-2 public) | Lead | Tue 17.11. |
 | Q-3 | May the agency pass the protected model link on to a client? (3-t4) | 3D | before the build is named |
 | Q-4 | Incentivised feedback: marking and consent (§6) | counsel, via API's sheet | before any feedback is published |

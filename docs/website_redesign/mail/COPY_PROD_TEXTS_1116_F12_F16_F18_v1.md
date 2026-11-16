@@ -29,35 +29,39 @@ The readers of the result:
 **MM's reading, which counsel confirms:** AI Act art. 50 asks for the notice at the latest at the first interaction, not in every
 message.
 
-### 1.1 When the notice appears (Copy's proposal)
+### 1.1 When the notice appears: **DECIDED by the owner, 16.11.** (counsel releases it)
 
 | # | Moment | Notice |
 |---|---|---|
-| N-1 | the first automatic reply of a conversation | **yes**, at the **start** of that reply, before the answer |
-| N-2 | further automatic replies in the same conversation | no |
-| N-3 | the customer writes in a different language from then on | **yes, once**, with the first automatic reply in the new language (Copy's counsel point 7 of 06.11.) |
-| N-4 | a person on the team took over and hands the conversation back to the assistant | **yes, once**, with the next automatic reply |
-| N-5 | a new conversation starts | **yes**. "Same conversation" = what Lead's ENQ2 counts as the same enquiry: a new thread within 14 days, the same intent, a readable history. After that, it is a new conversation. **No new time limit of Copy's own** |
-| N-6 | the customer asks whether they are talking to a person or a machine | **always** the truthful answer (1.3), in every message where they ask |
+| N-1 | the **first automatic reply per contact and per channel** | **yes**, at the **start** of that reply, before the answer. A contact who first wrote by email and later writes on WhatsApp gets it again on WhatsApp |
+| N-2 | further automatic replies to the same contact on the same channel | no (email: P-0 in the footer, 1.2) |
+| N-3 | **after 30 days without messages** from that contact on that channel | **yes**, with the next automatic reply |
+| N-4 | **the language changes**: the contact writes in a different language from then on | **yes, once**, with the first automatic reply in the new language |
+| N-5 | **on request**: the contact asks whether they are talking to a person or a machine | **always** the truthful answer (1.3), in every message where they ask |
+| N-6 | **the notice text changes** (a new approved version) | **yes, once** per contact and channel, with the next automatic reply |
 
-**Memory per conversation:** API stores "notice shown" with the language and the time. Hosting builds it in (MM F5). If the memory cannot
-be read, the notice goes out (**fail open towards disclosure**). A missing notice is the worse mistake.
+**Withdrawn from Copy's proposal:**
+- the hand-back from a person to the assistant (old N-4);
+- the 14-day ENQ2 window (old N-5).
 
-### 1.2 Email: the one difference
+The owner's rule uses 30 days of quiet instead.
 
-An email is often forwarded or read on its own, without the thread. So there are two options for the decision.
+**Memory per contact and channel:**
+- API stores "notice shown" with the channel, the language, the version and the time. Hosting builds it in (MM F5).
+- If the memory cannot be read, the notice goes out (**fail open towards disclosure**). A missing notice is the worse mistake.
 
-| Option | WhatsApp | Email |
-|---|---|---|
-| **A** | N-1…N-6 | N-1…N-6, the same as WhatsApp |
-| **B (Copy recommends)** | N-1…N-6 | the full notice as N-1…N-6, **and** every later mail carries one short line in the footer (P-0 below) |
+### 1.2 Email: **DECIDED, option B**
 
-| # | ES (tú) | ES (usted) | EN | DE (Sie) |
-|---|---|---|---|---|
-| P-0 | Respuesta preparada por el asistente de inteligencia artificial de {{agency_name}}. | the same, it has no form of address | Reply prepared by the artificial intelligence assistant of {{agency_name}}. | Antwort erstellt vom KI-Assistenten von {{agency_name}}. |
+Every mail after the first one carries the short line P-0 in the footer, because an email is often forwarded or read on its own.
+WhatsApp has no P-0.
 
-P-0 sits above P-1 in the customer-mail footer (`COPY_TO_API_1113_CUSTOMER_MAIL_FOOTER_v1.md` §3). It is short, it does not interrupt the
-reply, and a forwarded mail stays honest.
+| # | ES | EN | DE (Sie) |
+|---|---|---|---|
+| P-0 | Respuesta preparada por el asistente de inteligencia artificial de {{agency_name}}. | Reply prepared by the artificial intelligence assistant of {{agency_name}}. | Antwort erstellt vom KI-Assistenten von {{agency_name}}. |
+
+P-0 sits above P-1 in the customer-mail footer (`COPY_TO_API_1113_CUSTOMER_MAIL_FOOTER_v1.md` §3), in **every** customer mail, including the
+first one. The first mail carries the full notice at the top **and** P-0, which is harmless and keeps the rule simple for the render. If
+counsel wants P-0 only from the second mail on, Lead drops it from the first.
 
 ### 1.3 The notice texts themselves
 
@@ -66,18 +70,18 @@ reply, and a forwarded mail stays honest.
 - `v1.1-es` is the base for agencies and is still pending with counsel;
 - EN and DE are drafts.
 
-**Proposed new text: N-6, the truthful answer.** It is a reply rule for Lead, not a notice text.
+**Proposed new text: N-5, the truthful answer.** It is a reply rule for Lead, not a notice text. Spanish uses **tú** (owner, 16.11.).
 
 | ES (tú) | EN | DE (Sie) |
 |---|---|---|
 | Soy el asistente de inteligencia artificial de {{agency_name}}. Si prefieres hablar con una persona del equipo, dímelo y aviso al equipo. | I am the artificial intelligence assistant of {{agency_name}}. If you would rather talk to a person on the team, tell me and I will let the team know. | Ich bin der KI-Assistent von {{agency_name}}. Wenn Sie lieber mit einer Person aus dem Team sprechen möchten, sagen Sie es mir, dann gebe ich dem Team Bescheid. |
 
-**Condition for N-6.** "Aviso al equipo" holds only if such a request really creates a takeover task. Lead confirms that before the line
+**Condition for N-5.** "Aviso al equipo" holds only if such a request really creates a takeover task. Lead confirms that before the line
 goes in. It promises no time and no call.
 
 ### 1.4 What stays in any case
 
-- No reply goes out to a new conversation without an approved notice in its language. DE and EN are held today (F07).
+- No reply goes out to a new contact or channel without an approved notice in its language. DE and EN are held today (F07).
 - The notice never sits in the middle or at the end of a reply, where it reads like small print.
 
 ---
@@ -99,8 +103,8 @@ goes in. It promises no time and no call.
 
 | # | Today | ES (new) | Note |
 |---|---|---|---|
-| L-s | subject "🔥 HOT LEAD - Purchase \| Erja \| 350000 EUR" | Prioridad alta · Compra · {{zona}} · {{presupuesto}} | missing parts are dropped, never "—" |
-| L-1 | "🔥 HOT LEAD" | Prioridad alta | the site's word (D-10 bans "hot lead" in public; the card follows the site) |
+| L-s | subject "🔥 HOT LEAD - Purchase \| Erja \| 350000 EUR" | Prioridad {{alta/media/baja}} · Compra · {{zona}} · {{presupuesto}} | missing parts are dropped, never "—" |
+| L-1 | "🔥 HOT LEAD" | Prioridad alta · Prioridad media · Prioridad baja | **owner, 16.11.:** the level in words, no number. The site's word (D-10 bans "hot lead" in public; the card follows the site). Lead maps its levels to the three words |
 | L-2 | "Buyer Lead — Purchase" | Quiere comprar · Quiere alquilar · Quiere vender · Quiere poner en alquiler | from the intent; one phrase |
 | L-3 | "Score: 73" | Motivo: {{motivo}} | **no number on the card**, see 2.4 |
 | L-4 | "Channel: WHATSAPP" | Por WhatsApp · Por email · Por el formulario web · Por teléfono | |
@@ -213,9 +217,9 @@ Missing parts are dropped. Budget and dates follow 2.2. **No phone number and no
 
 | # | Question | Who | By |
 |---|---|---|---|
-| Q-F12 | Option A or B (1.2), and the rules N-1…N-6 | Lead + counsel, owner line | Tue 17.11. 12:00 |
-| Q-F12b | Does "quiero hablar con una persona" create a takeover task? (condition for N-6) | Lead | Tue 17.11. 12:00 |
+| Q-F12 | **decided 16.11. by the owner** (counsel releases): N-1…N-6 as in 1.1, option B | — | done |
+| Q-F12b | Does "quiero hablar con una persona" create a takeover task? (condition for N-5) | Lead | Tue 17.11. 12:00 |
 | Q-F16 | The real codes for missing fields and next steps (2.3); the card's sender (F17) | Lead | with ENQ2, Tue 17.11. |
-| Q-F16b | Score on the card: no (Copy's proposal) or yes | owner | before the card is rebuilt |
+| Q-F16b | **decided 16.11. by the owner:** no number on the card; "Prioridad alta/media/baja" plus the reason. Spanish uses tú | — | done |
 | Q-F18 | The real task types; whether a short task number exists; who receives the escalation | Daily | Tue 17.11. |
 | Q-F18b | Why "desde 15:00" for a task from 15:05 | Daily | with the fix |
