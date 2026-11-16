@@ -9,7 +9,7 @@ export const es: Dictionary = {
     siteName: "NuovaSolution",
     title: "NuovaSolution · Consultas respondidas y ordenadas para agencias inmobiliarias", // HANDOVER_1021 D-2
     description:
-      "Respondemos en español a las consultas por WhatsApp y email, las registramos en una ficha y dejamos a tu equipo una tarea clara. Hecho para agencias inmobiliarias en España." /* HANDOVER_1021 D-3 */,
+      "Respondemos en español a las consultas por ⟦canales⟧, las registramos en una ficha y dejamos a tu equipo una tarea clara. Hecho para agencias inmobiliarias en España." /* HANDOVER_1021 D-3; the channels from the register per view (Copy 1116 §10 W-1) */,
   },
 
   nav: {

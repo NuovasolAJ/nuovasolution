@@ -5,6 +5,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { fraunces, inter } from "@/lib/fonts";
 import { isLocale, locales, siteUrl, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
+import { withChannels } from "@/lib/claims";
+import { resolveSwitches } from "@/lib/view";
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { QaWidget } from "@/components/site/qa-widget";
@@ -20,10 +22,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   if (!isLocale(params.locale)) return {};
   const d = getDictionary(params.locale);
+  // Copy 1116 §10 W-1: the description names the channels of the view (public: e-mail only while the agency's own WhatsApp number is off)
+  const description = withChannels(d.meta.description, params.locale, resolveSwitches().view);
   return {
     metadataBase: new URL(siteUrl),
     title: { default: d.meta.title, template: `%s · ${d.meta.siteName}` },
-    description: d.meta.description,
+    description,
     alternates: {
       canonical: `/${params.locale}`,
       languages: { en: "/en", es: "/es", "x-default": "/en" },
@@ -32,11 +36,11 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       type: "website",
       siteName: d.meta.siteName,
       title: d.meta.title,
-      description: d.meta.description,
+      description,
       locale: params.locale === "es" ? "es_ES" : "en_GB",
       alternateLocale: params.locale === "es" ? "en_GB" : "es_ES",
     },
-    twitter: { card: "summary_large_image", title: d.meta.title, description: d.meta.description },
+    twitter: { card: "summary_large_image", title: d.meta.title, description },
     // Indexing is an owner release (audit Z21); every preview is noindex here, in the header and in robots.txt.
     robots: publicIndexingAllowed() ? { index: true, follow: true } : { index: false, follow: false },
   };

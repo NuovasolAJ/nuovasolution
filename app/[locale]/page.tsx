@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { HOME_V3_WORKING_TEXT } from "@/lib/content/home-v3";
-import { live } from "@/lib/claims";
+import { live, withChannels } from "@/lib/claims";
 import { resolveSwitches } from "@/lib/view";
 import { Motion } from "@/components/ui/motion";
 import { PreviewSwitch } from "@/components/site/preview-switch";
@@ -19,7 +19,7 @@ import { home1103 } from "@/lib/content/home-1103";
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   if (!isLocale(params.locale)) return {};
   const d = getDictionary(params.locale);
-  return { title: { absolute: d.meta.title }, description: d.meta.description, alternates: { canonical: `/${params.locale}`, languages: { en: "/en", es: "/es" } } };
+  return { title: { absolute: d.meta.title }, description: withChannels(d.meta.description, params.locale as Locale, resolveSwitches().view), alternates: { canonical: `/${params.locale}`, languages: { en: "/en", es: "/es" } } };
 }
 
 /**

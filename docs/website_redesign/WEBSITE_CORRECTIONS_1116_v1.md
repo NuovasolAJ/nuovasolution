@@ -53,6 +53,8 @@ technical check (RV6) and the owner's final design acceptance.
 | 13.1 | owner add. 1 (P-11) | Fraunces for H1/H2 | **built** | Fraunces is the default face of the display sizes; the same build shows Inter with `?display=inter` (the owner compares both on one build) |
 | 13.2 | owner add. 2, Copy f1bef97 | WhatsApp media "En preparación", Laura's floor-plan moment out, the false score sentence out | **built** | the demo carries no file moment; no sentence about photos, PDFs or voice notes on any route; `product-views.tsx` priority reason without the score sentence |
 | 14.1 | RV6 F22 b | "teléfono" in the target view's channel list and "¿Atiende llamadas? Sí" | **built** | the channel list names only the included channels in both views ("por WhatsApp y email"); E2 now applies to the FAQ and the plans too (`offered()`), so the calls question is hidden in both views; the demo's phone tab stays as a product scene (owner's four channels) — see §2 C8 |
+| 14.2 | owner point 6 via Copy 1116 §10 (fb1a56a) | the agency's own WhatsApp number comes only after its registration with Meta (topic 20): the public view must not suggest an agency's WhatsApp customers are answered today | **built** | public channel list names email only (W-1; the plans row reads "Respuestas en español por email. WhatsApp con el número de tu agencia: en preparación."), A-1 public "Responde en minutos por email." (W-2), the new FAQ "¿Responde desde el WhatsApp de mi agencia?" with "Todavía no…" (W-3; in both views per E2 — Copy's target "Sí" is not shown); the target view keeps "por WhatsApp y email"; W-4 (hero bubble) not built; the old `offer` block and the `/trial` steps in the dictionaries are not rendered (cleanup with the named build) |
+| 14.3 | Copy 1116 §11 | the request confirmation's heading | **built** | "Gracias. Te contestará una persona del equipo, en español o en inglés." |
 | 15.1 | ChatGPT "Arbeitsweise" | the whole visitor path checked before the return, independent check, one named build with URL and commit, desktop and phone evidence | Wed | §5 |
 
 ## 2. Contradictions, named once
@@ -81,6 +83,7 @@ technical check (RV6) and the owner's final design acceptance.
 | D6 | owner | the chat scene for "Tu camino" (agent sends the plan in a chat): Copy would have to write it as a real order dialogue; today the four steps stand without a chat picture |
 | D7 | owner | auto-run of the demo: keep (quiet) or off |
 | D8 | owner | after the overhaul: Fraunces (default) or Inter — compare `?display=inter` on the same build |
+| D9 | API | Copy Q-5: what a pilot agency has on day one (automatic e-mail replies from its own mailbox, from a NuovaSolution address, or not yet) — W-1/W-2 may need the same treatment for e-mail |
 
 ## 4. Not in this interim, in the named build of Wednesday
 

@@ -8,7 +8,7 @@ export const en = {
     siteName: "NuovaSolution",
     title: "NuovaSolution · Enquiries answered and organised for real estate agencies", // HANDOVER_1021 D-2
     description:
-      "We answer enquiries on WhatsApp and e-mail in Spanish, record each one and leave your team a clear task. Built for real estate agencies in Spain." /* HANDOVER_1021 D-3 */,
+      "We answer enquiries on ⟦canales⟧ in Spanish, record each one and leave your team a clear task. Built for real estate agencies in Spain." /* HANDOVER_1021 D-3; the channels from the register per view (Copy 1116 §10 W-1) */,
   },
 
   nav: {
