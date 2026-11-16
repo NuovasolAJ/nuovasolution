@@ -255,6 +255,16 @@ automatic email replies in production, W-1 and W-2 need the same treatment. API 
 
 ---
 
+**Redesign, `f4e7e7f` (pushed):**
+- W-1, W-2, W-3 and done.h are built.
+- **Accepted deviation:** the W-3 answer "Todavía no…" stands in **both** views. E2 (owner, 07.11./13.11.) does not promise a
+  held-back function even in the target view, so the target "Sí" text is not used.
+- W-4 is not built yet. When it is: the public bubble shows "Nueva consulta · Email".
+- `es.ts:316–325` and `:475` are not shipped (no component renders them, and `/trial` redirects). Redesign clears them with the named
+  build.
+
+---
+
 ## 9. Open
 
 | # | Question | Who | By |
