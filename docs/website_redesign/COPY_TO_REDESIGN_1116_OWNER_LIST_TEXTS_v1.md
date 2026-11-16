@@ -220,6 +220,25 @@ The "no en preparación" rule concerns **email only**: W-2 "Responde en minutos 
 
 This overrides 1116 §10 W-1 and W-3 for the public view.
 
+### 9.1 The platform pages follow W-1 (Reviewer's point B, 16.11.)
+
+**Rule:** in the public view, the platform pages name **no WhatsApp**, the same as the plans line W-1. Otherwise the plans say "por email" and the platform pages say "por WhatsApp" side by side.
+- `replyWhatsapp` being included (our own number) does not change this: no agency's client writes to our number.
+- Check: 0 hits for "WhatsApp" in the public view of `/platform/*`. The exception is the Instagram scene, which is hidden anyway (`instagram` held back).
+
+**Accepted as Copy's text:** Redesign's WORKING public lines in `lib/content/capabilities.ts` (on HEAD, marked "16.11. 14:00 … WORKING (Copy)"):
+
+| Page | Field | Public ES (accepted) |
+|---|---|---|
+| ai-sales-agent | `leadPublic` | Mientras tu equipo está con un cliente o fuera de la oficina, las consultas por email reciben respuesta en español y quedan en su ficha. Tu equipo empieza por lo que importa, no por la bandeja de entrada. |
+| ai-sales-agent | `scenarioPublic` | the Estepona scene by email |
+| ai-sales-agent | point "Respuesta por WhatsApp, en español." and fit "WhatsApp" | hidden in public |
+| lead-intelligence | `scenarioPublic` | La compradora del domingo vuelve a escribir por email el martes. Su mensaje llega a la misma ficha, junto a lo que había pedido antes. |
+| lead-intelligence | fit, `pub` | Conversaciones de Gmail |
+| crm | the note on two records (email + WhatsApp) | hidden in public, since there is only one channel |
+
+The EN lines match the ES lines and are accepted as well. The target view keeps WhatsApp as built.
+
 ---
 
 ## 10. The phone version: one core line per section (Redesign 8, owner 1)
