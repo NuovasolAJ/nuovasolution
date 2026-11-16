@@ -1,0 +1,192 @@
+{
+ "tag": "868602c",
+ "base": "https://nuovasolution-design-preview-g6ca6dngo-nuovasolajs-projects.vercel.app",
+ "build": {
+  "commit": "868602c407f1a49b55bf5637f6089f7ff7275d71",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_5tcEAmVNJrhG3haJ9Fo3NiC7etcs",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "verButtons": {
+  "count": 3,
+  "out": [
+   {
+    "label": "Cerrar",
+    "btnAbsBottom": 5252,
+    "ariaControls": "ch-detail-attend",
+    "ariaExpanded": "true",
+    "contentAbsTop": 6620,
+    "gapPx": 1368,
+    "gapScreens": 1.62,
+    "docGrewPx": 1186,
+    "contentTag": "DIV.ch-detail-slot"
+   },
+   {
+    "label": "Cerrar",
+    "btnAbsBottom": 5927,
+    "ariaControls": "ch-detail-organise",
+    "ariaExpanded": "true",
+    "contentAbsTop": 6620,
+    "gapPx": 693,
+    "gapScreens": 0.82,
+    "docGrewPx": 1124,
+    "contentTag": "DIV.ch-detail-slot"
+   },
+   {
+    "label": "Cerrar",
+    "btnAbsBottom": 6602,
+    "ariaControls": "ch-detail-grow",
+    "ariaExpanded": "true",
+    "contentAbsTop": 6620,
+    "gapPx": 18,
+    "gapScreens": 0.02,
+    "docGrewPx": 253,
+    "contentTag": "DIV.ch-detail-slot"
+   }
+  ]
+ },
+ "depthPhone": {
+  "doc": 21100,
+  "vh": 844,
+  "screens": 25
+ },
+ "depthDesktop": {
+  "doc": 15739,
+  "vh": 900,
+  "screens": 17.5
+ },
+ "fonts": {
+  "families": {
+   "__Fraunces_5c1908": 10,
+   "__Inter_65423c": 14
+  },
+  "sample": [
+   {
+    "tag": "H1",
+    "cls": "hf-h1",
+    "font": "__Fraunces_5c1908",
+    "text": "Mientras enseñas, NuovaSolution "
+   },
+   {
+    "tag": "H2",
+    "cls": "t-display-m",
+    "font": "__Fraunces_5c1908",
+    "text": "De la consulta a tu equipo, con "
+   },
+   {
+    "tag": "H3",
+    "cls": "fs-title",
+    "font": "__Inter_65423c",
+    "text": "Llega la consulta"
+   },
+   {
+    "tag": "H3",
+    "cls": "fs-title",
+    "font": "__Inter_65423c",
+    "text": "Responde en nombre de tu agencia"
+   },
+   {
+    "tag": "H3",
+    "cls": "fs-title",
+    "font": "__Inter_65423c",
+    "text": "La ficha se completa"
+   },
+   {
+    "tag": "H3",
+    "cls": "fs-title",
+    "font": "__Inter_65423c",
+    "text": "Tu equipo llega preparado"
+   },
+   {
+    "tag": "H2",
+    "cls": "t-display-m",
+    "font": "__Fraunces_5c1908",
+    "text": "Cada consulta, atendida y en su "
+   },
+   {
+    "tag": "H3",
+    "cls": "ch-name",
+    "font": "__Inter_65423c",
+    "text": "Atiende"
+   }
+  ],
+  "htmlDisplayAttr": null,
+  "rootHas": true
+ },
+ "model3d": {
+  "stage": true,
+  "firstStageOnScroll": "true",
+  "buttons": 4,
+  "states": [
+   {
+    "i": 0,
+    "key": "0",
+    "stageAfter": "true",
+    "label": "01Plano"
+   },
+   {
+    "i": 1,
+    "key": "1",
+    "stageAfter": "true",
+    "label": "02Modelo"
+   },
+   {
+    "i": 2,
+    "key": "2",
+    "stageAfter": "true",
+    "label": "03Vacío y amueblado"
+   },
+   {
+    "i": 3,
+    "key": "3",
+    "stageAfter": "true",
+    "label": "04Entrega"
+   }
+  ]
+ },
+ "form": {
+  "form": true,
+  "fields": 8,
+  "required": 4,
+  "requiredNames": [
+   "agency",
+   "name",
+   "email",
+   "consent"
+  ],
+  "pilot": {
+   "text": "Solicita tu piloto gratuito",
+   "w": 0,
+   "h": 0,
+   "fontSize": 15,
+   "fontWeight": "400",
+   "bg": "rgb(14, 14, 15)",
+   "area": 0
+  },
+  "direct": null
+ },
+ "labels": {
+  "target": {
+   "planesHeadings": [
+    "Planes",
+    "Planes"
+   ],
+   "planesCount": 2,
+   "gratisNearEssential": [],
+   "essentialSample": [
+    "PlanesPlanesTe explicamos qué plan encaja con tu agencia y su precio antes de acordar nada.EssentialRespuestas",
+    "EssentialRespuestas, fichas e informe para una oficina.GrowthTodo lo de Essential, más el trabajo del equipo: ",
+    "EssentialRespuestas, fichas e informe para una oficina.GrowthTodo lo de Essential, más el trabajo del equipo: "
+   ]
+  },
+  "public": {
+   "planesHeadings": [
+    "Planes"
+   ],
+   "planesCount": 1,
+   "gratisNearEssential": [],
+   "essentialSample": []
+  }
+ }
+}

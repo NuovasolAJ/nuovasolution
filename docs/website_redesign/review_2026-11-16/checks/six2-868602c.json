@@ -1,0 +1,159 @@
+{
+  "tag": "868602c",
+  "build": {
+    "commit": "868602c407f1a49b55bf5637f6089f7ff7275d71",
+    "ref": "website_enterprise_redesign",
+    "deployment": "dpl_5tcEAmVNJrhG3haJ9Fo3NiC7etcs",
+    "env": "preview",
+    "mode": "stub"
+  },
+  "model3d": {
+    "onScroll": {
+      "activeKey": "1",
+      "activeLabel": "02Modelo",
+      "activeIndex": 1,
+      "media": [
+        "house-ground-loop.mp4",
+        "house-ground-loop-poster-1600.webp"
+      ],
+      "stepAttr": "1",
+      "classes": [
+        "is-past",
+        "is-on",
+        "",
+        ""
+      ]
+    },
+    "buttons": 4,
+    "after": [
+      {
+        "clicked": 0,
+        "clickedKey": "0",
+        "label": "01Plano",
+        "nowActive": "0",
+        "nowIndex": 0,
+        "media": []
+      },
+      {
+        "clicked": 1,
+        "clickedKey": "1",
+        "label": "02Modelo",
+        "nowActive": "1",
+        "nowIndex": 1,
+        "media": [
+          "house-ground-loop.mp4",
+          "house-ground-loop-poster-1600.webp"
+        ]
+      },
+      {
+        "clicked": 2,
+        "clickedKey": "2",
+        "label": "03Vacío y amueblado",
+        "nowActive": "2",
+        "nowIndex": 2,
+        "media": [
+          "living-empty-1200.webp",
+          "living-furnished-1200.webp"
+        ]
+      },
+      {
+        "clicked": 3,
+        "clickedKey": "3",
+        "label": "04Entrega",
+        "nowActive": "3",
+        "nowIndex": 3,
+        "media": []
+      }
+    ]
+  },
+  "form": {
+    "formFound": true,
+    "fields": [
+      {
+        "name": "agency",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "email",
+        "type": "email",
+        "required": true
+      },
+      {
+        "name": "phone",
+        "type": "tel",
+        "required": false
+      },
+      {
+        "name": "interest",
+        "type": "select-one",
+        "required": false
+      },
+      {
+        "name": "message",
+        "type": "textarea",
+        "required": false
+      },
+      {
+        "name": "web",
+        "type": "text",
+        "required": false
+      },
+      {
+        "name": "consent",
+        "type": "checkbox",
+        "required": true
+      }
+    ],
+    "requiredCount": 4,
+    "submit": {
+      "text": "Solicita tu piloto gratuito",
+      "w": 308,
+      "h": 56,
+      "fontSize": 17,
+      "fontWeight": "600",
+      "bg": "rgb(14, 14, 15)",
+      "area": 17248,
+      "tag": "BUTTON"
+    },
+    "pilotCta": {
+      "text": "Solicita tu piloto gratuito",
+      "w": 0,
+      "h": 0,
+      "fontSize": 15,
+      "fontWeight": "400",
+      "bg": "rgb(14, 14, 15)",
+      "area": 0,
+      "tag": "A"
+    },
+    "contratar": null,
+    "radios": []
+  },
+  "depth": {
+    "phone390x844_target": {
+      "doc": 21100,
+      "vh": 844,
+      "screens": 25
+    },
+    "phone390x844_public": {
+      "doc": 13848,
+      "vh": 844,
+      "screens": 16.4
+    },
+    "desktop1440x900_target": {
+      "doc": 15739,
+      "vh": 900,
+      "screens": 17.5
+    },
+    "desktop1440x900_public": {
+      "doc": 9137,
+      "vh": 900,
+      "screens": 10.2
+    }
+  }
+}
