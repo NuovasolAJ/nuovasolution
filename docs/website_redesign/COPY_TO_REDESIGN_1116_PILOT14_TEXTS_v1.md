@@ -279,11 +279,42 @@ automatic email replies in production, W-1 and W-2 need the same treatment. API 
 
 ---
 
+## 12. /platform/daily-assistant and the platform map (Reviewer's find, 16.11., `d825daa`)
+
+**What the Reviewer found.** The page shows the whole platform map in public without the gate:
+- "WhatsApp, con el número de tu agencia";
+- "Asistente telefónico";
+- "Publicaciones en Instagram";
+- "Visualización 3D";
+- "Formularios web", "portales y anuncios".
+
+**The fix is Redesign's.** `lib/content/platform-map.ts` already carries the rule: an entry whose key is off is hidden in public unless it
+has a `pub` line. The page must render through `platformTasksFor(locale, view)` like /platform does. No new list.
+
+**Copy's public lines for the entries that stay in public:**
+
+| Entry | Public ES | Public EN | Why |
+|---|---|---|---|
+| `email` (`platform-map.ts:48`) | Respuesta en español a las consultas que llegan por email. | Replies in Spanish to enquiries that arrive by email. | the target line "La misma respuesta para lo que llega al buzón de tu agencia" refers back to WhatsApp, which is hidden in public, and "el buzón de tu agencia" needs `mailboxConnection` (soon) |
+| `handover` `pub` (`:51`) | Cuando alguien pide hablar con una persona, queda registrado como petición de llamada para tu equipo. | When someone asks to speak to a person, it is recorded as a callback request for your team. | today's public line repeats "La petición queda registrada" twice |
+| task line `answer` (`:45`), public | Las consultas por ⟦canales⟧ se responden en español. Una consulta en otro idioma no recibe respuesta automática y espera a una persona. | Enquiries on ⟦canales⟧ are answered in Spanish. An enquiry in another language gets no automatic reply and waits for a person. | the public fallback of L-1 (§2) until Lead answers Q-2 |
+
+**Stays hidden in public (no `pub` line):**
+- WhatsApp with the agency's number (topic 20);
+- web forms, the phone assistant, Instagram posts and comments, leads from ads;
+- alerts, property suggestions, follow-ups, tasks, the morning assistant;
+- 3D on this page.
+
+**Instagram:** the owner allows "En preparación" in public at most. Hidden also complies, so there is no line.
+
+---
+
 ## 9. Open
 
 | # | Question | Who | By |
 |---|---|---|---|
 | Q-1 | **answered 16.11. by the owner:** B-2 + B-2b stand as written | — | done |
+| Q-6 | Is 3D offered in public now? The packages show "Opcional · se contrata aparte" (owner, 16.11.), while `model3d` is still soon and the platform pages hide 3D in public. Either `model3d` turns "included" as a service on request, or the "Opcional" row is target view only | owner | before the build is named |
 | Q-5 | What does a pilot agency have on day one in production: automatic email replies from its own mailbox, from a NuovaSolution address, or not yet? (§10) | API | before the build is named |
 | Q-2 | Do other-language enquiries go to a person **of the agency** (task or alert), on WhatsApp and email? (L-2 public) | Lead | Tue 17.11. |
 | Q-3 | May the agency pass the protected model link on to a client? (3-t4) | 3D | before the build is named |
