@@ -188,7 +188,7 @@ export const enquiries: Enquiry[] = [
       { k: { es: "Plazo", en: "Timing" }, v: { es: "visita de valoración esta semana", en: "valuation visit this week" } },
       { k: { es: "Escriben en", en: "Write in" }, v: { es: "español", en: "Spanish" } /* Copy 88143c1 §2.3 */ },
     ],
-    next: { es: "Resultado: la consulta está en la ficha, respondida en español; una persona de tu equipo propone la fecha.", en: "Result: the enquiry is on the record, answered in Spanish; a person on your team proposes the date." } /* WORKING for Copy (88143c1 §2.3) */,
+    next: { es: "Resultado: los Keller tienen respuesta en español y ficha; proponer la fecha de la valoración es una tarea para tu equipo.", en: "Result: the Kellers have a reply in Spanish and a record; proposing a date for the valuation is a task for your team." } /* Copy 006bad9 §2.2 */,
   },
   {
     channel: "webform",
