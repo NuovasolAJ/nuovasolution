@@ -1797,6 +1797,8 @@ html:not(.js) .fs-step { opacity: 1; }
   .ch { padding-top: 44px; padding-bottom: 36px; }
   .ch-row { gap: 14px; margin-top: 24px; }
   .ch-visual { height: 160px; margin-bottom: 0; }
+  .ch-visual-extra { height: auto; min-height: 0; padding: 12px; } /* RV6 86203a8: the extra cards' scene box takes its content's height on the phone too */
+  .ch-card-extra { gap: 8px; padding-bottom: 14px; }
   .ch-card { gap: 10px; }
   .ch-point:nth-child(n + 3) { display: none; }
   .ch-visual-extra { min-height: 0; padding: 12px; }
