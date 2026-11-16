@@ -1,5 +1,12 @@
 # COPY → Redesign · Texts for the 10/10 build · ES + EN · Fri 13.11.2026
 
+> **16.11., owner:** the offer is now a 14-day pilot with support, +7 days after feedback.
+> `COPY_TO_REDESIGN_1116_PILOT14_TEXTS_v1.md` overrides in this file:
+> - §0: B-2, C-2 and the "14 días leaves" rule;
+> - O-4 and Crece;
+> - §5 "Tu camino";
+> - §6: steps, line, badge, Q-11 and its "90 días".
+
 **For:** Redesign (builds with these lines), the Reviewer (checks them). **Owner order of 13.11.**, after the master prompt
 `owner_review_1109/REDESIGN_MASTERPROMPT_10V10_1109_v1.md` and the desktop review `OWNER_AUDIT_DESKTOP_REVIEW_1109_v1.md`.
 **Basis:** Copy's texts of 1108 (`16bf954`) stay. This file adds the six points of 13.11. Where it gives a text for a place, it replaces
