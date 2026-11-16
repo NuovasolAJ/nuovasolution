@@ -200,3 +200,121 @@ das Bild, auf dem der doppelte Kicker steht, sonst kann ich die Zeile nicht schl
 
 **Stand der Zeile F22 nach der Abschlussregel der Fehlerliste: OFFEN.** Erledigt ist nichts davon,
 und die Note kommt erst auf dem benannten Build.
+
+---
+
+## Nachtrag, Mo 16.11. mittags: auf dem Regler-Fix nachgemessen
+
+Redesign hat die Adresse genannt:
+`https://nuovasolution-design-preview-2ufwjoyhr-nuovasolajs-projects.vercel.app`,
+`/api/build` → **`a7612c0cdc2a0d8980a1676c8597f04f284cc5e9`**, `dpl_35QawXBvo3cR2EpQkQxKW5WEEazt`.
+`a7612c0` enthält `18812cc`. Die Vorschau ist auf Owner-Anweisung seit heute 08:40 **ohne
+Zugangscode** erreichbar; `X-Robots-Tag: noindex, nofollow` steht, geprüft. Gemessen mit denselben
+Skripten.
+
+| Punkt | `cdc8d04` | **`a7612c0`** | Urteil |
+|---|---|---|---|
+| **(d) Regler** | Δ Höhe 13,7 / 14,9 / 15,5 px (360/390/414) und 200,0 px (1366/1440) | **Δ Höhe 0 px und Δ Breite 0 px bei allen fünf Breiten**, gleicher oberer und linker Rand | **bestanden** |
+| (a) Knopf/Pilot-Zeile ohne Möblierung | ganz sichtbar | ganz sichtbar, h1 bei 1366 bei y = 305 | unverändert in Ordnung |
+| (a) Anschnitt ≥ 120 px | 24 / 118 / 0 px | **24 / 118 / 0 px, unverändert** | **nicht bestanden** |
+| (c) Kontrast 390 | 16,3 % unter AA, schlechtester 2,37 : 1 | **16,5 % unter AA, schlechtester 2,36 : 1**; `.hf-words` weiter ohne Grund und ohne `backdrop-filter`, kein `text-shadow` | **nicht bestanden** |
+| (b) Kanalliste mit „teléfono" + drei Haken | Zielsicht ja | **unverändert** | **nicht bestanden** |
+| Demo/„14 días" auf `/contact` und `/faq` | vorhanden | **unverändert vorhanden** | offen |
+
+Belege: `checks/f22-a7612c0.json`, `checks/f22e-a7612c0.json`, `checks/f22c-a7612c0.json`,
+`checks/f22-a7612c0-contrast.json`; Bilder `shots/F22d-slider-390-a7612c0-fixed.png` und
+`shots/F22d-slider-1440-a7612c0-fixed.png`.
+
+**Damit ist von F22 genau ein Teil erledigt: der Regler.** Redesign sagt zu, (a), (b), (c) und die
+Demo-/14-Tage-Stellen in den nächsten benannten Build zu nehmen; der Owner hat die Zwischenschau
+vom 16.11. 14:15 gestrichen, Ziel ist Mi 18.11. 14:00, Rückfall Do 19.11. 14:00. Die Note gebe ich
+auf diesem Build.
+
+### Telefon-Reiter der Demo — meine Antwort auf Redesigns Rückfrage
+
+Gemessen auf `a7612c0`: Zielsicht vier Reiter (WhatsApp, Email, Formulario web, **Teléfono**),
+öffentliche Sicht **zwei** (WhatsApp, Email). Der Reiter ist also sauber nach Schlüssel gesteuert.
+
+**Ich werte ihn nicht als Zusage**, solange drei Dinge gelten: er bleibt aus der öffentlichen Sicht
+draußen, er trägt kein Wort wie „incluido" oder „disponible", und der Hinweis oben steht auf der
+Seite. Eine Produktszene zeigt, was das Produkt können soll; ein **Haken in einer Planspalte** sagt
+dagegen, was ein zahlender Plan heute enthält. Nur das Zweite ist eine kaufmännische Zusage, und
+nur das beanstande ich unter (b).
+
+### Zu Copys Meldung „`product-views.tsx:54` ist öffentlich falsch" — Copy hat recht
+
+Meine erste Suche war zu eng: ich hatte `/es`, `/en` und `/es/platform/crm` abgesucht und nichts
+gefunden. Der Satz steht auf einer Unterseite, die ich dabei nicht hatte. Nach einem Durchlauf über
+**alle 24 öffentlich erreichbaren Seiten** steht er dort, wörtlich, in der **öffentlichen** Sicht:
+
+> `/es/platform/lead-intelligence` · öffentlich: „Prioridad · Consulta importante · Motivo: nombró
+> inmueble, zona y presupuesto. **NuovaSolution no calcula una puntuación.** Siguiente paso …"
+> `/en/platform/lead-intelligence` · öffentlich: „… **NuovaSolution computes no score.**"
+
+Da in Produktion ein Score existiert (Agentenkarte 13.11. „Score: 73", Lead las 45–80), ist der
+Satz in **beiden** Sichten falsch, nicht nur öffentlich. In der Quelldatei ist er lokal bereits
+entfernt, aber noch nicht eingecheckt und nicht ausgeliefert. **Befund steht**, bis er auf der
+Seite weg ist.
+
+---
+
+## Neue Prüfung aus der Owner-Zeile vom 16.11.: verspricht die öffentliche Sicht etwas, das nicht in Prod ist?
+
+**Die Angebotsregel des Owners gilt ab sofort und ersetzt meine bisherige.**
+
+| | |
+|---|---|
+| **Erlaubt** | „Solicita tu piloto gratuito" · „Piloto gratuito de 14 días, con nuestro acompañamiento. Si nos das tu opinión, 7 días más." · „Sin método de pago. Las condiciones, por escrito." |
+| **Verboten** | „Solicitar una demo" · jeder Selbst-Start („Prueba gratis 14 días", „14 días de Essential") · „Recomendado" · „en segundos" **ohne** „por WhatsApp" · „no calcula una puntuación" |
+| **Telefon** | „¿Atiende llamadas? — Todavía no" ist der richtige Wortlaut |
+| **Sprachen** | „Responde en español. Otros idiomas, a tu equipo." (Copy `4bc0f07`) |
+| **Instagram** | öffentlich nur „En preparación" (Meta-Verifizierung und App Review fehlen) |
+
+**Durchlauf:** alle Seiten, die von `/es` und `/en` aus öffentlich erreichbar sind, Sicht `public`,
+24 Seiten gefunden und gelesen. Beleg `checks/promise-public-a7612c0.json`.
+
+### Befund P-1: `/es/platform/daily-assistant` und `/en/platform/daily-assistant` hängen nicht an der Freigabe
+
+Diese Seite verspricht **öffentlich** vier Dinge, die nicht in Produktion sind. Wortlaut von der
+Seite:
+
+| Was | Wortlaut (ES) | Stand |
+|---|---|---|
+| eigene Nummer der Agentur (Thema 20) | „WhatsApp · **Respuesta por WhatsApp, con el número de tu agencia.**" | `whatsappOwnNumber` = soon; MM: nicht in Prod, nicht in 24z |
+| Telefon | „**Asistente telefónico** · Una llamada que no se pierde: lo que pide, anotado, y una tarea." und „Las consultas por WhatsApp, email, formulario web, **teléfono** y portales y anuncios se responden en español." | `phoneAssistant` = soon; F24: Voice EN/DE durchgefallen |
+| Instagram | „**Publicaciones en Instagram** · Un texto preparado para cada inmueble; tú lo apruebas antes de que salga." | `instagram` = soon; Meta-Verifizierung und App Review fehlen |
+| 3D | „**Visualización 3D** · Un modelo 3D de tu inmueble, hecho por nosotros a partir de tu plano." … „Nos envías un plano con medidas y, si las tienes, fotos." | `model3d` = soon; T6 nicht abgenommen |
+
+Dazu „Formularios web · Lo que entra por tu web se trata como una consulta más" (`webform` = soon)
+und „portales y anuncios" (`adsLeads` = soon). Auf Englisch dieselben Stellen.
+
+**Das ist kein Wortproblem, sondern ein Loch im Tor.** Jede andere öffentliche Seite blendet diese
+Schlüssel korrekt aus — die Planstabelle, die Demo-Reiter (öffentlich nur WhatsApp und Email), die
+Kanalliste, die FAQ. Diese Unterseite nicht. Sie muss durch dieselbe Prüfung wie der Rest, oder sie
+gehört öffentlich nicht ins Menü.
+
+### Befund P-2: `/es/trial` und `/en/trial` zeigen öffentlich den alten Selbst-Start
+
+> „Opcional **Solicitar una demo** … Sin presentación. **Solicitar una demo** · O simplemente
+> empieza **Prueba gratis durante 14 días.** Sin método de pago, sin llamada comercial."
+
+Englisch dasselbe („Request a demo" zweimal, „Try it free for 14 days"). Das verstößt gegen zwei
+Punkte der neuen Regel gleichzeitig: Demo als Angebot und Selbst-Start. `/es/contact` und
+`/en/contact` tragen „Solicitar una demo" / „Request a demo" ebenfalls öffentlich, zweimal.
+
+### Was in der öffentlichen Sicht **sauber** ist
+
+- **Instagram** auf `/es/packages`: „con Instagram" steht nur in der **Zielsicht**
+  („Enterprise · Todo lo de Growth, para varias oficinas, con Instagram y 3D."), öffentlich nicht.
+  Der Owner hat es also in der Vorschau gesehen; die öffentliche Sicht ist an dieser Stelle in
+  Ordnung. **Ausnahme ist allein P-1.**
+- **Demo-Reiter:** öffentlich zwei (WhatsApp, Email), in der Zielsicht vier. Korrekt gesteuert.
+- **Planstabelle:** öffentlich 6 Zeilen, keine Zeile zu Telefon, eigener Nummer oder Instagram.
+- **Mehrsprachigkeit:** öffentlich wird nichts versprochen. Die eine Stelle auf `/es` sagt das
+  Richtige: „Idioma alemán · reconocido" und „Respuesta: ninguna automática — la escribe una
+  persona".
+- **WhatsApp-Medien:** öffentlich steht nirgends, dass Fotos, PDF, Audios oder Grundrisse
+  beantwortet werden. Die Treffer zu „plano" und „fotos" gehören zur 3D-Beschreibung auf
+  `/platform/daily-assistant` und fallen unter P-1 (3D), nicht unter die Medien.
+- **„Recomendado"** kommt in keiner Sicht vor.
+- **„en segundos" ohne „por WhatsApp"** kommt in keiner Sicht vor.

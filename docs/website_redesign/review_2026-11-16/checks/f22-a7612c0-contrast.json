@@ -1,0 +1,35 @@
+{
+ "tag": "a7612c0",
+ "text": "Tus clientes reciben respuesta aunque estÃ©s en una visita, y lo que piden te es",
+ "font": {
+  "px": 17.755,
+  "weight": 400,
+  "largeTextRule": false,
+  "aaNeeded": 4.5
+ },
+ "textColor": "rgba(248, 246, 241, 0.9)",
+ "textShadow": "none",
+ "cardBackground": "rgba(0, 0, 0, 0)",
+ "cardBackdropFilter": "none",
+ "boxCssPx": {
+  "top": 457,
+  "left": 16,
+  "w": 358,
+  "h": 80
+ },
+ "contrastOverRealPaint": {
+  "min": 2.36,
+  "p01": 2.64,
+  "p05": 2.97,
+  "median": 6.19,
+  "max": 14.7,
+  "share_below_needed_pct": 16.5,
+  "share_below_3_pct": 5.5
+ },
+ "backgroundLuminance": {
+  "min": 0.0034,
+  "median": 0.0856,
+  "max": 0.3303
+ },
+ "method": "background read from a second screenshot with the line hidden; the text's own alpha composited over each background pixel; WCAG 2.1 relative luminance per pixel of the line's box"
+}

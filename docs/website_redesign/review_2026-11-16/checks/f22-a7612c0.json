@@ -1,0 +1,843 @@
+{
+ "tag": "a7612c0",
+ "base": "https://nuovasolution-design-preview-2ufwjoyhr-nuovasolajs-projects.vercel.app",
+ "build": {
+  "commit": "a7612c0cdc2a0d8980a1676c8597f04f284cc5e9",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_35QawXBvo3cR2EpQkQxKW5WEEazt",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "firstScreen": {
+  "1366x768_full": {
+   "vw": 1366,
+   "vh": 768,
+   "scrollY": 0,
+   "h1": {
+    "top": 387,
+    "bottom": 588,
+    "left": 83,
+    "w": 680,
+    "h": 201,
+    "fullyVisible": true,
+    "cutBy": 0,
+    "hidden": false
+   },
+   "h1Text": "Mientras enseñas, NuovaSolution atiende.",
+   "card": {
+    "top": 352,
+    "bottom": 802,
+    "left": 83,
+    "w": 680,
+    "h": 449,
+    "fullyVisible": false,
+    "cutBy": 34,
+    "hidden": false
+   },
+   "lead": {
+    "top": 602,
+    "bottom": 665,
+    "left": 83,
+    "w": 556,
+    "h": 63,
+    "fullyVisible": true,
+    "cutBy": 0,
+    "hidden": false
+   },
+   "leadText": "Tus clientes reciben respuesta aunque estés en una visita, y lo que piden te espera ordenado en su ficha.",
+   "cta": {
+    "top": 685,
+    "bottom": 741,
+    "left": 83,
+    "w": 284,
+    "h": 56,
+    "fullyVisible": true,
+    "cutBy": 0,
+    "hidden": false
+   },
+   "ctaText": "Solicita tu piloto gratuito",
+   "pilot": {
+    "top": 757,
+    "bottom": 802,
+    "left": 83,
+    "w": 606,
+    "h": 45,
+    "fullyVisible": false,
+    "cutBy": 34,
+    "hidden": false
+   },
+   "pilotText": "Tu agencia usa NuovaSolution sin pagar, con nuestro acompañamiento. Las condiciones, por escrito.",
+   "demoWrap": {
+    "top": 826,
+    "bottom": 1527,
+    "left": 0,
+    "w": 1366,
+    "h": 702,
+    "fullyVisible": false,
+    "cutBy": 759,
+    "hidden": false
+   },
+   "demoVisiblePx": 0,
+   "runningAnimations": 4,
+   "video": {
+    "file": "hero-a.mp4",
+    "paused": false
+   },
+   "docHeight": 10419
+  },
+  "1366x625_laptop_chrome": {
+   "vw": 1366,
+   "vh": 625,
+   "scrollY": 0,
+   "h1": {
+    "top": 284,
+    "bottom": 485,
+    "left": 83,
+    "w": 680,
+    "h": 201,
+    "fullyVisible": true,
+    "cutBy": 0,
+    "hidden": false
+   },
+   "h1Text": "Mientras enseñas, NuovaSolution atiende.",
+   "card": {
+    "top": 250,
+    "bottom": 699,
+    "left": 83,
+    "w": 680,
+    "h": 449,
+    "fullyVisible": false,
+    "cutBy": 74,
+    "hidden": false
+   },
+   "lead": {
+    "top": 499,
+    "bottom": 562,
+    "left": 83,
+    "w": 556,
+    "h": 63,
+    "fullyVisible": true,
+    "cutBy": 0,
+    "hidden": false
+   },
+   "leadText": "Tus clientes reciben respuesta aunque estés en una visita, y lo que piden te espera ordenado en su ficha.",
+   "cta": {
+    "top": 582,
+    "bottom": 638,
+    "left": 83,
+    "w": 284,
+    "h": 56,
+    "fullyVisible": false,
+    "cutBy": 13,
+    "hidden": false
+   },
+   "ctaText": "Solicita tu piloto gratuito",
+   "pilot": {
+    "top": 654,
+    "bottom": 699,
+    "left": 83,
+    "w": 606,
+    "h": 45,
+    "fullyVisible": false,
+    "cutBy": 74,
+    "hidden": false
+   },
+   "pilotText": "Tu agencia usa NuovaSolution sin pagar, con nuestro acompañamiento. Las condiciones, por escrito.",
+   "demoWrap": {
+    "top": 723,
+    "bottom": 1425,
+    "left": 0,
+    "w": 1366,
+    "h": 702,
+    "fullyVisible": false,
+    "cutBy": 800,
+    "hidden": false
+   },
+   "demoVisiblePx": 0,
+   "runningAnimations": 4,
+   "video": {
+    "file": "hero-a.mp4",
+    "paused": false
+   },
+   "docHeight": 10317
+  },
+  "1440x900_full": {
+   "vw": 1440,
+   "vh": 900,
+   "scrollY": 0,
+   "h1": {
+    "top": 431,
+    "bottom": 676,
+    "left": 120,
+    "w": 680,
+    "h": 245,
+    "fullyVisible": true,
+    "cutBy": 0,
+    "hidden": false
+   },
+   "h1Text": "Mientras enseñas, NuovaSolution atiende.",
+   "card": {
+    "top": 396,
+    "bottom": 904,
+    "left": 120,
+    "w": 680,
+    "h": 508,
+    "fullyVisible": false,
+    "cutBy": 4,
+    "hidden": false
+   },
+   "lead": {
+    "top": 696,
+    "bottom": 759,
+    "left": 120,
+    "w": 556,
+    "h": 63,
+    "fullyVisible": true,
+    "cutBy": 0,
+    "hidden": false
+   },
+   "leadText": "Tus clientes reciben respuesta aunque estés en una visita, y lo que piden te espera ordenado en su ficha.",
+   "cta": {
+    "top": 787,
+    "bottom": 843,
+    "left": 120,
+    "w": 284,
+    "h": 56,
+    "fullyVisible": true,
+    "cutBy": 0,
+    "hidden": false
+   },
+   "ctaText": "Solicita tu piloto gratuito",
+   "pilot": {
+    "top": 859,
+    "bottom": 904,
+    "left": 120,
+    "w": 606,
+    "h": 45,
+    "fullyVisible": false,
+    "cutBy": 4,
+    "hidden": false
+   },
+   "pilotText": "Tu agencia usa NuovaSolution sin pagar, con nuestro acompañamiento. Las condiciones, por escrito.",
+   "demoWrap": {
+    "top": 958,
+    "bottom": 1659,
+    "left": 0,
+    "w": 1440,
+    "h": 702,
+    "fullyVisible": false,
+    "cutBy": 759,
+    "hidden": false
+   },
+   "demoVisiblePx": 0,
+   "runningAnimations": 4,
+   "video": {
+    "file": "hero-a.mp4",
+    "paused": false
+   },
+   "docHeight": 10559
+  },
+  "1440x757_laptop_chrome": {
+   "vw": 1440,
+   "vh": 757,
+   "scrollY": 0,
+   "h1": {
+    "top": 376,
+    "bottom": 577,
+    "left": 120,
+    "w": 680,
+    "h": 201,
+    "fullyVisible": true,
+    "cutBy": 0,
+    "hidden": false
+   },
+   "h1Text": "Mientras enseñas, NuovaSolution atiende.",
+   "card": {
+    "top": 341,
+    "bottom": 791,
+    "left": 120,
+    "w": 680,
+    "h": 449,
+    "fullyVisible": false,
+    "cutBy": 34,
+    "hidden": false
+   },
+   "lead": {
+    "top": 591,
+    "bottom": 654,
+    "left": 120,
+    "w": 556,
+    "h": 63,
+    "fullyVisible": true,
+    "cutBy": 0,
+    "hidden": false
+   },
+   "leadText": "Tus clientes reciben respuesta aunque estés en una visita, y lo que piden te espera ordenado en su ficha.",
+   "cta": {
+    "top": 674,
+    "bottom": 730,
+    "left": 120,
+    "w": 284,
+    "h": 56,
+    "fullyVisible": true,
+    "cutBy": 0,
+    "hidden": false
+   },
+   "ctaText": "Solicita tu piloto gratuito",
+   "pilot": {
+    "top": 746,
+    "bottom": 791,
+    "left": 120,
+    "w": 606,
+    "h": 45,
+    "fullyVisible": false,
+    "cutBy": 34,
+    "hidden": false
+   },
+   "pilotText": "Tu agencia usa NuovaSolution sin pagar, con nuestro acompañamiento. Las condiciones, por escrito.",
+   "demoWrap": {
+    "top": 815,
+    "bottom": 1516,
+    "left": 0,
+    "w": 1440,
+    "h": 702,
+    "fullyVisible": false,
+    "cutBy": 759,
+    "hidden": false
+   },
+   "demoVisiblePx": 0,
+   "runningAnimations": 4,
+   "video": {
+    "file": "hero-a.mp4",
+    "paused": false
+   },
+   "docHeight": 10416
+  }
+ },
+ "plans": {
+  "/es/packages target": {
+   "rows": [
+    {
+     "key": "replyWhatsapp",
+     "label": "Respuestas en español por WhatsApp, email, formulario web, t",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "languageNoted",
+     "label": "Detección del idioma",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "labels",
+     "label": "Etiquetas en el buzón",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "crm",
+     "label": "Ficha en el CRM integrado, con canal de origen",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "priorityWithReason",
+     "label": "Prioridad con motivo",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "oneRecordAcrossChannels",
+     "label": "Una ficha por persona entre canales",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "alert",
+     "label": "Aviso a la persona que toca",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "taskList",
+     "label": "Lista de tareas y «¿Qué tengo hoy?»",
+     "cells": [
+      "excluded|No en este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "matching",
+     "label": "Inmuebles que encajan y seguimiento con permiso",
+     "cells": [
+      "excluded|No en este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "reportInLogin",
+     "label": "Informe en el acceso de tu agencia",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "weeklyEmail",
+     "label": "Resumen semanal por email",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "reportTrend",
+     "label": "Informe ampliado: evolución, canales y conclusiones",
+     "cells": [
+      "excluded|No en este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "integrations",
+     "label": "HubSpot, Pipedrive, Zoho, Salesforce, Outlook",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "adsLeads",
+     "label": "Leads de portales y anuncios",
+     "cells": [
+      "excluded|No en este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "model3d",
+     "label": "Modelos 3D",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    }
+   ],
+   "rowCount": 15,
+   "textHits": [
+    "D. CANALES Respuestas en español por WhatsApp, email, formulario web, teléfono y portales y anuncios Detección del idioma Etiquetas en el buzón CRM Fi",
+    "transferencia. ¿Tengo que hablar con alguien antes? No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. Todas las preguntas Mir"
+   ]
+  },
+  "/es target": {
+   "rows": [
+    {
+     "key": "replyWhatsapp",
+     "label": "Respuestas en español por WhatsApp, email, formulario web, t",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "languageNoted",
+     "label": "Detección del idioma",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "labels",
+     "label": "Etiquetas en el buzón",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "crm",
+     "label": "Ficha en el CRM integrado, con canal de origen",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "priorityWithReason",
+     "label": "Prioridad con motivo",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "oneRecordAcrossChannels",
+     "label": "Una ficha por persona entre canales",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "alert",
+     "label": "Aviso a la persona que toca",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "taskList",
+     "label": "Lista de tareas y «¿Qué tengo hoy?»",
+     "cells": [
+      "excluded|No en este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "matching",
+     "label": "Inmuebles que encajan y seguimiento con permiso",
+     "cells": [
+      "excluded|No en este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "reportInLogin",
+     "label": "Informe en el acceso de tu agencia",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "weeklyEmail",
+     "label": "Resumen semanal por email",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "reportTrend",
+     "label": "Informe ampliado: evolución, canales y conclusiones",
+     "cells": [
+      "excluded|No en este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "integrations",
+     "label": "HubSpot, Pipedrive, Zoho, Salesforce, Outlook",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "adsLeads",
+     "label": "Leads de portales y anuncios",
+     "cells": [
+      "excluded|No en este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    },
+    {
+     "key": "model3d",
+     "label": "Modelos 3D",
+     "cells": [
+      "included|En este plan",
+      "included|En este plan",
+      "included|En este plan"
+     ]
+    }
+   ],
+   "rowCount": 15,
+   "textHits": [
+    "nal y mira cómo responde. Repetir demo WhatsApp Email Formulario web Teléfono L Laura · compradora en línea Hola, soy Laura. Busco un piso de 2 do",
+    " previo hecho. Llega la consulta Por WhatsApp, email, formulario web, teléfono y portales y anuncios, a cualquier hora. Responde en nombre de tu agenc"
+   ]
+  },
+  "/es/packages public": {
+   "rows": [
+    {
+     "key": "replyWhatsapp",
+     "label": "Respuestas en español por WhatsApp y email",
+     "cells": []
+    },
+    {
+     "key": "languageNoted",
+     "label": "Detección del idioma",
+     "cells": []
+    },
+    {
+     "key": "labels",
+     "label": "Etiquetas en el buzón",
+     "cells": []
+    },
+    {
+     "key": "crm",
+     "label": "Ficha en el CRM integrado, con canal de origen",
+     "cells": []
+    },
+    {
+     "key": "priorityWithReason",
+     "label": "Prioridad con motivo",
+     "cells": []
+    },
+    {
+     "key": "reportInLogin",
+     "label": "Informe en el acceso de tu agencia",
+     "cells": []
+    }
+   ],
+   "rowCount": 6,
+   "textHits": [
+    "ito PREGUNTAS ¿Tengo que hablar con alguien antes? No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. Todas las preguntas Mir"
+   ]
+  },
+  "/es public": {
+   "rows": [
+    {
+     "key": "replyWhatsapp",
+     "label": "Respuestas en español por WhatsApp y email",
+     "cells": []
+    },
+    {
+     "key": "languageNoted",
+     "label": "Detección del idioma",
+     "cells": []
+    },
+    {
+     "key": "labels",
+     "label": "Etiquetas en el buzón",
+     "cells": []
+    },
+    {
+     "key": "crm",
+     "label": "Ficha en el CRM integrado, con canal de origen",
+     "cells": []
+    },
+    {
+     "key": "priorityWithReason",
+     "label": "Prioridad con motivo",
+     "cells": []
+    },
+    {
+     "key": "reportInLogin",
+     "label": "Informe en el acceso de tu agencia",
+     "cells": []
+    }
+   ],
+   "rowCount": 6,
+   "textHits": []
+  }
+ },
+ "contrast390": {
+  "color": "rgba(248, 246, 241, 0.9)",
+  "fontSizePx": 17.755,
+  "fontWeight": "400",
+  "textShadow": "none",
+  "box": {
+   "top": 457,
+   "left": 16,
+   "w": 358,
+   "h": 80
+  },
+  "cardBg": "rgba(0, 0, 0, 0)",
+  "cardBackdrop": "none",
+  "text": "Tus clientes reciben respuesta aunque estés en una visita, y lo que piden te espera ordenado en su ficha."
+ },
+ "slider": {
+  "w360": {
+   "images": [
+    {
+     "f": "living-empty-1200.webp",
+     "nw": 1200,
+     "nh": 800,
+     "w": 328,
+     "h": 205,
+     "top": 198.6,
+     "left": 16
+    },
+    {
+     "f": "living-furnished-1200.webp",
+     "nw": 1200,
+     "nh": 800,
+     "w": 328,
+     "h": 205,
+     "top": 198.6,
+     "left": 16
+    }
+   ],
+   "delta": {
+    "dw": 0,
+    "dh": 0,
+    "dtop": 0,
+    "dleft": 0
+   },
+   "equalBox": true
+  },
+  "w390": {
+   "images": [
+    {
+     "f": "living-empty-1200.webp",
+     "nw": 1200,
+     "nh": 800,
+     "w": 358,
+     "h": 223.8,
+     "top": 202.1,
+     "left": 16
+    },
+    {
+     "f": "living-furnished-1200.webp",
+     "nw": 1200,
+     "nh": 800,
+     "w": 358,
+     "h": 223.8,
+     "top": 202.1,
+     "left": 16
+    }
+   ],
+   "delta": {
+    "dw": 0,
+    "dh": 0,
+    "dtop": 0,
+    "dleft": 0
+   },
+   "equalBox": true
+  },
+  "w414": {
+   "images": [
+    {
+     "f": "living-empty-1200.webp",
+     "nw": 1200,
+     "nh": 800,
+     "w": 374,
+     "h": 233.8,
+     "top": 217.9,
+     "left": 20
+    },
+    {
+     "f": "living-furnished-1200.webp",
+     "nw": 1200,
+     "nh": 800,
+     "w": 374,
+     "h": 233.8,
+     "top": 217.9,
+     "left": 20
+    }
+   ],
+   "delta": {
+    "dw": 0,
+    "dh": 0,
+    "dtop": 0,
+    "dleft": 0
+   },
+   "equalBox": true
+  },
+  "w1366": {
+   "images": [
+    {
+     "f": "living-empty-1200.webp",
+     "nw": 1200,
+     "nh": 800,
+     "w": 1200,
+     "h": 600,
+     "top": 96,
+     "left": 83
+    },
+    {
+     "f": "living-furnished-1200.webp",
+     "nw": 1200,
+     "nh": 800,
+     "w": 1200,
+     "h": 600,
+     "top": 96,
+     "left": 83
+    }
+   ],
+   "delta": {
+    "dw": 0,
+    "dh": 0,
+    "dtop": 0,
+    "dleft": 0
+   },
+   "equalBox": true
+  },
+  "w1440": {
+   "images": [
+    {
+     "f": "living-empty-1200.webp",
+     "nw": 1200,
+     "nh": 800,
+     "w": 1200,
+     "h": 600,
+     "top": 96,
+     "left": 120
+    },
+    {
+     "f": "living-furnished-1200.webp",
+     "nw": 1200,
+     "nh": 800,
+     "w": 1200,
+     "h": 600,
+     "top": 96,
+     "left": 120
+    }
+   ],
+   "delta": {
+    "dw": 0,
+    "dh": 0,
+    "dtop": 0,
+    "dleft": 0
+   },
+   "equalBox": true
+  }
+ }
+}

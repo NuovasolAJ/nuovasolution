@@ -1,0 +1,113 @@
+{
+ "measured_by": "reviewer",
+ "date": "2026-11-16",
+ "build": "a7612c0 / dpl_35QawXBvo3cR2EpQkQxKW5WEEazt",
+ "view": "public",
+ "crawl": "pages scanned: 24 /es /en /es/platform /es/packages /es/trial /es/contact /es/login /es/example-report /es/faq /es/platform/ai-sales-agent /es/platform/lead-intelligence /es/platform/crm /en/platform /en/packages /en/trial /en/contact /en/login /en/example-report /en/faq /en/platform/ai-sales-agent /en/platform/lead-intelligence /en/platform/crm /es/platform/daily-assistant /en/platform/daily-assistant",
+ "rules": "owner 16.11.: public must not promise what is not in production (own WhatsApp number, phone, languages, WhatsApp media, Instagram) + the offer rule",
+ "hits": {
+  "/es": {
+   "phone": [
+    "adas por el equipo. Pedida no es acordada. Entregadas al cliente No medido Si la respuesta llegó al teléfono o al buzón del cliente. Tiempo de respuesta No medido Minutos entre la consulta y la respuesta. Sig"
+   ],
+   "languages": [
+    "na. Ficha de Peter y Anna Keller CRM Intención vender Zona Marbella · Elviria Inmueble villa Idioma alemán · reconocido Respuesta ninguna automática · la escribe una persona Historial mar 11:24 Email Consul",
+    "onocido Respuesta ninguna automática · la escribe una persona Historial mar 11:24 Email Consulta en alemán: quieren vender su villa mar 11:24 Email Idioma reconocido: alemán · no se envía nada automáticamen",
+    "rial mar 11:24 Email Consulta en alemán: quieren vender su villa mar 11:24 Email Idioma reconocido: alemán · no se envía nada automáticamente Lo importante, guardado Zona, presupuesto, idioma y lo que pide "
+   ]
+  },
+  "/es/platform": {
+   "phone": [
+    "a. Paso a una persona Cuando alguien pide hablar con una persona, queda registrada como petición de llamada para tu equipo. La petición queda registrada. 0 2 Gestionar oportunidades Lo que pide cada cliente,"
+   ]
+  },
+  "/es/packages": {
+   "phone": [
+    " nada. Solicita tu piloto gratuito Preguntas ¿Tengo que hablar con alguien antes? No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. Todas las preguntas Mira cómo NuovaSolution atiend"
+   ]
+  },
+  "/es/trial": {
+   "phone": [
+    "ón. Solicitar una demo O simplemente empieza Prueba gratis durante 14 días. Sin método de pago, sin llamada comercial. Solicita tu piloto gratuito Tu próxima consulta ya está en camino Solicita tu piloto gra"
+   ],
+   "demoOffer": [
+    "o es opcional y nunca es condición para empezar la prueba. Email antonio@nuovasolution.com Opcional Solicitar una demo Te guiamos por el sistema con un ejemplo real y puedes preguntar lo que quieras. Sin presentación. ",
+    " Te guiamos por el sistema con un ejemplo real y puedes preguntar lo que quieras. Sin presentación. Solicitar una demo O simplemente empieza Prueba gratis durante 14 días. Sin método de pago, sin llamada comercial. Sol"
+   ],
+   "selfStart": [
+    " real y puedes preguntar lo que quieras. Sin presentación. Solicitar una demo O simplemente empieza Prueba gratis durante 14 días. Sin método de pago, sin llamada comercial. Solicita tu piloto gratuito Tu próxima "
+   ]
+  },
+  "/es/contact": {
+   "demoOffer": [
+    "mano directo, en español o en inglés. La demo es opcional. Email antonio@nuovasolution.com Opcional Solicitar una demo Te guiamos por el sistema con un ejemplo real y puedes preguntar lo que quieras. Sin presentación. ",
+    " Te guiamos por el sistema con un ejemplo real y puedes preguntar lo que quieras. Sin presentación. Solicitar una demo Tu próxima consulta ya está en camino Solicita tu piloto gratuito Descubre la plataforma NuovaSolut"
+   ]
+  },
+  "/es/faq": {
+   "phone": [
+    "amos en la demo, antes de acordar nada. ¿Tengo que hablar antes con un comercial? No hace falta una llamada comercial: escríbenos y te enseñamos el sistema. ¿Cuánto se tarda en configurarlo? Te enseñamos el "
+   ],
+   "languages": [
+    "proveedor de infraestructura en Fráncfort, y los servidores que ejecutan la automatización están en Alemania. Los archivos de clientes no tienen enlace público, y cada vez que una persona abre uno queda reg",
+    "privacidad nombra cada uno y para qué sirve. Los servidores que ejecutan la automatización están en Alemania y la base de datos y los archivos en la Unión Europea. Para los canales de mensajes y el proveedo"
+   ]
+  },
+  "/es/platform/lead-intelligence": {
+   "noScore": [
+    " el martes Prioridad Consulta importante Motivo: nombró inmueble, zona y presupuesto. NuovaSolution no calcula una puntuación. Siguiente paso Una persona de tu equipo le propone la visita; NuovaSolution ya tiene la zona, el p"
+   ]
+  },
+  "/en/trial": {
+   "demoOffer": [
+    " is optional and never a condition for starting the trial. Email antonio@nuovasolution.com Optional Request a demo We walk you through the system on a real example and you can ask anything. No slide deck. Request a",
+    "st a demo We walk you through the system on a real example and you can ask anything. No slide deck. Request a demo Or just start Try it free for 14 days. No payment method, no sales call. Request your free pilot Yo"
+   ],
+   "selfStart": [
+    " the system on a real example and you can ask anything. No slide deck. Request a demo Or just start Try it free for 14 days. No payment method, no sales call. Request your free pilot Your next enquiry is already"
+   ]
+  },
+  "/en/contact": {
+   "demoOffer": [
+    "human reach, in English or in Spanish. A demo is optional. Email antonio@nuovasolution.com Optional Request a demo We walk you through the system on a real example and you can ask anything. No slide deck. Request a",
+    "st a demo We walk you through the system on a real example and you can ask anything. No slide deck. Request a demo Your next enquiry is already on its way Request your free pilot Explore the platform NuovaSolution "
+   ]
+  },
+  "/en/platform/lead-intelligence": {
+   "noScore": [
+    "uesday Priority Important enquiry Reason: she named a property, an area and a budget. NuovaSolution computes no score. Next step A person on your team proposes the viewing; NuovaSolution already has the area, the budg"
+   ]
+  },
+  "/es/platform/daily-assistant": {
+   "instagram": [
+    " Más contactos desde lo que ya publicas, y una forma mejor de enseñar un inmueble. Publicaciones en Instagram Un texto preparado para cada inmueble; tú lo apruebas antes de que salga. Comentarios y mensajes Re"
+   ],
+   "ownNumber": [
+    "Una consulta en otro idioma no recibe respuesta automática. WhatsApp Respuesta por WhatsApp, con el número de tu agencia. Email La misma respuesta para lo que llega al buzón de tu agencia. Formularios web Lo que entra po"
+   ],
+   "phone": [
+    " en tres sitios distintos. 0 1 Atender consultas Las consultas por WhatsApp, email, formulario web, teléfono y portales y anuncios se responden en español. Una consulta en otro idioma no recibe respuesta auto",
+    "ega al buzón de tu agencia. Formularios web Lo que entra por tu web se trata como una consulta más. Asistente telefónico Una llamada que no se pierde: lo que pide, anotado, y una tarea. Paso a una persona Cuando alg",
+    "a. Formularios web Lo que entra por tu web se trata como una consulta más. Asistente telefónico Una llamada que no se pierde: lo que pide, anotado, y una tarea. Paso a una persona Cuando alguien pide hablar ",
+    "a. Paso a una persona Cuando alguien pide hablar con una persona, queda registrada como petición de llamada para tu equipo. La petición queda registrada, aparece en la lista de tareas y avisa en cada traspas"
+   ],
+   "waMedia": [
+    "iguen siendo tuyas. Visualización 3D Un modelo 3D de tu inmueble, hecho por nosotros a partir de tu plano. Capacidades Qué hace NuovaSolution por tu agencia. 01 Asistente de consultas Responde consultas de",
+    "lo 3D interactivo de tu inmueble en el navegador, hecho por nosotros a petición. A escala según tus planos; los muebles y los materiales son ilustrativos. Toca una habitación, elige una planta, activa y des",
+    "lustrativos. Toca una habitación, elige una planta, activa y desactiva el mobiliario. Nos envías un plano con medidas y, si las tienes, fotos. Construimos el modelo a partir del plano, lo comprobamos contr",
+    "ige una planta, activa y desactiva el mobiliario. Nos envías un plano con medidas y, si las tienes, fotos. Construimos el modelo a partir del plano, lo comprobamos contra tus planos y recibes un enlace. Lo"
+   ]
+  },
+  "/en/platform/daily-assistant": {
+   "instagram": [
+    "tract and present More contacts from what you already publish, and a better way to show a property. Instagram posts A prepared text for each listing; you approve it before it goes out. Comments and messages Re"
+   ],
+   "phone": [
+    "es in your agency's mailbox. Web forms What comes in through your website is treated as an enquiry. Phone assistant A call that is not lost: what they want, noted, and a task. Handover to a person When someone asks "
+   ],
+   "waMedia": [
+    "lustrative. Tap a room, choose a floor, switch the furnishing on and off. You send us a dimensioned floor plan, and photos if you have them. We build the model from the plan, check it against your drawings, and"
+   ]
+  }
+ }
+}
