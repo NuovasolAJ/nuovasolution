@@ -72,9 +72,16 @@ company phone as a number only, no `wa.me`. The label for that number on contact
 
 Every card is built the same way: title, one sentence, 3 or 4 points, one button.
 
-**There is no score.** `product-views.tsx:21` records Lead's truth: "No qualification score … exists in production". The site's own
-line says "NuovaSolution no calcula una puntuación". So the owner's "Score / Puntuación" becomes **priority with its reason**. If Lead
-says a score now exists, Copy writes the line.
+**No score on the site.** The owner's "Score / Puntuación" becomes **priority with its reason**.
+
+**Corrected 16.11.** `product-views.tsx:21` still says "No qualification score … exists in production", but production does hold one:
+- the agent's card of 13.11. shows "Score: 73";
+- Lead read scores 45–80 in `leads` on 13.11.
+
+What changes:
+- the site claims neither a score nor its absence;
+- the false sentence "NuovaSolution no calcula una puntuación" goes (§6, Retire);
+- if the owner wants the score shown, Lead defines it and Copy writes the line.
 
 ### Atiende / Answer
 
@@ -305,6 +312,17 @@ every route, in both views and both languages:
 - "responde a fotos, PDFs y audios", "describe planos", and their EN equivalents;
 - F-0, F-1, F-2, F-3, F-4 (§3) and D-f1–D-f3 (§7);
 - any sentence saying that a reply on WhatsApp uses what a photo, a floor plan, a PDF or a voice note contains.
+
+**Score sentence, added 16.11. (public, false).** Change `components/site/product-views.tsx:54`:
+- **today:** "Motivo: nombró inmueble, zona y presupuesto. NuovaSolution no calcula una puntuación." / "Reason: she named a property, an
+  area and a budget. NuovaSolution computes no score.";
+- **new:** "Motivo: nombró inmueble, zona y presupuesto." / "Reason: she named a property, an area and a budget."
+
+**Why:** production does hold a score. The agent's card of 13.11. shows "Score: 73", and Lead read scores 45, 65, 53 and 80 in `leads`
+on 13.11.
+
+**What stays:** the site still shows no number; the priority with its reason is what it promises. The card side is in
+`mail/COPY_PROD_TEXTS_1116_F12_F16_F18_v1.md` §2.4.
 
 Still allowed: F-2e (a PDF attached to an email). The 3D lines about "tu plano" (`home-1103.ts:356–363`) are about the 3D service, not the
 assistant, and stay.
