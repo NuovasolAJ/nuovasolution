@@ -115,3 +115,48 @@ die Kernzeilen am Handy ≤ 12 Wörter.
 preparación'" und die heute gemessene, saubere öffentliche Zeile „WhatsApp con el número de tu
 agencia: **en preparación**" ziehen in verschiedene Richtungen. Welche gilt, entscheidet der Owner;
 ich prüfe nach seiner Entscheidung, nicht nach der Spur, die zuletzt geschrieben hat.
+
+---
+
+## Nachtrag 16.11. nachmittags: zwei Klarstellungen und ein neuer Punkt für den Owner
+
+**1 Copys Widerspruch ist aufgelöst — ich habe `cf5c116` selbst gelesen.** Dort steht: die
+öffentliche Zeile „WhatsApp con el número de tu agencia: en preparación." wird **als Ganzes
+entfernt**, nicht nur ihr Zusatz; öffentlich gibt es gar keine WhatsApp-Zeile mehr. „Ohne
+en preparación" betrifft **nur E-Mail** (W-2, W-7a).
+**Mein Prüfpunkt lautet damit:** öffentlich **0 Treffer** für „WhatsApp" und „número de tu agencia".
+
+*Nebenbei, als Hinweis zur Arbeitsweise:* Eine dritte Sitzung hatte mir denselben Commit
+**umgekehrt** gemeldet (die Zeile bleibe als Ganzes). Deshalb lese ich fremde Commits selbst, bevor
+ich eine Abnahmebedingung danach ändere.
+
+**2 Neuer Punkt für den Owner: die Grundlage für W-2 ist seit heute weg.**
+
+Copy begründet, dass „Responde en minutos por email." ohne Einschränkung stehen darf, so: der Start
+hängt an A12, und **bis dahin sei die Seite nur eine abgeriegelte Vorschau**. Diese Voraussetzung
+gilt seit heute Vormittag nicht mehr — der Owner hat die Design-Vorschau am 16.11. um 08:40 **ohne
+Zugangscode** freigegeben.
+
+Gemessen, eben:
+
+| | Ergebnis |
+|---|---|
+| Abruf **ohne** Header und **ohne** Cookie auf `…-g6ca6dngo-…/es?view=public` | **200** |
+| `X-Robots-Tag` | `noindex, nofollow` — nicht auffindbar, aber für jeden mit dem Link lesbar |
+| Öffentlicher Wortlaut `/es` | „**Responde en minutos por email.**" · „Llega la consulta **Por email, a cualquier hora**." · „Consultas respondidas **En español, por email, también fuera de horario**." |
+| Öffentlicher Wortlaut `/en` | „**Replies within minutes by email.**" |
+
+Die Zusage steht also **nicht erst beim Start**, sondern heute auf einer erreichbaren Seite. Drei
+Wege stehen offen, und die Wahl ist die des Owners:
+
+1. den Zugangscode auf die Vorschau zurücknehmen, dann greift Copys Begründung wieder,
+2. die E-Mail-Zeile bis A12 gekennzeichnet lassen,
+3. es bewusst so hinnehmen, weil der Link nicht auffindbar und nur an Eingeladene gegeben ist.
+
+**Bis zur Entscheidung melde ich W-2 am Mittwoch weder als Verstoß noch als sauber, sondern als
+„Entscheidung offen".**
+
+**3 Formular, Stand von Copys FM-pv:** das Einwilligungs-Häkchen wird durch eine Infozeile mit Link
+ersetzt, dann sind es drei Pflichtfelder (`agency`, `name`, `email` **oder** `phone`). Ich zähle am
+Mittwoch die Pflichtfelder und melde die Zahl; ob die Infozeile rechtlich genügt, ist die Frage des
+Anwalts (Copys Q-8) und nicht meine Spur. Meine Rückfrage zum Häkchen ist damit erledigt.
