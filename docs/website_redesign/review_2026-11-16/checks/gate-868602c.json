@@ -1,0 +1,195 @@
+{
+ "tag": "868602c",
+ "base": "https://nuovasolution-design-preview-g6ca6dngo-nuovasolajs-projects.vercel.app",
+ "build": {
+  "commit": "868602c407f1a49b55bf5637f6089f7ff7275d71",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_5tcEAmVNJrhG3haJ9Fo3NiC7etcs",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "views": {
+  "public": {
+   "redirects": [
+    "/es/trial 307 -> /es/contact",
+    "/en/trial 307 -> /en/contact"
+   ],
+   "pages": [
+    "/es",
+    "/en",
+    "/es/platform",
+    "/es/packages",
+    "/es/trial",
+    "/es/login",
+    "/es/example-report",
+    "/es/faq",
+    "/es/platform/ai-sales-agent",
+    "/es/platform/lead-intelligence",
+    "/es/platform/crm",
+    "/en/platform",
+    "/en/packages",
+    "/en/trial",
+    "/en/login",
+    "/en/example-report",
+    "/en/faq",
+    "/en/platform/ai-sales-agent",
+    "/en/platform/lead-intelligence",
+    "/en/platform/crm",
+    "/es/legal/privacy",
+    "/en/legal/privacy"
+   ],
+   "expect": {
+    "pilotButton": [
+     "/es",
+     "/en",
+     "/es/platform",
+     "/es/packages",
+     "/es/trial",
+     "/es/login",
+     "/es/example-report",
+     "/es/faq",
+     "/es/platform/ai-sales-agent",
+     "/es/platform/lead-intelligence",
+     "/es/platform/crm",
+     "/en/platform",
+     "/en/packages",
+     "/en/trial",
+     "/en/login",
+     "/en/example-report",
+     "/en/faq",
+     "/en/platform/ai-sales-agent",
+     "/en/platform/lead-intelligence",
+     "/en/platform/crm",
+     "/es/legal/privacy",
+     "/en/legal/privacy"
+    ],
+    "pilotLine14": [
+     "/es",
+     "/es/packages"
+    ]
+   },
+   "forbidden": {
+    "/es": {
+     "ownNumber": [
+      "orma. Datos de ejemplo Ver el informe de ejemplo Planes Qué incluye Respuestas en español por email. WhatsApp con el número de tu agencia: en preparación. Detección del idioma Etiquetas en el buzón Ficha en el CRM integrado, con canal de origen Pr"
+     ]
+    },
+    "/en": {
+     "ownNumber": [
+      "fferently. Example data See the example report Plans What's included Replies in Spanish by email. WhatsApp on your agency's own number: in preparation. Language detection Labels in the mailbox Record in the built-in CRM, with channel of origin "
+     ]
+    },
+    "/es/packages": {
+     "ownNumber": [
+      "io para después te lo explicamos antes de acordar nada. Qué incluye Respuestas en español por email. WhatsApp con el número de tu agencia: en preparación. Detección del idioma Etiquetas en el buzón Ficha en el CRM integrado, con canal de origen Pr"
+     ]
+    },
+    "/es/faq": {
+     "ownNumber": [
+      "está activo y las condiciones. ¿Responde desde el WhatsApp de mi agencia? Todavía no. Para responder desde el número de tu agencia, ese número tiene que darse de alta con Meta a través de nosotros, y ese paso está en preparación. Hoy el asi"
+     ],
+     "secondsNoWa": [
+      "stá en preparación. Hoy el asistente responde por WhatsApp en nuestro propio número: ahí medimos que contesta en segundos. ¿Puedo empezar yo solo, sin hablar con vosotros? Todavía no. El piloto lo preparamos contigo: solicítalo y t"
+     ]
+    },
+    "/en/packages": {
+     "ownNumber": [
+      " the price for afterwards before anything is agreed. What's included Replies in Spanish by email. WhatsApp on your agency's own number: in preparation. Language detection Labels in the mailbox Record in the built-in CRM, with channel of origin "
+     ]
+    },
+    "/en/faq": {
+     "ownNumber": [
+      "firm in writing what is active and the terms. Does it reply from my agency's WhatsApp? Not yet. To reply from your agency's number, that number has to be registered with Meta through us, and that step is in preparation. Today the assistant "
+     ],
+     "secondsNoWa": [
+      "preparation. Today the assistant replies on WhatsApp on our own number, and that is where we measured replies within seconds. Can I start on my own, without talking to you? Not yet. We set the pilot up with you: request it and we will"
+     ]
+    }
+   }
+  },
+  "target": {
+   "redirects": [
+    "/es/trial 307 -> /es/contact",
+    "/en/trial 307 -> /en/contact"
+   ],
+   "pages": [
+    "/es",
+    "/en",
+    "/es/platform",
+    "/es/packages",
+    "/es/trial",
+    "/es/login",
+    "/es/example-report",
+    "/es/faq",
+    "/es/platform/ai-sales-agent",
+    "/es/platform/lead-intelligence",
+    "/es/platform/crm",
+    "/es/platform/daily-assistant",
+    "/en/platform",
+    "/en/packages",
+    "/en/trial",
+    "/en/login",
+    "/en/example-report",
+    "/en/faq",
+    "/en/platform/ai-sales-agent",
+    "/en/platform/lead-intelligence",
+    "/en/platform/crm",
+    "/en/platform/daily-assistant",
+    "/es/legal/privacy",
+    "/es/signup",
+    "/en/legal/privacy",
+    "/en/signup"
+   ],
+   "expect": {
+    "pilotButton": [
+     "/es",
+     "/en",
+     "/es/platform",
+     "/es/packages",
+     "/es/trial",
+     "/es/login",
+     "/es/example-report",
+     "/es/faq",
+     "/es/platform/ai-sales-agent",
+     "/es/platform/lead-intelligence",
+     "/es/platform/crm",
+     "/es/platform/daily-assistant",
+     "/en/platform",
+     "/en/packages",
+     "/en/trial",
+     "/en/login",
+     "/en/example-report",
+     "/en/faq",
+     "/en/platform/ai-sales-agent",
+     "/en/platform/lead-intelligence",
+     "/en/platform/crm",
+     "/en/platform/daily-assistant",
+     "/es/legal/privacy",
+     "/es/signup",
+     "/en/legal/privacy",
+     "/en/signup"
+    ],
+    "pilotLine14": [
+     "/es",
+     "/es/packages"
+    ],
+    "languageLine": [
+     "/es",
+     "/en"
+    ]
+   },
+   "forbidden": {
+    "/es/faq": {
+     "secondsNoWa": [
+      "stá en preparación. Hoy el asistente responde por WhatsApp en nuestro propio número: ahí medimos que contesta en segundos. ¿Puedo empezar yo solo, sin hablar con vosotros? Todavía no. El piloto lo preparamos contigo: solicítalo y t"
+     ]
+    },
+    "/en/faq": {
+     "secondsNoWa": [
+      "preparation. Today the assistant replies on WhatsApp on our own number, and that is where we measured replies within seconds. Can I start on my own, without talking to you? Not yet. We set the pilot up with you: request it and we will"
+     ]
+    }
+   }
+  }
+ }
+}

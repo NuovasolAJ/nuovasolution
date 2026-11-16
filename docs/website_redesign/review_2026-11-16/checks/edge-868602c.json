@@ -1,0 +1,68 @@
+{
+ "1366x768": {
+  "vh": 768,
+  "heroBottom": 712,
+  "heroHeight": 640,
+  "nextTag": "SECTION.pain",
+  "nextTop": 712,
+  "nextVisiblePx": 56,
+  "nextText": "En una  emana de ejemplo, 0 de 259 de 25 con ulta  llegaron con la ofi",
+  "h1Top": 224,
+  "furniturePx": 86
+ },
+ "1366x625": {
+  "vh": 625,
+  "heroBottom": 686,
+  "heroHeight": 614,
+  "nextTag": "SECTION.pain",
+  "nextTop": 686,
+  "nextVisiblePx": 0,
+  "nextText": "En una  emana de ejemplo, 0 de 259 de 25 con ulta  llegaron con la ofi",
+  "h1Top": 199,
+  "furniturePx": 86
+ },
+ "1440x900": {
+  "vh": 900,
+  "heroBottom": 836,
+  "heroHeight": 764,
+  "nextTag": "SECTION.pain",
+  "nextTop": 836,
+  "nextVisiblePx": 64,
+  "nextText": "En una  emana de ejemplo, 0 de 259 de 25 con ulta  llegaron con la ofi",
+  "h1Top": 319,
+  "furniturePx": 86
+ },
+ "1440x757": {
+  "vh": 757,
+  "heroBottom": 701,
+  "heroHeight": 629,
+  "nextTag": "SECTION.pain",
+  "nextTop": 701,
+  "nextVisiblePx": 56,
+  "nextText": "En una  emana de ejemplo, 0 de 259 de 25 con ulta  llegaron con la ofi",
+  "h1Top": 213,
+  "furniturePx": 86
+ },
+ "390x844": {
+  "vh": 844,
+  "heroBottom": 836,
+  "heroHeight": 776,
+  "nextTag": "SECTION.pain",
+  "nextTop": 836,
+  "nextVisiblePx": 8,
+  "nextText": "En una  emana de ejemplo, 0 de 259 de 25 con ulta  llegaron con la ofi",
+  "h1Top": 317,
+  "furniturePx": 144
+ },
+ "390x664": {
+  "vh": 664,
+  "heroBottom": 694,
+  "heroHeight": 634,
+  "nextTag": "SECTION.pain",
+  "nextTop": 694,
+  "nextVisiblePx": 0,
+  "nextText": "En una  emana de ejemplo, 0 de 259 de 25 con ulta  llegaron con la ofi",
+  "h1Top": 175,
+  "furniturePx": 144
+ }
+}
