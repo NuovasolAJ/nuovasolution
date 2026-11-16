@@ -237,6 +237,20 @@ No price and no time for 3D. The FAQ answer on 3D (`faq.ts:346`) keeps its text,
   un mensaje real.", but only once `mailboxConnection` is on; until then the line goes.
 - Gated already by key, no change: `faq.ts:247–250`, `platform-map.ts:47`, `home-1103.ts:489–491`, 1108 V-1/V-3/V-4.
 
+**/platform, flow cards (`es.ts:191`, `:195` and their EN twins; Redesign's find, 16.11.):**
+
+| # | Place | Public ES | Public EN | Target view |
+|---|---|---|---|---|
+| W-7 | `flow.cards.answer` title | Por email | By email | "WhatsApp y email" as today |
+| W-7a | `flow.cards.answer` line | Las consultas por email se responden en español y quedan registradas en su ficha. | Email enquiries are answered in Spanish and recorded on their record. | today's line ("…con el nombre de tu agencia") |
+| W-8 | `flow.cards.setup` title | Tu agencia, preparada contigo | Your agency, set up with you | the same |
+| W-8a | `flow.cards.setup` line | Preparamos contigo los datos de tu agencia, tus datos legales, tu logo y tu equipo con sus roles. | We set up your agency's details, legal details, logo and team with their roles together with you. | the same |
+
+**Why each change:**
+- **W-7a** drops "con el nombre de tu agencia": replying under the agency's name needs its own mailbox or number (1108 V-1 gating).
+- **W-8** replaces "configurada por ti" and "tu progreso se guarda entre sesiones", which describe a self-start. The pilot has none
+  (owner, 16.11.).
+
 **Same question for email (Q-5).** An agency's own mailbox (`mailboxConnection`) is soon too. If a pilot agency cannot yet receive
 automatic email replies in production, W-1 and W-2 need the same treatment. API says what a pilot agency has on day one (footer file Q-5).
 
