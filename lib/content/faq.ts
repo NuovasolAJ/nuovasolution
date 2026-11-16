@@ -1,5 +1,5 @@
 import type { Locale } from "@/lib/i18n/config";
-import { live, withChannels, type ClaimKey, type ClaimView } from "@/lib/claims";
+import { live, offered, withChannels, type ClaimKey, type ClaimView } from "@/lib/claims";
 
 /**
  * The static FAQ (COPY_DELTAS_0930 §3, FAQ_PAGE_COPY; Copy 1105 v3 §21 of 06.11.: every answer written for the target state,
@@ -80,11 +80,14 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         kb: "Q-06",
-        q: { en: "In which language does it answer my customers?", es: "¿En qué idioma responde a mis clientes?" },
+        // Copy 1116 §2 L-faq: L-1 in the target view; the proven line in public until Lead confirms "a tu equipo" (Q-2)
+        q: { en: "Which languages does it reply in?", es: "¿En qué idiomas responde?" },
         a: {
-          en: "In Spanish. In another language nothing is sent automatically.", // COPY_SYNC_1023 W-1
-          es: "En español. En otro idioma no se envía nada automáticamente.",
+          en: "Today it replies automatically in Spanish only. It recognises the language of every enquiry and, if it is not Spanish, passes it to your team. More languages are in preparation.",
+          es: "Hoy responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo. Más idiomas, en preparación.",
         },
+        keys: ["otherLanguages"],
+        pub: { en: "Replies in Spanish. In any other language, the enquiry waits for a person.", es: "Responde en español. Si es otro idioma, la consulta espera a una persona." },
       },
       {
         kb: "Q-07",
@@ -179,27 +182,32 @@ export const faqGroups: FaqGroup[] = [
   },
   {
     id: "trial",
-    title: { en: "Trial, plans and paying", es: "Prueba, planes y pago" },
+    title: { en: "Pilot, plans and price", es: "Piloto, planes y precio" }, // Copy 1113 §6
     titlePub: { en: "Price and how to start", es: "Precio y cómo empezar" }, // Copy 1107 D-20
     titleKeys: ["plans"],
     items: [
       {
         kb: "Q-11",
-        q: { en: "How long is the trial and what does it cost?", es: "¿Cuánto dura la prueba y qué cuesta?" },
+        // Copy 1113 §6 Q-11; the duration (the owner 16.11.: 14 days + 7 after the evaluation) waits for Copy's wording
+        q: { en: "What is the pilot?", es: "¿Qué es el piloto?" },
         a: {
-          en: "14 days of Essential, free and with no payment method. You create the account yourself.",
-          es: "14 días de Essential, gratis y sin método de pago. Creas la cuenta tú mismo.",
+          en: "You use NuovaSolution in your agency for 14 days, free and with our support. At the end we ask for your feedback; if you give it, the pilot runs 7 more days. We ask for no payment method. Before you start, we confirm in writing what is active and the terms.",
+          es: "Usas NuovaSolution en tu agencia durante 14 días, gratis y con nuestro acompañamiento. Al final te pedimos tu opinión; si nos la das, el piloto sigue 7 días más. No pedimos método de pago. Antes de empezar te confirmamos por escrito qué está activo y las condiciones.",
         },
-        keys: ["trial", "publicSignup"],
+      },
+      {
+        kb: "Q-11b",
+        q: { en: "Can I start on my own, without talking to you?", es: "¿Puedo empezar yo solo, sin hablar con vosotros?" },
+        a: { en: "Not yet. We set the pilot up with you: request it and we will get in touch to start.", es: "Todavía no. El piloto lo preparamos contigo: solicítalo y te contactamos para empezar." },
       },
       {
         kb: "Q-12",
-        q: { en: "What happens after the 14 days?", es: "¿Qué pasa después de los 14 días?" },
+        // Copy 1113 §6 Q-12
+        q: { en: "What happens when the pilot ends?", es: "¿Qué pasa cuando termina el piloto?" },
         a: {
-          en: "Your account and your data stay. The paid parts pause until you choose a plan, and you can still log in.",
-          es: "Tu cuenta y tus datos se quedan. Las partes de pago se pausan hasta que elijas un plan, y puedes seguir entrando.",
+          en: "You decide whether to continue. We explain the price in the demo, before anything is agreed. What happens to your data is set in the written agreement.",
+          es: "Decides si sigues. El precio te lo explicamos en la demo, antes de acordar nada. Qué pasa con tus datos lo fija el acuerdo por escrito.",
         },
-        keys: ["trial", "publicSignup"],
       },
       {
         kb: "Q-13",
@@ -366,7 +374,7 @@ export function faqGroupsFor(locale: Locale, view: ClaimView): { id: string; tit
       title: (g.titlePub && g.titleKeys && !live(g.titleKeys, view) ? g.titlePub : g.title)[locale],
       items: g.items
         .map((it) => {
-          const on = !it.keys || live(it.keys, view);
+          const on = !it.keys || offered(it.keys, view); // E2 (16.11.): a held-back function is not promised in the FAQ either
           const a = on ? it.a : it.pub ?? null;
           const q = it.qPub && it.qKeys && !live(it.qKeys, view) ? it.qPub : it.q;
           return a ? { kb: it.kb, q: q[locale], a: withChannels(a[locale], locale, view) } : null;

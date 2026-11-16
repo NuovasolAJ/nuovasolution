@@ -89,7 +89,7 @@ export interface DemoChannel {
 export const demoWords = {
   pick: { es: "Elige un canal", en: "Choose a channel" },
   /** Copy 1105 v3 §16: the invitation over the channel tabs (replaces "Elige un canal"; no tabs and no invitation with one channel). */
-  invite: { es: "Elige un canal y mira cómo responde.", en: "Choose a channel and see how it replies." },
+  invite: { es: "Pulsa un canal y mira cómo responde.", en: "Tap a channel and see how it replies." }, // Copy 1113 §7 D-p (16.11.)
   /** The tabs change on their own until the first click (owner point 4); the bar on the active tab shows the time to the next one. */
   autoLabel: { es: "Siguiente canal en unos segundos; un clic lo detiene", en: "Next channel in a few seconds; one click stops it" },
   replay: { es: "Repetir demo", en: "Replay demo" },

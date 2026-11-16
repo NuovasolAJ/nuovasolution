@@ -2,7 +2,7 @@ import { ArrowRight, Bell, Box, Check, ClipboardList, Database, Flag, Globe, Ins
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
-import { entryAction, planCell, planCellWords, planRowShown, plansTableShown, type ClaimView, type PlanCode } from "@/lib/claims";
+import { claimWords, entryAction, planCell, planCellWords, planRowShown, plansTableShown, type ClaimView, type PlanCode } from "@/lib/claims";
 import { Rise } from "@/components/ui/motion";
 import { cn } from "@/lib/utils";
 
@@ -23,6 +23,8 @@ const ICONS: Record<string, LucideIcon> = {
 
 function Cell({ status, locale, compact }: { status: "included" | "excluded" | "soon" | "order"; locale: Locale; compact?: boolean }) {
   const on = status === "included";
+  // 16.11. (the owner's decision 2, Copy 1116 §7.1): a separately booked service shows the word "Opcional" in every column
+  if (status === "order") return <span className={cn("plan-cell plan-cell-word", compact && "plan-cell-compact")} data-plan-cell={status}>{planCellWords.optional[locale]}</span>;
   return (
     <span className={cn("plan-cell", compact && "plan-cell-compact", on ? "is-on" : "is-off")} data-plan-cell={status} role="img" aria-label={planCellWords[on ? "in" : "out"][locale]}>
       {on ? <Check size={16} strokeWidth={3} aria-hidden="true" /> : <Minus size={14} strokeWidth={2} aria-hidden="true" />}
@@ -38,7 +40,8 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
   const who = w.lines(locale, view);
   const groups = l(w.groups);
   const entry = entryAction(locale, view);
-  const hi = (code: PlanCode) => code === w.highlight.plan;
+  // 16.11. (the owner's point 11): no lifted column, no wash, no "Recomendado" until the owner names for whom Growth is recommended
+  const hi = (_code: PlanCode) => false;
   const rows = w.rows.filter((r) => planRowShown(r.key, view));
   const groupRows = (gi: number) => rows.filter((r) => r.g === gi);
   const name = (r: (typeof w.rows)[number]) => w.rowName(r.name, locale, view);
@@ -89,7 +92,6 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
               <div className="plans-cell plans-cell-name" role="columnheader" />
               {names.map((n, i) => (
                 <div key={n} className={cn("plans-cell plans-cell-plan", hi(codes[i]) && "is-highlight")} role="columnheader" data-plan={codes[i]}>
-                  {hi(codes[i]) && <span className="plans-reco" data-plan-reco>{l(w.recommended)}</span>}
                   <span className="plans-name">{n}</span>
                   <span className="plans-who">{who[i]}</span>
                 </div>
@@ -117,7 +119,7 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
                 const a = action(code);
                 return (
                   <div key={code} className={cn("plans-cell plans-cell-cta", hi(code) && "is-highlight")} role="cell">
-                    <a href={a.href} className={cn("plans-cta", a.main && "plans-cta-main")} data-plan-cta={code}>{a.label}<ArrowRight size={15} strokeWidth={2.2} aria-hidden="true" /></a>
+                    <a href={a.href} className={cn("plans-cta", a.main && "plans-cta-main")} data-plan-cta={code} data-pilot-cta="plan">{a.label}<ArrowRight size={15} strokeWidth={2.2} aria-hidden="true" /></a>
                   </div>
                 );
               })}
@@ -129,7 +131,6 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
               const a = action(codes[pi]);
               return (
                 <li key={n} className={cn("plans-card", hi(codes[pi]) && "is-highlight")} data-plan-card={codes[pi]}>
-                  {hi(codes[pi]) && <p className="plans-reco" data-plan-reco>{l(w.recommended)}</p>}
                   <p className="plans-name">{n}</p>
                   <p className="plans-who">{who[pi]}</p>
                   {groups.map((g, gi) => groupRows(gi).length === 0 ? null : (
@@ -150,12 +151,13 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
                       </ul>
                     </div>
                   ))}
-                  <a href={a.href} className={cn("plans-cta", a.main && "plans-cta-main")}>{a.label}<ArrowRight size={15} strokeWidth={2.2} aria-hidden="true" /></a>
+                  <a href={a.href} className={cn("plans-cta", a.main && "plans-cta-main")} data-pilot-cta="plan-card">{a.label}<ArrowRight size={15} strokeWidth={2.2} aria-hidden="true" /></a>
                 </li>
               );
             })}
           </ol>
-          <p className="plans-legend t-body-s text-text-muted"><span className="plan-cell is-on" aria-hidden="true"><Check size={14} strokeWidth={3} /></span>{l(w.legend)}</p>
+          {/* 16.11. (the owner's point 11): a short legend from the register's own words */}
+          <p className="plans-legend t-body-s text-text-muted" data-plans-legend><span className="plan-cell is-on" aria-hidden="true"><Check size={14} strokeWidth={3} /></span>{claimWords.included[locale]}<span className="plans-legend-sep" aria-hidden="true">·</span><span className="plan-cell is-off" aria-hidden="true"><Minus size={14} strokeWidth={2} /></span>{claimWords.excluded[locale]}<span className="plans-legend-sep" aria-hidden="true">·</span><span className="plan-cell plan-cell-word" aria-hidden="true">{planCellWords.optional[locale]}</span>{l(w.optionalNote)}</p>
         </Rise>
       </div>
     </section>

@@ -52,7 +52,7 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
                 <p className="entry-line" data-entry-line>{l(e.line)}</p>
                 {live("mailboxConnection", view) && <p className="entry-small">{l(e.small)}</p>}
                 <p className="trust-entry">
-                  <Link href={p(entry.href)} className="trust-entry-cta" data-trust-cta={entry.kind}>{entry.label}<ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" /></Link>
+                  <Link href={p(entry.href)} className="trust-entry-cta" data-trust-cta={entry.kind} data-pilot-cta="entry">{entry.label}<ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" /></Link>
                 </p>
               </div>
               <ol className="trust-lines">
@@ -96,8 +96,9 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
             <div className="closing-ctas">
               {/* Copy 1108 H-1: the close's main action is the demo request */}
               {/* 13.11.: one button, one offer (Copy 1113 §0 B-1); the second button would repeat it */}
-              <Link href={p(entry.href)} className="closing-cta-main lift" data-closing-main="pilot">{entry.label}</Link>
+              <Link href={p(entry.href)} className="closing-cta-main lift" data-closing-main="pilot" data-pilot-cta="close">{entry.label}</Link>
             </div>
+            <p className="closing-small" data-closing-small>{l(c.small)}</p>
           </Rise>
         </div>
       </section>

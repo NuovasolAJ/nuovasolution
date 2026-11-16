@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Clock, Eye, Trophy } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
@@ -29,8 +29,7 @@ export function ReportStage({ locale, view }: { locale: Locale; view: ClaimView 
   const trend = live("reportTrend", view);
   const channels = w.channels(locale, view);
   const chMax = Math.max(1, ...channels.map((c) => c.v));
-  const insights = w.insights(locale, view);
-  const insightIcons = [Trophy, Clock, Eye];
+  const cards = w.cards(locale, view); // Copy 1113 §4: the three insight cards, per view
   const grow = (i: number) => (reduce ? {} : { initial: { scaleY: 0 }, animate: seen ? { scaleY: 1 } : { scaleY: 0 }, transition: { delay: 0.15 + i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } });
 
   return (
@@ -49,22 +48,17 @@ export function ReportStage({ locale, view }: { locale: Locale; view: ClaimView 
               <span className="rep-example" data-report-example>{l(w.example)}</span>
             </div>
 
-            {/* the insights (reportTrend) */}
-            {trend && (
-              <ul className="rep-insights" data-report-insights>
-                {insights.map((it, i) => {
-                  const Icon = insightIcons[i];
-                  return (
-                    <m.li key={it.k} className="rep-insight" data-report-insight={i + 1} {...(reduce ? {} : { initial: { opacity: 0, y: 10 }, animate: seen ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }, transition: { delay: 0.1 + i * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } })}>
-                      <span className="rep-insight-icon" aria-hidden="true"><Icon size={16} strokeWidth={2} /></span>
-                      <span className="rep-insight-k">{it.k}</span>
-                      <span className="rep-insight-v tnum">{it.v}</span>
-                      <span className="rep-insight-d">{it.d}</span>
-                    </m.li>
-                  );
-                })}
-              </ul>
-            )}
+            {/* Copy 1113 §4: three insight cards — figure, insight, next step (both views, each view its own cards) */}
+            <ul className="rep-cards" data-report-cards={cards.length}>
+              {cards.map((c, i) => (
+                <m.li key={c.figure} className="rep-card" data-report-card={i + 1} {...(reduce ? {} : { initial: { opacity: 0, y: 10 }, animate: seen ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }, transition: { delay: 0.1 + i * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] } })}>
+                  <p className="rep-card-figure tnum">{c.figure}</p>
+                  <p className="rep-card-insight">{c.insight}</p>
+                  <p className="rep-card-next"><span className="rep-card-next-k">{l(w.cardsNext)}</span>{c.next}</p>
+                  {c.note && <p className="rep-card-note">{c.note}</p>}
+                </m.li>
+              ))}
+            </ul>
 
             <div className={cn("rep-grid", !trend && "rep-grid-basic")}>
               {/* the trend (reportTrend) */}

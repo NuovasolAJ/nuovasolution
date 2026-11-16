@@ -6,6 +6,7 @@ import { home1103 } from "@/lib/content/home-1103";
 import type { ClaimView } from "@/lib/claims";
 import { HeroBenefits, HeroImage, HeroScrollHint } from "./hero-image";
 import { HeroDemo } from "./hero-demo";
+import { PainBand } from "./pain-band";
 
 /**
  * The hero (the owner's orders of 03.11. point 1, 05.11. point 2 + "HERO = A", 06.11. points 2 and 3 + FRAGE D; Copy 1105 v3 §2 and
@@ -47,15 +48,17 @@ export function Hero({ locale, view }: { locale: Locale; view: ClaimView }) {
             {/* Copy 1108 §1: one action in the hero (H-1 → /contact until a real booking page exists), the pilot line under it (H-3); the WhatsApp
                 action (H-2) waits for the agency's own number (the owner, 09.11.); the trial and the access lines leave the hero */}
             <div className="hf-ctas">
-              <a href={p("/contact")} className="hf-cta-main lift" data-hero-cta="contact">{l(w.ctaDemo)}<ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" /></a>
+              <a href={p("/contact")} className="hf-cta-main lift" data-hero-cta="contact" data-pilot-cta="hero">{l(w.ctaDemo)}<ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" /></a>
             </div>
             <p className="hf-access" data-hero-pilot>{l(w.pilotLine)}</p>
+            <p className="hf-access hf-access-small m-hide" data-hero-pilot-2>{l(w.pilotLine2)}</p>
           </div>
           <HeroBenefits benefits={w.chips(view).map((c) => c[locale])} />
           <HeroScrollHint label={l(w.scroll)} />
         </div>
       </section>
-      {/* The product card rises into the picture's lower edge: the transition from the house to the message and the record. */}
+      {/* Copy 1113 §1: the pain line as its own band under the picture (the master prompt §6.1); the demonstration rises into the band */}
+      <PainBand locale={locale} />
       <div className="container-default hero-demo-wrap" data-hero-demo-wrap>
         <HeroDemo locale={locale} view={view} />
       </div>

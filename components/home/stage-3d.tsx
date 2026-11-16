@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
-import { ArrowRight, Link2, MessageCircleQuestion, Play, Upload } from "lucide-react";
+import { ArrowRight, Box, Link2, MessageCircleQuestion, Play, Upload } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
@@ -77,7 +77,7 @@ export function Stage3d({ locale }: { locale: Locale }) {
   const [filmOn, setFilmOn] = useState(false);
   const [filmReady, setFilmReady] = useState(false);
   const video = useRef<HTMLVideoElement>(null);
-  const pathIcons = [Upload, MessageCircleQuestion, Link2];
+  const pathIcons = [Upload, MessageCircleQuestion, Box, Link2]; // Copy 1116 §7.2: four steps
 
   // the wide window: the step from the scroll position (the pin holds from the track's top, each step owns one segment)
   useEffect(() => {
@@ -153,7 +153,6 @@ export function Stage3d({ locale }: { locale: Locale }) {
                     ) : (
                       <TurnClip label={l(w.modelFilm)} posterAlt={l(w.modelAlt)} />
                     )}
-                    <span className="m3d-caption">{l(w.modelLine)}</span>
                   </m.div>
                 )}
                 {step === 2 && (
@@ -171,13 +170,12 @@ export function Stage3d({ locale }: { locale: Locale }) {
                     {!filmReady && (
                       <button type="button" className="m3d-play" onClick={playFilm} disabled={filmOn} data-model3d-play aria-busy={filmOn}>
                         <span className="m3d-play-mark" aria-hidden="true">{filmOn ? <span className="busy-ring" /> : <Play size={20} strokeWidth={2.2} />}</span>
-                        <span className="m3d-play-words"><span className="m3d-play-title">{filmOn ? l(w.loading) : l(w.playFilm)}</span><span className="m3d-play-line">{l(w.filmLine)}</span></span>
+                        <span className="m3d-play-words"><span className="m3d-play-title">{filmOn ? l(w.loading) : l(w.playFilm)}</span></span>
                       </button>
                     )}
                   </m.div>
                 )}
               </AnimatePresence>
-              <span className="m3d-mark" data-model3d-mark>{l(w.mark)}</span>
             </div>
             <ol className="m3d-steps" role="tablist" aria-label={l(w.h2)}>
               {steps.map((s, i) => (
@@ -189,6 +187,11 @@ export function Stage3d({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ol>
+            {/* 16.11. (the owner's point 2 and the master prompt §6.6): nothing written on the picture — the step's line and the mark stand under the steps */}
+            <p className="m3d-under" data-model3d-under>
+              <span className="m3d-under-line" data-model3d-caption>{step === 1 ? l(w.modelLine) : step === 3 ? l(w.filmLine) : step === 2 ? l(w.pairLabel) : l(w.planAlt)}</span>
+              <span className="m3d-mark" data-model3d-mark>{l(w.mark)}</span>
+            </p>
           </div>
         </div>
       </div>
@@ -197,7 +200,6 @@ export function Stage3d({ locale }: { locale: Locale }) {
       <div className="container-default">
         <Rise className="m3d-path" delay={0.05} y={16}>
           <p className="m3d-path-title">{l(w.pathTitle)}</p>
-          <p className="m3d-path-line" data-model3d-path-line>{l(w.pathLine)}</p>
           <ol className="m3d-path-run" data-model3d-path>
             {l(w.path).map((s, i) => {
               const Icon = pathIcons[i];
@@ -205,12 +207,14 @@ export function Stage3d({ locale }: { locale: Locale }) {
                 <li key={s} className="m3d-path-step" data-model3d-path-step={i + 1}>
                   <span className="m3d-path-node" aria-hidden="true"><Icon size={18} strokeWidth={1.9} /></span>
                   <span className="m3d-path-no tnum" aria-hidden="true">{i + 1}</span>
-                  <span className="m3d-path-words">{s}</span>
+                  <span className="m3d-path-words"><span className="m3d-path-name">{s}</span><span className="m3d-path-text">{l(w.pathLines)[i]}</span></span>
                 </li>
               );
             })}
           </ol>
-          <a href={localePath(locale, "/contact")} className="m3d-cta" data-model3d-cta>{l(w.cta)}<ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" /></a>
+          <p className="m3d-path-line" data-model3d-path-line>{l(w.pathLine)}</p>
+          {/* the 3D interest is preselected on the request (the owner's point 10) */}
+          <a href={localePath(locale, "/contact?interes=3d")} className="m3d-cta" data-model3d-cta>{l(w.cta)}<ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" /></a>
         </Rise>
       </div>
     </section>

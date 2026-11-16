@@ -15,8 +15,10 @@ export function Behind({ locale }: { locale: Locale }) {
   const w = home1103.behind;
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const name = process.env.NUOVA_E14_NAME?.trim() || null;
+  // the company phone number (the owner's point 14 of 13.11.: only from the environment, shown as a number, no WhatsApp link)
+  const phone = process.env.NUOVA_E14_PHONE?.trim() || null;
   return (
-    <section id="behind" aria-labelledby="behind-h" className="behind" data-behind data-behind-name={name ? "set" : "unset"}>
+    <section id="behind" aria-labelledby="behind-h" className="behind" data-behind data-behind-name={name ? "set" : "unset"} data-behind-phone={phone ? "set" : "unset"}>
       <div className="container-default behind-grid">
         <Rise className="behind-words">
           <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
@@ -27,10 +29,15 @@ export function Behind({ locale }: { locale: Locale }) {
         <Rise className="behind-facts" delay={0.1}>
           <ul className="behind-lines">
             {w.lines.map((line, i) => (
-              <li key={i} className="behind-line" data-behind-line={i + 1}><span className="behind-check" aria-hidden="true"><Check size={14} strokeWidth={2.6} /></span>{l(line)}</li>
+              <li key={i} className="behind-line" data-behind-line={i + 1}><span className="behind-check" aria-hidden="true"><Check size={14} strokeWidth={2.6} /></span><span>{l(line)}</span></li>
             ))}
           </ul>
-          <Link href={localePath(locale, "/contact")} className="behind-cta lift" data-behind-cta>{l(w.cta)}<ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" /></Link>
+          {/* 16.11. (the owner's point 2): the e-mail and the phone number as their own rows, never squeezed beside a sentence */}
+          <dl className="behind-ways" data-behind-ways>
+            <div className="behind-way"><dt className="behind-way-label">{l(w.emailLabel)}</dt><dd><a href="mailto:antonio@nuovasolution.com" className="behind-way-value" data-behind-email>antonio@nuovasolution.com</a></dd></div>
+            {phone && <div className="behind-way"><dt className="behind-way-label">{l(w.phoneLabel)}</dt><dd><a href={`tel:${phone.replace(/\s+/g, "")}`} className="behind-way-value tnum" data-behind-phone>{phone}</a></dd></div>}
+          </dl>
+          <Link href={localePath(locale, "/contact")} className="behind-cta lift" data-behind-cta data-pilot-cta="behind">{l(w.cta)}<ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" /></Link>
         </Rise>
       </div>
     </section>

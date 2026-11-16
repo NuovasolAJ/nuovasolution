@@ -7,7 +7,7 @@ import { resolveSwitches } from "@/lib/view";
 import { Motion } from "@/components/ui/motion";
 import { PreviewSwitch } from "@/components/site/preview-switch";
 import { Hero } from "@/components/home/hero";
-import { FlowRibbon } from "@/components/home/flow-ribbon";
+import { FlowStory } from "@/components/home/flow-story";
 import { Chapters } from "@/components/home/chapters";
 import { ReportStage } from "@/components/home/report-stage";
 import { Stage3d } from "@/components/home/stage-3d";
@@ -48,7 +48,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
       {!s.live && <PreviewSwitch locale={locale} switches={s} />}
       <Motion>
         <Hero locale={locale} view={s.view} />
-        <FlowRibbon locale={locale} view={s.view} />
+        <FlowStory locale={locale} view={s.view} />
         <Chapters locale={locale} view={s.view} />
         <ReportStage locale={locale} view={s.view} />
         {live("model3d", s.view) && <Stage3d locale={locale} />}

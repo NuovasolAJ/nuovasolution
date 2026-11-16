@@ -31,7 +31,11 @@ export function Chapters({ locale, view }: { locale: Locale; view: ClaimView }) 
   const reduce = useReducedMotion();
   const scenesOf = (c: Chapter) => items.filter((it) => it.chapter === c.key);
   const line = (it: (typeof items)[number]) => withChannels(l(it.line(view)), locale, view);
-  const firstSentence = (s: string) => s.split(/(?<=[.!?])\s/)[0];
+  // Copy 1113 §2 (16.11.): one sentence and up to four points per area; a point with an open proof leaves the public view
+  const copy = home1103.chapterCopy;
+  const cardLine = (c: Chapter) => { const k = copy[c.key]; return view === "public" && "linePublic" in k && k.linePublic ? l(k.linePublic) : l(k.line); };
+  type Pt = { t: Record<Locale, string>; pub: "same" | "hide" | "text"; keys?: Parameters<typeof live>[0]; pubText?: Record<Locale, string> };
+  const cardPoints = (c: Chapter) => (copy[c.key].points as Pt[]).filter((pt) => view === "target" || pt.pub !== "hide" || (pt.keys && live(pt.keys, view))).map((pt) => (view === "public" && pt.pub === "text" && pt.pubText && !(pt.keys && live(pt.keys, view)) ? l(pt.pubText) : l(pt.t)));
 
   return (
     <section id="functions" aria-labelledby="fn-h" className="ch" data-functions data-chapters data-fn-count={items.length} data-fn-view={view} data-chapter-open={open ?? "none"}>
@@ -50,10 +54,10 @@ export function Chapters({ locale, view }: { locale: Locale; view: ClaimView }) 
               <article key={c.key} className={cn("ch-card", isOpen && "is-open")} data-chapter={c.key} aria-labelledby={`ch-${c.key}`}>
                 <div className="ch-visual" aria-hidden="true"><div className="ch-visual-inner"><Surface k={scenes[0].key as SceneKey} locale={locale} view={view} /></div></div>
                 <h3 id={`ch-${c.key}`} className="ch-name">{l(c.name)}</h3>
-                <p className="ch-line">{firstSentence(l(c.line(view)))}</p>
-                <ul className="ch-points">
-                  {scenes.slice(0, 2).map((s) => (
-                    <li key={s.key} className="ch-point"><span className="ch-point-mark" aria-hidden="true"><Check size={13} strokeWidth={2.8} /></span>{l(s.title)}</li>
+                <p className="ch-line">{cardLine(c)}</p>
+                <ul className="ch-points" data-chapter-points={cardPoints(c).length}>
+                  {cardPoints(c).map((pt) => (
+                    <li key={pt} className="ch-point"><span className="ch-point-mark" aria-hidden="true"><Check size={13} strokeWidth={2.8} /></span><span>{pt}</span></li>
                   ))}
                 </ul>
                 <button type="button" className="ch-more" aria-expanded={isOpen} aria-controls={`ch-detail-${c.key}`} onClick={() => setOpen(isOpen ? null : c.key)} data-chapter-open-button={c.key}>

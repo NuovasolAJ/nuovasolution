@@ -14,7 +14,7 @@ export function switchQuery(s: PreviewSwitches, patch: Partial<Pick<PreviewSwitc
   const n = { ...s, ...patch };
   const q = new URLSearchParams();
   if (n.view === "public") q.set("view", "public");
-  if (n.display !== "inter") q.set("display", n.display);
+  if (n.display !== "fraunces") q.set("display", n.display);
   const str = q.toString();
   return str ? `?${str}` : "";
 }

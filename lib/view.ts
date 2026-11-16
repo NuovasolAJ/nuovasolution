@@ -13,13 +13,13 @@ export { switchQuery, type DisplayFace, type Palette, type PreviewSwitches } fro
  */
 export function resolveSwitches(): PreviewSwitches {
   const live = integrationMode() === "live";
-  if (live) return { view: "public", display: "inter", live };
+  if (live) return { view: "public", display: "fraunces", live };
   const h = headers();
   const v = h.get("x-nuova-view");
   const d = h.get("x-nuova-display");
   return {
     view: v === "public" ? "public" : "target",
-    display: d === "fraunces" ? "fraunces" : "inter",
+    display: d === "inter" ? "inter" : "fraunces", // the owner's P-11 of 16.11.: Fraunces for H1/H2
     live,
   };
 }

@@ -19,8 +19,12 @@ export function CompareBlock({ locale, view, id = "cmp" }: { locale: Locale; vie
   const w = home1103.compare;
   const reduce = useReducedMotion();
   const [mode, setMode] = useState<CompareMode>("with");
+  // 16.11. (the owner's point 9): the rows that differ first; four in sight, the shared starting figures behind one control
+  const [all, setAll] = useState(false);
   if (!live(w.keys, view) || !(live("replyWhatsapp", view) || live("replyEmail", view))) return null;
-  const rows = w.rows(locale, view);
+  const allRows = w.rows(locale, view);
+  const ordered = [...allRows.filter((r) => r.without !== r.with), ...allRows.filter((r) => r.without === r.with)];
+  const rows = all ? ordered : ordered.slice(0, 4);
   const close = mode === "with" ? l(w.closeWith(view)) : l(w.closeWithout);
 
   return (
@@ -46,6 +50,9 @@ export function CompareBlock({ locale, view, id = "cmp" }: { locale: Locale; vie
           </div>
         ))}
       </dl>
+      {ordered.length > 4 && (
+        <button type="button" className="cmpb-more" aria-expanded={all} onClick={() => setAll((v) => !v)} data-compare-more>{all ? l(w.less) : l(w.more)}</button>
+      )}
       <div className="cmpb-close" aria-live="polite">
         <AnimatePresence mode="sync" initial={false}>
           <m.p key={mode} className="cmpb-close-text" initial={reduce ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, transition: { duration: 0.16 } }} transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }} data-compare-close={mode}>{close}</m.p>

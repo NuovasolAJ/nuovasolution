@@ -404,8 +404,8 @@ export const en = {
     h1Neutral: "Start with 14 days of trial",
     leadNeutral: "14 days, no payment method. After that you choose a plan with us, and we tell you the price for your agency before anything is agreed.",
     // COPY_DELTAS_0929 D-20, D-21: the Essential wording is released (PRODUCT_TRUTH_TABLE_v1 §G).
-    h1: "What NuovaSolution includes", // Copy 1105 v3 V-34 (the public wording; the target state shows h1Neutral)
-    lead: "Access by invitation. We tell you the price for your agency before anything is agreed.", // Copy 1105 v3 V-35
+    h1: "Start with a free 14-day pilot", // Copy 1116 §1.2
+    lead: "Every plan starts the same way: a 14-day pilot, free and with our support, and 7 more days if you give us your feedback. We explain the price for afterwards before anything is agreed.", // Copy 1116 §1.2
     plansEyebrow: "The plans",
     included: "Included",
     baselineHeading: "What every plan includes",

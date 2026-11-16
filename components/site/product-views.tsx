@@ -51,7 +51,7 @@ const T = {
   priority: { es: "Prioridad", en: "Priority" },
   priorityValue: { es: "Consulta importante · aviso por email a tu equipo", en: "Important enquiry · e-mail alert to your team" },
   priorityValuePublic: { es: "Consulta importante", en: "Important enquiry" }, // Copy 1107 D-3 (A-23: no alert claim while the key is off)
-  priorityWhy: { es: "Motivo: nombró inmueble, zona y presupuesto. NuovaSolution no calcula una puntuación.", en: "Reason: she named a property, an area and a budget. NuovaSolution computes no score." },
+  priorityWhy: { es: "Motivo: nombró inmueble, zona y presupuesto.", en: "Reason: she named a property, an area and a budget." }, // Copy 1116: the score sentence was false and leaves
   nextStep: { es: "Siguiente paso", en: "Next step" },
   nextValue: { es: "Una persona de tu equipo le propone la visita; NuovaSolution ya tiene la zona, el presupuesto, el uso y el plazo en la ficha.", en: "A person on your team proposes the viewing; NuovaSolution already has the area, the budget, the use and the timing on the record." },
   who: { es: "Laura Serrano · compradora · escribe en español", en: "Laura Serrano · buyer · writes in Spanish" },

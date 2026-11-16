@@ -26,9 +26,10 @@ export const claimWords: Record<ClaimState, L> = {
   order: { es: "Por encargo", en: "To order" },
 };
 /** The plans table's cell words for screen readers (Copy 1107 D-2: no status word, not even in an aria-label). */
-export const planCellWords: Record<"in" | "out", L> = {
+export const planCellWords: Record<"in" | "out" | "optional", L> = {
   in: { es: "En este plan", en: "In this plan" },
   out: { es: "No en este plan", en: "Not in this plan" },
+  optional: { es: "Opcional", en: "Optional" }, // the owner's word of 16.11. for the separately bookable 3D service (WORKING until Copy confirms)
 };
 
 /** The functions, each with its state today (Copy 1105 v3 §1 and §15, key in brackets). Keys are stable; surfaces reference them. */
@@ -89,9 +90,13 @@ const CHANNELS: { key: ClaimKey; es: string; en: string }[] = [
   { key: "phoneAssistant", es: "teléfono", en: "phone" },
   { key: "adsLeads", es: "portales y anuncios", en: "portals and ads" },
 ];
-export const channelKeys = (view: ClaimView): ClaimKey[] => CHANNELS.filter((c) => live(c.key, view)).map((c) => c.key);
-export const channelList = (locale: Locale, view: ClaimView): string => {
-  const names = CHANNELS.filter((c) => live(c.key, view)).map((c) => c[locale]);
+/** The owner's E2 of 07.11., extended 16.11. (RV6 F22 b): a held-back function is not promised in either view — not in the plans, not in the channel list, not in the FAQ. */
+export const offered = (keys: ClaimKey | ClaimKey[], view: ClaimView): boolean => live(keys, view) && (Array.isArray(keys) ? keys : [keys]).every((k) => !HELD_BACK.includes(k) || isIncluded(k));
+const HELD_BACK: ClaimKey[] = ["whatsappOwnNumber", "phoneAssistant", "instagram"];
+/** Copy 1116 (RV6 F22 b): the channel list ⟦canales⟧ names only the channels that are included today, in both views ("por WhatsApp y email"). */
+export const channelKeys = (_view: ClaimView): ClaimKey[] => CHANNELS.filter((c) => isIncluded(c.key)).map((c) => c.key);
+export const channelList = (locale: Locale, _view: ClaimView): string => {
+  const names = CHANNELS.filter((c) => isIncluded(c.key)).map((c) => c[locale]);
   if (names.length <= 1) return names[0] ?? "";
   return `${names.slice(0, -1).join(", ")} ${locale === "es" ? "y" : "and"} ${names[names.length - 1]}`;
 };
@@ -128,13 +133,14 @@ export const planRows: { key: ClaimKey; plans: PlanCode[] }[] = [
 
 /** One cell of the plans table in a view: "included" where the plan carries the row (the target view treats every row as live), "excluded" where it does not. */
 export const planCell = (key: ClaimKey, plan: PlanCode, view: ClaimView = "target"): ClaimState => {
+  // the owner's decision of 16.11.: 3D is a separately bookable service — "Opcional" in all three columns, never a tick
+  if (key === "model3d") return "order";
   const carried = planRows.find((r) => r.key === key)?.plans.includes(plan) ?? false;
   if (!carried) return "excluded";
   return view === "target" ? "included" : claims[key];
 };
 /** The owner's E2 of 07.11.: no tick for the agency's own WhatsApp number, the phone assistant or Instagram while they are off — in either view. */
-const ROWS_ONLY_WHEN_ON: ClaimKey[] = ["whatsappOwnNumber", "phoneAssistant", "instagram"];
-export const planRowShown = (key: ClaimKey, view: ClaimView): boolean => live(key, view) && (!ROWS_ONLY_WHEN_ON.includes(key) || isIncluded(key));
+export const planRowShown = (key: ClaimKey, view: ClaimView): boolean => offered(key, view);
 /** Copy §20 P-5: the comparison table stands only with `plans` on; otherwise one block "Qué incluye" with the rows that are on. */
 export const plansTableShown = (view: ClaimView): boolean => live("plans", view);
 
@@ -145,10 +151,12 @@ export const plansTableShown = (view: ClaimView): boolean => live("plans", view)
  * to /contact. The keys `trial` and `publicSignup` stay in the register (the app's own account state follows them), but no public
  * surface hangs an offer on them any more. WORKING: Copy's working title until Copy confirms the final wording (Mon 16.11. 12:00).
  */
-export const pilotCta: { label: L; short: L; line: L; nav: L } = {
+export const pilotCta: { label: L; short: L; line: L; line2: L; nav: L } = {
   label: { es: "Solicita tu piloto gratuito", en: "Request your free pilot" },
   short: { es: "Piloto gratuito", en: "Free pilot" },
-  line: { es: "Tu agencia usa NuovaSolution sin pagar, con nuestro acompañamiento. Las condiciones, por escrito.", en: "Your agency uses NuovaSolution free of charge, with our support. The terms in writing." },
+  // Copy 1116 §1.1 B-2 (the owner's sentence) and B-2b
+  line: { es: "Piloto gratuito de 14 días, con nuestro acompañamiento. Si nos das tu opinión, 7 días más.", en: "A free 14-day pilot, with our support. Give us your feedback and get 7 more days." },
+  line2: { es: "Sin método de pago. Las condiciones, por escrito.", en: "No payment method. The terms in writing." },
   nav: { es: "Piloto", en: "Pilot" },
 };
 /** Kept for the pages that still read it (the app's words); no offer hangs on it any more. */

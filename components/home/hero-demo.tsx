@@ -4,7 +4,7 @@ import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, ty
 import { ArrowRight, Check, ChevronDown, Inbox, Mail, Mic, PanelsTopLeft, Phone, PhoneOff, RotateCcw, Send, Star } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
-import { demoChannels, demoWords, endPhase, recordStart, runLength, type DemoChannel, type DemoChannelKey } from "@/lib/content/home-demo";
+import { demoChannels, demoWords, endPhase, recordStart, type DemoChannel, type DemoChannelKey } from "@/lib/content/home-demo";
 import { shows, type ClaimView } from "@/lib/claims";
 import { Mark } from "@/components/ui/mark";
 import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
@@ -29,7 +29,7 @@ import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
 const ICON: Record<DemoChannelKey, ElementType> = { whatsapp: WhatsAppMark, email: Mail, webform: PanelsTopLeft, phone: Phone };
 const REDUCE = "(prefers-reduced-motion: reduce)";
 /** The pause between a finished run and the next channel (the visitor reads the record first). */
-const PAUSE = 2800;
+const PAUSE = 4200;
 const at = (n: number, extra?: CSSProperties): CSSProperties => ({ ["--at" as string]: n, ...extra });
 
 /** An item of the sequence: appears in its phase; `fresh` flashes the moment it has just arrived. */
@@ -160,6 +160,7 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
       data-demo-phase={phase}
       data-demo-done={done ? "true" : "false"}
       data-demo-auto={auto ? "true" : "false"}
+      data-demo-run={runNo}
       data-demo-view={view}
       style={{ ["--phase" as string]: phase, ["--end" as string]: end }}
       aria-label={l(W.surfaceLabel)}
@@ -168,7 +169,7 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
       {/* The bar: the channel choice with its hint, the replay. */}
       <div className="demo-bar">
         <div className="demo-bar-top">
-          <p id={`${id}-pick`} className="demo-pick-label" data-demo-invite>{channels.length > 1 ? <><span className="demo-pick-word">{l(W.pick)}</span><span className="demo-invite">{l(W.invite)}</span></> : <span className="demo-invite">{l(W.surfaceLabel)}</span>}</p>
+          <p id={`${id}-pick`} className="demo-pick-label" data-demo-invite><span className="demo-invite">{channels.length > 1 ? l(W.invite) : l(W.surfaceLabel)}</span></p>
           {/* on the phone the replay is the icon alone (the word stays as its label; REFERENZEN §6, phone) */}
           <button type="button" className="demo-replay" data-demo-replay aria-label={l(W.replay)} onClick={() => { stopAuto(); started.current = true; inView.current = true; run(script); }}>
             <RotateCcw size={14} strokeWidth={2.2} aria-hidden="true" />
@@ -183,8 +184,7 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
               <button key={c.key} type="button" role="tab" id={`${id}-tab-${c.key}`} aria-selected={on} aria-controls={panelId} tabIndex={on ? 0 : -1} onClick={() => choose(c.key)} className={cn("demo-tab", on && "demo-tab-on")} data-demo-tab={c.key}>
                 <Icon size={18} strokeWidth={2} aria-hidden="true" />
                 <span>{l(c.name)}</span>
-                {/* the story bar: fills over the run and the pause while the rotation is on (CSS hides it with reduced motion) */}
-                {on && auto && started.current && <span key={runNo} className="demo-tab-bar" style={{ ["--run" as string]: `${runLength(c) + PAUSE}ms` }} aria-hidden="true" data-demo-story-bar />}
+                {/* 16.11. (the owner's point 8): no story bar — the rotation shows only as the quiet active state; `data-demo-run` counts the runs for the checks */}
               </button>
             );
           })}

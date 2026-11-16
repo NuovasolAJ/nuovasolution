@@ -13,15 +13,17 @@ export function MobileCta({ href, label }: { href: string; label: string }) {
   const [shown, setShown] = useState(false);
   useEffect(() => {
     const hero = document.querySelector("[data-hero-words]");
-    const close = document.querySelector("[data-closing]");
     if (!hero) return;
-    let heroOut = false, closeIn = false;
-    const apply = () => setShown(heroOut && !closeIn);
+    // 16.11. (the owner's point 2): the bar never stands under an equal button — it hides while any pilot button is on screen
+    const ctas = Array.from(document.querySelectorAll("[data-pilot-cta]"));
+    const visible = new Set<Element>();
+    let heroOut = false;
+    const apply = () => setShown(heroOut && visible.size === 0);
     const a = new IntersectionObserver(([e]) => { heroOut = !e.isIntersecting && e.boundingClientRect.bottom < 0; apply(); }, { threshold: 0 });
     a.observe(hero);
-    let b: IntersectionObserver | undefined;
-    if (close) { b = new IntersectionObserver(([e]) => { closeIn = e.isIntersecting; apply(); }, { threshold: 0.2 }); b.observe(close); }
-    return () => { a.disconnect(); b?.disconnect(); };
+    const b = new IntersectionObserver((entries) => { for (const e of entries) { if (e.isIntersecting) visible.add(e.target); else visible.delete(e.target); } apply(); }, { threshold: 0, rootMargin: "0px 0px -72px 0px" });
+    for (const c of ctas) b.observe(c);
+    return () => { a.disconnect(); b.disconnect(); };
   }, []);
   return (
     <div className="mcta" data-mobile-cta={shown ? "shown" : "hidden"} aria-hidden={!shown}>

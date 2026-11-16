@@ -33,12 +33,14 @@ export const home1103 = {
     // The owner's decision of 13.11. + Copy 1113 §0 B-1: the one main button of the whole site (WORKING until Copy confirms the wording)
     ctaDemo: T("Solicita tu piloto gratuito", "Request your free pilot"),
     /** Copy 1113 §0 B-2: the pilot line under the hero's button, both views. */
-    pilotLine: T("Tu agencia usa NuovaSolution sin pagar, con nuestro acompañamiento. Las condiciones, por escrito.", "Your agency uses NuovaSolution free of charge, with our support. The terms in writing."),
+    pilotLine: T("Piloto gratuito de 14 días, con nuestro acompañamiento. Si nos das tu opinión, 7 días más.", "A free 14-day pilot, with our support. Give us your feedback and get 7 more days."), // Copy 1116 B-2
+    pilotLine2: T("Sin método de pago. Las condiciones, por escrito.", "No payment method. The terms in writing."), // Copy 1116 B-2b
     /** Copy 1113 §1 S-1: the pain line under the hero, with its mark (S-1m); the figures are the example report's (9 = 2 + 2 + 5 of 25). */
     pain: { before: T("En una semana de ejemplo, ", "In an example week, "), figure: T("9 de 25", "9 of 25"), after: T(" consultas llegaron con la oficina cerrada. ¿Quién les contestó?", " enquiries arrived while the office was closed. Who answered them?"), mark: T("Ejemplo con datos ficticios", "Example with fictional data") },
     /** §16 H-1 … H-3: the chips per view (chip 1 stays word for word, FRAGE B). */
     chips: (view: ClaimView): L[] => [
-      byKey("replyOutOfHours", view, T("Responde en español, también fuera de horario", "Replies in Spanish, also out of hours"), T("Responde en español", "Replies in Spanish")),
+      // Copy 1116 §2 L-2 in the target view; the proven line in public until Lead confirms "a tu equipo" (Q-2)
+      byKey("otherLanguages", view, T("Responde en español. Otros idiomas, a tu equipo.", "Replies in Spanish. Other languages go to your team."), T("Responde en español. Si es otro idioma, la consulta espera a una persona.", "Replies in Spanish. In any other language, the enquiry waits for a person.")),
       T("Guarda zona, presupuesto e intención", "Keeps area, budget and intent"),
       byKey("alert", view, T("Marca la prioridad y avisa a tu equipo", "Marks the priority and alerts your team"), T("Marca la prioridad y su motivo", "Marks the priority and its reason")),
     ],
@@ -257,8 +259,26 @@ export const home1103 = {
   /** §19: the report; one example week, the same on /example-report; every block bound to its keys. */
   report: {
     eyebrow: T("Informe", "Report"),
-    h2: T("Tu semana, en un informe", "Your week, in one report"),
-    lead: T("Qué atendió NuovaSolution, qué sigue abierto y qué hacer después.", "What NuovaSolution handled, what is still open and what to do next."),
+    // Copy 1113 §4 R-1/R-2 (16.11.): the report shows where the potential is
+    h2: T("Dónde está tu potencial", "Where your potential is"),
+    lead: T("Cada semana, el informe te enseña qué se atendió, qué sigue abierto y dónde puedes crecer.", "Every week, the report shows you what was handled, what is still open and where you can grow."),
+    /** Copy 1113 §4 K-1 … K-3: figure · insight · next step, per view (the target cards hang on reportTrend / adsLeads); the ad-budget limit under K-3 in the target view only. */
+    cards: (locale: Locale, view: ClaimView): { figure: string; insight: string; next: string; note?: string }[] => {
+      const k1 = { figure: T("9 de 25", "9 of 25"), insight: T("llegaron con la oficina cerrada. Las 9 recibieron respuesta al llegar.", "arrived while the office was closed. All 9 got a reply when they arrived."), next: T("2 pedían visita: proponles una fecha a primera hora.", "2 asked for a viewing: offer them a date first thing.") };
+      const target = [
+        k1,
+        { figure: T("WhatsApp · 10 de 25", "WhatsApp · 10 of 25"), insight: T("es tu canal más fuerte.", "is your strongest channel."), next: T("Pon tu WhatsApp donde te buscan: anuncios, web y escaparate.", "Put your WhatsApp where people look for you: ads, website and shop window.") },
+        { figure: T("Portales y anuncios · 4 de 25", "Portals and ads · 4 of 25"), insight: T("Compara antes de invertir más.", "Compare before you spend more."), next: T("Pon al lado lo que pagas por portales y anuncios: el informe cuenta las consultas, el gasto lo sabes tú.", "Set what you pay for portals and ads beside it: the report counts the enquiries, you know the spend."), note: T("El informe te dice de dónde llega cada consulta. Con eso decides dónde invertir; lo que gastas en anuncios no lo mide.", "The report tells you where each enquiry comes from. That helps you decide where to invest; it does not measure what you spend on ads.") },
+      ];
+      const pub = [
+        k1,
+        { figure: T("6 de 25", "6 of 25"), insight: T("pidieron visita; 4 ya están acordadas.", "asked for a viewing; 4 are already agreed."), next: T("Propón fecha a las 2 que faltan.", "Offer a date to the 2 still open.") },
+        { figure: T("2 de 25", "2 of 25"), insight: T("llegaron en otro idioma y esperan a una persona.", "arrived in another language and are waiting for a person."), next: T("Contéstales hoy.", "Answer them today.") },
+      ];
+      const list = live(["reportTrend", "adsLeads"], view) ? target : pub;
+      return list.map((c) => ({ figure: c.figure[locale], insight: c.insight[locale], next: c.next[locale], note: "note" in c && c.note ? c.note[locale] : undefined }));
+    },
+    cardsNext: T("Qué hacer", "What to do"),
     header: T("Agencia de ejemplo · Semana del 26 oct al 1 nov · Demo con datos ficticios", "Example agency · Week of 26 Oct to 1 Nov · Demo with fictional data"),
     chartTitle: T("Consultas por semana", "Enquiries per week"),
     chartNote: T("Cuatro semanas de ejemplo.", "Four example weeks."),
@@ -304,16 +324,12 @@ export const home1103 = {
         { k: "Respondidas", d: "Consultas con una respuesta automática. Las otras 2 llegaron en otro idioma: no se envía nada automáticamente.", v: "23" },
         { k: "Esperan a una persona", d: "Consultas abiertas que necesitan a alguien del equipo.", v: "2" },
         { k: "Visitas pedidas", d: "Clientes que pidieron ver un inmueble; 4 ya acordadas por el equipo. Pedida no es acordada.", v: "6" },
-        { k: "Entregadas al cliente", d: "Si la respuesta llegó al teléfono o al buzón del cliente.", v: "No medido" },
-        { k: "Tiempo de respuesta", d: "Minutos entre la consulta y la respuesta.", v: "No medido" },
       ],
       en: [
         { k: "Enquiries received", d: "New enquiries recorded in the week.", v: "25" },
         { k: "Answered", d: "Enquiries with an automatic reply. The other 2 arrived in another language: nothing is sent automatically.", v: "23" },
         { k: "Waiting for a person", d: "Open enquiries that need someone on the team.", v: "2" },
         { k: "Viewings asked for", d: "Customers who asked to see a property; 4 already agreed by the team. Asked is not agreed.", v: "6" },
-        { k: "Delivered to the customer", d: "Whether the reply reached the customer's phone or inbox.", v: "Not measured" },
-        { k: "Response time", d: "Minutes between the enquiry and the reply.", v: "Not measured" },
       ],
     },
     openTitle: T("Sigue abierto", "Still open"),
@@ -332,6 +348,8 @@ export const home1103 = {
     mark: T("Ejemplo con datos ficticios · la misma semana", "Example with fictional data · the same week"),
     lead: T("25 consultas de la agencia de ejemplo, que abre de 10:00 a 14:00 y de 17:00 a 20:00.", "25 enquiries to the example agency, which is open 10:00 to 14:00 and 17:00 to 20:00."),
     assumption: T("En este ejemplo nadie contesta con la oficina cerrada. Tu agencia puede trabajar de otra forma.", "In this example nobody answers while the office is closed. Your agency may work differently."),
+    more: T("Ver la semana completa", "See the full week"), // Copy 1113 §4
+    less: T("Ver menos", "See less"), // WORKING (Copy): the control's second state
     rows: (locale: Locale, view: ClaimView): { k: string; without: string; with: string; d: string }[] => [
       { k: T("Consultas de la semana", "Enquiries in the week")[locale], without: "25", with: "25", d: T("Las mismas en los dos casos.", "The same in both cases.")[locale] },
       { k: T("Llegaron con la oficina cerrada", "Arrived while the office was closed")[locale], without: "9", with: "9", d: T("Antes de abrir 2, a mediodía 2, después de cerrar 5.", "Before opening 2, at midday 2, after closing 5.")[locale] },
@@ -358,8 +376,13 @@ export const home1103 = {
     example: T("Casa de ejemplo ficticia", "Fictional example house"),
     cta: T("Pregúntanos por el 3D", "Ask us about 3D"),
     pathTitle: T("Tu camino", "Your path"),
-    pathLine: T("Tú envías el plano; nosotros construimos el modelo y te entregamos el enlace.", "You send the plan; we build the model and send you the link."),
-    path: { es: ["Tú envías el plano", "Nosotros construimos el modelo", "Te entregamos el enlace"], en: ["You send the plan", "We build the model", "We send you the link"] },
+    // Copy 1116 §7.2: a guided process in four steps, each with its line, and the note that nothing is created automatically or instantly
+    pathLine: T("Cada modelo lo preparamos nosotros. No se crea solo ni al instante.", "Every model is prepared by us. It is not created automatically or instantly."),
+    path: { es: ["Plano y deseos", "Confirmamos", "Construimos el modelo", "Lo ves y compartes las imágenes"], en: ["Plan and wishes", "We confirm", "We build the model", "You view it and share the images"] },
+    pathLines: {
+      es: ["Nos envías el plano y nos cuentas qué quieres enseñar.", "Confirmamos contigo qué incluye el modelo y cuándo te lo entregamos.", "Lo construimos a partir de tu plano y lo revisamos.", "Ves el modelo con tu acceso y usas sus imágenes en tus anuncios y redes."],
+      en: ["You send us the plan and tell us what you want to show.", "We confirm with you what the model includes and when we deliver it.", "We build it from your plan and check it.", "You view the model with your login and use its images in your listings and social media."],
+    },
     planAlt: T("Plano acotado de la planta baja de la casa de ejemplo, dibujado a escala", "Dimensioned plan of the example house's ground floor, drawn to scale"),
     modelAlt: T("Casa de ejemplo ficticia: la planta baja de cerca, amueblada, vista del visor", "Fictional example house: the ground floor up close, furnished, a view from the viewer"),
     modelFilm: T("Vídeo: la planta baja de la casa de ejemplo dando una vuelta completa · 10 segundos en bucle · sin sonido", "Video: the example house's ground floor in one full turn · 10 seconds on a loop · no sound"),
@@ -391,7 +414,7 @@ export const home1103 = {
     /** §9 the positioning lines; P-6/P-7: Growth and Enterprise name only the parts that are on. */
     lines: (locale: Locale, view: ClaimView): string[] => {
       const growthParts = [live("taskList", view) ? T("tareas", "tasks") : null, live("matching", view) ? T("propuestas", "proposals") : null, live("followup", view) ? T("seguimientos", "follow-ups") : null].filter((x): x is L => !!x).map((x) => x[locale]);
-      const entParts = [live("instagram", view) ? "Instagram" : null, live("model3d", view) ? "3D" : null].filter((x): x is string => !!x);
+      const entParts = [live("instagram", view) ? "Instagram" : null].filter((x): x is string => !!x); // 16.11.: 3D is a separate service, not part of Enterprise
       const join = (p: string[]) => (p.length <= 1 ? p.join("") : `${p.slice(0, -1).join(", ")} ${locale === "es" ? "y" : "and"} ${p[p.length - 1]}`);
       return [
         T("Respuestas, fichas e informe para una oficina.", "Replies, records and report for one office.")[locale],
@@ -404,8 +427,9 @@ export const home1103 = {
     /** P-2/P-3: the actions. */
     ctaProposal: T("Solicita una propuesta", "Request a proposal"),
     highlight: { plan: "growth" },
-    /** Copy 1113 §6: the badge on the lifted plan. */
-    recommended: T("Recomendado", "Recommended"),
+    /** Copy 1116 §7.1: the note of the legend for the separately booked 3D service. */
+    optionalNote: T("se contrata aparte", "booked separately"),
+    optionalLine: T("La visualización 3D se contrata aparte, con cualquier paquete.", "3D visualisation is booked separately, with any plan."),
     groups: { es: ["Canales", "CRM", "Equipo", "Informes", "Integraciones", "Servicios"], en: ["Channels", "CRM", "Team", "Reporting", "Integrations", "Services"] },
     rows: [
       { g: 0, icon: "reply", key: "replyWhatsapp" as ClaimKey, name: T("Respuestas en español por ⟦canales⟧", "Replies in Spanish on ⟦canales⟧") },
@@ -425,7 +449,7 @@ export const home1103 = {
       { g: 3, icon: "trend", key: "reportTrend" as ClaimKey, name: T("Informe ampliado: evolución, canales y conclusiones", "Extended report: trend, channels and insights") },
       { g: 4, icon: "integrations", key: "integrations" as ClaimKey, name: T("HubSpot, Pipedrive, Zoho, Salesforce⟦outlook⟧", "HubSpot, Pipedrive, Zoho, Salesforce⟦outlook⟧") },
       { g: 4, icon: "ads", key: "adsLeads" as ClaimKey, name: T("Leads de portales y anuncios", "Leads from portals and ads") },
-      { g: 5, icon: "model3d", key: "model3d" as ClaimKey, name: T("Modelos 3D", "3D models") },
+      { g: 5, icon: "model3d", key: "model3d" as ClaimKey, name: T("Visualización 3D", "3D visualisation") }, // Copy 1116 §7.1
     ],
     /** P-8: Outlook stands in the integrations row only while `outlook` is live. */
     rowName: (name: L, locale: Locale, view: ClaimView): string => withChannels(name[locale].replace("⟦outlook⟧", live("outlook", view) ? ", Outlook" : ""), locale, view),
@@ -436,19 +460,25 @@ export const home1103 = {
 
   /** Copy 1113 §6: the way in — the free pilot in 3 steps, both views (step 3 follows `mailboxConnection`); §10.1 + §13 N-1: the trust lines. */
   entry: {
-    title: T("Piloto gratuito, en 3 pasos", "Free pilot, in 3 steps"),
-    titlePublic: T("Piloto gratuito, en 3 pasos", "Free pilot, in 3 steps"),
+    // Copy 1116 §4: three steps, each with its result; step 3 in the target view starts with the mailbox line
+    title: T("Cómo empezar: piloto gratuito de 14 días", "How to start: free 14-day pilot"),
+    titlePublic: T("Cómo empezar: piloto gratuito de 14 días", "How to start: free 14-day pilot"),
     steps: (locale: Locale, view: ClaimView): { b: string; t: string }[] => {
-      const s = {
-        es: [{ b: "Solicita tu piloto.", t: "Hablamos contigo, te enseñamos el sistema y vemos si encaja." }, { b: "Preparamos tu agencia contigo.", t: "Tus datos y tu equipo." }],
-        en: [{ b: "Request your pilot.", t: "We talk with you, show you the system and see whether it fits." }, { b: "We set up your agency with you.", t: "Your details and your team." }],
+      const mailbox = live("mailboxConnection", view) ? { es: "Conectamos tu buzón contigo y lo probamos con un mensaje real. ", en: "We connect your mailbox with you and test it with a real message. " }[locale] : "";
+      return {
+        es: [
+          { b: "Solicita tu piloto.", t: "En una conversación ves el sistema con un ejemplo y sabes si encaja con tu agencia." },
+          { b: "Lo preparamos contigo.", t: "Te confirmamos por escrito qué está activo y las condiciones." },
+          { b: "Empiezan tus 14 días.", t: `${mailbox}Cada consulta que llega por los canales activos queda contestada en español y en su ficha, con su prioridad y su motivo. Con tu opinión al final, 7 días más.` },
+        ],
+        en: [
+          { b: "Request your pilot.", t: "In one conversation you see the system with an example and know whether it fits your agency." },
+          { b: "We set it up with you.", t: "We confirm in writing what is active and the terms." },
+          { b: "Your 14 days begin.", t: `${mailbox}Every enquiry on the active channels is answered in Spanish and lands on its record, with its priority and reason. With your feedback at the end, 7 more days.` },
+        ],
       }[locale];
-      const third = live("mailboxConnection", view)
-        ? { es: { b: "Conectamos tu buzón contigo.", t: "Lo hacemos juntos y lo probamos con un mensaje real." }, en: { b: "We connect your mailbox with you.", t: "We do it together and test it with a real message." } }
-        : { es: { b: "Empiezas el piloto.", t: "Antes, te confirmamos por escrito qué está activo." }, en: { b: "You start the pilot.", t: "Before that, we confirm in writing what is active." } };
-      return [...s, third[locale]];
     },
-    line: T("Sin método de pago. Las condiciones del piloto, por escrito.", "No payment method. The pilot's terms in writing."),
+    line: T("Sin método de pago. Las condiciones, por escrito.", "No payment method. The terms in writing."), // Copy 1116 B-2b
     small: T("Te decimos antes de empezar si tu buzón ya se puede conectar.", "We tell you before you start whether your mailbox can be connected yet."),
   },
   trust: {
@@ -475,7 +505,8 @@ export const home1103 = {
       const items: { q: L; a: L | null }[] = [
         // Copy 1108 V-4: the voice "en nombre de tu agencia" once a reply leaves the agency's own channel; the earlier answers until then
         { q: T("¿Qué hace NuovaSolution?", "What does NuovaSolution do?"), a: live("mailboxConnection", view) || live("whatsappOwnNumber", view) ? T("Responde en nombre de tu agencia, en español, a las consultas que llegan por ⟦canales⟧, y guarda lo importante de cada una en su ficha, con su prioridad y su motivo.", "It replies on behalf of your agency, in Spanish, to the enquiries that arrive on ⟦canales⟧, and keeps what matters from each one on its record, with its priority and reason.") : byKey("priorityWithReason", view, T("Responde en español las consultas que llegan por ⟦canales⟧ y guarda lo importante de cada una en su ficha, con su prioridad y su motivo.", "It answers the enquiries that arrive on ⟦canales⟧ in Spanish and keeps what matters from each one on its record, with its priority and reason."), T("Responde en español las consultas que llegan por ⟦canales⟧ y guarda lo importante de cada una en su ficha.", "It answers the enquiries that arrive on ⟦canales⟧ in Spanish and keeps what matters from each one on its record.")) },
-        { q: T("¿En qué idiomas responde?", "Which languages does it answer in?"), a: byKey("languageNoted", view, T("En español. Detecta el idioma de cada consulta; en otro idioma no se envía nada automáticamente.", "Spanish. It detects each enquiry's language; in another language nothing is sent automatically."), T("En español.", "Spanish.")) },
+        // 16.11. (the owner's line 5, final wording by Copy): replies in Spanish, every language recognised, another language goes to the team
+        { q: T("¿En qué idiomas responde?", "Which languages does it reply in?"), a: byKey("otherLanguages", view, T("Hoy responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo. Más idiomas, en preparación.", "Today it replies automatically in Spanish only. It recognises the language of every enquiry and, if it is not Spanish, passes it to your team. More languages are in preparation."), T("Responde en español. Si es otro idioma, la consulta espera a una persona.", "Replies in Spanish. In any other language, the enquiry waits for a person.")) },
         { q: T("¿Sabe el cliente que responde un asistente?", "Does the customer know an assistant is answering?"), a: T("Sí. Cada respuesta automática lo indica.", "Yes. Every automatic reply says so.") },
         { q: T("¿Avisa a mi equipo?", "Does it alert my team?"), a: live("alert", view) ? T("Sí. Cuando una consulta es importante, avisa por email a la persona que toca, con el motivo.", "Yes. When an enquiry is important, it alerts the right person by e-mail, with the reason.") : null },
         // Copy 1113 §6: the free pilot, both views
@@ -490,8 +521,10 @@ export const home1103 = {
 
   /** §10.3 and §20: the close; the line follows `mailboxConnection`. */
   close: {
-    h2: T("Mira cómo NuovaSolution atiende tus consultas", "See how NuovaSolution answers your enquiries"),
-    line: (view: ClaimView): L => byKey("mailboxConnection", view, T("Te enseñamos la demo con tus canales y respondemos tus preguntas.", "We show you the demo with your channels and answer your questions."), T("Te enseñamos la demo y respondemos tus preguntas.", "We show you the demo and answer your questions.")),
+    // Copy 1116 §5: the close matches the pilot
+    h2: T("14 días para ver qué consultas se te escapan.", "14 days to see which enquiries slip away."),
+    line: (_view: ClaimView): L => T("Te enseñamos el sistema, lo preparamos contigo y lo usas en tu agencia con nosotros al lado. Gratis, y por escrito.", "We show you the system, set it up with you, and you use it in your agency with us alongside. Free, and in writing."),
+    small: T("Sin método de pago. Con tu opinión al final, 7 días más.", "No payment method. With your feedback at the end, 7 more days."),
     ctaDemo: T("Solicita tu piloto gratuito", "Request your free pilot"), // Copy 1113 §0 B-1 (13.11.)
   },
 
@@ -503,14 +536,52 @@ export const home1103 = {
     brand: T("NuovaSolution es una marca de {name}. La hemos hecho para agencias inmobiliarias en España.", "NuovaSolution is a brand of {name}. We built it for real estate agencies in Spain."),
     brandNoName: T("La hemos hecho para agencias inmobiliarias en España.", "We built it for real estate agencies in Spain."),
     pilot: T("Empezamos con un piloto con pocas agencias. Por eso aquí no verás logotipos de clientes, testimonios ni cifras de resultados: los mostraremos cuando sean reales y tengamos permiso para hacerlo.", "We are starting with a pilot with a few agencies. That is why you will not find client logos, testimonials or results figures here: we will show them once they are real and we have permission to."),
+    // 16.11.: the address left the sentence for its own row under the lines (the phone's narrow column, the owner's point 2)
+    emailLabel: T("Email", "Email"),
+    phoneLabel: T("Teléfono", "Phone"), // Copy 1113 §0
     lines: [
-      T("Te contesta una persona, en español o en inglés: antonio@nuovasolution.com", "A person answers, in Spanish or English: antonio@nuovasolution.com"),
+      T("Te contesta una persona, en español o en inglés.", "A person answers, in Spanish or English."),
       T("La base de datos está en la Unión Europea (Fráncfort).", "The database is in the European Union (Frankfurt)."),
       T("Cada respuesta automática indica que la escribe un asistente.", "Every automatic reply says that an assistant wrote it."),
     ],
     cta: T("Solicita tu piloto gratuito", "Request your free pilot"), // Copy 1113 §0 B-1 (13.11.)
   },
 
+  /**
+   * Copy 1113 §2 (16.11.): every area the same way — one sentence and up to four points; a point whose proof is open shows its public
+   * wording or is left out of the public view ("hide"). A-1 is proven by the owner's measurement of 13.11. (Copy a3aa997).
+   */
+  chapterCopy: {
+    attend: {
+      line: T("Contesta en cuanto llega la consulta, también de noche y en fin de semana.", "It replies as soon as the enquiry arrives, also at night and at weekends."),
+      points: [
+        { t: T("Responde en segundos por WhatsApp y en minutos por email.", "Replies within seconds on WhatsApp and within minutes by email."), pub: "same" as const },
+        { t: T("Entiende qué busca: comprar o alquilar.", "Understands what they want: to buy or rent."), pub: "same" as const }, // the owner 16.11.: "vender" not promised until Lead confirms the intent values (Q-A2)
+        { t: T("Todo entra en el CRM: zona, presupuesto, intención y canal, sin copiar nada.", "Everything goes into the CRM: area, budget, intent and channel, with nothing copied by hand."), pub: "same" as const },
+        { t: T("Prioridad con su motivo, en cada ficha.", "Priority with its reason, on every record."), pub: "same" as const },
+      ],
+    },
+    organise: {
+      line: T("Cada consulta en su ficha, con lo que toca hacer hoy.", "Every enquiry on its record, with what needs doing today."),
+      linePublic: T("Cada consulta en su ficha, en orden.", "Every enquiry on its record, in order."),
+      points: [
+        { t: T("La persona que toca recibe el aviso.", "The right person gets the alert."), pub: "hide" as const, keys: ["alert"] as ClaimKey[] },
+        { t: T("Tareas del día: tu equipo sabe qué hacer hoy.", "Today's tasks: your team knows what to do today."), pub: "hide" as const, keys: ["taskList"] as ClaimKey[] },
+        { t: T("El canal de origen en cada ficha.", "The channel of origin on every record."), pub: "same" as const },
+        { t: T("Hoy responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo.", "Today it replies automatically in Spanish only. It recognises the language of every enquiry and, if it is not Spanish, passes it to your team."), pub: "text" as const, pubText: T("Responde en español. Si es otro idioma, la consulta espera a una persona.", "Replies in Spanish. In any other language, the enquiry waits for a person."), keys: ["otherLanguages"] as ClaimKey[] },
+      ],
+    },
+    grow: {
+      // Copy 1116 §3: a concrete benefit from the example report, both views
+      line: T("Ves dónde se te escapa negocio y qué hacer esta semana.", "You see where business slips away and what to do this week."),
+      points: [
+        { t: T("Qué entró, qué se contestó y qué sigue esperando a una persona.", "What came in, what was answered and what is still waiting for a person."), pub: "same" as const },
+        { t: T("Qué canal te trae más consultas.", "Which channel brings you the most enquiries."), pub: "same" as const },
+        { t: T("Cuántas consultas llegaron con la oficina cerrada y quedaron contestadas.", "How many enquiries arrived with the office closed and were answered."), pub: "same" as const },
+        { t: T("Cuántas visitas se pidieron y cuántas se acordaron.", "How many viewings were asked for and how many were agreed."), pub: "same" as const },
+      ],
+    },
+  },
   /** The three areas (the owner's P3 of 09.11.): the chapters side by side; the control words are WORKING for Copy (T-13). */
   chapterUi: {
     more: T("Ver {name}", "See {name}"),

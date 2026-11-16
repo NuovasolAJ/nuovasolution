@@ -26,7 +26,7 @@ const BYPASS_HEADER = "x-vercel-protection-bypass";
 const SET_COOKIE_HEADER = "x-vercel-set-bypass-cookie";
 const SWITCHES = [
   { param: "view", cookie: "nuova-view", header: "x-nuova-view", allowed: ["target", "public"] },
-  { param: "display", cookie: "nuova-display", header: "x-nuova-display", allowed: ["inter", "fraunces"] },
+  { param: "display", cookie: "nuova-display", header: "x-nuova-display", allowed: ["fraunces", "inter"] },
 ] as const;
 
 async function sha256(text: string): Promise<string> {
