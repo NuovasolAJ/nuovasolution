@@ -123,6 +123,7 @@
 | Where | ES new | EN new |
 |---|---|---|
 | `:171–179` the Kellers' message | language "español" (`lang: "es"`). text = today's `translation.text.es`. reply = today's `translation.reply.es` (Spanish, sent automatically). `translation` is no longer needed | "Spanish"; EN text and reply = today's `translation.*.en` |
+| `:191` the Kellers' result (added 16.11. after Redesign's WORKING line on `a697fb8`) | Resultado: los Keller tienen respuesta en español y ficha; proponer la fecha de la valoración es una tarea para tu equipo. | Result: the Kellers have a reply in Spanish and a record; proposing a date for the valuation is a task for your team. |
 | `:282` result | Cuando Marcos termina, las cuatro están registradas: tres con respuesta escrita y una llamada atendida. | When Marcos finishes, all four are recorded: three with a written reply and one call answered. |
 | `:290` inbound | Una pregunta por WhatsApp, un email, un formulario, una llamada. | A WhatsApp question, an e-mail, a web form, a call. |
 | `:291` did | Responde en español y guarda lo que pide cada cliente. | Replies in Spanish and keeps what each customer asks for. |
@@ -132,6 +133,8 @@
 | `:427` / `:433` the Kellers in the list | what "Valoración de una villa en Elviria · respondida por email" · next "Proponer una fecha para la visita" | "Valuation of a villa in Elviria · answered by e-mail" · "Propose a date for the viewing" |
 | `:503` handled | value "25" · line "consultas respondidas y registradas · WhatsApp 14 · email 11 · la entrega al cliente no se mide" | "25" · "… WhatsApp 14 · e-mail 11 …" |
 | `:505` next | value "2" · line "cosas para tu equipo: proponer fecha a los Keller y la respuesta de Sofía" | "things for your team: a date for the Kellers and Sofía's reply" |
+
+**Why `:191` is replaced:** Redesign's line ("…respondida en español; una persona de tu equipo propone la fecha") is true, but it is the only result that states a person's action as done. The new line has the same form as `:163` and `:216` ("… es una tarea para tu equipo") and the same step as the morning brief ("Proponer una fecha para la valoración").
 
 **Why `:505` changes:** the two items are the team's next steps, not enquiries without a reply. The phrase "esperan a una persona" is kept for one meaning only, enquiries without any reply, which is 0.
 
