@@ -186,6 +186,8 @@ A code with no row here is shown as nothing, not in English. Lead sends the full
 | `property_request` (matching off) | Buscar inmuebles para {{nombre}} |
 | `callback` | Llamar a {{nombre}} |
 | `viewing_request` | Organizar la visita de {{nombre}} |
+| `callback_request` | the same as `callback` (Daily, 16.11.) |
+| pilot request (API, new from Wed 18.11.) | Contestar la solicitud de piloto de {{agencia}}. If the form chose "Contratar un plan": Enviar la propuesta a {{agencia}} |
 | any other type | Atender la consulta de {{nombre}} |
 | no name known | the same, with "este cliente" instead of {{nombre}} |
 
@@ -224,5 +226,5 @@ Missing parts are dropped. Budget and dates follow 2.2. **No phone number and no
 | Q-F12b | Does "quiero hablar con una persona" create a takeover task? (condition for N-5) | Lead | Tue 17.11. 12:00 |
 | Q-F16 | The real codes for missing fields and next steps (2.3); the card's sender (F17) | Lead | with ENQ2, Tue 17.11. |
 | Q-F16b | **decided 16.11. by the owner:** no number on the card; "Prioridad alta/media/baja" plus the reason. Spanish uses tú | — | done |
-| Q-F18 | The real task types; whether a short task number exists; who receives the escalation | Daily | Tue 17.11. |
-| Q-F18b | Why "desde 15:00" for a task from 15:05 | Daily | with the fix |
+| Q-F18 | **answered 16.11. by Daily** (`DAILY_SIGNALS_1107.md`, 08:58Z): types `property_request`, `viewing_request`, `callback`, `callback_request` (= `callback`), plus the pilot request from Wed (title in 3.1). There is no short task number, so no reference is shown; "Ábrela en la app" opens the task itself. New and reminder go to the first responsible person; the escalation goes to the next person of the same agency (T-3, with name); if there is none, to the agency's admin as T-3b "Último aviso". T-2 names that person, or says "este será el último aviso" | — | done |
+| Q-F18b | **answered 16.11. by Daily:** the time is the task's real time; E19 runs every 5 minutes. Daily adds "Sin asignar desde las 15:00" with the day when it is not today | — | done |
