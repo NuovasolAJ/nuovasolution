@@ -1,6 +1,6 @@
 import type { Locale } from "@/lib/i18n/config";
 import { publishedCapability } from "@/lib/content/capabilities";
-import { live, withChannels, type ClaimKey, type ClaimView } from "@/lib/claims";
+import { live, offered, withChannels, type ClaimKey, type ClaimView } from "@/lib/claims";
 
 /**
  * The platform in four tasks (owner follow-up order 2026-10-06 §4; master order 2026-10-10 §10; Copy 1105 v3 §21 of 06.11.): what
@@ -33,6 +33,8 @@ export interface PlatformTask {
   /** The section of the platform page that explains the task. */
   href: string;
   line: L;
+  /** Copy 1116 §12: the public wording of the task line where it differs. */
+  linePublic?: L;
   entries: PlatformEntry[];
 }
 
@@ -43,12 +45,13 @@ export const platformTasks: PlatformTask[] = [
     short: { es: "Atender", en: "Answer" },
     href: "/platform#answer",
     line: { es: "Las consultas por ⟦canales⟧ se responden en español. Una consulta en otro idioma no recibe respuesta automática.", en: "Enquiries on ⟦canales⟧ are answered in Spanish. An enquiry in another language gets no automatic reply." },
+    linePublic: { es: "Las consultas por ⟦canales⟧ se responden en español. Una consulta en otro idioma no recibe respuesta automática y espera a una persona.", en: "Enquiries on ⟦canales⟧ are answered in Spanish. An enquiry in another language gets no automatic reply and waits for a person." }, // Copy 1116 §12
     entries: [
       { key: "whatsapp", name: { es: "WhatsApp", en: "WhatsApp" }, line: { es: "Respuesta por WhatsApp, con el número de tu agencia.", en: "Replies on WhatsApp, on your agency's own number." }, keys: ["replyWhatsapp", "whatsappOwnNumber"], slug: "ai-sales-agent", anchor: "#functions" },
-      { key: "email", name: { es: "Email", en: "Email" }, line: { es: "La misma respuesta para lo que llega al buzón de tu agencia.", en: "The same reply for what arrives in your agency's mailbox." }, keys: ["replyEmail"], slug: "ai-sales-agent", anchor: "#functions" },
+      { key: "email", name: { es: "Email", en: "Email" }, line: { es: "La misma respuesta para lo que llega al buzón de tu agencia.", en: "The same reply for what arrives in your agency's mailbox." }, keys: ["replyEmail", "mailboxConnection"], pub: { es: "Respuesta en español a las consultas que llegan por email.", en: "Replies in Spanish to enquiries that arrive by email." }, slug: "ai-sales-agent", anchor: "#functions" },
       { key: "webform", name: { es: "Formularios web", en: "Web forms" }, line: { es: "Lo que entra por tu web se trata como una consulta más.", en: "What comes in through your website is treated as an enquiry." }, keys: ["webform"], anchor: "#demo" },
       { key: "phone", name: { es: "Asistente telefónico", en: "Phone assistant" }, line: { es: "Una llamada que no se pierde: lo que pide, anotado, y una tarea.", en: "A call that is not lost: what they want, noted, and a task." }, keys: ["phoneAssistant"], anchor: "#demo" },
-      { key: "handover", name: { es: "Paso a una persona", en: "Handover to a person" }, line: { es: "Cuando alguien pide hablar con una persona, queda registrada como petición de llamada para tu equipo. La petición queda registrada, aparece en la lista de tareas y avisa en cada traspaso.", en: "When someone asks to speak to a person, it is recorded as a callback request for your team. The request is recorded, appears in the task list and alerts at each handover." }, keys: ["crm", "taskList", "alert"], pub: { es: "Cuando alguien pide hablar con una persona, queda registrada como petición de llamada para tu equipo. La petición queda registrada.", en: "When someone asks to speak to a person, it is recorded as a callback request for your team. The request is recorded." }, slug: "ai-sales-agent", anchor: "#functions" },
+      { key: "handover", name: { es: "Paso a una persona", en: "Handover to a person" }, line: { es: "Cuando alguien pide hablar con una persona, queda registrada como petición de llamada para tu equipo. La petición queda registrada, aparece en la lista de tareas y avisa en cada traspaso.", en: "When someone asks to speak to a person, it is recorded as a callback request for your team. The request is recorded, appears in the task list and alerts at each handover." }, keys: ["crm", "taskList", "alert"], pub: { es: "Cuando alguien pide hablar con una persona, queda registrado como petición de llamada para tu equipo.", en: "When someone asks to speak to a person, it is recorded as a callback request for your team." }, slug: "ai-sales-agent", anchor: "#functions" },
     ],
   },
   {
@@ -101,10 +104,10 @@ export function platformTasksFor(locale: Locale, view: ClaimView): { key: Platfo
       title: t.title[locale],
       short: t.short[locale],
       href: t.href,
-      line: withChannels(t.line[locale], locale, view),
+      line: withChannels((view === "public" && t.linePublic ? t.linePublic : t.line)[locale], locale, view),
       entries: t.entries
         .map((e) => {
-          const on = !e.keys || live(e.keys, view);
+          const on = !e.keys || offered(e.keys, view); // E2 (16.11.): a held-back function is not promised in either view
           const line = on ? e.line : e.pub ?? null;
           return line ? { key: e.key, name: e.name[locale], line: withChannels(line[locale], locale, view), href: entryHref(e) } : null;
         })

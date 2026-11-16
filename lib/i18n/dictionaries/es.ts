@@ -189,10 +189,11 @@ export const es: Dictionary = {
       stepsDetail: "Lo escribe el asistente, y lo dice. No acuerda precio, ni fecha, ni condición.", // D-77
       cards: {
         answer: { step: "Respondida", title: "WhatsApp y email", line: "Las consultas de texto se responden y se registran con el nombre de tu agencia." },
+        answerPublic: { step: "Respondida", title: "Por email", line: "Las consultas por email se responden en español y quedan registradas en su ficha." }, // Copy 1116 §10 W-7 (public, before topic 20)
         understand: { step: "Registrada", title: "Una ficha por consulta", line: "La conversación y lo que ha pedido el cliente se quedan en una sola ficha, así que quien la abra después lo ve todo sin preguntar." },
         handover: { step: "Asignada", title: "Una tarea clara, no un recordatorio", line: "Una petición de visita pasa a ser una tarea con nombre, motivo y responsable. Tu equipo la toma y la completa." },
         done: { step: "Hecha", title: "NuovaSolution prepara; tu equipo asesora y cierra", line: "Un toque la toma, un toque la completa. La tarjeta muestra quién la ha tomado, y nadie puede tomar la misma tarea dos veces. La visita, la negociación y la relación siguen siendo de tu gente." }, // orden final 2026-10-12 §6
-        setup: { step: "Tu configuración", title: "Tu agencia, configurada por ti", line: "Los datos de tu agencia, tus datos legales y tu logo, más tu equipo y sus roles. Tu progreso se guarda entre sesiones." },
+        setup: { step: "Tu configuración", title: "Tu agencia, preparada contigo", line: "Preparamos contigo los datos de tu agencia, tus datos legales, tu logo y tu equipo con sus roles." }, // Copy 1116 §10 W-8 (no self-start in the pilot)
       },
     },
     views: {

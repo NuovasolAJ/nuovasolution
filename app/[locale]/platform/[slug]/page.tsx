@@ -47,7 +47,8 @@ export default function ProductPage({ params }: { params: { locale: string; slug
   const p = (path: string) => localePath(locale, path);
   const view = resolveSwitches().view;
   // Copy 1107 D-10: a page whose function is off leads to the overview in the public view
-  if (!capabilityVisible(c, view)) redirect(p("/platform"));
+  // the view travels with the redirect (RV6 F22 P-1: a fetch without the cookie landed on the overview in the default view)
+  if (!capabilityVisible(c, view)) redirect(p("/platform") + (view === "public" ? "?view=public" : ""));
   const entry = entryAction(locale, view);
   const points = publicPoints(c, view);
   // Copy 1107 D-11: "Relacionado" names only the pages the view shows

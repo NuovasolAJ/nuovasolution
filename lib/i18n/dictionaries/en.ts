@@ -211,10 +211,11 @@ export const en = {
       stepsDetail: "Written by the assistant, and it says so. It agrees no price, no date and no condition.", // D-77
       cards: {
         answer: { step: "Answered", title: "WhatsApp and e-mail", line: "Text enquiries are answered and recorded under your agency's name." },
+        answerPublic: { step: "Answered", title: "By email", line: "Email enquiries are answered in Spanish and recorded on their record." }, // Copy 1116 §10 W-7
         understand: { step: "Recorded", title: "One record per enquiry", line: "The conversation and what the customer asked for stay on one record, so the next person to open it sees everything without asking." },
         handover: { step: "Handed over", title: "One clear task, not a reminder", line: "A viewing request becomes a task with a name, a reason and an owner. Your team claims it and completes it." },
         done: { step: "Done", title: "NuovaSolution prepares, your team advises and closes", line: "One tap takes the task, one tap completes it. The card shows who took it, and nobody can take the same task twice. The viewing, the negotiation and the relationship stay with your people." }, // final order 2026-10-12 §6
-        setup: { step: "Your setup", title: "Your agency, set up by you", line: "Your agency details, your legal details and your logo, plus your team and their roles. Your progress is saved between sessions." },
+        setup: { step: "Your setup", title: "Your agency, set up with you", line: "We set up your agency's details, legal details, logo and team with their roles together with you." }, // Copy 1116 §10 W-8
       },
     },
     views: {

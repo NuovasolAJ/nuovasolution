@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 import { StatusGlyph } from "@/components/ui/status";
 import { ProductClip } from "@/components/ui/product-clip";
 import { BoardView, ConversationView, DailyShot, RecordView } from "./product-views";
+import { live } from "@/lib/claims";
+import { resolveSwitches } from "@/lib/view";
 import { FlowRail } from "./flow-rail";
 import { StackDeck } from "./stack-deck";
 
@@ -52,7 +54,9 @@ const STAGE = "scroll-mt-[calc(var(--header-h)+24px)]";
 export function FlowStory({ locale }: { locale: Locale }) {
   const d = getDictionary(locale);
   const f = d.home.flow;
-  const c = f.cards;
+  // Copy 1116 §10 W-7: the public view's first card names e-mail only while the agency's own WhatsApp number is off (topic 20)
+  const view = resolveSwitches().view;
+  const c = { ...f.cards, answer: view === "public" && !live("whatsappOwnNumber", view) ? f.cards.answerPublic : f.cards.answer };
   const daily = d.home.views.daily;
   const rail = [
     { id: "step-answer", n: "01", label: f.steps[0] },
