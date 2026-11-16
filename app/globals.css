@@ -576,24 +576,24 @@ html:not(.js) .hf-video, .hf-video[data-hero-video-state="off"] { display: none;
 /* the dim (07.11., B3: lighter than before, one clear focal point at the painting; the words keep AA on the left): darker at the left
    where the words stand, darker at the foot where the demonstration rises in */
 .hf-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(12, 12, 14, 0.7) 0%, rgba(12, 12, 14, 0.46) 42%, rgba(12, 12, 14, 0.12) 100%), linear-gradient(180deg, rgba(12, 12, 14, 0.5) 0%, rgba(12, 12, 14, 0.06) 26%, rgba(12, 12, 14, 0.06) 60%, rgba(12, 12, 14, 0.7) 100%); }
-.hf-content { position: relative; z-index: 1; display: grid; gap: 24px; width: 100%; padding-top: calc(var(--header-h) + 36px); padding-bottom: 44px; }
+.hf-content { position: relative; z-index: 1; display: grid; gap: 20px; width: 100%; padding-top: calc(var(--header-h) + 20px); padding-bottom: 32px; }
 .hf-words { max-width: 680px; }
 .hf-eyebrow { color: rgba(248, 246, 241, 0.78); }
-.hf-h1 { margin-top: 14px; font-size: clamp(2.25rem, 1.5rem + 3.6vw, 4.5rem); line-height: 1.02; letter-spacing: -0.035em; font-weight: 560; text-wrap: balance; color: #fff; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.25); }
+.hf-h1 { margin-top: 10px; font-size: clamp(2.25rem, 1.5rem + 3.4vw, 4.25rem); line-height: 1.02; letter-spacing: -0.035em; font-weight: 560; text-wrap: balance; color: #fff; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.25); }
 .hf-word { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.08em; margin-bottom: -0.08em; }
 .hf-word > span { display: inline-block; }
 /* the words (07.11., B1/G1): no intro before the message; the headline's words rise one after another and everything the first screen
    needs — eyebrow, headline, lead, the two actions — is in place within 0.8 s (word 6 lands at 760 ms, the actions at 720 ms) */
 html.js .hf-word > span { animation: hf-word-up 520ms var(--ease-out) both; animation-delay: calc(40ms + var(--w, 0) * 40ms); }
 @keyframes hf-word-up { from { transform: translateY(104%); opacity: 0; } to { transform: none; opacity: 1; } }
-.hf-lead { margin-top: 20px; max-width: 42ch; font-size: clamp(1.0625rem, 1rem + 0.45vw, 1.3125rem); line-height: 1.5; color: rgba(248, 246, 241, 0.9); text-wrap: pretty; }
+.hf-lead { margin-top: 14px; max-width: 42ch; font-size: clamp(1.0625rem, 1rem + 0.45vw, 1.3125rem); line-height: 1.5; color: rgba(248, 246, 241, 0.9); text-wrap: pretty; }
 html.js .hf-lead, html.js .hf-ctas, html.js .hf-access, html.js .hf-eyebrow { animation: hf-up 480ms var(--ease-out) both; }
 html.js .hf-eyebrow { animation-delay: 0ms; }
 html.js .hf-lead { animation-delay: 160ms; }
 html.js .hf-ctas { animation-delay: 240ms; }
 html.js .hf-access { animation-delay: 320ms; }
 @keyframes hf-up { from { transform: translateY(14px); opacity: 0; } to { transform: none; opacity: 1; } }
-.hf-ctas { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+.hf-ctas { display: flex; flex-direction: column; gap: 12px; margin-top: 22px; }
 @media (min-width: 640px) { .hf-ctas { flex-direction: row; align-items: center; gap: 16px; } }
 /* 13.11.: the one black main button, also on the picture (a thin light ring keeps it readable on the dark shade) */
 .hf-cta-main { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; padding: 12px 28px; border-radius: 999px; background: var(--ink-950); color: #fff; font-size: 1.0625rem; font-weight: 600; white-space: nowrap; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.34), 0 14px 34px -12px rgba(0, 0, 0, 0.7); transition: transform var(--motion-micro) var(--ease-standard), background-color var(--motion-micro) var(--ease-standard), box-shadow var(--motion-micro) var(--ease-standard); }

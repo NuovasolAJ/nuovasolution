@@ -414,7 +414,7 @@ export const home1103 = {
     /** §9 the positioning lines; P-6/P-7: Growth and Enterprise name only the parts that are on. */
     lines: (locale: Locale, view: ClaimView): string[] => {
       const growthParts = [live("taskList", view) ? T("tareas", "tasks") : null, live("matching", view) ? T("propuestas", "proposals") : null, live("followup", view) ? T("seguimientos", "follow-ups") : null].filter((x): x is L => !!x).map((x) => x[locale]);
-      const entParts = [live("instagram", view) ? "Instagram" : null].filter((x): x is string => !!x); // 16.11.: 3D is a separate service, not part of Enterprise
+      const entParts = [live("instagram", view) ? (locale === "es" ? "Instagram (En preparación)" : "Instagram (In preparation)") : null].filter((x): x is string => !!x); // 16.11. (owner, Social d2b27e5b): Instagram only as "in preparation"; 3D is a separate service, not part of Enterprise
       const join = (p: string[]) => (p.length <= 1 ? p.join("") : `${p.slice(0, -1).join(", ")} ${locale === "es" ? "y" : "and"} ${p[p.length - 1]}`);
       return [
         T("Respuestas, fichas e informe para una oficina.", "Replies, records and report for one office.")[locale],

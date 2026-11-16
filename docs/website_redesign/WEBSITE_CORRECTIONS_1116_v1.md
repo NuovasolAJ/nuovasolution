@@ -55,6 +55,10 @@ technical check (RV6) and the owner's final design acceptance.
 | 14.1 | RV6 F22 b | "teléfono" in the target view's channel list and "¿Atiende llamadas? Sí" | **built** | the channel list names only the included channels in both views ("por WhatsApp y email"); E2 now applies to the FAQ and the plans too (`offered()`), so the calls question is hidden in both views; the demo's phone tab stays as a product scene (owner's four channels) — see §2 C8 |
 | 14.2 | owner point 6 via Copy 1116 §10 (fb1a56a) | the agency's own WhatsApp number comes only after its registration with Meta (topic 20): the public view must not suggest an agency's WhatsApp customers are answered today | **built** | public channel list names email only (W-1; the plans row reads "Respuestas en español por email. WhatsApp con el número de tu agencia: en preparación."), A-1 public "Responde en minutos por email." (W-2), the new FAQ "¿Responde desde el WhatsApp de mi agencia?" with "Todavía no…" (W-3; in both views per E2 — Copy's target "Sí" is not shown); the target view keeps "por WhatsApp y email"; W-4 (hero bubble) not built; the old `offer` block and the `/trial` steps in the dictionaries are not rendered (cleanup with the named build) |
 | 14.3 | Copy 1116 §11 | the request confirmation's heading | **built** | "Gracias. Te contestará una persona del equipo, en español o en inglés." |
+| 16.1 | owner add. 3 (1) | Instagram in Enterprise's line only as "Instagram (En preparación)" (Social d2b27e5b) | **built** | target view only; public names no Instagram |
+| 16.2 | owner add. 3 (2), Copy §9 Q-6 | 3D "Opcional" in the plans only in the target view until topic 17 is closed | **built** | the row hangs on `model3d`; the legend's "Opcional" part shows only with the row |
+| 16.3 | owner add. 3 (3) | the pilot form's two Vercel values after API's staging yes on Tuesday, from the vault, never in chat | Tue 17.11. | until then the preview ends in the clear confirmation without a real send (built) |
+| 16.4 | owner add. 3 (4)/(5) | score sentence and "Solicitar una demo" gone; offer and texts per Copy 4bc0f07 | **built** | 9dbb276 and after; RV6 measures on the named build |
 | 15.1 | ChatGPT "Arbeitsweise" | the whole visitor path checked before the return, independent check, one named build with URL and commit, desktop and phone evidence | Wed | §5 |
 
 ## 2. Contradictions, named once
@@ -95,6 +99,6 @@ technical check (RV6) and the owner's final design acceptance.
 
 ## 5. Dates
 
-- **Interim state of Mon 16.11.** (this list's "built" rows): the open design preview, deployment and commit in the signal of 15:00; no name, no grade.
+- **Interim state of Mon 16.11.** (this list's "built" rows): `868602c` = https://nuovasolution-design-preview-g6ca6dngo-nuovasolajs-projects.vercel.app (dpl_5tcEAmVNJrhG3haJ9Fo3NiC7etcs, no code), pictures in `preview_2026-11-16_interim/bilder/`; the follow-up commit (Instagram "(En preparación)", legend, hero height) builds after it; no name, no grade.
 - **Named build: Wed 18.11. 14:00** with URL and commit, desktop and phone evidence, the return table (every point above as closed on the build / open / decision), then RV6 and the owner's bundled acceptance.
 - Fallback (agreed 13.11., P-2): Thu 19.11. 14:00.
