@@ -1,0 +1,93 @@
+{
+ "390": {
+  "buttons": [
+   {
+    "label": "Ver Atiende",
+    "topAbs": 4750,
+    "left": 36,
+    "w": 135,
+    "h": 44
+   },
+   {
+    "label": "Ver Organiza",
+    "topAbs": 5158,
+    "left": 36,
+    "w": 144,
+    "h": 44
+   },
+   {
+    "label": "Ver Crece",
+    "topAbs": 5566,
+    "left": 36,
+    "w": 122,
+    "h": 44
+   }
+  ],
+  "topSpreadPx": 816,
+  "sameLine": false,
+  "yAdemas": {
+   "sectionTopAbs": 4258,
+   "sectionHeight": 1792,
+   "textLen": 28815,
+   "children": [
+    {
+     "tag": "DIV",
+     "cls": "container-default",
+     "top": 4302,
+     "h": 1712,
+     "empty": false
+    }
+   ],
+   "emptyChildren": 0
+  }
+ },
+ "1440": {
+  "buttons": [
+   {
+    "label": "Ver Atiende",
+    "topAbs": 3648,
+    "left": 140,
+    "w": 135,
+    "h": 44
+   },
+   {
+    "label": "Ver Organiza",
+    "topAbs": 3648,
+    "left": 548,
+    "w": 144,
+    "h": 44
+   },
+   {
+    "label": "Ver Crece",
+    "topAbs": 3648,
+    "left": 956,
+    "w": 122,
+    "h": 44
+   }
+  ],
+  "topSpreadPx": 0,
+  "sameLine": true,
+  "yAdemas": {
+   "sectionTopAbs": 2795,
+   "sectionHeight": 1460,
+   "textLen": 28815,
+   "children": [
+    {
+     "tag": "DIV",
+     "cls": "container-default",
+     "top": 2875,
+     "h": 1308,
+     "empty": false
+    }
+   ],
+   "emptyChildren": 0
+  }
+ },
+ "build": {
+  "commit": "a697fb8e0a0964ba3b387667d7a2436341c7fac4",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_7JSMUmUzNqG2GrvxfcdZULwtFVLA",
+  "env": "preview",
+  "mode": "stub"
+ }
+}

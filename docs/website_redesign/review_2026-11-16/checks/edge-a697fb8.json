@@ -1,0 +1,68 @@
+{
+ "1366x768": {
+  "vh": 768,
+  "heroBottom": 640,
+  "heroHeight": 640,
+  "nextTag": "SECTION.pain",
+  "nextTop": 640,
+  "nextVisiblePx": 128,
+  "nextText": "9 de 259 de 25 con ulta  llegaron con la oficina cerrada. ¿Quién le  c",
+  "h1Top": 152,
+  "furniturePx": 86
+ },
+ "1366x625": {
+  "vh": 625,
+  "heroBottom": 497,
+  "heroHeight": 497,
+  "nextTag": "SECTION.pain",
+  "nextTop": 497,
+  "nextVisiblePx": 128,
+  "nextText": "9 de 259 de 25 con ulta  llegaron con la oficina cerrada. ¿Quién le  c",
+  "h1Top": 169,
+  "furniturePx": 86
+ },
+ "1440x900": {
+  "vh": 900,
+  "heroBottom": 764,
+  "heroHeight": 764,
+  "nextTag": "SECTION.pain",
+  "nextTop": 764,
+  "nextVisiblePx": 136,
+  "nextText": "9 de 259 de 25 con ulta  llegaron con la oficina cerrada. ¿Quién le  c",
+  "h1Top": 283,
+  "furniturePx": 86
+ },
+ "1440x757": {
+  "vh": 757,
+  "heroBottom": 629,
+  "heroHeight": 629,
+  "nextTag": "SECTION.pain",
+  "nextTop": 629,
+  "nextVisiblePx": 128,
+  "nextText": "9 de 259 de 25 con ulta  llegaron con la oficina cerrada. ¿Quién le  c",
+  "h1Top": 141,
+  "furniturePx": 86
+ },
+ "390x844": {
+  "vh": 844,
+  "heroBottom": 716,
+  "heroHeight": 716,
+  "nextTag": "SECTION.pain",
+  "nextTop": 716,
+  "nextVisiblePx": 128,
+  "nextText": "9 de 259 de 25 con ulta  llegaron con la oficina cerrada. ¿Quién le  c",
+  "h1Top": 233,
+  "furniturePx": 144
+ },
+ "390x664": {
+  "vh": 664,
+  "heroBottom": 536,
+  "heroHeight": 536,
+  "nextTag": "SECTION.pain",
+  "nextTop": 536,
+  "nextVisiblePx": 128,
+  "nextText": "9 de 259 de 25 con ulta  llegaron con la oficina cerrada. ¿Quién le  c",
+  "h1Top": 197,
+  "furniturePx": 144
+ }
+}

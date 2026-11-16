@@ -1,0 +1,88 @@
+{
+ "build": {
+  "commit": "a697fb8e0a0964ba3b387667d7a2436341c7fac4",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_7JSMUmUzNqG2GrvxfcdZULwtFVLA",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "out": {
+  "/es": {
+   "targetLen": 21983,
+   "publicLen": 21983,
+   "ratio": "100%",
+   "missingCount": 0,
+   "missingSample": []
+  },
+  "/en": {
+   "targetLen": 21598,
+   "publicLen": 21598,
+   "ratio": "100%",
+   "missingCount": 0,
+   "missingSample": []
+  },
+  "/es/packages": {
+   "targetLen": 5591,
+   "publicLen": 5591,
+   "ratio": "100%",
+   "missingCount": 0,
+   "missingSample": []
+  },
+  "/es/platform": {
+   "targetLen": 3734,
+   "publicLen": 3734,
+   "ratio": "100%",
+   "missingCount": 0,
+   "missingSample": []
+  },
+  "/es/platform/ai-sales-agent": {
+   "targetLen": 2838,
+   "publicLen": 2838,
+   "ratio": "100%",
+   "missingCount": 0,
+   "missingSample": []
+  },
+  "/es/platform/lead-intelligence": {
+   "targetLen": 2925,
+   "publicLen": 2925,
+   "ratio": "100%",
+   "missingCount": 0,
+   "missingSample": []
+  },
+  "/es/platform/crm": {
+   "targetLen": 3164,
+   "publicLen": 3164,
+   "ratio": "100%",
+   "missingCount": 0,
+   "missingSample": []
+  },
+  "/es/platform/daily-assistant": {
+   "targetLen": 3183,
+   "publicLen": 3183,
+   "ratio": "100%",
+   "missingCount": 0,
+   "missingSample": []
+  },
+  "/es/faq": {
+   "targetLen": 6728,
+   "publicLen": 6728,
+   "ratio": "100%",
+   "missingCount": 0,
+   "missingSample": []
+  },
+  "/es/contact": {
+   "targetLen": 2178,
+   "publicLen": 2178,
+   "ratio": "100%",
+   "missingCount": 0,
+   "missingSample": []
+  },
+  "/es/example-report": {
+   "targetLen": 5005,
+   "publicLen": 5005,
+   "ratio": "100%",
+   "missingCount": 0,
+   "missingSample": []
+  }
+ }
+}

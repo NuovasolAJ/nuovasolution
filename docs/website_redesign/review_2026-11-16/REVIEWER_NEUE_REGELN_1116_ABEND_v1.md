@@ -157,3 +157,39 @@ weiterlebt. **Zu entscheiden ist, welche der beiden Aussagen am Schaltertag gilt
    — dann bleibt die Kopplung, und die Seite sagt öffentlich weniger, als sie könnte.
 
 Ich lege das dem Owner vor und prüfe nach seiner Antwort. Bis dahin werte ich die Stelle nicht.
+
+---
+
+## 6 Auf `a697fb8` nachgemessen: (a) bestanden, (b) halb
+
+`a697fb8e0a0964ba3b387667d7a2436341c7fac4`, `dpl_7JSMUmUzNqG2GrvxfcdZULwtFVLA`.
+
+### (a) Vorschau öffentlich = Zielsicht — **bestanden**
+
+| Route | öffentlich / Ziel | fehlende Sätze |
+|---|---|---|
+| `/es` | 21 983 / 21 983 = **100 %** | **0** |
+| `/en` | 21 598 / 21 598 = 100 % | 0 |
+| `/es/packages` | 5 591 / 5 591 = 100 % | 0 |
+| `/es/platform` | 3 734 / 3 734 = 100 % | 0 |
+| `/es/platform/ai-sales-agent` · `lead-intelligence` · `crm` · `daily-assistant` | je **100 %** | je 0 |
+| `/es/faq` · `/es/contact` · `/es/example-report` | je **100 %** | je 0 |
+
+Elf Routen, beide Sprachen, **keine einzige fehlende Aussage**. Vorher waren es 33 % bis 92 % und
+bis zu 101 fehlende Sätze. Beleg `checks/same-a697fb8.json`.
+
+### (b) Knöpfe — **bestanden**; „Y además" — **Desktop bestanden, Handy nicht**
+
+| | `de08edc` | `a697fb8` | Bedingung | Urteil |
+|---|---|---|---|---|
+| Ver-Knöpfe, 1440, Abweichung der Oberkanten | 45 px | **0 px** (3648 / 3648 / 3648) | ≤ 4 px | **bestanden** |
+| „Y además" 1440: Füllung · größte Lücke | 58 % · 89 px | **72 % · 44 px** (Block 442 statt 533 px) | ≥ 70 % · ≤ 48 px | **bestanden** |
+| „Y además" **390**: Füllung · größte Lücke | 59 % · 64 px | **59 % · 64 px** (unverändert) | ≥ 70 % · ≤ 48 px | **nicht bestanden** |
+
+Die Szenenboxen am Desktop sind kürzer geworden, am Handy nicht. Es fehlen dort **11 Prozentpunkte
+Füllung**, und die größte Lücke ist **16 px zu groß**. Beleg `checks/gap-a697fb8.json`.
+
+### Unverändert bestanden
+
+Schmerz-Band im ersten Bildschirm **128 / 128 / 136 / 128 / 128 / 128 px** bei allen sechs
+Fenstergrößen (`checks/edge-a697fb8.json`).
