@@ -407,7 +407,7 @@ export const en = {
     leadNeutral: "14 days, no payment method. After that you choose a plan with us, and we tell you the price for your agency before anything is agreed.",
     // COPY_DELTAS_0929 D-20, D-21: the Essential wording is released (PRODUCT_TRUTH_TABLE_v1 §G).
     h1: "Start with a free 14-day pilot", // Copy 1116 §1.2
-    lead: "Every plan starts the same way: a 14-day pilot, free and with our support, and 7 more days if you give us your feedback. We explain the price for afterwards before anything is agreed.", // Copy 1116 §1.2
+    lead: "Any plan can start with a 14-day pilot, free and with our support, and 7 more days if you give us your feedback. We explain the price for afterwards before anything is agreed.", // Copy f276edc PK-lead // Copy 1116 §1.2
     plansEyebrow: "The plans",
     included: "Included",
     baselineHeading: "What every plan includes",

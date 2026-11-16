@@ -372,7 +372,7 @@ export const es: Dictionary = {
     h1Neutral: "Empieza con 14 días de prueba",
     leadNeutral: "14 días, sin método de pago. Después eliges un plan con nosotros y te decimos el precio para tu agencia antes de acordar nada.",
     h1: "Empieza con 14 días de piloto gratuito", // Copy 1116 §1.2
-    lead: "Todos los paquetes empiezan igual: 14 días de piloto, gratis y con nuestro acompañamiento, y 7 días más si nos das tu opinión. El precio para después te lo explicamos antes de acordar nada.", // Copy 1116 §1.2
+    lead: "Cualquier plan puede empezar con 14 días de piloto, gratis y con nuestro acompañamiento, y 7 días más si nos das tu opinión. El precio para después te lo explicamos antes de acordar nada.", // Copy f276edc PK-lead (the owner's Q-9, 16.11.)
     plansEyebrow: "Los planes",
     included: "Incluido",
     baselineHeading: "Qué incluye cada plan",

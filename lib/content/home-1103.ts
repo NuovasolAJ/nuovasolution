@@ -381,10 +381,10 @@ export const home1103 = {
     /** 16.11. 14:00 (the owner's point 1; D6 decided): the four steps as a short order chat — the agency sends the plan and its wish, we confirm,
      *  the model is ready, the pictures go to listings and social media; supervised, never instant. WORKING for Copy (the step names are Copy 1116 §7.2). */
     pathChat: (locale: Locale): { name: string; from: "agency" | "us"; who: string; text: string; time: string; attach?: string; thumb?: "model" | "pictures" }[] => [
-      { name: T("Plano y deseos", "Plan and wishes")[locale], from: "agency", who: T("Tu agencia", "Your agency")[locale], text: T("Os envío el plano. Quiero enseñar el salón y la terraza.", "Here's the floor plan. I want to show the living room and the terrace.")[locale], time: T("lun 10:12", "Mon 10:12")[locale], attach: "plano-estepona.pdf" },
-      { name: T("Confirmamos", "We confirm")[locale], from: "us", who: "NuovaSolution", text: T("Recibido. Te preparamos el modelo de la vivienda, vacío y amueblado. Te lo entregamos el jueves.", "Got it. We'll build the model of the home, empty and furnished. You'll have it on Thursday.")[locale], time: T("lun 10:40", "Mon 10:40")[locale] },
-      { name: T("Construimos el modelo", "We build the model")[locale], from: "us", who: "NuovaSolution", text: T("Tu modelo está listo. Entra con tu acceso y míralo.", "Your model is ready. Log in and take a look.")[locale], time: T("jue 16:05", "Thu 16:05")[locale], thumb: "model" },
-      { name: T("Lo ves y compartes las imágenes", "You view it and share the images")[locale], from: "us", who: "NuovaSolution", text: T("Aquí tienes las imágenes para tus anuncios y redes. Van marcadas como visualización.", "Here are the images for your listings and social media. They are marked as a visualisation.")[locale], time: T("jue 16:06", "Thu 16:06")[locale], thumb: "pictures" },
+      { name: T("Plano y deseos", "Plan and wishes")[locale], from: "agency", who: T("Tu agencia", "Your agency")[locale], text: T("Os envío el plano. Quiero enseñar el salón y la terraza.", "Here's the floor plan. I want to show the living room and the terrace.")[locale], time: "", attach: "plano-estepona.pdf" },
+      { name: T("Confirmamos", "We confirm")[locale], from: "us", who: "NuovaSolution", text: T("Recibido. Te preparamos el modelo de la vivienda, vacío y amueblado. Te avisamos cuando esté listo.", "Got it. We'll build the model of the home, empty and furnished. We'll let you know when it's ready.")[locale], time: "" },
+      { name: T("Construimos el modelo", "We build the model")[locale], from: "us", who: "NuovaSolution", text: T("Tu modelo está listo. Entra con tu acceso y míralo.", "Your model is ready. Log in and take a look.")[locale], time: "", thumb: "model" },
+      { name: T("Lo ves y compartes las imágenes", "You view it and share the images")[locale], from: "us", who: "NuovaSolution", text: T("Aquí tienes las imágenes para tus anuncios y redes. Van marcadas como visualización.", "Here are the images for your listings and social media. They are marked as a visualisation.")[locale], time: "", thumb: "pictures" },
     ],
     // Copy 1116 §7.2: a guided process in four steps, each with its line, and the note that nothing is created automatically or instantly
     pathLine: T("Cada modelo lo preparamos nosotros. No se crea solo ni al instante.", "Every model is prepared by us. It is not created automatically or instantly."),
@@ -475,7 +475,7 @@ export const home1103 = {
     },
     inherits: T("Cada plan incluye todo lo del anterior.", "Each plan includes everything in the one before."),
     /** 16.11. 14:00 (the owner's point 2, his own words): the line above the table. EN WORKING for Copy. */
-    pilotLine: T("Todos los planes empiezan con un piloto gratuito de 14 días.", "Every plan starts with a free 14-day pilot."),
+    pilotLine: T("Todos los planes pueden empezar con un piloto gratuito de 14 días.", "Every plan can start with a free 14-day pilot."), // Copy f276edc PK-0 (the owner's Q-9, 16.11.)
     /** 16.11. 14:00 (the owner's point 3): the second, clearly smaller way beside the pilot button — the same form with "Contratar un plan" preselected. WORKING for Copy. */
     direct: T("Contratar directamente", "Go straight to a plan"), // Copy 441ba1c §5 DC-l
     /** the phone's plan cards fold their rows behind one tap (16.11. 14:00, depth). WORKING for Copy. */

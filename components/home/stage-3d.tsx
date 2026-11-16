@@ -204,7 +204,7 @@ export function Stage3d({ locale }: { locale: Locale }) {
                   {s.attach && <span className="tc-attach"><FileText size={14} strokeWidth={2} aria-hidden="true" />{s.attach}</span>}
                   {s.thumb === "model" && <Img src={MEDIA.loopPoster} alt={l(w.modelAlt)} w={1600} h={900} className="tc-thumb" />}
                   {s.thumb === "pictures" && <span className="tc-thumbs"><Img src={MEDIA.furnished} alt={l(w.furnishedAlt)} w={1200} h={800} className="tc-thumb" /><Img src={MEDIA.empty} alt={l(w.emptyAlt)} w={1200} h={800} className="tc-thumb" /></span>}
-                  <span className="tc-time tnum">{s.time}</span>
+                  {s.time && <span className="tc-time tnum">{s.time}</span>}
                 </div>
               </li>
             ))}
