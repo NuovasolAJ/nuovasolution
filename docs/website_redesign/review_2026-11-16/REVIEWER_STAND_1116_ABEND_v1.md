@@ -130,3 +130,19 @@ In der Paket-Übersicht liegen zusätzlich **sechs** `a.plans-direct` mit den ri
 unterstrichen, ohne Grund, eckig). **Ihre gerenderte Größe konnte ich nicht messen** — sie melden
 0 × 0 px, liegen also im Moment der Messung in einem nicht ausgeklappten Behälter. Die Gestalt ist
 damit belegt, die Größe nicht; am Mittwoch messe ich sie an der Stelle, die Redesign mir nennt.
+
+### Nachtrag: die sechs Links in der Paket-Übersicht sind jetzt gemessen
+
+Redesigns Erklärung stimmt: es sind **zwei Sätze zu je drei**, die sich nach Breite abwechseln.
+Unter 1024 px stehen die Karten (`card-*`), ab 1024 px die Vergleichstabelle (ohne Präfix); der
+jeweils andere Satz ist `display: none`. Gemessen wird deshalb je Breite nur der gerenderte Satz:
+
+| Breite | gerendert | Größe | Pilot-Knopf daneben | Verhältnis |
+|---|---|---|---|---|
+| **390** | `card-essential`, `card-growth`, `card-enterprise` | je **316 × 21 px = 6 636 px²** | 316 × 48 px = 15 168 px² | **2,3-mal kleiner** |
+| **1440** | `essential`, `growth`, `enterprise` | je **88 × 42 px = 3 711 px²** | 132 × 90 px = 11 821 px² | **3,2-mal kleiner** |
+
+Beide Sätze: 14 px, unterstrichen, ohne Grund, eckig, Ziel
+`/es/contact?interes=contratar&plan=…`. **Damit ist „kleiner als der Pilot-Knopf" an allen vier
+Stellen belegt** — auf `/contact` 4,6- und 7,4-mal, in der Paket-Übersicht 2,3- und 3,2-mal. Der
+Punkt ist geschlossen; meine Einschränkung von vorhin entfällt.

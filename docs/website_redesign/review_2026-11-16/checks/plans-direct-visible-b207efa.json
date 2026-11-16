@@ -1,0 +1,119 @@
+{
+ "390": {
+  "total": 6,
+  "shown": [
+   {
+    "key": "card-essential",
+    "w": 316,
+    "h": 21,
+    "area": 6636,
+    "topAbs": 11672,
+    "fontSize": 14,
+    "fontWeight": "500",
+    "bg": "rgba(0, 0, 0, 0)",
+    "decoration": "underline",
+    "radius": "0px",
+    "href": "/es/contact?interes=contratar&plan=essential"
+   },
+   {
+    "key": "card-growth",
+    "w": 316,
+    "h": 21,
+    "area": 6636,
+    "topAbs": 11974,
+    "fontSize": 14,
+    "fontWeight": "500",
+    "bg": "rgba(0, 0, 0, 0)",
+    "decoration": "underline",
+    "radius": "0px",
+    "href": "/es/contact?interes=contratar&plan=growth"
+   },
+   {
+    "key": "card-enterprise",
+    "w": 316,
+    "h": 21,
+    "area": 6636,
+    "topAbs": 12253,
+    "fontSize": 14,
+    "fontWeight": "500",
+    "bg": "rgba(0, 0, 0, 0)",
+    "decoration": "underline",
+    "radius": "0px",
+    "href": "/es/contact?interes=contratar&plan=enterprise"
+   }
+  ],
+  "hiddenKeys": [
+   "essential",
+   "growth",
+   "enterprise"
+  ],
+  "pilotNearFirst": {
+   "w": 316,
+   "h": 48,
+   "area": 15168,
+   "topAbs": 11610
+  }
+ },
+ "1440": {
+  "total": 6,
+  "shown": [
+   {
+    "key": "essential",
+    "w": 88,
+    "h": 42,
+    "area": 3711,
+    "topAbs": 10148,
+    "fontSize": 14,
+    "fontWeight": "500",
+    "bg": "rgba(0, 0, 0, 0)",
+    "decoration": "underline",
+    "radius": "0px",
+    "href": "/es/contact?interes=contratar&plan=essential"
+   },
+   {
+    "key": "growth",
+    "w": 88,
+    "h": 42,
+    "area": 3711,
+    "topAbs": 10148,
+    "fontSize": 14,
+    "fontWeight": "500",
+    "bg": "rgba(0, 0, 0, 0)",
+    "decoration": "underline",
+    "radius": "0px",
+    "href": "/es/contact?interes=contratar&plan=growth"
+   },
+   {
+    "key": "enterprise",
+    "w": 88,
+    "h": 42,
+    "area": 3711,
+    "topAbs": 10148,
+    "fontSize": 14,
+    "fontWeight": "500",
+    "bg": "rgba(0, 0, 0, 0)",
+    "decoration": "underline",
+    "radius": "0px",
+    "href": "/es/contact?interes=contratar&plan=enterprise"
+   }
+  ],
+  "hiddenKeys": [
+   "card-essential",
+   "card-growth",
+   "card-enterprise"
+  ],
+  "pilotNearFirst": {
+   "w": 132,
+   "h": 90,
+   "area": 11821,
+   "topAbs": 10119
+  }
+ },
+ "build": {
+  "commit": "b207efa782a6a6647919d5115a125d5d9e017a17",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_BKiG5Nn16CYehrZBq9k3uS7dGTdu",
+  "env": "preview",
+  "mode": "stub"
+ }
+}
