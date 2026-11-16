@@ -160,3 +160,34 @@ Wege stehen offen, und die Wahl ist die des Owners:
 ersetzt, dann sind es drei Pflichtfelder (`agency`, `name`, `email` **oder** `phone`). Ich zähle am
 Mittwoch die Pflichtfelder und melde die Zahl; ob die Infozeile rechtlich genügt, ist die Frage des
 Anwalts (Copys Q-8) und nicht meine Spur. Meine Rückfrage zum Häkchen ist damit erledigt.
+
+---
+
+## Nachtrag 2, 16.11. abends: Punkt A ist entschieden, vier neue Prüfpunkte
+
+**A ist entschieden — ich habe `f276edc` selbst gelesen, nicht die Nachricht geglaubt.** Dort steht,
+vom Owner am 16.11. entschieden: die Vorschau **bleibt offen** (für den Owner und ChatGPT), das
+Hinweisband und `noindex` genügen, und **W-2 „Responde en minutos por email." bleibt** wie
+geschrieben; der gekennzeichnete Ersatzsatz wird **nicht** verwendet.
+
+**Damit ist mein „Entscheidung offen" aufgelöst: W-2 gilt am Mittwoch als sauber.** Ich habe diese
+Entscheidung über Copys Datei erfahren, nicht unmittelbar vom Owner — widerspricht er, gilt seine
+Fassung.
+
+**B bleibt offen:** der Widerspruch innerhalb der öffentlichen Sicht zwischen der Planzeile
+(„Respuestas en español **por email**.") und den Plattformseiten („**Respuesta por WhatsApp**, en
+español.") ist nicht beantwortet. Bis dahin melde ich beide Stellen nebeneinander und werte keine
+als Verstoß.
+
+### Vier neue Prüfpunkte für Mittwoch (Copy `f276edc`, Owner-Antworten vom 16.11.)
+
+| | Soll | Gegenprobe |
+|---|---|---|
+| **PK-0** | „Todos los planes **pueden** empezar con un piloto gratuito de 14 días." / „Every plan **can** start with a free 14-day pilot." | „Todos los planes **empiezan**" und „Todos los paquetes empiezan igual" je **0 Treffer** |
+| **PK-lead** | Paketseite: „**Cualquier plan puede empezar** con 14 días de piloto, gratis y con nuestro acompañamiento, y 7 días más si nos das tu opinión." | derselbe 0-Treffer-Test |
+| **3D-Chatszene** | Blase 2: „**Te avisamos cuando esté listo.**" — **nirgends auf der Website eine Lieferzeit** | „jueves" / „Thursday" **0 Treffer** auf allen Routen, beide Sichten |
+| **Karte K2** | Titel „**Ninguna consulta se queda sin aviso**" / „No enquiry goes unflagged" | „Nada se queda sin atender" **0 Treffer** |
+
+Begründung des Owners, die ich mitprüfe: „empiezan" wäre unwahr, solange „Contratar directamente"
+als Weg ohne Piloten daneben steht; und „Nada se queda sin atender" verspricht mehr, als der Beleg
+hergibt, weil nach der letzten Erinnerung nichts mehr ausgelöst wird.
