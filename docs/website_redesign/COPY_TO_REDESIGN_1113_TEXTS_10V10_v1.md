@@ -115,26 +115,31 @@ In the public view Crece keeps C-0 and C-1. If two points look thin, add the fil
 
 ## 3. NEW: files (photos, plans, PDFs, voice notes)
 
-**State:** **target view only, until MM confirms per line what runs in production.**
-- I could not reach MM directly today: no peer session carries MM's name. The question is in §7.
-- What I could read (MM, 06.11. and 09.11.):
-  - The media path exists.
-  - Photo without text and the unreadable file are in Lead's candidate `28a`, and go to production only after L1 with Lead's go.
-  - Voice notes are proven in Spanish only: EN and DE have 0 runs.
-  - A real-phone run with photo and PDF was "GESPERRT", earliest Fri 13.11.
-  - I found nothing on e-mail attachments.
+**State 16.11., after MM's register (`1c680755`, n8n repo `governance/MM_TO_COPY_1113_DATEIEN_REGISTER_v1.md`, owner 16.11.):**
+- **Email PDF: allowed, both views.** Proof: production run 161640 (09.11.). The reply used price, bedrooms, bathrooms and reference from
+  the PDF.
+- **WhatsApp photo, PDF and voice note: "En preparación".** In the production runs of 13.11. (175697, 175708, 175717, and Carina's
+  floor plan 175620) the files arrive, but no reply uses what is in them. A PDF sent on WhatsApp never reached the model at all.
+- **Banned in both views until the fix:** "responde a fotos, PDFs y audios" and "describe planos", and every line below that says the
+  same thing in other words.
+- **Earliest public date:** after `MEDIEN-FIX-PROD = JA` and a green repeat test in production (planned Wed 18.11.). MM then adds the
+  run IDs to the register, and Copy releases the lines one by one.
 
-| # | Target ES | Target EN | Proof needed from MM, per line |
+| # | ES | EN | View, 16.11. |
 |---|---|---|---|
-| F-0 | Entiende fotos, planos, PDF y notas de voz, por WhatsApp y email. | Understands photos, floor plans, PDFs and voice notes, on WhatsApp and e-mail. | each medium × each channel: live in production or not. Only the live pairs stay in the line |
-| F-1 | Una foto o un plano, aunque llegue sin texto: responde con lo que muestra. | A photo or a floor plan, even without text: it replies with what it shows. | `[FOT: Photo Only?]` live in production (the owner says it comes today) |
-| F-2 | Un PDF o la ficha de un inmueble: lo lee junto con el mensaje. | A PDF or a listing sheet: it reads it together with the message. | `[WA: Merge Doc Context]` live; e-mail attachments yes or no |
-| F-3 | Una nota de voz: la transcribe y la contesta como un mensaje escrito. | A voice note: it transcribes it and answers it like a written message. | live; proven in Spanish only. The public line says "una nota de voz en español" until EN/DE have runs |
-| F-4 | Si no puede abrir un archivo, lo dice y pide que lo vuelvan a enviar. | If it cannot open a file, it says so and asks for it to be sent again. | `[MMU: Unreadable?]` live in production |
+| F-2e | Lee los PDF y folletos que el cliente adjunta al email y responde con sus datos (precio, dormitorios, referencia). | Reads the PDFs and brochures a client attaches to an email and replies with their details (price, bedrooms, reference). | **both** (MM's wording, run 161640) |
+| F-0 | ~~Entiende fotos, planos, PDF y notas de voz, por WhatsApp y email.~~ | ~~Understands photos, floor plans, PDFs and voice notes, on WhatsApp and e-mail.~~ | **neither**, until the fix |
+| F-1 | ~~Una foto o un plano, aunque llegue sin texto: responde con lo que muestra.~~ | ~~A photo or a floor plan, even without text: it replies with what it shows.~~ | **neither**: "describe planos" is banned, and a photo without text gets only an acknowledgement |
+| F-2 | ~~Un PDF o la ficha de un inmueble: lo lee junto con el mensaje.~~ | ~~A PDF or a listing sheet: it reads it together with the message.~~ | replaced by F-2e (email only) |
+| F-3 | ~~Una nota de voz: la transcribe y la contesta como un mensaje escrito.~~ | ~~A voice note: it transcribes it and answers it like a written message.~~ | **neither**, until the fix; afterwards Spanish only |
+| F-4 | ~~Si no puede abrir un archivo, lo dice y pide que lo vuelvan a enviar.~~ | ~~If it cannot open a file, it says so and asks for it to be sent again.~~ | **neither**: on 24z an unreadable file goes to a person and the customer gets no request to resend it |
+| F-p | Fotos, planos y notas de voz por WhatsApp: en preparación. | Photos, floor plans and voice notes on WhatsApp: in preparation. | optional, **both**, only if the strip needs a second line. Status words as in the claims |
 
-**Where:** either as one card point in Atiende, or as a short strip after the cards, with F-0 as its title and F-1 to F-4 under it. Never
-on a picture.
-**Not in the line:** "exposé" as a promise of extraction, any number of formats, any time.
+**Where:** F-2e as one point in Atiende, or as a one-line strip after the cards. Never on a picture.
+**Not in any line:** "exposé" as a promise of extraction, any number of formats, any time, "en cualquier idioma" for voice notes, anything
+about voice notes by email.
+**Laura's file moment in the demo (§7, D-f1–D-f3):** the floor plan comes in on WhatsApp and the reply describes it, which is exactly what is
+banned. It is **out of both views** until the fix. The WhatsApp demo runs without it.
 
 ---
 
@@ -295,6 +300,15 @@ Every remaining "14 días" / "14 days" string on the public site, from the list 
 
 Each place takes the matching line above or goes.
 
+**Media, added 16.11. (MM `1c680755`, owner).** Until `MEDIEN-FIX-PROD = JA` and a green repeat test in production, these must have 0 hits on
+every route, in both views and both languages:
+- "responde a fotos, PDFs y audios", "describe planos", and their EN equivalents;
+- F-0, F-1, F-2, F-3, F-4 (§3) and D-f1–D-f3 (§7);
+- any sentence saying that a reply on WhatsApp uses what a photo, a floor plan, a PDF or a voice note contains.
+
+Still allowed: F-2e (a PDF attached to an email). The 3D lines about "tu plano" (`home-1103.ts:356–363`) are about the 3D service, not the
+assistant, and stay.
+
 ### Not changed here
 
 - **The terms page** (`legal.ts:131–132`, "La prueba es gratuita durante 14 días"). That is counsel's text. Copy's proposal for counsel: "El piloto es gratuito y no requiere ningún método de pago. Sus condiciones se acuerdan por escrito." / "The pilot is free and requires no payment method. Its terms are agreed in writing."
@@ -319,7 +333,7 @@ The hero's three ticks on the photo: if they stay as a glass card, they keep the
 | # | Place | ES | EN | View |
 |---|---|---|---|---|
 | D-p | line above the chips (P-6; replaces "Elige un canal y mira cómo responde.") | Pulsa un canal y mira cómo responde. | Tap a channel and see how it replies. | both |
-| D-f1 | Laura sends a file (the new moment in the WhatsApp run) | «Os mando el plano del que me gusta.» + a picture of a floor plan | "Here's the floor plan of the one I like." + a picture of a floor plan | **target only** until MM confirms (§3) |
+| D-f1 | Laura sends a file (the new moment in the WhatsApp run) | «Os mando el plano del que me gusta.» + a picture of a floor plan | "Here's the floor plan of the one I like." + a picture of a floor plan | **out of both views** since 16.11. (MM `1c680755`: "describe planos" banned until the fix, §3) |
 | D-f2 | the reply | Gracias, Laura. Veo un plano de 2 dormitorios con terraza. ¿Te viene mejor por la mañana o por la tarde para verlo? | Thank you, Laura. I can see a 2-bedroom plan with a terrace. Would the morning or the afternoon suit you better to see it? | target |
 | D-f3 | the record's new field | Archivo · plano: 2 dormitorios, terraza | File · plan: 2 bedrooms, terrace | target |
 
@@ -353,7 +367,7 @@ commit `5bae761`. It covers media, not text. Copy only points to it:
 
 | # | Question | Who | By |
 |---|---|---|---|
-| Q-MM (the owner routes it) | Per medium (photo, plan, PDF, voice note) × channel (WhatsApp, e-mail): live in production today, yes or no, with the run or the step (for example `28a` / "24z"). Is the unreadable-file reply live? Voice notes: still Spanish only? | MM | today, so the lines go public on Mon |
+| Q-MM | **answered 16.11.** (`1c680755`): email PDF allowed (F-2e); WhatsApp photo, PDF and voice note "En preparación"; F-0, F-1, F-3, F-4 and D-f out until `MEDIEN-FIX-PROD = JA` and a green repeat test (planned Wed 18.11.) | MM | MM gives the new run IDs after the fix |
 | Q-3D | **answered 13.11.** (`61b5072`), built into §5. 3D then confirmed Copy's 3-1 (the agency as subject), the floor seconds and card 3-t3 by message; no further deviation | 3D | done |
 | Q-A1 | **answered 13.11. by the owner's production measurement** (§2, A-1): seconds on WhatsApp, about 2 minutes by email. A-1 now names both channels and holds in both views | owner | done |
 | Q-A2 | Intent values buy / rent / sell on the production record | Lead (owner, 13.11.) | before the build is named |
