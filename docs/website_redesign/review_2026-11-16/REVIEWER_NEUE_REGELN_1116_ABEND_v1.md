@@ -117,3 +117,43 @@ Lieferzeit, K2-Titel, Formular mit drei Pflichtangaben, „Contratar directament
 kleiner als der Pilot-Knopf, Regler 0 px, Kontrast am Handy 0 % unter AA.
 
 Offen: **Scrolltiefe** (Handy 19,4, Desktop 16,1 nach meinem Verfahren) als D11 beim Owner.
+
+---
+
+## 5 Nachtrag: die Zuordnung ist da — und eine Kopplung, die am Schaltertag beißt
+
+**Die Zuordnung liegt vor.** `docs/website_redesign/REDESIGN_PUBLIC_GATE_MAP_1116_v1.md` (noch
+nicht eingecheckt, 68 KB): je `publicGate`-Schlüssel alle Stellen `file:line`, 637 Stellen, 32
+Schlüssel. **Ich habe die Schlüsselliste gegen den Code geprüft** — `publicGate` in `lib/claims.ts`
+führt 32 Schlüssel, die Karte führt dieselben 32. **Keine Lücke.** Damit kann ich die
+Livegang-Prüfung (c) führen, ohne etwas zu raten. Copys „Próximamente"-Fassungen je Schlüssel
+liegen in `COPY_TO_REDESIGN_1116_EXAMPLE_WEEK_PROXIMAMENTE_v1.md` §1.2 (`88143c1`).
+
+**Gefunden beim Gegenlesen — eine Kopplung, die heute nicht auffällt und am Schaltertag zuschlägt:**
+
+`lib/claims.ts:148`
+
+```
+const channelOn = (key, view) => isIncluded(key)
+  && (view === "target" || key !== "replyWhatsapp" || publicGate.whatsappOwnNumber === "live");
+```
+
+Die öffentliche Kanalliste nennt **WhatsApp nur dann, wenn `whatsappOwnNumber` auf „live" steht** —
+nicht, wenn `replyWhatsapp` auf „live" steht. Das stammt aus der alten Regel W-1 (Punkt 6 des
+Owners) und ist dort ausdrücklich so gewollt gewesen.
+
+| | `whatsappOwnNumber` | öffentliche Kanalliste |
+|---|---|---|
+| **heute** | „live" (alle Schlüssel live) | nennt WhatsApp — entspricht der neuen Entscheidung |
+| **am Schaltertag** | geht auf „soon" (Thema 20, nicht in Prod) | **WhatsApp verschwindet ganz**, obwohl `replyWhatsapp` in Produktion ist |
+
+Die Seite würde dann öffentlich „por email" sagen und damit **weniger** behaupten, als das Produkt
+kann. Das ist kein Fehler im Bau, sondern eine Regel aus der alten Welt, die in der neuen Mechanik
+weiterlebt. **Zu entscheiden ist, welche der beiden Aussagen am Schaltertag gilt:**
+
+1. WhatsApp bleibt öffentlich genannt (es läuft in Prod, über **unsere** Nummer), und nur die
+   Zusage „mit der Nummer **deiner Agentur**" bekommt „Próximamente" — dann muss die Kopplung weg;
+2. oder WhatsApp verschwindet öffentlich ganz, solange die Nummer der Agentur nicht angemeldet ist
+   — dann bleibt die Kopplung, und die Seite sagt öffentlich weniger, als sie könnte.
+
+Ich lege das dem Owner vor und prüfe nach seiner Antwort. Bis dahin werte ich die Stelle nicht.
