@@ -112,3 +112,39 @@ sonst nichts.
 
 **Neuer Zeitplan (Owner):** Redesign pausiert bis **Do 19.11. 20:00**, die Entwurfsbilder zu (16)
 kommen **Fr 20.11.**, erst danach messe ich. Alles Übrige aus diesem Blatt bleibt, wie es steht.
+
+---
+
+## Richtigstellung: mein Abzug war unvollständig, die Soll-Datei ist es jetzt
+
+Copy weist darauf hin, dass **R-2 nicht entfallen ist** — die Zeile steht in `e851e72` weiter in
+§D, Zeile 212. **Copy hat recht, und der Fehler lag bei meinem Werkzeug.**
+
+Mein Abzug erkannte eine Kennung nur, wenn die Zelle **genau** „R-2" lautete. Dort steht aber
+„**R-2 (alternative)**", und solche Zellen hat mein Muster stillschweigend übersprungen. Neu
+gezogen mit einem Muster, das die Kennung **am Anfang** der Zelle liest: **29 Kennungen, 46
+Zeilen** — und **nichts** fehlt mehr gegenüber `fe8100b`.
+
+**Damit fällt auch meine vorige Schlussfolgerung weg.** Ich hatte gemeldet, der Abgleich der beiden
+Soll-Dateien „bestätige genau die beabsichtigten Streichungen" (T-1, T-3, T-5, T-7 und R-2). Das
+war **kein Beleg, sondern derselbe Werkzeugfehler**: auch diese vier Kennungen tragen eine Notiz in
+der Zelle. In Copys Datei ist **nichts** weggefallen.
+
+**Was davon unberührt bleibt:** Dass die Inhalte von T-1, T-3, T-5 und T-7 in den Wachstumskarten
+aufgehen und dass die alten Käufer-Zeilen des G-1-Beispiels ersetzt sind, bleibt richtig — das
+steht so in Copys Text und ist ausdrücklich Absicht. Nur mein **Nachweis** dafür war falsch; die
+Absicht ist Copys Wort, nicht mein Abgleich.
+
+### R-1 und R-2: Sollvorgabe bis zum Preis des Owners
+
+Solange der Owner `{precio}` nicht festgelegt hat, wird **keine** der beiden Zeilen gerendert, in
+keiner Sicht. Geprüft wird also:
+
+| | Bedingung |
+|---|---|
+| R-1 | **0 Treffer** auf der Seite |
+| R-2 | **0 Treffer** auf der Seite |
+| Platzhalter | **0 Treffer** für rohes `{precio}` |
+
+Kommt der Preis, wählt der Owner R-1 oder R-2; Copy meldet es mit Commit, und ich prüfe dann die
+gewählte Zeile **mit** dem Preis und weiter 0 Treffer für den Platzhalter.

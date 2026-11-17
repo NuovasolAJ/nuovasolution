@@ -1,6 +1,7 @@
 {
  "source": "docs/website_redesign/COPY_TO_REDESIGN_1117_TARGET_PRODUCT_TEXTS_v2.md",
  "commit": "e851e72",
+ "note": "ids matched at the start of the cell, so notes like 'R-2 (alternative)' are kept",
  "ids": [
   "D-1",
   "D-2",
@@ -22,9 +23,14 @@
   "H-sub",
   "H-subP",
   "R-1",
+  "R-2",
+  "T-1",
   "T-2",
+  "T-3",
   "T-4",
+  "T-5",
   "T-6",
+  "T-7",
   "T-8"
  ],
  "rows": {
@@ -61,6 +67,12 @@
     "line after the three cards (shortened, owner 17.11.)",
     "Cada mañana, qué oportunidades piden tu atención.",
     "Every morning, which opportunities need your attention."
+   ],
+   [
+    "what needs attention today",
+    "`taskList`, `dailyVoice`",
+    "soon",
+    "Growth, Enterprise"
    ]
   ],
   "G-m": [
@@ -88,6 +100,12 @@
     "New record: owner · Mijas · wants to sell · asks for a valuation"
    ],
    [
+    "property posts on social media",
+    "`instagram` (social_posting)",
+    "soon: staging, never published at Meta",
+    "**Enterprise**"
+   ],
+   [
     "Desde Growth · redes sociales en Enterprise",
     "From Growth · social media on Enterprise"
    ]
@@ -108,6 +126,16 @@
     "Javier wrote in March: penthouse in Benalmádena, up to €280,000",
     "Today a penthouse in Benalmádena comes in, €275,000",
     "We write to him, with his permission: \"Still looking?\" · Javier: \"Yes, when can I see it?\""
+   ],
+   [
+    "a listing that fits a past contact",
+    "`matching`",
+    "soon: pm_certified = false",
+    "Growth, Enterprise"
+   ],
+   [
+    "Desde Growth",
+    "From Growth"
    ]
   ],
   "G-3": [
@@ -126,6 +154,32 @@
     "Laura asks about a flat in Estepona · an instant reply and one question",
     "We suggest 2 flats that fit: 2 bedrooms, up to €320,000",
     "No reply in two days · a follow-up with her permission · she asks for a viewing"
+   ],
+   [
+    "reply and one question",
+    "`replyWhatsapp`, `replyEmail`",
+    "**included** (production 13.11.)",
+    "every plan"
+   ]
+  ],
+  "T-1": [
+   [
+    "G-3 (and G-2)"
+   ]
+  ],
+  "T-3": [
+   [
+    "G-2 and G-3"
+   ]
+  ],
+  "T-5": [
+   [
+    "G-1"
+   ]
+  ],
+  "T-7": [
+   [
+    "G-1"
    ]
   ],
   "T-2": [
@@ -294,6 +348,12 @@
    [
     "Desde {precio} al mes. Una sola consulta que no se pierde puede valer una comisión entera.",
     "From {precio} a month. A single enquiry that isn't lost can be worth a whole commission."
+   ]
+  ],
+  "R-2": [
+   [
+    "{precio} al mes: menos que una comisión que se escapa.",
+    "{precio} a month: less than one commission that slips away."
    ]
   ]
  }
