@@ -155,3 +155,29 @@ in Estepona …, is that right?"). **Alle 28 Routen sind noch da**; die Satzzahl
 3. **Pilot-Weg**: Paket mitgeben oder die Bedingung streichen (Owner).
 4. **Englische Story-Antwort** auf `/en/platform/ai-sales-agent`.
 5. **FARBE = A oder B** (Owner), damit ich Punkt 4 ganz prüfen kann.
+
+---
+
+## Nachtrag Di nachmittags: FARBE = B, und was ich damit messe
+
+Redesign meldet die Entscheidung des Owners: **FARBE = B ist Standard**, ohne Schalter —
+`--brand` `#1a1917`, Wäschen und Linien grau, Kanaltöne grau, Schlussfeld ohne Blau-Glanz und ohne
+Goldschimmer, Fußzeile ohne Champagner; der `?palette`-Schalter ist entfernt. **Ich habe das über
+Redesign erfahren, nicht unmittelbar vom Owner** — widerspricht er, gilt seine Fassung.
+
+**Damit ist Punkt 4 ab dem nächsten Build ganz prüfbar.** Gemessen wird außerhalb der
+Vorschau-Möblierung:
+
+| | Bedingung |
+|---|---|
+| Braun | 0 Farben mit Farbton 15–45°, Sättigung ≥ 15 %, Helligkeit 15–55 % |
+| **Blau** | 0 Farben mit Farbton **190–260°** und Sättigung ≥ 15 % |
+| **Gold** | 0 Farben mit Farbton **35–55°** und Sättigung ≥ 25 % (der Schimmer `rgba(201,167,105,0.16)` fällt genau hierunter) |
+| Marke | `--brand` ist `#1a1917` |
+| Ausnahme | Papier- und Elfenbeintöne über 85 % Helligkeit bleiben erlaubt — sie waren nie Teil der Farbfrage |
+
+Die weiteren gemeldeten Korrekturen prüfe ich auf dem benannten Build mit: Vorauswahl über die
+Pakete-Inhalte (Betreff „Contratar Enterprise" und der neue Pilot-Betreff), die englische
+Story-Antwort, der feste Handy-Knopf mit 44 px, die Vergleichszeile mit 44 px, und die Tiefe.
+**Zur Tiefe:** Redesign nennt nach dem ersten Schritt **22,5** nach meinem Verfahren — damit wäre
+die Grenze von 21 weiter gerissen; der zweite Schritt läuft.
