@@ -148,3 +148,28 @@ keiner Sicht. Geprüft wird also:
 
 Kommt der Preis, wählt der Owner R-1 oder R-2; Copy meldet es mit Commit, und ich prüfe dann die
 gewählte Zeile **mit** dem Preis und weiter 0 Treffer für den Platzhalter.
+
+---
+
+## Nachtrag: die vier aufgegangenen Karten sind eine **Gegen**bedingung, keine Sollvorgabe
+
+Copy weist auf eine Folge meines neuen Musters hin, und sie ist berechtigt: T-1, T-3, T-5 und T-7
+stehen in `e851e72` nur noch in der Tabelle „Folded into" — als Namen mit dem Verweis auf G-1, G-2
+oder G-3. Mein weiteres Muster hat sie dadurch wieder eingesammelt, als wären es erwartete
+Seitentexte. Sie enthalten dort gar keinen Seitentext, nur den Verweis; geprüft hätte ich also
+nichts — gemeldet aber eine falsche Erwartung.
+
+**Die Soll-Datei ist jetzt sauber getrennt** (`checks/expected-16-e851e72.json`):
+
+| Liste | Inhalt |
+|---|---|
+| **Erwartete Karten** | **G-1, G-2, G-3, T-2, T-4, T-6, T-8** — je Titel, Satz, Handy-Kurzform und Plan-Chip |
+| **Erwartete Abschnittszeilen** | H-h1, H-sub, G-h, G-d, G-m, D-t, D-s, D-1 … D-6, D-m |
+| **Verbotene Kartentitel** | „Seguimiento hasta que contesta" / „Follow-up until they reply" · „Inmuebles que encajan, siempre" / „Listings that fit, always" · „Todos tus leads, atendidos" / „Every lead, answered" · „Publicaciones para tus redes" / „Posts for your social media" — **keine eigene Karte** mit diesen Titeln |
+| **Null Treffer** | R-1, R-2, rohes `{precio}` |
+| **Nur unter Bedingung** | H-subP (erst am Schaltertag, solange die Wachstumsschlüssel aus sind) · D-c (nur, wenn der Owner die einzeilige Kurzform vorzieht) |
+
+**Das ist die zweite Korrektur an derselben Datei binnen einer Stunde.** Beide gingen auf dasselbe
+zurück: ein Muster, das ich nicht gegen Copys Tabellenform geprüft hatte. Die Datei ist jetzt
+geprüft — gegen beide Fassungen, mit ausgewiesenen Plus- und Minuslisten — und ich lese sie am
+Freitag nicht neu ein, ohne den Abzug wieder gegen die Quelle zu halten.

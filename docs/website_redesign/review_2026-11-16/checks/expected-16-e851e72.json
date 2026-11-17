@@ -1,7 +1,7 @@
 {
  "source": "docs/website_redesign/COPY_TO_REDESIGN_1117_TARGET_PRODUCT_TEXTS_v2.md",
  "commit": "e851e72",
- "note": "ids matched at the start of the cell, so notes like 'R-2 (alternative)' are kept",
+ "note": "ids are matched at the start of the cell, so notes like 'R-2 (alternative)' are kept. T-1, T-3, T-5 and T-7 appear in Copy's file only in the 'folded into' table: they are forbidden as cards of their own, not expected page texts (Copy, 17.11.).",
  "ids": [
   "D-1",
   "D-2",
@@ -164,22 +164,30 @@
   ],
   "T-1": [
    [
-    "G-3 (and G-2)"
+    "folded into the growth cards - NOT expected as a card of its own",
+    "Seguimiento hasta que contesta",
+    "Follow-up until they reply"
    ]
   ],
   "T-3": [
    [
-    "G-2 and G-3"
+    "folded into the growth cards - NOT expected as a card of its own",
+    "Inmuebles que encajan, siempre",
+    "Listings that fit, always"
    ]
   ],
   "T-5": [
    [
-    "G-1"
+    "folded into the growth cards - NOT expected as a card of its own",
+    "Todos tus leads, atendidos",
+    "Every lead, answered"
    ]
   ],
   "T-7": [
    [
-    "G-1"
+    "folded into the growth cards - NOT expected as a card of its own",
+    "Publicaciones para tus redes",
+    "Posts for your social media"
    ]
   ],
   "T-2": [
@@ -356,5 +364,57 @@
     "{precio} a month: less than one commission that slips away."
    ]
   ]
+ },
+ "expectedCards": [
+  "G-1",
+  "G-2",
+  "G-3",
+  "T-2",
+  "T-4",
+  "T-6",
+  "T-8"
+ ],
+ "expectedSectionLines": [
+  "H-h1",
+  "H-sub",
+  "G-h",
+  "G-d",
+  "G-m",
+  "D-t",
+  "D-s",
+  "D-1",
+  "D-2",
+  "D-3",
+  "D-4",
+  "D-5",
+  "D-6",
+  "D-m"
+ ],
+ "forbiddenCardTitles": {
+  "T-1": [
+   "Seguimiento hasta que contesta",
+   "Follow-up until they reply"
+  ],
+  "T-3": [
+   "Inmuebles que encajan, siempre",
+   "Listings that fit, always"
+  ],
+  "T-5": [
+   "Todos tus leads, atendidos",
+   "Every lead, answered"
+  ],
+  "T-7": [
+   "Publicaciones para tus redes",
+   "Posts for your social media"
+  ]
+ },
+ "zeroHit": [
+  "R-1",
+  "R-2",
+  "{precio}"
+ ],
+ "conditional": {
+  "H-subP": "only on the switch day, while the growth keys are off",
+  "D-c": "only if the owner prefers the compact one-line form"
  }
 }
