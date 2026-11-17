@@ -28,6 +28,7 @@ const SET_COOKIE_HEADER = "x-vercel-set-bypass-cookie";
 const SWITCHES = [
   { param: "view", cookie: "nuova-view", header: "x-nuova-view", allowed: ["target", "public"] },
   { param: "display", cookie: "nuova-display", header: "x-nuova-display", allowed: ["fraunces", "inter"] },
+  { param: "palette", cookie: "nuova-palette", header: "x-nuova-palette", allowed: ["a", "b"] }, // 16.11. evening: A = today's blue, B = without blue (the owner's pictures of Tue 15:00)
 ] as const;
 
 async function sha256(text: string): Promise<string> {

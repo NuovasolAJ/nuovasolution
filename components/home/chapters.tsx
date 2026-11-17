@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { Check, ChevronDown } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
@@ -30,12 +30,12 @@ export function Chapters({ locale, view }: { locale: Locale; view: ClaimView }) 
   const chapters = w.chapters.filter((c) => items.some((it) => it.chapter === c.key));
   const [open, setOpen] = useState<Chapter["key"] | null>(null);
   const reduce = useReducedMotion();
-  /** 16.11. 14:00 (Audit): the detail opens directly under the clicked card (the slot sits in the row) and the window moves softly to it; one open at a time. */
+  /** 16.11. evening (the owner's point 1): the detail opens inside the card; the window moves softly so the button and the new content stand in view; one open at a time; reduced motion = no animation, no smooth scroll. */
   const toggle = (key: Chapter["key"]) => {
     const opening = open !== key;
     setOpen(opening ? key : null);
     if (!opening) return;
-    window.setTimeout(() => document.getElementById(`ch-detail-${key}`)?.scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" }), 40);
+    window.setTimeout(() => document.querySelector<HTMLElement>(`[data-chapter-open-button="${key}"]`)?.scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" }), 40);
   };
   const scenesOf = (c: Chapter) => items.filter((it) => it.chapter === c.key);
   const line = (it: (typeof items)[number]) => withChannels(l(it.line(view)), locale, view);
@@ -60,8 +60,7 @@ export function Chapters({ locale, view }: { locale: Locale; view: ClaimView }) 
             const scenes = scenesOf(c);
             const isOpen = open === c.key;
             return (
-              <Fragment key={c.key}>
-              <article className={cn("ch-card", isOpen && "is-open")} data-chapter={c.key} aria-labelledby={`ch-${c.key}`}>
+              <article key={c.key} className={cn("ch-card", isOpen && "is-open")} data-chapter={c.key} aria-labelledby={`ch-${c.key}`}>
                 <div className="ch-visual" aria-hidden="true"><div className="ch-visual-inner"><Surface k={scenes[0].key as SceneKey} locale={locale} view={view} /></div></div>
                 <h3 id={`ch-${c.key}`} className="ch-name">{l(c.name)}</h3>
                 <p className="ch-line m-hide">{cardLine(c)}</p>
@@ -76,8 +75,7 @@ export function Chapters({ locale, view }: { locale: Locale; view: ClaimView }) 
                   {isOpen ? l(ui.less) : l(ui.more).replace("{name}", l(c.name))}
                   <ChevronDown size={16} strokeWidth={2.2} aria-hidden="true" className={cn("ch-more-icon", isOpen && "is-open")} />
                 </button>
-              </article>
-              {/* the open chapter's scenes, directly under its card (16.11. 14:00, Audit): title, line and surface each; without JavaScript every chapter stands open (CSS) */}
+              {/* 16.11. evening (the owner's point 1): the chapter's scenes open INSIDE the same card — the frame grows, the arrow turns; without JavaScript every chapter stands open (CSS) */}
               <div id={`ch-detail-${c.key}`} className="ch-detail-slot" data-chapter-detail={c.key} data-open={isOpen ? "true" : "false"}>
               <AnimatePresence initial={false}>
                 {isOpen && (
@@ -109,7 +107,7 @@ export function Chapters({ locale, view }: { locale: Locale; view: ClaimView }) 
                 </ol>
               </noscript>
               </div>
-              </Fragment>
+              </article>
             );
           })}
         </Rise>

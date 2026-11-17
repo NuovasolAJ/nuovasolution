@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
  * (lib/content/pilot-request.ts). Native validation first (`required`), the route's answer second. No personal data is kept in the
  * browser beyond the form itself.
  */
-export function PilotRequestForm({ locale, interest: initial = "pilot", live, planName }: { locale: Locale; interest?: PilotInterest; live: boolean; planName?: string }) {
+export function PilotRequestForm({ locale, interest: initial = "pilot", live, planName, subject }: { locale: Locale; interest?: PilotInterest; live: boolean; planName?: string; subject?: string }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const w = pilotRequest.form;
   const d = pilotRequest.done;
@@ -86,7 +86,7 @@ export function PilotRequestForm({ locale, interest: initial = "pilot", live, pl
           </select>
           {interest === "contract" && <span className="prq-hint" data-prq-contract-note>{l(w.contractNote)}</span>}
         </label>
-        <label className={cn(field, "prq-field-wide")}><span className="prq-label">{l(w.message)}</span><textarea name="message" rows={3} maxLength={2000} className="prq-input prq-area" data-prq="message" /></label>
+        <label className={cn(field, "prq-field-wide")}><span className="prq-label">{l(w.message)}</span><textarea name="message" rows={3} maxLength={2000} className="prq-input prq-area" data-prq="message" defaultValue={subject} /></label>
         {/* the honeypot: hidden from people, filled by bots */}
         <label className="prq-web" aria-hidden="true"><input name="web" tabIndex={-1} autoComplete="off" /></label>
       </div>

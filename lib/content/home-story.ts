@@ -146,11 +146,11 @@ export const enquiries: Enquiry[] = [
     // Laura's second message: she answers NuovaSolution's one question and says what she wants next.
     text: "Vivienda habitual. Nos gustaría verlo la semana que viene, si puede ser.",
     textShort: { es: "Laura contesta: vivienda habitual, y quiere ver el piso la semana que viene.", en: "Laura answers: a main home, and she would like to see the flat next week." },
-    // Copy 1107 D-6 (the owner's Question A, §16): one question back, no contact promise, no "lo anoto"
-    reply: "Gracias, Laura. Queda en tu ficha. ¿Te viene mejor por la mañana o por la tarde para una visita?",
+    // Copy 1117 §1.2: one question back, what a person takes over; "Queda en tu ficha" goes
+    reply: "Gracias, Laura. ¿Qué días y a qué hora te vienen mejor la semana que viene? Una persona del equipo te propone fecha para la visita.",
     translation: {
       text: { es: "Vivienda habitual. Nos gustaría verlo la semana que viene, si puede ser.", en: "A main home. We'd like to see it next week, if possible." },
-      reply: { es: "Gracias, Laura. Queda en tu ficha. ¿Te viene mejor por la mañana o por la tarde para una visita?", en: "Thank you, Laura. It's on your record. Would the morning or the afternoon suit you better for a viewing?" },
+      reply: { es: "Gracias, Laura. ¿Qué días y a qué hora te vienen mejor la semana que viene? Una persona del equipo te propone fecha para la visita.", en: "Thank you, Laura. Which days and times next week suit you best? Someone on the team will propose a date for the viewing." },
     },
     notice: "Soy un asistente de inteligencia artificial. Te ayudaré con tu consulta inmobiliaria. Si prefieres hablar con un agente humano, indícamelo en cualquier momento.",
     noticeIsSample: false,

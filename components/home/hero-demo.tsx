@@ -359,8 +359,19 @@ function FormSurface({ c, phase, locale }: S) {
         </span>
         {/* the enquiry as text for assistive technology */}
         <p className="sr-only" data-hero-enquiry="">{f.fields.map((fd) => `${l(fd.label)}: ${l(fd.value)}`).join(". ")}</p>
-        <Item n={f.sentAt} phase={phase} as="p" className="demo-form-sent-line" data-hero-reply="">{l(f.sent)}</Item>
+        <Item n={f.sentAt} phase={phase} as="p" className="demo-form-sent-line">{l(f.sent)}</Item>
       </div>
+      {/* Copy 1117 §1.2: the reply by e-mail after "Enviado", in the e-mail tab's style with the same label */}
+      <Item n={f.replyAt} phase={phase} className="demo-mail-msg demo-mail-reply demo-reply demo-form-reply" data-hero-reply="">
+        <div className="demo-mail-from">
+          <span aria-hidden="true" className="demo-avatar demo-avatar-agency"><Mark size={20} /></span>
+          <div className="min-w-0">
+            <p className="demo-mail-from-name demo-msg-label">{l(demoWords.assistant)}</p>
+            <p className="demo-chat-meta">{l(f.replyHead)}</p>
+          </div>
+        </div>
+        <p className="demo-mail-body">{l(f.reply)}</p>
+      </Item>
     </div>
   );
 }

@@ -479,6 +479,12 @@ export const home1103 = {
     pilotLine: T("Todos los planes pueden empezar con un piloto gratuito de 14 días.", "Every plan can start with a free 14-day pilot."), // Copy f276edc PK-0 (the owner's Q-9, 16.11.)
     /** 16.11. 14:00 (the owner's point 3): the second, clearly smaller way beside the pilot button — the same form with "Contratar un plan" preselected. WORKING for Copy. */
     direct: T("Contratar directamente", "Go straight to a plan"), // Copy 441ba1c §5 DC-l
+    /** 16.11. evening (the owner's point 3): the first of the two ways under every plan — the pilot form with the plan preselected; WORKING until Copy (Tue 12:00) */
+    wayPilot: T("Empieza 14 días gratis", "Start 14 days free"),
+    wayPilotLine: T("14 días gratis, sin tarjeta", "14 days free, no card"), // Copy 1117 §2 B-1s
+    wayDirectLine: T("Te respondemos en 24 h laborables, con las condiciones por escrito.", "We reply within 24 working hours, with the terms in writing."), // B-2s
+    wayPilotAria: T("Empieza 14 días gratis con {plan}", "Start 14 days free with {plan}"), // B-aria
+    wayDirectAria: T("Contratar {plan} directamente", "Go straight to the {plan} plan"),
     price: T("Te decimos el precio para tu agencia antes de acordar nada.", "We tell you the price for your agency before anything is agreed."),
     /** P-2/P-3: the actions. */
     ctaProposal: T("Solicita una propuesta", "Request a proposal"),

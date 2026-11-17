@@ -75,7 +75,7 @@ export default function ContactPage({ params, searchParams }: { params: { locale
           <Heading size="l" as="h2">{l(w.h)}</Heading>
           <p className="mt-3 t-body-m text-text-secondary">{l(w.body)}</p>
           <div className="mt-6">
-            <PilotRequestForm locale={locale} interest={interestFromQuery(searchParams?.interes)} live={s.live} planName={plan?.display_name} />
+            <PilotRequestForm locale={locale} interest={interestFromQuery(searchParams?.interes)} live={s.live} planName={plan?.display_name} subject={plan && interestFromQuery(searchParams?.interes) === "contract" ? (locale === "en" ? `Request the ${plan.display_name} plan` : `Contratar ${plan.display_name}`) : undefined} />
           </div>
         </Reveal>
       </div>

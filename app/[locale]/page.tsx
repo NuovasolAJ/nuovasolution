@@ -44,7 +44,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
   const locale = params.locale as Locale;
   const s = resolveSwitches();
   return (
-    <div data-style="v3" data-working-text={HOME_V3_WORKING_TEXT ? "true" : undefined} data-home="1103" data-view={s.view} data-display={s.display}>
+    <div data-style="v3" data-working-text={HOME_V3_WORKING_TEXT ? "true" : undefined} data-home="1103" data-view={s.view} data-display={s.display} data-palette={s.palette}>
       {!s.live && <PreviewSwitch locale={locale} switches={s} />}
       <Motion>
         <Hero locale={locale} view={s.view} />

@@ -15,8 +15,8 @@ import type { ClaimKey } from "@/lib/claims";
  * Claims (governance/API_CLAIMS_LINES_1102_v1.md; Copy §3): WhatsApp and Gmail reply in Spanish today; the web form and the phone
  * carry their claim key, so the public view leaves them out and the target view shows them without any mark (owner 06.11.: no
  * status words); the priority stands on the record with its reason and no score; no
- * alert is claimed; no availability promise, no contact promise ("te llamamos", "se pondrá en contacto"); one question back in the
- * agency's voice; no ticks, no "enviado"/"entregado" on the messages; a viewing request is not an appointment.
+ * alert is claimed; no promise of a time, no availability, one question back; a person takes over price, availability and the date
+ * (Copy 1117 §1, production proof of 13.11.); no ticks, no "enviado"/"entregado" on the messages; a viewing request is not an appointment.
  */
 export type DemoChannelKey = ChannelKey;
 export type DemoKind = "chat" | "mail" | "form" | "call";
@@ -64,6 +64,10 @@ export interface DemoChannel {
     submit: L;
     sentAt: number;
     sent: L;
+    /** Copy 1117 §1.2: the reply by e-mail after "Enviado" (the e-mail tab's style, the same label) */
+    replyAt: number;
+    replyHead: L;
+    reply: L;
   };
   call?: {
     incoming: L;
@@ -123,8 +127,8 @@ export const demoChannels: DemoChannel[] = [
       message: T("Hola, soy Laura. Busco un piso de 2 dormitorios en Estepona, hasta 320.000 €. ¿Podría ver alguno la semana que viene?", "Hi, I'm Laura. I'm looking for a 2-bedroom flat in Estepona, up to €320,000. Could I see one next week?"),
       typingAt: 1,
       replyAt: 2,
-      // Copy 1105 v3 §16, Question A (the owner, 06.11.): no contact promise, no availability promise, a wish asked
-      reply: T("¡Hola, Laura! Gracias por escribirnos. Buscas en Estepona, 2 dormitorios y hasta 320.000 €, ¿verdad? ¿Te viene mejor por la mañana o por la tarde para una visita?", "Hi Laura, thanks for writing to us. You're looking in Estepona, 2 bedrooms, up to €320,000, is that right? Would the morning or the afternoon suit you better for a viewing?"),
+      // Copy 1117 §1.2 (the owner's point 5 of 16.11. evening): the wish restated, one question, what a person takes over — no time, no availability
+      reply: T("¡Hola, Laura! Gracias por escribirnos. Buscas un piso de 2 dormitorios en Estepona, hasta 320.000 €, y quieres verlo la semana que viene. ¿Qué días y a qué hora te vienen mejor? Con eso, una persona del equipo te escribe con opciones y te propone fecha para la visita.", "Hi Laura, thanks for writing to us. You're looking for a 2-bedroom flat in Estepona, up to €320,000, and you'd like to view next week. Which days and times suit you best? With that, someone on the team will write to you with options and propose a date for the viewing."),
       replyTime: "11:21",
     },
     record: {
@@ -167,8 +171,8 @@ export const demoChannels: DemoChannel[] = [
       body: T("Buenos días, quiero vender mi piso en Fuengirola, 3 dormitorios cerca del paseo marítimo, y me gustaría una valoración. ¿Podrían venir esta semana?", "Good morning, I want to sell my flat in Fuengirola, 3 bedrooms near the seafront, and I would like a valuation. Could you come this week?"),
       replyAt: 2,
       replyTime: T("martes 11:25", "Tuesday 11:25"),
-      // Copy 1105 v3 §22 ("Apunto" struck, as in Question A)
-      reply: T("¡Hola, Carmen! Gracias por escribirnos. Quieres vender tu piso de 3 dormitorios en Fuengirola, cerca del paseo marítimo, y te gustaría una valoración esta semana, ¿verdad? ¿Te viene mejor por la mañana o por la tarde?", "Hi Carmen, thanks for writing to us. You want to sell your 3-bedroom flat in Fuengirola, near the seafront, and you'd like a valuation this week, is that right? Would the morning or the afternoon suit you better?"),
+      // Copy 1117 §1.2: the wish restated, one useful question, what a person takes over
+      reply: T("¡Hola, Carmen! Gracias por escribirnos. Quieres vender tu piso de 3 dormitorios en Fuengirola, cerca del paseo marítimo, y te gustaría una valoración esta semana. Para prepararla, ¿cuántos metros tiene el piso, más o menos? Una persona del equipo te propone día y hora para la visita de valoración.", "Hi Carmen, thanks for writing to us. You want to sell your 3-bedroom flat in Fuengirola, near the seafront, and you'd like a valuation this week. To prepare it, roughly how many square metres is the flat? Someone on the team will propose a day and time for the valuation visit."),
     },
     record: {
       title: T("Ficha de Carmen", "Carmen's record"),
@@ -208,22 +212,26 @@ export const demoChannels: DemoChannel[] = [
       submit: T("Enviar", "Send"),
       sentAt: 8,
       sent: T("Enviado · martes 11:31", "Sent · Tuesday 11:31"),
+      // Copy 1117 §1.2: the reply by e-mail about two minutes later (the owner's measurement of 13.11.)
+      replyAt: 9,
+      replyHead: T("Respuesta por email · martes 11:33", "Reply by e-mail · Tuesday 11:33"),
+      reply: T("Hola, Sofía. Gracias por tu mensaje. Buscas un piso de 2 dormitorios en Fuengirola, de alquiler de larga temporada, hasta 1.200 € al mes y a partir de enero. ¿Lo buscas amueblado o sin amueblar? Una persona del equipo te envía lo disponible que encaje.", "Hi Sofía, thanks for your message. You're looking for a 2-bedroom flat to rent long term in Fuengirola, up to €1,200 a month, from January. Would you like it furnished or unfurnished? Someone on the team will send you what is available and fits."),
     },
     record: {
       title: T("Ficha de Sofía", "Sofía's record"),
       updated: T("Formulario web · martes 11:31", "Web form · Tuesday 11:31"),
       fields: [
-        { k: T("Intención", "Intent"), v: T("alquilar · larga temporada", "renting · long term"), at: 9 },
-        { k: T("Zona", "Area"), v: T("Fuengirola", "Fuengirola"), at: 10 },
-        { k: T("Dormitorios", "Bedrooms"), v: T("2", "2"), at: 11 },
-        { k: T("Presupuesto", "Budget"), v: T("hasta 1.200 € al mes · desde enero", "up to €1,200 a month · from January"), at: 12 },
-        { k: T("Idioma", "Language"), v: T("español", "Spanish"), at: 13 },
+        { k: T("Intención", "Intent"), v: T("alquilar · larga temporada", "renting · long term"), at: 10 },
+        { k: T("Zona", "Area"), v: T("Fuengirola", "Fuengirola"), at: 11 },
+        { k: T("Dormitorios", "Bedrooms"), v: T("2", "2"), at: 12 },
+        { k: T("Presupuesto", "Budget"), v: T("hasta 1.200 € al mes · desde enero", "up to €1,200 a month · from January"), at: 13 },
+        { k: T("Idioma", "Language"), v: T("español", "Spanish"), at: 14 },
       ],
-      state: { v: T("Consulta registrada", "Enquiry recorded"), at: 14 },
-      priority: { v: T("Media", "Medium"), why: T("alquiler con zona y presupuesto, sin fecha de visita", "a rental with an area and a budget, no viewing date"), at: 15 },
-      next: { v: T("Enviar a Sofía lo disponible en alquiler.", "Send Sofía what is available to rent."), sub: T("Tarea para tu equipo · lo envía una persona.", "A task for your team · a person sends it."), at: 16 },
+      state: { v: T("Consulta registrada", "Enquiry recorded"), at: 15 },
+      priority: { v: T("Media", "Medium"), why: T("alquiler con zona y presupuesto, sin fecha de visita", "a rental with an area and a budget, no viewing date"), at: 16 },
+      next: { v: T("Enviar a Sofía lo disponible en alquiler.", "Send Sofía what is available to rent."), sub: T("Tarea para tu equipo · lo envía una persona.", "A task for your team · a person sends it."), at: 17 },
     },
-    timings: [0, 500, 450, 450, 450, 450, 600, 500, 500, 500, 350, 350, 350, 350, 600, 500, 600],
+    timings: [0, 500, 450, 450, 450, 450, 600, 500, 500, 1400, 500, 350, 350, 350, 350, 600, 500, 600], // phase 9 = the e-mail reply (Copy 1117 §1.2)
   },
   {
     key: "phone",
@@ -241,8 +249,8 @@ export const demoChannels: DemoChannel[] = [
         { speaker: "customer", text: T("Hola, llamo por la villa de Elviria.", "Hello, I'm calling about the villa in Elviria."), at: 2 },
         { speaker: "customer", text: T("Quería saber el precio y si hay margen.", "I'd like to know the price and whether there is room to negotiate."), at: 3 },
         { speaker: "customer", text: T("Me viene mejor que me llamen por la tarde.", "The afternoon suits me better for a call back."), at: 4 },
-        // Copy 1105 v3 §22: no contact promise; "lo anoto" struck
-        { speaker: "assistant", text: T("Gracias, Álvaro. Queda para el equipo: la villa de Elviria, el precio y el margen, y que prefieres que te llamen por la tarde.", "Thank you, Álvaro. It's with the team now: the villa in Elviria, the price and the room to negotiate, and that you'd prefer a call in the afternoon."), at: 5 },
+        // Copy 1117 §1.2: the assistant confirms what it did (the call-back wish with its time goes to the responsible person) — it promises no time; the price is a person's part
+        { speaker: "assistant", text: T("Perfecto, Álvaro. He pedido que te llamen esta tarde, a partir de las 16:00, a este número. El precio y el margen de la villa de Elviria te los explica una persona del equipo.", "Great, Álvaro. I've asked for you to be called back this afternoon, from 16:00, on this number. The price and the room to negotiate on the villa in Elviria will be explained by someone on the team."), at: 5 },
       ],
       assistantLabel: T("Asistente automático de la agencia", "The agency's automated assistant"),
       ended: T("Llamada atendida", "Call answered"),
