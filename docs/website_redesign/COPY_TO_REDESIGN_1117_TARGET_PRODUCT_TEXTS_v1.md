@@ -50,6 +50,12 @@ The button stays "Solicita tu piloto gratuito", with the pilot line under it (`h
 ## B. "Todo lo que hace por tu agencia"
 
 **Where:** after Atiende · Organiza · Crece. "Y además" (K1, K2) stays as it is.
+
+**The owner's protective rule, via Redesign 17.11.:**
+- **(B) and (C) form ONE new section**, built from the existing card parts.
+- **The day story (C)** goes inside it, as a strip of its six times, or as one compact line. For the compact line: "08:30 tu día · 11:39 llamada atendida · 13:20 aviso · 16:00 piso que encaja · 18:00 seguimiento · 23:40 respuesta de noche" / "08:30 your day · 11:39 call answered · 13:20 notice · 16:00 a listing that fits · 18:00 follow-up · 23:40 a night-time reply".
+- **The hero** only swaps its text.
+- **Redesign builds** after the owner's YES on the draft pictures (Wed 10:00).
 **Card style:** like K1/K2. A title, one sentence, three example lines, a small mark, and a plan chip.
 
 **The plan chip is needed for honesty.** Five of the eight strengths start at Growth (`planRows`), and the free pilot is Essential only (§E). The agent must see what the pilot includes.
@@ -66,6 +72,19 @@ The button stays "Solicita tu piloto gratuito", with the pilot line under it (`h
 | T-6 | `model3d` | Tu plano, en 3D | Your floor plan, in 3D | Convertimos tu plano en un modelo 3D, vacío y amueblado, con imágenes para tus anuncios. | We turn your floor plan into a 3D model, empty and furnished, with images for your listings. | Del plano a imágenes de anuncio. | From floor plan to listing images. | Opcional, con cualquier plan · Optional, with any plan |
 | T-7 | `instagram` | Publicaciones para tus redes | Posts for your social media | Cada inmueble nuevo, preparado como publicación con foto y texto. Tú la apruebas y sale en el Instagram de tu agencia. | Every new listing, prepared as a post with a photo and text. You approve it and it goes out on your agency's Instagram. | Tus pisos, en Instagram, con tu visto bueno. | Your listings on Instagram, with your OK. | Enterprise · Enterprise |
 | T-8 | `reportInLogin`, `weeklyEmail` | Tu semana, en un informe | Your week, in one report | Cada lunes ves qué entró, qué sigue abierto y qué hacer esta semana. | Every Monday you see what came in, what is still open and what to do this week. | Qué entró y qué hacer. | What came in and what to do. | Todos los planes · Every plan |
+
+**Proof or "próximamente" per switch** (the state is API's register in `lib/claims.ts:36–68`; on the switch day every "soon" key gets PX-b on its card and the PX-s sentence "{Título}: próximamente." instead of the card's sentence):
+
+| # | Key(s) | State today (register) | Proof / switch-day wording |
+|---|---|---|---|
+| T-1 | `followup` | soon: prod sender inactive | PX: "Seguimiento hasta que contesta: próximamente." |
+| T-2 | `phoneAssistant` | soon: staging prototype | PX: "Atiende el teléfono por ti: próximamente." |
+| T-3 | `matching` | soon: pm_certified = false | PX: "Inmuebles que encajan: próximamente." |
+| T-4 | `taskList`, `dailyVoice` | soon: Daily's production proof open | PX: "Cada mañana, el día claro: próximamente." |
+| T-5 | `adsLeads` | soon: staging, no real delivery | PX: "Leads de portales y anuncios: próximamente." |
+| T-6 | `model3d` | soon: T6 not accepted | PX: "Opcional · próximamente" (EXAMPLE_WEEK §1.2) |
+| T-7 | `instagram` | soon: staging, never published at Meta | PX: "Publicaciones para tus redes: próximamente." |
+| T-8 | `reportInLogin` + `weeklyEmail` | report **included** (in production); weekly e-mail soon (own agency only) | proof: report access in production. On the switch day, if `weeklyEmail` is off, the sentence stays and no e-mail is promised (the sentence names none) |
 
 **The example lines** (fictional; the same people as the demo and the example week; mark on every card "Ejemplo · datos ficticios" / "Example · fictional data"):
 
@@ -154,6 +173,7 @@ D-6 closes the circle back to D-1.
 | `lib/content/home-1103.ts:479` (line above the plans) | Todos los planes pueden empezar con un piloto gratuito de 14 días. | El piloto gratuito de 14 días es con Essential. Growth y Enterprise los contratas directamente. | The free 14-day pilot runs on Essential. Growth and Enterprise you hire directly. |
 | `lib/i18n/dictionaries/es.ts:375` / `en.ts:410` (packages page lead) | Cualquier plan puede empezar con 14 días de piloto, gratis … | Empieza con 14 días de piloto en Essential, gratis y con nuestro acompañamiento, y 7 días más si nos das tu opinión. Growth y Enterprise los contratas directamente; el precio te lo explicamos antes de acordar nada. | Start with a 14-day pilot on Essential, free and with our support, and 7 more days if you give us your feedback. Growth and Enterprise you hire directly; we explain the price before anything is agreed. |
 | `lib/content/faq.ts:193–194` (the pilot answer) | Usas NuovaSolution en tu agencia durante 14 días, gratis … | Usas NuovaSolution con el plan Essential en tu agencia durante 14 días, gratis y con nuestro acompañamiento. *(rest unchanged)* | You use NuovaSolution on the Essential plan in your agency for 14 days, free and with our support. *(rest unchanged)* |
+| the phone's core line of the plans (= PK-0, Redesign 17.11.) | Todos los planes pueden empezar con un piloto gratuito de 14 días. | 14 días gratis con Essential, sin tarjeta. | 14 days free on Essential, no card. |
 | `COPY_TO_REDESIGN_1116_OWNER_LIST_TEXTS_v1.md` §4 PK-0, PK-lead; `COPY_TO_REDESIGN_1116_PILOT14_TEXTS_v1.md` | the "todos / cualquier plan" lines | **superseded by this §E** | |
 
 **Checked, and they stay** (they do not promise a free start for every plan):
