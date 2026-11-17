@@ -116,7 +116,7 @@ The record stays as it is, including the next step "Devolver la llamada a partir
 
 ## 2. Plan buttons (two equal ways per plan)
 
-**Superseded in part, 17.11. evening (owner, final):** the pilot carries the Growth scope and stands under Essential and Growth. Enterprise has only "Contratar directamente". B-pilot is fixed to "Piloto gratuito · 14 días con Growth", and B-1s reads "14 días gratis con todo lo de Growth, sin tarjeta". See `COPY_TO_REDESIGN_1117_TARGET_PRODUCT_TEXTS_v2.md` §E. B-1, B-2 and B-2s below stay valid.
+**Superseded in part, 17.11. evening (owner, final):** the pilot carries the Growth scope and stands under Essential and Growth. Enterprise has only "Contratar directamente". B-pilot is fixed to "Piloto gratuito · 14 días con Growth". B-1s stays "14 días gratis, sin tarjeta". See `COPY_TO_REDESIGN_1117_TARGET_PRODUCT_TEXTS_v2.md` §E. B-1, B-2 and B-2s below stay valid.
 
 | # | Element | ES | EN |
 |---|---|---|---|

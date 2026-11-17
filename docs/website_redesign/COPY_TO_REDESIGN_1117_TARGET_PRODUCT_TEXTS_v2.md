@@ -229,7 +229,7 @@ Its approval step ("Tú la apruebas") moves into G-1's scope: no post goes out w
 
 | Plan | Way 1 | Line under it | Way 2 | Line under it |
 |---|---|---|---|---|
-| Essential, Growth | **black** "Empieza 14 días gratis" / "Start 14 days free" | 14 días gratis con todo lo de Growth, sin tarjeta / 14 days free with everything in Growth, no card | outlined "Contratar directamente" / "Go straight to a plan" | Te respondemos en 24 h laborables, con las condiciones por escrito. / We reply within 24 working hours, with the terms in writing. |
+| Essential, Growth | **black** "Empieza 14 días gratis" / "Start 14 days free" | 14 días gratis, sin tarjeta / 14 days free, no card (the owner's words, unchanged; the Growth scope is said in the line above the plans) | outlined "Contratar directamente" / "Go straight to a plan" | Te respondemos en 24 h laborables, con las condiciones por escrito. / We reply within 24 working hours, with the terms in writing. |
 | Enterprise | **black** "Contratar directamente" / "Go straight to a plan" | Te respondemos en 24 h laborables, con las condiciones por escrito. / We reply within 24 working hours, with the terms in writing. | — | — |
 
 **The form:**
@@ -244,7 +244,7 @@ Its approval step ("Tú la apruebas") moves into G-1's scope: no post goes out w
 
 | Where | Today | New ES | New EN |
 |---|---|---|---|
-| `lib/content/home-1103.ts:479` (line above the plans) | Todos los planes pueden empezar con un piloto gratuito de 14 días. | El piloto gratuito de 14 días incluye todo lo de Growth. Después eliges tu plan. | The free 14-day pilot includes everything in Growth. Then you choose your plan. |
+| `lib/content/home-1103.ts:479` (line above the plans) | Todos los planes pueden empezar con un piloto gratuito de 14 días. | El piloto gratuito de 14 días incluye todo lo de Growth. Después eliges tu plan; Enterprise lo contratas directamente. | The free 14-day pilot includes everything in Growth. Then you choose your plan; Enterprise you hire directly. |
 | the phone's core line of the plans (= PK-0) | Todos los planes pueden empezar … | 14 días gratis con todo lo de Growth, sin tarjeta. | 14 days free with everything in Growth, no card. |
 | `lib/i18n/dictionaries/es.ts:375` / `en.ts:410` (/packages lead) | Cualquier plan puede empezar con 14 días de piloto, gratis … | Empieza con 14 días de piloto con todo lo de Growth, gratis y con nuestro acompañamiento, y 7 días más si nos das tu opinión. Después eliges tu plan; el precio te lo explicamos antes de acordar nada. Enterprise lo contratas directamente. | Start with a 14-day pilot with everything in Growth, free and with our support, and 7 more days if you give us your feedback. Then you choose your plan; we explain the price before anything is agreed. Enterprise you hire directly. |
 | `lib/content/faq.ts:193–194` (the pilot answer) | Usas NuovaSolution en tu agencia durante 14 días, gratis … | Usas NuovaSolution en tu agencia durante 14 días, con todo lo de Growth, gratis y con nuestro acompañamiento. Al final te pedimos tu opinión; si nos la das, el piloto sigue 7 días más. Después eliges tu plan. No pedimos método de pago. Antes de empezar te confirmamos por escrito qué está activo y las condiciones. | You use NuovaSolution in your agency for 14 days, with everything in Growth, free and with our support. At the end we ask for your feedback; if you give it, the pilot runs 7 more days. Then you choose your plan. We ask for no payment method. Before you start, we confirm in writing what is active and the terms. |
