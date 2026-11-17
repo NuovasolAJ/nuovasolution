@@ -35,12 +35,13 @@
      and white type reads on it at the same ratio, so the contrast is at least what it was. */
   /* 13.11.2026, the owner's decision: colour D, deep Mediterranean blue as the ONE accent (8.3 : 1 on white), bronze only as a hint
      (--brand-soft, never on buttons, figures or titles); --brand-tint is D for dark grounds (the hero's glass card, the demo's story bar) */
-  --brand: #1f4e8c;
-  --brand-ink: #173a68;
-  --brand-wash: #e9eff8;
-  --brand-line: #c3d2e8;
+  /* 17.11. (the owner: FARBE = B): no blue — the "brand" tokens are ink and greys; the muted green --status-positive is the one accent, for status only */
+  --brand: #1a1917;
+  --brand-ink: #1a1917;
+  --brand-wash: #efefef;
+  --brand-line: #d6d6d9;
   --brand-soft: #c9a86a;
-  --brand-tint: #9dbcea;
+  --brand-tint: #b9b9bf;
   /* 16.11. (the owner's order): ONE muted green for positive status — confirmed benefits, included functions, successful steps;
      5.3 : 1 on white. D stays the brand accent (kickers, links, active states), green is status, the WhatsApp mark keeps its own. */
   --status-positive: #2f7d4f;
@@ -204,11 +205,11 @@
   --text-primary: var(--ivory);
   --text-secondary: var(--ink-200);
   --text-muted: var(--ink-350);
-  --text-accent: var(--champagne-300);
+  --text-accent: var(--ink-200);
   --border-hairline: var(--ink-800);
   --border-strong: var(--ink-700);
   --border-interactive: var(--ink-500);
-  --focus-ring: var(--champagne-200);
+  --focus-ring: var(--ivory);
   --signal-positive: #8fbf9c;
   --signal-attention: #b8b8c0;
   --signal-critical: #e0857a;
@@ -1115,9 +1116,9 @@ html:not(.js) .mrise { opacity: 1 !important; transform: none !important; }
 .rep-channel-fill[data-channel="whatsapp"] { background: var(--channel-whatsapp); }
 /* 16.11. (the owner's point 9): every channel its own tint of D, from deep to light, WhatsApp its own green; the names stand beside the bars */
 .rep-channel-fill[data-channel="email"], .rep-channel-fill[data-channel="e-mail"] { background: var(--brand); }
-.rep-channel-fill[data-channel="formulario web"], .rep-channel-fill[data-channel="web form"] { background: #4a73ad; }
-.rep-channel-fill[data-channel="teléfono"], .rep-channel-fill[data-channel="phone"] { background: #7b9bc9; }
-.rep-channel-fill[data-channel="portales y anuncios"], .rep-channel-fill[data-channel="portals and ads"] { background: #aac0df; }
+.rep-channel-fill[data-channel="formulario web"], .rep-channel-fill[data-channel="web form"] { background: #6b6b72; }
+.rep-channel-fill[data-channel="teléfono"], .rep-channel-fill[data-channel="phone"] { background: #9a9aa2; }
+.rep-channel-fill[data-channel="portales y anuncios"], .rep-channel-fill[data-channel="portals and ads"] { background: #c6c6cc; }
 .rep-channel-value { font-weight: 600; color: var(--text-primary); }
 .rep-open ul, .rep-open ol { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 0.9375rem; line-height: 1.45; color: var(--text-primary); }
 .rep-open li { display: flex; align-items: flex-start; gap: 10px; }
@@ -1131,13 +1132,15 @@ html:not(.js) .mrise { opacity: 1 !important; transform: none !important; }
 .cmp { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
 .cmp-label { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-600); }
 .cmp-control { display: inline-grid; grid-template-columns: 1fr 1fr; gap: 3px; padding: 3px; border-radius: 999px; background: var(--ink-100); }
-.cmp-option { position: relative; display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 6px 18px; border-radius: 999px; font-size: 0.9375rem; font-weight: 600; color: var(--ink-700); white-space: nowrap; cursor: pointer; transition: color var(--motion-control) var(--ease-standard); }
+.cmp-option { position: relative; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 6px 18px; border-radius: 999px; font-size: 0.9375rem; font-weight: 500; color: var(--ink-700); white-space: nowrap; cursor: pointer; transition: color var(--motion-control) var(--ease-standard); }
 .cmp-option:hover { color: var(--ink-950); }
 .cmp-option.is-on { color: #fff; background: var(--ink-950); }
 .cmp-option:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 .cmp-thumb { position: absolute; inset: 0; border-radius: 999px; background: var(--ink-950); }
 .cmp-option-text { position: relative; }
 @media (max-width: 639px) { .cmp { display: grid; } .cmp-control { width: 100%; } .cmp-option { min-height: 44px; padding: 6px 10px; font-size: 0.875rem; } }
+/* 17.11. (owner 6): a word in the figure column takes the explanation's size and stays on one line */
+.cmpb-v-text .cmpb-v-figure { font-size: 0.8125rem; font-weight: 500; line-height: 1.4; letter-spacing: 0; white-space: nowrap; }
 .xr-compare { display: grid; gap: 10px; }
 .rep-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 1rem; font-weight: 600; color: var(--text-primary); text-decoration: underline; text-decoration-color: var(--ink-300); text-underline-offset: 5px; }
 .rep-link:hover { text-decoration-color: var(--ink-950); }
@@ -1149,8 +1152,9 @@ html:not(.js) .mrise { opacity: 1 !important; transform: none !important; }
 .m3d-track { margin-top: 36px; }
 .m3d-pin { display: block; }
 @media (min-width: 1024px) {
-  .m3d-track { height: calc(4 * 45vh + 520px); } /* 16.11. 14:00 (Audit): a shorter pin — matches SEG in stage-3d.tsx */
-  .m3d-pin { position: sticky; top: calc(var(--header-h) + 24px); }
+  /* 17.11. (the owner's point 9): no pinned track — the stage stands in the flow, every step is a tab */
+  .m3d-track { height: auto; }
+  .m3d-pin { position: static; }
 }
 /* 02 Modelo: the poster stands over the clip until it can play, then fades (point 11) */
 .m3d-clip { position: relative; width: 100%; height: 100%; }
@@ -1205,7 +1209,7 @@ html:not(.js) .mrise { opacity: 1 !important; transform: none !important; }
 .m3d-step.is-on { background: var(--brand-wash); }
 .m3d-step:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: -3px; }
 .m3d-step.is-on { color: var(--text-primary); box-shadow: inset 0 3px 0 var(--brand); }
-.m3d-step.is-past { box-shadow: inset 0 3px 0 var(--brand-line); }
+.m3d-step.is-past { box-shadow: none; } /* 17.11. (the owner's point 10): only the active step is highlighted */
 .m3d-step-no { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em; }
 .m3d-step-name { font-size: 0.9375rem; font-weight: 600; line-height: 1.25; }
 @media (max-width: 639px) { .m3d-step { min-height: 56px; padding: 10px 10px; } .m3d-step-name { font-size: 0.8125rem; } }
@@ -1274,7 +1278,7 @@ html:not(.js) .mrise { opacity: 1 !important; transform: none !important; }
 /* 8 Trust, the short FAQ and the close (components/home/trust-faq.tsx) */
 /* ------------------------------------------------------------------ */
 .trust-grid, .faqs-grid { display: grid; gap: 24px; }
-@media (min-width: 1024px) { .trust-grid, .faqs-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 64px; align-items: start; } }
+@media (min-width: 1024px) { .faqs-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 64px; align-items: start; } .trust-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; } .trust-right { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 24px; align-items: start; } .trust-words h2 { max-width: 22ch; } } /* 17.11. (the owner's point 12): no empty column */
 .trust-lines { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
 .trust-line { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 14px; padding: 16px 18px; border-radius: 18px; background: var(--paper); border: 1px solid var(--line-contour); font-size: 1.0625rem; line-height: 1.45; color: var(--text-primary); }
 .trust-icon { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 14px; background: var(--paper); box-shadow: inset 0 0 0 1px var(--ink-200); color: var(--ink-800); }
@@ -1289,7 +1293,7 @@ html:not(.js) .mrise { opacity: 1 !important; transform: none !important; }
 .trust-entry-line { font-size: 0.9375rem; color: var(--text-secondary); }
 .faqs-all { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 1rem; font-weight: 600; color: var(--text-primary); text-decoration: underline; text-decoration-color: var(--ink-300); text-underline-offset: 5px; }
 .faqs-all:hover { text-decoration-color: var(--ink-950); }
-.closing-panel { position: relative; overflow: hidden; padding: 56px 24px; border-radius: 28px; background: radial-gradient(120% 90% at 18% -10%, rgba(31, 78, 140, 0.62), transparent 60%), radial-gradient(90% 80% at 100% 110%, rgba(201, 168, 106, 0.16), transparent 60%), var(--ink-950); color: var(--ivory); text-align: center; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 30px 70px -40px rgba(12, 12, 14, 0.6); }
+.closing-panel { position: relative; overflow: hidden; padding: 56px 24px; border-radius: 28px; background: radial-gradient(120% 90% at 18% -10%, rgba(255, 255, 255, 0.07), transparent 60%), var(--ink-950); /* FARBE = B: no blue glow, no gold shimmer */ color: var(--ivory); text-align: center; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 30px 70px -40px rgba(12, 12, 14, 0.6); }
 .closing-panel::before { content: ""; position: absolute; inset: 0; background: url("/media/3d/hero-a-poster-960.webp") center 40% / cover no-repeat; opacity: 0.14; filter: saturate(0.6); pointer-events: none; }
 .closing-h2 { position: relative; margin-inline: auto; max-width: 22ch; font-size: clamp(1.75rem, 1.3rem + 2vw, 2.75rem); line-height: 1.1; letter-spacing: -0.025em; font-weight: 560; text-wrap: balance; }
 .closing-line { position: relative; margin: 14px auto 0; max-width: 44ch; font-size: 1.0625rem; line-height: 1.5; color: var(--ink-200); }
@@ -1409,7 +1413,7 @@ html:not(.js) .mrise { opacity: 1 !important; transform: none !important; }
 .cmpb-head { display: grid; gap: 10px; }
 .cmpb-lead { font-size: 1rem; line-height: 1.5; color: var(--text-primary); max-width: 64ch; }
 .cmpb-rows { display: grid; gap: 0; margin: 0; }
-.cmpb-row { display: grid; grid-template-columns: minmax(0, 1fr) 92px 92px; grid-template-areas: "k without with" "d d d"; align-items: center; gap: 2px 10px; padding: 10px 0; border-bottom: 1px solid var(--border-hairline); }
+.cmpb-row { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "k without with" "d d d"; align-items: center; gap: 2px 10px; padding: 10px 0; border-bottom: 1px solid var(--border-hairline); }
 .cmpb-row-head { margin-top: 16px; padding: 6px 0; border-top: 1px solid var(--border-hairline); }
 .cmpb-h { display: block; text-align: center; font-size: 0.8125rem; font-weight: 600; line-height: 1.2; color: var(--ink-500); transition: color 360ms var(--ease-out); }
 .cmpb-h.is-on { color: var(--brand-ink); }
@@ -1506,7 +1510,7 @@ html:not(.js) [data-home] [style*="opacity: 0"], html:not(.js) [data-home] [styl
 /* A3: the phone's fixed bar with the main action; hidden from 1024 px and while the hero's own action or the close is on screen */
 .mcta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 80; display: flex; justify-content: center; padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom, 0px)); background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(10px); border-top: 1px solid var(--border-hairline); transform: translateY(110%); transition: transform var(--motion-element) var(--ease-standard); }
 .mcta[data-mobile-cta="shown"] { transform: none; }
-.mcta-main { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; max-width: 420px; min-height: 52px; padding: 12px 24px; border-radius: 999px; background: var(--ink-950); color: var(--ivory); font-size: 1.0625rem; font-weight: 600; }
+.mcta-main { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; max-width: 420px; min-height: 44px; padding: 8px 20px; border-radius: 999px; font-size: 0.9375rem; background: var(--ink-950); color: var(--ivory); font-size: 1.0625rem; font-weight: 600; }
 .mcta-main:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
 @media (min-width: 1024px) { .mcta { display: none; } }
 @media (prefers-reduced-motion: reduce) { .mcta { transition: none; } }
@@ -1599,8 +1603,15 @@ html.js .ch-scenes-static { display: none; }
 @media (min-width: 1024px) {
   .ch { padding-top: 80px; padding-bottom: 72px; }
   .ch-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 44px 0 0; }
-  /* 16.11. evening: an open card grows on its own, the others keep their natural height */
-  .ch[data-chapter-open]:not([data-chapter-open="none"]) .ch-row { align-items: start; }
+  /* 17.11. (the owner's point 7): the open card takes the whole row, its scenes stand in three columns; the two closed cards stand above it */
+  .ch[data-chapter-open]:not([data-chapter-open="none"]) .ch-row { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .ch-card.is-open { grid-column: 1 / -1; order: 1; display: grid; grid-template-columns: 380px minmax(0, 1fr); column-gap: 24px; align-items: start; }
+  .ch-card.is-open > .ch-visual { grid-column: 1; grid-row: 1 / span 4; height: 100%; min-height: 250px; margin: 12px 0 12px 12px; }
+  .ch-card.is-open > .ch-name, .ch-card.is-open > .ch-line, .ch-card.is-open > .ch-points, .ch-card.is-open > .ch-more { grid-column: 2; }
+  .ch-card.is-open > .ch-name { margin-top: 18px; }
+  .ch-card.is-open > .ch-more { margin-top: 10px; margin-bottom: 4px; }
+  .ch-card.is-open > .ch-detail-slot { grid-column: 1 / -1; }
+  .ch-card.is-open .ch-scenes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
   .ch-visual { height: 250px; }
   .ch-card .ch-scenes { grid-template-columns: minmax(0, 1fr); gap: 24px; }
 }
@@ -1789,7 +1800,7 @@ html:not(.js) .fs-step { opacity: 1; }
 .tc-no { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 999px; background: var(--ink-950); color: #fff; font-size: 0.75rem; flex: none; }
 .tc-bubble { position: relative; display: grid; gap: 6px; padding: 12px 14px 10px; border-radius: 16px; background: var(--paper); box-shadow: inset 0 0 0 1px var(--border-hairline), 0 1px 1px rgba(26, 25, 23, 0.05); font-size: 0.9375rem; line-height: 1.45; color: var(--ink-950); }
 .tc-from-agency .tc-bubble { border-top-left-radius: 4px; }
-.tc-from-us .tc-bubble { background: var(--brand-wash); border-top-right-radius: 4px; }
+.tc-from-us .tc-bubble { background: var(--paper); border-top-right-radius: 4px; } /* 17.11. (point 10): no step highlighted in the chat — the names mark the steps */
 .tc-who { font-size: 0.8125rem; font-weight: 600; color: var(--brand-ink); }
 .tc-from-agency .tc-who { color: var(--ink-600); }
 .tc-attach { display: inline-flex; align-items: center; gap: 6px; width: fit-content; padding: 4px 10px; border-radius: 999px; background: var(--surface-sunken); font-size: 0.8125rem; font-weight: 500; color: var(--text-secondary); }
@@ -1855,13 +1866,84 @@ html:not(.js) .fs-step { opacity: 1; }
   .ch-card-extra { flex: none; }
 }
 
-/* 16.11. evening (the owner's point 4): palette B for his two pictures — black/grey, the muted green stays the one status accent; `?palette=b` */
-:root:has([data-palette="b"]) { --brand: #1a1917; --brand-ink: #1a1917; --brand-wash: #efefef; --brand-line: #d6d6d9; --brand-tint: #b9b9bf; --text-accent: var(--ink-700); --channel-whatsapp: var(--status-positive); }
-:root:has([data-palette="b"]) .rep-channel-fill[data-channel="formulario web"], :root:has([data-palette="b"]) .rep-channel-fill[data-channel="web form"] { background: #6b6b72; }
-:root:has([data-palette="b"]) .rep-channel-fill[data-channel="teléfono"], :root:has([data-palette="b"]) .rep-channel-fill[data-channel="phone"] { background: #9a9aa2; }
-:root:has([data-palette="b"]) .rep-channel-fill[data-channel="portales y anuncios"], :root:has([data-palette="b"]) .rep-channel-fill[data-channel="portals and ads"] { background: #c6c6cc; }
-:root:has([data-palette="b"]) .rep-bar-answered { background: #3a3a40; }
-:root:has([data-palette="b"]) .closing-panel { background: #141416; }
 
 /* Copy 1117 §1.2: the web form's reply by e-mail after "Enviado" */
 .demo-form-reply { margin: 12px 14px 14px; }
+
+/* 17.11. (RV6 fd23fc8, depth): the stacked cards tighter on the phone — nothing removed */
+@media (max-width: 639px) {
+  .plans-card { padding: 16px 16px 16px; gap: 2px; }
+  .plans-card .plans-name { font-size: 1.25rem; }
+  .plans-card-group { margin-top: 8px; }
+  .plans-card-row { padding: 5px 0; gap: 8px; font-size: 0.875rem; }
+  .plans-card .plans-icon { width: 28px; height: 28px; }
+  .plans-ways { gap: 4px; }
+  .plans-way-line { margin: -2px 0 2px; font-size: 0.75rem; }
+  .trust-line { padding: 12px 14px; gap: 10px; }
+  .rep-card { padding: 14px 16px 12px; gap: 4px; }
+  .rep-card-figure { font-size: 1.25rem; }
+  .ch-card-extra .ch-visual-extra { padding: 10px; }
+  .faqs { padding-bottom: 32px; }
+  .closing-panel { padding: 32px 18px; }
+}
+
+/* 17.11. (RV6 fd23fc8, depth ≤ 21 after scrolling through): the phone's stacked cards without their row icons and with tighter rows — every row,
+   every card, every sentence stays */
+@media (max-width: 639px) {
+  .plans-card-row { grid-template-columns: minmax(0, 1fr) auto; padding: 4px 0; font-size: 0.8125rem; line-height: 1.35; }
+  .plans-card-row .plans-icon { display: none; }
+  .plans-card .plans-cell-group { font-size: 0.75rem; }
+  .plans-card-group { margin-top: 6px; }
+  .plans-card .plans-who { font-size: 0.875rem; }
+  .rep-card { padding: 12px 14px 10px; gap: 3px; }
+  .rep-card-insight { font-size: 0.9375rem; line-height: 1.4; }
+  .rep-card-next { font-size: 0.875rem; line-height: 1.4; }
+  .rep-card-note { font-size: 0.75rem; }
+  .tc-run { gap: 10px; }
+  .tc-bubble { padding: 10px 12px 8px; font-size: 0.875rem; }
+  .tc-thumb { max-width: 160px; }
+  .ch-extra-row { gap: 10px; }
+  .ch-card-extra { padding-bottom: 14px; gap: 8px; }
+  .ch-visual-extra { padding: 8px 10px; }
+  .xc-tl { font-size: 0.8125rem; }
+  .trust-line { font-size: 0.9375rem; padding: 10px 12px; }
+  .m3d-path { margin-top: 20px; gap: 10px; }
+}
+
+/* 17.11. (depth ≤ 21 with RV6's method, third step): a few px less between the phone's stacked cards and rows — nothing removed */
+@media (max-width: 639px) {
+  .plans-cards, .trust-lines, .rep-cards, .ch-extra-row { gap: 10px; }
+  .plans-card { padding: 14px 14px 14px; }
+  .plans-card-row { padding: 3px 0; }
+  .plans-card-group { margin-top: 4px; }
+  .plans-way-line { margin: -2px 0 0; }
+  .ch-card { gap: 8px; }
+  .ch-row { gap: 12px; }
+  .fs-step { padding: 12px 0; }
+  .pain-inner { padding-bottom: 120px; }
+  .rep { padding-top: 36px; padding-bottom: 36px; }
+  .m3d { padding-top: 36px; padding-bottom: 36px; }
+  .plans { padding-top: 36px; padding-bottom: 36px; }
+  .trust { padding-top: 36px; }
+  .behind { padding-top: 32px; padding-bottom: 32px; }
+}
+
+/* 17.11. (the owner's points 14 and 15): the play button a little smaller on the phone; the plan cards stand without sticking (each card readable
+   whole before the next one comes) — the trust, report and extra cards keep their stacking */
+@media (max-width: 639px) {
+  .m3d-play-mark { width: 48px; height: 48px; }
+  .m3d-play-title { font-size: 1rem; }
+  .plans-card { position: static; }
+}
+
+/* 17.11. (depth ≤ 21, fourth step): the report's blocks and the comparison rows a little tighter on the phone — every figure and sentence stays */
+@media (max-width: 639px) {
+  .rep-grid > * { padding: 14px 14px; }
+  .rep-bars { height: 176px; margin-top: 12px; padding-bottom: 36px; }
+  .rep-legend { margin-top: 8px; }
+  .rep-metrics { gap: 10px 14px; }
+  .rep-metric-value { font-size: 1.625rem; }
+  .rep-foot { margin-top: 10px; }
+  .cmpb-row { padding: 8px 0; }
+  .cmpb-row-head { margin-top: 10px; }
+}

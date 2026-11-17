@@ -87,7 +87,8 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
 
         <Rise className="plans-table-wrap" y={24} delay={0.08}>
           {/* 16.11. 14:00 (the owner's point 2): the line above the table, on the home page and on /packages */}
-          <p className="plans-pilot-line" data-plans-pilot-line>{l(w.pilotLine)}</p>
+          <p className="plans-pilot-line m-hide" data-plans-pilot-line>{l(w.pilotLine)}</p>
+          <p className="plans-pilot-line m-only" data-plans-pilot-line-phone>{l(w.pilotLinePhone)}</p>
           <p className="m-only sec-proof plans-proof" data-phone-core="plans">{l(home1103.phoneCore.plans.proof)}</p>
           <div className="plans-table" role="table" aria-label={l(w.h2)} data-plans-table>
             <div className="plans-row plans-row-head" role="row">
@@ -122,9 +123,10 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
                   <div key={code} className={cn("plans-cell plans-cell-cta", hi(code) && "is-highlight")} role="cell">
                     {/* 16.11. evening (the owner's point 3): two equally visible ways per plan — the pilot with the plan preselected, and the direct way to the contact form with the plan and the subject */}
                     <div className="plans-ways" data-plan-ways={code}>
-                      <a href={localePath(locale, `/contact?interes=pilot&plan=${code}`)} className="plans-cta plans-cta-main" aria-label={l(w.wayPilotAria).replace("{plan}", names[codes.indexOf(code)])} data-plan-cta={code} data-pilot-cta="plan">{l(w.wayPilot)}</a>
-                      <p className="plans-way-line">{l(w.wayPilotLine)}</p>
-                      <a href={localePath(locale, `/contact?interes=contratar&plan=${code}`)} className="plans-cta plans-cta-second" aria-label={l(w.wayDirectAria).replace("{plan}", names[codes.indexOf(code)])} data-plan-direct={code}>{l(w.direct)}</a>
+                      {/* 17.11. (the owner's point 11): the free way only at Essential; the direct way at every plan */}
+                      {code === "essential" && <a href={localePath(locale, `/contact?interes=pilot&plan=${code}`)} className="plans-cta plans-cta-main" aria-label={l(w.wayPilotAria).replace("{plan}", names[codes.indexOf(code)])} data-plan-cta={code} data-pilot-cta="plan">{l(w.wayPilot)}</a>}
+                      {code === "essential" && <p className="plans-way-line">{l(w.wayPilotLine)}</p>}
+                      <a href={localePath(locale, `/contact?interes=contratar&plan=${code}`)} className={cn("plans-cta", code === "essential" ? "plans-cta-second" : "plans-cta-main")} aria-label={l(w.wayDirectAria).replace("{plan}", names[codes.indexOf(code)])} data-plan-direct={code}>{l(w.direct)}</a>
                       <p className="plans-way-line">{l(w.wayDirectLine)}</p>
                     </div>
                   </div>
@@ -158,9 +160,9 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
                     </div>
                   ))}
                   <div className="plans-ways" data-plan-ways={`card-${codes[pi]}`}>
-                    <a href={localePath(locale, `/contact?interes=pilot&plan=${codes[pi]}`)} className="plans-cta plans-cta-main" aria-label={l(w.wayPilotAria).replace("{plan}", n)} data-pilot-cta="plan-card">{l(w.wayPilot)}</a>
-                    <p className="plans-way-line">{l(w.wayPilotLine)}</p>
-                    <a href={localePath(locale, `/contact?interes=contratar&plan=${codes[pi]}`)} className="plans-cta plans-cta-second" aria-label={l(w.wayDirectAria).replace("{plan}", n)} data-plan-direct={`card-${codes[pi]}`}>{l(w.direct)}</a>
+                    {codes[pi] === "essential" && <a href={localePath(locale, `/contact?interes=pilot&plan=${codes[pi]}`)} className="plans-cta plans-cta-main" aria-label={l(w.wayPilotAria).replace("{plan}", n)} data-pilot-cta="plan-card">{l(w.wayPilot)}</a>}
+                    {codes[pi] === "essential" && <p className="plans-way-line">{l(w.wayPilotLine)}</p>}
+                    <a href={localePath(locale, `/contact?interes=contratar&plan=${codes[pi]}`)} className={cn("plans-cta", codes[pi] === "essential" ? "plans-cta-second" : "plans-cta-main")} aria-label={l(w.wayDirectAria).replace("{plan}", n)} data-plan-direct={`card-${codes[pi]}`}>{l(w.direct)}</a>
                     <p className="plans-way-line">{l(w.wayDirectLine)}</p>
                   </div>
                 </li>

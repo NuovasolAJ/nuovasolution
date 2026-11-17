@@ -100,7 +100,7 @@ export function ConversationView({ locale, className, view = "public" }: { local
         <ol className="space-y-3 p-4">
           <li className="flex justify-start">
             <div className="max-w-[88%] rounded-lg rounded-bl-sm bg-surface-sunken px-3.5 py-2.5">
-              <p lang={laura.lang} className="t-body-s text-text-primary">{laura.text}</p>
+              <p lang={locale === "en" ? "en" : laura.lang} className="t-body-s text-text-primary">{locale === "en" ? laura.translation.text.en : laura.text}</p>
               <p className="mt-1 t-caption tnum text-text-muted">{time}</p>
             </div>
           </li>
@@ -109,7 +109,7 @@ export function ConversationView({ locale, className, view = "public" }: { local
               <p className="mb-1 t-caption text-sage-700">{v.assistant}</p>
               {/* the required notice, complete, as a quiet line: the demonstration is the reply, not the notice (closing order 26.10. §6) */}
               <p lang={laura.lang} className="mb-1.5 border-b border-sage-200 pb-1.5 text-[0.75rem] leading-[1.4] text-text-muted" data-disclosure={laura.lang}>{laura.notice}</p>
-              <p lang={laura.lang} className="t-body-s text-text-primary">{laura.reply}</p>
+              <p lang={locale === "en" ? "en" : laura.lang} className="t-body-s text-text-primary">{locale === "en" ? laura.translation.reply.en : laura.reply}</p>
               <p className="mt-1 t-caption tnum text-text-muted">{time}</p>
             </div>
           </li>

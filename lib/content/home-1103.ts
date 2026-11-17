@@ -476,7 +476,8 @@ export const home1103 = {
     },
     inherits: T("Cada plan incluye todo lo del anterior.", "Each plan includes everything in the one before."),
     /** 16.11. 14:00 (the owner's point 2, his own words): the line above the table. EN WORKING for Copy. */
-    pilotLine: T("Todos los planes pueden empezar con un piloto gratuito de 14 días.", "Every plan can start with a free 14-day pilot."), // Copy f276edc PK-0 (the owner's Q-9, 16.11.)
+    pilotLine: T("El piloto gratuito de 14 días es con Essential. Growth y Enterprise los contratas directamente.", "The free 14-day pilot runs on Essential. Growth and Enterprise you hire directly."), // Copy a5572ea §E (the owner 17.11.: the free pilot is Essential only)
+    pilotLinePhone: T("14 días gratis con Essential, sin tarjeta.", "14 days free on Essential, no card."), // Copy §E: the phone's core line of the plans
     /** 16.11. 14:00 (the owner's point 3): the second, clearly smaller way beside the pilot button — the same form with "Contratar un plan" preselected. WORKING for Copy. */
     direct: T("Contratar directamente", "Go straight to a plan"), // Copy 441ba1c §5 DC-l
     /** 16.11. evening (the owner's point 3): the first of the two ways under every plan — the pilot form with the plan preselected; WORKING until Copy (Tue 12:00) */

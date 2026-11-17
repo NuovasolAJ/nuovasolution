@@ -39,7 +39,7 @@ export default function ExampleReportPage({ params }: { params: { locale: string
   const entry = entryAction(locale, s.view);
 
   return (
-    <div data-style="v3" data-view={s.view} data-display={s.display} data-palette={s.palette}>
+    <div data-style="v3" data-view={s.view} data-display={s.display}>
       {!s.live && <PreviewSwitch locale={locale} switches={s} />}
       <main className="container-default pb-[var(--section-feature)] pt-[var(--section-compact)]" data-example-report>
         <div className="max-w-[760px]">

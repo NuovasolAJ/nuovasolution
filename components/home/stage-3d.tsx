@@ -32,9 +32,6 @@ const MEDIA = {
   filmWebm: "/media/3d/house-delivery.webm",
   filmPoster: "/media/3d/house-delivery-poster-1600.webp",
 };
-const SEG = 0.45; // window heights per step on the wide window (16.11. 14:00, Audit: no long held picture; the desktop no longer than before — was 0.7)
-const headerHeight = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 72;
-const wide = () => window.matchMedia("(min-width: 1024px)").matches;
 
 /** 02 Modelo: the ground floor turning; the poster stands over the clip until it can play (owner point 11: no video before it is ready). */
 function TurnClip({ label, posterAlt }: { label: string; posterAlt: string }) {
@@ -78,24 +75,7 @@ export function Stage3d({ locale }: { locale: Locale }) {
   const [filmReady, setFilmReady] = useState(false);
   const video = useRef<HTMLVideoElement>(null);
 
-  // the wide window: the step from the scroll position (the pin holds from the track's top, each step owns one segment)
-  useEffect(() => {
-    const el = track.current;
-    if (!el) return;
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      if (!wide()) return;
-      const y = headerHeight() + 24 - el.getBoundingClientRect().top;
-      const seg = window.innerHeight * SEG;
-      setStep(Math.min(3, Math.max(0, Math.floor(y / seg))));
-    };
-    const on = () => { if (!raf) raf = requestAnimationFrame(update); };
-    update();
-    window.addEventListener("scroll", on, { passive: true });
-    window.addEventListener("resize", on);
-    return () => { window.removeEventListener("scroll", on); window.removeEventListener("resize", on); if (raf) cancelAnimationFrame(raf); };
-  }, []);
+  // 17.11. (the owner's point 9): no pinned track on the wide window any more — every step is a tab, nothing waits for the scroll
 
   // 16.11. 14:00 (Audit): the narrow window starts at 01 and stays there until a tap — no walk on its own (was: plan → model → pair on timers)
 
@@ -103,10 +83,6 @@ export function Stage3d({ locale }: { locale: Locale }) {
   const go = (i: number) => {
     walked.current = true;
     setStep(i);
-    const el = track.current;
-    if (!el || !wide()) return;
-    const top = el.getBoundingClientRect().top + window.scrollY - headerHeight() - 24;
-    window.scrollTo({ top: top + i * window.innerHeight * SEG + 2, behavior: "auto" });
   };
 
   const playFilm = () => {
@@ -183,7 +159,6 @@ export function Stage3d({ locale }: { locale: Locale }) {
             {/* 16.11. (the owner's point 2 and the master prompt §6.6): nothing written on the picture — the step's line and the mark stand under the steps */}
             <p className="m3d-under" data-model3d-under>
               <span className="m3d-under-line" data-model3d-caption>{step === 1 ? l(w.modelLine) : step === 3 ? l(w.filmLine) : step === 2 ? l(w.pairLabel) : l(w.planAlt)}</span>
-              <span className="m3d-mark" data-model3d-mark>{l(w.mark)}</span>
             </p>
           </div>
         </div>

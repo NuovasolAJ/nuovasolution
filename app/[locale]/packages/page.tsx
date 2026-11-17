@@ -37,7 +37,7 @@ export default function PackagesPage({ params }: { params: { locale: string } })
   const c = home1103.close;
 
   return (
-    <div data-style="v3" data-view={s.view} data-display={s.display} data-palette={s.palette}>
+    <div data-style="v3" data-view={s.view} data-display={s.display}>
       {!s.live && <PreviewSwitch locale={locale} switches={s} />}
       <section aria-labelledby="pk-h1" className="pb-[var(--section-compact)] pt-[var(--section-compact)] xl:pt-[var(--section-default)]">
         <div className="container-default">

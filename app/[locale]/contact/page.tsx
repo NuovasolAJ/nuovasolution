@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { catalogPlans, isPlanCode } from "@/lib/content/plans";
 import { home1103 } from "@/lib/content/home-1103";
 import { pilotRequest, interestFromQuery } from "@/lib/content/pilot-request";
 import { resolveSwitches } from "@/lib/view";
@@ -31,7 +30,15 @@ export default function ContactPage({ params, searchParams }: { params: { locale
   const w = pilotRequest;
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const s = resolveSwitches();
-  const plan = isPlanCode(searchParams?.plan) ? catalogPlans.find((x) => x.code === searchParams!.plan) : undefined;
+  // RV6 fd23fc8: the plan comes from the plans content (essential | growth | enterprise, as the table links it); the old catalogue code "scale" maps to Enterprise
+  const planCodes = home1103.plans.codes as readonly string[];
+  const rawPlan = searchParams?.plan === "scale" ? "enterprise" : searchParams?.plan;
+  const plan = rawPlan && planCodes.includes(rawPlan) ? { code: rawPlan, display_name: home1103.plans.names[planCodes.indexOf(rawPlan)] } : undefined;
+  // Copy a5572ea §E (the owner 17.11.): the free pilot is Essential only — a pilot link with Growth or Enterprise opens as "Contratar {Plan}"
+  const asked = interestFromQuery(searchParams?.interes);
+  const interest = asked === "pilot" && plan && plan.code !== "essential" ? "contract" : asked;
+  // the subject in the message field: the direct way (Copy 1117 §2 B-subj) and the pilot way (B-pilot, fixed to Essential)
+  const subject = plan ? (interest === "contract" ? (locale === "en" ? `Request the ${plan.display_name} plan` : `Contratar ${plan.display_name}`) : interest === "pilot" ? (locale === "en" ? "Free pilot · Essential plan" : "Piloto gratuito · plan Essential") : undefined) : undefined;
   const phone = process.env.NUOVA_E14_PHONE?.trim() || null;
   const steps = home1103.entry.steps(locale, s.view);
 
@@ -75,7 +82,7 @@ export default function ContactPage({ params, searchParams }: { params: { locale
           <Heading size="l" as="h2">{l(w.h)}</Heading>
           <p className="mt-3 t-body-m text-text-secondary">{l(w.body)}</p>
           <div className="mt-6">
-            <PilotRequestForm locale={locale} interest={interestFromQuery(searchParams?.interes)} live={s.live} planName={plan?.display_name} subject={plan && interestFromQuery(searchParams?.interes) === "contract" ? (locale === "en" ? `Request the ${plan.display_name} plan` : `Contratar ${plan.display_name}`) : undefined} />
+            <PilotRequestForm locale={locale} interest={interest} live={s.live} planName={plan?.display_name} subject={subject} />
           </div>
         </Reveal>
       </div>

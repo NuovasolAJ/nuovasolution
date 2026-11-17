@@ -14,15 +14,13 @@ export { switchQuery, type DisplayFace, type Palette, type PreviewSwitches } fro
 /* the display face's default is the one line DISPLAY_DEFAULT in lib/view-query.ts (the owner, 16.11. 14:00: Inter everywhere) */
 export function resolveSwitches(): PreviewSwitches {
   const live = integrationMode() === "live";
-  if (live) return { view: "public", display: DISPLAY_DEFAULT, palette: "a", live };
+  if (live) return { view: "public", display: DISPLAY_DEFAULT, live };
   const h = headers();
   const v = h.get("x-nuova-view");
   const d = h.get("x-nuova-display");
-  const pa = h.get("x-nuova-palette");
   return {
     view: v === "public" ? "public" : "target",
     display: d === "fraunces" ? "fraunces" : d === "inter" ? "inter" : DISPLAY_DEFAULT,
-    palette: pa === "b" ? "b" : "a",
     live,
   };
 }
