@@ -4,8 +4,20 @@
 
 Der Owner liefert **eine** Lieferung mit Commit und dpl, die (1)–(15) enthält; die Tiefe wird erst
 danach gemessen. Damit die Messung in einem Durchgang läuft, steht hier **vor** der Lieferung, was
-je Punkt gilt. Grundlage: die Bilder `owner_evidence_1117/website_1117/W1117_00–10`, die ich selbst
-angesehen habe, und die Punktliste, wie Redesign sie führt (21.7–21.15).
+je Punkt gilt. Grundlage: die Punktliste, wie Redesign sie führt (21.7–21.15), und die Bilder
+`owner_evidence_1117/website_1117/W1117_00–10`. **Angesehen habe ich davon bisher zwei** — die
+beiden, bei denen die Bedingung ohne Bild nicht eindeutig gewesen wäre:
+
+- **`W1117_02`** (Crece offen, Desktop): Die geöffnete Karte wächst **in ihrer eigenen schmalen
+  Spalte** weiter, der Inhalt läuft als langer dünner Streifen, und links daneben — unter „Atiende"
+  und „Organiza" — bleibt die Fläche leer. Genau das meint (7).
+- **`W1117_10`** (Pakete am Handy): Die Growth-Karte schiebt sich über Essential, **während
+  „EQUIPO" gerade erst erscheint**; Essentials Equipo-Zeilen bekommt man nie zu lesen. Genau das
+  meint (15). Im selben Bild steht der untere feste Knopf groß und rund — der Zusatz des Owners zu
+  `.mcta-main`.
+
+Die übrigen neun Bilder sind durch Dateinamen und Punktliste eindeutig. Weicht beim Messen etwas
+ab, sehe ich das betreffende Bild an und sage es dazu.
 
 **Vergleichsstand für „nichts verloren" ist jetzt `dd2035b`** (Owner-Anweisung), nicht mehr
 `b81b486`. Die Aufnahme liegt: `checks/inv-dd2035b.json`, 28 Routen, 1 449 Sätze.
