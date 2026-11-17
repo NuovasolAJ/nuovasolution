@@ -123,6 +123,7 @@ The record stays as it is, including the next step "Devolver la llamada a partir
 | B-2 | button, outlined (→ contact form, option "Contratar un plan", with the plan) | Contratar directamente | Go straight to a plan |
 | B-2s | line under B-2 | Te respondemos en 24 h laborables, con las condiciones por escrito. | We reply within 24 working hours, with the terms in writing. |
 | B-subj | the subject of the contact form | Contratar {Plan} (e.g. "Contratar Growth") | Request the {Plan} plan (e.g. "Request the Growth plan") |
+| B-pilot | the pilot form's message field, prefilled by B-1 (Redesign's WORKING line, confirmed 17.11.; the client can edit it) | Piloto gratuito · plan {Plan} | Free pilot · {Plan} plan |
 | B-aria | accessible names (three plans, so the names must differ) | Empieza 14 días gratis con {Plan} · Contratar {Plan} directamente | Start 14 days free with {Plan} · Go straight to the {Plan} plan |
 
 **Proof and limits:**
