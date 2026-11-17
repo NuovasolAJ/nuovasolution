@@ -1,5 +1,7 @@
 # Copy → Redesign, 17.11. evening: the target view shows the finished product
 
+> **SUPERSEDED 17.11. by `COPY_TO_REDESIGN_1117_TARGET_PRODUCT_TEXTS_v2.md`** (the owner's decisions on this file: own hero, pilot with the Growth scope, lead generation). Kept as history only. Build and check against v2.
+
 **Order:** the owner, 17.11.
 - The target view shows NuovaSolution as agencies will have it when it is finished.
 - After 10 seconds an agent should think: "I need this, and testing it costs me nothing."
