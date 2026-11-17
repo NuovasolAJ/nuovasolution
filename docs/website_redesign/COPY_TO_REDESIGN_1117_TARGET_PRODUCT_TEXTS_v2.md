@@ -82,7 +82,7 @@ The button and the pilot lines under it stay as they are (`home-1103.ts:34–37`
 | # | Element | ES | EN |
 |---|---|---|---|
 | G-h | main statement | Nuevos clientes. Contactos que vuelven. Más oportunidades para tu agencia. | New clients. Contacts who come back. More opportunities for your agency. |
-| G-d | line after the three cards | Cada mañana, el asistente del día te dice qué oportunidades piden tu atención y cuál es el siguiente paso. | Every morning, the daily assistant tells you which opportunities need your attention and what the next step is. |
+| G-d | line after the three cards (shortened, owner 17.11.) | Cada mañana, qué oportunidades piden tu atención. | Every morning, which opportunities need your attention. |
 | G-m | mark on each example | Ejemplo · datos ficticios | Example · fictional data |
 
 | # | Title ES (≤ 5 words) | Title EN | Sentence ES | Sentence EN | Phone ES | Phone EN |
@@ -95,13 +95,16 @@ The button and the pilot lines under it stay as they are (`home-1103.ts:34–37`
 
 | # | Line 1 ES | Line 2 ES | Line 3 ES | Line 1 EN | Line 2 EN | Line 3 EN |
 |---|---|---|---|---|---|---|
-| G-1 | Comentario en tu publicación del piso con terraza: «¿Sigue disponible?» | Mensaje directo: «Te lo confirma una persona del equipo. ¿Lo buscas para vivir o para invertir?» | Ficha nueva: compradora · Estepona · para vivir · pide visita | Comment on your post about the flat with a terrace: "Is it still available?" | Direct message: "Someone on the team will confirm that for you. Are you looking to live in it or to invest?" | New record: buyer · Estepona · to live in · asks for a viewing |
+| G-1 | Formulario de tu anuncio «¿Cuánto vale tu casa?»: Isabel, casa en Mijas | Respuesta al momento y una pregunta: «¿Cuántos metros tiene, más o menos?» | Ficha nueva: propietaria · Mijas · quiere vender · pide valoración | The form on your ad "What is your home worth?": Isabel, house in Mijas | An instant reply and one question: "Roughly how many square metres is it?" | New record: owner · Mijas · wants to sell · asks for a valuation |
 | G-2 | Javier escribió en marzo: ático en Benalmádena, hasta 280.000 € | Hoy entra un ático en Benalmádena, 275.000 € | Le escribimos, con su permiso: «¿Sigues buscando?» · Javier: «Sí, ¿cuándo puedo verlo?» | Javier wrote in March: penthouse in Benalmádena, up to €280,000 | Today a penthouse in Benalmádena comes in, €275,000 | We write to him, with his permission: "Still looking?" · Javier: "Yes, when can I see it?" |
 | G-3 | Laura pregunta por un piso en Estepona · respuesta al momento y una pregunta | Le proponemos 2 pisos que encajan: 2 dormitorios, hasta 320.000 € | No contesta en dos días · seguimiento con su permiso · pide visita | Laura asks about a flat in Estepona · an instant reply and one question | We suggest 2 flats that fit: 2 bedrooms, up to €320,000 | No reply in two days · a follow-up with her permission · she asks for a viewing |
 
 **Notes on the growth examples:**
 - **G-1:** the reply to "¿Sigue disponible?" confirms nothing. A person confirms availability (the rule of every reply, `COPY_TO_REDESIGN_1117_DEMO_REPLIES_PLAN_BUTTONS_v1.md` §1.1).
-- **G-1 shows a buyer.** If the owner wants the seller side visible too, the alternative line 1 is "Formulario de tu anuncio «¿Cuánto vale tu casa?»: Carmen, Fuengirola" / "The form on your ad 'What is your home worth?': Carmen, Fuengirola". Line 3 then becomes "Ficha nueva: propietaria · Fuengirola · quiere vender" / "New record: owner · Fuengirola · wants to sell".
+- **G-1 shows a SELLER (owner, 17.11.):** an owner who wants to sell comes in through the form on an ad. It runs on `adsLeads`, Growth, so it is part of the pilot.
+  - **Isabel** is a new fictional person. Carmen stays the e-mail seller of the demo and the example week.
+  - **The question** is the same as in Carmen's demo reply (metres for the valuation, `COPY_TO_REDESIGN_1117_DEMO_REPLIES_PLAN_BUTTONS_v1.md` §1.2).
+  - **Replaced:** the buyer example (comment, direct message), 17.11. It was a draft line that was never on the page. The comment/DM route stays in G-1's sentence.
 - **G-2 and G-3:** "con su permiso" is in the sentence and in the example, and it is required. Writing to past contacts again needs their consent. Copy writes no line that suggests otherwise. Whether the consent of an earlier enquiry covers this is counsel's question, not Copy's (added to §F).
 - **The "suggests" in G-3** is made by the system and sent by the agency, or with the client's permission. Nothing is offered as available.
 - **No figure of success anywhere.** "Más oportunidades" is the owner's main statement. It names no number and promises no deal.
@@ -125,7 +128,7 @@ The button and the pilot lines under it stay as they are (`home-1103.ts:34–37`
 **What follows for the plan chips:**
 - G-2, G-3 and G-d sit in the free pilot (Growth scope, §E).
 - **G-1 is split.** Ads and lead forms are Growth. Posts, comments and DMs are Enterprise in the register. So the Growth pilot does not test the social part of G-1.
-- If the owner wants the pilot to show it, `instagram` (and `socialInbox`) must move to Growth in `planRows`. That is the owner's decision, not a text. Until then G-1's chip reads "Desde Growth · redes sociales en Enterprise" / "From Growth · social media on Enterprise".
+- **Decided 17.11. by the owner:** `instagram` stays on Enterprise. It is decided again together with the prices. G-1's chip reads "Desde Growth · redes sociales en Enterprise" / "From Growth · social media on Enterprise".
 
 **Plan chips:**
 
@@ -168,7 +171,7 @@ Its approval step ("Tú la apruebas") moves into G-1's scope: no post goes out w
 | T-6 | Plano: plano-estepona.pdf | Modelo vacío y amueblado | Imágenes para anuncios y redes · marcadas como visualización | Plan: plano-estepona.pdf | Model, empty and furnished | Images for listings and social media · marked as a visualisation |
 
 **Two things about these cards:**
-- **T-4 and G-d overlap.** G-d is the growth sentence and T-4 the team card. If the draft pictures show the overlap as a repeat, T-4 may go and G-d carries the example. That is the owner's call at 10:00.
+- **T-4 stays (owner, 17.11.).** G-d was shortened to one line, so the two do not repeat each other: G-d names the opportunities, and T-4 is the team's day with its example.
 - **The switch day:**
 
 | Card | Switch-day wording |
@@ -271,10 +274,11 @@ Its approval step ("Tú la apruebas") moves into G-1's scope: no post goes out w
 ---
 
 ## F. Open
-- **Owner, at the draft pictures Wed 10:00:**
-  - G-1 example with the buyer, or the seller alternative;
-  - whether T-4 stays beside G-d;
-  - whether `instagram` (and the proposed `socialInbox`) move to Growth, so the pilot tests the social part of G-1.
+- **Decided 17.11. evening by the owner:**
+  - (1) `instagram` stays on Enterprise, to be decided again with the prices;
+  - (2) G-1 shows a seller;
+  - (3) T-4 stays, and G-d is shortened.
+- **New timeline (owner, 17.11.):** Redesign is paused until Thu 19.11. 20:00. The draft pictures for (16) follow on Fri 20.11., and RV6 measures after that.
 - **Owner/API:** a key for comments and direct messages (`socialInbox`) and the lane that builds it. Until then G-1's DM clause is target only and gets PX on the switch day.
 - **API:** the pilot's scope = Growth in the product (the app line `es.ts:680`).
 - **Counsel:** whether the consent of an earlier enquiry covers writing again for reactivation (G-2), or whether a separate opt-in is needed. Copy keeps "con su permiso" either way.
