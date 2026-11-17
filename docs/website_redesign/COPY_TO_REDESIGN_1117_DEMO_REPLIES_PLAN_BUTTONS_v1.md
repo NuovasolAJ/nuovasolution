@@ -70,7 +70,7 @@ Proof per sentence:
 
 The record stays as it is.
 
-**Formulario web · Sofía · `lib/content/home-demo.ts:197–211`** (target view only; `webform` is "soon", a prototype)
+**Formulario web · Sofía · `lib/content/home-demo.ts:197–211`** (both views until the switch day, owner 16.11. evening; `webform` is "soon", a prototype, so on the switch day it gets PX-b. Corrected 17.11. after RV6: "target view only" was the rule before 16.11.)
 
 **New: a reply after "Enviado".** Today the tab ends at "Enviado · martes 11:31" and shows no answer, which is why it reads as hand-on only. Proposal: after `sentAt`, a reply panel in the e-mail style of the e-mail tab, with the same label.
 
@@ -85,7 +85,7 @@ Proof:
 - **What is not proven:** that a form enquiry gets this e-mail. The form is a prototype. **On the switch day** the tab gets PX-b "Próximamente" (`…EXAMPLE_WEEK_PROXIMAMENTE_v1.md` §1), as today.
 - The record stays as it is: next step "Enviar a Sofía lo disponible en alquiler."
 
-**Teléfono · Álvaro · `lib/content/home-demo.ts:245`** (target view only; `phoneAssistant` is "soon", a staging prototype)
+**Teléfono · Álvaro · `lib/content/home-demo.ts:245`** (both views until the switch day, owner 16.11. evening; `phoneAssistant` is "soon", a staging prototype, so on the switch day it gets PX-b)
 
 | | ES | EN |
 |---|---|---|
