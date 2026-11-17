@@ -1,0 +1,396 @@
+{
+ "build": {
+  "commit": "db6ddc42cb3709406013727c34437b02ad88aa82",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_Ee21bBrbs6zjjjD2MiBWxaEy4onj",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "blues": [
+  {
+   "prop": "fill",
+   "value": "rgb(223, 233, 239)",
+   "hsl": [
+    203,
+    33,
+    91
+   ],
+   "visible": true,
+   "box": "466x478",
+   "where": "g.[object.SVGAnimatedString]",
+   "text": "",
+   "count": 5
+  }
+ ],
+ "cmp": {
+  "rowCount": 9,
+  "rows": [
+   {
+    "cls": "cmpb-row cmpb-row-head",
+    "text": "Sin NuovaSolutionCon NuovaSolution"
+   },
+   {
+    "cls": "cmpb-rows",
+    "text": "Sin respuesta hasta que abre la oficinaSin NuovaSolution: 9C"
+   },
+   {
+    "cls": "cmpb-row",
+    "text": "Sin respuesta hasta que abre la oficinaSin NuovaSolution: 9C"
+   },
+   {
+    "cls": "cmpb-row",
+    "text": "Esperan al día siguienteSin NuovaSolution: 5Con NuovaSolutio"
+   },
+   {
+    "cls": "cmpb-row",
+    "text": "Esperan a una persona para la primera respuestaSin NuovaSolu"
+   },
+   {
+    "cls": "cmpb-row",
+    "text": "En su ficha, con prioridad y motivoSin NuovaSolution: lo que"
+   },
+   {
+    "cls": "cmpb-row",
+    "text": "Consultas de la semanaSin NuovaSolution: 25Con NuovaSolution"
+   },
+   {
+    "cls": "cmpb-row",
+    "text": "Llegaron con la oficina cerradaSin NuovaSolution: 9Con Nuova"
+   },
+   {
+    "cls": "cmpb-row",
+    "text": "De ellas, pedían visitaSin NuovaSolution: 2Con NuovaSolution"
+   }
+  ],
+  "small": [
+   {
+    "cls": "cmpb-h cmpb-v-without",
+    "fs": 13,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 16,
+    "text": "Sin NuovaSolution"
+   },
+   {
+    "cls": "cmpb-h cmpb-v-with is-on",
+    "fs": 13,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 16,
+    "text": "Con NuovaSolution"
+   },
+   {
+    "cls": "cmpb-v cmpb-v-without",
+    "fs": 16,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 34,
+    "text": "Sin NuovaSolution: 9"
+   },
+   {
+    "cls": "cmpb-v-figure tnum",
+    "fs": 20,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 22,
+    "text": "9"
+   },
+   {
+    "cls": "cmpb-v cmpb-v-with is-on",
+    "fs": 16,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 34,
+    "text": "Con NuovaSolution: 0"
+   },
+   {
+    "cls": "cmpb-v-figure tnum",
+    "fs": 20,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 22,
+    "text": "0"
+   },
+   {
+    "cls": "cmpb-v cmpb-v-without",
+    "fs": 16,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 34,
+    "text": "Sin NuovaSolution: 5"
+   },
+   {
+    "cls": "cmpb-v-figure tnum",
+    "fs": 20,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 22,
+    "text": "5"
+   },
+   {
+    "cls": "cmpb-v cmpb-v-with is-on",
+    "fs": 16,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 34,
+    "text": "Con NuovaSolution: 0"
+   },
+   {
+    "cls": "cmpb-v-figure tnum",
+    "fs": 20,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 22,
+    "text": "0"
+   },
+   {
+    "cls": "cmpb-v cmpb-v-without",
+    "fs": 16,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 34,
+    "text": "Sin NuovaSolution: 25"
+   },
+   {
+    "cls": "cmpb-v-figure tnum",
+    "fs": 20,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 22,
+    "text": "25"
+   },
+   {
+    "cls": "cmpb-v cmpb-v-with is-on",
+    "fs": 16,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 34,
+    "text": "Con NuovaSolution: 0"
+   },
+   {
+    "cls": "cmpb-v-figure tnum",
+    "fs": 20,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 22,
+    "text": "0"
+   },
+   {
+    "cls": "cmpb-v cmpb-v-without cm",
+    "fs": 16,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 30,
+    "text": "Sin NuovaSolution: lo que alguien "
+   },
+   {
+    "cls": "cmpb-v-figure tnum",
+    "fs": 13,
+    "ws": "nowrap",
+    "oneLine": true,
+    "h": 18,
+    "text": "lo que alguien anote"
+   },
+   {
+    "cls": "cmpb-v cmpb-v-with is-on",
+    "fs": 16,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 34,
+    "text": "Con NuovaSolution: 25"
+   },
+   {
+    "cls": "cmpb-v-figure tnum",
+    "fs": 20,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 22,
+    "text": "25"
+   },
+   {
+    "cls": "cmpb-v cmpb-v-without",
+    "fs": 16,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 34,
+    "text": "Sin NuovaSolution: 25"
+   },
+   {
+    "cls": "cmpb-v-figure tnum",
+    "fs": 20,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 22,
+    "text": "25"
+   },
+   {
+    "cls": "cmpb-v cmpb-v-with is-on",
+    "fs": 16,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 34,
+    "text": "Con NuovaSolution: 25"
+   },
+   {
+    "cls": "cmpb-v-figure tnum",
+    "fs": 20,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 22,
+    "text": "25"
+   },
+   {
+    "cls": "cmpb-v cmpb-v-without",
+    "fs": 16,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 34,
+    "text": "Sin NuovaSolution: 9"
+   },
+   {
+    "cls": "cmpb-v-figure tnum",
+    "fs": 20,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 22,
+    "text": "9"
+   },
+   {
+    "cls": "cmpb-v cmpb-v-with is-on",
+    "fs": 16,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 34,
+    "text": "Con NuovaSolution: 9"
+   },
+   {
+    "cls": "cmpb-v-figure tnum",
+    "fs": 20,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 22,
+    "text": "9"
+   },
+   {
+    "cls": "cmpb-v cmpb-v-without",
+    "fs": 16,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 34,
+    "text": "Sin NuovaSolution: 2"
+   },
+   {
+    "cls": "cmpb-v-figure tnum",
+    "fs": 20,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 22,
+    "text": "2"
+   },
+   {
+    "cls": "cmpb-v cmpb-v-with is-on",
+    "fs": 16,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 34,
+    "text": "Con NuovaSolution: 2"
+   },
+   {
+    "cls": "cmpb-v-figure tnum",
+    "fs": 20,
+    "ws": "normal",
+    "oneLine": true,
+    "h": 22,
+    "text": "2"
+   }
+  ]
+ },
+ "m3d": {
+  "largestGaps": [
+   {
+    "px": 146,
+    "after": "text.[object",
+    "before": "SPAN.m3d-step-no",
+    "atY": 968
+   },
+   {
+    "px": 137,
+    "after": "text.[object",
+    "before": "text.[object",
+    "atY": 543
+   },
+   {
+    "px": 71,
+    "after": "text.[object",
+    "before": "text.[object",
+    "atY": 848
+   },
+   {
+    "px": 50,
+    "after": "SPAN.status-pill",
+    "before": "text.[object",
+    "atY": 465
+   }
+  ],
+  "stepStyles": [
+   {
+    "cls": "m3d-step is-past",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(95, 95, 102)",
+    "border": "rgb(229, 231, 235) 0px",
+    "beforeBg": "rgba(0, 0, 0, 0)",
+    "beforeContent": "none",
+    "afterBg": "rgba(0, 0, 0, 0)",
+    "afterContent": "none"
+   },
+   {
+    "cls": "m3d-step is-past",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(95, 95, 102)",
+    "border": "rgb(229, 231, 235) 0px",
+    "beforeBg": "rgba(0, 0, 0, 0)",
+    "beforeContent": "none",
+    "afterBg": "rgba(0, 0, 0, 0)",
+    "afterContent": "none"
+   },
+   {
+    "cls": "m3d-step is-past",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(95, 95, 102)",
+    "border": "rgb(229, 231, 235) 0px",
+    "beforeBg": "rgba(0, 0, 0, 0)",
+    "beforeContent": "none",
+    "afterBg": "rgba(0, 0, 0, 0)",
+    "afterContent": "none"
+   },
+   {
+    "cls": "m3d-step is-on",
+    "bg": "rgb(239, 239, 239)",
+    "color": "rgb(14, 14, 15)",
+    "border": "rgb(229, 231, 235) 0px",
+    "beforeBg": "rgba(0, 0, 0, 0)",
+    "beforeContent": "none",
+    "afterBg": "rgba(0, 0, 0, 0)",
+    "afterContent": "none"
+   }
+  ]
+ },
+ "play390": [
+  {
+   "w": 44,
+   "h": 44,
+   "round": "999px",
+   "label": "Menú",
+   "cls": "xl:hidden inline-flex h-11 w-1",
+   "hasSvg": true
+  },
+  {
+   "w": 40,
+   "h": 32,
+   "round": "999px",
+   "label": "Repetir demo Repetir demo",
+   "cls": "demo-replay",
+   "hasSvg": true
+  }
+ ]
+}
