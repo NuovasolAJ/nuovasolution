@@ -1,0 +1,700 @@
+{
+ "tag": "dd2035b",
+ "build": {
+  "commit": "dd2035b35a98e72a303ebd72be2bdc9fd5ee16a8",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_3RKjY6zyggZzf4Ccky7QWxyh2tWB",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "p1": {
+  "390": [
+   {
+    "button": "Ver Atiende",
+    "insideCard": true,
+    "leftOk": true,
+    "rightOk": true,
+    "dLeft": 0,
+    "dRight": 0,
+    "contentTop": 210,
+    "contentH": 1171,
+    "visiblePx": 634,
+    "pageScrolledItself": 322,
+    "cardHeight": 1575,
+    "looseBlocksUnderRow": [
+     {
+      "tag": "DIV",
+      "cls": "mrise ch-extra",
+      "h": 598
+     }
+    ]
+   },
+   {
+    "button": "Ver Organiza",
+    "insideCard": true,
+    "leftOk": true,
+    "rightOk": true,
+    "dLeft": 0,
+    "dRight": 0,
+    "contentTop": 210,
+    "contentH": 2378,
+    "visiblePx": 634,
+    "pageScrolledItself": 322,
+    "cardHeight": 2782,
+    "looseBlocksUnderRow": [
+     {
+      "tag": "DIV",
+      "cls": "mrise ch-extra",
+      "h": 598
+     }
+    ]
+   },
+   {
+    "button": "Ver Crece",
+    "insideCard": true,
+    "leftOk": true,
+    "rightOk": true,
+    "dLeft": 0,
+    "dRight": 0,
+    "contentTop": 210,
+    "contentH": 2623,
+    "visiblePx": 634,
+    "pageScrolledItself": 322,
+    "cardHeight": 3027,
+    "looseBlocksUnderRow": [
+     {
+      "tag": "DIV",
+      "cls": "mrise ch-extra",
+      "h": 598
+     }
+    ]
+   }
+  ],
+  "1440": [
+   {
+    "button": "Ver Atiende",
+    "insideCard": true,
+    "leftOk": true,
+    "rightOk": true,
+    "dLeft": 0,
+    "dRight": 0,
+    "contentTop": 236,
+    "contentH": 1119,
+    "visiblePx": 664,
+    "pageScrolledItself": 293,
+    "cardHeight": 1749,
+    "looseBlocksUnderRow": [
+     {
+      "tag": "DIV",
+      "cls": "mrise ch-extra",
+      "h": 442
+     }
+    ]
+   },
+   {
+    "button": "Ver Organiza",
+    "insideCard": true,
+    "leftOk": true,
+    "rightOk": true,
+    "dLeft": 0,
+    "dRight": 0,
+    "contentTop": 236,
+    "contentH": 2257,
+    "visiblePx": 664,
+    "pageScrolledItself": 338,
+    "cardHeight": 2932,
+    "looseBlocksUnderRow": [
+     {
+      "tag": "DIV",
+      "cls": "mrise ch-extra",
+      "h": 442
+     }
+    ]
+   },
+   {
+    "button": "Ver Crece",
+    "insideCard": true,
+    "leftOk": true,
+    "rightOk": true,
+    "dLeft": 0,
+    "dRight": 0,
+    "contentTop": 236,
+    "contentH": 2685,
+    "visiblePx": 664,
+    "pageScrolledItself": 315,
+    "cardHeight": 3338,
+    "looseBlocksUnderRow": [
+     {
+      "tag": "DIV",
+      "cls": "mrise ch-extra",
+      "h": 442
+     }
+    ]
+   }
+  ]
+ },
+ "p2": {
+  "blocks": {
+   "extra": [
+    {
+     "cls": "mrise ch-extra",
+     "scrollW": 358,
+     "clientW": 358,
+     "over": "visible",
+     "scrollable": false,
+     "stickyKids": 0
+    }
+   ],
+   "plans": [
+    {
+     "cls": "mrise plans-table-wrap",
+     "scrollW": 358,
+     "clientW": 358,
+     "over": "visible",
+     "scrollable": false,
+     "stickyKids": 0
+    },
+    {
+     "cls": "plans-cards",
+     "scrollW": 358,
+     "clientW": 358,
+     "over": "visible",
+     "scrollable": false,
+     "stickyKids": 3
+    }
+   ],
+   "trust": [
+    {
+     "cls": "trust",
+     "scrollW": 390,
+     "clientW": 390,
+     "over": "visible",
+     "scrollable": false,
+     "stickyKids": 0
+    },
+    {
+     "cls": "trust-grid",
+     "scrollW": 358,
+     "clientW": 358,
+     "over": "visible",
+     "scrollable": false,
+     "stickyKids": 0
+    },
+    {
+     "cls": "mrise trust-words",
+     "scrollW": 358,
+     "clientW": 358,
+     "over": "visible",
+     "scrollable": false,
+     "stickyKids": 0
+    },
+    {
+     "cls": "trust-right",
+     "scrollW": 358,
+     "clientW": 358,
+     "over": "visible",
+     "scrollable": false,
+     "stickyKids": 0
+    }
+   ],
+   "rep": [
+    {
+     "cls": "mrise rep-head",
+     "scrollW": 358,
+     "clientW": 358,
+     "over": "visible",
+     "scrollable": false,
+     "stickyKids": 0
+    },
+    {
+     "cls": "mrise rep-sheet",
+     "scrollW": 358,
+     "clientW": 358,
+     "over": "visible",
+     "scrollable": false,
+     "stickyKids": 0
+    },
+    {
+     "cls": "rep-paper",
+     "scrollW": 356,
+     "clientW": 356,
+     "over": "hidden",
+     "scrollable": false,
+     "stickyKids": 0
+    },
+    {
+     "cls": "rep-paper-head",
+     "scrollW": 356,
+     "clientW": 356,
+     "over": "visible",
+     "scrollable": false,
+     "stickyKids": 0
+    }
+   ]
+  },
+  "anyHorizontallyScrollable": []
+ },
+ "p3": {
+  "390": {
+   "headerButton": null,
+   "headerH": null,
+   "pilots": [
+    {
+     "text": "Solicita tu piloto gratuito",
+     "w": 358,
+     "h": 56,
+     "top": 549,
+     "fs": 17,
+     "lh": 25.5,
+     "bg": "rgb(14, 14, 15)",
+     "border": "0px rgb(229, 231, 235)",
+     "oneLine": true,
+     "href": "/es/contact"
+    },
+    {
+     "text": "Empieza 14 días gratis",
+     "w": 316,
+     "h": 44,
+     "top": 13115,
+     "fs": 15,
+     "lh": 22.5,
+     "bg": "rgb(14, 14, 15)",
+     "border": "1px rgb(14, 14, 15)",
+     "oneLine": true,
+     "href": "/es/contact?interes=pilot&plan=essential"
+    },
+    {
+     "text": "Empieza 14 días gratis",
+     "w": 316,
+     "h": 44,
+     "top": 14599,
+     "fs": 15,
+     "lh": 22.5,
+     "bg": "rgb(14, 14, 15)",
+     "border": "1px rgb(14, 14, 15)",
+     "oneLine": true,
+     "href": "/es/contact?interes=pilot&plan=growth"
+    },
+    {
+     "text": "Empieza 14 días gratis",
+     "w": 316,
+     "h": 44,
+     "top": 16061,
+     "fs": 15,
+     "lh": 22.5,
+     "bg": "rgb(14, 14, 15)",
+     "border": "1px rgb(14, 14, 15)",
+     "oneLine": true,
+     "href": "/es/contact?interes=pilot&plan=enterprise"
+    },
+    {
+     "text": "Solicita tu piloto gratuito",
+     "w": 272,
+     "h": 52,
+     "top": 16745,
+     "fs": 17,
+     "lh": 25.5,
+     "bg": "rgb(14, 14, 15)",
+     "border": "0px rgb(229, 231, 235)",
+     "oneLine": true,
+     "href": "/es/contact"
+    },
+    {
+     "text": "Solicita tu piloto gratuito",
+     "w": 252,
+     "h": 48,
+     "top": 17913,
+     "fs": 16,
+     "lh": 24,
+     "bg": "rgb(14, 14, 15)",
+     "border": "0px rgb(229, 231, 235)",
+     "oneLine": true,
+     "href": "/es/contact"
+    },
+    {
+     "text": "Solicita tu piloto gratuito",
+     "w": 256,
+     "h": 56,
+     "top": 19200,
+     "fs": 17,
+     "lh": 25.5,
+     "bg": "rgb(255, 255, 255)",
+     "border": "0px rgb(229, 231, 235)",
+     "oneLine": true,
+     "href": "/es/contact"
+    },
+    {
+     "text": "Solicita tu piloto gratuito",
+     "w": 358,
+     "h": 52,
+     "top": 862,
+     "fs": 17,
+     "lh": 25.5,
+     "bg": "rgb(14, 14, 15)",
+     "border": "0px rgb(229, 231, 235)",
+     "oneLine": true,
+     "href": "/es/contact"
+    },
+    {
+     "text": "Solicita tu piloto gratuito",
+     "w": 172,
+     "h": 44,
+     "top": 20522,
+     "fs": 15,
+     "lh": 24,
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "0px rgb(229, 231, 235)",
+     "oneLine": true,
+     "href": "/es/contact"
+    }
+   ],
+   "directs": [
+    {
+     "text": "Contratar directamente",
+     "w": 316,
+     "h": 44,
+     "top": 13193,
+     "fs": 15,
+     "lh": 22.5,
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "1px rgb(222, 222, 226)",
+     "oneLine": true,
+     "href": "/es/contact?interes=contratar&plan=essential",
+     "key": "card-essential"
+    },
+    {
+     "text": "Contratar directamente",
+     "w": 316,
+     "h": 44,
+     "top": 14677,
+     "fs": 15,
+     "lh": 22.5,
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "1px rgb(222, 222, 226)",
+     "oneLine": true,
+     "href": "/es/contact?interes=contratar&plan=growth",
+     "key": "card-growth"
+    },
+    {
+     "text": "Contratar directamente",
+     "w": 316,
+     "h": 44,
+     "top": 16139,
+     "fs": 15,
+     "lh": 22.5,
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "1px rgb(222, 222, 226)",
+     "oneLine": true,
+     "href": "/es/contact?interes=contratar&plan=enterprise",
+     "key": "card-enterprise"
+    }
+   ]
+  },
+  "1440": {
+   "headerButton": {
+    "text": "Piloto",
+    "w": 68,
+    "h": 44,
+    "top": 14,
+    "fs": 15,
+    "lh": 24,
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px rgb(229, 231, 235)",
+    "oneLine": true,
+    "href": "/es/trial"
+   },
+   "headerH": 44,
+   "pilots": [
+    {
+     "text": "Solicita tu piloto gratuito",
+     "w": 284,
+     "h": 56,
+     "top": 676,
+     "fs": 17,
+     "lh": 25.5,
+     "bg": "rgb(14, 14, 15)",
+     "border": "0px rgb(229, 231, 235)",
+     "oneLine": true,
+     "href": "/es/contact"
+    },
+    {
+     "text": "Empieza 14 días gratis",
+     "w": 220,
+     "h": 44,
+     "top": 10905,
+     "fs": 15,
+     "lh": 22.5,
+     "bg": "rgb(14, 14, 15)",
+     "border": "1px rgb(14, 14, 15)",
+     "oneLine": true,
+     "href": "/es/contact?interes=pilot&plan=essential"
+    },
+    {
+     "text": "Empieza 14 días gratis",
+     "w": 220,
+     "h": 44,
+     "top": 10905,
+     "fs": 15,
+     "lh": 22.5,
+     "bg": "rgb(14, 14, 15)",
+     "border": "1px rgb(14, 14, 15)",
+     "oneLine": true,
+     "href": "/es/contact?interes=pilot&plan=growth"
+    },
+    {
+     "text": "Empieza 14 días gratis",
+     "w": 220,
+     "h": 44,
+     "top": 10905,
+     "fs": 15,
+     "lh": 22.5,
+     "bg": "rgb(14, 14, 15)",
+     "border": "1px rgb(14, 14, 15)",
+     "oneLine": true,
+     "href": "/es/contact?interes=pilot&plan=enterprise"
+    },
+    {
+     "text": "Solicita tu piloto gratuito",
+     "w": 272,
+     "h": 52,
+     "top": 11761,
+     "fs": 17,
+     "lh": 25.5,
+     "bg": "rgb(14, 14, 15)",
+     "border": "0px rgb(229, 231, 235)",
+     "oneLine": true,
+     "href": "/es/contact"
+    },
+    {
+     "text": "Solicita tu piloto gratuito",
+     "w": 252,
+     "h": 48,
+     "top": 12658,
+     "fs": 16,
+     "lh": 24,
+     "bg": "rgb(14, 14, 15)",
+     "border": "0px rgb(229, 231, 235)",
+     "oneLine": true,
+     "href": "/es/contact"
+    },
+    {
+     "text": "Solicita tu piloto gratuito",
+     "w": 256,
+     "h": 56,
+     "top": 13432,
+     "fs": 17,
+     "lh": 25.5,
+     "bg": "rgb(255, 255, 255)",
+     "border": "0px rgb(229, 231, 235)",
+     "oneLine": true,
+     "href": "/es/contact"
+    },
+    {
+     "text": "Solicita tu piloto gratuito",
+     "w": 172,
+     "h": 44,
+     "top": 13793,
+     "fs": 15,
+     "lh": 24,
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "0px rgb(229, 231, 235)",
+     "oneLine": true,
+     "href": "/es/contact"
+    }
+   ],
+   "directs": [
+    {
+     "text": "Contratar directamente",
+     "w": 220,
+     "h": 44,
+     "top": 10983,
+     "fs": 15,
+     "lh": 22.5,
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "1px rgb(222, 222, 226)",
+     "oneLine": true,
+     "href": "/es/contact?interes=contratar&plan=essential",
+     "key": "essential"
+    },
+    {
+     "text": "Contratar directamente",
+     "w": 220,
+     "h": 44,
+     "top": 10983,
+     "fs": 15,
+     "lh": 22.5,
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "1px rgb(222, 222, 226)",
+     "oneLine": true,
+     "href": "/es/contact?interes=contratar&plan=growth",
+     "key": "growth"
+    },
+    {
+     "text": "Contratar directamente",
+     "w": 220,
+     "h": 44,
+     "top": 10983,
+     "fs": 15,
+     "lh": 22.5,
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "1px rgb(222, 222, 226)",
+     "oneLine": true,
+     "href": "/es/contact?interes=contratar&plan=enterprise",
+     "key": "enterprise"
+    }
+   ]
+  }
+ },
+ "p4": {
+  "hits": [
+   {
+    "prop": "color",
+    "value": "rgba(248, 246, 241, 0.72)",
+    "hsl": [
+     43,
+     33,
+     96
+    ],
+    "kind": "sandfarben",
+    "where": "P.hf-mark",
+    "text": "Casa de ejemplo ficticia, visualiz",
+    "count": 1
+   },
+   {
+    "prop": "color",
+    "value": "rgba(248, 246, 241, 0.78)",
+    "hsl": [
+     43,
+     33,
+     96
+    ],
+    "kind": "sandfarben",
+    "where": "P.hf-eyebrow.t-eyebrow",
+    "text": "Para agencias inmobiliarias en Esp",
+    "count": 2
+   },
+   {
+    "prop": "color",
+    "value": "rgba(248, 246, 241, 0.9)",
+    "hsl": [
+     43,
+     33,
+     96
+    ],
+    "kind": "sandfarben",
+    "where": "P.hf-lead",
+    "text": "Tus clientes reciben respuesta aun",
+    "count": 1
+   },
+   {
+    "prop": "color",
+    "value": "rgba(248, 246, 241, 0.62)",
+    "hsl": [
+     43,
+     33,
+     96
+    ],
+    "kind": "sandfarben",
+    "where": "P.hf-access.hf-access-small",
+    "text": "Sin método de pago. Las condicione",
+    "count": 1
+   },
+   {
+    "prop": "background",
+    "value": "rgb(236, 233, 228)",
+    "hsl": [
+     37,
+     17,
+     91
+    ],
+    "kind": "sandfarben",
+    "where": "DIV.demo-chat",
+    "text": "LLaura · compradoraen líneaHola, s",
+    "count": 3
+   },
+   {
+    "prop": "background",
+    "value": "rgb(247, 245, 239)",
+    "hsl": [
+     45,
+     33,
+     95
+    ],
+    "kind": "sandfarben",
+    "where": "DIV.m3d-pane.m3d-pane-plan",
+    "text": "SalónCocina / ComedorLavaderoAseoR",
+    "count": 1
+   },
+   {
+    "prop": "fill",
+    "value": "rgb(247, 245, 239)",
+    "hsl": [
+     45,
+     33,
+     95
+    ],
+    "kind": "sandfarben",
+    "where": "rect.[object.SVGAnimatedString]",
+    "text": "",
+    "count": 1
+   },
+   {
+    "prop": "fill",
+    "value": "rgb(239, 233, 219)",
+    "hsl": [
+     42,
+     38,
+     90
+    ],
+    "kind": "sandfarben",
+    "where": "rect.[object.SVGAnimatedString]",
+    "text": "",
+    "count": 1
+   },
+   {
+    "prop": "gradient",
+    "value": "rgba(201, 167, 105, 0.16)",
+    "hsl": [
+     39,
+     47,
+     60
+    ],
+    "kind": "sandfarben",
+    "where": "DIV.mrise.closing-panel",
+    "text": "14 días para ver qué consultas se ",
+    "count": 1
+   }
+  ],
+  "brown": 0,
+  "sand": 9,
+  "vars": {
+   "--signal-attention": "#5b5b61",
+   "--brand": "#1f4e8c",
+   "--brand-ink": "#173a68",
+   "--accent": "#1f4e8c",
+   "--accent-wash": "#e9eff8"
+  }
+ },
+ "p6depth": {
+  "phone390x844_target": {
+   "doc": 21089,
+   "vh": 844,
+   "screens": 25
+  },
+  "phone390x844_public": {
+   "doc": 21089,
+   "vh": 844,
+   "screens": 25
+  },
+  "desktop1440x900_target": {
+   "doc": 14242,
+   "vh": 900,
+   "screens": 15.8
+  },
+  "desktop1440x900_public": {
+   "doc": 14242,
+   "vh": 900,
+   "screens": 15.8
+  }
+ }
+}
