@@ -1,0 +1,353 @@
+{
+ "source": "docs/website_redesign/COPY_TO_REDESIGN_1117_TARGET_PRODUCT_TEXTS_v2.md",
+ "commit": "fe8100b",
+ "ids": [
+  "D-1",
+  "D-2",
+  "D-3",
+  "D-4",
+  "D-5",
+  "D-6",
+  "D-c",
+  "D-m",
+  "D-s",
+  "D-t",
+  "G-1",
+  "G-2",
+  "G-3",
+  "G-d",
+  "G-h",
+  "G-m",
+  "H-h1",
+  "H-sub",
+  "H-subP",
+  "R-1",
+  "R-2",
+  "T-1",
+  "T-2",
+  "T-3",
+  "T-4",
+  "T-5",
+  "T-6",
+  "T-7",
+  "T-8"
+ ],
+ "rows": {
+  "H-h1": [
+   [
+    "h1",
+    "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+    "Grow your agency. Not your workload."
+   ]
+  ],
+  "H-sub": [
+   [
+    "subline (target)",
+    "NuovaSolution capta clientes, responde consultas y hace seguimiento. Reactiva contactos, propone inmuebles y te muestra qué merece tu atención, para que tu negocio avance sin que todo dependa de ti.",
+    "NuovaSolution brings in clients, answers enquiries and follows up. It re-engages past contacts, suggests properties and shows you what deserves your attention, so your business moves forward without everything depending on you."
+   ]
+  ],
+  "H-subP": [
+   [
+    "subline, public fallback on the switch day while the growth keys are off",
+    "Tus clientes reciben respuesta aunque estés en una visita, y lo que piden te espera ordenado en su ficha.",
+    "Your clients get a reply even while you are at a viewing, and what they ask for is waiting for you on their record."
+   ]
+  ],
+  "G-h": [
+   [
+    "main statement",
+    "Nuevos clientes. Contactos que vuelven. Más oportunidades para tu agencia.",
+    "New clients. Contacts who come back. More opportunities for your agency."
+   ]
+  ],
+  "G-d": [
+   [
+    "line after the three cards",
+    "Cada mañana, el asistente del día te dice qué oportunidades piden tu atención y cuál es el siguiente paso.",
+    "Every morning, the daily assistant tells you which opportunities need your attention and what the next step is."
+   ]
+  ],
+  "G-m": [
+   [
+    "mark on each example",
+    "Ejemplo · datos ficticios",
+    "Example · fictional data"
+   ]
+  ],
+  "G-1": [
+   [
+    "Gana nuevos clientes",
+    "Win new clients",
+    "Tus publicaciones, anuncios y formularios atraen a compradores y a propietarios que quieren vender. Cada comentario o mensaje directo se convierte en una consulta con su ficha.",
+    "Your posts, ads and lead forms draw in buyers and owners who want to sell. Every comment or direct message becomes an enquiry with its own record.",
+    "De un comentario a una consulta.",
+    "From a comment to an enquiry."
+   ],
+   [
+    "Comentario en tu publicación del piso con terraza: «¿Sigue disponible?»",
+    "Mensaje directo: «Te lo confirma una persona del equipo. ¿Lo buscas para vivir o para invertir?»",
+    "Ficha nueva: compradora · Estepona · para vivir · pide visita",
+    "Comment on your post about the flat with a terrace: \"Is it still available?\"",
+    "Direct message: \"Someone on the team will confirm that for you. Are you looking to live in it or to invest?\"",
+    "New record: buyer · Estepona · to live in · asks for a viewing"
+   ],
+   [
+    "property posts on social media",
+    "`instagram` (social_posting)",
+    "soon: staging, never published at Meta",
+    "**Enterprise**"
+   ],
+   [
+    "Desde Growth · redes sociales en Enterprise",
+    "From Growth · social media on Enterprise"
+   ]
+  ],
+  "G-2": [
+   [
+    "Reactiva tus contactos",
+    "Bring contacts back",
+    "Cuando entra un inmueble que encaja o hay un motivo nuevo, volvemos a escribir a tus antiguos interesados y clientes, con su permiso.",
+    "When a listing that fits comes in, or there is a new reason to get in touch, we write again to your past enquirers and clients, with their permission.",
+    "Tus contactos de siempre, otra vez activos.",
+    "Your past contacts, active again."
+   ],
+   [
+    "Javier escribió en marzo: ático en Benalmádena, hasta 280.000 €",
+    "Hoy entra un ático en Benalmádena, 275.000 €",
+    "Le escribimos, con su permiso: «¿Sigues buscando?» · Javier: «Sí, ¿cuándo puedo verlo?»",
+    "Javier wrote in March: penthouse in Benalmádena, up to €280,000",
+    "Today a penthouse in Benalmádena comes in, €275,000",
+    "We write to him, with his permission: \"Still looking?\" · Javier: \"Yes, when can I see it?\""
+   ],
+   [
+    "a listing that fits a past contact",
+    "`matching`",
+    "soon: pm_certified = false",
+    "Growth, Enterprise"
+   ],
+   [
+    "Desde Growth",
+    "From Growth"
+   ]
+  ],
+  "G-3": [
+   [
+    "Del interés a la oportunidad",
+    "From interest to opportunity",
+    "Responde, aclara qué busca cada cliente, le propone inmuebles que encajan y, con su permiso, hace seguimiento.",
+    "It replies, finds out what each client is looking for, suggests listings that fit and, with their permission, follows up.",
+    "Cada interesado, con su siguiente paso.",
+    "Every lead, with its next step."
+   ],
+   [
+    "Laura pregunta por un piso en Estepona · respuesta al momento y una pregunta",
+    "Le proponemos 2 pisos que encajan: 2 dormitorios, hasta 320.000 €",
+    "No contesta en dos días · seguimiento con su permiso · pide visita",
+    "Laura asks about a flat in Estepona · an instant reply and one question",
+    "We suggest 2 flats that fit: 2 bedrooms, up to €320,000",
+    "No reply in two days · a follow-up with her permission · she asks for a viewing"
+   ],
+   [
+    "reply and one question",
+    "`replyWhatsapp`, `replyEmail`",
+    "**included** (production 13.11.)",
+    "every plan"
+   ]
+  ],
+  "T-1": [
+   [
+    "G-3 (and G-2)"
+   ]
+  ],
+  "T-3": [
+   [
+    "G-2 and G-3"
+   ]
+  ],
+  "T-5": [
+   [
+    "G-1"
+   ]
+  ],
+  "T-7": [
+   [
+    "G-1"
+   ]
+  ],
+  "T-2": [
+   [
+    "`phoneAssistant`",
+    "Atiende el teléfono por ti",
+    "Answers the phone for you",
+    "Cuando estás en una visita, el asistente coge la llamada, anota qué busca y te deja la tarea.",
+    "When you're at a viewing, the assistant takes the call, notes what they want and leaves you the task.",
+    "Ninguna llamada perdida en una visita.",
+    "No call missed during a viewing.",
+    "Desde Growth · From Growth"
+   ],
+   [
+    "11:39 · Álvaro llama · estás en una visita",
+    "Atendida · la villa de Elviria, precio y margen",
+    "Tarea: devolver la llamada a partir de las 16:00",
+    "11:39 · Álvaro calls · you're at a viewing",
+    "Answered · the villa in Elviria, price and room to negotiate",
+    "Task: call back from 16:00"
+   ],
+   [
+    "PX \"Atiende el teléfono por ti: próximamente.\""
+   ]
+  ],
+  "T-4": [
+   [
+    "`taskList`, `dailyVoice`",
+    "Cada mañana, el día claro",
+    "Every morning, a clear day",
+    "Cada mañana, cada persona del equipo sabe qué tiene que hacer hoy y con quién.",
+    "Every morning, everyone on the team knows what to do today and with whom.",
+    "Tu día, ordenado a las 8:30.",
+    "Your day, sorted by 8:30.",
+    "Desde Growth · From Growth"
+   ],
+   [
+    "08:30 · Buenos días, Marta. Hoy, 3 cosas:",
+    "Proponer fecha a los Keller · Devolver la llamada a Álvaro, desde las 16:00",
+    "Enviar a Sofía lo disponible en alquiler",
+    "08:30 · Good morning, Marta. Today, 3 things:",
+    "Propose a date to the Kellers · Call Álvaro back, from 16:00",
+    "Send Sofía what's available to rent"
+   ],
+   [
+    "PX \"Cada mañana, el día claro: próximamente.\""
+   ]
+  ],
+  "T-8": [
+   [
+    "`reportInLogin`, `weeklyEmail`",
+    "Tu semana, en un informe",
+    "Your week, in one report",
+    "Cada lunes ves qué entró, qué sigue abierto y qué hacer esta semana.",
+    "Every Monday you see what came in, what is still open and what to do this week.",
+    "Qué entró y qué hacer.",
+    "What came in and what to do.",
+    "Todos los planes · Every plan"
+   ],
+   [
+    "Lunes 08:00 · 25 consultas, 25 respondidas",
+    "9 con la oficina cerrada · 4 visitas acordadas",
+    "Esta semana: proponer fecha a las 2 visitas pendientes",
+    "Monday 08:00 · 25 enquiries, 25 answered",
+    "9 with the office closed · 4 viewings agreed",
+    "This week: propose a date for the 2 open viewings"
+   ],
+   [
+    "keeps its sentence: the report is in production, and the sentence names no e-mail"
+   ]
+  ],
+  "T-6": [
+   [
+    "`model3d`",
+    "Tu plano, en 3D",
+    "Your floor plan, in 3D",
+    "Convertimos tu plano en un modelo 3D, vacío y amueblado, con imágenes para tus anuncios.",
+    "We turn your floor plan into a 3D model, empty and furnished, with images for your listings.",
+    "Del plano a imágenes de anuncio.",
+    "From floor plan to listing images.",
+    "Opcional, con cualquier plan · Optional, with any plan"
+   ],
+   [
+    "Plano: plano-estepona.pdf",
+    "Modelo vacío y amueblado",
+    "Imágenes para anuncios y redes · marcadas como visualización",
+    "Plan: plano-estepona.pdf",
+    "Model, empty and furnished",
+    "Images for listings and social media · marked as a visualisation"
+   ],
+   [
+    "\"Opcional · próximamente\""
+   ]
+  ],
+  "D-t": [
+   [
+    "title",
+    "Un día con NuovaSolution",
+    "A day with NuovaSolution"
+   ]
+  ],
+  "D-s": [
+   [
+    "line under the title (the hero's former h1, kept)",
+    "Mientras enseñas, NuovaSolution atiende.",
+    "While you show a home, NuovaSolution answers."
+   ]
+  ],
+  "D-1": [
+   [
+    "08:30 (`taskList`, `dailyVoice`)",
+    "Marta abre su resumen: sabe qué toca hoy y con quién.",
+    "Marta opens her summary: she knows what's on today and with whom."
+   ]
+  ],
+  "D-2": [
+   [
+    "11:39 (`phoneAssistant`)",
+    "Marta está en una visita; el asistente atiende la llamada de Álvaro y le deja la tarea.",
+    "Marta is at a viewing; the assistant takes Álvaro's call and leaves her the task."
+   ]
+  ],
+  "D-3": [
+   [
+    "13:20 (`reminders`)",
+    "Nadie ha cogido la visita de Laura: Carlos recibe el aviso y la coge.",
+    "Nobody has taken Laura's viewing: Carlos gets the notice and takes it."
+   ]
+  ],
+  "D-4": [
+   [
+    "16:00 (`matching`, `instagram`)",
+    "Entra un piso nuevo en Estepona: encaja con Laura y su publicación para redes espera tu visto bueno.",
+    "A new flat comes in in Estepona: it fits Laura, and its social media post waits for your OK."
+   ]
+  ],
+  "D-5": [
+   [
+    "18:00 (`followup`)",
+    "Sofía no ha contestado: recibe un seguimiento, con su permiso.",
+    "Sofía hasn't replied: she gets a follow-up, with her permission."
+   ]
+  ],
+  "D-6": [
+   [
+    "23:40 (`replyOutOfHours`)",
+    "Llega una consulta con la oficina cerrada: respuesta al momento, y mañana a las 8:30 está en tu resumen.",
+    "An enquiry arrives with the office closed: an instant reply, and tomorrow at 8:30 it's in your summary."
+   ]
+  ],
+  "D-m": [
+   [
+    "mark",
+    "Ejemplo · nombres ficticios",
+    "Example · fictional names"
+   ]
+  ],
+  "D-c": [
+   [
+    "compact form (inside the section, if the owner prefers one line)",
+    "08:30 tu día · 11:39 llamada atendida · 13:20 aviso · 16:00 piso que encaja · 18:00 seguimiento · 23:40 respuesta de noche",
+    "08:30 your day · 11:39 call answered · 13:20 notice · 16:00 a listing that fits · 18:00 follow-up · 23:40 a night-time reply"
+   ]
+  ],
+  "R-1": [
+   [
+    "Desde {precio} al mes. Una sola consulta que no se pierde puede valer una comisión entera.",
+    "From {precio} a month. A single enquiry that isn't lost can be worth a whole commission."
+   ]
+  ],
+  "R-2": [
+   [
+    "{precio} al mes: menos que una comisión que se escapa.",
+    "{precio} a month: less than one commission that slips away."
+   ]
+  ]
+ }
+}
