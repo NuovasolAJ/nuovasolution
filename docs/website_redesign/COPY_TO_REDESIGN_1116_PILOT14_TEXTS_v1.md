@@ -310,7 +310,7 @@ has a `pub` line. The page must render through `platformTasksFor(locale, view)` 
 - alerts, property suggestions, follow-ups, tasks, the morning assistant;
 - 3D on this page.
 
-**Instagram:** the owner allows "En preparación" in public at most. Hidden also complies, so there is no line.
+**Instagram:** ~~the owner allows "En preparación" in public at most. Hidden also complies, so there is no line.~~ **Retired 17.11. by the owner:** the target view shows the finished product with Instagram and social media. See `COPY_TO_REDESIGN_1117_TARGET_PRODUCT_TEXTS_v1.md` §0.
 
 ---
 
@@ -321,7 +321,7 @@ has a `pub` line. The page must render through `platformTasksFor(locale, view)` 
 | Q-1 | **answered 16.11. by the owner:** B-2 + B-2b stand as written | — | done |
 | Q-6 | **decided 16.11. by the owner:** 3D shows in the public packages only once topic 17 is closed (possible today, after the owner's test). Then: "Opcional · se contrata aparte" in every column, plus 3D-note. Until then 3D is target view only. The owner's closing of topic 17 is the trigger; Copy tells Redesign and the Reviewer | — | done |
 | Q-3 | **decided 16.11. by the owner:** only the images are passed on, marked "Rendering / visualización". No promise of a link. 3-t4 stays "Lo ves y compartes las imágenes" | — | done |
-| Q-7 | **Instagram, owner 16.11. (Social `d2b27e5b`):** in public, Instagram appears at most as "Instagram (En preparación)" / "Instagram (In preparation)", nowhere as a function. Hidden also complies | — | done |
+| Q-7 | **Instagram, owner 16.11. (Social `d2b27e5b`):** in public, Instagram appears at most as "Instagram (En preparación)" / "Instagram (In preparation)", nowhere as a function. Hidden also complies. **Retired 17.11. by the owner:** "Instagram (En preparación)" no longer applies; the target view shows Instagram and social media as a finished function (1117 TARGET §0) | — | done |
 | Q-6 (old wording) | Is 3D offered in public now? The packages show "Opcional · se contrata aparte" (owner, 16.11.), while `model3d` is still soon and the platform pages hide 3D in public. Either `model3d` turns "included" as a service on request, or the "Opcional" row is target view only | owner | before the build is named |
 | Q-5 | **answered 16.11.:** API (`f7c390d`) found no automatic email replies for a pilot agency on day one. The owner decided that the site goes live only after A12 (second mailbox in production, Tue 24.11. at the earliest) and the owner's acceptance. W-1/W-2/W-7a stay; public W-1 is reduced to its first sentence, per `COPY_TO_REDESIGN_1116_OWNER_LIST_TEXTS_v1.md` §9 | — | done |
 | Q-2 | **decided 16.11. by the owner:** DE/EN enquiries go to the team and are held there in production (F07). L-1/L-2 stand in both views; the §12 public fallback is retired. Lead's Tue answer confirms only | — | done |

@@ -13,7 +13,7 @@
   - L-1 and L-2 may therefore stand in **both** views.
   - The public fallback in 1116 §12 ("…espera a una persona") is retired. The task line `answer` reads L-1 in public too.
   - Lead's answer on Tue 12:00 only confirms this. Copy asks Lead to confirm one third language as well, since L-1 says "si no es español".
-- **Instagram:** stays out of the public view.
+- **Instagram:** ~~stays out of the public view.~~ **Retired 17.11. by the owner:** the target view shows the finished product with Instagram and social media (1117 TARGET §0).
 
 ---
 

@@ -26,6 +26,29 @@
 
 ---
 
+## 0. Instagram and social media (the owner, 17.11.)
+
+**The owner's decision, 17.11.:** "Instagram (En preparación)" no longer applies. The target view shows the finished product with Instagram and social media.
+
+What this changes:
+- **Retired:**
+  - Q-7 in `COPY_TO_REDESIGN_1116_PILOT14_TEXTS_v1.md` (public "Instagram (En preparación)" at most);
+  - "Instagram stays out of the public view" in `COPY_TO_REDESIGN_1116_OWNER_LIST_TEXTS_v1.md`.
+- **Shown in the target view without any mark:**
+  - T-7 "Publicaciones para tus redes";
+  - D-4 (the post waiting for your OK);
+  - the plans row "Publicar en Instagram" (Enterprise).
+- **Build note for Redesign:** `instagram` is in `HELD_BACK` (`claims.ts:142`), so `offered()` hides it in both views today. For the target view it must read through `live()`, like every other function.
+- **What stays:**
+  - **the approval step:** no post goes out without the agency's OK. T-7 and D-4 say so;
+  - **no promise about Meta's own review.**
+- **The switch day:**
+  - the general rule of 16.11. evening applies, as for every key: if `instagram` is not in production then, it gets PX ("Publicaciones para tus redes: próximamente.");
+  - the owner decides that switch, like all the others;
+  - "En preparación" is not used anywhere.
+
+---
+
 ## A. Hero: the result for the agent (3 variants, the owner chooses)
 
 The button stays "Solicita tu piloto gratuito", with the pilot line under it (`home-1103.ts:34–37`). ⟦canales⟧ is filled from the keys, as everywhere else.
