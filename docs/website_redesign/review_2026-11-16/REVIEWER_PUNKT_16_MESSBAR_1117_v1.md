@@ -173,3 +173,10 @@ nichts — gemeldet aber eine falsche Erwartung.
 zurück: ein Muster, das ich nicht gegen Copys Tabellenform geprüft hatte. Die Datei ist jetzt
 geprüft — gegen beide Fassungen, mit ausgewiesenen Plus- und Minuslisten — und ich lese sie am
 Freitag nicht neu ein, ohne den Abzug wieder gegen die Quelle zu halten.
+
+**Von Copy bestätigt (17.11. abends):** Die vier englischen Titel der verbotenen Karten stimmen —
+„Follow-up until they reply", „Listings that fit, always", „Every lead, answered", „Posts for your
+social media". Die bedingten Zeilen H-subP und D-c sind richtig eingeordnet. **Von Copy ist bis
+Freitag nichts offen**; jede weitere Wortlautänderung kommt mit Commit, und ich ziehe die Soll-Datei
+dann erneut.
+
