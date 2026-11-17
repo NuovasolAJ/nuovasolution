@@ -87,3 +87,28 @@ dürfen verschwinden; das führe ich als **beabsichtigt**, nicht als Verlust.
 
 Danach: alles noch einmal messen, dann die Noten für **Handy** und **Desktop** getrennt, mit der
 eigenen Zeile **„Verkaufsstärke"**.
+
+---
+
+## Nachtrag: Copys Fassung `e851e72` — Soll-Datei neu gezogen, drei Bedingungen geändert
+
+Copy hat die drei Entscheidungen des Owners eingearbeitet. **Ich habe die Soll-Texte neu gezogen**
+(`checks/expected-16-e851e72.json`, 24 Kennungen, 36 Zeilen) und vergleiche am Freitag **gegen
+diese Datei**, nicht mehr gegen `fe8100b`.
+
+**Was sich geändert hat:**
+
+| | Neu |
+|---|---|
+| **G-1, Beispiel** | Drei Stufen, Verkäuferin: „Formulario de tu anuncio «¿Cuánto vale tu casa?»: Isabel, casa en Mijas" · „Respuesta al momento y una pregunta: «¿Cuántos metros tiene, más o menos?»" · „**Ficha nueva: propietaria · Mijas · quiere vender · pide valoración**". EN entsprechend. **Bestanden, wenn alle drei Stufen wörtlich stehen** — die dritte enthält „propietaria", „quiere vender" und „valoración" |
+| **G-d** | gekürzt: „**Cada mañana, qué oportunidades piden tu atención.**" / „Every morning, which opportunities need your attention." Die lange Fassung aus `fe8100b` gilt nicht mehr |
+| **„¿Sigue disponible?"** | Das Beispiel steht nicht mehr auf der Seite. Ich behalte die Regel als **allgemeine** Bedingung: kein Satz auf der Seite bestätigt von sich aus die Verfügbarkeit eines Inmuebles |
+
+**Beabsichtigt weggefallen, zählt nicht als Verlust:** die Käufer-Zeilen des alten G-1-Beispiels
+(„Ficha nueva: compradora · Estepona · para vivir · pide visita" und die beiden Stufen davor), dazu
+wie gehabt T-1, T-3, T-5, T-7. Mein Abgleich der beiden Soll-Dateien bestätigt genau das: in
+`e851e72` fehlen gegenüber `fe8100b` nur **T-1, T-3, T-5, T-7** und die Alternativzeile **R-2** —
+sonst nichts.
+
+**Neuer Zeitplan (Owner):** Redesign pausiert bis **Do 19.11. 20:00**, die Entwurfsbilder zu (16)
+kommen **Fr 20.11.**, erst danach messe ich. Alles Übrige aus diesem Blatt bleibt, wie es steht.
