@@ -114,3 +114,28 @@ und Audit. Die Noten kommen Mittwoch nach dem festen Build, mit einer eigenen Ze
 **„Verkaufsstärke"** für Punkt (16).
 
 **Was ich dafür brauche:** nur Commit und dpl der einen Lieferung. Alles andere liegt bereit.
+
+---
+
+## Nachtrag: Instagram — Prüfbedingung gestrichen, und was dadurch allein noch schützt
+
+Copys `d861ef4` (von mir im Repo gelesen) hält die Entscheidung des Owners vom 17.11. fest:
+**„Instagram (En preparación)" gilt nicht mehr.** Die Zielsicht zeigt Instagram und Social Media
+als fertige Funktion, ohne Kennzeichnung; „En preparación" steht nirgends mehr. Der Freigabeschritt
+(„con tu visto bueno") bleibt, und über Metas eigene Prüfung wird nichts versprochen.
+
+**Gestrichen bei mir:** „Instagram höchstens ‚En preparación' / öffentlich ausgeblendet". Neu
+geprüft wird: Instagram ist in der Zielsicht **sichtbar**, der Freigabeschritt steht dabei, und
+„En preparación" hat **0 Treffer** auf allen Routen.
+
+**Was damit zusammenfällt, und das gehört gesagt:** Die E2-Regel des Owners vom 07.11. lautete
+„Instagram nie als Zusage, **in beiden Sichten**". Für die Zielsicht ist sie damit aufgehoben. Da
+die Vorschau seit dem 16.11. abends **ohne Schilder** alles wie die Zielsicht zeigt und offen
+erreichbar ist, liest sich Instagram ab diesem Build wie eine fertige Funktion — obwohl der Owner
+am 16.11. selbst festgehalten hat, dass Meta-Verifizierung und App Review fehlen.
+
+**Der einzige verbliebene Schutz ist der Schaltertag.** Copy hält das in `d861ef4` ausdrücklich
+fest: Ist `instagram` dann nicht in Produktion, bekommt die Zeile „Publicaciones para tus redes:
+próximamente." Ich führe Instagram deshalb in der Livegang-Liste (c) **ganz oben** und erinnere
+daran, wenn der Tag kommt. Für E2 bleibt bestehen: **eigene Nummer** und **Telefon-Assistent** sind
+unverändert in beiden Sichten keine Zusage — nur Instagram ist herausgenommen.
