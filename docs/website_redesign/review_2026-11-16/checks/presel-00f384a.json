@@ -1,0 +1,44 @@
+{
+ "pilot|essential": {
+  "vals": {
+   "select:interest": "pilot"
+  },
+  "textarea": "Piloto gratuito · 14 días con Growth",
+  "submit": "Solicita tu piloto gratuito"
+ },
+ "pilot|growth": {
+  "vals": {
+   "select:interest": "pilot"
+  },
+  "textarea": "Piloto gratuito · 14 días con Growth",
+  "submit": "Solicita tu piloto gratuito"
+ },
+ "pilot|enterprise": {
+  "vals": {
+   "select:interest": "contract"
+  },
+  "textarea": "Contratar Enterprise",
+  "submit": "Enviar solicitud"
+ },
+ "contratar|essential": {
+  "vals": {
+   "select:interest": "contract"
+  },
+  "textarea": "Contratar Essential",
+  "submit": "Enviar solicitud"
+ },
+ "contratar|growth": {
+  "vals": {
+   "select:interest": "contract"
+  },
+  "textarea": "Contratar Growth",
+  "submit": "Enviar solicitud"
+ },
+ "contratar|enterprise": {
+  "vals": {
+   "select:interest": "contract"
+  },
+  "textarea": "Contratar Enterprise",
+  "submit": "Enviar solicitud"
+ }
+}
