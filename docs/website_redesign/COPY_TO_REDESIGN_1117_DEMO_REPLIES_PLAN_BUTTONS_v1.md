@@ -116,6 +116,8 @@ The record stays as it is, including the next step "Devolver la llamada a partir
 
 ## 2. Plan buttons (two equal ways per plan)
 
+**Superseded in part, 17.11. evening (owner):** the free pilot is Essential only. Growth and Enterprise carry only "Contratar directamente", and B-pilot is fixed to "Piloto gratuito · plan Essential". See `COPY_TO_REDESIGN_1117_TARGET_PRODUCT_TEXTS_v1.md` §E. The wording below stays valid for Essential.
+
 | # | Element | ES | EN |
 |---|---|---|---|
 | B-1 | button, black (→ pilot form with the plan) | Empieza 14 días gratis | Start 14 days free |
