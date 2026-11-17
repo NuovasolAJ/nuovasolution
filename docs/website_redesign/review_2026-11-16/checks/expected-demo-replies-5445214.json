@@ -1,0 +1,51 @@
+{
+ "source": "docs/website_redesign/COPY_TO_REDESIGN_1117_DEMO_REPLIES_PLAN_BUTTONS_v1.md",
+ "commit": "5445214",
+ "extracted": 6,
+ "replies": [
+  {
+   "tab": "WhatsApp",
+   "kind": "new",
+   "es": "¡Hola, Laura! Gracias por escribirnos. Buscas un piso de 2 dormitorios en Estepona, hasta 320.000 €, y quieres verlo la semana que viene. ¿Qué días y a qué hora te vienen mejor? Con eso, una persona del equipo te escribe con opciones y te propone fecha para la visita.",
+   "en": "Hi Laura, thanks for writing to us. You're looking for a 2-bedroom flat in Estepona, up to €320,000, and you'd like to view next week. Which days and times suit you best? With that, someone on the team will write to you with options and propose a date for the viewing."
+  },
+  {
+   "tab": "Email",
+   "kind": "new",
+   "es": "¡Hola, Carmen! Gracias por escribirnos. Quieres vender tu piso de 3 dormitorios en Fuengirola, cerca del paseo marítimo, y te gustaría una valoración esta semana. Para prepararla, ¿cuántos metros tiene el piso, más o menos? Una persona del equipo te propone día y hora para la visita de valoración.",
+   "en": "Hi Carmen, thanks for writing to us. You want to sell your 3-bedroom flat in Fuengirola, near the seafront, and you'd like a valuation this week. To prepare it, roughly how many square metres is the flat? Someone on the team will propose a day and time for the valuation visit."
+  },
+  {
+   "tab": "Formulario web",
+   "kind": "panel head",
+   "es": "Respuesta por email · martes 11:33",
+   "en": "Reply by e-mail · Tuesday 11:33"
+  },
+  {
+   "tab": "Formulario web",
+   "kind": "reply",
+   "es": "Hola, Sofía. Gracias por tu mensaje. Buscas un piso de 2 dormitorios en Fuengirola, de alquiler de larga temporada, hasta 1.200 € al mes y a partir de enero. ¿Lo buscas amueblado o sin amueblar? Una persona del equipo te envía lo disponible que encaje.",
+   "en": "Hi Sofía, thanks for your message. You're looking for a 2-bedroom flat to rent long term in Fuengirola, up to €1,200 a month, from January. Would you like it furnished or unfurnished? Someone on the team will send you what is available and fits."
+  },
+  {
+   "tab": "Teléfono",
+   "kind": "new",
+   "es": "Perfecto, Álvaro. He pedido que te llamen esta tarde, a partir de las 16:00, a este número. El precio y el margen de la villa de Elviria te los explica una persona del equipo.",
+   "en": "Great, Álvaro. I've asked for you to be called back this afternoon, from 16:00, on this number. The price and the room to negotiate on the villa in Elviria will be explained by someone on the team."
+  },
+  {
+   "tab": "Story",
+   "kind": "new",
+   "es": "Gracias, Laura. ¿Qué días y a qué hora te vienen mejor la semana que viene? Una persona del equipo te propone fecha para la visita.",
+   "en": "Thank you, Laura. Which days and times next week suit you best? Someone on the team will propose a date for the viewing."
+  }
+ ],
+ "deliberately_removed": [
+  "Queda para el equipo:",
+  "Queda en tu ficha.",
+  "¿Te viene mejor por la mañana o por la tarde",
+  "¿verdad?",
+  "Gracias por escribirnos."
+ ],
+ "removed_note": "the last one only if needed on the phone, in WhatsApp and Email (Copy 1.3); the others are intended deletions, not losses"
+}

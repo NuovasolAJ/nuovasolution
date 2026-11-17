@@ -112,3 +112,33 @@ gelten als Treffer; nach Helligkeit trenne ich „braun" (15–55 %) von „sand
 damit eine Schwelle nichts verschluckt. Der zweite Wert im Blatt, `#dcb063` (Farbton 38 °,
 Sättigung 63 %, Helligkeit 62 %), fiele nach dieser Trennung unter „sandfarben" — ob er auch weg
 soll, entscheidet der Owner mit FARBE.
+
+---
+
+## Nachtrag: Copys Vorlagen liegen vor — Punkt 5 ist damit mechanisch prüfbar
+
+`COPY_TO_REDESIGN_1117_DEMO_REPLIES_PLAN_BUTTONS_v1.md`, Commit **`5445214`**, von mir im Repo
+gelesen. Ich habe die Soll-Texte **maschinell herausgezogen** und abgelegt
+(`checks/expected-demo-replies-5445214.json`), damit am Mittwoch nichts von Hand verglichen wird:
+
+| Reiter | Stelle | Soll |
+|---|---|---|
+| WhatsApp · Laura | `home-demo.ts:127` | eine Antwort, ES + EN |
+| Email · Carmen | `home-demo.ts:171` | eine Antwort, ES + EN |
+| Formulario web · Sofía | `home-demo.ts:197–211` | **neu**: Kopf „Respuesta por email · martes 11:33" und eine Antwort, ES + EN |
+| Teléfono · Álvaro | `home-demo.ts:245` | eine Antwort, ES + EN |
+| Story · Laura | `home-story.ts:150/:153` | eine Antwort, ES + EN |
+
+**Absichtlich gestrichen — das zählt am Mittwoch nicht als Verlust**, und ich führe es getrennt auf:
+„Queda para el equipo: …" (Teléfono), „Queda en tu ficha." (Story), „¿Te viene mejor por la mañana
+o por la tarde …" (WhatsApp, Email, Story), die „¿verdad?"-Rückfragen (WhatsApp, Email). **Erlaubt,
+falls am Handy nötig:** „Gracias por escribirnos." in WhatsApp und Email weglassen — sonst nichts.
+Dazu aus der Beispielwoche (`88143c1`, `006bad9`): die deutsche Keller-Szene samt Übersetzung und
+„gehaltener Antwort" sowie „2 de 25 en otro idioma".
+
+**Paketknöpfe, beide Sprachen** (Punkt 3): ES „Empieza 14 días gratis" · „14 días gratis, sin
+tarjeta" · „Contratar directamente" · Betreff „Contratar {Plan}"; EN „Start 14 days free" · „14
+days free, no card" · „Go straight to a plan" · „We reply within 24 working hours, with the terms
+in writing." · Betreff „Request the {Plan} plan".
+
+**Damit fehlt von meinen zwei offenen Dingen nur noch eines: FARBE = A oder B vom Owner.**
