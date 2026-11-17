@@ -476,15 +476,15 @@ export const home1103 = {
     },
     inherits: T("Cada plan incluye todo lo del anterior.", "Each plan includes everything in the one before."),
     /** 16.11. 14:00 (the owner's point 2, his own words): the line above the table. EN WORKING for Copy. */
-    pilotLine: T("El piloto gratuito de 14 días es con Essential. Growth y Enterprise los contratas directamente.", "The free 14-day pilot runs on Essential. Growth and Enterprise you hire directly."), // Copy a5572ea §E (the owner 17.11.: the free pilot is Essential only)
-    pilotLinePhone: T("14 días gratis con Essential, sin tarjeta.", "14 days free on Essential, no card."), // Copy §E: the phone's core line of the plans
+    pilotLine: T("El piloto gratuito de 14 días incluye todo lo de Growth. Después eliges tu plan; Enterprise lo contratas directamente.", "The free 14-day pilot includes everything in Growth. Then you choose your plan; Enterprise you hire directly."), // Copy v2 §E (the owner's 11b, 17.11.)
+    pilotLinePhone: T("14 días gratis con todo lo de Growth, sin tarjeta.", "14 days free with everything in Growth, no card."), // Copy v2 §E: the phone's core line of the plans
     /** 16.11. 14:00 (the owner's point 3): the second, clearly smaller way beside the pilot button — the same form with "Contratar un plan" preselected. WORKING for Copy. */
     direct: T("Contratar directamente", "Go straight to a plan"), // Copy 441ba1c §5 DC-l
     /** 16.11. evening (the owner's point 3): the first of the two ways under every plan — the pilot form with the plan preselected; WORKING until Copy (Tue 12:00) */
     wayPilot: T("Empieza 14 días gratis", "Start 14 days free"),
     wayPilotLine: T("14 días gratis, sin tarjeta", "14 days free, no card"), // Copy 1117 §2 B-1s
     wayDirectLine: T("Te respondemos en 24 h laborables, con las condiciones por escrito.", "We reply within 24 working hours, with the terms in writing."), // B-2s
-    wayPilotAria: T("Empieza 14 días gratis con {plan}", "Start 14 days free with {plan}"), // B-aria
+    wayPilotAria: T("Empieza 14 días gratis desde {plan}", "Start 14 days free from {plan}"), // Copy v2 §E B-aria
     wayDirectAria: T("Contratar {plan} directamente", "Go straight to the {plan} plan"),
     price: T("Te decimos el precio para tu agencia antes de acordar nada.", "We tell you the price for your agency before anything is agreed."),
     /** P-2/P-3: the actions. */

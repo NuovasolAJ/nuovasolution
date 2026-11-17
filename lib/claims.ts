@@ -139,7 +139,8 @@ const CHANNELS: { key: ClaimKey; es: string; en: string }[] = [
 ];
 /** The owner's E2 of 07.11., extended 16.11. (RV6 F22 b): a held-back function is not promised in either view — not in the plans, not in the channel list, not in the FAQ. */
 export const offered = (keys: ClaimKey | ClaimKey[], view: ClaimView): boolean => live(keys, view) && (Array.isArray(keys) ? keys : [keys]).every((k) => !HELD_BACK.includes(k) || isIncluded(k));
-const HELD_BACK: ClaimKey[] = ["whatsappOwnNumber", "phoneAssistant", "instagram"];
+/** The owner, 17.11.: the site shows the finished product — Instagram, the phone assistant and the agency's own number included; E2's list is empty, the gate (`publicGate`) decides on the switch day. */
+const HELD_BACK: ClaimKey[] = [];
 /**
  * Copy 1116 (RV6 F22 b): the channel list ⟦canales⟧ names only the channels that are included today ("por WhatsApp y email" in the target
  * view). Copy 1116 §10 W-1 (the owner's point 6): WhatsApp replies run on NuovaSolution's own number until the agency's number is

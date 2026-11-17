@@ -1947,3 +1947,21 @@ html:not(.js) .fs-step { opacity: 1; }
   .cmpb-row { padding: 8px 0; }
   .cmpb-row-head { margin-top: 10px; }
 }
+
+/* 17.11. (depth ≤ 21 with RV6's method after 11b and the finished product's three extra plan rows): a few px less once more — nothing removed */
+@media (max-width: 639px) {
+  .plans-card-row { padding: 2px 0; }
+  .plans-card { padding: 12px 12px 12px; }
+  .plans-cards { gap: 8px; }
+  .ch-visual { height: 150px; }
+  .fs-step { padding: 10px 0; }
+  .closing-panel { padding: 28px 16px; }
+  .cmpb-row { padding: 7px 0; }
+  .rep-grid > * { padding: 12px 12px; }
+  .trust-lines { gap: 8px; }
+}
+
+/* 17.11. (RV6 70575c9 on db6ddc4): the 3D section without an empty gap over 120 px between its bands */
+.m3d-track { margin-top: 20px; }
+.m3d-path { margin-top: 20px; }
+.m3d-under { padding-top: 8px; }

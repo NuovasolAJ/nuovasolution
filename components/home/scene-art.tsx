@@ -79,7 +79,7 @@ export function DemoPlan({ locale, className }: { locale: "es" | "en"; className
         {PLAN_WALLS.map(([x0, y0, x1, y1]) => <rect key={`${x0}-${y0}`} x={x0} y={y0} width={x1 - x0} height={y1 - y0} />)}
       </g>
       {/* windows and the glazed door to the terrace */}
-      <g fill="#dfe9ef" stroke="#1a1917" strokeWidth="40">
+      <g fill="#e6e6e9" stroke="#1a1917" strokeWidth="40">
         {PLAN_GLAZING.map(([x0, y0, x1, y1]) => <rect key={`${x0}-${y0}`} x={x0} y={y0} width={x1 - x0} height={y1 - y0} />)}
       </g>
       <g stroke="#1a1917" strokeWidth="30">

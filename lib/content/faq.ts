@@ -190,8 +190,8 @@ export const faqGroups: FaqGroup[] = [
         // Copy 1113 §6 Q-11; the duration (the owner 16.11.: 14 days + 7 after the evaluation) waits for Copy's wording
         q: { en: "What is the pilot?", es: "¿Qué es el piloto?" },
         a: {
-          en: "You use NuovaSolution on the Essential plan in your agency for 14 days, free and with our support. At the end we ask for your feedback; if you give it, the pilot runs 7 more days. We ask for no payment method. Before you start, we confirm in writing what is active and the terms.",
-          es: "Usas NuovaSolution con el plan Essential en tu agencia durante 14 días, gratis y con nuestro acompañamiento. Al final te pedimos tu opinión; si nos la das, el piloto sigue 7 días más. No pedimos método de pago. Antes de empezar te confirmamos por escrito qué está activo y las condiciones.",
+          en: "You use NuovaSolution in your agency for 14 days, with everything in Growth, free and with our support. At the end we ask for your feedback; if you give it, the pilot runs 7 more days. Then you choose your plan. We ask for no payment method. Before you start, we confirm in writing what is active and the terms.", // Copy v2 §E
+          es: "Usas NuovaSolution en tu agencia durante 14 días, con todo lo de Growth, gratis y con nuestro acompañamiento. Al final te pedimos tu opinión; si nos la das, el piloto sigue 7 días más. Después eliges tu plan. No pedimos método de pago. Antes de empezar te confirmamos por escrito qué está activo y las condiciones.",
         },
       },
       {

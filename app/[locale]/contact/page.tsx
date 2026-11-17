@@ -34,11 +34,11 @@ export default function ContactPage({ params, searchParams }: { params: { locale
   const planCodes = home1103.plans.codes as readonly string[];
   const rawPlan = searchParams?.plan === "scale" ? "enterprise" : searchParams?.plan;
   const plan = rawPlan && planCodes.includes(rawPlan) ? { code: rawPlan, display_name: home1103.plans.names[planCodes.indexOf(rawPlan)] } : undefined;
-  // Copy a5572ea §E (the owner 17.11.): the free pilot is Essential only — a pilot link with Growth or Enterprise opens as "Contratar {Plan}"
+  // the owner's 11b (17.11.): the free pilot has Growth's scope — a pilot link with Essential or Growth opens the pilot, one with Enterprise opens as "Contratar Enterprise"
   const asked = interestFromQuery(searchParams?.interes);
-  const interest = asked === "pilot" && plan && plan.code !== "essential" ? "contract" : asked;
-  // the subject in the message field: the direct way (Copy 1117 §2 B-subj) and the pilot way (B-pilot, fixed to Essential)
-  const subject = plan ? (interest === "contract" ? (locale === "en" ? `Request the ${plan.display_name} plan` : `Contratar ${plan.display_name}`) : interest === "pilot" ? (locale === "en" ? "Free pilot · Essential plan" : "Piloto gratuito · plan Essential") : undefined) : undefined;
+  const interest = asked === "pilot" && plan && plan.code === "enterprise" ? "contract" : asked;
+  // the subject in the message field: the direct way (Copy 1117 §2 B-subj) and the pilot way (Copy v2 §E B-pilot, fixed for Essential and Growth)
+  const subject = plan ? (interest === "contract" ? (locale === "en" ? `Request the ${plan.display_name} plan` : `Contratar ${plan.display_name}`) : interest === "pilot" ? (locale === "en" ? "Free pilot · 14 days with Growth" : "Piloto gratuito · 14 días con Growth") : undefined) : undefined;
   const phone = process.env.NUOVA_E14_PHONE?.trim() || null;
   const steps = home1103.entry.steps(locale, s.view);
 
