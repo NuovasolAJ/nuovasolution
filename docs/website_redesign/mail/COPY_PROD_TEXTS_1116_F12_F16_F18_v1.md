@@ -199,6 +199,8 @@ Missing parts are dropped. Budget and dates follow 2.2. **No phone number and no
 
 ### 3.3 The three mails
 
+> **18.11. (owner F1):** T-3 and T-3b are retired, so there is no escalation mail. T-2's last sentence is replaced by R-a … R-c in `COPY_TO_DAILY_1118_REMINDER_SENTENCE_v1.md`.
+
 | # | Subject | Body |
 |---|---|---|
 | T-1 new | Tarea nueva sin asignar · {{título}} | Hay una tarea nueva sin asignar: {{título}}. ⏎ {{línea de cliente}} ⏎ Sin asignar desde: {{hora}} ⏎ Si nadie la toma, enviamos un recordatorio {{hora del recordatorio}}. ⏎ Ábrela en la app del equipo para asignártela. |

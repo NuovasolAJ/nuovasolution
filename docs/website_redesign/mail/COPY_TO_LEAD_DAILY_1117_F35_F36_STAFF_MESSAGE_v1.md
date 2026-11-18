@@ -94,6 +94,8 @@ Never the phone number, the e-mail address or the key in WhatsApp. They are on t
 
 ## The one reminder (at most once)
 
+> **18.11. (owner F1, no escalation mail):** the reminder's last sentence is replaced by R-a … R-c in `COPY_TO_DAILY_1118_REMINDER_SENTENCE_v1.md`.
+
 | | Text |
 |---|---|
 | Subject | Recordatorio · {{título}} sigue sin asignar |
@@ -103,6 +105,8 @@ Never the phone number, the e-mail address or the key in WhatsApp. They are on t
 - No second reminder. Daily's 5-minute cycle (E19) must not send it again.
 
 ## The escalation (another person; their one message)
+
+> **RETIRED 18.11. (owner F1):** no escalation mail. The step goes on to the next person, without mail. See `COPY_TO_DAILY_1118_REMINDER_SENTENCE_v1.md`.
 
 - **Next person (T-3):** subject "Sin asignar desde las {{hora}} · {{título}}". Body:
   > Nadie ha tomado esta tarea desde las {{hora}}: {{título}}.
