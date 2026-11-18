@@ -51,7 +51,7 @@ The body counts its variables from `{{1}}` again. In Meta's editor the header an
 | B `{{2}}` | the listing of **this** enquiry: type · price · bedrooms · ref., also from a PDF (MM's facts). **Lead's `{{4}}` (price note) is folded in here** as the last part | piso · 432.000 € · 3 dormitorios · ref. NS-0001 · por encima de su presupuesto | `sin inmueble concreto` |
 | B `{{3}}` | the missing items, the short forms of the card model (`faltaShort`) | para qué la quiere y cuándo | `nada, la consulta está completa` |
 | B `{{4}}` | the next step, first letter small, without the full stop | proponerle una visita | `atender la consulta` |
-| B `{{5}}` | the phone, formatted "+34 612 34 56 78" (code + groups) | +34 600 00 00 00 | `no lo ha dado` |
+| B `{{5}}` | the phone, formatted as on the card: "+34 600 000 000" (code + three groups of three) | +34 600 000 000 | `no lo ha dado` |
 
 **Sample values for the submission** (Meta asks for one per variable; all fictional):
 - H1 "NuovaSolution";
@@ -59,7 +59,7 @@ The body counts its variables from `{{1}}` again. In Meta's editor the header an
 - B2 "piso · 305.000 € · 2 dormitorios · ref. EST-204";
 - B3 "para qué la quiere";
 - B4 "proponerle una visita";
-- B5 "+34 600 00 00 00";
+- B5 "+34 600 000 000";
 - URL "abc123".
 
 **The message as the agent sees it** (fictional):
@@ -70,7 +70,7 @@ Cliente nuevo con prioridad alta: Laura Serrano quiere comprar en Estepona, hast
 Inmueble: piso · 305.000 € · 2 dormitorios · ref. EST-204.
 Falta por saber: para qué la quiere.
 Siguiente paso: proponerle una visita.
-Teléfono: +34 600 00 00 00.
+Teléfono: +34 600 000 000.
 Tienes la ficha completa en la app.
 No contestes aquí: escribe al cliente desde la app.
 [Abrir en la app]
