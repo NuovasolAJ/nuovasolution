@@ -25,7 +25,7 @@
 
 | Case | Subject |
 |---|---|
-| normal | `{{Prioridad alta/media/baja}} · {{nombre}} · {{Quiere comprar/alquilar/vender/poner en alquiler}} · {{zona}} · {{presupuesto}}` |
+| normal | `{{Prioridad alta/media/baja}} · {{Compra/Alquiler/Venta/Poner en alquiler}} · {{zona}} · {{presupuesto}}`. Corrected 18.11. to Lead's built form (1116 L-s), without the name; see `COPY_TO_LEAD_1118_FRI_PACKAGE_TEXT_CHECK_v1.md` §3 |
 | reply held | `Contesta tú · ` + the same subject |
 
 - Missing parts are dropped, never "—".
