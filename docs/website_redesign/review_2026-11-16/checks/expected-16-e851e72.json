@@ -415,7 +415,7 @@
  ],
  "conditional": {
   "H-subP": "only on the switch day, while the growth keys are off",
-  "D-c": "only if the owner prefers the compact one-line form"
+  "D-c": "owner's choice at the YES: A = phone only (D-c at 390, D-1..D-6 at 1440), B = everywhere (D-c only), or none (D-1..D-6 only). Without the choice the day story is reported as 'decision open' and not judged."
  },
  "confirmedByCopy": "2026-11-17 evening: the four English titles and the two conditional lines confirmed; nothing open on Copy's side until Friday"
 }

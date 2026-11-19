@@ -180,3 +180,33 @@ social media". Die bedingten Zeilen H-subP und D-c sind richtig eingeordnet. **V
 Freitag nichts offen**; jede weitere Wortlautänderung kommt mit Commit, und ich ziehe die Soll-Datei
 dann erneut.
 
+---
+
+## Offen vor dem Bau: was das JA zu D-c genau entscheidet
+
+Redesign schlägt die **Kompaktzeile D-c** vor, um am Handy unter 21 Bildschirme zu kommen, und
+legt die Entscheidung in das JA des Owners. Für meine Prüfung reicht „ja" oder „nein" dort **nicht
+aus** — ich brauche eine von zwei Fassungen, sonst messe ich die Tagesgeschichte falsch:
+
+| Fassung | Was ich dann prüfe |
+|---|---|
+| **A — D-c nur am Handy** | Bei **390** steht die Kompaktzeile D-c **wörtlich** und die sechs Einzelzeilen D-1 … D-6 stehen dort **nicht**; bei **1440** stehen D-1 … D-6 **wörtlich** in der Reihenfolge 08:30 · 11:39 · 13:20 · 16:00 · 18:00 · 23:40 |
+| **B — D-c überall** | D-c **wörtlich** bei beiden Breiten, D-1 … D-6 nirgends |
+| **ohne D-c** | D-1 … D-6 **wörtlich** bei beiden Breiten, D-c nirgends |
+
+**Warum das zählt:** Fällt D-1 … D-6 am Handy weg, ohne dass ich weiß, dass es gewollt ist, melde
+ich sechs verschwundene Sätze als **Verlust**. Mit der Entscheidung führe ich sie als beabsichtigt.
+Dasselbe gilt umgekehrt: steht D-c da, ohne dass es gewählt wurde, ist es ein zusätzlicher Satz,
+den niemand bestellt hat.
+
+**Meine Bitte an den Owner:** Im JA einen Halbsatz dazu — „Kompaktzeile nur am Handy", „überall"
+oder „gar nicht". Bleibt es offen, messe ich **beide** Fassungen und melde die Tagesgeschichte als
+„Entscheidung offen", ohne sie zu werten.
+
+**Von Redesign bestätigt (19.11. abends):** Der Entwurf stand noch auf Copys Fassung **vor**
+`e851e72`; die drei Entscheidungen des Owners werden jetzt nachgezogen (G-1 mit Isabel/Mijas, G-d
+kurz, T-4 neben G-d, Instagram-Chip „Desde Growth · redes sociales en Enterprise"), und die
+Entwurfsbilder werden damit erneuert. `checks/expected-16-e851e72.json` ist damit auch Redesigns
+Quelle. §D (`{precio}`) wird in keiner Sicht gerendert — das deckt sich mit meiner Bedingung „0
+Treffer für R-1, R-2 und den rohen Platzhalter".
+
