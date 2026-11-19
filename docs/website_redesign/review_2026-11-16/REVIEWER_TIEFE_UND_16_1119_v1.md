@@ -91,3 +91,36 @@ Ich führe sie bis dahin als vorläufig.
 **Bei der Lieferung bekomme ich** je Abschnitt Bildschirme, die Summe, die Möblierung **getrennt**
 und die Zahl der Durchgänge. Damit lässt sich jede Abweichung sofort zuordnen.
 
+---
+
+## Nachtrag 2: Warten hilft nicht, nur ein zweiter Durchgang — und was das für die Entwurfszahlen heißt
+
+Redesign hält dagegen, die Abweichung von 1,3 Bildschirmen entstehe **nur ohne Wartezeit** vor dem
+ersten Durchgang; mit drei Sekunden Warten stehe die Höhe schon beim ersten Durchgang fest. **Das
+habe ich geprüft, und so ist es bei mir nicht.** Ein Durchgang, danach viermal gemessen:
+
+| gelesen nach | Höhe | Bildschirme |
+|---|---|---|
+| 0,5 s | 18 845 px | 22,3 |
+| 2,5 s | 18 845 px | 22,3 |
+| 5 s | 18 845 px | 22,3 |
+| 8 s | 18 845 px | 22,3 |
+| **zweiter Durchgang** | 17 743 px | **21,0** |
+| zweiter Durchgang + 5 s | 17 743 px | 21,0 |
+
+**Warten allein ändert nichts** — auch nach acht Sekunden steht 22,3. Erst das **zweite
+Durchscrollen** bringt die Höhe auf 21,0, und dort bleibt sie. Die Regel „bis zwei Durchgänge
+denselben Wert liefern" ist also richtig; die Begründung über die Wartezeit trägt nicht.
+
+**Was das für Redesigns Entwurfszahlen heißt — und damit auch für meine eigene Einschätzung von
+vorhin:** Ich hatte dem Owner geschrieben, A und A + 2 × 2 dürften eingeschwungen „etwas niedriger
+liegen". **Diese Vermutung stütze ich nicht mehr auf meine Analogie**, denn sie beruhte auf der
+Annahme, ein Durchgang messe generell zu hoch. Entscheidend ist Redesigns eigene Gegenprobe: Beim
+**vollen** Entwurf ergaben ein Durchgang und zwei Durchgänge **denselben** Wert (23,2). Wenn das
+für den Entwurf gilt, schrumpft dort nichts, und dann sind auch **A ≈ 22,9** und **A + 2 × 2 ≈
+22,6** belastbar.
+
+**Sicher wissen wir es erst am gebauten Stand.** Bis dahin gilt: Redesigns Zahlen sind seine, meine
+Vermutung eines Abschlags ist zurückgezogen, und **an der Entscheidung des Owners ändert sich
+nichts** — jede Form liegt über 21.
+
