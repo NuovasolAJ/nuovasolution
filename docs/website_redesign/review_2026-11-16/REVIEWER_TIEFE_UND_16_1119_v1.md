@@ -65,3 +65,29 @@ Bau; ausgeliefert ist nichts. Ich melde sie als **Redesigns Messung**, nicht als
 **Für die Note heißt das:** Sagen Sie nichts, messe ich gegen die geltenden 21 — und die Zeile
 „Tiefe" fällt durch, obwohl der Abschnitt genau das ist, was Sie bestellt haben. Ein Satz von Ihnen
 verhindert, dass eine bestellte Erweiterung als Mangel in der Note steht.
+
+---
+
+## Nachtrag: beide Spuren messen jetzt dasselbe
+
+Redesign hat die eingeschwungene Höhe übernommen und schreibt die **Zahl der Durchgänge** mit.
+Nachgemessen auf demselben Stand (`630bf25`, Code `00f384a`, 390 × 844, Zielsicht):
+
+| | Redesign | RV6 |
+|---|---|---|
+| Durchgänge | 2 · [17 732, 17 732] | 2 · [17 732, 17 732] |
+| mit Möblierung | **21,0** | **21,0** |
+| ohne Möblierung | **20,8** | **20,8** |
+
+**Damit gibt es keine zwei Wahrheiten mehr.** Redesigns früherer Wert war bereits eingeschwungen,
+weil sein Werkzeug vor dem Auslesen drei Sekunden wartet — die Zahl war richtig, nur ihr Zustandekommen
+war nicht benannt. Jetzt ist es auf beiden Seiten benannt.
+
+**Noch offen und ausdrücklich Redesigns Messung:** die Entwurfszahlen. 23,2 ist inzwischen
+eingeschwungen gemessen (2 Durchgänge), die Formen **A = 22,9** und **A + Karten 2 × 2 = 22,6**
+stammen aus **einem** Durchgang und werden beim Bau der gewählten Form eingeschwungen nachgemessen.
+Ich führe sie bis dahin als vorläufig.
+
+**Bei der Lieferung bekomme ich** je Abschnitt Bildschirme, die Summe, die Möblierung **getrennt**
+und die Zahl der Durchgänge. Damit lässt sich jede Abweichung sofort zuordnen.
+
