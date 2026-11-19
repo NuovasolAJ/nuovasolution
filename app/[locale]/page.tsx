@@ -9,6 +9,7 @@ import { PreviewSwitch } from "@/components/site/preview-switch";
 import { Hero } from "@/components/home/hero";
 import { FlowStory } from "@/components/home/flow-story";
 import { Chapters } from "@/components/home/chapters";
+import { Strengths } from "@/components/home/strengths";
 import { ReportStage } from "@/components/home/report-stage";
 import { Stage3d } from "@/components/home/stage-3d";
 import { PlansTable } from "@/components/home/plans-table";
@@ -50,6 +51,8 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         <Hero locale={locale} view={s.view} />
         <FlowStory locale={locale} view={s.view} />
         <Chapters locale={locale} view={s.view} />
+        {/* (16), the owner's YES of 19.11. evening: "Todo lo que hace por tu agencia" after "Y además" (Copy v2 §A–§C, e851e72) */}
+        <Strengths locale={locale} view={s.view} />
         <ReportStage locale={locale} view={s.view} />
         {live("model3d", s.view) && <Stage3d locale={locale} />}
         <PlansTable locale={locale} view={s.view} />

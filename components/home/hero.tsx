@@ -3,6 +3,8 @@ import { ArrowRight } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
+import { strengths } from "@/lib/content/strengths";
+import { live } from "@/lib/claims";
 import type { ClaimView } from "@/lib/claims";
 import { HeroBenefits, HeroImage, HeroScrollHint } from "./hero-image";
 import { HeroDemo } from "./hero-demo";
@@ -40,11 +42,12 @@ export function Hero({ locale, view }: { locale: Locale; view: ClaimView }) {
           <div className="hf-words" data-hero-words>
             <p className="hf-eyebrow t-eyebrow t-eyebrow-l">{l(w.eyebrow)}</p>
             <h1 id="hero-h1" className="hf-h1">
-              {l(w.h1).split(" ").map((word, i) => (
+              {/* DRAFT (16), Copy v2 §A: the owner's h1 and subline; the subline falls back to H-subP while the growth keys are off (the switch day) */}
+              {l(strengths.hero.h1).split(" ").map((word, i) => (
                 <span key={i}><span className="hf-word" style={{ ["--w" as string]: i }}><span>{word}</span></span>{" "}</span>
               ))}
             </h1>
-            <p className="hf-lead" data-hero-lead>{l(w.lead)}</p>
+            <p className="hf-lead" data-hero-lead>{strengths.hero.subShown((k) => live([k], view)) ? l(strengths.hero.sub) : l(strengths.hero.subPublic)}</p>
             {/* Copy 1108 §1: one action in the hero (H-1 → /contact until a real booking page exists), the pilot line under it (H-3); the WhatsApp
                 action (H-2) waits for the agency's own number (the owner, 09.11.); the trial and the access lines leave the hero */}
             <div className="hf-ctas">

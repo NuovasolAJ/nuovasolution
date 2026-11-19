@@ -1965,3 +1965,52 @@ html:not(.js) .fs-step { opacity: 1; }
 .m3d-track { margin-top: 20px; }
 .m3d-path { margin-top: 20px; }
 .m3d-under { padding-top: 8px; }
+
+/* ------------------------------------------------------------------ */
+/* (16), the owner's YES of 19.11.: "Todo lo que hace por tu agencia" (components/home/strengths.tsx) — the existing card parts, nothing
+   else restyled; the day story in form A (the compact line on the phone, the six stations from 640 px) */
+/* ------------------------------------------------------------------ */
+.st-day-compact { font-size: 0.9375rem; line-height: 1.5; color: var(--text-primary); }
+.st-chip-soon { background: var(--ink-950); color: var(--ivory); }
+.st-day-soon { font-weight: 500; color: var(--text-muted); }
+.st { padding-top: 44px; padding-bottom: 36px; background: var(--sand-100); }
+.st-head { max-width: 760px; }
+.st-row { display: grid; gap: 12px; margin: 24px 0 0; padding: 0; list-style: none; }
+.st-card { padding: 18px 0 16px; gap: 8px; }
+.st-card .ch-name { font-size: 1.25rem; }
+.st-chip { margin: 0 20px; width: fit-content; padding: 3px 10px; border-radius: 999px; background: var(--surface-sunken); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em; color: var(--text-secondary); }
+.st-examples { margin-top: 2px; font-size: 0.875rem; color: var(--text-secondary); }
+.st-examples li { padding-left: 14px; position: relative; }
+.st-examples li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; border-radius: 999px; background: var(--ink-400); }
+.st-after { margin: 16px 0 0; max-width: 60ch; font-size: 1.0625rem; line-height: 1.5; color: var(--text-primary); }
+.st-day { display: grid; gap: 8px; margin-top: 28px; padding: 18px 20px; border-radius: 20px; background: var(--paper); box-shadow: inset 0 0 0 1px var(--border-hairline); }
+.st-day-title { font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-600); }
+.st-day-line { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); }
+.st-day-run { display: grid; gap: 6px; margin: 4px 0 0; padding: 0; list-style: none; }
+.st-day-step { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 10px; font-size: 0.9375rem; line-height: 1.45; color: var(--text-primary); }
+.st-day-time { font-weight: 600; color: var(--text-secondary); }
+.st-day-mark { padding: 0; }
+@media (max-width: 639px) { .st-card .ch-line, .st-card .ch-examples, .st-card .ch-mark { display: none; } .st-card .ch-core { display: block; } }
+@media (min-width: 640px) { .st-row-growth { grid-template-columns: repeat(3, minmax(0, 1fr)); } .st-row-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) {
+  .st { padding-top: 80px; padding-bottom: 72px; }
+  .st-row { gap: 20px; margin-top: 36px; }
+  .st-row-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .st-day { grid-template-columns: 260px minmax(0, 1fr); column-gap: 32px; align-items: start; padding: 24px 28px; margin-top: 36px; }
+  .st-day-title, .st-day-line { grid-column: 1; }
+  .st-day-run { grid-column: 2; grid-row: 1 / span 3; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 24px; }
+  .st-day-mark { grid-column: 1; }
+}
+
+/* 19.11. (the owner: "the core stays visible, details may open by a tap" — the phone's 21 screens with the finished-product section):
+   the plan card's function groups behind one 44 px button at ≤ 639 px; from 640 px the groups stand open and the button is gone */
+.plans-card-fold-btn { display: none; }
+@media (max-width: 639px) {
+  .plans-card-fold { margin-top: 8px; }
+  .plans-card-fold-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 44px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border-strong); background: transparent; color: var(--text-primary); font-size: 0.9375rem; font-weight: 500; }
+  .plans-card-fold-chevron { transition: transform var(--motion-micro) var(--ease-standard); }
+  .plans-card-fold[data-open="true"] .plans-card-fold-chevron { transform: rotate(180deg); }
+  .plans-card-fold[data-open="false"] .plans-card-fold-body { display: none; }
+  .plans-card-fold[data-open="true"] .plans-card-fold-body { margin-top: 4px; }
+  @media (prefers-reduced-motion: reduce) { .plans-card-fold-chevron { transition: none; } }
+}

@@ -4,6 +4,7 @@ import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
 import { claimWords, entryAction, live, planCell, planCellWords, planRowShown, plansTableShown, type ClaimView, type PlanCode } from "@/lib/claims";
 import { Rise } from "@/components/ui/motion";
+import { PlanCardFold } from "@/components/home/plan-card-fold";
 import { cn } from "@/lib/utils";
 
 /**
@@ -141,24 +142,27 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
                 <li key={n} className={cn("plans-card", hi(codes[pi]) && "is-highlight")} data-plan-card={codes[pi]}>
                   <p className="plans-name">{n}</p>
                   <p className="plans-who">{who[pi]}</p>
-                  {groups.map((g, gi) => groupRows(gi).length === 0 ? null : (
-                    <div key={g} className="plans-card-group">
-                      <p className="plans-cell-group">{g}</p>
-                      <ul>
-                        {groupRows(gi).map((r) => {
-                          const Icon = ICONS[r.icon] ?? Box;
-                          const s = planCell(r.key, codes[pi], view);
-                          return (
-                            <li key={r.key} className="plans-card-row" data-state={s}>
-                              <span className="plans-icon" aria-hidden="true"><Icon size={16} strokeWidth={1.9} /></span>
-                              <span className="plans-card-row-name">{name(r)}</span>
-                              <Cell status={s} locale={locale} compact />
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  ))}
+                  {/* 19.11. (the owner: details may open by a tap on the phone): the groups behind one button at ≤ 639 px, open from 640 px */}
+                  <PlanCardFold plan={codes[pi]} labelOpen={l(w.foldOpen)} labelClose={l(w.foldClose)} ariaOpen={l(w.foldOpenAria).replace("{plan}", n)} ariaClose={l(w.foldCloseAria).replace("{plan}", n)}>
+                    {groups.map((g, gi) => groupRows(gi).length === 0 ? null : (
+                      <div key={g} className="plans-card-group">
+                        <p className="plans-cell-group">{g}</p>
+                        <ul>
+                          {groupRows(gi).map((r) => {
+                            const Icon = ICONS[r.icon] ?? Box;
+                            const s = planCell(r.key, codes[pi], view);
+                            return (
+                              <li key={r.key} className="plans-card-row" data-state={s}>
+                                <span className="plans-icon" aria-hidden="true"><Icon size={16} strokeWidth={1.9} /></span>
+                                <span className="plans-card-row-name">{name(r)}</span>
+                                <Cell status={s} locale={locale} compact />
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    ))}
+                  </PlanCardFold>
                   <div className="plans-ways" data-plan-ways={`card-${codes[pi]}`}>
                     {codes[pi] !== "enterprise" && <a href={localePath(locale, `/contact?interes=pilot&plan=${codes[pi]}`)} className="plans-cta plans-cta-main" aria-label={l(w.wayPilotAria).replace("{plan}", n)} data-pilot-cta="plan-card">{l(w.wayPilot)}</a>}
                     {codes[pi] !== "enterprise" && <p className="plans-way-line">{l(w.wayPilotLine)}</p>}

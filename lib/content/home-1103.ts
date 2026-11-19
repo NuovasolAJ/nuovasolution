@@ -492,6 +492,11 @@ export const home1103 = {
     highlight: { plan: "growth" },
     /** Copy 1116 §7.1: the note of the legend for the separately booked 3D service. */
     optionalNote: T("se contrata aparte", "booked separately"),
+    // 19.11. (the owner: details by a tap on the phone): the plan card's fold button, Copy 1120 §3 (8cbe48c) with the aria labels per plan
+    foldOpen: T("Ver todo lo que incluye", "See everything included"),
+    foldClose: T("Ocultar", "Hide"),
+    foldOpenAria: T("Ver todo lo que incluye {plan}", "See everything {plan} includes"),
+    foldCloseAria: T("Ocultar lo que incluye {plan}", "Hide what {plan} includes"),
     optionalLine: T("La visualización 3D se contrata aparte, con cualquier paquete.", "3D visualisation is booked separately, with any plan."),
     groups: { es: ["Canales", "CRM", "Equipo", "Informes", "Integraciones", "Servicios"], en: ["Channels", "CRM", "Team", "Reporting", "Integrations", "Services"] },
     rows: [
