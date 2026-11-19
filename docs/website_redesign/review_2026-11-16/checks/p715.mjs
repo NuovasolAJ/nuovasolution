@@ -17,9 +17,7 @@ await send("Page.enable");
 const shot = async n => { const r = await send("Page.captureScreenshot", { format: "png" }); const d = r.result?.result?.data || r.result?.data; if (d) writeFileSync(`shot-${TAG}-${n}.png`, Buffer.from(d, "base64")); };
 const metrics = (w, h) => send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: w < 500 ? 2 : 1, mobile: w < 500 });
 const nav = async (u, ms = 5200) => { await send("Page.navigate", { url: u }); await sleep(ms); };
-const wake = () => ev(`(async()=>{const st=Math.round(innerHeight*0.8),h=document.documentElement.scrollHeight;
- for(let y=0;y<h;y+=st){scrollTo({top:y,behavior:"instant"});await new Promise(r=>setTimeout(r,200));}
- scrollTo({top:0,behavior:"instant"});await new Promise(r=>setTimeout(r,400));return h})()`);
+const wake = () => ev(`(async()=>{var y=0,steps=0;while(y<document.documentElement.scrollHeight){scrollTo({top:y,behavior:"instant"});await new Promise(r=>setTimeout(r,120));y+=600;steps++;if(steps>300)break;}scrollTo({top:0,behavior:"instant"});await new Promise(r=>setTimeout(r,400));return document.documentElement.scrollHeight})()`);
 const HIDE = `(function(){var px=0;["[data-env]","[data-preview-switches]","[data-env-marker]"].forEach(function(s){
   [].slice.call(document.querySelectorAll(s)).forEach(function(e){var r=e.getBoundingClientRect();
     if(getComputedStyle(e).position!=="fixed") px+=Math.round(r.height); e.style.display="none";});});

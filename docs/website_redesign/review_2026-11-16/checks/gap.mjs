@@ -14,7 +14,7 @@ for (const [w,h,lab] of [[1440,900,"1440"],[390,844,"390"]]) {
   const mob=w<500;
   await send("Emulation.setDeviceMetricsOverride",{width:w,height:h,deviceScaleFactor:mob?2:1,mobile:mob});
   await send("Page.navigate",{url:`${B}/es?view=target`}); await sleep(5200);
-  await ev(`(async()=>{const st=Math.round(innerHeight*0.8),h=document.documentElement.scrollHeight;for(let y=0;y<h;y+=st){scrollTo({top:y,behavior:"instant"});await new Promise(r=>setTimeout(r,200));}scrollTo({top:0,behavior:"instant"});await new Promise(r=>setTimeout(r,400));return h})()`);
+  await ev(`(async()=>{var y=0,steps=0;while(y<document.documentElement.scrollHeight){scrollTo({top:y,behavior:"instant"});await new Promise(r=>setTimeout(r,120));y+=600;steps++;if(steps>300)break;}scrollTo({top:0,behavior:"instant"});await new Promise(r=>setTimeout(r,400));return document.documentElement.scrollHeight})()`);
   R[lab]=await ev(`(function(){
     var box=document.querySelector(".ch-extra"); if(!box) return {found:false};
     var br=box.getBoundingClientRect();

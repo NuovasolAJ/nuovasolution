@@ -14,9 +14,7 @@ const ev = async x => {
   return r.result?.result?.value;
 };
 await send("Page.enable");
-const wake = () => ev(`(async()=>{const st=Math.round(innerHeight*0.8),h=document.documentElement.scrollHeight;
- for(let y=0;y<h;y+=st){scrollTo({top:y,behavior:"instant"});await new Promise(r=>setTimeout(r,200));}
- scrollTo({top:0,behavior:"instant"});await new Promise(r=>setTimeout(r,400));return h})()`);
+const wake = () => ev(`(async()=>{var y=0,steps=0;while(y<document.documentElement.scrollHeight){scrollTo({top:y,behavior:"instant"});await new Promise(r=>setTimeout(r,120));y+=600;steps++;if(steps>300)break;}scrollTo({top:0,behavior:"instant"});await new Promise(r=>setTimeout(r,400));return document.documentElement.scrollHeight})()`);
 const R = { tag: TAG, build: await (await fetch(`${BASE}/api/build`)).json(), results: {} };
 const WANT = ["Ver Atiende", "Ver Organiza", "Ver Crece"];
 for (const [w, h, label] of [[390, 844, "390"], [1440, 900, "1440"]]) {

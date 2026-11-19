@@ -124,3 +124,34 @@ für den Entwurf gilt, schrumpft dort nichts, und dann sind auch **A ≈ 22,9** 
 Vermutung eines Abschlags ist zurückgezogen, und **an der Entscheidung des Owners ändert sich
 nichts** — jede Form liegt über 21.
 
+---
+
+## Nachtrag 3: Redesign hatte recht, und der Fehler lag in meinem Durchgang
+
+Redesign hat seine Schleife offengelegt: Schritte von **600 px** mit **120 ms**, und das **Ende
+wird in jedem Schritt neu gelesen**. Meine Schleife las das Ende **einmal** zu Beginn und lief nur
+bis dorthin. Ich habe beide Arten auf demselben Stand gegeneinander laufen lassen:
+
+| Art | 1. Durchgang | 2. Durchgang |
+|---|---|---|
+| **Redesigns** (600 px, Ende je Schritt neu) | 30 Schritte → **21,0** | 30 Schritte → 21,0 |
+| **meine bisherige** (Ende einmal gelesen) | 21 Schritte → **22,3** | 28 Schritte → 21,0 |
+
+**Das erklärt alles.** Mein erster Durchgang endete nach 21 Schritten — bei 14 175 px, also weit
+oberhalb des wirklichen Seitenendes. Der untere Teil der Seite wurde nie angefahren und konnte
+deshalb nicht einschwingen. Redesigns Schleife führt das Ende nach und fährt die ganze Seite ab;
+sie ist **schon beim ersten Durchgang** eingeschwungen.
+
+**Folgen, die ich sofort gezogen habe:**
+
+1. **Meine Skripte messen ab jetzt wie Redesigns** — 600-px-Schritte, Ende in jedem Schritt neu
+   gelesen (29 Dateien angepasst, die geprüften liegen aktualisiert in `checks/`).
+2. Die Regel „**bis zwei Durchgänge denselben Wert liefern**" behalte ich als billige Gegenprobe;
+   sie kostet nichts und fängt genau solche Fälle.
+3. **Redesigns Entwurfszahlen stehen damit ohne Vorbehalt:** 23,2 · A 22,9 · A + 2 × 2 22,6.
+   Mein zurückgezogener Abschlag bleibt zurückgezogen.
+4. Die bisher gemeldeten Tiefen bleiben richtig — sie waren die eingeschwungenen Werte, weil mein
+   Skript zweimal lief. **Falsch war nie eine Zahl, sondern meine Erklärung dafür**, und einmal
+   beinahe eine Zahl: hätte ich je nur einen Durchgang gemessen, hätte ich 22,3 statt 20,8
+   gemeldet.
+
