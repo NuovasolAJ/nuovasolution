@@ -222,3 +222,100 @@ Redesigns Vorschlag ist **A** (Kompaktzeile nur am Handy, die sechs Zeiten am De
 und dpl kommen seine Abschnittszahlen nach meinem Verfahren, je Abschnitt in Bildschirmen plus
 Summe — damit lässt sich eine Abweichung sofort einem Abschnitt zuordnen.
 
+
+---
+
+## Copys Nachtrag 8cbe48c (19.11. abends): was sich für meine Messung ändert
+
+Copy hat einen **Delta zu v2** geschickt: `COPY_TO_REDESIGN_1120_HERO_PROXIMAMENTE_PLANFOLD_v1.md`
+(`8cbe48c`, lokal). Er ändert v2 an **einer** Stelle — der Form der Karten am Umschalttag (§2.1,
+Regel P-1). Der Hero bleibt wortgleich (§1), und **die Zielsicht bleibt unberührt**: heute ist
+alles live.
+
+**Damit bleibt `checks/expected-16-e851e72.json` die Grundlage für Freitag** — die sieben Karten,
+die Abschnittszeilen, die vier verbotenen Titel, die Nullstellen R-1/R-2/`{precio}`, die drei
+Entscheidungen, die Schutzregel, Tiefe und Satzbestand: alles unverändert. Der Nachtrag betrifft
+die **Livegang-Prüfung**, also Bedingung (c) des Owners vom 16.11. abends. Die habe ich jetzt
+geschrieben: `checks/expected-16-switchday-8cbe48c.json`.
+
+### Was am Umschalttag gilt (P-1)
+
+| Teil der Karte | vorher (v2 §B.2) | jetzt (1120 §2.1) |
+|---|---|---|
+| Plan-Chip | „Desde Growth" | beginnt mit **„Próximamente ·"** |
+| Titel | bleibt | bleibt |
+| Satz | **wird durch den PX-Satz ersetzt** | **bleibt** |
+| Handyzeile | fällt weg | **bleibt** |
+| drei Beispielzeilen | fallen weg | fallen weg |
+| PX-Satz („Gana nuevos clientes: próximamente.") | auf der Karte | **auf der Karte nicht mehr verwendet** |
+
+PX-b/PX-s bleiben überall sonst gültig (Pakettabelle, Demo-Reiter, 1116 §1).
+
+### Vier Zahlen, die ich vor dem Bau gemessen habe
+
+Ich habe den Entwurf gelesen — `components/home/strengths.tsx` und `lib/content/strengths.ts`,
+beide nur lesend — und ihn gegen den Nachtrag gehalten. Vier Befunde, alle noch vor dem Bau
+behebbar:
+
+| # | Befund | Beleg | Art |
+|---|---|---|---|
+| N-1 | **Der Entwurf übersetzt sich nicht.** 8 Fehler, alle dasselbe: `px` ist aus dem Typ `StrengthCard` entfernt, steht aber noch in allen sieben Karten und wird in `strengths.tsx:28` noch gerendert | `tsc --noEmit`: `strengths.tsx(28,37)` + `strengths.ts` Zeilen 32, 35, 37, 41, 43, 45, 47 | **Bau-Blocker** — in diesem Zustand entsteht kein Deployment, und ich hätte Freitag nichts zu messen |
+| N-2 | **Die Kompaktzeile D-c ist ein fester Satz.** Sie nennt alle sechs Stationen, und `strengths.tsx:57` zeigt sie am Handy ohne Bedingung. §2.4 verlangt: ausgeschaltete Stationen fallen aus D-c heraus | `strengths.ts:55`, `strengths.tsx:57` | **Öffentliches Versprechen** — am Umschalttag läse das Handy sechs Uhrzeiten, während nach dem Register nur 13:20 und 23:40 laufen |
+| N-3 | Der Zweig „**höchstens zwei Stationen aus → die Station bleibt stehen, mit „Próximamente" hinter der Uhrzeit**" fehlt; `strengths.tsx:37` filtert ausgeschaltete Stationen immer ganz heraus | `strengths.tsx:37` | fehlende Regel |
+| N-4 | Die **Teilzustände G-1p und G-3p** (§2.3) sind nicht gerendert. Der Typ `StrengthPartial` ist schon da, `strengths.tsx` benutzt `c.partial` aber nirgends; `live()` kennt nur alles-oder-nichts | `strengths.ts:20`, `strengths.tsx:15` | fehlende Regel |
+
+**Und zwei Dinge, die schon stimmen:**
+
+- **§2.2 ist durch den Bau erfüllt.** `strengths.tsx:18` setzt den Aus-Chip generisch als
+  `${soon} · ${chip}` zusammen. Das erzeugt alle sieben Aus-Chips von selbst — auch Copys
+  **neuen** T-6-Chip „Próximamente · Opcional, con cualquier plan". Es braucht keine
+  Einzelstrings, und T-6s alter Sonderfall „Opcional · próximamente" verschwindet mit dem
+  `px`-Feld von allein.
+- **T-8s `px` war ohnehin falsch** gesetzt (dort stand der Titel, nicht ein PX-Satz). Mit P-1
+  fällt das Feld weg, und damit der Fehler.
+
+### Der Umschalttag ist auf diesem Build nicht im Browser messbar
+
+Zwei Gründe, beide belegt:
+
+- `publicGate` steht auf **33 × „live"**, kein einziges „soon" — `publicShowsAll()` ist wahr, die
+  öffentliche Sicht ist heute die Zielsicht.
+- Die Vorschau-Schalter (`components/site/preview-switch.tsx`) kennen nur **Sicht** und
+  **Titelschrift**. Einen Schalter je Funktion gibt es im Browser **nicht**; er lebt in der Quelle.
+
+**Folge:** Die Form am Umschalttag prüfe ich als **Zeichenfolgen in der Quelle plus die Regel in
+der Darstellung**, nicht am Bild. Will der Owner dafür ein Bild, braucht die Vorschau einen Weg,
+einen Schlüssel versuchsweise auszuschalten — eine Zeile Vorschau-Werkzeug, keine Produktlogik.
+Ich bitte nicht darum; ich sage nur, was es kostet, wenn es fehlt: ein Papierbefund statt eines
+Bildes.
+
+### Hero: ein Hinweis, kein Mangel
+
+`strengths.ts:69` führt `subKeys: ["followup","matching","adsLeads","instagram"]` — alle vier mit
+UND. Copys Regel (§1) ist weicher: `followup` UND `matching` UND **eines von** `adsLeads`/`instagram`.
+So gebaut schickt ein einzelnes ausgeschaltetes Instagram den Hero zurück auf H-subP. Das ist
+**strenger als nötig, aber nicht falsch** — Copy sagt es selbst, und die Entscheidung liegt bei
+Redesign. Ich führe es als Hinweis, nie als nicht bestanden.
+
+### D-c ist damit beantwortet — über Redesign, nicht über den Owner
+
+Copys Grundlagenblock nennt „Form A: die Tagesgeschichte am Handy als D-c, Desktop D-1 … D-6", und
+der Entwurf trägt es schon: `strengths.tsx:54`, `data-strength-day-form="A"`. Das ist **genau meine
+Fassung A**. Ich messe Freitag A — und schreibe dazu, woher die Fassung kommt: über Redesign und
+Copy weitergegeben, **nicht** mir vom Owner gesagt. Das JA bestätigt sie.
+
+### Die Schalterliste für den Livegang steht damit
+
+Copy §2.5 rechnet die heutigen Registerzustände durch, und das ist genau die Liste, die der Owner
+am Tag vor dem Livegang von mir wollte:
+
+| Was | Zustand am Umschalttag |
+|---|---|
+| G-1, G-2, T-2, T-4, T-6 | „Próximamente" (P-1) |
+| G-3 | Teilzustand (§2.3) — Antwort, Ficha und Priorität laufen, `matching`/`followup` nicht |
+| T-8 | unverändert, der Bericht ist in Produktion |
+| Tagesgeschichte | nur **D-3** und **D-6**; vier von sechs aus, also mehr als zwei → nur die laufenden |
+| Hero | H-subP |
+
+**Welche Schlüssel am Tag wirklich umgelegt werden, entscheidet der Owner** (`publicGate`), nicht
+Copy und nicht ich. Ich lege die Liste vor und messe gegen das, was gestellt ist.

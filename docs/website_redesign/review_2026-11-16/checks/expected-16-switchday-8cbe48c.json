@@ -1,0 +1,116 @@
+{
+ "source": "docs/website_redesign/COPY_TO_REDESIGN_1120_HERO_PROXIMAMENTE_PLANFOLD_v1.md",
+ "commit": "8cbe48c",
+ "replaces": "v2 (e851e72) §B.2 'Switch day' and the PX column of §B.3. Everything else in expected-16-e851e72.json stays valid.",
+ "scope": "THE SWITCH DAY ONLY. Copy, 19.11.: 'The target view is unchanged: everything is live today.' So expected-16-e851e72.json remains the set for Friday's target-view measurement; this file is the set for the go-live check.",
+ "reachability": {
+  "publicGate": "all 33 keys are 'live' today (lib/claims.ts), so publicShowsAll() is true and public = target",
+  "previewSwitch": "components/site/preview-switch.tsx offers only view and display - there is NO per-key switch in the browser",
+  "consequence": "the switch-day form CANNOT be measured in the browser on this build. It is checked as strings in lib/content/strengths.ts plus the rendering rule in components/home/strengths.tsx. One browser proof is possible only if Redesign adds a way to force a key off in the preview."
+ },
+ "P-1": {
+  "applies": "a card whose keys are ALL off, and any partial state other than the two in P-2",
+  "stays": ["title", "sentence (line)", "phone line"],
+  "chip": "starts with 'Próximamente' / 'Coming soon', then the on-chip wording unchanged",
+  "hidden": ["the three example lines"],
+  "forbidden": "the PX sentence on a card ('Gana nuevos clientes: próximamente.' and the six like it). The px field may go or stay unused.",
+  "pxStillValidElsewhere": ["plans table", "demo tabs", "COPY_TO_REDESIGN_1116_EXAMPLE_WEEK_PROXIMAMENTE_v1.md §1"],
+  "openWithCopy": "the example mark G-m ('Ejemplo · datos ficticios') is not named in P-1. With the examples hidden it has nothing left to mark, so I expect it hidden too and will report it as a note, not a fail, until Copy says."
+ },
+ "chipsOff": {
+  "g1": ["Próximamente · Desde Growth · redes sociales en Enterprise", "Coming soon · From Growth · social media on Enterprise"],
+  "g2": ["Próximamente · Desde Growth", "Coming soon · From Growth"],
+  "g3": ["Próximamente · Desde Growth", "Coming soon · From Growth"],
+  "t2": ["Próximamente · Desde Growth", "Coming soon · From Growth"],
+  "t4": ["Próximamente · Desde Growth", "Coming soon · From Growth"],
+  "t6": ["Próximamente · Opcional, con cualquier plan", "Coming soon · Optional, with any plan"],
+  "t8": ["Próximamente · Todos los planes", "Coming soon · Every plan"],
+  "note": "t6 replaces v2's 'Opcional · próximamente' so every off chip starts the same way. t8 only if reportInLogin ever goes off; it is in production today.",
+  "buildNote": "strengths.tsx:18 already builds the off chip generically as `${soon} · ${chip}`, which produces all seven of these strings including the new t6 one. §2.2 is satisfied by construction - no per-card string needed."
+ },
+ "P-2": {
+  "applies": "only g1 and g3 have a partial state of their own; any other partial state follows P-1",
+  "g1": {
+   "when": "adsLeads on, instagram off",
+   "chip": ["Desde Growth · redes sociales en Enterprise, próximamente", "From Growth · social media on Enterprise, coming soon"],
+   "line": ["Tus anuncios y formularios atraen a compradores y a propietarios que quieren vender. Cada contacto llega como una consulta con su ficha.", "Your ads and lead forms draw in buyers and owners who want to sell. Every contact arrives as an enquiry with its own record."],
+   "phone": ["De tu anuncio a una consulta.", "From your ad to an enquiry."],
+   "examples": 3,
+   "examplesNote": "the three seller lines (Isabel, Mijas) unchanged - the form on an ad stays true",
+   "targetOnly": "G-1's full sentence (comments and direct messages) needs instagram AND socialInbox. That key does not exist yet, so the DM clause is target only."
+  },
+  "g3": {
+   "when": "replyWhatsapp, crm and priorityWithReason on (production today) AND at least one of matching / followup off",
+   "chip": ["Desde Growth · en parte próximamente", "From Growth · partly coming soon"],
+   "lineTemplate": ["Responde al momento y aclara qué busca cada cliente. {partes}: próximamente.", "It replies at once and finds out what each client is looking for. {parts}: coming soon."],
+   "parts": {
+    "matching": ["Proponerle inmuebles que encajan", "Suggesting listings that fit"],
+    "followup": ["hacer seguimiento, con su permiso", "following up, with their permission"],
+    "join": [" y ", " and "],
+    "capital": "only on the first part in the list"
+   },
+   "expandedCases": {
+    "bothOff": ["Responde al momento y aclara qué busca cada cliente. Proponerle inmuebles que encajan y hacer seguimiento, con su permiso: próximamente.", "It replies at once and finds out what each client is looking for. Suggesting listings that fit and following up, with their permission: coming soon."],
+    "matchingOffOnly": ["Responde al momento y aclara qué busca cada cliente. Proponerle inmuebles que encajan: próximamente.", "It replies at once and finds out what each client is looking for. Suggesting listings that fit: coming soon."],
+    "followupOffOnly": ["Responde al momento y aclara qué busca cada cliente. Hacer seguimiento, con su permiso: próximamente.", "It replies at once and finds out what each client is looking for. Following up, with their permission: coming soon."]
+   },
+   "phone": ["Cada interesado, respondido al momento.", "Every lead, answered at once."],
+   "examples": 1,
+   "examplesNote": "only line 1 (Laura, Estepona); lines 2 and 3 hidden"
+  }
+ },
+ "day": {
+  "desktopD1toD6": "an off station STAYS, with PX-b 'Próximamente' / 'Coming soon' right after the time. Only if MORE THAN TWO stations are off are just the live ones shown (v2 §C).",
+  "phoneDc": "the off station is left out of the compact line. D-c names only live stations.",
+  "d4partial": {
+   "when": "matching on, instagram off",
+   "text": ["Entra un piso nuevo en Estepona: encaja con Laura.", "A new flat comes in in Estepona: it fits Laura."]
+  },
+  "buildGap": "strengths.ts:55 holds day.compact as ONE fixed string naming all six stations, and strengths.tsx:57 renders it unconditionally on the phone. On the switch day the phone would still read all six times while only some are live. D-c has to be composed from the live stations.",
+  "buildGap2": "strengths.tsx:37 filters off stations out of the desktop list entirely, so the '≤ 2 off → the station stays with Próximamente' branch does not exist yet."
+ },
+ "hero": {
+  "unchanged": "§1 - no word changed, and no 'Próximamente' in the hero; the fallback H-subP does the job",
+  "rule": "H-sub shows when followup AND matching are on, AND at least one of adsLeads / instagram is on. Otherwise H-subP.",
+  "buildState": "strengths.ts:69 subKeys: ['followup','matching','adsLeads','instagram'] - all four ANDed. A switched-off instagram alone therefore sends the hero to H-subP.",
+  "verdict": "stricter than needed, not false (Copy §1). Redesign decides. I report it as a note, never as a fail."
+ },
+ "planFold": {
+  "breakpoint": "phone, ≤ 639 px",
+  "buttonClosed": ["Ver todo lo que incluye", "See everything included"],
+  "buttonOpen": ["Ocultar", "Hide"],
+  "ariaClosed": ["Ver todo lo que incluye {Plan}", "See everything {Plan} includes"],
+  "ariaOpen": ["Ocultar lo que incluye {Plan}", "Hide what {Plan} includes"],
+  "visibleWhileClosed": [
+   "the plan name and the 'for whom' line",
+   "both ways WITH the line under each button: '14 días gratis, sin tarjeta' and 'Te respondemos en 24 h laborables, con las condiciones por escrito.'",
+   "the line above the plans: 'El piloto gratuito de 14 días incluye todo lo de Growth…' (v2 §E)"
+  ],
+  "measurable": ["aria-expanded carries the state", "the tap area is at least 44 px high", "when open, a Próximamente cell shows PX-b and the legend 'Próximamente: aún no activo' / 'Coming soon: not active yet' is visible with it", "desktop unchanged"]
+ },
+ "expectedSwitchDayPage": {
+  "basis": "Copy §2.5 with the register as it stands today (claims.ts:37-68), NOT with publicGate, which is all live",
+  "included": ["replyWhatsapp", "replyEmail", "replyOutOfHours", "crm", "priorityWithReason", "reportInLogin", "reminders"],
+  "soon": ["adsLeads", "instagram", "matching", "followup", "taskList", "dailyVoice", "phoneAssistant", "weeklyEmail", "model3d"],
+  "cardsProximamente": ["g1", "g2", "t2", "t4", "t6"],
+  "cardsPartial": ["g3"],
+  "cardsUnchanged": ["t8"],
+  "dayStationsShown": ["D-3", "D-6"],
+  "dayNote": "four of six stations off, so more than two: only the live ones are shown, and D-c names only 13:20 and 23:40",
+  "hero": "H-subP",
+  "ownerOpen": "which keys are actually switched on the day is the owner's decision (publicGate), not Copy's (§2.5)"
+ },
+ "dcResolved": {
+  "form": "A",
+  "meaning": "D-c on the phone (390), D-1…D-6 on the desktop (1440); the stations are not in the phone's document and D-c is not in the desktop's",
+  "evidence": "Redesign's build note in strengths.tsx:52-54 (data-strength-day-form=\"A\") and the basis block of Copy 8cbe48c",
+  "status": "relayed through Redesign and Copy, not stated to me by the owner. The owner's JA (Fri 12:00) confirms it. Until then I measure form A and say where the figure comes from."
+ },
+ "buildBlocker": {
+  "tsc": "8 errors on the draft: components/home/strengths.tsx(28,37) and lib/content/strengths.ts lines 32, 35, 37, 41, 43, 45, 47 - 'px' does not exist on type StrengthCard",
+  "cause": "the type and its doc comment are already on Copy 1120 P-1 (px removed, partial added), while the card data still carries px and the component still renders it at line 28",
+  "effect": "mid-edit, expected - but a build in this state does not deploy, so there would be nothing for me to measure on Friday",
+  "reported": "to Redesign, 19.11. evening"
+ },
+ "unchangedByThisDelta": ["the seven expected cards", "the section lines", "the four forbidden card titles", "zeroHit R-1 / R-2 / {precio}", "the owner's three decisions of 17.11.", "the protection rule", "phone depth ≤ 21", "nothing lost"]
+}
