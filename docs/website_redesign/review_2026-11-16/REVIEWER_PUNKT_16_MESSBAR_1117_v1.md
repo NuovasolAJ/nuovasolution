@@ -210,3 +210,15 @@ Entwurfsbilder werden damit erneuert. `checks/expected-16-e851e72.json` ist dami
 Quelle. §D (`{precio}`) wird in keiner Sicht gerendert — das deckt sich mit meiner Bedingung „0
 Treffer für R-1, R-2 und den rohen Platzhalter".
 
+**Redesigns Rückfall, und was er kostet (19.11. abends):** Nennt der Owner im JA keine Fassung,
+baut Redesign „**ohne D-c**" (D-1 … D-6 bei beiden Breiten) und meldet es mir ausdrücklich — dann
+zählt nichts als Verlust. **Der Preis dafür gehört dazu:** Die Kompaktzeile war Redesigns Weg, das
+Handy unter 21 Bildschirme zu bringen. Fällt sie weg, kann die Tiefe die Grenze reißen, und dann
+melde ich **die Zeile „Tiefe" als nicht bestanden** — nicht weil schlecht gebaut wurde, sondern
+weil die längere Fassung gewählt wurde. Wer also nichts entscheidet, entscheidet sich damit
+möglicherweise gegen die 21. Ein Halbsatz im JA verhindert das.
+
+Redesigns Vorschlag ist **A** (Kompaktzeile nur am Handy, die sechs Zeiten am Desktop). Mit Commit
+und dpl kommen seine Abschnittszahlen nach meinem Verfahren, je Abschnitt in Bildschirmen plus
+Summe — damit lässt sich eine Abweichung sofort einem Abschnitt zuordnen.
+
