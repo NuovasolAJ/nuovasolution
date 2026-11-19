@@ -44,7 +44,7 @@ If the build requires all four keys, a switched-off `instagram` alone sends the 
 **Rule P-1, a card whose keys are all off:**
 - The **plan chip** starts with "Próximamente" (table §2.2). It is the first thing read on the card, so it carries the state.
 - The **title, the sentence and the phone line stay.** They describe the planned function; the chip says it is not active yet.
-- The **three example lines are hidden.** With times and names they read as something already running.
+- The **three example lines are hidden.** With times and names they read as something already running. Their mark G-m "Ejemplo · datos ficticios" / "Example · fictional data" is hidden with them: it has nothing left to mark. (Added 19.11. on RV6's question. In the partial states of §2.3 the mark stays wherever at least one example line is shown: G-1p with all three lines, G-3p with line 1.)
 - The **PX sentence ("Gana nuevos clientes: próximamente.") is no longer used on the cards.** Next to the title and the new chip it would say the same thing three times.
 
 The `px` field in `strengths.ts` can then go, or stay unused; Redesign decides. PX-b / PX-s stay valid everywhere else (plans table, demo tabs, `COPY_TO_REDESIGN_1116_EXAMPLE_WEEK_PROXIMAMENTE_v1.md` §1).
