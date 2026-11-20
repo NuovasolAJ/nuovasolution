@@ -14,8 +14,8 @@ Deployments hinweg möglich gewesen, ohne dass es jemandem auffällt.
 
 ## URTEIL: **JA**
 
-Punkt 16 ist aus meiner Sicht bestanden. Ein benannter Nachzügler bleibt (Q-22, unten), der nicht
-schwer genug für ein NEIN wiegt.
+Punkt 16 ist aus meiner Sicht bestanden. Beide zunächst offenen Punkte sind inzwischen erledigt:
+der eine Satz war mein Messfehler, Q-22 ist am Folgestand `2342537` behoben und nachgemessen.
 
 ---
 
@@ -80,9 +80,21 @@ die englische Preiszeile **umformuliert**, der Link „Ver la semana completa" *
 verlinkt), und die fünf spanischen Reste auf der englischen Plattformseite sind **behoben**, nicht
 verloren. **Satzbestand: 0 Verluste.**
 
-**(b) Q-22, bekannter Nachzügler.** In der Gate-Sicht antwortet „¿Puedo añadir a mi equipo y
-darles roles distintos?" mit „**Lista de tareas**: próximamente." statt „Equipo y roles:
-próximamente." Ich habe **beide Hälften geprüft**: die alte Zeile ist da, die neue nirgends.
+**(b) Q-22 — ERLEDIGT am Folgestand `2342537`.** Nachgemessen am Alias
+(`dpl_8yQJingyCMd7xVqmQdBGt92r3Nrs`, Build vor **und** nach dem Lauf gleich), eine Einzelprüfung
+in beiden Sichten und beiden Sprachen:
+
+| | Zielsicht | Gate-Sicht |
+|---|---|---|
+| ES | „Sí. Invitas a tu equipo y defines un rol para cada persona…" | **„Equipo y roles: próximamente."** ✓ |
+| EN | „Yes. You invite your team and set a role for each person…" | **„Team and roles: coming soon."** ✓ |
+
+**Beide Hälften belegt:** die neue Zeile steht, die alte („Lista de tareas") ist auf **0**
+gefallen. `2342537` ist codegleich mit `7fbb662` plus dieser einen Antwortzeile, also gelten alle
+Zahlen oben unverändert. §5a bleibt ebenfalls grün: 0 × „Más idiomas", 0 × „En preparación".
+
+**Damit ist zu Punkt 16 von Redesign, Copy und mir nichts mehr offen.** Der historische Stand vor
+der Behebung lautete: Gate-Sicht „**Lista de tareas**: próximamente." statt „Equipo y roles".
 Copy hat es in `9dceb44` berichtigt, Redesign hält den Commit bis zu diesem Bericht zurück.
 **Ich führe es als Nachzügler, nicht als Mangel** — aber es ist sachlich eine Antwort auf eine
 andere Frage, also richtig, dass es noch kommt.
