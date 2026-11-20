@@ -174,6 +174,18 @@ What is still open:
 
 **The WhatsApp demo tab** stays hidden in public, not "Próximamente" (owner 16.11., point 8). This is noted as the owner's earlier, specific decision; Redesign names it to him as the second exception next to `otherLanguages`.
 
+## 5a. FAQ "¿En qué idiomas responde?" (Redesign's question, 20.11., after API's check `cee6992`)
+
+**The owner, 20.11. 09:05, point 4:** `otherLanguages` stays hidden **in both views**. So no sentence announces more languages, neither "próximamente" nor "en preparación". "En preparación" is not used anywhere (v2, status).
+
+**The answer ends after the second sentence, in both views** (`faq.ts:87–88`):
+
+| ES | EN |
+|---|---|
+| Hoy responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo. | Today it replies automatically in Spanish only. It recognises the language of every enquiry and, if it is not Spanish, passes it to your team. |
+
+**Dropped:** "Más idiomas, en preparación." / "More languages are in preparation." in the target view, and Redesign's "Más idiomas: próximamente." in the gate view. The 1116 §1 row "Otros idiomas: próximamente." is retired with it.
+
 ## 6. G-1's off chip, shortened (RV6's question, 20.11., measured on `deb4a40`)
 
 **The change:** while G-1 is fully off (P-1), its chip reads **"Próximamente · Desde Growth"** / **"Coming soon · From Growth"**. The Enterprise clause is dropped.
