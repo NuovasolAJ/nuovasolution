@@ -1094,3 +1094,65 @@ zu prüfen.** Ein Erwartungswert, der erst im Lauf auffällt, verwandelt sich le
 in den gerechneten Sätzen **„e-mail"** und in dieser einen Konstante **„email"**. Das steht so
 schon auf `2342537`, ist also keine Regression und kein Mangel an Punkt 16 — aber es ist eine
 Ungleichheit im Wortlaut, und sie gehört Copy, nicht mir.
+
+### 23.3 Zurückgezogen: meine Zeichenprüfung war wertlos, und zwar aus dem Grund, den ich bei anderen anmahne
+
+Ich hatte gemeldet: „Im gesamten Textbestand steht kein Zeichen außerhalb von Latin, Latin-Ext
+und der allgemeinen Interpunktion. **Also kann die Teilmenge keine Kästchen erzeugen.**"
+
+**Das war falsch, und die Ursache ist peinlich genau die, die ich seit Tagen bei Messungen
+anmahne.** Der `grep` dahinter ist abgebrochen — „character value in `\x{}` is too large" — und ich
+hatte seinen Fehlerkanal nach `/dev/null` geleitet. **Ein leeres Ergebnis eines abgestürzten
+Befehls habe ich als „nichts gefunden" gelesen.** Das ist derselbe stille Scheinerfolg wie das
+„0 verlorene Sätze" von `lost16.mjs`, nur diesmal von mir und in einer Aussage, die ich
+weitergegeben habe.
+
+**Richtig nachgezählt, in Node, über 179 Dateien — neun Zeichen außerhalb der Latin-Scheibe:**
+
+| Zeichen | Anzahl | Beispiel |
+|---|---|---|
+| ⟦ / ⟧ | 50 / 50 | `lib/claims.ts` (Platzhalter, werden ersetzt) |
+| → | 49 | `lib/content/faq.ts` |
+| **✓** | **5** | `lib/content/home-1103.ts` |
+| ≤ · ≥ · ≠ · ⇒ | 3 · 2 · 1 · 1 | `home-1103.ts`, `plan-card-fold.tsx` |
+| 🤖 | 2 | `lib/content/home-story.ts` |
+
+**Redesign hatte recht, ich nicht.** Und das ✓ ist nicht nur Kommentar: es steht in der
+**Legende der Pakettabelle** („Un ✓ donde el plan incluye la función.", `home-1103.ts:538`), also
+in sichtbarem Text. Mein früherer Satz, der Haken sei „kein Schriftzeichen", galt für die
+**Zellen** — dort ist es CSS — und ich habe ihn unzulässig auf die Seite ausgeweitet.
+
+**Sachlich bleibt es ohne Folge:** Diese neun Zeichen lagen **auch auf `2342537`** außerhalb der
+Scheibe, kamen also schon damals aus der Ersatzschrift und kommen jetzt von dort. Keine
+Regression — aber nicht aus dem Grund, den ich genannt hatte.
+
+### 23.4 Was die Byte-Gleichheit klärt, und was sie nicht klärt
+
+**Redesigns stärkstes Argument ist nicht die Teilmenge, sondern die Identität:** Die Dateien, die
+`2342537` ausgeliefert hat, sind **sha256-gleich** mit den Dateien, die jetzt im Repo liegen.
+**Damit ist die Glyphenfrage erledigt** — besser als durch jede Zeichenzählung, meine oder ihre.
+
+**Nicht erledigt ist das CSS darum herum, denn das ist neuer Code und keine kopierten Bytes.**
+`next/font/google` hat die Ersatzmetrik und die Achsenvorgaben selbst gesetzt;
+`next/font/local` tut das nicht. Am Commit `2ce20ad` steht jetzt ausdrücklich
+`adjustFontFallback: "Arial"` bzw. `"Times New Roman"` und `display: "swap"` für beide Schnitte.
+**Genau in dieser Ecke lagen Redesigns eigene ≤ 6-px-Abweichungen bei 1440**, und genau dort
+messe ich deshalb:
+
+**D-4** — am festen Build **und** am Grundstand `dpl_8yQJ…` (2342537), **im selben Durchgang**,
+damit ich nicht gegen eine erinnerte Zahl vergleiche: aufgelöste Schriftfamilie, Schriftgröße,
+Zeilenhöhe, Gewicht und Laufweite auf h1, Vorzeile, CTA, Navigation und Tabellenlegende; das
+aufgelöste `font-optical-sizing` und `font-variation-settings`; Redesigns fünf Hero-Kästen; und
+`document.fonts`. Dazu **das ✓ der Legende als gemalt** und — weil `swap` die Ersatzschrift
+zuerst zeigt und deren **angepasste** Metrik den ersten Bildschirm bestimmt — **CLS und erster
+Bildschirm**. Die eingeschwungene Tiefe allein genügt hier nicht.
+
+**Ein Hinweis zur Datei selbst, klein aber nicht nichts:** Der Kommentar in `lib/fonts.ts` sagt,
+die Dateien seien „subset to the latin + latin-ext ranges" und latin-ext sei „required for Spanish
+(ñ, á, ¿, «»)". **Beides trifft nicht zu:** Redesign sagt, es ist Googles **latin**-Scheibe
+allein, und ñ á ¿ « » liegen alle in Latin-1, also **innerhalb** dieser Scheibe. Gemessen steht
+im ganzen Quellcode **kein latin-ext-Buchstabe**, latin-only ist heute also sicher. Der Kommentar
+würde aber den nächsten irreführen, der einen Namen einsetzt, der latin-ext braucht.
+
+**Ich messe weiter nicht.** `2ce20ad` ist ausdrücklich nicht der feste Build; ich warte auf den
+Stand mit den byte-gleichen Dateien.

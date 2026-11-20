@@ -55,6 +55,22 @@
   "mustNotHappen": "a tick on a row whose name has no channel in it, and a tick on a row naming an arrival-only channel (portales y anuncios, formulario web, teléfono) - the switch-day fault I raised; it cannot occur while those three are register \"soon\", so this records the condition rather than expecting a failure"
  },
 
+ "D-4_fontsWhatByteIdentityDoesNotCover": {
+  "why": "The woff2 files are sha256-identical to what 2342537 served, which closes the GLYPH question by identity - stronger than either char scan. But the CSS around them is new code, not copied bytes: next/font/google chose the fallback metrics and the axis defaults, next/font/local does not. That is exactly what produced Redesign's ≤ 6 px differences at 1440, so it is what I measure.",
+  "measureOnBothDeployments": "the fixed build AND the baseline dpl_8yQJingyCMd7xVqmQdBGt92r3Nrs (2342537), in the SAME run, so the comparison is not against a remembered number",
+  "compare": [
+   "the font-family actually resolved on h1, the lead, the CTA, the nav and the plans legend",
+   "font-size, line-height, font-weight, letter-spacing on those five",
+   "the resolved font-optical-sizing and font-variation-settings (the opsz axis is in the file; the google loader used to settle it)",
+   "the five hero boxes Redesign measured (h1, lead, cta, pilot, nav), width and height",
+   "document.fonts: the loaded faces and their status"
+  ],
+  "tickStillPainted": { "where": "the plans legend, home-1103.ts:538", "es": "Un ✓ donde el plan incluye la función.", "en": "A ✓ where the plan includes the function.",
+   "test": "the ✓ must still be painted and must not render as a notdef box - it comes from the fallback face, before and after" },
+  "firstScreenAndCls": "display is swap on both faces, so the fallback face is painted first and its ADJUSTED metrics decide the first screen. adjustFontFallback moved from the google loader's default to the named families Arial / Times New Roman, which can move layout during load even when the settled layout is identical. Settled depth is therefore not sufficient: CLS and the first screen are measured too.",
+  "docDiscrepancyToReport": "lib/fonts.ts says the files are subset to \"the latin + latin-ext ranges\" and that latin-ext is required for Spanish. Both are inaccurate: Redesign says the files are Google's latin slice only, and ñ á ¿ « » are all Latin-1, inside that slice. Measured: no latin-ext LETTER occurs anywhere in the source, so latin-only is safe today - but the comment would mislead whoever next adds a name that needs latin-ext."
+ },
+
  "carriedOver": {
   "why": "These held on 7fbb662/2342537 and must still hold; a changed font stack and a changed plan cell are both capable of moving them.",
   "mobileDepthScreens": { "max": 21, "lastMeasured": { "target": 20.52, "public": 19.7 } },
@@ -65,6 +81,6 @@
   "rule1_EnPreparacion": 0,
   "rule2_dateNextToAMark": 0,
   "rule5a_MasIdiomas": 0,
-  "fontMove": "Inter and Fraunces now come from lib/font-files, subset to latin + latin-ext, Inter wght only, opsz pinned at 14. No character outside latin, latin-ext and general punctuation exists in lib/content or lib/i18n, and the plans tick is CSS on a span with aria-label (plans-table.tsx:33), not a glyph - so the subset cannot produce tofu. The depth measurement is the real guard against a changed metric."
+  "fontMove": "RETRACTED AND REPLACED. I had claimed no character outside latin exists in the source and that the subset therefore cannot produce tofu. That claim was worthless: the grep behind it died with \"character value in \\x{} is too large\" and I had sent its stderr to /dev/null, so I read an empty result as a clean one. Rescanned properly in node: 9 characters outside Inter's latin slice - ⟦ x50, ⟧ x50, → x49, ✓ x5, ≤ x3, 🤖 x2, ≥ x2, ≠ x1, ⇒ x1. Redesign was right. ✓ IS rendered text (the plans legend, home-1103.ts:538). They were outside the slice on 2342537 as well, so they came from the fallback face then and come from it now - no regression, but not for the reason I gave."
  }
 }
