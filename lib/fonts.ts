@@ -13,8 +13,8 @@ import localFont from "next/font/local";
  */
 
 /**
- * Display + UI face. Variable weight (100–900) with the optical-size axis; headings never exceed 500 (design law §3.2).
- * latin-ext is required for Spanish (ñ, á, ¿, «»).
+ * Display + UI face. Variable weight (100–900), the optical-size axis pinned at 14 as in Google's slice; headings never exceed 500
+ * (design law §3.2). Spanish needs only Latin-1 (ñ, á, ¿, «»), which the latin slice carries; no latin-ext file is included (RV6 07c9ce0).
  */
 export const inter = localFont({
   src: "./font-files/inter-latin.var.woff2",
