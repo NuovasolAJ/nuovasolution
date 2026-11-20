@@ -1,0 +1,165 @@
+{
+ "measuredAt": "2026-11-20T08:34",
+ "file": "lib/claims.ts (working tree)",
+ "counts": {
+  "keys": 32,
+  "gateSoon": 17,
+  "gateLive": 15
+ },
+ "gateSoonKeys": [
+  "whatsappOwnNumber (register: soon)",
+  "mailboxConnection (register: soon)",
+  "alert (register: soon)",
+  "adsLeads (register: soon)",
+  "oneRecordAcrossChannels (register: soon)",
+  "matching (register: soon)",
+  "followup (register: soon)",
+  "taskList (register: soon)",
+  "dailyVoice (register: soon)",
+  "weeklyEmail (register: soon)",
+  "reportTrend (register: soon)",
+  "instagram (register: soon)",
+  "phoneAssistant (register: soon)",
+  "webform (register: soon)",
+  "integrations (register: soon)",
+  "outlook (register: soon)",
+  "model3d (register: soon)"
+ ],
+ "liveButNotProduction": [
+  "otherLanguages (register: soon)",
+  "plans (register: soon)",
+  "trial (register: soon)",
+  "publicSignup (register: soon)"
+ ],
+ "soonButProduction": [],
+ "registerStates": {
+  "replyWhatsapp": [
+   "included",
+   "live"
+  ],
+  "replyEmail": [
+   "included",
+   "live"
+  ],
+  "replyOutOfHours": [
+   "included",
+   "live"
+  ],
+  "whatsappOwnNumber": [
+   "soon",
+   "soon"
+  ],
+  "languageNoted": [
+   "included",
+   "live"
+  ],
+  "otherLanguages": [
+   "soon",
+   "live"
+  ],
+  "mailboxConnection": [
+   "soon",
+   "soon"
+  ],
+  "crm": [
+   "included",
+   "live"
+  ],
+  "priorityWithReason": [
+   "included",
+   "live"
+  ],
+  "alert": [
+   "soon",
+   "soon"
+  ],
+  "origin": [
+   "included",
+   "live"
+  ],
+  "adsLeads": [
+   "soon",
+   "soon"
+  ],
+  "labels": [
+   "included",
+   "live"
+  ],
+  "oneRecordAcrossChannels": [
+   "soon",
+   "soon"
+  ],
+  "matching": [
+   "soon",
+   "soon"
+  ],
+  "followup": [
+   "soon",
+   "soon"
+  ],
+  "taskList": [
+   "soon",
+   "soon"
+  ],
+  "dailyVoice": [
+   "soon",
+   "soon"
+  ],
+  "reportInLogin": [
+   "included",
+   "live"
+  ],
+  "weeklyEmail": [
+   "soon",
+   "soon"
+  ],
+  "reportTrend": [
+   "soon",
+   "soon"
+  ],
+  "instagram": [
+   "soon",
+   "soon"
+  ],
+  "phoneAssistant": [
+   "soon",
+   "soon"
+  ],
+  "listingLink": [
+   "included",
+   "live"
+  ],
+  "reminders": [
+   "included",
+   "live"
+  ],
+  "webform": [
+   "soon",
+   "soon"
+  ],
+  "integrations": [
+   "soon",
+   "soon"
+  ],
+  "outlook": [
+   "soon",
+   "soon"
+  ],
+  "model3d": [
+   "soon",
+   "soon"
+  ],
+  "plans": [
+   "soon",
+   "live"
+  ],
+  "trial": [
+   "soon",
+   "live"
+  ],
+  "publicSignup": [
+   "soon",
+   "live"
+  ]
+ }
+}

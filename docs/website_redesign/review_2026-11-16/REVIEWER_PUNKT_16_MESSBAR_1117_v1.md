@@ -695,3 +695,74 @@ E1b offengehalten (Zeilen 692–695), obwohl **beide Hälften** belegt waren —
 **Mein Hinweis zur Belegzeile hat Copy übernommen:** In der PX-Fassung heißt es jetzt
 „Recordatorio a la hora**:** en producción desde el 13.11." — das Datum sichtbar an die Erinnerung
 gebunden. Nach einer beobachteten Übergabe: ein Datum je Teil.
+
+---
+
+## Nach APIs Abgleich (`cee6992`): meine 16 Schlüssel sind erledigt — und die Seite sieht anders aus
+
+Ich habe es nicht übernommen, sondern `checks/gatecmp.mjs` erneut gegen `lib/claims.ts` laufen
+lassen: **17 Schlüssel auf „soon", 15 auf „live"** (`checks/gate-vs-register-1120-afterAPI.json`).
+
+**Meine Meldung von heute früh ist damit vollständig abgearbeitet:**
+
+| aus meinen 16 | wohin |
+|---|---|
+| `whatsappOwnNumber`, `alert` (Gruppe B) | auf „Próximamente", Ihr Punkt 3 |
+| `otherLanguages` (Gruppe B) | in **beiden** Sichten ausgeblendet, Ihr Punkt 4 |
+| die zehn der Gruppe C | **alle** auf „Próximamente" — API fand für keinen einen Prod-Beleg |
+| `plans`, `trial`, `publicSignup` (Gruppe A) | wie von Ihnen längst entschieden |
+
+**Es bleibt nichts offen.** Die vier Schlüssel, die noch „live" stehen, obwohl das Register „noch
+nicht" sagt, sind genau diese vier — drei davon durch Ihre Darstellungsentscheidung gedeckt, einer
+durch das Ausblenden.
+
+### Was die öffentliche Seite dadurch zeigt — gerechnet, nicht geschätzt
+
+Ich habe die Kartenschlüssel gegen das Gate gerechnet, nach derselben Regel, die die Komponente
+benutzt:
+
+| Teil | öffentlich |
+|---|---|
+| G-1, G-2, T-2, **T-4**, **T-6** | „Próximamente" (P-1) |
+| G-3 | Teilzustand, **beide** Teile aus |
+| **T-8** | als einzige Karte vollständig live |
+| G-d | „Cada mañana, qué oportunidades piden tu atención: **próximamente**." |
+| Tagesgeschichte | von sechs Stationen bleiben **zwei**: 13:20 und 23:40 |
+| Hero | H-subP |
+| Augenbraue | „Todo lo que hace **y hará** por tu agencia" |
+
+**T-4 und T-6 sind neu dazugekommen** — sie hingen an APIs Abgleich.
+
+### Meine Zeile „Verkaufsstärke", und sie gehört Ihnen, nicht der Technik
+
+**Technisch ist jede einzelne Marke richtig.** Ich habe daran nichts auszusetzen, und ich werde
+sie alle am Build nachzählen.
+
+**Kaufmännisch sage ich Ihnen klar, was Sie bekommen:** Der Abschnitt „alles, was es für deine
+Agentur tut" zeigt öffentlich **sechs von sieben Karten als noch nicht verfügbar** und eine
+Tagesgeschichte, die von sechs Stationen auf zwei schrumpft. Die Seite ist damit **ehrlich** —
+und das ist genau das, was Sie angeordnet haben. Sie liest sich aber künftig weniger als „das
+kann es" und mehr als „das wird es können".
+
+**Das ist kein Einwand gegen Ihre Entscheidung.** Es ist die Folge, und Sie sollen sie von mir
+schwarz auf weiß haben, **bevor** die Seite live geht — nicht danach. Wenn Sie die Wirkung
+abmildern wollen, führt der Weg über **Belege**, nicht über das Gate: jede Funktion, für die API
+einen Prod-Beleg nachliefert, wandert von selbst zurück auf „verfügbar".
+
+### §5a, und warum ich die zwei Ausnahmen zum eigenen Prüfpunkt gemacht habe
+
+Copy meldet: Die FAQ „¿En qué idiomas responde?" endet in **beiden** Sichten nach „…la pasa a tu
+equipo." Nichts kündigt weitere Sprachen an. **Redesign hatte die Gate-Fassung mit „próximamente"
+gebaut**; Copy hat es berichtigt.
+
+Das ist genau der Fall, den ich vorhergesagt hatte: Zwei Ausnahmen von einer pauschalen Regel
+gehen verloren, wenn das Gate Schlüssel für Schlüssel gestellt wird. Hier ist es einmal passiert
+und wurde gefunden. Ich prüfe am Build beide Ausnahmen als **Abwesenheit** — keine
+Sprachen-Ankündigung in keiner Sicht, kein WhatsApp-Demo-Reiter öffentlich.
+
+### §4.3 ist jetzt eine echte Frage, keine hypothetische
+
+`mailboxConnection` steht nach APIs Abgleich auf „Próximamente". Damit kollidiert es mit Ihrer
+Regel vom 16.11., die für diesen Punkt **nie** „próximamente" vorsah. Zwei Ihrer eigenen Regeln,
+und die Entscheidung gehört Ihnen. Ich messe, was gebaut ist, und melde die Kollision — ohne eine
+eigene Empfehlung, weil es eine Wortlautfrage zwischen Ihren Festlegungen ist.

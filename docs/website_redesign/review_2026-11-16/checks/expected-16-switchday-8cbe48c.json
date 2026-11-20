@@ -26,6 +26,40 @@
    "dayPhoneDc": "'08:30 tu día · 13:20 pasa a Carlos · 23:40 respuesta de noche' / '08:30 your day · 13:20 passed to Carlos · 23:40 a night-time reply' - the 13:20 part changed with Copy 1120 §5; the old 'aviso' wording is superseded",
    "dayD3conditional": "if Daily's E19 v2 is NOT confirmed in production, D-3 carries PX-b in the public view (Copy 1120 §5). I cannot verify Daily's state from this repository - see dailyDependency in expected-16-e851e72.json - so I report which variant the build shows rather than assuming one."
   },
+ "actualGate_afterAPI": {
+  "supersedes": "actualGate (five keys). API's reconciliation cee6992 put all ten group-C keys on 'soon', including mailboxConnection.",
+  "verifiedByMe": "re-ran checks/gatecmp.mjs against lib/claims.ts: 17 keys soon, 15 live. Not taken on trust.",
+  "soonNow": ["whatsappOwnNumber", "mailboxConnection", "alert", "adsLeads", "oneRecordAcrossChannels", "matching", "followup", "taskList", "dailyVoice", "weeklyEmail", "reportTrend", "instagram", "phoneAssistant", "webform", "integrations", "outlook", "model3d"],
+  "stillLiveButRegisterSoon": {
+   "otherLanguages": "hidden in both views by the owner's point 4 - handled, not a promise",
+   "plans/trial/publicSignup": "the owner's presentation decision (pilot by request, no self-start, conditions in writing) - group A"
+  },
+  "mySixteenKeyFindingIsClosed": "12 of the 16 moved to soon, otherLanguages is hidden, and the remaining three were already decided. Nothing from that finding is left open.",
+  "computedSectionResult": {
+   "method": "card keys against the gate, by the same rule the component uses (all keys live = live; the card's own partial.when = partial; otherwise P-1)",
+   "g1": "P-1 soon (adsLeads, instagram both off) - chip 'Próximamente · Desde Growth' per Copy §6",
+   "g2": "P-1 soon (matching, followup both off)",
+   "g3": "partial - reply, record and priority live, matching AND followup off, so the BOTH-parts sentence and example line 1 only",
+   "t2": "P-1 soon (phoneAssistant)",
+   "t4": "P-1 soon (taskList, dailyVoice) - CHANGED by API's reconciliation",
+   "t6": "P-1 soon (model3d) - CHANGED by API's reconciliation",
+   "t8": "live (reportInLogin is included) - the only fully live card",
+   "gd": "PX-s: 'Cada mañana, qué oportunidades piden tu atención: próximamente.' (taskList, dailyVoice off)",
+   "hero": "H-subP",
+   "eyebrow": "'Todo lo que hace y hará por tu agencia' with data-strengths-soon=true",
+   "dayStations": "live: 13:20 (reminders) and 23:40 (replyOutOfHours). Four off, so more than two: ONLY those two are shown",
+   "dayDc": "'13:20 pasa a Carlos · 23:40 respuesta de noche' - subject to the Daily PX question on D-3's own wording",
+   "summary": "6 of 7 cards carry Próximamente (5 under P-1, 1 partial); 1 card fully live; the day story down from six stations to two"
+  },
+  "salesStrengthConsequence": "this is what the owner ordered and it is honest, but it changes how the section sells: the block titled 'everything it does for your agency' now reads mostly as 'and will do'. That belongs in my Verkaufsstärke row as a judgement for the owner, NOT as a technical fail - every single mark is correct."
+ },
+ "FAQ_languages_5a": {
+  "rule": "the FAQ '¿En qué idiomas responde?' ends after '…la pasa a tu equipo.' / '…passes it to your team.' in BOTH views",
+  "forbidden": ["'en preparación' in the target view", "'Más idiomas: próximamente.' in the gate view"],
+  "source": "Copy 1120 §5a, c9121b5, under the owner's point 4",
+  "note": "Redesign had built the gate variant WITH 'próximamente'; Copy corrected it. This is the first real instance of the otherLanguages exception being lost when the gate was switched key by key - which is why I made the two exceptions their own criterion.",
+  "criterion": "zero hits for a more-languages announcement in either view; the FAQ answer ends on the team sentence"
+ },
  "hiddenRatherThanMarked": {
   "rule": "the owner's 20.11. 09:05 decision marks everything not proven in production, with exactly two things hidden instead of marked",
   "items": {
