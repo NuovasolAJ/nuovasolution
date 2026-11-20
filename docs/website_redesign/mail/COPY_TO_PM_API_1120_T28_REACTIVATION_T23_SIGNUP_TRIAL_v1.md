@@ -185,6 +185,8 @@ The register has both as "soon", and follow-up is legally held (`plans.ts`, C3 �
 
 ### 1.4 WhatsApp (template; only under §0.1)
 
+> **Replaced by §4.2** (addendum 20.11., PM `dec3a8bb`): the template now comes in two versions, with and without a link. The text below is the same as version L there.
+
 **Template variables cannot be empty.** So rule 5 (drop a missing field) does not work here. Either every variable is a required field, or there is one template for each combination of fields. API decides which.
 
 **ES**
@@ -368,3 +370,102 @@ API's answer picks the variant. Copy writes no third one.
 | O-6 | API | what stops when the trial ends, and how long data is kept (§2.3 `{tras_fin}`) |
 | O-7 | API | what happens to the enquiry after the monthly limit: V-1 or V-2 (§2.4) |
 | O-8 | API | the confirmation link's validity, "one hour" (§2.2 b) |
+
+---
+
+## 4. Addendum 20.11.: topic 28 after PM's adoption (`PM_THEMA_28_REAKTIVIERUNG_1120_v1.md`, `dec3a8bb`, relayed by the owner)
+
+### 4.1 PM's three points, and what they change here
+
+| # | PM | Change in this file |
+|---|---|---|
+| 1 | "Acaba de entrar" stays. PM makes sure it comes only with listings that are really new | none in the wording. The sentence is true only under PM's condition, so it is a send rule: not for an older listing that was re-published or changed |
+| 2 | A link only where the source rights allow it | the WhatsApp template in two versions, L (with a link) and S (without), ES/EN/DE (§4.2). API decides which one goes to Meta |
+| 3 | No availability sentence in the first message (confirmed) | none. The texts have none: "¿Sigues buscando?" asks about the client's search, not about the listing. Nothing like "todavía disponible" / "still available" / "noch verfügbar" is to be added |
+
+**The e-mail (§1.3) needs no second version.** The link is a field under rule 5: without source rights, the line `{enlace}` is dropped and the rest stays as it is.
+
+### 4.2 The WhatsApp template in two versions
+
+**Both versions:**
+- The variables are required fields (§1.4).
+- The footer is the same in both.
+- BAJA / STOP must work before the first send (O-2).
+
+#### Version L, with a link (unchanged from §1.4)
+
+| Variable | {{1}} | {{2}} | {{3}} | {{4}} | {{5}} | {{6}} | {{7}} | {{8}} | {{9}} |
+|---|---|---|---|---|---|---|---|---|---|
+| Content | name | month | search | type | area | price | link | agent | agency |
+
+**ES**
+
+> Hola, {{1}}. En {{2}} nos preguntaste por {{3}}. Acaba de entrar: {{4}} en {{5}}, {{6}}.
+> {{7}}
+> ¿Sigues buscando? Contesta a este mensaje y te propongo un día para verlo.
+> {{8}} · {{9}}
+>
+> Mensaje preparado por el asistente de {{9}}. Si no quieres recibir más, responde BAJA.
+
+**EN**
+
+> Hi {{1}}. In {{2}} you asked us about {{3}}. This has just come in: {{4}} in {{5}}, {{6}}.
+> {{7}}
+> Still looking? Reply to this message and I'll suggest a day to see it.
+> {{8}} · {{9}}
+>
+> Message prepared by {{9}}'s assistant. To stop receiving these, reply STOP.
+
+**DE**
+
+> Hallo {{1}}, im {{2}} haben Sie uns nach {{3}} gefragt. Gerade neu: {{4}} in {{5}}, {{6}}.
+> {{7}}
+> Suchen Sie noch? Antworten Sie auf diese Nachricht, und ich schlage Ihnen einen Besichtigungstermin vor.
+> {{8}} · {{9}}
+>
+> Nachricht vorbereitet vom Assistenten von {{9}}. Wenn Sie keine Nachrichten mehr möchten, antworten Sie mit STOP.
+
+#### Version S, without a link
+
+| Variable | {{1}} | {{2}} | {{3}} | {{4}} | {{5}} | {{6}} | {{7}} | {{8}} |
+|---|---|---|---|---|---|---|---|---|
+| Content | name | month | search | type | area | price | agent | agency |
+
+Without a link the client cannot look anything up. So the invitation offers the details in the conversation; it does not add any fact.
+
+**ES**
+
+> Hola, {{1}}. En {{2}} nos preguntaste por {{3}}. Acaba de entrar: {{4}} en {{5}}, {{6}}.
+> ¿Sigues buscando? Contesta a este mensaje y te cuento los detalles o te propongo un día para verlo.
+> {{7}} · {{8}}
+>
+> Mensaje preparado por el asistente de {{8}}. Si no quieres recibir más, responde BAJA.
+
+**EN**
+
+> Hi {{1}}. In {{2}} you asked us about {{3}}. This has just come in: {{4}} in {{5}}, {{6}}.
+> Still looking? Reply to this message and I'll tell you more or suggest a day to see it.
+> {{7}} · {{8}}
+>
+> Message prepared by {{8}}'s assistant. To stop receiving these, reply STOP.
+
+**DE**
+
+> Hallo {{1}}, im {{2}} haben Sie uns nach {{3}} gefragt. Gerade neu: {{4}} in {{5}}, {{6}}.
+> Suchen Sie noch? Antworten Sie auf diese Nachricht, dann erzähle ich Ihnen mehr dazu oder schlage Ihnen einen Besichtigungstermin vor.
+> {{7}} · {{8}}
+>
+> Nachricht vorbereitet vom Assistenten von {{8}}. Wenn Sie keine Nachrichten mehr möchten, antworten Sie mit STOP.
+
+**Notes:**
+- **"te cuento los detalles" / "I'll tell you more" / "erzähle ich Ihnen mehr"** is the agent's offer, not a statement about the listing. What the agent tells then is the agency's matter.
+- **The variables are numbered differently in the two versions** (agent and agency are {{8}}/{{9}} in L and {{7}}/{{8}} in S). API must map them separately for each template.
+
+### 4.3 Open after this addendum
+
+The O-list of §3 stays. New:
+
+| # | Who | Question |
+|---|---|---|
+| O-9 | API | which version, L or S, goes to Meta (or both as two templates) |
+| O-10 | PM | the rule "only really new listings" (point 1), in writing, so the sentence "Acaba de entrar" is backed |
