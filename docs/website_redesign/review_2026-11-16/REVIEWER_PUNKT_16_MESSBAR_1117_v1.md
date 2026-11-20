@@ -382,3 +382,68 @@ endgültige Freigabe am gebauten Stand. **Damit sind meine beiden offenen Sätze
 Tagesgeschichte und die Kollision zwischen der 21 und dem neuen Abschnitt. Es kam **über Redesign**
 zu mir, nicht von Ihnen an mich; ich messe danach und schreibe die Herkunft dazu, damit niemand
 später eine Fassung für meine Erfindung hält.
+
+---
+
+## Punkt 1 des Owners (20.11.): N-1 … N-4 am Quellcode von `5bf06f9`
+
+**Wichtig vorweg:** Meine Nachmessung von gestern Abend (`c6cc27b`) galt dem **Arbeitsbaum**, nicht
+diesem Commit. Der Owner hat recht, das getrennt zu verlangen — die beiden Stände sind **nicht**
+gleich. Ich habe darum `5bf06f9` eigens geprüft: einen getrennten Arbeitsbaum an genau diesem
+Commit angelegt, die Abhängigkeiten hineinverknüpft und dort übersetzt. Der gemeinsame
+Arbeitsbaum der anderen Spuren blieb unberührt.
+
+| Punkt | Am Quellcode von `5bf06f9` | Beleg |
+|---|---|---|
+| **N-1** Übersetzung | **JA** | `tsc --noEmit` im getrennten Arbeitsbaum: **Rückgabewert 0, keine Ausgabe**. `px` ist aus Typ, Daten und Komponente heraus |
+| **N-2** Handyzeile D-c | **JA** | `strengths.tsx:70` — `liveStations.map(s => l(s.short)).join(" · ")`, also nur laufende Stationen. Sind alle sechs an, ergibt die Verkettung Copys D-c zeichengenau |
+| **N-3** Zweig „≤ 2 aus" | **JA** | `:49` `shown = (aus > 2) ? nur laufende : alle`; `:74` Uhrzeit + „· Próximamente"; `:73` `data-day-step-live="false"` |
+| **N-4** Teilzustände | **JA** | `:20` `c.partial?.when(on)`; `:27` `data-strength-state`; Chip, Satz, Handyzeile und Beispielanzahl aus dem Teilzustand |
+| **G-m** (Copys Kriterium) | **JA** | `:32` die Marke steht in `examples.length > 0`, folgt also den Beispielzeilen genau |
+| **N-5** Großbuchstabe | **NEIN** | `git show 5bf06f9:lib/content/strengths.ts` enthält die Großschreibung **nicht** (0 Treffer). Im Arbeitsbaum ist sie behoben, kommt also mit dem festen Build |
+
+**Vier von vier behoben, N-5 noch offen — und das ist erwartbar:** N-5 habe ich erst nach
+`5bf06f9` gemeldet.
+
+### `5bf06f9` ist nicht der Stand, über den ich urteile
+
+Seit dem Build um 21:51 hat sich im Arbeitsbaum **mehr** geändert als die N-5-Zeile, und zwei
+davon verändern meine Prüfung grundlegend:
+
+| Änderung | Wirkung auf mich |
+|---|---|
+| **Fünf Schlüssel im Gate auf „soon"** (`phoneAssistant`, `instagram`, `adsLeads`, `matching`, `followup`) | Der Umschalttag ist damit **am Build sichtbar prüfbar** — nicht mehr nur auf Papier. Meine Aussage von gestern („nur Quellprüfung möglich") ist durch Ihre Entscheidung überholt, und zwar zum Besseren: ich kann Bilder liefern |
+| **`VIEW_DEFAULT = public`** | Der feste Link zeigt ohne Parameter jetzt die Gate-Sicht. Meine Skripte setzen `?view=` immer ausdrücklich, sind also unberührt — aber ich messe ab jetzt **beide** Sichten, und die öffentliche ist die, die der Besucher sieht |
+| **E-P** (Augenbraue „hace y hará") | Neues Kriterium, nach `5bf06f9` eingebaut (`data-strengths-eyebrow`, `data-strengths-soon`) |
+
+### Der eine Unterschied, der zu Ihnen gehört
+
+Ihr zweiter Satz lautet „mit dem heutigen Stand von `claims.ts`". **Das Register nennt mehr
+Funktionen „noch nicht in Produktion" als die fünf, die jetzt im Gate stehen** — zusätzlich
+`taskList`, `dailyVoice`, `weeklyEmail` und `model3d`.
+
+Mit dem Gate der fünf Schlüssel zeigt die **öffentliche** Seite also als laufend:
+
+- **T-4 „Cada mañana, el día claro"** (`taskList`, `dailyVoice`),
+- **T-6 „Tu plano, en 3D"** (`model3d`),
+- **G-d** „Cada mañana, qué oportunidades piden tu atención." (`taskList`, `dailyVoice`),
+- **Station D-1** (08:30) in der Tagesgeschichte.
+
+Nach dem Register ist keine dieser Funktionen in Produktion. Ich habe das unabhängig aus `claims.ts`
+gerechnet; Copy kommt in §3 seiner Datei `c519b2d` zum selben Ergebnis und legt die Entscheidung
+ebenfalls Ihnen vor. **Ich melde es deshalb als Unterschied, nicht als Mangel** — welche Schlüssel
+gestellt werden, ist Ihre Entscheidung, nicht meine und nicht Copys. Der Wortlaut für den anderen
+Fall liegt fertig vor; es unterscheidet sich nur der Schalter.
+
+**Was ich dazu brauche:** einen Satz von Ihnen — „die fünf" oder „nach dem Register". Beim zweiten
+Fall kommen T-4 und T-6 zusätzlich auf „Próximamente", die Tagesgeschichte zeigt nur D-3 und D-6,
+und der Wachstumsblock endet ohne G-d.
+
+### Punkt 2 und 3 des Owners
+
+Die **Tiefe messe ich erst am festen Build**, mit Link, Commit und Deployment-ID — so wie Sie es
+angeordnet haben; Redesign kündigt ihn für etwa 11:30 an, mit Abschnittszahlen für **beide**
+Sichten. Maßstab: die ganze Handyseite **≤ 21** Bildschirmhöhen, „Próximamente" nach
+`8cbe48c`/`19b5523`/`fb2e600`, der Umschalttag nach
+`checks/expected-16-switchday-8cbe48c.json`, erweitert um Copys §1 und E-P. **Danach mein Urteil
+Punkt 16 JA/NEIN an Sie**, mit den Noten Handy und Desktop und der eigenen Zeile „Verkaufsstärke".

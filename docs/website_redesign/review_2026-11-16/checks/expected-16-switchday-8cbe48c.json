@@ -4,9 +4,45 @@
  "replaces": "v2 (e851e72) §B.2 'Switch day' and the PX column of §B.3. Everything else in expected-16-e851e72.json stays valid.",
  "scope": "THE SWITCH DAY ONLY. Copy, 19.11.: 'The target view is unchanged: everything is live today.' So expected-16-e851e72.json remains the set for Friday's target-view measurement; this file is the set for the go-live check.",
  "reachability": {
-  "publicGate": "all 33 keys are 'live' today (lib/claims.ts), so publicShowsAll() is true and public = target",
-  "previewSwitch": "components/site/preview-switch.tsx offers only view and display - there is NO per-key switch in the browser",
-  "consequence": "the switch-day form CANNOT be measured in the browser on this build. It is checked as strings in lib/content/strengths.ts plus the rendering rule in components/home/strengths.tsx. One browser proof is possible only if Redesign adds a way to force a key off in the preview."
+  "supersededOn": "2026-11-20 - by the owner's decision, not by an error of mine",
+  "wasTrueOn1119": "all 33 keys were 'live', so publicShowsAll() was true and public = target; the preview switches offer only view and display, so the off-states could not be reached from the browser and I said the check would be on paper",
+  "nowTrue": "the owner, 20.11.: five keys stand on 'soon' in publicGate - phoneAssistant, instagram, adsLeads, matching, followup - and VIEW_DEFAULT is 'public' (lib/view-query.ts), so the fixed link shows the gate view without a parameter while ?view=target still shows the finished product",
+  "consequence": "the switch-day form IS now visibly measurable on the build, with pictures. I measure BOTH views. My scripts always set ?view= explicitly, so none of them needed changing."
+ },
+ "actualGate": {
+  "source": "docs/website_redesign/mail/COPY_TO_REDESIGN_1120_PROXIMAMENTE_v1.md (c519b2d) §1, for exactly the gate Redesign builds",
+  "soonKeys": ["phoneAssistant", "instagram", "adsLeads", "matching", "followup"],
+  "allOtherKeysLive": "including taskList, dailyVoice and model3d",
+  "expected": {
+   "hero": "H-subP (followup and matching off)",
+   "g1": "P-1, all off - title, sentence and phone line stay; examples and G-m hidden; chip 'Próximamente · Desde Growth · redes sociales en Enterprise' / 'Coming soon · From Growth · social media on Enterprise'",
+   "g2": "P-1 - chip 'Próximamente · Desde Growth' / 'Coming soon · From Growth'",
+   "g3": "partial, BOTH parts off - chip 'Desde Growth · en parte próximamente'; sentence 'Responde al momento y aclara qué busca cada cliente. Proponerle inmuebles que encajan y hacer seguimiento, con su permiso: próximamente.'; phone 'Cada interesado, respondido al momento.'; example line 1 only, WITH G-m",
+   "g3_en": "chip 'From Growth · partly coming soon'; sentence 'It replies at once and finds out what each client is looking for. Suggesting listings that fit and following up, with their permission: coming soon.'; phone 'Every lead, answered at once.'",
+   "gd": "unchanged (taskList, dailyVoice live)",
+   "t2": "P-1 - chip 'Próximamente · Desde Growth' / 'Coming soon · From Growth'",
+   "t4_t6_t8": "unchanged",
+   "dayDesktop": "three stations off (D-2, D-4, D-5), so more than two: ONLY D-1, D-3, D-6 are shown, with their v2 sentences",
+   "dayPhoneDc": "'08:30 tu día · 13:20 aviso · 23:40 respuesta de noche' / '08:30 your day · 13:20 notice · 23:40 a night-time reply'"
+  },
+  "note": "G-3 lands on the bothOff case, so N-5's capital rule is NOT exercised by this gate. It becomes reachable only once matching goes live before followup. The fix is in all the same."
+ },
+ "E-P": {
+  "rule": "as soon as ONE card of the section is 'Próximamente' or partial, the section's eyebrow reads 'Todo lo que hace y hará por tu agencia' / 'Everything it does, and will do, for your agency'; with the five-key gate that is the case",
+  "why": "'Todo lo que hace' in the present tense above cards marked Próximamente says those functions work today",
+  "ghStays": "G-h, the main statement, is unchanged - it names a goal, not a function, and the cards below carry the state in their chip. Only the owner can ask for the heading itself to be marked.",
+  "source": "Copy c519b2d §2",
+  "buildState": "implemented after 5bf06f9: data-strengths-eyebrow, data-strengths-soon, w.eyebrowSoon",
+  "criterion": "at 390 and 1440, in the gate view, the eyebrow reads the 'hace y hará' wording and data-strengths-soon=\"true\"; in the target view the plain wording and \"false\""
+ },
+ "ownersDifference": {
+  "finding": "the owner's words were 'mit dem heutigen Stand von claims.ts', but the register lists MORE keys of this section as not in production than the five now in the gate: also taskList, dailyVoice, weeklyEmail and model3d (plus webform in the demo)",
+  "soWithTheFiveKeyGateThePublicPageShowsAsLive": ["T-4 'Cada mañana, el día claro' (taskList, dailyVoice)", "T-6 'Tu plano, en 3D' (model3d)", "G-d 'Cada mañana, qué oportunidades piden tu atención.' (taskList, dailyVoice)", "station D-1 at 08:30 (taskList, dailyVoice)"],
+  "registerSays": "none of those is in production",
+  "foundIndependently": "computed from claims.ts by me; Copy reaches the same result in §3 of c519b2d and also puts it to the owner",
+  "howIReportIt": "as a DIFFERENCE for the owner, not as a fail - which keys are switched is his decision. T-8 is unaffected because Copy reduced it to reportInLogin, which IS in production.",
+  "ifTheRegisterIsFollowedInFull": ["T-4 and T-6 are also Próximamente", "the day shows only D-3 and D-6", "the growth block ends without G-d"],
+  "needFromTheOwner": "one sentence: 'the five' or 'per the register'"
  },
  "P-1": {
   "applies": "a card whose keys are ALL off, and any partial state other than the two in P-2",
