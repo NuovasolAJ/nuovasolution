@@ -1,0 +1,390 @@
+{
+ "390": {
+  "cards": [
+   {
+    "key": "g1",
+    "state": "soon",
+    "chip": {
+     "w": 318,
+     "h": 42,
+     "area": 13356,
+     "fontSize": 12,
+     "weight": "600",
+     "bg": "rgb(14, 14, 15)",
+     "color": "rgb(248, 248, 249)",
+     "text": "Próximamente · Desde Growth · redes sociales en Enterprise"
+    },
+    "title": {
+     "w": 358,
+     "h": 30,
+     "area": 10740,
+     "fontSize": 20,
+     "weight": "600",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(14, 14, 15)",
+     "text": "Gana nuevos clientes"
+    },
+    "chipOverTitleArea": 1.24,
+    "chipFirst": true,
+    "chipLines": 2
+   },
+   {
+    "key": "g2",
+    "state": "soon",
+    "chip": {
+     "w": 202,
+     "h": 24,
+     "area": 4849,
+     "fontSize": 12,
+     "weight": "600",
+     "bg": "rgb(14, 14, 15)",
+     "color": "rgb(248, 248, 249)",
+     "text": "Próximamente · Desde Growth"
+    },
+    "title": {
+     "w": 358,
+     "h": 30,
+     "area": 10740,
+     "fontSize": 20,
+     "weight": "600",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(14, 14, 15)",
+     "text": "Reactiva tus contactos"
+    },
+    "chipOverTitleArea": 0.45,
+    "chipFirst": true,
+    "chipLines": 1
+   },
+   {
+    "key": "g3",
+    "state": "partial",
+    "chip": {
+     "w": 255,
+     "h": 24,
+     "area": 6123,
+     "fontSize": 12,
+     "weight": "600",
+     "bg": "rgb(14, 14, 15)",
+     "color": "rgb(248, 248, 249)",
+     "text": "Desde Growth · en parte próximamente"
+    },
+    "title": {
+     "w": 358,
+     "h": 30,
+     "area": 10740,
+     "fontSize": 20,
+     "weight": "600",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(14, 14, 15)",
+     "text": "Del interés a la oportunidad"
+    },
+    "chipOverTitleArea": 0.57,
+    "chipFirst": true,
+    "chipLines": 1
+   },
+   {
+    "key": "t2",
+    "state": "soon",
+    "chip": {
+     "w": 202,
+     "h": 24,
+     "area": 4849,
+     "fontSize": 12,
+     "weight": "600",
+     "bg": "rgb(14, 14, 15)",
+     "color": "rgb(248, 248, 249)",
+     "text": "Próximamente · Desde Growth"
+    },
+    "title": {
+     "w": 358,
+     "h": 30,
+     "area": 10740,
+     "fontSize": 20,
+     "weight": "600",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(14, 14, 15)",
+     "text": "Atiende el teléfono por ti"
+    },
+    "chipOverTitleArea": 0.45,
+    "chipFirst": true,
+    "chipLines": 1
+   },
+   {
+    "key": "t4",
+    "state": "live",
+    "chip": {
+     "w": 105,
+     "h": 24,
+     "area": 2523,
+     "fontSize": 12,
+     "weight": "600",
+     "bg": "rgb(244, 244, 246)",
+     "color": "rgb(69, 69, 74)",
+     "text": "Desde Growth"
+    },
+    "title": {
+     "w": 358,
+     "h": 30,
+     "area": 10740,
+     "fontSize": 20,
+     "weight": "600",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(14, 14, 15)",
+     "text": "Cada mañana, el día claro"
+    },
+    "chipOverTitleArea": 0.23,
+    "chipFirst": true,
+    "chipLines": 1
+   },
+   {
+    "key": "t8",
+    "state": "live",
+    "chip": {
+     "w": 121,
+     "h": 24,
+     "area": 2908,
+     "fontSize": 12,
+     "weight": "600",
+     "bg": "rgb(244, 244, 246)",
+     "color": "rgb(69, 69, 74)",
+     "text": "Todos los planes"
+    },
+    "title": {
+     "w": 358,
+     "h": 30,
+     "area": 10740,
+     "fontSize": 20,
+     "weight": "600",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(14, 14, 15)",
+     "text": "Tu semana, en un informe"
+    },
+    "chipOverTitleArea": 0.27,
+    "chipFirst": true,
+    "chipLines": 1
+   },
+   {
+    "key": "t6",
+    "state": "live",
+    "chip": {
+     "w": 192,
+     "h": 24,
+     "area": 4599,
+     "fontSize": 12,
+     "weight": "600",
+     "bg": "rgb(244, 244, 246)",
+     "color": "rgb(69, 69, 74)",
+     "text": "Opcional, con cualquier plan"
+    },
+    "title": {
+     "w": 358,
+     "h": 30,
+     "area": 10740,
+     "fontSize": 20,
+     "weight": "600",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(14, 14, 15)",
+     "text": "Tu plano, en 3D"
+    },
+    "chipOverTitleArea": 0.43,
+    "chipFirst": true,
+    "chipLines": 1
+   }
+  ],
+  "soon": "true"
+ },
+ "1440": {
+  "cards": [
+   {
+    "key": "g1",
+    "state": "soon",
+    "chip": {
+     "w": 347,
+     "h": 42,
+     "area": 14560,
+     "fontSize": 12,
+     "weight": "600",
+     "bg": "rgb(14, 14, 15)",
+     "color": "rgb(248, 248, 249)",
+     "text": "Próximamente · Desde Growth · redes sociales en Enterprise"
+    },
+    "title": {
+     "w": 387,
+     "h": 30,
+     "area": 11600,
+     "fontSize": 20,
+     "weight": "600",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(14, 14, 15)",
+     "text": "Gana nuevos clientes"
+    },
+    "chipOverTitleArea": 1.26,
+    "chipFirst": true,
+    "chipLines": 2
+   },
+   {
+    "key": "g2",
+    "state": "soon",
+    "chip": {
+     "w": 202,
+     "h": 24,
+     "area": 4849,
+     "fontSize": 12,
+     "weight": "600",
+     "bg": "rgb(14, 14, 15)",
+     "color": "rgb(248, 248, 249)",
+     "text": "Próximamente · Desde Growth"
+    },
+    "title": {
+     "w": 387,
+     "h": 30,
+     "area": 11600,
+     "fontSize": 20,
+     "weight": "600",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(14, 14, 15)",
+     "text": "Reactiva tus contactos"
+    },
+    "chipOverTitleArea": 0.42,
+    "chipFirst": true,
+    "chipLines": 1
+   },
+   {
+    "key": "g3",
+    "state": "partial",
+    "chip": {
+     "w": 255,
+     "h": 24,
+     "area": 6123,
+     "fontSize": 12,
+     "weight": "600",
+     "bg": "rgb(14, 14, 15)",
+     "color": "rgb(248, 248, 249)",
+     "text": "Desde Growth · en parte próximamente"
+    },
+    "title": {
+     "w": 387,
+     "h": 30,
+     "area": 11600,
+     "fontSize": 20,
+     "weight": "600",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(14, 14, 15)",
+     "text": "Del interés a la oportunidad"
+    },
+    "chipOverTitleArea": 0.53,
+    "chipFirst": true,
+    "chipLines": 1
+   },
+   {
+    "key": "t2",
+    "state": "soon",
+    "chip": {
+     "w": 202,
+     "h": 24,
+     "area": 4849,
+     "fontSize": 12,
+     "weight": "600",
+     "bg": "rgb(14, 14, 15)",
+     "color": "rgb(248, 248, 249)",
+     "text": "Próximamente · Desde Growth"
+    },
+    "title": {
+     "w": 285,
+     "h": 30,
+     "area": 8550,
+     "fontSize": 20,
+     "weight": "600",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(14, 14, 15)",
+     "text": "Atiende el teléfono por ti"
+    },
+    "chipOverTitleArea": 0.57,
+    "chipFirst": true,
+    "chipLines": 1
+   },
+   {
+    "key": "t4",
+    "state": "live",
+    "chip": {
+     "w": 105,
+     "h": 24,
+     "area": 2523,
+     "fontSize": 12,
+     "weight": "600",
+     "bg": "rgb(244, 244, 246)",
+     "color": "rgb(69, 69, 74)",
+     "text": "Desde Growth"
+    },
+    "title": {
+     "w": 285,
+     "h": 30,
+     "area": 8550,
+     "fontSize": 20,
+     "weight": "600",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(14, 14, 15)",
+     "text": "Cada mañana, el día claro"
+    },
+    "chipOverTitleArea": 0.3,
+    "chipFirst": true,
+    "chipLines": 1
+   },
+   {
+    "key": "t8",
+    "state": "live",
+    "chip": {
+     "w": 121,
+     "h": 24,
+     "area": 2908,
+     "fontSize": 12,
+     "weight": "600",
+     "bg": "rgb(244, 244, 246)",
+     "color": "rgb(69, 69, 74)",
+     "text": "Todos los planes"
+    },
+    "title": {
+     "w": 285,
+     "h": 30,
+     "area": 8550,
+     "fontSize": 20,
+     "weight": "600",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(14, 14, 15)",
+     "text": "Tu semana, en un informe"
+    },
+    "chipOverTitleArea": 0.34,
+    "chipFirst": true,
+    "chipLines": 1
+   },
+   {
+    "key": "t6",
+    "state": "live",
+    "chip": {
+     "w": 192,
+     "h": 24,
+     "area": 4599,
+     "fontSize": 12,
+     "weight": "600",
+     "bg": "rgb(244, 244, 246)",
+     "color": "rgb(69, 69, 74)",
+     "text": "Opcional, con cualquier plan"
+    },
+    "title": {
+     "w": 285,
+     "h": 30,
+     "area": 8550,
+     "fontSize": 20,
+     "weight": "600",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(14, 14, 15)",
+     "text": "Tu plano, en 3D"
+    },
+    "chipOverTitleArea": 0.54,
+    "chipFirst": true,
+    "chipLines": 1
+   }
+  ],
+  "soon": "true"
+ }
+}

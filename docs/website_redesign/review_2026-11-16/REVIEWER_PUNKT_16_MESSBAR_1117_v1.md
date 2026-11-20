@@ -523,3 +523,85 @@ benannt — ich prüfe alle fünf, nicht nur die zwei, die Redesign ankündigt:
 | 3 die Marke sitzt nie auf einem Satz, der die Funktion als heute laufend behauptet | je Schlüssel auf „soon": kein Satz in der PX-freien Fassung. Für `phoneAssistant` namentlich die FAQ „¿Atiende llamadas?" → „Todavía no. Llamadas: próximamente." |
 | 4 Paketzeile | Zeile in **beiden** Sichten vorhanden, Zelle zeigt das Wort, **kein** Häkchen und **kein** Strich; Legende trägt „Próximamente: aún no activo" |
 | 5 Demo-Reiter | „Teléfono" bleibt **spielbar** und trägt die Marke. **Zusätzlich** prüfe ich Regel 3 **im gespielten Inhalt**: wer den Reiter antippt, darf dort keinen Satz lesen, der die Funktion als laufend behauptet. Die Marke am Reiter allein genügt nach Regel 3 ausdrücklich nicht |
+
+---
+
+## Zwischenmessung am Build `deb4a40` (20.11., 09:0x) — Inhalt: 396 von 396
+
+Der Alias lieferte `deb4a40` (`dpl_AnbhqXLhgX7hzWwXLATBDc3trvVt`), und ich habe den Abschnitt
+gemessen, bevor der nächste Commit kam: **beide Sichten, 390 und 1440, Spanisch und Englisch** —
+acht Seitenaufrufe, jeder mit der eingeschwungenen Traversierung.
+
+**Ergebnis: 396 Prüfungen, 396 bestanden, 0 Abweichungen.** Belege:
+`checks/p16a-deb4a40.json`, `checks/p16a-result-deb4a40.txt`, Skripte `checks/p16a.mjs` und
+`checks/cmp16.mjs`, dazu vier Bilder `checks/p16-deb4a40-es-*.png`.
+
+Darin enthalten: E-P in beiden Sichten (Augenbraue „hace y hará" mit `data-strengths-soon="true"`
+im Gate, die schlichte Fassung in der Zielsicht), G-h unverändert, alle sieben Karten mit Zustand
+und Chip wortgenau, P-1 (Titel, Satz und Handyzeile bleiben, Beispiele und G-m verschwinden),
+G-3 im Teilzustand mit genau einer Beispielzeile und erhaltener Marke, Fassung A (D-c am Handy,
+0 Stationen; am Desktop 6 Stationen in der Zielsicht, **3** im Gate — genau 08:30, 13:20, 23:40),
+Nullstellen für `{precio}` und die beiden Preissätze, und die vier verbotenen Kartentitel.
+
+### Eine Korrektur an mir selbst, bevor jemand die Zahl falsch liest
+
+Mein erster Lauf meldete **44 Abweichungen — alle bei 390, alle „Beispielzeilen fehlen"**. Das war
+**mein** Fehler, nicht der des Builds: `app/globals.css:2003` blendet bei ≤ 639 px `.ch-line`,
+`.ch-examples` und `.ch-mark` aus und zeigt stattdessen `.ch-core`. Die Beispielzeilen und die
+Marke sind also **ein Desktop-Element** und können am Handy in keinem Zustand erwartet werden.
+Erwartung berichtigt, erneut verglichen: 396/396. Ohne diese Prüfung hätte ich Redesign 44
+Mängel gemeldet, die keine sind.
+
+### Was daraus folgt, und es ist kein Mangel, sondern ein Hinweis
+
+**Am Handy ist der Chip das einzige Zustandssignal.** Die Karte zeigt dort in jedem Zustand nur
+Titel und Handyzeile; dass Beispiele fehlen, sieht man nicht, weil sie auch bei laufender Funktion
+fehlen. Ob eine Funktion läuft oder „Próximamente" ist, hängt damit **allein** am Chip. Redesigns
+CSS-Nachbesserung in `deb4a40` — der Chip stand hell auf hell, weil die Grundregel die Markenregel
+überschrieb — war deshalb wichtiger, als sie aussieht. Im Bild steht er jetzt dunkel mit weißer
+Schrift.
+
+### Eine Vermutung aus dem Bild, nachgemessen — und sie trifft nur eine Karte
+
+Auf dem Bild wirkte der schwarze Chip wuchtiger als der Kartentitel, und drei Karten
+hintereinander lasen sich als „noch nichts davon geht". **Gemessen** (`checks/weight.mjs`,
+`checks/weight-deb4a40.json`) hält das nur für **eine** Karte:
+
+| Karte | Chipfläche ÷ Titelfläche (390 · 1440) | Zeilen im Chip |
+|---|---|---|
+| **G-1** | **1,24 · 1,26** | **2** |
+| G-3 | 0,57 · 0,53 | 1 |
+| G-2, T-2 | 0,45 · 0,42–0,57 | 1 |
+| T-6 | 0,43 · 0,54 | 1 |
+| T-8, T-4 | 0,23–0,34 | 1 |
+
+Die Chipschrift ist überall **12 px** gegen **20 px** im Titel — als Beschriftung also klar
+untergeordnet. Nur **G-1** überholt den Titel, und zwar nicht wegen der Markierung, sondern weil
+sein Chip **drei** Teile trägt („Próximamente · Desde Growth · redes sociales en Enterprise") und
+dadurch auf zwei Zeilen umbricht: 318 × 42 px bei 390. **Das ist kein Regelverstoß** — Copys
+Wortlaut ist richtig, und die Marke gehört nach vorn. Es ist eine Frage der Verkaufsstärke, und
+die Behebung wäre eine Verkürzung des Aus-Chips bei G-1 (Copys Wort) oder eine einzeilige
+Führung (Redesigns Wort). Ich führe es in der Zeile „Verkaufsstärke", nicht in der Technik.
+
+**Ich sage ausdrücklich dazu:** Meine Vermutung aus dem Bild war zu weit gefasst. Nachgemessen
+blieb von „die Chips erdrücken die Karten" genau eine Karte übrig. Hätte ich das Bild allein
+berichtet, wäre es eine falsche Rüge gewesen.
+
+### `deb4a40` ist nicht mehr der zu benotende Stand
+
+Drei Dinge sind seither dazugekommen — die Zwischenmessung bleibt trotzdem gültig, weil die
+geprüften Karten G-1, G-2, G-3 und T-2 an Ihren fünf Schlüsseln hängen, und die bleiben
+„Próximamente":
+
+1. **Mein Kriterium hat vor der Messung einen echten Fehler gefunden.** Redesign berichtet: bei
+   390 ragte die Marke am Demo-Reiter „Teléfono" über den rechten Rand (Marke bis 365 px, Reiter
+   bis 349 px, `overflow:hidden`) — **abgeschnitten, ausgewählt wie unausgewählt**. Behoben, der
+   Reiter bricht am Handy um. Genau deshalb hatte ich „die Marke muss beim Abspielen sichtbar
+   bleiben" als Prüfpunkt aufgenommen.
+2. **Ihre Entscheidung von 09:05** stellt `whatsappOwnNumber` und `alert` auf „Próximamente",
+   blendet `otherLanguages` in beiden Sichten aus und gibt Gruppe C an API.
+3. **APIs Abgleich bis 13:00** entscheidet über die zehn — davon hängen T-4 und T-6 ab.
+
+Redesigns lokale Tiefenzahlen (Gate 17 148 px = **20,3**, Zielsicht 17 303 px = **20,5**, je ohne
+Möblierung 0,2 weniger) nehme ich **als Ankündigung**, nicht als Befund. Gemessen wird am festen
+Build, von mir, nach meinem Verfahren.

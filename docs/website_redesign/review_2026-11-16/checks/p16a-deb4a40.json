@@ -1,0 +1,1474 @@
+{
+ "tag": "deb4a40",
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "build": {
+  "commit": "deb4a40d75830b38d2dadf7579393c9d0401d538",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_AnbhqXLhgX7hzWwXLATBDc3trvVt",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "runs": {
+  "es-target-390": {
+   "traversal": {
+    "steps": 29,
+    "h": 17303
+   },
+   "sectionFound": true,
+   "soonFlag": "false",
+   "eyebrow": "Todo lo que hace por tu agencia",
+   "h2": "Nuevos clientes. Contactos que vuelven. Más oportunidades para tu agencia.",
+   "afterGrowth": "Cada mañana, qué oportunidades piden tu atención.",
+   "cards": [
+    {
+     "key": "g1",
+     "state": "live",
+     "chip": "Desde Growth · redes sociales en Enterprise",
+     "chipState": "live",
+     "title": "Gana nuevos clientes",
+     "line": "Tus publicaciones, anuncios y formularios atraen a compradores y a propietarios que quieren vender. Cada comentario o mensaje directo se convierte en una consulta con su ficha.",
+     "linePainted": false,
+     "phone": "De un comentario a una consulta.",
+     "phonePainted": true,
+     "examples": [
+      "Formulario de tu anuncio «¿Cuánto vale tu casa?»: Isabel, casa en Mijas",
+      "Respuesta al momento y una pregunta: «¿Cuántos metros tiene, más o menos?»",
+      "Ficha nueva: propietaria · Mijas · quiere vender · pide valoración"
+     ],
+     "examplesPainted": 0,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": false
+    },
+    {
+     "key": "g2",
+     "state": "live",
+     "chip": "Desde Growth",
+     "chipState": "live",
+     "title": "Reactiva tus contactos",
+     "line": "Cuando entra un inmueble que encaja o hay un motivo nuevo, volvemos a escribir a tus antiguos interesados y clientes, con su permiso.",
+     "linePainted": false,
+     "phone": "Tus contactos de siempre, otra vez activos.",
+     "phonePainted": true,
+     "examples": [
+      "Javier escribió en marzo: ático en Benalmádena, hasta 280.000 €",
+      "Hoy entra un ático en Benalmádena, 275.000 €",
+      "Le escribimos, con su permiso: «¿Sigues buscando?» · Javier: «Sí, ¿cuándo puedo verlo?»"
+     ],
+     "examplesPainted": 0,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": false
+    },
+    {
+     "key": "g3",
+     "state": "live",
+     "chip": "Desde Growth",
+     "chipState": "live",
+     "title": "Del interés a la oportunidad",
+     "line": "Responde, aclara qué busca cada cliente, le propone inmuebles que encajan y, con su permiso, hace seguimiento.",
+     "linePainted": false,
+     "phone": "Cada interesado, con su siguiente paso.",
+     "phonePainted": true,
+     "examples": [
+      "Laura pregunta por un piso en Estepona · respuesta al momento y una pregunta",
+      "Le proponemos 2 pisos que encajan: 2 dormitorios, hasta 320.000 €",
+      "No contesta en dos días · seguimiento con su permiso · pide visita"
+     ],
+     "examplesPainted": 0,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": false
+    },
+    {
+     "key": "t2",
+     "state": "live",
+     "chip": "Desde Growth",
+     "chipState": "live",
+     "title": "Atiende el teléfono por ti",
+     "line": "Cuando estás en una visita, el asistente coge la llamada, anota qué busca y te deja la tarea.",
+     "linePainted": false,
+     "phone": "Ninguna llamada perdida en una visita.",
+     "phonePainted": true,
+     "examples": [
+      "11:39 · Álvaro llama · estás en una visita",
+      "Atendida · la villa de Elviria, precio y margen",
+      "Tarea: devolver la llamada a partir de las 16:00"
+     ],
+     "examplesPainted": 0,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": false
+    },
+    {
+     "key": "t4",
+     "state": "live",
+     "chip": "Desde Growth",
+     "chipState": "live",
+     "title": "Cada mañana, el día claro",
+     "line": "Cada mañana, cada persona del equipo sabe qué tiene que hacer hoy y con quién.",
+     "linePainted": false,
+     "phone": "Tu día, ordenado a las 8:30.",
+     "phonePainted": true,
+     "examples": [
+      "08:30 · Buenos días, Marta. Hoy, 3 cosas:",
+      "Proponer fecha a los Keller · Devolver la llamada a Álvaro, desde las 16:00",
+      "Enviar a Sofía lo disponible en alquiler"
+     ],
+     "examplesPainted": 0,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": false
+    },
+    {
+     "key": "t8",
+     "state": "live",
+     "chip": "Todos los planes",
+     "chipState": "live",
+     "title": "Tu semana, en un informe",
+     "line": "Cada lunes ves qué entró, qué sigue abierto y qué hacer esta semana.",
+     "linePainted": false,
+     "phone": "Qué entró y qué hacer.",
+     "phonePainted": true,
+     "examples": [
+      "Lunes 08:00 · 25 consultas, 25 respondidas",
+      "9 con la oficina cerrada · 4 visitas acordadas",
+      "Esta semana: proponer fecha a las 2 visitas pendientes"
+     ],
+     "examplesPainted": 0,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": false
+    },
+    {
+     "key": "t6",
+     "state": "live",
+     "chip": "Opcional, con cualquier plan",
+     "chipState": "live",
+     "title": "Tu plano, en 3D",
+     "line": "Convertimos tu plano en un modelo 3D, vacío y amueblado, con imágenes para tus anuncios.",
+     "linePainted": false,
+     "phone": "Del plano a imágenes de anuncio.",
+     "phonePainted": true,
+     "examples": [
+      "Plano: plano-estepona.pdf",
+      "Modelo vacío y amueblado",
+      "Imágenes para anuncios y redes · marcadas como visualización"
+     ],
+     "examplesPainted": 0,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": false
+    }
+   ],
+   "dayForm": "A",
+   "dayTitle": "Un día con NuovaSolution",
+   "dayLine": "Mientras enseñas, NuovaSolution atiende.",
+   "compact": "08:30 tu día · 11:39 llamada atendida · 13:20 aviso · 16:00 piso que encaja · 18:00 seguimiento · 23:40 respuesta de noche",
+   "compactPainted": true,
+   "stations": [
+    {
+     "time": "08:30",
+     "live": "true",
+     "text": "Marta abre su resumen: sabe qué toca hoy y con quién.",
+     "timeText": "08:30",
+     "painted": false
+    },
+    {
+     "time": "11:39",
+     "live": "true",
+     "text": "Marta está en una visita; el asistente atiende la llamada de Álvaro y le deja la tarea.",
+     "timeText": "11:39",
+     "painted": false
+    },
+    {
+     "time": "13:20",
+     "live": "true",
+     "text": "Nadie ha cogido la visita de Laura: Carlos recibe el aviso y la coge.",
+     "timeText": "13:20",
+     "painted": false
+    },
+    {
+     "time": "16:00",
+     "live": "true",
+     "text": "Entra un piso nuevo en Estepona: encaja con Laura y su publicación para redes espera tu visto bueno.",
+     "timeText": "16:00",
+     "painted": false
+    },
+    {
+     "time": "18:00",
+     "live": "true",
+     "text": "Sofía no ha contestado: recibe un seguimiento, con su permiso.",
+     "timeText": "18:00",
+     "painted": false
+    },
+    {
+     "time": "23:40",
+     "live": "true",
+     "text": "Llega una consulta con la oficina cerrada: respuesta al momento, y mañana a las 8:30 está en tu resumen.",
+     "timeText": "23:40",
+     "painted": false
+    }
+   ],
+   "stationsPainted": 0,
+   "dayMark": "Ejemplo · nombres ficticios",
+   "heroSub": "NuovaSolution capta clientes, responde consultas y hace seguimiento. Reactiva contactos, propone inmuebles y te muestra qué merece tu atención, para que tu negocio avance sin que todo dependa de ti.",
+   "bodyChars": 256195,
+   "bodySha256": "26f9b9023fc81677"
+  },
+  "es-target-1440": {
+   "traversal": {
+    "steps": 24,
+    "h": 14269
+   },
+   "sectionFound": true,
+   "soonFlag": "false",
+   "eyebrow": "Todo lo que hace por tu agencia",
+   "h2": "Nuevos clientes. Contactos que vuelven. Más oportunidades para tu agencia.",
+   "afterGrowth": "Cada mañana, qué oportunidades piden tu atención.",
+   "cards": [
+    {
+     "key": "g1",
+     "state": "live",
+     "chip": "Desde Growth · redes sociales en Enterprise",
+     "chipState": "live",
+     "title": "Gana nuevos clientes",
+     "line": "Tus publicaciones, anuncios y formularios atraen a compradores y a propietarios que quieren vender. Cada comentario o mensaje directo se convierte en una consulta con su ficha.",
+     "linePainted": true,
+     "phone": "De un comentario a una consulta.",
+     "phonePainted": false,
+     "examples": [
+      "Formulario de tu anuncio «¿Cuánto vale tu casa?»: Isabel, casa en Mijas",
+      "Respuesta al momento y una pregunta: «¿Cuántos metros tiene, más o menos?»",
+      "Ficha nueva: propietaria · Mijas · quiere vender · pide valoración"
+     ],
+     "examplesPainted": 3,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": true
+    },
+    {
+     "key": "g2",
+     "state": "live",
+     "chip": "Desde Growth",
+     "chipState": "live",
+     "title": "Reactiva tus contactos",
+     "line": "Cuando entra un inmueble que encaja o hay un motivo nuevo, volvemos a escribir a tus antiguos interesados y clientes, con su permiso.",
+     "linePainted": true,
+     "phone": "Tus contactos de siempre, otra vez activos.",
+     "phonePainted": false,
+     "examples": [
+      "Javier escribió en marzo: ático en Benalmádena, hasta 280.000 €",
+      "Hoy entra un ático en Benalmádena, 275.000 €",
+      "Le escribimos, con su permiso: «¿Sigues buscando?» · Javier: «Sí, ¿cuándo puedo verlo?»"
+     ],
+     "examplesPainted": 3,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": true
+    },
+    {
+     "key": "g3",
+     "state": "live",
+     "chip": "Desde Growth",
+     "chipState": "live",
+     "title": "Del interés a la oportunidad",
+     "line": "Responde, aclara qué busca cada cliente, le propone inmuebles que encajan y, con su permiso, hace seguimiento.",
+     "linePainted": true,
+     "phone": "Cada interesado, con su siguiente paso.",
+     "phonePainted": false,
+     "examples": [
+      "Laura pregunta por un piso en Estepona · respuesta al momento y una pregunta",
+      "Le proponemos 2 pisos que encajan: 2 dormitorios, hasta 320.000 €",
+      "No contesta en dos días · seguimiento con su permiso · pide visita"
+     ],
+     "examplesPainted": 3,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": true
+    },
+    {
+     "key": "t2",
+     "state": "live",
+     "chip": "Desde Growth",
+     "chipState": "live",
+     "title": "Atiende el teléfono por ti",
+     "line": "Cuando estás en una visita, el asistente coge la llamada, anota qué busca y te deja la tarea.",
+     "linePainted": true,
+     "phone": "Ninguna llamada perdida en una visita.",
+     "phonePainted": false,
+     "examples": [
+      "11:39 · Álvaro llama · estás en una visita",
+      "Atendida · la villa de Elviria, precio y margen",
+      "Tarea: devolver la llamada a partir de las 16:00"
+     ],
+     "examplesPainted": 3,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": true
+    },
+    {
+     "key": "t4",
+     "state": "live",
+     "chip": "Desde Growth",
+     "chipState": "live",
+     "title": "Cada mañana, el día claro",
+     "line": "Cada mañana, cada persona del equipo sabe qué tiene que hacer hoy y con quién.",
+     "linePainted": true,
+     "phone": "Tu día, ordenado a las 8:30.",
+     "phonePainted": false,
+     "examples": [
+      "08:30 · Buenos días, Marta. Hoy, 3 cosas:",
+      "Proponer fecha a los Keller · Devolver la llamada a Álvaro, desde las 16:00",
+      "Enviar a Sofía lo disponible en alquiler"
+     ],
+     "examplesPainted": 3,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": true
+    },
+    {
+     "key": "t8",
+     "state": "live",
+     "chip": "Todos los planes",
+     "chipState": "live",
+     "title": "Tu semana, en un informe",
+     "line": "Cada lunes ves qué entró, qué sigue abierto y qué hacer esta semana.",
+     "linePainted": true,
+     "phone": "Qué entró y qué hacer.",
+     "phonePainted": false,
+     "examples": [
+      "Lunes 08:00 · 25 consultas, 25 respondidas",
+      "9 con la oficina cerrada · 4 visitas acordadas",
+      "Esta semana: proponer fecha a las 2 visitas pendientes"
+     ],
+     "examplesPainted": 3,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": true
+    },
+    {
+     "key": "t6",
+     "state": "live",
+     "chip": "Opcional, con cualquier plan",
+     "chipState": "live",
+     "title": "Tu plano, en 3D",
+     "line": "Convertimos tu plano en un modelo 3D, vacío y amueblado, con imágenes para tus anuncios.",
+     "linePainted": true,
+     "phone": "Del plano a imágenes de anuncio.",
+     "phonePainted": false,
+     "examples": [
+      "Plano: plano-estepona.pdf",
+      "Modelo vacío y amueblado",
+      "Imágenes para anuncios y redes · marcadas como visualización"
+     ],
+     "examplesPainted": 3,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": true
+    }
+   ],
+   "dayForm": "A",
+   "dayTitle": "Un día con NuovaSolution",
+   "dayLine": "Mientras enseñas, NuovaSolution atiende.",
+   "compact": "08:30 tu día · 11:39 llamada atendida · 13:20 aviso · 16:00 piso que encaja · 18:00 seguimiento · 23:40 respuesta de noche",
+   "compactPainted": false,
+   "stations": [
+    {
+     "time": "08:30",
+     "live": "true",
+     "text": "Marta abre su resumen: sabe qué toca hoy y con quién.",
+     "timeText": "08:30",
+     "painted": true
+    },
+    {
+     "time": "11:39",
+     "live": "true",
+     "text": "Marta está en una visita; el asistente atiende la llamada de Álvaro y le deja la tarea.",
+     "timeText": "11:39",
+     "painted": true
+    },
+    {
+     "time": "13:20",
+     "live": "true",
+     "text": "Nadie ha cogido la visita de Laura: Carlos recibe el aviso y la coge.",
+     "timeText": "13:20",
+     "painted": true
+    },
+    {
+     "time": "16:00",
+     "live": "true",
+     "text": "Entra un piso nuevo en Estepona: encaja con Laura y su publicación para redes espera tu visto bueno.",
+     "timeText": "16:00",
+     "painted": true
+    },
+    {
+     "time": "18:00",
+     "live": "true",
+     "text": "Sofía no ha contestado: recibe un seguimiento, con su permiso.",
+     "timeText": "18:00",
+     "painted": true
+    },
+    {
+     "time": "23:40",
+     "live": "true",
+     "text": "Llega una consulta con la oficina cerrada: respuesta al momento, y mañana a las 8:30 está en tu resumen.",
+     "timeText": "23:40",
+     "painted": true
+    }
+   ],
+   "stationsPainted": 6,
+   "dayMark": "Ejemplo · nombres ficticios",
+   "heroSub": "NuovaSolution capta clientes, responde consultas y hace seguimiento. Reactiva contactos, propone inmuebles y te muestra qué merece tu atención, para que tu negocio avance sin que todo dependa de ti.",
+   "bodyChars": 256197,
+   "bodySha256": "f91814abcdbd5a72"
+  },
+  "es-public-390": {
+   "traversal": {
+    "steps": 29,
+    "h": 17131
+   },
+   "sectionFound": true,
+   "soonFlag": "true",
+   "eyebrow": "Todo lo que hace y hará por tu agencia",
+   "h2": "Nuevos clientes. Contactos que vuelven. Más oportunidades para tu agencia.",
+   "afterGrowth": "Cada mañana, qué oportunidades piden tu atención.",
+   "cards": [
+    {
+     "key": "g1",
+     "state": "soon",
+     "chip": "Próximamente · Desde Growth · redes sociales en Enterprise",
+     "chipState": "soon",
+     "title": "Gana nuevos clientes",
+     "line": "Tus publicaciones, anuncios y formularios atraen a compradores y a propietarios que quieren vender. Cada comentario o mensaje directo se convierte en una consulta con su ficha.",
+     "linePainted": false,
+     "phone": "De un comentario a una consulta.",
+     "phonePainted": true,
+     "examples": [],
+     "examplesPainted": 0,
+     "mark": "",
+     "markPainted": false
+    },
+    {
+     "key": "g2",
+     "state": "soon",
+     "chip": "Próximamente · Desde Growth",
+     "chipState": "soon",
+     "title": "Reactiva tus contactos",
+     "line": "Cuando entra un inmueble que encaja o hay un motivo nuevo, volvemos a escribir a tus antiguos interesados y clientes, con su permiso.",
+     "linePainted": false,
+     "phone": "Tus contactos de siempre, otra vez activos.",
+     "phonePainted": true,
+     "examples": [],
+     "examplesPainted": 0,
+     "mark": "",
+     "markPainted": false
+    },
+    {
+     "key": "g3",
+     "state": "partial",
+     "chip": "Desde Growth · en parte próximamente",
+     "chipState": "partial",
+     "title": "Del interés a la oportunidad",
+     "line": "Responde al momento y aclara qué busca cada cliente. Proponerle inmuebles que encajan y hacer seguimiento, con su permiso: próximamente.",
+     "linePainted": false,
+     "phone": "Cada interesado, respondido al momento.",
+     "phonePainted": true,
+     "examples": [
+      "Laura pregunta por un piso en Estepona · respuesta al momento y una pregunta"
+     ],
+     "examplesPainted": 0,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": false
+    },
+    {
+     "key": "t2",
+     "state": "soon",
+     "chip": "Próximamente · Desde Growth",
+     "chipState": "soon",
+     "title": "Atiende el teléfono por ti",
+     "line": "Cuando estás en una visita, el asistente coge la llamada, anota qué busca y te deja la tarea.",
+     "linePainted": false,
+     "phone": "Ninguna llamada perdida en una visita.",
+     "phonePainted": true,
+     "examples": [],
+     "examplesPainted": 0,
+     "mark": "",
+     "markPainted": false
+    },
+    {
+     "key": "t4",
+     "state": "live",
+     "chip": "Desde Growth",
+     "chipState": "live",
+     "title": "Cada mañana, el día claro",
+     "line": "Cada mañana, cada persona del equipo sabe qué tiene que hacer hoy y con quién.",
+     "linePainted": false,
+     "phone": "Tu día, ordenado a las 8:30.",
+     "phonePainted": true,
+     "examples": [
+      "08:30 · Buenos días, Marta. Hoy, 3 cosas:",
+      "Proponer fecha a los Keller · Devolver la llamada a Álvaro, desde las 16:00",
+      "Enviar a Sofía lo disponible en alquiler"
+     ],
+     "examplesPainted": 0,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": false
+    },
+    {
+     "key": "t8",
+     "state": "live",
+     "chip": "Todos los planes",
+     "chipState": "live",
+     "title": "Tu semana, en un informe",
+     "line": "Cada lunes ves qué entró, qué sigue abierto y qué hacer esta semana.",
+     "linePainted": false,
+     "phone": "Qué entró y qué hacer.",
+     "phonePainted": true,
+     "examples": [
+      "Lunes 08:00 · 25 consultas, 25 respondidas",
+      "9 con la oficina cerrada · 4 visitas acordadas",
+      "Esta semana: proponer fecha a las 2 visitas pendientes"
+     ],
+     "examplesPainted": 0,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": false
+    },
+    {
+     "key": "t6",
+     "state": "live",
+     "chip": "Opcional, con cualquier plan",
+     "chipState": "live",
+     "title": "Tu plano, en 3D",
+     "line": "Convertimos tu plano en un modelo 3D, vacío y amueblado, con imágenes para tus anuncios.",
+     "linePainted": false,
+     "phone": "Del plano a imágenes de anuncio.",
+     "phonePainted": true,
+     "examples": [
+      "Plano: plano-estepona.pdf",
+      "Modelo vacío y amueblado",
+      "Imágenes para anuncios y redes · marcadas como visualización"
+     ],
+     "examplesPainted": 0,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": false
+    }
+   ],
+   "dayForm": "A",
+   "dayTitle": "Un día con NuovaSolution",
+   "dayLine": "Mientras enseñas, NuovaSolution atiende.",
+   "compact": "08:30 tu día · 13:20 aviso · 23:40 respuesta de noche",
+   "compactPainted": true,
+   "stations": [
+    {
+     "time": "08:30",
+     "live": "true",
+     "text": "Marta abre su resumen: sabe qué toca hoy y con quién.",
+     "timeText": "08:30",
+     "painted": false
+    },
+    {
+     "time": "13:20",
+     "live": "true",
+     "text": "Nadie ha cogido la visita de Laura: Carlos recibe el aviso y la coge.",
+     "timeText": "13:20",
+     "painted": false
+    },
+    {
+     "time": "23:40",
+     "live": "true",
+     "text": "Llega una consulta con la oficina cerrada: respuesta al momento, y mañana a las 8:30 está en tu resumen.",
+     "timeText": "23:40",
+     "painted": false
+    }
+   ],
+   "stationsPainted": 0,
+   "dayMark": "Ejemplo · nombres ficticios",
+   "heroSub": "Tus clientes reciben respuesta aunque estés en una visita, y lo que piden te espera ordenado en su ficha.",
+   "bodyChars": 237979,
+   "bodySha256": "8c911900d2aca5f0"
+  },
+  "es-public-1440": {
+   "traversal": {
+    "steps": 24,
+    "h": 13937
+   },
+   "sectionFound": true,
+   "soonFlag": "true",
+   "eyebrow": "Todo lo que hace y hará por tu agencia",
+   "h2": "Nuevos clientes. Contactos que vuelven. Más oportunidades para tu agencia.",
+   "afterGrowth": "Cada mañana, qué oportunidades piden tu atención.",
+   "cards": [
+    {
+     "key": "g1",
+     "state": "soon",
+     "chip": "Próximamente · Desde Growth · redes sociales en Enterprise",
+     "chipState": "soon",
+     "title": "Gana nuevos clientes",
+     "line": "Tus publicaciones, anuncios y formularios atraen a compradores y a propietarios que quieren vender. Cada comentario o mensaje directo se convierte en una consulta con su ficha.",
+     "linePainted": true,
+     "phone": "De un comentario a una consulta.",
+     "phonePainted": false,
+     "examples": [],
+     "examplesPainted": 0,
+     "mark": "",
+     "markPainted": false
+    },
+    {
+     "key": "g2",
+     "state": "soon",
+     "chip": "Próximamente · Desde Growth",
+     "chipState": "soon",
+     "title": "Reactiva tus contactos",
+     "line": "Cuando entra un inmueble que encaja o hay un motivo nuevo, volvemos a escribir a tus antiguos interesados y clientes, con su permiso.",
+     "linePainted": true,
+     "phone": "Tus contactos de siempre, otra vez activos.",
+     "phonePainted": false,
+     "examples": [],
+     "examplesPainted": 0,
+     "mark": "",
+     "markPainted": false
+    },
+    {
+     "key": "g3",
+     "state": "partial",
+     "chip": "Desde Growth · en parte próximamente",
+     "chipState": "partial",
+     "title": "Del interés a la oportunidad",
+     "line": "Responde al momento y aclara qué busca cada cliente. Proponerle inmuebles que encajan y hacer seguimiento, con su permiso: próximamente.",
+     "linePainted": true,
+     "phone": "Cada interesado, respondido al momento.",
+     "phonePainted": false,
+     "examples": [
+      "Laura pregunta por un piso en Estepona · respuesta al momento y una pregunta"
+     ],
+     "examplesPainted": 1,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": true
+    },
+    {
+     "key": "t2",
+     "state": "soon",
+     "chip": "Próximamente · Desde Growth",
+     "chipState": "soon",
+     "title": "Atiende el teléfono por ti",
+     "line": "Cuando estás en una visita, el asistente coge la llamada, anota qué busca y te deja la tarea.",
+     "linePainted": true,
+     "phone": "Ninguna llamada perdida en una visita.",
+     "phonePainted": false,
+     "examples": [],
+     "examplesPainted": 0,
+     "mark": "",
+     "markPainted": false
+    },
+    {
+     "key": "t4",
+     "state": "live",
+     "chip": "Desde Growth",
+     "chipState": "live",
+     "title": "Cada mañana, el día claro",
+     "line": "Cada mañana, cada persona del equipo sabe qué tiene que hacer hoy y con quién.",
+     "linePainted": true,
+     "phone": "Tu día, ordenado a las 8:30.",
+     "phonePainted": false,
+     "examples": [
+      "08:30 · Buenos días, Marta. Hoy, 3 cosas:",
+      "Proponer fecha a los Keller · Devolver la llamada a Álvaro, desde las 16:00",
+      "Enviar a Sofía lo disponible en alquiler"
+     ],
+     "examplesPainted": 3,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": true
+    },
+    {
+     "key": "t8",
+     "state": "live",
+     "chip": "Todos los planes",
+     "chipState": "live",
+     "title": "Tu semana, en un informe",
+     "line": "Cada lunes ves qué entró, qué sigue abierto y qué hacer esta semana.",
+     "linePainted": true,
+     "phone": "Qué entró y qué hacer.",
+     "phonePainted": false,
+     "examples": [
+      "Lunes 08:00 · 25 consultas, 25 respondidas",
+      "9 con la oficina cerrada · 4 visitas acordadas",
+      "Esta semana: proponer fecha a las 2 visitas pendientes"
+     ],
+     "examplesPainted": 3,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": true
+    },
+    {
+     "key": "t6",
+     "state": "live",
+     "chip": "Opcional, con cualquier plan",
+     "chipState": "live",
+     "title": "Tu plano, en 3D",
+     "line": "Convertimos tu plano en un modelo 3D, vacío y amueblado, con imágenes para tus anuncios.",
+     "linePainted": true,
+     "phone": "Del plano a imágenes de anuncio.",
+     "phonePainted": false,
+     "examples": [
+      "Plano: plano-estepona.pdf",
+      "Modelo vacío y amueblado",
+      "Imágenes para anuncios y redes · marcadas como visualización"
+     ],
+     "examplesPainted": 3,
+     "mark": "Ejemplo · datos ficticios",
+     "markPainted": true
+    }
+   ],
+   "dayForm": "A",
+   "dayTitle": "Un día con NuovaSolution",
+   "dayLine": "Mientras enseñas, NuovaSolution atiende.",
+   "compact": "08:30 tu día · 13:20 aviso · 23:40 respuesta de noche",
+   "compactPainted": false,
+   "stations": [
+    {
+     "time": "08:30",
+     "live": "true",
+     "text": "Marta abre su resumen: sabe qué toca hoy y con quién.",
+     "timeText": "08:30",
+     "painted": true
+    },
+    {
+     "time": "13:20",
+     "live": "true",
+     "text": "Nadie ha cogido la visita de Laura: Carlos recibe el aviso y la coge.",
+     "timeText": "13:20",
+     "painted": true
+    },
+    {
+     "time": "23:40",
+     "live": "true",
+     "text": "Llega una consulta con la oficina cerrada: respuesta al momento, y mañana a las 8:30 está en tu resumen.",
+     "timeText": "23:40",
+     "painted": true
+    }
+   ],
+   "stationsPainted": 3,
+   "dayMark": "Ejemplo · nombres ficticios",
+   "heroSub": "Tus clientes reciben respuesta aunque estés en una visita, y lo que piden te espera ordenado en su ficha.",
+   "bodyChars": 237981,
+   "bodySha256": "aca823df6e7e2fa5"
+  },
+  "en-target-390": {
+   "traversal": {
+    "steps": 29,
+    "h": 17209
+   },
+   "sectionFound": true,
+   "soonFlag": "false",
+   "eyebrow": "Everything it does for your agency",
+   "h2": "New clients. Contacts who come back. More opportunities for your agency.",
+   "afterGrowth": "Every morning, which opportunities need your attention.",
+   "cards": [
+    {
+     "key": "g1",
+     "state": "live",
+     "chip": "From Growth · social media on Enterprise",
+     "chipState": "live",
+     "title": "Win new clients",
+     "line": "Your posts, ads and lead forms draw in buyers and owners who want to sell. Every comment or direct message becomes an enquiry with its own record.",
+     "linePainted": false,
+     "phone": "From a comment to an enquiry.",
+     "phonePainted": true,
+     "examples": [
+      "The form on your ad \"What is your home worth?\": Isabel, house in Mijas",
+      "An instant reply and one question: \"Roughly how many square metres is it?\"",
+      "New record: owner · Mijas · wants to sell · asks for a valuation"
+     ],
+     "examplesPainted": 0,
+     "mark": "Example · fictional data",
+     "markPainted": false
+    },
+    {
+     "key": "g2",
+     "state": "live",
+     "chip": "From Growth",
+     "chipState": "live",
+     "title": "Bring contacts back",
+     "line": "When a listing that fits comes in, or there is a new reason to get in touch, we write again to your past enquirers and clients, with their permission.",
+     "linePainted": false,
+     "phone": "Your past contacts, active again.",
+     "phonePainted": true,
+     "examples": [
+      "Javier wrote in March: penthouse in Benalmádena, up to €280,000",
+      "Today a penthouse in Benalmádena comes in, €275,000",
+      "We write to him, with his permission: \"Still looking?\" · Javier: \"Yes, when can I see it?\""
+     ],
+     "examplesPainted": 0,
+     "mark": "Example · fictional data",
+     "markPainted": false
+    },
+    {
+     "key": "g3",
+     "state": "live",
+     "chip": "From Growth",
+     "chipState": "live",
+     "title": "From interest to opportunity",
+     "line": "It replies, finds out what each client is looking for, suggests listings that fit and, with their permission, follows up.",
+     "linePainted": false,
+     "phone": "Every lead, with its next step.",
+     "phonePainted": true,
+     "examples": [
+      "Laura asks about a flat in Estepona · an instant reply and one question",
+      "We suggest 2 flats that fit: 2 bedrooms, up to €320,000",
+      "No reply in two days · a follow-up with her permission · she asks for a viewing"
+     ],
+     "examplesPainted": 0,
+     "mark": "Example · fictional data",
+     "markPainted": false
+    },
+    {
+     "key": "t2",
+     "state": "live",
+     "chip": "From Growth",
+     "chipState": "live",
+     "title": "Answers the phone for you",
+     "line": "When you're at a viewing, the assistant takes the call, notes what they want and leaves you the task.",
+     "linePainted": false,
+     "phone": "No call missed during a viewing.",
+     "phonePainted": true,
+     "examples": [
+      "11:39 · Álvaro calls · you're at a viewing",
+      "Answered · the villa in Elviria, price and room to negotiate",
+      "Task: call back from 16:00"
+     ],
+     "examplesPainted": 0,
+     "mark": "Example · fictional data",
+     "markPainted": false
+    },
+    {
+     "key": "t4",
+     "state": "live",
+     "chip": "From Growth",
+     "chipState": "live",
+     "title": "Every morning, a clear day",
+     "line": "Every morning, everyone on the team knows what to do today and with whom.",
+     "linePainted": false,
+     "phone": "Your day, sorted by 8:30.",
+     "phonePainted": true,
+     "examples": [
+      "08:30 · Good morning, Marta. Today, 3 things:",
+      "Propose a date to the Kellers · Call Álvaro back, from 16:00",
+      "Send Sofía what's available to rent"
+     ],
+     "examplesPainted": 0,
+     "mark": "Example · fictional data",
+     "markPainted": false
+    },
+    {
+     "key": "t8",
+     "state": "live",
+     "chip": "Every plan",
+     "chipState": "live",
+     "title": "Your week, in one report",
+     "line": "Every Monday you see what came in, what is still open and what to do this week.",
+     "linePainted": false,
+     "phone": "What came in and what to do.",
+     "phonePainted": true,
+     "examples": [
+      "Monday 08:00 · 25 enquiries, 25 answered",
+      "9 with the office closed · 4 viewings agreed",
+      "This week: propose a date for the 2 open viewings"
+     ],
+     "examplesPainted": 0,
+     "mark": "Example · fictional data",
+     "markPainted": false
+    },
+    {
+     "key": "t6",
+     "state": "live",
+     "chip": "Optional, with any plan",
+     "chipState": "live",
+     "title": "Your floor plan, in 3D",
+     "line": "We turn your floor plan into a 3D model, empty and furnished, with images for your listings.",
+     "linePainted": false,
+     "phone": "From floor plan to listing images.",
+     "phonePainted": true,
+     "examples": [
+      "Plan: plano-estepona.pdf",
+      "Model, empty and furnished",
+      "Images for listings and social media · marked as a visualisation"
+     ],
+     "examplesPainted": 0,
+     "mark": "Example · fictional data",
+     "markPainted": false
+    }
+   ],
+   "dayForm": "A",
+   "dayTitle": "A day with NuovaSolution",
+   "dayLine": "While you show a home, NuovaSolution answers.",
+   "compact": "08:30 your day · 11:39 call answered · 13:20 notice · 16:00 a listing that fits · 18:00 follow-up · 23:40 a night-time reply",
+   "compactPainted": true,
+   "stations": [
+    {
+     "time": "08:30",
+     "live": "true",
+     "text": "Marta opens her summary: she knows what's on today and with whom.",
+     "timeText": "08:30",
+     "painted": false
+    },
+    {
+     "time": "11:39",
+     "live": "true",
+     "text": "Marta is at a viewing; the assistant takes Álvaro's call and leaves her the task.",
+     "timeText": "11:39",
+     "painted": false
+    },
+    {
+     "time": "13:20",
+     "live": "true",
+     "text": "Nobody has taken Laura's viewing: Carlos gets the notice and takes it.",
+     "timeText": "13:20",
+     "painted": false
+    },
+    {
+     "time": "16:00",
+     "live": "true",
+     "text": "A new flat comes in in Estepona: it fits Laura, and its social media post waits for your OK.",
+     "timeText": "16:00",
+     "painted": false
+    },
+    {
+     "time": "18:00",
+     "live": "true",
+     "text": "Sofía hasn't replied: she gets a follow-up, with her permission.",
+     "timeText": "18:00",
+     "painted": false
+    },
+    {
+     "time": "23:40",
+     "live": "true",
+     "text": "An enquiry arrives with the office closed: an instant reply, and tomorrow at 8:30 it's in your summary.",
+     "timeText": "23:40",
+     "painted": false
+    }
+   ],
+   "stationsPainted": 0,
+   "dayMark": "Example · fictional names",
+   "heroSub": "NuovaSolution brings in clients, answers enquiries and follows up. It re-engages past contacts, suggests properties and shows you what deserves your attention, so your business moves forward without everything depending on you.",
+   "bodyChars": 254708,
+   "bodySha256": "edad8dcfb00cd3ee"
+  },
+  "en-target-1440": {
+   "traversal": {
+    "steps": 24,
+    "h": 14140
+   },
+   "sectionFound": true,
+   "soonFlag": "false",
+   "eyebrow": "Everything it does for your agency",
+   "h2": "New clients. Contacts who come back. More opportunities for your agency.",
+   "afterGrowth": "Every morning, which opportunities need your attention.",
+   "cards": [
+    {
+     "key": "g1",
+     "state": "live",
+     "chip": "From Growth · social media on Enterprise",
+     "chipState": "live",
+     "title": "Win new clients",
+     "line": "Your posts, ads and lead forms draw in buyers and owners who want to sell. Every comment or direct message becomes an enquiry with its own record.",
+     "linePainted": true,
+     "phone": "From a comment to an enquiry.",
+     "phonePainted": false,
+     "examples": [
+      "The form on your ad \"What is your home worth?\": Isabel, house in Mijas",
+      "An instant reply and one question: \"Roughly how many square metres is it?\"",
+      "New record: owner · Mijas · wants to sell · asks for a valuation"
+     ],
+     "examplesPainted": 3,
+     "mark": "Example · fictional data",
+     "markPainted": true
+    },
+    {
+     "key": "g2",
+     "state": "live",
+     "chip": "From Growth",
+     "chipState": "live",
+     "title": "Bring contacts back",
+     "line": "When a listing that fits comes in, or there is a new reason to get in touch, we write again to your past enquirers and clients, with their permission.",
+     "linePainted": true,
+     "phone": "Your past contacts, active again.",
+     "phonePainted": false,
+     "examples": [
+      "Javier wrote in March: penthouse in Benalmádena, up to €280,000",
+      "Today a penthouse in Benalmádena comes in, €275,000",
+      "We write to him, with his permission: \"Still looking?\" · Javier: \"Yes, when can I see it?\""
+     ],
+     "examplesPainted": 3,
+     "mark": "Example · fictional data",
+     "markPainted": true
+    },
+    {
+     "key": "g3",
+     "state": "live",
+     "chip": "From Growth",
+     "chipState": "live",
+     "title": "From interest to opportunity",
+     "line": "It replies, finds out what each client is looking for, suggests listings that fit and, with their permission, follows up.",
+     "linePainted": true,
+     "phone": "Every lead, with its next step.",
+     "phonePainted": false,
+     "examples": [
+      "Laura asks about a flat in Estepona · an instant reply and one question",
+      "We suggest 2 flats that fit: 2 bedrooms, up to €320,000",
+      "No reply in two days · a follow-up with her permission · she asks for a viewing"
+     ],
+     "examplesPainted": 3,
+     "mark": "Example · fictional data",
+     "markPainted": true
+    },
+    {
+     "key": "t2",
+     "state": "live",
+     "chip": "From Growth",
+     "chipState": "live",
+     "title": "Answers the phone for you",
+     "line": "When you're at a viewing, the assistant takes the call, notes what they want and leaves you the task.",
+     "linePainted": true,
+     "phone": "No call missed during a viewing.",
+     "phonePainted": false,
+     "examples": [
+      "11:39 · Álvaro calls · you're at a viewing",
+      "Answered · the villa in Elviria, price and room to negotiate",
+      "Task: call back from 16:00"
+     ],
+     "examplesPainted": 3,
+     "mark": "Example · fictional data",
+     "markPainted": true
+    },
+    {
+     "key": "t4",
+     "state": "live",
+     "chip": "From Growth",
+     "chipState": "live",
+     "title": "Every morning, a clear day",
+     "line": "Every morning, everyone on the team knows what to do today and with whom.",
+     "linePainted": true,
+     "phone": "Your day, sorted by 8:30.",
+     "phonePainted": false,
+     "examples": [
+      "08:30 · Good morning, Marta. Today, 3 things:",
+      "Propose a date to the Kellers · Call Álvaro back, from 16:00",
+      "Send Sofía what's available to rent"
+     ],
+     "examplesPainted": 3,
+     "mark": "Example · fictional data",
+     "markPainted": true
+    },
+    {
+     "key": "t8",
+     "state": "live",
+     "chip": "Every plan",
+     "chipState": "live",
+     "title": "Your week, in one report",
+     "line": "Every Monday you see what came in, what is still open and what to do this week.",
+     "linePainted": true,
+     "phone": "What came in and what to do.",
+     "phonePainted": false,
+     "examples": [
+      "Monday 08:00 · 25 enquiries, 25 answered",
+      "9 with the office closed · 4 viewings agreed",
+      "This week: propose a date for the 2 open viewings"
+     ],
+     "examplesPainted": 3,
+     "mark": "Example · fictional data",
+     "markPainted": true
+    },
+    {
+     "key": "t6",
+     "state": "live",
+     "chip": "Optional, with any plan",
+     "chipState": "live",
+     "title": "Your floor plan, in 3D",
+     "line": "We turn your floor plan into a 3D model, empty and furnished, with images for your listings.",
+     "linePainted": true,
+     "phone": "From floor plan to listing images.",
+     "phonePainted": false,
+     "examples": [
+      "Plan: plano-estepona.pdf",
+      "Model, empty and furnished",
+      "Images for listings and social media · marked as a visualisation"
+     ],
+     "examplesPainted": 3,
+     "mark": "Example · fictional data",
+     "markPainted": true
+    }
+   ],
+   "dayForm": "A",
+   "dayTitle": "A day with NuovaSolution",
+   "dayLine": "While you show a home, NuovaSolution answers.",
+   "compact": "08:30 your day · 11:39 call answered · 13:20 notice · 16:00 a listing that fits · 18:00 follow-up · 23:40 a night-time reply",
+   "compactPainted": false,
+   "stations": [
+    {
+     "time": "08:30",
+     "live": "true",
+     "text": "Marta opens her summary: she knows what's on today and with whom.",
+     "timeText": "08:30",
+     "painted": true
+    },
+    {
+     "time": "11:39",
+     "live": "true",
+     "text": "Marta is at a viewing; the assistant takes Álvaro's call and leaves her the task.",
+     "timeText": "11:39",
+     "painted": true
+    },
+    {
+     "time": "13:20",
+     "live": "true",
+     "text": "Nobody has taken Laura's viewing: Carlos gets the notice and takes it.",
+     "timeText": "13:20",
+     "painted": true
+    },
+    {
+     "time": "16:00",
+     "live": "true",
+     "text": "A new flat comes in in Estepona: it fits Laura, and its social media post waits for your OK.",
+     "timeText": "16:00",
+     "painted": true
+    },
+    {
+     "time": "18:00",
+     "live": "true",
+     "text": "Sofía hasn't replied: she gets a follow-up, with her permission.",
+     "timeText": "18:00",
+     "painted": true
+    },
+    {
+     "time": "23:40",
+     "live": "true",
+     "text": "An enquiry arrives with the office closed: an instant reply, and tomorrow at 8:30 it's in your summary.",
+     "timeText": "23:40",
+     "painted": true
+    }
+   ],
+   "stationsPainted": 6,
+   "dayMark": "Example · fictional names",
+   "heroSub": "NuovaSolution brings in clients, answers enquiries and follows up. It re-engages past contacts, suggests properties and shows you what deserves your attention, so your business moves forward without everything depending on you.",
+   "bodyChars": 254710,
+   "bodySha256": "95899e46d5f86b41"
+  },
+  "en-public-390": {
+   "traversal": {
+    "steps": 29,
+    "h": 17013
+   },
+   "sectionFound": true,
+   "soonFlag": "true",
+   "eyebrow": "Everything it does, and will do, for your agency",
+   "h2": "New clients. Contacts who come back. More opportunities for your agency.",
+   "afterGrowth": "Every morning, which opportunities need your attention.",
+   "cards": [
+    {
+     "key": "g1",
+     "state": "soon",
+     "chip": "Coming soon · From Growth · social media on Enterprise",
+     "chipState": "soon",
+     "title": "Win new clients",
+     "line": "Your posts, ads and lead forms draw in buyers and owners who want to sell. Every comment or direct message becomes an enquiry with its own record.",
+     "linePainted": false,
+     "phone": "From a comment to an enquiry.",
+     "phonePainted": true,
+     "examples": [],
+     "examplesPainted": 0,
+     "mark": "",
+     "markPainted": false
+    },
+    {
+     "key": "g2",
+     "state": "soon",
+     "chip": "Coming soon · From Growth",
+     "chipState": "soon",
+     "title": "Bring contacts back",
+     "line": "When a listing that fits comes in, or there is a new reason to get in touch, we write again to your past enquirers and clients, with their permission.",
+     "linePainted": false,
+     "phone": "Your past contacts, active again.",
+     "phonePainted": true,
+     "examples": [],
+     "examplesPainted": 0,
+     "mark": "",
+     "markPainted": false
+    },
+    {
+     "key": "g3",
+     "state": "partial",
+     "chip": "From Growth · partly coming soon",
+     "chipState": "partial",
+     "title": "From interest to opportunity",
+     "line": "It replies at once and finds out what each client is looking for. Suggesting listings that fit and following up, with their permission: coming soon.",
+     "linePainted": false,
+     "phone": "Every lead, answered at once.",
+     "phonePainted": true,
+     "examples": [
+      "Laura asks about a flat in Estepona · an instant reply and one question"
+     ],
+     "examplesPainted": 0,
+     "mark": "Example · fictional data",
+     "markPainted": false
+    },
+    {
+     "key": "t2",
+     "state": "soon",
+     "chip": "Coming soon · From Growth",
+     "chipState": "soon",
+     "title": "Answers the phone for you",
+     "line": "When you're at a viewing, the assistant takes the call, notes what they want and leaves you the task.",
+     "linePainted": false,
+     "phone": "No call missed during a viewing.",
+     "phonePainted": true,
+     "examples": [],
+     "examplesPainted": 0,
+     "mark": "",
+     "markPainted": false
+    },
+    {
+     "key": "t4",
+     "state": "live",
+     "chip": "From Growth",
+     "chipState": "live",
+     "title": "Every morning, a clear day",
+     "line": "Every morning, everyone on the team knows what to do today and with whom.",
+     "linePainted": false,
+     "phone": "Your day, sorted by 8:30.",
+     "phonePainted": true,
+     "examples": [
+      "08:30 · Good morning, Marta. Today, 3 things:",
+      "Propose a date to the Kellers · Call Álvaro back, from 16:00",
+      "Send Sofía what's available to rent"
+     ],
+     "examplesPainted": 0,
+     "mark": "Example · fictional data",
+     "markPainted": false
+    },
+    {
+     "key": "t8",
+     "state": "live",
+     "chip": "Every plan",
+     "chipState": "live",
+     "title": "Your week, in one report",
+     "line": "Every Monday you see what came in, what is still open and what to do this week.",
+     "linePainted": false,
+     "phone": "What came in and what to do.",
+     "phonePainted": true,
+     "examples": [
+      "Monday 08:00 · 25 enquiries, 25 answered",
+      "9 with the office closed · 4 viewings agreed",
+      "This week: propose a date for the 2 open viewings"
+     ],
+     "examplesPainted": 0,
+     "mark": "Example · fictional data",
+     "markPainted": false
+    },
+    {
+     "key": "t6",
+     "state": "live",
+     "chip": "Optional, with any plan",
+     "chipState": "live",
+     "title": "Your floor plan, in 3D",
+     "line": "We turn your floor plan into a 3D model, empty and furnished, with images for your listings.",
+     "linePainted": false,
+     "phone": "From floor plan to listing images.",
+     "phonePainted": true,
+     "examples": [
+      "Plan: plano-estepona.pdf",
+      "Model, empty and furnished",
+      "Images for listings and social media · marked as a visualisation"
+     ],
+     "examplesPainted": 0,
+     "mark": "Example · fictional data",
+     "markPainted": false
+    }
+   ],
+   "dayForm": "A",
+   "dayTitle": "A day with NuovaSolution",
+   "dayLine": "While you show a home, NuovaSolution answers.",
+   "compact": "08:30 your day · 13:20 notice · 23:40 a night-time reply",
+   "compactPainted": true,
+   "stations": [
+    {
+     "time": "08:30",
+     "live": "true",
+     "text": "Marta opens her summary: she knows what's on today and with whom.",
+     "timeText": "08:30",
+     "painted": false
+    },
+    {
+     "time": "13:20",
+     "live": "true",
+     "text": "Nobody has taken Laura's viewing: Carlos gets the notice and takes it.",
+     "timeText": "13:20",
+     "painted": false
+    },
+    {
+     "time": "23:40",
+     "live": "true",
+     "text": "An enquiry arrives with the office closed: an instant reply, and tomorrow at 8:30 it's in your summary.",
+     "timeText": "23:40",
+     "painted": false
+    }
+   ],
+   "stationsPainted": 0,
+   "dayMark": "Example · fictional names",
+   "heroSub": "Your clients get a reply even while you are at a viewing, and what they ask for is waiting for you on their record.",
+   "bodyChars": 236419,
+   "bodySha256": "80b35d6d6b9f1b43"
+  },
+  "en-public-1440": {
+   "traversal": {
+    "steps": 24,
+    "h": 13883
+   },
+   "sectionFound": true,
+   "soonFlag": "true",
+   "eyebrow": "Everything it does, and will do, for your agency",
+   "h2": "New clients. Contacts who come back. More opportunities for your agency.",
+   "afterGrowth": "Every morning, which opportunities need your attention.",
+   "cards": [
+    {
+     "key": "g1",
+     "state": "soon",
+     "chip": "Coming soon · From Growth · social media on Enterprise",
+     "chipState": "soon",
+     "title": "Win new clients",
+     "line": "Your posts, ads and lead forms draw in buyers and owners who want to sell. Every comment or direct message becomes an enquiry with its own record.",
+     "linePainted": true,
+     "phone": "From a comment to an enquiry.",
+     "phonePainted": false,
+     "examples": [],
+     "examplesPainted": 0,
+     "mark": "",
+     "markPainted": false
+    },
+    {
+     "key": "g2",
+     "state": "soon",
+     "chip": "Coming soon · From Growth",
+     "chipState": "soon",
+     "title": "Bring contacts back",
+     "line": "When a listing that fits comes in, or there is a new reason to get in touch, we write again to your past enquirers and clients, with their permission.",
+     "linePainted": true,
+     "phone": "Your past contacts, active again.",
+     "phonePainted": false,
+     "examples": [],
+     "examplesPainted": 0,
+     "mark": "",
+     "markPainted": false
+    },
+    {
+     "key": "g3",
+     "state": "partial",
+     "chip": "From Growth · partly coming soon",
+     "chipState": "partial",
+     "title": "From interest to opportunity",
+     "line": "It replies at once and finds out what each client is looking for. Suggesting listings that fit and following up, with their permission: coming soon.",
+     "linePainted": true,
+     "phone": "Every lead, answered at once.",
+     "phonePainted": false,
+     "examples": [
+      "Laura asks about a flat in Estepona · an instant reply and one question"
+     ],
+     "examplesPainted": 1,
+     "mark": "Example · fictional data",
+     "markPainted": true
+    },
+    {
+     "key": "t2",
+     "state": "soon",
+     "chip": "Coming soon · From Growth",
+     "chipState": "soon",
+     "title": "Answers the phone for you",
+     "line": "When you're at a viewing, the assistant takes the call, notes what they want and leaves you the task.",
+     "linePainted": true,
+     "phone": "No call missed during a viewing.",
+     "phonePainted": false,
+     "examples": [],
+     "examplesPainted": 0,
+     "mark": "",
+     "markPainted": false
+    },
+    {
+     "key": "t4",
+     "state": "live",
+     "chip": "From Growth",
+     "chipState": "live",
+     "title": "Every morning, a clear day",
+     "line": "Every morning, everyone on the team knows what to do today and with whom.",
+     "linePainted": true,
+     "phone": "Your day, sorted by 8:30.",
+     "phonePainted": false,
+     "examples": [
+      "08:30 · Good morning, Marta. Today, 3 things:",
+      "Propose a date to the Kellers · Call Álvaro back, from 16:00",
+      "Send Sofía what's available to rent"
+     ],
+     "examplesPainted": 3,
+     "mark": "Example · fictional data",
+     "markPainted": true
+    },
+    {
+     "key": "t8",
+     "state": "live",
+     "chip": "Every plan",
+     "chipState": "live",
+     "title": "Your week, in one report",
+     "line": "Every Monday you see what came in, what is still open and what to do this week.",
+     "linePainted": true,
+     "phone": "What came in and what to do.",
+     "phonePainted": false,
+     "examples": [
+      "Monday 08:00 · 25 enquiries, 25 answered",
+      "9 with the office closed · 4 viewings agreed",
+      "This week: propose a date for the 2 open viewings"
+     ],
+     "examplesPainted": 3,
+     "mark": "Example · fictional data",
+     "markPainted": true
+    },
+    {
+     "key": "t6",
+     "state": "live",
+     "chip": "Optional, with any plan",
+     "chipState": "live",
+     "title": "Your floor plan, in 3D",
+     "line": "We turn your floor plan into a 3D model, empty and furnished, with images for your listings.",
+     "linePainted": true,
+     "phone": "From floor plan to listing images.",
+     "phonePainted": false,
+     "examples": [
+      "Plan: plano-estepona.pdf",
+      "Model, empty and furnished",
+      "Images for listings and social media · marked as a visualisation"
+     ],
+     "examplesPainted": 3,
+     "mark": "Example · fictional data",
+     "markPainted": true
+    }
+   ],
+   "dayForm": "A",
+   "dayTitle": "A day with NuovaSolution",
+   "dayLine": "While you show a home, NuovaSolution answers.",
+   "compact": "08:30 your day · 13:20 notice · 23:40 a night-time reply",
+   "compactPainted": false,
+   "stations": [
+    {
+     "time": "08:30",
+     "live": "true",
+     "text": "Marta opens her summary: she knows what's on today and with whom.",
+     "timeText": "08:30",
+     "painted": true
+    },
+    {
+     "time": "13:20",
+     "live": "true",
+     "text": "Nobody has taken Laura's viewing: Carlos gets the notice and takes it.",
+     "timeText": "13:20",
+     "painted": true
+    },
+    {
+     "time": "23:40",
+     "live": "true",
+     "text": "An enquiry arrives with the office closed: an instant reply, and tomorrow at 8:30 it's in your summary.",
+     "timeText": "23:40",
+     "painted": true
+    }
+   ],
+   "stationsPainted": 3,
+   "dayMark": "Example · fictional names",
+   "heroSub": "Your clients get a reply even while you are at a viewing, and what they ask for is waiting for you on their record.",
+   "bodyChars": 236421,
+   "bodySha256": "8198bffc3c051382"
+  }
+ },
+ "note": "body text replaced by its length and sha256 prefix; the zero-hit and forbidden-title checks ran on the full text in cmp16.mjs before stripping"
+}
