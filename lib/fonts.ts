@@ -1,15 +1,25 @@
-import { Fraunces, Inter } from "next/font/google";
+import localFont from "next/font/local";
 
 /**
- * Display + UI face. Self-hosted at build time by next/font (no runtime request
- * to any font CDN). Variable weight; headings never exceed 500 (design law §3.2).
+ * The two faces, self-hosted from files in this repository (lib/font-files). Until 20.11.2026 they came through next/font/google,
+ * which downloads them from Google Fonts at build time; that day Google answered Vercel's build machines with font-file URLs
+ * without a file extension, and Next 14's loader fails on them ("Cannot read properties of null (reading '1')" in
+ * @next/font/google/loader.js:112) — two builds of the same code failed while the local build passed. The files here are the
+ * same font data Google serves (the google/fonts repository, SIL Open Font License 1.1), subset to the latin + latin-ext ranges
+ * Google uses, as variable woff2; nothing is fetched at build time or at run time.
+ */
+
+/**
+ * Display + UI face. Variable weight (100–900) with the optical-size axis; headings never exceed 500 (design law §3.2).
  * latin-ext is required for Spanish (ñ, á, ¿, «»).
  */
-export const inter = Inter({
-  subsets: ["latin", "latin-ext"],
+export const inter = localFont({
+  src: "./font-files/inter-latin.var.woff2",
+  weight: "100 900",
+  style: "normal",
   display: "swap",
   variable: "--font-inter",
-  adjustFontFallback: true,
+  adjustFontFallback: "Arial",
   preload: true,
 });
 
@@ -19,11 +29,12 @@ export const inter = Inter({
  * allows this self-hosted use without a fee. Not preloaded: it is only applied when the switch is set; if the owner chooses
  * Inter, this export and the switch go.
  */
-export const fraunces = Fraunces({
-  subsets: ["latin", "latin-ext"],
+export const fraunces = localFont({
+  src: "./font-files/fraunces-latin.var.woff2",
+  weight: "100 900",
+  style: "normal",
   display: "swap",
   variable: "--font-fraunces",
-  weight: ["400", "500"],
-  style: ["normal"],
+  adjustFontFallback: "Times New Roman",
   preload: false,
 });

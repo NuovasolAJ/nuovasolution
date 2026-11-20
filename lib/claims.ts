@@ -156,14 +156,17 @@ const HELD_BACK: ClaimKey[] = [];
  * registered with Meta (topic 20), so the PUBLIC view names email only while `whatsappOwnNumber` is off.
  */
 const channelOn = (key: ClaimKey, view: ClaimView): boolean => isIncluded(key) && (view === "target" || key !== "replyWhatsapp" || publicGate.whatsappOwnNumber === "live");
-export const channelKeys = (view: ClaimView): ClaimKey[] => CHANNELS.filter((c) => channelOn(c.key, view)).map((c) => c.key);
-export const channelList = (locale: Locale, view: ClaimView): string => {
-  const names = CHANNELS.filter((c) => channelOn(c.key, view)).map((c) => c[locale]);
+/** RV6 04ea648 (C-4): the channels a reply leaves on — a sentence about REPLIES lists only these, never an arrival channel (web form, phone, portals). */
+export const REPLY_CHANNELS: ClaimKey[] = ["replyWhatsapp", "replyEmail"];
+/** The channels named in a view, optionally restricted to `only` (the replies row passes REPLY_CHANNELS). */
+export const channelKeys = (view: ClaimView, only?: ClaimKey[]): ClaimKey[] => CHANNELS.filter((c) => (!only || only.includes(c.key)) && channelOn(c.key, view)).map((c) => c.key);
+export const channelList = (locale: Locale, view: ClaimView, only?: ClaimKey[]): string => {
+  const names = CHANNELS.filter((c) => (!only || only.includes(c.key)) && channelOn(c.key, view)).map((c) => c[locale]);
   if (names.length <= 1) return names[0] ?? "";
   return `${names.slice(0, -1).join(", ")} ${locale === "es" ? "y" : "and"} ${names[names.length - 1]}`;
 };
 /** Fills ⟦canales⟧ in a Copy sentence. */
-export const withChannels = (text: string, locale: Locale, view: ClaimView): string => text.replace(/⟦canales⟧/g, channelList(locale, view));
+export const withChannels = (text: string, locale: Locale, view: ClaimView, only?: ClaimKey[]): string => text.replace(/⟦canales⟧/g, channelList(locale, view, only));
 
 /** The plans (Copy 1105 v3 §9): which plan carries which row. A row a plan does not carry is "excluded"; the others show the row's own state. */
 export type PlanCode = "essential" | "growth" | "enterprise";
@@ -199,6 +202,11 @@ export const planCell = (key: ClaimKey, plan: PlanCode, view: ClaimView = "targe
   if (key === "model3d") return "order";
   const carried = planRows.find((r) => r.key === key)?.plans.includes(plan) ?? false;
   if (!carried) return "excluded";
+  // RV6 880d7bb + 04ea648 C-4 (the owner, 20.11.): the replies row is named from the view's REPLY channels (⟦canales⟧ restricted to
+  // REPLY_CHANNELS), so its cell reads the same list — a tick while at least one reply channel is named, "soon" once none is — instead
+  // of the register key `replyWhatsapp` alone (a tick next to a name that lists no channel would contradict itself); the target view
+  // keeps its contract: every row included
+  if (key === "replyWhatsapp") return view === "target" || channelKeys(view, REPLY_CHANNELS).length > 0 ? "included" : "soon";
   return live(key, view) ? "included" : claims[key];
 };
 /**

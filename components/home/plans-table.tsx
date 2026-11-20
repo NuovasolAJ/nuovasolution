@@ -2,7 +2,7 @@ import { ArrowRight, Bell, Box, Check, ClipboardList, Database, Flag, Globe, Ins
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
-import { claimWords, entryAction, live, planCell, planCellWords, planRowShown, plansTableShown, type ClaimView, type PlanCode } from "@/lib/claims";
+import { claimWords, entryAction, live, planCell, planCellWords, planRowShown, plansTableShown, REPLY_CHANNELS, type ClaimView, type PlanCode } from "@/lib/claims";
 import { Rise } from "@/components/ui/motion";
 import { PlanCardFold } from "@/components/home/plan-card-fold";
 import { cn } from "@/lib/utils";
@@ -49,7 +49,8 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
   const rows = w.rows.filter((r) => planRowShown(r.key, view));
   const groupRows = (gi: number) => rows.filter((r) => r.g === gi);
   // Copy 1116 §10 W-1: the replies row's public wording while the agency's own WhatsApp number is off (topic 20)
-  const name = (r: (typeof w.rows)[number]) => (r.key === "replyWhatsapp" && view === "public" && !live("whatsappOwnNumber", view) ? l(w.repliesRowPublic) : w.rowName(r.name, locale, view));
+  // RV6 04ea648 (C-4): the replies row's name and its cell both read the reply channels only (REPLY_CHANNELS)
+  const name = (r: (typeof w.rows)[number]) => (r.key === "replyWhatsapp" && view === "public" && !live("whatsappOwnNumber", view) ? l(w.repliesRowPublic) : w.rowName(r.name, locale, view, r.key === "replyWhatsapp" ? REPLY_CHANNELS : undefined));
   const table = plansTableShown(view);
   // Copy 1116 §1 point 4: the legend gains "Próximamente: aún no activo" while a shown row carries a "Próximamente" cell in this view
   const anySoon = rows.some((r) => codes.some((code) => planCell(r.key, code, view) === "soon") || (r.key === "model3d" && !live("model3d", view)));

@@ -530,7 +530,8 @@ export const home1103 = {
       { g: 5, icon: "model3d", key: "model3d" as ClaimKey, name: T("Visualización 3D", "3D visualisation") }, // Copy 1116 §7.1
     ],
     /** P-8: Outlook stands in the integrations row only while `outlook` is live. */
-    rowName: (name: L, locale: Locale, view: ClaimView): string => withChannels(name[locale].replace("⟦outlook⟧", live("outlook", view) ? ", Outlook" : ""), locale, view),
+    // RV6 04ea648 (C-4): the replies row fills ⟦canales⟧ from the reply channels only (`only`), the same list its cell reads
+    rowName: (name: L, locale: Locale, view: ClaimView, only?: ClaimKey[]): string => withChannels(name[locale].replace("⟦outlook⟧", live("outlook", view) ? ", Outlook" : ""), locale, view, only),
     /** Copy 1116 §10 W-1: the public wording of the replies row while the agency's own WhatsApp number is not registered (topic 20). */
     // 16.11. 14:00 (the owner's point 8): the public view never mentions the agency's WhatsApp before topic 20 — Copy's W-1 second sentence leaves
     repliesRowPublic: T("Respuestas en español por email.", "Replies in Spanish by email."),
