@@ -122,4 +122,54 @@ If API finds no production proof for connecting a pilot agency's own mailbox, th
 - (a) the go-live waits for A12, as on 16.11.; or
 - (b) e-mail for the agency's own mailbox becomes "Próximamente". Then Copy writes the e-mail lines anew, the same day.
 
-If API's result is "soon" for this key, Redesign follows the owner's point 6 as ordered. Copy has put (a)/(b) to the owner. If he chooses (b), the e-mail lines come from Copy the same day. Until then, PX-s for step 3 is: "Conexión con el buzón de tu agencia: próximamente." / "Connection to your agency's mailbox: coming soon."
+If API's result is "soon" for this key, Redesign follows the owner's point 6 as ordered. Copy has put (a)/(b) to the owner. Until he answers, PX-s for step 3 is: "Conexión con el buzón de tu agencia: próximamente." / "Connection to your agency's mailbox: coming soon."
+
+## 5. Card K-2 "Ninguna consulta se queda sin aviso" (Redesign's question, 20.11.)
+
+**The answer: the 13:20 step is part of `reminders`, not `alert`.**
+- `alert` (HA1) is the e-mail notice about a new enquiry to the right person.
+- The chain "reminder after 1 h, next step after 2 h" is `reminders` (owner D10, "Prod 13.11.").
+
+So K-2 hangs on `["reminders"]` only (`home-1103.ts:426`) and stays on the public page.
+
+**But the 2-hour step changed with the owner's F1 (no escalation mail).** Daily's E19 v2 (`DAILY_SIGNALS_1107.md`, 18.11. 10:55Z and the runs after it):
+- At 1 h, ONE reminder goes to the responsible person, with "Si nadie la toma, a las {{hora}} pasa a {{nombre}}."
+- At 2 h, **no mail goes out**. The task passes to the next person (`assigned_to`, `handed_over`) and stays visible to everyone.
+
+So "avisamos a la siguiente" / "Carlos is told" is no longer true: the next person gets the task, not a notice.
+
+**New wording (both views):**
+
+| Place | ES | EN |
+|---|---|---|
+| line `:426` | Si nadie del equipo se ocupa de una consulta, al cabo de una hora se lo recordamos a la persona responsable. A las dos horas, la consulta pasa a la siguiente persona. | If nobody on the team takes an enquiry, after one hour we remind the person responsible. After two hours, the enquiry passes to the next person. |
+| example 3 `:427` and timeline `:433` | 13:20 · Pasa a Carlos | 13:20 · Passed to Carlos |
+| proof `:429` | Recordatorio a la hora; a las dos, pasa a la siguiente persona. En producción desde el 13.11. | A reminder after one hour; after two, it passes to the next person. In production since 13.11. |
+| day story D-3 (`strengths.ts`, 13:20) | Nadie ha cogido la visita de Laura: pasa a Carlos y él la coge. | Nobody has taken Laura's viewing: it passes to Carlos, and he takes it. |
+| D-c part | 13:20 pasa a Carlos | 13:20 passed to Carlos |
+
+**The date "desde el 13.11." covers only the reminder.** The handover at 2 h is in production only once Daily's E19 v2 is.
+
+Until Daily confirms that in production, the public view shows:
+- **line:** "… se lo recordamos a la persona responsable. El paso a la siguiente persona a las dos horas: próximamente." / "… we remind the person responsible. Passing it to the next person after two hours: coming soon.";
+- **example 3, timeline step and D-3:** with PX-b;
+- **proof:** "Recordatorio a la hora. En producción desde el 13.11." / "A reminder after one hour. In production since 13.11.".
+
+The target view uses the new wording from the table directly.
+
+**The WhatsApp demo tab** stays hidden in public, not "Próximamente" (owner 16.11., point 8). This is noted as the owner's earlier, specific decision; Redesign names it to him as the second exception next to `otherLanguages`.
+
+## 6. G-1's off chip, shortened (RV6's question, 20.11., measured on `deb4a40`)
+
+**The change:** while G-1 is fully off (P-1), its chip reads **"Próximamente · Desde Growth"** / **"Coming soon · From Growth"**. The Enterprise clause is dropped.
+
+**Why:**
+- The three-part chip wraps to two lines (318 × 42 px at 390) and outweighs the title on the card that opens the growth block.
+- A card marked "Próximamente" does not sell a plan boundary yet.
+- On the phone the chip is the only thing that tells a live card from an off one, because the examples are hidden below 640 px. So it has to be short and plain.
+
+**Unchanged:**
+- **On:** "Desde Growth · redes sociales en Enterprise" (v2).
+- **Partial** (G-1p, ads on, social off): "Desde Growth · redes sociales en Enterprise, próximamente". Here the ad part is live and in the pilot, so the boundary is real information.
+
+This replaces the G-1 row of `COPY_TO_REDESIGN_1120_HERO_PROXIMAMENTE_PLANFOLD_v1.md` §2.2.

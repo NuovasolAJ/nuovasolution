@@ -58,7 +58,7 @@ Redesign's WORKING wording is confirmed, with one change on T-6.
 | Card | Chip, on (v2, unchanged) | Chip, off ES | Chip, off EN |
 |---|---|---|---|
 | G-2, G-3, T-2, T-4 | Desde Growth · From Growth | Próximamente · Desde Growth | Coming soon · From Growth |
-| G-1 | Desde Growth · redes sociales en Enterprise · From Growth · social media on Enterprise | Próximamente · Desde Growth · redes sociales en Enterprise | Coming soon · From Growth · social media on Enterprise |
+| G-1 | Desde Growth · redes sociales en Enterprise · From Growth · social media on Enterprise | **Próximamente · Desde Growth** (shortened 20.11., `mail/COPY_TO_REDESIGN_1120_PROXIMAMENTE_v1.md` §6; was "… · redes sociales en Enterprise") | **Coming soon · From Growth** |
 | T-6 | Opcional, con cualquier plan · Optional, with any plan | **Próximamente · Opcional, con cualquier plan** (replaces "Opcional · próximamente", so every off chip starts the same way) | **Coming soon · Optional, with any plan** |
 | T-8 | Todos los planes · Every plan | Próximamente · Todos los planes (only if `reportInLogin` ever goes off; it is in production today) | Coming soon · Every plan |
 
