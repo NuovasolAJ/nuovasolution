@@ -83,7 +83,7 @@ G-1's full sentence (comments and direct messages) needs `instagram` **and**, on
 |---|---|---|
 | Chip | Desde Growth · en parte próximamente | From Growth · partly coming soon |
 | Sentence (G-3p) | Responde al momento y aclara qué busca cada cliente. {partes}: próximamente. | It replies at once and finds out what each client is looking for. {parts}: coming soon. |
-| {partes}, built from the keys that are off, joined with " y " / " and " | `matching`: "Proponerle inmuebles que encajan" · `followup`: "hacer seguimiento, con su permiso" (capital letter only on the first part) | `matching`: "Suggesting listings that fit" · `followup`: "following up, with their permission" |
+| {partes}, built from the keys that are off, joined with " y " / " and " | `matching`: "Proponerle inmuebles que encajan" · `followup`: "hacer seguimiento, con su permiso" (the capital letter goes by position: whichever part comes first in the sentence takes it. Only `followup` off reads "… Hacer seguimiento, con su permiso: próximamente." / "… Following up, with their permission: coming soon." Clarified 20.11. on RV6's N-5) | `matching`: "Suggesting listings that fit" · `followup`: "following up, with their permission" |
 | Phone line | Cada interesado, respondido al momento. | Every lead, answered at once. |
 | Examples | **only line 1** ("Laura pregunta por un piso en Estepona · respuesta al momento y una pregunta"); lines 2 and 3 hidden | only line 1 |
 
