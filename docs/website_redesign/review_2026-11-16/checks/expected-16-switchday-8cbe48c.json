@@ -135,8 +135,13 @@
   "cases": {
    "bothOff": "correct - 'Proponerle inmuebles que encajan y hacer seguimiento, con su permiso: próximamente.'",
    "matchingOffOnly": "correct - 'Proponerle inmuebles que encajan: próximamente.'",
-   "followupOffOnly": "WRONG - 'Responde al momento y aclara qué busca cada cliente. hacer seguimiento, con su permiso: próximamente.' A sentence starting with a lower-case h. English the same: '... following up, with their permission: coming soon.'"
+   "followupOffOnly": "WRONG as built - 'Responde al momento y aclara qué busca cada cliente. hacer seguimiento, con su permiso: próximamente.' A sentence starting with a lower-case h. English the same: '... following up, with their permission: coming soon.'"
   },
+  "expectedAfterFix": {
+   "es": "Responde al momento y aclara qué busca cada cliente. Hacer seguimiento, con su permiso: próximamente.",
+   "en": "It replies at once and finds out what each client is looking for. Following up, with their permission: coming soon."
+  },
+  "confirmedByCopy": "19.11./20.11., Copy (now nuovasolution-71): the capital goes by position, so whichever part comes first takes it. Recorded in §2.3 of the same file, commit fb2e600. The two sentences above are therefore criteria, not my interpretation.",
   "reachable": "matching live while followup is not. Both are 'soon' in the register today and the owner switches keys one at a time, so it is a plausible switch-day state, not a theoretical one.",
   "fix": "capitalise parts[0], not the matching literal",
   "severity": "cosmetic, one of three combinations - but it is the kind of thing that ships. Reported to Redesign and put to Copy, since the rule is Copy's to confirm.",
