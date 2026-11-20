@@ -1,0 +1,430 @@
+PASS	es-target-390 E-P flag data-strengths-soon=false (expected false)
+PASS	es-target-390 eyebrow "Todo lo que hace por tu agencia"
+PASS	es-target-390 G-h unchanged
+PASS	es-target-390 G-d "Cada mañana, qué oportunidades piden tu atención."
+PASS	es-target-390 g1 state=live (expected live)
+PASS	es-target-390 g1 chip "Desde Growth · redes sociales en Enterprise"
+PASS	es-target-390 g1 live: phone shows no examples/mark (by design, css:2003)
+PASS	es-target-390 g1 live: phone line painted
+PASS	es-target-390 g2 state=live (expected live)
+PASS	es-target-390 g2 chip "Desde Growth"
+PASS	es-target-390 g2 live: phone shows no examples/mark (by design, css:2003)
+PASS	es-target-390 g2 live: phone line painted
+PASS	es-target-390 g3 state=live (expected live)
+PASS	es-target-390 g3 chip "Desde Growth"
+PASS	es-target-390 g3 live: phone shows no examples/mark (by design, css:2003)
+PASS	es-target-390 g3 live: phone line painted
+PASS	es-target-390 t2 state=live (expected live)
+PASS	es-target-390 t2 chip "Desde Growth"
+PASS	es-target-390 t2 live: phone shows no examples/mark (by design, css:2003)
+PASS	es-target-390 t2 live: phone line painted
+PASS	es-target-390 t4 state=live (expected live)
+PASS	es-target-390 t4 chip "Desde Growth"
+PASS	es-target-390 t4 live: phone shows no examples/mark (by design, css:2003)
+PASS	es-target-390 t4 live: phone line painted
+PASS	es-target-390 t8 state=live (expected live)
+PASS	es-target-390 t8 chip "Todos los planes"
+PASS	es-target-390 t8 live: phone shows no examples/mark (by design, css:2003)
+PASS	es-target-390 t8 live: phone line painted
+PASS	es-target-390 t6 state=live (expected live)
+PASS	es-target-390 t6 chip "Opcional, con cualquier plan"
+PASS	es-target-390 t6 live: phone shows no examples/mark (by design, css:2003)
+PASS	es-target-390 t6 live: phone line painted
+PASS	es-target-390 form A: D-c painted on the phone
+PASS	es-target-390 form A: 0 stations painted on the phone (got 0)
+PASS	es-target-390 D-c "08:30 tu día · 11:39 llamada atendida · 13:20 pasa a Carlos · 16:00 piso que encaja · 18:00 seguimiento · 23:40 respuesta de noche"
+PASS	es-target-390 zero hit for "{precio}"
+PASS	es-target-390 zero hit for "Desde {precio} al mes"
+PASS	es-target-390 zero hit for "al mes: menos que una comisión"
+PASS	es-target-390 forbidden title absent: "Seguimiento hasta que contesta"
+PASS	es-target-390 forbidden title absent: "Follow-up until they reply"
+PASS	es-target-390 forbidden title absent: "Inmuebles que encajan, siempre"
+PASS	es-target-390 forbidden title absent: "Listings that fit, always"
+PASS	es-target-390 forbidden title absent: "Todos tus leads, atendidos"
+PASS	es-target-390 forbidden title "Every lead, answered" absent (as a title)
+PASS	es-target-390 forbidden title absent: "Publicaciones para tus redes"
+PASS	es-target-390 forbidden title absent: "Posts for your social media"
+PASS	es-target-1440 E-P flag data-strengths-soon=false (expected false)
+PASS	es-target-1440 eyebrow "Todo lo que hace por tu agencia"
+PASS	es-target-1440 G-h unchanged
+PASS	es-target-1440 G-d "Cada mañana, qué oportunidades piden tu atención."
+PASS	es-target-1440 g1 state=live (expected live)
+PASS	es-target-1440 g1 chip "Desde Growth · redes sociales en Enterprise"
+PASS	es-target-1440 g1 live 3 examples painted (got 3)
+PASS	es-target-1440 g1 live G-m painted
+PASS	es-target-1440 g2 state=live (expected live)
+PASS	es-target-1440 g2 chip "Desde Growth"
+PASS	es-target-1440 g2 live 3 examples painted (got 3)
+PASS	es-target-1440 g2 live G-m painted
+PASS	es-target-1440 g3 state=live (expected live)
+PASS	es-target-1440 g3 chip "Desde Growth"
+PASS	es-target-1440 g3 live 3 examples painted (got 3)
+PASS	es-target-1440 g3 live G-m painted
+PASS	es-target-1440 t2 state=live (expected live)
+PASS	es-target-1440 t2 chip "Desde Growth"
+PASS	es-target-1440 t2 live 3 examples painted (got 3)
+PASS	es-target-1440 t2 live G-m painted
+PASS	es-target-1440 t4 state=live (expected live)
+PASS	es-target-1440 t4 chip "Desde Growth"
+PASS	es-target-1440 t4 live 3 examples painted (got 3)
+PASS	es-target-1440 t4 live G-m painted
+PASS	es-target-1440 t8 state=live (expected live)
+PASS	es-target-1440 t8 chip "Todos los planes"
+PASS	es-target-1440 t8 live 3 examples painted (got 3)
+PASS	es-target-1440 t8 live G-m painted
+PASS	es-target-1440 t6 state=live (expected live)
+PASS	es-target-1440 t6 chip "Opcional, con cualquier plan"
+PASS	es-target-1440 t6 live 3 examples painted (got 3)
+PASS	es-target-1440 t6 live G-m painted
+PASS	es-target-1440 form A: D-c not painted on the desktop
+PASS	es-target-1440 form A: 6 stations painted (expected 6)
+PASS	es-target-1440 zero hit for "{precio}"
+PASS	es-target-1440 zero hit for "Desde {precio} al mes"
+PASS	es-target-1440 zero hit for "al mes: menos que una comisión"
+PASS	es-target-1440 forbidden title absent: "Seguimiento hasta que contesta"
+PASS	es-target-1440 forbidden title absent: "Follow-up until they reply"
+PASS	es-target-1440 forbidden title absent: "Inmuebles que encajan, siempre"
+PASS	es-target-1440 forbidden title absent: "Listings that fit, always"
+PASS	es-target-1440 forbidden title absent: "Todos tus leads, atendidos"
+PASS	es-target-1440 forbidden title "Every lead, answered" absent (as a title)
+PASS	es-target-1440 forbidden title absent: "Publicaciones para tus redes"
+PASS	es-target-1440 forbidden title absent: "Posts for your social media"
+PASS	es-public-390 E-P flag data-strengths-soon=true (expected true)
+PASS	es-public-390 eyebrow "Todo lo que hace y hará por tu agencia"
+PASS	es-public-390 G-h unchanged
+PASS	es-public-390 G-d "Cada mañana, qué oportunidades piden tu atención: próximamente."
+PASS	es-public-390 g1 state=soon (expected soon)
+PASS	es-public-390 g1 chip "Próximamente · Desde Growth"
+PASS	es-public-390 g1 P-1 title kept
+PASS	es-public-390 g1 P-1 sentence/phone kept
+PASS	es-public-390 g1 P-1 examples hidden (painted=0)
+PASS	es-public-390 g1 P-1 G-m hidden (painted=false)
+PASS	es-public-390 g1 P-1 phone line painted on the phone
+PASS	es-public-390 g2 state=soon (expected soon)
+PASS	es-public-390 g2 chip "Próximamente · Desde Growth"
+PASS	es-public-390 g2 P-1 title kept
+PASS	es-public-390 g2 P-1 sentence/phone kept
+PASS	es-public-390 g2 P-1 examples hidden (painted=0)
+PASS	es-public-390 g2 P-1 G-m hidden (painted=false)
+PASS	es-public-390 g2 P-1 phone line painted on the phone
+PASS	es-public-390 g3 state=partial (expected partial)
+PASS	es-public-390 g3 chip "Desde Growth · en parte próximamente"
+PASS	es-public-390 g3 partial text "Cada interesado, respondido al momento."
+PASS	es-public-390 g3 partial: phone shows no examples/mark (by design, css:2003)
+PASS	es-public-390 t2 state=soon (expected soon)
+PASS	es-public-390 t2 chip "Próximamente · Desde Growth"
+PASS	es-public-390 t2 P-1 title kept
+PASS	es-public-390 t2 P-1 sentence/phone kept
+PASS	es-public-390 t2 P-1 examples hidden (painted=0)
+PASS	es-public-390 t2 P-1 G-m hidden (painted=false)
+PASS	es-public-390 t2 P-1 phone line painted on the phone
+PASS	es-public-390 t4 state=soon (expected soon)
+PASS	es-public-390 t4 chip "Próximamente · Desde Growth"
+PASS	es-public-390 t4 P-1 title kept
+PASS	es-public-390 t4 P-1 sentence/phone kept
+PASS	es-public-390 t4 P-1 examples hidden (painted=0)
+PASS	es-public-390 t4 P-1 G-m hidden (painted=false)
+PASS	es-public-390 t4 P-1 phone line painted on the phone
+PASS	es-public-390 t8 state=live (expected live)
+PASS	es-public-390 t8 chip "Todos los planes"
+PASS	es-public-390 t8 live: phone shows no examples/mark (by design, css:2003)
+PASS	es-public-390 t8 live: phone line painted
+PASS	es-public-390 t6 state=soon (expected soon)
+PASS	es-public-390 t6 chip "Próximamente · Opcional, con cualquier plan"
+PASS	es-public-390 t6 P-1 title kept
+PASS	es-public-390 t6 P-1 sentence/phone kept
+PASS	es-public-390 t6 P-1 examples hidden (painted=0)
+PASS	es-public-390 t6 P-1 G-m hidden (painted=false)
+PASS	es-public-390 t6 P-1 phone line painted on the phone
+PASS	es-public-390 form A: D-c painted on the phone
+PASS	es-public-390 form A: 0 stations painted on the phone (got 0)
+PASS	es-public-390 D-c "13:20 pasa a Carlos · 23:40 respuesta de noche"
+PASS	es-public-390 zero hit for "{precio}"
+PASS	es-public-390 zero hit for "Desde {precio} al mes"
+PASS	es-public-390 zero hit for "al mes: menos que una comisión"
+PASS	es-public-390 forbidden title absent: "Seguimiento hasta que contesta"
+PASS	es-public-390 forbidden title absent: "Follow-up until they reply"
+PASS	es-public-390 forbidden title absent: "Inmuebles que encajan, siempre"
+PASS	es-public-390 forbidden title absent: "Listings that fit, always"
+PASS	es-public-390 forbidden title absent: "Todos tus leads, atendidos"
+PASS	es-public-390 forbidden title "Every lead, answered" absent (as a title)
+PASS	es-public-390 forbidden title absent: "Publicaciones para tus redes"
+PASS	es-public-390 forbidden title absent: "Posts for your social media"
+PASS	es-public-1440 E-P flag data-strengths-soon=true (expected true)
+PASS	es-public-1440 eyebrow "Todo lo que hace y hará por tu agencia"
+PASS	es-public-1440 G-h unchanged
+PASS	es-public-1440 G-d "Cada mañana, qué oportunidades piden tu atención: próximamente."
+PASS	es-public-1440 g1 state=soon (expected soon)
+PASS	es-public-1440 g1 chip "Próximamente · Desde Growth"
+PASS	es-public-1440 g1 P-1 title kept
+PASS	es-public-1440 g1 P-1 sentence/phone kept
+PASS	es-public-1440 g1 P-1 examples hidden (painted=0)
+PASS	es-public-1440 g1 P-1 G-m hidden (painted=false)
+PASS	es-public-1440 g1 P-1 sentence painted on the desktop
+PASS	es-public-1440 g2 state=soon (expected soon)
+PASS	es-public-1440 g2 chip "Próximamente · Desde Growth"
+PASS	es-public-1440 g2 P-1 title kept
+PASS	es-public-1440 g2 P-1 sentence/phone kept
+PASS	es-public-1440 g2 P-1 examples hidden (painted=0)
+PASS	es-public-1440 g2 P-1 G-m hidden (painted=false)
+PASS	es-public-1440 g2 P-1 sentence painted on the desktop
+PASS	es-public-1440 g3 state=partial (expected partial)
+PASS	es-public-1440 g3 chip "Desde Growth · en parte próximamente"
+PASS	es-public-1440 g3 partial text "Responde al momento y aclara qué busca cada cliente. Proponerle inmueb"
+PASS	es-public-1440 g3 partial exactly 1 example painted (got 1)
+PASS	es-public-1440 g3 partial G-m kept (painted=true)
+PASS	es-public-1440 t2 state=soon (expected soon)
+PASS	es-public-1440 t2 chip "Próximamente · Desde Growth"
+PASS	es-public-1440 t2 P-1 title kept
+PASS	es-public-1440 t2 P-1 sentence/phone kept
+PASS	es-public-1440 t2 P-1 examples hidden (painted=0)
+PASS	es-public-1440 t2 P-1 G-m hidden (painted=false)
+PASS	es-public-1440 t2 P-1 sentence painted on the desktop
+PASS	es-public-1440 t4 state=soon (expected soon)
+PASS	es-public-1440 t4 chip "Próximamente · Desde Growth"
+PASS	es-public-1440 t4 P-1 title kept
+PASS	es-public-1440 t4 P-1 sentence/phone kept
+PASS	es-public-1440 t4 P-1 examples hidden (painted=0)
+PASS	es-public-1440 t4 P-1 G-m hidden (painted=false)
+PASS	es-public-1440 t4 P-1 sentence painted on the desktop
+PASS	es-public-1440 t8 state=live (expected live)
+PASS	es-public-1440 t8 chip "Todos los planes"
+PASS	es-public-1440 t8 live 3 examples painted (got 3)
+PASS	es-public-1440 t8 live G-m painted
+PASS	es-public-1440 t6 state=soon (expected soon)
+PASS	es-public-1440 t6 chip "Próximamente · Opcional, con cualquier plan"
+PASS	es-public-1440 t6 P-1 title kept
+PASS	es-public-1440 t6 P-1 sentence/phone kept
+PASS	es-public-1440 t6 P-1 examples hidden (painted=0)
+PASS	es-public-1440 t6 P-1 G-m hidden (painted=false)
+PASS	es-public-1440 t6 P-1 sentence painted on the desktop
+PASS	es-public-1440 form A: D-c not painted on the desktop
+PASS	es-public-1440 form A: 2 stations painted (expected 2)
+PASS	es-public-1440 gate stations = 13:20,23:40 (expected 13:20,23:40)
+PASS	es-public-1440 zero hit for "{precio}"
+PASS	es-public-1440 zero hit for "Desde {precio} al mes"
+PASS	es-public-1440 zero hit for "al mes: menos que una comisión"
+PASS	es-public-1440 forbidden title absent: "Seguimiento hasta que contesta"
+PASS	es-public-1440 forbidden title absent: "Follow-up until they reply"
+PASS	es-public-1440 forbidden title absent: "Inmuebles que encajan, siempre"
+PASS	es-public-1440 forbidden title absent: "Listings that fit, always"
+PASS	es-public-1440 forbidden title absent: "Todos tus leads, atendidos"
+PASS	es-public-1440 forbidden title "Every lead, answered" absent (as a title)
+PASS	es-public-1440 forbidden title absent: "Publicaciones para tus redes"
+PASS	es-public-1440 forbidden title absent: "Posts for your social media"
+PASS	en-target-390 E-P flag data-strengths-soon=false (expected false)
+PASS	en-target-390 eyebrow "Everything it does for your agency"
+PASS	en-target-390 G-h unchanged
+PASS	en-target-390 G-d "Every morning, which opportunities need your attention."
+PASS	en-target-390 g1 state=live (expected live)
+PASS	en-target-390 g1 chip "From Growth · social media on Enterprise"
+PASS	en-target-390 g1 live: phone shows no examples/mark (by design, css:2003)
+PASS	en-target-390 g1 live: phone line painted
+PASS	en-target-390 g2 state=live (expected live)
+PASS	en-target-390 g2 chip "From Growth"
+PASS	en-target-390 g2 live: phone shows no examples/mark (by design, css:2003)
+PASS	en-target-390 g2 live: phone line painted
+PASS	en-target-390 g3 state=live (expected live)
+PASS	en-target-390 g3 chip "From Growth"
+PASS	en-target-390 g3 live: phone shows no examples/mark (by design, css:2003)
+PASS	en-target-390 g3 live: phone line painted
+PASS	en-target-390 t2 state=live (expected live)
+PASS	en-target-390 t2 chip "From Growth"
+PASS	en-target-390 t2 live: phone shows no examples/mark (by design, css:2003)
+PASS	en-target-390 t2 live: phone line painted
+PASS	en-target-390 t4 state=live (expected live)
+PASS	en-target-390 t4 chip "From Growth"
+PASS	en-target-390 t4 live: phone shows no examples/mark (by design, css:2003)
+PASS	en-target-390 t4 live: phone line painted
+PASS	en-target-390 t8 state=live (expected live)
+PASS	en-target-390 t8 chip "Every plan"
+PASS	en-target-390 t8 live: phone shows no examples/mark (by design, css:2003)
+PASS	en-target-390 t8 live: phone line painted
+PASS	en-target-390 t6 state=live (expected live)
+PASS	en-target-390 t6 chip "Optional, with any plan"
+PASS	en-target-390 t6 live: phone shows no examples/mark (by design, css:2003)
+PASS	en-target-390 t6 live: phone line painted
+PASS	en-target-390 form A: D-c painted on the phone
+PASS	en-target-390 form A: 0 stations painted on the phone (got 0)
+PASS	en-target-390 D-c "08:30 your day · 11:39 call answered · 13:20 passed to Carlos · 16:00 a listing that fits · 18:00 follow-up · 23:40 a night-time reply"
+PASS	en-target-390 zero hit for "{precio}"
+PASS	en-target-390 zero hit for "Desde {precio} al mes"
+PASS	en-target-390 zero hit for "al mes: menos que una comisión"
+PASS	en-target-390 forbidden title absent: "Seguimiento hasta que contesta"
+PASS	en-target-390 forbidden title absent: "Follow-up until they reply"
+PASS	en-target-390 forbidden title absent: "Inmuebles que encajan, siempre"
+PASS	en-target-390 forbidden title absent: "Listings that fit, always"
+PASS	en-target-390 forbidden title absent: "Todos tus leads, atendidos"
+PASS	en-target-390 forbidden title "Every lead, answered" absent (as a title)
+PASS	en-target-390 forbidden title absent: "Publicaciones para tus redes"
+PASS	en-target-390 forbidden title absent: "Posts for your social media"
+PASS	en-target-1440 E-P flag data-strengths-soon=false (expected false)
+PASS	en-target-1440 eyebrow "Everything it does for your agency"
+PASS	en-target-1440 G-h unchanged
+PASS	en-target-1440 G-d "Every morning, which opportunities need your attention."
+PASS	en-target-1440 g1 state=live (expected live)
+PASS	en-target-1440 g1 chip "From Growth · social media on Enterprise"
+PASS	en-target-1440 g1 live 3 examples painted (got 3)
+PASS	en-target-1440 g1 live G-m painted
+PASS	en-target-1440 g2 state=live (expected live)
+PASS	en-target-1440 g2 chip "From Growth"
+PASS	en-target-1440 g2 live 3 examples painted (got 3)
+PASS	en-target-1440 g2 live G-m painted
+PASS	en-target-1440 g3 state=live (expected live)
+PASS	en-target-1440 g3 chip "From Growth"
+PASS	en-target-1440 g3 live 3 examples painted (got 3)
+PASS	en-target-1440 g3 live G-m painted
+PASS	en-target-1440 t2 state=live (expected live)
+PASS	en-target-1440 t2 chip "From Growth"
+PASS	en-target-1440 t2 live 3 examples painted (got 3)
+PASS	en-target-1440 t2 live G-m painted
+PASS	en-target-1440 t4 state=live (expected live)
+PASS	en-target-1440 t4 chip "From Growth"
+PASS	en-target-1440 t4 live 3 examples painted (got 3)
+PASS	en-target-1440 t4 live G-m painted
+PASS	en-target-1440 t8 state=live (expected live)
+PASS	en-target-1440 t8 chip "Every plan"
+PASS	en-target-1440 t8 live 3 examples painted (got 3)
+PASS	en-target-1440 t8 live G-m painted
+PASS	en-target-1440 t6 state=live (expected live)
+PASS	en-target-1440 t6 chip "Optional, with any plan"
+PASS	en-target-1440 t6 live 3 examples painted (got 3)
+PASS	en-target-1440 t6 live G-m painted
+PASS	en-target-1440 form A: D-c not painted on the desktop
+PASS	en-target-1440 form A: 6 stations painted (expected 6)
+PASS	en-target-1440 zero hit for "{precio}"
+PASS	en-target-1440 zero hit for "Desde {precio} al mes"
+PASS	en-target-1440 zero hit for "al mes: menos que una comisión"
+PASS	en-target-1440 forbidden title absent: "Seguimiento hasta que contesta"
+PASS	en-target-1440 forbidden title absent: "Follow-up until they reply"
+PASS	en-target-1440 forbidden title absent: "Inmuebles que encajan, siempre"
+PASS	en-target-1440 forbidden title absent: "Listings that fit, always"
+PASS	en-target-1440 forbidden title absent: "Todos tus leads, atendidos"
+PASS	en-target-1440 forbidden title "Every lead, answered" absent (as a title)
+PASS	en-target-1440 forbidden title absent: "Publicaciones para tus redes"
+PASS	en-target-1440 forbidden title absent: "Posts for your social media"
+PASS	en-public-390 E-P flag data-strengths-soon=true (expected true)
+PASS	en-public-390 eyebrow "Everything it does, and will do, for your agency"
+PASS	en-public-390 G-h unchanged
+PASS	en-public-390 G-d "Every morning, which opportunities need your attention: coming soon."
+PASS	en-public-390 g1 state=soon (expected soon)
+PASS	en-public-390 g1 chip "Coming soon · From Growth"
+PASS	en-public-390 g1 P-1 title kept
+PASS	en-public-390 g1 P-1 sentence/phone kept
+PASS	en-public-390 g1 P-1 examples hidden (painted=0)
+PASS	en-public-390 g1 P-1 G-m hidden (painted=false)
+PASS	en-public-390 g1 P-1 phone line painted on the phone
+PASS	en-public-390 g2 state=soon (expected soon)
+PASS	en-public-390 g2 chip "Coming soon · From Growth"
+PASS	en-public-390 g2 P-1 title kept
+PASS	en-public-390 g2 P-1 sentence/phone kept
+PASS	en-public-390 g2 P-1 examples hidden (painted=0)
+PASS	en-public-390 g2 P-1 G-m hidden (painted=false)
+PASS	en-public-390 g2 P-1 phone line painted on the phone
+PASS	en-public-390 g3 state=partial (expected partial)
+PASS	en-public-390 g3 chip "From Growth · partly coming soon"
+PASS	en-public-390 g3 partial text "Every lead, answered at once."
+PASS	en-public-390 g3 partial: phone shows no examples/mark (by design, css:2003)
+PASS	en-public-390 t2 state=soon (expected soon)
+PASS	en-public-390 t2 chip "Coming soon · From Growth"
+PASS	en-public-390 t2 P-1 title kept
+PASS	en-public-390 t2 P-1 sentence/phone kept
+PASS	en-public-390 t2 P-1 examples hidden (painted=0)
+PASS	en-public-390 t2 P-1 G-m hidden (painted=false)
+PASS	en-public-390 t2 P-1 phone line painted on the phone
+PASS	en-public-390 t4 state=soon (expected soon)
+PASS	en-public-390 t4 chip "Coming soon · From Growth"
+PASS	en-public-390 t4 P-1 title kept
+PASS	en-public-390 t4 P-1 sentence/phone kept
+PASS	en-public-390 t4 P-1 examples hidden (painted=0)
+PASS	en-public-390 t4 P-1 G-m hidden (painted=false)
+PASS	en-public-390 t4 P-1 phone line painted on the phone
+PASS	en-public-390 t8 state=live (expected live)
+PASS	en-public-390 t8 chip "Every plan"
+PASS	en-public-390 t8 live: phone shows no examples/mark (by design, css:2003)
+PASS	en-public-390 t8 live: phone line painted
+PASS	en-public-390 t6 state=soon (expected soon)
+PASS	en-public-390 t6 chip "Coming soon · Optional, with any plan"
+PASS	en-public-390 t6 P-1 title kept
+PASS	en-public-390 t6 P-1 sentence/phone kept
+PASS	en-public-390 t6 P-1 examples hidden (painted=0)
+PASS	en-public-390 t6 P-1 G-m hidden (painted=false)
+PASS	en-public-390 t6 P-1 phone line painted on the phone
+PASS	en-public-390 form A: D-c painted on the phone
+PASS	en-public-390 form A: 0 stations painted on the phone (got 0)
+PASS	en-public-390 D-c "13:20 passed to Carlos · 23:40 a night-time reply"
+PASS	en-public-390 zero hit for "{precio}"
+PASS	en-public-390 zero hit for "Desde {precio} al mes"
+PASS	en-public-390 zero hit for "al mes: menos que una comisión"
+PASS	en-public-390 forbidden title absent: "Seguimiento hasta que contesta"
+PASS	en-public-390 forbidden title absent: "Follow-up until they reply"
+PASS	en-public-390 forbidden title absent: "Inmuebles que encajan, siempre"
+PASS	en-public-390 forbidden title absent: "Listings that fit, always"
+PASS	en-public-390 forbidden title absent: "Todos tus leads, atendidos"
+PASS	en-public-390 forbidden title "Every lead, answered" absent (as a title)
+PASS	en-public-390 forbidden title absent: "Publicaciones para tus redes"
+PASS	en-public-390 forbidden title absent: "Posts for your social media"
+PASS	en-public-1440 E-P flag data-strengths-soon=true (expected true)
+PASS	en-public-1440 eyebrow "Everything it does, and will do, for your agency"
+PASS	en-public-1440 G-h unchanged
+PASS	en-public-1440 G-d "Every morning, which opportunities need your attention: coming soon."
+PASS	en-public-1440 g1 state=soon (expected soon)
+PASS	en-public-1440 g1 chip "Coming soon · From Growth"
+PASS	en-public-1440 g1 P-1 title kept
+PASS	en-public-1440 g1 P-1 sentence/phone kept
+PASS	en-public-1440 g1 P-1 examples hidden (painted=0)
+PASS	en-public-1440 g1 P-1 G-m hidden (painted=false)
+PASS	en-public-1440 g1 P-1 sentence painted on the desktop
+PASS	en-public-1440 g2 state=soon (expected soon)
+PASS	en-public-1440 g2 chip "Coming soon · From Growth"
+PASS	en-public-1440 g2 P-1 title kept
+PASS	en-public-1440 g2 P-1 sentence/phone kept
+PASS	en-public-1440 g2 P-1 examples hidden (painted=0)
+PASS	en-public-1440 g2 P-1 G-m hidden (painted=false)
+PASS	en-public-1440 g2 P-1 sentence painted on the desktop
+PASS	en-public-1440 g3 state=partial (expected partial)
+PASS	en-public-1440 g3 chip "From Growth · partly coming soon"
+PASS	en-public-1440 g3 partial text "It replies at once and finds out what each client is looking for. Sugg"
+PASS	en-public-1440 g3 partial exactly 1 example painted (got 1)
+PASS	en-public-1440 g3 partial G-m kept (painted=true)
+PASS	en-public-1440 t2 state=soon (expected soon)
+PASS	en-public-1440 t2 chip "Coming soon · From Growth"
+PASS	en-public-1440 t2 P-1 title kept
+PASS	en-public-1440 t2 P-1 sentence/phone kept
+PASS	en-public-1440 t2 P-1 examples hidden (painted=0)
+PASS	en-public-1440 t2 P-1 G-m hidden (painted=false)
+PASS	en-public-1440 t2 P-1 sentence painted on the desktop
+PASS	en-public-1440 t4 state=soon (expected soon)
+PASS	en-public-1440 t4 chip "Coming soon · From Growth"
+PASS	en-public-1440 t4 P-1 title kept
+PASS	en-public-1440 t4 P-1 sentence/phone kept
+PASS	en-public-1440 t4 P-1 examples hidden (painted=0)
+PASS	en-public-1440 t4 P-1 G-m hidden (painted=false)
+PASS	en-public-1440 t4 P-1 sentence painted on the desktop
+PASS	en-public-1440 t8 state=live (expected live)
+PASS	en-public-1440 t8 chip "Every plan"
+PASS	en-public-1440 t8 live 3 examples painted (got 3)
+PASS	en-public-1440 t8 live G-m painted
+PASS	en-public-1440 t6 state=soon (expected soon)
+PASS	en-public-1440 t6 chip "Coming soon · Optional, with any plan"
+PASS	en-public-1440 t6 P-1 title kept
+PASS	en-public-1440 t6 P-1 sentence/phone kept
+PASS	en-public-1440 t6 P-1 examples hidden (painted=0)
+PASS	en-public-1440 t6 P-1 G-m hidden (painted=false)
+PASS	en-public-1440 t6 P-1 sentence painted on the desktop
+PASS	en-public-1440 form A: D-c not painted on the desktop
+PASS	en-public-1440 form A: 2 stations painted (expected 2)
+PASS	en-public-1440 gate stations = 13:20,23:40 (expected 13:20,23:40)
+PASS	en-public-1440 zero hit for "{precio}"
+PASS	en-public-1440 zero hit for "Desde {precio} al mes"
+PASS	en-public-1440 zero hit for "al mes: menos que una comisión"
+PASS	en-public-1440 forbidden title absent: "Seguimiento hasta que contesta"
+PASS	en-public-1440 forbidden title absent: "Follow-up until they reply"
+PASS	en-public-1440 forbidden title absent: "Inmuebles que encajan, siempre"
+PASS	en-public-1440 forbidden title absent: "Listings that fit, always"
+PASS	en-public-1440 forbidden title absent: "Todos tus leads, atendidos"
+PASS	en-public-1440 forbidden title "Every lead, answered" absent (as a title)
+PASS	en-public-1440 forbidden title absent: "Publicaciones para tus redes"
+PASS	en-public-1440 forbidden title absent: "Posts for your social media"
+
+==== 428 pass, 0 FAIL ====

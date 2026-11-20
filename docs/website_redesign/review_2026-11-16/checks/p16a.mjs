@@ -27,7 +27,22 @@ const wake = () => ev(`(async()=>{var y=0,steps=0;
   scrollTo({top:0,behavior:"instant"});await new Promise(r=>setTimeout(r,400));
   return {steps:steps,h:document.documentElement.scrollHeight}})()`);
 
-const R = { tag: TAG, base: BASE, build: await (await fetch(`${BASE}/api/build`)).json(), runs: {} };
+// A run that straddles two deployments is worthless - the alias moved under me once mid-run and
+// one view came back with a null body. Every navigation is checked for a LOADED page carrying the
+// section, and the build is pinned at the start and verified at the end.
+const buildAtStart = await (await fetch(`${BASE}/api/build`)).json();
+const R = { tag: TAG, base: BASE, build: buildAtStart, runs: {}, notLoaded: [] };
+const go = async (url, need = "[data-strengths]", ms = 5200) => {
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    await send("Page.navigate", { url });
+    await sleep(ms);
+    const ready = await ev(`!!document.body && document.body.textContent.length > 500 && !!document.querySelector(${JSON.stringify(need)})`);
+    if (ready === true) return true;
+    console.log(`  ! ${url} not loaded (attempt ${attempt}) - retrying`);
+    await sleep(2500);
+  }
+  return false;
+};
 
 const PROBE = `(()=>{
   const txt = e => (e && e.textContent) || "";
@@ -83,8 +98,8 @@ for (const loc of ["es", "en"]) {
       const label = `${loc}-${view}-${w}`;
       const mob = w < 500;
       await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: mob ? 2 : 1, mobile: mob });
-      await send("Page.navigate", { url: `${BASE}/${loc}?view=${view}` });
-      await sleep(5200);
+      const loaded = await go(`${BASE}/${loc}?view=${view}`);
+      if (!loaded) { R.notLoaded.push(label); console.log(`${label} | NOT LOADED after 3 attempts - not measured`); continue; }
       const trav = await wake();
       const r = await ev(PROBE);
       R.runs[label] = { traversal: trav, ...r };
@@ -93,6 +108,13 @@ for (const loc of ["es", "en"]) {
     }
   }
 }
+const endCommit = (await (await fetch(`${BASE}/api/build`)).json()).commit;
+R.buildAtEnd = endCommit;
+R.oneBuild = endCommit === buildAtStart.commit;
 writeFileSync(`p16a-${TAG}.json`, JSON.stringify(R, null, 1));
 console.log("\nwritten p16a-" + TAG + ".json");
+console.log(R.oneBuild
+  ? `BUILD STABLE through the run: ${endCommit.slice(0, 7)}`
+  : `*** VOID: the alias moved during the run, ${buildAtStart.commit.slice(0, 7)} -> ${endCommit.slice(0, 7)}. Repeat on one build. ***`);
+if (R.notLoaded.length) console.log("NOT LOADED: " + R.notLoaded.join(", "));
 process.exit(0);

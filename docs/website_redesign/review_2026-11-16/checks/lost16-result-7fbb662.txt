@@ -1,0 +1,38 @@
+candidates classified: 48 | unexplained residue: 14
+
+  4  preview furniture
+     why: the preview band and switch panel - not page content, and excluded from every other measurement I make
+  2  H-subP is the alternative hero line
+     why: the public fallback subline; the target view correctly shows H-sub instead
+  8  K-2 old wording (Copy §5)  [replacement verified present]
+     why: under the owner's F1 the 2-hour step is a handover; Copy 1120 §5 rewrote it
+  2  K-2 proof extended (Copy §5)  [replacement verified present]
+     why: the proof line gained a second date
+  4  report link renamed  [REPLACEMENT MISSING]
+     why: renamed; the example-report page is still linked from the home page, twice
+  2  3D room labels re-concatenated  [replacement verified present]
+     why: the floor-plan labels are concatenated differently
+  4  pilot line replaced (Copy v2 §E)  [replacement verified present]
+     why: replaced by the Growth-scope pilot line
+ 16  plans table block re-concatenated  [replacement verified present]
+     why: the plan cells gained Próximamente marks and the fold button, so the concatenated block differs; the rows themselves are present
+  4  otherLanguages hidden (owner point 4)
+     why: the owner's point 4 hides it in BOTH views - its absence is exactly why Copy's rule 1 passes
+  2  packages price line reworded  [REPLACEMENT MISSING]
+     why: reworded
+
+*** UNEXPLAINED - these are real losses ***
+  /es/example-report	[REPLACEMENT MISSING for report link renamed]	Ver la semana completa Ninguna consulta se pierde de vista: las 25 respondidas al llegar y las 25 en su ficha.
+  /es/faq	Usas NuovaSolution en tu agencia durante 14 días, gratis y con nuestro acompañamiento.
+  /es/faq	Te enseñamos el sistema con datos de ejemplo.
+  /es/faq	No: una consulta de texto se responde cuando llega, a cualquier hora.
+  /en/packages	[REPLACEMENT MISSING for packages price line reworded]	We explain the price for afterwards before anything is agreed.
+  /en/example-report	[REPLACEMENT MISSING for report link renamed]	See the full week No enquiry slips out of sight: all 25 answered on arrival and all 25 on their record.
+  /en/faq	You use NuovaSolution in your agency for 14 days, free and with our support.
+  /en/faq	We show you the system with example data.
+  /en/faq	No: a text enquiry is answered whenever it arrives, at any hour.
+  /en/platform/ai-sales-agent	Spanish Illustrative example Vivienda habitual.
+  /en/platform/ai-sales-agent	Nos gustaría verlo la semana que viene, si puede ser.
+  /en/platform/ai-sales-agent	Gracias, Laura.
+  /en/platform/ai-sales-agent	¿Qué días y a qué hora te vienen mejor la semana que viene?
+  /en/platform/ai-sales-agent	Una persona del equipo te propone fecha para la visita.

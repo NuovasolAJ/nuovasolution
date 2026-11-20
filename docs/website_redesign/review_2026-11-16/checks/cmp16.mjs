@@ -8,15 +8,19 @@ const EYEBROW = { es: { plain: "Todo lo que hace por tu agencia", soon: "Todo lo
                   en: { plain: "Everything it does for your agency", soon: "Everything it does, and will do, for your agency" } };
 const H2 = { es: "Nuevos clientes. Contactos que vuelven. Más oportunidades para tu agencia.",
              en: "New clients. Contacts who come back. More opportunities for your agency." };
-// Copy c519b2d §1: the expected gate-view state per card with the five-key gate
-const GATE_STATE = { g1: "soon", g2: "soon", g3: "partial", t2: "soon", t4: "live", t6: "live", t8: "live" };
+// The 17-key gate after API's cee6992: T-4 (taskList, dailyVoice) and T-6 (model3d) are now soon too.
+// G-1's off chip is shortened per Copy §6 (6971369).
+const GATE_STATE = { g1: "soon", g2: "soon", g3: "partial", t2: "soon", t4: "soon", t6: "soon", t8: "live" };
 const CHIP_GATE = {
-  es: { g1: "Próximamente · Desde Growth · redes sociales en Enterprise", g2: "Próximamente · Desde Growth",
+  es: { g1: "Próximamente · Desde Growth", g2: "Próximamente · Desde Growth",
         g3: "Desde Growth · en parte próximamente", t2: "Próximamente · Desde Growth",
-        t4: "Desde Growth", t6: "Opcional, con cualquier plan", t8: "Todos los planes" },
-  en: { g1: "Coming soon · From Growth · social media on Enterprise", g2: "Coming soon · From Growth",
+        t4: "Próximamente · Desde Growth", t6: "Próximamente · Opcional, con cualquier plan", t8: "Todos los planes" },
+  en: { g1: "Coming soon · From Growth", g2: "Coming soon · From Growth",
         g3: "From Growth · partly coming soon", t2: "Coming soon · From Growth",
-        t4: "From Growth", t6: "Optional, with any plan", t8: "Every plan" } };
+        t4: "Coming soon · From Growth", t6: "Coming soon · Optional, with any plan", t8: "Every plan" } };
+// G-d: live wording, and Copy §4's PX-s form once taskList/dailyVoice are off
+const GD = { es: { live: "Cada mañana, qué oportunidades piden tu atención.", soon: "Cada mañana, qué oportunidades piden tu atención: próximamente." },
+             en: { live: "Every morning, which opportunities need your attention.", soon: "Every morning, which opportunities need your attention: coming soon." } };
 const CHIP_TARGET = {
   es: { g1: "Desde Growth · redes sociales en Enterprise", g2: "Desde Growth", g3: "Desde Growth",
         t2: "Desde Growth", t4: "Desde Growth", t6: "Opcional, con cualquier plan", t8: "Todos los planes" },
@@ -25,10 +29,12 @@ const CHIP_TARGET = {
 const G3P_LINE = { es: "Responde al momento y aclara qué busca cada cliente. Proponerle inmuebles que encajan y hacer seguimiento, con su permiso: próximamente.",
                    en: "It replies at once and finds out what each client is looking for. Suggesting listings that fit and following up, with their permission: coming soon." };
 const G3P_PHONE = { es: "Cada interesado, respondido al momento.", en: "Every lead, answered at once." };
-const DC_GATE = { es: "08:30 tu día · 13:20 aviso · 23:40 respuesta de noche",
-                  en: "08:30 your day · 13:20 notice · 23:40 a night-time reply" };
-const DC_TARGET = { es: "08:30 tu día · 11:39 llamada atendida · 13:20 aviso · 16:00 piso que encaja · 18:00 seguimiento · 23:40 respuesta de noche",
-                    en: "08:30 your day · 11:39 call answered · 13:20 notice · 16:00 a listing that fits · 18:00 follow-up · 23:40 a night-time reply" };
+// Copy §5 (6971369): the 13:20 station is a HANDOVER now, not a notice. With the 17-key gate only
+// reminders (13:20) and replyOutOfHours (23:40) stay live, so D-c has two parts in the gate view.
+const DC_GATE = { es: "13:20 pasa a Carlos · 23:40 respuesta de noche",
+                  en: "13:20 passed to Carlos · 23:40 a night-time reply" };
+const DC_TARGET = { es: "08:30 tu día · 11:39 llamada atendida · 13:20 pasa a Carlos · 16:00 piso que encaja · 18:00 seguimiento · 23:40 respuesta de noche",
+                    en: "08:30 your day · 11:39 call answered · 13:20 passed to Carlos · 16:00 a listing that fits · 18:00 follow-up · 23:40 a night-time reply" };
 const FORBIDDEN = ["Seguimiento hasta que contesta", "Follow-up until they reply", "Inmuebles que encajan, siempre",
                    "Listings that fit, always", "Todos tus leads, atendidos", "Every lead, answered", // careful: "Every lead, answered at once" is G-3p's phone line
                    "Publicaciones para tus redes", "Posts for your social media"];
@@ -44,6 +50,9 @@ for (const [label, r] of Object.entries(R.runs)) {
   const eyeExp = gate ? EYEBROW[loc].soon : EYEBROW[loc].plain;
   ok(N(r.eyebrow) === eyeExp, `${label} eyebrow "${N(r.eyebrow)}"${N(r.eyebrow) === eyeExp ? "" : ` != "${eyeExp}"`}`);
   ok(N(r.h2) === H2[loc], `${label} G-h unchanged`);
+  // G-d hangs on taskList/dailyVoice, both "soon" after API's cee6992, so the gate view takes PX-s
+  const gdExp = gate ? GD[loc].soon : GD[loc].live;
+  ok(N(r.afterGrowth) === gdExp, `${label} G-d "${N(r.afterGrowth)}"${N(r.afterGrowth) === gdExp ? "" : ` != "${gdExp}"`}`);
   // cards
   for (const c of r.cards) {
     const expState = gate ? GATE_STATE[c.key] : "live";
@@ -90,11 +99,11 @@ for (const [label, r] of Object.entries(R.runs)) {
     ok(N(r.compact) === expDc, `${label} D-c "${N(r.compact)}"${N(r.compact) === expDc ? "" : ` != "${expDc}"`}`);
   } else {
     ok(r.compactPainted === false, `${label} form A: D-c not painted on the desktop`);
-    const expStations = gate ? 3 : 6;
+    const expStations = gate ? 2 : 6;
     ok(r.stationsPainted === expStations, `${label} form A: ${r.stationsPainted} stations painted (expected ${expStations})`);
     if (gate) {
       const times = r.stations.filter(s => s.painted).map(s => s.time).join(",");
-      ok(times === "08:30,13:20,23:40", `${label} gate stations = ${times} (expected 08:30,13:20,23:40)`);
+      ok(times === "13:20,23:40", `${label} gate stations = ${times} (expected 13:20,23:40)`);
     }
   }
   // zero hits and forbidden titles

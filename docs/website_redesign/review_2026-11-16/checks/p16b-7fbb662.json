@@ -1,0 +1,1883 @@
+{
+ "tag": "7fbb662",
+ "build": {
+  "commit": "7fbb6625bd19a6a5828e703b237d9dedf29a4126",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_9Km6cPusbTsfC7JVMnQpmbmXp5Rr",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "runs": {
+  "target-390": {
+   "fold": {
+    "folds": [
+     {
+      "plan": "essential",
+      "open": "false",
+      "btnText": "Ver todo lo que incluye",
+      "btnH": 44,
+      "btnW": 332,
+      "ariaExpanded": "false",
+      "ariaLabel": "Ver todo lo que incluye Essential",
+      "ariaControls": ":R1mqf9vejsq:",
+      "bodyInDocument": true,
+      "bodyPainted": false,
+      "bodyChars": 623
+     },
+     {
+      "plan": "growth",
+      "open": "false",
+      "btnText": "Ver todo lo que incluye",
+      "btnH": 44,
+      "btnW": 332,
+      "ariaExpanded": "false",
+      "ariaLabel": "Ver todo lo que incluye Growth",
+      "ariaControls": ":R1qqf9vejsq:",
+      "bodyInDocument": true,
+      "bodyPainted": false,
+      "bodyChars": 623
+     },
+     {
+      "plan": "enterprise",
+      "open": "false",
+      "btnText": "Ver todo lo que incluye",
+      "btnH": 44,
+      "btnW": 332,
+      "ariaExpanded": "false",
+      "ariaLabel": "Ver todo lo que incluye Enterprise",
+      "ariaControls": ":R1uqf9vejsq:",
+      "bodyInDocument": true,
+      "bodyPainted": false,
+      "bodyChars": 623
+     }
+    ],
+    "pilotLineAbovePlans": true,
+    "freeWay": true,
+    "contactWay": true,
+    "planNames": 3
+   },
+   "plans": {
+    "rows": [
+     {
+      "key": "replyWhatsapp",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "languageNoted",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "labels",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "whatsappOwnNumber",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "phoneAssistant",
+      "painted": false,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "instagram",
+      "painted": false,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "crm",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "priorityWithReason",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "oneRecordAcrossChannels",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "alert",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "taskList",
+      "painted": false,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "matching",
+      "painted": false,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "reportInLogin",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "weeklyEmail",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "reportTrend",
+      "painted": false,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "integrations",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "adsLeads",
+      "painted": false,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "model3d",
+      "painted": false,
+      "cells": [
+       {
+        "state": "order",
+        "text": "Opcional"
+       },
+       {
+        "state": "order",
+        "text": "Opcional"
+       },
+       {
+        "state": "order",
+        "text": "Opcional"
+       }
+      ]
+     }
+    ],
+    "rowCount": 18,
+    "paintedRows": 0,
+    "legend": [],
+    "legendPainted": false,
+    "legendSoonSeen": false
+   },
+   "words": {
+    "enPreparacion": 0,
+    "prontoEnBreve": 0,
+    "masIdiomas": 0,
+    "masIdiomasProximamente": false,
+    "faqText": "\\\"children\\\":\\\"This page could not be found.\\\"}]}]]}]}]],\\\"notFoundStyles\\\":[]}]],null],null],\\\"couldBeIntercepted\\\":false,\\\"initialHead\\\":[null,\\\"$L20\\\"],\\\"globalErrorComponent\\\":\\\"$21\\\",\\\"missingSlots\\\":\\\"$W22\\\"}]\\n\"])",
+    "proximamenteCount": 0
+   },
+   "tabs": {
+    "tabs": [
+     {
+      "key": "whatsapp",
+      "soonAttr": null,
+      "text": "WhatsApp",
+      "tabBox": {
+       "w": 153,
+       "h": 48,
+       "left": 35,
+       "right": 188
+      },
+      "markPainted": false,
+      "markBox": null,
+      "markInsideTab": null
+     },
+     {
+      "key": "email",
+      "soonAttr": null,
+      "text": "Email",
+      "tabBox": {
+       "w": 153,
+       "h": 48,
+       "left": 196,
+       "right": 349
+      },
+      "markPainted": false,
+      "markBox": null,
+      "markInsideTab": null
+     },
+     {
+      "key": "webform",
+      "soonAttr": null,
+      "text": "Formulario web",
+      "tabBox": {
+       "w": 153,
+       "h": 48,
+       "left": 35,
+       "right": 188
+      },
+      "markPainted": false,
+      "markBox": null,
+      "markInsideTab": null
+     },
+     {
+      "key": "phone",
+      "soonAttr": null,
+      "text": "Teléfono",
+      "tabBox": {
+       "w": 153,
+       "h": 48,
+       "left": 196,
+       "right": 349
+      },
+      "markPainted": false,
+      "markBox": null,
+      "markInsideTab": null
+     }
+    ],
+    "tabKeys": [
+     "whatsapp",
+     "email",
+     "webform",
+     "phone"
+    ],
+    "whilePlaying": [
+     {
+      "at": 1.2,
+      "markPainted": false,
+      "inside": null,
+      "selected": "true"
+     },
+     {
+      "at": 2.4,
+      "markPainted": false,
+      "inside": null,
+      "selected": "true"
+     },
+     {
+      "at": 3.5999999999999996,
+      "markPainted": false,
+      "inside": null,
+      "selected": "true"
+     },
+     {
+      "at": 4.8,
+      "markPainted": false,
+      "inside": null,
+      "selected": "true"
+     },
+     {
+      "at": 6,
+      "markPainted": false,
+      "inside": null,
+      "selected": "true"
+     },
+     {
+      "at": 7.199999999999999,
+      "markPainted": false,
+      "inside": null,
+      "selected": "true"
+     }
+    ]
+   }
+  },
+  "target-1440": {
+   "plans": {
+    "rows": [
+     {
+      "key": "replyWhatsapp",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "languageNoted",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "labels",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "whatsappOwnNumber",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "phoneAssistant",
+      "painted": true,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "instagram",
+      "painted": true,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "crm",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "priorityWithReason",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "oneRecordAcrossChannels",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "alert",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "taskList",
+      "painted": true,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "matching",
+      "painted": true,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "reportInLogin",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "weeklyEmail",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "reportTrend",
+      "painted": true,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "integrations",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "adsLeads",
+      "painted": true,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "model3d",
+      "painted": true,
+      "cells": [
+       {
+        "state": "order",
+        "text": "Opcional"
+       },
+       {
+        "state": "order",
+        "text": "Opcional"
+       },
+       {
+        "state": "order",
+        "text": "Opcional"
+       }
+      ]
+     }
+    ],
+    "rowCount": 18,
+    "paintedRows": 18,
+    "legend": [],
+    "legendPainted": false,
+    "legendSoonSeen": false
+   },
+   "words": {
+    "enPreparacion": 0,
+    "prontoEnBreve": 0,
+    "masIdiomas": 0,
+    "masIdiomasProximamente": false,
+    "faqText": "\\\"children\\\":\\\"This page could not be found.\\\"}]}]]}]}]],\\\"notFoundStyles\\\":[]}]],null],null],\\\"couldBeIntercepted\\\":false,\\\"initialHead\\\":[null,\\\"$L20\\\"],\\\"globalErrorComponent\\\":\\\"$21\\\",\\\"missingSlots\\\":\\\"$W22\\\"}]\\n\"])",
+    "proximamenteCount": 0
+   },
+   "tabs": {
+    "tabs": [
+     {
+      "key": "whatsapp",
+      "soonAttr": null,
+      "text": "WhatsApp",
+      "tabBox": {
+       "w": 150,
+       "h": 52,
+       "left": 83,
+       "right": 233
+      },
+      "markPainted": false,
+      "markBox": null,
+      "markInsideTab": null
+     },
+     {
+      "key": "email",
+      "soonAttr": null,
+      "text": "Email",
+      "tabBox": {
+       "w": 111,
+       "h": 52,
+       "left": 241,
+       "right": 352
+      },
+      "markPainted": false,
+      "markBox": null,
+      "markInsideTab": null
+     },
+     {
+      "key": "webform",
+      "soonAttr": null,
+      "text": "Formulario web",
+      "tabBox": {
+       "w": 188,
+       "h": 52,
+       "left": 360,
+       "right": 548
+      },
+      "markPainted": false,
+      "markBox": null,
+      "markInsideTab": null
+     },
+     {
+      "key": "phone",
+      "soonAttr": null,
+      "text": "Teléfono",
+      "tabBox": {
+       "w": 137,
+       "h": 52,
+       "left": 556,
+       "right": 693
+      },
+      "markPainted": false,
+      "markBox": null,
+      "markInsideTab": null
+     }
+    ],
+    "tabKeys": [
+     "whatsapp",
+     "email",
+     "webform",
+     "phone"
+    ],
+    "whilePlaying": [
+     {
+      "at": 1.2,
+      "markPainted": false,
+      "inside": null,
+      "selected": "true"
+     },
+     {
+      "at": 2.4,
+      "markPainted": false,
+      "inside": null,
+      "selected": "true"
+     },
+     {
+      "at": 3.5999999999999996,
+      "markPainted": false,
+      "inside": null,
+      "selected": "true"
+     },
+     {
+      "at": 4.8,
+      "markPainted": false,
+      "inside": null,
+      "selected": "true"
+     },
+     {
+      "at": 6,
+      "markPainted": false,
+      "inside": null,
+      "selected": "true"
+     },
+     {
+      "at": 7.199999999999999,
+      "markPainted": false,
+      "inside": null,
+      "selected": "true"
+     }
+    ]
+   }
+  },
+  "public-390": {
+   "fold": {
+    "folds": [
+     {
+      "plan": "essential",
+      "open": "false",
+      "btnText": "Ver todo lo que incluye",
+      "btnH": 44,
+      "btnW": 332,
+      "ariaExpanded": "false",
+      "ariaLabel": "Ver todo lo que incluye Essential",
+      "ariaControls": ":R1mqf9vejsq:",
+      "bodyInDocument": true,
+      "bodyPainted": false,
+      "bodyChars": 679
+     },
+     {
+      "plan": "growth",
+      "open": "false",
+      "btnText": "Ver todo lo que incluye",
+      "btnH": 44,
+      "btnW": 332,
+      "ariaExpanded": "false",
+      "ariaLabel": "Ver todo lo que incluye Growth",
+      "ariaControls": ":R1qqf9vejsq:",
+      "bodyInDocument": true,
+      "bodyPainted": false,
+      "bodyChars": 739
+     },
+     {
+      "plan": "enterprise",
+      "open": "false",
+      "btnText": "Ver todo lo que incluye",
+      "btnH": 44,
+      "btnW": 332,
+      "ariaExpanded": "false",
+      "ariaLabel": "Ver todo lo que incluye Enterprise",
+      "ariaControls": ":R1uqf9vejsq:",
+      "bodyInDocument": true,
+      "bodyPainted": false,
+      "bodyChars": 751
+     }
+    ],
+    "pilotLineAbovePlans": true,
+    "freeWay": true,
+    "contactWay": true,
+    "planNames": 3
+   },
+   "plans": {
+    "rows": [
+     {
+      "key": "replyWhatsapp",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "languageNoted",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "labels",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "whatsappOwnNumber",
+      "painted": false,
+      "cells": [
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "phoneAssistant",
+      "painted": false,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "instagram",
+      "painted": false,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "crm",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "priorityWithReason",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "oneRecordAcrossChannels",
+      "painted": false,
+      "cells": [
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "alert",
+      "painted": false,
+      "cells": [
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "taskList",
+      "painted": false,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "matching",
+      "painted": false,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "reportInLogin",
+      "painted": false,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "weeklyEmail",
+      "painted": false,
+      "cells": [
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "reportTrend",
+      "painted": false,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "integrations",
+      "painted": false,
+      "cells": [
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "adsLeads",
+      "painted": false,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "model3d",
+      "painted": false,
+      "cells": [
+       {
+        "state": "order-soon",
+        "text": "Opcional · próximamente"
+       },
+       {
+        "state": "order-soon",
+        "text": "Opcional · próximamente"
+       },
+       {
+        "state": "order-soon",
+        "text": "Opcional · próximamente"
+       }
+      ]
+     }
+    ],
+    "rowCount": 18,
+    "paintedRows": 0,
+    "legend": [
+     "Próximamenteaún no activo"
+    ],
+    "legendPainted": true,
+    "legendSoonSeen": true
+   },
+   "words": {
+    "enPreparacion": 0,
+    "prontoEnBreve": 0,
+    "masIdiomas": 0,
+    "masIdiomasProximamente": false,
+    "faqText": "\\\"children\\\":\\\"This page could not be found.\\\"}]}]]}]}]],\\\"notFoundStyles\\\":[]}]],null],null],\\\"couldBeIntercepted\\\":false,\\\"initialHead\\\":[null,\\\"$L20\\\"],\\\"globalErrorComponent\\\":\\\"$21\\\",\\\"missingSlots\\\":\\\"$W22\\\"}]\\n\"])",
+    "proximamenteCount": 123
+   },
+   "tabs": {
+    "tabs": [
+     {
+      "key": "email",
+      "soonAttr": null,
+      "text": "Email",
+      "tabBox": {
+       "w": 153,
+       "h": 87,
+       "left": 35,
+       "right": 188
+      },
+      "markPainted": false,
+      "markBox": null,
+      "markInsideTab": null
+     },
+     {
+      "key": "webform",
+      "soonAttr": "true",
+      "text": "Formulario webPróximamente",
+      "tabBox": {
+       "w": 153,
+       "h": 87,
+       "left": 196,
+       "right": 349
+      },
+      "markPainted": true,
+      "markBox": {
+       "left": 207,
+       "right": 338
+      },
+      "markInsideTab": true
+     },
+     {
+      "key": "phone",
+      "soonAttr": "true",
+      "text": "TeléfonoPróximamente",
+      "tabBox": {
+       "w": 153,
+       "h": 65,
+       "left": 35,
+       "right": 188
+      },
+      "markPainted": true,
+      "markBox": {
+       "left": 46,
+       "right": 177
+      },
+      "markInsideTab": true
+     }
+    ],
+    "tabKeys": [
+     "email",
+     "webform",
+     "phone"
+    ],
+    "whilePlaying": [
+     {
+      "at": 1.2,
+      "markPainted": true,
+      "inside": true,
+      "selected": "true"
+     },
+     {
+      "at": 2.4,
+      "markPainted": true,
+      "inside": true,
+      "selected": "true"
+     },
+     {
+      "at": 3.5999999999999996,
+      "markPainted": true,
+      "inside": true,
+      "selected": "true"
+     },
+     {
+      "at": 4.8,
+      "markPainted": true,
+      "inside": true,
+      "selected": "true"
+     },
+     {
+      "at": 6,
+      "markPainted": true,
+      "inside": true,
+      "selected": "true"
+     },
+     {
+      "at": 7.199999999999999,
+      "markPainted": true,
+      "inside": true,
+      "selected": "true"
+     }
+    ]
+   }
+  },
+  "public-1440": {
+   "plans": {
+    "rows": [
+     {
+      "key": "replyWhatsapp",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "languageNoted",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "labels",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "whatsappOwnNumber",
+      "painted": true,
+      "cells": [
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "phoneAssistant",
+      "painted": true,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "instagram",
+      "painted": true,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "crm",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "priorityWithReason",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "oneRecordAcrossChannels",
+      "painted": true,
+      "cells": [
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "alert",
+      "painted": true,
+      "cells": [
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "taskList",
+      "painted": true,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "matching",
+      "painted": true,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "reportInLogin",
+      "painted": true,
+      "cells": [
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       },
+       {
+        "state": "included",
+        "text": ""
+       }
+      ]
+     },
+     {
+      "key": "weeklyEmail",
+      "painted": true,
+      "cells": [
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "reportTrend",
+      "painted": true,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "integrations",
+      "painted": true,
+      "cells": [
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "adsLeads",
+      "painted": true,
+      "cells": [
+       {
+        "state": "excluded",
+        "text": ""
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       },
+       {
+        "state": "soon",
+        "text": "Próximamente"
+       }
+      ]
+     },
+     {
+      "key": "model3d",
+      "painted": true,
+      "cells": [
+       {
+        "state": "order-soon",
+        "text": "Opcional · próximamente"
+       },
+       {
+        "state": "order-soon",
+        "text": "Opcional · próximamente"
+       },
+       {
+        "state": "order-soon",
+        "text": "Opcional · próximamente"
+       }
+      ]
+     }
+    ],
+    "rowCount": 18,
+    "paintedRows": 18,
+    "legend": [
+     "Próximamenteaún no activo"
+    ],
+    "legendPainted": true,
+    "legendSoonSeen": true
+   },
+   "words": {
+    "enPreparacion": 0,
+    "prontoEnBreve": 0,
+    "masIdiomas": 0,
+    "masIdiomasProximamente": false,
+    "faqText": "\\\"children\\\":\\\"This page could not be found.\\\"}]}]]}]}]],\\\"notFoundStyles\\\":[]}]],null],null],\\\"couldBeIntercepted\\\":false,\\\"initialHead\\\":[null,\\\"$L20\\\"],\\\"globalErrorComponent\\\":\\\"$21\\\",\\\"missingSlots\\\":\\\"$W22\\\"}]\\n\"])",
+    "proximamenteCount": 123
+   },
+   "tabs": {
+    "tabs": [
+     {
+      "key": "email",
+      "soonAttr": null,
+      "text": "Email",
+      "tabBox": {
+       "w": 111,
+       "h": 52,
+       "left": 83,
+       "right": 194
+      },
+      "markPainted": false,
+      "markBox": null,
+      "markInsideTab": null
+     },
+     {
+      "key": "webform",
+      "soonAttr": "true",
+      "text": "Formulario webPróximamente",
+      "tabBox": {
+       "w": 301,
+       "h": 52,
+       "left": 202,
+       "right": 503
+      },
+      "markPainted": true,
+      "markBox": {
+       "left": 379,
+       "right": 482
+      },
+      "markInsideTab": true
+     },
+     {
+      "key": "phone",
+      "soonAttr": "true",
+      "text": "TeléfonoPróximamente",
+      "tabBox": {
+       "w": 249,
+       "h": 52,
+       "left": 511,
+       "right": 760
+      },
+      "markPainted": true,
+      "markBox": {
+       "left": 636,
+       "right": 739
+      },
+      "markInsideTab": true
+     }
+    ],
+    "tabKeys": [
+     "email",
+     "webform",
+     "phone"
+    ],
+    "whilePlaying": [
+     {
+      "at": 1.2,
+      "markPainted": true,
+      "inside": true,
+      "selected": "true"
+     },
+     {
+      "at": 2.4,
+      "markPainted": true,
+      "inside": true,
+      "selected": "true"
+     },
+     {
+      "at": 3.5999999999999996,
+      "markPainted": true,
+      "inside": true,
+      "selected": "true"
+     },
+     {
+      "at": 4.8,
+      "markPainted": true,
+      "inside": true,
+      "selected": "true"
+     },
+     {
+      "at": 6,
+      "markPainted": true,
+      "inside": true,
+      "selected": "true"
+     },
+     {
+      "at": 7.199999999999999,
+      "markPainted": true,
+      "inside": true,
+      "selected": "true"
+     }
+    ]
+   }
+  }
+ },
+ "notLoaded": [],
+ "buildAtEnd": "7fbb6625bd19a6a5828e703b237d9dedf29a4126",
+ "oneBuild": true
+}
