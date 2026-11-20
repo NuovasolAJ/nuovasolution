@@ -6,7 +6,15 @@ const REF = JSON.parse(readFileSync(process.argv[2], "utf8"));
 const NEW = JSON.parse(readFileSync(process.argv[3], "utf8"));
 const N = s => (s || "").replace(/[\s  ]+/g, " ").trim();
 const sent = (j, r) => (((j.routes[r] || {}).target) || {}).sentences || [];
-const allNew = {}; for (const r of Object.keys(NEW.routes || {})) allNew[r] = sent(NEW, r).map(N).join(" \u0001 ");
+// A sentence is only lost if it is in NEITHER view. Comparing target to target alone reported
+// "Te enseñamos el sistema con datos de ejemplo." as lost, when the gate change had simply made it
+// the gate-view answer: once mailboxConnection and whatsappOwnNumber went soon, the public variant
+// renders there and the target view shows the target answer. Both views are searched now.
+const bothViews = (j, r) => {
+  const o = j.routes[r] || {};
+  return [...(((o.target) || {}).sentences || []), ...(((o.public) || {}).sentences || [])];
+};
+const allNew = {}; for (const r of Object.keys(NEW.routes || {})) allNew[r] = bothViews(NEW, r).map(N).join(" \u0001 ");
 
 const CATS = [
   { name: "preview furniture", re: /Vista previa, no p[úu]blica|Preview, not public|Solo en la vista previa|Preview only/,

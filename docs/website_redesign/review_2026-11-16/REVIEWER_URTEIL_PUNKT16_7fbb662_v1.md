@@ -14,8 +14,8 @@ Deployments hinweg möglich gewesen, ohne dass es jemandem auffällt.
 
 ## URTEIL: **JA**
 
-Punkt 16 ist aus meiner Sicht bestanden. Zwei benannte Punkte bleiben (beide unten), keiner davon
-wiegt schwer genug für ein NEIN.
+Punkt 16 ist aus meiner Sicht bestanden. Ein benannter Nachzügler bleibt (Q-22, unten), der nicht
+schwer genug für ein NEIN wiegt.
 
 ---
 
@@ -37,7 +37,7 @@ wiegt schwer genug für ein NEIN.
 | **Regel 1** | **0 ×** „En preparación" auf der ganzen Seite, beide Sichten | ✓ |
 | **Regel 2** | **0** Treffer neben einer Marke | ✓ |
 | **§5a Sprachen** | **0 ×** „Más idiomas" in allen vier Läufen, FAQ-Seite geprüft | Owner Punkt 4 ✓ |
-| **Satzbestand** | **1 390 Sätze erhalten**; 48 Kandidaten in 10 benannte Gruppen geordnet, Ersatz je Gruppe belegt | 1 offener Satz, siehe unten |
+| **Satzbestand** | **1 390 Sätze erhalten**; alle Kandidaten aufgeklärt, Ersatz je Gruppe belegt | **0 Verluste** ✓ |
 
 **Meine Tiefenzahlen und Redesigns stimmen auf das Pixel überein** (17 323 und 16 627). Bei der
 Möblierung weiche ich leicht ab (0,17/0,12 gegen 0,24/0,20), weil ich nur nicht-feste Elemente
@@ -55,15 +55,30 @@ Tagesgeschichte **13:20 und 23:40**, Hero H-subP, Augenbraue „hace **y hará**
 
 ## 3. Zwei offene Punkte — keiner ein NEIN
 
-**(a) Ein Satz ohne erkennbaren Ersatz.** Auf `/es/faq` stand in `dd2035b`:
-„Te enseñamos el sistema con datos de ejemplo." In `7fbb662` finde ich ihn nicht, und ich finde
-auch keinen Satz, der ihn ersetzt. Die übrigen Kandidaten dieser Art haben sich aufgeklärt — die
-Pilot-Antwort wurde **erweitert** („…durante 14 días, **con todo lo de Growth**, gratis…"), die
-englische Preiszeile **umformuliert**, der Link „Ver la semana completa" **umbenannt** in „Ver el
-informe completo" / „Ver el informe de ejemplo" (Ziel weiterhin erreichbar, zweimal verlinkt),
-und die spanischen Reste auf der englischen Plattformseite sind **behoben**, nicht verloren.
-**Bitte an Copy:** gewollt oder übersehen? Es ist ein Satz auf einer Unterseite, kein Mangel am
-Abschnitt.
+**(a) ERLEDIGT — der Fehler lag bei mir.** Ich hatte gemeldet, „Te enseñamos el sistema con datos
+de ejemplo." sei auf `/es/faq` verschwunden. **Der Satz ist da**, in der **Gate-Sicht**, als
+Antwort auf „¿Cuánto se tarda en configurarlo?" — Redesign hat darauf hingewiesen, und ich habe
+es in meinen eigenen Daten nachgeprüft:
+
+| | Zielsicht | Gate-Sicht |
+|---|---|---|
+| `dd2035b` | vorhanden | vorhanden |
+| `7fbb662` | **nicht** | **vorhanden** |
+
+**Ursache:** Mit `mailboxConnection` und `whatsappOwnNumber` auf „soon" rendert dort die
+öffentliche Antwortfassung, während die Zielsicht ihre eigene Antwort zeigt („Tú preparas los
+datos de tu agencia, tu logo y tu equipo."). **Mein Vergleich suchte nur in der Zielsicht** und
+meldete deshalb einen Verlust, wo nur die Fassung gewechselt hat.
+
+**Behoben:** Der Vergleich durchsucht jetzt **beide Sichten**; ein Satz gilt erst als verloren,
+wenn er in **keiner** steht. Erneut gelaufen — der Satz fällt aus der Liste heraus.
+
+**Damit bleibt kein ungeklärter Verlust.** Die zehn übrigen Kandidaten habe ich einzeln geprüft:
+die Pilot-Antwort wurde **erweitert** („…durante 14 días, **con todo lo de Growth**, gratis…"),
+die englische Preiszeile **umformuliert**, der Link „Ver la semana completa" **umbenannt** in
+„Ver el informe completo" / „Ver el informe de ejemplo" (Ziel weiterhin erreichbar, zweimal
+verlinkt), und die fünf spanischen Reste auf der englischen Plattformseite sind **behoben**, nicht
+verloren. **Satzbestand: 0 Verluste.**
 
 **(b) Q-22, bekannter Nachzügler.** In der Gate-Sicht antwortet „¿Puedo añadir a mi equipo y
 darles roles distintos?" mit „**Lista de tareas**: próximamente." statt „Equipo y roles:
