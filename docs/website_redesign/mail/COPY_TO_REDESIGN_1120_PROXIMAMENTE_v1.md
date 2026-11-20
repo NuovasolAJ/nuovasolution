@@ -186,6 +186,16 @@ What is still open:
 
 **Dropped:** "Más idiomas, en preparación." / "More languages are in preparation." in the target view, and Redesign's "Más idiomas: próximamente." in the gate view. The 1116 §1 row "Otros idiomas: próximamente." is retired with it.
 
+## 5b. `statuses.ts` `premium_on_request` (WCR-004), set ahead in case it renders
+
+`statuses.ts:69` / `:120` still read "Las primeras entregas están en preparación." "En preparación" is not used anywhere. If Redesign finds the sentence rendered in any view, it becomes:
+
+| ES | EN |
+|---|---|
+| Un servicio que preparamos para ti. Próximamente. | A service we prepare for you. Coming soon. |
+
+Label and short form "Bajo petición" / "On request" stay. If the sentence is rendered nowhere, nothing changes.
+
 ## 6. G-1's off chip, shortened (RV6's question, 20.11., measured on `deb4a40`)
 
 **The change:** while G-1 is fully off (P-1), its chip reads **"Próximamente · Desde Growth"** / **"Coming soon · From Growth"**. The Enterprise clause is dropped.
