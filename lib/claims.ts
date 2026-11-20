@@ -66,6 +66,7 @@ export const claims = {
   plans: "soon",                   // (§15) plan names and the comparison table: production has no package system yet (E28-Prod P4)
   trial: "soon",                   // (signup) the 14-day trial — not before the production onboarding core (E28-Prod P4 + owner)
   publicSignup: "soon",            // (signup) public registration — not released (owner's registration line + new site live)
+  teamRoles: "soon",               // (team_roles) inviting team members with roles: prod has no invite path (no team_invite, tenant-api v1; API 20.11.)
 } as const satisfies Record<string, ClaimState>;
 
 export type ClaimKey = keyof typeof claims;
@@ -116,6 +117,7 @@ export const publicGate: Record<ClaimKey, "live" | "soon"> = {
   plans: "live",
   trial: "live",
   publicSignup: "live",
+  teamRoles: "soon", // API 20.11.: prod has no team invite with roles (team_invite and tenant_api_bind_invited missing, tenant-api v1)
 };
 /** True while every gate is "live": the public view is the target view. */
 export const publicShowsAll = (): boolean => (Object.keys(publicGate) as ClaimKey[]).every((k) => publicGate[k] === "live");

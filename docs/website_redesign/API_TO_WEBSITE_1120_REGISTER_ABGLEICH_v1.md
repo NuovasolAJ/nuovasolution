@@ -34,3 +34,17 @@
   - `mailboxConnection`, `outlook`, `oneRecordAcrossChannels`, `taskList`;
   - `weeklyEmail`, sobald der erste Bericht an eine Pilotagentur zugestellt ist.
 - **Ohne Termin:** `integrations` (kein Anbieter mit Prod-Beleg), `reportTrend`, `dailyVoice`, `webform` (Formular in Prod offen), `model3d`.
+
+## Nachtrag (Owner 20.11.): Team und Rollen, eigene Nummer, Alarm
+
+Gelesen in Prod, Fr 20.11. ~11:00Z, nur lesend.
+
+| Schlüssel | Urteil | Was Prod heute zeigt |
+|---|---|---|
+| `teamRoles` **(neu)** | **noch nicht** | In Prod gibt es keinen Weg, Teammitglieder mit Rollen einzuladen. Die Funktionen `team_invite` und `tenant_api_bind_invited` fehlen, `tenant-api` läuft in Prod als v1 (die Einladung gibt es nur auf Staging). In Prod stehen zwei Logins, beide von Hand angelegt: `nuovasolution` (agency_admin) und `pilot_test_a` (agent). |
+| `whatsappOwnNumber` | **noch nicht** | In Prod ist genau eine WhatsApp-Nummer verbunden, die eigene von NuovaSolution (`nuovasolution`, seit 08.07.). Keine Agentur hat eine eigene Nummer. |
+| `alert` | **noch nicht** | Alarme laufen in Prod nur für die eigene Agentur: 15 Einträge im Alarmbuch, zuletzt 20.11. 08:54Z, Weg über WhatsApp an den Betreiber. Die Pilotagentur hat eine aktive Mitarbeiterin mit Mail, aber 0 Alarme, weil ihr kein Kanal zuläuft. |
+
+- Der Schalter `teamRoles` steht in `lib/claims.ts` im Register und im Gate auf „soon“. Wo er auf der Seite hängt, entscheidet Redesign.
+- Die Seite erwähnt Team und Rollen heute an einer Stelle: `lib/content/capabilities.ts` Z. 297 „Tu equipo y sus roles“.
+- Owner-Stand: `whatsappOwnNumber` und `alert` bleiben heute „soon“.
