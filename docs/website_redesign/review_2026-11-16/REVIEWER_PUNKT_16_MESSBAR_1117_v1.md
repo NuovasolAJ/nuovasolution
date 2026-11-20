@@ -1050,3 +1050,47 @@ allgemeinen Interpunktion. Der Haken der Pakettabelle ist **kein Schriftzeichen*
 einem `span` mit `aria-label` (`components/home/plans-table.tsx:33`). **Also kann die Teilmenge
 keine Kästchen erzeugen.** Ich nehme Redesigns gemessene Hero-Kästen lokal gegen Alias und messe
 die Tiefe ohnehin neu — eine Schriftmetrik, die sich ändert, fällt dort auf.
+
+### 23.2 Die Mechanik am Commit `2ce20ad` nachgelesen — und ein Fehler in meiner eigenen Vorgabe
+
+Diesmal **am Commit**, nicht am Arbeitsbaum. Vereinbart war: Zelle und Name der Antwortzeile nur
+aus den Antwortkanälen, Zielsicht-Zelle unbedingt „included". Gebaut ist genau das:
+
+```
+REPLY_CHANNELS = ["replyWhatsapp", "replyEmail"]                              (claims.ts:160)
+planCell(replyWhatsapp) = view === "target" || channelKeys(view, REPLY_CHANNELS).length > 0
+                          ? "included" : "soon"                                (claims.ts:209)
+channelKeys/channelList/withChannels nehmen ein optionales `only`              (:162–169)
+Aufrufer übergibt REPLY_CHANNELS für diese Zeile                   (plans-table.tsx:53)
+```
+
+**Übernommen wie besprochen, einschließlich des Zielsicht-Vertrags.** Nichts zu beanstanden.
+
+**Dabei habe ich zwei Dinge gefunden, die beide gegen mich gehen.**
+
+**Erstens: mein Symptom war falsch beschrieben.** Ich hatte in Abschnitt 22 geschrieben, der
+Widerspruch sei „ein Haken auf einer Zeile, deren Kanalliste leer ist". Der **öffentliche**
+Zeilenname wird aber gar nicht gerechnet — er ist die Konstante `repliesRowPublic`
+(„Respuestas en español por email." / „Replies in Spanish by email.",
+`home-1103.ts:537`), und die steht **wortgleich schon auf `2342537`**. Der Name kann also nie
+leer werden.
+
+Was unter (b) tatsächlich entstanden wäre, ist **schlimmer als ein Loch**: ein **Haken** neben
+einem Namen, der E-Mail-Antworten behauptet, während das Gate für E-Mail „Próximamente" sagt —
+also eine **falsche Verfügbarkeitsaussage**, nicht eine unvollständige. Die Sorge war richtig,
+meine Beschreibung des Symptoms nicht. Unter (a) entsteht keines von beidem.
+
+**Zweitens, und das ist der nützliche Teil: in meiner eigenen Prüfvorgabe stand ein falscher
+Erwartungswert.** Ich hatte für den englischen öffentlichen Zeilennamen „Replies in Spanish **on
+e-mail**" angesetzt — analog zu den gerechneten Sätzen. Die Konstante sagt „Replies in Spanish
+**by email**". **Mein D-3 hätte die englische Zeile grundlos als Mangel gemeldet.** Vor dem Lauf
+berichtigt, mit Begründung in der Datei.
+
+**Das ist genau der Grund, die Vorgabe vor dem Build zu schreiben und sie dann gegen die Quelle
+zu prüfen.** Ein Erwartungswert, der erst im Lauf auffällt, verwandelt sich leicht in einen
+„Mangel", den jemand anders dann sucht.
+
+**Ein Nebenbefund für Copy, ausdrücklich klein und nicht neu:** Im Englischen schreibt die Seite
+in den gerechneten Sätzen **„e-mail"** und in dieser einen Konstante **„email"**. Das steht so
+schon auf `2342537`, ist also keine Regression und kein Mangel an Punkt 16 — aber es ist eine
+Ungleichheit im Wortlaut, und sie gehört Copy, nicht mir.

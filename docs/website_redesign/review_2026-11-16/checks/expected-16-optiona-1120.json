@@ -18,7 +18,8 @@
    { "id": "flow_f1", "route": "/", "esPrefix": "Por email,", "enPrefix": "On e-mail," },
    { "id": "functions_s1", "route": "/", "esPrefix": "En español, por email", "enPrefix": "In Spanish, on e-mail" },
    { "id": "origin_s7", "route": "/", "esPrefix": "La ficha guarda de dónde llega cada consulta: email", "enPrefix": "The record keeps where each enquiry comes from: e-mail" },
-   { "id": "plansRow", "route": "/", "es": "Respuestas en español por email", "en": "Replies in Spanish on e-mail" },
+   { "id": "plansRow", "route": "/", "es": "Respuestas en español por email", "en": "Replies in Spanish by email",
+     "note": "CORRECTED before the run: the PUBLIC row name is not computed from the channel list at all - it is the constant repliesRowPublic (home-1103.ts:537), word-identical on 2342537. So it reads \"by email\", not \"on e-mail\" like the computed sentences. My first version of this line would have failed the EN public row for no reason." },
    { "id": "meta", "route": "/", "esPrefix": "Respondemos en español a las consultas por email,", "enPrefix": "We answer enquiries on e-mail in Spanish," }
   ],
   "mustNotAppear": ["⟦", "⟧", "por .", "por ,", "on .", "on ,"],
@@ -48,7 +49,8 @@
  "D-3_plansRowUnchanged": {
   "why": "Redesign now computes the row's cell and its name from REPLY_CHANNELS (replyWhatsapp, replyEmail) instead of the row's register key, and makes the target cell unconditionally included. The agreed property is that TODAY'S OUTPUT DOES NOT CHANGE. That is exactly what a regression check is for.",
   "agreedMechanism": "cell and name both from the reply channels only; target cell unconditionally \"included\" (my §23.1 correction, taken by Redesign 20.11.)",
-  "public": { "nameContains": { "es": "Respuestas en español por email", "en": "Replies in Spanish on e-mail" }, "cells": ["included", "included", "included"], "expectTick": true },
+  "public": { "nameContains": { "es": "Respuestas en español por email", "en": "Replies in Spanish by email" }, "cells": ["included", "included", "included"], "expectTick": true,
+   "nameIsAConstant": "repliesRowPublic (home-1103.ts:537), word-identical on 2342537 - the public name is NOT computed. Verified at commit 2ce20ad, caller plans-table.tsx:53." },
   "target": { "nameContains": { "es": "Respuestas en español por WhatsApp y email", "en": "Replies in Spanish on WhatsApp and e-mail" }, "cells": ["included", "included", "included"], "expectTick": true },
   "mustNotHappen": "a tick on a row whose name has no channel in it, and a tick on a row naming an arrival-only channel (portales y anuncios, formulario web, teléfono) - the switch-day fault I raised; it cannot occur while those three are register \"soon\", so this records the condition rather than expecting a failure"
  },
