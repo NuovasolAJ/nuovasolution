@@ -1,0 +1,54 @@
+{
+ "_meta": {
+  "what": "publicGate/channelList computed by the REAL functions of lib/claims.ts, transpiled alone with tsc (the only import is a pure type and is elided). No reimplementation.",
+  "source": "WORKING TREE of lib/claims.ts, not a commit - Redesign is mid-work; the fixed build must be re-measured",
+  "claimsTsBlob": "3ab98aa0252d5b1b6dfee75faafee350336149a5",
+  "repoHead": "ee2e689",
+  "computedAt": "2026-11-20",
+  "reviewer": "RV6",
+  "note": "publicGate.replyEmail = soon (owner 20.11. §4.3 b); whatsappOwnNumber + alert = soon (group B)"
+ },
+ "target": {
+  "channelKeys": [
+   "replyWhatsapp",
+   "replyEmail"
+  ],
+  "listES": "\"WhatsApp y email\"",
+  "listEN": "\"WhatsApp and e-mail\""
+ },
+ "public": {
+  "channelKeys": [],
+  "listES": "\"\"",
+  "listEN": "\"\""
+ },
+ "replySpanish_readsRegister": true,
+ "publicShowsAll": false,
+ "planCell_replyWhatsapp_public": [
+  "included",
+  "included",
+  "included"
+ ],
+ "planCell_replyWhatsapp_target": [
+  "included",
+  "included",
+  "included"
+ ],
+ "rendered_public": {
+  "meta_es": "Respondemos en español a las consultas por , las registramos en una ficha y dejamos a tu equipo una tarea clara.",
+  "faq_q02_es": "Consultas por .",
+  "s1_es": "En español, por , también fuera de horario.",
+  "planrow_es": "Respuestas en español por ",
+  "q5_es": "Funciona con , con respuestas en español.",
+  "s7_es": "La ficha guarda de dónde llega cada consulta: . Así ves qué canal te trae clientes.",
+  "f1_es": "Por , a cualquier hora."
+ },
+ "rendered_target": {
+  "meta_es": "Respondemos en español a las consultas por WhatsApp y email, las registramos en una ficha y dejamos a tu equipo una tarea clara.",
+  "faq_q02_es": "Consultas por WhatsApp y email.",
+  "s1_es": "En español, por WhatsApp y email, también fuera de horario.",
+  "planrow_es": "Respuestas en español por WhatsApp y email",
+  "q5_es": "Funciona con WhatsApp y email, con respuestas en español.",
+  "s7_es": "La ficha guarda de dónde llega cada consulta: WhatsApp y email. Así ves qué canal te trae clientes.",
+  "f1_es": "Por WhatsApp y email, a cualquier hora."
+ }
+}

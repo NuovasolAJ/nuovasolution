@@ -766,3 +766,180 @@ Sprachen-Ankündigung in keiner Sicht, kein WhatsApp-Demo-Reiter öffentlich.
 Regel vom 16.11., die für diesen Punkt **nie** „próximamente" vorsah. Zwei Ihrer eigenen Regeln,
 und die Entscheidung gehört Ihnen. Ich messe, was gebaut ist, und melde die Kollision — ohne eine
 eigene Empfehlung, weil es eine Wortlautfrage zwischen Ihren Festlegungen ist.
+
+---
+
+## 22. §4.3 ist entschieden — und die Entscheidung reißt in der Gate-Sicht eine Lücke
+
+**Stand:** Der Owner hat §4.3 mit **(b)** entschieden: die E-Mail des Agentur-Postfachs zeigt
+„Próximamente". Im Arbeitsbaum steht das schon: `publicGate.replyEmail = "soon"` (`lib/claims.ts:88`).
+Gruppe B (`whatsappOwnNumber`, `alert`) bleibt „soon". Team/Rollen bekommt bei API einen Schlüssel.
+**Damit sind drei der vier Punkte, die ich offen gemeldet hatte, beim Owner entschieden.**
+
+Ich habe den **festen Build noch nicht** — ich messe nicht. Aber eine Folge dieser Entscheidung
+lässt sich **am Quellcode ausrechnen**, und sie ist nicht harmlos. Deshalb steht sie hier,
+**bevor** gebaut wird.
+
+### Wie ich es gerechnet habe
+
+Nicht nachgelesen, sondern **die echten Funktionen rechnen lassen**: `lib/claims.ts` allein mit
+`tsc` nach JavaScript übersetzt (der einzige Import ist ein reiner Typ und fällt weg) und
+`channelKeys`, `channelList`, `withChannels`, `planCell`, `replySpanish` mit echten Copy-Sätzen
+aufgerufen. Kein Nachbau meiner Seite — der Nachbau wäre genau die Stelle, an der mein eigener
+Fehler entstünde.
+
+### Befund 1 — die öffentliche Kanalliste ist **leer**, und sie wird in Sätze eingesetzt
+
+```
+channelKeys("target") = [replyWhatsapp, replyEmail]   channelList = "WhatsApp y email"
+channelKeys("public") = []                            channelList = ""        (ES und EN)
+```
+
+Grund, Zeile für Zeile: `channelOn` verlangt `isIncluded(key) && publicGate[key] === "live"`, und
+für WhatsApp zusätzlich `publicGate.whatsappOwnNumber === "live"`. `replyEmail` ist jetzt „soon",
+WhatsApp hängt an Gruppe B, die übrigen drei Kanäle sind im Register nicht `included`.
+**Also fällt jeder Kanal heraus.**
+
+`withChannels` ersetzt den Platzhalter **ohne Rückfallebene** (`lib/claims.ts:165`), und
+`channelList` gibt bei null Kanälen `""` zurück (`:161`). Was in der öffentlichen Sicht
+tatsächlich entsteht — gerechnet, nicht vermutet:
+
+| Zielsicht | Gate-Sicht |
+|---|---|
+| „Consultas por **WhatsApp y email**." | „Consultas por **.**" |
+| „Por **WhatsApp y email**, a cualquier hora." | „Por **,** a cualquier hora." |
+| „En español, por **WhatsApp y email**, también fuera de horario." | „En español, por **,** también fuera de horario." |
+| „Respuestas en español por **WhatsApp y email**" | „Respuestas en español por" (Name endet nach „por") |
+| „Funciona con **WhatsApp y email**, con respuestas en español." | „Funciona con **,** con respuestas en español." |
+| „…de dónde llega cada consulta: **WhatsApp y email**." | „…de dónde llega cada consulta: **.**" |
+| Meta-Beschreibung: „…las consultas por **WhatsApp y email**, las registramos…" | „…las consultas por **,** las registramos…" |
+
+**Umfang:** 34 Treffer des Platzhalters im Quellcode, davon 4 Kommentare → **13 Textzeilen in
+6 Dateien**, jede mit ES und EN: `lib/content/faq.ts:54,55,63`, `lib/content/home-1103.ts:62,100,106,513,596`,
+`lib/content/platform-map.ts:48,49`, `lib/i18n/dictionaries/es.ts:12,90`, `en.ts:11,96`.
+
+**Warum das zählt:** Das ist genau der Maßstab des Owners für die öffentliche Sicht —
+**„nichts Falsches, kein Loch"**. Ein Satz, der auf ein Komma endet, ist ein Loch. Die
+Meta-Beschreibung ist dabei der unangenehmste Fall: sie steht in Suchergebnissen und
+Link-Vorschauen, also dort, wo niemand sie korrigiert sieht.
+
+**Redesign weiß davon** („Copy schreibt die neuen Zeilen gerade"). Ich liefere deshalb keine
+Mahnung, sondern **die vollständige Liste der Fundstellen**, damit beim Nachziehen keine
+übersehen wird. Ich prüfe am festen Build auf **Abwesenheit des Platzhalters und Abwesenheit
+leerer Einsetzung** — meine Regel: in der Gate-Sicht darf kein gerenderter Satz die Folge
+„Leerzeichen vor Komma/Punkt" oder einen doppelten Zwischenraum enthalten.
+
+### Befund 2 — `replySpanish()` fragt das Register, nicht das Gate
+
+```js
+export const replySpanish = () => isIncluded("replyWhatsapp") || isIncluded("replyEmail");   // :127
+```
+
+`isIncluded` liest **`claims`**, nicht `publicGate`. Beide Schlüssel sind im Register `included`,
+also ist `replySpanish()` **`true` — auch in der öffentlichen Sicht**, gemessen: `true`.
+
+Das ist kein Loch, sondern das Gegenteil: **eine Aussage, die das Gate überlebt.** Jede Fläche,
+die auf `replySpanish` hängt — nach Copys Handover §15 der „Boden" der öffentlichen Sicht, dazu
+H-1, H-4, F-2, R-4, mehrere FAQ-Antworten — bleibt öffentlich an, obwohl das Gate für E-Mail
+gerade „Próximamente" sagt. Wenn die Regel des Owners lautet „öffentlich verfügbar ist nur, was
+für Pilotagenturen in Prod belegt ist", dann ist ein Boden, der aus dem **Register** gerechnet
+wird, der falsche Boden. **Das Gate kann diesen Pfad nicht erreichen.**
+
+Ich schreibe keinen Anwendungscode und schlage keine Fassung vor. Ich melde, dass dieser eine
+Pfad am Gate **vorbeiläuft**, und prüfe am Build, ob irgendeine öffentliche Fläche daraus eine
+E-Mail-Aussage macht.
+
+### Befund 3 — Pakettabelle und Kanalliste widersprechen sich im selben Build
+
+```
+planCell("replyWhatsapp", essential|growth|enterprise, "public") = included · included · included
+channelOn("replyWhatsapp", "public")                             = false
+```
+
+In **einer** Sicht, **einem** Build: Die Pakettabelle setzt auf der Zeile „Respuestas en español
+por ⟦canales⟧" in **allen drei Spalten einen Haken** — und dieselbe Zeile trägt einen
+Namen, dessen Kanalliste leer ist. Also ein Haken auf „Respuestas en español por".
+
+Die Ursache ist, dass `planCell` über `live()` am **Gate von `replyWhatsapp`** hängt (dort „live"),
+während `channelOn` zusätzlich **Gruppe B** verlangt (dort „soon"). Beide Regeln sind einzeln
+begründet; zusammen sagen sie dem Besucher Verschiedenes. **Das ist eine Kohärenzfrage, keine
+Wortlautfrage**, und sie gehört vor den festen Build, weil sie nicht durch neue Copy-Zeilen
+verschwindet.
+
+### Was ich daraus für den einen Durchgang mitnehme
+
+| Neuer Prüfpunkt | Maßstab |
+|---|---|
+| **C-1** kein leerer Einsatz | Gate-Sicht: kein Satz mit „ ," / „ ." / doppeltem Zwischenraum aus `⟦canales⟧`; Platzhalter nirgends sichtbar |
+| **C-2** Meta-Beschreibung | ES und EN, Gate-Sicht, vollständiger Satz ohne Loch |
+| **C-3** `replySpanish`-Flächen | keine öffentliche E-Mail-Aussage, solange `publicGate.replyEmail = "soon"` |
+| **C-4** Tabelle gegen Kanalliste | kein Haken auf einer Zeile, deren Kanalliste leer ist |
+| **C-5** Team/Rollen | neuer Registerschlüssel vorhanden **und** Gate-Zeile „Equipo y roles: próximamente." steht weiter |
+
+**C-5 schließt die Lücke, die ich als die einzige gemeldet hatte**, für die es keinen Schalter
+gab. Sobald API den Schlüssel liefert, ist die Abdeckung lückenlos.
+
+### Zwei Hinweise zum Betrieb, die nicht meine Spur sind, aber meine Belege berühren
+
+1. **Die beiden Deployments meines Urteils müssen erreichbar bleiben.** Redesign räumt wegen
+   100 % Speicher auf und behält `dpl_9Km6…` (7fbb662) und `dpl_8yQJ…` (2342537) — **genau die
+   zwei, auf denen mein JA steht.** Das ist richtig so, und ich halte es hier fest: wird eines
+   davon doch gelöscht, kann der Owner meine Zahlen nicht mehr selbst nachsehen. Meine
+   JSON-Belege und Bilder liegen im Repo und bleiben; die **Nachprüfbarkeit am lebenden Build**
+   hängt an diesen zwei IDs.
+2. **Der fehlgeschlagene Preview-Build von `b5a95fc`** lag laut Log am Google-Fonts-Laden von
+   `next/font` (Fraunces, `lib/fonts.ts`) — ein Abruf **zur Bauzeit** gegen einen fremden Dienst.
+   Code gleich, `2342537` grün. Für mich ist das kein Mangel, aber ein **Reproduzierbarkeitsrisiko
+   am festen Build**: derselbe Commit kann grün oder rot bauen, je nach fremdem Dienst. Genau
+   dagegen prüfe ich `/api/build` vor und nach jedem Lauf. Ich melde es, weil ein Build, der
+   zufällig scheitern kann, am Tag der Abnahme der schlechteste Moment dafür ist.
+
+### 22.1 Nachtrag, nach Lesen von `9ecba2c` und `ee2e689` — zwei meiner drei Befunde sind schon bedient
+
+Ich hatte Abschnitt 22 am Arbeitsbaum gerechnet und danach die zwei neuen Commits gelesen.
+**Das Ergebnis geht zu meinen Lasten, und so steht es hier:**
+
+**Befund 1 ist von Copy bereits abgedeckt — vollständiger als meine Liste.** Copys
+`COPY_TO_REDESIGN_1120_PROXIMAMENTE_v1.md` (`ee2e689`) hält in §7 denselben Schluss fest, den ich
+gerechnet habe („So in the public view ⟦canales⟧ is empty", Zeile 238), und gibt in §7.2 für
+**jede** meiner 13 Fundstellen eine neue Fassung — dazu Flächen, die ich nicht auf dem Zettel
+hatte (`es.ts:145/146`, `home-story.ts:252`, `capabilities.ts`, „Cómo empezar" Schritt 3,
+„Respondidas hoy"). Die Meta-Beschreibung ist eigens geregelt: **kein PX in einer
+Meta-Beschreibung**, und „una tarea clara" fällt zusätzlich weg, weil `taskList` „soon" ist.
+
+**Damit ist mein Befund 1 kein Fund mehr, sondern eine Bestätigung.** Copy war zuerst da und war
+genauer. Ich lasse ihn trotzdem stehen, weil die gerechnete Tabelle zeigt, **wie** die Löcher
+aussehen, und weil ich am Build gegen genau diese Liste prüfe.
+
+**C-5 ist erledigt.** `9ecba2c` legt `teamRoles` an — Register „soon", Gate „soon", mit APIs
+Begründung (kein `team_invite`, tenant-api v1). **Die einzige Lücke, für die es keinen Schalter
+gab, hat jetzt einen.** Nichts mehr von mir dazu.
+
+**Befund 3 verschwindet dadurch NICHT — er wird schärfer.** Copy verlangt in §7.2 für die
+Pakettabellen-Zeile `home-1103.ts:513` / `:536`: „Respuestas en español por email, **with PX-b in
+every plan cell instead of ✓**". Gemessen am Arbeitsbaum:
+
+```
+planCell("replyWhatsapp", essential|growth|enterprise, "public") = included · included · included
+```
+
+`planCell` hängt über `live()` **allein** am Gate von `replyWhatsapp`, und das steht auf „live".
+**Solange dieser Schlüssel „live" ist, gibt `planCell` einen Haken — Copys Anweisung ist mit dem
+Wortlaut allein nicht erfüllbar.** Es braucht eine der beiden Änderungen, und beide gehören
+Redesign, nicht mir:
+
+- `publicGate.replyWhatsapp` auf „soon" (dann folgt die Tabelle von selbst), **oder**
+- die Zeile hängt an einem anderen Schlüssel, der zum neuen Namen „por email" passt.
+
+**Das ist der eine Punkt, bei dem Anweisung und Mechanik sich heute nicht treffen.** Ich melde ihn
+jetzt, weil er am festen Build sonst als Haken auf einer „Próximamente"-Zeile erscheint — und das
+wäre genau die Sorte Widerspruch, die ein Besucher sieht.
+
+**Befund 2 bleibt als schmale Warnung.** Copy bindet R-0 an „⟦canales⟧ ist leer", nicht an
+`replySpanish`. Wird R-0 so gebaut, ist die Sache sauber. `replySpanish()` ist aber weiterhin
+`true` in der öffentlichen Sicht, weil es das **Register** liest. Mein Prüfpunkt **C-3** bleibt
+deshalb stehen: Ich sehe nach, ob irgendeine öffentliche Fläche noch aus diesem Pfad eine
+E-Mail-Aussage macht. Wenn nicht, ist es ein schlafender Pfad und kein Mangel.
+
+**Stand meiner fünf Prüfpunkte vor dem Build:** C-1 und C-2 von Copy bedient (prüfe ich),
+**C-4 offen und mit Hinweis an Redesign**, C-3 schmale Warnung, **C-5 erledigt**.
