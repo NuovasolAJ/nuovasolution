@@ -231,6 +231,10 @@ This replaces the G-1 row of `COPY_TO_REDESIGN_1120_HERO_PROXIMAMENTE_PLANFOLD_v
 
 ## 7. The public view with no reply channel live: the owner's (b) of §4.3 (relayed by Redesign, 20.11. about 13:00)
 
+> **NOT CHOSEN (owner 20.11.: a).** The owner decided §4.3 = (a), not (b): the new site goes public only once A12 is proven in production (Tue 24.11. at the earliest). The lines of this §7 (`ee2e689`) are **not used**. They stay here on the owner's order, unchanged, as a record.
+>
+> **The open question of §7.0 is answered (owner, from API `cee6992`):** without a connected mailbox no enquiry of a pilot agency arrives in production. With (a) this is solved on the switch day.
+
 **Basis (Redesign's message, not received by Copy directly):**
 - The owner chose (b): e-mail for the agency's own mailbox is "Próximamente".
 - `publicGate.replyEmail` is "soon" (prod has no mailbox register, API `cee6992`).
