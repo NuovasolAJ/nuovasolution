@@ -228,3 +228,132 @@ The target answer stays: "Sí. Invitas a tu equipo y defines un rol para cada pe
 - **Partial** (G-1p, ads on, social off): "Desde Growth · redes sociales en Enterprise, próximamente". Here the ad part is live and in the pilot, so the boundary is real information.
 
 This replaces the G-1 row of `COPY_TO_REDESIGN_1120_HERO_PROXIMAMENTE_PLANFOLD_v1.md` §2.2.
+
+## 7. The public view with no reply channel live: the owner's (b) of §4.3 (relayed by Redesign, 20.11. about 13:00)
+
+**Basis (Redesign's message, not received by Copy directly):**
+- The owner chose (b): e-mail for the agency's own mailbox is "Próximamente".
+- `publicGate.replyEmail` is "soon" (prod has no mailbox register, API `cee6992`).
+- WhatsApp needs `whatsappOwnNumber`, which stays "soon" (owner, point 3).
+- So in the public view ⟦canales⟧ is empty.
+
+### 7.0 What this means (for the owner, before the acceptance)
+
+**In the public view NuovaSolution no longer answers a pilot agency's clients on any channel.** So every sentence that says "it replies" changes, not only the e-mail lines:
+- the line under the hero h1;
+- the "Atiende" area;
+- the flow;
+- the FAQ;
+- the example blocks.
+
+**Still shown as available:**
+- the record, with its priority and reason;
+- where each enquiry comes from;
+- the report in the login;
+- the reminder after one hour;
+- recognising the language.
+
+**Open for API and the owner, not Copy's to decide:** without a connected channel, how does a pilot agency's enquiry reach the system at all? If it cannot, the record lines have no input in production either, and under point 1 they would be "Próximamente" too. Copy writes no line for that until API answers.
+
+### 7.1 Two new PX lines and the build rule R-0
+
+| Line | ES | EN | Use |
+|---|---|---|---|
+| **PX-R** | Respuestas en español por email: próximamente. | Replies in Spanish by email: coming soon. | any line that says the system replies, while R-0 holds |
+| **PX-s `replyEmail`** | Respuesta por email, en el buzón de tu agencia: próximamente. | A reply by e-mail, in your agency's mailbox: coming soon. | a point that hangs on `replyEmail` alone (`capabilities.ts:107`) |
+
+**PX-R names e-mail only.** WhatsApp stays unnamed in public (owner 16.11., point 8).
+
+**R-0:**
+- **When it holds:** while ⟦canales⟧ is empty in the public view.
+- **`replyOutOfHours`:** under R-0 it counts as off too, because a night-time reply is a property of the reply.
+- **When it ends:** as soon as any reply channel is live, today's forms with ⟦canales⟧ come back unchanged.
+- **Target view:** unchanged throughout.
+
+### 7.2 The sentences with ⟦canales⟧, under R-0
+
+| Place | ES | EN |
+|---|---|---|
+| meta description `es.ts:12` / `en.ts:11` | Cada consulta queda en su ficha, con su prioridad y su motivo, para que tu equipo sepa por dónde empezar. Hecho para agencias inmobiliarias en España. | Every enquiry lands on its record, with its priority and reason, so your team knows where to start. Built for real estate agencies in Spain. |
+| FAQ "¿Qué hace NuovaSolution?" `faq.ts:54–55`, its `pub` `:58`, home `home-1103.ts:596` | Guarda lo importante de cada consulta en su ficha, con su prioridad y su motivo, para que tu equipo sepa por dónde empezar. Respuestas en español por email: próximamente. | It keeps what matters from every enquiry on its record, with its priority and reason, so your team knows where to start. Replies in Spanish by email: coming soon. |
+| FAQ "¿Qué canales se responden?" `faq.ts:63` | Respuestas en español por email: próximamente. | Replies in Spanish by email: coming soon. |
+| flow F-1, node 1 `home-1103.ts:62` (both variants) | Por email, en el buzón de tu agencia: próximamente. | By e-mail, in your agency's mailbox: coming soon. |
+| functions "Consultas respondidas" `home-1103.ts:100` | Title stays, with PX-b after it. Line: Respuestas en español por email, también fuera de horario: próximamente. | Title stays, with PX-b. Line: Replies in Spanish by email, also out of hours: coming soon. |
+| origin `home-1103.ts:106` | La ficha guarda de dónde llega cada consulta. Así ves qué canal te trae clientes. | The record keeps where each enquiry comes from. So you see which channel brings you clients. |
+| plans row `home-1103.ts:513` / `:536` | Respuestas en español por email, with PX-b in every plan cell instead of ✓ | Replies in Spanish by email, with PX-b |
+| platform-map L-1 `platform-map.ts:48–49` | Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo. Respuestas en español por email: próximamente. | It recognises the language of every enquiry and, if it is not Spanish, passes it to your team. Replies in Spanish by email: coming soon. |
+| qualifier q5 `es.ts:90` / `en.ts:96` | Respuestas en español por email: próximamente. | Replies in Spanish by email: coming soon. |
+
+**Notes:**
+- **Meta description:** no PX in a meta description. "Una tarea clara" is dropped as well, because `taskList` is soon.
+- **Flow, node 2 "NuovaSolution responde":** title and line stay, with PX-b after the title (rule P-1).
+
+### 7.3 The static lines that become false
+
+| Place | ES | EN |
+|---|---|---|
+| hero line under h1, `home-1103.ts:33` and `strengths.ts:101` (**H-subP0**) | Lo que piden tus clientes te espera ordenado en su ficha, con su prioridad y su motivo, aunque estés en una visita. | What your clients ask for waits for you on their record, with its priority and reason, even while you are at a viewing. |
+| hero L-2 `home-1103.ts:45` | Reconoce el idioma. Si no es español, pasa a tu equipo. | It recognises the language. If it is not Spanish, it goes to your team. |
+| hero scroll `home-1103.ts:53` | Ver cómo funciona | See how it works |
+| area "Atiende" line `home-1103.ts:85` and `:648` (both variants) | Entiende y ordena cada consulta en cuanto llega, también de noche y en fin de semana. | It understands and sorts every enquiry as soon as it arrives, also at night and at weekends. |
+| point `home-1103.ts:650`, `pubText` | Responde en minutos por email: próximamente. | Replies within minutes by email: coming soon. |
+| FAQ "¿Responde de noche…?" `faq.ts:67` | Respuestas en español por email, también de noche y en fin de semana: próximamente. | Replies in Spanish by email, also at night and at weekends: coming soon. |
+| FAQ languages `faq.ts:87–88`, `home-1103.ts:599`, point `:663` | Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo. Respuestas en español por email: próximamente. | It recognises the language of every enquiry and, if it is not Spanish, passes it to your team. Replies in Spanish by email: coming soon. |
+| phone core, flow `home-1103.ts:448` | core: Cada consulta, en su ficha, con su prioridad y su motivo. · proof: PX-R | core: Every enquiry on its record, with its priority and reason. · proof: PX-R |
+| phone core "attend" `home-1103.ts:451` | core: Respuesta por email en minutos, también de noche: próximamente. · proof: Llega con la conexión de tu buzón. | core: Email replies within minutes, also at night: coming soon. · proof: It comes with connecting your mailbox. |
+| flow card `answerPublic` `es.ts:192` / `en.ts:214` | step "Respondida" with PX-b; title and line unchanged (P-1) | step "Answered" with PX-b; title and line unchanged |
+| "Cómo empezar", step 3 `home-1103.ts:554` | {mailbox PX-s} Desde el primer día trabajas con lo que está activo para tu agencia. Con tu opinión al final, 7 días más. | {mailbox PX-s} From day one you work with what is active for your agency. With your feedback at the end, 7 more days. |
+
+**Notes:**
+- **Hero:** H-sub when the target rule holds; else H-subP while a reply channel is live; else H-subP0.
+- **Phone core "attend":** the 2-minute measurement is not shown while R-0 holds. Next to "próximamente", a production figure reads as availability.
+- **Step 3:** "Cada consulta… por los canales activos queda contestada" cannot stay; no channel is active.
+
+**Platform page "Asistente de consultas"** (`capabilities.ts`, the `ai-sales-agent` entry):
+
+| Element | ES | EN |
+|---|---|---|
+| `navLine` `:91` | Respuestas a consultas de texto: próximamente. | Replies to text enquiries: coming soon. |
+| `h1` | unchanged, with PX-b right above it, as the chip on a card (P-1) | unchanged, with PX-b |
+| `leadPublic` `:100–103` | Cuando tu buzón esté conectado, las consultas por email recibirán respuesta en español y quedarán en su ficha, aunque tu equipo esté con un cliente o fuera de la oficina. Conexión con el buzón de tu agencia: próximamente. | Once your mailbox is connected, enquiries by e-mail will get a reply in Spanish and land on their record, even while your team is with a client or out of the office. Connection to your agency's mailbox: coming soon. |
+| `scenarioPublic` `:118–121` | starts "Así funcionará con tu buzón conectado: una compradora escribe por email…"; the rest unchanged | starts "How it will work once your mailbox is connected: a buyer writes by e-mail…"; the rest unchanged |
+| `fits` "Gmail" `:123` | Gmail, with PX-b | Gmail, with PX-b |
+| point `replyEmail` `:107` | PX-s `replyEmail` (§7.1) | PX-s `replyEmail` |
+| point `alert` `:109` | 1116 §1: "Aviso por email a la persona adecuada: próximamente." (owner, point 3: Próximamente, not hidden) | "Email alert to the right person: coming soon." |
+
+**Only if rendered (Redesign checks in the build):**
+
+| Place | ES | EN |
+|---|---|---|
+| `es.ts:145` lead | Una compradora escribe mientras estás en una visita. NuovaSolution registra lo que ha pedido en su ficha, con su prioridad y su motivo. | A buyer writes while you are at a viewing. NuovaSolution records what she asked for on her record, with its priority and reason. |
+| `es.ts:146` state | PX-R | PX-R |
+| `home-story.ts:252` lead | Guarda lo importante de cada consulta en su ficha. Respuestas en español por email: próximamente. | Keeps what matters from every enquiry on its record. Replies in Spanish by email: coming soon. |
+| `home-story.ts:284` state | Disponible hoy: la ficha de cada consulta, con su prioridad y su motivo. Próximamente: las respuestas por email, el formulario web y la llamada. | Available today: the record of every enquiry, with its priority and reason. Coming soon: replies by e-mail, the web form and the phone call. |
+| `home-story.ts:294` state | Disponible hoy: la ficha de cada consulta, con su prioridad y su motivo. | Available today: the record of every enquiry, with its priority and reason. |
+
+### 7.4 Cards and the day story under R-0
+
+- **G-3:** G-3p's first sentence "Responde al momento…" is false under R-0. So G-3 follows P-1, the whole card "Próximamente · Desde Growth". G-3p applies only while a reply channel is live.
+- **T-8**, example line 1: "Lunes 08:00 · 25 consultas, 25 en su ficha" / "Monday 08:00 · 25 enquiries, 25 on their record".
+- **D-6 (23:40)** is off under R-0. Only D-3 is left.
+- **D-3, while the handover is PX (§5):** to keep the one live station true, the public view shows the reminder instead of the handover:
+  - time 12:20;
+  - text "Nadie ha cogido la visita de Laura: Marta recibe un recordatorio." / "Nobody has taken Laura's viewing: Marta gets a reminder.";
+  - D-c "12:20 recordatorio a Marta" / "12:20 reminder to Marta".
+  - After Daily reports an observed handover, D-3 goes back to 13:20 "pasa a Carlos".
+
+### 7.5 The example blocks ("Ejemplo · datos ficticios")
+
+They show the finished product. Under R-0 they keep their content, the same way the hero demo does, and the reply parts carry the state:
+- **"Respondidas hoy"** (`home-1103.ts:134`): PX-b after the title.
+- **Report example:**
+  - **k1** (`:269`): "llegaron con la oficina cerrada." / "arrived while the office was closed.". The second sentence is dropped.
+  - **`chartNote`** (`:287`): "Cuatro semanas de ejemplo." / "Four example weeks.".
+- **"Sin / con NuovaSolution" comparison:**
+  - **The rows at `:360` and `:362`:** PX-b in the "with" column instead of "0". Their `d` lines are dropped.
+  - **`closeWith`** (`:367`): "Ninguna consulta se pierde de vista: las 25 en su ficha." / "No enquiry slips out of sight: all 25 on their record."
+
+### 7.6 The hero demo with all three tabs marked
+
+- **The tabs:** PX-b on each, as Redesign builds it; the surface keeps playing.
+- **The invite line:** "Pulsa un canal y mira cómo responderá." / "Tap a channel to see how it will reply."
