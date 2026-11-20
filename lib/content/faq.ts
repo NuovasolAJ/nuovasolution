@@ -176,7 +176,9 @@ export const faqGroups: FaqGroup[] = [
           en: "Yes. You invite your team and set a role for each person, and the roles decide what they see and do.",
           es: "Sí. Invitas a tu equipo y defines un rol para cada persona, y los roles deciden qué ven y qué hacen.",
         },
+        // Copy 1120 §5c (9dceb44): hung on taskList until API names a key for invites and roles; its own PX line in the gate view
         keys: ["taskList"],
+        pub: { en: "Team and roles: coming soon.", es: "Equipo y roles: próximamente." },
       },
     ],
   },
