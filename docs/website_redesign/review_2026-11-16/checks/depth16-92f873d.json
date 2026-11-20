@@ -1,0 +1,158 @@
+{
+ "tag": "92f873d",
+ "build": {
+  "commit": "92f873d6a9299abfbea5c86774036eea5f1b54b1",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_7j8zGi1u9Hua49DAX6jjmV88zFHH",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "runs": {
+  "phone390x844_target": {
+   "pass1": {
+    "steps": 29,
+    "h": 17323,
+    "vh": 844
+   },
+   "pass2": {
+    "steps": 29,
+    "h": 17323,
+    "vh": 844
+   },
+   "settled": true,
+   "heightPx": 17323,
+   "vh": 844,
+   "screens": 20.52,
+   "furniturePx": 144,
+   "furnitureScreens": 0.17,
+   "screensWithoutFurniture": 20.35,
+   "furnitureParts": [
+    {
+     "sel": "[data-env]",
+     "h": 95,
+     "fixed": false
+    },
+    {
+     "sel": "[data-preview-switches]",
+     "h": 49,
+     "fixed": false
+    },
+    {
+     "sel": "[data-env-marker]",
+     "h": 0,
+     "fixed": true
+    }
+   ]
+  },
+  "phone390x844_public": {
+   "pass1": {
+    "steps": 28,
+    "h": 16627,
+    "vh": 844
+   },
+   "pass2": {
+    "steps": 28,
+    "h": 16627,
+    "vh": 844
+   },
+   "settled": true,
+   "heightPx": 16627,
+   "vh": 844,
+   "screens": 19.7,
+   "furniturePx": 105,
+   "furnitureScreens": 0.12,
+   "screensWithoutFurniture": 19.58,
+   "furnitureParts": [
+    {
+     "sel": "[data-env]",
+     "h": 56,
+     "fixed": false
+    },
+    {
+     "sel": "[data-preview-switches]",
+     "h": 49,
+     "fixed": false
+    },
+    {
+     "sel": "[data-env-marker]",
+     "h": 0,
+     "fixed": true
+    }
+   ]
+  },
+  "desktop1440x900_target": {
+   "pass1": {
+    "steps": 24,
+    "h": 14269,
+    "vh": 900
+   },
+   "pass2": {
+    "steps": 24,
+    "h": 14269,
+    "vh": 900
+   },
+   "settled": true,
+   "heightPx": 14269,
+   "vh": 900,
+   "screens": 15.85,
+   "furniturePx": 86,
+   "furnitureScreens": 0.1,
+   "screensWithoutFurniture": 15.76,
+   "furnitureParts": [
+    {
+     "sel": "[data-env]",
+     "h": 37,
+     "fixed": false
+    },
+    {
+     "sel": "[data-preview-switches]",
+     "h": 49,
+     "fixed": false
+    },
+    {
+     "sel": "[data-env-marker]",
+     "h": 189,
+     "fixed": true
+    }
+   ]
+  },
+  "desktop1440x900_public": {
+   "pass1": {
+    "steps": 23,
+    "h": 13672,
+    "vh": 900
+   },
+   "pass2": {
+    "steps": 23,
+    "h": 13672,
+    "vh": 900
+   },
+   "settled": true,
+   "heightPx": 13672,
+   "vh": 900,
+   "screens": 15.19,
+   "furniturePx": 86,
+   "furnitureScreens": 0.1,
+   "screensWithoutFurniture": 15.1,
+   "furnitureParts": [
+    {
+     "sel": "[data-env]",
+     "h": 37,
+     "fixed": false
+    },
+    {
+     "sel": "[data-preview-switches]",
+     "h": 49,
+     "fixed": false
+    },
+    {
+     "sel": "[data-env-marker]",
+     "h": 189,
+     "fixed": true
+    }
+   ]
+  }
+ },
+ "buildAtEnd": "92f873d6a9299abfbea5c86774036eea5f1b54b1",
+ "oneBuild": true
+}

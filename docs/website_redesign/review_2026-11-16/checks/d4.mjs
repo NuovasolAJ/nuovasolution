@@ -39,7 +39,11 @@ await send("Page.addScriptToEvaluateOnNewDocument", {
 });
 
 const TARGETS = [
-  { id: "h1", sel: "[data-hero-words], [data-hero] h1, h1" },
+  // The h1 itself, NOT [data-hero-words]: that is the wrapper around it. A pre-flight against the
+  // baseline measured the wrapper at 680x475.88 while Redesign's independently measured h1 is
+  // 680x208 - the selector order was wrong, and the pre-flight is what caught it.
+  { id: "h1", sel: "[data-hero] h1, h1" },
+  { id: "heroWords", sel: "[data-hero-words]" },
   { id: "lead", sel: "[data-hero-lead]" },
   { id: "cta", sel: "[data-hero-cta], [data-pilot-cta]" },
   { id: "pilot", sel: "[data-hero-pilot]" },

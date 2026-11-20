@@ -1,0 +1,52 @@
+{
+ "tag": "92f873d",
+ "build": {
+  "commit": "92f873d6a9299abfbea5c86774036eea5f1b54b1",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_7j8zGi1u9Hua49DAX6jjmV88zFHH",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "runs": {
+  "es-target": {
+   "languages": "Qué hace NuovaSolution ¿Qué hace NuovaSolution exactamente? ¿Qué canales se responden? ¿Responde de noche y los fines de semana? ¿Sabe el cliente que habla con un asistente? ¿En qué idiomas responde? ¿Compromete a mi agencia a algo? ¿Sustituye a mi equipo? ¿Se inventa datos de una propiedad? No. Lo que responde sale de lo que escribió el cliente y de lo que tu agencia ha confirmado. Solo propone inmuebles de tu cartera.",
+   "q22": "La ficha y tu equipo ¿Puede mi equipo ver lo que dijo el asistente? Si la misma persona escribe por email y luego por WhatsApp, ¿es una sola ficha? ¿Me dice qué leads están calientes? ¿Dónde trabaja mi equipo las tareas? ¿Puede mi equipo preguntarle al asistente qué hacer hoy? ¿Puedo añadir a mi equipo y darles roles distintos? Sí. Invitas a tu equipo y defines un rol para cada persona, y los roles deciden qué ven y qué hacen.",
+   "masIdiomas": 0,
+   "enPreparacion": 0,
+   "pxCount": 0,
+   "listaDeTareas": 0,
+   "equipoYRoles": 0,
+   "pageChars": 3385
+  },
+  "es-public": {
+   "languages": "Qué hace NuovaSolution ¿Qué hace NuovaSolution exactamente? ¿Qué canales se responden? ¿Responde de noche y los fines de semana? ¿Sabe el cliente que habla con un asistente? ¿En qué idiomas responde? ¿Compromete a mi agencia a algo? ¿Sustituye a mi equipo? ¿Se inventa datos de una propiedad? No. Lo que responde sale de lo que escribió el cliente y de lo que tu agencia ha confirmado.",
+   "q22": "La ficha y tu equipo ¿Puede mi equipo ver lo que dijo el asistente? Si la misma persona escribe por email y luego por WhatsApp, ¿es una sola ficha? ¿Me dice qué leads están calientes? ¿Dónde trabaja mi equipo las tareas? ¿Puede mi equipo preguntarle al asistente qué hacer hoy? ¿Puedo añadir a mi equipo y darles roles distintos? Equipo y roles: próximamente.",
+   "masIdiomas": 0,
+   "enPreparacion": 0,
+   "pxCount": 0,
+   "listaDeTareas": 0,
+   "equipoYRoles": 1,
+   "pageChars": 2960
+  },
+  "en-target": {
+   "languages": null,
+   "q22": "The record and your team Can my team see what the assistant said? If the same person writes by e-mail and then by WhatsApp, is that one record? Does it tell me which leads are hot? Where does my team work the tasks? Can my team ask the assistant what to do today? Can I add my team and give them different roles? Yes. You invite your team and set a role for each person, and the roles decide what they see and do.",
+   "masIdiomas": 0,
+   "enPreparacion": 0,
+   "pxCount": 0,
+   "listaDeTareas": 0,
+   "equipoYRoles": 0,
+   "pageChars": 3316
+  },
+  "en-public": {
+   "languages": null,
+   "q22": "The record and your team Can my team see what the assistant said? If the same person writes by e-mail and then by WhatsApp, is that one record? Does it tell me which leads are hot? Where does my team work the tasks? Can my team ask the assistant what to do today? Can I add my team and give them different roles? Team and roles: coming soon.",
+   "masIdiomas": 0,
+   "enPreparacion": 0,
+   "pxCount": 0,
+   "listaDeTareas": 0,
+   "equipoYRoles": 1,
+   "pageChars": 2876
+  }
+ }
+}

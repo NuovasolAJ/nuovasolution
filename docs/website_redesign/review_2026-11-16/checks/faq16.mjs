@@ -33,7 +33,14 @@ const PROBE = `(()=>{
     q22: find(/a[ñn]adir a mi equipo|add my team|darles roles|different roles/i),
     masIdiomas: (pageText.match(/M[áa]s idiomas|More languages/g)||[]).length,
     enPreparacion: (pageText.match(/En preparaci[óo]n|In preparation/g)||[]).length,
-    pxCount: (pageText.match(/Pr[óo]ximamente|Coming soon/g)||[]).length,
+    // case-INsensitive: PX-s carries "próximamente" lowercase mid-sentence, so the case-sensitive
+    // form read 0 marks on 92f873d while the gate line was demonstrably on the page.
+    pxCount: (pageText.match(/pr[óo]ximamente|coming soon/gi)||[]).length,
+    // WARNING, measured on 92f873d: /faq is an accordion that mounts ONLY the open answer (2678
+    // chars closed, ~107k after opening all 35 items). Any "absent on /faq" conclusion from the
+    // figures below is weak evidence - absence of unmounted text proves nothing. Use faqAllItems
+    // below, which opens every trigger and unions the text; a ZERO over that union is a true zero.
+    accordionWarning: "answers are mounted one at a time - open every item before concluding absence",
     listaDeTareas: (pageText.match(/Lista de tareas|Task list/g)||[]).length,
     equipoYRoles: (pageText.match(/Equipo y roles|Team and roles/g)||[]).length,
     pageChars: pageText.length };})()`;
