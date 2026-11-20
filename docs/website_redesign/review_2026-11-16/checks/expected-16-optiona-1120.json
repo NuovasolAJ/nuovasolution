@@ -1,0 +1,68 @@
+{
+ "_meta": {
+  "what": "The standard for the single check of the fixed build, written BEFORE that build exists, so the measurement is not fitted to what it finds.",
+  "owner_decision": "§4.3 = (a), owner 20.11.: e-mail statements stay as measured on 2342537; Copy's §7 is NOT used; the public page goes live only once A12 is proven in prod.",
+  "supersedes": "expected-16-switchday-8cbe48c.json for the channel question only - that file's switch-day set stays valid for the five owner keys and the day story.",
+  "baseline": "2342537 (dpl_8yQJingyCMd7xVqmQdBGt92r3Nrs) - the build my JA of 20.11. rests on. D-3 is a regression check against it.",
+  "reviewer": "RV6",
+  "writtenAt": "2026-11-20",
+  "voidIf": "/api/build differs at the start and the end of a run, or any navigation fails to load (body null, under 500 chars, or the required selector missing after 3 attempts)"
+ },
+
+ "D-1_channelListWhole": {
+  "why": "The (b) wording (publicGate.replyEmail = soon) existed as an uncommitted working-tree edit. If it ever reached a build, the public channel list would be empty and withChannels would substitute the empty string into 13 text lines. The decision went the other way, so nobody would look for it. This is that guard.",
+  "publicChannelWord": { "es": "email", "en": "e-mail" },
+  "targetChannelWord": { "es": "WhatsApp y email", "en": "WhatsApp and e-mail" },
+  "sentencesThatMustBeWhole": [
+   { "id": "faq_q02", "route": "/faq", "es": "Consultas por email.", "en": "Enquiries on e-mail." },
+   { "id": "flow_f1", "route": "/", "esPrefix": "Por email,", "enPrefix": "On e-mail," },
+   { "id": "functions_s1", "route": "/", "esPrefix": "En español, por email", "enPrefix": "In Spanish, on e-mail" },
+   { "id": "origin_s7", "route": "/", "esPrefix": "La ficha guarda de dónde llega cada consulta: email", "enPrefix": "The record keeps where each enquiry comes from: e-mail" },
+   { "id": "plansRow", "route": "/", "es": "Respuestas en español por email", "en": "Replies in Spanish on e-mail" },
+   { "id": "meta", "route": "/", "esPrefix": "Respondemos en español a las consultas por email,", "enPrefix": "We answer enquiries on e-mail in Spanish," }
+  ],
+  "mustNotAppear": ["⟦", "⟧", "por .", "por ,", "on .", "on ,"],
+  "holeScan": "report every element whose OWN text matches /\\S\\s+[,.]/ with context; judged by me, not auto-failed, because text-node concatenation can produce a spurious space",
+  "note": "The plans row name may or may not carry a closing period - Redesign says it keeps the string exactly as measured on 2342537. I compare against 2342537's inventory rather than against my own guess, so either way a CHANGE shows."
+ },
+
+ "D-2_copySection7Absent": {
+  "why": "Copy's §7 was written for option (b) and is not used. Any of its wording in the build means the (b) branch leaked in.",
+  "mustNotAppear": [
+   "Respuestas en español por email: próximamente.",
+   "Replies in Spanish by email: coming soon.",
+   "Respuesta por email, en el buzón de tu agencia: próximamente.",
+   "A reply by e-mail, in your agency's mailbox: coming soon.",
+   "Por email, en el buzón de tu agencia: próximamente.",
+   "By e-mail, in your agency's mailbox: coming soon.",
+   "Lo que piden tus clientes te espera ordenado en su ficha",
+   "What your clients ask for waits for you on their record"
+  ],
+  "mustStillAppear": {
+   "why": "Q-22 belongs to Copy §5c (9dceb44) and to teamRoles, NOT to §7. It must not be swept away with §7.",
+   "gate": { "es": "Equipo y roles: próximamente.", "en": "Team and roles: coming soon." },
+   "targetStartsWith": { "es": "Sí. Invitas a tu equipo", "en": "Yes. You invite your team" }
+  }
+ },
+
+ "D-3_plansRowUnchanged": {
+  "why": "Redesign now computes the row's cell and its name from REPLY_CHANNELS (replyWhatsapp, replyEmail) instead of the row's register key, and makes the target cell unconditionally included. The agreed property is that TODAY'S OUTPUT DOES NOT CHANGE. That is exactly what a regression check is for.",
+  "agreedMechanism": "cell and name both from the reply channels only; target cell unconditionally \"included\" (my §23.1 correction, taken by Redesign 20.11.)",
+  "public": { "nameContains": { "es": "Respuestas en español por email", "en": "Replies in Spanish on e-mail" }, "cells": ["included", "included", "included"], "expectTick": true },
+  "target": { "nameContains": { "es": "Respuestas en español por WhatsApp y email", "en": "Replies in Spanish on WhatsApp and e-mail" }, "cells": ["included", "included", "included"], "expectTick": true },
+  "mustNotHappen": "a tick on a row whose name has no channel in it, and a tick on a row naming an arrival-only channel (portales y anuncios, formulario web, teléfono) - the switch-day fault I raised; it cannot occur while those three are register \"soon\", so this records the condition rather than expecting a failure"
+ },
+
+ "carriedOver": {
+  "why": "These held on 7fbb662/2342537 and must still hold; a changed font stack and a changed plan cell are both capable of moving them.",
+  "mobileDepthScreens": { "max": 21, "lastMeasured": { "target": 20.52, "public": 19.7 } },
+  "wordingChecks": 428,
+  "colourB": { "blue": 0, "brown": 0, "gold": 0 },
+  "sentenceStock": { "kept": 1390, "lost": 0, "rule": "a sentence counts as lost only when it is in NEITHER view" },
+  "foldButtonMinPx": 44,
+  "rule1_EnPreparacion": 0,
+  "rule2_dateNextToAMark": 0,
+  "rule5a_MasIdiomas": 0,
+  "fontMove": "Inter and Fraunces now come from lib/font-files, subset to latin + latin-ext, Inter wght only, opsz pinned at 14. No character outside latin, latin-ext and general punctuation exists in lib/content or lib/i18n, and the plans tick is CSS on a span with aria-label (plans-table.tsx:33), not a glyph - so the subset cannot produce tofu. The depth measurement is the real guard against a changed metric."
+ }
+}
