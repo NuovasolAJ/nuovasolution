@@ -107,6 +107,8 @@
 
 ## 3. Plans and the way in
 
+> **Replaced by `COPY_TO_REDESIGN_1120_ETAPPE1_OFFER_v1.md`** (the owner's order of 20.11. evening, stage 1). That file maps every key of `lib/content/brief-1120.ts` and every place in the build. It also changes Q-1's default to **on request**. Where this §3 and that file differ, that file applies.
+
 ### 3.1 The three plan cards (phone and desktop, comparable at a glance)
 
 | | Essential | Growth | Enterprise |
