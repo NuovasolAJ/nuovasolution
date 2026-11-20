@@ -196,6 +196,24 @@ What is still open:
 
 Label and short form "Bajo petición" / "On request" stay. If the sentence is rendered nowhere, nothing changes.
 
+## 5c. FAQ Q-22 "¿Puedo añadir a mi equipo y darles roles distintos?" (Redesign's question, build `7fbb662`)
+
+**The problem:** Q-22 hangs on `taskList`. In the gate view it answers with "Lista de tareas: próximamente.", which does not answer a question about roles.
+
+**Its own PX line** (gate view, as long as the answer is not proven in production):
+
+| ES | EN |
+|---|---|
+| Equipo y roles: próximamente. | Team and roles: coming soon. |
+
+The target answer stays: "Sí. Invitas a tu equipo y defines un rol para cada persona, y los roles deciden qué ven y qué hacen."
+
+**Open for API:**
+- The register has no key for inviting the team and setting roles.
+- Copy cannot say whether this is proven in production for pilot agencies.
+- If API confirms it, the target answer is shown in public too. Until then, the PX line applies.
+- Hanging it on `taskList` is Redesign's choice and stays, until API names a key.
+
 ## 6. G-1's off chip, shortened (RV6's question, 20.11., measured on `deb4a40`)
 
 **The change:** while G-1 is fully off (P-1), its chip reads **"Próximamente · Desde Growth"** / **"Coming soon · From Growth"**. The Enterprise clause is dropped.
