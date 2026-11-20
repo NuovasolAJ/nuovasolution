@@ -605,3 +605,59 @@ geprüften Karten G-1, G-2, G-3 und T-2 an Ihren fünf Schlüsseln hängen, und 
 Redesigns lokale Tiefenzahlen (Gate 17 148 px = **20,3**, Zielsicht 17 303 px = **20,5**, je ohne
 Möblierung 0,2 weniger) nehme ich **als Ankündigung**, nicht als Befund. Gemessen wird am festen
 Build, von mir, nach meinem Verfahren.
+
+---
+
+## Copys §5 und §6 (6971369): eine Textänderung, die auch die Zielsicht trifft
+
+**§6 — G-1s Aus-Chip ist gekürzt.** Er liest künftig nur „Próximamente · Desde Growth", ohne den
+Enterprise-Zusatz. Copy nennt meinen Handy-Befund als Grund: Unter 640 px ist der Chip der einzige
+Unterschied zwischen einer laufenden und einer markierten Karte, also muss er kurz sein. Der
+Ein-Chip und der Teilzustand G-1p behalten den Zusatz — dort ist der Anzeigenteil live, und die
+Paketgrenze ist echte Information. **Mein Befund ist damit erledigt**, und zwar durch eine
+Textentscheidung, nicht durch eine Umgehung.
+
+**§5 — die Station 13:20 ändert ihren Inhalt, und das betrifft die Zielsicht.** Unter Ihrer
+Regel F1 geht bei zwei Stunden **keine Eskalationsmail** mehr hinaus; die Aufgabe **geht an die
+nächste Person über**. „Wir benachrichtigen die nächste" ist damit nicht mehr wahr.
+
+| Stelle | neu |
+|---|---|
+| D-3 | „Nadie ha cogido la visita de Laura: **pasa a Carlos** y él la coge." |
+| D-c-Teil | „13:20 **pasa a Carlos**" (vorher „13:20 aviso") |
+| K-2-Zeile, Beispiel 3, Zeitleiste, Beleg | nach Copys Tabelle |
+
+Ich habe beide Erwartungsdateien nachgezogen; die alten Sätze stehen als „abgelöst" darin, damit
+die Herkunft nachvollziehbar bleibt.
+
+### Eine Abhängigkeit, die ich nicht selbst prüfen kann — und deshalb melde
+
+Copy schreibt: Das Datum „desde el 13.11." deckt **nur die Erinnerung nach einer Stunde**. Der
+**Übergang nach zwei Stunden** ist erst in Produktion, wenn **Daily's E19 v2** es ist. Solange das
+nicht bestätigt ist, trägt die öffentliche Sicht dort „Próximamente".
+
+**Ich kann Daily's Stand von hier aus nicht sehen.** `DAILY_SIGNALS_1107.md` liegt nicht in diesem
+Verzeichnis; ich habe danach gesucht und es ist nicht da. Also:
+
+- Ich messe, **welche** der beiden Fassungen der Build zeigt, und schreibe sie auf.
+- Ob sie **richtig** ist, hängt an einer Tatsache aus einer anderen Spur. **Ich rate sie nicht.**
+- **Bitte an Sie oder Copy:** einen Satz zum Stand von E19 v2 in Produktion. Dann wird aus meiner
+  Beobachtung ein Urteil.
+
+Das ist dieselbe Trennung, die ich überall einhalte: Was ich messen kann, messe ich; was ich nur
+übernehmen könnte, kennzeichne ich als übernommen.
+
+### Zwei Dinge werden versteckt statt markiert — und das ist Ihre Entscheidung
+
+Ihre Regel von 09:05 markiert alles, was nicht in Produktion belegt ist. Es gibt **zwei
+Ausnahmen**, beide von Ihnen:
+
+1. **`otherLanguages`** — in **beiden** Sichten ausgeblendet (Ihr Punkt 4).
+2. **Der WhatsApp-Demo-Reiter** — öffentlich **versteckt**, nicht „Próximamente" (Ihr Punkt 8 vom
+   16.11.).
+
+Ich prüfe beide als **Abwesenheit**: kein gemaltes Element, kein Reiter. Zeigt eines davon
+stattdessen eine Marke, melde ich es als Abweichung von **Ihren eigenen Ausnahmen** — nicht als
+Wortlautfehler. Zwei Ausnahmen von einer pauschalen Regel gehen leicht verloren, wenn das Gate
+Schlüssel für Schlüssel gestellt wird; deshalb stehen sie jetzt als eigener Prüfpunkt in meiner
+Datei.

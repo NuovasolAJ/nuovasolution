@@ -23,8 +23,18 @@
    "t2": "P-1 - chip 'Próximamente · Desde Growth' / 'Coming soon · From Growth'",
    "t4_t6_t8": "unchanged",
    "dayDesktop": "three stations off (D-2, D-4, D-5), so more than two: ONLY D-1, D-3, D-6 are shown, with their v2 sentences",
-   "dayPhoneDc": "'08:30 tu día · 13:20 aviso · 23:40 respuesta de noche' / '08:30 your day · 13:20 notice · 23:40 a night-time reply'"
+   "dayPhoneDc": "'08:30 tu día · 13:20 pasa a Carlos · 23:40 respuesta de noche' / '08:30 your day · 13:20 passed to Carlos · 23:40 a night-time reply' - the 13:20 part changed with Copy 1120 §5; the old 'aviso' wording is superseded",
+   "dayD3conditional": "if Daily's E19 v2 is NOT confirmed in production, D-3 carries PX-b in the public view (Copy 1120 §5). I cannot verify Daily's state from this repository - see dailyDependency in expected-16-e851e72.json - so I report which variant the build shows rather than assuming one."
   },
+ "hiddenRatherThanMarked": {
+  "rule": "the owner's 20.11. 09:05 decision marks everything not proven in production, with exactly two things hidden instead of marked",
+  "items": {
+   "otherLanguages": "hidden in BOTH views (the owner, 20.11. point 4). The register's own note already said 'not shown in either view until then'.",
+   "whatsappDemoTab": "the WhatsApp demo tab stays hidden in public, NOT marked 'Próximamente' (the owner, 16.11. point 8, relayed by Copy 1120 §5). Redesign names it to the owner as the second exception."
+  },
+  "myCriterion": "in the gate view both are ABSENT, not marked: zero painted elements for the other-languages line and no WhatsApp demo tab. If either appears with a mark instead, that is a deviation from the owner's own two exceptions, and I report it as such rather than as a wording fault.",
+  "whyIFlagIt": "two exceptions to a blanket rule are easy to lose when the gate is switched key by key. They are the owner's decisions, so I check them, I do not question them."
+ },
   "note": "G-3 lands on the bothOff case, so N-5's capital rule is NOT exercised by this gate. It becomes reachable only once matching goes live before followup. The fix is in all the same."
  },
  "E-P": {
@@ -59,7 +69,8 @@
   }
  },
  "chipsOff": {
-  "g1": ["Próximamente · Desde Growth · redes sociales en Enterprise", "Coming soon · From Growth · social media on Enterprise"],
+  "g1": ["Próximamente · Desde Growth", "Coming soon · From Growth"],
+  "g1_superseded": ["OLD, measured on deb4a40: 'Próximamente · Desde Growth · redes sociales en Enterprise' - shortened by Copy 1120 §6 (6971369) after my measurement showed it at 1.24-1.26x the title's area, wrapping to two lines. The Enterprise clause is dropped while the card is fully off; the ON chip and the G-1p partial chip keep it, because there the ad part is live and the plan boundary is real information."],
   "g2": ["Próximamente · Desde Growth", "Coming soon · From Growth"],
   "g3": ["Próximamente · Desde Growth", "Coming soon · From Growth"],
   "t2": ["Próximamente · Desde Growth", "Coming soon · From Growth"],

@@ -312,9 +312,18 @@
   ],
   "D-3": [
    [
-    "13:20 (`reminders`)",
-    "Nadie ha cogido la visita de Laura: Carlos recibe el aviso y la coge.",
-    "Nobody has taken Laura's viewing: Carlos gets the notice and takes it."
+    "13:20 (`reminders`) - SUPERSEDED by Copy 1120 §5 (6971369): under the owner's F1 there is no escalation mail; at 2 h the task PASSES to the next person. The old text below is kept for provenance only.",
+    "OLD: Nadie ha cogido la visita de Laura: Carlos recibe el aviso y la coge.",
+    "OLD: Nobody has taken Laura's viewing: Carlos gets the notice and takes it."
+   ],
+   [
+    "NEW, target view (Copy 1120 §5)",
+    "Nadie ha cogido la visita de Laura: pasa a Carlos y él la coge.",
+    "Nobody has taken Laura's viewing: it passes to Carlos, and he takes it."
+   ],
+   [
+    "NEW, public view WHILE Daily's E19 v2 is not confirmed in production: the same line with PX-b",
+    "conditional - see dailyDependency"
    ]
   ],
   "D-4": [
@@ -347,11 +356,23 @@
   ],
   "D-c": [
    [
-    "compact form (inside the section, if the owner prefers one line)",
-    "08:30 tu día · 11:39 llamada atendida · 13:20 aviso · 16:00 piso que encaja · 18:00 seguimiento · 23:40 respuesta de noche",
-    "08:30 your day · 11:39 call answered · 13:20 notice · 16:00 a listing that fits · 18:00 follow-up · 23:40 a night-time reply"
+    "compact form - form A confirmed (phone only). The 13:20 part changed with Copy 1120 §5: 'aviso' -> 'pasa a Carlos'.",
+    "08:30 tu día · 11:39 llamada atendida · 13:20 pasa a Carlos · 16:00 piso que encaja · 18:00 seguimiento · 23:40 respuesta de noche",
+    "08:30 your day · 11:39 call answered · 13:20 passed to Carlos · 16:00 a listing that fits · 18:00 follow-up · 23:40 a night-time reply"
+   ],
+   [
+    "SUPERSEDED wording, kept for provenance",
+    "OLD: 13:20 aviso",
+    "OLD: 13:20 notice"
    ]
   ],
+  "dailyDependency": {
+   "what": "Copy 1120 §5: the 2-hour HANDOVER is in production only once Daily's E19 v2 is. The date 'desde el 13.11.' covers the 1-hour reminder only.",
+   "ifDailyConfirmed": "the public view uses the new wording directly, like the target view",
+   "ifNotConfirmed": "public line becomes '... se lo recordamos a la persona responsable. El paso a la siguiente persona a las dos horas: próximamente.'; example 3, the timeline step and D-3 carry PX-b; the proof reads 'Recordatorio a la hora. En producción desde el 13.11.'",
+   "myLimit": "DAILY_SIGNALS_1107.md is not in this repository - I searched for it and it is not here. I cannot verify E19 v2's production state myself, so I measure whichever variant the build shows and report WHICH one, and I ask the owner or Copy to state Daily's status rather than guessing it.",
+   "affects": ["D-3", "D-c 13:20 part", "K-2 line home-1103.ts:426", "K-2 example 3 :427", "K-2 timeline :433", "K-2 proof :429"]
+  },
   "R-1": [
    [
     "Desde {precio} al mes. Una sola consulta que no se pierde puede valer una comisión entera.",
