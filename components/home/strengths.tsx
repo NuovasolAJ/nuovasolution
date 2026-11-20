@@ -48,11 +48,13 @@ export function Strengths({ locale, view }: { locale: Locale; view: ClaimView })
   // Copy 1120 §2.4: an off station stays with "Próximamente" after its time; once more than two are off, only the live ones are shown
   const shown = w.day.stations.length - liveStations.length > 2 ? liveStations : w.day.stations;
   const stationText = (s: DayStation) => (isLive(s) ? l(s.text) : s.partial?.when(on) ? l(s.partial.text) : l(s.text));
+  // Copy 1120 PROXIMAMENTE §2 E-P: once one card is "Próximamente" or partial, the eyebrow says "hace y hará"
+  const anySoon = [...w.growth, ...w.cards].some((c) => !c.keys.every(on));
   return (
-    <section id="strengths" aria-labelledby="st-h" className="st" data-strengths>
+    <section id="strengths" aria-labelledby="st-h" className="st" data-strengths data-strengths-soon={anySoon ? "true" : "false"}>
       <div className="container-default">
         <Rise className="st-head">
-          <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
+          <p className="t-eyebrow t-eyebrow-l text-text-accent" data-strengths-eyebrow>{l(anySoon ? w.eyebrowSoon : w.eyebrow)}</p>
           <h2 id="st-h" className="t-display-m mt-3 text-text-primary">{l(w.h2)}</h2>
         </Rise>
         <Rise as="ul" className="st-row st-row-growth" delay={0.06}>

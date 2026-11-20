@@ -77,6 +77,11 @@ export type ClaimKey = keyof typeof claims;
  *   "soon"  the public view treats the function as not live — hidden, or Copy's public wording where one exists.
  * On the day before go-live RV6 and the owner flip only the functions that are not in production then; nothing else has to be rebuilt.
  * The `claims` register above stays API's record of what is in production (the audit's ceiling); this map is the public view's gate.
+ *
+ * The owner, 20.11.: what is not live today gets a visible mark — the phone assistant, social posts, clients from ads and forms,
+ * bringing contacts back, listing proposals — with Copy's wording (COPY_TO_REDESIGN_1120_HERO_PROXIMAMENTE_PLANFOLD_v1.md, 8cbe48c +
+ * 19b5523) and the register's state of today: those five keys stand on "soon". The public (gate) view is the preview's default
+ * since then (VIEW_DEFAULT in lib/view-query.ts); `?view=target` still shows the finished product.
  */
 export const publicGate: Record<ClaimKey, "live" | "soon"> = {
   replyWhatsapp: "live",
@@ -90,18 +95,18 @@ export const publicGate: Record<ClaimKey, "live" | "soon"> = {
   priorityWithReason: "live",
   alert: "live",
   origin: "live",
-  adsLeads: "live",
+  adsLeads: "soon", // the owner, 20.11. (clients from ads and forms)
   labels: "live",
   oneRecordAcrossChannels: "live",
-  matching: "live",
-  followup: "live",
+  matching: "soon", // the owner, 20.11. (listing proposals)
+  followup: "soon", // the owner, 20.11. (bringing contacts back / follow-up)
   taskList: "live",
   dailyVoice: "live",
   reportInLogin: "live",
   weeklyEmail: "live",
   reportTrend: "live",
-  instagram: "live",
-  phoneAssistant: "live",
+  instagram: "soon", // the owner, 20.11. (social posts)
+  phoneAssistant: "soon", // the owner, 20.11. (the phone assistant)
   listingLink: "live",
   reminders: "live",
   webform: "live",
@@ -192,8 +197,12 @@ export const planCell = (key: ClaimKey, plan: PlanCode, view: ClaimView = "targe
   if (!carried) return "excluded";
   return live(key, view) ? "included" : claims[key];
 };
-/** The owner's E2 of 07.11.: no tick for the agency's own WhatsApp number, the phone assistant or Instagram while they are off — in either view. */
-export const planRowShown = (key: ClaimKey, view: ClaimView): boolean => offered(key, view);
+/**
+ * Every row of the register stands in both views (the owner, 20.11.: what is not live gets a VISIBLE mark — Copy 1116 §1 point 4: the
+ * cell of a switched-off function shows "Próximamente", not a tick and not a dash, and the legend gains "Próximamente: aún no activo").
+ * Until 20.11. an off row was hidden in the public view (E2 of 07.11.); `planCell` still never gives a tick for an off function.
+ */
+export const planRowShown = (_key: ClaimKey, _view: ClaimView): boolean => true;
 /** Copy §20 P-5: the comparison table stands only with `plans` on; otherwise one block "Qué incluye" with the rows that are on. */
 export const plansTableShown = (view: ClaimView): boolean => live("plans", view);
 

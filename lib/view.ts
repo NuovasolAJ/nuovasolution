@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 import { integrationMode } from "@/lib/contracts/mode";
-import { DISPLAY_DEFAULT, type PreviewSwitches } from "@/lib/view-query";
+import { DISPLAY_DEFAULT, VIEW_DEFAULT, type PreviewSwitches } from "@/lib/view-query";
 
 export { switchQuery, type DisplayFace, type Palette, type PreviewSwitches } from "@/lib/view-query";
 
@@ -19,7 +19,7 @@ export function resolveSwitches(): PreviewSwitches {
   const v = h.get("x-nuova-view");
   const d = h.get("x-nuova-display");
   return {
-    view: v === "public" ? "public" : "target",
+    view: v === "public" ? "public" : v === "target" ? "target" : VIEW_DEFAULT,
     display: d === "fraunces" ? "fraunces" : d === "inter" ? "inter" : DISPLAY_DEFAULT,
     live,
   };

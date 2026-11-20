@@ -1973,6 +1973,10 @@ html:not(.js) .fs-step { opacity: 1; }
 .st-day-compact { font-size: 0.9375rem; line-height: 1.5; color: var(--text-primary); }
 .st-chip-soon { background: var(--ink-950); color: var(--ivory); }
 .st-day-soon { font-weight: 500; color: var(--text-muted); }
+/* 20.11. (the owner: a visible mark for what is not live; Copy 1116 §1 points 4 and 5): the plans' "Próximamente" cell and the demo tab's mark */
+.plan-cell-soon { background: var(--ink-950); color: var(--ivory); }
+.demo-tab-soon { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 999px; background: var(--ink-950); color: var(--ivory); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em; }
+.demo-tab-on .demo-tab-soon { background: var(--ink-950); color: var(--ivory); }
 .st { padding-top: 44px; padding-bottom: 36px; background: var(--sand-100); }
 .st-head { max-width: 760px; }
 .st-row { display: grid; gap: 12px; margin: 24px 0 0; padding: 0; list-style: none; }

@@ -26,6 +26,8 @@ export type DayStation = { time: string; keys: ClaimKey[]; short: L; text: L; pa
 
 export const strengths = {
   eyebrow: T("Todo lo que hace por tu agencia", "Everything it does for your agency"),
+  /** Copy 1120 PROXIMAMENTE §2 E-P (c519b2d): as soon as one card of the section is "Próximamente" or partial, the eyebrow reads this; G-h stays */
+  eyebrowSoon: T("Todo lo que hace y hará por tu agencia", "Everything it does, and will do, for your agency"),
   h2: T("Nuevos clientes. Contactos que vuelven. Más oportunidades para tu agencia.", "New clients. Contacts who come back. More opportunities for your agency."), // G-h
   mark: T("Ejemplo · datos ficticios", "Example · fictional data"), // G-m
   /** 19.11. (the owner): where the public page names a planned function, "Próximamente" must be visible at once — Copy 1120 §2.2: the
@@ -44,7 +46,8 @@ export const strengths = {
       examples: [T("Laura pregunta por un piso en Estepona · respuesta al momento y una pregunta", "Laura asks about a flat in Estepona · an instant reply and one question"), T("Le proponemos 2 pisos que encajan: 2 dormitorios, hasta 320.000 €", "We suggest 2 flats that fit: 2 bedrooms, up to €320,000"), T("No contesta en dos días · seguimiento con su permiso · pide visita", "No reply in two days · a follow-up with her permission · she asks for a viewing")],
       // Copy 1120 §2.3 G-3p: reply, record and priority on, matching and/or followup off — {partes} from the keys that are off, example line 1 only
       partial: { when: (on) => on("replyWhatsapp") && on("crm") && on("priorityWithReason") && (!on("matching") || !on("followup")), chip: T("Desde Growth · en parte próximamente", "From Growth · partly coming soon"),
-        line: (on, locale) => { const parts = [!on("matching") && T("Proponerle inmuebles que encajan", "Suggesting listings that fit")[locale], !on("followup") && T("hacer seguimiento, con su permiso", "following up, with their permission")[locale]].filter((x): x is string => !!x); return `${T("Responde al momento y aclara qué busca cada cliente.", "It replies at once and finds out what each client is looking for.")[locale]} ${parts.join(T(" y ", " and ")[locale])}: ${T("próximamente", "coming soon")[locale]}.`; },
+        // the capital letter sits on whichever part comes first (Copy: "capital letter only on the first part"; RV6 N-5)
+        line: (on, locale) => { const parts = [!on("matching") && T("proponerle inmuebles que encajan", "suggesting listings that fit")[locale], !on("followup") && T("hacer seguimiento, con su permiso", "following up, with their permission")[locale]].filter((x): x is string => !!x).map((p, i) => (i === 0 ? p.charAt(0).toUpperCase() + p.slice(1) : p)); return `${T("Responde al momento y aclara qué busca cada cliente.", "It replies at once and finds out what each client is looking for.")[locale]} ${parts.join(T(" y ", " and ")[locale])}: ${T("próximamente", "coming soon")[locale]}.`; },
         phone: T("Cada interesado, respondido al momento.", "Every lead, answered at once."), examples: 1 } },
   ] satisfies StrengthCard[],
   cards: [

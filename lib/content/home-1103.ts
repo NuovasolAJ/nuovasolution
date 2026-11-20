@@ -492,6 +492,8 @@ export const home1103 = {
     highlight: { plan: "growth" },
     /** Copy 1116 §7.1: the note of the legend for the separately booked 3D service. */
     optionalNote: T("se contrata aparte", "booked separately"),
+    // Copy 1116 §1 point 4 (PX-b in the plans): the legend's line while a row carries "Próximamente" — the owner's visible mark of 20.11.
+    soonNote: T("aún no activo", "not active yet"),
     // 19.11. (the owner: details by a tap on the phone): the plan card's fold button, Copy 1120 §3 (8cbe48c) with the aria labels per plan
     foldOpen: T("Ver todo lo que incluye", "See everything included"),
     foldClose: T("Ocultar", "Hide"),

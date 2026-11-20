@@ -5,7 +5,7 @@ import { ArrowRight, Check, ChevronDown, Inbox, Mail, Mic, PanelsTopLeft, Phone,
 import type { Locale } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
 import { demoChannels, demoWords, endPhase, recordStart, type DemoChannel, type DemoChannelKey } from "@/lib/content/home-demo";
-import { shows, type ClaimView, live } from "@/lib/claims";
+import { claimWords, shows, type ClaimView, live } from "@/lib/claims";
 import { Mark } from "@/components/ui/mark";
 import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
 
@@ -46,7 +46,10 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const W = demoWords;
   // 16.11. 14:00 (the owner's point 8 + ChatGPT 1): the public view shows no WhatsApp channel while the agency's own number is not registered (topic 20)
-  const channels = demoChannels.filter((c) => shows(c.claim, view) && (c.key !== "whatsapp" || live("whatsappOwnNumber", view)));
+  // 20.11. (the owner: a visible mark for what is not live; Copy 1116 §1 point 5): a switched-off channel keeps playing as a marked
+  // demonstration — its tab carries "Próximamente" (`soonTab`); WhatsApp alone still follows the agency's own number (topic 20)
+  const channels = demoChannels.filter((c) => c.key !== "whatsapp" || live("whatsappOwnNumber", view));
+  const soonTab = (c: DemoChannel) => !shows(c.claim, view);
   const [channel, setChannel] = useState<DemoChannelKey>(channels[0]?.key ?? "whatsapp");
   const [phase, setPhase] = useState(0);
   // the auto-run (13.11.): on until the first click or key, never while out of view, never with reduced motion
@@ -182,9 +185,10 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
             const Icon = ICON[c.key];
             const on = c.key === channel;
             return (
-              <button key={c.key} type="button" role="tab" id={`${id}-tab-${c.key}`} aria-selected={on} aria-controls={panelId} tabIndex={on ? 0 : -1} onClick={() => choose(c.key)} className={cn("demo-tab", on && "demo-tab-on")} data-demo-tab={c.key}>
+              <button key={c.key} type="button" role="tab" id={`${id}-tab-${c.key}`} aria-selected={on} aria-controls={panelId} tabIndex={on ? 0 : -1} onClick={() => choose(c.key)} className={cn("demo-tab", on && "demo-tab-on")} data-demo-tab={c.key} data-demo-tab-soon={soonTab(c) ? "true" : undefined}>
                 <Icon size={18} strokeWidth={2} aria-hidden="true" />
                 <span>{l(c.name)}</span>
+                {soonTab(c) && <span className="demo-tab-soon">{claimWords.soon[locale]}</span>}
                 {/* 16.11. (the owner's point 8): no story bar — the rotation shows only as the quiet active state; `data-demo-run` counts the runs for the checks */}
               </button>
             );

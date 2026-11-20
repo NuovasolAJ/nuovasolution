@@ -26,6 +26,8 @@ function Cell({ status, locale, compact }: { status: "included" | "excluded" | "
   const on = status === "included";
   // 16.11. (the owner's decision 2, Copy 1116 §7.1): a separately booked service shows the word "Opcional" in every column
   if (status === "order") return <span className={cn("plan-cell plan-cell-word", compact && "plan-cell-compact")} data-plan-cell={status}>{planCellWords.optional[locale]}</span>;
+  // 20.11. (the owner: a visible mark for what is not live; Copy 1116 §1 point 4): the cell of a switched-off function shows PX-b
+  if (status === "soon") return <span className={cn("plan-cell plan-cell-word plan-cell-soon", compact && "plan-cell-compact")} data-plan-cell={status}>{claimWords.soon[locale]}</span>;
   return (
     <span className={cn("plan-cell", compact && "plan-cell-compact", on ? "is-on" : "is-off")} data-plan-cell={status} role="img" aria-label={planCellWords[on ? "in" : "out"][locale]}>
       {on ? <Check size={16} strokeWidth={3} aria-hidden="true" /> : <Minus size={14} strokeWidth={2} aria-hidden="true" />}
@@ -48,6 +50,8 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
   // Copy 1116 §10 W-1: the replies row's public wording while the agency's own WhatsApp number is off (topic 20)
   const name = (r: (typeof w.rows)[number]) => (r.key === "replyWhatsapp" && view === "public" && !live("whatsappOwnNumber", view) ? l(w.repliesRowPublic) : w.rowName(r.name, locale, view));
   const table = plansTableShown(view);
+  // Copy 1116 §1 point 4: the legend gains "Próximamente: aún no activo" while a shown row carries a "Próximamente" cell in this view
+  const anySoon = rows.some((r) => codes.some((code) => planCell(r.key, code, view) === "soon"));
 
   if (!table) {
     // P-5: no plan names, no table — one block "Qué incluye"
@@ -174,7 +178,7 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
             })}
           </ol>
           {/* 16.11. (the owner's point 11): a short legend from the register's own words */}
-          <p className="plans-legend t-body-s text-text-muted" data-plans-legend><span className="plans-legend-item"><span className="plan-cell is-on" aria-hidden="true"><Check size={14} strokeWidth={3} /></span>{claimWords.included[locale]}</span><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plans-legend-item"><span className="plan-cell is-off" aria-hidden="true"><Minus size={14} strokeWidth={2} /></span>{claimWords.excluded[locale]}</span>{rows.some((r) => r.key === "model3d") && <><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plans-legend-item"><span className="plan-cell plan-cell-word" aria-hidden="true">{planCellWords.optional[locale]}</span>{l(w.optionalNote)}</span></>}</p>
+          <p className="plans-legend t-body-s text-text-muted" data-plans-legend><span className="plans-legend-item"><span className="plan-cell is-on" aria-hidden="true"><Check size={14} strokeWidth={3} /></span>{claimWords.included[locale]}</span><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plans-legend-item"><span className="plan-cell is-off" aria-hidden="true"><Minus size={14} strokeWidth={2} /></span>{claimWords.excluded[locale]}</span>{rows.some((r) => r.key === "model3d") && <><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plans-legend-item"><span className="plan-cell plan-cell-word" aria-hidden="true">{planCellWords.optional[locale]}</span>{l(w.optionalNote)}</span></>}{anySoon && <><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plans-legend-item" data-plans-legend-soon><span className="plan-cell plan-cell-word plan-cell-soon" aria-hidden="true">{claimWords.soon[locale]}</span>{l(w.soonNote)}</span></>}</p>
         </Rise>
       </div>
     </section>
