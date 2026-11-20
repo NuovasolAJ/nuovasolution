@@ -54,7 +54,8 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         {/* (16), the owner's YES of 19.11. evening: "Todo lo que hace por tu agencia" after "Y además" (Copy v2 §A–§C, e851e72) */}
         <Strengths locale={locale} view={s.view} />
         <ReportStage locale={locale} view={s.view} />
-        {live("model3d", s.view) && <Stage3d locale={locale} />}
+        {/* the owner, 20.11. 09:05 (1): the 3D section stands in both views — with "Próximamente" in its eyebrow while the service is off */}
+        <Stage3d locale={locale} soon={!live("model3d", s.view)} />
         <PlansTable locale={locale} view={s.view} />
         <TrustFaqClose locale={locale} view={s.view} />
       </Motion>

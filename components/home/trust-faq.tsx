@@ -4,6 +4,7 @@ import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
 import { entryAction, live, type ClaimView } from "@/lib/claims";
+import { pxFor } from "@/lib/content/proximamente";
 import { Accordion } from "@/components/ui/accordion";
 import { Rise } from "@/components/ui/motion";
 import { Behind } from "./behind";
@@ -53,7 +54,8 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
                   ))}
                 </ol>
                 <p className="entry-line m-hide" data-entry-line>{l(e.line)}</p>
-                {live("mailboxConnection", view) && <p className="entry-small">{l(e.small)}</p>}
+                {/* the owner, 20.11. 09:05 (1) + Copy 1120 §4.3: with the mailbox connection off, step 3's small line is the PX-s, not left out */}
+                <p className="entry-small" data-entry-small={live("mailboxConnection", view) ? "live" : "soon"}>{live("mailboxConnection", view) ? l(e.small) : pxFor(["mailboxConnection"], () => true, locale)}</p>
                 <p className="trust-entry">
                   <Link href={p(entry.href)} className="trust-entry-cta" data-trust-cta={entry.kind} data-pilot-cta="entry">{entry.label}<ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" /></Link>
                 </p>

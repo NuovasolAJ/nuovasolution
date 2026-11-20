@@ -22,10 +22,11 @@ const ICONS: Record<string, LucideIcon> = {
   alert: Bell, tasks: ClipboardList, matching: Globe, report: TrendingUp, mail: Mail, trend: TrendingUp, integrations: Plug, ads: Globe, model3d: Box,
 };
 
-function Cell({ status, locale, compact }: { status: "included" | "excluded" | "soon" | "order"; locale: Locale; compact?: boolean }) {
+function Cell({ status, locale, compact, orderSoon }: { status: "included" | "excluded" | "soon" | "order"; locale: Locale; compact?: boolean; orderSoon?: boolean }) {
   const on = status === "included";
-  // 16.11. (the owner's decision 2, Copy 1116 §7.1): a separately booked service shows the word "Opcional" in every column
-  if (status === "order") return <span className={cn("plan-cell plan-cell-word", compact && "plan-cell-compact")} data-plan-cell={status}>{planCellWords.optional[locale]}</span>;
+  // 16.11. (the owner's decision 2, Copy 1116 §7.1): a separately booked service shows the word "Opcional" in every column;
+  // 20.11. (Copy 1116 §1.2 model3d): "Opcional · próximamente" while the 3D service is off in the view
+  if (status === "order") return <span className={cn("plan-cell plan-cell-word", compact && "plan-cell-compact", orderSoon && "plan-cell-soon")} data-plan-cell={orderSoon ? "order-soon" : status}>{orderSoon ? `${planCellWords.optional[locale]} · ${claimWords.soon[locale].toLowerCase()}` : planCellWords.optional[locale]}</span>;
   // 20.11. (the owner: a visible mark for what is not live; Copy 1116 §1 point 4): the cell of a switched-off function shows PX-b
   if (status === "soon") return <span className={cn("plan-cell plan-cell-word plan-cell-soon", compact && "plan-cell-compact")} data-plan-cell={status}>{claimWords.soon[locale]}</span>;
   return (
@@ -51,7 +52,7 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
   const name = (r: (typeof w.rows)[number]) => (r.key === "replyWhatsapp" && view === "public" && !live("whatsappOwnNumber", view) ? l(w.repliesRowPublic) : w.rowName(r.name, locale, view));
   const table = plansTableShown(view);
   // Copy 1116 §1 point 4: the legend gains "Próximamente: aún no activo" while a shown row carries a "Próximamente" cell in this view
-  const anySoon = rows.some((r) => codes.some((code) => planCell(r.key, code, view) === "soon"));
+  const anySoon = rows.some((r) => codes.some((code) => planCell(r.key, code, view) === "soon") || (r.key === "model3d" && !live("model3d", view)));
 
   if (!table) {
     // P-5: no plan names, no table — one block "Qué incluye"
@@ -114,7 +115,7 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
                     <div key={r.key} className="plans-row" role="row" data-plan-row={r.key}>
                       <div className="plans-cell plans-cell-name" role="rowheader"><span className="plans-icon" aria-hidden="true"><Icon size={18} strokeWidth={1.9} /></span><span>{name(r)}</span></div>
                       {codes.map((code) => (
-                        <div key={code} className={cn("plans-cell plans-cell-status", hi(code) && "is-highlight")} role="cell" data-plan-col={code}><Cell status={planCell(r.key, code, view)} locale={locale} /></div>
+                        <div key={code} className={cn("plans-cell plans-cell-status", hi(code) && "is-highlight")} role="cell" data-plan-col={code}><Cell status={planCell(r.key, code, view)} locale={locale} orderSoon={r.key === "model3d" && !live("model3d", view)} /></div>
                       ))}
                     </div>
                   );
@@ -159,7 +160,7 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
                               <li key={r.key} className="plans-card-row" data-state={s}>
                                 <span className="plans-icon" aria-hidden="true"><Icon size={16} strokeWidth={1.9} /></span>
                                 <span className="plans-card-row-name">{name(r)}</span>
-                                <Cell status={s} locale={locale} compact />
+                                <Cell status={s} locale={locale} compact orderSoon={r.key === "model3d" && !live("model3d", view)} />
                               </li>
                             );
                           })}

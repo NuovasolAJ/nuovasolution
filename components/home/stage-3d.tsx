@@ -6,6 +6,7 @@ import { ArrowRight, FileText, Play } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
+import { claimWords } from "@/lib/claims";
 import { CompareSlider } from "@/components/ui/compare-slider";
 import { Rise, useSeen } from "@/components/ui/motion";
 import { DemoPlan } from "./scene-art";
@@ -62,7 +63,8 @@ function Img({ src, alt, w, h, className }: { src: string; alt: string; w: numbe
   return <img src={src} alt={alt} width={w} height={h} loading="lazy" decoding="async" className={className} />;
 }
 
-export function Stage3d({ locale }: { locale: Locale }) {
+/** `soon` (the owner, 20.11. 09:05 + Copy 1116 §1.2 model3d): the section stays with the eyebrow "Un servicio aparte · Próximamente" while the 3D service is off in the view. */
+export function Stage3d({ locale, soon = false }: { locale: Locale; soon?: boolean }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const w = home1103.model3d;
   const steps = l(w.steps);
@@ -91,10 +93,10 @@ export function Stage3d({ locale }: { locale: Locale }) {
   };
 
   return (
-    <section id="model-3d" aria-labelledby="m3d-h" className="m3d" data-model3d>
+    <section id="model-3d" aria-labelledby="m3d-h" className="m3d" data-model3d data-model3d-soon={soon ? "true" : "false"}>
       <div className="container-default">
         <Rise className="m3d-head">
-          <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(w.eyebrow)}</p>
+          <p className="t-eyebrow t-eyebrow-l text-text-accent" data-model3d-eyebrow>{soon ? `${l(w.eyebrow)} · ${claimWords.soon[locale]}` : l(w.eyebrow)}</p>
           <h2 id="m3d-h" className="t-display-m mt-3 text-text-primary">{l(w.h2)}</h2>
           <p className="mt-4 t-body-l text-text-secondary max-w-[52ch] m-hide">{l(w.lead)}</p>
           <p className="m-only sec-core" data-phone-core="model3d">{l(home1103.phoneCore.model3d.core)}</p>

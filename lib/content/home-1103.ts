@@ -1,4 +1,5 @@
 import { claim, claimWords, live, withChannels, type ClaimKey, type ClaimState, type ClaimView } from "@/lib/claims";
+import { pxSentence } from "@/lib/content/proximamente";
 import type { Locale } from "@/lib/i18n/config";
 
 /**
@@ -423,14 +424,21 @@ export const home1103 = {
         mark: T("Ejemplo · datos ficticios", "Example · fictional data"),
         proof: T("Ficha: 320.000 € · 2 dormitorios · 85 m² · Ejemplo · datos ficticios", "Record: €320,000 · 2 bedrooms · 85 m² · Example · fictional data"), // phone (Copy §10)
         scene: { message: T("Me interesa este piso ", "I'm interested in this flat "), link: T("enlace del anuncio", "link to the listing"), recordLabel: T("Ficha", "Record"), record: T("320.000 € · 2 dormitorios · 85 m²", "€320,000 · 2 bedrooms · 85 m²") } },
-      { key: "reminders", keys: ["reminders", "alert"] as ClaimKey[], name: T("Ninguna consulta se queda sin aviso", "No enquiry goes unflagged"), line: T("Si nadie del equipo se ocupa de una consulta, al cabo de una hora se lo recordamos a la persona responsable. A las dos horas, avisamos a la siguiente.", "If nobody on the team takes an enquiry, after one hour we remind the person responsible. After two hours, we tell the next person."),
-        examples: [T("11:20 · Laura pide una visita", "11:20 · Laura asks for a viewing"), T("12:20 · Recordatorio a Marta", "12:20 · Reminder to Marta"), T("13:20 · Aviso a Carlos", "13:20 · Carlos is told")],
+      // Copy 1120 §5 (20.11.): K-2 hangs on `reminders` only (the 13:20 step is the chain, not `alert`); under the owner's F1 no mail goes
+      // out at two hours — the enquiry passes to the next person. The handover is in production only once Daily's E19 v2 is
+      // (HANDOVER_IN_PROD in lib/content/strengths.ts): until then the public view shows the clause as PX-s, the 13:20 step with PX-b
+      // and the proof without the handover.
+      { key: "reminders", keys: ["reminders"] as ClaimKey[], handover: true, name: T("Ninguna consulta se queda sin aviso", "No enquiry goes unflagged"), line: T("Si nadie del equipo se ocupa de una consulta, al cabo de una hora se lo recordamos a la persona responsable. A las dos horas, la consulta pasa a la siguiente persona.", "If nobody on the team takes an enquiry, after one hour we remind the person responsible. After two hours, the enquiry passes to the next person."),
+        linePublic: T("Si nadie del equipo se ocupa de una consulta, al cabo de una hora se lo recordamos a la persona responsable. El paso a la siguiente persona a las dos horas: próximamente.", "If nobody on the team takes an enquiry, after one hour we remind the person responsible. Passing it to the next person after two hours: coming soon."),
+        examples: [T("11:20 · Laura pide una visita", "11:20 · Laura asks for a viewing"), T("12:20 · Recordatorio a Marta", "12:20 · Reminder to Marta"), T("13:20 · Pasa a Carlos", "13:20 · Passed to Carlos")],
         mark: T("Ejemplo · nombres ficticios", "Example · fictional names"),
-        proof: T("Recordatorio a la hora, aviso a las dos. En producción desde el 13.11.", "A reminder after one hour, a notice after two. In production since 13.11."), // phone (Copy §10)
+        // Copy f13e4b6: E19 v2 runs in production since 20.11. 08:23Z, no real handover observed yet (Daily reports by 18:00) — the target proof names the 20.11., the public proof only the reminder until then
+        proof: T("Recordatorio a la hora, en producción desde el 13.11.; el paso a la siguiente persona, desde el 20.11.", "A reminder after one hour, in production since 13.11.; passing it to the next person, since 20.11."), // phone (Copy §10)
+        proofPublic: T("Recordatorio a la hora: en producción desde el 13.11.", "A reminder after one hour: in production since 13.11."),
         timeline: [
           { time: "11:20", text: T("Laura pide una visita", "Laura asks for a viewing"), state: "open" as const },
           { time: "12:20", text: T("Recordatorio a Marta", "Reminder to Marta"), state: "remind" as const },
-          { time: "13:20", text: T("Aviso a Carlos", "Carlos is told"), state: "escalate" as const },
+          { time: "13:20", text: T("Pasa a Carlos", "Passed to Carlos"), state: "escalate" as const, handover: true },
         ] },
     ],
   },
@@ -537,7 +545,8 @@ export const home1103 = {
     title: T("Cómo empezar: piloto gratuito de 14 días", "How to start: free 14-day pilot"),
     titlePublic: T("Cómo empezar: piloto gratuito de 14 días", "How to start: free 14-day pilot"),
     steps: (locale: Locale, view: ClaimView): { b: string; t: string }[] => {
-      const mailbox = live("mailboxConnection", view) ? { es: "Conectamos tu buzón contigo y lo probamos con un mensaje real. ", en: "We connect your mailbox with you and test it with a real message. " }[locale] : "";
+      // the owner, 20.11. 09:05 (1) + Copy 1120 §4.3: with the mailbox connection off, step 3 opens with its PX-s instead of nothing
+      const mailbox = live("mailboxConnection", view) ? { es: "Conectamos tu buzón contigo y lo probamos con un mensaje real. ", en: "We connect your mailbox with you and test it with a real message. " }[locale] : `${pxSentence.mailboxConnection![locale]} `;
       return {
         es: [
           { b: "Solicita tu piloto.", t: "En una conversación ves el sistema con un ejemplo y sabes si encaja con tu agencia." },
@@ -586,9 +595,11 @@ export const home1103 = {
         // Copy 1108 V-4: the voice "en nombre de tu agencia" once a reply leaves the agency's own channel; the earlier answers until then
         { q: T("¿Qué hace NuovaSolution?", "What does NuovaSolution do?"), a: live("mailboxConnection", view) || live("whatsappOwnNumber", view) ? T("Responde en nombre de tu agencia, en español, a las consultas que llegan por ⟦canales⟧, y guarda lo importante de cada una en su ficha, con su prioridad y su motivo.", "It replies on behalf of your agency, in Spanish, to the enquiries that arrive on ⟦canales⟧, and keeps what matters from each one on its record, with its priority and reason.") : byKey("priorityWithReason", view, T("Responde en español las consultas que llegan por ⟦canales⟧ y guarda lo importante de cada una en su ficha, con su prioridad y su motivo.", "It answers the enquiries that arrive on ⟦canales⟧ in Spanish and keeps what matters from each one on its record, with its priority and reason."), T("Responde en español las consultas que llegan por ⟦canales⟧ y guarda lo importante de cada una en su ficha.", "It answers the enquiries that arrive on ⟦canales⟧ in Spanish and keeps what matters from each one on its record.")) },
         // 16.11. (the owner's line 5, final wording by Copy): replies in Spanish, every language recognised, another language goes to the team
-        { q: T("¿En qué idiomas responde?", "Which languages does it reply in?"), a: T("Hoy responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo. Más idiomas, en preparación.", "Today it replies automatically in Spanish only. It recognises the language of every enquiry and, if it is not Spanish, passes it to your team. More languages are in preparation.") /* Copy 441ba1c: L-1 in both views */ },
+        // Copy 441ba1c L-1; Copy 1120 §5a (c9121b5, the owner's point 4 of 09:05: otherLanguages hidden in BOTH views): no sentence announces more languages — the answer ends after the second sentence in both views
+        { q: T("¿En qué idiomas responde?", "Which languages does it reply in?"), a: T("Hoy responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo.", "Today it replies automatically in Spanish only. It recognises the language of every enquiry and, if it is not Spanish, passes it to your team.") },
         { q: T("¿Sabe el cliente que responde un asistente?", "Does the customer know an assistant is answering?"), a: T("Sí. Cada respuesta automática lo indica.", "Yes. Every automatic reply says so.") },
-        { q: T("¿Avisa a mi equipo?", "Does it alert my team?"), a: live("alert", view) ? T("Sí. Cuando una consulta es importante, avisa por email a la persona que toca, con el motivo.", "Yes. When an enquiry is important, it alerts the right person by e-mail, with the reason.") : null },
+        // the owner, 20.11. 09:05 (1): with `alert` off the question stays with its PX-s as the answer
+        { q: T("¿Avisa a mi equipo?", "Does it alert my team?"), a: live("alert", view) ? T("Sí. Cuando una consulta es importante, avisa por email a la persona que toca, con el motivo.", "Yes. When an enquiry is important, it alerts the right person by e-mail, with the reason.") : pxSentence.alert! },
         // Copy 1113 §6: the free pilot, both views
         { q: T("¿Cómo empiezo?", "How do I start?"), a: T("Solicita tu piloto gratuito. Hablamos contigo, te enseñamos el sistema y, si encaja, preparamos tu agencia contigo.", "Request your free pilot. We talk with you, show you the system and, if it fits, set up your agency with you.") },
         { q: T("¿Funciona con mi CRM?", "Does it work with my CRM?"), a: byKey("integrations", view, T("Incluye un CRM. También se conecta con HubSpot, Pipedrive, Zoho y Salesforce.", "It includes a CRM. It also connects to HubSpot, Pipedrive, Zoho and Salesforce."), T("Incluye un CRM.", "It includes a CRM.")) },

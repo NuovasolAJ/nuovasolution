@@ -1,5 +1,6 @@
 import type { Locale } from "@/lib/i18n/config";
 import { live, offered, withChannels, type ClaimKey, type ClaimView } from "@/lib/claims";
+import { pxFor } from "@/lib/content/proximamente";
 
 /**
  * The static FAQ (COPY_DELTAS_0930 §3, FAQ_PAGE_COPY; Copy 1105 v3 §21 of 06.11.: every answer written for the target state,
@@ -80,11 +81,11 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         kb: "Q-06",
-        // Copy 1116 §2 L-faq: L-1 in the target view; the proven line in public until Lead confirms "a tu equipo" (Q-2)
+        // Copy 1116 §2 L-faq: L-1 in the target view; Copy 1120 §5a (c9121b5, the owner's point 4 of 20.11. 09:05: otherLanguages hidden in BOTH views): no sentence announces more languages — the answer ends after the second sentence
         q: { en: "Which languages does it reply in?", es: "¿En qué idiomas responde?" },
         a: {
-          en: "Today it replies automatically in Spanish only. It recognises the language of every enquiry and, if it is not Spanish, passes it to your team. More languages are in preparation.",
-          es: "Hoy responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo. Más idiomas, en preparación.",
+          en: "Today it replies automatically in Spanish only. It recognises the language of every enquiry and, if it is not Spanish, passes it to your team.",
+          es: "Hoy responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo.",
         },
         // Copy 441ba1c (owner 16.11.): L-1 stands in both views; the public fallback is retired
       },
@@ -382,7 +383,10 @@ export function faqGroupsFor(locale: Locale, view: ClaimView): { id: string; tit
       items: g.items
         .map((it) => {
           const on = !it.keys || offered(it.keys, view); // E2 (16.11.): a held-back function is not promised in the FAQ either
-          const a = on ? it.a : it.pub ?? null;
+          // the owner, 20.11. 09:05 (1): a question whose function is off is no longer left out — its answer is Copy's PX-s (1116 §1.2:
+          // "¿Atiende llamadas?" → "Todavía no. Llamadas: próximamente."), unless Copy gave a public answer
+          const px = !on && it.keys ? pxFor(it.keys, (k) => !live(k, view), locale) : null;
+          const a = on ? it.a : it.pub ?? (px ? (it.keys?.includes("phoneAssistant") ? { es: `Todavía no. ${px}`, en: `Not yet. ${px}` } : { es: px, en: px }) : null);
           const q = it.qPub && it.qKeys && !live(it.qKeys, view) ? it.qPub : it.q;
           return a ? { kb: it.kb, q: q[locale], a: withChannels(a[locale], locale, view) } : null;
         })

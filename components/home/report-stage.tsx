@@ -6,6 +6,7 @@ import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
 import { live, type ClaimView } from "@/lib/claims";
+import { pxFor } from "@/lib/content/proximamente";
 import { CountUp } from "@/components/ui/count-up";
 import { Rise, useSeen } from "@/components/ui/motion";
 import { CompareBlock } from "@/components/report/compare-block";
@@ -98,6 +99,8 @@ export function ReportStage({ locale, view }: { locale: Locale; view: ClaimView 
                 })}
               </dl>
 
+              {/* the owner, 20.11. 09:05 (1) + Copy 1120 §4.2: with the trend off, the report says so instead of leaving a gap */}
+              {!trend && <p className="rep-note rep-note-soon" data-report-trend-soon>{pxFor(["reportTrend"], () => true, locale)}</p>}
               {/* by channel (reportTrend): the view's set, every one with its figure, always 25 */}
               {trend && channels.length > 1 && (
                 <div className="rep-channels" data-report-chart="channels">

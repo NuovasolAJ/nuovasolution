@@ -1,6 +1,7 @@
 import type { Locale } from "@/lib/i18n/config";
 import { publishedCapability } from "@/lib/content/capabilities";
 import { live, offered, withChannels, type ClaimKey, type ClaimView, publicShowsAll } from "@/lib/claims";
+import { pxFor } from "@/lib/content/proximamente";
 
 /**
  * The platform in four tasks (owner follow-up order 2026-10-06 §4; master order 2026-10-10 §10; Copy 1105 v3 §21 of 06.11.): what
@@ -108,8 +109,10 @@ export function platformTasksFor(locale: Locale, view: ClaimView): { key: Platfo
       entries: t.entries
         .map((e) => {
           const on = !e.keys || offered(e.keys, view); // E2 (16.11.): a held-back function is not promised in either view
-          const line = on ? e.line : e.pub ?? null;
-          return line ? { key: e.key, name: e.name[locale], line: withChannels(line[locale], locale, view), href: entryHref(e) } : null;
+          // the owner, 20.11. 09:05 (1): an entry whose function is off keeps its name with Copy's PX-s as its line (no longer left out)
+          const px = !on && e.keys ? pxFor(e.keys, (k) => !live(k, view), locale) : null;
+          const line = on ? e.line[locale] : e.pub ? e.pub[locale] : px;
+          return line ? { key: e.key, name: e.name[locale], line: withChannels(line, locale, view), href: entryHref(e) } : null;
         })
         .filter((e): e is { key: string; name: string; line: string; href: string } => e !== null),
     }))

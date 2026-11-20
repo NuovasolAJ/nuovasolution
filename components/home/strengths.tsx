@@ -1,5 +1,5 @@
 import type { Locale } from "@/lib/i18n/config";
-import { strengths, type DayStation, type StrengthCard } from "@/lib/content/strengths";
+import { strengths, handoverLive, type DayStation, type StrengthCard } from "@/lib/content/strengths";
 import { live, type ClaimKey, type ClaimView } from "@/lib/claims";
 import { Rise } from "@/components/ui/motion";
 import { cn } from "@/lib/utils";
@@ -19,7 +19,7 @@ function Card({ c, locale, view }: { c: StrengthCard; locale: Locale; view: Clai
   const all = c.keys.every(on);
   const part = !all && c.partial?.when(on) ? c.partial : undefined;
   const state = all ? "live" : part ? "partial" : "soon";
-  const chip = all ? l(c.chip) : part ? l(part.chip) : `${l(strengths.soon)} · ${l(c.chip)}`;
+  const chip = all ? l(c.chip) : part ? l(part.chip) : c.chipOff ? l(c.chipOff) : `${l(strengths.soon)} · ${l(c.chip)}`;
   const line = part ? part.line(on, locale) : l(c.line);
   const phone = part ? l(part.phone) : l(c.phone);
   const examples = all ? c.examples : part ? c.examples.slice(0, part.examples) : [];
@@ -60,7 +60,7 @@ export function Strengths({ locale, view }: { locale: Locale; view: ClaimView })
         <Rise as="ul" className="st-row st-row-growth" delay={0.06}>
           {w.growth.map((c) => <Card key={c.key} c={c} locale={locale} view={view} />)}
         </Rise>
-        <p className="st-after">{l(w.afterGrowth)}</p>
+        <p className="st-after" data-strengths-gd={w.afterGrowthKeys.every(on) ? "live" : "soon"}>{l(w.afterGrowthKeys.every(on) ? w.afterGrowth : w.afterGrowthSoon)}</p>
         <Rise as="ul" className="st-row st-row-cards" delay={0.06}>
           {w.cards.map((c) => <Card key={c.key} c={c} locale={locale} view={view} />)}
         </Rise>
@@ -72,8 +72,8 @@ export function Strengths({ locale, view }: { locale: Locale; view: ClaimView })
           <p className="st-day-compact m-only tnum" data-day-compact>{liveStations.map((s) => l(s.short)).join(" · ")}</p>
           <ol className="st-day-run m-hide">
             {shown.map((s) => (
-              <li key={s.time} className="st-day-step" data-day-step={s.time} data-day-step-live={isLive(s) ? "true" : "false"}>
-                <span className="st-day-time tnum">{s.time}{!isLive(s) && <span className="st-day-soon"> · {l(w.soon)}</span>}</span>
+              <li key={s.time} className="st-day-step" data-day-step={s.time} data-day-step-live={isLive(s) ? "true" : "false"} data-day-step-handover={s.handover ? (handoverLive(view) ? "live" : "soon") : undefined}>
+                <span className="st-day-time tnum">{s.time}{(!isLive(s) || (s.handover && !handoverLive(view))) && <span className="st-day-soon"> · {l(w.soon)}</span>}</span>
                 <span className="st-day-text">{stationText(s)}</span>
               </li>
             ))}

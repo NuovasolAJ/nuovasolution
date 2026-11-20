@@ -5,7 +5,8 @@ import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { Check, ChevronDown } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
-import { live, publicShowsAll, withChannels, type ClaimView } from "@/lib/claims";
+import { live, publicShowsAll, withChannels, type ClaimKey, type ClaimView } from "@/lib/claims";
+import { pxFor } from "@/lib/content/proximamente";
 import { Surface, type SceneKey } from "./functions";
 import { Rise } from "@/components/ui/motion";
 import { ExtraCards } from "./extra-cards";
@@ -44,7 +45,13 @@ export function Chapters({ locale, view }: { locale: Locale; view: ClaimView }) 
   const core = home1103.phoneCore.areas(view); // Copy 441ba1c §10: the phone's core and proof line per area
   const cardLine = (c: Chapter) => { const k = copy[c.key]; return view === "public" && !publicShowsAll() && "linePublic" in k && k.linePublic ? l(k.linePublic) : l(k.line); };
   type Pt = { t: Record<Locale, string>; pub: "same" | "hide" | "text"; keys?: Parameters<typeof live>[0]; pubText?: Record<Locale, string> };
-  const cardPoints = (c: Chapter) => (copy[c.key].points as Pt[]).filter((pt) => view === "target" || publicShowsAll() || pt.pub !== "hide" || (pt.keys && live(pt.keys, view))).map((pt) => (view === "public" && pt.pub === "text" && pt.pubText && !(pt.keys && live(pt.keys, view)) ? l(pt.pubText) : l(pt.t)));
+  // the owner, 20.11. 09:05 (1): a point whose function is off is no longer hidden — it shows Copy's PX-s (lib/content/proximamente.ts)
+  const cardPoints = (c: Chapter) => (copy[c.key].points as Pt[]).map((pt) => {
+    const off = view === "public" && !!pt.keys && !live(pt.keys, view);
+    if (!off) return l(pt.t);
+    if (pt.pub === "text" && pt.pubText) return l(pt.pubText);
+    return pxFor(pt.keys as ClaimKey[], (k) => !live(k, view), locale) ?? l(pt.t);
+  });
 
   return (
     <section id="functions" aria-labelledby="fn-h" className="ch" data-functions data-chapters data-fn-count={items.length} data-fn-view={view} data-chapter-open={open ?? "none"}>

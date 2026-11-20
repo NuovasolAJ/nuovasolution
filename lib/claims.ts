@@ -87,32 +87,32 @@ export const publicGate: Record<ClaimKey, "live" | "soon"> = {
   replyWhatsapp: "live",
   replyEmail: "live",
   replyOutOfHours: "live",
-  whatsappOwnNumber: "live",
+  whatsappOwnNumber: "soon", // the owner, 20.11. 09:05 (3): until he releases it
   languageNoted: "live",
-  otherLanguages: "live",
-  mailboxConnection: "live",
+  otherLanguages: "live", // the owner, 20.11. 09:05 (4): hidden in BOTH views (HIDDEN_BOTH below), so the gate word does not matter
+  mailboxConnection: "soon", // API cee6992 (20.11.): no mailbox register in prod, a pilot agency's mailbox comes with A12 (Tue 24.11. at the earliest)
   crm: "live",
   priorityWithReason: "live",
-  alert: "live",
+  alert: "soon", // the owner, 20.11. 09:05 (3): until he releases it (HA1)
   origin: "live",
   adsLeads: "soon", // the owner, 20.11. (clients from ads and forms)
   labels: "live",
-  oneRecordAcrossChannels: "live",
+  oneRecordAcrossChannels: "soon", // API cee6992: in prod only for nuovasolution, pilot_test_a has no channel
   matching: "soon", // the owner, 20.11. (listing proposals)
   followup: "soon", // the owner, 20.11. (bringing contacts back / follow-up)
-  taskList: "live",
-  dailyVoice: "live",
+  taskList: "soon", // API cee6992: 0 tasks for pilot_test_a, none without a connected mailbox
+  dailyVoice: "soon", // API cee6992: dg_jarvis_action_log has 0 rows
   reportInLogin: "live",
-  weeklyEmail: "live",
-  reportTrend: "live",
+  weeklyEmail: "soon", // API cee6992: weekly reports only to the own agency (15 delivered)
+  reportTrend: "soon", // API cee6992: the delivered report has no trend, channel comparison or insights
   instagram: "soon", // the owner, 20.11. (social posts)
   phoneAssistant: "soon", // the owner, 20.11. (the phone assistant)
   listingLink: "live",
   reminders: "live",
-  webform: "live",
-  integrations: "live",
-  outlook: "live",
-  model3d: "live",
+  webform: "soon", // API cee6992: the web form as a third channel is not connected in prod
+  integrations: "soon", // API cee6992: no provider with a prod sync (Google Sheets connected, never synced; the others revoked/pending)
+  outlook: "soon", // API cee6992: prod reads no agency's Outlook mailbox (proven on staging only, A12 line 4)
+  model3d: "soon", // API cee6992: no 3D order and no table in prod; T6 not accepted
   plans: "live",
   trial: "live",
   publicSignup: "live",
@@ -127,7 +127,9 @@ export const isIncluded = (key: ClaimKey): boolean => claims[key] === "included"
 export const replySpanish = (): boolean => isIncluded("replyWhatsapp") || isIncluded("replyEmail");
 
 /** Whether the keys read as live in a view: everything in the target view, only what is included in the public one. */
-export const live = (keys: ClaimKey | ClaimKey[], view: ClaimView): boolean => view === "target" || (Array.isArray(keys) ? keys : [keys]).every((k) => publicGate[k] === "live"); // 16.11. evening: the public view follows the gate, not the register
+/** The owner, 20.11. 09:05 (4): `otherLanguages` stays hidden in BOTH views (the register's note of §14: ES + EN + DE each with its evidence first). */
+export const HIDDEN_BOTH: ClaimKey[] = ["otherLanguages"];
+export const live = (keys: ClaimKey | ClaimKey[], view: ClaimView): boolean => { const ks = Array.isArray(keys) ? keys : [keys]; if (ks.some((k) => HIDDEN_BOTH.includes(k))) return false; return view === "target" || ks.every((k) => publicGate[k] === "live"); }; // 16.11. evening: the public view follows the gate, not the register
 /** Whether a surface bound to its keys is shown in a view. */
 export const shows = live;
 
@@ -202,7 +204,7 @@ export const planCell = (key: ClaimKey, plan: PlanCode, view: ClaimView = "targe
  * cell of a switched-off function shows "Próximamente", not a tick and not a dash, and the legend gains "Próximamente: aún no activo").
  * Until 20.11. an off row was hidden in the public view (E2 of 07.11.); `planCell` still never gives a tick for an off function.
  */
-export const planRowShown = (_key: ClaimKey, _view: ClaimView): boolean => true;
+export const planRowShown = (key: ClaimKey, _view: ClaimView): boolean => !HIDDEN_BOTH.includes(key);
 /** Copy §20 P-5: the comparison table stands only with `plans` on; otherwise one block "Qué incluye" with the rows that are on. */
 export const plansTableShown = (view: ClaimView): boolean => live("plans", view);
 

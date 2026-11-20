@@ -21,8 +21,14 @@ type On = (k: ClaimKey) => boolean;
  * have a partial state of their own (`partial`); any other partial state follows P-1.
  */
 export type StrengthPartial = { when: (on: On) => boolean; chip: L; line: (on: On, locale: Locale) => string; phone: L; examples: number };
-export type StrengthCard = { key: string; keys: ClaimKey[]; title: L; line: L; phone: L; chip: L; examples: [L, L, L]; partial?: StrengthPartial };
-export type DayStation = { time: string; keys: ClaimKey[]; short: L; text: L; partial?: { when: (on: On) => boolean; text: L } };
+export type StrengthCard = { key: string; keys: ClaimKey[]; title: L; line: L; phone: L; chip: L; /** Copy 1120 §6: a card's own off chip where it differs from "Próximamente · {chip}" (G-1) */ chipOff?: L; examples: [L, L, L]; partial?: StrengthPartial };
+export type DayStation = { time: string; keys: ClaimKey[]; short: L; text: L; partial?: { when: (on: On) => boolean; text: L }; /** the station depends on the 2-hour handover (Copy 1120 §5) */ handover?: boolean };
+/**
+ * Copy 1120 §5: the handover of a task to the next person after two hours (Daily's E19 v2 under the owner's F1) is in production only
+ * once Daily confirms it; until then the public view marks it "Próximamente" (K-2's clause, its 13:20 step, D-3). ONE line to flip.
+ */
+export const HANDOVER_IN_PROD = false;
+export const handoverLive = (view: "target" | "public"): boolean => view === "target" || HANDOVER_IN_PROD;
 
 export const strengths = {
   eyebrow: T("Todo lo que hace por tu agencia", "Everything it does for your agency"),
@@ -34,8 +40,10 @@ export const strengths = {
    *  chip of an off card starts with it ("Próximamente · Desde Growth", T-6 "Próximamente · Opcional, con cualquier plan") */
   soon: T("Próximamente", "Coming soon"),
   afterGrowth: T("Cada mañana, qué oportunidades piden tu atención.", "Every morning, which opportunities need your attention."), // G-d (shortened, owner 17.11., Copy e851e72)
+  afterGrowthKeys: ["taskList", "dailyVoice"] as ClaimKey[],
+  afterGrowthSoon: T("Cada mañana, qué oportunidades piden tu atención: próximamente.", "Every morning, which opportunities need your attention: coming soon."), // Copy 1120 §4.2: G-d with taskList and dailyVoice off
   growth: [
-    { key: "g1", keys: ["adsLeads", "instagram"], title: T("Gana nuevos clientes", "Win new clients"), line: T("Tus publicaciones, anuncios y formularios atraen a compradores y a propietarios que quieren vender. Cada comentario o mensaje directo se convierte en una consulta con su ficha.", "Your posts, ads and lead forms draw in buyers and owners who want to sell. Every comment or direct message becomes an enquiry with its own record."), phone: T("De un comentario a una consulta.", "From a comment to an enquiry."), chip: T("Desde Growth · redes sociales en Enterprise", "From Growth · social media on Enterprise"),
+    { key: "g1", keys: ["adsLeads", "instagram"], title: T("Gana nuevos clientes", "Win new clients"), line: T("Tus publicaciones, anuncios y formularios atraen a compradores y a propietarios que quieren vender. Cada comentario o mensaje directo se convierte en una consulta con su ficha.", "Your posts, ads and lead forms draw in buyers and owners who want to sell. Every comment or direct message becomes an enquiry with its own record."), phone: T("De un comentario a una consulta.", "From a comment to an enquiry."), chip: T("Desde Growth · redes sociales en Enterprise", "From Growth · social media on Enterprise"), chipOff: T("Próximamente · Desde Growth", "Coming soon · From Growth"), // Copy 1120 §6 (RV6's measurement on deb4a40): the off chip without the Enterprise clause
       // G-1 shows a SELLER (owner 17.11., Copy e851e72): Isabel is new and fictional; Carmen stays the demo's e-mail seller
       examples: [T("Formulario de tu anuncio «¿Cuánto vale tu casa?»: Isabel, casa en Mijas", "The form on your ad \"What is your home worth?\": Isabel, house in Mijas"), T("Respuesta al momento y una pregunta: «¿Cuántos metros tiene, más o menos?»", "An instant reply and one question: \"Roughly how many square metres is it?\""), T("Ficha nueva: propietaria · Mijas · quiere vender · pide valoración", "New record: owner · Mijas · wants to sell · asks for a valuation")],
       // Copy 1120 §2.3 G-1p: ads and forms on, social off — the seller example stays true, so the examples stay
@@ -73,7 +81,9 @@ export const strengths = {
     stations: [
       { time: "08:30", keys: ["taskList", "dailyVoice"], short: T("08:30 tu día", "08:30 your day"), text: T("Marta abre su resumen: sabe qué toca hoy y con quién.", "Marta opens her summary: she knows what's on today and with whom.") },
       { time: "11:39", keys: ["phoneAssistant"], short: T("11:39 llamada atendida", "11:39 call answered"), text: T("Marta está en una visita; el asistente atiende la llamada de Álvaro y le deja la tarea.", "Marta is at a viewing; the assistant takes Álvaro's call and leaves her the task.") },
-      { time: "13:20", keys: ["reminders"], short: T("13:20 aviso", "13:20 notice"), text: T("Nadie ha cogido la visita de Laura: Carlos recibe el aviso y la coge.", "Nobody has taken Laura's viewing: Carlos gets the notice and takes it.") },
+      // Copy 1120 §5 (the owner's F1: no mail at two hours, the task passes to the next person): D-3 says "pasa a Carlos"; the handover
+      // itself is in production only once Daily's E19 v2 is (HANDOVER_IN_PROD) — until then the public station carries PX-b
+      { time: "13:20", keys: ["reminders"], short: T("13:20 pasa a Carlos", "13:20 passed to Carlos"), text: T("Nadie ha cogido la visita de Laura: pasa a Carlos y él la coge.", "Nobody has taken Laura's viewing: it passes to Carlos, and he takes it."), handover: true },
       { time: "16:00", keys: ["matching", "instagram"], short: T("16:00 piso que encaja", "16:00 a listing that fits"), text: T("Entra un piso nuevo en Estepona: encaja con Laura y su publicación para redes espera tu visto bueno.", "A new flat comes in in Estepona: it fits Laura, and its social media post waits for your OK."),
         partial: { when: (on) => on("matching") && !on("instagram"), text: T("Entra un piso nuevo en Estepona: encaja con Laura.", "A new flat comes in in Estepona: it fits Laura.") } },
       { time: "18:00", keys: ["followup"], short: T("18:00 seguimiento", "18:00 follow-up"), text: T("Sofía no ha contestado: recibe un seguimiento, con su permiso.", "Sofía hasn't replied: she gets a follow-up, with her permission.") },
