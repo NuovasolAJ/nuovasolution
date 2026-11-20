@@ -1971,7 +1971,6 @@ html:not(.js) .fs-step { opacity: 1; }
    else restyled; the day story in form A (the compact line on the phone, the six stations from 640 px) */
 /* ------------------------------------------------------------------ */
 .st-day-compact { font-size: 0.9375rem; line-height: 1.5; color: var(--text-primary); }
-.st-chip-soon { background: var(--ink-950); color: var(--ivory); }
 .st-day-soon { font-weight: 500; color: var(--text-muted); }
 /* 20.11. (the owner: a visible mark for what is not live; Copy 1116 §1 points 4 and 5): the plans' "Próximamente" cell and the demo tab's mark */
 .plan-cell-soon { background: var(--ink-950); color: var(--ivory); }
@@ -1983,6 +1982,8 @@ html:not(.js) .fs-step { opacity: 1; }
 .st-card { padding: 18px 0 16px; gap: 8px; }
 .st-card .ch-name { font-size: 1.25rem; }
 .st-chip { margin: 0 20px; width: fit-content; padding: 3px 10px; border-radius: 999px; background: var(--surface-sunken); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em; color: var(--text-secondary); }
+/* the owner's visible mark (20.11.): a chip that starts with "Próximamente" stands dark, like the plans' cell and the demo tab's mark */
+.st-chip-soon { background: var(--ink-950); color: var(--ivory); }
 .st-examples { margin-top: 2px; font-size: 0.875rem; color: var(--text-secondary); }
 .st-examples li { padding-left: 14px; position: relative; }
 .st-examples li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; border-radius: 999px; background: var(--ink-400); }
