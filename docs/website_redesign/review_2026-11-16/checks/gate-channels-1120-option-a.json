@@ -1,0 +1,57 @@
+{
+ "_meta": {
+  "what": "the SAME probe, run against option (a) - the owner decided §4.3 = (a) on 20.11. Computed by the real functions of lib/claims.ts at HEAD, transpiled alone with tsc.",
+  "source": "COMMIT blob, not the working tree: git show HEAD:lib/claims.ts",
+  "claimsTsBlob": "74d0f4c38cb8edb7f347439693671ad9288bc45d",
+  "repoHead": "d3b9810",
+  "computedAt": "2026-11-20",
+  "state": "publicGate.replyEmail = live (as in 2342537); whatsappOwnNumber + alert = soon; mailboxConnection = soon; teamRoles = soon",
+  "result": "public channel list = email / e-mail -> every sentence whole, no empty substitution. Supersedes gate-channels-1120-source.json, which computed option (b) from an uncommitted working-tree edit.",
+  "reviewer": "RV6"
+ },
+ "target": {
+  "channelKeys": [
+   "replyWhatsapp",
+   "replyEmail"
+  ],
+  "listES": "\"WhatsApp y email\"",
+  "listEN": "\"WhatsApp and e-mail\""
+ },
+ "public": {
+  "channelKeys": [
+   "replyEmail"
+  ],
+  "listES": "\"email\"",
+  "listEN": "\"e-mail\""
+ },
+ "replySpanish_readsRegister": true,
+ "publicShowsAll": false,
+ "planCell_replyWhatsapp_public": [
+  "included",
+  "included",
+  "included"
+ ],
+ "planCell_replyWhatsapp_target": [
+  "included",
+  "included",
+  "included"
+ ],
+ "rendered_public": {
+  "meta_es": "Respondemos en español a las consultas por email, las registramos en una ficha y dejamos a tu equipo una tarea clara.",
+  "faq_q02_es": "Consultas por email.",
+  "s1_es": "En español, por email, también fuera de horario.",
+  "planrow_es": "Respuestas en español por email",
+  "q5_es": "Funciona con email, con respuestas en español.",
+  "s7_es": "La ficha guarda de dónde llega cada consulta: email. Así ves qué canal te trae clientes.",
+  "f1_es": "Por email, a cualquier hora."
+ },
+ "rendered_target": {
+  "meta_es": "Respondemos en español a las consultas por WhatsApp y email, las registramos en una ficha y dejamos a tu equipo una tarea clara.",
+  "faq_q02_es": "Consultas por WhatsApp y email.",
+  "s1_es": "En español, por WhatsApp y email, también fuera de horario.",
+  "planrow_es": "Respuestas en español por WhatsApp y email",
+  "q5_es": "Funciona con WhatsApp y email, con respuestas en español.",
+  "s7_es": "La ficha guarda de dónde llega cada consulta: WhatsApp y email. Así ves qué canal te trae clientes.",
+  "f1_es": "Por WhatsApp y email, a cualquier hora."
+ }
+}
