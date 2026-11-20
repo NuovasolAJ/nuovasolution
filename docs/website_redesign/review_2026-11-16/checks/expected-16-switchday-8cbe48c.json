@@ -15,7 +15,12 @@
   "hidden": ["the three example lines"],
   "forbidden": "the PX sentence on a card ('Gana nuevos clientes: próximamente.' and the six like it). The px field may go or stay unused.",
   "pxStillValidElsewhere": ["plans table", "demo tabs", "COPY_TO_REDESIGN_1116_EXAMPLE_WEEK_PROXIMAMENTE_v1.md §1"],
-  "openWithCopy": "the example mark G-m ('Ejemplo · datos ficticios') is not named in P-1. With the examples hidden it has nothing left to mark, so I expect it hidden too and will report it as a note, not a fail, until Copy says."
+  "mark": {
+   "rule": "G-m ('Ejemplo · datos ficticios' / 'Example · fictional data') is HIDDEN on a P-1 off card, and stays wherever at least one example line shows: G-1p with all three, G-3p with line 1",
+   "confirmedBy": "Copy, 19.11. evening, recorded in §2.1 of the same file (19b5523)",
+   "status": "a criterion, no longer a note",
+   "buildState": "satisfied - strengths.tsx renders the mark inside `examples.length > 0`, so it follows the example lines exactly"
+  }
  },
  "chipsOff": {
   "g1": ["Próximamente · Desde Growth · redes sociales en Enterprise", "Coming soon · From Growth · social media on Enterprise"],
@@ -110,7 +115,38 @@
   "tsc": "8 errors on the draft: components/home/strengths.tsx(28,37) and lib/content/strengths.ts lines 32, 35, 37, 41, 43, 45, 47 - 'px' does not exist on type StrengthCard",
   "cause": "the type and its doc comment are already on Copy 1120 P-1 (px removed, partial added), while the card data still carries px and the component still renders it at line 28",
   "effect": "mid-edit, expected - but a build in this state does not deploy, so there would be nothing for me to measure on Friday",
-  "reported": "to Redesign, 19.11. evening"
+  "reported": "to Redesign, 19.11. evening",
+  "resolved": "19.11. evening, verified in the working tree: npx tsc --noEmit exits 0, px is gone from the type, the data and the component (the only two 'px' hits left in strengths.tsx are the words '640 px' in two comments)"
+ },
+ "verifiedInWorkingTree": {
+  "when": "19.11. evening, after Redesign reported all four fixed. NOT a named build - uncommitted working tree, read-only. The verdict stands on tonight's commit + dpl.",
+  "N-1": "pass - tsc exits 0",
+  "N-2": "pass - data-day-compact is now liveStations.map(s => l(s.short)).join(' · '), composed from the live stations only. With all six live it reproduces Copy's D-c literal character for character, so the target-view criterion in expected-16-e851e72.json still matches.",
+  "N-3": "pass - `shown = (total - live > 2) ? liveStations : all stations`, and an off station renders its time, then ' · Próximamente', then its full text, carrying data-day-step-live=\"false\"",
+  "N-4": "pass - c.partial is rendered: chip, sentence, phone line and example count all come from the partial, examples via c.examples.slice(0, part.examples), state on data-strength-state",
+  "strings": "all word-exact against Copy: G-1p chip / sentence / phone line and its when (adsLeads on, instagram off); G-3p chip and its when (replyWhatsapp, crm, priorityWithReason on and at least one of matching / followup off); the D-4 partial text; T-8 reduced to keys ['reportInLogin'] per Copy's build note; the four fold labels in home-1103.ts:496-499",
+  "hero": "fixed too, and not by me asking - strengths.ts:87 subShown = followup AND matching AND (adsLeads OR instagram), exactly Copy §1. My earlier note about the four ANDed keys is spent.",
+  "markers": "my scripts must read the NEW values: data-strength-state=\"live|partial|soon\" (was data-strength-live true/false), data-strength-chip=\"live|partial|soon\" (was plan/soon), data-day-step-live, data-plan-fold / -button / -body, data-strength-day-form=\"A\""
+ },
+ "N-5": {
+  "finding": "Copy §2.3's capital-letter rule is not implemented - only the join is",
+  "where": "lib/content/strengths.ts:47, the G-3p line builder",
+  "code": "parts = [matching off && 'Proponerle inmuebles que encajan', followup off && 'hacer seguimiento, con su permiso'].filter(...); then `${intro} ${parts.join(' y ')}: próximamente.`",
+  "cases": {
+   "bothOff": "correct - 'Proponerle inmuebles que encajan y hacer seguimiento, con su permiso: próximamente.'",
+   "matchingOffOnly": "correct - 'Proponerle inmuebles que encajan: próximamente.'",
+   "followupOffOnly": "WRONG - 'Responde al momento y aclara qué busca cada cliente. hacer seguimiento, con su permiso: próximamente.' A sentence starting with a lower-case h. English the same: '... following up, with their permission: coming soon.'"
+  },
+  "reachable": "matching live while followup is not. Both are 'soon' in the register today and the owner switches keys one at a time, so it is a plausible switch-day state, not a theoretical one.",
+  "fix": "capitalise parts[0], not the matching literal",
+  "severity": "cosmetic, one of three combinations - but it is the kind of thing that ships. Reported to Redesign and put to Copy, since the rule is Copy's to confirm.",
+  "myReading": "'capital letter only on the first part' is a rule about position, not a description of the two literals: whichever part comes first takes the capital. The other reading produces a sentence starting lower-case, which no editor wants."
+ },
+ "foldAndNothingLost": {
+  "mechanism": "components/home/plan-card-fold.tsx keeps the groups in the document at every width and only folds them on the phone (globals.css .plans-card-fold); at ≥ 640 px they stand open and the button is hidden",
+  "whyThisMattersToMyMethod": "textContent includes display:none text, so my sentence comparison sees the folded groups and 'nothing lost' passes. scrollHeight excludes them, so the depth really falls. Both of my methods behave correctly here - the fold is a genuine fix, not a way around my metrics.",
+  "butThereforeNotEnough": "'nothing lost' by the document alone would also pass if the core of the offer were folded away. So Copy §3's visible-while-closed list is a SECOND, stricter criterion, measured as actually painted elements at 390 with the fold closed: the plan name and the 'for whom' line, both ways each with its line under the button, and the pilot line above the plans.",
+  "codeState": "clean - aria-expanded, aria-controls, an aria-label per plan, the body always in the document. The 44 px tap height is in CSS and gets measured on the build."
  },
  "unchangedByThisDelta": ["the seven expected cards", "the section lines", "the four forbidden card titles", "zeroHit R-1 / R-2 / {precio}", "the owner's three decisions of 17.11.", "the protection rule", "phone depth ≤ 21", "nothing lost"]
 }

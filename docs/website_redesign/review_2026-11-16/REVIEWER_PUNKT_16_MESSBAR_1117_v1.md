@@ -319,3 +319,66 @@ am Tag vor dem Livegang von mir wollte:
 
 **Welche Schlüssel am Tag wirklich umgelegt werden, entscheidet der Owner** (`publicGate`), nicht
 Copy und nicht ich. Ich lege die Liste vor und messe gegen das, was gestellt ist.
+
+---
+
+## Nachgemessen am Arbeitsbaum (19.11. abends): N-1 … N-4 behoben, ein neuer Befund
+
+Redesign meldete die vier Befunde als behoben. Ich habe sie **nicht geglaubt, sondern nachgesehen**
+— lesend im Arbeitsbaum, der kein benannter Build ist; mein Urteil steht weiter auf dem Commit von
+heute Abend.
+
+| | Befund | Nachmessung |
+|---|---|---|
+| N-1 | Übersetzt sich nicht | **behoben.** `npx tsc --noEmit` endet mit 0. `px` ist aus Typ, Daten und Komponente heraus; die zwei verbliebenen „px"-Treffer sind das Wort „640 px" in zwei Kommentaren |
+| N-2 | D-c fester Satz | **behoben.** `data-day-compact` wird aus den `short`-Teilen **nur der laufenden** Stationen zusammengesetzt. Wichtig für Freitag: sind alle sechs an, ergibt die Verkettung Copys D-c **zeichengenau** — meine Zielsicht-Bedingung passt also unverändert |
+| N-3 | Zweig „≤ 2 aus" fehlt | **behoben.** `shown = (aus > 2) ? nur laufende : alle`, und eine ausgeschaltete Station zeigt Uhrzeit, dann „· Próximamente", dann ihren vollen Text, mit `data-day-step-live="false"` |
+| N-4 | Teilzustände nicht gerendert | **behoben.** `c.partial` liefert Chip, Satz, Handyzeile und Beispielanzahl; `data-strength-state="live\|partial\|soon"` |
+
+**Die Zeichenfolgen sind wortgenau nach Copy** — G-1p und G-3p mit ihren Bedingungen, der
+D-4-Teiltext, T-8 auf `reportInLogin` verkürzt, die vier Faltknopf-Beschriftungen. Und der Hero
+steht jetzt auf Copys weicherer Regel (`followup` UND `matching` UND **eines von**
+`adsLeads`/`instagram`), ohne dass ich darum gebeten hätte. Mein Hinweis dazu ist damit erledigt.
+
+### N-5, neu: ein Satz, der mit einem kleinen Buchstaben beginnt
+
+Copys Regel zu `{partes}` lautet „Großbuchstabe nur beim ersten Teil". Gebaut ist nur das
+Verbinden, nicht die Großschreibung — die Großbuchstaben stecken in den festen Texten. Ergebnis in
+drei Fällen:
+
+| Fall | Ergebnis |
+|---|---|
+| beide aus | **richtig:** „… cliente. Proponerle inmuebles que encajan y hacer seguimiento, con su permiso: próximamente." |
+| nur `matching` aus | **richtig:** „… cliente. Proponerle inmuebles que encajan: próximamente." |
+| nur `followup` aus | **falsch:** „… cliente. **h**acer seguimiento, con su permiso: próximamente." |
+
+Im Englischen dasselbe mit „following up". **Erreichbar ist das:** beide Schlüssel stehen heute auf
+„soon", und Sie legen die Schalter einzeln um — läuft `matching` vor `followup`, steht der Fall da.
+Die Behebung ist eine Zeile: den **ersten Teil der Liste** großschreiben, nicht den Matching-Text.
+Es ist ein Schönheitsfehler, aber einer von der Art, die mitgeliefert wird. Redesign hat ihn, und
+Copy habe ich gefragt, weil die Regel Copy gehört.
+
+### Die Faltung der Paketkarten, und warum „nichts verloren" allein nicht genügt
+
+Für die 21 Bildschirme faltet Redesign **nur** die drei Paketkarten am Handy; die Funktionsgruppen
+bleiben **im Dokument** und öffnen per Tipp. Das trifft meine beiden Verfahren genau richtig:
+
+- `textContent` enthält auch verborgenen Text → mein **Satzvergleich** sieht die gefalteten Gruppen,
+  „nichts verloren" hält.
+- `scrollHeight` enthält ihn **nicht** → die **Tiefe** sinkt wirklich.
+
+Die Faltung ist also eine echte Lösung und kein Weg um meine Messung herum. **Aber genau deshalb
+reicht „nichts verloren" hier nicht:** Dieselbe Prüfung ginge auch durch, wenn der Kern des
+Angebots weggefaltet wäre. Ich messe darum **zusätzlich** Copys Liste §3 als **wirklich gemalte**
+Elemente bei 390 mit geschlossener Faltung — Paketname und „für wen", beide Wege je mit ihrer Zeile
+darunter, die Pilotzeile über den Paketen. Der Code dazu ist sauber (`aria-expanded`,
+`aria-controls`, `aria-label` je Plan, Körper immer im Dokument); die 44 px messe ich am Build.
+
+### Was das JA beantwortet — und woher es kommt
+
+Redesign gibt Ihr JA im Wortlaut weiter: Fassung A, Handy ≤ 21 für die **ganze Seite**, „Die
+Kernaussage bleibt sichtbar, Details dürfen sich per Tipp öffnen", Palette B, keine Preise,
+endgültige Freigabe am gebauten Stand. **Damit sind meine beiden offenen Sätze beantwortet** — die
+Tagesgeschichte und die Kollision zwischen der 21 und dem neuen Abschnitt. Es kam **über Redesign**
+zu mir, nicht von Ihnen an mich; ich messe danach und schreibe die Herkunft dazu, damit niemand
+später eine Fassung für meine Erfindung hält.
