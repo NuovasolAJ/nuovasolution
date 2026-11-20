@@ -447,3 +447,79 @@ Sichten. Maßstab: die ganze Handyseite **≤ 21** Bildschirmhöhen, „Próxima
 `8cbe48c`/`19b5523`/`fb2e600`, der Umschalttag nach
 `checks/expected-16-switchday-8cbe48c.json`, erweitert um Copys §1 und E-P. **Danach mein Urteil
 Punkt 16 JA/NEIN an Sie**, mit den Noten Handy und Desktop und der eigenen Zeile „Verkaufsstärke".
+
+---
+
+## Register gegen Gate, Schlüssel für Schlüssel (20.11.) — es sind nicht vier, es sind sechzehn
+
+Copys §3 nennt vier zusätzliche Schlüssel (`taskList`, `dailyVoice`, `weeklyEmail`, `model3d`,
+plus `webform` in der Demo). Ich habe es nicht nachgeschrieben, sondern **alle 32 Schlüssel
+gerechnet**: Register gegen Gate, mit `checks/gatecmp.mjs`, Ergebnis in
+`checks/gate-vs-register-1120.json`.
+
+| | Zahl |
+|---|---|
+| Schlüssel insgesamt | 32 |
+| Register „in Produktion" (`included`) | 11 |
+| Register „noch nicht" (`soon`) | **21** |
+| Gate auf „soon" (Ihre fünf) | 5 |
+| **Gate „live", Register „noch nicht"** | **16** |
+
+**Ein Hinweis zur Methode, weil ich mich dabei selbst korrigiert habe:** Mein erster Lauf gab für
+jeden Schlüssel „live" aus — in einem Register, das nur „included" und „soon" kennt. Das war ein
+Fehler meines Auslesers: Er lief über das Ende des Registers hinaus in die Gate-Tabelle und
+überschrieb sie. Behoben, erneut gelaufen; die Zahlen oben sind die des zweiten Laufs. Ich
+berichte es, weil ein Befund dieser Größe sonst nicht nachprüfbar wäre.
+
+### Die 16 sind nicht gleich schwer. Drei Gruppen
+
+**Gruppe A — von Ihnen längst entschieden, kein Befund (3):** `plans`, `trial`, `publicSignup`.
+Das Paketsystem, die 14 Tage und die öffentliche Anmeldung sind in Produktion nicht fertig, aber
+Sie haben die Darstellung selbst geregelt: Pilot **auf Anfrage**, kein Selbst-Start, Bedingungen
+schriftlich. Ich führe sie nur auf, damit die Zahl 16 nachvollziehbar ist.
+
+**Gruppe B — die drei, bei denen ich am deutlichsten warne:**
+
+| Schlüssel | Was das Register sagt | Warum gerade dieser |
+|---|---|---|
+| `whatsappOwnNumber` | „multi-agency WhatsApp path not passed" | **Thema 20.** Sie selbst haben mir am 16.11. aufgegeben, genau das zu prüfen. Steht der Schlüssel auf „live", fehlt die Marke, und die Seite liest sich so, als liefe WhatsApp **über die Nummer der Agentur**. Antworten über **unsere** Nummer laufen — das ist `replyWhatsapp` und in Produktion. Die eigene Nummer der Agentur ist es nicht |
+| `otherLanguages` | „ES + EN + DE, each with its evidence; **not shown in either view until then**" | Hier widerspricht das Gate einer Regel, die im Register ausdrücklich **beide** Sichten nennt. Das ist kein Umschalttag-Thema, sondern eine Festlegung, die auch die Zielsicht bindet |
+| `alert` | „held back in production (HA1)" | Zurückgehalten, mit eigener Prod-Probe als Bedingung |
+
+**Gruppe C — die übrigen 10:** `otherLanguages` ausgenommen, bleiben `mailboxConnection`,
+`oneRecordAcrossChannels`, `taskList`, `dailyVoice`, `weeklyEmail`, `reportTrend`, `webform`,
+`integrations`, `outlook`, `model3d`. Für `taskList`, `dailyVoice`, `model3d` und `weeklyEmail`
+liegt Copys Wortlaut fertig; für `integrations` und `outlook` nennt das Register fremde Namen
+(HubSpot, Pipedrive, Zoho, Salesforce, Outlook), die als laufende Anbindung gelesen werden.
+
+### Was ich damit nicht behaupte
+
+Das Register ist **API's** Aufzeichnung, nicht meine. Wo es veraltet ist, steht dort zu wenig —
+zwei Zeilen hat API nach Ihrem Wort „Prod 13.11." nachgetragen (`listingLink`, `reminders`), bei
+anderen ist die Zeile noch offen. **Ein veraltetes Register heilt sich aber nicht dadurch, dass
+die Website mehr zeigt.** Entweder trägt API die Produktion nach, oder die Seite setzt die Marke.
+Beides ist in Ordnung; nur das Dritte nicht — dass die öffentliche Sicht weiter ist als jede
+Aufzeichnung.
+
+### Ihr Satz entscheidet, und ich messe beides
+
+- **„die fünf"** — ich messe gegen Copys `c519b2d` §1 und melde die 16 als offene Differenz mit
+  dieser Liste.
+- **„nach dem Register"** — 21 Schlüssel auf „soon", T-4 und T-6 zusätzlich „Próximamente", die
+  Tagesgeschichte nur 13:20 und 23:40, der Wachstumsblock ohne G-d.
+- **ein Mittelweg** — die fünf plus Gruppe B. Das wäre meine Empfehlung, wenn Sie eine wollen:
+  es sind drei Zeilen in `publicGate`, und es nimmt die drei Aussagen heraus, die am ehesten als
+  Versprechen gelesen werden. Die Entscheidung bleibt Ihre.
+
+### Copys Regeln 1–5 als Prüfpunkte am festen Build
+
+Aus `COPY_TO_REDESIGN_1116_EXAMPLE_WEEK_PROXIMAMENTE_v1.md` §1.1, von Redesign und Copy beide
+benannt — ich prüfe alle fünf, nicht nur die zwei, die Redesign ankündigt:
+
+| Regel | Mein Prüfpunkt in der Gate-Sicht |
+|---|---|
+| 1 ein Wort für alles | **0 Treffer** für „En preparación" / „In preparation" auf der ganzen Seite; es heißt überall „Próximamente" |
+| 2 kein Datum | **0 Treffer** für „pronto", „en breve", „próximas semanas" in der Nähe einer Marke |
+| 3 die Marke sitzt nie auf einem Satz, der die Funktion als heute laufend behauptet | je Schlüssel auf „soon": kein Satz in der PX-freien Fassung. Für `phoneAssistant` namentlich die FAQ „¿Atiende llamadas?" → „Todavía no. Llamadas: próximamente." |
+| 4 Paketzeile | Zeile in **beiden** Sichten vorhanden, Zelle zeigt das Wort, **kein** Häkchen und **kein** Strich; Legende trägt „Próximamente: aún no activo" |
+| 5 Demo-Reiter | „Teléfono" bleibt **spielbar** und trägt die Marke. **Zusätzlich** prüfe ich Regel 3 **im gespielten Inhalt**: wer den Reiter antippt, darf dort keinen Satz lesen, der die Funktion als laufend behauptet. Die Marke am Reiter allein genügt nach Regel 3 ausdrücklich nicht |
