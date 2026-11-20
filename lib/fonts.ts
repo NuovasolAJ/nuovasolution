@@ -5,8 +5,11 @@ import localFont from "next/font/local";
  * which downloads them from Google Fonts at build time; that day Google answered Vercel's build machines with font-file URLs
  * without a file extension, and Next 14's loader fails on them ("Cannot read properties of null (reading '1')" in
  * @next/font/google/loader.js:112) — two builds of the same code failed while the local build passed. The files here are the
- * same font data Google serves (the google/fonts repository, SIL Open Font License 1.1), subset to the latin + latin-ext ranges
- * Google uses, as variable woff2; nothing is fetched at build time or at run time.
+ * very files Google served for the measured build 2342537 (dpl_8yQJ…): its emitted e4af272ccee01ff0-s.p.woff2 (Inter) and
+ * af4bf8399d1aacdf-s.woff2 (Fraunces) are byte-identical (sha256) to Google's "latin" slices of Inter v20 (wght 100–900) and
+ * Fraunces v38 (wght), both SIL Open Font License 1.1 — so the rendering is the one RV6 measured. Only the latin slice is kept:
+ * every character the site sets is in it (Spanish and English need nothing from latin-ext; the ✓ and → glyphs came from the
+ * fallback face before as well). Nothing is fetched at build time or at run time.
  */
 
 /**
