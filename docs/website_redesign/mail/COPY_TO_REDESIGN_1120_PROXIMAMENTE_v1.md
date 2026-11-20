@@ -169,7 +169,7 @@ What is still open:
 
 **So:**
 - **Public, until Daily's report:** the PX variant above.
-- **After a report without deviation:** the new wording from the table. Its proof line becomes "Recordatorio a la hora, en producción desde el 13.11.; el paso a la siguiente persona, desde el 20.11." / "A reminder after one hour, in production since 13.11.; passing it to the next person, since 20.11.". It replaces the proof in the table: one date for each part.
+- **After Daily reports at least one OBSERVED handover in production** (sharpened 20.11. with RV6): the new wording from the table. A report of "no deviation" without a handover case is not a proof, so the PX variant stays. Its proof line becomes "Recordatorio a la hora, en producción desde el 13.11.; el paso a la siguiente persona, desde el 20.11." / "A reminder after one hour, in production since 13.11.; passing it to the next person, since 20.11.". It replaces the proof in the table: one date for each part.
 - **The PX variant's proof** is changed so the date visibly belongs to the reminder only (RV6's point): "Recordatorio a la hora: en producción desde el 13.11." / "A reminder after one hour: in production since 13.11.".
 
 **The WhatsApp demo tab** stays hidden in public, not "Próximamente" (owner 16.11., point 8). This is noted as the owner's earlier, specific decision; Redesign names it to him as the second exception next to `otherLanguages`.
