@@ -153,9 +153,24 @@ So "avisamos a la siguiente" / "Carlos is told" is no longer true: the next pers
 Until Daily confirms that in production, the public view shows:
 - **line:** "… se lo recordamos a la persona responsable. El paso a la siguiente persona a las dos horas: próximamente." / "… we remind the person responsible. Passing it to the next person after two hours: coming soon.";
 - **example 3, timeline step and D-3:** with PX-b;
-- **proof:** "Recordatorio a la hora. En producción desde el 13.11." / "A reminder after one hour. In production since 13.11.".
+- **proof:** "Recordatorio a la hora: en producción desde el 13.11." / "A reminder after one hour: in production since 13.11.".
 
 The target view uses the new wording from the table directly.
+
+**The production state, read 20.11.** Source: n8n repo `governance/DAILY_SIGNALS_1107.md`, entries 08:20:23Z and 08:24Z, read only.
+
+What is already true:
+- E19 v2 runs in production since **20.11. 08:23Z**, according to Hosting. Daily did not read the n8n side itself.
+- Daily read the four database functions back in production (`prod_sql_readonly`), including the handover `dg_task_e19_hand_over`.
+
+What is still open:
+- **No real handover in production has been observed yet.**
+- Daily watches the first v2 ticks today and reports a deviation, or at the latest at 18:00.
+
+**So:**
+- **Public, until Daily's report:** the PX variant above.
+- **After a report without deviation:** the new wording from the table. Its proof line becomes "Recordatorio a la hora, en producción desde el 13.11.; el paso a la siguiente persona, desde el 20.11." / "A reminder after one hour, in production since 13.11.; passing it to the next person, since 20.11.". It replaces the proof in the table: one date for each part.
+- **The PX variant's proof** is changed so the date visibly belongs to the reminder only (RV6's point): "Recordatorio a la hora: en producción desde el 13.11." / "A reminder after one hour: in production since 13.11.".
 
 **The WhatsApp demo tab** stays hidden in public, not "Próximamente" (owner 16.11., point 8). This is noted as the owner's earlier, specific decision; Redesign names it to him as the second exception next to `otherLanguages`.
 
