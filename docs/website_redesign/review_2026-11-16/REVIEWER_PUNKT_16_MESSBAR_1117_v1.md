@@ -661,3 +661,37 @@ stattdessen eine Marke, melde ich es als Abweichung von **Ihren eigenen Ausnahme
 Wortlautfehler. Zwei Ausnahmen von einer pauschalen Regel gehen leicht verloren, wenn das Gate
 Schlüssel für Schlüssel gestellt wird; deshalb stehen sie jetzt als eigener Prüfpunkt in meiner
 Datei.
+
+### Die Daily-Abhängigkeit: selbst gelesen statt übernommen
+
+Copy hat mir den Stand geschickt. Ich habe die Datei dann **selbst gelesen** — sie liegt in einem
+**anderen Verzeichnis** (`NuovaSolution-n8n-system/governance/DAILY_SIGNALS_1107.md`), deshalb
+fand ich sie unter der Website nicht. Nur lesend, keine Kundendaten.
+
+**Copys Weitergabe stimmt in jedem Punkt.** Was dort steht:
+
+| Zeit | Was belegt ist |
+|---|---|
+| 08:20:23Z | Daily's Urteil E1b = JA; E19 v2 (`e7a0d141`) darf nach Prod |
+| 08:24Z | Prod-Rücklesen, nur lesend: `dg_task_e19_hand_over 5b79a2e4` **ist** in Produktion |
+| Zeile 729 | Die Workflow-Zuordnung ist **Hostings** Wort — Daily schreibt ausdrücklich: „Die n8n-Seite habe ich nicht selbst gelesen" |
+| Zeile 731 | Der eine beobachtete Tick lief **noch durch den alten E19** („v2 erst ab 08:23Z") |
+
+**Also: die Übergabefunktion ist in Produktion und v2 ist eingeschaltet — aber eine echte Übergabe
+ist noch nicht beobachtet worden.** Copys Urteil, bis zu Daily's Meldung die PX-Fassung öffentlich
+zu zeigen, ist damit richtig und vorsichtig. Ich übernehme es.
+
+**Mein Kriterium für den Wechsel, und das ist eine Verschärfung:** Die Zeile darf erst dann auf
+„el paso a la siguiente persona, desde el 20.11." wechseln, wenn eine **beobachtete** Übergabe
+vorliegt — nicht bei einer bloß ruhigen Meldung. Sitzt heute keine Anfrage zwei Stunden
+unbearbeitet, heißt „keine Abweichung" nur „kein Fall eingetreten", und das ist kein Beleg. Ein
+Produktionsdatum auf der öffentlichen Seite muss auf etwas Gesehenem ruhen.
+
+**Das ist kein Vorwurf an Daily, im Gegenteil:** Daily hält genau diesen Maßstab selbst. Es hat
+E1b offengehalten (Zeilen 692–695), obwohl **beide Hälften** belegt waren — weil sie nie auf
+**einer** Aufgabe zusammen gezeigt worden waren. Genau diese Strenge erwarte ich in der
+18:00-Meldung, und ich rechne damit, dass sie dort steht.
+
+**Mein Hinweis zur Belegzeile hat Copy übernommen:** In der PX-Fassung heißt es jetzt
+„Recordatorio a la hora**:** en producción desde el 13.11." — das Datum sichtbar an die Erinnerung
+gebunden. Nach einer beobachteten Übergabe: ein Datum je Teil.

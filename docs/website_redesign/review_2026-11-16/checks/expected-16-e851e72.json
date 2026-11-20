@@ -370,7 +370,27 @@
    "what": "Copy 1120 §5: the 2-hour HANDOVER is in production only once Daily's E19 v2 is. The date 'desde el 13.11.' covers the 1-hour reminder only.",
    "ifDailyConfirmed": "the public view uses the new wording directly, like the target view",
    "ifNotConfirmed": "public line becomes '... se lo recordamos a la persona responsable. El paso a la siguiente persona a las dos horas: próximamente.'; example 3, the timeline step and D-3 carry PX-b; the proof reads 'Recordatorio a la hora. En producción desde el 13.11.'",
-   "myLimit": "DAILY_SIGNALS_1107.md is not in this repository - I searched for it and it is not here. I cannot verify E19 v2's production state myself, so I measure whichever variant the build shows and report WHICH one, and I ask the owner or Copy to state Daily's status rather than guessing it.",
+   "resolvedByReadingTheSource": {
+    "where": "C:/Users/Usuario/Desktop/NuovaSolution-n8n-system/governance/DAILY_SIGNALS_1107.md - a DIFFERENT repository, which is why I did not find it under the website tree. Read by me, read-only, not relayed.",
+    "verified": [
+     "08:20:23Z Daily's verdict E1b = JA: E19 v2 e7a0d141 may go to production (lines 712-723)",
+     "08:24Z FR-0800 production read-back, read-only: dg_task_e19_hand_over 5b79a2e4 is in production, with the other three functions (line 727)",
+     "line 729: the workflow identity E19 v2 38a336c2 (= e7a0d141) is HOSTING'S word - Daily writes plainly 'Die n8n-Seite habe ich nicht selbst gelesen'",
+     "line 731: the one observed tick that day still ran through the OLD E19 - 'v2 erst ab 08:23Z'"
+    ],
+    "conclusion": "the handover function is in production and v2 is switched on, but NO real v2 handover has been observed yet. Copy's relay was accurate on every point.",
+    "soTheCorrectPublicVariant": "the PX variant, until Daily reports an observed handover"
+   },
+   "myCriterionForSwitching": {
+    "rule": "the wording may move to 'el paso a la siguiente persona, desde el 20.11.' only on an OBSERVED handover in production, not on a quiet report",
+    "why": "if no enquiry sits unclaimed for two hours today, 'no deviation' means 'no case arose', which is not evidence that the handover works. A production date on the page has to rest on something seen.",
+    "notAComplaintAboutDaily": "Daily applies exactly this standard itself - it held E1b open (lines 692-695) although both halves were proven, because they had never been shown together on one task. I expect its 18:00 report to say which of the two it is."
+   },
+   "proofLineVariants": {
+    "px": "Recordatorio a la hora: en producción desde el 13.11. (the date visibly tied to the reminder)",
+    "afterAnObservedHandover": "Recordatorio a la hora, en producción desde el 13.11.; el paso a la siguiente persona, desde el 20.11. (one date per part)",
+    "source": "Copy 1120 §5, f13e4b6, after my point that a production date next to a 'próximamente' clause reads as a contradiction"
+   },
    "affects": ["D-3", "D-c 13:20 part", "K-2 line home-1103.ts:426", "K-2 example 3 :427", "K-2 timeline :433", "K-2 proof :429"]
   },
   "R-1": [
