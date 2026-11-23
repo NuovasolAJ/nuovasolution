@@ -43,7 +43,7 @@ In prod, the **pilot register** decides per agency. Every agency in it gets the 
 | Mailboxes | 1 / – / – | trigger `trg_plan_limit_mailboxes` | **A** (Essential only) | — |
 | Enquiries per month | 750 / 3000 / none | `plan_lead_admit` counts and refuses, but **the Main does not call it** (Lead) | **B** | — |
 | 3D tours | 0 / 3 / 25 | `px3d_quota` on every 3D order | **A** | — (no 3D in prod) |
-| Offices | 1 / 1 / 5 | only a number; no trigger; no product path creates an office | **C** | — |
+| ~~Offices~~ | ~~1 / 1 / 5~~ | **Owner 23.11. (Audit ec4181ed): offices are neither a package point nor a planned function.** Not on any card, not "coming". The number in the staging plan rows (`billing_plan`, key `offices`: essential/growth/trial 1, scale 5, read 23.11. ~18:20Z) is a leftover counter with no effect; it stays unused. | **out** | — |
 | Phone minutes | 0 / 0 / 1000 | metering only (`billing_feed_voice_minutes`), no gate | **C** | — |
 
 ## 3. Points that are the same in every plan (`ALL`)
