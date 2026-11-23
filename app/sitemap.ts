@@ -14,7 +14,8 @@ import { publicIndexingAllowed } from "@/lib/contracts/mode";
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!publicIndexingAllowed()) return [];
   const legal = process.env.NEXT_PUBLIC_LEGAL_LINKS === "approved" ? legalSlugs.map((s) => `/legal/${s}`) : [];
-  const paths = ["", "/platform", ...publishedCapabilities().map((c) => `/platform/${c.slug}`), "/packages", "/trial", "/contact", ...legal];
+  // RV6 R-2 (23.11.): /trial redirects to Essential's request, so it is no canonical page any more
+  const paths = ["", "/platform", ...publishedCapabilities().map((c) => `/platform/${c.slug}`), "/packages", "/contact", ...legal];
   const now = new Date();
   return paths.flatMap((path) =>
     locales.map((locale) => ({

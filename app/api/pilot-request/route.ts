@@ -23,7 +23,8 @@ export async function POST(req: Request) {
   const interest = INTERESTS.has(String(b.interest)) ? String(b.interest) : "other";
   const locale = b.locale === "en" ? "en" : "es";
   // 16.11. 14:00 (the owner's point 4): required are the agency, the name and e-mail OR phone; an e-mail, when given, must look like one
-  const missing = [!agency && "agency", !name && "name", !email && !phone && "reach", email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && "email"].filter(Boolean) as string[];
+  // API 155a37e (F-e check 1, H2/H3): a request without `consent: true` is a 422 here, not a 502 from the intake
+  const missing = [!agency && "agency", !name && "name", !email && !phone && "reach", email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && "email", b.consent !== true && "consent"].filter(Boolean) as string[];
   if (missing.length) return NextResponse.json({ ok: false, error: "missing", fields: missing }, { status: 422 });
 
   const url = process.env.NUOVA_PILOT_INTAKE_URL;
