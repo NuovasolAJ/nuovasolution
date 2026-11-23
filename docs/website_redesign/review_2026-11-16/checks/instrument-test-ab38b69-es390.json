@@ -1,0 +1,673 @@
+{
+ "pin": "ab38b69/dpl_9e3f3gbkye1QeiB4JYQgattgFduK",
+ "locale": "es",
+ "viewport": "390x844",
+ "tag": "INSTRUMENT-TEST-ab38b69",
+ "w1": [
+  {
+   "step": "hero: Ver como queda la tarea",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 291,
+   "scrollY": 291,
+   "w": 358,
+   "h": 56,
+   "cx": 195,
+   "cy": 464,
+   "lands": true,
+   "hitDesc": "a.hf-cta-main.lift Ver cómo queda la tarea",
+   "crowd": 1,
+   "name": "Ver cómo queda la tarea",
+   "href": "#demo",
+   "ms": 1448,
+   "after": {
+    "url": "/es#demo",
+    "len": 7007
+   }
+  },
+  {
+   "step": "demo: tap WhatsApp",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 225,
+   "scrollY": 785,
+   "w": 173,
+   "h": 44,
+   "cx": 106,
+   "cy": 464,
+   "lands": true,
+   "hitDesc": "span WhatsApp",
+   "crowd": 1,
+   "name": "WhatsApp",
+   "href": "",
+   "ms": 1457,
+   "after": {
+    "url": "/es#demo",
+    "len": 7007
+   }
+  }
+ ],
+ "w2": [
+  {
+   "step": "demo: Ver que plan te encaja",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 2350,
+   "scrollY": 2350,
+   "w": 180.6,
+   "h": 44,
+   "cx": 281,
+   "cy": 417,
+   "lands": true,
+   "hitDesc": "a.demo-caption-link Ver qué plan te encaja",
+   "crowd": 0,
+   "name": "Ver qué plan te encaja",
+   "href": "/es#plans",
+   "ms": 1461,
+   "after": {
+    "url": "/es#plans",
+    "len": 12554
+   }
+  },
+  {
+   "step": "plan card Essential: main action",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 726,
+   "scrollY": 12887,
+   "w": 324,
+   "h": 66,
+   "cx": 195,
+   "cy": 464,
+   "lands": true,
+   "hitDesc": "a.plans-cta.plans-cta-main Prueba Essential gratis durante 14 días",
+   "crowd": 0,
+   "name": "Prueba Essential gratis durante 14 días · Abre la solicitud de la prue",
+   "href": "/es/contact?interes=trial&plan=essential",
+   "ms": 1438,
+   "after": {
+    "url": "/es/contact?interes=trial&plan=essential",
+    "len": 1647
+   }
+  },
+  {
+   "step": "plan card Essential: contratar",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 13026,
+   "scrollY": 13026,
+   "w": 324,
+   "h": 44,
+   "cx": 195,
+   "cy": 465,
+   "lands": true,
+   "hitDesc": "a.plans-way-link Contratar directamente",
+   "crowd": 1,
+   "name": "Contratar Essential directamente",
+   "href": "/es/contact?interes=contratar&plan=essential",
+   "ms": 1439,
+   "after": {
+    "url": "/es/contact?interes=contratar&plan=essential",
+    "len": 1652
+   }
+  },
+  {
+   "step": "plan card Growth: main action",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 11227,
+   "scrollY": 11227,
+   "w": 324,
+   "h": 48,
+   "cx": 195,
+   "cy": 464,
+   "lands": true,
+   "hitDesc": "a.plans-cta.plans-cta-main Pide una demo de Growth",
+   "crowd": 0,
+   "name": "Pide una demo de Growth · Abre la solicitud de demo, con Growth ya ele",
+   "href": "/es/contact?interes=demo&plan=growth",
+   "ms": 1440,
+   "after": {
+    "url": "/es/contact?interes=demo&plan=growth",
+    "len": 1595
+   }
+  },
+  {
+   "step": "plan card Enterprise: main action",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 11636,
+   "scrollY": 11636,
+   "w": 324,
+   "h": 66,
+   "cx": 195,
+   "cy": 464,
+   "lands": true,
+   "hitDesc": "a.plans-cta.plans-cta-main Habla con nosotros sobre Enterprise",
+   "crowd": 0,
+   "name": "Habla con nosotros sobre Enterprise · Abre el formulario de contacto, ",
+   "href": "/es/contact?interes=talk&plan=enterprise",
+   "ms": 1448,
+   "after": {
+    "url": "/es/contact?interes=talk&plan=enterprise",
+    "len": 1617
+   }
+  },
+  {
+   "step": "plan card Essential: what's included",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 13074,
+   "scrollY": 13074,
+   "w": 324,
+   "h": 44,
+   "cx": 195,
+   "cy": 465,
+   "lands": true,
+   "hitDesc": "span Ver todo lo que incluye",
+   "crowd": 1,
+   "name": "Ver todo lo que incluye · Essential",
+   "href": "",
+   "ms": 1462,
+   "after": {
+    "url": "/es",
+    "len": 10080
+   }
+  }
+ ],
+ "state": {
+  "firstScreen": {
+   "inFirst": [
+    {
+     "tag": "p",
+     "y": 60,
+     "h": 94,
+     "s": "Vista previa, no pública. Muestra el producto completo, incluidas funciones que no están activas. Datos de eje"
+    },
+    {
+     "tag": "button",
+     "y": 161,
+     "h": 36,
+     "s": "Solo en la vista previa +"
+    },
+    {
+     "tag": "p",
+     "y": 158,
+     "h": 20,
+     "s": "Estás en una visita · 11:40"
+    },
+    {
+     "tag": "p",
+     "y": 228,
+     "h": 17,
+     "s": "PARA AGENCIAS INMOBILIARIAS EN ESPAÑA"
+    },
+    {
+     "tag": "h1",
+     "y": 255,
+     "h": 108,
+     "s": "Mientras enseñas un piso, ¿quién atiende a Mila?"
+    },
+    {
+     "tag": "p",
+     "y": 375,
+     "h": 72,
+     "s": "NuovaSolution le contesta por WhatsApp al momento, entiende qué busca y te deja la tarea lista: a quién llamar"
+    },
+    {
+     "tag": "p",
+     "y": 473,
+     "h": 18,
+     "s": "CONSULTA POR WHATSAPP · 11:42"
+    },
+    {
+     "tag": "p",
+     "y": 495,
+     "h": 63,
+     "s": "Hola, busco un piso de 3 dormitorios en Nerja, hasta 350.000 €. ¿Sigue disponible la ref. 9895153? ¿Me podéis "
+    },
+    {
+     "tag": "p",
+     "y": 587,
+     "h": 18,
+     "s": "TAREA PARA MARTA"
+    },
+    {
+     "tag": "p",
+     "y": 609,
+     "h": 43,
+     "s": "Llamar a Mila · Comprobar disponibilidad de la ref. 9895153"
+    },
+    {
+     "tag": "p",
+     "y": 656,
+     "h": 18,
+     "s": "Pide que la llamen · Disponibilidad sin confirmar"
+    },
+    {
+     "tag": "p",
+     "y": 693,
+     "h": 18,
+     "s": "Ejemplo · datos ficticios"
+    },
+    {
+     "tag": "a",
+     "y": 727,
+     "h": 56,
+     "s": "Ver cómo queda la tarea"
+    },
+    {
+     "tag": "a",
+     "y": 793,
+     "h": 44,
+     "s": "Prueba Essential gratis"
+    }
+   ],
+   "milaInFirst": true,
+   "milaOnPage": 11,
+   "h1": "Mientras enseñas un piso, ¿quién atiende a Mila?"
+  },
+  "demoAfterHero": {
+   "demo": true,
+   "att": {
+    "data-demo": "true",
+    "data-demo-brief": "1120",
+    "data-demo-kind": "chat",
+    "data-demo-channel": "whatsapp",
+    "data-demo-phase": "12",
+    "data-demo-done": "true",
+    "data-demo-auto": "false",
+    "data-demo-run": "0",
+    "data-demo-view": "target",
+    "data-demo-entered": "end"
+   },
+   "inView": true,
+   "top": 160,
+   "len": 1141,
+   "text": "Elige por dónde te escribe el cliente. WhatsApp Email Formulario Teléfono M Mila · compradora en línea Hola, busco un piso de 3 dormitorios en Nerja, hasta 350.000 €. ¿Sigue disponible la ref. 9895153? ¿Me podéis llamar? 11:42 Asistente automático de la agencia Hola, Mila, soy el asistente de Marta. La disponibilidad de la ref. 9895153 te la confirma ella por teléfono. ¿A qué hora te viene bien que te llame? 11:42 Mejor esta tarde, a partir de las 17:00. 11:44 Asistente automático de la agencia Gracias, Mila. Se lo paso a Marta con tu horario. 11:44 a la ficha TAREA PARA MARTA WhatsApp · 11:44 TAREA Llamar a Mila hoy a partir de las 17:00 · Comprobar disponibilidad de la ref. 9895153 Mila ya tiene respuesta. La llamada sigue esperando a Marta. ESTADO Respondida automáticamente · Llamada pendiente BUSCA 3 dormitorios en Nerja, hasta 350.000 € PIDE Que la llamen, hoy a partir de las 17:00 ",
+   "card": true,
+   "cardText": "TAREA PARA MARTA WhatsApp · 11:44 TAREA Llamar a Mila hoy a partir de las 17:00 · Comprobar disponibilidad de la ref. 9895153 Mila ya tiene respuesta. La llamada sigue esperando a Marta. ESTADO Respondida automáticamente · Llamada pendiente BUSCA 3 dormitorios en Nerja, hasta 350.000 € PIDE Que la llamen, hoy a partir de las 17:00 ABIERTO Disponibilidad de la ref. 9895153, sin confirmar LLEGÓ WhatsApp · 11:42 PRIORIDAD Alta · nombró un inmueble y pide llamada Si nadie coge la tarea en una hora, se lo recordamos a Marta."
+  },
+  "demoAfterWhatsapp": {
+   "msToDone": 9107,
+   "att": {
+    "data-demo": "true",
+    "data-demo-brief": "1120",
+    "data-demo-kind": "chat",
+    "data-demo-channel": "whatsapp",
+    "data-demo-phase": "12",
+    "data-demo-done": "true",
+    "data-demo-auto": "false",
+    "data-demo-run": "1",
+    "data-demo-view": "target",
+    "data-demo-entered": "end"
+   },
+   "len": 1141,
+   "text": "Elige por dónde te escribe el cliente. WhatsApp Email Formulario Teléfono M Mila · compradora en línea Hola, busco un piso de 3 dormitorios en Nerja, hasta 350.000 €. ¿Sigue disponible la ref. 9895153? ¿Me podéis llamar? 11:42 Asistente automático de la agencia Hola, Mila, soy el asistente de Marta. La disponibilidad de la ref. 9895153 te la confirma ella por teléfono. ¿A qué hora te viene bien que te llame? 11:42 Mejor esta tarde, a partir de las 17:00. 11:44 Asistente automático de la agencia Gracias, Mila. Se lo paso a Marta con tu horario. 11:44 a la ficha TAREA PARA MARTA WhatsApp · 11:44 TAREA Llamar a Mila hoy a partir de las 17:00 · Comprobar disponibilidad de la ref. 9895153 Mila ya tiene respuesta. La llamada sigue esperando a Marta. ESTADO Respondida automáticamente · Llamada pendiente BUSCA 3 dormitorios en Nerja, hasta 350.000 € PIDE Que la llamen, hoy a partir de las 17:00 ABIERTO Disponibilidad de la ref. 9895153, sin confirmar LLEGÓ WhatsApp · 11:42 PRIORIDAD Alta · nombró un inmueble y pide llamada Si nadie coge la tarea en una hora, se lo recordamos a Marta. Ver qué plan te encaja Ejemplo · datos ficticios",
+   "phases": []
+  },
+  "planDiffs": {
+   "plans": true,
+   "att": {
+    "data-plans": "true",
+    "data-plans-brief": "1120",
+    "data-plans-view": "target",
+    "data-plans-table-shown": "true",
+    "data-plan-diffs": "api-pending"
+   },
+   "diffs": [
+    {
+     "v": "api-pending",
+     "s": "Elige tu plan 14 días gratis con Essential, sin tarjeta. Essential Para una oficina Responde por WhatsApp y email, también de noche. Cada consulta en su ficha, con su prioridad y su motivo. Cada semana, un informe con lo que pide tu atención. Prueba Essential "
+    }
+   ],
+   "free14": 2,
+   "freeWord": 2,
+   "tableShown": "true",
+   "text": "Elige tu plan 14 días gratis con Essential, sin tarjeta. Essential Para una oficina Responde por WhatsApp y email, también de noche. Cada consulta en su ficha, con su prioridad y su motivo. Cada semana, un informe con lo que pide tu atención. Prueba Essential gratis durante 14 días Sin tarjeta. Te escribimos en 24 h laborables para activarla. Abre la solicitud de la prueba, con Essential ya elegido. Contratar directamente Ocultar CANALES Respuestas en español por WhatsApp y email Detección del idioma Etiquetas en el buzón WhatsApp con el número de tu agencia Asistente telefónico Publicar en Instagram CRM Ficha en el CRM integrado, con canal de origen Prioridad con motivo Una ficha por persona entre canales EQUIPO Aviso a la persona que toca Lista de tareas y «¿Qué tengo hoy?» Inmuebles que encajan y seguimiento con permiso INFORMES Informe en el acceso de tu agencia Resumen semanal por email Informe ampliado: evolución, canales y conclusiones INTEGRACIONES HubSpot, Pipedrive, Zoho, Salesforce, Outlook Leads de portales y anuncios SERVICIOS Visualización 3D Opcional Growth Para equipos que se reparten el trabajo Todo lo de Essential, y además: Cada persona, su lista de tareas del día. Propone inmuebles que encajan con cada cliente. Seguimiento de tus contactos, con su permiso. Pide una demo de Growth Te respondemos en 24 h laborables, con las condiciones por escrito. Abre la sol"
+  }
+ },
+ "forms": [
+  {
+   "interes": "trial",
+   "plan": "essential",
+   "loaded": true,
+   "h1": "Habla con una persona.",
+   "fields": [
+    {
+     "name": "agency",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Nombre de la agencia",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "name",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Tu nombre",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "email",
+     "type": "email",
+     "value": "",
+     "required": false,
+     "label": "Email de trabajo",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "phone",
+     "type": "tel",
+     "value": "",
+     "required": false,
+     "label": "Teléfono",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "interest",
+     "type": "select-one",
+     "value": "trial",
+     "required": false,
+     "label": "¿Qué te interesa? Prueba gratuita de Essential Demo ",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "message",
+     "type": "textarea",
+     "value": "Prueba gratuita · 14 días con Essential",
+     "required": false,
+     "label": "Mensaje (opcional)",
+     "hidden": false,
+     "h": 96
+    },
+    {
+     "name": "web",
+     "type": "text",
+     "value": "",
+     "required": false,
+     "label": "",
+     "hidden": false,
+     "h": 24
+    }
+   ],
+   "submit": [
+    {
+     "t": "Pedir la prueba",
+     "h": 56
+    }
+   ],
+   "cardText": null,
+   "cardAttrs": null,
+   "mentionsPlan": true,
+   "mentions14": true,
+   "mentionsFree": true,
+   "marks": 0
+  },
+  {
+   "interes": "demo",
+   "plan": "growth",
+   "loaded": true,
+   "h1": "Habla con una persona.",
+   "fields": [
+    {
+     "name": "agency",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Nombre de la agencia",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "name",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Tu nombre",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "email",
+     "type": "email",
+     "value": "",
+     "required": false,
+     "label": "Email de trabajo",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "phone",
+     "type": "tel",
+     "value": "",
+     "required": false,
+     "label": "Teléfono",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "interest",
+     "type": "select-one",
+     "value": "demo",
+     "required": false,
+     "label": "¿Qué te interesa? Prueba gratuita de Essential Demo ",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "message",
+     "type": "textarea",
+     "value": "Demo · plan Growth",
+     "required": false,
+     "label": "Mensaje (opcional)",
+     "hidden": false,
+     "h": 96
+    },
+    {
+     "name": "web",
+     "type": "text",
+     "value": "",
+     "required": false,
+     "label": "",
+     "hidden": false,
+     "h": 24
+    }
+   ],
+   "submit": [
+    {
+     "t": "Pedir la demo",
+     "h": 56
+    }
+   ],
+   "cardText": null,
+   "cardAttrs": null,
+   "mentionsPlan": true,
+   "mentions14": true,
+   "mentionsFree": true,
+   "marks": 0
+  },
+  {
+   "interes": "talk",
+   "plan": "enterprise",
+   "loaded": true,
+   "h1": "Habla con una persona.",
+   "fields": [
+    {
+     "name": "agency",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Nombre de la agencia",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "name",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Tu nombre",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "email",
+     "type": "email",
+     "value": "",
+     "required": false,
+     "label": "Email de trabajo",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "phone",
+     "type": "tel",
+     "value": "",
+     "required": false,
+     "label": "Teléfono",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "interest",
+     "type": "select-one",
+     "value": "talk",
+     "required": false,
+     "label": "¿Qué te interesa? Prueba gratuita de Essential Demo ",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "message",
+     "type": "textarea",
+     "value": "Conversación · plan Enterprise",
+     "required": false,
+     "label": "Mensaje (opcional)",
+     "hidden": false,
+     "h": 96
+    },
+    {
+     "name": "web",
+     "type": "text",
+     "value": "",
+     "required": false,
+     "label": "",
+     "hidden": false,
+     "h": 24
+    }
+   ],
+   "submit": [
+    {
+     "t": "Enviar",
+     "h": 56
+    }
+   ],
+   "cardText": null,
+   "cardAttrs": null,
+   "mentionsPlan": true,
+   "mentions14": true,
+   "mentionsFree": true,
+   "marks": 0
+  },
+  {
+   "interes": "contratar",
+   "plan": "essential",
+   "loaded": true,
+   "h1": "Habla con una persona.",
+   "fields": [
+    {
+     "name": "agency",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Nombre de la agencia",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "name",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Tu nombre",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "email",
+     "type": "email",
+     "value": "",
+     "required": false,
+     "label": "Email de trabajo",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "phone",
+     "type": "tel",
+     "value": "",
+     "required": false,
+     "label": "Teléfono",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "interest",
+     "type": "select-one",
+     "value": "contract",
+     "required": false,
+     "label": "¿Qué te interesa? Prueba gratuita de Essential Demo ",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "message",
+     "type": "textarea",
+     "value": "Contratar Essential",
+     "required": false,
+     "label": "Mensaje (opcional)",
+     "hidden": false,
+     "h": 96
+    },
+    {
+     "name": "web",
+     "type": "text",
+     "value": "",
+     "required": false,
+     "label": "",
+     "hidden": false,
+     "h": 24
+    }
+   ],
+   "submit": [
+    {
+     "t": "Enviar solicitud",
+     "h": 56
+    }
+   ],
+   "cardText": null,
+   "cardAttrs": null,
+   "mentionsPlan": true,
+   "mentions14": true,
+   "mentionsFree": true,
+   "marks": 0
+  }
+ ],
+ "pinEnd": "ab38b69/dpl_9e3f3gbkye1QeiB4JYQgattgFduK"
+}
