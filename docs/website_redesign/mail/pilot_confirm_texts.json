@@ -1,0 +1,80 @@
+{
+  "name": "pilot_confirm_texts",
+  "version": "v1",
+  "date": "2026-11-23",
+  "from": "Copy (website copy / product truth)",
+  "for": "API (workflow), Hosting (four test mails to the staging sink only), Audit",
+  "basis": "owner decisions 23.11. (ec4181ed): confirmation mail for Growth and Enterprise = yes; no '24 h' in mail or on screen. Text source: docs/website_redesign/mail/COPY_TO_API_AUDIT_1123_CONFIRMATION_MAIL_GROWTH_ENTERPRISE_v1.md",
+  "status": "final wording. Editorial and technical check, not a legal approval.",
+  "sender_display_name": "NuovaSolution",
+  "placeholders": {
+    "{name}": "the form's name field; if empty, use greeting_no_name",
+    "{agency}": "the form's agency field; if empty, use arrived_no_agency"
+  },
+  "language_rule": "the language of the page the request was sent from (/es or /en); if unknown: es",
+  "rules": [
+    "no clock time and no deadline",
+    "no request to reply",
+    "send only for interest = demo (Growth) and interest = talk (Enterprise)",
+    "tests only to the staging sink, never to a real customer"
+  ],
+  "templates": {
+    "demo": {
+      "plan": "growth",
+      "es": {
+        "subject": "Hemos recibido tu solicitud de demo de Growth",
+        "greeting": "Hola, {name}:",
+        "greeting_no_name": "Hola:",
+        "arrived": "Hemos recibido tu solicitud de una demo de Growth para {agency}.",
+        "arrived_no_agency": "Hemos recibido tu solicitud de una demo de Growth.",
+        "next": "Una persona del equipo te escribe para acordar contigo el día de la demo.",
+        "close": "No tienes que hacer nada más.",
+        "signature": "NuovaSolution",
+        "footer": "Recibes este email porque has enviado una solicitud en la web de NuovaSolution. Se envía automáticamente y no recibe respuestas."
+      },
+      "en": {
+        "subject": "We have received your Growth demo request",
+        "greeting": "Hi {name},",
+        "greeting_no_name": "Hello,",
+        "arrived": "We have received your request for a Growth demo for {agency}.",
+        "arrived_no_agency": "We have received your request for a Growth demo.",
+        "next": "A person from our team will write to you to agree the day of the demo with you.",
+        "close": "There is nothing else you need to do.",
+        "signature": "NuovaSolution",
+        "footer": "You receive this email because you sent a request on the NuovaSolution website. It is sent automatically and cannot receive replies."
+      }
+    },
+    "talk": {
+      "plan": "enterprise",
+      "es": {
+        "subject": "Hemos recibido tu solicitud sobre Enterprise",
+        "greeting": "Hola, {name}:",
+        "greeting_no_name": "Hola:",
+        "arrived": "Hemos recibido tu solicitud para hablar de Enterprise para {agency}.",
+        "arrived_no_agency": "Hemos recibido tu solicitud para hablar de Enterprise.",
+        "next": "Una persona del equipo te escribe para acordar contigo la conversación.",
+        "close": "No tienes que hacer nada más.",
+        "signature": "NuovaSolution",
+        "footer": "Recibes este email porque has enviado una solicitud en la web de NuovaSolution. Se envía automáticamente y no recibe respuestas."
+      },
+      "en": {
+        "subject": "We have received your request about Enterprise",
+        "greeting": "Hi {name},",
+        "greeting_no_name": "Hello,",
+        "arrived": "We have received your request to talk about Enterprise for {agency}.",
+        "arrived_no_agency": "We have received your request to talk about Enterprise.",
+        "next": "A person from our team will write to you to arrange the conversation with you.",
+        "close": "There is nothing else you need to do.",
+        "signature": "NuovaSolution",
+        "footer": "You receive this email because you sent a request on the NuovaSolution website. It is sent automatically and cannot receive replies."
+      }
+    }
+  },
+  "order_of_parts": ["greeting", "arrived", "next", "close", "signature", "footer"],
+  "test_matrix_staging_sink": [
+    { "interest": "demo", "lang": "es" },
+    { "interest": "demo", "lang": "en" },
+    { "interest": "talk", "lang": "es" },
+    { "interest": "talk", "lang": "en" }
+  ]
+}

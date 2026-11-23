@@ -67,6 +67,31 @@
 
 **No description of the demo or the conversation.** What a demo shows is not fixed anywhere Copy can point to. The mail says only what arrived and the next step.
 
+## 4a. The owner's decisions, 23.11. (ec4181ed)
+
+**The mail: yes.** "24 h" goes from the mail and from the screen.
+- The mail above has no "24 h" and is final.
+- **For API: the machine-readable version is `docs/website_redesign/mail/pilot_confirm_texts.json`,** with the same words: per interest (`demo`, `talk`) and per language, plus fallbacks, sender name and the four-mail test matrix for the staging sink.
+
+**The screen, for Redesign** (`lib/content/brief-1120.ts`), Growth and Enterprise only:
+
+| Key | Today | ES | EN |
+|---|---|---|---|
+| `plans.actionLine.growth` | Te respondemos en 24 h laborables, con las condiciones por escrito. | Te escribimos para acordar el día de la demo. | We write to you to agree the day of the demo. |
+| `plans.actionLine.enterprise` | Te respondemos en 24 h laborables, con las condiciones por escrito. | Te escribimos para acordar la conversación. | We write to you to arrange the conversation. |
+| `contact.done.demo.h` | Gracias. Una persona del equipo te escribe en 24 h laborables para acordar el día de la demo. | Gracias. Una persona del equipo te escribe para acordar el día de la demo. | Thank you. A person from our team will write to you to agree the day of the demo. |
+| `contact.done.talk.h` | Gracias. Una persona del equipo te escribe en 24 h laborables para acordar la conversación. | Gracias. Una persona del equipo te escribe para acordar la conversación. | Thank you. A person from our team will write to you to arrange the conversation. |
+| `contact.done.talk.next[1]` | Hablamos de tus oficinas y de cómo trabajáis. | Hablamos de tu equipo y de cómo trabajáis. | We talk about your team and how you work. |
+| `contact.talk.body` | Cuéntanos cuántas oficinas tenéis y cómo trabajáis. Te proponemos una conversación y después una propuesta por escrito. | Cuéntanos cómo es tu agencia y cómo trabajáis. Te proponemos una conversación y después una propuesta por escrito. | Tell us about your agency and how you work. We suggest a conversation, then a proposal in writing. |
+
+**Why the last two rows:** the owner's decision 2 of 23.11. says several offices are neither a plan feature nor a planned function. A confirmation that announces "tus oficinas" as the topic leads there.
+
+**Side effect for Audit (D-11):** the two card lines lose "con las condiciones por escrito". "Te enviamos las condiciones por escrito" (`done.demo.next[2]`) and "una propuesta por escrito" stay. Audit says whether they carry the counsel exception of register line 44.
+
+**Not changed: Essential, "contract" and "other" still say "24 h laborables"** (brief-1120 :89, :125, :128, :129, :136; faq.ts :195, :206; home-1103 :456, :546, :551, :599; es/en access, ask, trial).
+- The owner's decision names Growth and Enterprise.
+- **Owner:** does "24 h" go there too? If yes, Copy delivers the lines in one table. The pattern is "Te escribimos para activar tu prueba contigo." / "We write to you to set up your trial with you."
+
 ## 5. Open
 
 | Who | What |
