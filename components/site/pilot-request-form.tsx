@@ -8,12 +8,13 @@ import { pilotRequest, type PilotInterest } from "@/lib/content/pilot-request";
 import { cn } from "@/lib/utils";
 
 /**
- * The pilot request form (the owner's order of 16.11.2026, point 1): few fields, one black button, a clear confirmation with the
- * three steps of the pilot under it, and — on a preview — the note that nothing was sent. Labels are WORKING for Copy
- * (lib/content/pilot-request.ts). Native validation first (`required`), the route's answer second. No personal data is kept in the
- * browser beyond the form itself.
+ * The request form (the owner's order of 16.11.2026, point 1; the brief of 20.11. + Copy stage 1 §3.3): few fields, one black button whose
+ * label follows the way chosen (Pedir la prueba / Pedir la demo / Enviar / Enviar solicitud), a clear confirmation whose heading and
+ * next steps follow the same way (Copy screen 2-C: the visitor said before the click what happens next, and the confirmation names
+ * exactly that), and — on a preview — the note that nothing was sent. Labels are WORKING for Copy (lib/content/pilot-request.ts).
+ * Native validation first (`required`), the route's answer second. No personal data is kept in the browser beyond the form itself.
  */
-export function PilotRequestForm({ locale, interest: initial = "pilot", live, planName, subject }: { locale: Locale; interest?: PilotInterest; live: boolean; planName?: string; subject?: string }) {
+export function PilotRequestForm({ locale, interest: initial = "other", live, planName, subject }: { locale: Locale; interest?: PilotInterest; live: boolean; planName?: string; subject?: string }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const w = pilotRequest.form;
   const d = pilotRequest.done;
@@ -21,7 +22,6 @@ export function PilotRequestForm({ locale, interest: initial = "pilot", live, pl
   const [state, setState] = useState<"idle" | "sending" | "done" | "error" | "missing" | "reach">("idle");
   const [delivery, setDelivery] = useState<"sent" | "simulated" | null>(null);
   const [interest, setInterest] = useState<PilotInterest>(initial);
-  const [hadPhone, setHadPhone] = useState(false); // Copy 441ba1c §7: the first step takes the channel the person gave
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,7 +30,6 @@ export function PilotRequestForm({ locale, interest: initial = "pilot", live, pl
     const fd = new FormData(f);
     // 16.11. 14:00 (the owner's point 4): e-mail OR phone
     if (!String(fd.get("email") ?? "").trim() && !String(fd.get("phone") ?? "").trim()) { setState("reach"); return; }
-    setHadPhone(!!String(fd.get("phone") ?? "").trim());
     setState("sending");
     try {
       const r = await fetch("/api/pilot-request", {
@@ -51,19 +50,25 @@ export function PilotRequestForm({ locale, interest: initial = "pilot", live, pl
     }
   };
 
+  const submitLabel = pilotRequest.card(interest, planName).submit;
+
   if (state === "done") {
-    const steps = d.steps(interest, hadPhone, locale);
+    const c = d.confirmation(interest, locale);
     return (
-      <div className="prq-done" data-pilot-request="done" data-pilot-delivery={delivery ?? "unknown"} role="status" aria-live="polite">
+      <div className="prq-done" data-pilot-request="done" data-pilot-delivery={delivery ?? "unknown"} data-request-done={interest} role="status" aria-live="polite">
         <span className="prq-done-mark" aria-hidden="true"><Check size={22} strokeWidth={2.6} /></span>
         <p className="t-eyebrow t-eyebrow-l text-text-accent">{l(d.eyebrow)}</p>
-        <h2 className="prq-done-h">{l(d.h)}</h2>
-        <p className="prq-done-next">{l(d.next)}</p>
-        <ol className="prq-steps" data-pilot-steps={steps.length}>
-          {steps.map((s, i) => (
-            <li key={i} className="prq-step"><span className="prq-step-no tnum" aria-hidden="true">{i + 1}</span><span><strong>{s.b}</strong>{s.t ? ` ${s.t}` : ""}</span></li>
-          ))}
-        </ol>
+        <h2 className="prq-done-h">{c.h}</h2>
+        {c.steps.length > 0 && (
+          <>
+            <p className="prq-done-next">{l(d.next)}</p>
+            <ol className="prq-steps" data-pilot-steps={c.steps.length}>
+              {c.steps.map((s, i) => (
+                <li key={i} className="prq-step"><span className="prq-step-no tnum" aria-hidden="true">{i + 1}</span><span><strong>{s}</strong></span></li>
+              ))}
+            </ol>
+          </>
+        )}
         {(!live || delivery === "simulated") && <p className="prq-simulated" data-pilot-simulated>{l(d.simulated)}</p>}
         <a href={localePath(locale)} className="prq-back">{l(d.back)}</a>
       </div>
@@ -93,11 +98,9 @@ export function PilotRequestForm({ locale, interest: initial = "pilot", live, pl
       {/* 16.11. 14:00 (the owner's point 4): no required box — the privacy line with its link (lawyer Q-4) */}
       <p className="prq-consent" data-prq="consent-line">{l(w.consent)}<a href={localePath(locale, "/legal/privacy")} className="prq-link" target="_blank" rel="noreferrer">{l(w.consentLink)}</a>{l(w.consentAfter)}</p>
       <div className="prq-foot">
-        <button type="submit" className="prq-submit lift" disabled={state === "sending"} data-pilot-cta="form" id={`${id}-submit`}>
-          {state === "sending" ? l(w.sending) : interest === "contract" ? l(w.submitContract) : l(w.submit)}<ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" />
+        <button type="submit" className="prq-submit lift" disabled={state === "sending"} data-pilot-cta="form" data-request-submit={interest} id={`${id}-submit`}>
+          {state === "sending" ? l(w.sending) : l(submitLabel)}<ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" />
         </button>
-        {/* 16.11. 14:00 (the owner's point 3): the second, clearly smaller way under the pilot button */}
-        {interest !== "contract" && <button type="button" className="prq-direct" onClick={() => setInterest("contract")} data-prq-direct>{l(w.direct)}</button>}
         {state === "reach" && <p className="prq-note prq-note-error" role="alert">{l(w.reachMissing)}</p>}
         {state === "missing" && <p className="prq-note prq-note-error" role="alert">{l(w.required)}</p>}
         {state === "error" && <p className="prq-note prq-note-error" role="alert">{l(w.error)}</p>}

@@ -11,7 +11,8 @@ export const dynamic = "force-dynamic";
  */
 type Body = { agency?: string; name?: string; email?: string; phone?: string; interest?: string; message?: string; consent?: boolean; locale?: string; web?: string };
 
-const INTERESTS = new Set(["pilot", "contract", "model3d", "other"]);
+// the owner's brief of 20.11. + Copy batch 1 §3.4: one request form with the plan's interest (trial = Essential, demo = Growth, enterprise = the conversation); the older values stay accepted
+const INTERESTS = new Set(["trial", "demo", "talk", "contract", "model3d", "other", "pilot"]);
 const clean = (v: unknown, max: number): string => (typeof v === "string" ? v.trim().slice(0, max) : "");
 
 export async function POST(req: Request) {
@@ -19,7 +20,7 @@ export async function POST(req: Request) {
   try { b = (await req.json()) as Body; } catch { return NextResponse.json({ ok: false, error: "bad_json" }, { status: 400 }); }
   if (clean(b.web, 10)) return NextResponse.json({ ok: true, delivery: "simulated" }); // the honeypot: answer as if sent, send nothing
   const agency = clean(b.agency, 120), name = clean(b.name, 120), email = clean(b.email, 160), phone = clean(b.phone, 40), message = clean(b.message, 2000);
-  const interest = INTERESTS.has(String(b.interest)) ? String(b.interest) : "pilot";
+  const interest = INTERESTS.has(String(b.interest)) ? String(b.interest) : "other";
   const locale = b.locale === "en" ? "en" : "es";
   // 16.11. 14:00 (the owner's point 4): required are the agency, the name and e-mail OR phone; an e-mail, when given, must look like one
   const missing = [!agency && "agency", !name && "name", !email && !phone && "reach", email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && "email"].filter(Boolean) as string[];

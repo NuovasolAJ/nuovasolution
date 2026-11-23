@@ -2,20 +2,22 @@ import { ArrowRight, Bell, Box, Check, ClipboardList, Database, Flag, Globe, Ins
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
+import { brief1120, DIFFERENCES_CONFIRMED_BY_API } from "@/lib/content/brief-1120";
 import { claimWords, entryAction, live, planCell, planCellWords, planRowShown, plansTableShown, REPLY_CHANNELS, type ClaimView, type PlanCode } from "@/lib/claims";
 import { Rise } from "@/components/ui/motion";
 import { PlanCardFold } from "@/components/home/plan-card-fold";
 import { cn } from "@/lib/utils";
 
 /**
- * The plans (Copy 1105 v3 §9 and §20 P-1 … P-8; the owner's orders of 03.11. point 7, 05.11. point 10 and 06.11. "no status word"):
- * three plans in the same row order, every row with a function icon and, per plan, a ✓ where the plan carries the function and a
- * dash where it leaves it out; no word in any cell (the word stays as an aria label). The target view shows every row of the
- * register; the public view only the rows whose function is included. Essential's action is the trial in the target state; Growth
- * and Enterprise ask for a proposal. Every plan carries its positioning line, naming only the parts that are on (P-6/P-7); no badge.
- * Growth's column stands lifted. Type from 14 px up. No price, no "Disponible". While `plans` is off in the view (P-5) there are no
- * plan names and no table: one block "Qué incluye" with the rows that are on as a list, the price line and the entry action. The
- * same component serves the home page and /packages.
+ * The plans. The owner's brief of 20.11.2026 (p. 5) with Copy's stage 1 (d8ebc77) and screen 2-A (11cf7a2): three tiers, each with its
+ * audience, its 2–3 differences (API confirms them — until then Copy's draft, marked `data-plan-diffs="api-pending"`), ONE main
+ * action — Essential the free 14-day trial (activated on request), Growth a demo, Enterprise a conversation — with the line under it
+ * and, small, what happens after the click; "Ver todo lo que incluye" and "Contratar directamente" are quiet text links, not buttons
+ * (the owner's M6: three wide elements looked like three main actions). The desktop keeps the comparison matrix (a ✓ where the plan
+ * includes the function, "—" where not, "Opcional" for the separately booked 3D service); its foot carries the same one action per
+ * plan. Every card's main action carries `data-pilot-cta`, so the phone's fixed bar hides while a card's own button is on screen
+ * (brief p. 4). The rows stay the register's (lib/claims.ts planRows); the internal gate view still marks a switched-off row.
+ * What stays from before: the register rows with their icons, the fold on the phone, the legend, the price line, no "Recomendado".
  */
 const ICONS: Record<string, LucideIcon> = {
   reply: Reply, whatsapp: MessageCircle, languages: Languages, phone: Phone, instagram: Instagram, crm: Database, person: UserRound, priority: Flag,
@@ -24,10 +26,9 @@ const ICONS: Record<string, LucideIcon> = {
 
 function Cell({ status, locale, compact, orderSoon }: { status: "included" | "excluded" | "soon" | "order"; locale: Locale; compact?: boolean; orderSoon?: boolean }) {
   const on = status === "included";
-  // 16.11. (the owner's decision 2, Copy 1116 §7.1): a separately booked service shows the word "Opcional" in every column;
-  // 20.11. (Copy 1116 §1.2 model3d): "Opcional · próximamente" while the 3D service is off in the view
+  // 16.11. (the owner's decision 2, Copy 1116 §7.1): a separately booked service shows the word "Opcional" in every column; the internal gate view adds "· próximamente" while the 3D service is off
   if (status === "order") return <span className={cn("plan-cell plan-cell-word", compact && "plan-cell-compact", orderSoon && "plan-cell-soon")} data-plan-cell={orderSoon ? "order-soon" : status}>{orderSoon ? `${planCellWords.optional[locale]} · ${claimWords.soon[locale].toLowerCase()}` : planCellWords.optional[locale]}</span>;
-  // 20.11. (the owner: a visible mark for what is not live; Copy 1116 §1 point 4): the cell of a switched-off function shows PX-b
+  // the internal gate view (Copy 1116 §1 point 4): the cell of a switched-off function shows PX-b; the customer pages (finished product) never reach this branch
   if (status === "soon") return <span className={cn("plan-cell plan-cell-word plan-cell-soon", compact && "plan-cell-compact")} data-plan-cell={status}>{claimWords.soon[locale]}</span>;
   return (
     <span className={cn("plan-cell", compact && "plan-cell-compact", on ? "is-on" : "is-off")} data-plan-cell={status} role="img" aria-label={planCellWords[on ? "in" : "out"][locale]}>
@@ -36,32 +37,47 @@ function Cell({ status, locale, compact, orderSoon }: { status: "included" | "ex
   );
 }
 
+/** The one action per plan (Copy stage 1 §0/§1): the button, the line under it, what happens next, and the quiet direct way where it is offered. */
+function PlanAction({ code, name, locale, where }: { code: PlanCode; name: string; locale: Locale; where: "table" | "card" }) {
+  const l = <T,>(x: Record<Locale, T>) => x[locale];
+  const b = brief1120.plans;
+  return (
+    <div className="plans-ways plans-ways-1120" data-plan-ways={where === "table" ? code : `card-${code}`} data-plan-offer={code === "essential" ? "trial" : code === "growth" ? "demo" : "talk"}>
+      <a href={localePath(locale, brief1120.href[code])} className="plans-cta plans-cta-main" title={l(b.actionNext[code])} aria-label={`${l(b.action[code])} · ${l(b.actionNext[code])}`} data-plan-cta={where === "table" ? code : `card-${code}`} data-pilot-cta={`plan-${where}`}>{l(b.action[code])}<ArrowRight size={15} strokeWidth={2.2} aria-hidden="true" /></a>
+      <p className="plans-way-line">{l(b.actionLine[code])}</p>
+      <p className="plans-way-next" data-plan-next={code}>{l(b.actionNext[code])}</p>
+      {code !== "enterprise" && <a href={localePath(locale, brief1120.hrefDirect(code))} className="plans-way-link" aria-label={l(home1103.plans.wayDirectAria).replace("{plan}", name)} data-plan-direct={where === "table" ? code : `card-${code}`}>{l(b.direct)}</a>}
+    </div>
+  );
+}
+
 export function PlansTable({ locale, view, headed = true }: { locale: Locale; view: ClaimView; headed?: boolean }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const w = home1103.plans;
+  const b = brief1120.plans;
   const names = w.names;
   const codes = w.codes as unknown as PlanCode[];
-  const who = w.lines(locale, view);
   const groups = l(w.groups);
   const entry = entryAction(locale, view);
   // 16.11. (the owner's point 11): no lifted column, no wash, no "Recomendado" until the owner names for whom Growth is recommended
   const hi = (_code: PlanCode) => false;
   const rows = w.rows.filter((r) => planRowShown(r.key, view));
   const groupRows = (gi: number) => rows.filter((r) => r.g === gi);
-  // Copy 1116 §10 W-1: the replies row's public wording while the agency's own WhatsApp number is off (topic 20)
   // RV6 04ea648 (C-4): the replies row's name and its cell both read the reply channels only (REPLY_CHANNELS)
   const name = (r: (typeof w.rows)[number]) => (r.key === "replyWhatsapp" && view === "public" && !live("whatsappOwnNumber", view) ? l(w.repliesRowPublic) : w.rowName(r.name, locale, view, r.key === "replyWhatsapp" ? REPLY_CHANNELS : undefined));
   const table = plansTableShown(view);
-  // Copy 1116 §1 point 4: the legend gains "Próximamente: aún no activo" while a shown row carries a "Próximamente" cell in this view
+  // the internal gate view: the legend gains "Próximamente: aún no activo" while a shown row carries a "Próximamente" cell
   const anySoon = rows.some((r) => codes.some((code) => planCell(r.key, code, view) === "soon") || (r.key === "model3d" && !live("model3d", view)));
+  // Copy stage 1 §1: the differences come from API; until then Copy's draft (batch 1 §3.1), marked internally as pending
+  const diffs = (code: PlanCode) => b.differences[code].filter((d) => d.keys.every((k) => live(k, view)));
+  const diffState = DIFFERENCES_CONFIRMED_BY_API ? "api-confirmed" : "api-pending";
 
   if (!table) {
-    // P-5: no plan names, no table — one block "Qué incluye"
+    // P-5 (the internal gate view with `plans` off): no plan names, no table — one block "Qué incluye"
     return (
       <section id="plans" aria-labelledby="plans-h" className="plans" data-plans data-plans-view={view} data-plans-table-shown="false">
         <div className="container-default">
           <Rise className="plans-head">
-            {/* 16.11. 14:00 (the owner's point 2): no eyebrow over the heading — "Planes" stands once */}
             <h2 id="plans-h" className="t-display-m text-text-primary">{l(w.included.h2)}</h2>
           </Rise>
           <Rise className="plans-included" y={24} delay={0.08}>
@@ -82,28 +98,27 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
   }
 
   return (
-    <section id="plans" aria-labelledby="plans-h" className="plans" data-plans data-plans-view={view} data-plans-table-shown="true">
+    <section id="plans" aria-labelledby="plans-h" className="plans plans-1120" data-plans data-plans-brief="1120" data-plans-view={view} data-plans-table-shown="true" data-plan-diffs={diffState}>
       <div className="container-default">
         {headed && (
           <Rise className="plans-head">
-            {/* 16.11. 14:00 (the owner's point 2): no eyebrow over the heading — "Planes" stands once */}
-            <h2 id="plans-h" className="t-display-m text-text-primary">{l(w.h2)}</h2>
-            <p className="mt-4 t-body-l text-text-secondary max-w-[52ch] m-hide">{l(plansTableShown(view) ? w.lead : w.leadPublic)}</p>
+            {/* Copy 2-A: "Elige tu plan"; the desktop keeps its lead */}
+            <h2 id="plans-h" className="t-display-m text-text-primary">{l(b.h2)}</h2>
+            <p className="mt-4 t-body-l text-text-secondary max-w-[52ch] m-hide">{l(w.lead)}</p>
           </Rise>
         )}
 
         <Rise className="plans-table-wrap" y={24} delay={0.08}>
-          {/* 16.11. 14:00 (the owner's point 2): the line above the table, on the home page and on /packages */}
-          <p className="plans-pilot-line m-hide" data-plans-pilot-line>{l(w.pilotLine)}</p>
-          <p className="plans-pilot-line m-only" data-plans-pilot-line-phone>{l(w.pilotLinePhone)}</p>
-          <p className="m-only sec-proof plans-proof" data-phone-core="plans">{l(home1103.phoneCore.plans.proof)}</p>
-          <div className="plans-table" role="table" aria-label={l(w.h2)} data-plans-table>
+          {/* Copy stage 1 §1 `plans.line` above the matrix; the phone's short form */}
+          <p className="plans-pilot-line m-hide" data-plans-pilot-line>{l(b.line)}</p>
+          <p className="plans-pilot-line m-only" data-plans-pilot-line-phone>{l(b.linePhone)}</p>
+          <div className="plans-table" role="table" aria-label={l(b.h2)} data-plans-table>
             <div className="plans-row plans-row-head" role="row">
               <div className="plans-cell plans-cell-name" role="columnheader" />
               {names.map((n, i) => (
                 <div key={n} className={cn("plans-cell plans-cell-plan", hi(codes[i]) && "is-highlight")} role="columnheader" data-plan={codes[i]}>
                   <span className="plans-name">{n}</span>
-                  <span className="plans-who">{who[i]}</span>
+                  <span className="plans-who">{l(b.who[codes[i]])}</span>
                 </div>
               ))}
             </div>
@@ -124,39 +139,42 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
               </div>
             ))}
             <div className="plans-row plans-row-foot" role="row">
-              <div className="plans-cell plans-cell-name" role="cell"><p className="t-body-s text-text-muted">{l(w.inherits)} {l(w.price)}</p></div>
-              {codes.map((code) => {
-                return (
-                  <div key={code} className={cn("plans-cell plans-cell-cta", hi(code) && "is-highlight")} role="cell">
-                    {/* 16.11. evening (the owner's point 3): two equally visible ways per plan — the pilot with the plan preselected, and the direct way to the contact form with the plan and the subject */}
-                    <div className="plans-ways" data-plan-ways={code}>
-                      {/* 17.11. (the owner's 11b): the free pilot has Growth's scope — the free way at Essential and Growth, Enterprise only the direct way */}
-                      {code !== "enterprise" && <a href={localePath(locale, `/contact?interes=pilot&plan=${code}`)} className="plans-cta plans-cta-main" aria-label={l(w.wayPilotAria).replace("{plan}", names[codes.indexOf(code)])} data-plan-cta={code} data-pilot-cta="plan">{l(w.wayPilot)}</a>}
-                      {code !== "enterprise" && <p className="plans-way-line">{l(w.wayPilotLine)}</p>}
-                      <a href={localePath(locale, `/contact?interes=contratar&plan=${code}`)} className={cn("plans-cta", code !== "enterprise" ? "plans-cta-second" : "plans-cta-main")} aria-label={l(w.wayDirectAria).replace("{plan}", names[codes.indexOf(code)])} data-plan-direct={code}>{l(w.direct)}</a>
-                      <p className="plans-way-line">{l(w.wayDirectLine)}</p>
-                    </div>
-                  </div>
-                );
-              })}
+              <div className="plans-cell plans-cell-name" role="cell"><p className="t-body-s text-text-muted">{l(w.inherits)} {l(b.price)}</p></div>
+              {codes.map((code, i) => (
+                <div key={code} className={cn("plans-cell plans-cell-cta", hi(code) && "is-highlight")} role="cell">
+                  <PlanAction code={code} name={names[i]} locale={locale} where="table" />
+                </div>
+              ))}
             </div>
           </div>
 
+          {/* the phone: three cards in the same order (Copy 2-A) */}
           <ol className="plans-cards" data-plans-cards>
             {names.map((n, pi) => {
+              const code = codes[pi];
+              const ds = diffs(code);
               return (
-                <li key={n} className={cn("plans-card", hi(codes[pi]) && "is-highlight")} data-plan-card={codes[pi]}>
+                <li key={n} className={cn("plans-card", hi(code) && "is-highlight")} data-plan-card={code}>
                   <p className="plans-name">{n}</p>
-                  <p className="plans-who">{who[pi]}</p>
-                  {/* 19.11. (the owner: details may open by a tap on the phone): the groups behind one button at ≤ 639 px, open from 640 px */}
-                  <PlanCardFold plan={codes[pi]} labelOpen={l(w.foldOpen)} labelClose={l(w.foldClose)} ariaOpen={l(w.foldOpenAria).replace("{plan}", n)} ariaClose={l(w.foldCloseAria).replace("{plan}", n)}>
+                  <p className="plans-who">{l(b.who[code])}</p>
+                  {ds.length > 0 && (
+                    <div className="plans-diffs" data-plan-diffs-list={code}>
+                      {b.adds[code] && <p className="plans-diffs-lead">{l(b.adds[code]!)}</p>}
+                      <ul className="plans-diffs-list">
+                        {ds.map((d, i) => <li key={i} className="plans-diff"><Check size={14} strokeWidth={3} aria-hidden="true" />{l(d.text)}</li>)}
+                      </ul>
+                    </div>
+                  )}
+                  <PlanAction code={code} name={n} locale={locale} where="card" />
+                  {/* 19.11. (the owner: details by a tap on the phone): the full list behind one quiet text link at ≤ 639 px, open from 640 px */}
+                  <PlanCardFold plan={code} labelOpen={l(b.all)} labelClose={l(b.allClose)} ariaOpen={`${l(b.all)} · ${n}`} ariaClose={`${l(b.allClose)} · ${n}`}>
                     {groups.map((g, gi) => groupRows(gi).length === 0 ? null : (
                       <div key={g} className="plans-card-group">
                         <p className="plans-cell-group">{g}</p>
                         <ul>
                           {groupRows(gi).map((r) => {
                             const Icon = ICONS[r.icon] ?? Box;
-                            const s = planCell(r.key, codes[pi], view);
+                            const s = planCell(r.key, code, view);
                             return (
                               <li key={r.key} className="plans-card-row" data-state={s}>
                                 <span className="plans-icon" aria-hidden="true"><Icon size={16} strokeWidth={1.9} /></span>
@@ -169,16 +187,25 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
                       </div>
                     ))}
                   </PlanCardFold>
-                  <div className="plans-ways" data-plan-ways={`card-${codes[pi]}`}>
-                    {codes[pi] !== "enterprise" && <a href={localePath(locale, `/contact?interes=pilot&plan=${codes[pi]}`)} className="plans-cta plans-cta-main" aria-label={l(w.wayPilotAria).replace("{plan}", n)} data-pilot-cta="plan-card">{l(w.wayPilot)}</a>}
-                    {codes[pi] !== "enterprise" && <p className="plans-way-line">{l(w.wayPilotLine)}</p>}
-                    <a href={localePath(locale, `/contact?interes=contratar&plan=${codes[pi]}`)} className={cn("plans-cta", codes[pi] !== "enterprise" ? "plans-cta-second" : "plans-cta-main")} aria-label={l(w.wayDirectAria).replace("{plan}", n)} data-plan-direct={`card-${codes[pi]}`}>{l(w.direct)}</a>
-                    <p className="plans-way-line">{l(w.wayDirectLine)}</p>
-                  </div>
                 </li>
               );
             })}
           </ol>
+          {/* under the cards (Copy 2-A): the differences together, on demand, and the price line */}
+          <details className="plans-compare m-only" data-plans-compare>
+            <summary className="plans-compare-summary"><span className="plans-compare-open">{l(b.compare)}</span><span className="plans-compare-close">{l(b.compareClose)}</span></summary>
+            <div className="plans-compare-grid">
+              {codes.map((code, i) => (
+                <div key={code} className="plans-compare-col" data-plans-compare-col={code}>
+                  <p className="plans-compare-name">{names[i]}</p>
+                  <p className="plans-compare-who">{l(b.who[code])}</p>
+                  {b.adds[code] && <p className="plans-compare-lead">{l(b.adds[code]!)}</p>}
+                  <ul>{diffs(code).map((d, j) => <li key={j}><Check size={13} strokeWidth={3} aria-hidden="true" />{l(d.text)}</li>)}</ul>
+                </div>
+              ))}
+            </div>
+          </details>
+          <p className="plans-price-line t-body-m text-text-secondary m-only" data-plans-price>{l(b.price)}</p>
           {/* 16.11. (the owner's point 11): a short legend from the register's own words */}
           <p className="plans-legend t-body-s text-text-muted" data-plans-legend><span className="plans-legend-item"><span className="plan-cell is-on" aria-hidden="true"><Check size={14} strokeWidth={3} /></span>{claimWords.included[locale]}</span><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plans-legend-item"><span className="plan-cell is-off" aria-hidden="true"><Minus size={14} strokeWidth={2} /></span>{claimWords.excluded[locale]}</span>{rows.some((r) => r.key === "model3d") && <><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plans-legend-item"><span className="plan-cell plan-cell-word" aria-hidden="true">{planCellWords.optional[locale]}</span>{l(w.optionalNote)}</span></>}{anySoon && <><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plans-legend-item" data-plans-legend-soon><span className="plan-cell plan-cell-word plan-cell-soon" aria-hidden="true">{claimWords.soon[locale]}</span>{l(w.soonNote)}</span></>}</p>
         </Rise>

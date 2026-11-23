@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { HOME_V3_WORKING_TEXT } from "@/lib/content/home-v3";
-import { live, withChannels } from "@/lib/claims";
+import { ESSENTIAL_HREF, live, withChannels } from "@/lib/claims";
 import { resolveSwitches } from "@/lib/view";
 import { Motion } from "@/components/ui/motion";
 import { PreviewSwitch } from "@/components/site/preview-switch";
@@ -59,8 +59,8 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         <PlansTable locale={locale} view={s.view} />
         <TrustFaqClose locale={locale} view={s.view} />
       </Motion>
-      {/* A3 (07.11.): the phone's fixed bar with the one main action; 13.11.: the pilot request (Copy 1113 §0 B-1), like the hero's button */}
-      <MobileCta href={localePath(locale, "/contact")} label={home1103.hero.ctaDemo[locale]} />
+      {/* A3 (07.11.): the phone's fixed bar; the owner's brief of 20.11. + Copy stage 1 §0: "Prueba Essential gratis" → the Essential trial request */}
+      <MobileCta href={localePath(locale, ESSENTIAL_HREF)} label={home1103.hero.ctaDemo[locale]} />
     </div>
   );
 }

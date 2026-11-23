@@ -2026,3 +2026,83 @@ html:not(.js) .fs-step { opacity: 1; }
   .plans-card-fold[data-open="true"] .plans-card-fold-body { margin-top: 4px; }
   @media (prefers-reduced-motion: reduce) { .plans-card-fold-chevron { transition: none; } }
 }
+
+
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* THE OWNER'S BRIEF OF 20.11.2026 (topic 16, "Die Website für den Makleralltag"), stage 1: the first screen with Mila's message */
+/* and the finished task, the compact channel picker, the task card in the demonstration, one offer per plan (Copy d8ebc77, */
+/* 11cf7a2, c683f2f). Smaller radii and paddings where the brief asks for less chrome (p. 4); the primary action weighted.     */
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
+/* the first screen: Mila's message and the task, readable without sound or motion */
+.hf-scene { display: grid; gap: 8px; margin-top: 18px; max-width: 34rem; }
+.hf-scene-msg, .hf-scene-task { padding: 12px 14px; border-radius: 14px; }
+.hf-scene-msg { background: rgba(255, 255, 255, 0.92); color: var(--ink-950); border-bottom-left-radius: 4px; }
+.hf-scene-task { background: var(--ink-950); color: var(--ivory); border-left: 3px solid var(--brand-green); }
+.hf-scene-label { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.72; }
+.hf-scene-text { margin-top: 4px; font-size: 0.9375rem; line-height: 1.45; }
+.hf-scene-translation { margin-top: 6px; font-size: 0.8125rem; line-height: 1.4; color: var(--ink-700); }
+.hf-scene-translation-label, .demo-msg-translation-label { font-weight: 600; }
+.hf-scene-task-title { margin-top: 4px; font-size: 1rem; font-weight: 600; line-height: 1.35; }
+.hf-scene-sub { margin-top: 4px; font-size: 0.8125rem; line-height: 1.4; color: rgba(248, 246, 241, 0.78); }
+.hf-scene-mark { font-size: 0.75rem; color: rgba(248, 246, 241, 0.62); }
+/* the two actions: the main one weighted, the trial quiet (one offer, Essential) */
+[data-hero-brief="1120"] .hf-ctas { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+[data-hero-brief="1120"] .hf-cta-second { min-height: 44px; padding: 8px 16px; font-size: 0.9375rem; border-radius: 10px; }
+[data-hero-brief="1120"] .hf-cta-main { border-radius: 12px; }
+[data-hero-brief="1120"] .hf-access { margin-top: 10px; }
+@media (max-width: 639px) {
+  [data-hero-brief="1120"] .hf-benefits { display: none; }
+  .hf-scene { gap: 6px; margin-top: 14px; }
+  .hf-scene-text { font-size: 0.9rem; }
+}
+
+/* the demonstration: one flat, compact bar (2 × 2 on the phone), less radius, the task card */
+[data-demo-brief="1120"] .demo-tab { border-radius: 10px; padding: 8px 12px; min-height: 44px; }
+[data-demo-brief="1120"] .demo-tab:hover { transform: none; box-shadow: none; }
+@media (max-width: 639px) {
+  [data-demo-brief="1120"] .demo-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; overflow: visible; margin: 0; padding: 0; }
+  [data-demo-brief="1120"] .demo-tab { width: 100%; justify-content: flex-start; }
+}
+.demo-msg-translation { margin-top: 4px; font-size: 0.78rem; line-height: 1.35; opacity: 0.72; }
+.demo-task { border-left-color: var(--brand-green); background: var(--ink-950); color: var(--ivory); border-radius: 10px; margin: 0 12px 6px; }
+.demo-task .demo-key { color: rgba(248, 246, 241, 0.7); }
+.demo-task .demo-next-value { color: var(--ivory); }
+.demo-task .demo-next-sub { color: rgba(248, 246, 241, 0.78); }
+.demo-task-note { margin: 4px 14px 10px; font-size: 0.8125rem; line-height: 1.4; color: var(--text-secondary); }
+.demo-caption { display: flex; justify-content: flex-end; padding: 10px 18px 0; font-size: 0.9375rem; }
+.demo-caption-link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600; color: var(--text-primary); text-decoration: underline; text-underline-offset: 3px; }
+
+/* the plans: one offer per plan; the full list and the direct way as quiet text links; the differences together on demand */
+.plans-1120 .plans-card { border-radius: 16px; padding: 18px 16px 16px; }
+.plans-diffs { margin-top: 10px; }
+.plans-diffs-lead { font-size: 0.875rem; color: var(--text-secondary); }
+.plans-diffs-list { display: grid; gap: 6px; margin: 6px 0 0; padding: 0; list-style: none; }
+.plans-diff { display: flex; align-items: flex-start; gap: 8px; font-size: 0.9375rem; line-height: 1.4; color: var(--text-primary); }
+.plans-diff svg { flex: none; margin-top: 4px; color: var(--brand-green); }
+.plans-ways-1120 { margin-top: 14px; gap: 4px; }
+.plans-ways-1120 .plans-cta-main { border-radius: 12px; min-height: 48px; font-size: 1rem; white-space: normal; text-align: center; }
+.plans-ways-1120 .plans-way-line { margin: 2px 0 0; }
+.plans-way-next { margin: 0; text-align: center; font-size: 0.78rem; line-height: 1.4; color: var(--text-muted); }
+.plans-way-link { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 2px; font-size: 0.9375rem; font-weight: 500; color: var(--text-primary); text-decoration: underline; text-underline-offset: 3px; }
+.plans-1120 .plans-card-fold { margin-top: 2px; }
+.plans-1120 .plans-card-fold-btn { display: none; }
+@media (max-width: 639px) {
+  .plans-1120 .plans-card-fold-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 100%; min-height: 44px; margin: 0; padding: 6px 0; border: 0; border-radius: 0; background: transparent; font-size: 0.9375rem; font-weight: 500; color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; }
+  .plans-1120 .plans-card-fold[data-open="true"] .plans-card-fold-chevron { transform: rotate(180deg); }
+  .plans-1120 .plans-table .plans-ways-1120 .plans-way-link { margin-top: 0; }
+}
+.plans-compare { margin-top: 14px; border-top: 1px solid var(--border-hairline); }
+.plans-compare-summary { display: flex; align-items: center; min-height: 44px; cursor: pointer; list-style: none; font-size: 0.9375rem; font-weight: 500; color: var(--text-primary); text-decoration: underline; text-underline-offset: 3px; }
+.plans-compare-summary::-webkit-details-marker { display: none; }
+.plans-compare-close { display: none; }
+.plans-compare[open] .plans-compare-open { display: none; }
+.plans-compare[open] .plans-compare-close { display: inline; }
+.plans-compare-grid { display: grid; gap: 12px; padding: 6px 0 10px; }
+.plans-compare-col { padding: 10px 12px; border-radius: 12px; background: var(--surface-raised); border: 1px solid var(--border-hairline); }
+.plans-compare-name { font-size: 1.0625rem; font-weight: 600; }
+.plans-compare-who, .plans-compare-lead { font-size: 0.875rem; color: var(--text-secondary); }
+.plans-compare-col ul { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+.plans-compare-col li { display: flex; align-items: flex-start; gap: 6px; font-size: 0.9rem; line-height: 1.4; }
+.plans-compare-col li svg { flex: none; margin-top: 4px; color: var(--brand-green); }
+.plans-price-line { margin-top: 12px; }

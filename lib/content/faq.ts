@@ -176,26 +176,36 @@ export const faqGroups: FaqGroup[] = [
           en: "Yes. You invite your team and set a role for each person, and the roles decide what they see and do.",
           es: "Sí. Invitas a tu equipo y defines un rol para cada persona, y los roles deciden qué ven y qué hacen.",
         },
-        // Copy 1120 §5c (9dceb44): hung on taskList until API names a key for invites and roles; its own PX line in the gate view
-        keys: ["taskList"],
+        // the owner, 20.11. (brief addendum): bound to API's own switch `teamRoles` (9ecba2c); Copy 1120 §5c: its own PX line in the internal gate view
+        keys: ["teamRoles"],
         pub: { en: "Team and roles: coming soon.", es: "Equipo y roles: próximamente." },
       },
     ],
   },
   {
     id: "trial",
-    title: { en: "Pilot, plans and price", es: "Piloto, planes y precio" }, // Copy 1113 §6
+    // the owner's brief of 20.11. + Copy batch 1 §3.7 (c0975ad): ONLY Essential has the free trial; "¿Qué es el piloto?", "Todavía no…" and
+    // "¿Qué pasa cuando termina?" leave (the last one waits for API, topic 23 O-6, and is left out rather than answered with a placeholder)
+    title: { en: "Trial, plans and price", es: "Prueba, planes y precio" },
     titlePub: { en: "Price and how to start", es: "Precio y cómo empezar" }, // Copy 1107 D-20
     titleKeys: ["plans"],
     items: [
       {
-        kb: "Q-11",
-        // Copy 1113 §6 Q-11; the duration (the owner 16.11.: 14 days + 7 after the evaluation) waits for Copy's wording
-        q: { en: "What is the pilot?", es: "¿Qué es el piloto?" },
-        a: {
-          en: "You use NuovaSolution in your agency for 14 days, with everything in Growth, free and with our support. At the end we ask for your feedback; if you give it, the pilot runs 7 more days. Then you choose your plan. We ask for no payment method. Before you start, we confirm in writing what is active and the terms.", // Copy v2 §E
-          es: "Usas NuovaSolution en tu agencia durante 14 días, con todo lo de Growth, gratis y con nuestro acompañamiento. Al final te pedimos tu opinión; si nos la das, el piloto sigue 7 días más. Después eliges tu plan. No pedimos método de pago. Antes de empezar te confirmamos por escrito qué está activo y las condiciones.",
-        },
+        kb: "Q-T1",
+        q: { en: "Can I try it for free?", es: "¿Puedo probarlo gratis?" },
+        // Copy stage 1 §3.2 (d8ebc77, T-4: the trial is activated on request)
+        a: { en: "Yes, with Essential: 14 days free, no card. We write to you within 24 working hours to set up the trial. Growth we show you in a demo, Enterprise in a conversation, with the terms in writing.", es: "Sí, con Essential: 14 días gratis, sin tarjeta. Te escribimos en 24 h laborables para activar la prueba. Growth te lo enseñamos en una demo y Enterprise, en una conversación, con las condiciones por escrito." },
+      },
+      {
+        kb: "Q-T2",
+        // Copy stage 1 §3.2: the answer lists nothing itself (it points to the Essential column, so it never contradicts API's list); the +7 days on no customer page until the owner's Q-2
+        q: { en: "What does the trial include?", es: "¿Qué incluye la prueba?" },
+        a: { en: "Everything in Essential for 14 days.", es: "Todo lo de Essential durante 14 días." },
+      },
+      {
+        kb: "Q-11b",
+        q: { en: "Can I start on my own, without talking to you?", es: "¿Puedo empezar yo solo, sin hablar con vosotros?" },
+        a: { en: "We set up the trial with you: you request it and we write to you within 24 working hours.", es: "La prueba la activamos contigo: la pides y te escribimos en 24 h laborables." }, // Copy stage 1 §3.2
       },
       {
         // Copy 1116 §10 W-3 (the owner's point 6): the agency's own WhatsApp number comes after its registration with Meta (topic 20)
@@ -206,27 +216,9 @@ export const faqGroups: FaqGroup[] = [
         // 16.11. 14:00 (the owner's point 8): no public mention of the agency's WhatsApp before topic 20 — Copy's W-3 public answer is withdrawn, the question leaves the public view
       },
       {
-        kb: "Q-11b",
-        q: { en: "Can I start on my own, without talking to you?", es: "¿Puedo empezar yo solo, sin hablar con vosotros?" },
-        a: { en: "Not yet. We set the pilot up with you: request it and we will get in touch to start.", es: "Todavía no. El piloto lo preparamos contigo: solicítalo y te contactamos para empezar." },
-      },
-      {
-        kb: "Q-12",
-        // Copy 1113 §6 Q-12
-        q: { en: "What happens when the pilot ends?", es: "¿Qué pasa cuando termina el piloto?" },
-        a: {
-          en: "You decide whether to continue. We explain the price in the demo, before anything is agreed. What happens to your data is set in the written agreement.",
-          es: "Decides si sigues. El precio te lo explicamos en la demo, antes de acordar nada. Qué pasa con tus datos lo fija el acuerdo por escrito.",
-        },
-      },
-      {
-        kb: "Q-13",
-        // Copy 1108 P-3/P-4: the question and the answer in both views
-        q: { en: "What does it cost?", es: "¿Cuánto cuesta?" },
-        a: {
-          en: "The pilot is free. We explain the price for after the pilot in the demo, before anything is agreed.",
-          es: "El piloto es gratuito. El precio para después del piloto te lo explicamos en la demo, antes de acordar nada.",
-        },
+        kb: "Q-T3",
+        q: { en: "What does it cost?", es: "¿Qué cuesta?" },
+        a: { en: "The Essential trial is free. We tell you the price of each plan before anything is agreed.", es: "La prueba de Essential es gratuita. El precio de cada plan te lo decimos antes de acordar nada." },
       },
       {
         kb: "Q-14",

@@ -32,10 +32,10 @@ export const home1103 = {
     // §2 H-4 (the benefit line), unchanged
     lead: T("Tus clientes reciben respuesta aunque estés en una visita, y lo que piden te espera ordenado en su ficha.", "Your clients get a reply even while you are at a viewing, and what they ask for is waiting for you on their record."),
     // The owner's decision of 13.11. + Copy 1113 §0 B-1: the one main button of the whole site (WORKING until Copy confirms the wording)
-    ctaDemo: T("Solicita tu piloto gratuito", "Request your free pilot"),
-    /** Copy 1113 §0 B-2: the pilot line under the hero's button, both views. */
-    pilotLine: T("Piloto gratuito de 14 días, con nuestro acompañamiento. Si nos das tu opinión, 7 días más.", "A free 14-day pilot, with our support. Give us your feedback and get 7 more days."), // Copy 1116 B-2
-    pilotLine2: T("Sin método de pago. Las condiciones, por escrito.", "No payment method. The terms in writing."), // Copy 1116 B-2b
+    // Copy stage 1 §3.1 (d8ebc77): only Essential has the free 14 days; T-2 "sin tarjeta"
+    ctaDemo: T("Prueba Essential gratis", "Try Essential free"),
+    pilotLine: T("14 días gratis, sin tarjeta.", "14 days free, no card."),
+    pilotLine2: T("Las condiciones, por escrito.", "The terms in writing."), // WORKING (Redesign) for Copy
     /** Copy 1113 §1 S-1: the pain line under the hero, with its mark (S-1m); the figures are the example report's (9 = 2 + 2 + 5 of 25). */
     // 16.11. 14:00 (the owner's point 5): the line stands on its own, the example mark small under it — WORKING for Copy
     pain: { before: T("", ""), figure: T("9 de 25", "9 of 25"), after: T(" consultas llegaron con la oficina cerrada. ¿Quién les contestó?", " enquiries arrived while the office was closed. Who answered them?"), mark: T("Semana de ejemplo · datos ficticios", "Sample week · fictional data") }, // Copy 441ba1c §1 P-h / P-m
@@ -456,7 +456,7 @@ export const home1103 = {
     report: { core: T("Tres cosas que mirar esta semana, cada una con su paso.", "Three things to look at this week, each with its step."), proof: T("Informe de ejemplo · datos ficticios", "Example report · fictional data") },
     model3d: { core: T("Tu plano, convertido en un modelo 3D e imágenes para anuncios.", "Your floor plan, turned into a 3D model and listing images."), proof: T("Lo preparamos nosotros. No se crea solo ni al instante.", "Prepared by us. Not created automatically or instantly.") },
     plans: { proof: T("Sin método de pago. Las condiciones, por escrito.", "No payment method. The terms in writing.") },
-    entry: { core: T("Solicítalo, lo preparamos contigo y empiezan tus 14 días.", "Request it, we set it up with you, your 14 days begin."), proof: T("Te contactamos en 24 h laborables.", "We get in touch within 24 working hours.") },
+    entry: { core: T("Prueba Essential gratis durante 14 días.", "Try Essential free for 14 days."), proof: T("Te escribimos en 24 h laborables para activarla.", "We write to you within 24 working hours to set it up.") }, // Copy stage 1 §3.1
     close: { proof: T("Sin método de pago. Con tu opinión al final, 7 días más.", "No payment method. With your feedback at the end, 7 more days.") },
   },
 
@@ -484,15 +484,10 @@ export const home1103 = {
     },
     inherits: T("Cada plan incluye todo lo del anterior.", "Each plan includes everything in the one before."),
     /** 16.11. 14:00 (the owner's point 2, his own words): the line above the table. EN WORKING for Copy. */
-    pilotLine: T("El piloto gratuito de 14 días incluye todo lo de Growth. Después eliges tu plan; Enterprise lo contratas directamente.", "The free 14-day pilot includes everything in Growth. Then you choose your plan; Enterprise you hire directly."), // Copy v2 §E (the owner's 11b, 17.11.)
-    pilotLinePhone: T("14 días gratis con todo lo de Growth, sin tarjeta.", "14 days free with everything in Growth, no card."), // Copy v2 §E: the phone's core line of the plans
-    /** 16.11. 14:00 (the owner's point 3): the second, clearly smaller way beside the pilot button — the same form with "Contratar un plan" preselected. WORKING for Copy. */
-    direct: T("Contratar directamente", "Go straight to a plan"), // Copy 441ba1c §5 DC-l
-    /** 16.11. evening (the owner's point 3): the first of the two ways under every plan — the pilot form with the plan preselected; WORKING until Copy (Tue 12:00) */
-    wayPilot: T("Empieza 14 días gratis", "Start 14 days free"),
-    wayPilotLine: T("14 días gratis, sin tarjeta", "14 days free, no card"), // Copy 1117 §2 B-1s
-    wayDirectLine: T("Te respondemos en 24 h laborables, con las condiciones por escrito.", "We reply within 24 working hours, with the terms in writing."), // B-2s
-    wayPilotAria: T("Empieza 14 días gratis desde {plan}", "Start 14 days free from {plan}"), // Copy v2 §E B-aria
+    // Copy stage 1 §1/§2 (d8ebc77): the line above the plans; one offer per plan (lib/content/brief-1120.ts `plans.action`); "Empieza 14 días gratis" under Growth is gone
+    pilotLine: T("Essential se prueba gratis 14 días, sin tarjeta. Growth empieza con una demo y Enterprise, con una conversación.", "You can try Essential free for 14 days, no card. Growth starts with a demo, Enterprise with a conversation."),
+    pilotLinePhone: T("14 días gratis con Essential, sin tarjeta.", "14 days free on Essential, no card."),
+    direct: T("Contratar directamente", "Go straight to a plan"), // Copy 441ba1c §5 DC-l; stage 1 §2: a quiet text link
     wayDirectAria: T("Contratar {plan} directamente", "Go straight to the {plan} plan"),
     price: T("Te decimos el precio para tu agencia antes de acordar nada.", "We tell you the price for your agency before anything is agreed."),
     /** P-2/P-3: the actions. */
@@ -543,33 +538,33 @@ export const home1103 = {
   /** Copy 1113 §6: the way in — the free pilot in 3 steps, both views (step 3 follows `mailboxConnection`); §10.1 + §13 N-1: the trust lines. */
   entry: {
     // Copy 1116 §4: three steps, each with its result; step 3 in the target view starts with the mailbox line
-    title: T("Cómo empezar: piloto gratuito de 14 días", "How to start: free 14-day pilot"),
-    titlePublic: T("Cómo empezar: piloto gratuito de 14 días", "How to start: free 14-day pilot"),
+    // Copy stage 1 §3.1a (d8ebc77): "Cómo empezar con Essential" — the trial activated on request (T-4); the internal gate view keeps the mailbox PX-s in step 2
+    title: T("Cómo empezar con Essential: 14 días gratis", "How to start with Essential: 14 days free"),
+    titlePublic: T("Cómo empezar con Essential: 14 días gratis", "How to start with Essential: 14 days free"),
     steps: (locale: Locale, view: ClaimView): { b: string; t: string }[] => {
-      // the owner, 20.11. 09:05 (1) + Copy 1120 §4.3: with the mailbox connection off, step 3 opens with its PX-s instead of nothing
-      const mailbox = live("mailboxConnection", view) ? { es: "Conectamos tu buzón contigo y lo probamos con un mensaje real. ", en: "We connect your mailbox with you and test it with a real message. " }[locale] : `${pxSentence.mailboxConnection![locale]} `;
+      const mailboxOff = !live("mailboxConnection", view);
       return {
         es: [
-          { b: "Solicita tu piloto.", t: "En una conversación ves el sistema con un ejemplo y sabes si encaja con tu agencia." },
-          { b: "Lo preparamos contigo.", t: "Te confirmamos por escrito qué está activo y las condiciones." },
-          { b: "Empiezan tus 14 días.", t: `${mailbox}Cada consulta que llega por los canales activos queda contestada en español y en su ficha, con su prioridad y su motivo. Con tu opinión al final, 7 días más.` },
+          { b: "Pide tu prueba.", t: "Te escribimos en 24 h laborables y la activamos contigo." },
+          { b: "Conecta tu buzón y tu WhatsApp.", t: mailboxOff ? pxSentence.mailboxConnection!.es : "Lo probamos con un mensaje real." },
+          { b: "Empiezan tus 14 días.", t: "Cada consulta recibe respuesta en español y queda en su ficha, con su prioridad y su motivo." },
         ],
         en: [
-          { b: "Request your pilot.", t: "In one conversation you see the system with an example and know whether it fits your agency." },
-          { b: "We set it up with you.", t: "We confirm in writing what is active and the terms." },
-          { b: "Your 14 days begin.", t: `${mailbox}Every enquiry on the active channels is answered in Spanish and lands on its record, with its priority and reason. With your feedback at the end, 7 more days.` },
+          { b: "Request your trial.", t: "We write to you within 24 working hours and set it up with you." },
+          { b: "Connect your mailbox and your WhatsApp.", t: mailboxOff ? pxSentence.mailboxConnection!.en : "We test it with a real message." },
+          { b: "Your 14 days begin.", t: "Every enquiry gets a reply in Spanish and lands on its record, with its priority and reason." },
         ],
       }[locale];
     },
-    line: T("Sin método de pago. Las condiciones, por escrito.", "No payment method. The terms in writing."), // Copy 1116 B-2b
+    line: T("¿Growth o Enterprise? Te los enseñamos en una demo o en una conversación.", "Growth or Enterprise? We show you in a demo or a conversation."), // Copy stage 1 §3.1a: the line under the steps
     small: T("Te decimos antes de empezar si tu buzón ya se puede conectar.", "We tell you before you start whether your mailbox can be connected yet."),
   },
   trust: {
     h2: T("Cómo empezar y qué pasa con los datos", "How to start and what happens with the data"),
     /** Copy 441ba1c §8 TR-1 … TR-4 (16.11. 14:00): four points, no quotes, no logos, no figures; "Lo cancelas cuando quieras" stays out (Q-11c). */
     points: [
-      { t: T("Detrás hay personas", "People behind it"), l: T("Te acompaña una persona del equipo durante el piloto, en español o en inglés.", "A person from our team is with you during the pilot, in Spanish or English.") },
-      { t: T("Sin método de pago", "No payment method"), l: T("El piloto es gratuito. No te pedimos tarjeta ni cuenta bancaria.", "The pilot is free. We ask for no card and no bank account.") },
+      { t: T("Detrás hay personas", "People behind it"), l: T("Te acompaña una persona del equipo durante la prueba y después, en español o en inglés.", "A person from our team is with you during the trial and after it, in Spanish or English.") }, // Copy stage 1 §3.1
+      { t: T("Sin tarjeta", "No card"), l: T("La prueba de Essential es gratuita. No te pedimos tarjeta ni cuenta bancaria.", "The Essential trial is free. We ask for no card and no bank account.") }, // Copy stage 1 §3.1
       { t: T("Tus datos, guardados en la UE", "Your data, stored in the EU"), l: T("La base de datos está en Frankfurt y los servidores, en Alemania. El resto de servicios, en la política de privacidad.", "The database is in Frankfurt and the servers in Germany. The other services are listed in the privacy policy.") },
       { t: T("Las condiciones, por escrito", "The terms in writing"), l: T("Antes de empezar te confirmamos por escrito qué está activo.", "Before you start we confirm in writing what is active.") },
     ],
@@ -602,10 +597,10 @@ export const home1103 = {
         // the owner, 20.11. 09:05 (1): with `alert` off the question stays with its PX-s as the answer
         { q: T("¿Avisa a mi equipo?", "Does it alert my team?"), a: live("alert", view) ? T("Sí. Cuando una consulta es importante, avisa por email a la persona que toca, con el motivo.", "Yes. When an enquiry is important, it alerts the right person by e-mail, with the reason.") : pxSentence.alert! },
         // Copy 1113 §6: the free pilot, both views
-        { q: T("¿Cómo empiezo?", "How do I start?"), a: T("Solicita tu piloto gratuito. Hablamos contigo, te enseñamos el sistema y, si encaja, preparamos tu agencia contigo.", "Request your free pilot. We talk with you, show you the system and, if it fits, set up your agency with you.") },
+        // Copy stage 1 §3.1 (d8ebc77): only Essential has the free 14 days
+        { q: T("¿Cómo empiezo?", "How do I start?"), a: T("Con Essential: pides la prueba gratuita de 14 días y te escribimos en 24 h laborables para activarla. ¿Más de un equipo o varias oficinas? Pide una demo de Growth o habla con nosotros sobre Enterprise.", "With Essential: you request the free 14-day trial and we write to you within 24 working hours to set it up. More than one team, or several offices? Book a Growth demo or talk to us about Enterprise.") },
         { q: T("¿Funciona con mi CRM?", "Does it work with my CRM?"), a: byKey("integrations", view, T("Incluye un CRM. También se conecta con HubSpot, Pipedrive, Zoho y Salesforce.", "It includes a CRM. It also connects to HubSpot, Pipedrive, Zoho and Salesforce."), T("Incluye un CRM.", "It includes a CRM.")) },
-        // Copy 1108 P-4
-        { q: T("¿Cuánto cuesta?", "What does it cost?"), a: T("El piloto es gratuito. El precio para después del piloto te lo explicamos en la demo, antes de acordar nada.", "The pilot is free. We explain the price for after the pilot in the demo, before anything is agreed.") },
+        { q: T("¿Cuánto cuesta?", "What does it cost?"), a: T("La prueba de Essential es gratuita. El precio de cada plan te lo decimos antes de acordar nada.", "The Essential trial is free. We tell you the price of each plan before anything is agreed.") },
       ];
       return items.filter((it): it is { q: L; a: L } => it.a !== null).map((it) => ({ q: it.q[locale], a: withChannels(it.a[locale], locale, view) }));
     },
@@ -614,11 +609,10 @@ export const home1103 = {
   /** §10.3 and §20: the close; the line follows `mailboxConnection`. */
   close: {
     // Copy 1116 §5: the close matches the pilot
-    h2: T("14 días para ver qué consultas se te escapan.", "14 days to see which enquiries slip away."),
-    // 16.11. 14:00 (Audit: "Gratis" twice in the public /packages): "Gratis" leaves this line, the pilot line above the plans carries "gratuito"; WORKING for Copy
+    h2: T("14 días con Essential para ver qué consultas se te escapan.", "14 days on Essential to see which enquiries slip away."), // Copy stage 1 §3.1
     line: (_view: ClaimView): L => T("Te enseñamos el sistema, lo preparamos contigo y lo usas en tu agencia con nosotros al lado. Todo por escrito.", "We show you the system, set it up with you, and you use it in your agency with us alongside. All of it in writing."),
-    small: T("Sin método de pago. Con tu opinión al final, 7 días más.", "No payment method. With your feedback at the end, 7 more days."),
-    ctaDemo: T("Solicita tu piloto gratuito", "Request your free pilot"), // Copy 1113 §0 B-1 (13.11.)
+    small: T("Sin tarjeta. Las condiciones, por escrito.", "No card. The terms in writing."), // Copy stage 1 T-2; the +7 days on no customer page until the owner's Q-2
+    ctaDemo: T("Prueba Essential gratis", "Try Essential free"), // Copy stage 1 §3.1
   },
 
   /** Copy 1108 §3: the block "Quién está detrás" — the same text in both views; the holder's name is filled from the environment at build time, never committed. */
@@ -628,7 +622,7 @@ export const home1103 = {
     /** {name} = the holder; the sentence is left out when the environment has no name (Copy: no visible placeholder). */
     brand: T("NuovaSolution es una marca de {name}. La hemos hecho para agencias inmobiliarias en España.", "NuovaSolution is a brand of {name}. We built it for real estate agencies in Spain."),
     brandNoName: T("La hemos hecho para agencias inmobiliarias en España.", "We built it for real estate agencies in Spain."),
-    pilot: T("Empezamos con un piloto con pocas agencias. Por eso aquí no verás logotipos de clientes, testimonios ni cifras de resultados: los mostraremos cuando sean reales y tengamos permiso para hacerlo.", "We are starting with a pilot with a few agencies. That is why you will not find client logos, testimonials or results figures here: we will show them once they are real and we have permission to."),
+    pilot: T("Empezamos con pocas agencias. Por eso aquí no verás logotipos de clientes, testimonios ni cifras de resultados: los mostraremos cuando sean reales y tengamos permiso para hacerlo.", "We are starting with a few agencies. That is why you will not see client logos, testimonials or result figures here: we will show them when they are real and we have permission."), // Copy stage 1 §3.1 (T-3)
     // 16.11.: the address left the sentence for its own row under the lines (the phone's narrow column, the owner's point 2)
     emailLabel: T("Email", "Email"),
     phoneLabel: T("Teléfono", "Phone"), // Copy 1113 §0
@@ -637,7 +631,7 @@ export const home1103 = {
       T("La base de datos está en la Unión Europea (Fráncfort).", "The database is in the European Union (Frankfurt)."),
       T("Cada respuesta automática indica que la escribe un asistente.", "Every automatic reply says that an assistant wrote it."),
     ],
-    cta: T("Solicita tu piloto gratuito", "Request your free pilot"), // Copy 1113 §0 B-1 (13.11.)
+    cta: T("Prueba Essential gratis", "Try Essential free"), // Copy stage 1 §3.1
   },
 
   /**

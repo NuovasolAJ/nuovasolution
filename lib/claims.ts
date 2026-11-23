@@ -225,18 +225,21 @@ export const plansTableShown = (view: ClaimView): boolean => live("plans", view)
  * to /contact. The keys `trial` and `publicSignup` stay in the register (the app's own account state follows them), but no public
  * surface hangs an offer on them any more. WORKING: Copy's working title until Copy confirms the final wording (Mon 16.11. 12:00).
  */
+// The owner's brief of 20.11. (afternoon) + Copy batch 1 §3.3/§3.6 (c0975ad): ONLY Essential has the free 14-day trial, so the global
+// button names the plan ("a global 'gratis' without a plan says that everything is free"); its target is Essential's own way
+// (lib/content/brief-1120.ts `href.essential`, ONE line: the request form while Q-1 is open, the sign-up once the owner says self-start).
 export const pilotCta: { label: L; short: L; line: L; line2: L; nav: L } = {
-  label: { es: "Solicita tu piloto gratuito", en: "Request your free pilot" },
-  short: { es: "Piloto gratuito", en: "Free pilot" },
-  // Copy 1116 §1.1 B-2 (the owner's sentence) and B-2b
-  line: { es: "Piloto gratuito de 14 días, con nuestro acompañamiento. Si nos das tu opinión, 7 días más.", en: "A free 14-day pilot, with our support. Give us your feedback and get 7 more days." },
-  line2: { es: "Sin método de pago. Las condiciones, por escrito.", en: "No payment method. The terms in writing." },
-  nav: { es: "Piloto", en: "Pilot" },
+  label: { es: "Prueba Essential gratis", en: "Try Essential free" },
+  short: { es: "Prueba Essential gratis", en: "Try Essential free" },
+  line: { es: "14 días gratis, sin tarjeta.", en: "14 days free, no card." },
+  line2: { es: "Las condiciones, por escrito.", en: "The terms in writing." }, // WORKING (Redesign) for Copy
+  nav: { es: "Prueba Essential", en: "Try Essential" }, // Copy c683f2f §3 (T-1: no "gratis" without the plan)
 };
+export const ESSENTIAL_HREF = "/contact?interes=trial&plan=essential";
 /** Kept for the pages that still read it (the app's words); no offer hangs on it any more. */
 export const trialCta: { label: L; line: L } = { label: pilotCta.label, line: pilotCta.line };
 export const accessWords: { label: L; line: L; nav: L } = { label: pilotCta.label, line: pilotCta.line, nav: pilotCta.nav };
 export const trialLive = (view: ClaimView): boolean => live(["trial", "publicSignup"], view);
 export type EntryKind = "pilot";
 export const entryAction = (locale: Locale, _view: ClaimView = "public"): { label: string; short: string; href: string; line: string; nav: string; kind: EntryKind } =>
-  ({ label: pilotCta.label[locale], short: pilotCta.short[locale], href: "/contact", line: pilotCta.line[locale], nav: pilotCta.nav[locale], kind: "pilot" });
+  ({ label: pilotCta.label[locale], short: pilotCta.short[locale], href: ESSENTIAL_HREF, line: pilotCta.line[locale], nav: pilotCta.nav[locale], kind: "pilot" });

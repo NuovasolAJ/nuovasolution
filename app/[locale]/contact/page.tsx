@@ -3,6 +3,7 @@ import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { home1103 } from "@/lib/content/home-1103";
 import { pilotRequest, interestFromQuery } from "@/lib/content/pilot-request";
+import { brief1120 } from "@/lib/content/brief-1120";
 import { resolveSwitches } from "@/lib/view";
 import { Display, Eyebrow, Lead, Heading } from "@/components/ui/type";
 import { Reveal } from "@/components/ui/reveal";
@@ -34,11 +35,12 @@ export default function ContactPage({ params, searchParams }: { params: { locale
   const planCodes = home1103.plans.codes as readonly string[];
   const rawPlan = searchParams?.plan === "scale" ? "enterprise" : searchParams?.plan;
   const plan = rawPlan && planCodes.includes(rawPlan) ? { code: rawPlan, display_name: home1103.plans.names[planCodes.indexOf(rawPlan)] } : undefined;
-  // the owner's 11b (17.11.): the free pilot has Growth's scope — a pilot link with Essential or Growth opens the pilot, one with Enterprise opens as "Contratar Enterprise"
-  const asked = interestFromQuery(searchParams?.interes);
-  const interest = asked === "pilot" && plan && plan.code === "enterprise" ? "contract" : asked;
-  // the subject in the message field: the direct way (Copy 1117 §2 B-subj) and the pilot way (Copy v2 §E B-pilot, fixed for Essential and Growth)
-  const subject = plan ? (interest === "contract" ? (locale === "en" ? `Request the ${plan.display_name} plan` : `Contratar ${plan.display_name}`) : interest === "pilot" ? (locale === "en" ? "Free pilot · 14 days with Growth" : "Piloto gratuito · 14 días con Growth") : undefined) : undefined;
+  // the owner's brief of 20.11. + Copy stage 1 §3.3 (d8ebc77): ONE request form with the plan's way preselected — Essential's trial (on request), Growth's demo, Enterprise's conversation, the direct contract
+  const interest = interestFromQuery(searchParams?.interes, plan?.code);
+  const card = w.card(interest, plan?.display_name);
+  // the subject in the message field (Copy stage 1 §3.3 `contact.subject`)
+  const subj = brief1120.contact.subject;
+  const subject = interest === "trial" ? subj.trial[locale] : interest === "demo" ? subj.demo[locale] : interest === "talk" ? subj.talk[locale] : interest === "contract" && plan ? subj.contract[locale].replace("{plan}", plan.display_name) : undefined;
   const phone = process.env.NUOVA_E14_PHONE?.trim() || null;
   const steps = home1103.entry.steps(locale, s.view);
 
@@ -77,10 +79,10 @@ export default function ContactPage({ params, searchParams }: { params: { locale
           </div>
         </Reveal>
 
-        <Reveal delay={80} className="contact-card stage" data-pilot-card>
-          <Eyebrow className="mb-3">{l(w.eyebrow)}</Eyebrow>
-          <Heading size="l" as="h2">{l(w.h)}</Heading>
-          <p className="mt-3 t-body-m text-text-secondary">{l(w.body)}</p>
+        <Reveal delay={80} className="contact-card stage" data-pilot-card data-request-card={interest}>
+          <Eyebrow className="mb-3">{l(card.eyebrow)}</Eyebrow>
+          <Heading size="l" as="h2">{l(card.h)}</Heading>
+          <p className="mt-3 t-body-m text-text-secondary">{l(card.body)}</p>
           <div className="mt-6">
             <PilotRequestForm locale={locale} interest={interest} live={s.live} planName={plan?.display_name} subject={subject} />
           </div>

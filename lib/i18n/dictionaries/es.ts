@@ -21,7 +21,7 @@ export const es: Dictionary = {
     trial: "Acceso",
     contact: "Contacto",
     login: "Iniciar sesión",
-    startFree: "Empieza gratis",
+    startFree: "Prueba Essential gratis", // Copy stage 1 §3.4 (d8ebc77): only Essential has the free 14 days
     // El rincón de la cuenta cuando hay sesión (orden de auditoría 2026-10-08b): WORKING
     account: "Mi agencia",
     logout: "Cerrar sesión",
@@ -145,7 +145,7 @@ export const es: Dictionary = {
       lead: "Una compradora escribe mientras estás en una visita. NuovaSolution le responde en español, registra lo que ha pedido y deja una tarea a tu equipo.", // COPY_1019 R-2 (the home hero renders lib/content/home-story.ts) // WORKING (orden maestra 2026-10-10 §4, §5); antes COPY_HERO_1003 §1
       state: "En español, por WhatsApp y email.", // Copy 1105 v3 §21 (es.ts:146)
       qualifier: "En los canales que conectes.",
-      note: "14 días gratis. Sin pago.",
+      note: "14 días gratis con Essential, sin tarjeta.", // Copy stage 1 §3.4
       ctaSecondary: "Ver cómo funciona", // COPY_HERO_1003 §1
       cards: {
         synthetic: "Ejemplo ilustrativo",
@@ -248,21 +248,22 @@ export const es: Dictionary = {
     },
     access: {
       eyebrow: "Para empezar",
-      h2: "14 días gratis, sin pago",
-      lead: "Crea tu cuenta, configura tu agencia tú mismo y decide con el sistema en marcha. Sin pago durante la prueba y sin llamada comercial.",
+      // Copy stage 1 §3.4 (d8ebc77), T-4: the trial is activated on request
+      h2: "Prueba Essential gratis durante 14 días",
+      lead: "Pides la prueba, te escribimos en 24 h laborables y la activamos contigo. Sin tarjeta.",
       link: "Ver qué incluye",
       steps: [
-        { title: "Crea tu cuenta", line: "Tu nombre, tu email de trabajo, una contraseña. Después confirma tu email." },
-        { title: "Pon nombre a tu agencia", line: "Le pones nombre a tu agencia y entras en la configuración." }, // COPY_DELTAS_1003 D-88
-        { title: "Configúrala tú mismo", line: "Los datos de tu agencia, tus datos legales y tu logo, más tu equipo y sus roles." }, // D-51
+        { title: "Pide tu prueba", line: "Te escribimos en 24 h laborables y la activamos contigo." },
+        { title: "Conecta tu buzón y tu WhatsApp", line: "Lo probamos con un mensaje real." },
+        { title: "Empiezan tus 14 días", line: "Cada consulta recibe respuesta en español y queda en su ficha, con su prioridad y su motivo." },
       ],
       noCharge: "No se cobra nada y no pedimos ninguna tarjeta en ninguno de estos tres pasos.", // D-53
       viewCaption: "Configuras tu agencia tú mismo, paso a paso.",
     },
     offer: {
       eyebrow: "Planes",
-      h2: "Empieza gratis y luego elige un plan",
-      lead: "14 días gratis y sin pago. Después eliges un plan con nosotros. Te decimos el precio para tu agencia antes de acordar nada.",
+      h2: "Prueba Essential gratis y elige después", // Copy stage 1 §3.4
+      lead: "Essential: 14 días gratis, sin tarjeta. Growth y Enterprise empiezan con una demo o una conversación. Te decimos el precio antes de acordar nada.",
       link: "Ver los planes",
     },
     ask: {
@@ -297,7 +298,7 @@ export const es: Dictionary = {
         h1: "Más tiempo para tus clientes.",
         lead: "NuovaSolution responde en español a las consultas por WhatsApp y email, guarda lo que pide cada cliente y deja claro el siguiente paso.", // W-2
         ctaDemo: "Ver la demostración", // W-3
-        trialLine: "14 días · Sin método de pago", // owner 2026-10-06 §2
+        trialLine: "14 días con Essential · Sin tarjeta", // Copy stage 1 §3.4
         labels: { enquiry: "Consulta por WhatsApp", reply: "Respuesta en español", crm: "Ficha del cliente", next: "Siguiente paso" },
         example: "Ejemplo ilustrativo",
         replay: "Reproducir otra vez",
@@ -316,8 +317,8 @@ export const es: Dictionary = {
         task: { taken: "Tomada por ti", complete: "Marcar como hecha", done: "Hecha. Sale de la lista.", again: "Volver a empezar" },
       },
       offer: {
-        cta: "Probar gratis",
-        line: "14 días · Sin método de pago",
+        cta: "Prueba Essential gratis", // Copy stage 1 §3.4
+        line: "14 días con Essential · Sin tarjeta",
         stepsTitle: "Así empiezas", // WORKING
         steps: [
           { title: "Crea tu cuenta", line: "Tu nombre, tu email de trabajo, una contraseña." }, // WORKING
@@ -369,28 +370,29 @@ export const es: Dictionary = {
 
   packages: {
     eyebrow: "Planes",
-    h1Neutral: "Empieza con 14 días de prueba",
-    leadNeutral: "14 días, sin método de pago. Después eliges un plan con nosotros y te decimos el precio para tu agencia antes de acordar nada.",
-    h1: "Empieza con 14 días de piloto gratuito", // Copy 1116 §1.2
-    lead: "Empieza con 14 días de piloto con todo lo de Growth, gratis y con nuestro acompañamiento, y 7 días más si nos das tu opinión. Después eliges tu plan; el precio te lo explicamos antes de acordar nada. Enterprise lo contratas directamente.", // Copy v2 §E (the owner's 11b, 17.11.)
+    // Copy stage 1 §3.4 (d8ebc77): only Essential has the free 14 days
+    h1Neutral: "Elige tu plan",
+    leadNeutral: "Essential se prueba gratis 14 días, sin tarjeta. Growth empieza con una demo y Enterprise, con una conversación.",
+    h1: "Elige tu plan",
+    lead: "Essential se prueba gratis 14 días, sin tarjeta. Growth empieza con una demo y Enterprise, con una conversación.",
     plansEyebrow: "Los planes",
     included: "Incluido",
     baselineHeading: "Qué incluye cada plan",
     baseline: ["CRM", "Lead Engine", "Respuestas automáticas", "Seguimiento básico", "Property matching", "Reporting básico"],
     baselineLine: "Todos los planes incluyen las respuestas, la ficha y el CRM. Las tareas del equipo, desde Growth.", // Copy 1105 v3 §21 (hangs on plans + taskList)
     noPriceHeading: "Precio",
-    noPriceBody: "Te decimos el precio para tu agencia antes de acordar nada. No hay facturación en autoservicio. Empieza la prueba gratis o habla con nosotros.",
+    noPriceBody: "Te decimos el precio para tu agencia antes de acordar nada. No hay facturación en autoservicio. Prueba Essential gratis o pide una demo.", // Copy stage 1 §3.4
     notAvailable: "La facturación en autoservicio no está disponible.",
     stubNote: "Los nombres y contenidos de los planes que se muestran aquí proceden de datos locales de prueba mientras la conexión con el backend está pendiente. No son una oferta.",
     plansAwaiting: "Los nombres y contenidos de los planes se leen del backend. En este entorno esa conexión todavía no está disponible, así que no se muestra ninguno.",
-    cta: "Empieza gratis",
+    cta: "Prueba Essential gratis", // Copy stage 1 §3.4
     ctaSecondary: "Hablar sobre los planes",
     faqEyebrow: "Preguntas",
+    // Copy stage 1 §3.4: "¿Qué pasa después de los 14 días?" is left out until API answers O-6 (unproven)
     faq: [
-      { q: "¿Necesito una tarjeta para empezar?", a: "No. Durante la prueba no se cobra nada ni se pide método de pago." },
+      { q: "¿Necesito una tarjeta para probar Essential?", a: "No. Durante los 14 días no se cobra nada ni se pide tarjeta." },
       { q: "¿Puedo pagar online?", a: "En este sitio no. Te enviamos una factura y la pagas por transferencia." },
-      { q: "¿Tengo que hablar con alguien antes?", a: "No. Puedes empezar por tu cuenta." }, // Copy 1105 v3 §21 (target; public: faqPublicAnswer)
-      { q: "¿Qué pasa después de los 14 días?", a: "Conservas tu cuenta y tus datos. Las funciones de pago se pausan hasta que elijas un plan." },
+      { q: "¿Tengo que hablar con alguien antes?", a: "Solo para activar la prueba: te escribimos en 24 h laborables. La demo es opcional." },
     ],
     faqPublicAnswer: "No hace falta una llamada comercial: escríbenos y te enseñamos el sistema.", // Copy 1105 v3 V-37
     tiersEyebrow: "Tres planes, uno al lado del otro",
@@ -400,20 +402,20 @@ export const es: Dictionary = {
     amountLine: "Te decimos el precio y el periodo de facturación antes de acordar nada.",
     amountNote: "No hay pago con tarjeta ni renovación automática. Recibir la factura no activa el plan; lo activa el pago confirmado.",
     trialEyebrow: "Prueba y final de la prueba",
+    // Copy stage 1 §3.4: the second line (what happens after the trial) is left out until API answers O-6
     trialLines: [
-      "14 días, gratis y sin método de pago.",
-      "Tu cuenta y tus datos siguen ahí. Las funciones de pago se pausan hasta que elijas un plan. Puedes seguir entrando.",
+      "14 días con Essential, gratis y sin tarjeta.",
     ],
-    noPaymentMethod: "Sin método de pago", // COPY_SYNC_1024 X-11: one wording everywhere
+    noPaymentMethod: "Sin tarjeta", // Copy stage 1 T-2: one wording everywhere (replaces X-11)
     compareHeading: "En qué se diferencian los planes",
     compareLead: "Cada paquete incluye todo lo del anterior y añade funciones.", // HANDOVER_1021 C-5
     planColumn: "Plan",
     periodHeading: "Precio y periodo de facturación",
     periodLine: "Indicamos el precio y el periodo de facturación en tu propuesta y en cada factura. No se cobra nada de forma automática.",
     planLines: { essential: "Responder y ordenar lo que llega. Una oficina, un equipo pequeño.", growth: "Seguir, proponer y coordinar. Un equipo más grande.", scale: "Captar, atender llamadas y presentar en 3D. Varias oficinas." },
-    trialBadge: "14 días de prueba",
+    trialBadge: "14 días gratis", // Copy stage 1 §3.4: only on the Essential card
     trialBadgeAligned: "14 días gratis",
-    ctaTrialEssential: "Solicita una propuesta", // C-12
+    ctaTrialEssential: "Prueba Essential gratis", // Copy stage 1 §3.4
     limitsHeading: "Límites",
     limits: { offices: "Oficinas", seats: "Puestos", leads_month: "Capacidad: consultas al mes", crm_connections: "Conexiones de CRM", voice_minutes: "Minutos de voz", unlimited: "Sin límite", none: "Ninguno" },
     featuresHeading: "Incluido",
@@ -432,7 +434,7 @@ export const es: Dictionary = {
       "channel.voice": "Voz",
       "feed.structured": "Feed de propiedades estructurado",
     },
-    ctaTrial: "Empieza gratis",
+    ctaTrial: "Prueba Essential gratis", // Copy stage 1 §3.4
     ctaProposal: "Solicita una propuesta",
     payEyebrow: "Cómo se paga",
     payH2: "Una factura, pagada por transferencia",
@@ -447,15 +449,15 @@ export const es: Dictionary = {
 
   trial: {
     eyebrow: "Prueba",
-    h1: "Prueba gratis durante 14 días.", // Copy 1105 v3 §21 (the state line is gone; the route leads to /contact while the trial is off)
+    h1: "Prueba Essential gratis durante 14 días.", // Copy stage 1 §3.4
     state: "",
     lead: "Configura tu agencia y decide con el sistema en marcha.",
-    ctaPrimary: "Empieza gratis",
+    ctaPrimary: "Pide tu prueba de Essential", // Copy stage 1 §3.4 (T-4: the button says what happens)
     ctaSecondary: "Ver los paquetes",
     howEyebrow: "Cómo funciona",
     howH2: "Las condiciones, a la vista.",
     how: [
-      { title: "14 días gratis", line: "Crea la cuenta de tu agencia y configura tu propio entorno." },
+      { title: "14 días gratis con Essential", line: "Te escribimos en 24 h laborables y activamos la prueba contigo." }, // Copy stage 1 §3.4
     ],
     honesty: {
       h2: "Lo que la web nunca hace",
@@ -492,8 +494,8 @@ export const es: Dictionary = {
     demoH2: "Solicitar una demo",
     demoBody: "Te guiamos por el sistema con un ejemplo real y puedes preguntar lo que quieras. Sin presentación.",
     demoCta: "Solicitar una demo",
-    trialH2: "O simplemente empieza",
-    trialBody: "Prueba gratis durante 14 días. Sin método de pago, sin llamada comercial.", // Copy 1105 v3 §21 (the block hangs on trial + publicSignup)
+    trialH2: "O prueba Essential", // Copy stage 1 §3.4
+    trialBody: "14 días gratis, sin tarjeta y sin llamada comercial.",
     planInterest: "Plan que te interesa: {plan}",
     planInterestBody: "Escríbenos con el nombre de tu agencia y te enviamos una propuesta para este plan.",
     proposalSubject: "Solicitud de propuesta: {plan}",
@@ -1059,7 +1061,7 @@ export const es: Dictionary = {
     error: "No se ha enviado. Inténtalo otra vez o contacta con una persona.",
     tooLong: "Por favor, menos de 4000 caracteres.",
     suggestionsLabel: "Preguntas habituales",
-    suggestions: ["¿NuovaSolution responde consultas de WhatsApp por la noche?", "¿Tengo que cambiar de CRM?", "¿Qué pasa después de los 14 días de prueba?"],
+    suggestions: ["¿NuovaSolution responde consultas de WhatsApp por la noche?", "¿Tengo que cambiar de CRM?", "¿Qué incluye la prueba gratuita de Essential?"], // Copy stage 1 §3.4 (the old question has no proven answer, O-6)
   },
 
   media: {

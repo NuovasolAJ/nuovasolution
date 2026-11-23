@@ -3,8 +3,10 @@
 import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type ElementType, type KeyboardEvent, type ReactNode } from "react";
 import { ArrowRight, Check, ChevronDown, Inbox, Mail, Mic, PanelsTopLeft, Phone, PhoneOff, RotateCcw, Send, Star } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
+import { localePath } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
 import { demoChannels, demoWords, endPhase, recordStart, type DemoChannel, type DemoChannelKey } from "@/lib/content/home-demo";
+import { brief1120 } from "@/lib/content/brief-1120";
 import { claimWords, shows, type ClaimView, live } from "@/lib/claims";
 import { Mark } from "@/components/ui/mark";
 import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
@@ -18,12 +20,14 @@ import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
  * the first paint. JavaScript only advances the phase on a few timers once the surface is in view. Without JavaScript and with
  * reduced motion the finished picture stands at once (CSS), and the replay control is hidden.
  *
- * The channel selector is a native tablist (icon and full name, a filled active state, arrow keys). The owner's master prompt of
- * 13.11. (§6.2) orders the auto-run back (the Reviewer's A-10 is withdrawn, REVIEWER_MASTERPROMPT_CHECK_1113 A-6/D): once a run has
- * finished, the demonstration pauses, then moves to the next channel of the view, a story bar on the active tab showing how far the
- * run is. The three conditions the Reviewer checks: a click or a key stops the rotation for good; it never advances while the
- * surface is out of view; with reduced motion there is no rotation (the finished picture stands). The public view shows only the
- * channels that are included (lib/claims.ts); no mark and no status word stands on any surface (points 5 and "coming soon").
+ * The owner's brief of 20.11. (p. 3–4) with Copy's screens 1-B / 1-C (11cf7a2): WhatsApp first; the whole conversation W-1 … W-4
+ * (Spanish on both pages, the EN translation small under each bubble); the finished task with its head, state, fields and the
+ * reminder line; the caption that tells an answered enquiry from personal attention; the one link out of path 1 into the plans.
+ * Entered mid-section (the surface's top already above the window) or through "Ver cómo queda la tarea" (`[data-demo-end]`), the
+ * demonstration shows its END STATE at once instead of starting its run; the full run and the replay stay optional. The channel
+ * picker is one flat, compact bar (2 × 2 on the phone, CSS). The rotation of 13.11. (a finished run moves to the next channel until
+ * the first click) stays. The internal gate view (`?view=public`) still hides WhatsApp while the agency's own number is not registered
+ * and marks a switched-off channel; the customer pages show the finished product.
  */
 // H3 (09.11.): the real WhatsApp mark on its tab; the other channels keep their line icons
 const ICON: Record<DemoChannelKey, ElementType> = { whatsapp: WhatsAppMark, email: Mail, webform: PanelsTopLeft, phone: Phone };
@@ -45,9 +49,9 @@ function Item({ n, phase, className, children, as: Tag = "div", ...rest }: { n: 
 export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: ClaimView }) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const W = demoWords;
-  // 16.11. 14:00 (the owner's point 8 + ChatGPT 1): the public view shows no WhatsApp channel while the agency's own number is not registered (topic 20)
-  // 20.11. (the owner: a visible mark for what is not live; Copy 1116 §1 point 5): a switched-off channel keeps playing as a marked
-  // demonstration — its tab carries "Próximamente" (`soonTab`); WhatsApp alone still follows the agency's own number (topic 20)
+  const B = brief1120.demo;
+  // 16.11. 14:00 (the owner's point 8 + ChatGPT 1): the INTERNAL gate view shows no WhatsApp channel while the agency's own number is not registered (topic 20)
+  // 20.11. (the owner: a visible mark for what is not live in the gate view; Copy 1116 §1 point 5): a switched-off channel keeps playing as a marked demonstration
   const channels = demoChannels.filter((c) => c.key !== "whatsapp" || live("whatsappOwnNumber", view));
   const soonTab = (c: DemoChannel) => !shows(c.claim, view);
   const [channel, setChannel] = useState<DemoChannelKey>(channels[0]?.key ?? "whatsapp");
@@ -56,6 +60,7 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
   const [auto, setAuto] = useState(true);
   const [seen, setSeen] = useState(false);
   const [runNo, setRunNo] = useState(0);
+  const [entered, setEntered] = useState<"run" | "end" | null>(null);
   const inView = useRef(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
@@ -82,16 +87,23 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
     });
   }, []);
 
+  /** The end state at once (the brief p. 4: entered mid-section, the demonstration shows its result; "Ver cómo queda la tarea"). */
+  const showEnd = useCallback((c: DemoChannel) => { clear(); setPhase(endPhase(c)); setAuto(false); started.current = true; setEntered("end"); }, []);
+
   // The first run starts when the surface is in view; `seen` follows the surface in and out of view for the rotation.
+  // Entered with its top already above the window (a jump or a fast scroll into the middle of the section), the end state stands at once.
   useEffect(() => {
     const el = rootRef.current;
     if (!el) return;
-    if (window.matchMedia(REDUCE).matches) { setPhase(endPhase(script)); started.current = true; setAuto(false); return; }
+    if (window.matchMedia(REDUCE).matches) { setPhase(endPhase(script)); started.current = true; setAuto(false); setEntered("end"); return; }
+    if (window.location.hash === "#demo") { showEnd(script); inView.current = true; setSeen(true); }
     const io = new IntersectionObserver((entries) => {
       inView.current = entries.some((e) => e.isIntersecting);
       setSeen(inView.current);
       if (started.current || !inView.current) return;
       started.current = true;
+      if (el.getBoundingClientRect().top < -80) { showEnd(script); return; }
+      setEntered("run");
       run(script);
     }, { threshold: 0.3 });
     io.observe(el);
@@ -116,13 +128,17 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auto, done, seen, channel]);
 
-  // The demonstration's own run links ([data-demo-run]) run it again; the person took over.
+  // The demonstration's own run links ([data-demo-run]) run it again; the task links ([data-demo-end]) open the finished task (WhatsApp) at once.
   useEffect(() => {
-    const ctas = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-demo-run]"));
-    const onClick = () => { started.current = true; inView.current = true; setAuto(false); run(script); };
-    for (const c of ctas) c.addEventListener("click", onClick);
-    return () => { for (const c of ctas) c.removeEventListener("click", onClick); };
-  }, [run, script]);
+    const runs = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-demo-run]"));
+    const ends = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-demo-end]"));
+    const onRun = () => { started.current = true; inView.current = true; setAuto(false); run(script); };
+    const onEnd = () => { const c = channels.find((x) => x.key === "whatsapp") ?? channels[0]; setChannel(c.key); inView.current = true; showEnd(c); };
+    for (const c of runs) c.addEventListener("click", onRun);
+    for (const c of ends) c.addEventListener("click", onEnd);
+    return () => { for (const c of runs) c.removeEventListener("click", onRun); for (const c of ends) c.removeEventListener("click", onEnd); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [run, script, showEnd]);
 
   useEffect(() => clear, []);
 
@@ -152,6 +168,8 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
 
   const panelId = `${id}-panel`;
   const lit = phase >= recordStart(script);
+  const allSoon = channels.length > 0 && channels.every(soonTab);
+  const isTask = script.key === "whatsapp";
 
   return (
     <div
@@ -159,6 +177,7 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
       id="demo"
       className="demo"
       data-demo
+      data-demo-brief="1120"
       data-demo-kind={script.kind}
       data-demo-channel={channel}
       data-demo-phase={phase}
@@ -166,30 +185,30 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
       data-demo-auto={auto ? "true" : "false"}
       data-demo-run={runNo}
       data-demo-view={view}
+      data-demo-entered={entered ?? "not-yet"}
       style={{ ["--phase" as string]: phase, ["--end" as string]: end }}
       aria-label={l(W.surfaceLabel)}
       role="group"
     >
-      {/* The bar: the channel choice with its hint, the replay. */}
+      {/* The bar: the channel choice with its invitation, the replay. */}
       <div className="demo-bar">
         <div className="demo-bar-top">
-          <p id={`${id}-pick`} className="demo-pick-label" data-demo-invite><span className="demo-invite">{channels.length > 1 ? l(W.invite) : l(W.surfaceLabel)}</span></p>
+          <p id={`${id}-pick`} className="demo-pick-label" data-demo-invite><span className="demo-invite">{channels.length > 1 ? (allSoon ? l(W.invite) : l(B.invite)) : l(W.surfaceLabel)}</span></p>
           {/* on the phone the replay is the icon alone (the word stays as its label; REFERENZEN §6, phone) */}
-          <button type="button" className="demo-replay" data-demo-replay aria-label={l(W.replay)} onClick={() => { stopAuto(); started.current = true; inView.current = true; run(script); }}>
+          <button type="button" className="demo-replay" data-demo-replay aria-label={l(W.replay)} onClick={() => { stopAuto(); started.current = true; inView.current = true; setEntered("run"); run(script); }}>
             <RotateCcw size={14} strokeWidth={2.2} aria-hidden="true" />
             <span className="demo-replay-word">{l(W.replay)}</span>
           </button>
         </div>
-        {channels.length > 1 && <div ref={tabsRef} role="tablist" aria-labelledby={`${id}-pick`} className="demo-tabs" data-demo-tabs onKeyDown={onTabKey}>
+        {channels.length > 1 && <div ref={tabsRef} role="tablist" aria-labelledby={`${id}-pick`} className="demo-tabs" data-demo-tabs data-demo-tabs-count={channels.length} onKeyDown={onTabKey}>
           {channels.map((c) => {
             const Icon = ICON[c.key];
             const on = c.key === channel;
             return (
               <button key={c.key} type="button" role="tab" id={`${id}-tab-${c.key}`} aria-selected={on} aria-controls={panelId} tabIndex={on ? 0 : -1} onClick={() => choose(c.key)} className={cn("demo-tab", on && "demo-tab-on")} data-demo-tab={c.key} data-demo-tab-soon={soonTab(c) ? "true" : undefined}>
                 <Icon size={18} strokeWidth={2} aria-hidden="true" />
-                <span>{l(c.name)}</span>
+                <span>{l(B.tabs[c.key])}</span>
                 {soonTab(c) && <span className="demo-tab-soon">{claimWords.soon[locale]}</span>}
-                {/* 16.11. (the owner's point 8): no story bar — the rotation shows only as the quiet active state; `data-demo-run` counts the runs for the checks */}
               </button>
             );
           })}
@@ -212,11 +231,25 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
           <span className="demo-link-word">{l(W.toRecord)}</span>
         </div>
 
-        {/* 2 and 3 The record: it stands from the start (C1 of 07.11.: no half-empty surface) and fills field by field; then the state, the priority with its reason, the next step */}
-        <div className="demo-record" data-hero-record="" data-record-live={phase >= recordStart(script) ? "true" : "false"}>
+        {/* 2 and 3 The record / the task (screen 1-C): it stands from the start (C1 of 07.11.: no half-empty surface) and fills field by field;
+            then the state, the priority with its reason, the task with its reminder line */}
+        <div className="demo-record" data-hero-record="" data-record-live={phase >= recordStart(script) ? "true" : "false"} data-demo-task={isTask ? "true" : undefined}>
           <div className="demo-record-head">
-            <p className="demo-key">{script.record.title ? l(script.record.title) : l(W.record)}</p>
+            <p className="demo-key">{script.record.taskHead ? l(script.record.taskHead) : script.record.title ? l(script.record.title) : l(W.record)}</p>
             <p className="demo-record-updated tnum">{l(script.record.updated)}</p>
+          </div>
+          {isTask && (
+            <Item n={script.record.next.at} phase={phase} className="demo-next demo-task" data-hero-next="" data-demo-task-title="">
+              <span className="demo-key">{l(B.taskLabel)}</span>
+              <span className="demo-next-value">{l(script.record.next.v)}</span>
+              <span className="demo-next-sub">{l(script.record.next.sub)}</span>
+            </Item>
+          )}
+          <div className="demo-outcome">
+            <div className="demo-outcome-row" data-hero-recorded="" data-at={script.record.state.at}>
+              <span className="demo-key">{l(W.state)}</span>
+              <Item as="span" n={script.record.state.at} phase={phase} className="demo-value demo-state"><span aria-hidden="true" className="demo-state-dot" />{l(script.record.state.v)}</Item>
+            </div>
           </div>
           <dl className="demo-fields">
             {/* C1 (07.11.): the field names stand from the start; the values arrive one by one */}
@@ -226,27 +259,31 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
                 <dd className="demo-value"><Item as="span" n={f.at} phase={phase} className="demo-value-in">{l(f.v)}</Item></dd>
               </div>
             ))}
+            <div className="demo-field" data-hero-priority="" data-at={script.record.priority.at}>
+              <dt className="demo-key">{l(W.priority)}</dt>
+              <dd className="demo-value"><Item as="span" n={script.record.priority.at} phase={phase} className="demo-value-in"><span className="demo-priority">{l(script.record.priority.v)}</span> · {l(script.record.priority.why)}</Item></dd>
+            </div>
           </dl>
-          <div className="demo-outcome">
-            <div className="demo-outcome-row" data-hero-recorded="" data-at={script.record.state.at}>
-              <span className="demo-key">{l(W.state)}</span>
-              <Item as="span" n={script.record.state.at} phase={phase} className="demo-value demo-state"><span aria-hidden="true" className="demo-state-dot" />{l(script.record.state.v)}</Item>
+          {!isTask && (
+            <div className="demo-outcome">
+              <Item n={script.record.next.at} phase={phase} className="demo-next" data-hero-next="">
+                <span className="demo-key">{l(W.next)}</span>
+                <span className="demo-next-value">{l(script.record.next.v)}</span>
+                <span className="demo-next-sub">{l(script.record.next.sub)}</span>
+              </Item>
             </div>
-            <div className="demo-outcome-row" data-hero-priority="" data-at={script.record.priority.at}>
-              <span className="demo-key">{l(W.priority)}</span>
-              <Item as="span" n={script.record.priority.at} phase={phase} className="demo-value"><span className="demo-priority">{l(script.record.priority.v)}</span> · {l(script.record.priority.why)}</Item>
-            </div>
-            <Item n={script.record.next.at} phase={phase} className="demo-next" data-hero-next="">
-              <span className="demo-key">{l(W.next)}</span>
-              <span className="demo-next-value">{l(script.record.next.v)}</span>
-              <span className="demo-next-sub">{l(script.record.next.sub)}</span>
-            </Item>
-          </div>
+          )}
+          {script.record.note && <Item as="p" n={script.record.next.at} phase={phase} className="demo-task-note" data-demo-task-note="">{l(script.record.note)}</Item>}
         </div>
       </div>
 
+      {isTask && (
+        <Item as="p" n={script.record.next.at} phase={phase} className="demo-caption" data-demo-caption="">
+          <a href={`${localePath(locale)}#plans`} className="demo-caption-link" data-demo-to-plans>{l(B.toPlans)}<ArrowRight size={14} strokeWidth={2.2} aria-hidden="true" /></a>
+        </Item>
+      )}
       <p className="demo-foot" data-hero-state>
-        <span className="demo-foot-mark">{l(W.fictional)}</span>
+        <span className="demo-foot-mark">{l(brief1120.hero.scene.mark)}</span>
       </p>
     </div>
   );
@@ -257,12 +294,26 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
 /* ---------------------------------------------------------------------------------------------------------------------- */
 type S = { c: DemoChannel; phase: number; locale: Locale };
 
-/** WhatsApp: a chat with the contact's header, one message with its time, typing dots once, the reply with its time and one tick. */
+/** A bubble's text: Spanish on both pages (Copy batch 1 §1.1), the EN translation small under it on the EN page. */
+function BubbleText({ text, locale }: { text: Record<Locale, string>; locale: Locale }) {
+  return (
+    <>
+      <p lang="es">{text.es}</p>
+      {locale !== "es" && <p className="demo-msg-translation" data-demo-translation><span className="demo-msg-translation-label">{brief1120.hero.translation[locale]}:</span> {text.en}</p>}
+    </>
+  );
+}
+
+/** WhatsApp: a chat with the contact's header, the exchanges W-1 … W-4 with their times, typing dots before each reply. */
 function ChatSurface({ c, phase, locale }: S) {
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const ch = c.chat!;
+  const turns = ch.turns ?? [
+    { who: "customer" as const, text: ch.message, time: ch.time, at: 0 },
+    { who: "assistant" as const, text: ch.reply, time: ch.replyTime, at: ch.replyAt, typingAt: ch.typingAt },
+  ];
   return (
-    <div className="demo-chat" data-chat>
+    <div className="demo-chat" data-chat data-chat-turns={turns.length}>
       <div className="demo-chat-head">
         <span aria-hidden="true" className="demo-avatar" data-channel="whatsapp">{c.who.charAt(0)}</span>
         <div className="min-w-0">
@@ -272,18 +323,23 @@ function ChatSurface({ c, phase, locale }: S) {
         <Phone size={16} strokeWidth={2} aria-hidden="true" className="demo-chat-tool" />
       </div>
       <div className="demo-thread">
-        <Item n={0} phase={phase} className="demo-msg demo-msg-in" data-hero-enquiry="">
-          <p>{l(ch.message)}</p>
-          <span className="demo-msg-time tnum">{ch.time}</span>
-        </Item>
-        <div className="demo-reply-slot">
-          <span className="d-typing demo-msg demo-msg-out demo-typing" style={at(ch.typingAt)} data-at={ch.typingAt} aria-hidden="true"><i /><i /><i /></span>
-          <Item n={ch.replyAt} phase={phase} className="demo-msg demo-msg-out demo-reply" data-hero-reply="">
-            <p className="demo-msg-label">{l(demoWords.assistant)}</p>
-            <p>{l(ch.reply)}</p>
-            <span className="demo-msg-time tnum">{ch.replyTime}</span>
-          </Item>
-        </div>
+        {turns.map((t, i) => (
+          t.who === "customer" ? (
+            <Item key={i} n={t.at} phase={phase} className="demo-msg demo-msg-in" data-hero-enquiry={i === 0 ? "" : undefined} data-demo-turn={i + 1}>
+              <BubbleText text={t.text} locale={locale} />
+              <span className="demo-msg-time tnum">{t.time}</span>
+            </Item>
+          ) : (
+            <div key={i} className="demo-reply-slot">
+              {t.typingAt !== undefined && <span className="d-typing demo-msg demo-msg-out demo-typing" style={at(t.typingAt)} data-at={t.typingAt} aria-hidden="true"><i /><i /><i /></span>}
+              <Item n={t.at} phase={phase} className="demo-msg demo-msg-out demo-reply" data-hero-reply="" data-demo-turn={i + 1}>
+                <p className="demo-msg-label">{l(demoWords.assistant)}</p>
+                <BubbleText text={t.text} locale={locale} />
+                <span className="demo-msg-time tnum">{t.time}</span>
+              </Item>
+            </div>
+          )
+        ))}
       </div>
       <div className="demo-chat-input" aria-hidden="true"><span className="demo-chat-input-box" /><Mic size={16} strokeWidth={2} /></div>
     </div>

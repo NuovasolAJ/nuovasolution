@@ -43,6 +43,13 @@ export interface DemoChannel {
     replyAt: number;
     reply: L;
     replyTime: string;
+    /**
+     * Copy batch 1 §2 (c0975ad) / phone preview 1-B (11cf7a2): the whole conversation W-1 … W-4 when it has more than one exchange.
+     * A bubble stays Spanish on the EN page (automatic replies are Spanish only, `otherLanguages` hidden), with the EN translation small
+     * under it: `text.es` is what the surface shows, `text.en` the translation line. `message`/`reply` stay the first exchange (the hero
+     * and the flow story read them).
+     */
+    turns?: { who: "customer" | "assistant"; text: L; time: string; at: number; typingAt?: number }[];
   };
   mail?: {
     folder: L;
@@ -85,6 +92,9 @@ export interface DemoChannel {
     state: { v: L; at: number };
     priority: { v: L; why: L; at: number };
     next: { v: L; sub: L; at: number };
+    /** Copy phone preview 1-C: the task's head ("Tarea para Marta") and the reminder line under it (`reminders`). */
+    taskHead?: L;
+    note?: L;
   };
   /** The pause before each phase (index = the phase reached), in milliseconds. */
   timings: number[];
@@ -119,35 +129,44 @@ export const demoChannels: DemoChannel[] = [
     kind: "chat",
     claim: "replyWhatsapp",
     name: T("WhatsApp", "WhatsApp"),
-    who: "Laura",
+    // The owner's brief of 20.11. (p. 3, WhatsApp first) with Copy batch 1 §2 (c0975ad) and the phone preview 1-B/1-C (11cf7a2): a fictional
+    // buyer, Mila, three bedrooms in Nerja up to 350.000 €, asks whether ref. 9895153 is available and for a call back; W-1 … W-4; the
+    // finished task "Llamar a Mila hoy a partir de las 17:00 · Comprobar disponibilidad de la ref. 9895153"; the availability stays OPEN.
+    // The bubbles stay Spanish on the EN page (the translation under them); the UI words follow the locale. Laura stays the buyer of the later story.
+    who: "Mila",
     role: T("compradora", "buyer"),
     chat: {
       status: T("en línea", "online"),
-      time: "11:20",
-      message: T("Hola, soy Laura. Busco un piso de 2 dormitorios en Estepona, hasta 320.000 €. ¿Podría ver alguno la semana que viene?", "Hi, I'm Laura. I'm looking for a 2-bedroom flat in Estepona, up to €320,000. Could I see one next week?"),
+      time: "11:42",
+      message: T("Hola, busco un piso de 3 dormitorios en Nerja, hasta 350.000 €. ¿Sigue disponible la ref. 9895153? ¿Me podéis llamar?", "Hi, I'm looking for a 3-bedroom flat in Nerja, up to €350,000. Is ref. 9895153 still available? Could you call me?"),
       typingAt: 1,
       replyAt: 2,
-      // Copy 1117 §1.2 (the owner's point 5 of 16.11. evening): the wish restated, one question, what a person takes over — no time, no availability
-      reply: T("¡Hola, Laura! Gracias por escribirnos. Buscas un piso de 2 dormitorios en Estepona, hasta 320.000 €, y quieres verlo la semana que viene. ¿Qué días y a qué hora te vienen mejor? Con eso, una persona del equipo te escribe con opciones y te propone fecha para la visita.", "Hi Laura, thanks for writing to us. You're looking for a 2-bedroom flat in Estepona, up to €320,000, and you'd like to view next week. Which days and times suit you best? With that, someone on the team will write to you with options and propose a date for the viewing."),
-      replyTime: "11:21",
+      reply: T("Hola, Mila, soy el asistente de Marta. La disponibilidad de la ref. 9895153 te la confirma ella por teléfono. ¿A qué hora te viene bien que te llame?", "Hi Mila, I'm Marta's assistant. Marta will confirm by phone whether ref. 9895153 is available. What time suits you for her to call?"),
+      replyTime: "11:42",
+      turns: [
+        { who: "customer", text: T("Hola, busco un piso de 3 dormitorios en Nerja, hasta 350.000 €. ¿Sigue disponible la ref. 9895153? ¿Me podéis llamar?", "Hi, I'm looking for a 3-bedroom flat in Nerja, up to €350,000. Is ref. 9895153 still available? Could you call me?"), time: "11:42", at: 0 },
+        { who: "assistant", text: T("Hola, Mila, soy el asistente de Marta. La disponibilidad de la ref. 9895153 te la confirma ella por teléfono. ¿A qué hora te viene bien que te llame?", "Hi Mila, I'm Marta's assistant. Marta will confirm by phone whether ref. 9895153 is available. What time suits you for her to call?"), time: "11:42", at: 2, typingAt: 1 },
+        { who: "customer", text: T("Mejor esta tarde, a partir de las 17:00.", "Better this afternoon, from 5 pm."), time: "11:44", at: 3 },
+        { who: "assistant", text: T("Gracias, Mila. Se lo paso a Marta con tu horario.", "Thank you, Mila. I'm passing it to Marta with your time."), time: "11:44", at: 5, typingAt: 4 },
+      ],
     },
     record: {
-      title: T("Ficha de Laura", "Laura's record"),
-      updated: T("WhatsApp · 11:21", "WhatsApp · 11:21"),
+      title: T("Ficha de Mila", "Mila's record"),
+      updated: T("WhatsApp · 11:44", "WhatsApp · 11:44"),
       fields: [
-        { k: T("Intención", "Intent"), v: T("compra", "buying"), at: 3 },
-        { k: T("Zona", "Area"), v: T("Estepona", "Estepona"), at: 4 },
-        { k: T("Dormitorios", "Bedrooms"), v: T("2", "2"), at: 5 },
-        { k: T("Presupuesto", "Budget"), v: T("hasta 320.000 €", "up to €320,000"), at: 6 },
-        { k: T("Idioma", "Language"), v: T("español", "Spanish"), at: 7 },
-        { k: T("Canal", "Channel"), v: T("WhatsApp", "WhatsApp"), at: 8 },
-        { k: T("Visita", "Viewing"), v: T("la pide para la semana que viene", "asked for next week"), at: 9 },
+        { k: T("Busca", "Looking for"), v: T("3 dormitorios en Nerja, hasta 350.000 €", "3 bedrooms in Nerja, up to €350,000"), at: 6 },
+        { k: T("Pide", "Asks for"), v: T("Que la llamen, hoy a partir de las 17:00", "A call, today from 5 pm"), at: 7 },
+        { k: T("Abierto", "Open"), v: T("Disponibilidad de la ref. 9895153, sin confirmar", "Availability of ref. 9895153, not confirmed"), at: 8 },
+        { k: T("Llegó", "Arrived"), v: T("WhatsApp · 11:42", "WhatsApp · 11:42"), at: 9 },
       ],
-      state: { v: T("Consulta registrada", "Enquiry recorded"), at: 10 },
-      priority: { v: T("Alta", "High"), why: T("pide zona, presupuesto y visita", "names area, budget and a viewing"), at: 11 },
-      next: { v: T("Una persona de tu equipo le propone día y hora.", "Someone on your team proposes a day and time."), sub: T("Una petición de visita no es una cita: la confirma una persona.", "A viewing request is not an appointment: a person confirms it."), at: 12 },
+      state: { v: T("Respondida automáticamente · Llamada pendiente", "Answered automatically · Call still to make"), at: 10 },
+      priority: { v: T("Alta", "High"), why: T("nombró un inmueble y pide llamada", "named a property and asks for a call"), at: 11 },
+      // Copy c683f2f §2: the sub line tells an answered enquiry from personal attention
+      next: { v: T("Llamar a Mila hoy a partir de las 17:00 · Comprobar disponibilidad de la ref. 9895153", "Call Mila today from 5 pm · Check whether ref. 9895153 is available"), sub: T("Mila ya tiene respuesta. La llamada sigue esperando a Marta.", "Mila already has her answer. The call is still waiting for Marta."), at: 12 },
+      taskHead: T("Tarea para Marta", "Task for Marta"),
+      note: T("Si nadie coge la tarea en una hora, se lo recordamos a Marta.", "If nobody takes the task within an hour, we remind Marta."),
     },
-    timings: [0, 700, 2300, 500, 350, 350, 350, 350, 350, 350, 600, 500, 600],
+    timings: [0, 700, 2300, 1600, 600, 1800, 500, 400, 400, 400, 600, 500, 600],
   },
   {
     key: "email",

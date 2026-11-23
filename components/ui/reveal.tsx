@@ -14,13 +14,14 @@ export function Reveal({
   mode = "slide",
   as: Tag = "div",
   className,
+  ...rest
 }: {
   children: ReactNode;
   delay?: number;
   mode?: "slide" | "opacity";
   as?: ElementType;
   className?: string;
-}) {
+} & Record<`data-${string}`, string | undefined>) {
   const ref = useRef<HTMLElement | null>(null);
   useEffect(() => {
     const el = ref.current;
@@ -44,7 +45,7 @@ export function Reveal({
     return () => io.disconnect();
   }, []);
   return (
-    <Tag ref={ref} className={cn("reveal", className)} data-reveal={mode} style={{ ["--reveal-delay" as string]: `${Math.min(delay, 300)}ms` }}>
+    <Tag ref={ref} className={cn("reveal", className)} data-reveal={mode} style={{ ["--reveal-delay" as string]: `${Math.min(delay, 300)}ms` }} {...rest}>
       {children}
     </Tag>
   );

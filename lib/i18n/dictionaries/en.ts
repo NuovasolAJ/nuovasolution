@@ -20,7 +20,7 @@ export const en = {
     trial: "Access",
     contact: "Contact",
     login: "Log in",
-    startFree: "Start free",
+    startFree: "Try Essential free", // Copy stage 1 §3.4 (d8ebc77): only Essential has the free 14 days
     // The account corner once a session exists (audit order 2026-10-08b): WORKING
     account: "My agency",
     logout: "Log out",
@@ -161,7 +161,7 @@ export const en = {
       lead: "A buyer writes while you are at a viewing. NuovaSolution answers her in Spanish, records what she asked for and leaves your team one task.", // COPY_1019 R-2 // WORKING (master order 2026-10-10 §4, §5); was COPY_HERO_1003 §1
       state: "In Spanish, on WhatsApp and e-mail.", // Copy 1105 v3 §21, the state line under the buttons
       qualifier: "On the channels you connect.",
-      note: "14 days free. No payment.",
+      note: "14 days free on Essential, no card.", // Copy stage 1 §3.4
       ctaSecondary: "See how it works",
       cards: {
         synthetic: "Illustrative example",
@@ -277,13 +277,14 @@ export const en = {
     },
     access: {
       eyebrow: "Getting started",
-      h2: "14 days free, no payment",
-      lead: "Create your account, set your agency up yourself and decide with the system running. No payment during the trial, and no sales call needed.",
+      // Copy stage 1 §3.4 (d8ebc77), T-4: the trial is activated on request
+      h2: "Try Essential free for 14 days",
+      lead: "You request the trial, we write to you within 24 working hours and set it up with you. No card.",
       link: "See what is included",
       steps: [
-        { title: "Create your account", line: "Your name, your work email, a password. Then confirm your email." },
-        { title: "Name your agency", line: "You name your agency and move on to the setup." }, // COPY_DELTAS_1003 D-88: the trial starts on activation
-        { title: "Set it up yourself", line: "Your agency details, your legal details and your logo, plus your team and their roles." }, // D-51
+        { title: "Request your trial", line: "We write to you within 24 working hours and set it up with you." },
+        { title: "Connect your mailbox and your WhatsApp", line: "We test it with a real message." },
+        { title: "Your 14 days begin", line: "Every enquiry gets a reply in Spanish and lands on its record, with its priority and reason." },
       ],
       noCharge: "Nothing is charged, and we do not ask for a card at any point in these three steps.", // D-53
       viewCaption: "You set your agency up yourself, one step at a time.",
@@ -328,7 +329,7 @@ export const en = {
         h1: "More time for your clients.", // W-1
         lead: "NuovaSolution replies in Spanish to enquiries on WhatsApp and email, records what each client asks for and makes the next step clear.", // W-2
         ctaDemo: "See the demonstration", // W-3
-        trialLine: "14 days · No payment method", // owner 2026-10-06 §2, matches the real flow (no payment method, no card)
+        trialLine: "14 days on Essential · No card", // Copy stage 1 §3.4
         labels: { enquiry: "WhatsApp enquiry", reply: "Reply in Spanish", crm: "Customer record", next: "Next step" }, // COPY_HERO_1003 §2, W-4
         example: "Illustrative example",
         replay: "Play again",
@@ -348,8 +349,8 @@ export const en = {
       },
       // The trial, offered again after the demonstrations: the real steps, in their real order (owner 2026-10-06 §2).
       offer: {
-        cta: "Try free",
-        line: "14 days · No payment method",
+        cta: "Try Essential free", // Copy stage 1 §3.4
+        line: "14 days on Essential · No card",
         stepsTitle: "How you start", // WORKING
         steps: [
           { title: "Create your account", line: "Your name, your work email, a password." }, // WORKING
@@ -403,29 +404,28 @@ export const en = {
     // PRODUCT_TEXTS_C3_v1 §3: no price, interval or discount anywhere until PRICING_AUTHORITY exists.
     eyebrow: "Plans",
     // LAUNCH_COPY_v1 §5.1 interim wording (trial plan not Essential yet); the Essential wording after TRIAL_PLAN_ALIGNED.
-    h1Neutral: "Start with 14 days of trial",
-    leadNeutral: "14 days, no payment method. After that you choose a plan with us, and we tell you the price for your agency before anything is agreed.",
-    // COPY_DELTAS_0929 D-20, D-21: the Essential wording is released (PRODUCT_TRUTH_TABLE_v1 §G).
-    h1: "Start with a free 14-day pilot", // Copy 1116 §1.2
-    lead: "Start with a 14-day pilot with everything in Growth, free and with our support, and 7 more days if you give us your feedback. Then you choose your plan; we explain the price before anything is agreed. Enterprise you hire directly.", // Copy v2 §E // Copy 1116 §1.2
+    // Copy stage 1 §3.4 (d8ebc77): only Essential has the free 14 days
+    h1Neutral: "Choose your plan",
+    leadNeutral: "You can try Essential free for 14 days, no card. Growth starts with a demo, Enterprise with a conversation.",
+    h1: "Choose your plan",
+    lead: "You can try Essential free for 14 days, no card. Growth starts with a demo, Enterprise with a conversation.",
     plansEyebrow: "The plans",
     included: "Included",
     baselineHeading: "What every plan includes",
     baseline: ["CRM", "Lead Engine", "Automatic replies", "Basic follow up", "Property matching", "Core reporting"],
     baselineLine: "All plans include the replies, the record and the CRM. The team's tasks, from Growth.", // Copy 1105 v3 §21
     noPriceHeading: "Pricing",
-    noPriceBody: "We tell you the price for your agency before anything is agreed. There is no self-service billing. Start the free trial or talk to us.",
+    noPriceBody: "We tell you the price for your agency before anything is agreed. There is no self-service billing. Try Essential free or book a demo.", // Copy stage 1 §3.4
     notAvailable: "Billing self-service is not available.",
     stubNote: "Plan names and contents shown here come from a local stub while the backend connection is pending. They are not an offer.",
     plansAwaiting: "Plan names and contents are read from the backend. In this environment that connection is not available yet, so none are shown.",
-    cta: "Start free",
+    cta: "Try Essential free", // Copy stage 1 §3.4
     ctaSecondary: "Talk to us about plans",
     faqEyebrow: "Questions",
     faq: [
-      { q: "Do I need a card to start?", a: "No. Nothing is charged during the trial and no payment method is asked for." },
+      { q: "Do I need a card to try Essential?", a: "No. Nothing is charged and no card is asked for during the 14 days." }, // Copy stage 1 §3.4
       { q: "Can I pay online?", a: "Not on this site. We send an invoice and you pay by bank transfer." },
-      { q: "Do I have to talk to someone first?", a: "No. You can start on your own." }, // Copy 1105 v3 §21
-      { q: "What happens after 14 days?", a: "You keep your account and your data. Paid features pause until you choose a plan." },
+      { q: "Do I have to talk to someone first?", a: "Only to set up the trial: we write to you within 24 working hours. The demo is optional." }, // Copy stage 1 §3.4
     ],
     faqPublicAnswer: "No sales call is needed: write to us and we will show you the system.", // Copy 1105 v3 V-37
     tiersEyebrow: "Three plans, side by side",
@@ -435,13 +435,13 @@ export const en = {
     amountLine: "We tell you the price and the billing period before anything is agreed.", // D-29
     amountNote: "There is no card checkout and no automatic renewal. Receiving an invoice does not activate the plan; the confirmed payment does.",
     trialEyebrow: "Trial and expiry",
+    // Copy stage 1 §3.4: the second line (what happens after the trial) is left out until API answers O-6
     trialLines: [
-      "14 days, free, with no payment method.",
-      "Your account and your data stay. Paid features pause until you choose a plan. You can still log in.",
+      "14 days on Essential, free, no card.",
     ],
     // Pricing comparison (owner order 2026-09-29): what differs is shown once per plan, what is shared is said once.
     // Interim implementer wording until COPY_DELTAS_0929; amounts and the period come from PRICING_AUTHORITY (O-7).
-    noPaymentMethod: "No payment method", // COPY_SYNC_1024 X-11: one wording everywhere
+    noPaymentMethod: "No card", // Copy stage 1 T-2: one wording everywhere (replaces X-11)
     compareHeading: "What differs between the plans",
     compareLead: "Each package includes everything in the one before and adds features.", // final order 2026-10-12 §9: staged functions, not the same parts
     planColumn: "Plan",
@@ -449,9 +449,9 @@ export const en = {
     periodLine: "We state the price and the billing period in your proposal and on every invoice. Nothing is charged automatically.",
     planLines: { essential: "Answering and ordering what arrives. One office, a small team.", growth: "Following up, proposing and coordinating. A larger team.", scale: "Attracting, taking calls and presenting in 3D. Several offices." },
     // Trial badge and CTA move onto Essential only after the API signal TRIAL_PLAN_ALIGNED (audit R26).
-    trialBadge: "14 days of trial",
+    trialBadge: "14 days free", // Copy stage 1 §3.4: only on the Essential card
     trialBadgeAligned: "14 days free", // D-22: the chip sits on the Essential card only
-    ctaTrialEssential: "Request a proposal", // C-12
+    ctaTrialEssential: "Try Essential free", // Copy stage 1 §3.4
     limitsHeading: "Limits",
     limits: { offices: "Offices", seats: "Seats", leads_month: "Capacity: enquiries a month", crm_connections: "CRM connections", voice_minutes: "Voice minutes", unlimited: "Unlimited", none: "None" },
     featuresHeading: "Included",
@@ -470,7 +470,7 @@ export const en = {
       "channel.voice": "Voice",
       "feed.structured": "Structured property feed",
     },
-    ctaTrial: "Start free",
+    ctaTrial: "Try Essential free", // Copy stage 1 §3.4
     ctaProposal: "Request a proposal",
     payEyebrow: "How paying works",
     payH2: "An invoice, paid by bank transfer",
@@ -486,15 +486,15 @@ export const en = {
 
   trial: {
     eyebrow: "Trial",
-    h1: "Try it free for 14 days.", // Copy 1105 v3 §21
+    h1: "Try Essential free for 14 days.", // Copy stage 1 §3.4
     state: "",
     lead: "Set your agency up and decide with the system running.",
-    ctaPrimary: "Start free",
+    ctaPrimary: "Request your Essential trial", // Copy stage 1 §3.4 (T-4)
     ctaSecondary: "See the packages",
     howEyebrow: "How it works",
     howH2: "The conditions, in plain sight.",
     how: [
-      { title: "14 days free", line: "Create your agency account and set up your own environment." },
+      { title: "14 days free on Essential", line: "We write to you within 24 working hours and set up the trial with you." }, // Copy stage 1 §3.4
     ],
     honesty: {
       h2: "What the website never does",
@@ -531,8 +531,8 @@ export const en = {
     demoH2: "Request a demo", // D-31
     demoBody: "We walk you through the system on a real example and you can ask anything. No slide deck.", // D-32
     demoCta: "Request a demo",
-    trialH2: "Or just start",
-    trialBody: "Try it free for 14 days. No payment method, no sales call.", // Copy 1105 v3 §21
+    trialH2: "Or try Essential", // Copy stage 1 §3.4
+    trialBody: "14 days free, no card and no sales call.",
     // A plan interest from the packages page is carried into the request (audit Z03, Z11). The plan name comes from the catalog.
     planInterest: "Plan of interest: {plan}",
     planInterestBody: "Write to us with your agency's name and we send you a proposal for this plan.",
@@ -1119,7 +1119,7 @@ export const en = {
     error: "That did not send. Try once more, or contact a person.",
     tooLong: "Please keep it under 4000 characters.",
     suggestionsLabel: "Common questions",
-    suggestions: ["Does NuovaSolution answer WhatsApp enquiries at night?", "Do I need to change my CRM?", "What happens after the 14 day trial?"],
+    suggestions: ["Does NuovaSolution answer WhatsApp enquiries at night?", "Do I need to change my CRM?", "What does the free Essential trial include?"], // Copy stage 1 §3.4
   },
 
   media: {

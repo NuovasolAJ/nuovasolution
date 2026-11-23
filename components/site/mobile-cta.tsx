@@ -4,18 +4,18 @@ import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
 /**
- * The phone's fixed bar with the one main action (the owner's A3 of 07.11.2026): it appears once the hero's own action has scrolled
- * away and hides again while the close's buttons are on screen, so the main action is always reachable without ever standing twice
- * on one screen. Hidden on windows from 1024 px (CSS). The link carries data-hero-cta="demo" so the demonstration's run listener
- * treats it like the hero's button. The label is the hero's main label (Copy; T-1 when the wording changes).
+ * The phone's fixed bar with the one global action (the owner's A3 of 07.11.2026; Copy stage 1 §0: "Prueba Essential gratis", the plan
+ * named on purpose). The owner's brief of 20.11. (p. 4): the bar hides where the matching local button is already on screen and
+ * where it would cover content — so it appears only once the hero's own actions have scrolled away, and hides while ANY plan or
+ * request button (`[data-pilot-cta]`) is on screen, inside the plans section (every card has its own button), inside the request form
+ * and while the close's buttons are on screen. Hidden on windows from 1024 px (CSS). The link carries data-hero-cta="trial".
  */
 export function MobileCta({ href, label }: { href: string; label: string }) {
   const [shown, setShown] = useState(false);
   useEffect(() => {
     const hero = document.querySelector("[data-hero-words]");
     if (!hero) return;
-    // 16.11. (the owner's point 2): the bar never stands under an equal button — it hides while any pilot button is on screen
-    const ctas = Array.from(document.querySelectorAll("[data-pilot-cta]"));
+    const ctas = Array.from(document.querySelectorAll("[data-pilot-cta], [data-plans], [data-pilot-card]"));
     const visible = new Set<Element>();
     let heroOut = false;
     const apply = () => setShown(heroOut && visible.size === 0);
@@ -27,7 +27,7 @@ export function MobileCta({ href, label }: { href: string; label: string }) {
   }, []);
   return (
     <div className="mcta" data-mobile-cta={shown ? "shown" : "hidden"} aria-hidden={!shown}>
-      <a href={href} className="mcta-main lift" data-hero-cta="demo" tabIndex={shown ? 0 : -1}>{label}<ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" /></a>
+      <a href={href} className="mcta-main lift" data-hero-cta="trial" tabIndex={shown ? 0 : -1}>{label}<ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" /></a>
     </div>
   );
 }
