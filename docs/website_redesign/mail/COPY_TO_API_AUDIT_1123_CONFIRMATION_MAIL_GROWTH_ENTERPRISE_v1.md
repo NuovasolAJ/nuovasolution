@@ -100,9 +100,12 @@
 |---|---|---|
 | `brief-1120.ts` `contact.done.contract.next[0]` | Te enviamos el precio y el contrato por escrito. | We send you the price and the contract in writing. |
 | `contact.done.contract.next[1]` | Lo revisas con calma y vemos contigo cualquier duda. | You read it at your own pace, and we go through any questions with you. |
-| `contact.done.contract.next[2]` | Firmas solo si te encaja, y preparamos {plan} contigo. | You sign only if it suits you, and we set up {plan} with you. |
+| `contact.done.contract.next[2]` | Firmas solo si te encaja, y lo preparamos todo contigo. | You sign only if it suits you, and we set everything up with you. |
 
-**`{plan}`** is the plan from the link, as in `contact.contract.h`. `contact.done.contract.h` stays as it is.
+**No placeholder (corrected after RV6 `ef25eff`).** The first version of step 3 had "{plan}".
+- In the build, `{plan}` is filled in only in the card heading (`pilot-request.ts:20`), not in the confirmation's `next`.
+- Its fallback "un plan" would read "preparamos un plan contigo".
+- The step names no plan; the heading above it already does. `contact.done.contract.h` stays as it is.
 
 **For the timing:** the candidate `bea7d19` stays unchanged until RV6 has measured. These lines go into the first follow-up.
 
