@@ -43,3 +43,19 @@ As soon as your commit is there:
 
 At the end every test row is erased. The evidence file goes to the repo with the run time.
 **Prod:** nothing. That comes with the owner line PILOT-FORMULAR-PROD, which needs this test green first.
+
+## 4. Check 1 over real HTTP, 12:22Z, website 32236c1 (route clean) against the staging intake: 5/7
+
+**Green:**
+- **H1:** a real request comes through: 200 `sent`, one row with `consent = true`, the way `trial`, the task "Solicitud de prueba Essential: …". **The F-e blocker is gone.**
+- **H4:** the honeypot answers `simulated` and stores nothing.
+- **H5:** a production build without the intake answers 503 `intake_unconfigured` (F-b green).
+- **H6:** no lead row was created.
+- **H7:** cleanup left nothing.
+
+**Red:**
+- **H2 and H3:** without `consent`, or with `"true"` as a string, the BFF answers **502 `intake_failed`**. Nothing is stored, but the visitor sees an outage instead of a form error.
+- This is §2 point 2 of the contract. 32236c1 was committed before the contract.
+
+**The one line, in `route.ts`:** add `b.consent !== true && "consent"` to `missing`.
+I check again on your next commit (`node scripts/cert/stg_fe_consent_http.mjs`, n8n-system repo). Evidence: `governance/evidence/stg_fe_consent_http_1123.json`.
