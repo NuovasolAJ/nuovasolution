@@ -12,7 +12,8 @@ import { cn } from "@/lib/utils";
  * The plans. The owner's brief of 20.11.2026 (p. 5) with Copy's stage 1 (d8ebc77) and screen 2-A (11cf7a2): three tiers, each with its
  * audience, its 2–3 differences (API confirms them — until then Copy's draft, marked `data-plan-diffs="api-pending"`), ONE main
  * action — Essential the free 14-day trial (activated on request), Growth a demo, Enterprise a conversation — with the line under it
- * and, small, what happens after the click; "Ver todo lo que incluye" and "Contratar directamente" are quiet text links, not buttons
+ * and, small, what happens after the click; "Ver todo lo que incluye" and "Solicitar contratación" (the owner's R-4 line, 23.11.: it opens
+ * the contract request with the plan kept, only under Essential and Growth where that request is handled) are quiet text links, not buttons
  * (the owner's M6: three wide elements looked like three main actions). The desktop keeps the comparison matrix (a ✓ where the plan
  * includes the function, "—" where not, "Opcional" for the separately booked 3D service); its foot carries the same one action per
  * plan. Every card's main action carries `data-pilot-cta`, so the phone's fixed bar hides while a card's own button is on screen

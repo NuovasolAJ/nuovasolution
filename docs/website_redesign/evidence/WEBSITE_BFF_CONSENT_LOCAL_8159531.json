@@ -1,0 +1,13 @@
+{
+ "at": "2026-11-23T12:57:22Z",
+ "website_commit": "8159531",
+ "mode": "local next start, no intake environment (simulation; the real intake run is API's)",
+ "checks": [
+  {"id":"H1","expected":"200 (here: simulated, no intake env; API's staging run: sent + row)","status":200,"body":{"ok":true,"delivery":"simulated"},"pass":true},
+  {"id":"H2","expected":"422 fields [consent] from the BFF","status":422,"body":{"ok":false,"error":"missing","fields":["consent"]},"pass":true},
+  {"id":"H3","expected":"422 like H2 (consent as a string)","status":422,"body":{"ok":false,"error":"missing","fields":["consent"]},"pass":true},
+  {"id":"H4","expected":"200 simulated (honeypot)","status":200,"body":{"ok":true,"delivery":"simulated"},"pass":true},
+  {"id":"H5","expected":"503 intake_unconfigured (production without intake)","status":503,"body":{"ok":false,"error":"intake_unconfigured"},"pass":true,"note":"first run hit the previous server that was still listening on the port; re-run alone on a fresh port with VERCEL_ENV=production at 12:59Z"}
+ ],
+ "pass": "5/5 of the BFF's own answers (H6/H7 are the intake's rows and belong to API's staging run)"
+}
