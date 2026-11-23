@@ -253,8 +253,9 @@ export const es: Dictionary = {
       lead: "Pides la prueba, te escribimos en 24 h laborables y la activamos contigo. Sin tarjeta.",
       link: "Ver qué incluye",
       steps: [
-        { title: "Pide tu prueba", line: "Te escribimos en 24 h laborables y la activamos contigo." },
-        { title: "Conecta tu buzón y tu WhatsApp", line: "Lo probamos con un mensaje real." },
+        // Copy 31d749b §6.3 (Q-1 = on request), WORKING
+        { title: "Pide tu prueba", line: "Te escribimos en 24 h laborables y la preparamos contigo." },
+        { title: "Preparamos tu agencia contigo", line: "Tus datos, tus datos legales, tu logo y tu equipo." },
         { title: "Empiezan tus 14 días", line: "Cada consulta recibe respuesta en español y queda en su ficha, con su prioridad y su motivo." },
       ],
       noCharge: "No se cobra nada y no pedimos ninguna tarjeta en ninguno de estos tres pasos.", // D-53
@@ -412,7 +413,7 @@ export const es: Dictionary = {
     planColumn: "Plan",
     periodHeading: "Precio y periodo de facturación",
     periodLine: "Indicamos el precio y el periodo de facturación en tu propuesta y en cada factura. No se cobra nada de forma automática.",
-    planLines: { essential: "Responder y ordenar lo que llega. Una oficina, un equipo pequeño.", growth: "Seguir, proponer y coordinar. Un equipo más grande.", scale: "Captar, atender llamadas y presentar en 3D. Varias oficinas." },
+    planLines: { essential: "Responder y ordenar lo que llega. Una oficina, un equipo pequeño.", growth: "Para un equipo más grande.", scale: "Para agencias grandes." }, // Copy 31d749b §6.1
     trialBadge: "14 días gratis", // Copy stage 1 §3.4: only on the Essential card
     trialBadgeAligned: "14 días gratis",
     ctaTrialEssential: "Prueba Essential gratis", // Copy stage 1 §3.4
@@ -470,7 +471,7 @@ export const es: Dictionary = {
     filmH2: "Qué aportas tú, y qué ves después.",
     stepsEyebrow: "Tu entorno",
     stepsH2: "La preparamos contigo, paso a paso.", // Copy S-6 (23.11.): Essential starts on request, not self-set-up; stepsLead stays until Q-1
-    stepsLead: "Paso a paso, a tu ritmo. Tu progreso queda guardado, así que puedes parar y retomarlo donde lo dejaste.",
+    stepsLead: "Lo que ya está hecho queda guardado: si paramos, seguimos donde lo dejamos.", // Copy 31d749b §6.3
     steps: [
       { title: "Cuenta", line: "Tu nombre, tu email, tu idioma." },
       { title: "Datos de la agencia", line: "Nombre de la empresa, dirección, datos de contacto y los idiomas en los que trabajas." },
@@ -502,9 +503,9 @@ export const es: Dictionary = {
   },
 
   signup: {
-    eyebrow: "Empieza gratis",
+    eyebrow: "Tu prueba de Essential", // Copy 31d749b §6.3
     h1: "Crea la cuenta de tu agencia",
-    lead: "14 días gratis. Sin pago.",
+    lead: "14 días gratis con Essential, sin tarjeta.", // Copy 31d749b §6.3
     fields: {
       name: "Tu nombre",
       agency: "Nombre de la agencia",
@@ -711,7 +712,7 @@ export const es: Dictionary = {
     },
     register: {
       heading: "Pon nombre a tu agencia",
-      lead: "Tu acceso funciona. Este último paso crea tu agencia; los 14 días empiezan cuando la actives.", // D-89
+      lead: "Tu acceso funciona. Este último paso crea tu agencia; los 14 días empiezan cuando activemos tu prueba contigo.", // D-89; Copy 31d749b §6.3
       agencyName: "Nombre de la agencia",
       agencyNameHelp: "El nombre con el que te conocen tus clientes.",
       language: "Idioma principal con tus clientes",

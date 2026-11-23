@@ -1,5 +1,9 @@
 import type { Locale } from "@/lib/i18n/config";
 import type { ClaimKey, PlanCode } from "@/lib/claims";
+import { catalogPlans } from "@/lib/content/plans";
+
+/** Copy 31d749b §6.1: Enterprise's seats come from the plan row (code "scale" in the catalogue), never typed by hand. */
+const ENTERPRISE_SEATS = catalogPlans.find((p) => p.code === "scale")?.limits.seats ?? 50;
 
 /**
  * The owner's brief of 20.11.2026 ("Die Website für den Makleralltag", OWNER_BRIEF_1120_THEMA16_v1.md, topic 16): one viewing as the
@@ -7,7 +11,7 @@ import type { ClaimKey, PlanCode } from "@/lib/claims";
  * (COPY_TO_REDESIGN_1120_BRIEF_MAKLERALLTAG_BATCH1_v1.md, c0975ad) §1–§2 for the hero scene and the WhatsApp moment, and Copy's stage 1
  * (COPY_TO_REDESIGN_1120_ETAPPE1_OFFER_v1.md, d8ebc77) for the offer from the first button to the confirmation — its rules: T-1 every
  * free-14-days sentence names Essential; T-2 "sin tarjeta" / "no card"; T-3 no "piloto"/"pilot" on customer pages; T-4 the trial is
- * activated ON REQUEST (the owner's Q-1 still open; the sign-up is one line away, `href.essential`). The lines marked WORKING are
+ * activated ON REQUEST (the owner's Q-1 decided 23.11.: on request; the sign-up stays one line away, `href.essential`). The lines marked WORKING are
  * Redesign's until Copy's stage 2. The brief's two reversals: customer pages carry finished statements (lib/view-query.ts VIEW_DEFAULT)
  * and the trial belongs to Essential alone (13.11.'s one offer "Solicita tu piloto gratuito" everywhere is retired).
  */
@@ -60,7 +64,7 @@ export const brief1120 = {
     /** Copy phone preview 2-A (11cf7a2). */
     h2: T("Elige tu plan", "Choose your plan"),
     price: T("Te decimos el precio para tu agencia antes de acordar nada.", "We tell you the price for your agency before anything is agreed."),
-    who: { essential: T("Para una oficina", "For one office"), growth: T("Para equipos que se reparten el trabajo", "For teams that share the work"), enterprise: T("Para varias oficinas", "For several offices") } satisfies Record<PlanCode, L>,
+    who: { essential: T("Para una oficina", "For one office"), growth: T("Para equipos que se reparten el trabajo", "For teams that share the work"), enterprise: T("Para agencias grandes", "For larger agencies") } satisfies Record<PlanCode, L>, // Copy 31d749b §6.1: offices are no function (API bd7a685, register line 42)
     adds: { essential: null, growth: T("Todo lo de Essential, y además:", "Everything in Essential, plus:"), enterprise: T("Todo lo de Growth, y además:", "Everything in Growth, plus:") } satisfies Record<PlanCode, L | null>,
     /** Copy batch 1 §3.1 with their register keys — shown only once API confirms them (DIFFERENCES_CONFIRMED_BY_API); `phoneAssistant` on no card until A-2. */
     differences: {
@@ -75,7 +79,8 @@ export const brief1120 = {
         { text: T("Seguimiento de tus contactos, con su permiso.", "Follow-up with your contacts, with their permission."), keys: ["followup"] },
       ],
       enterprise: [
-        { text: T("Varias oficinas en una sola cuenta.", "Several offices in one account."), keys: [] },
+        // Copy 31d749b §6.1: {n} read from the plan row's seats (API bd7a685 §3), never typed by hand
+        { text: T(`Hasta ${ENTERPRISE_SEATS} personas en la cuenta.`, `Up to ${ENTERPRISE_SEATS} people on the account.`), keys: ["teamRoles"] },
         { text: T("Clientes nuevos desde tus redes sociales.", "New clients from your social media."), keys: ["instagram"] },
       ],
     } satisfies Record<PlanCode, { text: L; keys: ClaimKey[] }[]>,

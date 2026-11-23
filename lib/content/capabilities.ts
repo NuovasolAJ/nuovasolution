@@ -197,7 +197,7 @@ export const capabilities: Capability[] = [
       { text: { en: "Leads recorded with what each customer asked for, included.", es: "Leads registrados con lo que ha pedido cada cliente, incluido." }, status: "live" }, // WCR-071, interim wording 2026-10-01 (no qualification claim)
       // WCR-072 Google Sheets: no line until the contradiction of MAIL_CRM_MATRIX_v1 is resolved (TEXTS_1013 §6b M-6).
       { text: { en: "The conversation history on the customer record.", es: "El historial de conversación en la ficha del cliente." }, status: "live" }, // WCR-073
-      { text: { en: "HubSpot, Pipedrive, Zoho CRM and Salesforce.", es: "HubSpot, Pipedrive, Zoho CRM y Salesforce." }, status: "certified_gate_pending" },
+      { text: { en: "Connection to your CRM.", es: "Conexión con tu CRM." }, status: "certified_gate_pending" }, // Copy 31d749b D-7: no CRM names shown as available
     ],
     scenario: {
       // WCR-075

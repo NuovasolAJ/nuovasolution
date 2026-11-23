@@ -282,8 +282,9 @@ export const en = {
       lead: "You request the trial, we write to you within 24 working hours and set it up with you. No card.",
       link: "See what is included",
       steps: [
+        // Copy 31d749b §6.3 (Q-1 = on request), WORKING
         { title: "Request your trial", line: "We write to you within 24 working hours and set it up with you." },
-        { title: "Connect your mailbox and your WhatsApp", line: "We test it with a real message." },
+        { title: "We set up your agency with you", line: "Your details, legal details, logo and team." },
         { title: "Your 14 days begin", line: "Every enquiry gets a reply in Spanish and lands on its record, with its priority and reason." },
       ],
       noCharge: "Nothing is charged, and we do not ask for a card at any point in these three steps.", // D-53
@@ -447,7 +448,7 @@ export const en = {
     planColumn: "Plan",
     periodHeading: "Price and billing period",
     periodLine: "We state the price and the billing period in your proposal and on every invoice. Nothing is charged automatically.",
-    planLines: { essential: "Answering and ordering what arrives. One office, a small team.", growth: "Following up, proposing and coordinating. A larger team.", scale: "Attracting, taking calls and presenting in 3D. Several offices." },
+    planLines: { essential: "Answering and ordering what arrives. One office, a small team.", growth: "For a larger team.", scale: "For larger agencies." }, // Copy 31d749b §6.1
     // Trial badge and CTA move onto Essential only after the API signal TRIAL_PLAN_ALIGNED (audit R26).
     trialBadge: "14 days free", // Copy stage 1 §3.4: only on the Essential card
     trialBadgeAligned: "14 days free", // D-22: the chip sits on the Essential card only
@@ -507,7 +508,7 @@ export const en = {
     filmH2: "What you provide, and what you see afterwards.",
     stepsEyebrow: "Your environment",
     stepsH2: "We set it up with you, step by step.", // Copy S-6 (23.11.): Essential starts on request, not self-set-up; stepsLead stays until Q-1
-    stepsLead: "One step at a time, in your own time. Your progress is saved, so you can stop and pick up where you left off.",
+    stepsLead: "What is done stays saved: if we stop, we pick up where we left off.", // Copy 31d749b §6.3
     steps: [
       { title: "Account", line: "Your name, your email, your language." },
       { title: "Agency details", line: "Company name, address, contact details and the languages you work in." },
@@ -541,9 +542,9 @@ export const en = {
 
   signup: {
     // AUTH_COPY_v1 §1. The payment sentence appears once on the page, here in the lead.
-    eyebrow: "Start free",
+    eyebrow: "Your Essential trial", // Copy 31d749b §6.3
     h1: "Create your agency account",
-    lead: "14 days free. No payment.",
+    lead: "14 days free on Essential, no card.", // Copy 31d749b §6.3
     fields: {
       name: "Your name",
       agency: "Agency name",
@@ -761,7 +762,7 @@ export const en = {
     // AUTH_COPY_v1 §4
     register: {
       heading: "Name your agency",
-      lead: "Your login works. This last step creates your agency, and the 14 days start when you activate it.", // D-89
+      lead: "Your login works. This last step creates your agency, and the 14 days start when we activate your trial with you.", // D-89; Copy 31d749b §6.3
       agencyName: "Agency name",
       agencyNameHelp: "The name your customers know.",
       language: "Main language with your customers",

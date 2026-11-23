@@ -476,7 +476,8 @@ export const home1103 = {
       return [
         T("Respuestas, fichas e informe para una oficina.", "Replies, records and report for one office.")[locale],
         growthParts.length ? (locale === "es" ? `Todo lo de Essential, más el trabajo del equipo: ${join(growthParts)}.` : `Everything in Essential, plus the team's work: ${join(growthParts)}.`) : T("Todo lo de Essential, para un equipo más grande.", "Everything in Essential, for a larger team.")[locale],
-        entParts.length ? (locale === "es" ? `Todo lo de Growth, para varias oficinas, con ${join(entParts)}.` : `Everything in Growth, for several offices, with ${join(entParts)}.`) : T("Todo lo de Growth, para varias oficinas.", "Everything in Growth, for several offices.")[locale],
+        // Copy 31d749b §6.1 (register line 42): offices are no function, the audience is "agencias grandes"
+        entParts.length ? (locale === "es" ? `Todo lo de Growth, para agencias grandes, con ${join(entParts)}.` : `Everything in Growth, for larger agencies, with ${join(entParts)}.`) : T("Todo lo de Growth, para agencias grandes.", "Everything in Growth, for larger agencies.")[locale],
       ];
     },
     inherits: T("Cada plan incluye todo lo del anterior.", "Each plan includes everything in the one before."),
@@ -502,8 +503,9 @@ export const home1103 = {
     rows: [
       { g: 0, icon: "reply", key: "replyWhatsapp" as ClaimKey, name: T("Respuestas en español por ⟦canales⟧", "Replies in Spanish on ⟦canales⟧") },
       { g: 0, icon: "languages", key: "languageNoted" as ClaimKey, name: T("Detección del idioma", "Language detection") },
-      { g: 0, icon: "mail", key: "labels" as ClaimKey, name: T("Etiquetas en el buzón", "Labels in the mailbox") },
-      { g: 0, icon: "whatsapp", key: "whatsappOwnNumber" as ClaimKey, name: T("WhatsApp con el número de tu agencia", "WhatsApp with your agency's own number") },
+      { g: 0, icon: "mail", key: "mailboxConnection" as ClaimKey, name: T("Tu correo de Gmail o de Outlook", "Your Gmail or Outlook mailbox") }, // Copy 018ba6c §6.4: Outlook is a mailbox, not a CRM
+      { g: 0, icon: "mail", key: "labels" as ClaimKey, name: T("Etiquetas en tu bandeja de Gmail", "Labels in your Gmail inbox") }, // Copy 31d749b D-8 (register line 14: Outlook has no labels)
+      { g: 0, icon: "whatsapp", key: "whatsappOwnNumber" as ClaimKey, name: T("WhatsApp, con el número de tu agencia o con el nuestro", "WhatsApp, on your agency's number or on ours") }, // Copy 018ba6c §6.4 (register line 3)
       { g: 0, icon: "phone", key: "phoneAssistant" as ClaimKey, name: T("Asistente telefónico", "Phone assistant") },
       { g: 0, icon: "instagram", key: "instagram" as ClaimKey, name: T("Publicar en Instagram", "Posting on Instagram") },
       { g: 1, icon: "crm", key: "crm" as ClaimKey, name: T("Ficha en el CRM integrado, con canal de origen", "Record in the built-in CRM, with channel of origin") },
@@ -515,13 +517,14 @@ export const home1103 = {
       { g: 3, icon: "report", key: "reportInLogin" as ClaimKey, name: T("Informe en el acceso de tu agencia", "Report in your agency's login") },
       { g: 3, icon: "mail", key: "weeklyEmail" as ClaimKey, name: T("Resumen semanal por email", "Weekly e-mail summary") },
       { g: 3, icon: "trend", key: "reportTrend" as ClaimKey, name: T("Informe ampliado: evolución, canales y conclusiones", "Extended report: trend, channels and insights") },
-      { g: 4, icon: "integrations", key: "integrations" as ClaimKey, name: T("HubSpot, Pipedrive, Zoho, Salesforce⟦outlook⟧", "HubSpot, Pipedrive, Zoho, Salesforce⟦outlook⟧") },
+      // Copy 31d749b D-7 (the owner, 23.11.): no CRM names shown as available; "Conexión con tu CRM" until Copy has the Spanish list
+      { g: 4, icon: "integrations", key: "integrations" as ClaimKey, name: T("Conexión con tu CRM", "Connection to your CRM") }, // Copy 018ba6c §6.4: Outlook sits in the mailbox row
       { g: 4, icon: "ads", key: "adsLeads" as ClaimKey, name: T("Leads de portales y anuncios", "Leads from portals and ads") },
       { g: 5, icon: "model3d", key: "model3d" as ClaimKey, name: T("Visualización 3D", "3D visualisation") }, // Copy 1116 §7.1
     ],
     /** P-8: Outlook stands in the integrations row only while `outlook` is live. */
     // RV6 04ea648 (C-4): the replies row fills ⟦canales⟧ from the reply channels only (`only`), the same list its cell reads
-    rowName: (name: L, locale: Locale, view: ClaimView, only?: ClaimKey[]): string => withChannels(name[locale].replace("⟦outlook⟧", live("outlook", view) ? ", Outlook" : ""), locale, view, only),
+    rowName: (name: L, locale: Locale, view: ClaimView, only?: ClaimKey[]): string => withChannels(name[locale].replace("⟦outlook⟧", live("outlook", view) ? (locale === "es" ? " y con Outlook" : " and to Outlook") : ""), locale, view, only),
     /** Copy 1116 §10 W-1: the public wording of the replies row while the agency's own WhatsApp number is not registered (topic 20). */
     // 16.11. 14:00 (the owner's point 8): the public view never mentions the agency's WhatsApp before topic 20 — Copy's W-1 second sentence leaves
     repliesRowPublic: T("Respuestas en español por email.", "Replies in Spanish by email."),
@@ -593,8 +596,11 @@ export const home1103 = {
         { q: T("¿Avisa a mi equipo?", "Does it alert my team?"), a: T("Sí. Cuando una consulta es importante, avisa por email a la persona que toca, con el motivo.", "Yes. When an enquiry is important, it alerts the right person by e-mail, with the reason.") },
         // Copy 1113 §6: the free pilot, both views
         // Copy stage 1 §3.1 (d8ebc77): only Essential has the free 14 days
-        { q: T("¿Cómo empiezo?", "How do I start?"), a: T("Con Essential: pides la prueba gratuita de 14 días y te escribimos en 24 h laborables para activarla. ¿Más de un equipo o varias oficinas? Pide una demo de Growth o habla con nosotros sobre Enterprise.", "With Essential: you request the free 14-day trial and we write to you within 24 working hours to set it up. More than one team, or several offices? Book a Growth demo or talk to us about Enterprise.") },
-        { q: T("¿Funciona con mi CRM?", "Does it work with my CRM?"), a: byKey("integrations", view, T("Incluye un CRM. También se conecta con HubSpot, Pipedrive, Zoho y Salesforce.", "It includes a CRM. It also connects to HubSpot, Pipedrive, Zoho and Salesforce."), T("Incluye un CRM.", "It includes a CRM.")) },
+        { q: T("¿Cómo empiezo?", "How do I start?"), a: T("Con Essential: pides la prueba gratuita de 14 días y te escribimos en 24 h laborables para activarla. ¿Un equipo más grande? Pide una demo de Growth o habla con nosotros sobre Enterprise.", "With Essential: you request the free 14-day trial and we write to you within 24 working hours to set it up. A larger team? Book a Growth demo or talk to us about Enterprise.") }, // Copy 31d749b §6.1
+        // Copy 018ba6c §6.4 (D-7): CRMs relevant in Spain, built on request — no automatic "se conecta"
+        { q: T("¿Funciona con mi CRM?", "Does it work with my CRM?"), a: byKey("integrations", view, T("Incluye su propio CRM. Si ya trabajas con otro, vemos contigo cómo conectarlo.", "It includes its own CRM. If you already work with another one, we look at connecting it with you."), T("Incluye su propio CRM.", "It includes its own CRM.")) },
+        // Copy 018ba6c §6.4 (register line 3): WhatsApp on our number until the agency has its own
+        { q: T("¿Necesito un número de WhatsApp Business?", "Do I need a WhatsApp Business number?"), a: T("No. Puedes empezar con el número de WhatsApp de NuovaSolution y pasar al de tu agencia cuando lo tengas.", "No. You can start on NuovaSolution's WhatsApp number and move to your agency's own number when you have one.") },
         { q: T("¿Cuánto cuesta?", "What does it cost?"), a: T("La prueba de Essential es gratuita. El precio de cada plan te lo decimos antes de acordar nada.", "The Essential trial is free. We tell you the price of each plan before anything is agreed.") },
       ];
       return items.filter((it): it is { q: L; a: L } => it.a !== null).map((it) => ({ q: it.q[locale], a: withChannels(it.a[locale], locale, view) }));

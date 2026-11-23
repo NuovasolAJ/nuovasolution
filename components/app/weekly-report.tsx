@@ -101,12 +101,19 @@ export function WeeklyReportView({ locale, report }: { locale: Locale; report: W
       </dl>
 
       <section aria-labelledby="rep-channels" className="stage p-6">
-        <h2 id="rep-channels" className="t-heading-s text-text-primary">{l(w.byChannel)}</h2>
-        <ul className="mt-3 divide-y divide-line-hairline border-y border-line-hairline">
-          {channels.map((ch) => (
-            <li key={ch} className="flex items-baseline justify-between gap-3 py-2.5 t-body-s"><span className="text-text-secondary">{l(w.channels[ch])}</span><span className="tnum font-semibold text-text-primary">{c.by_channel[ch] === undefined ? l(w.notMeasured) : n(c.by_channel[ch] ?? null)}</span></li>
-          ))}
-        </ul>
+        {/* Audit register 704960b6 line 28 (API a00e5e30): no empty "Por canal" heading when the week names no channel */}
+        {channels.length > 0 ? (
+          <>
+            <h2 id="rep-channels" className="t-heading-s text-text-primary">{l(w.byChannel)}</h2>
+            <ul className="mt-3 divide-y divide-line-hairline border-y border-line-hairline">
+              {channels.map((ch) => (
+                <li key={ch} className="flex items-baseline justify-between gap-3 py-2.5 t-body-s"><span className="text-text-secondary">{l(w.channels[ch])}</span><span className="tnum font-semibold text-text-primary">{c.by_channel[ch] === undefined ? l(w.notMeasured) : n(c.by_channel[ch] ?? null)}</span></li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <h2 id="rep-channels" className="sr-only">{l(w.byChannel)}</h2>
+        )}
         {report.previous && (
           <p className="mt-4 t-body-s text-text-secondary" data-report-trend={thin ? "thin" : "full"}>
             <span className="font-medium text-text-primary">{l(w.trend)}:</span> {thin ? fill(l(w.trendThin), { prevReceived: report.previous.received }) : fill(l(w.trendLine), { received: c.received, prevReceived: report.previous.received, answered: c.answered, prevAnswered: report.previous.answered })}

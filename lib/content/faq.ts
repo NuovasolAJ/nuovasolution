@@ -315,10 +315,11 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         kb: "Q-18 / Q-19",
+        // Copy 018ba6c §6.4 (D-7, the owner 23.11.): the question may name the CRMs people ask about; the answer promises no automatic connection
         q: { en: "Do you work with HubSpot, Salesforce, Pipedrive or Zoho?", es: "¿Funciona con HubSpot, Salesforce, Pipedrive o Zoho?" },
         a: {
-          en: "Yes. A CRM is included and, if you already use one of these, we connect it with you.",
-          es: "Sí. Se incluye un CRM y, si ya usas uno de estos, lo conectamos contigo.",
+          en: "NuovaSolution includes its own CRM, so you do not need another one. If you already work with one, we look at connecting it with you.",
+          es: "NuovaSolution incluye su propio CRM, así que no necesitas otro. Si ya trabajas con uno, vemos contigo cómo conectarlo.",
         },
         keys: ["integrations"],
       },
