@@ -189,3 +189,28 @@ The other `planLines` stay as they are: in the 100 % view they describe planned 
 | `offer.steps[2]`, `offer.stepsTitle` "Así empiezas", `offer.note` | WORKING | **confirmed unchanged** | confirmed unchanged |
 
 **Growth → demo, Enterprise → conversation:** already built (stage 1). Nothing new.
+
+### 6.4 Redesign's three WORKING lines for D-7, and WhatsApp via our number (register line 3)
+
+**D-7: the CRM lines.** Copy's rule: the owner said CRMs relevant in Spain, built on request.
+- So no "sí" and no "se conecta" that sounds like any CRM works by itself.
+- Outlook is a mailbox, not a CRM. It does not share a row with the CRM.
+
+| # | Redesign WORKING | ES (final) | EN (final) |
+|---|---|---|---|
+| (a) | matrix row "Conexión con tu CRM y con Outlook" | CRM row: **Conexión con tu CRM**. Outlook goes into the mailbox row: **Tu correo de Gmail o de Outlook** | CRM row: **Connection to your CRM**. Mailbox row: **Your Gmail or Outlook mailbox** |
+| (b) | home FAQ "Incluye un CRM. También se conecta con el tuyo." | Incluye su propio CRM. Si ya trabajas con otro, vemos contigo cómo conectarlo. | It includes its own CRM. If you already work with another one, we look at connecting it with you. |
+| (c) | /faq Q-18/19 "¿Funciona con mi CRM?" → "Sí. Se incluye un CRM y, si ya usas uno, lo conectamos contigo." | question unchanged · answer: NuovaSolution incluye su propio CRM, así que no necesitas otro. Si ya trabajas con uno, vemos contigo cómo conectarlo. | question unchanged · answer: NuovaSolution includes its own CRM, so you do not need another one. If you already work with one, we look at connecting it with you. |
+
+**WhatsApp via NuovaSolution's number.**
+- The owner's decision 2 plans both ways: via our number (register line 3, build) and via the agency's number (line 4, Meta exception).
+- Today the site names only the agency's number.
+- **Where:** the home FAQ (the full answer) and the matrix's WhatsApp row (short). The offer step stays as it is; a step should not carry an option.
+
+| Place | ES | EN |
+|---|---|---|
+| matrix, WhatsApp row | WhatsApp, con el número de tu agencia o con el nuestro | WhatsApp, on your agency's number or on ours |
+| home FAQ, question | ¿Necesito un número de WhatsApp Business? | Do I need a WhatsApp Business number? |
+| home FAQ, answer | No. Puedes empezar con el número de WhatsApp de NuovaSolution y pasar al de tu agencia cuando lo tengas. | No. You can start on NuovaSolution's WhatsApp number and move to your agency's own number when you have one. |
+
+**Open, for Audit and Lead (not for the page):** with our number, does the reply say the agency's name? The demo says "soy el asistente de Marta". With our number the client writes to a NuovaSolution number, and the register should state what the client sees.
