@@ -27,7 +27,7 @@ Eine Vorher-Zahlenreihe, mit RV6 abgestimmt: RV6 erhebt die Wege in Pixeln und B
 | Weg | Vorher auf 92f873d (RV6, direkte Adresse, Build vor und nach dem Lauf geprüft) |
 |---|---|
 | **bis zu Milas Rückrufaufgabe** | **im Ausgangsstand nicht erreichbar**: die Demo bietet Email, Formulario web (markiert), Teléfono (markiert) — kein WhatsApp (seit 16.11. Punkt 8 in der Gate-Sicht ausgeblendet). Genau das zeigt das Vorher-Bild. |
-| **bis zum erkennbaren Paketunterschied** | vor dem Öffnen kaum Unterschiede (M6); `/packages` zeigt **vier** Buttons „Empieza 14 días gratis" (ES und EN, 375 und 1440) — das Gratisangebot auch bei Growth (D4); feste Fußleiste bei 375 **299 px von 812 px (37 %)** |
+| **bis zum erkennbaren Paketunterschied** | vor dem Öffnen kaum Unterschiede (M6); `/packages` zeigt **vier** Buttons „Empieza 14 días gratis" (ES und EN, 375 und 1440) — das Gratisangebot auch bei Growth (D4); feste Fußleiste bei 375: Kopfzeile 60 px + Leiste 65 px (7,4 %; RV6 korrigiert seine erste Zahl 299 px — das war die klebende Beispielkarte im Erzählabschnitt) |
 | **bis zum passenden Formular** | Growth-Button → `/contact?interes=pilot&plan=growth` mit Betreff „Piloto gratuito · 14 días con Growth"; Enterprise nur „Contratar directamente" |
 | **Marken auf Kundenseiten** | 334 Blatt-Treffer über 30 Seiten (Untergrenze: Akkordeons und über Elemente laufende Marken fehlen im Blatt-Scan); Startseite ES 17 / EN 18 ganze Sätze, `/faq` je 10 |
 | **Touchflächen < 44 px bei 375** | Startseite 7, `/packages` 4, `/platform/ai-sales-agent` 3, `/faq` 4 |
@@ -73,7 +73,7 @@ Interne Aufgaben ohne Auswirkung auf diese Wege laufen weiter.
 | D-3 | Bleiben die +7 Tage bei Rückmeldung? (Copy Q-2) | auf keiner Kundenseite, bis du es sagst |
 | D-4 | `legal.ts:132` nennt kein Paket — auf Essential ändern? (Copy Q-3, Rechtstext) | nur auf deine/Kanzlei-Zeile |
 | D-5 | Das fiktive Demohaus als Stellvertreter für das „Estepona-Objekt" in 3D, bis echte Pläne/Fotos vorliegen? | ja, gekennzeichnet |
-| D-6 | Die interne Vorschausicht (`?view=public`, das Gate vom 20.11. 09:05) behalten? Sie ist keine Kundenseite; die Markenzeichenketten blieben dann in der Quelle hinter der Bedingung. Copy und RV6 würden die Zeichenketten lieber ganz aus `lib/content`/`lib/i18n` entfernen. | entfernen, sobald Audits Versprechen-Register den Launch-Stand trägt; bis dahin intern behalten |
+| D-6 | ~~Interne Vorschausicht behalten?~~ **Entschieden (Owner 23.11.): „Próximamente"-Texte aus dem Quelltext löschen, kein Gate als Startmechanismus.** Umgesetzt in 32236c1: `lib/content/proximamente.ts` gelöscht, `publicGate` und `?view=public` entfernt, jede Kundenseite zeigt das fertige Produkt; offene Belege nur noch in Audits Register. | erledigt |
 | D-7 | Vercel: 44 Deployments; alte Previews löschen? | nur auf deine Zeile |
 | D-8 | Echte Objektfotos (§3): wer liefert, bis wann? | Agentur/Owner; ohne sie Renderings als Visualisierung |
 

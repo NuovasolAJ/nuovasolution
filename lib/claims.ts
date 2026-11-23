@@ -73,7 +73,7 @@ export type ClaimKey = keyof typeof claims;
 
 /**
  * The gate of 16.11./20.11. (`publicGate`, one "live"/"soon" switch per function for a public view with marks) is GONE: the owner's
- * clarification of 20.11. 16:18 and his line of 23.11. — the customer pages carry the finished product, no "Próximamente", no hidden
+ * clarification of 20.11. 16:18 and his line of 23.11. — the customer pages carry the finished product, no mark wording, no hidden
  * main functions, no gate as a launch mechanism; what is not proven in production is an open launch point in Audit's register
  * (governance/WEBSITE_VERSPRECHEN_REGISTER_1120_v1.md), not a line on the page. The `claims` register above stays API's record.
  */
@@ -165,11 +165,7 @@ export const planCell = (key: ClaimKey, plan: PlanCode, view: ClaimView = "targe
   if (key === "replyWhatsapp") return view === "target" || channelKeys(view, REPLY_CHANNELS).length > 0 ? "included" : "soon";
   return live(key, view) ? "included" : claims[key];
 };
-/**
- * Every row of the register stands in both views (the owner, 20.11.: what is not live gets a VISIBLE mark — Copy 1116 §1 point 4: the
- * cell of a switched-off function shows "Próximamente", not a tick and not a dash, and the legend gains "Próximamente: aún no activo").
- * Until 20.11. an off row was hidden in the public view (E2 of 07.11.); `planCell` still never gives a tick for an off function.
- */
+/** Every row of the register stands (23.11.: the finished product; only HIDDEN_BOTH stays out). */
 export const planRowShown = (key: ClaimKey, _view: ClaimView): boolean => !HIDDEN_BOTH.includes(key);
 /** Copy §20 P-5: the comparison table stands only with `plans` on; otherwise one block "Qué incluye" with the rows that are on. */
 export const plansTableShown = (view: ClaimView): boolean => live("plans", view);
