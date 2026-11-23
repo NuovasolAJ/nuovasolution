@@ -213,4 +213,17 @@ The other `planLines` stay as they are: in the 100 % view they describe planned 
 | home FAQ, question | ¿Necesito un número de WhatsApp Business? | Do I need a WhatsApp Business number? |
 | home FAQ, answer | No. Puedes empezar con el número de WhatsApp de NuovaSolution y pasar al de tu agencia cuando lo tengas. | No. You can start on NuovaSolution's WhatsApp number and move to your agency's own number when you have one. |
 
+### 6.5 RV6 R-11 (candidate `49c4670`): "Para una oficina" reads as a limit
+
+**RV6's finding is right.** The owner struck offices as a plan point. "Para una oficina" names the audience by counting offices, and a visitor with three offices reads it as a ceiling.
+- **The fix:** the three audience lines grow by team size, which is a planned plan row (seats 3 / 8 / 50). None of them counts offices.
+
+| Key | Today | ES (final) | EN (final) |
+|---|---|---|---|
+| `brief-1120.ts:67` `who.essential` (rendered 3 times: phone card, desktop card, matrix) | Para una oficina / For one office | **Para un equipo pequeño** | **For a small team** |
+| `home-1103.ts:477`, Essential's positioning line | Respuestas, fichas e informe para una oficina. | **Respuestas, fichas e informe para un equipo pequeño.** | **Replies, records and report for a small team.** |
+| `es.ts:416` / `en.ts:451` `planLines.essential` (not rendered, RV6) | …Una oficina, un equipo pequeño. / …One office, a small team. | Responder y ordenar lo que llega. Un equipo pequeño. | Answering and ordering what arrives. A small team. |
+
+**The resulting order:** Essential "Para un equipo pequeño", Growth "Para equipos que se reparten el trabajo", Enterprise "Para agencias grandes". The "Oficinas" / "Offices" limits label is not rendered (RV6) and stays as it is.
+
 **Open, for Audit and Lead (not for the page):** with our number, does the reply say the agency's name? The demo says "soy el asistente de Marta". With our number the client writes to a NuovaSolution number, and the register should state what the client sees.
