@@ -1,0 +1,61 @@
+{
+ "locale": "en",
+ "at": "2026-11-23T18:16:04.352Z",
+ "pages": {
+  "/en": {
+   "targets": 50,
+   "under44": 0,
+   "small": [],
+   "lang": [],
+   "replay": [
+    {
+     "w": 44,
+     "h": 44
+    }
+   ]
+  },
+  "/en (menu open)": {
+   "targets": 62,
+   "under44": 0,
+   "small": [],
+   "lang": [
+    {
+     "w": 44,
+     "h": 44
+    },
+    {
+     "w": 44,
+     "h": 44
+    }
+   ]
+  },
+  "/en/packages": {
+   "targets": 26,
+   "under44": 0,
+   "small": [],
+   "lang": [],
+   "replay": []
+  },
+  "/en/contact?interes=trial&plan=essential": {
+   "targets": 24,
+   "under44": 0,
+   "small": [],
+   "lang": [],
+   "replay": []
+  },
+  "/en/platform": {
+   "targets": 37,
+   "under44": 0,
+   "small": [],
+   "lang": [],
+   "replay": []
+  },
+  "/en/faq": {
+   "targets": 57,
+   "under44": 0,
+   "small": [],
+   "lang": [],
+   "replay": []
+  }
+ }
+}

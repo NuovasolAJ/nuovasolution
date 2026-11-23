@@ -1,0 +1,61 @@
+{
+ "path": "//es",
+ "audit": {
+  "focusables": 86,
+  "zeroSize": 33,
+  "zeroHiddenByAncestor": 33,
+  "zeroReallyTabbable": []
+ },
+ "pressesToTrialCta": 6,
+ "zeroSizeStopsHit": 0,
+ "stops": [
+  {
+   "tag": "A",
+   "text": "Ir al contenido",
+   "w": 133,
+   "h": 48,
+   "hero": null,
+   "pilot": null
+  },
+  {
+   "tag": "A",
+   "text": "",
+   "w": 140,
+   "h": 44,
+   "hero": null,
+   "pilot": null
+  },
+  {
+   "tag": "BUTTON",
+   "text": "Menú",
+   "w": 44,
+   "h": 44,
+   "hero": null,
+   "pilot": null
+  },
+  {
+   "tag": "BUTTON",
+   "text": "Solo en la vista previa +",
+   "w": 179,
+   "h": 44,
+   "hero": null,
+   "pilot": null
+  },
+  {
+   "tag": "A",
+   "text": "Ver cómo queda la tarea",
+   "w": 358,
+   "h": 56,
+   "hero": "task",
+   "pilot": null
+  },
+  {
+   "tag": "A",
+   "text": "Prueba Essential gratis",
+   "w": 358,
+   "h": 44,
+   "hero": "trial",
+   "pilot": "hero"
+  }
+ ]
+}
