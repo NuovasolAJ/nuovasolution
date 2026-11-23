@@ -93,7 +93,7 @@ export function PilotRequestForm({ locale, interest: initial = "other", live, pl
   const submitLabel = pilotRequest.card(interest, planName).submit;
 
   if (state === "done") {
-    const c = d.confirmation(interest, locale);
+    const c = d.confirmation(interest, locale, planName);
     return (
       <div className="prq-done" data-pilot-request="done" data-pilot-delivery={delivery ?? "unknown"} data-request-done={interest} role="status" aria-live="polite">
         <span className="prq-done-mark" aria-hidden="true"><Check size={22} strokeWidth={2.6} /></span>
@@ -132,8 +132,8 @@ export function PilotRequestForm({ locale, interest: initial = "other", live, pl
           {interest === "contract" && <span className="prq-hint" data-prq-contract-note>{l(w.contractNote)}</span>}
         </label>
         <label className={cn(field, "prq-field-wide")}><span className="prq-label">{l(w.message)}</span><textarea name="message" rows={3} maxLength={2000} className="prq-input prq-area" data-prq="message" defaultValue={subject} /></label>
-        {/* the honeypot: hidden from people, filled by bots */}
-        <label className="prq-web" aria-hidden="true"><input name="web" tabIndex={-1} autoComplete="off" /></label>
+        {/* the honeypot: hidden from people, filled by bots (RV6 on bea7d19: unreachable by tap and Tab; aria-hidden on the wrapper AND the field so no screen reader announces an unnamed field) */}
+        <label className="prq-web" aria-hidden="true"><input name="web" tabIndex={-1} autoComplete="off" aria-hidden="true" /></label>
       </div>
       {/* 16.11. 14:00 (the owner's point 4): no required box — the privacy line with its link (lawyer Q-4) */}
       <p className="prq-consent" data-prq="consent-line">{l(w.consent)}<a href={localePath(locale, "/legal/privacy")} className="prq-link" target="_blank" rel="noreferrer">{l(w.consentLink)}</a>{l(w.consentAfter)}</p>

@@ -52,10 +52,12 @@ export const pilotRequest = {
     simulated: T("Vista previa: esta solicitud no se ha enviado a nadie.", "Preview: this request was not sent to anybody."),
     back: T("Volver al inicio", "Back to the start"),
     /** Copy stage 1 §3.3: the confirmation per interest — its heading and the next steps. */
-    confirmation: (interest: PilotInterest, locale: Locale): { h: string; steps: string[] } => {
+    confirmation: (interest: PilotInterest, locale: Locale, planName?: string): { h: string; steps: string[] } => {
       const d = brief1120.contact.done;
       const x = interest === "model3d" ? d.other : d[interest];
-      return { h: x.h[locale], steps: x.next.map((s) => s[locale]) };
+      // Copy 91b9915 §4b: the contract steps name the plan from the link ("preparamos Growth contigo")
+      const plan = planName ?? (locale === "es" ? "tu plan" : "your plan");
+      return { h: x.h[locale], steps: x.next.map((s) => s[locale].replace("{plan}", plan)) };
     },
   },
 };
