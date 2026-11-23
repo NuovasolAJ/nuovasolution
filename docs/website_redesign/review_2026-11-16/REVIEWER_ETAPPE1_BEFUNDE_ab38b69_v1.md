@@ -406,3 +406,35 @@ Besucher trifft, der schon angefangen hat.
 **Nicht geprüft und daher nicht behauptet:** ob E-Mail und Telefon ebenso verloren gehen (ich habe
 nur `agency` und `name` mit echtem Tasteneingang belegt) und ob EN → ES sich gleich verhält. Beides
 messe ich am Kandidaten mit.
+
+---
+
+## 8. Was ich am Kandidaten zusätzlich prüfe (aus Redesigns R-9-Behebung)
+
+Redesign behebt R-9, indem das Anfrageformular `agency`, `name`, `email`, `phone` und die
+Nachricht bei jeder Eingabe im **Sitzungsspeicher des Browsers** hält und beim Aufbau des
+Formulars in der anderen Sprache zurückschreibt; beim Absenden wird es gelöscht. Nur dieser Tab,
+nichts verlässt den Browser, weg beim Schließen.
+
+**Dazu habe ich keinen Einwand und melde keinen.** Es sind die eigenen Daten des Besuchers, in
+seinem eigenen Tab, beim Absenden entfernt. So macht man Formular-Erhaltung. **Ich halte es hier
+nur fest, damit Audit es im Registerzusammenhang sieht und nicht später entdeckt** — ein Hinweis,
+keine Lücke.
+
+### Eine Kante, die ich deshalb neu auf die Liste nehme
+
+Redesigns Regel: die Nachricht wird nur zurückgeschrieben, **wenn sie sich vom vorbelegten Betreff
+unterscheidet.** Daraus folgt ein Fall, den ich prüfen muss:
+
+> Ein Besucher öffnet Essentials Weg, tippt **keine** Nachricht, und geht dann auf einen
+> **anderen** Weg (Growth-Demo). Im Speicher liegt „Prueba gratuita · 14 días con Essential". Der
+> Growth-Betreff lautet „Demo · plan Growth". Die gespeicherte Nachricht **unterscheidet sich**
+> davon — wird also zurückgeschrieben. Dann ginge eine Growth-Anfrage mit **Essentials Betreff**
+> hinaus, während Weg und Paket korrekt auf Growth stehen.
+
+**Das ist eine Vermutung aus der Beschreibung, kein Befund** — prüfbar erst am Kandidaten. Ich habe
+es Redesign vor dem Festlegen des Kandidaten genannt, weil es dort billiger zu beheben ist.
+
+**Prüfschritte, die ich dafür ergänze:** Essential-Weg → nichts tippen → auf den Growth-Weg wechseln
+→ `interest`, `plan` und Nachricht **zusammen** lesen; dasselbe für Enterprise. Dazu die geraden
+Fälle ES→EN und EN→ES mit `email` und `phone`, die Redesign jetzt mitträgt.
