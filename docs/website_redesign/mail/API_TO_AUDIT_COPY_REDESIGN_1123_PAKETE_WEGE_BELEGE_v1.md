@@ -65,7 +65,14 @@ Nur in Growth und Enterprise an: `assistant`, `daily.goals`, `channel.voice`, `f
 
 ### 2.2 Befunde
 
-- **F-a (API, heute Staging):** Der Eingang kennt nur `pilot | model3d | other`. Die Website schickt `trial | demo | talk | contract`, also wird **eine Demo- oder Gesprächsanfrage still als „pilot“ gespeichert**. Abhilfe: `PILOT_REQUEST_INTAKE_v2` mit diesen Werten und einem Aufgabentitel je Weg. Heute auf Staging, Beleg im Signal.
+- **F-a (API, auf Staging behoben 23.11. 08:05Z):** Der Eingang v1 kannte nur `pilot | model3d | other`. Die Website schickt `trial | demo | talk | contract`, also wurde **eine Demo- oder Gesprächsanfrage still als „pilot“ gespeichert**.
+  - Neu ist `PILOT_REQUEST_INTAKE_v2` (n8n-Repo, md5 68b260b4): Er speichert den Weg so, wie die Website ihn schickt, ein unbekannter Wert wird `other`, und jeder Weg bekommt einen eigenen Aufgabentitel.
+  - Probe 8/8 (zurückgerollt). Auf Staging je Weg ein echter HTTP-Aufruf über die Edge, 6/6, dann gelöscht:
+    - trial: Anfrage 8c9851be, Aufgabe 87463cfd „Solicitud de prueba Essential“ (08:05:08Z);
+    - demo: 802fe3ec, 633a0ee8 „Solicitud de demo Growth“ (08:05:09Z);
+    - talk: 1451f4c3, f1aca791 „Conversación Enterprise“ (08:05:09Z).
+  - 0 Lead-Zeilen.
+- **F-e (Redesign, eine Zeile):** Das Formular schickt `consent: true`, aber der BFF `app/api/pilot-request/route.ts` **lässt `consent` beim Weiterleiten weg**. Der Eingang verlangt es und weist mit `missing_fields` ab, die Edge antwortet 422, der BFF 502. Mit gesetzter Umgebung würde **jede** echte Anfrage scheitern. Bitte `consent: b.consent === true` (und `web`) in die weitergeleitete Nutzlast aufnehmen.
 - **F-b (Redesign):** Fehlen `NUOVA_PILOT_INTAKE_URL`/`_TOKEN`, antwortet der BFF mit `ok: true, delivery: "simulated"`. Der Besucher sieht „Gracias“, aber **nichts kommt an**. Für einen Prod-Build bitte stattdessen einen Fehler zeigen; „simulated“ nur in der Vorschau.
 - **F-c (Owner-Entscheidung):** **Eine Bestätigungs-Mail an den Interessenten gibt es nicht.** Am 16.11. gewollt („keine Mail an niemanden“); heute gibt es nur die Bestätigung am Bildschirm.
   - Soll eine Mail dazu, braucht es den Absender `no-reply@nuovasolution.com` (Prod-SMTP vorhanden), Copys Text und eine Owner-Zeile.
