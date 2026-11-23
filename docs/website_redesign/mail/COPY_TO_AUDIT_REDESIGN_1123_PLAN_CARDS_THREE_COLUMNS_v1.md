@@ -106,3 +106,86 @@ Here `{n}` = 50, read from the plan row (API `bd7a685` §3), never typed by hand
 3. **The hero and the WhatsApp demo (Mila)** show WhatsApp on the agency's number. That is `whatsappOwnNumber`, "soon", the owner's release (20.11. 09:05 (3)).
    - The card rule does not cover the hero, but the same question does. Audit puts it on the 04.12. list.
 4. **The Essential card's own action** (the trial request) needs the request form in prod (A12 row 14, proposed Tue 24.11. 11:00) and F-e fixed (Redesign: `consent` forwarded by the BFF).
+
+---
+
+## 6. Addendum, 23.11. evening: the owner's decisions. **§4 and §5 are NOT USED.**
+
+**The owner, 23.11., decision 2:**
+> "Die Website zeigt im Preview NuovaSolution bei 100 %: alle geplanten Kanäle, Funktionen, Pakete und Wege, verständlich und ohne Próximamente. Die Einteilung Prod/Staging/Bau steht nur im internen Register (n8n governance/WEBSITE_VERSPRECHEN_REGISTER_1120_v1.md, 704960b6)."
+
+**What that means:**
+- The cards and the matrix show the planned offer.
+- The three columns in §1–§3 are internal. They feed Audit's register and never go on a page.
+- §4 (the 04.12. card with prod-proven lines only) and §5 are withdrawn. **Redesign builds nothing from §4.**
+
+### 6.1 The card lines for the preview (target view), final
+
+| Card | Line | ES | EN | Keys | Register line |
+|---|---|---|---|---|---|
+| Essential | 1 | Responde por WhatsApp y email, también de noche. | Replies on WhatsApp and email, also at night. | `replyWhatsapp`, `replyEmail`, `replyOutOfHours` | 1, 2, 3 |
+| Essential | 2 | Cada consulta en su ficha, con su prioridad y su motivo. | Every enquiry on its record, with its priority and reason. | `crm`, `priorityWithReason` | 11, 12 |
+| Essential | 3 | Cada semana, un informe con lo que pide tu atención. | Every week, a report on what needs your attention. | `reportInLogin`, `weeklyEmail` | 28, 29 |
+| Growth | 1 | Cada persona, su lista de tareas del día. | Everyone gets their task list for the day. | `taskList` | 23 |
+| Growth | 2 | Propone inmuebles que encajan con cada cliente. | Suggests listings that fit each client. | `matching` | 26 |
+| Growth | 3 | Seguimiento de tus contactos, con su permiso. | Follow-up with your contacts, with their permission. | `followup` | 27 |
+| Enterprise | 1 (**replaces** "Varias oficinas en una sola cuenta.") | Hasta 50 personas en la cuenta. | Up to 50 people on the account. | plan row `seats` (`{n}` = 50 from the row) | 41 (X-3) |
+| Enterprise | 2 | Clientes nuevos desde tus redes sociales. | New clients from your social media. | `instagram` | 33 |
+| Enterprise | `who` (**replaces** "Para varias oficinas") | Para agencias grandes | For larger agencies | — | 42 |
+
+Lines 1–3 for Essential and Growth are batch 1 §3.1, unchanged; they are already in the build.
+
+**Why Enterprise line 1 changes even in the 100 % view:**
+- "Varias oficinas" is not a planned function. Nobody can create an office, there is no build order and no owner line (API `bd7a685` §2).
+- The register says "streichen … sofort möglich" (line 42).
+- X-3 is planned and built on staging (TEAMROLES-PROD, topic 32; plan layer, topic 23).
+- **If the owner wants offices as a planned function,** he says so and the line comes back. Until then it is X-1 open in the register.
+
+**The same replacement applies to:**
+- `home-1103.ts:482`: "Todo lo de Growth, para agencias grandes." / "Everything in Growth, for larger agencies.";
+- `planLines.scale` "… Varias oficinas." → "… Para agencias grandes." / "… For larger agencies.";
+- the FAQ `:601` "¿Más de un equipo o varias oficinas?" → "¿Un equipo más grande?" / "A larger team?".
+
+The other `planLines` stay as they are: in the 100 % view they describe planned functions.
+
+### 6.2 My three columns against Audit's register `704960b6`: deviations, for Audit
+
+**Where Copy was wrong, Copy takes the register's class:**
+
+| # | Point | Copy's column (§1–§3) | Register | Who changes |
+|---|---|---|---|---|
+| D-1 | `replyOutOfHours` | usable in prod | **nur Nachweis fehlt** (line 2): no prod run ID of an out-of-hours reply | Copy takes the register's class |
+| D-2 | `reminders` | usable in prod | belegt **only for agencies with office hours** (lines 17–19; AGENCY-HOURS-PROD; 4 of 5 prod agencies have none) | Copy takes the register's condition |
+| D-3 | `taskList` | staging only | **nur Nachweis fehlt**: works in prod for `nuovasolution` (morning brief 188254 → 188255); as a Growth difference: build (plan layer) | Copy takes the register's class |
+| D-4 | `followup` | staging only | build, **plus the counsel exception** (E1) | Copy adds the exception |
+| D-5 | `adsLeads` | staging only | build, with a **Meta exception** for the Meta part | Copy adds the exception |
+
+**Where the register should add something:**
+
+| # | Point | Copy's column (§1–§3) | Register | Who changes |
+|---|---|---|---|---|
+| D-6 | `matching` | listed under Growth; the data has it on in Essential | the same conflict (W-1) | none; agreed |
+| D-7 | `integrations` | to build | build; **"Namen dürfen nicht als verfügbar stehen"** (line 31) | **for Audit and Redesign:** in the 100 % view the CRM names are planned, but the owner limited them on 23.11. to CRMs relevant in Spain / Costa del Sol, built on customer request. Copy needs the list before writing any CRM name. Until then the matrix says "Conexión con tu CRM" / "Connection to your CRM", with no names |
+| D-8 | `labels` | usable in prod (Gmail) | belegt, Gmail only; "Satz muss Gmail meinen" (line 14) | **Copy:** the matrix line becomes "Etiquetas en tu bandeja de Gmail" / "Labels in your Gmail inbox" until labels for Outlook are planned or proven. Redesign takes it with the cards |
+| D-9 | P-11, the task title with the client's name and the reference | not in my columns | build; "Referenz im Titel ist nicht belegt, sonst Text anpassen" (line 21) | **Copy, for the register:** the 100 % view keeps "Llamar a Mila · Comprobar disponibilidad de la ref. 9895153". If Lead's package carries the name but not the reference, Copy's fallback for prod is "Llamar a Mila · Comprobar disponibilidad del inmueble" / "Call Mila · Check whether the property is available" |
+| D-10 | `origin`, `mailboxConnection`, `outlook`, `webform`, `dailyVoice`, AGENCY-HOURS, P-14 | missing in my columns | in the register (lines 6–8, 13, 19, 22, 24) | none; the register is complete there, and Copy's columns were cards only |
+| D-11 | `pilotCta.line2` "Las condiciones, por escrito." | not in my columns | counsel exception (line 44) | **the same phrase is in Copy's `actionLine` for Growth and Enterprise** ("…con las condiciones por escrito."). Audit: is it the same promise? If yes, it carries the same exception |
+
+**No deviation:**
+- **Prod has no plan layer,** so no plan difference is usable in prod.
+- **X-1 gets no line.**
+- **WhatsApp:** via our number for agencies = build; via the agency's own number = the Meta exception.
+
+### 6.3 Q-1 = on request (owner 23.11., decision 1): the last self-start lines, for Redesign
+
+| Key | Today | ES | EN |
+|---|---|---|---|
+| `trial.stepsLead` | Paso a paso, a tu ritmo. Tu progreso queda guardado… / One step at a time, in your own time… | Lo que ya está hecho queda guardado: si paramos, seguimos donde lo dejamos. | What is done stays saved: if we stop, we pick up where we left off. |
+| `signup.eyebrow` | Empieza gratis / Start free | Tu prueba de Essential | Your Essential trial |
+| `signup.lead` | 14 días gratis. Sin pago. / 14 days free. No payment. | 14 días gratis con Essential, sin tarjeta. | 14 days free on Essential, no card. |
+| `register.lead` (es.ts:714, en.ts:764) | …los 14 días empiezan cuando la actives. / …the 14 days start when you activate it. | Tu acceso funciona. Este último paso crea tu agencia; los 14 días empiezan cuando activemos tu prueba contigo. | Your login works. This last step creates your agency; the 14 days start when we activate your trial with you. |
+| `offer.steps[0]` (es.ts:324, WORKING) | Crea tu cuenta · Tu nombre, tu email de trabajo, una contraseña. | **Pide tu prueba** · Te escribimos en 24 h laborables y la preparamos contigo. | **Request your trial** · We write to you within 24 working hours and set it up with you. |
+| `offer.steps[1]` (WORKING) | Pon nombre a tu agencia y configúrala · Tus datos, tus datos legales, tu logo, tu equipo. | **Preparamos tu agencia contigo** · Tus datos, tus datos legales, tu logo y tu equipo. | **We set up your agency with you** · Your details, legal details, logo and team. |
+| `offer.steps[2]`, `offer.stepsTitle` "Así empiezas", `offer.note` | WORKING | **confirmed unchanged** | confirmed unchanged |
+
+**Growth → demo, Enterprise → conversation:** already built (stage 1). Nothing new.
