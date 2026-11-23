@@ -469,3 +469,42 @@ The O-list of §3 stays. New:
 |---|---|---|
 | O-9 | API | which version, L or S, goes to Meta (or both as two templates) |
 | O-10 | PM | the rule "only really new listings" (point 1), in writing, so the sentence "Acaba de entrar" is backed |
+
+---
+
+## 5. Addendum 23.11.: API's answers (n8n `governance/API_SIGNALS_1030.md`, 20.11. 12:53Z and 15:10Z, read only)
+
+### 5.1 The answers, and what changes
+
+| # | API's answer | Change here |
+|---|---|---|
+| O-2 | The opt-out (link, and the words BAJA/STOP) is built on staging, **not in production**. Needed before the first send: the production package F19 with the owner's line, and Lead's render node | none in the wording. An open launch point for topic 28 (Audit) |
+| O-3 | **One** WhatsApp template per language, every variable required. If a field is missing, that person gets **no** WhatsApp message, and the e-mail with rule 5 remains | §1.4 / §4.2: the variables are required. Rule 5 applies to e-mail only |
+| O-9 | **Version S** (without a link) goes to Meta, one per language. A WhatsApp template footer takes no variables | §4.2: version L is not submitted. The line "Mensaje preparado por el asistente de {{8}} … BAJA" stands **at the end of the body text**, not in the footer. That is already how §4.2 places it: as a separate last paragraph of the body. Redesign/Social must not move it into Meta's footer field |
+| O-6 | (1) In the pilot, the staff app closes on the end date (proven). The replies to clients stop only once Lead's gate in the Main exists, which is not the case today. (2) Data stays; nothing is deleted automatically, and a deletion date exists only after counsel | `{tras_fin}` (§5.2) |
+| O-7 | Neither V-1 nor V-2. No enquiry is lost: the record is still created; instead of the automatic reply the team gets a task. The count is new contacts per calendar month, Europe/Madrid; `{fecha_reinicio}` = the 1st of the next month. The Main part is Lead's and not built | `{al_limite}` (§5.3) |
+| O-8 | One hour, read in the auth setting in production and on staging | "una hora" / "one hour" / "eine Stunde" confirmed |
+| `{plan}` | Trial = **Essential** only (API 15:10Z; the earlier "Trial = Growth" of 12:53Z is void). 3 people, 750 enquiries, 1 mailbox, 1 CRM, 14 days | §2.1 scope line: "La prueba incluye lo mismo que Essential." The numbers stay out of the texts (they come from the row) |
+
+### 5.2 `{tras_fin}`: the trial ended
+
+**Sent only once Lead's Main gate exists** (API O-6). Before that, the second clause would be false, and the e-mail does not go.
+
+| ES | EN | DE |
+|---|---|---|
+| Desde ese día ya no se puede entrar en la aplicación de tu agencia y NuovaSolution deja de responder a tus consultas. Tus datos se conservan; si quieres una copia o que los borremos, escríbenos. | From that day the app for your agency can no longer be opened, and NuovaSolution stops replying to your enquiries. Your data is kept; if you'd like a copy or want us to delete it, write to us. | Ab diesem Tag lässt sich die App Ihrer Agentur nicht mehr öffnen, und NuovaSolution beantwortet Ihre Anfragen nicht mehr. Ihre Daten bleiben gespeichert; wenn Sie eine Kopie möchten oder wir sie löschen sollen, schreiben Sie uns. |
+
+**What this replaces in §2.3:**
+- **The variant "Desde ese día, NuovaSolution ya no responde…":** it is merged into the line above.
+- **The variant with `{fecha_borrado}`:** retired. There is no deletion date until counsel has spoken.
+
+### 5.3 `{al_limite}`: the monthly limit is reached
+
+| ES | EN | DE |
+|---|---|---|
+| Las consultas nuevas se siguen registrando en su ficha, pero no reciben respuesta automática: cada una le llega a tu equipo como tarea hasta el {fecha_reinicio}. | New enquiries are still recorded on their record, but they get no automatic reply: each one reaches your team as a task until {reset_date}. | Neue Anfragen werden weiter in ihrer Akte erfasst, bekommen aber keine automatische Antwort: Jede kommt bis zum {Neustartdatum} als Aufgabe bei Ihrem Team an. |
+
+**Notes:**
+- `{fecha_reinicio}` = the 1st of the next month, formatted "1 de diciembre" / "1 December" / "1. Dezember".
+- **Variants V-1 and V-2 of §2.4 are retired.**
+- **The line is shown only once Lead has built the Main part** (API O-7). Until then it stays an open launch point (Audit).
