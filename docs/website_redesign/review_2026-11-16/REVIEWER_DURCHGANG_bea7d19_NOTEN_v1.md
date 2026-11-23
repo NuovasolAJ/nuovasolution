@@ -317,3 +317,39 @@ Je ES und EN. In **keinem** Fall darf wörtlich `{plan}` auf dem Schirm stehen.
 dem von mir gemessenen `bea7d19`. Meine sechs Noten gelten für `bea7d19` /
 `dpl_H6WfQ1GK…` — nicht für den lokalen Stand. Was seither dazugekommen ist, ist der erste
 Nachgang und **ungemessen**.
+
+### 11.2 Berichtigung an meinem eigenen Protokoll: die Randnotiz zur Spam-Falle war falsch
+
+In §5 habe ich geschrieben, das Fallenfeld liege „in einem `<label>` ohne zugänglichen Namen und
+**ohne** `aria-hidden`", und Redesign ein `aria-hidden="true"` auf der Umhüllung vorgeschlagen.
+**Das war falsch.** Der Blick in den Unterschied `bea7d19 → 2655fa7` zeigt die Zeile, wie sie
+schon auf dem gemessenen Build stand:
+
+    <label className="prq-web" aria-hidden="true"><input name="web" tabIndex={-1} autoComplete="off" /></label>
+
+Die Umhüllung **hatte** `aria-hidden` bereits. Meine Sonde hat das Merkmal am **Feld** gelesen
+(`null`) — und ich habe daraus eine Aussage über die **Umhüllung** gemacht, die ich nie gemessen
+habe. Das ist derselbe Fehlertyp wie bei R-8: vom Element auf seine Eltern geschlossen, statt die
+Eltern zu prüfen. Diesmal zu meinen Gunsten gelesen und trotzdem falsch.
+
+Redesign hat daraufhin `aria-hidden="true"` zusätzlich **am Feld** gesetzt. Das ist harmlos und
+schadet nichts, aber es behebt keinen Mangel, weil es keinen gab. Die Falle war auf `bea7d19`
+vollständig richtig gebaut: außerhalb des Bildes, `tabindex="-1"`, kein Fokusstopp, `autocomplete="off"`,
+Umhüllung `aria-hidden`. **Die Zeile in §5 ist damit zurückgezogen.**
+
+### 11.3 Was seit dem gemessenen Build am Seitencode geändert wurde — vollständig
+
+Genau **ein** Commit berührt Seitencode: `2655fa7`, drei Dateien. `c5630a1` und `9d24c71` sind
+Dokumentcommits, wie Copy richtig anmerkt.
+
+| Datei | Änderung | Folge für meine Messung |
+|---|---|---|
+| `lib/content/brief-1120.ts` | `done.contract` bekommt Schritte mit `{plan}` | neu, **ungemessen** → Prüfmatrix §11.1 |
+| `lib/content/pilot-request.ts` | `confirmation()` ersetzt `{plan}`, Rückfall „tu plan" | neu, **ungemessen** |
+| `components/site/pilot-request-form.tsx` | `planName` wird an `confirmation()` übergeben; `aria-hidden` am Fallenfeld | siehe unten |
+
+**Wichtig und beruhigend:** am Wiederherstellungspfad (`KEEP`, `messageTyped`, der Betreffaustausch)
+ist **nichts** geändert. R-9 und R-9b können aus diesem Unterschied nicht zurückfallen. Die
+Formularkomponente wurde angefasst, aber nicht an der Stelle, die ich 8 von 8 gemessen habe. Beim
+nächsten Build messe ich den Sprachwechsel mitten im Formular deshalb als **Rückfallkontrolle**,
+nicht weil sich dort etwas geändert hätte — und die Prüfmatrix aus §11.1, weil sie neu ist.
