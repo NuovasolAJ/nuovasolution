@@ -61,11 +61,8 @@
 - **Two register rows are affected,** `reportInLogin` and `weeklyEmail`. Both are on every plan card (ALL). The customer must see **the same number** in the login and in the mail.
   - Until Audit and API settle which figure is right, neither row counts as proven for this report.
   - No page, demo or sales line quotes this week's report.
-- **A hint for API, not a finding:** 14 is exactly the week before's count ("La semana anterior llegaron 14 consultas", in the same render).
-  - The stored text may have been written from the previous period.
-  - Or it was written before the week was complete: the report was generated Mon 05:00:04Z, and Europe/Madrid closes the week at Sun 23:00Z.
-  - Please check that first.
-- **When it is resolved,** Copy checks the login view of the report against the mail: the same words for the same figure ("Consultas recibidas").
+- ~~A hint for API: the stored text may come from the wrong period.~~ **Struck (owner, 23.11.).** API's cause (`0f3b7cb7`): the text counted rows in `leads`, the mail counts `interaction_counted` events (REPORTING_CONTRACT_v2). The week before was 14 by coincidence. New reports show the same figure. The stored row `a5be0d24` keeps its 14 as history.
+- **Resolved:** Copy checked the new report text against the mail, see §5.
 
 ## 4. Not asked, but read in API's `cfa8c14` (for the owner and Audit)
 
@@ -79,3 +76,39 @@
 - For Enterprise, what is proven (on staging only) is the counts: up to 50 people, up to 10 CRM connections.
 - The candidates X-1 (offices, no guard) and X-4 (social media, also on in Growth) are **not proven**.
 - Copy waits for API's 12:00 answer to `db41606` and then writes the final card lines. Until then the cards stay marked `api-pending` (Redesign).
+
+---
+
+## 5. Addendum, 23.11. afternoon: the texts without a channel line
+
+**The owner's question:** API dropped the channel line for now, because the counted events arrive without a channel (`0f3b7cb7`, finding for Lead). Do the texts carry without it?
+
+**Read:** n8n `0f3b7cb7`:
+- `build/reporting/GENERATE_REPORT_TEXT_ALIGN_v1.sql` (the login report text);
+- the prod dry run, with the real week as text.
+
+The mail strings were read in §1.
+
+**Result:**
+- **Yes, both carry.** The mail's sentences and the report's figures need no channel to be understood.
+- Three things should still change, and one question decides a word.
+
+| # | Where | Today | ES | EN | Why |
+|---|---|---|---|---|---|
+| W-7 | report text, the label of the counting line | "Base de datos: consultas = mensajes de clientes contados en el periodo …" | **Cómo contamos:** consultas = … (rest unchanged) | **How we count:** … | "Base de datos" means *database* in Spanish. The line explains how the figures are counted, so its label should say that |
+| W-8 | mail, the line "Cuentan los canales conectados: ${ch}." and the zero-week line "… por los canales conectados (${ch})" | — | **stays only if `${ch}` comes from the agency's channel settings**; it goes if it comes from the counted events | — | the setting is true without events. A list built from events would be empty or wrong now |
+| W-9 | report text, budget with one contact | "Presupuesto indicado (1 contacto): media 450.000 €, entre 450.000 € y 450.000 €" | with one contact: **Presupuesto indicado (1 contacto): 450.000 €** | with one contact: **Stated budget (1 contact): €450,000** | an average and a range over one value read like an error |
+| W-10 | mail and report: the word "consultas" | "Llegaron 19 consultas" next to "Contactos nuevos: 1"; the counting line says "consultas = mensajes de clientes contados" | see the question | — | **Question for API:** does `interaction_counted` count every incoming message, or one per new enquiry? |
+
+**W-10, the two answers:**
+- **One per incoming message:** the word must say so in the mail and in the login. Mail "Recibiste {n} mensajes de clientes." / "You received {n} client messages."; figure "Mensajes de clientes" / "Client messages"; comparison "La semana anterior llegaron {m} mensajes." / "The week before, {m} messages arrived." "19 consultas" from one new contact would otherwise be read as 19 interested people.
+- **One per enquiry:** "consultas" stays, and the counting line becomes "consultas = conversaciones de clientes contadas en el periodo" / "enquiries = client conversations counted in the period".
+
+**Unchanged and fine without a channel:**
+- "Si esperabas consultas esta semana, dinos por qué canal…": it asks the customer, it does not report a channel. W-4 still applies to it.
+- The footer "… en tus canales conectados": true without a per-channel split.
+- The report's last line, "Este informe no incluye ventas, cierres, ingresos ni rentabilidad…".
+
+**When the writer sends the channel again (Lead):**
+- "Por canal" comes back in the report and in the mail, with the same channel names as the website: "WhatsApp", "Email", "Formulario web", "Teléfono".
+- The website's names are fixed in `11cf7a2`.
