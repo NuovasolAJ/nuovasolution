@@ -86,9 +86,10 @@ export const brief1120 = {
     } satisfies Record<PlanCode, { text: L; keys: ClaimKey[] }[]>,
     action: { essential: T("Prueba Essential gratis durante 14 días", "Try Essential free for 14 days"), growth: T("Pide una demo de Growth", "Book a Growth demo"), enterprise: T("Habla con nosotros sobre Enterprise", "Talk to us about Enterprise") } satisfies Record<PlanCode, L>,
     actionLine: {
-      essential: T("Sin tarjeta. Te escribimos en 24 h laborables para activarla.", "No card. We write to you within 24 working hours to set it up."),
-      growth: T("Te respondemos en 24 h laborables, con las condiciones por escrito.", "We reply within 24 working hours, with the terms in writing."),
-      enterprise: T("Te respondemos en 24 h laborables, con las condiciones por escrito.", "We reply within 24 working hours, with the terms in writing."),
+      // the owner ec4181ed (23.11.): no "24 h" on the screen — WORKING cuts of Copy's lines until Copy confirms
+      essential: T("Sin tarjeta. Te escribimos para activarla.", "No card. We write to you to set it up."),
+      growth: T("Te escribimos para acordar el día de la demo.", "We write to you to agree the day of the demo."), // Copy 4a549bd §4a (final)
+      enterprise: T("Te escribimos para acordar la conversación.", "We write to you to arrange the conversation."), // Copy 4a549bd §4a (final)
     } satisfies Record<PlanCode, L>,
     actionNext: {
       essential: T("Abre la solicitud de la prueba, con Essential ya elegido.", "Opens the trial request with Essential already selected."),
@@ -114,7 +115,7 @@ export const brief1120 = {
   contact: {
     trial: { eyebrow: T("Prueba gratuita · 14 días con Essential", "Free trial · 14 days on Essential"), h: T("Prueba Essential gratis durante 14 días", "Try Essential free for 14 days"), body: T("Preparamos Essential contigo y empiezan tus 14 días. Sin tarjeta; las condiciones, por escrito.", "We set up Essential with you and your 14 days begin. No card; the terms in writing."), submit: T("Pedir la prueba", "Request the trial") },
     demo: { eyebrow: T("Demo · Growth", "Demo · Growth"), h: T("Pide una demo de Growth", "Book a Growth demo"), body: T("Te enseñamos Growth con un caso como el tuyo y te decimos el precio antes de acordar nada.", "We show you Growth on a case like yours and tell you the price before anything is agreed."), submit: T("Pedir la demo", "Book the demo") },
-    talk: { eyebrow: T("Enterprise", "Enterprise"), h: T("Hablemos de Enterprise", "Let's talk about Enterprise"), body: T("Cuéntanos cuántas oficinas tenéis y cómo trabajáis. Te proponemos una conversación y después una propuesta por escrito.", "Tell us how many offices you have and how you work. We suggest a conversation, then a proposal in writing."), submit: T("Enviar", "Send") },
+    talk: { eyebrow: T("Enterprise", "Enterprise"), h: T("Hablemos de Enterprise", "Let's talk about Enterprise"), body: T("Cuéntanos cómo es tu agencia y cómo trabajáis. Te proponemos una conversación y después una propuesta por escrito.", "Tell us about your agency and how you work. We suggest a conversation, then a proposal in writing."), submit: T("Enviar", "Send") }, // the owner ec4181ed: offices appear nowhere (WORKING cut)
     contract: { eyebrow: T("Contratar", "Hire a plan"), h: T("Contratar {plan}", "Hire {plan}"), body: T("Te enviamos el precio y el contrato por escrito. Firmas solo si te encaja.", "We send you the price and the contract in writing. You sign only if it suits you."), submit: T("Enviar solicitud", "Send request") }, // Copy 441ba1c
     model3d: { eyebrow: T("Modelo 3D", "3D model"), h: T("Pide un modelo 3D de un inmueble", "Ask for a 3D model of a property"), body: T("Nos envías el plano y nos cuentas qué quieres enseñar. Te confirmamos por escrito qué incluye el modelo, el precio y cuándo te lo entregamos.", "You send us the plan and tell us what you want to show. We confirm in writing what the model includes, the price and when we deliver it."), submit: T("Enviar", "Send") }, // WORKING (Redesign)
     other: { eyebrow: T("Contacto", "Contact"), h: T("Escríbenos", "Write to us"), body: T("Te contesta una persona del equipo, en español o en inglés.", "A person from our team answers, in Spanish or English."), submit: T("Enviar", "Send") },
@@ -122,18 +123,19 @@ export const brief1120 = {
     interests: { trial: T("Prueba gratuita de Essential", "Free Essential trial"), demo: T("Demo de Growth", "Growth demo"), talk: T("Enterprise", "Enterprise"), contract: T("Contratar un plan", "Hire a plan"), model3d: T("Modelo 3D de un inmueble", "3D model of a property"), other: T("Otra consulta", "Something else") },
     subject: { trial: T("Prueba gratuita · 14 días con Essential", "Free trial · 14 days on Essential"), demo: T("Demo · plan Growth", "Demo · Growth plan"), talk: T("Conversación · plan Enterprise", "Conversation · Enterprise plan"), contract: T("Contratar {plan}", "Request the {plan} plan") },
     done: {
-      trial: { h: T("Gracias. Una persona del equipo te escribe en 24 h laborables para activar tu prueba de Essential.", "Thank you. A person from our team will write to you within 24 working hours to set up your Essential trial."), next: [T("Te escribimos y acordamos el día.", "We write to you and agree a day."), T("Conectamos tu buzón y tu WhatsApp contigo.", "We connect your mailbox and your WhatsApp with you."), T("Empiezan tus 14 días.", "Your 14 days begin.")] },
-      demo: { h: T("Gracias. Una persona del equipo te escribe en 24 h laborables para acordar el día de la demo.", "Thank you. A person from our team will write to you within 24 working hours to agree a day for the demo."), next: [T("Acordamos el día.", "We agree a day."), T("En la demo vemos un caso como los tuyos.", "In the demo we go through a case like yours."), T("Te enviamos las condiciones por escrito.", "We send you the terms in writing.")] },
-      talk: { h: T("Gracias. Una persona del equipo te escribe en 24 h laborables para acordar la conversación.", "Thank you. A person from our team will write to you within 24 working hours to agree a time to talk."), next: [T("Acordamos el día.", "We agree a day."), T("Hablamos de tus oficinas y de cómo trabajáis.", "We talk about your offices and how you work."), T("Te enviamos una propuesta por escrito.", "We send you a proposal in writing.")] },
-      contract: { h: T("Gracias. Una persona del equipo te escribe en 24 h laborables con el precio y el contrato por escrito.", "Thank you. A person from our team will write to you within 24 working hours with the price and the contract in writing."), next: [] as L[] },
-      other: { h: T("Gracias. Una persona del equipo te contesta en 24 h laborables, en español o en inglés.", "Thank you. A person from our team will answer within 24 working hours, in Spanish or English."), next: [] as L[] },
+      // the owner ec4181ed (23.11.): no "24 h" in any confirmation — WORKING cuts of Copy's lines
+      trial: { h: T("Gracias. Una persona del equipo te escribe para activar tu prueba de Essential.", "Thank you. A person from our team will write to you to set up your Essential trial."), next: [T("Te escribimos y acordamos el día.", "We write to you and agree a day."), T("Conectamos tu buzón y tu WhatsApp contigo.", "We connect your mailbox and your WhatsApp with you."), T("Empiezan tus 14 días.", "Your 14 days begin.")] },
+      demo: { h: T("Gracias. Una persona del equipo te escribe para acordar el día de la demo.", "Thank you. A person from our team will write to you to agree the day of the demo."), // Copy 4a549bd §4a (final) next: [T("Acordamos el día.", "We agree a day."), T("En la demo vemos un caso como los tuyos.", "In the demo we go through a case like yours."), T("Te enviamos las condiciones por escrito.", "We send you the terms in writing.")] },
+      talk: { h: T("Gracias. Una persona del equipo te escribe para acordar la conversación.", "Thank you. A person from our team will write to you to arrange the conversation."), next: [T("Acordamos el día.", "We agree a day."), T("Hablamos de tu equipo y de cómo trabajáis.", "We talk about your team and how you work."), // Copy 4a549bd §4a (final) T("Te enviamos una propuesta por escrito.", "We send you a proposal in writing.")] },
+      contract: { h: T("Gracias. Una persona del equipo te escribe con el precio y el contrato por escrito.", "Thank you. A person from our team will write to you with the price and the contract in writing."), next: [] as L[] },
+      other: { h: T("Gracias. Una persona del equipo te contesta en español o en inglés.", "Thank you. A person from our team will answer in Spanish or English."), next: [] as L[] },
     },
   },
   /** Copy stage 1 §3.1a: "Cómo empezar". */
   entry: {
     title: T("Cómo empezar con Essential: 14 días gratis", "How to start with Essential: 14 days free"),
     steps: [
-      { b: T("Pide tu prueba.", "Request your trial."), t: T("Te escribimos en 24 h laborables y la activamos contigo.", "We write to you within 24 working hours and set it up with you.") },
+      { b: T("Pide tu prueba.", "Request your trial."), t: T("Te escribimos y la activamos contigo.", "We write to you and set it up with you.") }, // the owner ec4181ed: no "24 h"
       { b: T("Conecta tu buzón y tu WhatsApp.", "Connect your mailbox and your WhatsApp."), t: T("Lo probamos con un mensaje real.", "We test it with a real message.") },
       { b: T("Empiezan tus 14 días.", "Your 14 days begin."), t: T("Cada consulta recibe respuesta en español y queda en su ficha, con su prioridad y su motivo.", "Every enquiry gets a reply in Spanish and lands on its record, with its priority and reason.") },
     ],

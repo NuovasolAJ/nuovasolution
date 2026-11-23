@@ -250,11 +250,11 @@ export const es: Dictionary = {
       eyebrow: "Para empezar",
       // Copy stage 1 §3.4 (d8ebc77), T-4: the trial is activated on request
       h2: "Prueba Essential gratis durante 14 días",
-      lead: "Pides la prueba, te escribimos en 24 h laborables y la activamos contigo. Sin tarjeta.",
+      lead: "Pides la prueba, te escribimos y la activamos contigo. Sin tarjeta.", // the owner ec4181ed (23.11.): no "24 h" on the screen
       link: "Ver qué incluye",
       steps: [
         // Copy 31d749b §6.3 (Q-1 = on request), WORKING
-        { title: "Pide tu prueba", line: "Te escribimos en 24 h laborables y la preparamos contigo." },
+        { title: "Pide tu prueba", line: "Te escribimos y la preparamos contigo." },
         { title: "Preparamos tu agencia contigo", line: "Tus datos, tus datos legales, tu logo y tu equipo." },
         { title: "Empiezan tus 14 días", line: "Cada consulta recibe respuesta en español y queda en su ficha, con su prioridad y su motivo." },
       ],
@@ -393,12 +393,12 @@ export const es: Dictionary = {
     faq: [
       { q: "¿Necesito una tarjeta para probar Essential?", a: "No. Durante los 14 días no se cobra nada ni se pide tarjeta." },
       { q: "¿Puedo pagar online?", a: "En este sitio no. Te enviamos una factura y la pagas por transferencia." },
-      { q: "¿Tengo que hablar con alguien antes?", a: "Solo para activar la prueba: te escribimos en 24 h laborables. La demo es opcional." },
+      { q: "¿Tengo que hablar con alguien antes?", a: "Solo para activar la prueba: te escribimos. La demo es opcional." },
     ],
     faqPublicAnswer: "No hace falta una llamada comercial: escríbenos y te enseñamos el sistema.", // Copy 1105 v3 V-37
     tiersEyebrow: "Tres planes, uno al lado del otro",
     tiersLead: "Qué incluye cada plan, según el catálogo de planes.",
-    proposalLine: "Cuéntanos tus oficinas, tu equipo y tus canales y te enviamos una propuesta.",
+    proposalLine: "Cuéntanos tu agencia, tu equipo y tus canales y te enviamos una propuesta.", // the owner ec4181ed: offices appear nowhere
     amount: "Precio para tu agencia",
     amountLine: "Te decimos el precio y el periodo de facturación antes de acordar nada.",
     amountNote: "No hay pago con tarjeta ni renovación automática. Recibir la factura no activa el plan; lo activa el pago confirmado.",
@@ -458,7 +458,7 @@ export const es: Dictionary = {
     howEyebrow: "Cómo funciona",
     howH2: "Las condiciones, a la vista.",
     how: [
-      { title: "14 días gratis con Essential", line: "Te escribimos en 24 h laborables y activamos la prueba contigo." }, // Copy stage 1 §3.4
+      { title: "14 días gratis con Essential", line: "Te escribimos y activamos la prueba contigo." }, // Copy stage 1 §3.4; no "24 h"
     ],
     honesty: {
       h2: "Lo que la web nunca hace",

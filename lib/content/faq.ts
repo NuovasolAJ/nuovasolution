@@ -192,7 +192,7 @@ export const faqGroups: FaqGroup[] = [
         kb: "Q-T1",
         q: { en: "Can I try it for free?", es: "¿Puedo probarlo gratis?" },
         // Copy stage 1 §3.2 (d8ebc77, T-4: the trial is activated on request)
-        a: { en: "Yes, with Essential: 14 days free, no card. We write to you within 24 working hours to set up the trial. Growth we show you in a demo, Enterprise in a conversation, with the terms in writing.", es: "Sí, con Essential: 14 días gratis, sin tarjeta. Te escribimos en 24 h laborables para activar la prueba. Growth te lo enseñamos en una demo y Enterprise, en una conversación, con las condiciones por escrito." },
+        a: { en: "Yes, with Essential: 14 days free, no card. We write to you to set up the trial. Growth we show you in a demo, Enterprise in a conversation, with the terms in writing.", es: "Sí, con Essential: 14 días gratis, sin tarjeta. Te escribimos para activar la prueba. Growth te lo enseñamos en una demo y Enterprise, en una conversación, con las condiciones por escrito." },
       },
       {
         kb: "Q-T2",
@@ -203,7 +203,7 @@ export const faqGroups: FaqGroup[] = [
       {
         kb: "Q-11b",
         q: { en: "Can I start on my own, without talking to you?", es: "¿Puedo empezar yo solo, sin hablar con vosotros?" },
-        a: { en: "We set up the trial with you: you request it and we write to you within 24 working hours.", es: "La prueba la activamos contigo: la pides y te escribimos en 24 h laborables." }, // Copy stage 1 §3.2
+        a: { en: "We set up the trial with you: you request it and we write to you.", es: "La prueba la activamos contigo: la pides y te escribimos." }, // Copy stage 1 §3.2; the owner ec4181ed: no "24 h"
       },
       {
         // Copy 1116 §10 W-3 (the owner's point 6): the agency's own WhatsApp number comes after its registration with Meta (topic 20)

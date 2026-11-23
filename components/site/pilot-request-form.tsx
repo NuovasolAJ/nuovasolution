@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
  */
 const KEEP_KEY = "nuova.prq";
 const KEPT = ["agency", "name", "email", "phone", "message"] as const;
-type Kept = { v: Partial<Record<(typeof KEPT)[number], string>>; messageTyped?: boolean };
+type Kept = { v: Partial<Record<(typeof KEPT)[number], string>>; messageTyped?: boolean; subject?: string };
 const readKept = (): Kept | null => { try { const s = sessionStorage.getItem(KEEP_KEY); return s ? (JSON.parse(s) as Kept) : null; } catch { return null; } };
 const writeKept = (k: Kept | null) => { try { if (k) sessionStorage.setItem(KEEP_KEY, JSON.stringify(k)); else sessionStorage.removeItem(KEEP_KEY); } catch { /* storage blocked: the form still works, nothing is kept */ } };
 
@@ -43,16 +43,22 @@ export function PilotRequestForm({ locale, interest: initial = "other", live, pl
       const el = f.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement | null;
       const v = k.v[name];
       if (!el || typeof v !== "string" || !v) continue;
-      if (name === "message" && !k.messageTyped) continue;
+      if (name === "message") {
+        if (!k.messageTyped) continue;
+        // the visitor's note comes back; the prefilled subject it was typed behind is swapped for THIS form's subject (another way, another language)
+        el.value = k.subject && v.startsWith(k.subject) ? `${subject ?? ""}${v.slice(k.subject.length)}` : v;
+        continue;
+      }
       el.value = v;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs once on mount; `subject` is the server-rendered prefill of this page
   }, []);
   const keep = (e: FormEvent<HTMLFormElement>) => {
     const fd = new FormData(e.currentTarget);
     const v: Kept["v"] = {};
     for (const name of KEPT) { const x = String(fd.get(name) ?? ""); if (x) v[name] = x; }
     const typedInMessage = (e.target as HTMLElement | null)?.getAttribute("name") === "message";
-    writeKept({ v, messageTyped: typedInMessage || readKept()?.messageTyped === true });
+    writeKept({ v, messageTyped: typedInMessage || readKept()?.messageTyped === true, subject });
   };
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {

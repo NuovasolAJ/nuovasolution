@@ -453,7 +453,7 @@ export const home1103 = {
     report: { core: T("Tres cosas que mirar esta semana, cada una con su paso.", "Three things to look at this week, each with its step."), proof: T("Informe de ejemplo · datos ficticios", "Example report · fictional data") },
     model3d: { core: T("Tu plano, convertido en un modelo 3D e imágenes para anuncios.", "Your floor plan, turned into a 3D model and listing images."), proof: T("Lo preparamos nosotros. No se crea solo ni al instante.", "Prepared by us. Not created automatically or instantly.") },
     plans: { proof: T("Sin método de pago. Las condiciones, por escrito.", "No payment method. The terms in writing.") },
-    entry: { core: T("Prueba Essential gratis durante 14 días.", "Try Essential free for 14 days."), proof: T("Te escribimos en 24 h laborables para activarla.", "We write to you within 24 working hours to set it up.") }, // Copy stage 1 §3.1
+    entry: { core: T("Prueba Essential gratis durante 14 días.", "Try Essential free for 14 days."), proof: T("Te escribimos para activarla.", "We write to you to set it up.") }, // Copy stage 1 §3.1; the owner ec4181ed: no "24 h"
     close: { proof: T("Sin método de pago. Con tu opinión al final, 7 días más.", "No payment method. With your feedback at the end, 7 more days.") },
   },
 
@@ -543,12 +543,12 @@ export const home1103 = {
       void view; // the finished product on every customer page (the owner's brief 20.11.); the mailbox connection (A12) is an open launch point for Audit, not a line
       return {
         es: [
-          { b: "Pide tu prueba.", t: "Te escribimos en 24 h laborables y la activamos contigo." },
+          { b: "Pide tu prueba.", t: "Te escribimos y la activamos contigo." },
           { b: "Conecta tu buzón y tu WhatsApp.", t: "Lo probamos con un mensaje real." },
           { b: "Empiezan tus 14 días.", t: "Cada consulta recibe respuesta en español y queda en su ficha, con su prioridad y su motivo." },
         ],
         en: [
-          { b: "Request your trial.", t: "We write to you within 24 working hours and set it up with you." },
+          { b: "Request your trial.", t: "We write to you and set it up with you." },
           { b: "Connect your mailbox and your WhatsApp.", t: "We test it with a real message." },
           { b: "Your 14 days begin.", t: "Every enquiry gets a reply in Spanish and lands on its record, with its priority and reason." },
         ],
@@ -596,7 +596,7 @@ export const home1103 = {
         { q: T("¿Avisa a mi equipo?", "Does it alert my team?"), a: T("Sí. Cuando una consulta es importante, avisa por email a la persona que toca, con el motivo.", "Yes. When an enquiry is important, it alerts the right person by e-mail, with the reason.") },
         // Copy 1113 §6: the free pilot, both views
         // Copy stage 1 §3.1 (d8ebc77): only Essential has the free 14 days
-        { q: T("¿Cómo empiezo?", "How do I start?"), a: T("Con Essential: pides la prueba gratuita de 14 días y te escribimos en 24 h laborables para activarla. ¿Un equipo más grande? Pide una demo de Growth o habla con nosotros sobre Enterprise.", "With Essential: you request the free 14-day trial and we write to you within 24 working hours to set it up. A larger team? Book a Growth demo or talk to us about Enterprise.") }, // Copy 31d749b §6.1
+        { q: T("¿Cómo empiezo?", "How do I start?"), a: T("Con Essential: pides la prueba gratuita de 14 días y te escribimos para activarla. ¿Un equipo más grande? Pide una demo de Growth o habla con nosotros sobre Enterprise.", "With Essential: you request the free 14-day trial and we write to you to set it up. A larger team? Book a Growth demo or talk to us about Enterprise.") }, // Copy 31d749b §6.1
         // Copy 018ba6c §6.4 (D-7): CRMs relevant in Spain, built on request — no automatic "se conecta"
         { q: T("¿Funciona con mi CRM?", "Does it work with my CRM?"), a: byKey("integrations", view, T("Incluye su propio CRM. Si ya trabajas con otro, vemos contigo cómo conectarlo.", "It includes its own CRM. If you already work with another one, we look at connecting it with you."), T("Incluye su propio CRM.", "It includes its own CRM.")) },
         // Copy 018ba6c §6.4 (register line 3): WhatsApp on our number until the agency has its own

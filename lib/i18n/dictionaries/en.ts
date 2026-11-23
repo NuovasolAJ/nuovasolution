@@ -279,11 +279,11 @@ export const en = {
       eyebrow: "Getting started",
       // Copy stage 1 §3.4 (d8ebc77), T-4: the trial is activated on request
       h2: "Try Essential free for 14 days",
-      lead: "You request the trial, we write to you within 24 working hours and set it up with you. No card.",
+      lead: "You request the trial, we write to you and set it up with you. No card.", // the owner ec4181ed (23.11.): no "24 h" on the screen
       link: "See what is included",
       steps: [
         // Copy 31d749b §6.3 (Q-1 = on request), WORKING
-        { title: "Request your trial", line: "We write to you within 24 working hours and set it up with you." },
+        { title: "Request your trial", line: "We write to you and set it up with you." },
         { title: "We set up your agency with you", line: "Your details, legal details, logo and team." },
         { title: "Your 14 days begin", line: "Every enquiry gets a reply in Spanish and lands on its record, with its priority and reason." },
       ],
@@ -426,12 +426,12 @@ export const en = {
     faq: [
       { q: "Do I need a card to try Essential?", a: "No. Nothing is charged and no card is asked for during the 14 days." }, // Copy stage 1 §3.4
       { q: "Can I pay online?", a: "Not on this site. We send an invoice and you pay by bank transfer." },
-      { q: "Do I have to talk to someone first?", a: "Only to set up the trial: we write to you within 24 working hours. The demo is optional." }, // Copy stage 1 §3.4
+      { q: "Do I have to talk to someone first?", a: "Only to set up the trial: we write to you. The demo is optional." }, // Copy stage 1 §3.4; no "24 h"
     ],
     faqPublicAnswer: "No sales call is needed: write to us and we will show you the system.", // Copy 1105 v3 V-37
     tiersEyebrow: "Three plans, side by side",
     tiersLead: "What each plan includes, read from the plan catalogue.",
-    proposalLine: "Tell us your offices, your team and your channels, and we send you a proposal.",
+    proposalLine: "Tell us about your agency, your team and your channels, and we send you a proposal.", // the owner ec4181ed: offices appear nowhere
     amount: "Price for your agency",
     amountLine: "We tell you the price and the billing period before anything is agreed.", // D-29
     amountNote: "There is no card checkout and no automatic renewal. Receiving an invoice does not activate the plan; the confirmed payment does.",
@@ -495,7 +495,7 @@ export const en = {
     howEyebrow: "How it works",
     howH2: "The conditions, in plain sight.",
     how: [
-      { title: "14 days free on Essential", line: "We write to you within 24 working hours and set up the trial with you." }, // Copy stage 1 §3.4
+      { title: "14 days free on Essential", line: "We write to you and set up the trial with you." }, // Copy stage 1 §3.4; no "24 h"
     ],
     honesty: {
       h2: "What the website never does",
