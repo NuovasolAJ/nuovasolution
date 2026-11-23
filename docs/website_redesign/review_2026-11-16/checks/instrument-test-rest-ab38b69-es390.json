@@ -243,37 +243,136 @@
   }
  ],
  "keyboard": {
-  "focusables": 87,
-  "invisibleStops": 34,
-  "invisibleList": [
-   "Plataforma",
-   "Atender",
-   "Gestionar",
-   "Coordinar",
-   "Captar",
-   "Visión general",
-   "Paquetes",
-   "Prueba Essential",
-   "Contacto",
-   "ENEnglish",
-   "ESEspañol",
-   "Iniciar sesión",
-   "Solicita tu piloto gratuito",
-   "Solicita tu piloto gratuito",
-   "Iniciar sesión",
-   "Atender",
-   "Gestionar",
-   "Coordinar"
-  ],
-  "skipLinkFirst": true,
-  "skipLinkPresent": true,
-  "tabsToMainCta": 35,
+  "method": "real Tab presses via Input.dispatchKeyEvent",
+  "stops": 8,
+  "trialAt": 6,
+  "zeroStops": 0,
   "ring": {
    "outlineStyle": "solid",
-   "outlineWidth": "2px",
-   "boxShadow": "none",
-   "isFocused": true
-  }
+   "outlineWidth": "2px"
+  },
+  "seq": [
+   {
+    "i": 1,
+    "none": false,
+    "tag": "a",
+    "label": "Ir al contenido",
+    "href": "#main",
+    "w": 132.8,
+    "h": 48,
+    "zero": false,
+    "hiddenAnc": null,
+    "ring": {
+     "outlineStyle": "solid",
+     "outlineWidth": "2px"
+    }
+   },
+   {
+    "i": 2,
+    "none": false,
+    "tag": "a",
+    "label": "NuovaSolution",
+    "href": "/es",
+    "w": 140,
+    "h": 28,
+    "zero": false,
+    "hiddenAnc": null,
+    "ring": {
+     "outlineStyle": "solid",
+     "outlineWidth": "2px"
+    }
+   },
+   {
+    "i": 3,
+    "none": false,
+    "tag": "button",
+    "label": "Menú",
+    "href": "",
+    "w": 44,
+    "h": 44,
+    "zero": false,
+    "hiddenAnc": null,
+    "ring": {
+     "outlineStyle": "solid",
+     "outlineWidth": "2px"
+    }
+   },
+   {
+    "i": 4,
+    "none": false,
+    "tag": "button",
+    "label": "Solo en la vista previa +",
+    "href": "",
+    "w": 174.6,
+    "h": 36,
+    "zero": false,
+    "hiddenAnc": null,
+    "ring": {
+     "outlineStyle": "solid",
+     "outlineWidth": "2px"
+    }
+   },
+   {
+    "i": 5,
+    "none": false,
+    "tag": "a",
+    "label": "Ver cómo queda la tarea",
+    "href": "#demo",
+    "w": 358,
+    "h": 56,
+    "zero": false,
+    "hiddenAnc": null,
+    "ring": {
+     "outlineStyle": "solid",
+     "outlineWidth": "2px"
+    }
+   },
+   {
+    "i": 6,
+    "none": false,
+    "tag": "a",
+    "label": "Prueba Essential gratis",
+    "href": "/es/contact?interes=trial&plan=essential",
+    "w": 358,
+    "h": 44,
+    "zero": false,
+    "hiddenAnc": null,
+    "ring": {
+     "outlineStyle": "solid",
+     "outlineWidth": "2px"
+    }
+   },
+   {
+    "i": 7,
+    "none": false,
+    "tag": "button",
+    "label": "Repetir demo",
+    "href": "",
+    "w": 40,
+    "h": 32,
+    "zero": false,
+    "hiddenAnc": null,
+    "ring": {
+     "outlineStyle": "solid",
+     "outlineWidth": "2px"
+    }
+   },
+   {
+    "i": 8,
+    "none": false,
+    "tag": "button",
+    "label": "WhatsApp",
+    "href": "",
+    "w": 173,
+    "h": 44,
+    "zero": false,
+    "hiddenAnc": null,
+    "ring": {
+     "outlineStyle": "solid",
+     "outlineWidth": "2px"
+    }
+   }
+  ]
  },
  "reduced": {
   "mediaMatches": true,

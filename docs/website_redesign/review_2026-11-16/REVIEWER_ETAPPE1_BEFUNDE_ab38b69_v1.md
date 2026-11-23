@@ -211,7 +211,44 @@ Der Paketparameter überlebt, der Absichtsparameter nicht.
 **Nachprüfung:** am `href` selbst ablesbar, also unabhängig von meinem Tipp. Betrifft jede
 Kontaktseite mit `interes`.
 
-### R-8 — 34 unsichtbare Tastaturstationen (neu, echt)
+### R-8 — **ZURÜCKGEZOGEN.** Redesign hatte recht, ich nicht
+
+**Nachtrag 23.11., nach Redesigns Einspruch und Ihrer Weisung, mit echten Tab-Drücken
+nachzumessen.** Das Ergebnis bestätigt Redesign, also ziehe ich R-8 zurück.
+
+**Mein Fehler:** mein Filter prüfte `getComputedStyle(e).display !== "none"` **am Element selbst**.
+Ein Nachfahre eines `display:none`-Elternteils behält aber seinen **eigenen** berechneten Wert
+(`"flex"`), also kam die eingeklappte Desktop-Navigation durch einen Filter, den **kein Browser so
+anwendet**. Die „34 unsichtbaren Stationen" und die „35 Tab-Schritte" gab es nie.
+
+**Nachgemessen mit echten Tab-Drücken** (`Input.dispatchKeyEvent`, nach jedem Druck
+`document.activeElement` gelesen) — **auf demselben Build `ab38b69`**, nicht auf Redesigns
+lokalem Stand, damit der Vergleich trägt:
+
+| Tab | Ziel | Größe |
+|---|---|---|
+| 1 | „Ir al contenido" | 132,8×48 |
+| 2 | NuovaSolution | 140×28 |
+| 3 | „Menú" | **44×44** |
+| 4 | „Solo en la vista previa" (nur Vorschau) | 174,6×36 |
+| 5 | „Ver cómo queda la tarea" | 358×56 |
+| **6** | **„Prueba Essential gratis"** | **358×44** |
+
+**6 Tab-Schritte** bis zur Haupthandlung, **0 Stationen auf Elementen ohne Fläche**, Fokusring
+`solid 2px`. Genau Redesigns Zahlen.
+
+**Das ist kein Mangel, sondern eine Stärke** — und ich hatte sie Ihnen als Mangel gemeldet. Die
+Tastaturbedienung der Startseite ist gut. **Mein Werkzeug ist korrigiert**
+(`checks/rest1123.mjs` misst jetzt mit echten Tab-Drücken statt mit einer Auswahlliste,
+`checks/tabreal1123.mjs` ist die eigenständige Sonde, Beleg
+`checks/tabreal-ab38b69-es390.json`).
+
+**Zum zweiten Mal hat Redesign einen Fehler in meinem Messwerkzeug gefunden und lag richtig**
+(das erste Mal beim Zeichen-Scan). Die eigentliche Lehre: **eine Auswahlliste mit
+Sichtbarkeitsfilter ist keine Tab-Reihenfolge.** Die Tab-Reihenfolge kennt nur der Browser, also
+frage ich ab jetzt den Browser.
+
+### R-8 (ursprüngliche Fassung, überholt — zur Nachvollziehbarkeit)
 
 **Seite:** Startseite · **Gerät:** 390 emuliert, Tastatur · **Beobachtet:** 87 fokussierbare
 Elemente, davon **34 mit Größe 0**, aber weiterhin mit Tab erreichbar — die vollständige
@@ -269,5 +306,48 @@ sind damit nicht mehr abgefedert: **A12** und die vier weiteren Schlüssel aus `
 **Ich widerspreche der Entscheidung nicht** — Sie haben „kein Teilstart, keine ausgeblendeten
 Hauptfunktionen" festgelegt, und über einen Teilstart entscheiden Sie allein. Ich sage nur, woran
 der 04.12. dann hängt: nicht mehr am Gate, sondern daran, dass das Register für jede gerenderte
-Aussage einen Beleg trägt. **Ohne das Register kann ich das nicht prüfen** — und es liegt noch
-nicht (§3).
+Aussage einen Beleg trägt.
+
+---
+
+## 6. Ihr Zusatz vom 23.11. — und das Register ist da
+
+**Das Register liegt seit 14:39 vor** (`704960b6`, 45 Aussagen: 10 belegt, 4 nur Nachweis fehlt,
+31 Bau/extern mit 6 Owner-Ausnahmen). **Meine Lückenmeldung von 14:30 ist damit erledigt** — sie
+war zum Zeitpunkt richtig und ist neun Minuten später beantwortet worden. Audit hat **meine
+Befunde R-1, R-2 und R-7 dort als Teil des Startblockers 5 aufgenommen.**
+
+### Ihre Trennung nehme ich als Messvorschrift
+
+Sie haben entschieden: **der Preview zeigt NuovaSolution bei 100 %** — alle Kanäle, Funktionen,
+Pakete und Wege. Die Einteilung Prod/Staging/Bau steht **nur im internen Register**. Im Preview
+bewerte ich **sichtbar, verständlich, bedienbar**; Aussagen ohne Registerbeleg führe ich als
+**Lückenliste für den öffentlichen Start, nicht als Preview-Fehler**.
+
+**Das löst §5 auf** — und zwar besser, als ich es formuliert hatte. Mein Einwand war: ohne Gate
+behauptet die Seite alles, was sie rendert. Ihre Trennung antwortet darauf: der Preview **darf**
+alles zeigen, weil er nicht der öffentliche Start ist, und das Register trägt die Wahrheit. **Ich
+nehme §5 damit nicht zurück, aber seine Schlussfolgerung ist beantwortet:** die Last liegt auf der
+Lückenliste, und die kann ich jetzt führen, weil das Register da ist.
+
+**Was das konkret an einer Stelle bedeutet, an der beides auseinanderfällt:** Ihre dritte
+Erstbesucher-Aufgabe heißt „nenne den entscheidenden Unterschied zwischen den Paketen". Im Preview
+ist sie **beantwortbar** — die Karten zeigen Unterschiede. Im Register steht dagegen:
+**„In Prod ist heute kein Punkt als Paketunterschied nutzbar"**, und Audit nennt die Planebene als
+Startblocker 2 ohne Termin. Also: **Preview-Note ja, Lückenliste: die gesamte Paketunterschieds-
+Ebene.** Genau die Trennung, die Sie angeordnet haben.
+
+### Zwei Prüfungen, die Ihr Zusatz neu verlangt
+
+| | Prüfung | Stand bei mir |
+|---|---|---|
+| **Sprachwechsel mitten im Formular** | Weg **und** Paket müssen erhalten bleiben | **neu aufgenommen.** Genau mein R-7: heute fällt `interes` weg. Redesign hat `interes` in die Erhalten-Liste des Sprachumschalters aufgenommen (lokal, reitet mit der Freigabe). **Ich prüfe es am Kandidaten mit gefülltem Formular**, nicht nur an der leeren Seite |
+| **Bestätigungsmail bei Growth und Enterprise** | sobald APIs Staging-Beleg vorliegt | **aufgenommen, heute nicht prüfbar.** Register Zeile zum Anfrageweg: Staging 5/7, H2/H3 geben 502 statt 422. Bis der Beleg da ist, melde ich die Mail als **Lücke**, nicht als Fehler |
+
+### Gemessen wird am Kandidaten, nicht an Etappe 1
+
+Ihr Punkt 2 bestätigt meine Bindung: **erst nach Ihrer Preview-Freigabe, genau der von Redesign
+genannte Kandidaten-Commit, geprüft über die Deployment-ID, Vorher-Basis `92f873d`.** Audits
+Register bezieht sich auf den Kandidaten `4f425cb` (+ `62b0396`); Redesign nennt Commit und
+Deployment in **einer** Nachricht, sobald Sie den Push freigeben. `/api/build` bleibt, damit ich
+binden kann.

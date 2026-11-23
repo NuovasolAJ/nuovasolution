@@ -153,33 +153,51 @@ for (const path of ["", "/packages", `/contact?interes=trial&plan=essential`]) {
   console.log(`     expected ${expect}: ${same ? "same page kept" : "*** NOT the same page/query"}   h1=${JSON.stringify((s.h1 || "").slice(0, 50))}`);
 }
 
-// ---------------- KEYBOARD: can the main action be reached, is focus visible
-console.log(`\n## keyboard`);
+// ---------------- KEYBOARD: measured with REAL Tab presses.
+// My first version filtered a selector list by getComputedStyle(e).display on the ELEMENT only.
+// A descendant of a display:none parent keeps its own computed display ("flex"), so the collapsed
+// desktop nav passed that filter although no browser puts it in the tab order - and the probe
+// reported 34 invisible focus stops and 35 presses to the main action that do not exist.
+// Redesign caught it; a real-Tab run on the SAME build gave 6 presses and 0 zero-size stops.
+// Ground truth is the browser's own focus order, so that is what this measures now.
+console.log(`\n## keyboard (real Tab presses - the browser's own focus order)`);
 if (await go(`${BASE}/${LOC}`, "h1")) {
-  R.keyboard = await ev(`(()=>{
-    const sel='a[href],button:not([disabled]),input:not([disabled]),select,textarea,[tabindex]:not([tabindex="-1"])';
-    const all=[...document.querySelectorAll(sel)].filter(e=>{const r=e.getBoundingClientRect();const c=getComputedStyle(e);
-      return c.display!=="none"&&c.visibility!=="hidden"&&!e.closest("[aria-hidden='true']");});
-    const skip=all.find(e=>/Ir al contenido|Skip to content/i.test(e.innerText||e.textContent||""));
-    const mainIdx=all.findIndex(e=>(e.getAttribute("href")||"").includes("interes=trial"));
-    // focus ring: focus the main CTA and see whether anything visibly changes
-    let ring=null;
-    if(mainIdx>=0){ const e=all[mainIdx]; e.focus();
-      const cs=getComputedStyle(e);
-      ring={outlineStyle:cs.outlineStyle,outlineWidth:cs.outlineWidth,boxShadow:(cs.boxShadow||"").slice(0,60),
-        isFocused:document.activeElement===e}; }
-    const invisible=all.filter(e=>{const r=e.getBoundingClientRect();return r.width===0||r.height===0;})
-      // NOTE: a backslash escape inside a template literal decays (\\s -> s) and would silently
-      // strip every "s" from the labels. Use a class that needs no escape.
-      .map(e=>((e.getAttribute("aria-label")||e.innerText||e.textContent||"").replace(/[\\s\\u00a0]+/g," ").trim().slice(0,30)));
-    return {focusables:all.length, invisibleStops:invisible.length, invisibleList:invisible.slice(0,18),
-      skipLinkFirst: skip?all.indexOf(skip)===0:false,
-      skipLinkPresent:!!skip, tabsToMainCta: mainIdx>=0?mainIdx+1:null, ring};})()`);
-  console.log(`  focusable elements: ${R.keyboard.focusables}; skip link present=${R.keyboard.skipLinkPresent} first=${R.keyboard.skipLinkFirst}`);
-  console.log(`  INVISIBLE focus stops (0 size, still tabbable): ${R.keyboard.invisibleStops}`);
-  if (R.keyboard.invisibleStops) console.log(`     ${JSON.stringify(R.keyboard.invisibleList)}`);
-  console.log(`  tab presses to reach the main free-trial action: ${R.keyboard.tabsToMainCta ?? "NOT REACHABLE"}`);
-  console.log(`  focus indicator on it: ${JSON.stringify(R.keyboard.ring)}`);
+  await ev(`if(document.activeElement&&document.activeElement.blur) document.activeElement.blur();`);
+  const press = async () => {
+    await send("Input.dispatchKeyEvent", { type: "rawKeyDown", windowsVirtualKeyCode: 9, nativeVirtualKeyCode: 9, key: "Tab", code: "Tab" });
+    await send("Input.dispatchKeyEvent", { type: "keyUp", windowsVirtualKeyCode: 9, nativeVirtualKeyCode: 9, key: "Tab", code: "Tab" });
+    await sleep(140);
+    return ev(`(()=>{const e=document.activeElement;
+      if(!e||e===document.body) return {none:true};
+      const r=e.getBoundingClientRect(); const cs=getComputedStyle(e);
+      const hiddenAnc=(()=>{let p=e,d=0;while(p&&p!==document.documentElement&&d<20){const c=getComputedStyle(p);
+        if(c.display==="none") return "display:none";
+        if(c.visibility==="hidden") return "visibility:hidden";
+        if(p.hasAttribute&&p.hasAttribute("hidden")) return "[hidden]";
+        p=p.parentElement;d++;}return null;})();
+      return {none:false,tag:e.tagName.toLowerCase(),
+        label:((e.getAttribute("aria-label")||e.innerText||e.textContent||e.value||"").replace(/[\\s\\u00a0]+/g," ").trim().slice(0,46)),
+        href:(e.getAttribute("href")||"").slice(0,60),
+        w:Math.round(r.width*10)/10,h:Math.round(r.height*10)/10,zero:(r.width===0||r.height===0),hiddenAnc,
+        ring:{outlineStyle:cs.outlineStyle,outlineWidth:cs.outlineWidth}};})()`);
+  };
+  const seq = []; let trialAt = null, zeroStops = 0, ring = null;
+  for (let i = 1; i <= 60; i++) {
+    const s = await press();
+    if (!s || s.__error || s.none) { seq.push({ i, none: true }); continue; }
+    if (s.zero) zeroStops++;
+    seq.push({ i, ...s });
+    if (trialAt === null && (s.href.includes("interes=trial") || /Prueba Essential|Try Essential/i.test(s.label))) {
+      trialAt = i; ring = s.ring;
+    }
+    if (trialAt !== null && i >= trialAt + 2) break;
+  }
+  R.keyboard = { method: "real Tab presses via Input.dispatchKeyEvent", stops: seq.length, trialAt, zeroStops, ring, seq };
+  console.log(`  focus stops walked: ${seq.length}`);
+  for (const s of seq.filter((x) => !x.none)) console.log(`     ${String(s.i).padStart(3)}: ${String(s.w)}x${String(s.h)} ${JSON.stringify(s.label)}${s.zero ? "  <-- ZERO SIZE (" + (s.hiddenAnc || "no hidden ancestor") + ")" : ""}`);
+  console.log(`  Tab presses to the main free-trial action: ${trialAt ?? "NOT REACHED in 60"}`);
+  console.log(`  focus stops on zero-size elements: ${zeroStops}`);
+  console.log(`  focus indicator on the main action: ${JSON.stringify(ring)}`);
 }
 
 // ---------------- REDUCED MOTION, actually emulated (intent (d): the finished picture stands)
