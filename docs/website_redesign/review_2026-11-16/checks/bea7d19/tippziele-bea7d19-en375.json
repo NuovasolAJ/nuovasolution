@@ -1,0 +1,71 @@
+{
+ "pin": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "locale": "en",
+ "viewport": "375x812",
+ "pages": [
+  {
+   "name": "home",
+   "path": "/",
+   "small": [],
+   "inlineSmall": [],
+   "counted": 52,
+   "inline": 0,
+   "hidden": 34
+  },
+  {
+   "name": "packages",
+   "path": "/packages",
+   "small": [],
+   "inlineSmall": [],
+   "counted": 25,
+   "inline": 0,
+   "hidden": 32
+  },
+  {
+   "name": "contact",
+   "path": "/contact?interes=trial&plan=essential",
+   "small": [
+    {
+     "tag": "input",
+     "label": "",
+     "href": "",
+     "w": 215,
+     "h": 24,
+     "display": "inline-block",
+     "pageY": 1189
+    }
+   ],
+   "inlineSmall": [],
+   "counted": 24,
+   "inline": 1,
+   "hidden": 25
+  },
+  {
+   "name": "platform",
+   "path": "/platform",
+   "small": [],
+   "inlineSmall": [],
+   "counted": 36,
+   "inline": 0,
+   "hidden": 25
+  },
+  {
+   "name": "faq",
+   "path": "/faq",
+   "small": [],
+   "inlineSmall": [],
+   "counted": 56,
+   "inline": 0,
+   "hidden": 25
+  }
+ ],
+ "menu": {
+  "opened": true,
+  "small": [],
+  "inlineSmall": [],
+  "counted": 64,
+  "inline": 0,
+  "hidden": 22
+ },
+ "pinEnd": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK"
+}

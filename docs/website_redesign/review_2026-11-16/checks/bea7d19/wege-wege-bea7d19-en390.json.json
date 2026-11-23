@@ -1,0 +1,673 @@
+{
+ "pin": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "locale": "en",
+ "viewport": "390x844",
+ "tag": "wege-bea7d19-en390.json",
+ "w1": [
+  {
+   "step": "hero: Ver como queda la tarea",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 383,
+   "scrollY": 383,
+   "w": 358,
+   "h": 56,
+   "cx": 195,
+   "cy": 464,
+   "lands": true,
+   "hitDesc": "a.hf-cta-main.lift See the finished task",
+   "crowd": 1,
+   "name": "See the finished task",
+   "href": "#demo",
+   "ms": 1446,
+   "after": {
+    "url": "/en#demo",
+    "len": 7244
+   }
+  },
+  {
+   "step": "demo: tap WhatsApp",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 213,
+   "scrollY": 890,
+   "w": 173,
+   "h": 44,
+   "cx": 106,
+   "cy": 464,
+   "lands": true,
+   "hitDesc": "span WhatsApp",
+   "crowd": 1,
+   "name": "WhatsApp",
+   "href": "",
+   "ms": 1434,
+   "after": {
+    "url": "/en#demo",
+    "len": 7244
+   }
+  }
+ ],
+ "w2": [
+  {
+   "step": "demo: Ver que plan te encaja",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 2633,
+   "scrollY": 2633,
+   "w": 187.4,
+   "h": 44,
+   "cx": 277,
+   "cy": 464,
+   "lands": true,
+   "hitDesc": "a.demo-caption-link See which plan fits you",
+   "crowd": 0,
+   "name": "See which plan fits you",
+   "href": "/en#plans",
+   "ms": 1439,
+   "after": {
+    "url": "/en#plans",
+    "len": 12606
+   }
+  },
+  {
+   "step": "plan card Essential: main action",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 665,
+   "scrollY": 13025,
+   "w": 324,
+   "h": 48,
+   "cx": 195,
+   "cy": 464,
+   "lands": true,
+   "hitDesc": "a.plans-cta.plans-cta-main Try Essential free for 14 days",
+   "crowd": 0,
+   "name": "Try Essential free for 14 days · Opens the trial request with Essentia",
+   "href": "/en/contact?interes=trial&plan=essential",
+   "ms": 1446,
+   "after": {
+    "url": "/en/contact?interes=trial&plan=essential",
+    "len": 1487
+   }
+  },
+  {
+   "step": "plan card Essential: contratar",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 13122,
+   "scrollY": 13122,
+   "w": 324,
+   "h": 44,
+   "cx": 195,
+   "cy": 464,
+   "lands": true,
+   "hitDesc": "a.plans-way-link Request this plan",
+   "crowd": 1,
+   "name": "Request the Essential plan",
+   "href": "/en/contact?interes=contratar&plan=essential",
+   "ms": 1439,
+   "after": {
+    "url": "/en/contact?interes=contratar&plan=essential",
+    "len": 1524
+   }
+  },
+  {
+   "step": "plan card Growth: main action",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 11295,
+   "scrollY": 11295,
+   "w": 324,
+   "h": 48,
+   "cx": 195,
+   "cy": 463,
+   "lands": true,
+   "hitDesc": "a.plans-cta.plans-cta-main Book a Growth demo",
+   "crowd": 0,
+   "name": "Book a Growth demo · Opens the demo request with Growth already select",
+   "href": "/en/contact?interes=demo&plan=growth",
+   "ms": 1439,
+   "after": {
+    "url": "/en/contact?interes=demo&plan=growth",
+    "len": 1454
+   }
+  },
+  {
+   "step": "plan card Enterprise: main action",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 11694,
+   "scrollY": 11694,
+   "w": 324,
+   "h": 48,
+   "cx": 195,
+   "cy": 465,
+   "lands": true,
+   "hitDesc": "a.plans-cta.plans-cta-main Talk to us about Enterprise",
+   "crowd": 0,
+   "name": "Talk to us about Enterprise · Opens the contact form with Enterprise a",
+   "href": "/en/contact?interes=talk&plan=enterprise",
+   "ms": 1441,
+   "after": {
+    "url": "/en/contact?interes=talk&plan=enterprise",
+    "len": 1464
+   }
+  },
+  {
+   "step": "plan card Essential: what's included",
+   "reachable": true,
+   "found": true,
+   "count": 1,
+   "scrollNeeded": 13170,
+   "scrollY": 13170,
+   "w": 324,
+   "h": 44,
+   "cx": 195,
+   "cy": 464,
+   "lands": true,
+   "hitDesc": "span See everything included",
+   "crowd": 1,
+   "name": "See everything included · Essential",
+   "href": "",
+   "ms": 1442,
+   "after": {
+    "url": "/en",
+    "len": 10190
+   }
+  }
+ ],
+ "state": {
+  "firstScreen": {
+   "inFirst": [
+    {
+     "tag": "p",
+     "y": 60,
+     "h": 94,
+     "s": "Preview, not public. It shows the complete product, including functions that are not active. Example data: not"
+    },
+    {
+     "tag": "button",
+     "y": 161,
+     "h": 44,
+     "s": "Preview only +"
+    },
+    {
+     "tag": "p",
+     "y": 166,
+     "h": 20,
+     "s": "You're at a viewing · 11:40"
+    },
+    {
+     "tag": "p",
+     "y": 236,
+     "h": 17,
+     "s": "FOR REAL ESTATE AGENCIES IN SPAIN"
+    },
+    {
+     "tag": "h1",
+     "y": 263,
+     "h": 108,
+     "s": "While you're showing a flat, who's looking after Mila?"
+    },
+    {
+     "tag": "p",
+     "y": 383,
+     "h": 96,
+     "s": "NuovaSolution answers her on WhatsApp straight away, works out what she's looking for and leaves you the task "
+    },
+    {
+     "tag": "p",
+     "y": 505,
+     "h": 18,
+     "s": "ENQUIRY ON WHATSAPP · 11:42"
+    },
+    {
+     "tag": "p",
+     "y": 527,
+     "h": 63,
+     "s": "Hola, busco un piso de 3 dormitorios en Nerja, hasta 350.000 €. ¿Sigue disponible la ref. 9895153? ¿Me podéis "
+    },
+    {
+     "tag": "p",
+     "y": 595,
+     "h": 55,
+     "s": "Translation: Hi, I'm looking for a 3-bedroom flat in Nerja, up to €350,000. Is ref. 9895153 still available? C"
+    },
+    {
+     "tag": "p",
+     "y": 680,
+     "h": 18,
+     "s": "TASK FOR MARTA"
+    },
+    {
+     "tag": "p",
+     "y": 702,
+     "h": 43,
+     "s": "Call Mila · Check whether ref. 9895153 is available"
+    },
+    {
+     "tag": "p",
+     "y": 749,
+     "h": 18,
+     "s": "Asks for a call back · Availability not confirmed"
+    },
+    {
+     "tag": "p",
+     "y": 785,
+     "h": 18,
+     "s": "Example · fictional data"
+    },
+    {
+     "tag": "a",
+     "y": 819,
+     "h": 56,
+     "s": "See the finished task"
+    }
+   ],
+   "milaInFirst": true,
+   "milaOnPage": 13,
+   "h1": "While you're showing a flat, who's looking after Mila?"
+  },
+  "demoAfterHero": {
+   "demo": true,
+   "att": {
+    "data-demo": "true",
+    "data-demo-brief": "1120",
+    "data-demo-kind": "chat",
+    "data-demo-channel": "whatsapp",
+    "data-demo-phase": "12",
+    "data-demo-done": "true",
+    "data-demo-auto": "false",
+    "data-demo-run": "0",
+    "data-demo-view": "target",
+    "data-demo-entered": "end"
+   },
+   "inView": true,
+   "top": 160,
+   "len": 1476,
+   "text": "Pick the channel your client writes on. WhatsApp Email Form Phone M Mila · buyer online Hola, busco un piso de 3 dormitorios en Nerja, hasta 350.000 €. ¿Sigue disponible la ref. 9895153? ¿Me podéis llamar? Translation: Hi, I'm looking for a 3-bedroom flat in Nerja, up to €350,000. Is ref. 9895153 still available? Could you call me? 11:42 The agency's automated assistant Hola, Mila, soy el asistente de Marta. La disponibilidad de la ref. 9895153 te la confirma ella por teléfono. ¿A qué hora te viene bien que te llame? Translation: Hi Mila, I'm Marta's assistant. Marta will confirm by phone whether ref. 9895153 is available. What time suits you for her to call? 11:42 Mejor esta tarde, a partir de las 17:00. Translation: Better this afternoon, from 5 pm. 11:44 The agency's automated assistant Gracias, Mila. Se lo paso a Marta con tu horario. Translation: Thank you, Mila. I'm passing it to M",
+   "card": true,
+   "cardText": "TASK FOR MARTA WhatsApp · 11:44 TASK Call Mila today from 5 pm · Check whether ref. 9895153 is available Mila already has her answer. The call is still waiting for Marta. STATE Answered automatically · Call still to make LOOKING FOR 3 bedrooms in Nerja, up to €350,000 ASKS FOR A call, today from 5 pm OPEN Availability of ref. 9895153, not confirmed ARRIVED WhatsApp · 11:42 PRIORITY High · named a property and asks for a call If nobody takes the task within an hour, we remind Marta."
+  },
+  "demoAfterWhatsapp": {
+   "msToDone": 9132,
+   "att": {
+    "data-demo": "true",
+    "data-demo-brief": "1120",
+    "data-demo-kind": "chat",
+    "data-demo-channel": "whatsapp",
+    "data-demo-phase": "12",
+    "data-demo-done": "true",
+    "data-demo-auto": "false",
+    "data-demo-run": "1",
+    "data-demo-view": "target",
+    "data-demo-entered": "end"
+   },
+   "len": 1476,
+   "text": "Pick the channel your client writes on. WhatsApp Email Form Phone M Mila · buyer online Hola, busco un piso de 3 dormitorios en Nerja, hasta 350.000 €. ¿Sigue disponible la ref. 9895153? ¿Me podéis llamar? Translation: Hi, I'm looking for a 3-bedroom flat in Nerja, up to €350,000. Is ref. 9895153 still available? Could you call me? 11:42 The agency's automated assistant Hola, Mila, soy el asistente de Marta. La disponibilidad de la ref. 9895153 te la confirma ella por teléfono. ¿A qué hora te viene bien que te llame? Translation: Hi Mila, I'm Marta's assistant. Marta will confirm by phone whether ref. 9895153 is available. What time suits you for her to call? 11:42 Mejor esta tarde, a partir de las 17:00. Translation: Better this afternoon, from 5 pm. 11:44 The agency's automated assistant Gracias, Mila. Se lo paso a Marta con tu horario. Translation: Thank you, Mila. I'm passing it to Marta with your time. 11:44 to the record TASK FOR MARTA WhatsApp · 11:44 TASK Call Mila today from 5 pm · Check whether ref. 9895153 is available Mila already has her answer. The call is still waiting for Marta. STATE Answered automatically · Call still to make LOOKING FOR 3 bedrooms in Nerja, up to €350,000 ASKS FOR A call, today from 5 pm OPEN Availability of ref. 9895153, not confirmed ARRIVED WhatsApp · 11:42 PRIORITY High · named a property and asks for a call If nobody takes the task within an hour, we remind Marta. See which plan fits you Example · fictional data",
+   "phases": []
+  },
+  "planDiffs": {
+   "plans": true,
+   "att": {
+    "data-plans": "true",
+    "data-plans-brief": "1120",
+    "data-plans-view": "target",
+    "data-plans-table-shown": "true",
+    "data-plan-diffs": "api-pending"
+   },
+   "diffs": [
+    {
+     "v": "api-pending",
+     "s": "Choose your plan 14 days free on Essential, no card. Essential For a small team Replies on WhatsApp and email, also at night. Every enquiry on its record, with its priority and reason. Every week, a report on what needs your attention. Try Essential free for 1"
+    }
+   ],
+   "free14": 2,
+   "freeWord": 2,
+   "tableShown": "true",
+   "text": "Choose your plan 14 days free on Essential, no card. Essential For a small team Replies on WhatsApp and email, also at night. Every enquiry on its record, with its priority and reason. Every week, a report on what needs your attention. Try Essential free for 14 days No card. We write to you to set it up. Opens the trial request with Essential already selected. Request this plan Hide CHANNELS Replies in Spanish on WhatsApp and e-mail Language detection Your Gmail or Outlook mailbox Labels in your Gmail inbox WhatsApp, on your agency's number or on ours Phone assistant Posting on Instagram CRM Record in the built-in CRM, with channel of origin Priority with its reason One record per person across channels TEAM Alert to the right person Task list and \"What do I have today?\" Listings that fit and follow-up with permission REPORTING Report in your agency's login Weekly e-mail summary Extended report: trend, channels and insights INTEGRATIONS Connection to your CRM Leads from portals and ads SERVICES 3D visualisation Optional Growth For teams that share the work Everything in Essential, plus: Everyone gets their task list for the day. Suggests listings that fit each client. Follow-up with your contacts, with their permission. Book a Growth demo We write to you to agree the day of the demo. Opens the demo request with Growth already selected. Request this plan See everything included "
+  }
+ },
+ "forms": [
+  {
+   "interes": "trial",
+   "plan": "essential",
+   "loaded": true,
+   "h1": "Talk to a person.",
+   "fields": [
+    {
+     "name": "agency",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Agency name",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "name",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Your name",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "email",
+     "type": "email",
+     "value": "",
+     "required": false,
+     "label": "Work e-mail",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "phone",
+     "type": "tel",
+     "value": "",
+     "required": false,
+     "label": "Phone",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "interest",
+     "type": "select-one",
+     "value": "trial",
+     "required": false,
+     "label": "What are you interested in? Free Essential trial Gro",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "message",
+     "type": "textarea",
+     "value": "Free trial · 14 days on Essential",
+     "required": false,
+     "label": "Message (optional)",
+     "hidden": false,
+     "h": 96
+    },
+    {
+     "name": "web",
+     "type": "text",
+     "value": "",
+     "required": false,
+     "label": "",
+     "hidden": false,
+     "h": 24
+    }
+   ],
+   "submit": [
+    {
+     "t": "Request the trial",
+     "h": 56
+    }
+   ],
+   "cardText": null,
+   "cardAttrs": null,
+   "mentionsPlan": true,
+   "mentions14": true,
+   "mentionsFree": true,
+   "marks": 0
+  },
+  {
+   "interes": "demo",
+   "plan": "growth",
+   "loaded": true,
+   "h1": "Talk to a person.",
+   "fields": [
+    {
+     "name": "agency",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Agency name",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "name",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Your name",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "email",
+     "type": "email",
+     "value": "",
+     "required": false,
+     "label": "Work e-mail",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "phone",
+     "type": "tel",
+     "value": "",
+     "required": false,
+     "label": "Phone",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "interest",
+     "type": "select-one",
+     "value": "demo",
+     "required": false,
+     "label": "What are you interested in? Free Essential trial Gro",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "message",
+     "type": "textarea",
+     "value": "Demo · Growth plan",
+     "required": false,
+     "label": "Message (optional)",
+     "hidden": false,
+     "h": 96
+    },
+    {
+     "name": "web",
+     "type": "text",
+     "value": "",
+     "required": false,
+     "label": "",
+     "hidden": false,
+     "h": 24
+    }
+   ],
+   "submit": [
+    {
+     "t": "Book the demo",
+     "h": 56
+    }
+   ],
+   "cardText": null,
+   "cardAttrs": null,
+   "mentionsPlan": true,
+   "mentions14": true,
+   "mentionsFree": true,
+   "marks": 0
+  },
+  {
+   "interes": "talk",
+   "plan": "enterprise",
+   "loaded": true,
+   "h1": "Talk to a person.",
+   "fields": [
+    {
+     "name": "agency",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Agency name",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "name",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Your name",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "email",
+     "type": "email",
+     "value": "",
+     "required": false,
+     "label": "Work e-mail",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "phone",
+     "type": "tel",
+     "value": "",
+     "required": false,
+     "label": "Phone",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "interest",
+     "type": "select-one",
+     "value": "talk",
+     "required": false,
+     "label": "What are you interested in? Free Essential trial Gro",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "message",
+     "type": "textarea",
+     "value": "Conversation · Enterprise plan",
+     "required": false,
+     "label": "Message (optional)",
+     "hidden": false,
+     "h": 96
+    },
+    {
+     "name": "web",
+     "type": "text",
+     "value": "",
+     "required": false,
+     "label": "",
+     "hidden": false,
+     "h": 24
+    }
+   ],
+   "submit": [
+    {
+     "t": "Send",
+     "h": 56
+    }
+   ],
+   "cardText": null,
+   "cardAttrs": null,
+   "mentionsPlan": true,
+   "mentions14": true,
+   "mentionsFree": true,
+   "marks": 0
+  },
+  {
+   "interes": "contratar",
+   "plan": "essential",
+   "loaded": true,
+   "h1": "Talk to a person.",
+   "fields": [
+    {
+     "name": "agency",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Agency name",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "name",
+     "type": "text",
+     "value": "",
+     "required": true,
+     "label": "Your name",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "email",
+     "type": "email",
+     "value": "",
+     "required": false,
+     "label": "Work e-mail",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "phone",
+     "type": "tel",
+     "value": "",
+     "required": false,
+     "label": "Phone",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "interest",
+     "type": "select-one",
+     "value": "contract",
+     "required": false,
+     "label": "What are you interested in? Free Essential trial Gro",
+     "hidden": false,
+     "h": 48
+    },
+    {
+     "name": "message",
+     "type": "textarea",
+     "value": "Request the Essential plan",
+     "required": false,
+     "label": "Message (optional)",
+     "hidden": false,
+     "h": 96
+    },
+    {
+     "name": "web",
+     "type": "text",
+     "value": "",
+     "required": false,
+     "label": "",
+     "hidden": false,
+     "h": 24
+    }
+   ],
+   "submit": [
+    {
+     "t": "Send request",
+     "h": 56
+    }
+   ],
+   "cardText": null,
+   "cardAttrs": null,
+   "mentionsPlan": true,
+   "mentions14": true,
+   "mentionsFree": true,
+   "marks": 0
+  }
+ ],
+ "pinEnd": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK"
+}

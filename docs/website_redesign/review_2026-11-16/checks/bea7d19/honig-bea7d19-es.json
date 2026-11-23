@@ -1,0 +1,75 @@
+{
+ "pin": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "pinEnd": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "locale": "es",
+ "info": {
+  "box": {
+   "w": 215,
+   "h": 24,
+   "top": 1258,
+   "left": -9958,
+   "pageY": 1258
+  },
+  "own": {
+   "display": "inline-block",
+   "visibility": "visible",
+   "opacity": "1",
+   "position": "static",
+   "clipPath": "none",
+   "clip": "auto",
+   "overflow": "clip",
+   "height": "24px",
+   "transform": "none",
+   "pointerEvents": "auto",
+   "zIndex": "auto"
+  },
+  "attrs": {
+   "ariaHidden": null,
+   "tabindex": "-1",
+   "autocomplete": "off",
+   "type": null,
+   "id": "",
+   "labelFor": false,
+   "inLabel": true
+  },
+  "wrapper": {
+   "tag": "label",
+   "cls": "prq-web",
+   "display": "block",
+   "visibility": "visible",
+   "opacity": "1",
+   "overflow": "hidden",
+   "height": "1px",
+   "position": "absolute",
+   "clipPath": "none",
+   "box": {
+    "w": 1,
+    "h": 1,
+    "top": 1258
+   }
+  },
+  "outer": "<input tabindex=\"-1\" autocomplete=\"off\" name=\"web\">"
+ },
+ "hit": {
+  "cx": -9850,
+  "cy": 464,
+  "hitTag": "none",
+  "hitName": "",
+  "isTheTrap": false
+ },
+ "stops": [
+  "name",
+  "email",
+  "phone",
+  "interest",
+  "message",
+  "a",
+  "button",
+  "a",
+  "a",
+  "a",
+  "a",
+  "a"
+ ],
+ "trapInTab": false
+}

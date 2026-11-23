@@ -1,0 +1,99 @@
+{
+ "pin": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "from": "en",
+ "to": "es",
+ "viewport": "390x844",
+ "ways": [
+  {
+   "interes": "trial",
+   "plan": "essential",
+   "href": "/es/contact?plan=essential&interes=trial",
+   "before": {
+    "url": "/en/contact?interes=trial&plan=essential",
+    "interest": "trial",
+    "message": "Free trial · 14 days on Essential",
+    "agency": "Inmobiliaria RV6 Prueba",
+    "name": "RV6 Revisor",
+    "phone": "+34600000001",
+    "submit": "Request the trial"
+   },
+   "after": {
+    "url": "/es/contact?plan=essential&interes=trial",
+    "interest": "trial",
+    "message": "Prueba gratuita · 14 días con Essential",
+    "agency": "Inmobiliaria RV6 Prueba",
+    "name": "RV6 Revisor",
+    "email": "ajdg.private+rv4-lang-en@gmail.com",
+    "phone": "+34600000001",
+    "h1": "Habla con una persona.",
+    "namesPlan": true,
+    "submit": "Pedir la prueba"
+   },
+   "urlKeepsWay": true,
+   "urlKeepsPlan": true,
+   "wayKept": true,
+   "typedKept": true
+  },
+  {
+   "interes": "demo",
+   "plan": "growth",
+   "href": "/es/contact?plan=growth&interes=demo",
+   "before": {
+    "url": "/en/contact?interes=demo&plan=growth",
+    "interest": "demo",
+    "message": "Demo · Growth plan",
+    "agency": "Inmobiliaria RV6 Prueba",
+    "name": "RV6 Revisor",
+    "phone": "+34600000001",
+    "submit": "Book the demo"
+   },
+   "after": {
+    "url": "/es/contact?plan=growth&interes=demo",
+    "interest": "demo",
+    "message": "Demo · plan Growth",
+    "agency": "Inmobiliaria RV6 Prueba",
+    "name": "RV6 Revisor",
+    "email": "ajdg.private+rv4-lang-en@gmail.com",
+    "phone": "+34600000001",
+    "h1": "Habla con una persona.",
+    "namesPlan": true,
+    "submit": "Pedir la demo"
+   },
+   "urlKeepsWay": true,
+   "urlKeepsPlan": true,
+   "wayKept": true,
+   "typedKept": true
+  },
+  {
+   "interes": "talk",
+   "plan": "enterprise",
+   "href": "/es/contact?plan=enterprise&interes=talk",
+   "before": {
+    "url": "/en/contact?interes=talk&plan=enterprise",
+    "interest": "talk",
+    "message": "Conversation · Enterprise plan",
+    "agency": "Inmobiliaria RV6 Prueba",
+    "name": "RV6 Revisor",
+    "phone": "+34600000001",
+    "submit": "Send"
+   },
+   "after": {
+    "url": "/es/contact?plan=enterprise&interes=talk",
+    "interest": "talk",
+    "message": "Conversación · plan Enterprise",
+    "agency": "Inmobiliaria RV6 Prueba",
+    "name": "RV6 Revisor",
+    "email": "ajdg.private+rv4-lang-en@gmail.com",
+    "phone": "+34600000001",
+    "h1": "Habla con una persona.",
+    "namesPlan": true,
+    "submit": "Enviar"
+   },
+   "urlKeepsWay": true,
+   "urlKeepsPlan": true,
+   "wayKept": true,
+   "typedKept": true
+  }
+ ],
+ "pinEnd": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK"
+}

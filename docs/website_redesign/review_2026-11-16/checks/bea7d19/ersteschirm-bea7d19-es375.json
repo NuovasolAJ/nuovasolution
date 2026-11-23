@@ -1,0 +1,156 @@
+{
+ "pin": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "pinEnd": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "locale": "es",
+ "viewport": "375x812",
+ "first": {
+  "vh": 812,
+  "items": [
+   {
+    "tag": "span",
+    "y": 69,
+    "h": 75,
+    "t": "Muestra el producto completo, incluidas funciones que no están activas. Datos de ejemplo: nada d"
+   },
+   {
+    "tag": "button",
+    "y": 161,
+    "h": 44,
+    "t": "Solo en la vista previa +"
+   },
+   {
+    "tag": "p",
+    "y": 166,
+    "h": 20,
+    "t": "Estás en una visita · 11:40"
+   },
+   {
+    "tag": "p",
+    "y": 236,
+    "h": 34,
+    "t": "PARA AGENCIAS INMOBILIARIAS EN ESPAÑA"
+   },
+   {
+    "tag": "span",
+    "y": 280,
+    "h": 35,
+    "t": "Mientras"
+   },
+   {
+    "tag": "span",
+    "y": 280,
+    "h": 35,
+    "t": "enseñas"
+   },
+   {
+    "tag": "span",
+    "y": 315,
+    "h": 35,
+    "t": "piso,"
+   },
+   {
+    "tag": "span",
+    "y": 315,
+    "h": 35,
+    "t": "¿quién"
+   },
+   {
+    "tag": "span",
+    "y": 350,
+    "h": 35,
+    "t": "atiende"
+   },
+   {
+    "tag": "span",
+    "y": 350,
+    "h": 35,
+    "t": "Mila?"
+   },
+   {
+    "tag": "p",
+    "y": 397,
+    "h": 72,
+    "t": "NuovaSolution le contesta por WhatsApp al momento, entiende qué busca y te deja la tarea lista: "
+   },
+   {
+    "tag": "p",
+    "y": 495,
+    "h": 18,
+    "t": "CONSULTA POR WHATSAPP · 11:42"
+   },
+   {
+    "tag": "p",
+    "y": 517,
+    "h": 63,
+    "t": "Hola, busco un piso de 3 dormitorios en Nerja, hasta 350.000 €. ¿Sigue disponible la ref. 989515"
+   },
+   {
+    "tag": "p",
+    "y": 610,
+    "h": 18,
+    "t": "TAREA PARA MARTA"
+   },
+   {
+    "tag": "p",
+    "y": 632,
+    "h": 43,
+    "t": "Llamar a Mila · Comprobar disponibilidad de la ref. 9895153"
+   },
+   {
+    "tag": "p",
+    "y": 679,
+    "h": 18,
+    "t": "Pide que la llamen · Disponibilidad sin confirmar"
+   },
+   {
+    "tag": "p",
+    "y": 715,
+    "h": 18,
+    "t": "Ejemplo · datos ficticios"
+   },
+   {
+    "tag": "a",
+    "y": 749,
+    "h": 56,
+    "t": "Ver cómo queda la tarea"
+   }
+  ],
+  "taskWords": {
+   "llamar": true,
+   "ref": true,
+   "tarea": true,
+   "hora": false
+  },
+  "milaAnywhere": 10
+ },
+ "fixed": {
+  "vh": 812,
+  "vw": 375,
+  "res": [
+   {
+    "tag": "header",
+    "cls": "fixed inset-x-0 top-0 z-[100] h-[var(--heade",
+    "w": 375,
+    "h": 60,
+    "top": 0,
+    "bottom": 60,
+    "onScreen": true,
+    "pctOfScreen": 7.4,
+    "t": "",
+    "coversAtCentre": "div "
+   },
+   {
+    "tag": "div",
+    "cls": "mcta",
+    "w": 375,
+    "h": 65,
+    "top": 819,
+    "bottom": 884,
+    "onScreen": false,
+    "pctOfScreen": 8,
+    "t": "Prueba Essential gratis"
+   }
+  ]
+ },
+ "onScreenPx": 60
+}

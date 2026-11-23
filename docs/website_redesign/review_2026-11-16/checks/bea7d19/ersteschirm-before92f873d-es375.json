@@ -1,0 +1,120 @@
+{
+ "pin": "92f873d/dpl_7j8zGi1u9Hua49DAX6jjmV88zFHH",
+ "pinEnd": "92f873d/dpl_7j8zGi1u9Hua49DAX6jjmV88zFHH",
+ "locale": "es",
+ "viewport": "375x812",
+ "first": {
+  "vh": 812,
+  "items": [
+   {
+    "tag": "span",
+    "y": 69,
+    "h": 36,
+    "t": "Datos de ejemplo: nada de lo que introduzcas crea una cuenta ni llega a nadie."
+   },
+   {
+    "tag": "p",
+    "y": 119,
+    "h": 20,
+    "t": "Casa de ejemplo ficticia, visualización"
+   },
+   {
+    "tag": "button",
+    "y": 122,
+    "h": 36,
+    "t": "Solo en la vista previa +"
+   },
+   {
+    "tag": "p",
+    "y": 229,
+    "h": 34,
+    "t": "PARA AGENCIAS INMOBILIARIAS EN ESPAÑA"
+   },
+   {
+    "tag": "span",
+    "y": 272,
+    "h": 35,
+    "t": "Haz"
+   },
+   {
+    "tag": "span",
+    "y": 272,
+    "h": 35,
+    "t": "crecer"
+   },
+   {
+    "tag": "span",
+    "y": 307,
+    "h": 35,
+    "t": "inmobiliaria."
+   },
+   {
+    "tag": "span",
+    "y": 343,
+    "h": 35,
+    "t": "carga"
+   },
+   {
+    "tag": "span",
+    "y": 343,
+    "h": 35,
+    "t": "trabajo."
+   },
+   {
+    "tag": "p",
+    "y": 390,
+    "h": 72,
+    "t": "Tus clientes reciben respuesta aunque estés en una visita, y lo que piden te espera ordenado en "
+   },
+   {
+    "tag": "a",
+    "y": 478,
+    "h": 56,
+    "t": "Solicita tu piloto gratuito"
+   },
+   {
+    "tag": "p",
+    "y": 546,
+    "h": 68,
+    "t": "Piloto gratuito de 14 días, con nuestro acompañamiento. Si nos das tu opinión, 7 días más."
+   }
+  ],
+  "taskWords": {
+   "llamar": false,
+   "ref": false,
+   "tarea": false,
+   "hora": false
+  },
+  "milaAnywhere": 0
+ },
+ "fixed": {
+  "vh": 812,
+  "vw": 375,
+  "res": [
+   {
+    "tag": "header",
+    "cls": "fixed inset-x-0 top-0 z-[100] h-[var(--heade",
+    "w": 375,
+    "h": 60,
+    "top": 0,
+    "bottom": 60,
+    "onScreen": true,
+    "pctOfScreen": 7.4,
+    "t": "",
+    "coversAtCentre": "div "
+   },
+   {
+    "tag": "div",
+    "cls": "mcta",
+    "w": 375,
+    "h": 65,
+    "top": 819,
+    "bottom": 884,
+    "onScreen": false,
+    "pctOfScreen": 8,
+    "t": "Solicita tu piloto gratuito"
+   }
+  ]
+ },
+ "onScreenPx": 60
+}

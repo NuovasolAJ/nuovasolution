@@ -1,0 +1,344 @@
+{
+ "pin": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "pinEnd": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "locale": "es",
+ "doneAt": 10641,
+ "restartAt": 14741,
+ "dwell": 4100,
+ "cardWords": 91,
+ "trace": [
+  {
+   "ms": 3,
+   "run": "1",
+   "phase": "0",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 406,
+   "run": "1",
+   "phase": "0",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 818,
+   "run": "1",
+   "phase": "1",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 1223,
+   "run": "1",
+   "phase": "1",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 1632,
+   "run": "1",
+   "phase": "1",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 2047,
+   "run": "1",
+   "phase": "1",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 2453,
+   "run": "1",
+   "phase": "1",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 2856,
+   "run": "1",
+   "phase": "1",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 3268,
+   "run": "1",
+   "phase": "2",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 3683,
+   "run": "1",
+   "phase": "2",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 4100,
+   "run": "1",
+   "phase": "2",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 4504,
+   "run": "1",
+   "phase": "3",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 4909,
+   "run": "1",
+   "phase": "3",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 5322,
+   "run": "1",
+   "phase": "4",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 5726,
+   "run": "1",
+   "phase": "4",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 6134,
+   "run": "1",
+   "phase": "4",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 6541,
+   "run": "1",
+   "phase": "4",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 6958,
+   "run": "1",
+   "phase": "5",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 7361,
+   "run": "1",
+   "phase": "5",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 7768,
+   "run": "1",
+   "phase": "6",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 8178,
+   "run": "1",
+   "phase": "7",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 8591,
+   "run": "1",
+   "phase": "9",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 9006,
+   "run": "1",
+   "phase": "9",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 9411,
+   "run": "1",
+   "phase": "10",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 9816,
+   "run": "1",
+   "phase": "11",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 10225,
+   "run": "1",
+   "phase": "11",
+   "done": "false",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 10641,
+   "run": "1",
+   "phase": "12",
+   "done": "true",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 11052,
+   "run": "1",
+   "phase": "12",
+   "done": "true",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 11466,
+   "run": "1",
+   "phase": "12",
+   "done": "true",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 11873,
+   "run": "1",
+   "phase": "12",
+   "done": "true",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 12284,
+   "run": "1",
+   "phase": "12",
+   "done": "true",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 12699,
+   "run": "1",
+   "phase": "12",
+   "done": "true",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 13100,
+   "run": "1",
+   "phase": "12",
+   "done": "true",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 13515,
+   "run": "1",
+   "phase": "12",
+   "done": "true",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 13933,
+   "run": "1",
+   "phase": "12",
+   "done": "true",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 14337,
+   "run": "1",
+   "phase": "12",
+   "done": "true",
+   "entered": "run",
+   "cardWords": 91,
+   "cardLen": 525
+  },
+  {
+   "ms": 14741,
+   "run": "2",
+   "phase": "0",
+   "done": "false",
+   "entered": "run",
+   "cardWords": null,
+   "cardLen": 0
+  }
+ ]
+}

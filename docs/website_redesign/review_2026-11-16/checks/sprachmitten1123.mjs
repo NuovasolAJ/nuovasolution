@@ -40,8 +40,15 @@ for (const [interes, plan] of WAYS) {
   let ok = false;
   for (let a = 1; a <= 3 && !ok; a++) {
     await send("Page.navigate", { url }); await sleep(a === 1 ? 5800 : 7400);
-    const c = await ev(`(()=>({f:!!document.querySelector("form"),len:(document.body.innerText||"").length}))()`);
-    ok = c && !c.__error && c.f && c.len > 300;
+    // R-9 keeps the typed fields in sessionStorage for the tab, so without clearing it the SECOND
+    // way would open on the first way's text and the evidence would be polluted. Clear, then load
+    // again, because the restore happens on mount.
+    await ev(`(()=>{try{sessionStorage.clear();}catch(e){}})()`);
+    await send("Page.navigate", { url }); await sleep(5200);
+    const c = await ev(`(()=>({f:!!document.querySelector("form"),len:(document.body.innerText||"").length,
+      kept:(()=>{try{return sessionStorage.getItem("nuova.prq");}catch(e){return "blocked";}})()}))()`);
+    ok = c && !c.__error && c.f && c.len > 300 && !c.kept;
+    if (c && c.kept) console.log(`  ${interes}: storage not empty after the reset - would be polluted, retrying`);
   }
   if (!ok) { console.log(`\n  ${interes}: ABORT - form never loaded, NOT a pass`); R.ways.push({ interes, plan, loaded: false }); continue; }
 

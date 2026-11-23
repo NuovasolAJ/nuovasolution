@@ -1,0 +1,263 @@
+{
+ "pin": "92f873d/dpl_7j8zGi1u9Hua49DAX6jjmV88zFHH",
+ "pinEnd": "92f873d/dpl_7j8zGi1u9Hua49DAX6jjmV88zFHH",
+ "locale": "es",
+ "doneAt": 7009,
+ "restartAt": 11143,
+ "dwell": 4134,
+ "cardWords": null,
+ "trace": [
+  {
+   "ms": 5,
+   "run": "1",
+   "phase": "0",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 415,
+   "run": "1",
+   "phase": "0",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 822,
+   "run": "1",
+   "phase": "1",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 1227,
+   "run": "1",
+   "phase": "1",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 1635,
+   "run": "1",
+   "phase": "1",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 2040,
+   "run": "1",
+   "phase": "1",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 2460,
+   "run": "1",
+   "phase": "1",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 2880,
+   "run": "1",
+   "phase": "2",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 3298,
+   "run": "1",
+   "phase": "3",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 3704,
+   "run": "1",
+   "phase": "4",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 4110,
+   "run": "1",
+   "phase": "5",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 4528,
+   "run": "1",
+   "phase": "6",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 4930,
+   "run": "1",
+   "phase": "7",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 5352,
+   "run": "1",
+   "phase": "8",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 5771,
+   "run": "1",
+   "phase": "9",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 6188,
+   "run": "1",
+   "phase": "10",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 6603,
+   "run": "1",
+   "phase": "10",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 7009,
+   "run": "1",
+   "phase": "11",
+   "done": "true",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 7419,
+   "run": "1",
+   "phase": "11",
+   "done": "true",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 7824,
+   "run": "1",
+   "phase": "11",
+   "done": "true",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 8232,
+   "run": "1",
+   "phase": "11",
+   "done": "true",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 8651,
+   "run": "1",
+   "phase": "11",
+   "done": "true",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 9068,
+   "run": "1",
+   "phase": "11",
+   "done": "true",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 9486,
+   "run": "1",
+   "phase": "11",
+   "done": "true",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 9906,
+   "run": "1",
+   "phase": "11",
+   "done": "true",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 10311,
+   "run": "1",
+   "phase": "11",
+   "done": "true",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 10725,
+   "run": "1",
+   "phase": "11",
+   "done": "true",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  },
+  {
+   "ms": 11143,
+   "run": "2",
+   "phase": "0",
+   "done": "false",
+   "entered": null,
+   "cardWords": null,
+   "cardLen": 0
+  }
+ ]
+}

@@ -1,0 +1,100 @@
+{
+ "pin": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "pinEnd": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "locale": "en",
+ "viewport": "390x844",
+ "trialAt": 6,
+ "zeroStops": 0,
+ "seq": [
+  {
+   "none": false,
+   "tag": "a",
+   "label": "Skip to content",
+   "href": "#main",
+   "w": 138.6,
+   "h": 48,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "a",
+   "label": "NuovaSolution",
+   "href": "/en",
+   "w": 140,
+   "h": 44,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "button",
+   "label": "Menu",
+   "href": "",
+   "w": 44,
+   "h": 44,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "button",
+   "label": "Preview only +",
+   "href": "",
+   "w": 122.5,
+   "h": 44,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "a",
+   "label": "See the finished task",
+   "href": "#demo",
+   "w": 358,
+   "h": 56,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "a",
+   "label": "Try Essential free",
+   "href": "/en/contact?interes=trial&plan=essential",
+   "w": 358,
+   "h": 44,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "button",
+   "label": "Replay demo",
+   "href": "",
+   "w": 44,
+   "h": 44,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "button",
+   "label": "WhatsApp",
+   "href": "",
+   "w": 173,
+   "h": 44,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "a",
+   "label": "See which plan fits you",
+   "href": "/en#plans",
+   "w": 187.4,
+   "h": 44,
+   "zero": false,
+   "hiddenAncestor": null
+  }
+ ]
+}

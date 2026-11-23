@@ -1,0 +1,168 @@
+{
+ "pin": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "pinEnd": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "locale": "en",
+ "viewport": "375x812",
+ "first": {
+  "vh": 812,
+  "items": [
+   {
+    "tag": "span",
+    "y": 69,
+    "h": 75,
+    "t": "It shows the complete product, including functions that are not active. Example data: nothing yo"
+   },
+   {
+    "tag": "button",
+    "y": 161,
+    "h": 44,
+    "t": "Preview only +"
+   },
+   {
+    "tag": "p",
+    "y": 166,
+    "h": 20,
+    "t": "You're at a viewing · 11:40"
+   },
+   {
+    "tag": "p",
+    "y": 236,
+    "h": 17,
+    "t": "FOR REAL ESTATE AGENCIES IN SPAIN"
+   },
+   {
+    "tag": "span",
+    "y": 263,
+    "h": 35,
+    "t": "While"
+   },
+   {
+    "tag": "span",
+    "y": 263,
+    "h": 35,
+    "t": "you're"
+   },
+   {
+    "tag": "span",
+    "y": 298,
+    "h": 35,
+    "t": "showing"
+   },
+   {
+    "tag": "span",
+    "y": 298,
+    "h": 35,
+    "t": "flat,"
+   },
+   {
+    "tag": "span",
+    "y": 298,
+    "h": 35,
+    "t": "who's"
+   },
+   {
+    "tag": "span",
+    "y": 333,
+    "h": 35,
+    "t": "looking"
+   },
+   {
+    "tag": "span",
+    "y": 333,
+    "h": 35,
+    "t": "after"
+   },
+   {
+    "tag": "span",
+    "y": 333,
+    "h": 35,
+    "t": "Mila?"
+   },
+   {
+    "tag": "p",
+    "y": 380,
+    "h": 96,
+    "t": "NuovaSolution answers her on WhatsApp straight away, works out what she's looking for and leaves"
+   },
+   {
+    "tag": "p",
+    "y": 502,
+    "h": 18,
+    "t": "ENQUIRY ON WHATSAPP · 11:42"
+   },
+   {
+    "tag": "p",
+    "y": 524,
+    "h": 63,
+    "t": "Hola, busco un piso de 3 dormitorios en Nerja, hasta 350.000 €. ¿Sigue disponible la ref. 989515"
+   },
+   {
+    "tag": "span",
+    "y": 594,
+    "h": 16,
+    "t": "Translation:"
+   },
+   {
+    "tag": "p",
+    "y": 677,
+    "h": 18,
+    "t": "TASK FOR MARTA"
+   },
+   {
+    "tag": "p",
+    "y": 699,
+    "h": 43,
+    "t": "Call Mila · Check whether ref. 9895153 is available"
+   },
+   {
+    "tag": "p",
+    "y": 747,
+    "h": 18,
+    "t": "Asks for a call back · Availability not confirmed"
+   },
+   {
+    "tag": "p",
+    "y": 783,
+    "h": 18,
+    "t": "Example · fictional data"
+   }
+  ],
+  "taskWords": {
+   "llamar": true,
+   "ref": true,
+   "tarea": true,
+   "hora": false
+  },
+  "milaAnywhere": 12
+ },
+ "fixed": {
+  "vh": 812,
+  "vw": 375,
+  "res": [
+   {
+    "tag": "header",
+    "cls": "fixed inset-x-0 top-0 z-[100] h-[var(--heade",
+    "w": 375,
+    "h": 60,
+    "top": 0,
+    "bottom": 60,
+    "onScreen": true,
+    "pctOfScreen": 7.4,
+    "t": "",
+    "coversAtCentre": "div "
+   },
+   {
+    "tag": "div",
+    "cls": "mcta",
+    "w": 375,
+    "h": 65,
+    "top": 819,
+    "bottom": 884,
+    "onScreen": false,
+    "pctOfScreen": 8,
+    "t": "Try Essential free"
+   }
+  ]
+ },
+ "onScreenPx": 60
+}

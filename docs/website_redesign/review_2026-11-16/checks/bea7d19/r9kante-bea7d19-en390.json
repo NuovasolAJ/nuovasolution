@@ -1,0 +1,73 @@
+{
+ "pin": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "from": "en",
+ "to": "es",
+ "viewport": "390x844",
+ "runs": [
+  {
+   "where": "above",
+   "kind": "language",
+   "via": "/es/contact?plan=essential&interes=trial",
+   "typedValue": "nota R9 arriba Free trial · 14 days on Essential",
+   "prefill": "Free trial · 14 days on Essential",
+   "after": {
+    "url": "/es/contact?plan=essential&interes=trial",
+    "interest": "trial",
+    "plan": "essential",
+    "message": "nota R9 arriba Prueba gratuita · 14 días con Essential",
+    "agency": "Inmobiliaria RV6"
+   },
+   "noteKept": true,
+   "strayMark": []
+  },
+  {
+   "where": "above",
+   "kind": "way",
+   "via": "/en/contact?interes=demo&plan=growth",
+   "typedValue": "nota R9 arriba Free trial · 14 days on Essential",
+   "prefill": "Free trial · 14 days on Essential",
+   "after": {
+    "url": "/en/contact?interes=demo&plan=growth",
+    "interest": "demo",
+    "plan": "growth",
+    "message": "nota R9 arriba Demo · Growth plan",
+    "agency": "Inmobiliaria RV6"
+   },
+   "noteKept": true,
+   "strayMark": []
+  },
+  {
+   "where": "below",
+   "kind": "language",
+   "via": "/es/contact?plan=essential&interes=trial",
+   "typedValue": "Free trial · 14 days on Essential nota R9 arriba",
+   "prefill": "Free trial · 14 days on Essential",
+   "after": {
+    "url": "/es/contact?plan=essential&interes=trial",
+    "interest": "trial",
+    "plan": "essential",
+    "message": "Prueba gratuita · 14 días con Essential nota R9 arriba",
+    "agency": "Inmobiliaria RV6"
+   },
+   "noteKept": true,
+   "strayMark": []
+  },
+  {
+   "where": "below",
+   "kind": "way",
+   "via": "/en/contact?interes=demo&plan=growth",
+   "typedValue": "Free trial · 14 days on Essential nota R9 arriba",
+   "prefill": "Free trial · 14 days on Essential",
+   "after": {
+    "url": "/en/contact?interes=demo&plan=growth",
+    "interest": "demo",
+    "plan": "growth",
+    "message": "Demo · Growth plan nota R9 arriba",
+    "agency": "Inmobiliaria RV6"
+   },
+   "noteKept": true,
+   "strayMark": []
+  }
+ ],
+ "pinEnd": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK"
+}

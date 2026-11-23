@@ -33,6 +33,16 @@ await send("Page.enable"); await send("Runtime.enable");
 await send("Emulation.setDeviceMetricsOverride", { width: W, height: H, deviceScaleFactor: 2, mobile: true });
 await send("Emulation.setTouchEmulationEnabled", { enabled: true, maxTouchPoints: 5 });
 
+// R-9 keeps the typed fields in sessionStorage for the tab. This probe only READS forms, it never
+// types -- so anything in storage comes from an EARLIER probe in this same browser and would be
+// read back as if it were the page's own prefill (that is what happened on the first run against
+// bea7d19). Clear it once at the start, and state what was found, so the prefill readings below are
+// the page's and not mine.
+await send("Page.navigate", { url: `${BASE}/${LOC}` });
+await new Promise((r) => setTimeout(r, 5200));
+const stale = await ev(`(()=>{try{const s=sessionStorage.getItem("nuova.prq");sessionStorage.clear();return s;}catch(e){return "blocked";}})()`);
+console.log(`\n######## storage reset before the run: ${stale ? "found and cleared leftovers from an earlier probe" : "was already empty"}`);
+
 const go = async (url, mustSel) => {
   for (let a = 1; a <= 3; a++) {
     await send("Page.navigate", { url }); await sleep(a === 1 ? 5800 : 7500);

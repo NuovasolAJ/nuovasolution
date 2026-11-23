@@ -36,10 +36,22 @@ await send("Page.enable");
 await send("Emulation.setDeviceMetricsOverride", { width: W, height: H, deviceScaleFactor: 2, mobile: true });
 await send("Emulation.setTouchEmulationEnabled", { enabled: true, maxTouchPoints: 5 });
 
-const open = async (loc, interes, plan) => {
+// Each run must start from a FRESH form. The fix keeps the typed fields in sessionStorage for the
+// tab, so without clearing it a run inherits the previous run's text and the negative control stops
+// being a control (found on the first pass against bea7d19: runs 2-4 opened on a polluted prefill).
+// Clearing has to happen BEFORE the mount that reads it, so: load, clear, load again.
+const open = async (loc, interes, plan, fresh = true) => {
+  const url = `${BASE}/${loc}/contact?interes=${interes}&plan=${plan}`;
   for (let a = 1; a <= 3; a++) {
-    await send("Page.navigate", { url: `${BASE}/${loc}/contact?interes=${interes}&plan=${plan}` });
+    await send("Page.navigate", { url });
     await sleep(a === 1 ? 5800 : 7400);
+    if (fresh) {
+      const cleared = await ev(`(()=>{try{sessionStorage.removeItem("nuova.prq");sessionStorage.clear();return true;}catch(e){return "blocked";}})()`);
+      await send("Page.navigate", { url });
+      await sleep(5200);
+      const left = await ev(`(()=>{try{return sessionStorage.getItem("nuova.prq");}catch(e){return "blocked";}})()`);
+      if (left) { console.log(`     !! storage not empty after the reset (${JSON.stringify(left).slice(0, 60)}, clear=${cleared}) - run would be polluted`); return false; }
+    }
     const c = await ev(`(()=>({f:!!document.querySelector("[name='message']"),len:(document.body.innerText||"").length}))()`);
     if (c && !c.__error && c.f && c.len > 300) return true;
   }
@@ -110,7 +122,8 @@ for (const where of ["above", "below"]) {
 
     let via = null;
     if (kind === "language") { via = await tapLanguage(); if (!via) { console.log(`\n  ${tag}: language link not reachable - NOT a pass`); R.runs.push({ where, kind, switched: false }); continue; } }
-    else { await open(FROM, "demo", "growth"); via = `/${FROM}/contact?interes=demo&plan=growth`; }
+    // the way move must NOT clear storage: carrying the typed text across is exactly what is under test
+    else { await open(FROM, "demo", "growth", false); via = `/${FROM}/contact?interes=demo&plan=growth`; }
 
     const after = await readForm();
     // what must be true: the note survives, and NO subject of the old way / old language is in the text

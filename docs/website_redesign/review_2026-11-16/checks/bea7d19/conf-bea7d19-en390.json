@@ -1,0 +1,73 @@
+{
+ "pin": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "locale": "en",
+ "viewport": "390x844",
+ "mail": "(allowed test address, not printed in full)",
+ "ways": [
+  {
+   "interes": "trial",
+   "plan": "essential",
+   "submitted": true,
+   "submitLabel": "Request the trial",
+   "submitSize": "308x56",
+   "tapLands": true,
+   "ms": 512,
+   "formGone": true,
+   "errors": [],
+   "body": "Skip to content Preview, not public. It shows the complete product, including functions that are not active. Example data: nothing you enter creates an account or reaches anyone. CONTACT Talk to a person. Direct human contact, in Spanish or English. We explain the plan that fits you and its price. Plan of interest: Essential EMAIL antonio@nuovasolution.com PHONE +34603423161 WHAT HAPPENS NOW 1 Request your trial. We write to you and set it up with you. 2 Connect your mailbox and your WhatsApp. We test it with a real message. 3 Your 14 days begin. Every enquiry gets a reply in Spanish and lands on its record, with its priority and reason. FREE TRIAL · 14 DAYS ON ESSENTIAL Try Essential free for 14 days We set up Essential with you and your 14 days begin. No card; the terms in writing. REQUEST RECEIVED Thank you. A person from our team will write to you to set up your Essential trial. WHAT",
+   "h1": "Talk to a person.",
+   "status": "REQUEST RECEIVED Thank you. A person from our team will write to you to set up your Essential trial. WHAT HAPPENS NOW 1 We write to you and agree a day. 2 We connect your mailbox and your WhatsApp with you. 3 Your 14 days begin. Preview: this request was not sent to anybody. Back to the start",
+   "url": "/en/contact?interes=trial&plan=essential",
+   "wallMs": 563
+  },
+  {
+   "interes": "demo",
+   "plan": "growth",
+   "submitted": true,
+   "submitLabel": "Book the demo",
+   "submitSize": "308x56",
+   "tapLands": true,
+   "ms": 509,
+   "formGone": true,
+   "errors": [],
+   "body": "Skip to content Preview, not public. It shows the complete product, including functions that are not active. Example data: nothing you enter creates an account or reaches anyone. CONTACT Talk to a person. Direct human contact, in Spanish or English. We explain the plan that fits you and its price. Plan of interest: Growth EMAIL antonio@nuovasolution.com PHONE +34603423161 WHAT HAPPENS NOW 1 Request your trial. We write to you and set it up with you. 2 Connect your mailbox and your WhatsApp. We test it with a real message. 3 Your 14 days begin. Every enquiry gets a reply in Spanish and lands on its record, with its priority and reason. DEMO · GROWTH Book a Growth demo We show you Growth on a case like yours and tell you the price before anything is agreed. REQUEST RECEIVED Thank you. A person from our team will write to you to agree the day of the demo. WHAT HAPPENS NOW 1 We agree a day. ",
+   "h1": "Talk to a person.",
+   "status": "REQUEST RECEIVED Thank you. A person from our team will write to you to agree the day of the demo. WHAT HAPPENS NOW 1 We agree a day. 2 In the demo we go through a case like yours. 3 We send you the terms in writing. Preview: this request was not sent to anybody. Back to the start",
+   "url": "/en/contact?interes=demo&plan=growth",
+   "wallMs": 549
+  },
+  {
+   "interes": "talk",
+   "plan": "enterprise",
+   "submitted": true,
+   "submitLabel": "Send",
+   "submitSize": "308x56",
+   "tapLands": true,
+   "ms": 515,
+   "formGone": true,
+   "errors": [],
+   "body": "Skip to content Preview, not public. It shows the complete product, including functions that are not active. Example data: nothing you enter creates an account or reaches anyone. CONTACT Talk to a person. Direct human contact, in Spanish or English. We explain the plan that fits you and its price. Plan of interest: Enterprise EMAIL antonio@nuovasolution.com PHONE +34603423161 WHAT HAPPENS NOW 1 Request your trial. We write to you and set it up with you. 2 Connect your mailbox and your WhatsApp. We test it with a real message. 3 Your 14 days begin. Every enquiry gets a reply in Spanish and lands on its record, with its priority and reason. ENTERPRISE Let's talk about Enterprise Tell us about your agency and how you work. We suggest a conversation, then a proposal in writing. REQUEST RECEIVED Thank you. A person from our team will write to you to arrange the conversation. WHAT HAPPENS NOW ",
+   "h1": "Talk to a person.",
+   "status": "REQUEST RECEIVED Thank you. A person from our team will write to you to arrange the conversation. WHAT HAPPENS NOW 1 We agree a day. 2 We talk about your team and how you work. 3 We send you a proposal in writing. Preview: this request was not sent to anybody. Back to the start",
+   "url": "/en/contact?interes=talk&plan=enterprise",
+   "wallMs": 553
+  },
+  {
+   "interes": "contratar",
+   "plan": "essential",
+   "submitted": true,
+   "submitLabel": "Send request",
+   "submitSize": "308x56",
+   "tapLands": true,
+   "ms": 513,
+   "formGone": true,
+   "errors": [],
+   "body": "Skip to content Preview, not public. It shows the complete product, including functions that are not active. Example data: nothing you enter creates an account or reaches anyone. CONTACT Talk to a person. Direct human contact, in Spanish or English. We explain the plan that fits you and its price. Plan of interest: Essential EMAIL antonio@nuovasolution.com PHONE +34603423161 WHAT HAPPENS NOW 1 Request your trial. We write to you and set it up with you. 2 Connect your mailbox and your WhatsApp. We test it with a real message. 3 Your 14 days begin. Every enquiry gets a reply in Spanish and lands on its record, with its priority and reason. HIRE A PLAN Hire Essential We send you the price and the contract in writing. You sign only if it suits you. REQUEST RECEIVED Thank you. A person from our team will write to you with the price and the contract in writing. Preview: this request was not se",
+   "h1": "Talk to a person.",
+   "status": "REQUEST RECEIVED Thank you. A person from our team will write to you with the price and the contract in writing. Preview: this request was not sent to anybody. Back to the start",
+   "url": "/en/contact?interes=contratar&plan=essential",
+   "wallMs": 568
+  }
+ ],
+ "pinEnd": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK"
+}
