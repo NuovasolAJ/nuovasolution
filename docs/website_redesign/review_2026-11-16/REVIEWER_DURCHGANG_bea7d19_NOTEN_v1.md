@@ -269,3 +269,51 @@ Für meinen **nächsten** Durchgang halte ich drei Dinge fest, weil neue gerende
    Schritte je Weg, eigener Text, Paketzeile, Vorschau-Wahrheit, kein „24 h".
 3. **Audits Antwort zu Zeile 44** entscheidet, ob Satz 1 belegt ist oder auf die Lückenliste
    gehört. Bis dahin führe ich ihn weder als belegt noch als Mangel.
+
+### 11.1 Nachtrag, präzisiert — und die Warnung war berechtigt (23.11., nach dem Durchgang)
+
+Copy meldet: in `bea7d19` wurde `{plan}` **nur** in der Kartenüberschrift gefüllt
+(`pilot-request.ts:20`, Rückfall „un plan"), **nicht** in den Bestätigungsschritten. Redesigns
+lokales `2655fa7` füllt es jetzt über `confirmation()` in jedem Schritt, Rückfall „tu plan" /
+„your plan". Copy behält Schritt 3 mit Platzhalter (`c5630a1`), die Zwischenfassung ohne ist
+zurückgezogen.
+
+**Warum mein Durchgang den Platzhalter nicht sehen konnte, und das ist die genaue Aussage:** auf
+`bea7d19` hatte `done.contract` **noch keine Schritte** — das war ja mein Befund aus §7. Es gab
+dort also gar keinen Satz mit `{plan}` in einer Bestätigung. Die Gefahr entsteht **erst** mit
+Copys neuen Schritten. Mein Durchgang hat nichts übersehen; die Stelle ist neu.
+
+**Der Bestand, exakt nachgesehen** (`grep "{plan}" lib/content/brief-1120.ts`): genau **zwei**
+Stellen — Zeile 119 `contact.contract.h` („Contratar {plan}" / „Hire {plan}", Rückfall „un plan" /
+„a plan") und Zeile 131 die neuen Schritte (Rückfall „tu plan" / „your plan"). **Kein anderer Weg** trägt ihn.
+
+**Ein eigener Fehler, in einer Minute gefunden:** mein schneller Schlüssel-Scan über den
+`done`-Block meldete auch für `talk` ein `{plan}`. Das war eine Fehlschnitt-Stelle meines eigenen
+Hilfsskripts, nicht der Datei — `talk` trägt keinen Platzhalter. Ich habe es nachgesehen, **bevor**
+ich es Copy als Prüfpunkt gegeben habe; ungeprüft weitergegeben wäre es eine falsche Behauptung
+gewesen. Das ist derselbe Reflex wie bei R-8, nur rechtzeitig.
+
+**Prüfmatrix für den nächsten Build** — 8 Darstellungen, Überschrift **und** Schritt 3 je Fall:
+
+| Weg | Paket | erwartet in Schritt 3 |
+|---|---|---|
+| `contratar` | Essential | „…preparamos Essential contigo." |
+| `contratar` | Growth | „…preparamos Growth contigo." |
+| `contratar` | Enterprise | „…preparamos Enterprise contigo." (nur über die Adresszeile erreichbar) |
+| `contratar` | **ohne** `plan` | „…preparamos **tu plan** contigo." / „…set up **your plan** with you." |
+
+Je ES und EN. In **keinem** Fall darf wörtlich `{plan}` auf dem Schirm stehen.
+
+**Zwei Dinge, die ich dabei ausdrücklich NICHT als Mangel führe:**
+
+1. Die Rückfälle lauten verschieden — „Contratar **un** plan" in der Überschrift, „preparamos **tu**
+   plan contigo." im Schritt. Beides ist in seinem eigenen Satz richtiges Spanisch: in der
+   Überschrift ist noch keins gewählt, im Schritt ist es schon seins. **Nicht** vereinheitlichen.
+2. `x.next.map` würde abstürzen, wenn ein Weg kein `next` hätte. Nachgesehen: **alle fünf**
+   (`trial`, `demo`, `talk`, `contract`, `other`) haben eines. `tsc --noEmit` auf dem aktuellen
+   Baum: Rückgabewert **0**.
+
+**Und eine Feststellung zur Hygiene:** der Zweig steht inzwischen auf `c5630a1`, also **hinter**
+dem von mir gemessenen `bea7d19`. Meine sechs Noten gelten für `bea7d19` /
+`dpl_H6WfQ1GK…` — nicht für den lokalen Stand. Was seither dazugekommen ist, ist der erste
+Nachgang und **ungemessen**.
