@@ -57,10 +57,10 @@ export const es: Dictionary = {
     language: "Idioma",
     english: "English",
     spanish: "Español",
-    bookDemo: "Solicita tu piloto gratuito", // Copy 1113 §0 B-1 (owner 13.11.: one offer)
+    bookDemo: "Prueba Essential gratis", // Copy stage 1 §0 + source check 7b64ae1 S-3: the global button names Essential
     startFree: "Pedir acceso", // Copy 1102 v2 C-8 (claims lines 02.11.: no public sign-up promise): every former "Probar gratis" button
-    seeDemo: "Solicita tu piloto gratuito", // Copy 1113 §0 B-1: the header's one black button
-    tryFree: "Solicita tu piloto gratuito", // Copy 1113 §6: no "14 días" anywhere
+    seeDemo: "Prueba Essential gratis", // 7b64ae1 S-1/S-3: the header's one black button (header.tsx reads entryAction)
+    tryFree: "Prueba Essential gratis", // 7b64ae1 S-3
     noPayment: "Sin método de pago.",
     noSalesCall: "Sin llamada comercial.",
     readModule: "Ver el módulo",
@@ -193,7 +193,7 @@ export const es: Dictionary = {
         understand: { step: "Registrada", title: "Una ficha por consulta", line: "La conversación y lo que ha pedido el cliente se quedan en una sola ficha, así que quien la abra después lo ve todo sin preguntar." },
         handover: { step: "Asignada", title: "Una tarea clara, no un recordatorio", line: "Una petición de visita pasa a ser una tarea con nombre, motivo y responsable. Tu equipo la toma y la completa." },
         done: { step: "Hecha", title: "NuovaSolution prepara; tu equipo asesora y cierra", line: "Un toque la toma, un toque la completa. La tarjeta muestra quién la ha tomado, y nadie puede tomar la misma tarea dos veces. La visita, la negociación y la relación siguen siendo de tu gente." }, // orden final 2026-10-12 §6
-        setup: { step: "Tu configuración", title: "Tu agencia, preparada contigo", line: "Preparamos contigo los datos de tu agencia, tus datos legales, tu logo y tu equipo con sus roles." }, // Copy 1116 §10 W-8 (no self-start in the pilot)
+        setup: { step: "Tu configuración", title: "Tu agencia, preparada contigo", line: "Preparamos contigo los datos de tu agencia, tus datos legales, tu logo y tu equipo." }, // Copy 1116 §10 W-8; 7b64ae1 N-1: no "con sus roles" (teamRoles not proven, P-12)
       },
     },
     views: {
@@ -258,7 +258,7 @@ export const es: Dictionary = {
         { title: "Empiezan tus 14 días", line: "Cada consulta recibe respuesta en español y queda en su ficha, con su prioridad y su motivo." },
       ],
       noCharge: "No se cobra nada y no pedimos ninguna tarjeta en ninguno de estos tres pasos.", // D-53
-      viewCaption: "Configuras tu agencia tú mismo, paso a paso.",
+      viewCaption: "La preparamos contigo, paso a paso.", // Copy 7b64ae1 S-5 (T-4)
     },
     offer: {
       eyebrow: "Planes",

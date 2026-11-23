@@ -4,6 +4,7 @@ import { notFound, redirect } from "next/navigation";
 import { isLocale, localePath, locales, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { entryAction, withChannels } from "@/lib/claims";
+import { brief1120 } from "@/lib/content/brief-1120";
 import { resolveSwitches } from "@/lib/view";
 import { capabilityFits, capabilityNote, capabilityText, capabilityVisible, publishedCapabilities, publishedCapability, publicPoints } from "@/lib/content/capabilities";
 import { SectionHead, Display, Eyebrow, Lead, Caption, Heading } from "@/components/ui/type";
@@ -79,7 +80,8 @@ export default function ProductPage({ params }: { params: { locale: string; slug
               <Caption className="mt-3">{d.common.qualifiers.q2}</Caption>
               <CtaRow className="mt-8">
                 <ButtonLink href={p(entry.href)} size="lg">{entry.label}</ButtonLink>
-                <ButtonLink href={p("/contact")} size="lg" variant="secondary">{d.common.bookDemo}</ButtonLink>
+                {/* Copy 7b64ae1 S-2: beside Essential's way the quiet contact, not a second pilot wording */}
+                <ButtonLink href={p("/contact")} size="lg" variant="secondary">{brief1120.contact.other.h[locale]}</ButtonLink>
               </CtaRow>
             </Reveal>
             <Reveal delay={120} mode="opacity" className="xl:col-span-6">

@@ -59,9 +59,8 @@ export function Header({ locale }: { locale: Locale }) {
       nav={nav}
       utilities={<LanguageSwitcher locale={locale} labels={{ en: d.common.english, es: d.common.spanish, group: d.common.language }} />}
       login={{ href: p("/login"), label: d.nav.login }}
-      // The owner's review of 02.11. with API's claims lines: public registration is not released, so the header's one general button
-      // leads to the demonstration, not to a sign-up ("Probar gratis" is not a main action).
-      primary={{ href: p("/contact"), label: d.common.seeDemo }} /* Copy 1108 H-1: the header's black button is the demo request */
+      // The owner's brief of 20.11. + Copy stage 1 §0 (7b64ae1 S-1): the header's one black button is the Essential trial, named after the plan
+      primary={{ href: p(entry.href), label: entry.nav }}
       account={{ href: p("/app"), label: d.nav.account }}
       logout={{ label: d.nav.logout, busy: d.nav.loggingOut }}
       home={localePath(locale)}

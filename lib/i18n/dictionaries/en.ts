@@ -63,10 +63,10 @@ export const en = {
     english: "English",
     spanish: "Español",
     // LAUNCH_COPY_v1 §7.1: "Book a demo" only after the Reviewer's test booking (DEMO_PATH = PASS).
-    bookDemo: "Request your free pilot", // Copy 1113 §0 B-1 (owner 13.11.: one offer)
+    bookDemo: "Try Essential free", // Copy stage 1 §0 + source check 7b64ae1 S-3: the global button names Essential
     startFree: "Request access", // Copy 1102 v2 C-8
-    seeDemo: "Request your free pilot", // Copy 1113 §0 B-1: the header's one black button
-    tryFree: "Request your free pilot", // Copy 1113 §6: no "14 days" anywhere
+    seeDemo: "Try Essential free", // 7b64ae1 S-1/S-3: the header's one black button (header.tsx reads entryAction)
+    tryFree: "Try Essential free", // 7b64ae1 S-3
     noPayment: "No payment method required.",
     noSalesCall: "No sales call required.",
     readModule: "Read the module",
@@ -215,7 +215,7 @@ export const en = {
         understand: { step: "Recorded", title: "One record per enquiry", line: "The conversation and what the customer asked for stay on one record, so the next person to open it sees everything without asking." },
         handover: { step: "Handed over", title: "One clear task, not a reminder", line: "A viewing request becomes a task with a name, a reason and an owner. Your team claims it and completes it." },
         done: { step: "Done", title: "NuovaSolution prepares, your team advises and closes", line: "One tap takes the task, one tap completes it. The card shows who took it, and nobody can take the same task twice. The viewing, the negotiation and the relationship stay with your people." }, // final order 2026-10-12 §6
-        setup: { step: "Your setup", title: "Your agency, set up with you", line: "We set up your agency's details, legal details, logo and team with their roles together with you." }, // Copy 1116 §10 W-8
+        setup: { step: "Your setup", title: "Your agency, set up with you", line: "We set up your agency's details, legal details, logo and team together with you." }, // Copy 1116 §10 W-8; 7b64ae1 N-1: no "with their roles" (teamRoles not proven, P-12)
       },
     },
     views: {
@@ -287,12 +287,12 @@ export const en = {
         { title: "Your 14 days begin", line: "Every enquiry gets a reply in Spanish and lands on its record, with its priority and reason." },
       ],
       noCharge: "Nothing is charged, and we do not ask for a card at any point in these three steps.", // D-53
-      viewCaption: "You set your agency up yourself, one step at a time.",
+      viewCaption: "We set it up with you, step by step.", // Copy 7b64ae1 S-5 (T-4)
     },
     offer: {
       eyebrow: "Plans",
-      h2: "Start free, then choose a plan",
-      lead: "14 days free with no payment. After that you choose a plan with us. We tell you the price for your agency before anything is agreed.",
+      h2: "Try Essential free, then choose", // Copy 7b64ae1 S-4
+      lead: "Essential: 14 days free, no card. Growth and Enterprise start with a demo or a conversation. We tell you the price before anything is agreed.",
       link: "See the plans",
     },
     ask: {
