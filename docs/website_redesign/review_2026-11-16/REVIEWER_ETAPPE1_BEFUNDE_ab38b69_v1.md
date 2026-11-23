@@ -558,3 +558,106 @@ Seite-für-Seite-Abgleich gegen das Register `704960b6` für die **Lückenliste*
 
 Es fehlt dafür nur die Preview-Freigabe des Owners. Zwischen Benennung und meinem Durchgang ändert
 sich nach Redesigns Zusage nichts.
+
+---
+
+## §10 R-9b, R-10 bestätigt · R-11 angenommen · die Wahl A/B gehört dem Owner (23.11.)
+
+### §10.1 Redesign bestätigt beide Punkte an der Quelle
+
+- **R-10**: `footer.tsx:29-30` trägt beide Verweise unter „Empezar", der zweite ist die Form von
+  R-2; Zeile 30 entfernen behebt es.
+- **R-9b**: der Betreff wird nur ausgetauscht, wenn die gespeicherte Nachricht mit ihm **beginnt**;
+  eine vor die Vorbelegung getippte Notiz reist unverändert zurück und trägt den Betreff des
+  verlassenen Weges im Text. Weg und Paket bleiben richtig. Behebung: den gespeicherten Betreff
+  ersetzen, **wo er auch steht** — eine Zeile.
+
+**Statusänderung, die ich festhalte:** R-9b war in §9.3 ausdrücklich eine **Vermutung aus dem Lesen**
+der Behebung. Sie ist jetzt **vom Urheber an der Quelle bestätigt** und damit kein Verdacht mehr,
+sondern ein Befund — **ungemessen**, aber in der Sache nicht mehr offen. Darauf kommt es bei der
+Wahl in §10.4 an: an R-9b ist nichts mehr herauszufinden.
+
+### §10.2 R-11 angenommen — und Copy hat eine Stelle gefunden, die ich übersehen hatte
+
+Copy nimmt R-11 an; die endgültigen Zeilen stehen in `21830f8` (§6.5). `who.essential` wird
+„Para un equipo pequeño" / „For a small team", `planLines.essential` ebenfalls (obwohl tot). Die
+Zielgruppenzeilen gehen künftig nach **Teamgröße** (Puestos 3 / 8 / 50 ist eine geplante
+Paketzeile), nie nach Büros.
+
+**Copy nennt dabei eine zweite gerenderte Stelle, die in meinem §9.4 fehlt:**
+`lib/content/home-1103.ts:477` — Essentials Einordnungszeile „Respuestas, fichas e informe para una
+oficina." / „Replies, records and report for one office." Ich habe sie nachgesehen: sie steht dort
+und sie wird gerendert. Copy hat recht, mein §9.4 war unvollständig.
+
+**Wie ich sie übersehen habe, und das ist mein Fehler, kein Zufall:** mein erster Durchlauf durch
+die Bürostellen war auf `head -10` begrenzt. Die Ausgabe endete nach zehn Zeilen mit meiner eigenen
+Abschlussmarke — und ich habe die Liste danach als **vollständig** behandelt und in §9.4 „an drei
+Stellen" geschrieben, als wäre das der ganze Bestand. Eine abgeschnittene Suche, die sich wie eine
+fertige liest, ist derselbe Fehlertyp wie mein Filter in R-8: das Werkzeug hat nicht widersprochen,
+also habe ich ihm geglaubt. Gegenmittel ist dasselbe wie dort — die Suche ohne Deckel und ohne
+Groß-/Kleinschreibung fahren und die Trefferliste bis zum Ende lesen.
+
+### §10.3 Der vollständige Bestand, und was **nicht** dazugehört
+
+Ungedeckelt und ohne Groß-/Kleinschreibung über `lib`, `components`, `app`:
+
+**Dieselbe Klasse wie R-11 — Büro als Paketgrenze (zwei gerenderte Stellen, beide von Copy gedeckt):**
+`brief-1120.ts:67` und `home-1103.ts:477`. Dazu `planLines.essential` als tote Stelle. **Mehr nicht.**
+
+**Ausdrücklich NICHT dieselbe Klasse — bitte nicht „mitreparieren":** die Schmerzgeschichte lebt von
+der geschlossenen Praxis, und die ist richtig. „con la oficina cerrada", „fuera de la oficina",
+„hasta que abre la oficina", „Nadie en la oficina", „Llegaron con la oficina cerrada"
+(`home-1103.ts:268, 288, 352, 357, 359, 364, 448, 668`, `home-story.ts:274`,
+`capabilities.ts:95-101`, `strengths.ts`) sprechen von **Uhrzeit und Anwesenheit**, nicht von Anzahl.
+Ebenso ist „responsable de oficina" / „office manager" eine **Rolle** (`es.ts:479`, `en.ts:516`,
+`capabilities.ts:205-210`, `onboarding-setup.tsx`), keine Büroanzahl. Und `example-report.ts`
+`office` ist die Bürozeit-Notiz der Beispielauswertung.
+
+**Eine Randnotiz, kein Befund:** `es.ts:136` / `en.ts:146` `office_out_of_scope` — „Esa oficina queda
+fuera de lo que tu rol puede cambiar." / „That office is outside what your role can change." Dieser
+Satz **setzt mehrere Büros mit Rollenbereichen voraus**. Er erscheint nur hinter der Anmeldung **und**
+nur, wenn die Schnittstelle diesen Fehler zurückgibt, also heute nie. Gewicht: sehr gering, es ist
+eine Systemmeldung und kein Versprechen. Ich nenne ihn für Audit, damit er nicht übrig bleibt, wenn
+Büros später doch einmal gebaut werden — und ich führe ihn **nicht** als Mangel.
+
+### §10.4 Redesign legt dem Owner zwei Wege vor — meine Empfehlung ist B
+
+> **(A)** `49c4670` wie festgelegt pushen, RV6 misst, R-9b und R-10 erscheinen als Befunde,
+> Redesign behebt im ersten Nachgang nach dem Durchgang.
+> **(B)** Einmaliges Neu-Festlegen **vor** dem Push mit den Einzeilern (neuer Commit, Redesigns
+> eigene Messungen erneut, ~10 Minuten).
+
+Redesign ändert den Kandidaten **nicht** von sich aus und beruft sich dabei richtig auf die
+Owner-Regel vom 23.11. Bis zur Linie des Owners steht `49c4670`.
+
+**Begründung für B.** Die Regel „ein benannter Commit, nichts ändert sich bis zur Messung" schützt
+davor, dass sich der Prüfgegenstand **während oder nach** der Messung bewegt. Ein einmaliges
+Neu-Festlegen **vor** dem Push und **vor** meinem Durchgang berührt diesen Zweck nicht: zwischen
+Benennung und Durchgang liegt dann wieder nichts.
+
+Dazu zwei sachliche Punkte:
+
+1. An R-9b und R-10 ist **nichts mehr zu messen**. Beide sind an der Quelle bestätigt, von mir und
+   vom Urheber. In A verwendete ich einen Durchgang darauf, zwei Dinge zu belegen, über die niemand
+   streitet — und der Nachgang bräuchte danach **ein zweites Deployment und einen zweiten
+   Durchgang**, um die Behebung zu prüfen. B kostet zehn Minuten, A kostet einen weiteren
+   vollständigen Durchgang.
+2. **R-11 wiegt schwerer als seine Größe.** Es ist kein Schönheitsfehler, sondern ein
+   **Paketunterschied auf dem Schirm, den es nicht gibt** — genau die Klasse, die am 04.12. gegen
+   das Register geprüft wird. In A würde mein Durchgang ein falsches Paketversprechen dokumentieren,
+   das Copy zum Zeitpunkt der Messung längst behoben hat. Das ist ein Protokoll, das niemandem hilft.
+
+**Bedingung, und sie ist nicht formal.** R-10 und die beiden Wendungen aus R-11 sind harmlos
+(ein Listeneintrag, zwei Texte). **R-9b ist es nicht:** die Behebung greift genau in den Pfad ein,
+den Redesign gerade 10/10 gemessen hat. Wenn B, dann muss Redesign die Messung des Sprachwechsels
+mitten im Formular **vollständig** erneut fahren, nicht nur die Kante — und meine Gegenkontrolle in
+`r9kante1123.mjs` (Notiz **unter** der Vorbelegung) muss auf dem neuen Commit sauber bleiben. Bleibt
+sie es nicht, ist die Behebung eine Regression und der Kandidat ist nicht fertig.
+
+### §10.5 Was ich tue, wenn keine Linie kommt
+
+Die Wahl blockiert meinen Durchgang **nicht**. Kommt keine Antwort, messe ich, was gepusht wird:
+steht `49c4670`, ist das A, und R-9b, R-10 und R-11 stehen als Befunde im Bericht. Ich warte auf die
+Freigabe, nicht auf die Entscheidung — und ich frage nicht nach, denn die Anweisung des Owners vom
+23.11. lautet „keine weitere Klärung, sondern messen". Diese Zeilen sind keine Klärung des Maßstabs,
+sondern eine Frage von zehn Minuten; beide Antworten lassen mich sofort anfangen.
