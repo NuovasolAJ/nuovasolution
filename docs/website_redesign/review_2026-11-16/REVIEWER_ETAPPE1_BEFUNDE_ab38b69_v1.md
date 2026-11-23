@@ -341,7 +341,7 @@ Ebene.** Genau die Trennung, die Sie angeordnet haben.
 
 | | Prüfung | Stand bei mir |
 |---|---|---|
-| **Sprachwechsel mitten im Formular** | Weg **und** Paket müssen erhalten bleiben | **neu aufgenommen.** Genau mein R-7: heute fällt `interes` weg. Redesign hat `interes` in die Erhalten-Liste des Sprachumschalters aufgenommen (lokal, reitet mit der Freigabe). **Ich prüfe es am Kandidaten mit gefülltem Formular**, nicht nur an der leeren Seite |
+| **Sprachwechsel mitten im Formular** | Weg **und** Paket müssen erhalten bleiben | **gemessen, Ergebnis in §7** |
 | **Bestätigungsmail bei Growth und Enterprise** | sobald APIs Staging-Beleg vorliegt | **aufgenommen, heute nicht prüfbar.** Register Zeile zum Anfrageweg: Staging 5/7, H2/H3 geben 502 statt 422. Bis der Beleg da ist, melde ich die Mail als **Lücke**, nicht als Fehler |
 
 ### Gemessen wird am Kandidaten, nicht an Etappe 1
@@ -351,3 +351,58 @@ genannte Kandidaten-Commit, geprüft über die Deployment-ID, Vorher-Basis `92f8
 Register bezieht sich auf den Kandidaten `4f425cb` (+ `62b0396`); Redesign nennt Commit und
 Deployment in **einer** Nachricht, sobald Sie den Push freigeben. `/api/build` bleibt, damit ich
 binden kann.
+
+---
+
+## 7. Ihr Punkt 4 gemessen: Sprachwechsel mitten im Formular
+
+**Gemessen an `ab38b69`** (also am Stand **vor** Redesigns R-7-Behebung), ES → EN, 390×844, alle
+drei Wege, Formular **gefüllt**, Build gebunden und STABLE. Werkzeuge:
+`checks/sprachmitten1123.mjs` und `checks/tippverlust1123.mjs`.
+
+**Das Bild ist genauer, als R-7 es beschrieben hat — in beide Richtungen.**
+
+| | Prüfung (Essential/Growth/Enterprise) | Ergebnis |
+|---|---|---|
+| 1 | **Paket in der Adresse** erhalten | **ja, 3 von 3** |
+| 2 | **Weg in der Adresse** erhalten (`interes=…`) | **nein, 0 von 3** → das ist R-7 |
+| 3 | **Weg im laufenden Formular** erhalten | **ja, 3 von 3** |
+| 4 | **Was der Besucher getippt hat** | **verloren, 3 von 3** → **neu, R-9** |
+
+### Was heute schon stimmt — und was ich damit an R-7 einschränke
+
+Nach dem Wechsel steht im Formular weiterhin `interest="trial"`, die vorbelegte Nachricht ist
+**korrekt übersetzt** („Prueba gratuita · 14 días con Essential" → „Free trial · 14 days on
+Essential") und der Senden-Knopf heißt „Request the trial". **Der unmittelbare Eindruck ist also
+richtig: Weg und Paket bleiben erhalten.** Ihr Punkt 4 ist in der laufenden Sitzung **erfüllt**.
+
+**Was R-7 wirklich kostet, ist schmaler als ich geschrieben hatte:** die Adresse verliert den Weg.
+Das trifft nicht den Besucher, der gerade umschaltet, sondern den, der die englische Adresse
+**neu lädt, teilt oder als Lesezeichen speichert** — dann greift die Vorbelegung nicht mehr und
+das Formular fällt auf `other`. Ein echter Mangel, aber einer mit engerem Schaden. Redesign hat
+`interes` inzwischen in die Erhalten-Liste aufgenommen; ich prüfe es am Kandidaten nach.
+
+### R-9 — Der Sprachwechsel löscht, was der Besucher getippt hat (neu)
+
+**Seite:** `/contact` mit `interes`/`plan` · **Gerät:** 390×844 emuliert, ES → EN ·
+**Beobachtet:** nach dem Wechsel sind `agency` und `name` **leer**. Der Besucher muss von vorn
+tippen.
+
+**Warum ich sicher bin, dass das die Seite ist und nicht mein Werkzeug** — genau die Frage, an der
+ich heute zweimal falsch lag:
+1. Der Text wurde **mit echtem Tasteneingang** gesetzt (`Input.insertText` in das angetippte Feld),
+   nicht über einen programmatischen Wertsetzer. Der Fokus landete nachweislich im richtigen Feld
+   (`"agency"`, `"name"`).
+2. Die Werte **überlebten vorher ein erneutes Zeichnen** der Komponente — React hielt sie also
+   wirklich, nicht nur das DOM.
+3. Erst danach der Wechsel, und danach sind sie weg.
+
+**Warum das zählt:** auf einem internationalen Markt ist der Sprachwechsel **mitten im Formular**
+genau der erwartbare Griff — jemand beginnt auf Spanisch, merkt, dass Englisch leichter geht, und
+schaltet um. Dass dann Agenturname und Name verschwinden, ist der Moment, in dem ein Teil dieser
+Besucher aufhört. **Für die Note Verkaufswirkung wiegt R-9 schwerer als R-7**, weil es den
+Besucher trifft, der schon angefangen hat.
+
+**Nicht geprüft und daher nicht behauptet:** ob E-Mail und Telefon ebenso verloren gehen (ich habe
+nur `agency` und `name` mit echtem Tasteneingang belegt) und ob EN → ES sich gleich verhält. Beides
+messe ich am Kandidaten mit.

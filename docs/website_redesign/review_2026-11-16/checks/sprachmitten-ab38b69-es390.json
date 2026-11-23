@@ -1,0 +1,99 @@
+{
+ "pin": "ab38b69/dpl_9e3f3gbkye1QeiB4JYQgattgFduK",
+ "from": "es",
+ "to": "en",
+ "viewport": "390x844",
+ "ways": [
+  {
+   "interes": "trial",
+   "plan": "essential",
+   "href": "/en/contact?plan=essential",
+   "before": {
+    "url": "/es/contact?interes=trial&plan=essential",
+    "interest": "trial",
+    "message": "Prueba gratuita · 14 días con Essential",
+    "agency": "Inmobiliaria RV6 Prueba",
+    "name": "RV6 Revisor",
+    "phone": "+34600000001",
+    "submit": "Pedir la prueba"
+   },
+   "after": {
+    "url": "/en/contact?plan=essential",
+    "interest": "trial",
+    "message": "Free trial · 14 days on Essential",
+    "agency": "",
+    "name": "",
+    "email": "",
+    "phone": "",
+    "h1": "Talk to a person.",
+    "namesPlan": true,
+    "submit": "Request the trial"
+   },
+   "urlKeepsWay": false,
+   "urlKeepsPlan": true,
+   "wayKept": true,
+   "typedKept": false
+  },
+  {
+   "interes": "demo",
+   "plan": "growth",
+   "href": "/en/contact?plan=growth",
+   "before": {
+    "url": "/es/contact?interes=demo&plan=growth",
+    "interest": "demo",
+    "message": "Demo · plan Growth",
+    "agency": "Inmobiliaria RV6 Prueba",
+    "name": "RV6 Revisor",
+    "phone": "+34600000001",
+    "submit": "Pedir la demo"
+   },
+   "after": {
+    "url": "/en/contact?plan=growth",
+    "interest": "demo",
+    "message": "Demo · Growth plan",
+    "agency": "",
+    "name": "",
+    "email": "",
+    "phone": "",
+    "h1": "Talk to a person.",
+    "namesPlan": true,
+    "submit": "Book the demo"
+   },
+   "urlKeepsWay": false,
+   "urlKeepsPlan": true,
+   "wayKept": true,
+   "typedKept": false
+  },
+  {
+   "interes": "talk",
+   "plan": "enterprise",
+   "href": "/en/contact?plan=enterprise",
+   "before": {
+    "url": "/es/contact?interes=talk&plan=enterprise",
+    "interest": "talk",
+    "message": "Conversación · plan Enterprise",
+    "agency": "Inmobiliaria RV6 Prueba",
+    "name": "RV6 Revisor",
+    "phone": "+34600000001",
+    "submit": "Enviar"
+   },
+   "after": {
+    "url": "/en/contact?plan=enterprise",
+    "interest": "talk",
+    "message": "Conversation · Enterprise plan",
+    "agency": "",
+    "name": "",
+    "email": "",
+    "phone": "",
+    "h1": "Talk to a person.",
+    "namesPlan": true,
+    "submit": "Send"
+   },
+   "urlKeepsWay": false,
+   "urlKeepsPlan": true,
+   "wayKept": true,
+   "typedKept": false
+  }
+ ],
+ "pinEnd": "ab38b69/dpl_9e3f3gbkye1QeiB4JYQgattgFduK"
+}
