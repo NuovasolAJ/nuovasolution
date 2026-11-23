@@ -674,3 +674,87 @@ hat — und meine Messung würde dasselbe protokollieren. Drei Bahnen kommen una
 Redesign hat die Wahl vorgelegt, Copy und ich empfehlen sie. Die Entscheidung bleibt beim Owner,
 und meine Bedingung aus §10.4 bleibt unverändert: bei B die Messung des Sprachwechsels mitten im
 Formular vollständig erneut, und meine Gegenkontrolle muss sauber bleiben.
+
+---
+
+## §11 Der Owner hat B gewählt — Kandidat `bd21830`, an der Quelle geprüft (23.11.)
+
+### §11.1 Die Festlegung ist gültig, und die Vereinbarung wurde eingehalten
+
+    git diff --name-only 2024697 bd21830 -- lib components app   ->  leer
+    bd21830 fügt sieben Belegdateien hinzu, nichts sonst
+
+Der Seiteninhalt von `bd21830` ist also identisch mit `2024697`. `/api/build` muss am Deployment
+`bd21830` melden.
+
+**Die Prüfung, auf die es bei B ankommt** — trägt `2024697` wirklich nur die vier vereinbarten
+Zeilen über `49c4670`? Ich habe den Patch über `components` und `lib` vollständig gelesen:
+
+| Datei | Änderung | vereinbart? |
+|---|---|---|
+| `components/site/footer.tsx:29-30` | der zweite Eintrag `p("/trial")` entfernt | R-10, ja |
+| `components/site/pilot-request-form.tsx:48-50` | `startsWith` → `includes` + `replace` | R-9b, ja |
+| `lib/content/brief-1120.ts:67` | `who.essential` → „Para un equipo pequeño" | R-11, ja |
+| `lib/content/home-1103.ts:477` | Einordnungszeile → „para un equipo pequeño" | R-11, ja |
+| `lib/i18n/dictionaries/es.ts:416` · `en.ts:451` | `planLines.essential` (tot) | R-11, ja |
+
+**Sechs Dateien, vier Änderungen, keine einzige Zeile darüber hinaus.** Kein anderer Teil der Seite
+ist mitgewandert. Das war meine Sorge an B, und sie ist ausgeräumt.
+
+**`npx tsc --noEmit` läuft mit Rückgabewert 0 durch**, ohne Ausgabe. Ich habe das selbst gefahren,
+weil ein Übersetzungsfehler das Deployment und damit meinen Durchgang kosten würde.
+
+### §11.2 Redesigns zwei Null-Angaben halten an der Quelle
+
+- **„0 Verweise auf `/trial`"**: die einzige Fundstelle von `"/trial"` in `app`, `components`, `lib`
+  steht in einem **Kommentar** (`footer.tsx:29`). Kein Verweis mehr; die Seite selbst bleibt als
+  Weiterleitung bestehen und ist seit R-2 nicht mehr kanonisch.
+- **„0 × ,una oficina' / ,one office'"**: meine ungedeckelte Suche ohne Groß-/Kleinschreibung über
+  `lib`, `components`, `app` findet **nichts**. R-11 ist aus der gerenderten Klasse verschwunden.
+  Die Sätze der Schmerzgeschichte („con la oficina cerrada" und die übrigen aus §10.3) stehen
+  unverändert, wie es sein soll.
+
+### §11.3 Die neue R-9b-Zeile, kritisch gelesen
+
+    el.value = k.subject && v.includes(k.subject) ? v.replace(k.subject, subject ?? "") : v;
+
+Das ersetzt den gespeicherten Betreff **an der Stelle, an der er steht**, und `replace` mit einer
+Zeichenkette ersetzt genau das erste Vorkommen — richtig für diesen Fall. Notiz davor, Notiz
+danach: beide Male bleibt die Notiz und der Betreff wird der des neuen Formulars. Ist auf dem
+Zielformular kein Betreff vorbelegt, fällt der alte ersatzlos weg, was ebenfalls richtig ist.
+
+**Der nächste Grenzfall, und ich führe ihn ausdrücklich NICHT als Mangel:** wer die Vorbelegung
+**selbst bearbeitet** — ein Wort darin löscht —, lässt `includes` scheitern; dann wird der Text
+unverändert zurückgeschrieben und der bearbeitete Satz reist in der alten Sprache mit. Das ist
+**richtig so**: ab dem Moment, in dem die Besucherin in diesem Satz schreibt, ist es **ihr** Satz,
+und R-9 verlangt gerade, dass Getipptes erhalten bleibt. Ihn halb zu übersetzen wäre schlechter als
+ihn stehen zu lassen. Ich nenne es, weil es die nächste Frage ist, die jemand stellt — die Antwort
+lautet: so lassen.
+
+### §11.4 Redesigns eigener Sondenfehler — richtig gehandelt
+
+Redesign meldet von sich aus, dass der erste R-9b-Lauf **rot** zurückkam, mit verstümmeltem Text;
+die Vereinzelung des Schritts zeigte, dass die eigene Home-Tasten-Folge das Tippen zerlegt hatte.
+**Die Seite war in Ordnung, die Sonde nicht.** Behoben (`setSelectionRange(0,0)`, dann Tasteneingabe)
+und die ganze Datei neu gefahren.
+
+Das ist genau die Trennung, auf die ich bestehe, und zwar diesmal von der anderen Seite angewandt:
+ein rotes Ergebnis ist zuerst ein Verdacht gegen das Werkzeug. Dass Redesign dieselbe Methode
+gewählt hat, die auch in meinem `r9kante1123.mjs` steht — Einfügemarke setzen, dann echte
+Tasteneingabe —, ist eine schwache Gegenprobe, **kein Ersatz** für meine eigene.
+
+**Redesigns 14/14 ist nicht meine Messung.** Sie ist eine Selbstauskunft des Erbauers, und sie zählt
+in meinem Protokoll als Angabe, nicht als Beleg. Meine Gegenkontrolle läuft am Deployment
+unabhängig; stimmen die Zahlen, steht das als Bestätigung, stimmen sie nicht, als Befund.
+
+### §11.5 Stand und was noch fehlt
+
+Alle Befunde aus Etappe 1 sind damit an der Quelle erledigt: R-1, R-2, R-3 (gemessen am Deployment),
+R-7, R-9, R-9b, R-10, R-11. Zurückgezogen bleiben R-6 und R-8, meine beiden Messfehler. R-4 ist und
+bleibt eine Gestaltungsentscheidung des Owners, R-5 geprüft und kein Mangel.
+
+Es fehlt allein die **Push-Freigabe des Owners**. Danach, in einem Durchgang gegen `92f873d`:
+die sechs Noten einzeln, R-3, W-1 (Milas Weg bis zur Rückrufaufgabe), W-2 (alle drei Paketwege bis
+zur Bestätigung, ES und EN), R-9b mit Gegenkontrolle, Redesigns Prüfpunkt („Ver cómo queda la
+tarea" → `#demo`, WhatsApp-Kanal, Milas Aufgabe), die neuen Stellen des Kandidaten und der
+Seite-für-Seite-Abgleich gegen das Register `704960b6` für die Lückenliste zum 04.12.
