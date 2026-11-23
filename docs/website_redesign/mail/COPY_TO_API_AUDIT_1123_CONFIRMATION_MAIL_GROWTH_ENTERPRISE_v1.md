@@ -100,12 +100,14 @@
 |---|---|---|
 | `brief-1120.ts` `contact.done.contract.next[0]` | Te enviamos el precio y el contrato por escrito. | We send you the price and the contract in writing. |
 | `contact.done.contract.next[1]` | Lo revisas con calma y vemos contigo cualquier duda. | You read it at your own pace, and we go through any questions with you. |
-| `contact.done.contract.next[2]` | Firmas solo si te encaja, y lo preparamos todo contigo. | You sign only if it suits you, and we set everything up with you. |
+| `contact.done.contract.next[2]` | Firmas solo si te encaja, y preparamos {plan} contigo. | You sign only if it suits you, and we set up {plan} with you. |
 
-**No placeholder (corrected after RV6 `ef25eff`).** The first version of step 3 had "{plan}".
-- In the build, `{plan}` is filled in only in the card heading (`pilot-request.ts:20`), not in the confirmation's `next`.
-- Its fallback "un plan" would read "preparamos un plan contigo".
-- The step names no plan; the heading above it already does. `contact.done.contract.h` stays as it is.
+**`{plan}` (final, as built in Redesign's `2655fa7`):**
+- `pilot-request.ts` `confirmation()` fills `{plan}` in every step from the link.
+- Without a plan in the link the fallback is "tu plan" / "your plan". "…y preparamos tu plan contigo." reads correctly.
+- RV6's risk (`ef25eff`, a literal `{plan}` on screen) is thereby covered. RV6 checks it on the next deployment for Essential, Growth and Enterprise in both languages.
+- Copy's interim version without a placeholder (`9d24c71`) is withdrawn.
+- `contact.done.contract.h` stays as it is.
 
 **For the timing:** the candidate `bea7d19` stays unchanged until RV6 has measured. These lines go into the first follow-up.
 
