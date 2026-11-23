@@ -191,3 +191,64 @@ Ausblendung.** Je Lücke: Versprechen, Seite, Paket, fehlender Beleg, zuständig
 ungültig; jede Seite als wirklich geladen nachgewiesen; und **kein Urteil aus einem Lauf, der
 nichts angesehen hat** — eine Prüfung, die nichts verglichen hat, bricht bei mir ab, statt „0
 Mängel" zu melden.
+
+---
+
+## 0b. NACHTRAG 23.11. — der von mir gemeldete Widerspruch löst sich auf
+
+**Ich hatte in §0 einen Widerspruch gemeldet.** An der Quelle gibt es keinen. Nachgelesen in
+`governance/ABSCHLUSSPLAN_ZENTRAL_1105_v1.md` (n8n-Projekt), nicht aus einer Weitergabe:
+
+**Beide Zeilen sind Ihre, sieben Minuten auseinander.**
+
+- **20.11. 16:11** „Website **frühestmöglich** veröffentlichen" — ersetzt „16 schließt als eines
+  der letzten Themen". Das ist die **Absicht**.
+- **20.11. 16:18** „Ziel- und Prüftermin **Fr 04.12.** = vollständige Darstellung des fertigen
+  Angebots ES/EN, alle Kanäle inkl. WhatsApp, alle Pakete. **Kein schrittweiser Start, keine
+  ausgeblendeten Hauptfunktionen.**" Das ist der **Mechanismus**.
+
+**Sie widersprechen sich nicht:** so früh wie möglich, und das Früheste ist der 04.12. mit allem.
+**Mein §0 ist damit erledigt**, und die Frage, die ich Ihnen gestellt habe, brauchen Sie nicht
+mehr zu beantworten. Copy liest es genauso; nur die Weitergabe an Redesign trug die Überschrift
+ohne den Mechanismus.
+
+### Dabei ist etwas sichtbar geworden, das noch als offen behandelt wird, aber entschieden ist
+
+Ihre Klarstellung von 16:18 **ersetzt ausdrücklich** den Audit-Vorschlag „publicGate blendet aus"
+(`87e108b3`). Redesign führt in seinem Plan aber weiterhin als **offene Entscheidung**, ob die
+Marken-Zeichenketten in der Quelle bleiben und die öffentliche Sicht sie ausblendet.
+
+**Der Teil davon ist entschieden:** „keine ausgeblendeten Hauptfunktionen" schließt das Gate als
+**Startmechanismus** aus. Was offen bleibt, ist nur die kleinere Frage, ob eine **interne**
+Vorschausicht die Marken behalten darf — eine interne Sicht ist keine Kundenseite. Ich sage es,
+damit niemand eine bereits getroffene Entscheidung noch einmal zur Abstimmung stellt.
+
+**Für meine Prüfung heißt das:** Ich prüfe die Kundenrouten **in ihrem Auslieferungszustand** auf
+null Marken, und zusätzlich, dass von einer Kundenseite aus **keine markierte Fassung erreichbar**
+ist. Eine interne Sicht hinter `?view=` zähle ich nicht als Kundenseite.
+
+---
+
+## 0c. Die eine Frage, an der der 04.12. hängt
+
+In derselben Datei stehen zwei Ihrer Angaben, die zusammen die Terminfrage entscheiden:
+
+| | |
+|---|---|
+| **16:18** | 04.12. = vollständige Darstellung, **„alle Kanäle inkl. WhatsApp"** |
+| **16:11** | „Vollständig (alle Schlüssel live) **frühestens Mitte/Ende Dezember**: Meta (20, 25, 27), Anzeigen (26), Trend (33), CRMs (35)" |
+| Audit-Risiko | „**Agenturnummer WhatsApp (20, Meta)** … voraussichtlich noch offen" |
+
+**Gelesen als „WhatsApp mit der Agenturnummer" schließen sich die beiden aus** — dann wäre der
+04.12. an Meta gebunden, und das liegt bei niemandem hier.
+
+**Gelesen als „WhatsApp als Kanal über unsere Nummer" ist der 04.12. erreichbar** — dieser Weg ist
+im Register belegt (`replyWhatsapp` = included), nur `whatsappOwnNumber` hängt an Meta.
+
+**Sie haben die Unterscheidung selbst schon aufgeschrieben** („WhatsApp getrennt: über unsere
+Nummer / über die Agenturnummer"), nur nicht auf den 04.12. angewandt. **Welche der beiden
+Lesarten für den 04.12. gilt, ist die einzige Frage, die über den Termin entscheidet** — und sie
+betrifft genau den Kanal, den Milas Weg braucht.
+
+**Ich prüfe beide Lesarten getrennt und melde je Kanal, was belegt ist** — aber die Festlegung ist
+Ihre, und sie sollte vor dem 04.12. fallen, nicht an ihm.
