@@ -1,0 +1,61 @@
+{
+ "path": "//en",
+ "audit": {
+  "focusables": 86,
+  "zeroSize": 33,
+  "zeroHiddenByAncestor": 33,
+  "zeroReallyTabbable": []
+ },
+ "pressesToTrialCta": 6,
+ "zeroSizeStopsHit": 0,
+ "stops": [
+  {
+   "tag": "A",
+   "text": "Skip to content",
+   "w": 139,
+   "h": 48,
+   "hero": null,
+   "pilot": null
+  },
+  {
+   "tag": "A",
+   "text": "NuovaSolution",
+   "w": 140,
+   "h": 28,
+   "hero": null,
+   "pilot": null
+  },
+  {
+   "tag": "BUTTON",
+   "text": "Menu",
+   "w": 44,
+   "h": 44,
+   "hero": null,
+   "pilot": null
+  },
+  {
+   "tag": "BUTTON",
+   "text": "Preview only +",
+   "w": 118,
+   "h": 36,
+   "hero": null,
+   "pilot": null
+  },
+  {
+   "tag": "A",
+   "text": "See the finished task",
+   "w": 358,
+   "h": 56,
+   "hero": "task",
+   "pilot": null
+  },
+  {
+   "tag": "A",
+   "text": "Try Essential free",
+   "w": 358,
+   "h": 44,
+   "hero": "trial",
+   "pilot": "hero"
+  }
+ ]
+}

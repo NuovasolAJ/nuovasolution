@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import type { Locale } from "@/lib/i18n/config";
 
-/** Query parameters that survive a language switch (audit Z18). Nothing else is carried over. */
-const KEEP = ["confirmed", "plan", "ref"];
+/** Query parameters that survive a language switch (audit Z18). Nothing else is carried over.
+ *  RV6 R-7 (23.11.): `interes` (the request's way, e.g. trial/demo/talk/contratar) travels too, so the EN form keeps the chosen way. */
+const KEEP = ["confirmed", "plan", "ref", "interes"];
 
 /**
  * Segmented control. Slugs are identical in both locales, so the switch maps the current path
