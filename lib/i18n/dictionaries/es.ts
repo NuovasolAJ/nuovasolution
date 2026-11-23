@@ -469,7 +469,7 @@ export const es: Dictionary = {
     filmEyebrow: "La configuración",
     filmH2: "Qué aportas tú, y qué ves después.",
     stepsEyebrow: "Tu entorno",
-    stepsH2: "Configuras tu agencia tú mismo.",
+    stepsH2: "La preparamos contigo, paso a paso.", // Copy S-6 (23.11.): Essential starts on request, not self-set-up; stepsLead stays until Q-1
     stepsLead: "Paso a paso, a tu ritmo. Tu progreso queda guardado, así que puedes parar y retomarlo donde lo dejaste.",
     steps: [
       { title: "Cuenta", line: "Tu nombre, tu email, tu idioma." },

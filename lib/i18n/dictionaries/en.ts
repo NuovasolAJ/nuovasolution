@@ -506,7 +506,7 @@ export const en = {
     filmEyebrow: "Setting up",
     filmH2: "What you provide, and what you see afterwards.",
     stepsEyebrow: "Your environment",
-    stepsH2: "You set your agency up yourself.",
+    stepsH2: "We set it up with you, step by step.", // Copy S-6 (23.11.): Essential starts on request, not self-set-up; stepsLead stays until Q-1
     stepsLead: "One step at a time, in your own time. Your progress is saved, so you can stop and pick up where you left off.",
     steps: [
       { title: "Account", line: "Your name, your email, your language." },
