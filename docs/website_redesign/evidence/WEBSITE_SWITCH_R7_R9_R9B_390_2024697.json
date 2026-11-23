@@ -1,0 +1,234 @@
+{
+ "at": "2026-11-23T18:53:00.894Z",
+ "pass": "14/14",
+ "runs": [
+  {
+   "dir": "es→en",
+   "way": "trial",
+   "plan": "essential",
+   "href": "/en/contact?plan=essential&interes=trial",
+   "urlWay": "trial",
+   "urlPlan": "essential",
+   "before": {
+    "interest": "trial",
+    "message": "Prueba gratuita · 14 días con Essential · nota R9"
+   },
+   "after": {
+    "url": "/en/contact?plan=essential&interes=trial",
+    "interest": "trial",
+    "agency": "Agencia Prueba R9",
+    "name": "Prueba Nombre",
+    "email": "r9@example.invalid",
+    "phone": "600000000",
+    "message": "Free trial · 14 days on Essential · nota R9",
+    "submit": "Request the trial",
+    "card": "trial"
+   },
+   "pass": true
+  },
+  {
+   "dir": "es→en",
+   "way": "demo",
+   "plan": "growth",
+   "href": "/en/contact?plan=growth&interes=demo",
+   "urlWay": "demo",
+   "urlPlan": "growth",
+   "before": {
+    "interest": "demo",
+    "message": "Demo · plan Growth · nota R9"
+   },
+   "after": {
+    "url": "/en/contact?plan=growth&interes=demo",
+    "interest": "demo",
+    "agency": "Agencia Prueba R9",
+    "name": "Prueba Nombre",
+    "email": "r9@example.invalid",
+    "phone": "600000000",
+    "message": "Demo · Growth plan · nota R9",
+    "submit": "Book the demo",
+    "card": "demo"
+   },
+   "pass": true
+  },
+  {
+   "dir": "es→en",
+   "way": "talk",
+   "plan": "enterprise",
+   "href": "/en/contact?plan=enterprise&interes=talk",
+   "urlWay": "talk",
+   "urlPlan": "enterprise",
+   "before": {
+    "interest": "talk",
+    "message": "Conversación · plan Enterprise · nota R9"
+   },
+   "after": {
+    "url": "/en/contact?plan=enterprise&interes=talk",
+    "interest": "talk",
+    "agency": "Agencia Prueba R9",
+    "name": "Prueba Nombre",
+    "email": "r9@example.invalid",
+    "phone": "600000000",
+    "message": "Conversation · Enterprise plan · nota R9",
+    "submit": "Send",
+    "card": "talk"
+   },
+   "pass": true
+  },
+  {
+   "dir": "en→es",
+   "way": "trial",
+   "plan": "essential",
+   "href": "/es/contact?plan=essential&interes=trial",
+   "urlWay": "trial",
+   "urlPlan": "essential",
+   "before": {
+    "interest": "trial",
+    "message": "Free trial · 14 days on Essential · nota R9"
+   },
+   "after": {
+    "url": "/es/contact?plan=essential&interes=trial",
+    "interest": "trial",
+    "agency": "Agencia Prueba R9",
+    "name": "Prueba Nombre",
+    "email": "r9@example.invalid",
+    "phone": "600000000",
+    "message": "Prueba gratuita · 14 días con Essential · nota R9",
+    "submit": "Pedir la prueba",
+    "card": "trial"
+   },
+   "pass": true
+  },
+  {
+   "dir": "en→es",
+   "way": "demo",
+   "plan": "growth",
+   "href": "/es/contact?plan=growth&interes=demo",
+   "urlWay": "demo",
+   "urlPlan": "growth",
+   "before": {
+    "interest": "demo",
+    "message": "Demo · Growth plan · nota R9"
+   },
+   "after": {
+    "url": "/es/contact?plan=growth&interes=demo",
+    "interest": "demo",
+    "agency": "Agencia Prueba R9",
+    "name": "Prueba Nombre",
+    "email": "r9@example.invalid",
+    "phone": "600000000",
+    "message": "Demo · plan Growth · nota R9",
+    "submit": "Pedir la demo",
+    "card": "demo"
+   },
+   "pass": true
+  },
+  {
+   "dir": "en→es",
+   "way": "talk",
+   "plan": "enterprise",
+   "href": "/es/contact?plan=enterprise&interes=talk",
+   "urlWay": "talk",
+   "urlPlan": "enterprise",
+   "before": {
+    "interest": "talk",
+    "message": "Conversation · Enterprise plan · nota R9"
+   },
+   "after": {
+    "url": "/es/contact?plan=enterprise&interes=talk",
+    "interest": "talk",
+    "agency": "Agencia Prueba R9",
+    "name": "Prueba Nombre",
+    "email": "r9@example.invalid",
+    "phone": "600000000",
+    "message": "Conversación · plan Enterprise · nota R9",
+    "submit": "Enviar",
+    "card": "talk"
+   },
+   "pass": true
+  },
+  {
+   "dir": "es edge",
+   "way": "demo",
+   "plan": "growth",
+   "after": {
+    "interest": "demo",
+    "message": "Demo · plan Growth",
+    "agency": "Agencia Prueba R9"
+   },
+   "pass": true
+  },
+  {
+   "dir": "es edge",
+   "way": "talk",
+   "plan": "enterprise",
+   "after": {
+    "interest": "talk",
+    "message": "Conversación · plan Enterprise",
+    "agency": "Agencia Prueba R9"
+   },
+   "pass": true
+  },
+  {
+   "dir": "en edge",
+   "way": "demo",
+   "plan": "growth",
+   "after": {
+    "interest": "demo",
+    "message": "Demo · Growth plan",
+    "agency": "Agencia Prueba R9"
+   },
+   "pass": true
+  },
+  {
+   "dir": "en edge",
+   "way": "talk",
+   "plan": "enterprise",
+   "after": {
+    "interest": "talk",
+    "message": "Conversation · Enterprise plan",
+    "agency": "Agencia Prueba R9"
+   },
+   "pass": true
+  },
+  {
+   "dir": "es→en note-above",
+   "way": "trial",
+   "plan": "essential",
+   "after": {
+    "interest": "trial",
+    "message": "nota arriba R9b · Free trial · 14 days on Essential"
+   },
+   "pass": true
+  },
+  {
+   "dir": "en note-above → growth",
+   "way": "demo",
+   "plan": "growth",
+   "after": {
+    "interest": "demo",
+    "message": "nota arriba R9b · Demo · Growth plan"
+   },
+   "pass": true
+  },
+  {
+   "dir": "en→es note-above",
+   "way": "trial",
+   "plan": "essential",
+   "after": {
+    "interest": "trial",
+    "message": "nota arriba R9b · Prueba gratuita · 14 días con Essential"
+   },
+   "pass": true
+  },
+  {
+   "dir": "es note-above → growth",
+   "way": "demo",
+   "plan": "growth",
+   "after": {
+    "interest": "demo",
+    "message": "nota arriba R9b · Demo · plan Growth"
+   },
+   "pass": true
+  }
+ ]
+}

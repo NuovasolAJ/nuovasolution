@@ -49,5 +49,25 @@ for (const [from] of [["es"], ["en"]]) {
   }
   await ctx.close();
 }
+// RV6 R-9b: the note typed IN FRONT of the prefilled subject (caret at the start), then a language switch and then a way switch — the note
+// must come back and the old subject must not ride inside the text
+for (const [from, to] of [["es", "en"], ["en", "es"]]) {
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
+  const page = await ctx.newPage();
+  await page.goto(`${base}/${from}/contact?interes=trial&plan=essential`, { waitUntil: "networkidle" });
+  await page.locator("[data-prq='agency']").tap(); await page.keyboard.type(typed.agency);
+  // the caret goes to the start of the textarea (as a visitor who taps in front of the text), then the note is typed by key input
+  const msg = page.locator("[data-prq='message']"); await msg.tap(); await msg.evaluate((e) => e.setSelectionRange(0, 0)); await page.keyboard.type("nota arriba R9b · ");
+  const essentialSubject = (await msg.inputValue()).replace("nota arriba R9b · ", "");
+  await page.locator("header button[aria-label][aria-expanded]").first().tap(); await page.waitForTimeout(400);
+  await page.locator(`[data-mobile-sheet] [data-language-switcher] a[hreflang='${to}']`).first().tap();
+  await page.waitForURL((u) => u.pathname.startsWith(`/${to}/`), { timeout: 15000 }); await page.waitForLoadState("networkidle"); await page.waitForTimeout(500);
+  const afterLang = await page.evaluate(() => ({ interest: document.querySelector("[data-prq='interest']").value, message: document.querySelector("[data-prq='message']").value }));
+  out.push({ dir: `${from}→${to} note-above`, way: "trial", plan: "essential", after: afterLang, pass: afterLang.interest === "trial" && afterLang.message.includes("nota arriba R9b") && !afterLang.message.includes(essentialSubject) });
+  await page.goto(`${base}/${to}/contact?interes=demo&plan=growth`, { waitUntil: "networkidle" }); await page.waitForTimeout(500);
+  const afterWay = await page.evaluate(() => ({ interest: document.querySelector("[data-prq='interest']").value, message: document.querySelector("[data-prq='message']").value }));
+  out.push({ dir: `${to} note-above → growth`, way: "demo", plan: "growth", after: afterWay, pass: afterWay.interest === "demo" && afterWay.message.includes("nota arriba R9b") && !afterWay.message.includes(essentialSubject) && !afterWay.message.includes("Essential") });
+  await ctx.close();
+}
 console.log(JSON.stringify({ at: new Date().toISOString(), pass: `${out.filter((x) => x.pass).length}/${out.length}`, runs: out }, null, 1));
 await browser.close();
