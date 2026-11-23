@@ -28,7 +28,7 @@ export function Header({ locale }: { locale: Locale }) {
 
   const nav = [
     { href: p("/packages"), label: d.nav.packages },
-    { href: p("/trial"), label: entry.nav },
+    { href: p(entry.href), label: entry.nav }, // RV6 R-1/R-2 (23.11.): the menu's "Prueba Essential" opens Essential's request, not /trial
     { href: p("/contact"), label: d.nav.contact },
   ];
 

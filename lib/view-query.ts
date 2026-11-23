@@ -10,9 +10,8 @@ export type DisplayFace = "inter" | "fraunces";
 export type PreviewSwitches = { view: ClaimView; display: DisplayFace; live: boolean };
 /** THE one line of the display face (the owner, 16.11. 14:00: Inter everywhere). "fraunces" puts Fraunces back on H1/H2 everywhere; `?display=` compares on the same build. */
 export const DISPLAY_DEFAULT: DisplayFace = "inter";
-/** THE one line of the view's default. The owner's brief of 20.11. (afternoon): the customer pages carry finished statements — no
- *  "Próximamente"; publication waits for the complete product — so the fixed link shows the finished product; `?view=public` is the
- *  internal gate view that keeps the open points visible (the owner's 09:05 gate stays as that internal view). */
+/** The view: since 23.11. (the owner's brief, clarification 16:18) there is only the finished product — the public/gate view and its
+ *  marks are gone; the type stays for the components' signatures. */
 export const VIEW_DEFAULT: ClaimView = "target";
 
 /** The query string that keeps the current switches on a link (empty when everything is at its default). */

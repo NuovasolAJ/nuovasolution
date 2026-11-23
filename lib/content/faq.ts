@@ -1,6 +1,5 @@
 import type { Locale } from "@/lib/i18n/config";
-import { live, offered, withChannels, type ClaimKey, type ClaimView } from "@/lib/claims";
-import { pxFor } from "@/lib/content/proximamente";
+import { live, withChannels, type ClaimKey, type ClaimView } from "@/lib/claims";
 
 /**
  * The static FAQ (COPY_DELTAS_0930 §3, FAQ_PAGE_COPY; Copy 1105 v3 §21 of 06.11.: every answer written for the target state,
@@ -176,9 +175,8 @@ export const faqGroups: FaqGroup[] = [
           en: "Yes. You invite your team and set a role for each person, and the roles decide what they see and do.",
           es: "Sí. Invitas a tu equipo y defines un rol para cada persona, y los roles deciden qué ven y qué hacen.",
         },
-        // the owner, 20.11. (brief addendum): bound to API's own switch `teamRoles` (9ecba2c); Copy 1120 §5c: its own PX line in the internal gate view
+        // the owner, 20.11. (brief addendum): bound to API's own switch `teamRoles` (9ecba2c; its proof is an open launch point for Audit, P-12)
         keys: ["teamRoles"],
-        pub: { en: "Team and roles: coming soon.", es: "Equipo y roles: próximamente." },
       },
     ],
   },
@@ -376,11 +374,8 @@ export function faqGroupsFor(locale: Locale, view: ClaimView): { id: string; tit
       title: (g.titlePub && g.titleKeys && !live(g.titleKeys, view) ? g.titlePub : g.title)[locale],
       items: g.items
         .map((it) => {
-          const on = !it.keys || offered(it.keys, view); // E2 (16.11.): a held-back function is not promised in the FAQ either
-          // the owner, 20.11. 09:05 (1): a question whose function is off is no longer left out — its answer is Copy's PX-s (1116 §1.2:
-          // "¿Atiende llamadas?" → "Todavía no. Llamadas: próximamente."), unless Copy gave a public answer
-          const px = !on && it.keys ? pxFor(it.keys, (k) => !live(k, view), locale) : null;
-          const a = on ? it.a : it.pub ?? (px ? (it.keys?.includes("phoneAssistant") ? { es: `Todavía no. ${px}`, en: `Not yet. ${px}` } : { es: px, en: px }) : null);
+          const on = !it.keys || live(it.keys, view);
+          const a = on ? it.a : it.pub ?? null;
           const q = it.qPub && it.qKeys && !live(it.qKeys, view) ? it.qPub : it.q;
           return a ? { kb: it.kb, q: q[locale], a: withChannels(a[locale], locale, view) } : null;
         })

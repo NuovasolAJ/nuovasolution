@@ -3,7 +3,7 @@ import { isLocale, localePath, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { redirect } from "next/navigation";
 import { trialPlanAligned } from "@/lib/content/plans";
-import { entryAction, live } from "@/lib/claims";
+import { entryAction, ESSENTIAL_HREF, live } from "@/lib/claims";
 import { resolveSwitches } from "@/lib/view";
 import { SectionHead, Display, Eyebrow, Lead, Caption, Heading } from "@/components/ui/type";
 import { ButtonLink, CtaRow } from "@/components/ui/button";
@@ -30,9 +30,8 @@ export default function TrialPage({ params }: { params: { locale: string } }) {
   const aligned = trialPlanAligned();
   const view = resolveSwitches().view;
   const entry = entryAction(locale, view);
-  // Copy 1105 v3 §21: while the trial is off, the route leads to /contact
-  // 13.11. (Copy 1113 §6): the one offer is the free pilot; /trial leads to /contact in both views
-  if (entry.kind === "pilot") redirect(p("/contact"));
+  // RV6 R-2 (23.11.): one destination for one offer — /trial opens Essential's request (the owner's brief: the trial is activated on request)
+  if (entry.kind === "pilot") redirect(p(ESSENTIAL_HREF));
   // §21: the steps "Fuentes de leads" and "CRM" name the connection only while their keys are live
   const stepLine = (title: string, line: string) => {
     if (title === d.trial.steps[5].title && !live("adsLeads", view)) return locale === "es" ? "Dinos de dónde te llegan los leads." : "Tell us where your leads come from.";

@@ -14,12 +14,12 @@ export { switchQuery, type DisplayFace, type Palette, type PreviewSwitches } fro
 /* the display face's default is the one line DISPLAY_DEFAULT in lib/view-query.ts (the owner, 16.11. 14:00: Inter everywhere) */
 export function resolveSwitches(): PreviewSwitches {
   const live = integrationMode() === "live";
-  if (live) return { view: "public", display: DISPLAY_DEFAULT, live };
+  if (live) return { view: VIEW_DEFAULT, display: DISPLAY_DEFAULT, live };
   const h = headers();
-  const v = h.get("x-nuova-view");
   const d = h.get("x-nuova-display");
+  // 23.11. (the owner's brief, clarification 16:18): there is no public/gate view any more — every build shows the finished product
   return {
-    view: v === "public" ? "public" : v === "target" ? "target" : VIEW_DEFAULT,
+    view: VIEW_DEFAULT,
     display: d === "fraunces" ? "fraunces" : d === "inter" ? "inter" : DISPLAY_DEFAULT,
     live,
   };

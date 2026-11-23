@@ -7,7 +7,7 @@ import { localePath } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
 import { demoChannels, demoWords, endPhase, recordStart, type DemoChannel, type DemoChannelKey } from "@/lib/content/home-demo";
 import { brief1120 } from "@/lib/content/brief-1120";
-import { claimWords, shows, type ClaimView, live } from "@/lib/claims";
+import { type ClaimView, live } from "@/lib/claims";
 import { Mark } from "@/components/ui/mark";
 import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
 
@@ -50,10 +50,8 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const W = demoWords;
   const B = brief1120.demo;
-  // 16.11. 14:00 (the owner's point 8 + ChatGPT 1): the INTERNAL gate view shows no WhatsApp channel while the agency's own number is not registered (topic 20)
-  // 20.11. (the owner: a visible mark for what is not live in the gate view; Copy 1116 §1 point 5): a switched-off channel keeps playing as a marked demonstration
-  const channels = demoChannels.filter((c) => c.key !== "whatsapp" || live("whatsappOwnNumber", view));
-  const soonTab = (c: DemoChannel) => !shows(c.claim, view);
+  // the owner's brief of 20.11. (23.11.): the finished product — all four channels, WhatsApp first, no marks (the gate is gone)
+  const channels = demoChannels.filter((c) => live(c.claim, view));
   const [channel, setChannel] = useState<DemoChannelKey>(channels[0]?.key ?? "whatsapp");
   const [phase, setPhase] = useState(0);
   // the auto-run (13.11.): on until the first click or key, never while out of view, never with reduced motion
@@ -168,7 +166,6 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
 
   const panelId = `${id}-panel`;
   const lit = phase >= recordStart(script);
-  const allSoon = channels.length > 0 && channels.every(soonTab);
   const isTask = script.key === "whatsapp";
 
   return (
@@ -193,7 +190,7 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
       {/* The bar: the channel choice with its invitation, the replay. */}
       <div className="demo-bar">
         <div className="demo-bar-top">
-          <p id={`${id}-pick`} className="demo-pick-label" data-demo-invite><span className="demo-invite">{channels.length > 1 ? (allSoon ? l(W.invite) : l(B.invite)) : l(W.surfaceLabel)}</span></p>
+          <p id={`${id}-pick`} className="demo-pick-label" data-demo-invite><span className="demo-invite">{channels.length > 1 ? l(B.invite) : l(W.surfaceLabel)}</span></p>
           {/* on the phone the replay is the icon alone (the word stays as its label; REFERENZEN §6, phone) */}
           <button type="button" className="demo-replay" data-demo-replay aria-label={l(W.replay)} onClick={() => { stopAuto(); started.current = true; inView.current = true; setEntered("run"); run(script); }}>
             <RotateCcw size={14} strokeWidth={2.2} aria-hidden="true" />
@@ -205,10 +202,9 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
             const Icon = ICON[c.key];
             const on = c.key === channel;
             return (
-              <button key={c.key} type="button" role="tab" id={`${id}-tab-${c.key}`} aria-selected={on} aria-controls={panelId} tabIndex={on ? 0 : -1} onClick={() => choose(c.key)} className={cn("demo-tab", on && "demo-tab-on")} data-demo-tab={c.key} data-demo-tab-soon={soonTab(c) ? "true" : undefined}>
+              <button key={c.key} type="button" role="tab" id={`${id}-tab-${c.key}`} aria-selected={on} aria-controls={panelId} tabIndex={on ? 0 : -1} onClick={() => choose(c.key)} className={cn("demo-tab", on && "demo-tab-on")} data-demo-tab={c.key}>
                 <Icon size={18} strokeWidth={2} aria-hidden="true" />
                 <span>{l(B.tabs[c.key])}</span>
-                {soonTab(c) && <span className="demo-tab-soon">{claimWords.soon[locale]}</span>}
               </button>
             );
           })}

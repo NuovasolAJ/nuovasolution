@@ -1,5 +1,4 @@
 import { claim, claimWords, live, withChannels, type ClaimKey, type ClaimState, type ClaimView } from "@/lib/claims";
-import { pxSentence } from "@/lib/content/proximamente";
 import type { Locale } from "@/lib/i18n/config";
 
 /**
@@ -429,12 +428,10 @@ export const home1103 = {
       // (HANDOVER_IN_PROD in lib/content/strengths.ts): until then the public view shows the clause as PX-s, the 13:20 step with PX-b
       // and the proof without the handover.
       { key: "reminders", keys: ["reminders"] as ClaimKey[], handover: true, name: T("Ninguna consulta se queda sin aviso", "No enquiry goes unflagged"), line: T("Si nadie del equipo se ocupa de una consulta, al cabo de una hora se lo recordamos a la persona responsable. A las dos horas, la consulta pasa a la siguiente persona.", "If nobody on the team takes an enquiry, after one hour we remind the person responsible. After two hours, the enquiry passes to the next person."),
-        linePublic: T("Si nadie del equipo se ocupa de una consulta, al cabo de una hora se lo recordamos a la persona responsable. El paso a la siguiente persona a las dos horas: próximamente.", "If nobody on the team takes an enquiry, after one hour we remind the person responsible. Passing it to the next person after two hours: coming soon."),
         examples: [T("11:20 · Laura pide una visita", "11:20 · Laura asks for a viewing"), T("12:20 · Recordatorio a Marta", "12:20 · Reminder to Marta"), T("13:20 · Pasa a Carlos", "13:20 · Passed to Carlos")],
         mark: T("Ejemplo · nombres ficticios", "Example · fictional names"),
         // Copy f13e4b6: E19 v2 runs in production since 20.11. 08:23Z, no real handover observed yet (Daily reports by 18:00) — the target proof names the 20.11., the public proof only the reminder until then
-        proof: T("Recordatorio a la hora, en producción desde el 13.11.; el paso a la siguiente persona, desde el 20.11.", "A reminder after one hour, in production since 13.11.; passing it to the next person, since 20.11."), // phone (Copy §10)
-        proofPublic: T("Recordatorio a la hora: en producción desde el 13.11.", "A reminder after one hour: in production since 13.11."),
+        proof: T("Recordatorio a la hora, en producción desde el 13.11.; el paso a la siguiente persona, desde el 20.11.", "A reminder after one hour, in production since 13.11.; passing it to the next person, since 20.11."), // phone (Copy §10); the handover's observed run is Daily's open proof for Audit
         timeline: [
           { time: "11:20", text: T("Laura pide una visita", "Laura asks for a viewing"), state: "open" as const },
           { time: "12:20", text: T("Recordatorio a Marta", "Reminder to Marta"), state: "remind" as const },
@@ -495,8 +492,6 @@ export const home1103 = {
     highlight: { plan: "growth" },
     /** Copy 1116 §7.1: the note of the legend for the separately booked 3D service. */
     optionalNote: T("se contrata aparte", "booked separately"),
-    // Copy 1116 §1 point 4 (PX-b in the plans): the legend's line while a row carries "Próximamente" — the owner's visible mark of 20.11.
-    soonNote: T("aún no activo", "not active yet"),
     // 19.11. (the owner: details by a tap on the phone): the plan card's fold button, Copy 1120 §3 (8cbe48c) with the aria labels per plan
     foldOpen: T("Ver todo lo que incluye", "See everything included"),
     foldClose: T("Ocultar", "Hide"),
@@ -542,16 +537,16 @@ export const home1103 = {
     title: T("Cómo empezar con Essential: 14 días gratis", "How to start with Essential: 14 days free"),
     titlePublic: T("Cómo empezar con Essential: 14 días gratis", "How to start with Essential: 14 days free"),
     steps: (locale: Locale, view: ClaimView): { b: string; t: string }[] => {
-      const mailboxOff = !live("mailboxConnection", view);
+      void view; // the finished product on every customer page (the owner's brief 20.11.); the mailbox connection (A12) is an open launch point for Audit, not a line
       return {
         es: [
           { b: "Pide tu prueba.", t: "Te escribimos en 24 h laborables y la activamos contigo." },
-          { b: "Conecta tu buzón y tu WhatsApp.", t: mailboxOff ? pxSentence.mailboxConnection!.es : "Lo probamos con un mensaje real." },
+          { b: "Conecta tu buzón y tu WhatsApp.", t: "Lo probamos con un mensaje real." },
           { b: "Empiezan tus 14 días.", t: "Cada consulta recibe respuesta en español y queda en su ficha, con su prioridad y su motivo." },
         ],
         en: [
           { b: "Request your trial.", t: "We write to you within 24 working hours and set it up with you." },
-          { b: "Connect your mailbox and your WhatsApp.", t: mailboxOff ? pxSentence.mailboxConnection!.en : "We test it with a real message." },
+          { b: "Connect your mailbox and your WhatsApp.", t: "We test it with a real message." },
           { b: "Your 14 days begin.", t: "Every enquiry gets a reply in Spanish and lands on its record, with its priority and reason." },
         ],
       }[locale];
@@ -595,7 +590,7 @@ export const home1103 = {
         { q: T("¿En qué idiomas responde?", "Which languages does it reply in?"), a: T("Hoy responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo.", "Today it replies automatically in Spanish only. It recognises the language of every enquiry and, if it is not Spanish, passes it to your team.") },
         { q: T("¿Sabe el cliente que responde un asistente?", "Does the customer know an assistant is answering?"), a: T("Sí. Cada respuesta automática lo indica.", "Yes. Every automatic reply says so.") },
         // the owner, 20.11. 09:05 (1): with `alert` off the question stays with its PX-s as the answer
-        { q: T("¿Avisa a mi equipo?", "Does it alert my team?"), a: live("alert", view) ? T("Sí. Cuando una consulta es importante, avisa por email a la persona que toca, con el motivo.", "Yes. When an enquiry is important, it alerts the right person by e-mail, with the reason.") : pxSentence.alert! },
+        { q: T("¿Avisa a mi equipo?", "Does it alert my team?"), a: T("Sí. Cuando una consulta es importante, avisa por email a la persona que toca, con el motivo.", "Yes. When an enquiry is important, it alerts the right person by e-mail, with the reason.") },
         // Copy 1113 §6: the free pilot, both views
         // Copy stage 1 §3.1 (d8ebc77): only Essential has the free 14 days
         { q: T("¿Cómo empiezo?", "How do I start?"), a: T("Con Essential: pides la prueba gratuita de 14 días y te escribimos en 24 h laborables para activarla. ¿Más de un equipo o varias oficinas? Pide una demo de Growth o habla con nosotros sobre Enterprise.", "With Essential: you request the free 14-day trial and we write to you within 24 working hours to set it up. More than one team, or several offices? Book a Growth demo or talk to us about Enterprise.") },

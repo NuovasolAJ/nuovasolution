@@ -2057,6 +2057,8 @@ html:not(.js) .fs-step { opacity: 1; }
   .hf-scene-text { font-size: 0.9rem; }
 }
 
+/* RV6 R-3 (23.11.): the replay control is a 44 px target on every width */
+[data-demo-brief="1120"] .demo-replay { min-height: 44px; min-width: 44px; }
 /* the demonstration: one flat, compact bar (2 × 2 on the phone), less radius, the task card */
 [data-demo-brief="1120"] .demo-tab { border-radius: 10px; padding: 8px 12px; min-height: 44px; }
 [data-demo-brief="1120"] .demo-tab:hover { transform: none; box-shadow: none; }

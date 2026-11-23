@@ -39,8 +39,9 @@ export function LanguageSwitcher({ locale, labels, className }: { locale: Locale
 
   const to = (l: Locale) => `/${l}${rest}${suffix}`;
 
+  // RV6 R-3 (23.11., the brief: touch ≥ 44 px): the control is 44 px tall, each language a 44 px target
   return (
-    <div role="group" aria-label={labels.group} data-language-switcher className={cn("inline-flex h-10 items-center rounded-pill border border-line-hairline p-0.5", className)}>
+    <div role="group" aria-label={labels.group} data-language-switcher className={cn("inline-flex h-11 items-center rounded-pill border border-line-hairline p-0.5", className)}>
       {(["en", "es"] as Locale[]).map((l) => (
         <Link
           key={l}
@@ -49,7 +50,7 @@ export function LanguageSwitcher({ locale, labels, className }: { locale: Locale
           lang={l}
           aria-current={l === locale ? "true" : undefined}
           className={cn(
-            "inline-flex h-full items-center rounded-pill px-3 t-caption uppercase tracking-[0.08em] transition-colors duration-micro",
+            "inline-flex h-full min-w-[44px] items-center justify-center rounded-pill px-3 t-caption uppercase tracking-[0.08em] transition-colors duration-micro",
             l === locale ? "bg-surface-raised text-text-primary" : "text-text-muted hover:text-text-primary",
           )}
         >

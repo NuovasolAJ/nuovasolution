@@ -1016,7 +1016,7 @@ export const en = {
         published: "Published",
         delivery_unknown: "Outcome unclear. Check status — do not publish again.", // §5
         blocked: "Not published",
-        other: "Coming soon", // interim
+        other: "Unknown state", // the owner's brief 20.11.: no "Coming soon" in the source (staff app label) — WORKING for Copy
       },
       checkStatus: "Check status",
       scheduled: "Planned for",

@@ -24,12 +24,10 @@ const ICONS: Record<string, LucideIcon> = {
   alert: Bell, tasks: ClipboardList, matching: Globe, report: TrendingUp, mail: Mail, trend: TrendingUp, integrations: Plug, ads: Globe, model3d: Box,
 };
 
-function Cell({ status, locale, compact, orderSoon }: { status: "included" | "excluded" | "soon" | "order"; locale: Locale; compact?: boolean; orderSoon?: boolean }) {
+function Cell({ status, locale, compact }: { status: "included" | "excluded" | "soon" | "order"; locale: Locale; compact?: boolean }) {
   const on = status === "included";
-  // 16.11. (the owner's decision 2, Copy 1116 §7.1): a separately booked service shows the word "Opcional" in every column; the internal gate view adds "· próximamente" while the 3D service is off
-  if (status === "order") return <span className={cn("plan-cell plan-cell-word", compact && "plan-cell-compact", orderSoon && "plan-cell-soon")} data-plan-cell={orderSoon ? "order-soon" : status}>{orderSoon ? `${planCellWords.optional[locale]} · ${claimWords.soon[locale].toLowerCase()}` : planCellWords.optional[locale]}</span>;
-  // the internal gate view (Copy 1116 §1 point 4): the cell of a switched-off function shows PX-b; the customer pages (finished product) never reach this branch
-  if (status === "soon") return <span className={cn("plan-cell plan-cell-word plan-cell-soon", compact && "plan-cell-compact")} data-plan-cell={status}>{claimWords.soon[locale]}</span>;
+  // 16.11. (the owner's decision 2, Copy 1116 §7.1): a separately booked service shows the word "Opcional" in every column
+  if (status === "order") return <span className={cn("plan-cell plan-cell-word", compact && "plan-cell-compact")} data-plan-cell={status}>{planCellWords.optional[locale]}</span>;
   return (
     <span className={cn("plan-cell", compact && "plan-cell-compact", on ? "is-on" : "is-off")} data-plan-cell={status} role="img" aria-label={planCellWords[on ? "in" : "out"][locale]}>
       {on ? <Check size={16} strokeWidth={3} aria-hidden="true" /> : <Minus size={14} strokeWidth={2} aria-hidden="true" />}
@@ -66,8 +64,6 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
   // RV6 04ea648 (C-4): the replies row's name and its cell both read the reply channels only (REPLY_CHANNELS)
   const name = (r: (typeof w.rows)[number]) => (r.key === "replyWhatsapp" && view === "public" && !live("whatsappOwnNumber", view) ? l(w.repliesRowPublic) : w.rowName(r.name, locale, view, r.key === "replyWhatsapp" ? REPLY_CHANNELS : undefined));
   const table = plansTableShown(view);
-  // the internal gate view: the legend gains "Próximamente: aún no activo" while a shown row carries a "Próximamente" cell
-  const anySoon = rows.some((r) => codes.some((code) => planCell(r.key, code, view) === "soon") || (r.key === "model3d" && !live("model3d", view)));
   // Copy stage 1 §1: the differences come from API; until then Copy's draft (batch 1 §3.1), marked internally as pending
   const diffs = (code: PlanCode) => b.differences[code].filter((d) => d.keys.every((k) => live(k, view)));
   const diffState = DIFFERENCES_CONFIRMED_BY_API ? "api-confirmed" : "api-pending";
@@ -131,7 +127,7 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
                     <div key={r.key} className="plans-row" role="row" data-plan-row={r.key}>
                       <div className="plans-cell plans-cell-name" role="rowheader"><span className="plans-icon" aria-hidden="true"><Icon size={18} strokeWidth={1.9} /></span><span>{name(r)}</span></div>
                       {codes.map((code) => (
-                        <div key={code} className={cn("plans-cell plans-cell-status", hi(code) && "is-highlight")} role="cell" data-plan-col={code}><Cell status={planCell(r.key, code, view)} locale={locale} orderSoon={r.key === "model3d" && !live("model3d", view)} /></div>
+                        <div key={code} className={cn("plans-cell plans-cell-status", hi(code) && "is-highlight")} role="cell" data-plan-col={code}><Cell status={planCell(r.key, code, view)} locale={locale} /></div>
                       ))}
                     </div>
                   );
@@ -179,7 +175,7 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
                               <li key={r.key} className="plans-card-row" data-state={s}>
                                 <span className="plans-icon" aria-hidden="true"><Icon size={16} strokeWidth={1.9} /></span>
                                 <span className="plans-card-row-name">{name(r)}</span>
-                                <Cell status={s} locale={locale} compact orderSoon={r.key === "model3d" && !live("model3d", view)} />
+                                <Cell status={s} locale={locale} compact />
                               </li>
                             );
                           })}
@@ -207,7 +203,7 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
           </details>
           <p className="plans-price-line t-body-m text-text-secondary m-only" data-plans-price>{l(b.price)}</p>
           {/* 16.11. (the owner's point 11): a short legend from the register's own words */}
-          <p className="plans-legend t-body-s text-text-muted" data-plans-legend><span className="plans-legend-item"><span className="plan-cell is-on" aria-hidden="true"><Check size={14} strokeWidth={3} /></span>{claimWords.included[locale]}</span><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plans-legend-item"><span className="plan-cell is-off" aria-hidden="true"><Minus size={14} strokeWidth={2} /></span>{claimWords.excluded[locale]}</span>{rows.some((r) => r.key === "model3d") && <><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plans-legend-item"><span className="plan-cell plan-cell-word" aria-hidden="true">{planCellWords.optional[locale]}</span>{l(w.optionalNote)}</span></>}{anySoon && <><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plans-legend-item" data-plans-legend-soon><span className="plan-cell plan-cell-word plan-cell-soon" aria-hidden="true">{claimWords.soon[locale]}</span>{l(w.soonNote)}</span></>}</p>
+          <p className="plans-legend t-body-s text-text-muted" data-plans-legend><span className="plans-legend-item"><span className="plan-cell is-on" aria-hidden="true"><Check size={14} strokeWidth={3} /></span>{claimWords.included[locale]}</span><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plans-legend-item"><span className="plan-cell is-off" aria-hidden="true"><Minus size={14} strokeWidth={2} /></span>{claimWords.excluded[locale]}</span>{rows.some((r) => r.key === "model3d") && <><span className="plans-legend-sep" aria-hidden="true">·</span><span className="plans-legend-item"><span className="plan-cell plan-cell-word" aria-hidden="true">{planCellWords.optional[locale]}</span>{l(w.optionalNote)}</span></>}</p>
         </Rise>
       </div>
     </section>

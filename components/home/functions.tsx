@@ -7,7 +7,6 @@ import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
 import { live, withChannels, type ClaimView } from "@/lib/claims";
-import { pxFor } from "@/lib/content/proximamente";
 import { cn } from "@/lib/utils";
 
 /**
@@ -219,8 +218,7 @@ export function Surface({ k, locale, view }: { k: Key; locale: Locale; view: Cla
             </m.li>
           ))}
         </ul>
-        {/* the owner, 20.11. 09:05 (1): with `alert` off the line shows Copy's PX-s instead of disappearing */}
-        {live("alert", view) ? <m.p className="ps-foot ps-foot-lit" {...stagger(4)} data-ps-alert><Bell size={14} strokeWidth={2} aria-hidden="true" />{l(p.alert)}</m.p> : <m.p className="ps-foot" {...stagger(4)} data-ps-alert="soon"><Bell size={14} strokeWidth={2} aria-hidden="true" />{pxFor(["alert"], () => true, locale)}</m.p>}
+        <m.p className="ps-foot ps-foot-lit" {...stagger(4)} data-ps-alert><Bell size={14} strokeWidth={2} aria-hidden="true" />{l(p.alert)}</m.p>
       </div>
     );
   }

@@ -28,13 +28,18 @@ export async function POST(req: Request) {
 
   const url = process.env.NUOVA_PILOT_INTAKE_URL;
   const token = process.env.NUOVA_PILOT_INTAKE_TOKEN;
-  if (!url || !token) return NextResponse.json({ ok: true, delivery: "simulated" }, { headers: { "cache-control": "no-store" } });
+  // API 5c87597 F-b: "simulated" only on a preview; a production build without an intake answers an error instead of a false "Gracias"
+  if (!url || !token) {
+    if (process.env.VERCEL_ENV === "production") return NextResponse.json({ ok: false, error: "intake_unconfigured" }, { status: 503, headers: { "cache-control": "no-store" } });
+    return NextResponse.json({ ok: true, delivery: "simulated" }, { headers: { "cache-control": "no-store" } });
+  }
 
   try {
+    // API 5c87597 F-e: the intake requires `consent` (the form's privacy notice was shown and the request sent) and takes `web` (the honeypot, empty here)
     const r = await fetch(url, {
       method: "POST",
       headers: { "content-type": "application/json", authorization: `Bearer ${token}` },
-      body: JSON.stringify({ kind: "pilot_request", agency, name, email, phone, interest, message, locale, source: "website", at: new Date().toISOString() }),
+      body: JSON.stringify({ kind: "pilot_request", agency, name, email, phone, interest, message, locale, consent: b.consent === true, web: clean(b.web, 10), source: "website", at: new Date().toISOString() }),
       cache: "no-store",
     });
     if (!r.ok) return NextResponse.json({ ok: false, error: "intake_failed" }, { status: 502 });

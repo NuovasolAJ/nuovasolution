@@ -1,7 +1,6 @@
 import type { Locale } from "@/lib/i18n/config";
 import type { CapabilityStatus } from "./statuses";
 import { live, type ClaimKey, type ClaimView } from "@/lib/claims";
-import { pxFor } from "@/lib/content/proximamente";
 
 /**
  * The capability registry. Every product page renders from one entry here.
@@ -457,12 +456,7 @@ export function publishedCapability(slug: string): Capability | undefined {
 export function publicPoints(c: Capability, view: ClaimView = "public"): CapabilityPoint[] {
   return c.points
     .filter((p) => p.status === "live" || p.status === "premium_on_request")
-    .map((p) => {
-      if (!p.keys || live(p.keys, view)) return p;
-      const es = pxFor(p.keys, (k) => !live(k, view), "es"), en = pxFor(p.keys, (k) => !live(k, view), "en");
-      return es && en ? { ...p, text: { es, en }, status: "soon" as CapabilityStatus } : null;
-    })
-    .filter((p): p is CapabilityPoint => p !== null);
+    .filter((p) => !p.keys || live(p.keys, view));
 }
 
 /** The published capabilities a view shows (Copy 1107 D-10/D-11: a page whose keys are off is not listed and not linked in public). */
@@ -480,12 +474,12 @@ export function capabilityText(c: Capability, field: "h1" | "navLine" | "scenari
 }
 /** 16.11. 14:00 (the owner's point 8): the "fits" items of a view — an item whose keys are off shows its public wording, else (20.11.) its PX-s. */
 export function capabilityFits(c: Capability, locale: Locale, view: ClaimView): string[] {
-  return c.fits.map((f) => (!f.keys || live(f.keys, view) ? f[locale] : f.pub ? f.pub[locale] : pxFor(f.keys, (k) => !live(k, view), locale))).filter((x): x is string => x !== null);
+  return c.fits.map((f) => (!f.keys || live(f.keys, view) ? f[locale] : f.pub ? f.pub[locale] : null)).filter((x): x is string => x !== null);
 }
 /** The note of a view: its PX-s while its keys are off (20.11.; before: left out). */
 export function capabilityNote(c: Capability, locale: Locale, view: ClaimView): string | null {
   if (!c.note) return null;
-  return !c.noteKeys || live(c.noteKeys, view) ? c.note[locale] : pxFor(c.noteKeys, (k) => !live(k, view), locale);
+  return !c.noteKeys || live(c.noteKeys, view) ? c.note[locale] : null;
 }
 
 export function t(l: L, locale: Locale): string {

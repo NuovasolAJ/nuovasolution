@@ -960,7 +960,7 @@ export const es: Dictionary = {
         published: "Publicada",
         delivery_unknown: "Resultado incierto. Comprueba el estado: no publiques de nuevo.",
         blocked: "No publicada",
-        other: "Próximamente",
+        other: "Estado desconocido", // the owner's brief 20.11.: no "Próximamente" in the source (staff app label) — WORKING for Copy
       },
       checkStatus: "Comprobar estado",
       scheduled: "Prevista para el",

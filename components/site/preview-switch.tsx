@@ -36,12 +36,7 @@ export function PreviewSwitch({ locale, switches }: { locale: Locale; switches: 
       <button type="button" className="pv-toggle" aria-expanded={open} onClick={() => setOpen((v) => !v)} data-pv-toggle>{w.hint} {open ? "−" : "+"}</button>
       <div className="container-default pv-row">
         <span className="pv-hint">{w.hint}</span>
-        <span className="pv-group" role="group" aria-label={w.view}>
-          <span className="pv-name">{w.view}</span>
-          <Opt on={switches.view === "target"} href={link({ view: "target" })} label={w.target} name="view-target" />
-          <Opt on={switches.view === "public"} href={link({ view: "public" })} label={w.pub} name="view-public" />
-        </span>
-        {/* the palette group left on 13.11.2026: the owner chose D */}
+        {/* the view group (target / public) left on 23.11.2026: the owner's brief — no gate, every build shows the finished product; the palette group left on 13.11.2026 */}
         <span className="pv-group" role="group" aria-label={w.display}>
           <span className="pv-name">{w.display}</span>
           <Opt on={switches.display === "inter"} href={link({ display: "inter" })} label={w.inter} name="display-inter" />

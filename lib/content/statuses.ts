@@ -66,7 +66,7 @@ const EN: Record<CapabilityStatus, StatusPresentation> = {
   premium_on_request: {
     label: "On request",
     short: "On request",
-    sentence: "A service we prepare for you. Coming soon.", // WCR-004; Copy 1120 §5b (4369145): no "in preparation" beside a mark
+    sentence: "A service we prepare for you.", // WCR-004; the owner's brief 20.11.: no mark on customer pages — WORKING for Copy
     publiclyAvailable: true,
     glyph: "diamond",
     tone: "neutral",
@@ -117,7 +117,7 @@ const ES: Record<CapabilityStatus, StatusPresentation> = {
   premium_on_request: {
     label: "Bajo petición",
     short: "Bajo petición",
-    sentence: "Un servicio que preparamos para ti. Próximamente.", // WCR-004; Copy 1120 §5b (4369145): no "en preparación" beside a mark
+    sentence: "Un servicio que preparamos para ti.", // WCR-004; the owner's brief 20.11.: no mark on customer pages — WORKING for Copy
     publiclyAvailable: true,
     glyph: "diamond",
     tone: "neutral",

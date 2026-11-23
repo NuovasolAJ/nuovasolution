@@ -21,7 +21,7 @@ type L = Record<Locale, string>;
 
 export const claimWords: Record<ClaimState, L> = {
   included: { es: "Incluido", en: "Included" },
-  soon: { es: "Próximamente", en: "Coming soon" },
+  soon: { es: "No activo", en: "Not active" }, // the register's word for API's record only (the app's account pages); the owner's brief 20.11.: no mark on customer pages
   excluded: { es: "No incluido", en: "Not included" },
   order: { es: "Por encargo", en: "To order" },
 };
@@ -72,55 +72,12 @@ export const claims = {
 export type ClaimKey = keyof typeof claims;
 
 /**
- * The owner's rule of 16.11.2026 (evening, verdict on 3c2a413): the preview shows EVERYTHING in both views — all four demonstration
- * channels, the 3D section, every graphic, both extra cards; no "Próximamente", nothing left out. ONE switch per function:
- *   "live"  shown without a sign (today: every function);
- *   "soon"  the public view treats the function as not live — hidden, or Copy's public wording where one exists.
- * On the day before go-live RV6 and the owner flip only the functions that are not in production then; nothing else has to be rebuilt.
- * The `claims` register above stays API's record of what is in production (the audit's ceiling); this map is the public view's gate.
- *
- * The owner, 20.11.: what is not live today gets a visible mark — the phone assistant, social posts, clients from ads and forms,
- * bringing contacts back, listing proposals — with Copy's wording (COPY_TO_REDESIGN_1120_HERO_PROXIMAMENTE_PLANFOLD_v1.md, 8cbe48c +
- * 19b5523) and the register's state of today: those five keys stand on "soon". The public (gate) view is the preview's default
- * since then (VIEW_DEFAULT in lib/view-query.ts); `?view=target` still shows the finished product.
+ * The gate of 16.11./20.11. (`publicGate`, one "live"/"soon" switch per function for a public view with marks) is GONE: the owner's
+ * clarification of 20.11. 16:18 and his line of 23.11. — the customer pages carry the finished product, no "Próximamente", no hidden
+ * main functions, no gate as a launch mechanism; what is not proven in production is an open launch point in Audit's register
+ * (governance/WEBSITE_VERSPRECHEN_REGISTER_1120_v1.md), not a line on the page. The `claims` register above stays API's record.
  */
-export const publicGate: Record<ClaimKey, "live" | "soon"> = {
-  replyWhatsapp: "live",
-  replyEmail: "live",
-  replyOutOfHours: "live",
-  whatsappOwnNumber: "soon", // the owner, 20.11. 09:05 (3): until he releases it
-  languageNoted: "live",
-  otherLanguages: "live", // the owner, 20.11. 09:05 (4): hidden in BOTH views (HIDDEN_BOTH below), so the gate word does not matter
-  mailboxConnection: "soon", // API cee6992 (20.11.): no mailbox register in prod, a pilot agency's mailbox comes with A12 (Tue 24.11. at the earliest)
-  crm: "live",
-  priorityWithReason: "live",
-  alert: "soon", // the owner, 20.11. 09:05 (3): until he releases it (HA1)
-  origin: "live",
-  adsLeads: "soon", // the owner, 20.11. (clients from ads and forms)
-  labels: "live",
-  oneRecordAcrossChannels: "soon", // API cee6992: in prod only for nuovasolution, pilot_test_a has no channel
-  matching: "soon", // the owner, 20.11. (listing proposals)
-  followup: "soon", // the owner, 20.11. (bringing contacts back / follow-up)
-  taskList: "soon", // API cee6992: 0 tasks for pilot_test_a, none without a connected mailbox
-  dailyVoice: "soon", // API cee6992: dg_jarvis_action_log has 0 rows
-  reportInLogin: "live",
-  weeklyEmail: "soon", // API cee6992: weekly reports only to the own agency (15 delivered)
-  reportTrend: "soon", // API cee6992: the delivered report has no trend, channel comparison or insights
-  instagram: "soon", // the owner, 20.11. (social posts)
-  phoneAssistant: "soon", // the owner, 20.11. (the phone assistant)
-  listingLink: "live",
-  reminders: "live",
-  webform: "soon", // API cee6992: the web form as a third channel is not connected in prod
-  integrations: "soon", // API cee6992: no provider with a prod sync (Google Sheets connected, never synced; the others revoked/pending)
-  outlook: "soon", // API cee6992: prod reads no agency's Outlook mailbox (proven on staging only, A12 line 4)
-  model3d: "soon", // API cee6992: no 3D order and no table in prod; T6 not accepted
-  plans: "live",
-  trial: "live",
-  publicSignup: "live",
-  teamRoles: "soon", // API 20.11.: prod has no team invite with roles (team_invite and tenant_api_bind_invited missing, tenant-api v1)
-};
-/** True while every gate is "live": the public view is the target view. */
-export const publicShowsAll = (): boolean => (Object.keys(publicGate) as ClaimKey[]).every((k) => publicGate[k] === "live");
+export const publicShowsAll = (): boolean => true;
 
 export const claim = (key: ClaimKey): ClaimState => claims[key];
 export const claimWord = (key: ClaimKey, locale: Locale): string => claimWords[claims[key]][locale];
@@ -131,7 +88,7 @@ export const replySpanish = (): boolean => isIncluded("replyWhatsapp") || isIncl
 /** Whether the keys read as live in a view: everything in the target view, only what is included in the public one. */
 /** The owner, 20.11. 09:05 (4): `otherLanguages` stays hidden in BOTH views (the register's note of §14: ES + EN + DE each with its evidence first). */
 export const HIDDEN_BOTH: ClaimKey[] = ["otherLanguages"];
-export const live = (keys: ClaimKey | ClaimKey[], view: ClaimView): boolean => { const ks = Array.isArray(keys) ? keys : [keys]; if (ks.some((k) => HIDDEN_BOTH.includes(k))) return false; return view === "target" || ks.every((k) => publicGate[k] === "live"); }; // 16.11. evening: the public view follows the gate, not the register
+export const live = (keys: ClaimKey | ClaimKey[], _view: ClaimView = "target"): boolean => { const ks = Array.isArray(keys) ? keys : [keys]; return !ks.some((k) => HIDDEN_BOTH.includes(k)); }; // 23.11.: no gate — every function is shown as the finished product; only HIDDEN_BOTH stays out
 /** Whether a surface bound to its keys is shown in a view. */
 export const shows = live;
 
@@ -146,16 +103,15 @@ const CHANNELS: { key: ClaimKey; es: string; en: string }[] = [
   { key: "phoneAssistant", es: "teléfono", en: "phone" },
   { key: "adsLeads", es: "portales y anuncios", en: "portals and ads" },
 ];
-/** The owner's E2 of 07.11., extended 16.11. (RV6 F22 b): a held-back function is not promised in either view — not in the plans, not in the channel list, not in the FAQ. */
-export const offered = (keys: ClaimKey | ClaimKey[], view: ClaimView): boolean => live(keys, view) && (Array.isArray(keys) ? keys : [keys]).every((k) => !HELD_BACK.includes(k) || isIncluded(k));
-/** The owner, 17.11.: the site shows the finished product — Instagram, the phone assistant and the agency's own number included; E2's list is empty, the gate (`publicGate`) decides on the switch day. */
-const HELD_BACK: ClaimKey[] = [];
+/** Kept for callers: the same as `live` (E2's held-back list of 07.11. is empty since 17.11.; the gate is gone since 23.11.). */
+export const offered = (keys: ClaimKey | ClaimKey[], view: ClaimView): boolean => live(keys, view);
 /**
  * Copy 1116 (RV6 F22 b): the channel list ⟦canales⟧ names only the channels that are included today ("por WhatsApp y email" in the target
  * view). Copy 1116 §10 W-1 (the owner's point 6): WhatsApp replies run on NuovaSolution's own number until the agency's number is
  * registered with Meta (topic 20), so the PUBLIC view names email only while `whatsappOwnNumber` is off.
  */
-const channelOn = (key: ClaimKey, view: ClaimView): boolean => isIncluded(key) && (view === "target" || key !== "replyWhatsapp" || publicGate.whatsappOwnNumber === "live");
+// 23.11.: the finished product names every channel the register includes (no gate)
+const channelOn = (key: ClaimKey, _view: ClaimView): boolean => isIncluded(key);
 /** RV6 04ea648 (C-4): the channels a reply leaves on — a sentence about REPLIES lists only these, never an arrival channel (web form, phone, portals). */
 export const REPLY_CHANNELS: ClaimKey[] = ["replyWhatsapp", "replyEmail"];
 /** The channels named in a view, optionally restricted to `only` (the replies row passes REPLY_CHANNELS). */
