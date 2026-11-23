@@ -173,6 +173,74 @@ Jedes Skript bindet den Build am Anfang und am Ende; ein verschobener Build mach
 
 ---
 
+## 4b. Der Rest des Briefs: Menü, Zurück, Sprachwechsel, Tastatur, reduzierte Bewegung
+
+Alles an `ab38b69`, 390×844, ES, Build gebunden und **STABLE**. Zwei neue Befunde, ein
+zurückgezogener, und mehrere Dinge, die einfach **gut** sind.
+
+### Was gut ist — und das sage ich genauso deutlich wie die Mängel
+
+| Prüfung | Ergebnis |
+|---|---|
+| **Zurück-Knopf** | beide Wege landen auf der **richtigen** Seite, und die Scrollposition bleibt: 12888 → 12888 und 10811 → 10811, **0 px Abweichung**. Der Besucher verliert seine Stelle nicht |
+| Menü | Hamburger **44×44**, `aria-expanded` wird gesetzt, **Escape schließt** |
+| Tastatur | Sprunglink „Ir al contenido" ist **das erste** Ziel; Fokusring auf dem Hauptknopf `outline: solid 2px` |
+| **Reduzierte Bewegung** | tatsächlich emuliert, nicht angenommen: Medienabfrage greift, Phase bleibt 12 → 12, **0 laufende Animationen**, fertige Aufgabe sichtbar. **Absicht (d) hält** |
+| **E-3** (Pakete vergleichen) | 3 Sätze mit „14 días", **alle drei nennen Essential**; **kein** Gratis-Wort an Growth oder Enterprise. „Gratis nur Essential" ist auf `/packages` erfüllt |
+| **E-2** (Wochenbericht) | **beantwortbar.** „Casos abiertos" trägt QUIÉN / QUÉ PIDE / CANAL / PRIORIDAD / SIGUIENTE PASO / ESTADO mit vier Personen und vier Prioritäten, dazu „Qué toca hacer" mit drei Schritten. Marken: 0 |
+
+### R-6 — **zurückgezogen, bevor er hinausging**
+
+Mein erster Lauf sagte: **„der Sprachwechsel wechselt nicht"** — alle drei Seiten blieben auf ES.
+**Das war mein Messfehler.** In den eingeklappten Kopfzeilen-Werkzeugen liegt eine **0×0 große
+Zweitkopie** desselben Sprachlinks; mein Tipp traf diese und damit nichts. Mit der Bedingung
+„nur ein Element mit sichtbarer Fläche" wechselt er korrekt: `/es` → `/en`,
+`/es/packages` → `/en/packages`, jeweils dieselbe Seite in der anderen Sprache.
+**Der Sprachwechsel ist in Ordnung.** Ich melde ihn ausdrücklich als *keinen* Befund, damit niemand
+ihm nachgeht — und als Beispiel dafür, warum ich das Werkzeug an Etappe 1 vorher leer laufen lasse.
+
+### R-7 — Der Sprachwechsel verliert die Absicht (neu, echt)
+
+**Seite:** `/es/contact?interes=trial&plan=essential` · **Gerät:** 390 emuliert · **Beobachtet:**
+der Sprachlink zeigt auf **`/en/contact?plan=essential`** — `interes=trial` fehlt. Angetippt landet
+man dort, h1 „Talk to a person.".
+
+**Folge:** wer die Prüfungsanfrage auf Englisch lesen will, verliert damit die Absicht; das Formular
+fällt auf `interest="other"` zurück — **genau die Wirkung wie bei R-1, nur über den Sprachwechsel.**
+Der Paketparameter überlebt, der Absichtsparameter nicht.
+**Nachprüfung:** am `href` selbst ablesbar, also unabhängig von meinem Tipp. Betrifft jede
+Kontaktseite mit `interes`.
+
+### R-8 — 34 unsichtbare Tastaturstationen (neu, echt)
+
+**Seite:** Startseite · **Gerät:** 390 emuliert, Tastatur · **Beobachtet:** 87 fokussierbare
+Elemente, davon **34 mit Größe 0**, aber weiterhin mit Tab erreichbar — die vollständige
+eingeklappte Desktop-Navigation: *Plataforma, Atender, Gestionar, Coordinar, Captar, Visión
+general, Paquetes, Prueba Essential, Contacto, EN/ES, Iniciar sesión* und **zweimal „Solicita tu
+piloto gratuito"**.
+
+**Bis zur Haupthandlung „Prueba Essential gratis" sind es 35 Tab-Schritte.** Wer mit der Tastatur
+bedient, läuft auf dem Handy erst durch 34 Stationen, die niemand sieht.
+**Nachprüfung:** Elemente mit `display:none` und `aria-hidden` habe ich ausgeschlossen; diese 34
+sind keines von beidem, sondern auf Größe 0 geschrumpft — darum bleiben sie in der
+Tab-Reihenfolge. **Nebenbefund:** dass dort noch zweimal die alte Formulierung „Solicita tu piloto
+gratuito" steht, zeigt, dass eine reine Sichtprüfung diese Stellen nicht findet (an HEAD durch
+`2dd2d42` behoben).
+
+### Mein eigener Werkzeugfehler, offen protokolliert
+
+Zweimal in diesem Lauf ist mir derselbe Fehler unterlaufen: **ein einfacher Rückstrich in einem
+Schablonentext** (`\s` statt `\\s`) zerfällt zu `s` und löscht dann jedes „s" aus dem gelesenen
+Text — aus „Gestionar" wurde „Ge tionar". Betroffen waren nur **Beschriftungen in der Ausgabe**,
+keine Zählung und kein Urteil. Ich habe `checks/escscan.mjs` dazugelegt, das alle Sonden darauf
+prüft, und beide Stellen auf die doppelte Schreibweise gebracht. **Ergebnis: keine weitere Stelle.**
+Zudem war mein erstes E-2-Kriterium schlicht schlecht gewählt (es suchte eine Formulierung statt
+der Tabelle) und hätte eine Seite, die die Aufgabe beantwortet, als „nicht beantwortbar" gemeldet.
+**Beides gefunden, weil ich das Werkzeug vor dem Ernstfall leer laufen lasse — und genau dafür ist
+dieser Durchgang da.**
+
+---
+
 ## 5. Eine Folge der Löschentscheidung, die jetzt benannt sein muss
 
 Redesign setzt Ihre Linie vom 23.11. so um (mir am 23.11. angekündigt): die

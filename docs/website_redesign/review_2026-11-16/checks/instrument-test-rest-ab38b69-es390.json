@@ -1,0 +1,353 @@
+{
+ "pin": "ab38b69/dpl_9e3f3gbkye1QeiB4JYQgattgFduK",
+ "locale": "es",
+ "viewport": "390x844",
+ "menu": {
+  "burger": true,
+  "burgerBox": "44x44",
+  "count": 17,
+  "items": [
+   {
+    "t": "NuovaSolution",
+    "w": 140,
+    "h": 28,
+    "previewOnly": false,
+    "href": "/es"
+   },
+   {
+    "t": "Cerrar",
+    "w": 44,
+    "h": 44,
+    "previewOnly": false,
+    "href": ""
+   },
+   {
+    "t": "Solicita tu piloto gratuito",
+    "w": 358,
+    "h": 56,
+    "previewOnly": false,
+    "href": "/es/contact"
+   },
+   {
+    "t": "Iniciar sesión",
+    "w": 358,
+    "h": 48.4,
+    "previewOnly": false,
+    "href": "/es/login"
+   },
+   {
+    "t": "Atender",
+    "w": 358,
+    "h": 48,
+    "previewOnly": false,
+    "href": "/es/platform#answer"
+   },
+   {
+    "t": "Gestionar",
+    "w": 358,
+    "h": 48,
+    "previewOnly": false,
+    "href": "/es/platform#manage"
+   },
+   {
+    "t": "Coordinar",
+    "w": 358,
+    "h": 48,
+    "previewOnly": false,
+    "href": "/es/platform#team"
+   },
+   {
+    "t": "Captar",
+    "w": 358,
+    "h": 48,
+    "previewOnly": false,
+    "href": "/es/platform#attract"
+   },
+   {
+    "t": "Visión general",
+    "w": 358,
+    "h": 44,
+    "previewOnly": false,
+    "href": "/es/platform"
+   },
+   {
+    "t": "Paquetes",
+    "w": 358,
+    "h": 56,
+    "previewOnly": false,
+    "href": "/es/packages"
+   },
+   {
+    "t": "Prueba Essential",
+    "w": 358,
+    "h": 56,
+    "previewOnly": false,
+    "href": "/es/trial"
+   },
+   {
+    "t": "Contacto",
+    "w": 358,
+    "h": 56,
+    "previewOnly": false,
+    "href": "/es/contact"
+   },
+   {
+    "t": "EN ENGLISH",
+    "w": 41.7,
+    "h": 34,
+    "previewOnly": false,
+    "href": "/en"
+   },
+   {
+    "t": "ES ESPAÑOL",
+    "w": 40.3,
+    "h": 34,
+    "previewOnly": false,
+    "href": "/es"
+   },
+   {
+    "t": "Solo en la vista previa +",
+    "w": 174.6,
+    "h": 36,
+    "previewOnly": true,
+    "href": ""
+   },
+   {
+    "t": "Ver cómo queda la tarea",
+    "w": 358,
+    "h": 56,
+    "previewOnly": false,
+    "href": "#demo"
+   },
+   {
+    "t": "Prueba Essential gratis",
+    "w": 358,
+    "h": 44,
+    "previewOnly": false,
+    "href": "/es/contact?interes=trial&plan=essential"
+   }
+  ],
+  "under44": [
+   {
+    "t": "NuovaSolution",
+    "w": 140,
+    "h": 28,
+    "previewOnly": false,
+    "href": "/es"
+   },
+   {
+    "t": "EN ENGLISH",
+    "w": 41.7,
+    "h": 34,
+    "previewOnly": false,
+    "href": "/en"
+   },
+   {
+    "t": "ES ESPAÑOL",
+    "w": 40.3,
+    "h": 34,
+    "previewOnly": false,
+    "href": "/es"
+   }
+  ],
+  "bodyOverflow": "visible",
+  "expandedAttr": "true",
+  "escapeClosed": true
+ },
+ "back": [
+  {
+   "label": "home -> Essential form -> back",
+   "found": true,
+   "yBefore": 12888,
+   "urlBefore": "/es",
+   "urlAfter": "/es/contact?interes=trial&plan=essential",
+   "urlBack": "/es",
+   "yBack": 12888,
+   "h1Back": "Mientras enseñas un piso, ¿quién atiende a Mila?",
+   "returned": true,
+   "scrollDrift": 0
+  },
+  {
+   "label": "home -> example report -> back",
+   "found": true,
+   "yBefore": 10811,
+   "urlBefore": "/es",
+   "urlAfter": "/es/example-report",
+   "urlBack": "/es",
+   "yBack": 10811,
+   "h1Back": "Mientras enseñas un piso, ¿quién atiende a Mila?",
+   "returned": true,
+   "scrollDrift": 0
+  }
+ ],
+ "lang": [
+  {
+   "from": "/es",
+   "expect": "/en",
+   "found": true,
+   "before": "/es",
+   "viaMenu": true,
+   "allHrefs": [
+    "/en [0x0]",
+    "/en [0x0]",
+    "(after menu) /en"
+   ],
+   "href": "/en",
+   "cx": 40,
+   "cy": 800,
+   "w": 41.7,
+   "h": 34,
+   "after": "/en",
+   "h1": "While you're showing a flat, who's looking after Mila?",
+   "keptPage": true
+  },
+  {
+   "from": "/es/packages",
+   "expect": "/en/packages",
+   "found": true,
+   "before": "/es/packages",
+   "viaMenu": true,
+   "allHrefs": [
+    "/en/packages [0x0]",
+    "/en/packages [0x0]",
+    "(after menu) /en/packages"
+   ],
+   "href": "/en/packages",
+   "cx": 40,
+   "cy": 800,
+   "w": 41.7,
+   "h": 34,
+   "after": "/en/packages",
+   "h1": "Choose your plan",
+   "keptPage": true
+  },
+  {
+   "from": "/es/contact?interes=trial&plan=essential",
+   "expect": "/en/contact?interes=trial&plan=essential",
+   "found": true,
+   "before": "/es/contact?interes=trial&plan=essential",
+   "viaMenu": true,
+   "allHrefs": [
+    "/en/contact?plan=essential [0x0]",
+    "/en/contact?plan=essential [0x0]",
+    "(after menu) /en/contact?plan=essential"
+   ],
+   "href": "/en/contact?plan=essential",
+   "cx": 40,
+   "cy": 800,
+   "w": 41.7,
+   "h": 34,
+   "after": "/en/contact?plan=essential",
+   "h1": "Talk to a person.",
+   "keptPage": false
+  }
+ ],
+ "keyboard": {
+  "focusables": 87,
+  "invisibleStops": 34,
+  "invisibleList": [
+   "Plataforma",
+   "Atender",
+   "Gestionar",
+   "Coordinar",
+   "Captar",
+   "Visión general",
+   "Paquetes",
+   "Prueba Essential",
+   "Contacto",
+   "ENEnglish",
+   "ESEspañol",
+   "Iniciar sesión",
+   "Solicita tu piloto gratuito",
+   "Solicita tu piloto gratuito",
+   "Iniciar sesión",
+   "Atender",
+   "Gestionar",
+   "Coordinar"
+  ],
+  "skipLinkFirst": true,
+  "skipLinkPresent": true,
+  "tabsToMainCta": 35,
+  "ring": {
+   "outlineStyle": "solid",
+   "outlineWidth": "2px",
+   "boxShadow": "none",
+   "isFocused": true
+  }
+ },
+ "reduced": {
+  "mediaMatches": true,
+  "before": {
+   "data-demo": "true",
+   "data-demo-brief": "1120",
+   "data-demo-kind": "chat",
+   "data-demo-channel": "whatsapp",
+   "data-demo-phase": "12",
+   "data-demo-done": "true",
+   "data-demo-auto": "false",
+   "data-demo-run": "0",
+   "data-demo-view": "target",
+   "data-demo-entered": "end"
+  },
+  "after": {
+   "data-demo": "true",
+   "data-demo-brief": "1120",
+   "data-demo-kind": "chat",
+   "data-demo-channel": "whatsapp",
+   "data-demo-phase": "12",
+   "data-demo-done": "true",
+   "data-demo-auto": "false",
+   "data-demo-run": "0",
+   "data-demo-view": "target",
+   "data-demo-entered": "end"
+  },
+  "runningAnimations": 0,
+  "showsTask": true,
+  "len": 1141
+ },
+ "e2": {
+  "h1": "Lo que ve una agencia al final de la semana",
+  "len": 4848,
+  "marks": 0,
+  "openCases": {
+   "hasPriority": true,
+   "hasNextStep": true,
+   "hasState": true,
+   "priorityCells": 4,
+   "len": 536
+  },
+  "toDo": {
+   "len": 177,
+   "text": "Qué toca hacer 1 Proponer a los Keller una fecha para la valoración. 2 Enviar a Sofía lo disponible en alquiler desde enero. 3 Recordar a Laura la visita del jueves a las 10:00."
+  },
+  "cards": 0,
+  "headings": [
+   "Consultas por semana",
+   "Por canal",
+   "De consulta a visita",
+   "Hora punta",
+   "Casos abiertos",
+   "Qué toca hacer"
+  ],
+  "text": "Ir al contenido Vista previa, no pública. Muestra el producto completo, incluidas funciones que no están activas. Datos de ejemplo: nada de lo que introduzcas crea una cuenta ni llega a nadie. Solo en la vista previa + Informe de ejemplo · no son datos de ninguna agencia Lo que ve una agencia al final de la semana Así es el informe semanal de NuovaSolution, con la semana del ejemplo de la página de inicio. El informe real de tu agencia está en tu acceso. Consultas recibidas 25 consultas nuevas registradas en la semana Respondidas 25 con una respuesta automática en español, al llegar Visitas pedidas 6 clientes que pidieron ver un inmueble · 4 acordadas por el equipo · pedida no es acordada Esperan a una persona 0 consultas sin ninguna respuesta todavía · esta semana, ninguna Tu mejor canal WhatsApp · 10 de 25 consultas El canal por el que llegaron más consultas en la semana. Hora punta 11:00–12:00 · 6 consultas La franja de una hora en la que llegaron más consultas. De consulta a visita 24 % · 6 de 25 Visitas pedidas sobre consultas recibidas. No es una tasa de venta. Consultas por semana Cuatro semanas de ejemplo. Todas recibieron respuesta al llegar. Semana 1 Semana 2 Semana 3 Semana 4 0 10 20 30 Consultas Recibidas Con la oficina cerrada Cuatro semanas de ejemplo. Todas recibieron respuesta al llegar. Por canal Semana 4 · las 25 consultas recibidas 25 Consultas WhatsApp 10 40 % Email 6 24 % Formulario web 3 12 % Teléfono 2 8 % Portales y anuncios 4 16 % Las mismas 25, según el canal de llegada. De consulta a visita Semana 4 Consultas recibidas 25 Respondidas respuesta automática 25 100 % Visitas pedidas el cliente pidió ver un inmueble 6 24 % Acordadas día y hora fijados por una persona del equipo 4 16 % Porcentajes sobre las 25 consultas recibidas. Hora punta Semana 4 · por hora de llegada 7 9 10 11 12 13 14 16 18 19 20 21 23 0 2 4 6 8 11:00–12:00 · 6 consultas · La franja de una hora en la que llegaron más consultas. Horario de la agencia de ejemplo: de 10:00 a 14:00 y de 17:00 a 20:00. EJEMPLO CON DATOS FICTICIOS · LA MISMA SEMANA Sin NuovaSolution Con NuovaSolution 25 consultas de la agencia de ejemplo, que abre de 10:00 a 14:00 y de 17:00 a 20:00. Sin NuovaSolution Con NuovaSolution Sin respuesta hasta que abre la oficina Sin NuovaSolution: 9 Con NuovaSolution: 0 Con NuovaSolution, esas 9 reciben la respuesta automática al llegar. Esperan al día siguiente Sin NuovaSolution: 5 Con NuovaSolution: 0 Las que llegaron después de las 20:00. Esperan a una persona para la primera respuesta Sin NuovaSolution: 25 Con NuovaSolution: 0 Con NuovaSolution, las 25 reciben la primera respuesta en español al llegar. En su ficha, con prioridad y motivo Sin NuovaSolution: lo que alguien anote Con NuovaSolution: 25 Las 25, sin copiar nada a mano. Consultas de la semana Sin NuovaSolution: 25 Con NuovaSolution: 25 Las mismas en los dos casos. Llegaron con la oficina cerrada Sin NuovaSolution: 9 Con NuovaSolution: 9 Antes de abrir 2, a mediodía 2, después de cer"
+ },
+ "e3": {
+  "h1": "Elige tu plan",
+  "marks": 0,
+  "freeSentences": [
+   "en la vista previa + PLANES Elige tu plan Essential se prueba gratis 14 días, sin tarjeta.",
+   "Todas las preguntas 14 días con Essential para ver qué consultas se te escapan.",
+   "Prueba Essential gratis 14 días gratis, sin tarjeta."
+  ],
+  "freeNamesEssential": 3,
+  "diffMarkers": [
+   {
+    "v": "api-pending"
+   }
+  ],
+  "growthFree": false,
+  "entFree": false,
+  "len": 1754
+ },
+ "pinEnd": "ab38b69/dpl_9e3f3gbkye1QeiB4JYQgattgFduK"
+}
