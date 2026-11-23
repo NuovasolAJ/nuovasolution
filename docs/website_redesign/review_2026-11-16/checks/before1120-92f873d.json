@@ -1,0 +1,3852 @@
+{
+ "tag": "92f873d",
+ "base": "https://nuovasolution-design-preview-rgrn75n6w-nuovasolajs-projects.vercel.app",
+ "buildStart": {
+  "commit": "92f873d6a9299abfbea5c86774036eea5f1b54b1",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_7j8zGi1u9Hua49DAX6jjmV88zFHH",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "A_marks": {
+  "es/": {
+   "hits": [
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "demo-tab-soon",
+     "painted": true,
+     "w": 131,
+     "h": 21,
+     "marker": "demo-tab"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "demo-tab-soon",
+     "painted": true,
+     "w": 131,
+     "h": 21,
+     "marker": "demo-tab"
+    },
+    {
+     "text": "Aviso por email a la persona adecuada: próximamente.",
+     "tag": "SPAN",
+     "cls": "",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "other"
+    },
+    {
+     "text": "Lista de tareas: próximamente.",
+     "tag": "SPAN",
+     "cls": "",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "other"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "xc-tl-soon",
+     "painted": true,
+     "w": 93,
+     "h": 19,
+     "marker": "other"
+    },
+    {
+     "text": "Si nadie del equipo se ocupa de una consulta, al cabo de una hora se lo recordamos a la pe",
+     "tag": "P",
+     "cls": "ch-line m-hide",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "other"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "xc-tl-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "other"
+    },
+    {
+     "text": "Próximamente · Desde Growth",
+     "tag": "SPAN",
+     "cls": "st-chip st-chip-soon",
+     "painted": true,
+     "w": 202,
+     "h": 24,
+     "marker": "strength-chip"
+    },
+    {
+     "text": "Próximamente · Desde Growth",
+     "tag": "SPAN",
+     "cls": "st-chip st-chip-soon",
+     "painted": true,
+     "w": 202,
+     "h": 24,
+     "marker": "strength-chip"
+    },
+    {
+     "text": "Desde Growth · en parte próximamente",
+     "tag": "SPAN",
+     "cls": "st-chip st-chip-soon",
+     "painted": true,
+     "w": 255,
+     "h": 24,
+     "marker": "strength-chip"
+    },
+    {
+     "text": "Responde al momento y aclara qué busca cada cliente. Proponerle inmuebles que encajan y ha",
+     "tag": "P",
+     "cls": "ch-line m-hide",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "other"
+    },
+    {
+     "text": "Cada mañana, qué oportunidades piden tu atención: próximamente.",
+     "tag": "P",
+     "cls": "st-after",
+     "painted": true,
+     "w": 358,
+     "h": 51,
+     "marker": "other"
+    },
+    {
+     "text": "Próximamente · Desde Growth",
+     "tag": "SPAN",
+     "cls": "st-chip st-chip-soon",
+     "painted": true,
+     "w": 202,
+     "h": 24,
+     "marker": "strength-chip"
+    },
+    {
+     "text": "Próximamente · Desde Growth",
+     "tag": "SPAN",
+     "cls": "st-chip st-chip-soon",
+     "painted": true,
+     "w": 202,
+     "h": 24,
+     "marker": "strength-chip"
+    },
+    {
+     "text": "Próximamente · Opcional, con cualquier plan",
+     "tag": "SPAN",
+     "cls": "st-chip st-chip-soon",
+     "painted": true,
+     "w": 289,
+     "h": 24,
+     "marker": "strength-chip"
+    },
+    {
+     "text": "· Próximamente",
+     "tag": "SPAN",
+     "cls": "st-day-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "day-step"
+    },
+    {
+     "text": "La tendencia y los canales del informe: próximamente.",
+     "tag": "P",
+     "cls": "rep-note rep-note-soon",
+     "painted": true,
+     "w": 356,
+     "h": 63,
+     "marker": "other"
+    },
+    {
+     "text": "Un servicio aparte · Próximamente",
+     "tag": "P",
+     "cls": "t-eyebrow t-eyebrow-l text-text-accent",
+     "painted": true,
+     "w": 358,
+     "h": 17,
+     "marker": "other"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Opcional · próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Opcional · próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Opcional · próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Opcional · próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-compa",
+     "painted": true,
+     "w": 180,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Opcional · próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-compa",
+     "painted": true,
+     "w": 180,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Opcional · próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-compa",
+     "painted": true,
+     "w": 180,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": true,
+     "w": 112,
+     "h": 25,
+     "marker": "plans-legend"
+    },
+    {
+     "text": "Conexión con el buzón de tu agencia: próximamente.",
+     "tag": "P",
+     "cls": "entry-small",
+     "painted": true,
+     "w": 312,
+     "h": 38,
+     "marker": "other"
+    }
+   ],
+   "total": 78,
+   "inInnerText": 42,
+   "chars": 11736,
+   "accordion": {
+    "opened": 13,
+    "stillClosed": 5
+   }
+  },
+  "es/platform": {
+   "hits": [
+    {
+     "text": "WhatsApp con el número de tu agencia: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 328,
+     "h": 48,
+     "marker": "other"
+    },
+    {
+     "text": "Formulario web: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 224,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Llamadas: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 181,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Aviso por email a la persona adecuada: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 328,
+     "h": 48,
+     "marker": "other"
+    },
+    {
+     "text": "Inmuebles que encajan con cada cliente: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 328,
+     "h": 48,
+     "marker": "other"
+    },
+    {
+     "text": "Seguimiento automático: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 285,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Resumen de la mañana: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 278,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Lista de tareas: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 218,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Instagram: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 208,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Instagram: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 186,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Contactos de portales y anuncios: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 328,
+     "h": 48,
+     "marker": "other"
+    },
+    {
+     "text": "Visualización 3D: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 231,
+     "h": 24,
+     "marker": "other"
+    }
+   ],
+   "total": 12,
+   "inInnerText": 12,
+   "chars": 2753,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "es/platform/ai-sales-agent": {
+   "hits": [
+    {
+     "text": "WhatsApp con el número de tu agencia: próximamente.",
+     "tag": "P",
+     "cls": "t-body-m text-text-primary",
+     "painted": true,
+     "w": 280,
+     "h": 53,
+     "marker": "other"
+    },
+    {
+     "text": "Aviso por email a la persona adecuada: próximamente.",
+     "tag": "P",
+     "cls": "t-body-m text-text-primary",
+     "painted": true,
+     "w": 280,
+     "h": 53,
+     "marker": "other"
+    },
+    {
+     "text": "WhatsApp con el número de tu agencia: próximamente.",
+     "tag": "LI",
+     "cls": "py-4 t-body-m text-text-secondary",
+     "painted": true,
+     "w": 358,
+     "h": 86,
+     "marker": "other"
+    }
+   ],
+   "total": 3,
+   "inInnerText": 3,
+   "chars": 2601,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "es/platform/crm": {
+   "hits": [
+    {
+     "text": "WhatsApp con el número de tu agencia: próximamente.",
+     "tag": "P",
+     "cls": "mt-4 border-l-2 border-line-strong pl-4 ",
+     "painted": true,
+     "w": 358,
+     "h": 53,
+     "marker": "other"
+    }
+   ],
+   "total": 1,
+   "inInnerText": 1,
+   "chars": 2637,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "es/platform/daily-assistant": {
+   "hits": [
+    {
+     "text": "WhatsApp con el número de tu agencia: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 328,
+     "h": 48,
+     "marker": "other"
+    },
+    {
+     "text": "Formulario web: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 224,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Llamadas: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 181,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Aviso por email a la persona adecuada: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 328,
+     "h": 48,
+     "marker": "other"
+    },
+    {
+     "text": "Inmuebles que encajan con cada cliente: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 328,
+     "h": 48,
+     "marker": "other"
+    },
+    {
+     "text": "Seguimiento automático: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 285,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Resumen de la mañana: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 278,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Lista de tareas: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 218,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Instagram: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 208,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Instagram: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 186,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Contactos de portales y anuncios: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 328,
+     "h": 48,
+     "marker": "other"
+    },
+    {
+     "text": "Visualización 3D: próximamente.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 231,
+     "h": 24,
+     "marker": "other"
+    }
+   ],
+   "total": 12,
+   "inInnerText": 12,
+   "chars": 2753,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "es/platform/lead-acquisition": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 0,
+   "chars": 765,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "es/platform/lead-intelligence": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 0,
+   "chars": 2531,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "es/platform/property-experience": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 0,
+   "chars": 765,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "es/platform/social-growth": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 0,
+   "chars": 765,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "es/packages": {
+   "hits": [
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Opcional · próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Opcional · próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Opcional · próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Opcional · próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-compa",
+     "painted": true,
+     "w": 180,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Opcional · próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-compa",
+     "painted": true,
+     "w": 180,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 112,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Opcional · próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-compa",
+     "painted": true,
+     "w": 180,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Próximamente",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": true,
+     "w": 112,
+     "h": 25,
+     "marker": "plans-legend"
+    }
+   ],
+   "total": 59,
+   "inInnerText": 30,
+   "chars": 5084,
+   "accordion": {
+    "opened": 6,
+    "stillClosed": 0
+   }
+  },
+  "es/faq": {
+   "hits": [
+    {
+     "text": "Resumen de la mañana: próximamente.",
+     "tag": "DIV",
+     "cls": "pb-5 t-body-m text-text-secondary measur",
+     "painted": true,
+     "w": 308,
+     "h": 46,
+     "marker": "other"
+    },
+    {
+     "text": "Visualización 3D: próximamente.",
+     "tag": "DIV",
+     "cls": "pb-5 t-body-m text-text-secondary measur",
+     "painted": true,
+     "w": 308,
+     "h": 46,
+     "marker": "other"
+    }
+   ],
+   "total": 2,
+   "inInnerText": 2,
+   "chars": 3054,
+   "accordion": {
+    "opened": 37,
+    "stillClosed": 30
+   }
+  },
+  "es/contact": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 1,
+   "chars": 1892,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "es/example-report": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 0,
+   "chars": 3906,
+   "accordion": {
+    "opened": 3,
+    "stillClosed": 0
+   }
+  },
+  "es/trial": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 1,
+   "chars": 1892,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "es/prueba-objeto": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 0,
+   "chars": 976,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "en/": {
+   "hits": [
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "demo-tab-soon",
+     "painted": true,
+     "w": 131,
+     "h": 21,
+     "marker": "demo-tab"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "demo-tab-soon",
+     "painted": true,
+     "w": 131,
+     "h": 21,
+     "marker": "demo-tab"
+    },
+    {
+     "text": "Email alert to the right person: coming soon.",
+     "tag": "SPAN",
+     "cls": "",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "other"
+    },
+    {
+     "text": "Task list: coming soon.",
+     "tag": "SPAN",
+     "cls": "",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "other"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "xc-tl-soon",
+     "painted": true,
+     "w": 87,
+     "h": 19,
+     "marker": "other"
+    },
+    {
+     "text": "If nobody on the team takes an enquiry, after one hour we remind the person responsible. P",
+     "tag": "P",
+     "cls": "ch-line m-hide",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "other"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "xc-tl-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "other"
+    },
+    {
+     "text": "Coming soon · From Growth",
+     "tag": "SPAN",
+     "cls": "st-chip st-chip-soon",
+     "painted": true,
+     "w": 187,
+     "h": 24,
+     "marker": "strength-chip"
+    },
+    {
+     "text": "Coming soon · From Growth",
+     "tag": "SPAN",
+     "cls": "st-chip st-chip-soon",
+     "painted": true,
+     "w": 187,
+     "h": 24,
+     "marker": "strength-chip"
+    },
+    {
+     "text": "From Growth · partly coming soon",
+     "tag": "SPAN",
+     "cls": "st-chip st-chip-soon",
+     "painted": true,
+     "w": 224,
+     "h": 24,
+     "marker": "strength-chip"
+    },
+    {
+     "text": "It replies at once and finds out what each client is looking for. Suggesting listings that",
+     "tag": "P",
+     "cls": "ch-line m-hide",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "other"
+    },
+    {
+     "text": "Every morning, which opportunities need your attention: coming soon.",
+     "tag": "P",
+     "cls": "st-after",
+     "painted": true,
+     "w": 358,
+     "h": 51,
+     "marker": "other"
+    },
+    {
+     "text": "Coming soon · From Growth",
+     "tag": "SPAN",
+     "cls": "st-chip st-chip-soon",
+     "painted": true,
+     "w": 187,
+     "h": 24,
+     "marker": "strength-chip"
+    },
+    {
+     "text": "Coming soon · From Growth",
+     "tag": "SPAN",
+     "cls": "st-chip st-chip-soon",
+     "painted": true,
+     "w": 187,
+     "h": 24,
+     "marker": "strength-chip"
+    },
+    {
+     "text": "Coming soon · Optional, with any plan",
+     "tag": "SPAN",
+     "cls": "st-chip st-chip-soon",
+     "painted": true,
+     "w": 247,
+     "h": 24,
+     "marker": "strength-chip"
+    },
+    {
+     "text": "· Coming soon",
+     "tag": "SPAN",
+     "cls": "st-day-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "day-step"
+    },
+    {
+     "text": "The report's trend and channels: coming soon.",
+     "tag": "P",
+     "cls": "rep-note rep-note-soon",
+     "painted": true,
+     "w": 356,
+     "h": 44,
+     "marker": "other"
+    },
+    {
+     "text": "A separate service · Coming soon",
+     "tag": "P",
+     "cls": "t-eyebrow t-eyebrow-l text-text-accent",
+     "painted": true,
+     "w": 358,
+     "h": 17,
+     "marker": "other"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Optional · coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Optional · coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Optional · coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Optional · coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-compa",
+     "painted": true,
+     "w": 167,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Optional · coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-compa",
+     "painted": true,
+     "w": 167,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Optional · coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-compa",
+     "painted": true,
+     "w": 167,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": true,
+     "w": 104,
+     "h": 25,
+     "marker": "plans-legend"
+    },
+    {
+     "text": "Connection to your agency's mailbox: coming soon.",
+     "tag": "P",
+     "cls": "entry-small",
+     "painted": true,
+     "w": 312,
+     "h": 38,
+     "marker": "other"
+    }
+   ],
+   "total": 78,
+   "inInnerText": 42,
+   "chars": 11179,
+   "accordion": {
+    "opened": 13,
+    "stillClosed": 5
+   }
+  },
+  "en/platform": {
+   "hits": [
+    {
+     "text": "WhatsApp on your agency's own number: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 328,
+     "h": 48,
+     "marker": "other"
+    },
+    {
+     "text": "Web form: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 174,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Calls: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 139,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Email alert to the right person: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 313,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Listings that fit each client: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 290,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Automatic follow-up: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 247,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Morning summary: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 233,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Task list: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 162,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Instagram: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 175,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Instagram: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 196,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Contacts from portals and ads: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 319,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "3D visualisation: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 216,
+     "h": 24,
+     "marker": "other"
+    }
+   ],
+   "total": 12,
+   "inInnerText": 12,
+   "chars": 2556,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "en/platform/ai-sales-agent": {
+   "hits": [
+    {
+     "text": "WhatsApp on your agency's own number: coming soon.",
+     "tag": "P",
+     "cls": "t-body-m text-text-primary",
+     "painted": true,
+     "w": 280,
+     "h": 53,
+     "marker": "other"
+    },
+    {
+     "text": "Email alert to the right person: coming soon.",
+     "tag": "P",
+     "cls": "t-body-m text-text-primary",
+     "painted": true,
+     "w": 280,
+     "h": 53,
+     "marker": "other"
+    },
+    {
+     "text": "WhatsApp on your agency's own number: coming soon.",
+     "tag": "LI",
+     "cls": "py-4 t-body-m text-text-secondary",
+     "painted": true,
+     "w": 358,
+     "h": 86,
+     "marker": "other"
+    }
+   ],
+   "total": 3,
+   "inInnerText": 3,
+   "chars": 2372,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "en/platform/crm": {
+   "hits": [
+    {
+     "text": "WhatsApp on your agency's own number: coming soon.",
+     "tag": "P",
+     "cls": "mt-4 border-l-2 border-line-strong pl-4 ",
+     "painted": true,
+     "w": 358,
+     "h": 53,
+     "marker": "other"
+    }
+   ],
+   "total": 1,
+   "inInnerText": 1,
+   "chars": 2484,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "en/platform/daily-assistant": {
+   "hits": [
+    {
+     "text": "WhatsApp on your agency's own number: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 328,
+     "h": 48,
+     "marker": "other"
+    },
+    {
+     "text": "Web form: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 174,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Calls: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 139,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Email alert to the right person: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 313,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Listings that fit each client: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 290,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Automatic follow-up: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 247,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Morning summary: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 233,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Task list: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 162,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Instagram: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 175,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Instagram: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 196,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "Contacts from portals and ads: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 319,
+     "h": 24,
+     "marker": "other"
+    },
+    {
+     "text": "3D visualisation: coming soon.",
+     "tag": "SPAN",
+     "cls": "block t-body-s text-text-secondary",
+     "painted": true,
+     "w": 216,
+     "h": 24,
+     "marker": "other"
+    }
+   ],
+   "total": 12,
+   "inInnerText": 12,
+   "chars": 2556,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "en/platform/lead-acquisition": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 0,
+   "chars": 702,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "en/platform/lead-intelligence": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 0,
+   "chars": 2366,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "en/platform/property-experience": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 0,
+   "chars": 702,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "en/platform/social-growth": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 0,
+   "chars": 702,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "en/packages": {
+   "hits": [
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Optional · coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Optional · coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Optional · coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": false,
+     "w": 0,
+     "h": 0,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Optional · coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-compa",
+     "painted": true,
+     "w": 167,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Optional · coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-compa",
+     "painted": true,
+     "w": 167,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon ",
+     "painted": true,
+     "w": 104,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Optional · coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-compa",
+     "painted": true,
+     "w": 167,
+     "h": 22,
+     "marker": "plan-cell"
+    },
+    {
+     "text": "Coming soon",
+     "tag": "SPAN",
+     "cls": "plan-cell plan-cell-word plan-cell-soon",
+     "painted": true,
+     "w": 104,
+     "h": 25,
+     "marker": "plans-legend"
+    }
+   ],
+   "total": 59,
+   "inInnerText": 30,
+   "chars": 4810,
+   "accordion": {
+    "opened": 6,
+    "stillClosed": 0
+   }
+  },
+  "en/faq": {
+   "hits": [
+    {
+     "text": "Morning summary: coming soon.",
+     "tag": "DIV",
+     "cls": "pb-5 t-body-m text-text-secondary measur",
+     "painted": true,
+     "w": 308,
+     "h": 46,
+     "marker": "other"
+    },
+    {
+     "text": "3D visualisation: coming soon.",
+     "tag": "DIV",
+     "cls": "pb-5 t-body-m text-text-secondary measur",
+     "painted": true,
+     "w": 308,
+     "h": 46,
+     "marker": "other"
+    }
+   ],
+   "total": 2,
+   "inInnerText": 2,
+   "chars": 2977,
+   "accordion": {
+    "opened": 37,
+    "stillClosed": 30
+   }
+  },
+  "en/contact": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 1,
+   "chars": 1766,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "en/example-report": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 0,
+   "chars": 3718,
+   "accordion": {
+    "opened": 3,
+    "stillClosed": 0
+   }
+  },
+  "en/trial": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 1,
+   "chars": 1766,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  },
+  "en/prueba-objeto": {
+   "hits": [],
+   "total": 0,
+   "inInnerText": 0,
+   "chars": 702,
+   "accordion": {
+    "opened": 2,
+    "stillClosed": 0
+   }
+  }
+ },
+ "B_touch": {
+  "es/@375": {
+   "smallCount": 7,
+   "small": [
+    {
+     "label": "NuovaSolution",
+     "w": 140,
+     "h": 28,
+     "tag": "A"
+    },
+    {
+     "label": "Solo en la vista previa +",
+     "w": 174.6,
+     "h": 36,
+     "tag": "BUTTON"
+    },
+    {
+     "label": "Repetir demo",
+     "w": 39.3,
+     "h": 32,
+     "tag": "BUTTON"
+    },
+    {
+     "label": "antonio@nuovasolution.com",
+     "w": 245.1,
+     "h": 21,
+     "tag": "A"
+    },
+    {
+     "label": "+34603423161",
+     "w": 129.5,
+     "h": 21,
+     "tag": "A"
+    },
+    {
+     "label": "CRM",
+     "w": 34.2,
+     "h": 44,
+     "tag": "A"
+    },
+    {
+     "label": "Piloto",
+     "w": 39.6,
+     "h": 44,
+     "tag": "A"
+    }
+   ],
+   "fixedBottomBar": {
+    "h": 299,
+    "top": 5814,
+    "text": "Me interesa este piso enlace del anuncioFicha320.000 € · 2 d",
+    "pos": "sticky"
+   },
+   "viewport": 812
+  },
+  "es/packages@375": {
+   "smallCount": 4,
+   "small": [
+    {
+     "label": "NuovaSolution",
+     "w": 140,
+     "h": 28,
+     "tag": "A"
+    },
+    {
+     "label": "Solo en la vista previa +",
+     "w": 174.6,
+     "h": 36,
+     "tag": "BUTTON"
+    },
+    {
+     "label": "CRM",
+     "w": 34.2,
+     "h": 44,
+     "tag": "A"
+    },
+    {
+     "label": "Piloto",
+     "w": 39.6,
+     "h": 44,
+     "tag": "A"
+    }
+   ],
+   "fixedBottomBar": null,
+   "viewport": 812
+  },
+  "es/platform/ai-sales-agent@375": {
+   "smallCount": 3,
+   "small": [
+    {
+     "label": "NuovaSolution",
+     "w": 140,
+     "h": 28,
+     "tag": "A"
+    },
+    {
+     "label": "CRM",
+     "w": 34.2,
+     "h": 44,
+     "tag": "A"
+    },
+    {
+     "label": "Piloto",
+     "w": 39.6,
+     "h": 44,
+     "tag": "A"
+    }
+   ],
+   "fixedBottomBar": null,
+   "viewport": 812
+  },
+  "es/faq@375": {
+   "smallCount": 4,
+   "small": [
+    {
+     "label": "NuovaSolution",
+     "w": 140,
+     "h": 28,
+     "tag": "A"
+    },
+    {
+     "label": "antonio@nuovasolution.com",
+     "w": 214.5,
+     "h": 20,
+     "tag": "A"
+    },
+    {
+     "label": "CRM",
+     "w": 34.2,
+     "h": 44,
+     "tag": "A"
+    },
+    {
+     "label": "Piloto",
+     "w": 39.6,
+     "h": 44,
+     "tag": "A"
+    }
+   ],
+   "fixedBottomBar": null,
+   "viewport": 812
+  }
+ },
+ "C_plans": {
+  "es/packages@375": {
+   "cards": [
+    {
+     "plan": "",
+     "buttons": []
+    },
+    {
+     "plan": "",
+     "buttons": []
+    },
+    {
+     "plan": "",
+     "buttons": []
+    },
+    {
+     "plan": "",
+     "buttons": [
+      {
+       "label": "Ocultar",
+       "href": null,
+       "primary": "rgba(0, 0, 0, 0)"
+      },
+      {
+       "label": "Empieza 14 días gratis",
+       "href": "/es/contact?interes=pilot&plan=essential",
+       "primary": "rgb(14, 14, 15)"
+      },
+      {
+       "label": "Contratar directamente",
+       "href": "/es/contact?interes=contratar&plan=essential",
+       "primary": "rgba(0, 0, 0, 0)"
+      }
+     ]
+    },
+    {
+     "plan": "",
+     "buttons": [
+      {
+       "label": "Ocultar",
+       "href": null,
+       "primary": "rgba(0, 0, 0, 0)"
+      },
+      {
+       "label": "Empieza 14 días gratis",
+       "href": "/es/contact?interes=pilot&plan=growth",
+       "primary": "rgb(14, 14, 15)"
+      },
+      {
+       "label": "Contratar directamente",
+       "href": "/es/contact?interes=contratar&plan=growth",
+       "primary": "rgba(0, 0, 0, 0)"
+      }
+     ]
+    },
+    {
+     "plan": "",
+     "buttons": [
+      {
+       "label": "Ocultar",
+       "href": null,
+       "primary": "rgba(0, 0, 0, 0)"
+      },
+      {
+       "label": "Contratar directamente",
+       "href": "/es/contact?interes=contratar&plan=enterprise",
+       "primary": "rgb(14, 14, 15)"
+      }
+     ]
+    }
+   ],
+   "cardCount": 6,
+   "freeOfferButtons": [
+    {
+     "label": "Empieza 14 días gratis",
+     "href": "/es/contact?interes=pilot&plan=essential"
+    },
+    {
+     "label": "Empieza 14 días gratis",
+     "href": "/es/contact?interes=pilot&plan=growth"
+    },
+    {
+     "label": "Empieza 14 días gratis",
+     "href": "/es/contact?interes=pilot&plan=essential"
+    },
+    {
+     "label": "Empieza 14 días gratis",
+     "href": "/es/contact?interes=pilot&plan=growth"
+    }
+   ]
+  },
+  "en/packages@375": {
+   "cards": [
+    {
+     "plan": "",
+     "buttons": []
+    },
+    {
+     "plan": "",
+     "buttons": []
+    },
+    {
+     "plan": "",
+     "buttons": []
+    },
+    {
+     "plan": "",
+     "buttons": [
+      {
+       "label": "Hide",
+       "href": null,
+       "primary": "rgba(0, 0, 0, 0)"
+      },
+      {
+       "label": "Start 14 days free",
+       "href": "/en/contact?interes=pilot&plan=essential",
+       "primary": "rgb(14, 14, 15)"
+      },
+      {
+       "label": "Go straight to a plan",
+       "href": "/en/contact?interes=contratar&plan=essential",
+       "primary": "rgba(0, 0, 0, 0)"
+      }
+     ]
+    },
+    {
+     "plan": "",
+     "buttons": [
+      {
+       "label": "Hide",
+       "href": null,
+       "primary": "rgba(0, 0, 0, 0)"
+      },
+      {
+       "label": "Start 14 days free",
+       "href": "/en/contact?interes=pilot&plan=growth",
+       "primary": "rgb(14, 14, 15)"
+      },
+      {
+       "label": "Go straight to a plan",
+       "href": "/en/contact?interes=contratar&plan=growth",
+       "primary": "rgba(0, 0, 0, 0)"
+      }
+     ]
+    },
+    {
+     "plan": "",
+     "buttons": [
+      {
+       "label": "Hide",
+       "href": null,
+       "primary": "rgba(0, 0, 0, 0)"
+      },
+      {
+       "label": "Go straight to a plan",
+       "href": "/en/contact?interes=contratar&plan=enterprise",
+       "primary": "rgb(14, 14, 15)"
+      }
+     ]
+    }
+   ],
+   "cardCount": 6,
+   "freeOfferButtons": [
+    {
+     "label": "Start 14 days free",
+     "href": "/en/contact?interes=pilot&plan=essential"
+    },
+    {
+     "label": "Start 14 days free",
+     "href": "/en/contact?interes=pilot&plan=growth"
+    },
+    {
+     "label": "Start 14 days free",
+     "href": "/en/contact?interes=pilot&plan=essential"
+    },
+    {
+     "label": "Start 14 days free",
+     "href": "/en/contact?interes=pilot&plan=growth"
+    }
+   ]
+  },
+  "es/packages@1440": {
+   "cards": [
+    {
+     "plan": "",
+     "buttons": []
+    },
+    {
+     "plan": "",
+     "buttons": []
+    },
+    {
+     "plan": "",
+     "buttons": []
+    },
+    {
+     "plan": "",
+     "buttons": [
+      {
+       "label": "Ocultar",
+       "href": null,
+       "primary": "rgba(0, 0, 0, 0)"
+      },
+      {
+       "label": "Empieza 14 días gratis",
+       "href": "/es/contact?interes=pilot&plan=essential",
+       "primary": "rgb(14, 14, 15)"
+      },
+      {
+       "label": "Contratar directamente",
+       "href": "/es/contact?interes=contratar&plan=essential",
+       "primary": "rgba(0, 0, 0, 0)"
+      }
+     ]
+    },
+    {
+     "plan": "",
+     "buttons": [
+      {
+       "label": "Ocultar",
+       "href": null,
+       "primary": "rgba(0, 0, 0, 0)"
+      },
+      {
+       "label": "Empieza 14 días gratis",
+       "href": "/es/contact?interes=pilot&plan=growth",
+       "primary": "rgb(14, 14, 15)"
+      },
+      {
+       "label": "Contratar directamente",
+       "href": "/es/contact?interes=contratar&plan=growth",
+       "primary": "rgba(0, 0, 0, 0)"
+      }
+     ]
+    },
+    {
+     "plan": "",
+     "buttons": [
+      {
+       "label": "Ocultar",
+       "href": null,
+       "primary": "rgba(0, 0, 0, 0)"
+      },
+      {
+       "label": "Contratar directamente",
+       "href": "/es/contact?interes=contratar&plan=enterprise",
+       "primary": "rgb(14, 14, 15)"
+      }
+     ]
+    }
+   ],
+   "cardCount": 6,
+   "freeOfferButtons": [
+    {
+     "label": "Empieza 14 días gratis",
+     "href": "/es/contact?interes=pilot&plan=essential"
+    },
+    {
+     "label": "Empieza 14 días gratis",
+     "href": "/es/contact?interes=pilot&plan=growth"
+    },
+    {
+     "label": "Empieza 14 días gratis",
+     "href": "/es/contact?interes=pilot&plan=essential"
+    },
+    {
+     "label": "Empieza 14 días gratis",
+     "href": "/es/contact?interes=pilot&plan=growth"
+    }
+   ]
+  },
+  "en/packages@1440": {
+   "cards": [
+    {
+     "plan": "",
+     "buttons": []
+    },
+    {
+     "plan": "",
+     "buttons": []
+    },
+    {
+     "plan": "",
+     "buttons": []
+    },
+    {
+     "plan": "",
+     "buttons": [
+      {
+       "label": "Hide",
+       "href": null,
+       "primary": "rgba(0, 0, 0, 0)"
+      },
+      {
+       "label": "Start 14 days free",
+       "href": "/en/contact?interes=pilot&plan=essential",
+       "primary": "rgb(14, 14, 15)"
+      },
+      {
+       "label": "Go straight to a plan",
+       "href": "/en/contact?interes=contratar&plan=essential",
+       "primary": "rgba(0, 0, 0, 0)"
+      }
+     ]
+    },
+    {
+     "plan": "",
+     "buttons": [
+      {
+       "label": "Hide",
+       "href": null,
+       "primary": "rgba(0, 0, 0, 0)"
+      },
+      {
+       "label": "Start 14 days free",
+       "href": "/en/contact?interes=pilot&plan=growth",
+       "primary": "rgb(14, 14, 15)"
+      },
+      {
+       "label": "Go straight to a plan",
+       "href": "/en/contact?interes=contratar&plan=growth",
+       "primary": "rgba(0, 0, 0, 0)"
+      }
+     ]
+    },
+    {
+     "plan": "",
+     "buttons": [
+      {
+       "label": "Hide",
+       "href": null,
+       "primary": "rgba(0, 0, 0, 0)"
+      },
+      {
+       "label": "Go straight to a plan",
+       "href": "/en/contact?interes=contratar&plan=enterprise",
+       "primary": "rgb(14, 14, 15)"
+      }
+     ]
+    }
+   ],
+   "cardCount": 6,
+   "freeOfferButtons": [
+    {
+     "label": "Start 14 days free",
+     "href": "/en/contact?interes=pilot&plan=essential"
+    },
+    {
+     "label": "Start 14 days free",
+     "href": "/en/contact?interes=pilot&plan=growth"
+    },
+    {
+     "label": "Start 14 days free",
+     "href": "/en/contact?interes=pilot&plan=essential"
+    },
+    {
+     "label": "Start 14 days free",
+     "href": "/en/contact?interes=pilot&plan=growth"
+    }
+   ]
+  }
+ },
+ "failed": [],
+ "buildEnd": {
+  "commit": "92f873d6a9299abfbea5c86774036eea5f1b54b1",
+  "ref": "website_enterprise_redesign",
+  "deployment": "dpl_7j8zGi1u9Hua49DAX6jjmV88zFHH",
+  "env": "preview",
+  "mode": "stub"
+ },
+ "stable": true,
+ "summary": {
+  "pagesExamined": 30,
+  "totalMarks": 334,
+  "failed": []
+ }
+}
