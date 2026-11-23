@@ -248,3 +248,24 @@ Ich habe in diesem Durchgang **keine Zeile Anwendungscode** angefasst.
    ich die Tippziele bei **390 in EN** noch gar nicht gefahren hatte, während mein Satz oben beide
    Breiten in beiden Sprachen behauptete — nachgeholt statt den Satz abzuschwächen. Alle vier
    Kombinationen (375/390 × ES/EN): **0** echte Tippziele unter 44 px.
+
+---
+
+## 11. Nachtrag: drei neue Sätze für die Bestätigung `contratar` (Copy `91b9915`)
+
+Copy nimmt meine Beobachtung aus §7 an und gibt dem Weg `contratar` drei Schritte. Sie tragen
+**keine** Frist, das ist nach ec4181ed richtig, und Copy hat Audit selbst gefragt, ob „el contrato
+por escrito" unter die Beratungsausnahme der Registerzeile 44 fällt — die richtige Reihenfolge.
+
+Für meinen **nächsten** Durchgang halte ich drei Dinge fest, weil neue gerenderte Sätze neue
+öffentliche Versprechen sind:
+
+1. **Die Platzhalter-Falle.** Schritt 3 lautet „Firmas solo si te encaja, y preparamos {plan}
+   contigo." Ich prüfe am Deployment, dass `{plan}` wirklich durch Essential / Growth / Enterprise
+   ersetzt wird und nicht als `{plan}` auf dem Schirm steht — in allen drei Paketen und in beiden
+   Sprachen. Ein durchgereichter Platzhalter in der Bestätigung der Kaufabsicht wäre der
+   teuerste Tippfehler der Seite.
+2. **Die vier Bestätigungen werden wieder gegen ihren Weg gemessen**, nicht nur die neue: drei
+   Schritte je Weg, eigener Text, Paketzeile, Vorschau-Wahrheit, kein „24 h".
+3. **Audits Antwort zu Zeile 44** entscheidet, ob Satz 1 belegt ist oder auf die Lückenliste
+   gehört. Bis dahin führe ich ihn weder als belegt noch als Mangel.
