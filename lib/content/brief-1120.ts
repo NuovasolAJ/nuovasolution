@@ -91,7 +91,7 @@ export const brief1120 = {
       enterprise: T("Abre el formulario de contacto, con Enterprise ya elegido.", "Opens the contact form with Enterprise already selected."),
     } satisfies Record<PlanCode, L>,
     // the owner's R-4 line (23.11.): the quiet link opens a request form, so it says so; the chosen plan travels in the href and stays in the form
-    direct: T("Solicitar contratación", "Request a contract"),
+    direct: T("Solicitar contratación", "Request this plan"), // EN per Copy 23.11.: the link names the plan, not a legal document
     line: T("Essential se prueba gratis 14 días, sin tarjeta. Growth empieza con una demo y Enterprise, con una conversación.", "You can try Essential free for 14 days, no card. Growth starts with a demo, Enterprise with a conversation."),
     linePhone: T("14 días gratis con Essential, sin tarjeta.", "14 days free on Essential, no card."),
     more: T("y {n} más", "and {n} more"),

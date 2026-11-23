@@ -484,8 +484,8 @@ export const home1103 = {
     // Copy stage 1 §1/§2 (d8ebc77): the line above the plans; one offer per plan (lib/content/brief-1120.ts `plans.action`); "Empieza 14 días gratis" under Growth is gone
     pilotLine: T("Essential se prueba gratis 14 días, sin tarjeta. Growth empieza con una demo y Enterprise, con una conversación.", "You can try Essential free for 14 days, no card. Growth starts with a demo, Enterprise with a conversation."),
     pilotLinePhone: T("14 días gratis con Essential, sin tarjeta.", "14 days free on Essential, no card."),
-    direct: T("Solicitar contratación", "Request a contract"), // the owner's R-4 line (23.11.): the link opens a request form, so it says so
-    wayDirectAria: T("Solicitar la contratación de {plan}", "Request a contract for {plan}"),
+    direct: T("Solicitar contratación", "Request this plan"), // the owner's R-4 line (23.11.): the link opens a request form, so it says so; EN per Copy
+    wayDirectAria: T("Solicitar la contratación de {plan}", "Request the {plan} plan"),
     price: T("Te decimos el precio para tu agencia antes de acordar nada.", "We tell you the price for your agency before anything is agreed."),
     /** P-2/P-3: the actions. */
     ctaProposal: T("Solicita una propuesta", "Request a proposal"),
