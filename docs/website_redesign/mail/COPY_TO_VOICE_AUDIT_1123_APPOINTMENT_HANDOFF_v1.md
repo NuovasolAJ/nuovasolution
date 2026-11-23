@@ -68,3 +68,56 @@
 - V-2: "Team" or "Agentur".
 - The ≤ 3 simulations, Voice's cost line. Copy's sentences above are final, so they can go into it.
 - **Later, per agency (Voice §3):** once an agency switches on `confirm_appointment` or `callback_time_promise`, Copy writes the extra sentence for that setting. No such sentence exists today, and none is needed for 04.12.
+
+---
+
+## 5. Addendum, 23.11. evening: the owner's decision, two versions. **This replaces §2 and V-1/V-2 in §1.**
+
+**Order:** the owner, 23.11.:
+> "die Sätze zur Terminweitergabe auf ES/EN/DE in zwei Fassungen, je nachdem, ob genau dieser Wunsch schon gespeichert ist: (a) gespeichert: „Ich habe Ihren Terminwunsch an die Agentur weitergegeben. Der Termin ist noch offen." (b) noch nicht gespeichert: Zukunftsform … Ohne Uhrzeit, ohne Bestätigung per WhatsApp oder Mail. Bis Di 09:00 an Voice und Audit; das ist eine Startbedingung für den DE-Anruf um 10:00."
+
+**Taken over from the owner:**
+- "an die Agentur" (V-2 is closed);
+- the DE wording, verbatim.
+
+**ES and EN carry the same meaning.**
+- In German, "noch offen" is clear.
+- In English, "still open" can be heard as "the slot is still free". EN therefore says "isn't confirmed yet".
+- In Spanish, "todavía no está confirmada" says the same.
+
+### 5.1 The handoff sentence
+
+| Key | When | DE | ES | EN |
+|---|---|---|---|---|
+| `handoff_done` (a) | **this** wish is stored: `request_handoff` returned `ack` true for it in this call | Ich habe Ihren Terminwunsch an die Agentur weitergegeben. Der Termin ist noch offen. | He pasado su petición de cita a la agencia. La cita todavía no está confirmada. | I've passed your appointment request on to the agency. The appointment isn't confirmed yet. |
+| `handoff_done_wish` (a), `{words}` = the caller's words | the same | Ich habe Ihren Terminwunsch für {words} an die Agentur weitergegeben. Der Termin ist noch offen. | He pasado a la agencia su petición de cita para {words}. La cita todavía no está confirmada. | I've passed your request for {words} on to the agency. The appointment isn't confirmed yet. |
+| `handoff_next` (b) | the wish is **not yet** stored | Ich gebe Ihren Terminwunsch an die Agentur weiter. Der Termin ist noch offen. | Voy a pasar su petición de cita a la agencia. La cita todavía no está confirmada. | I'll pass your appointment request on to the agency. The appointment isn't confirmed yet. |
+| `handoff_next_wish` (b), `{words}` | the same | Ich gebe Ihren Terminwunsch für {words} an die Agentur weiter. Der Termin ist noch offen. | Voy a pasar a la agencia su petición de cita para {words}. La cita todavía no está confirmada. | I'll pass your request for {words} on to the agency. The appointment isn't confirmed yet. |
+
+**Rules for both versions:**
+- **No clock time of the agent's own.** `{words}` repeats only what the caller said; it never adds a time or a day.
+- **No confirmation by WhatsApp or e-mail.**
+- **No "Die Agentur meldet sich bei Ihnen"** (§1 V-3 stays).
+- **(a) is said only after the ack, and only for this wish.** A wish stored earlier in the call does not cover a new or changed wish; that one gets (b) until its own ack.
+- **(b) is a promise the call must keep:** the handoff for this wish follows in the same call.
+  - **Question to Voice:** what does the agent say if `request_handoff` then returns no ack? Copy's proposal: it does **not** repeat (b) and does not say (a).
+  - The callback task that every call creates carries the wish anyway (owner's measure). Voice confirms that it does.
+
+### 5.2 The other sentences, adjusted to "die Agentur" and to the two versions
+
+| Key | DE | ES | EN |
+|---|---|---|---|
+| `contact_answer` (caller asks for a confirmation by WhatsApp or e-mail) | Ich kann Ihnen den Termin nicht bestätigen und Ihnen nichts schicken. Soll ich der Agentur sagen, wie Sie kontaktiert werden möchten? | Yo no puedo confirmarle la cita ni enviarle nada. ¿Quiere que le diga a la agencia cómo prefiere que le contacten? | I can't confirm the appointment or send you anything myself. Would you like me to tell the agency how you prefer to be contacted? |
+| `contact_whatsapp` (a) stored | Ich habe der Agentur gesagt, dass Sie WhatsApp bevorzugen. | Le he dicho a la agencia que prefiere WhatsApp. | I've told the agency you prefer WhatsApp. |
+| `contact_whatsapp` (b) not yet stored | Ich sage der Agentur, dass Sie WhatsApp bevorzugen. | Le diré a la agencia que prefiere WhatsApp. | I'll tell the agency you prefer WhatsApp. |
+| `contact_email` / `contact_call` (a) / (b) | the same, with „eine E-Mail“ / „einen Anruf“ | the same, with "un correo" / "una llamada" | the same, with "an email" / "a call" |
+| `ask_same_number` | Darf die Agentur Sie unter dieser Nummer anrufen? | ¿La agencia puede llamarle a este mismo número? | Can the agency call you on this number? |
+| `still_closed_hour` | Ich gebe es so an die Agentur weiter. | Se lo paso así a la agencia. | I'll pass it on to the agency as it is. |
+| `other_number` | Unter welcher anderen Nummer möchten Sie angerufen werden? | ¿A qué otro número prefiere que le llamen? | Which other number would you prefer to be called on? |
+
+**Unchanged from §3:**
+- the removals (`ask_send`, `frame_open`, `callback_first_after_hours`, `contact_before`, prompt lines 60/69);
+- the closed-days hint;
+- Sie/usted.
+
+**For the DE call on Tue 24.11. 10:00:** these lines are final. Voice can put them into the prompt and the fixed sentences without asking back.
