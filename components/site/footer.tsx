@@ -26,8 +26,7 @@ export function Footer({ locale }: { locale: Locale }) {
     {
       heading: d.footer.getStarted,
       items: [
-        { href: p(entry.href), label: entry.label },
-        { href: p("/trial"), label: entry.nav },
+        { href: p(entry.href), label: entry.label }, // RV6 R-10 (23.11.): the second "/trial" entry is gone — /trial only redirects here
         { href: p("/packages"), label: d.nav.packages },
         { href: p("/login"), label: d.nav.login },
       ],

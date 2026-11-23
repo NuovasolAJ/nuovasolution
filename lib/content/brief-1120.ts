@@ -64,7 +64,7 @@ export const brief1120 = {
     /** Copy phone preview 2-A (11cf7a2). */
     h2: T("Elige tu plan", "Choose your plan"),
     price: T("Te decimos el precio para tu agencia antes de acordar nada.", "We tell you the price for your agency before anything is agreed."),
-    who: { essential: T("Para una oficina", "For one office"), growth: T("Para equipos que se reparten el trabajo", "For teams that share the work"), enterprise: T("Para agencias grandes", "For larger agencies") } satisfies Record<PlanCode, L>, // Copy 31d749b §6.1: offices are no function (API bd7a685, register line 42)
+    who: { essential: T("Para un equipo pequeño", "For a small team") /* Copy 21830f8 §6.5 (RV6 R-11): team size, never offices */, growth: T("Para equipos que se reparten el trabajo", "For teams that share the work"), enterprise: T("Para agencias grandes", "For larger agencies") } satisfies Record<PlanCode, L>, // Copy 31d749b §6.1: offices are no function (API bd7a685, register line 42)
     adds: { essential: null, growth: T("Todo lo de Essential, y además:", "Everything in Essential, plus:"), enterprise: T("Todo lo de Growth, y además:", "Everything in Growth, plus:") } satisfies Record<PlanCode, L | null>,
     /** Copy batch 1 §3.1 with their register keys — shown only once API confirms them (DIFFERENCES_CONFIRMED_BY_API); `phoneAssistant` on no card until A-2. */
     differences: {

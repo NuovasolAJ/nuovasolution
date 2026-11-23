@@ -45,8 +45,9 @@ export function PilotRequestForm({ locale, interest: initial = "other", live, pl
       if (!el || typeof v !== "string" || !v) continue;
       if (name === "message") {
         if (!k.messageTyped) continue;
-        // the visitor's note comes back; the prefilled subject it was typed behind is swapped for THIS form's subject (another way, another language)
-        el.value = k.subject && v.startsWith(k.subject) ? `${subject ?? ""}${v.slice(k.subject.length)}` : v;
+        // the visitor's note comes back; the prefilled subject it was typed around is swapped for THIS form's subject wherever it sits in the
+        // text (RV6 R-9b: a note typed in front of the prefill too), so no other way's or language's subject rides along
+        el.value = k.subject && v.includes(k.subject) ? v.replace(k.subject, subject ?? "") : v;
         continue;
       }
       el.value = v;

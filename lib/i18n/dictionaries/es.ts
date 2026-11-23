@@ -413,7 +413,7 @@ export const es: Dictionary = {
     planColumn: "Plan",
     periodHeading: "Precio y periodo de facturación",
     periodLine: "Indicamos el precio y el periodo de facturación en tu propuesta y en cada factura. No se cobra nada de forma automática.",
-    planLines: { essential: "Responder y ordenar lo que llega. Una oficina, un equipo pequeño.", growth: "Para un equipo más grande.", scale: "Para agencias grandes." }, // Copy 31d749b §6.1
+    planLines: { essential: "Responder y ordenar lo que llega. Un equipo pequeño.", growth: "Para un equipo más grande.", scale: "Para agencias grandes." }, // Copy 31d749b §6.1
     trialBadge: "14 días gratis", // Copy stage 1 §3.4: only on the Essential card
     trialBadgeAligned: "14 días gratis",
     ctaTrialEssential: "Prueba Essential gratis", // Copy stage 1 §3.4

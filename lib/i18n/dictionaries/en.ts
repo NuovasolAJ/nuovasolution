@@ -448,7 +448,7 @@ export const en = {
     planColumn: "Plan",
     periodHeading: "Price and billing period",
     periodLine: "We state the price and the billing period in your proposal and on every invoice. Nothing is charged automatically.",
-    planLines: { essential: "Answering and ordering what arrives. One office, a small team.", growth: "For a larger team.", scale: "For larger agencies." }, // Copy 31d749b §6.1
+    planLines: { essential: "Answering and ordering what arrives. A small team.", growth: "For a larger team.", scale: "For larger agencies." }, // Copy 31d749b §6.1
     // Trial badge and CTA move onto Essential only after the API signal TRIAL_PLAN_ALIGNED (audit R26).
     trialBadge: "14 days free", // Copy stage 1 §3.4: only on the Essential card
     trialBadgeAligned: "14 days free", // D-22: the chip sits on the Essential card only

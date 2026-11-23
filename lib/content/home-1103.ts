@@ -474,7 +474,7 @@ export const home1103 = {
       const entParts: string[] = []; // 16.11. 14:00 (the owner's point 2): Enterprise's line names no Instagram and no 3D; the Instagram row of the register stays where the view shows it
       const join = (p: string[]) => (p.length <= 1 ? p.join("") : `${p.slice(0, -1).join(", ")} ${locale === "es" ? "y" : "and"} ${p[p.length - 1]}`);
       return [
-        T("Respuestas, fichas e informe para una oficina.", "Replies, records and report for one office.")[locale],
+        T("Respuestas, fichas e informe para un equipo pequeño.", "Replies, records and report for a small team.")[locale], // Copy 21830f8 §6.5 (RV6 R-11)
         growthParts.length ? (locale === "es" ? `Todo lo de Essential, más el trabajo del equipo: ${join(growthParts)}.` : `Everything in Essential, plus the team's work: ${join(growthParts)}.`) : T("Todo lo de Essential, para un equipo más grande.", "Everything in Essential, for a larger team.")[locale],
         // Copy 31d749b §6.1 (register line 42): offices are no function, the audience is "agencias grandes"
         entParts.length ? (locale === "es" ? `Todo lo de Growth, para agencias grandes, con ${join(entParts)}.` : `Everything in Growth, for larger agencies, with ${join(entParts)}.`) : T("Todo lo de Growth, para agencias grandes.", "Everything in Growth, for larger agencies.")[locale],
