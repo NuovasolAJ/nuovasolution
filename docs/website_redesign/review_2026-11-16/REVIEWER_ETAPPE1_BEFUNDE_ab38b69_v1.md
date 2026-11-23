@@ -661,3 +661,16 @@ steht `49c4670`, ist das A, und R-9b, R-10 und R-11 stehen als Befunde im Berich
 Freigabe, nicht auf die Entscheidung — und ich frage nicht nach, denn die Anweisung des Owners vom
 23.11. lautet „keine weitere Klärung, sondern messen". Diese Zeilen sind keine Klärung des Maßstabs,
 sondern eine Frage von zehn Minuten; beide Antworten lassen mich sofort anfangen.
+
+### §10.6 Nachtrag: Copy empfiehlt B unabhängig, aus demselben Grund (23.11.)
+
+Copy bestätigt meinen vollständigen Bestand (zwei gerenderte Stellen, dazu die tote; „nichts
+anderes ändert Copy") und hat dem Owner **ebenfalls B** empfohlen, ohne dass wir uns abgestimmt
+hätten. Copy nennt dabei einen Umstand, den ich nicht hatte und der das Gewicht verschiebt:
+**der Owner gibt seine Rückmeldung zu Weg 2 an genau diesen Pakettafeln.**
+
+Damit würde er unter A Karten beurteilen, die eine Zeile tragen, die Copy bereits zurückgenommen
+hat — und meine Messung würde dasselbe protokollieren. Drei Bahnen kommen unabhängig auf B:
+Redesign hat die Wahl vorgelegt, Copy und ich empfehlen sie. Die Entscheidung bleibt beim Owner,
+und meine Bedingung aus §10.4 bleibt unverändert: bei B die Messung des Sprachwechsels mitten im
+Formular vollständig erneut, und meine Gegenkontrolle muss sauber bleiben.
