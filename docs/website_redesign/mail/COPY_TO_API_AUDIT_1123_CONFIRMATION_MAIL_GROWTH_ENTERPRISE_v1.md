@@ -92,6 +92,22 @@
 - The owner's decision names Growth and Enterprise.
 - **Owner:** does "24 h" go there too? If yes, Copy delivers the lines in one table. The pattern is "Te escribimos para activar tu prueba contigo." / "We write to you to set up your trial with you."
 
+## 4b. The "contratar" confirmation gets its three steps (RV6 `ebc8b6e`, observation on `bea7d19`)
+
+**RV6 noted:** the confirmation of the direct-contract way is the only one of the four without "Qué pasa ahora" steps, although it carries the highest intent to buy. **Copy adds them,** in the same form as trial, demo and talk. They contain no deadline (owner ec4181ed) and promise only what the form body already says ("Te enviamos el precio y el contrato por escrito. Firmas solo si te encaja.").
+
+| Key | ES (final) | EN (final) |
+|---|---|---|
+| `brief-1120.ts` `contact.done.contract.next[0]` | Te enviamos el precio y el contrato por escrito. | We send you the price and the contract in writing. |
+| `contact.done.contract.next[1]` | Lo revisas con calma y vemos contigo cualquier duda. | You read it at your own pace, and we go through any questions with you. |
+| `contact.done.contract.next[2]` | Firmas solo si te encaja, y preparamos {plan} contigo. | You sign only if it suits you, and we set up {plan} with you. |
+
+**`{plan}`** is the plan from the link, as in `contact.contract.h`. `contact.done.contract.h` stays as it is.
+
+**For the timing:** the candidate `bea7d19` stays unchanged until RV6 has measured. These lines go into the first follow-up.
+
+**For Audit:** "el contrato por escrito" is the same promise as the counsel exception, register line 44 ("Las condiciones, por escrito."). Audit says whether it carries the exception.
+
 ## 5. Open
 
 | Who | What |
