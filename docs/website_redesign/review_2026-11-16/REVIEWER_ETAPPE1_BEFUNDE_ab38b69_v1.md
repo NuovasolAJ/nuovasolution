@@ -438,3 +438,123 @@ es Redesign vor dem Festlegen des Kandidaten genannt, weil es dort billiger zu b
 **Prüfschritte, die ich dafür ergänze:** Essential-Weg → nichts tippen → auf den Growth-Weg wechseln
 → `interest`, `plan` und Nachricht **zusammen** lesen; dasselbe für Enterprise. Dazu die geraden
 Fälle ES→EN und EN→ES mit `email` und `phone`, die Redesign jetzt mitträgt.
+
+---
+
+## §9 Kandidat 49c4670 — Prüfung an der Quelle, vor der Messung (23.11.)
+
+Redesign hat den Kandidaten genannt: **`49c4670`**, Branch `website_enterprise_redesign`, lokal;
+der Push wartet auf die Freigabe des Owners. Gemessen wird nach der Owner-Regel erst am Deployment
+anhand der Deployment-ID. Was **ohne** Deployment prüfbar ist, habe ich jetzt geprüft, damit der
+Durchgang am Deployment nur noch Verhalten messen muss und nicht sucht.
+
+### §9.1 Die Festlegung ist gültig
+
+Redesigns Angabe, `49c4670` ändere gegenüber `53a28e1` nur Belegdateien, **stimmt**:
+
+    git diff --name-only 53a28e1 49c4670 | (alles ohne docs/)  ->  leer
+    10 Dateien, alle unter docs/ (6 Belege, 3 Sonden, 1 API-Tabelle)
+
+Der Arbeitsbaum ist für `app/`, `components/`, `lib/` sauber. Der Seiteninhalt von `49c4670` ist
+damit identisch mit `53a28e1`; die Festlegung ist belastbar, und `/api/build` muss am Deployment
+`49c4670` melden — das ist die Bedingung, unter der ich messe.
+
+### §9.2 Meine Befunde R-1, R-2, R-7, R-9 — an der Quelle behoben
+
+| | Stelle | Stand |
+|---|---|---|
+| R-1 | `components/home/behind.tsx:41` | `localePath(locale, ESSENTIAL_HREF)` — die Vorbelegung geht nicht mehr verloren |
+| R-1 | `app/[locale]/trial/page.tsx:34` | `redirect(p(ESSENTIAL_HREF))` statt `p("/contact")` — die Weiterleitung trägt den Weg mit |
+| R-2 | `components/site/header.tsx:31` und `:63` | beide Stellen auf `p(entry.href)` |
+| R-2 | `app/sitemap.ts:17` | `/trial` ist keine kanonische Seite mehr |
+| R-7 | `components/site/language-switcher.tsx:11` | `KEEP = ["confirmed","plan","ref","interes"]` — der Weg reist mit |
+| R-9 | `components/site/pilot-request-form.tsx:21-62` | behoben, und **besser als meine beiden Vorschläge** |
+
+Zu R-9: Redesign hat **beides** gebaut — ein Merkzeichen `messageTyped`, das beim ersten Tastendruck
+im Nachrichtenfeld gesetzt wird und gesetzt bleibt, **und** einen Austausch des Betreffs
+(`:49`: steht die gespeicherte Nachricht auf dem gespeicherten Betreff, wird dieser Anfang durch den
+Betreff **dieses** Formulars ersetzt). Damit ist die Kante, die ich in §8 gemeldet habe, **an der
+Wurzel geschlossen**: wer nichts tippt, hat kein `messageTyped`, die Nachricht wird gar nicht
+zurückgeschrieben, und das neue Formular behält seinen eigenen Betreff. Wer eine Notiz tippt, behält
+sie, und der Betreff wird auf den neuen Weg und die neue Sprache umgestellt. Das ist die saubere
+Lösung, und sie ist nicht die, die ich vorgeschlagen hatte.
+
+### §9.3 R-9b — ein Rest, der aus derselben Regel folgt (Vermutung, Sonde steht)
+
+Der Austausch greift nur, wenn die gespeicherte Nachricht **mit** dem gespeicherten Betreff
+**beginnt** (`v.startsWith(k.subject)`). Wer die Notiz **vor** die Vorbelegung tippt — Einfügemarke
+am Anfang des Feldes, eine normale menschliche Handlung —, erfüllt die Bedingung nicht. Dann wird
+der Text unverändert zurückgeschrieben und der Betreff des **verlassenen** Weges bzw. der
+**verlassenen** Sprache reist im Text mit. Weg und Paket der Anfrage bleiben richtig; falsch ist nur
+ein Satz **im Text** der Anfrage.
+
+**Das ist eine Vermutung aus dem Lesen der Behebung, kein Befund.** Gewicht: gering — keine
+Fehlleitung, ein verwirrender Satz in einer richtigen Anfrage. Behebung wäre eine Zeile (die Notiz
+getrennt vom Betreff halten, statt den Anfang zu vergleichen).
+
+Die Sonde dafür steht und ist syntaxgeprüft: `r9kante1123.mjs`. Sie fährt **vier** Läufe —
+Notiz **über** der Vorbelegung und Notiz **unter** ihr, je einmal mit Sprachwechsel und einmal mit
+Wegwechsel. Die Läufe mit der Notiz unten sind die **Gegenkontrolle**: das ist genau der Fall, den
+Redesign 10/10 gemessen hat, er **muss** sauber bleiben. Bleibt er nicht sauber, ist meine Sonde
+falsch und nicht die Seite.
+
+Ein eigener Fehler, vor dem Lauf gefunden: meine Fremdbetreff-Merkmale enthielten zuerst auch die
+Wörter der **Zielsprache**, so dass der **richtige** Austausch als Fehler gelesen worden wäre. Die
+Merkmale sind jetzt die des verlassenen Formulars in dessen eigener Sprache.
+
+### §9.4 Zwei neue kleine Befunde am Kandidaten
+
+**R-10 — doppelter Einstieg im Fußbereich.** `components/site/footer.tsx:29-30`: in der Spalte
+„Empezar" stehen zwei Verweise direkt untereinander, `p(entry.href)` mit „Prueba Essential gratis"
+und `p("/trial")` mit „Prueba Essential". Beide enden auf demselben Formular, der zweite über eine
+Weiterleitung durch eine Seite, die es als Seite nicht mehr gibt (§9.2). Gewicht: gering, aber es
+ist genau die Form von R-2, und zwar in der einen Spalte, deren Aufgabe der Einstieg ist. Behebung:
+Zeile 30 entfernen.
+
+**R-11 — „Para una oficina" verspricht einen Paketunterschied, den der Owner gestrichen hat.**
+`lib/content/brief-1120.ts:67` setzt als Wer-ist-es-für-Zeile: Essential „Para una oficina" /
+„For one office", Growth „Para equipos que se reparten el trabajo", Enterprise „Para agencias
+grandes". Diese Zeile wird **gerendert**, an drei Stellen: `components/home/plans-table.tsx:118`,
+`:156`, `:198` (Telefonkarte, Schreibtischkarte, Vergleichstabelle).
+
+Nach der Owner-Entscheidung (a63ae1c, API `bd7a685`, Registerzeile 42) sind Büros **weder ein
+Paketpunkt noch eine geplante Funktion**, und das Register sagt: „In Prod ist heute kein Punkt als
+Paketunterschied nutzbar." Eine Besucherin mit drei Büros liest „Para una oficina" trotzdem als
+Grenze und schließt, Essential sei nichts für sie. Gemeint ist vermutlich die Zielgruppe, nicht die
+Grenze — auf dem Schirm sind die beiden nicht unterscheidbar. Das ist ein **Produktversprechen**,
+kein Gestaltungspunkt; Behebung ist eine Wendung, und sie gehört Copy und dem Owner, nicht mir.
+
+### §9.5 Geprüft und **kein** Mangel — damit es niemanden überrascht
+
+**„24 h".** Ich habe jede Fundstelle gelesen. Redesigns Angabe trifft zu: in Bestätigungen,
+Handlungszeilen, FAQ und Einstiegsschritten steht nichts mehr, und auf `/` bleibt allein das
+Zeitfenster der Vorführtafel. Zwei **gerenderte** Stellen enthalten aber weiter „24 horas" /
+„24 hours": `lib/i18n/dictionaries/es.ts:928` und `en.ts:984`, in der Liste „Para qué se usa la
+conexión" der Instagram-Verbindungsseite (hinter der Anmeldung). Das ist das
+**Nachrichtenfenster von Meta**, eine Plattformregel in der Berechtigungsliste — **kein**
+Antwortversprechen von NuovaSolution. Es bleibt richtig stehen. Ich nenne es, weil es jedem
+auffällt, der die Owner-Anweisung wörtlich prüft.
+
+**Büros.** Die Beschriftungen `limits.offices` („Oficinas"/„Offices", `es.ts:421` / `en.ts:457`)
+und `planLines` („Una oficina, un equipo pequeño") existieren noch, werden aber von **nichts**
+verbraucht — toter Wörterbuchinhalt. Gerendert ist davon nichts; Redesigns Angabe hält. Dass im
+Katalog `lib/content/plans.ts:57` weiter `offices: 5` steht, ist eine Zahl ohne Schirm.
+(Die gerenderte Ausnahme ist R-11 in §9.4, und die steht nicht in dieser Liste.)
+
+**„Hasta 50 personas en la cuenta."** Bestätigt, und sie stammt nicht aus einer Behauptung, sondern
+aus dem Katalog: `brief-1120.ts:6` liest `limits.seats` des Pakets `scale`, `:83` setzt die Zeile.
+
+**CRM-Namen.** HubSpot, Pipedrive, Zoho, Salesforce stehen nur in `lib/contracts/stubs.ts` mit
+`availability: "coming_soon", selectable: false` und in `lib/claims.ts:63` als `"soon"`. Kein Name
+ist als verfügbar gesetzt. Wie das auf dem Schirm aussieht, messe ich am Deployment.
+
+### §9.6 Was erst am Deployment geht
+
+R-3 (jedes Tippziel ≥ 44 px), die sechs Noten, W-1 (Milas Weg bis zur Rückrufaufgabe), W-2 (alle
+drei Paketwege bis zur Bestätigung ES und EN), R-9b, Redesigns Prüfpunkt
+(„Ver cómo queda la tarea" → `#demo`, WhatsApp-Kanal, Milas Aufgabe), die neuen Stellen des
+Kandidaten (R-4-Verweis, Gmail-oder-Outlook-Zeile, Enterprise-Zeile, Q-1-Wendung) und der
+Seite-für-Seite-Abgleich gegen das Register `704960b6` für die **Lückenliste**.
+
+Es fehlt dafür nur die Preview-Freigabe des Owners. Zwischen Benennung und meinem Durchgang ändert
+sich nach Redesigns Zusage nichts.
