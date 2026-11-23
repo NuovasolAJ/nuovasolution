@@ -16,7 +16,7 @@
 | **E4 · FAQ, Kontakt, Rechtstexte, EN-Durchlauf, Feinschliff** | FAQ und Kontakt auf die Angebotslogik; Rechtstexte nur nach freigegebenem Wortlaut (Q-3 beim Owner); EN vollständig; Tiefe, Touchflächen ≥ 44 px, feste Fußleiste, reduzierte Bewegung, Tastatur | **Mi 02.12.** (Kandidat für den Prüftermin) | **Mi 02.12.** |
 | **Prüftermin** | RV6 misst den finalen Build in einem Durchgang: beide Handywege, die drei Erstbesucher-Aufgaben, die sechs Noten (Ziel 10, keine Etappe unter 9); Audit gleicht je Versprechen gegen das Register; Owner-Abnahme am gebauten Stand | **Fr 04.12.** | **Fr 04.12.** |
 
-Die drei Erstbesucher-Aufgaben prüft RV6 jeweils, sobald der betreffende Ablauf gebaut ist (E-1 mit E1, E-2 mit E2, E-3 mit E1), und am 04.12. gemeinsam. Vor jedem Preview-Build prüfe ich den Vercel-Speicherstand (heute: 44 Deployments im Team — Design-Preview 8, nuovasolution 22, Staging-Preview 14; die Prozentzahl steht nur im Dashboard) und lösche nichts ohne Owner-Freigabe.
+Die drei Erstbesucher-Aufgaben prüft RV6 jeweils, sobald der betreffende Ablauf gebaut ist (E-1 mit E1, E-3 mit E1; E-2 laut RV6 4acc5ca schon auf ab38b69 aus „Casos abiertos" und „Qué toca hacer" beantwortbar, also mit E1 statt E2), und am 04.12. gemeinsam. Vor jedem Preview-Build prüfe ich den Vercel-Speicherstand (23.11. 13:00 über die Vercel-Schnittstelle vollständig: 33 Deployments im Team — Design-Preview 6, nuovasolution 13, Staging-Preview 9, 5 andere; die Prozentzahl steht nur im Dashboard) und lösche nichts ohne Owner-Freigabe.
 
 ---
 
