@@ -252,3 +252,41 @@ betrifft genau den Kanal, den Milas Weg braucht.
 
 **Ich prüfe beide Lesarten getrennt und melde je Kanal, was belegt ist** — aber die Festlegung ist
 Ihre, und sie sollte vor dem 04.12. fallen, nicht an ihm.
+
+---
+
+## 0d. NACHTRAG 23.11., 14:30 — zwei Korrekturen an diesem Protokoll und eine Lücke
+
+### (1) Meine Zahl „37 % feste Leiste" ist falsch und zurückgezogen
+
+Oben in der Vorher-Messung steht „feste Leiste unten bei 375 = 299 px von 812 = 37 % des
+Bildschirms". **Das war mein Fehler.** Nachgemessen auf beiden Builds: die feste Kopfzeile ist
+375×60, die feste CTA-Leiste 375×65 und liegt **bei Ruhe außerhalb des Bildschirms** (`top=819`
+bei 812 Höhe) — zusammen **60 px sichtbar, 7,4 %**, auf `92f873d` und `ab38b69` gleich.
+Das 299-px-Element ist die **klebende** Anfragekarte bei y≈5814 im Erzählabschnitt, so gebaut.
+Ich hatte ein `sticky`-Erzählelement der festen Leiste zugerechnet. Einzelheiten und die
+Gegenmessung in `REVIEWER_ETAPPE1_BEFUNDE_ab38b69_v1.md` §0.
+
+### (2) Die Frage aus §0 ist beantwortet, von Ihnen
+
+Ihre Bestätigung vom 23.11.: es gilt die Klarstellung vom 20.11. 16:18 — **Prüftermin Fr 04.12.,
+vollständige Darstellung, kein Teilstart, keine ausgeblendeten Hauptfunktionen; über einen
+Teilstart entscheiden Sie allein.** **WhatsApp wird in zwei Wegen getrennt gemeldet** (über unsere
+Nummer / über die Nummer der Agentur); die Agenturnummer hängt an der Meta-Verifizierung, die vor
+der Alta nicht möglich ist, und **wird am 04.12. als Lücke gemeldet**. Damit ist §0c erledigt —
+meine beiden Lesarten brauchen keine Entscheidung mehr, weil Sie beide getrennt sehen wollen.
+
+### (3) Lücke: das Versprechen-Register liegt nicht vor
+
+Der Seitenabgleich gegen `governance/WEBSITE_VERSPRECHEN_REGISTER_1120_v1.md` sollte **ab 12:00**
+beginnen. **Stand 14:30 existiert die Datei nicht** — geprüft im Website-Repo und im
+n8n-Projekt (`NuovaSolution-n8n-system/governance/`, neuester Stand `c090bc4a`).
+
+**Das melde ich jetzt und nicht am 04.12.**, weil der Abgleich die Grundlage des Termins ist: nach
+dem Entfernen von `publicGate` gibt es keine öffentliche Sicht mehr, die unbelegte Aussagen
+zurückhält (§5 der Etappe-1-Datei). Jede gerenderte Aussage braucht dann einen Registereintrag,
+sonst melde ich sie als Lücke. **Ohne Register kann ich das nicht prüfen.**
+
+Was ich ohne Register schon tun kann und getan habe: die Wege, die Formulare, die Bestätigungen,
+Menü/Zurück/Sprache/Tastatur/Bewegung und die drei Erstbesucher-Aufgaben messen. Was ohne Register
+**nicht** geht: bestätigen, dass die Seite nichts behauptet, was in Produktion nicht belegt ist.
