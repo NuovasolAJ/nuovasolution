@@ -197,7 +197,8 @@ export const capabilities: Capability[] = [
       { text: { en: "Leads recorded with what each customer asked for, included.", es: "Leads registrados con lo que ha pedido cada cliente, incluido." }, status: "live" }, // WCR-071, interim wording 2026-10-01 (no qualification claim)
       // WCR-072 Google Sheets: no line until the contradiction of MAIL_CRM_MATRIX_v1 is resolved (TEXTS_1013 §6b M-6).
       { text: { en: "The conversation history on the customer record.", es: "El historial de conversación en la ficha del cliente." }, status: "live" }, // WCR-073
-      { text: { en: "Connection to your CRM.", es: "Conexión con tu CRM." }, status: "certified_gate_pending" }, // Copy 31d749b D-7: no CRM names shown as available
+      // Copy D-7 correction 23.11. (the owner: CRMs relevant in Spain, built on request): ONE line instead of the two halves, no CRM names
+      { text: { en: "It includes its own CRM. If you already work with another one, we look at connecting it with you; until then, everything stays in the included CRM.", es: "Incluye su propio CRM. Si ya trabajas con otro, vemos contigo cómo conectarlo; hasta entonces, todo queda en el CRM incluido." }, status: "live" },
     ],
     scenario: {
       // WCR-075
@@ -211,11 +212,7 @@ export const capabilities: Capability[] = [
     fits: [
       { en: "Native CRM", es: "CRM propio" },
     ],
-    bothHalves: {
-      // WCR-076, WCR-077
-      certified: { en: "External CRM connections for HubSpot, Pipedrive, Zoho CRM and Salesforce were connected with real authorisation in our staging tests in August.", es: "Las conexiones con CRM externos para HubSpot, Pipedrive, Zoho CRM y Salesforce se conectaron con autorización real en nuestras pruebas de agosto." },
-      pending: { en: "Not offered yet. Each provider is released on its own after a final check. Until then you stay on the built in CRM, and choosing one during setup only records your interest.", es: "Todavía no se ofrece. Cada proveedor se activa por separado tras una comprobación final. Hasta entonces sigues con el CRM incluido, y elegir uno durante la configuración solo registra tu interés." },
-    },
+    // (the two halves WCR-076/077 for external CRMs were removed 23.11., Copy D-7: the point above is the one line)
     related: ["lead-intelligence", "ai-sales-agent", "property-matching"],
   },
   {

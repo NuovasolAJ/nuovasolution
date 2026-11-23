@@ -15,7 +15,7 @@ export function WithMail({ text }: { text: string }) {
   return (
     <>
       {text.slice(0, m.index)}
-      <a href={`mailto:${address}`} className="text-text-accent underline underline-offset-4">{address}</a>
+      <a href={`mailto:${address}`} className="inline-flex min-h-[44px] items-center text-text-accent underline underline-offset-4">{address}</a> {/* 23.11.: 44 px tap target (the brief) */}
       {text.slice(m.index + address.length)}
     </>
   );

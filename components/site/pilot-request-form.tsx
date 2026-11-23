@@ -14,12 +14,13 @@ import { cn } from "@/lib/utils";
  * exactly that), and — on a preview — the note that nothing was sent. Labels are WORKING for Copy (lib/content/pilot-request.ts).
  * Native validation first (`required`), the route's answer second. No personal data is kept in the browser beyond the form itself and,
  * for this tab only, its typed fields (RV6 R-9, 23.11.: a language switch mid-form is a page change, so what the visitor typed is kept in
- * sessionStorage and put back on the other language's form; the message is put back only when it differs from the prefilled subject,
- * which the new language translates itself). Cleared when the request is sent; gone when the tab closes.
+ * sessionStorage and put back on the other language's form; the message is put back only when the visitor typed in that field
+ * (RV6's edge case: a prefilled subject of one way must never travel to another way, and the new language keeps its own translated
+ * subject). Cleared when the request is sent; gone when the tab closes.
  */
 const KEEP_KEY = "nuova.prq";
 const KEPT = ["agency", "name", "email", "phone", "message"] as const;
-type Kept = { v: Partial<Record<(typeof KEPT)[number], string>>; subject?: string };
+type Kept = { v: Partial<Record<(typeof KEPT)[number], string>>; messageTyped?: boolean };
 const readKept = (): Kept | null => { try { const s = sessionStorage.getItem(KEEP_KEY); return s ? (JSON.parse(s) as Kept) : null; } catch { return null; } };
 const writeKept = (k: Kept | null) => { try { if (k) sessionStorage.setItem(KEEP_KEY, JSON.stringify(k)); else sessionStorage.removeItem(KEEP_KEY); } catch { /* storage blocked: the form still works, nothing is kept */ } };
 
@@ -33,7 +34,7 @@ export function PilotRequestForm({ locale, interest: initial = "other", live, pl
   const [interest, setInterest] = useState<PilotInterest>(initial);
   const formRef = useRef<HTMLFormElement | null>(null);
 
-  // RV6 R-9: put the typed fields back after a language switch (the message only when the visitor changed it from the prefilled subject)
+  // RV6 R-9: put the typed fields back after a language switch (the message only when the visitor typed in it)
   useEffect(() => {
     const k = readKept();
     const f = formRef.current;
@@ -42,15 +43,16 @@ export function PilotRequestForm({ locale, interest: initial = "other", live, pl
       const el = f.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement | null;
       const v = k.v[name];
       if (!el || typeof v !== "string" || !v) continue;
-      if (name === "message" && (v === k.subject || v === subject)) continue;
+      if (name === "message" && !k.messageTyped) continue;
       el.value = v;
     }
-  }, [subject]);
+  }, []);
   const keep = (e: FormEvent<HTMLFormElement>) => {
     const fd = new FormData(e.currentTarget);
     const v: Kept["v"] = {};
     for (const name of KEPT) { const x = String(fd.get(name) ?? ""); if (x) v[name] = x; }
-    writeKept({ v, subject });
+    const typedInMessage = (e.target as HTMLElement | null)?.getAttribute("name") === "message";
+    writeKept({ v, messageTyped: typedInMessage || readKept()?.messageTyped === true });
   };
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {

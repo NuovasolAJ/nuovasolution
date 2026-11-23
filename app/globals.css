@@ -1627,7 +1627,7 @@ html.js .ch-scenes-static { display: none; }
 .behind-ways { display: grid; gap: 10px; margin: 18px 0 0; }
 .behind-way { display: grid; gap: 2px; }
 .behind-way-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
-.behind-way-value { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 6px; overflow-wrap: anywhere; width: fit-content; }
+.behind-way-value { display: inline-flex; align-items: center; min-height: 44px; font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 6px; overflow-wrap: anywhere; width: fit-content; } /* 23.11.: a 44 px tap target (the brief) */
 .behind-way-value:hover { text-decoration-color: var(--ink-950); }
 .behind-check { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; margin-top: 1px; border-radius: 999px; background: var(--status-wash); color: var(--status-positive); flex: none; }
 .behind-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; min-height: 48px; padding: 10px 20px; border-radius: 999px; background: var(--ink-950); color: var(--ivory); font-size: 1rem; font-weight: 600; }
@@ -1647,7 +1647,7 @@ html.js .ch-scenes-static { display: none; }
 /* 16.11.: the switches fold behind one small button on every width (the furniture is not part of the page) */
 .pv-toggle { display: inline-flex; }
 @media (min-width: 0px) {
-  .pv-toggle { display: inline-flex; align-items: center; gap: 6px; margin: 6px var(--gutter); min-height: 36px; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--ink-200); background: var(--paper); font-size: 0.8125rem; font-weight: 600; color: var(--signal-attention); }
+  .pv-toggle { display: inline-flex; align-items: center; gap: 6px; margin: 6px var(--gutter); min-height: 44px; padding: 4px 14px; /* the brief: tap targets ≥ 44 px, the preview control too */ border-radius: 999px; border: 1px solid var(--ink-200); background: var(--paper); font-size: 0.8125rem; font-weight: 600; color: var(--signal-attention); }
   .pv[data-pv-open="false"] .pv-row { display: none; }
 }
 /* H3 the four channels without clipping: two by two on the phone; the first run nudges the three other tabs once */
@@ -1678,7 +1678,7 @@ html.js .ch-scenes-static { display: none; }
 @media (min-width: 1024px) { .contact { padding-top: var(--section-default); } .contact-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: 64px; align-items: start; } }
 .contact-ways { display: grid; gap: 18px; margin: 40px 0 0; }
 .contact-way { display: grid; gap: 6px; }
-.contact-way-value { display: inline-block; font-size: 1.375rem; font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 8px; overflow-wrap: anywhere; }
+.contact-way-value { display: inline-flex; align-items: center; min-height: 44px; font-size: 1.375rem; /* 23.11.: a 44 px tap target (the brief) */ font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 8px; overflow-wrap: anywhere; }
 .contact-way-value:hover { text-decoration-color: var(--ink-950); }
 .contact-card { padding: 24px; }
 @media (min-width: 640px) { .contact-card { padding: 32px; } }
@@ -1694,7 +1694,7 @@ html.js .ch-scenes-static { display: none; }
 .prq-web { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .prq-consent { display: block; margin-top: 16px; font-size: 0.9375rem; line-height: 1.5; color: var(--text-secondary); } /* Copy FM-pv: a notice line with its link, no box */
 .prq-check { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--ink-950); flex: none; }
-.prq-link { text-decoration: underline; text-underline-offset: 3px; color: var(--text-primary); }
+.prq-link { display: inline-block; padding: 13px 0; margin: -13px 0; text-decoration: underline; text-underline-offset: 3px; color: var(--text-primary); } /* 23.11.: the inline link in the privacy sentence gets a 45 px tap height without moving the line (the brief) */
 .prq-foot { display: grid; gap: 10px; margin-top: 20px; }
 .prq-submit { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 56px; padding: 12px 24px; border-radius: 999px; background: var(--ink-950); color: #fff; font-size: 1.0625rem; font-weight: 600; }
 .prq-submit:disabled { opacity: 0.6; }

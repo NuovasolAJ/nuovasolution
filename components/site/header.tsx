@@ -50,7 +50,7 @@ export function Header({ locale }: { locale: Locale }) {
   return (
     <HeaderShell
       logo={
-        <Link href={localePath(locale)} aria-label="NuovaSolution" className="inline-flex items-center">
+        <Link href={localePath(locale)} aria-label="NuovaSolution" className="inline-flex min-h-[44px] items-center"> {/* the brief: every tap target ≥ 44 px (the logo stays 28 px tall) */}
           <Logo />
         </Link>
       }

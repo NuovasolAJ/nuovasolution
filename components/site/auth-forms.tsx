@@ -214,12 +214,12 @@ export function SignupForm({ locale }: { locale: Locale }) {
         <Button type="submit" size="lg" full busy={run.busy} disabled={run.busy}>{run.busy ? d.submitting : d.submit}</Button>
         <p className="t-caption text-text-muted">
           {d.privacy.replace(/Read the privacy notice\.|Lee el aviso de privacidad\./, "")}{" "}
-          <Link href={localePath(locale, "/legal/privacy")} className="text-text-accent underline underline-offset-4">{locale === "es" ? "Aviso de privacidad" : "Privacy notice"}</Link>
+          <Link href={localePath(locale, "/legal/privacy")} className="inline-block py-[13px] -my-[13px] text-text-accent underline underline-offset-4">{locale === "es" ? "Aviso de privacidad" : "Privacy notice"}</Link> {/* 23.11.: inline link with a 44 px tap height, the line does not move */}
         </p>
       </div>
       {stub && <p className="t-caption text-text-muted"><LabelChip tone="attention">{dict.common.env.stub.label}</LabelChip> {d.stubNotice}</p>}
       <p className="t-body-s text-text-secondary">
-        {d.haveAccount} <Link href={localePath(locale, "/login")} className="text-text-accent underline underline-offset-4">{d.loginLink}</Link>
+        {d.haveAccount} <Link href={localePath(locale, "/login")} className="inline-block py-[13px] -my-[13px] text-text-accent underline underline-offset-4">{d.loginLink}</Link>
       </p>
       <p role="status" aria-live="polite" className="sr-only" data-form-status>{run.busy ? d.submitting : ""}</p>
     </form>
@@ -428,7 +428,7 @@ export function LoginForm({ locale, confirmed = false, next, showCreate = true }
         {/* Copy 1107 D-17: no sign-up line while the public registration is off */}
         {showCreate && (
           <p className="t-body-s text-text-secondary">
-            {d.noAccount} <Link href={localePath(locale, "/signup")} className="text-text-accent underline underline-offset-4">{d.createLink}</Link>
+            {d.noAccount} <Link href={localePath(locale, "/signup")} className="inline-block py-[13px] -my-[13px] text-text-accent underline underline-offset-4">{d.createLink}</Link>
           </p>
         )}
       </div>

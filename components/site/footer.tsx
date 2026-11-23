@@ -72,7 +72,7 @@ export function Footer({ locale }: { locale: Locale }) {
               <ul>
                 {col.items.map((it) => (
                   <li key={it.href + it.label}>
-                    <Link href={it.href} className="inline-flex min-h-[44px] items-center t-body-s text-text-secondary hover:text-text-primary transition-colors duration-micro">
+                    <Link href={it.href} className="inline-flex min-h-[44px] min-w-[44px] items-center t-body-s text-text-secondary hover:text-text-primary transition-colors duration-micro"> {/* 23.11.: short words ("CRM", "Log in") still get a 44 px wide target */}
                       {it.label}
                     </Link>
                   </li>
