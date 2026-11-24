@@ -1223,8 +1223,10 @@ html:not(.js) .mrise { opacity: 1 !important; transform: none !important; }
 .m3d-step-no { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em; }
 .m3d-step-name { font-size: 0.9375rem; font-weight: 600; line-height: 1.25; }
 @media (max-width: 639px) { .m3d-step { min-height: 56px; padding: 10px 10px; } .m3d-step-name { font-size: 0.8125rem; } }
-.m3d-cta { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 10px 22px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--surface-raised); color: var(--text-primary); font-size: 1rem; font-weight: 500; transition: border-color var(--motion-micro) var(--ease-standard), background-color var(--motion-micro) var(--ease-standard); }
-.m3d-cta:hover { border-color: var(--border-interactive); background: var(--surface-hover); }
+/* E2 (the owner, 24.11.): black buttons — the 3D action too */
+.m3d-cta { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 10px 22px; border-radius: 12px; border: 0; background: var(--ink-950); color: #fff; font-size: 1rem; font-weight: 600; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color var(--motion-micro) var(--ease-standard); }
+.m3d-cta:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .m3d-cta:hover { background: var(--ink-800); } }
 
 /* ------------------------------------------------------------------ */
 /* 7 The plans (components/home/plans-table.tsx)                       */
@@ -1745,8 +1747,8 @@ html.js .ch-scenes-static { display: none; }
 .fs-record .demo-outcome { display: grid; }
 @media (min-width: 1024px) {
   .fs-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: start; }
-  .fs-steps { padding: 4vh 0 10vh; } /* 16.11. 14:00: the desktop no longer than before the two extra cards */
-  .fs-step { min-height: 150px; padding: 26px 0; }
+  .fs-steps { padding: 16px 0 24px; } /* E2 (the owner, 24.11.: no empty areas): fixed paddings instead of viewport-relative ones, so no blank band follows the steps */
+  .fs-step { min-height: 128px; padding: 22px 0; }
   .fs-piece-inline { display: none; }
   .fs-stage { display: block; position: sticky; top: calc(var(--header-h) + 24px); }
   .fs-frame { display: grid; gap: 12px; padding: 20px; border-radius: 24px; background: var(--sand-100); border: 1px solid var(--border-hairline); box-shadow: var(--shadow-stage); }
