@@ -83,8 +83,9 @@ export const faqGroups: FaqGroup[] = [
         // Copy 1116 §2 L-faq: L-1 in the target view; Copy 1120 §5a (c9121b5, the owner's point 4 of 20.11. 09:05: otherLanguages hidden in BOTH views): no sentence announces more languages — the answer ends after the second sentence
         q: { en: "Which languages does it reply in?", es: "¿En qué idiomas responde?" },
         a: {
-          en: "Today it replies automatically in Spanish only. It recognises the language of every enquiry and, if it is not Spanish, passes it to your team.",
-          es: "Hoy responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo.",
+          // Copy 2ea3453 (E2): no "Hoy"/"Today" — the fact stays
+          en: "It replies automatically in Spanish only. It recognises the language of every enquiry and, if it is not Spanish, passes it to your team.",
+          es: "Responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo.",
         },
         // Copy 441ba1c (owner 16.11.): L-1 stands in both views; the public fallback is retired
       },
