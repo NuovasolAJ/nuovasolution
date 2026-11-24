@@ -1,0 +1,135 @@
+{
+ "pin": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "checks": [
+  {
+   "id": "F20",
+   "verdict": "JA (behoben)",
+   "detail": {
+    "sentences": [
+     "2 dormitorios en Estepona, hasta 320.000 € Respondida 11:21 Hora en que salió cada respuesta Atiende Contesta en segundos por WhatsApp y en minutos por email."
+    ],
+    "badOnes": [],
+    "box": {
+     "x": 16,
+     "y": 441,
+     "width": 358,
+     "height": 46
+    }
+   },
+   "picture": "audit-F20-es390.png"
+  },
+  {
+   "id": "F27",
+   "verdict": "JA (behoben)",
+   "detail": [
+    {
+     "page": "/es",
+     "loaded": true,
+     "hit": null
+    },
+    {
+     "page": "/es/platform",
+     "loaded": true,
+     "hit": null
+    },
+    {
+     "page": "/es/trial",
+     "loaded": true,
+     "hit": null
+    },
+    {
+     "page": "/es/packages",
+     "loaded": true,
+     "hit": null
+    },
+    {
+     "page": "/es/faq",
+     "loaded": true,
+     "hit": null
+    }
+   ],
+   "picture": "audit-F27-es390-platform.png"
+  },
+  {
+   "id": "F22a",
+   "verdict": "NEIN",
+   "detail": {
+    "vh": 768,
+    "h1": {
+     "top": 216,
+     "bottom": 417,
+     "insideScreen": true
+    },
+    "h1text": "Mientras enseñas un piso, ¿quién atiende a Mila?",
+    "cta": {
+     "top": 777,
+     "bottom": 833,
+     "insideScreen": false
+    },
+    "ctaText": "Ver cómo queda la tarea",
+    "task": {
+     "top": 675,
+     "bottom": 697,
+     "insideScreen": true
+    },
+    "taskText": "Llamar a Mila · Comprobar disponibilidad de la ref. 9895153",
+    "docH": 13417
+   },
+   "picture": "audit-F22a-d1366x768-hero.png"
+  },
+  {
+   "id": "F22b",
+   "verdict": "siehe Bericht",
+   "detail": {
+    "found": false
+   },
+   "picture": "audit-F22b-es390-telefono.png"
+  },
+  {
+   "id": "F22c",
+   "verdict": "JA",
+   "detail": {
+    "checked": 20,
+    "fails": []
+   },
+   "picture": "audit-F22c-es390-kontrast.png"
+  },
+  {
+   "id": "F22d",
+   "verdict": "JA",
+   "detail": {
+    "h1top": 263,
+    "above": [
+     {
+      "text": "Estás en una visita · 11:40",
+      "y": 166,
+      "px": 13,
+      "transform": "none",
+      "spacing": "normal",
+      "weight": "400"
+     },
+     {
+      "text": "PARA AGENCIAS INMOBILIARIAS EN ESPAÑA",
+      "y": 236,
+      "px": 14,
+      "transform": "uppercase",
+      "spacing": "1.26px",
+      "weight": "600"
+     }
+    ],
+    "kickers": [
+     {
+      "text": "PARA AGENCIAS INMOBILIARIAS EN ESPAÑA",
+      "y": 236,
+      "px": 14,
+      "transform": "uppercase",
+      "spacing": "1.26px",
+      "weight": "600"
+     }
+    ]
+   },
+   "picture": "audit-F22d-es390-kicker.png"
+  }
+ ],
+ "pinEnd": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK"
+}
