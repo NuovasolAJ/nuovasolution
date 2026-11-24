@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type ElementType, type KeyboardEvent, type ReactNode } from "react";
-import { ArrowRight, Check, ChevronDown, Inbox, Mail, Mic, PanelsTopLeft, Phone, PhoneOff, RotateCcw, Send, Star } from "lucide-react";
+import { Check, ChevronDown, Inbox, Mail, Mic, PanelsTopLeft, Phone, PhoneOff, RotateCcw, Send, Star } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
@@ -213,7 +213,7 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
 
         {/* The link from the conversation to the record: lights up when the record starts to fill */}
         <div className="demo-link" aria-hidden="true">
-          <span className={cn("demo-link-mark", lit && "is-lit")} data-demo-link={lit ? "lit" : "quiet"}><ArrowRight size={14} strokeWidth={2.4} /></span>
+          <span className={cn("demo-link-mark", lit && "is-lit")} data-demo-link={lit ? "lit" : "quiet"}><Check size={14} strokeWidth={2.6} /></span>{/* the owner, 24.11.: no arrows — the link between the chat and the record is a check once the record is lit */}
           <span className="demo-link-line" />
           <span className="demo-link-word">{l(W.toRecord)}</span>
         </div>
@@ -266,7 +266,7 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
 
       {isTask && (
         <Item as="p" n={script.record.next.at} phase={phase} className="demo-caption" data-demo-caption="">
-          <a href={`${localePath(locale)}#plans`} className="demo-caption-link" data-demo-to-plans>{l(B.toPlans)}<ArrowRight size={14} strokeWidth={2.2} aria-hidden="true" /></a>
+          <a href={`${localePath(locale)}#plans`} className="demo-caption-link" data-demo-to-plans>{l(B.toPlans)}</a>
         </Item>
       )}
       <p className="demo-foot" data-hero-state>

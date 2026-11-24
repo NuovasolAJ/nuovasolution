@@ -2125,3 +2125,78 @@ html:not(.js) .fs-step { opacity: 1; }
 .plans-compare-col li { display: flex; align-items: flex-start; gap: 6px; font-size: 0.9rem; line-height: 1.4; }
 .plans-compare-col li svg { flex: none; margin-top: 4px; color: var(--brand-green); }
 .plans-price-line { margin-top: 12px; }
+
+/* ================================================================== */
+/* E2 (the owner's order of 24.11.): the living first screen and the   */
+/* agency tasks as stacked cards. Motion only where it explains the    */
+/* product, plays once, reduced motion = everything stands.            */
+/* ================================================================== */
+/* the first screen: headline, one sentence, one action, the living picture — nothing else */
+[data-hero-e2] .hf-ctas { margin-top: 18px; }
+.hf:has([data-hero-e2]) .hf-benefits, .hf:has([data-hero-e2]) .hf-scroll { display: none; }
+.hf:has([data-hero-e2]) .hf-content { grid-template-columns: minmax(0, 1fr); align-items: end; }
+/* the choreography (choreograph: lead = the message, support = the task's lines, decoration = the mark; one entrance per container):
+   the message arrives at 900 ms after the headline's words have landed (0.76 s), the task's frame at 1.9 s, its lines 140–160 ms apart,
+   the mark last; strong ease-out, transform + opacity only, `both` so nothing flashes its end state before its turn */
+html.js .hf-scene-live > *, html.js .hf-scene-live .hf-scene-task > * { animation: hf-arrive 520ms cubic-bezier(0.23, 1, 0.32, 1) both; animation-delay: var(--d, 0ms); }
+html.js .hf-scene-live .hf-scene-task { animation-name: hf-build; animation-duration: 600ms; }
+@keyframes hf-arrive { from { opacity: 0; transform: translateY(10px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes hf-build { from { opacity: 0; transform: translateY(14px) scale(0.97); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  html.js .hf-scene-live > *, html.js .hf-scene-live .hf-scene-task > *, html.js .hf-scene-live .hf-scene-task { animation: hf-fade 240ms ease both; animation-delay: 0ms; }
+}
+@keyframes hf-fade { from { opacity: 0; } }
+/* the main action without an arrow (the owner: no arrows) */
+[data-hero-e2] .hf-cta-main { gap: 0; }
+
+/* --- the agency tasks (components/home/agency-tasks.tsx) --- */
+.at { padding-top: 56px; padding-bottom: 40px; background: var(--sand-100); }
+.at-head { max-width: 40rem; }
+.at-h2 { margin-top: 10px; font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.75rem); line-height: 1.08; letter-spacing: -0.025em; font-weight: 600; color: var(--text-primary); text-wrap: balance; }
+.at-stack { display: grid; gap: 14px; margin: 28px 0 0; padding: 0; list-style: none; }
+/* the stack: each card sticks a little lower than the one before, so the next one slides over it while scrolling (CSS only) */
+.at-card { position: sticky; top: calc(var(--header-h) + 12px + var(--i, 0) * 10px); display: grid; gap: 12px; padding: 18px 16px 16px; border-radius: 20px; background: var(--paper); box-shadow: inset 0 0 0 1px var(--border-hairline), 0 18px 40px -28px rgba(26, 25, 23, 0.35); }
+.at-words { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 10px; align-items: baseline; }
+.at-no { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em; color: var(--text-muted); }
+.at-title { font-size: 1.375rem; line-height: 1.15; letter-spacing: -0.02em; font-weight: 600; color: var(--text-primary); }
+.at-line { grid-column: 2; margin-top: 6px; max-width: 32ch; font-size: 0.9375rem; line-height: 1.45; color: var(--text-secondary); }
+.at-action { grid-column: 2; justify-self: start; display: inline-flex; align-items: center; min-height: 44px; margin-top: 10px; padding: 0 16px; border-radius: 10px; background: var(--ink-950); color: #fff; font-size: 0.9375rem; font-weight: 600; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms ease; }
+.at-action:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .at-action:hover { background: var(--ink-800); } }
+/* the proofs: small product views, nothing animates by itself */
+.at-proof { position: relative; display: grid; gap: 6px; padding: 12px 12px 10px; border-radius: 14px; background: var(--ink-50); box-shadow: inset 0 0 0 1px var(--border-hairline); font-size: 0.875rem; line-height: 1.4; color: var(--text-primary); }
+.at-proof-mark { margin-top: 2px; font-size: 0.75rem; color: var(--text-muted); }
+.at-proof-chat { background: var(--channel-whatsapp-wall); }
+.at-chat-head { display: flex; align-items: center; gap: 6px; margin: -12px -12px 2px; padding: 7px 12px; border-radius: 14px 14px 0 0; background: var(--channel-whatsapp-chrome); color: #fff; font-size: 0.8125rem; font-weight: 600; }
+.at-chat-in, .at-chat-out { max-width: 92%; padding: 7px 11px; border-radius: 10px; box-shadow: 0 1px 1px rgba(26, 25, 23, 0.08); }
+.at-chat-in { justify-self: start; background: #fff; border-top-left-radius: 2px; }
+.at-chat-out { justify-self: end; background: var(--channel-whatsapp-out); border-top-right-radius: 2px; }
+.at-proof-source { font-size: 0.8125rem; font-weight: 600; color: var(--text-muted); }
+.at-record { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.at-record li { padding: 5px 10px; border-radius: 8px; background: #fff; }
+.at-match-listing { font-weight: 600; }
+.at-match-contact, .at-match-answer { color: var(--text-secondary); }
+.at-day-head { font-weight: 600; }
+.at-day-items { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; counter-reset: it; }
+.at-day-items li { padding: 5px 10px; border-radius: 8px; background: #fff; }
+.at-day-foot { color: var(--text-secondary); }
+.at-3d { margin-top: 22px; font-size: 0.9375rem; line-height: 1.5; color: var(--text-secondary); }
+.at-3d-link { font-weight: 600; color: var(--text-primary); text-decoration: underline; text-underline-offset: 4px; display: inline-block; padding: 12px 0; margin: -12px 0; }
+/* the day as a strip */
+.at-day { margin-top: 28px; padding: 16px 0 0; border-top: 1px solid var(--border-hairline); }
+.at-day-title { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); }
+.at-strip { display: flex; gap: 8px; margin: 10px 0 0; padding: 0 0 6px; list-style: none; overflow-x: auto; scrollbar-width: none; }
+.at-strip::-webkit-scrollbar { display: none; }
+.at-moment { flex: none; display: grid; gap: 2px; min-width: 128px; padding: 10px 12px; border-radius: 12px; background: var(--paper); box-shadow: inset 0 0 0 1px var(--border-hairline); }
+.at-moment-time { font-size: 0.9375rem; font-weight: 600; color: var(--text-primary); }
+.at-moment-text { font-size: 0.875rem; color: var(--text-secondary); }
+@media (min-width: 768px) {
+  .at { padding-top: 72px; padding-bottom: 56px; }
+  .at-card { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: center; gap: 32px; padding: 28px 32px 26px; }
+  .at-words { display: block; }
+  .at-title { margin-top: 6px; font-size: 1.875rem; }
+  .at-line { font-size: 1rem; line-height: 1.5; }
+  .at-strip { gap: 10px; }
+  .at-moment { min-width: 0; flex: 1 1 0; }
+}
+@media (min-width: 1024px) { .at-card { padding: 40px 44px; gap: 48px; } .at-stack { gap: 18px; } }

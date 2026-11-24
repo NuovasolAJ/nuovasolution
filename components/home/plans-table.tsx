@@ -1,4 +1,4 @@
-import { ArrowRight, Bell, Box, Check, ClipboardList, Database, Flag, Globe, Instagram, Languages, Mail, MessageCircle, Minus, Phone, Plug, Reply, TrendingUp, UserRound, type LucideIcon } from "lucide-react";
+import { Bell, Box, Check, ClipboardList, Database, Flag, Globe, Instagram, Languages, Mail, MessageCircle, Minus, Phone, Plug, Reply, TrendingUp, UserRound, type LucideIcon } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
@@ -42,7 +42,7 @@ function PlanAction({ code, name, locale, where }: { code: PlanCode; name: strin
   const b = brief1120.plans;
   return (
     <div className="plans-ways plans-ways-1120" data-plan-ways={where === "table" ? code : `card-${code}`} data-plan-offer={code === "essential" ? "trial" : code === "growth" ? "demo" : "talk"}>
-      <a href={localePath(locale, brief1120.href[code])} className="plans-cta plans-cta-main" title={l(b.actionNext[code])} aria-label={`${l(b.action[code])} · ${l(b.actionNext[code])}`} data-plan-cta={where === "table" ? code : `card-${code}`} data-pilot-cta={`plan-${where}`}>{l(b.action[code])}<ArrowRight size={15} strokeWidth={2.2} aria-hidden="true" /></a>
+      <a href={localePath(locale, brief1120.href[code])} className="plans-cta plans-cta-main" title={l(b.actionNext[code])} aria-label={`${l(b.action[code])} · ${l(b.actionNext[code])}`} data-plan-cta={where === "table" ? code : `card-${code}`} data-pilot-cta={`plan-${where}`}>{l(b.action[code])}</a>
       <p className="plans-way-line">{l(b.actionLine[code])}</p>
       <p className="plans-way-next" data-plan-next={code}>{l(b.actionNext[code])}</p>
       {code !== "enterprise" && <a href={localePath(locale, brief1120.hrefDirect(code))} className="plans-way-link" aria-label={l(home1103.plans.wayDirectAria).replace("{plan}", name)} data-plan-direct={where === "table" ? code : `card-${code}`}>{l(b.direct)}</a>}
@@ -86,7 +86,7 @@ export function PlansTable({ locale, view, headed = true }: { locale: Locale; vi
             </ul>
             <p className="plans-included-foot">
               <span className="t-body-m text-text-secondary">{l(w.price)}</span>
-              <a href={localePath(locale, entry.href)} className="plans-cta plans-cta-main" data-plan-cta="included">{entry.label}<ArrowRight size={15} strokeWidth={2.2} aria-hidden="true" /></a>
+              <a href={localePath(locale, entry.href)} className="plans-cta plans-cta-main" data-plan-cta="included">{entry.label}</a>
             </p>
           </Rise>
         </div>

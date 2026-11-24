@@ -1,12 +1,10 @@
 import { preload } from "react-dom";
-import { ArrowRight } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
 import { brief1120 } from "@/lib/content/brief-1120";
-import { demoWords } from "@/lib/content/home-demo";
 import type { ClaimView } from "@/lib/claims";
-import { HeroBenefits, HeroImage, HeroScrollHint } from "./hero-image";
+import { HeroImage } from "./hero-image";
 import { HeroDemo } from "./hero-demo";
 import { PainBand } from "./pain-band";
 import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
@@ -38,36 +36,37 @@ export function Hero({ locale, view }: { locale: Locale; view: ClaimView }) {
       <section aria-labelledby="hero-h1" data-hero="film" data-hero-brief="1120" className="hf">
         <HeroImage alt={l(w.image)} mark={l(b.caption)} credit={l(w.artCredit)} />
         <div className="container-default hf-content">
-          <div className="hf-words" data-hero-words>
-            <p className="hf-eyebrow t-eyebrow t-eyebrow-l">{l(w.eyebrow)}</p>
+          <div className="hf-words" data-hero-words data-hero-e2="1124">
+            {/* the owner's E2 order of 24.11.: the first screen carries at most the headline, one sentence, one main action and the living
+                product picture — the eyebrow, the benefit list, the scroll arrow, the second button and the trial line leave the first screen
+                (the trial stays in the header, the phone bar and the plans) */}
             <h1 id="hero-h1" className="hf-h1">
               {l(b.h1).split(" ").map((word, i) => (
                 <span key={i}><span className="hf-word" style={{ ["--w" as string]: i }}><span>{word}</span></span>{" "}</span>
               ))}
             </h1>
             <p className="hf-lead" data-hero-lead>{l(b.sub)}</p>
-            {/* screen 1-A: Mila's message and the finished task (Copy 11cf7a2) */}
-            <div className="hf-scene" data-hero-scene>
-              <div className="hf-scene-msg" data-hero-scene-enquiry>
+            {/* screen 1-A: Mila's message and the finished task (Copy 11cf7a2) — the LIVING picture (E2): the message arrives, then the
+                task builds itself up, once (CSS choreography, --d per element; with reduced motion everything stands at once) */}
+            <div className="hf-scene hf-scene-live" data-hero-scene data-hero-live>
+              <div className="hf-scene-msg" data-hero-scene-enquiry style={{ ["--d" as string]: "900ms" }}>
                 <p className="hf-scene-label"><WhatsAppMark size={14} />{l(b.scene.enquiry)} · {mila.time}</p>
                 <p className="hf-scene-text" lang="es">{mila.es}</p>
                 {locale !== "es" && <p className="hf-scene-translation" data-hero-scene-translation><span className="hf-scene-translation-label">{l(b.translation)}:</span> {mila.en}</p>}
               </div>
-              <div className="hf-scene-task" data-hero-scene-task>
-                <p className="hf-scene-label">{l(b.scene.task)}</p>
-                <p className="hf-scene-task-title">{l(b.task.title)}</p>
-                <p className="hf-scene-sub">{l(b.task.line)}</p>
+              <div className="hf-scene-task" data-hero-scene-task style={{ ["--d" as string]: "1900ms" }}>
+                <p className="hf-scene-label" style={{ ["--d" as string]: "2000ms" }}>{l(b.scene.task)}</p>
+                <p className="hf-scene-task-title" style={{ ["--d" as string]: "2140ms" }}>{l(b.task.title)}</p>
+                <p className="hf-scene-sub" style={{ ["--d" as string]: "2300ms" }}>{l(b.task.line)}</p>
               </div>
-              <p className="hf-scene-mark">{l(b.scene.mark)}</p>
+              <p className="hf-scene-mark" style={{ ["--d" as string]: "2400ms" }}>{l(b.scene.mark)}</p>
             </div>
             <div className="hf-ctas">
-              <a href="#demo" className="hf-cta-main lift" data-hero-cta="task" data-demo-end>{l(b.cta)}<ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" /></a>
-              <a href={p(brief1120.href.essential)} className="hf-cta-second" data-hero-cta="trial" data-pilot-cta="hero">{l(b.ctaTrial)}</a>
+              <a href="#demo" className="hf-cta-main lift" data-hero-cta="task" data-demo-end>{l(b.cta)}</a>
             </div>
-            <p className="hf-access" data-hero-pilot>{l(b.trialLine)}</p>
+            {/* the trial's way stays reachable from the first screen for the measurements and the keyboard: visually part of the header/phone bar */}
+            <a href={p(brief1120.href.essential)} className="sr-only" data-hero-cta="trial" data-pilot-cta="hero">{l(b.ctaTrial)}</a>
           </div>
-          <HeroBenefits benefits={w.chips(view).map((c) => c[locale])} />
-          <HeroScrollHint label={l(demoWords.surfaceLabel)} />
         </div>
       </section>
       {/* Copy 1113 §1: the pain line as its own band under the picture (the owner keeps it; Copy stage 2 moves it to directly after the first screen); the demonstration rises into the band */}

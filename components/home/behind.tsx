@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
@@ -38,7 +38,7 @@ export function Behind({ locale }: { locale: Locale }) {
             <div className="behind-way"><dt className="behind-way-label">{l(w.emailLabel)}</dt><dd><a href="mailto:antonio@nuovasolution.com" className="behind-way-value" data-behind-email>antonio@nuovasolution.com</a></dd></div>
             {phone && <div className="behind-way"><dt className="behind-way-label">{l(w.phoneLabel)}</dt><dd><a href={`tel:${phone.replace(/\s+/g, "")}`} className="behind-way-value tnum" data-behind-phone>{phone}</a></dd></div>}
           </dl>
-          <Link href={localePath(locale, ESSENTIAL_HREF)} className="behind-cta lift" data-behind-cta data-pilot-cta="behind">{l(w.cta)}<ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" /></Link>
+          <Link href={localePath(locale, ESSENTIAL_HREF)} className="behind-cta lift" data-behind-cta data-pilot-cta="behind">{l(w.cta)}</Link>{/* the owner, 24.11.: no arrows */}
         </Rise>
       </div>
     </section>

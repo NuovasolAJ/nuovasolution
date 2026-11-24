@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight } from "lucide-react";
 
 /**
  * The phone's fixed bar with the one global action (the owner's A3 of 07.11.2026; Copy stage 1 §0: "Prueba Essential gratis", the plan
@@ -27,7 +26,7 @@ export function MobileCta({ href, label }: { href: string; label: string }) {
   }, []);
   return (
     <div className="mcta" data-mobile-cta={shown ? "shown" : "hidden"} aria-hidden={!shown}>
-      <a href={href} className="mcta-main lift" data-hero-cta="trial" tabIndex={shown ? 0 : -1}>{label}<ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" /></a>
+      <a href={href} className="mcta-main lift" data-hero-cta="trial" tabIndex={shown ? 0 : -1}>{label}</a>{/* the owner, 24.11.: no arrows */}
     </div>
   );
 }

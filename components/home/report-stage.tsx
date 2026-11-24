@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
@@ -130,7 +129,7 @@ export function ReportStage({ locale, view }: { locale: Locale; view: ClaimView 
           </div>
           <div className="rep-foot">
             <p className="rep-foot-note">{l(w.example)}</p>
-            <a href={localePath(locale, "/example-report")} className="rep-link" data-report-link>{l(w.link)}<ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" /></a>
+            <a href={localePath(locale, "/example-report")} className="rep-link" data-report-link>{l(w.link)}</a>
           </div>
         </Rise>
       </div>

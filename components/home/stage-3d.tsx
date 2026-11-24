@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
-import { ArrowRight, FileText, Play } from "lucide-react";
+import { FileText, Play } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
@@ -188,7 +188,7 @@ export function Stage3d({ locale }: { locale: Locale }) {
           <p className="m3d-path-line" data-model3d-path-line>{l(w.pathLine)}</p>
           <p className="m3d-path-mark" data-model3d-path-mark>{l(w.pathMark)}</p>
           {/* the 3D interest is preselected on the request (the owner's point 10) */}
-          <a href={localePath(locale, "/contact?interes=3d")} className="m3d-cta" data-model3d-cta>{l(w.cta)}<ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" /></a>
+          <a href={localePath(locale, "/contact?interes=3d")} className="m3d-cta" data-model3d-cta>{l(w.cta)}</a>
         </Rise>
       </div>
     </section>

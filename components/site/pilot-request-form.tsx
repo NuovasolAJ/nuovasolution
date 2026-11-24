@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
-import { ArrowRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { pilotRequest, type PilotInterest } from "@/lib/content/pilot-request";
@@ -139,7 +139,7 @@ export function PilotRequestForm({ locale, interest: initial = "other", live, pl
       <p className="prq-consent" data-prq="consent-line">{l(w.consent)}<a href={localePath(locale, "/legal/privacy")} className="prq-link" target="_blank" rel="noreferrer">{l(w.consentLink)}</a>{l(w.consentAfter)}</p>
       <div className="prq-foot">
         <button type="submit" className="prq-submit lift" disabled={state === "sending"} data-pilot-cta="form" data-request-submit={interest} id={`${id}-submit`}>
-          {state === "sending" ? l(w.sending) : l(submitLabel)}<ArrowRight size={18} strokeWidth={2.2} aria-hidden="true" />
+          {state === "sending" ? l(w.sending) : l(submitLabel)}
         </button>
         {state === "reach" && <p className="prq-note prq-note-error" role="alert">{l(w.reachMissing)}</p>}
         {state === "missing" && <p className="prq-note prq-note-error" role="alert">{l(w.required)}</p>}

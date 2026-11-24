@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CreditCard, Database, FileText, Handshake } from "lucide-react";
+import { CreditCard, Database, FileText, Handshake } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
@@ -56,7 +56,7 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
                 {/* the owner, 20.11. 09:05 (1) + Copy 1120 §4.3: with the mailbox connection off, step 3's small line is the PX-s, not left out */}
                 <p className="entry-small" data-entry-small="live">{l(e.small)}</p>
                 <p className="trust-entry">
-                  <Link href={p(entry.href)} className="trust-entry-cta" data-trust-cta={entry.kind} data-pilot-cta="entry">{entry.label}<ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" /></Link>
+                  <Link href={p(entry.href)} className="trust-entry-cta" data-trust-cta={entry.kind} data-pilot-cta="entry">{entry.label}</Link>
                 </p>
               </div>
               <ol className="trust-lines">
@@ -83,7 +83,7 @@ export function TrustFaqClose({ locale, view }: { locale: Locale; view: ClaimVie
           <div className="faqs-grid">
             <Rise className="faqs-words">
               <h2 id="faq-h" className="t-display-m text-text-primary">{l(f.h2)}</h2>
-              <p className="mt-4"><Link href={p("/faq")} className="faqs-all">{l(f.all)}<ArrowRight size={15} strokeWidth={2.2} aria-hidden="true" /></Link></p>
+              <p className="mt-4"><Link href={p("/faq")} className="faqs-all">{l(f.all)}</Link></p>
             </Rise>
             <Rise className="faqs-list" delay={0.08}>
               <Accordion items={faqItems.map((it, i) => ({ id: `home-faq-${i + 1}`, question: it.q, answer: it.a }))} />

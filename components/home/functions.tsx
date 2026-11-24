@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
-import { ArrowRight, Bell, Check, ChevronRight, Clock, Instagram, Mail, MessageCircle, Mic, Phone, PanelsTopLeft, Globe, Send, ShieldCheck, Tag, X } from "lucide-react";
+import { Bell, Check, ChevronRight, Clock, Instagram, Mail, MessageCircle, Mic, Phone, PanelsTopLeft, Globe, Send, ShieldCheck, Tag, X } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
@@ -376,7 +376,7 @@ export function Surface({ k, locale, view }: { k: Key; locale: Locale; view: Cla
           ))}
         </dl>
         <m.p className="ps-assistant" {...stagger(3)}><strong>{l(p.nextTitle)}:</strong> {l(p.next)}</m.p>
-        <p className="ps-foot"><a href={localePath(locale, "/example-report")} className="ps-link" onClick={(e) => e.stopPropagation()} data-ps-report-link>{l(p.link)}<ArrowRight size={13} strokeWidth={2.2} aria-hidden="true" /></a></p>
+        <p className="ps-foot"><a href={localePath(locale, "/example-report")} className="ps-link" onClick={(e) => e.stopPropagation()} data-ps-report-link>{l(p.link)}</a></p>
       </div>
     );
   }
