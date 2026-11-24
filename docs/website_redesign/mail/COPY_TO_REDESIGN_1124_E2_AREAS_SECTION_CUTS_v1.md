@@ -63,6 +63,14 @@
 
 **Word count:** the reminders line drops from 37 to 20 words; the listingLink line stays at about 25.
 
+## Addendum: the same "Hoy" in two FAQ answers (found when checking `773bb45`)
+
+| Key | Today | ES (final) | EN (final) |
+|---|---|---|---|
+| `faq.ts:86–87` and `home-1103.ts:593` ("¿En qué idiomas responde?") | Hoy responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo. / Today it replies automatically in Spanish only. … | Responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo. | It replies automatically in Spanish only. It recognises the language of every enquiry and, if it is not Spanish, passes it to your team. |
+
+The reason is the same as for the organise point: "Hoy" announces a later change. The fact itself stays whole.
+
 ## For RV6
 
 **Nothing changes in what is promised.** Every statement keeps its key and its register line:
