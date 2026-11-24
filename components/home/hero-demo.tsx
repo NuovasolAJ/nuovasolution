@@ -60,12 +60,14 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
   const [runNo, setRunNo] = useState(0);
   const [entered, setEntered] = useState<"run" | "end" | null>(null);
   const inView = useRef(false);
+  const scriptRef = useRef<DemoChannel | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
   const timers = useRef<number[]>([]);
   const started = useRef(false);
   const id = useId();
   const script = (channels.find((c) => c.key === channel) ?? channels[0]) as DemoChannel;
+  scriptRef.current = script;
   const end = endPhase(script);
   const done = phase >= end;
 
@@ -98,6 +100,9 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
     const io = new IntersectionObserver((entries) => {
       inView.current = entries.some((e) => e.isIntersecting);
       setSeen(inView.current);
+      // E2 (the owner, 24.11.: no empty areas): a reader who scrolls past while the run is still playing finds the FINISHED
+      // picture, not a half-filled record — the run jumps to its end the moment the surface leaves the window upwards
+      if (started.current && !inView.current && el.getBoundingClientRect().top < 0) { clear(); setPhase(endPhase(scriptRef.current ?? script)); return; }
       if (started.current || !inView.current) return;
       started.current = true;
       if (el.getBoundingClientRect().top < -80) { showEnd(script); return; }
