@@ -168,8 +168,13 @@
   --brand-green-ink: var(--brand-ink);
   --brand-green-wash: var(--brand-wash);
   /* the one channel accent (WhatsApp enquiries exist today): the channel's icon and the outgoing bubble's tint, never a surface of the page */
-  --channel-whatsapp: #2f8f5b;
-  --channel-whatsapp-ink: #1d6b42;
+  /* the owner, 24.11.: the WhatsApp look must be recognisable at once — the brand green for the mark and the chat chrome, the
+     bubble tints as in the app (incoming white, outgoing #d9fdd3), the ink dark enough for text on white (≈ 4.9 : 1) */
+  --channel-whatsapp: #25d366;
+  --channel-whatsapp-ink: #0f7a63;
+  --channel-whatsapp-chrome: #128c7e;
+  --channel-whatsapp-wall: #efeae2;
+  --channel-whatsapp-out: #d9fdd3;
   /* radii */
   --radius-control: 999px;
   --radius-card: 20px;
@@ -724,8 +729,13 @@ html.js .hf-image { animation: hf-drift 24s ease-in-out infinite alternate; }
 
 /* 2a WhatsApp: the chat */
 .demo-chat { display: flex; flex-direction: column; overflow: hidden; border-radius: 16px; background: #ece9e4 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23e2dbd1' stroke-width='1'%3E%3Ccircle cx='30' cy='30' r='8'/%3E%3Crect x='70' y='68' width='18' height='18' rx='4'/%3E%3Cpath d='M20 90l10-10 10 10'/%3E%3Cpath d='M78 14h18M87 5v18'/%3E%3C/g%3E%3C/svg%3E"); border: 1px solid var(--border-hairline); }
-.demo-chat-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--paper); border-bottom: 1px solid var(--border-hairline); }
-.demo-chat-tool { margin-left: auto; color: var(--ink-400); }
+/* the owner, 24.11. (E2 point 2): the chat's bar is WhatsApp green with white words, the wallpaper and the bubble tints as in the app */
+.demo-chat { background-color: var(--channel-whatsapp-wall); }
+.demo-chat-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--channel-whatsapp-chrome); border-bottom: 0; }
+.demo-chat-head .demo-chat-name, .demo-chat-head .demo-chat-role, .demo-chat-head .demo-chat-meta { color: #fff; }
+.demo-chat-head .demo-chat-role { opacity: 0.82; }
+.demo-chat-head .demo-online { background: var(--channel-whatsapp); box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35); }
+.demo-chat-tool { margin-left: auto; color: rgba(255, 255, 255, 0.9); }
 .demo-avatar { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 38px; height: 38px; border-radius: 999px; background: var(--ink-100); color: var(--ink-800); font-size: 1rem; font-weight: 600; }
 .demo-avatar[data-channel="whatsapp"] { box-shadow: inset 0 0 0 2px var(--channel-whatsapp); }
 .demo-avatar-agency { background: var(--brand); color: #fff; }
@@ -738,7 +748,7 @@ html.js .hf-image { animation: hf-drift 24s ease-in-out infinite alternate; }
 .demo-thread { display: flex; flex-direction: column; gap: 8px; padding: 16px 14px 10px; min-height: 236px; }
 .demo-msg { position: relative; max-width: 88%; padding: 9px 14px 8px; border-radius: 14px; font-size: 1rem; line-height: 1.5; color: var(--ink-950); box-shadow: 0 1px 1px rgba(26, 25, 23, 0.06); }
 .demo-msg-in { align-self: flex-start; background: var(--paper); border-top-left-radius: 4px; }
-.demo-msg-out { align-self: flex-end; background: #dcf3df; border-top-right-radius: 4px; }
+.demo-msg-out { align-self: flex-end; background: var(--channel-whatsapp-out); border-top-right-radius: 4px; }
 .demo-msg-time { display: flex; justify-content: flex-end; align-items: center; gap: 4px; margin-top: 2px; font-size: 0.875rem; line-height: 1.2; color: var(--ink-600); }
 .demo-tick { color: var(--ink-500); }
 .demo-msg-label { margin-bottom: 2px; font-size: 0.875rem; font-weight: 600; color: var(--channel-whatsapp-ink); }
@@ -2037,7 +2047,14 @@ html:not(.js) .fs-step { opacity: 1; }
 /* the first screen: Mila's message and the task, readable without sound or motion */
 .hf-scene { display: grid; gap: 8px; margin-top: 18px; max-width: 34rem; }
 .hf-scene-msg, .hf-scene-task { padding: 12px 14px; border-radius: 14px; }
-.hf-scene-msg { background: rgba(255, 255, 255, 0.92); color: var(--ink-950); border-bottom-left-radius: 4px; }
+/* the owner, 24.11. (E2 point 2): Mila's message LOOKS like WhatsApp — the green chat bar with the mark, the wallpaper, the white
+   incoming bubble with its tail; the words stay Copy's */
+.hf-scene-msg { padding: 0; overflow: hidden; background: var(--channel-whatsapp-wall); color: var(--ink-950); border-radius: 14px; }
+.hf-scene-msg .hf-scene-label { padding: 8px 12px; background: var(--channel-whatsapp-chrome); color: #fff; opacity: 1; letter-spacing: 0.02em; text-transform: none; font-size: 0.8125rem; }
+.hf-scene-msg .hf-scene-label svg { color: #fff; }
+.hf-scene-msg .hf-scene-text { position: relative; margin: 10px 12px 10px 14px; padding: 8px 12px; background: #fff; border-radius: 10px; border-top-left-radius: 2px; box-shadow: 0 1px 1px rgba(26, 25, 23, 0.08); }
+.hf-scene-msg .hf-scene-text::before { content: ""; position: absolute; left: -6px; top: 0; border-style: solid; border-width: 0 8px 8px 0; border-color: transparent #fff transparent transparent; }
+.hf-scene-msg .hf-scene-translation { margin: 0 12px 10px 14px; }
 .hf-scene-task { background: var(--ink-950); color: var(--ivory); border-left: 3px solid var(--brand-green); }
 .hf-scene-label { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.72; }
 .hf-scene-text { margin-top: 4px; font-size: 0.9375rem; line-height: 1.45; }
