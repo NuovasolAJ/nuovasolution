@@ -46,7 +46,7 @@ export function ExtraCards({ locale, view }: { locale: Locale; view: ClaimView }
             </div>
             <h3 className="ch-name">{l(c.name)}</h3>
             <p className="ch-line m-hide">{l(c.line)}</p>
-            <ul className="ch-examples m-hide">{c.examples.map((x) => <li key={x.es}>{l(x)}</li>)}</ul>
+            {c.examples.length > 0 && <ul className="ch-examples m-hide">{c.examples.map((x) => <li key={x.es}>{l(x)}</li>)}</ul>}{/* Copy 88b2d1a: the reminders card's timeline IS the example */}
             <p className="ch-mark m-hide">{l(c.mark)}</p>
             <p className="m-only ch-proof" data-phone-core={c.key}>{l(c.proof)}</p>
           </li>

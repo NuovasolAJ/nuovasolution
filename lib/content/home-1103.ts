@@ -418,8 +418,8 @@ export const home1103 = {
     title: T("Y además", "And also"),
     mark: T("Ejemplo · datos ficticios", "Example · fictional data"), // K1-m
     items: [
-      { key: "listingLink", keys: ["listingLink"] as ClaimKey[], name: T("Lee el anuncio que te envía el cliente", "It reads the listing the client sends you"), line: T("Si el cliente te manda el enlace de un anuncio, la ficha recoge el precio, los dormitorios y los metros.", "If the client sends you a link to a listing, the record picks up the price, the bedrooms and the square metres."),
-        examples: [T("Laura: «Me interesa este piso» + enlace del anuncio", "Laura: \"I'm interested in this flat\" + link to the listing"), T("Ficha: 320.000 € · 2 dormitorios · 85 m²", "Record: €320,000 · 2 bedrooms · 85 m²"), T("Si está disponible, lo confirmas tú.", "Whether it is available, you confirm.")],
+      { key: "listingLink", keys: ["listingLink"] as ClaimKey[], name: T("Lee el anuncio que te envía el cliente", "It reads the listing the client sends you"), line: T("Si el cliente te manda el enlace de un anuncio, la ficha recoge precio, dormitorios y metros. La disponibilidad la confirmas tú.", "If the client sends you a link to a listing, the record picks up the price, bedrooms and square metres. You confirm whether it is available."), // Copy 88b2d1a
+        examples: [T("Ficha: 320.000 € · 2 dormitorios · 85 m²", "Record: €320,000 · 2 bedrooms · 85 m²")], // Copy 88b2d1a: one example
         mark: T("Ejemplo · datos ficticios", "Example · fictional data"),
         proof: T("Ficha: 320.000 € · 2 dormitorios · 85 m² · Ejemplo · datos ficticios", "Record: €320,000 · 2 bedrooms · 85 m² · Example · fictional data"), // phone (Copy §10)
         scene: { message: T("Me interesa este piso ", "I'm interested in this flat "), link: T("enlace del anuncio", "link to the listing"), recordLabel: T("Ficha", "Record"), record: T("320.000 € · 2 dormitorios · 85 m²", "€320,000 · 2 bedrooms · 85 m²") } },
@@ -427,8 +427,8 @@ export const home1103 = {
       // out at two hours — the enquiry passes to the next person. The handover is in production only once Daily's E19 v2 is
       // (HANDOVER_IN_PROD in lib/content/strengths.ts): until then the public view shows the clause as PX-s, the 13:20 step with PX-b
       // and the proof without the handover.
-      { key: "reminders", keys: ["reminders"] as ClaimKey[], handover: true, name: T("Si nadie la atiende, te avisamos", "If nobody takes it, we tell you"), line: T("Si nadie del equipo se ocupa de una consulta, al cabo de una hora se lo recordamos a la persona responsable. A las dos horas, la consulta pasa a la siguiente persona. Las horas cuentan dentro del horario de tu agencia.", "If nobody on the team takes an enquiry, after one hour we remind the person responsible. After two hours, the enquiry passes to the next person. The hours count within your agency's opening hours."), // Copy 6beb985 E-0
-        examples: [T("11:20 · Laura pide una visita", "11:20 · Laura asks for a viewing"), T("12:20 · Recordatorio a Marta", "12:20 · Reminder to Marta"), T("13:20 · Pasa a Carlos", "13:20 · Passed to Carlos")],
+      { key: "reminders", keys: ["reminders"] as ClaimKey[], handover: true, name: T("Si nadie la atiende, te avisamos", "If nobody takes it, we tell you"), line: T("Una hora sin respuesta: recordatorio al responsable. Dos horas: pasa a la siguiente persona. Cuenta el horario de tu agencia.", "One hour with no reply: a reminder to the person responsible. Two hours: it passes to the next person. Your agency's opening hours count."), // Copy 88b2d1a (after 6beb985 E-0)
+        examples: [], // Copy 88b2d1a: the timeline IS the example
         mark: T("Ejemplo · nombres ficticios", "Example · fictional names"),
         // Copy f13e4b6: E19 v2 runs in production since 20.11. 08:23Z, no real handover observed yet (Daily reports by 18:00) — the target proof names the 20.11., the public proof only the reminder until then
         proof: T("Recordatorio a la hora y aviso a las dos horas, probados en nuestra propia agencia el 19.11.", "Reminder after one hour and alert after two, tested in our own agency on 19.11."), // Copy 6beb985 E-0 (runs 195149/195288) // phone (Copy §10); the handover's observed run is Daily's open proof for Audit
@@ -445,9 +445,9 @@ export const home1103 = {
     flow: { core: T("Cada consulta recibe respuesta, ficha y siguiente paso.", "Every enquiry gets a reply, a record and a next step."), proof: T("Probado en nuestra propia agencia el 13.11.", "Tested in our own agency on 13.11.") }, // Copy 6beb985 E-1
     areas: (view: ClaimView): Record<"attend" | "organise" | "grow", { core: L; proof: L }> => ({
       attend: !live("whatsappOwnNumber", view)
-        ? { core: T("Contesta en minutos por email, también con la oficina cerrada.", "Replies in minutes by email, even with the office closed."), proof: T("Medido en nuestra propia agencia: respuesta por email en unos 2 minutos.", "Measured in our own agency: an email reply in about 2 minutes.") /* Copy 6beb985 E-1 */ }
-        : { core: T("Contesta en segundos por WhatsApp y en minutos por email.", "Replies in seconds on WhatsApp and in minutes by email."), proof: T("Medido en nuestra propia agencia: email en unos 2 minutos, WhatsApp en el mismo minuto.", "Measured in our own agency: email in about 2 minutes, WhatsApp within the same minute.") /* Copy 6beb985 E-1 */ },
-      organise: { core: T("Cada consulta, en su ficha: qué busca, zona y presupuesto.", "Every enquiry on its record: what they want, area and budget."), proof: T("Con su prioridad y el motivo, por ejemplo: «nombró inmueble, zona y presupuesto».", "With its priority and the reason, e.g. \"named a property, an area and a budget\".") },
+        ? { core: T("Contesta en minutos por email, también con la oficina cerrada.", "Replies in minutes by email, even with the office closed."), proof: T("Medido en nuestra agencia: respuesta por email en unos 2 minutos.", "Measured in our agency: an email reply in about 2 minutes.") /* Copy 88b2d1a */ }
+        : { core: T("Contesta en segundos por WhatsApp y en minutos por email.", "Replies in seconds on WhatsApp and in minutes by email."), proof: T("Medido en nuestra agencia: email, unos 2 minutos; WhatsApp, el mismo minuto.", "Measured in our agency: email, about 2 minutes; WhatsApp, the same minute.") /* Copy 88b2d1a */ },
+      organise: { core: T("Cada consulta, en su ficha: qué busca, zona y presupuesto.", "Every enquiry on its record: what they want, area and budget."), proof: T("Con prioridad y motivo: «nombró inmueble, zona y presupuesto».", "With priority and reason: \"named a property, an area and a budget\".") }, // Copy 88b2d1a
       grow: { core: T("Ves dónde se te escapa negocio y qué hacer esta semana.", "You see where business slips away and what to do this week."), proof: T("Del informe: consultas con la oficina cerrada, canales y visitas acordadas.", "From the report: enquiries with the office closed, channels and agreed viewings.") },
     }),
     report: { core: T("Tres cosas que mirar esta semana, cada una con su paso.", "Three things to look at this week, each with its step."), proof: T("Informe de ejemplo · datos ficticios", "Example report · fictional data") },
@@ -642,31 +642,28 @@ export const home1103 = {
   chapterCopy: {
     attend: {
       line: T("Contesta en cuanto llega la consulta, también de noche y en fin de semana.", "It replies as soon as the enquiry arrives, also at night and at weekends."),
+      // Copy 88b2d1a (E2, 24.11.): two points per area
       points: [
-        { t: T("Responde en segundos por WhatsApp y en minutos por email.", "Replies within seconds on WhatsApp and within minutes by email."), pub: "text" as const, pubText: T("Responde en minutos por email.", "Replies within minutes by email."), keys: ["whatsappOwnNumber"] as ClaimKey[] }, // Copy 1116 §10 W-2
-        { t: T("Entiende qué busca: comprar o alquilar.", "Understands what they want: to buy or rent."), pub: "same" as const }, // the owner 16.11.: "vender" not promised until Lead confirms the intent values (Q-A2)
-        { t: T("Todo entra en el CRM: zona, presupuesto, intención y canal, sin copiar nada.", "Everything goes into the CRM: area, budget, intent and channel, with nothing copied by hand."), pub: "same" as const },
+        { t: T("Entiende qué busca y lo guarda en su ficha: zona, presupuesto e intención.", "Understands what they want and saves it on the record: area, budget and intent."), pub: "same" as const },
         { t: T("Prioridad con su motivo, en cada ficha.", "Priority with its reason, on every record."), pub: "same" as const },
       ],
     },
     organise: {
       line: T("Cada consulta en su ficha, con lo que toca hacer hoy.", "Every enquiry on its record, with what needs doing today."),
       linePublic: T("Cada consulta en su ficha, en orden.", "Every enquiry on its record, in order."),
+      // Copy 88b2d1a (E2, 24.11.): two points per area
       points: [
-        { t: T("La persona que toca recibe el aviso.", "The right person gets the alert."), pub: "hide" as const, keys: ["alert"] as ClaimKey[] },
-        { t: T("Tareas del día: tu equipo sabe qué hacer hoy.", "Today's tasks: your team knows what to do today."), pub: "hide" as const, keys: ["taskList"] as ClaimKey[] },
-        { t: T("El canal de origen en cada ficha.", "The channel of origin on every record."), pub: "same" as const },
-        { t: T("Hoy responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo.", "Today it replies automatically in Spanish only. It recognises the language of every enquiry and, if it is not Spanish, passes it to your team."), pub: "same" as const }, // Copy 441ba1c: L-1 in both views
+        { t: T("Tareas del día y aviso a la persona que toca.", "Today's tasks, and an alert to the right person."), pub: "hide" as const, keys: ["taskList", "alert"] as ClaimKey[] },
+        { t: T("Responde automáticamente en español; si escriben en otro idioma, la consulta pasa a tu equipo.", "It replies automatically in Spanish; if someone writes in another language, the enquiry goes to your team."), pub: "same" as const },
       ],
     },
     grow: {
       // Copy 1116 §3: a concrete benefit from the example report, both views
       line: T("Ves dónde se te escapa negocio y qué hacer esta semana.", "You see where business slips away and what to do this week."),
+      // Copy 88b2d1a (E2, 24.11.): two points per area
       points: [
         { t: T("Qué entró, qué se contestó y qué sigue esperando a una persona.", "What came in, what was answered and what is still waiting for a person."), pub: "same" as const },
-        { t: T("Qué canal te trae más consultas.", "Which channel brings you the most enquiries."), pub: "same" as const },
-        { t: T("Cuántas consultas llegaron con la oficina cerrada y quedaron contestadas.", "How many enquiries arrived with the office closed and were answered."), pub: "same" as const },
-        { t: T("Cuántas visitas se pidieron y cuántas se acordaron.", "How many viewings were asked for and how many were agreed."), pub: "same" as const },
+        { t: T("Cuántas consultas llegaron con la oficina cerrada y qué canal te trae más.", "How many enquiries arrived with the office closed, and which channel brings you the most."), pub: "same" as const },
       ],
     },
   },
