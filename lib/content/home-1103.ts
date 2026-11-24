@@ -427,11 +427,11 @@ export const home1103 = {
       // out at two hours — the enquiry passes to the next person. The handover is in production only once Daily's E19 v2 is
       // (HANDOVER_IN_PROD in lib/content/strengths.ts): until then the public view shows the clause as PX-s, the 13:20 step with PX-b
       // and the proof without the handover.
-      { key: "reminders", keys: ["reminders"] as ClaimKey[], handover: true, name: T("Ninguna consulta se queda sin aviso", "No enquiry goes unflagged"), line: T("Si nadie del equipo se ocupa de una consulta, al cabo de una hora se lo recordamos a la persona responsable. A las dos horas, la consulta pasa a la siguiente persona.", "If nobody on the team takes an enquiry, after one hour we remind the person responsible. After two hours, the enquiry passes to the next person."),
+      { key: "reminders", keys: ["reminders"] as ClaimKey[], handover: true, name: T("Si nadie la atiende, te avisamos", "If nobody takes it, we tell you"), line: T("Si nadie del equipo se ocupa de una consulta, al cabo de una hora se lo recordamos a la persona responsable. A las dos horas, la consulta pasa a la siguiente persona. Las horas cuentan dentro del horario de tu agencia.", "If nobody on the team takes an enquiry, after one hour we remind the person responsible. After two hours, the enquiry passes to the next person. The hours count within your agency's opening hours."), // Copy 6beb985 E-0
         examples: [T("11:20 · Laura pide una visita", "11:20 · Laura asks for a viewing"), T("12:20 · Recordatorio a Marta", "12:20 · Reminder to Marta"), T("13:20 · Pasa a Carlos", "13:20 · Passed to Carlos")],
         mark: T("Ejemplo · nombres ficticios", "Example · fictional names"),
         // Copy f13e4b6: E19 v2 runs in production since 20.11. 08:23Z, no real handover observed yet (Daily reports by 18:00) — the target proof names the 20.11., the public proof only the reminder until then
-        proof: T("Recordatorio a la hora, en producción desde el 13.11.; el paso a la siguiente persona, desde el 20.11.", "A reminder after one hour, in production since 13.11.; passing it to the next person, since 20.11."), // phone (Copy §10); the handover's observed run is Daily's open proof for Audit
+        proof: T("Recordatorio a la hora y aviso a las dos horas, probados en nuestra propia agencia el 19.11.", "Reminder after one hour and alert after two, tested in our own agency on 19.11."), // Copy 6beb985 E-0 (runs 195149/195288) // phone (Copy §10); the handover's observed run is Daily's open proof for Audit
         timeline: [
           { time: "11:20", text: T("Laura pide una visita", "Laura asks for a viewing"), state: "open" as const },
           { time: "12:20", text: T("Recordatorio a Marta", "Reminder to Marta"), state: "remind" as const },
@@ -442,11 +442,11 @@ export const home1103 = {
 
   /** Copy 441ba1c §10 (16.11. 14:00): the phone's one core line (≤ 12 words) and one proof line per section; the long paragraphs stay on the desktop. */
   phoneCore: {
-    flow: { core: T("Cada consulta recibe respuesta, ficha y siguiente paso.", "Every enquiry gets a reply, a record and a next step."), proof: T("Probado en producción el 13.11.", "Tested in production on 13.11.") },
+    flow: { core: T("Cada consulta recibe respuesta, ficha y siguiente paso.", "Every enquiry gets a reply, a record and a next step."), proof: T("Probado en nuestra propia agencia el 13.11.", "Tested in our own agency on 13.11.") }, // Copy 6beb985 E-1
     areas: (view: ClaimView): Record<"attend" | "organise" | "grow", { core: L; proof: L }> => ({
       attend: !live("whatsappOwnNumber", view)
-        ? { core: T("Contesta en minutos por email, también con la oficina cerrada.", "Replies in minutes by email, even with the office closed."), proof: T("Medido en producción: respuesta por email en unos 2 minutos.", "Measured in production: email reply in about 2 minutes.") }
-        : { core: T("Contesta en segundos por WhatsApp y en minutos por email.", "Replies in seconds on WhatsApp and in minutes by email."), proof: T("Medido en producción: email en unos 2 minutos, WhatsApp en el mismo minuto.", "Measured in production: email in about 2 minutes, WhatsApp within the same minute.") },
+        ? { core: T("Contesta en minutos por email, también con la oficina cerrada.", "Replies in minutes by email, even with the office closed."), proof: T("Medido en nuestra propia agencia: respuesta por email en unos 2 minutos.", "Measured in our own agency: an email reply in about 2 minutes.") /* Copy 6beb985 E-1 */ }
+        : { core: T("Contesta en segundos por WhatsApp y en minutos por email.", "Replies in seconds on WhatsApp and in minutes by email."), proof: T("Medido en nuestra propia agencia: email en unos 2 minutos, WhatsApp en el mismo minuto.", "Measured in our own agency: email in about 2 minutes, WhatsApp within the same minute.") /* Copy 6beb985 E-1 */ },
       organise: { core: T("Cada consulta, en su ficha: qué busca, zona y presupuesto.", "Every enquiry on its record: what they want, area and budget."), proof: T("Con su prioridad y el motivo, por ejemplo: «nombró inmueble, zona y presupuesto».", "With its priority and the reason, e.g. \"named a property, an area and a budget\".") },
       grow: { core: T("Ves dónde se te escapa negocio y qué hacer esta semana.", "You see where business slips away and what to do this week."), proof: T("Del informe: consultas con la oficina cerrada, canales y visitas acordadas.", "From the report: enquiries with the office closed, channels and agreed viewings.") },
     }),

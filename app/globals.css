@@ -1735,7 +1735,9 @@ html.js .ch-scenes-static { display: none; }
 .fs-step.is-current .fs-no { box-shadow: 0 0 0 4px var(--status-wash); }
 .fs-title { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.015em; line-height: 1.25; color: var(--text-primary); }
 .fs-line { margin-top: 6px; max-width: 46ch; font-size: 1rem; line-height: 1.5; color: var(--text-secondary); }
-.fs-piece-inline { grid-column: 2; }
+/* E2 (the owner, 24.11.: shorter scroll, show the product once): the four steps stand as a tight list on the narrow window — the pieces
+   they would repeat are the demonstration's own screens directly above; the wide window keeps the one frame in which they accumulate */
+.fs-piece-inline { display: none; }
 .fs-stage { display: none; }
 .fs-chat { padding: 12px 14px; border-radius: 16px; background: #ece9e4; }
 .fs-chat .demo-msg { display: block; max-width: 100%; }
@@ -2200,3 +2202,11 @@ html.js .hf-scene-live .hf-scene-task { animation-name: hf-build; animation-dura
   .at-moment { min-width: 0; flex: 1 1 0; }
 }
 @media (min-width: 1024px) { .at-card { padding: 40px 44px; gap: 48px; } .at-stack { gap: 18px; } }
+/* the report on the home page (E2): the three cards only, the one action as the black button */
+.rep-e2 { padding-top: 56px; padding-bottom: 48px; }
+.rep-e2 .rep-sheet { margin-top: 24px; }
+.rep-e2 .rep-cards { border-bottom: 0; }
+.rep-link-e2 { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 10px; background: var(--ink-950); color: #fff; font-size: 0.9375rem; font-weight: 600; text-decoration: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms ease; }
+.rep-link-e2:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .rep-link-e2:hover { background: var(--ink-800); text-decoration: none; } }
+@media (min-width: 768px) { .rep-e2 { padding-top: 72px; padding-bottom: 64px; } .rep-e2 .rep-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
