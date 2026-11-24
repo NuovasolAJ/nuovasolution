@@ -151,3 +151,55 @@ Vier, alle vor dem Urteil gefunden; drei hätten ein falsches Urteil ergeben:
 ES gemessen, F20 zusätzlich in EN. Kein echtes Gerät — Edge im Kopflosbetrieb mit Gerätemaßen;
 iPhone und Android bleiben eine leere Spalte. Der Kontrast ist für den **ersten Bildschirm** von `/`
 gerechnet, nicht für die ganze Seite.
+
+---
+
+## Berichtigung zu F22b (24.11., nach Copys Antwort)
+
+Copy widerspricht meinem Vorschlag einer zweiten Marke, und **Copy hat recht**. Ich hatte die
+Haken-Beobachtung so aufgeschrieben, als wäre der Preview die öffentliche Seite. Das ist er nicht.
+
+**Owner-Entscheidung 2 vom 23.11. (ec4181ed):** der Preview zeigt NuovaSolution bei 100 %, alle
+geplanten Funktionen **ohne** Próximamente; die Einteilung Prod/Staging/Bau steht **nur** im
+internen Register. Eine Marke, die „heute nicht verfügbar" bedeutet, wäre ein Próximamente in
+anderer Form — also genau das, was der Owner gestrichen hat. **Im Preview bedeutet der Haken
+Paketzugehörigkeit, und das ist so gewollt.** Mein Satz „eine Besucherin kann die beiden nicht
+unterscheiden" misst den Preview am Maßstab der öffentlichen Seite und ist damit der falsche
+Maßstab. Der Vorschlag einer zweiten Marke ist **zurückgezogen**.
+
+Zwei weitere Punkte von Copy nehme ich an:
+
+- **„Opcional" bei 3D ist kein Zustandszeichen**, sondern eine kaufmännische Einordnung (ein
+  getrennt buchbarer Dienst, Owner 16.11.). Ich hatte es als Beleg dafür benutzt, dass eine
+  Unterscheidung möglich wäre — das trägt nicht, weil es eine andere Art von Angabe ist.
+- **Die Verbindung zu E-0b war falsch.** E-0b ist das absolute „ninguna" über einer nicht gebauten
+  Funktion, also ein **Satz**, der zu weit reicht. Der Paket-Haken ist keine solche Aussage. Copy
+  hat den Satz zu Recht verengt und „Desde Growth" zu Recht stehen gelassen. Die Zusammenfassung
+  der beiden Punkte in meinem Bericht war eine Vermischung zweier Klassen.
+
+### Wohin die Messung gehört
+
+Die **Beobachtung** bleibt richtig und nützlich, nur an anderer Stelle: Audits Register führt unter
+den offenen Owner-Fragen bereits „**Matrix:** Fällt eine Zeile, die bis 04.12. nicht belegt ist,
+aus der Vergleichstabelle? (Copy empfiehlt ja.)" Genau dafür ist die gemessene Liste gedacht — sie
+sagt, **welche** Zeilen die Frage betrifft:
+
+> Registerzeilen mit Haken in der Vergleichstabelle, die **nicht** „belegt" sind:
+> **9** (Asistente telefónico, Bau · Anwalt), **10** (Leads de portales y anuncios, Bau · Meta),
+> **15** (Una ficha por persona entre canales, nur Nachweis fehlt), **20** (Aviso a la persona que
+> toca, Bau), **26/27** (Inmuebles que encajan y seguimiento con permiso, Bau · Anwalt),
+> **29** (Resumen semanal por email, Bau), **30** (Informe ampliado, Bau), **31** (Conexión con tu
+> CRM, Bau), **33** (Publicar en Instagram, Bau · Meta).
+
+Das ist **kein Preview-Fehler** und auch keine neue Lücke — es sind dieselben Zeilen wie in
+Abschnitt A meiner Lückenliste (`de152f8`), hier nur danach sortiert, **wo** sie in der Tabelle
+stehen. Für die Go-live-Entscheidung des Owners ist das die Arbeitsliste.
+
+### Was an F22b unverändert gilt
+
+Die **Tatsache** steht: der Haken bei „Asistente telefónico" ist da, „En este plan" bei Growth und
+Enterprise, Bild `audit-F22b-es390-telefono.png`. **Ob das noch ein Fehler ist, entscheidet Audit,
+nicht ich** — F22 stammt aus den Owner-Proben vom 13.11., die Owner-Entscheidung 2 ist vom 23.11.
+und damit **jünger**. Nach ihr trägt eine geplante Funktion im Preview zu Recht einen Haken. Ich
+melde deshalb: **Merkmal unverändert sichtbar**, mit dem Hinweis, dass die spätere Entscheidung es
+möglicherweise erledigt hat. F22a bleibt davon unberührt und ist ein echtes NEIN.
