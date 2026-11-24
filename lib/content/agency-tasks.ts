@@ -5,7 +5,8 @@ import type { ClaimKey } from "@/lib/claims";
  * "Todo lo que hace por tu agencia" as AGENCY TASKS (the owner's E2 order of 24.11., point 5, and his brief of 20.11. p. 4): the seven
  * cards of lib/content/strengths.ts bundled into four tasks, each with ONE proof (a product view) and ONE action; the details stay on
  * the function pages. Every line here is Copy's own short line from strengths.ts (the phone lines and the examples) or a WORKING cut of
- * it, marked, until Copy's stage 2 file; nothing new is promised. The day story (§C) is the strip of six moments, not a text block.
+ * it, marked, until Copy's stage 2 file; nothing new is promised.
+ * Copy 4fa1412 (24.11.) checked every line: A-1, A-2, A-4, A-5, A-6, A-7 final as set here; the rest confirmed as written. The day story (§C) is the strip of six moments, not a text block.
  */
 type L = Record<Locale, string>;
 const T = (es: string, en: string): L => ({ es, en });
@@ -27,21 +28,22 @@ export const agencyTasks = {
     {
       key: "atender", keys: ["replyWhatsapp", "replyEmail", "phoneAssistant", "crm"],
       title: T("Atiende por ti", "Answers for you"), // WORKING: from Copy's "Atiende el teléfono por ti" widened to the three channels
-      line: T("WhatsApp, email y teléfono: respuesta al momento y cada consulta en su ficha.", "WhatsApp, e-mail and phone: an instant reply, and every enquiry on its record."), // WORKING
-      proof: { kind: "chat", from: "Mila", text: T("¿Sigue disponible la ref. 9895153? ¿Me podéis llamar?", "Is ref. 9895153 still available? Can you call me?"), reply: T("Hola, Mila. Marta te llama esta tarde. ¿A qué hora te viene bien?", "Hi Mila. Marta will call you this afternoon. What time suits you?"), time: "11:42" },
-      action: { label: T("Ver la demo", "See the demo"), href: "#demo" },
+      line: T("WhatsApp, email y teléfono: cada consulta recibe respuesta y queda en su ficha.", "WhatsApp, email and phone: every enquiry gets a reply and lands on its record."), // Copy 4fa1412 A-2
+      // Copy 4fa1412 A-1: the reply is W-2 word for word (an assistant writes, no call time promised)
+      proof: { kind: "chat", from: "Mila", text: T("¿Sigue disponible la ref. 9895153? ¿Me podéis llamar?", "Is ref. 9895153 still available? Can you call me?"), reply: T("Hola, Mila, soy el asistente de Marta. La disponibilidad de la ref. 9895153 te la confirma ella por teléfono. ¿A qué hora te viene bien que te llame?", "Hi Mila, I'm Marta's assistant. Marta will confirm by phone whether ref. 9895153 is available. What time suits you for her to call?"), time: "11:42" },
+      action: { label: T("Ver cómo responde", "See how it replies"), href: "#demo" }, // Copy 4fa1412 A-4
     },
     {
       key: "captar", keys: ["adsLeads", "webform", "instagram"],
       title: T("Gana nuevos clientes", "Win new clients"), // Copy G-1
       line: T("De un comentario, un anuncio o un formulario a una consulta con su ficha.", "From a comment, an ad or a form to an enquiry with its own record."), // WORKING cut of Copy G-1
-      proof: { kind: "record", source: T("Formulario «¿Cuánto vale tu casa?»", "Form \"What is your home worth?\""), fields: [T("Isabel · casa en Mijas", "Isabel · house in Mijas"), T("Propietaria · quiere vender", "Owner · wants to sell"), T("Pide valoración · respondida al momento", "Asks for a valuation · answered at once")] },
+      proof: { kind: "record", source: T("Formulario «¿Cuánto vale tu casa?»", "Form \"What is your home worth?\""), fields: [T("Isabel · casa en Mijas", "Isabel · house in Mijas"), T("Propietaria · quiere vender", "Owner · wants to sell"), T("Pide valoración · respondida", "Asks for a valuation · answered")] }, // Copy 4fa1412 A-5
       action: { label: T("Cómo capta clientes", "How it wins clients"), href: "/platform" },
     },
     {
       key: "reactivar", keys: ["matching", "followup"],
       title: T("Reactiva tus contactos", "Bring contacts back"), // Copy G-2
-      line: T("Entra un inmueble que encaja y volvemos a escribir a quien lo buscaba, con su permiso.", "A listing that fits comes in, and we write again to whoever was looking, with their permission."), // WORKING cut of Copy G-2
+      line: T("Entra un inmueble que encaja y volvemos a escribir a quien buscaba algo así, con su permiso.", "A listing that fits comes in, and we write again to whoever was looking for something like it, with their permission."), // Copy 4fa1412 A-6
       proof: { kind: "match", listing: T("Entra: ático en Benalmádena, 275.000 €", "New: penthouse in Benalmádena, €275,000"), contact: T("Javier buscaba en marzo: ático, hasta 280.000 €", "Javier was looking in March: penthouse, up to €280,000"), answer: T("«¿Sigues buscando?» · «Sí, ¿cuándo puedo verlo?»", "\"Still looking?\" · \"Yes, when can I see it?\"") },
       action: { label: T("Cómo propone inmuebles", "How it suggests listings"), href: "/platform" },
     },
@@ -49,7 +51,7 @@ export const agencyTasks = {
       key: "dia", keys: ["taskList", "reportInLogin"],
       title: T("Cada mañana, el día claro", "Every morning, a clear day"), // Copy T-4
       line: T("Cada persona sabe qué toca hoy, y el lunes ves la semana en un informe.", "Everyone knows what is on today, and on Monday you see the week in one report."), // WORKING: Copy T-4 + T-8 in one line
-      proof: { kind: "day", head: T("08:30 · Buenos días, Marta. Hoy, 3 cosas:", "08:30 · Good morning, Marta. Today, 3 things:"), items: [T("Proponer fecha a los Keller", "Propose a date to the Kellers"), T("Devolver la llamada a Álvaro, desde las 16:00", "Call Álvaro back, from 16:00"), T("Enviar a Sofía lo disponible en alquiler", "Send Sofía what's available to rent")], foot: T("Lunes 08:00 · 25 consultas, 25 respondidas", "Monday 08:00 · 25 enquiries, 25 answered") },
+      proof: { kind: "day", head: T("08:30 · Buenos días, Marta. Hoy, 3 cosas:", "08:30 · Good morning, Marta. Today, 3 things:"), items: [T("Proponer fecha a los Keller", "Propose a date to the Kellers"), T("Devolver la llamada a Álvaro, desde las 16:00", "Call Álvaro back, from 16:00"), T("Enviar a Sofía lo disponible en alquiler", "Send Sofía what's available to rent")], foot: T("Lunes · llega el informe de tu semana", "Monday · your weekly report arrives") }, // Copy 4fa1412 A-7
       action: { label: T("Ver el informe de ejemplo", "See the example report"), href: "/example-report" },
     },
   ] satisfies AgencyTask[],
