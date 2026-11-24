@@ -1,0 +1,1143 @@
+{
+ "pin": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "pinEnd": "bea7d19/dpl_H6WfQ1GKkjwRtP8F5wq2ZH3SKjUK",
+ "pages": [
+  "/",
+  "/packages",
+  "/platform",
+  "/faq",
+  "/contact?interes=trial&plan=essential",
+  "/contact?interes=demo&plan=growth",
+  "/contact?interes=talk&plan=enterprise",
+  "/example-report",
+  "/trial"
+ ],
+ "unreadable": [],
+ "rows": [
+  {
+   "n": 1,
+   "key": "replyEmail",
+   "cls": "belegt",
+   "re": [
+    "/Responde por email/i",
+    "/contesta .{0,24}por email/i",
+    "/respuesta por email/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "Respuesta por email",
+     "ctx": "rtes 11:31  Asistente automático de la agencia  Respuesta por email · martes 11:33  Hola, Sofía. Gracias por tu mensaje. Bus"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "key": "replyOutOfHours",
+   "cls": "nachweis",
+   "re": [
+    "/tambi[eé]n de noche/i",
+    "/con la oficina cerrada/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "con la oficina cerrada",
+     "ctx": "n tarjeta.  9 de 25 9 de 25  consultas llegaron con la oficina cerrada. ¿Quién les contestó?  Semana de ejemplo · datos fict"
+    },
+    {
+     "path": "/packages",
+     "match": "también de noche",
+     "ctx": " equipo pequeño  Responde por WhatsApp y email, también de noche. Cada consulta en su ficha, con su prioridad y su motivo. C"
+    },
+    {
+     "path": "/example-report",
+     "match": "Con la oficina cerrada",
+     "ctx": "mana 3 Semana 4 0 10 20 30 Consultas  Recibidas Con la oficina cerrada  Cuatro semanas de ejemplo. Todas recibieron respuest"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "key": "replyWhatsapp (unsere Nummer)",
+   "cls": "bau",
+   "re": [
+    "/Responde por WhatsApp/i",
+    "/WhatsApp y email/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "WhatsApp y email",
+     "ctx": "en producción el 13.11.  Llega la consulta  Por WhatsApp y email, a cualquier hora.  Hola, busco un piso de 3 dormitorios en"
+    },
+    {
+     "path": "/packages",
+     "match": "Responde por WhatsApp",
+     "ctx": "in tarjeta.  Essential  Para un equipo pequeño  Responde por WhatsApp y email, también de noche. Cada consulta en su ficha, "
+    },
+    {
+     "path": "/platform",
+     "match": "WhatsApp y email",
+     "ctx": "ntos.  01  Atender consultas  Las consultas por WhatsApp y email se responden en español. Una consulta en otro idioma no rec"
+    },
+    {
+     "path": "/faq",
+     "match": "WhatsApp y email",
+     "ctx": "cia, en español, a las consultas que llegan por WhatsApp y email, y guarda lo importante de cada una en su ficha, con su pri"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "key": "whatsappOwnNumber",
+   "cls": "bau",
+   "exc": "Meta",
+   "re": [
+    "/WhatsApp de (la|tu) agencia/i",
+    "/n[uú]mero de tu agencia/i",
+    "/con el nuestro/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/packages",
+     "match": "número de tu agencia",
+     "ctx": "iquetas en tu bandeja de Gmail WhatsApp, con el número de tu agencia o con el nuestro Asistente telefónico Publicar en Insta"
+    },
+    {
+     "path": "/platform",
+     "match": "número de tu agencia",
+     "ctx": "ática.  WhatsApp Respuesta por WhatsApp, con el número de tu agencia. Email La misma respuesta para lo que llega al buzón de"
+    },
+    {
+     "path": "/faq",
+     "match": "número de tu agencia",
+     "ctx": "App de mi agencia? Sí. Damos de alta contigo el número de tu agencia y lo probamos con un mensaje real. ¿Qué cuesta? ¿Puedo "
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "key": "languageNoted",
+   "cls": "belegt",
+   "re": [
+    "/detecta(mos)? (el )?idioma/i",
+    "/reconoce el idioma/i",
+    "/en su idioma/i",
+    "/Traducci[oó]n:/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "detecta el idioma",
+     "ctx": "uesta  El idioma de cada cliente  NuovaSolution detecta el idioma de cada cliente y lo guarda en su ficha. Si no es español,"
+    },
+    {
+     "path": "/faq",
+     "match": "Reconoce el idioma",
+     "ctx": "? Hoy responde automáticamente solo en español. Reconoce el idioma de cada consulta y, si no es español, la pasa a tu equipo"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "key": "mailboxConnection",
+   "cls": "bau",
+   "re": [
+    "/Conecta tu buz[oó]n/i",
+    "/Conectamos tu buz[oó]n/i",
+    "/tu correo de Gmail o de Outlook/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/packages",
+     "match": "Tu correo de Gmail o de Outlook",
+     "ctx": "pañol por WhatsApp y email Detección del idioma Tu correo de Gmail o de Outlook Etiquetas en tu bandeja de Gmail WhatsApp, c"
+    },
+    {
+     "path": "/contact?interes=trial&plan=essential",
+     "match": "Conecta tu buzón",
+     "ctx": "prueba. Te escribimos y la activamos contigo. 2 Conecta tu buzón y tu WhatsApp. Lo probamos con un mensaje real. 3 Empiezan "
+    },
+    {
+     "path": "/contact?interes=demo&plan=growth",
+     "match": "Conecta tu buzón",
+     "ctx": "prueba. Te escribimos y la activamos contigo. 2 Conecta tu buzón y tu WhatsApp. Lo probamos con un mensaje real. 3 Empiezan "
+    },
+    {
+     "path": "/contact?interes=talk&plan=enterprise",
+     "match": "Conecta tu buzón",
+     "ctx": "prueba. Te escribimos y la activamos contigo. 2 Conecta tu buzón y tu WhatsApp. Lo probamos con un mensaje real. 3 Empiezan "
+    },
+    {
+     "path": "/trial",
+     "match": "Conecta tu buzón",
+     "ctx": "prueba. Te escribimos y la activamos contigo. 2 Conecta tu buzón y tu WhatsApp. Lo probamos con un mensaje real. 3 Empiezan "
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "key": "outlook",
+   "cls": "bau",
+   "re": [
+    "/Outlook/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/packages",
+     "match": "Outlook",
+     "ctx": "il Detección del idioma Tu correo de Gmail o de Outlook Etiquetas en tu bandeja de Gmail WhatsApp, con el número de tu agenc"
+    },
+    {
+     "path": "/faq",
+     "match": "Outlook",
+     "ctx": "s preguntas ¿Funciona con mi CRM? ¿Funciona con Outlook o Microsoft 365? ¿Atiende llamadas de teléfono? ¿Gestiona mi Instagr"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "key": "webform",
+   "cls": "bau",
+   "re": [
+    "/formulario web/i",
+    "/\\bFormulario\\b/"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "Formulario web",
+     "ctx": "onible que encaje.  a la ficha  FICHA DE SOFÍA  Formulario web · martes 11:31  ESTADO Consulta registrada INTENCIÓN alquilar"
+    },
+    {
+     "path": "/example-report",
+     "match": "Formulario web",
+     "ctx": "idas 25 Consultas WhatsApp 10 40 % Email 6 24 % Formulario web 3 12 % Teléfono 2 8 % Portales y anuncios 4 16 %  Las mismas "
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "key": "phoneAssistant",
+   "cls": "bau",
+   "exc": "Anwalt (Prod-Telefon)",
+   "re": [
+    "/no confirma citas/i",
+    "/Tel[eé]fono/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "Teléfono",
+     "ctx": " escribe el cliente.  WhatsApp Email Formulario Teléfono M  Mila · compradora  en línea  Hola, busco un piso de 3 dormitorio"
+    },
+    {
+     "path": "/faq",
+     "match": "teléfono",
+     "ctx": "n Outlook o Microsoft 365? ¿Atiende llamadas de teléfono? ¿Gestiona mi Instagram? ¿Qué es Property Experience? ¿Me traéis le"
+    },
+    {
+     "path": "/contact?interes=trial&plan=essential",
+     "match": "TELÉFONO",
+     "ctx": "esa: Essential  EMAIL antonio@nuovasolution.com TELÉFONO +34603423161  QUÉ PASA AHORA  1 Pide tu prueba. Te escribimos y la "
+    },
+    {
+     "path": "/contact?interes=demo&plan=growth",
+     "match": "TELÉFONO",
+     "ctx": "teresa: Growth  EMAIL antonio@nuovasolution.com TELÉFONO +34603423161  QUÉ PASA AHORA  1 Pide tu prueba. Te escribimos y la "
+    },
+    {
+     "path": "/contact?interes=talk&plan=enterprise",
+     "match": "TELÉFONO",
+     "ctx": "sa: Enterprise  EMAIL antonio@nuovasolution.com TELÉFONO +34603423161  QUÉ PASA AHORA  1 Pide tu prueba. Te escribimos y la "
+    },
+    {
+     "path": "/example-report",
+     "match": "Teléfono",
+     "ctx": "sApp 10 40 % Email 6 24 % Formulario web 3 12 % Teléfono 2 8 % Portales y anuncios 4 16 %  Las mismas 25, según el canal de "
+    },
+    {
+     "path": "/trial",
+     "match": "TELÉFONO",
+     "ctx": "esa: Essential  EMAIL antonio@nuovasolution.com TELÉFONO +34603423161  QUÉ PASA AHORA  1 Pide tu prueba. Te escribimos y la "
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "key": "adsLeads",
+   "cls": "bau",
+   "exc": "Meta (Teil)",
+   "re": [
+    "/portales y anuncios/i",
+    "/anuncios/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/packages",
+     "match": "portales y anuncios",
+     "ctx": "es  INTEGRACIONES  Conexión con tu CRM Leads de portales y anuncios  SERVICIOS  Visualización 3D Opcional  Growth  Para equi"
+    },
+    {
+     "path": "/platform",
+     "match": "anuncios",
+     "ctx": "rmitiste, y cada contacto en su ficha. Leads de anuncios Recoge los leads de los anuncios que ya tienes. Las campañas siguen"
+    },
+    {
+     "path": "/faq",
+     "match": "anuncios",
+     "ctx": " ni compramos leads. Recogemos los leads de los anuncios que ya tienes.  ¿No está aquí la respuesta? Escribe a antonio@nuova"
+    },
+    {
+     "path": "/example-report",
+     "match": "Portales y anuncios",
+     "ctx": "ail 6 24 % Formulario web 3 12 % Teléfono 2 8 % Portales y anuncios 4 16 %  Las mismas 25, según el canal de llegada.  De co"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "key": "crm",
+   "cls": "belegt",
+   "re": [
+    "/Cada consulta en su ficha/i",
+    "/en su ficha/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "en su ficha",
+     "ctx": "e propone día y hora.  Organiza  Cada consulta, en su ficha: qué busca, zona y presupuesto.  Con su prioridad y el motivo, p"
+    },
+    {
+     "path": "/packages",
+     "match": "Cada consulta en su ficha",
+     "ctx": "esponde por WhatsApp y email, también de noche. Cada consulta en su ficha, con su prioridad y su motivo. Cada semana, un inf"
+    },
+    {
+     "path": "/platform",
+     "match": "en su ficha",
+     "ctx": "s Respuestas que tú permitiste, y cada contacto en su ficha. Leads de anuncios Recoge los leads de los anuncios que ya tiene"
+    },
+    {
+     "path": "/faq",
+     "match": "en su ficha",
+     "ctx": "App y email, y guarda lo importante de cada una en su ficha, con su prioridad y su motivo. ¿Qué canales se responden? ¿Respo"
+    },
+    {
+     "path": "/contact?interes=trial&plan=essential",
+     "match": "en su ficha",
+     "ctx": "da consulta recibe respuesta en español y queda en su ficha, con su prioridad y su motivo.  PRUEBA GRATUITA · 14 DÍAS CON ES"
+    },
+    {
+     "path": "/contact?interes=demo&plan=growth",
+     "match": "en su ficha",
+     "ctx": "da consulta recibe respuesta en español y queda en su ficha, con su prioridad y su motivo.  DEMO · GROWTH  Pide una demo de "
+    },
+    {
+     "path": "/contact?interes=talk&plan=enterprise",
+     "match": "en su ficha",
+     "ctx": "da consulta recibe respuesta en español y queda en su ficha, con su prioridad y su motivo.  ENTERPRISE  Hablemos de Enterpri"
+    },
+    {
+     "path": "/example-report",
+     "match": "En su ficha",
+     "ctx": "iben la primera respuesta en español al llegar. En su ficha, con prioridad y motivo Sin NuovaSolution: lo que alguien anote "
+    },
+    {
+     "path": "/trial",
+     "match": "en su ficha",
+     "ctx": "da consulta recibe respuesta en español y queda en su ficha, con su prioridad y su motivo.  PRUEBA GRATUITA · 14 DÍAS CON ES"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "key": "priorityWithReason",
+   "cls": "belegt",
+   "re": [
+    "/con su prioridad y su motivo/i",
+    "/prioridad/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "con su prioridad y su motivo",
+     "ctx": "ar  Lo que pide cada cliente queda en su ficha, con su prioridad y su motivo, y tu equipo sabe por dónde empezar.  Lo import"
+    },
+    {
+     "path": "/packages",
+     "match": "con su prioridad y su motivo",
+     "ctx": "l, también de noche. Cada consulta en su ficha, con su prioridad y su motivo. Cada semana, un informe con lo que pide tu ate"
+    },
+    {
+     "path": "/platform",
+     "match": "prioridad",
+     "ctx": "xto, de día o de noche Ver el módulo 02 Ficha y prioridad Guarda lo que te ha contado cada cliente Ver el módulo 03 CRM Lead"
+    },
+    {
+     "path": "/faq",
+     "match": "con su prioridad y su motivo",
+     "ctx": "y guarda lo importante de cada una en su ficha, con su prioridad y su motivo. ¿Qué canales se responden? ¿Responde de noche "
+    },
+    {
+     "path": "/contact?interes=trial&plan=essential",
+     "match": "con su prioridad y su motivo",
+     "ctx": "ecibe respuesta en español y queda en su ficha, con su prioridad y su motivo.  PRUEBA GRATUITA · 14 DÍAS CON ESSENTIAL  Prue"
+    },
+    {
+     "path": "/contact?interes=demo&plan=growth",
+     "match": "con su prioridad y su motivo",
+     "ctx": "ecibe respuesta en español y queda en su ficha, con su prioridad y su motivo.  DEMO · GROWTH  Pide una demo de Growth  Te en"
+    },
+    {
+     "path": "/contact?interes=talk&plan=enterprise",
+     "match": "con su prioridad y su motivo",
+     "ctx": "ecibe respuesta en español y queda en su ficha, con su prioridad y su motivo.  ENTERPRISE  Hablemos de Enterprise  Cuéntanos"
+    },
+    {
+     "path": "/example-report",
+     "match": "prioridad",
+     "ctx": "espuesta en español al llegar. En su ficha, con prioridad y motivo Sin NuovaSolution: lo que alguien anote Con NuovaSolution"
+    },
+    {
+     "path": "/trial",
+     "match": "con su prioridad y su motivo",
+     "ctx": "ecibe respuesta en español y queda en su ficha, con su prioridad y su motivo.  PRUEBA GRATUITA · 14 DÍAS CON ESSENTIAL  Prue"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "key": "origin",
+   "cls": "belegt",
+   "re": [
+    "/Herkunft|procedencia|de d[oó]nde (viene|llega)/i",
+    "/WhatsApp · |Email · /"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "de dónde llega",
+     "ctx": "das.  Cerrar  No es solo responder antes. Sabes de dónde llegan tus clientes, vuelves a ellos cuando entra un inmueble que e"
+    },
+    {
+     "path": "/example-report",
+     "match": "de dónde llega",
+     "ctx": " llegar y las 25 en su ficha. Y cada semana ves de dónde llegan tus clientes, para decidir dónde crecer.  En este ejemplo na"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "key": "labels",
+   "cls": "belegt",
+   "re": [
+    "/etiquetas?/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "etiqueta",
+     "ctx": "a  Tu buzón, ordenado  Cada correo llega con su etiqueta: visita, valoración, alquiler.  Buzón de la agencia Gmail Laura Ser"
+    },
+    {
+     "path": "/packages",
+     "match": "Etiquetas",
+     "ctx": "ción del idioma Tu correo de Gmail o de Outlook Etiquetas en tu bandeja de Gmail WhatsApp, con el número de tu agencia o con"
+    },
+    {
+     "path": "/platform",
+     "match": "Etiquetas",
+     "ctx": "nsulta, con lo que pidió y lo que pasó después. Etiquetas de email Los correos llevan su etiqueta: visita, valoración, alqui"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "key": "oneRecordAcrossChannels",
+   "cls": "nachweis",
+   "re": [
+    "/una sola ficha/i",
+    "/un solo registro/i",
+    "/misma persona/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/faq",
+     "match": "una sola ficha",
+     "ctx": "ona escribe por email y luego por WhatsApp, ¿es una sola ficha? ¿Me dice qué leads están calientes? ¿Dónde trabaja mi equipo"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "key": "listingLink",
+   "cls": "belegt",
+   "re": [
+    "/Lee el anuncio/i",
+    "/el anuncio que te env[ií]a/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "Lee el anuncio",
+     "ctx": "nuncio  FICHA 320.000 € · 2 dormitorios · 85 m² Lee el anuncio que te envía el cliente  Ficha: 320.000 € · 2 dormitorios · 8"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "key": "reminders 1h",
+   "cls": "belegt",
+   "re": [
+    "/te la recuerda a la hora/i",
+    "/se lo recordamos a Marta/i",
+    "/recordamos/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "se lo recordamos a Marta",
+     "ctx": "de llamada  Si nadie coge la tarea en una hora, se lo recordamos a Marta.  Ver qué plan te encaja  Ejemplo · datos ficticios"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "key": "Eskalation 2h",
+   "cls": "belegt",
+   "re": [
+    "/avisa al responsable a las dos/i",
+    "/avisa al responsable/i"
+   ],
+   "rendered": false,
+   "hits": []
+  },
+  {
+   "n": 20,
+   "key": "alert",
+   "cls": "bau",
+   "re": [
+    "/avis(o|a) por (correo|email)/i",
+    "/alerta/i"
+   ],
+   "rendered": false,
+   "hits": []
+  },
+  {
+   "n": 21,
+   "key": "P-11 Aufgabentitel mit Kunde und Objekt",
+   "cls": "bau",
+   "re": [
+    "/Llamar a Mila/i",
+    "/9895153/"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "Llamar a Mila",
+     "ctx": " 9895153? ¿Me podéis llamar?  TAREA PARA MARTA  Llamar a Mila · Comprobar disponibilidad de la ref. 9895153  Pide que la lla"
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "key": "P-14 spätere Antwort aktualisiert die Aufgabe",
+   "cls": "bau",
+   "re": [
+    "/a partir de las 17:00/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "a partir de las 17:00",
+     "ctx": "ne bien que te llame?  11:42  Mejor esta tarde, a partir de las 17:00.  11:44  Asistente automático de la agencia  Gracias, "
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "key": "taskList",
+   "cls": "nachweis/bau",
+   "re": [
+    "/su lista de tareas/i",
+    "/Cada persona, su lista/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/packages",
+     "match": "su lista de tareas",
+     "ctx": " Todo lo de Essential, y además:  Cada persona, su lista de tareas del día. Propone inmuebles que encajan con cada cliente. "
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "key": "dailyVoice",
+   "cls": "bau",
+   "re": [
+    "/asistente de voz/i",
+    "/por voz/i",
+    "/Tomar\\b/"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "Tomar",
+     "ctx": "ueble, zona y presupuesto Proponerle día y hora Tomar DEMO VALORACIÓN Carmen Ortega · Email propietaria que pide cita esta s"
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "key": "teamRoles",
+   "cls": "bau",
+   "re": [
+    "/Tu equipo y sus roles/i",
+    "/PARA MARTA/i",
+    "/para Marta/",
+    "/se reparten el trabajo/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "PARA MARTA",
+     "ctx": "ible la ref. 9895153? ¿Me podéis llamar?  TAREA PARA MARTA  Llamar a Mila · Comprobar disponibilidad de la ref. 9895153  Pid"
+    },
+    {
+     "path": "/packages",
+     "match": "se reparten el trabajo",
+     "ctx": "r todo lo que incluye  Growth  Para equipos que se reparten el trabajo  Todo lo de Essential, y además:  Cada persona, su li"
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "key": "matching",
+   "cls": "bau",
+   "re": [
+    "/Propone inmuebles que encajan/i",
+    "/inmuebles que encajan/i",
+    "/selecci[oó]n corta del inventario/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "Inmuebles que encajan",
+     "ctx": "204 Portal Daniel Ruiz Adosado en Mijas Anuncio Inmuebles que encajan  NuovaSolution compara lo que busca el cliente con tu "
+    },
+    {
+     "path": "/packages",
+     "match": "Propone inmuebles que encajan",
+     "ctx": "más:  Cada persona, su lista de tareas del día. Propone inmuebles que encajan con cada cliente. Seguimiento de tus contactos"
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "key": "followup",
+   "cls": "bau",
+   "exc": "Anwalt",
+   "re": [
+    "/Seguimiento/i",
+    "/con su permiso/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "seguimiento",
+     "ctx": "0 pasa a Carlos · 16:00 piso que encaja · 18:00 seguimiento · 23:40 respuesta de noche  Ejemplo · nombres ficticios  QUIÉN E"
+    },
+    {
+     "path": "/packages",
+     "match": "Seguimiento",
+     "ctx": "Propone inmuebles que encajan con cada cliente. Seguimiento de tus contactos, con su permiso. Pide una demo de Growth  Te es"
+    },
+    {
+     "path": "/platform",
+     "match": "Seguimiento",
+     "ctx": "artera que encajan con lo que busca el cliente. Seguimientos Un mensaje útil cuando entra algo que encaja, solo con permiso "
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "key": "reportInLogin",
+   "cls": "belegt",
+   "re": [
+    "/un informe en tu cuenta/i",
+    "/informe en tu acceso/i",
+    "/en tu acceso/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/platform",
+     "match": "en tu acceso",
+     "ctx": "llamada pendiente. Informes El informe completo en tu acceso de agencia y un resumen semanal por email. Lo que llega al clie"
+    },
+    {
+     "path": "/example-report",
+     "match": "en tu acceso",
+     "ctx": "a de inicio. El informe real de tu agencia está en tu acceso.  Consultas recibidas 25 consultas nuevas registradas en la sem"
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "key": "weeklyEmail",
+   "cls": "bau",
+   "re": [
+    "/el informe de la semana/i",
+    "/en tu correo/i"
+   ],
+   "rendered": false,
+   "hits": []
+  },
+  {
+   "n": 30,
+   "key": "reportTrend",
+   "cls": "bau",
+   "re": [
+    "/lo que pide tu atenci[oó]n/i",
+    "/tendencia/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/packages",
+     "match": "lo que pide tu atención",
+     "ctx": "oridad y su motivo. Cada semana, un informe con lo que pide tu atención. Prueba Essential gratis durante 14 días  Sin tarjet"
+    }
+   ]
+  },
+  {
+   "n": 31,
+   "key": "integrations (CRM-Namen)",
+   "cls": "bau",
+   "re": [
+    "/HubSpot/i",
+    "/Pipedrive/i",
+    "/Zoho/i",
+    "/Salesforce/i"
+   ],
+   "rendered": false,
+   "hits": []
+  },
+  {
+   "n": 32,
+   "key": "model3d",
+   "cls": "bau",
+   "re": [
+    "/\\b3D\\b/",
+    "/Por encargo/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "3D",
+     "ctx": "cer.  Opcional, con cualquier plan Tu plano, en 3D  Del plano a imágenes de anuncio.  UN DÍA CON NUOVASOLUTION  Mientras ens"
+    },
+    {
+     "path": "/packages",
+     "match": "3D",
+     "ctx": "e portales y anuncios  SERVICIOS  Visualización 3D Opcional  Growth  Para equipos que se reparten el trabajo  Todo lo de Ess"
+    },
+    {
+     "path": "/platform",
+     "match": "3D",
+     "ctx": "Las campañas siguen siendo tuyas. Visualización 3D Un modelo 3D de tu inmueble, hecho por nosotros a partir de tu plano.  CA"
+    },
+    {
+     "path": "/faq",
+     "match": "3D",
+     "ctx": "pruebas. ¿Qué es Property Experience? Un modelo 3D interactivo de un inmueble en el navegador, como servicio que construimos"
+    },
+    {
+     "path": "/contact?interes=trial&plan=essential",
+     "match": "3D",
+     "ctx": "o de Growth Enterprise Contratar un plan Modelo 3D de un inmueble Otra consulta Mensaje (opcional)  Usamos tus datos solo pa"
+    },
+    {
+     "path": "/contact?interes=demo&plan=growth",
+     "match": "3D",
+     "ctx": "o de Growth Enterprise Contratar un plan Modelo 3D de un inmueble Otra consulta Mensaje (opcional)  Usamos tus datos solo pa"
+    },
+    {
+     "path": "/contact?interes=talk&plan=enterprise",
+     "match": "3D",
+     "ctx": "o de Growth Enterprise Contratar un plan Modelo 3D de un inmueble Otra consulta Mensaje (opcional)  Usamos tus datos solo pa"
+    },
+    {
+     "path": "/trial",
+     "match": "3D",
+     "ctx": "o de Growth Enterprise Contratar un plan Modelo 3D de un inmueble Otra consulta Mensaje (opcional)  Usamos tus datos solo pa"
+    }
+   ]
+  },
+  {
+   "n": 33,
+   "key": "instagram",
+   "cls": "bau",
+   "exc": "Meta",
+   "re": [
+    "/redes sociales/i",
+    "/Instagram/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "redes sociales",
+     "ctx": "s oportunidades para tu agencia. Desde Growth · redes sociales en Enterprise Gana nuevos clientes  De un comentario a una co"
+    },
+    {
+     "path": "/packages",
+     "match": "redes sociales",
+     "ctx": "ersonas en la cuenta. Clientes nuevos desde tus redes sociales. Habla con nosotros sobre Enterprise  Te escribimos para acor"
+    },
+    {
+     "path": "/platform",
+     "match": "Instagram",
+     "ctx": "mejor de enseñar un inmueble.  Publicaciones en Instagram Un texto preparado para cada inmueble; tú lo apruebas antes de que"
+    },
+    {
+     "path": "/faq",
+     "match": "Instagram",
+     "ctx": "65? ¿Atiende llamadas de teléfono? ¿Gestiona mi Instagram? ¿Qué es Property Experience? ¿Me traéis leads de publicidad?  ¿No"
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "key": "plans + Vergleichstabelle",
+   "cls": "bau",
+   "re": [
+    "/Elige tu plan/i",
+    "/Essential/",
+    "/Growth/",
+    "/Enterprise/"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "Essential",
+     "ctx": "datos ficticios  Ver cómo queda la tarea Prueba Essential gratis  14 días gratis, sin tarjeta.  9 de 25 9 de 25  consultas l"
+    },
+    {
+     "path": "/packages",
+     "match": "Elige tu plan",
+     "ctx": "ga a nadie.  Solo en la vista previa +  PLANES  Elige tu plan  Essential se prueba gratis 14 días, sin tarjeta. Growth empie"
+    },
+    {
+     "path": "/platform",
+     "match": "Essential",
+     "ctx": "r. Tu próxima consulta ya está en camino Prueba Essential gratis  NuovaSolution responde en nombre de tu agencia y guarda lo"
+    },
+    {
+     "path": "/faq",
+     "match": "Essential",
+     "ctx": "La única pregunta es qué pasa con ella.  Prueba Essential gratis  NuovaSolution responde en nombre de tu agencia y guarda lo"
+    },
+    {
+     "path": "/contact?interes=trial&plan=essential",
+     "match": "Essential",
+     "ctx": "e te encaja y su precio.  Plan que te interesa: Essential  EMAIL antonio@nuovasolution.com TELÉFONO +34603423161  QUÉ PASA A"
+    },
+    {
+     "path": "/contact?interes=demo&plan=growth",
+     "match": "Essential",
+     "ctx": "refieras.  ¿Qué te interesa? Prueba gratuita de Essential Demo de Growth Enterprise Contratar un plan Modelo 3D de un inmueb"
+    },
+    {
+     "path": "/contact?interes=talk&plan=enterprise",
+     "match": "Essential",
+     "ctx": "refieras.  ¿Qué te interesa? Prueba gratuita de Essential Demo de Growth Enterprise Contratar un plan Modelo 3D de un inmueb"
+    },
+    {
+     "path": "/example-report",
+     "match": "Essential",
+     "ctx": " consultas; no hay cifras que rellenar.  Prueba Essential gratis Ya tengo acceso: ver mi informe  Datos de ejemplo  NuovaSol"
+    },
+    {
+     "path": "/trial",
+     "match": "Essential",
+     "ctx": "e te encaja y su precio.  Plan que te interesa: Essential  EMAIL antonio@nuovasolution.com TELÉFONO +34603423161  QUÉ PASA A"
+    }
+   ]
+  },
+  {
+   "n": 35,
+   "key": "pilotCta 14 días gratis",
+   "cls": "bau",
+   "re": [
+    "/Prueba Essential gratis/i",
+    "/14 d[ií]as gratis/i",
+    "/sin tarjeta/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "Prueba Essential gratis",
+     "ctx": "mplo · datos ficticios  Ver cómo queda la tarea Prueba Essential gratis  14 días gratis, sin tarjeta.  9 de 25 9 de 25  cons"
+    },
+    {
+     "path": "/packages",
+     "match": "Prueba Essential gratis",
+     "ctx": "semana, un informe con lo que pide tu atención. Prueba Essential gratis durante 14 días  Sin tarjeta. Te escribimos para act"
+    },
+    {
+     "path": "/platform",
+     "match": "Prueba Essential gratis",
+     "ctx": "sactivar. Tu próxima consulta ya está en camino Prueba Essential gratis  NuovaSolution responde en nombre de tu agencia y gu"
+    },
+    {
+     "path": "/faq",
+     "match": "Prueba Essential gratis",
+     "ctx": "amino  La única pregunta es qué pasa con ella.  Prueba Essential gratis  NuovaSolution responde en nombre de tu agencia y gu"
+    },
+    {
+     "path": "/contact?interes=trial&plan=essential",
+     "match": "Prueba Essential gratis",
+     "ctx": "tivo.  PRUEBA GRATUITA · 14 DÍAS CON ESSENTIAL  Prueba Essential gratis durante 14 días  Preparamos Essential contigo y empi"
+    },
+    {
+     "path": "/contact?interes=demo&plan=growth",
+     "match": "Prueba Essential gratis",
+     "ctx": " Ficha y prioridad CRM Tareas diarias  EMPEZAR  Prueba Essential gratis Paquetes Iniciar sesión  EMPRESA  Preguntas Contacto"
+    },
+    {
+     "path": "/contact?interes=talk&plan=enterprise",
+     "match": "Prueba Essential gratis",
+     "ctx": " Ficha y prioridad CRM Tareas diarias  EMPEZAR  Prueba Essential gratis Paquetes Iniciar sesión  EMPRESA  Preguntas Contacto"
+    },
+    {
+     "path": "/example-report",
+     "match": "Prueba Essential gratis",
+     "ctx": "con tus consultas; no hay cifras que rellenar.  Prueba Essential gratis Ya tengo acceso: ver mi informe  Datos de ejemplo  N"
+    },
+    {
+     "path": "/trial",
+     "match": "Prueba Essential gratis",
+     "ctx": "tivo.  PRUEBA GRATUITA · 14 DÍAS CON ESSENTIAL  Prueba Essential gratis durante 14 días  Preparamos Essential contigo y empi"
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "key": "Testgrenzen 3 Personen / 750 / 1 Postfach / 1 CRM",
+   "cls": "bau",
+   "re": [
+    "/3 personas/i",
+    "/750/",
+    "/1 buz[oó]n/i"
+   ],
+   "rendered": false,
+   "hits": []
+  },
+  {
+   "n": 37,
+   "key": "P-9 nach dem Testende",
+   "cls": "bau",
+   "re": [
+    "/cuando (termina|acaba) la prueba/i",
+    "/al final de la prueba/i",
+    "/despu[eé]s de los 14/i"
+   ],
+   "rendered": false,
+   "hits": []
+  },
+  {
+   "n": 38,
+   "key": "P-2 'Te escribimos en 24 h'",
+   "cls": "bau",
+   "re": [
+    "/en 24 ?h/i",
+    "/24 horas laborables/i"
+   ],
+   "rendered": false,
+   "hits": []
+  },
+  {
+   "n": 39,
+   "key": "Growth→Demo, Enterprise→Gespräch",
+   "cls": "bau",
+   "re": [
+    "/Pedir la demo/i",
+    "/Hablemos de Enterprise/i",
+    "/plan Growth/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/contact?interes=demo&plan=growth",
+     "match": "Pedir la demo",
+     "ctx": " Más información en la política de privacidad.  Pedir la demo  /es/contact  NuovaSolution responde en nombre de tu agencia y"
+    },
+    {
+     "path": "/contact?interes=talk&plan=enterprise",
+     "match": "Hablemos de Enterprise",
+     "ctx": "cha, con su prioridad y su motivo.  ENTERPRISE  Hablemos de Enterprise  Cuéntanos cómo es tu agencia y cómo trabajáis. Te pr"
+    }
+   ]
+  },
+  {
+   "n": 40,
+   "key": "Growth 8 Personen / 3 CRM",
+   "cls": "bau",
+   "re": [
+    "/8 personas/i",
+    "/3 conexiones/i",
+    "/3 CRM/i"
+   ],
+   "rendered": false,
+   "hits": []
+  },
+  {
+   "n": 41,
+   "key": "Enterprise 50 Personen / 10 CRM / 3D 25",
+   "cls": "bau",
+   "re": [
+    "/Hasta 50 personas/i",
+    "/10 CRM/i",
+    "/25 /"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/packages",
+     "match": "Hasta 50 personas",
+     "ctx": "agencias grandes  Todo lo de Growth, y además:  Hasta 50 personas en la cuenta. Clientes nuevos desde tus redes sociales. Ha"
+    },
+    {
+     "path": "/example-report",
+     "match": "25 ",
+     "ctx": "semana, ninguna Tu mejor canal WhatsApp · 10 de 25 consultas El canal por el que llegaron más consultas en la semana. Hora p"
+    }
+   ]
+  },
+  {
+   "n": 42,
+   "key": "X-1 varias oficinas",
+   "cls": "bau",
+   "re": [
+    "/varias oficinas/i",
+    "/una oficina/i"
+   ],
+   "rendered": false,
+   "hits": []
+  },
+  {
+   "n": 43,
+   "key": "X-5 1.000 Minuten / X-6 Feed",
+   "cls": "bau",
+   "re": [
+    "/1\\.?000 minutos/i",
+    "/feed/i"
+   ],
+   "rendered": false,
+   "hits": []
+  },
+  {
+   "n": 44,
+   "key": "'Las condiciones, por escrito.'",
+   "cls": "bau",
+   "exc": "Anwalt",
+   "re": [
+    "/Las condiciones, por escrito/i",
+    "/condiciones por escrito/i",
+    "/por escrito/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/packages",
+     "match": "por escrito",
+     "ctx": "o usas en tu agencia con nosotros al lado. Todo por escrito.  Prueba Essential gratis  14 días gratis, sin tarjeta.  NuovaSo"
+    },
+    {
+     "path": "/faq",
+     "match": "condiciones por escrito",
+     "ctx": "demo y Enterprise, en una conversación, con las condiciones por escrito. ¿Qué incluye la prueba? ¿Puedo empezar yo solo, sin"
+    },
+    {
+     "path": "/contact?interes=trial&plan=essential",
+     "match": "las condiciones, por escrito",
+     "ctx": "al contigo y empiezan tus 14 días. Sin tarjeta; las condiciones, por escrito.  Nombre de la agencia Tu nombre Email de traba"
+    },
+    {
+     "path": "/contact?interes=talk&plan=enterprise",
+     "match": "por escrito",
+     "ctx": "onemos una conversación y después una propuesta por escrito.  Nombre de la agencia Tu nombre Email de trabajo Teléfono  Emai"
+    },
+    {
+     "path": "/trial",
+     "match": "las condiciones, por escrito",
+     "ctx": "al contigo y empiezan tus 14 días. Sin tarjeta; las condiciones, por escrito.  Nombre de la agencia Tu nombre Email de traba"
+    }
+   ]
+  },
+  {
+   "n": 45,
+   "key": "Termine",
+   "cls": "nachweis",
+   "re": [
+    "/confirma la (cita|visita)/i",
+    "/\\bvisita\\b/i",
+    "/\\bcita\\b/i"
+   ],
+   "rendered": true,
+   "hits": [
+    {
+     "path": "/",
+     "match": "visita",
+     "ctx": "nadie.  Solo en la vista previa +  Estás en una visita · 11:40  PARA AGENCIAS INMOBILIARIAS EN ESPAÑA  Mientras enseñas un p"
+    },
+    {
+     "path": "/platform",
+     "match": "visita",
+     "ctx": "quetas de email Los correos llevan su etiqueta: visita, valoración, alquiler. Avisos de consultas importantes Un email a la "
+    },
+    {
+     "path": "/faq",
+     "match": "visita",
+     "ctx": "precio, ni fecha, ni condición. Una petición de visita se registra como petición y una persona la confirma. ¿Sustituye a mi "
+    },
+    {
+     "path": "/example-report",
+     "match": "visita",
+     "ctx": "en la que llegaron más consultas. De consulta a visita 24 % · 6 de 25 Visitas pedidas sobre consultas recibidas. No es una t"
+    }
+   ]
+  }
+ ]
+}
