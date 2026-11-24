@@ -112,19 +112,10 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
   /** The person took over: the rotation ends for good (the Reviewer's condition: a click stops). */
   const stopAuto = () => setAuto(false);
 
-  // The rotation: a finished run, the surface in view, nobody has clicked → after the pause the next channel of the view.
-  useEffect(() => {
-    if (!auto || !done || !seen || channels.length < 2) return;
-    const t = window.setTimeout(() => {
-      if (!inView.current) return;
-      const keys = channels.map((c) => c.key);
-      const next = keys[(keys.indexOf(channel) + 1) % keys.length];
-      setChannel(next);
-      run(channels.find((x) => x.key === next) as DemoChannel);
-    }, PAUSE);
-    return () => window.clearTimeout(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auto, done, seen, channel]);
+  // The owner's R-12 decision (24.11.): the demonstration plays ONCE and the finished task stays; no rotation to the next channel,
+  // no restart — another run only on the person's click (a channel tab or "Repetir demo"). `auto` still records whether the
+  // person took over, for the data attribute and the first run.
+  void PAUSE;
 
   // The demonstration's own run links ([data-demo-run]) run it again; the task links ([data-demo-end]) open the finished task (WhatsApp) at once.
   useEffect(() => {

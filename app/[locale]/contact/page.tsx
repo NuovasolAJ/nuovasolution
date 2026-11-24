@@ -42,7 +42,9 @@ export default function ContactPage({ params, searchParams }: { params: { locale
   const subj = brief1120.contact.subject;
   const subject = interest === "trial" ? subj.trial[locale] : interest === "demo" ? subj.demo[locale] : interest === "talk" ? subj.talk[locale] : interest === "contract" && plan ? subj.contract[locale].replace("{plan}", plan.display_name) : undefined;
   const phone = process.env.NUOVA_E14_PHONE?.trim() || null;
-  const steps = home1103.entry.steps(locale, s.view);
+  // the owner's feedback on bea7d19 (24.11., point 2): the 14-day steps belong to the trial way only; demo, conversation and contract show
+  // their own steps BEFORE sending — the same steps the confirmation names after sending (Copy's lines); "other"/3D show none
+  const steps: { b: string; t: string }[] = interest === "trial" ? home1103.entry.steps(locale, s.view) : w.done.confirmation(interest, locale, plan?.display_name).steps.map((b) => ({ b, t: "" }));
 
   return (
     <section aria-labelledby="ct-h1" className="contact" data-contact data-contact-phone={phone ? "set" : "unset"}>
@@ -69,7 +71,8 @@ export default function ContactPage({ params, searchParams }: { params: { locale
             )}
           </dl>
           {/* 16.11. 14:00 (the owner's point 7): the left area carries what happens after the request — the three steps of the pilot */}
-          <div className="contact-next" data-contact-next>
+          {steps.length > 0 && (
+          <div className="contact-next" data-contact-next={interest}>
             <p className="t-eyebrow text-text-muted">{l(w.done.next)}</p>
             <ol className="prq-steps contact-steps">
               {steps.map((st, i) => (
@@ -77,6 +80,7 @@ export default function ContactPage({ params, searchParams }: { params: { locale
               ))}
             </ol>
           </div>
+          )}
         </Reveal>
 
         <Reveal delay={80} className="contact-card stage" data-pilot-card data-request-card={interest}>
