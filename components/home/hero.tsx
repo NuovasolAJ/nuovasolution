@@ -63,9 +63,11 @@ export function Hero({ locale, view }: { locale: Locale; view: ClaimView }) {
             </div>
             <div className="hf-ctas">
               <a href="#demo" className="hf-cta-main lift" data-hero-cta="task" data-demo-end>{l(b.cta)}</a>
+              {/* the trial's way stays reachable from the first screen for the keyboard and the screen reader (visually it lives in the header
+                  and the phone bar). RV6 R-13 (34ebc36): a plain sr-only link swallows a sighted keyboard user's focus, so this one appears
+                  as the second button while it has keyboard focus (the skip-link pattern) */}
+              <a href={p(brief1120.href.essential)} className="hf-cta-trial-kbd" data-hero-cta="trial" data-pilot-cta="hero">{l(b.ctaTrial)}</a>
             </div>
-            {/* the trial's way stays reachable from the first screen for the measurements and the keyboard: visually part of the header/phone bar */}
-            <a href={p(brief1120.href.essential)} className="sr-only" data-hero-cta="trial" data-pilot-cta="hero">{l(b.ctaTrial)}</a>
           </div>
         </div>
       </section>

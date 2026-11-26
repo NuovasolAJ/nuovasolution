@@ -2160,6 +2160,11 @@ html.js .hf-scene-live .hf-scene-task { animation-name: hf-build; animation-dura
 @keyframes hf-fade { from { opacity: 0; } }
 /* the main action without an arrow (the owner: no arrows) */
 [data-hero-e2] .hf-cta-main { gap: 0; }
+/* RV6 R-13 (34ebc36): the trial's way on the first screen is clipped for sighted readers (the owner's rule: one action) but stays a
+   tab stop — so while it has keyboard focus it appears as the second button (the skip-link pattern); the focus never disappears */
+.hf-cta-trial-kbd { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.hf-cta-trial-kbd:focus-visible { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 8px 16px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.6); background: rgba(255, 255, 255, 0.1); color: #fff; font-size: 0.9375rem; font-weight: 500; outline: 2px solid #fff; outline-offset: 3px; }
+@media (max-width: 639px) { .hf-cta-trial-kbd:focus-visible { width: 100%; } }
 
 /* --- the agency tasks (components/home/agency-tasks.tsx) --- */
 .at { padding-top: 56px; padding-bottom: 40px; background: var(--sand-100); }
