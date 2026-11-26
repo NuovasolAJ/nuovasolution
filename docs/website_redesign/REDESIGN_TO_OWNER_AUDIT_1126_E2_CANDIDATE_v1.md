@@ -47,6 +47,13 @@ Folder on the owner's machine: `C:\Users\Usuario\Desktop\owner_evidence_1117\web
 (before: 839, below the fold); 1280 × 720: 668 of 720; 1440 × 900: 843 of 900. Fixed by the short-window block in `app/globals.css`
 (two-line headline, two-line sentence, tighter living picture). **F22b** is no defect by the owner's decision of 23.11. (the check shows plan membership, RV6 3e63452).
 
+**R-13 (RV6 34ebc36, source pre-finding, 26.11.):** the trial link on the first screen was a clipped `sr-only` tab stop, so a sighted keyboard
+user's focus vanished there. Fixed on the candidate after `0c3a57d`: the link stays clipped while unfocused and appears as the second button
+while it holds keyboard focus (the skip-link pattern). Measured with real Tab presses on the local build: 1366 × 768 = 13 presses, 198 × 44 px
+at y = 644 (still above the fold); 390 = 6 presses, 358 × 44 px. Evidence `docs/website_redesign/evidence/r13-probe.mjs` and
+`r13-local-34ebc36-plus.json`; pictures `e2_kandidat_1124\r13\`. RV6 measures it again on the deployment. **The candidate for the push is
+therefore the commit named at release, not `0c3a57d`.**
+
 ## 4. The builder's grades (the owner's six criteria; RV6 grades independently)
 
 | Section | Understanding | Little text | Modern | Premium | Sells | Easy trial | Two references |
