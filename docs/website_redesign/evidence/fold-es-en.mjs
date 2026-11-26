@@ -16,14 +16,14 @@ const measure = (page, h) => page.evaluate((h) => {
     overflow: { scene: over(".hf-scene"), msg: over(".hf-scene-msg"), text: over(".hf-scene-text"), translation: over(".hf-scene-translation"), task: over("[data-hero-scene-task]"), h1: over("#hero-h1"), lead: over(".hf-lead") },
   };
 }, h);
-for (const [w, h] of [[375, 667], [390, 844], [1280, 720], [1366, 768], [1440, 900]]) {
+for (const [w, h] of [[360, 640], [375, 667], [390, 844], [414, 896], [1280, 720], [1366, 768], [1440, 900]]) {
   for (const locale of ["es", "en"]) {
     const ctx = await browser.newContext({ viewport: { width: w, height: h } });
     const page = await ctx.newPage();
     await page.goto(`${base}/${locale}`, { waitUntil: "networkidle" });
     await page.waitForTimeout(3200);
     const withF = await measure(page, h);
-    await page.evaluate(() => { document.querySelectorAll("[data-env], [data-preview-switches]").forEach((e) => e.remove()); window.scrollTo(0, 0); });
+    await page.evaluate(() => { document.querySelectorAll("[data-env], [data-env-marker], [data-preview-switches]").forEach((e) => e.remove()); window.scrollTo(0, 0); });
     await page.waitForTimeout(400);
     const without = await measure(page, h);
     rows.push({ viewport: `${w}x${h}`, locale, furniturePx: withF.ribbonPx + withF.switchesPx, with_task: withF.taskHeadroom, with_main: withF.mainHeadroom, without_task: without.taskHeadroom, without_main: without.mainHeadroom, overflow: withF.overflow });
