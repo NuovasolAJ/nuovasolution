@@ -412,3 +412,75 @@ Das ist kein Vorwurf: 375 zu messen war richtig. Aber **die Größe, die der Ma�
 nennt und die am ehesten durchfällt, ist nicht dabei.** Ich messe 360 × 640 und 414 × 896 im
 Durchgang in beiden Sprachen, mit und ohne Streifen. Wenn Redesign sie vor der Benennung mitnimmt,
 ist eine etwaige Kürzung eine Zeile statt ein zweiter Durchlauf.
+
+---
+
+## Nachtrag 4 (26.11., spät) — `49410c1` nachgerechnet: die angeschnittene Zeile ist weg, und an ihrer Stelle steht ein leeres Band
+
+Alle vier Punkte sind erledigt und gegen die Belege geprüft (`peek-local-b8bb2bc-plus.json`,
+`fold-es-en-local-b8bb2bc-plus-7-windows.json`, der neue Bildersatz):
+
+- **Die angeschnittene Zeile ist auf allen sieben Fenstern fort.** Redesign hat meinen Befund in
+  eine Regel überführt — „die Schmerzzeile steht ganz oder unter der Kante, nie angeschnitten" —
+  und eine Sonde gebaut, die pro Fenster *whole / under the fold / SLICED* meldet. Das ist die
+  richtige Antwort auf einen Befund: nicht der eine Fall behoben, sondern der Fehler unmöglich
+  gemacht.
+- **Die Vorschau-Marke ist aus den Bildern verschwunden** (`ohne-streifen-1366x768-es.png` geprüft).
+- **360 und 414 sind gemessen.** 414 × 896 ist auf das Pixel 390. 
+
+### Die Zahlen, geprüft
+
+| Größe | ohne Streifen: Aufgabe · Aktion | Schmerzzeile |
+|---|---|---|
+| 360 × 640 ES | +135 · **+45** | unter der Kante |
+| **360 × 640 EN** | **+54 · −36** | unter der Kante |
+| 375 × 667 ES / EN | +170 · +80 / +100 · +10 | unter der Kante |
+| 390 × 844 ES / EN | +284 · +192 | **ganz** |
+| 414 × 896 ES / EN | +284 · +192 | **ganz** |
+| 1280 / 1366 / 1440 | +117…+168 · +117…+168 | unter der Kante |
+
+**Das Notenkriterium („die fertige Aufgabe im ersten Bildschirm") ist auf allen sieben Fenstern und
+in beiden Sprachen erfüllt**, auch bei 360 × 640 EN (+54). Dort bleibt allein die Aktion 36 px
+darunter. Redesign hat dafür bewusst **nicht** weiter gekürzt, mit Verweis auf meine eigene
+Dichte-Notiz — das ist folgerichtig, und ich widerspreche nicht. Ich melde es am Deployment als Zahl
+mit Bild.
+
+### B-6 — die angeschnittene Zeile ist durch ein **leeres Band** ersetzt, und das steht auf Redesigns eigener Mängelliste
+
+So endet der erste Bildschirm jetzt — **drei verschiedene Arten je nach Gerät**:
+
+| Gerät | was unten steht |
+|---|---|
+| 390 · 414 | die Schmerzzeile **ganz**, mit Unterzeile — der Blick wird nach unten gezogen |
+| 1280 · 1366 · 1440 | **117–128 px helles Sandband, leer** — kein Wort darin |
+| 360 · 375 | nichts; der Hero reicht bis an die Kante (bei 360 ES 7 px darüber hinaus) |
+
+Auf `ohne-streifen-1366x768-es.png` ist es deutlich: unter der sauber endenden Hero-Kante liegt ein
+breiter heller Streifen ohne Inhalt. Die Regel vom 16.11. („der nächste Abschnitt zeigt sich im
+ersten Bildschirm") ist damit **dem Wortlaut nach** erfüllt und **der Sache nach** nicht — sichtbar
+ist der Hintergrund des Abschnitts, nicht der Abschnitt.
+
+**Und es ist derselbe Mangel, den dieselbe Bahn in diesem Bau behoben hat.** Im E2-Dokument,
+Abschnitt 2, Zeile „Cómo funciona": *„no blank band after it"* — Begründung: *„duplicate product
+views, **a blank band on the desktop**"*. Ein leeres Band auf dem Schreibtisch war dort ein Grund
+zum Umbauen; hier entsteht es neu.
+
+**Ich melde das als Gestaltungsbefund zur Entscheidung, nicht als technischen Mangel** — und
+ausdrücklich nicht als Rückschritt: die angeschnittene Zeile war schlechter. Aber die beste der drei
+Formen steht bereits im Bau, nämlich die am Telefon. Platz dafür ist auf dem Schreibtisch
+rechnerisch da: bei 1366 ES endet der Hero bei 640, die Zeile braucht 86 px, die Kante liegt bei
+768 — es sind 128 px Bandluft, die sie hinausschieben, nicht der Platz. Bei 1280 ebenso; bei 1440 EN
+(Hero 783) wird es eng. **Die Form entscheidet der Owner am Bild, nicht ich an der Zahl.**
+
+### Eine Verschiebung, die nicht genannt wurde
+
+**375 × 667 ES** ist von +181 · +91 auf **+170 · +80** gefallen (11 px), als Nebenwirkung der
+Hero-Änderung auf dem kurzen Telefon. Harmlos — 80 px Luft sind reichlich —, aber die Zahl hat sich
+bewegt und stand nicht in der Nachricht. Die Änderung bei 1440 × 900 ES (74 → 66 mit Streifen) hatte
+Redesign von sich aus gemeldet.
+
+### Stand
+
+Weiterhin **nichts davon von mir gemessen**. Sieben Fenster, zwei Sprachen, mit und ohne Möblierung,
+plus die Schmerzzeilen-Regel gehen in meinen Durchgang ein, sobald der Owner freigibt und Redesign
+genau einen Commit benennt. Der Alias liefert `bea7d19` / `dpl_H6WfQ1GK…`.
