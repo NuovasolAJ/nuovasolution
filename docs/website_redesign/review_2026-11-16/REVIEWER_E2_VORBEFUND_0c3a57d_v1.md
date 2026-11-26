@@ -156,3 +156,86 @@ das messe ich:
 
 Die Restluft nenne ich in Pixeln, weil „drinnen" bei acht Pixeln eine andere Aussage ist als
 „drinnen" bei hundert.
+
+---
+
+## Nachtrag 26.11. abends — Redesign hat EN gemessen, nachgebessert (`00b488e`) und legt 375 × 667 dem Owner vor
+
+Meine Frage nach dem **englischen** Wert war die richtige: Englisch schob die Hauptaktion bei
+**390 × 844 (−46)** und **1280 × 720 (−22)** unter die Kante. Nachgebessert in `00b488e`, **nur CSS**
+(enge Szene jetzt auf allen Breiten, Augenbrauen-Abstand der Überschrift weg, Luft über der
+Überschrift am Telefon weg, Vorspann am Telefon 15 px, Mindesthöhe rechnet den Streifen mit,
+Vorspann im kurzen Fenster bis 68ch).
+
+**Restluft unter dem Element, unfokussiert, mit Vorschaustreifen — Angaben des Erbauers, lokaler
+Bau, von mir nicht gemessen** (`docs/website_redesign/evidence/fold-es-en-local-194c6ec-plus.json`):
+
+| Größe | Aufgabenkarte ES | Aufgabenkarte EN | Hauptaktion ES | Hauptaktion EN |
+|---|---|---|---|---|
+| 375 × 667 | **+19** | **−64** | **−73** | **−156** |
+| 390 × 844 | +132 | +132 | +40 | +40 |
+| 1280 × 720 | +160 | +117 | +66 | **+23** |
+| 1366 × 768 | +168 | +165 | +74 | +71 |
+| 1440 × 900 | +168 | +150 | +74 | +56 |
+
+Das ist die Zahl, die ich angekündigt hatte: **Bei 375 × 667 fällt in Englisch die Aufgabenkarte
+selbst unter die Kante (−64).** Damit ist dort das Kriterium der Note „Kaufinteresse" — *die fertige
+Aufgabe im ersten Bildschirm* — **nicht erfüllt**; in Spanisch ist es mit **+19 px** erfüllt, aber
+wieder als Punktlandung. Bei 390 × 844 ist der Mangel behoben (ES und EN +40 / +132).
+
+### Der eigentliche Befund: die 92 px, mit denen gerechnet wird, gehören nicht zum Produkt
+
+Redesign schreibt, 375 × 667 sei **„with the band"** nicht zu halten — „92 px of band, 515 px left
+for headline, sentence, message, task, action" — und legt dem Owner die Entscheidung vor, *einen
+Teil des ersten Bildschirms zu entfernen*.
+
+**Diese 92 px sind Vorschau-Möblierung und auf der freigegebenen Seite 0 px.** Zwei Streifen stehen
+über dem Hero, beide nur im Vorschau- und Testbau:
+
+| Streifen | Quelle | wird gezeigt, wenn |
+|---|---|---|
+| „Vista previa. …" (Hinweiszeile) | `components/site/environment-ribbon.tsx:28` | **nicht**, wenn `mode === "live"` **und** Freigabe-Marke gesetzt |
+| Schalterzeile „Solo en la vista previa +" | `components/site/preview-switch.tsx` über `{!s.live && …}` in `app/[locale]/page.tsx:49` | **nicht** auf einem Live-Bau |
+
+`lib/contracts/mode.ts:131` — `publicIndexingAllowed()` verlangt `integrationMode() === "live"` **und**
+`NUOVA_LIVE_RELEASE`. Der lokale Bau und die Vorschau laufen in `stub`; **jede** hier genannte Zahl
+trägt die Möblierung mit.
+
+Damit steht die Frage anders, als sie dem Owner vorliegt: **eine dauerhafte Kürzung des ersten
+Bildschirms, um vorübergehende Möblierung unterzubringen.** Zieht man die 92 px ab, kommt man
+rechnerisch auf Aufgabenkarte ES +111 / EN +28 und Hauptaktion ES +19 / EN −64 — das Kriterium der
+Note wäre dann **in beiden Sprachen erfüllt**, und offen bliebe allein, ob bei 375 in **Englisch**
+für die Aktion gerollt werden muss. Das ist eine viel kleinere Entscheidung.
+
+**Ich rechne diese Zahlen aber nicht als Messung an.** Die Mindesthöhe des Heros hängt an
+`min(calc(100svh - 160px), 820px)`, und die `160px` sind nach Redesigns eigener Beschreibung *auf den
+Streifen hin* gewählt. Ohne Streifen kann der Hero also höher bleiben, als er sein müsste —
+Abziehen ist eine Schätzung, nicht ein Maß. **Gemessen werden muss ohne Streifen.**
+
+### Was ich von Redesign erbitte, bevor der Commit benannt wird
+
+1. **Dieselbe Tabelle auf einem Bau ohne Möblierung** (`NUOVA_INTEGRATION_MODE=live` mit
+   Freigabe-Marke, oder ersatzweise beide Streifen aus dem DOM entfernt). Nur diese Zahlen gehören
+   in die Frage an den Owner, weil nur sie das Produkt beschreiben.
+2. **Bei 390 ES und EN gleich auf das Pixel** (712 / 804 in beiden Sprachen). Das ist plausibel,
+   seit die Mindesthöhe die Höhe bestimmt — heißt aber: die Lage hängt **nicht mehr an der
+   Textlänge**. Dann ist die Frage, ob der längere englische Text **innerhalb** der Szene noch
+   hineingeht. Bitte bei 390 EN `scrollHeight` gegen `clientHeight` für die Szene und die
+   Nachrichtenkachel melden — ein Abschneiden innerhalb der Kachel wäre durch eine Kantenmessung
+   nicht zu sehen.
+3. **1280 × 720 EN steht bei +23 px.** Dieselbe Punktlandung wie 390 vorher, nur auf dem
+   Schreibtisch. Ich melde sie als Zahl, nicht als Mangel.
+
+**Eine Kleinigkeit am Beleg, derselben Klasse wie meine eigenen Fehler:** `fold-es-en.mjs` liest
+`band: !!document.querySelector("[data-preview-band], .preview-band")` — und legt den Wert dann nicht
+in die Zeile. Beide Namen kommen in der Quelle außerdem nicht vor; der Streifen heißt `[data-env]`
+bzw. `[data-preview-switches]`. Die Angabe „mit Vorschaustreifen" ist damit **behauptet, nicht
+belegt**. Das ändert an den Zahlen vermutlich nichts — der Streifen steht auf einem `stub`-Bau immer
+—, aber geprüft ist er nicht.
+
+### Stand der Messbarkeit
+
+Unverändert: nichts davon ist von mir gemessen. `/api/build` am Alias steht auf `bea7d19` /
+`dpl_H6WfQ1GK…`; gemessen wird erst nach der Freigabe des Owners, am benannten Commit, anhand der
+Deployment-Kennung. Die Tabelle oben sind **Angaben des Erbauers** und bleiben es, bis ich sie
+nachfahre.
