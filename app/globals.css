@@ -655,11 +655,9 @@ header[data-over-film="true"] button[aria-controls][class*="xl:hidden"] { backgr
   .hf-words { max-width: 760px; }
   .hf-h1 { font-size: clamp(2.25rem, 1.2rem + 2.6vw, 3.25rem); }
   .hf-lead { margin-top: 10px; max-width: 52ch; font-size: 1.1875rem; }
-  [data-hero-e2] .hf-scene { gap: 6px; margin-top: 12px; }
-  [data-hero-e2] .hf-scene-msg .hf-scene-label { padding: 6px 12px; }
-  [data-hero-e2] .hf-scene-msg .hf-scene-text { margin: 8px 12px 8px 14px; padding: 6px 10px; font-size: 0.9rem; }
-  [data-hero-e2] .hf-scene-task { padding: 10px 14px; }
-  [data-hero-e2] .hf-ctas { margin-top: 14px; }
+  /* E2: the sentence may run to 68ch here so English stays on two lines (1280 × 720 measured in both languages) */
+  [data-hero-e2] .hf-lead { max-width: 68ch; }
+  /* the tighter living picture now applies at every width (the E2 block at the end of the file) */
   .hf-ctas { margin-top: 20px; }
   .hf-benefits { gap: 8px; }
   .hf-scroll { bottom: 16px; }
@@ -2160,6 +2158,26 @@ html.js .hf-scene-live .hf-scene-task { animation-name: hf-build; animation-dura
 @keyframes hf-fade { from { opacity: 0; } }
 /* the main action without an arrow (the owner: no arrows) */
 [data-hero-e2] .hf-cta-main { gap: 0; }
+/* 26.11. (RV6's headroom figures, ES and EN): the living picture sits tight at every width — English runs longer (the translation line
+   under Mila's message, a longer sentence), so the first screen is measured in both languages with the preview band: the gaps that were
+   only in the short-desktop block now hold everywhere, the phone loses the slack above the headline, and the phone's minimum height
+   counts the band's real height at 390 (three lines) */
+[data-hero-e2] .hf-scene { gap: 6px; margin-top: 12px; }
+[data-hero-e2] .hf-scene-msg .hf-scene-label { padding: 6px 12px; }
+[data-hero-e2] .hf-scene-msg .hf-scene-text { margin: 8px 12px 8px 14px; padding: 6px 10px; font-size: 0.9rem; }
+[data-hero-e2] .hf-scene-msg .hf-scene-translation { margin: 0 12px 8px 14px; line-height: 1.35; }
+[data-hero-e2] .hf-scene-task { padding: 10px 14px; }
+[data-hero-e2] .hf-ctas { margin-top: 14px; }
+@media (max-width: 1023px) { .hf:has([data-hero-e2]) { min-height: min(calc(100svh - 160px), 820px); } }
+[data-hero-e2] .hf-h1 { margin-top: 0; } /* the eyebrow above it is gone */
+@media (max-width: 639px) {
+  .hf:has([data-hero-e2]) .hf-content { padding-top: calc(var(--header-h) + 14px); }
+  [data-hero-e2] .hf-h1 { font-size: clamp(1.9rem, 1rem + 4.2vw, 2.125rem); }
+  [data-hero-e2] .hf-lead { margin-top: 10px; font-size: 0.9375rem; line-height: 1.5; }
+  [data-hero-e2] .hf-scene { margin-top: 10px; }
+  [data-hero-e2] .hf-scene-task { padding: 9px 14px; }
+  [data-hero-e2] .hf-ctas { margin-top: 12px; }
+}
 /* RV6 R-13 (34ebc36): the trial's way on the first screen is clipped for sighted readers (the owner's rule: one action) but stays a
    tab stop — so while it has keyboard focus it appears as the second button (the skip-link pattern); the focus never disappears */
 .hf-cta-trial-kbd { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
