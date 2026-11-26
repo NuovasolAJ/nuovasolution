@@ -649,9 +649,17 @@ header[data-over-film="true"] button[aria-controls][class*="xl:hidden"] { backgr
 /* the short desktop window (1366 × 768): the sentence, the action and the first benefit on the first screen */
 @media (min-width: 1024px) and (max-height: 820px) {
   .hf { min-height: calc(100svh - 128px); }
-  .hf-content { padding-top: calc(var(--header-h) + 24px); padding-bottom: 48px; }
-  .hf-h1 { font-size: clamp(2.5rem, 1.6rem + 3.4vw, 4.1rem); }
-  .hf-lead { margin-top: 14px; }
+  .hf-content { padding-top: calc(var(--header-h) + 16px); padding-bottom: 40px; }
+  /* RV6 F22a (ab6d143) on the E2 first screen (26.11.): with the preview band the main action must stay above 768 px — the headline
+     takes two lines (wider column, smaller size), the sentence two, the living picture tighter; measured 1366 × 768 after this block */
+  .hf-words { max-width: 760px; }
+  .hf-h1 { font-size: clamp(2.25rem, 1.2rem + 2.6vw, 3.25rem); }
+  .hf-lead { margin-top: 10px; max-width: 52ch; font-size: 1.1875rem; }
+  [data-hero-e2] .hf-scene { gap: 6px; margin-top: 12px; }
+  [data-hero-e2] .hf-scene-msg .hf-scene-label { padding: 6px 12px; }
+  [data-hero-e2] .hf-scene-msg .hf-scene-text { margin: 8px 12px 8px 14px; padding: 6px 10px; font-size: 0.9rem; }
+  [data-hero-e2] .hf-scene-task { padding: 10px 14px; }
+  [data-hero-e2] .hf-ctas { margin-top: 14px; }
   .hf-ctas { margin-top: 20px; }
   .hf-benefits { gap: 8px; }
   .hf-scroll { bottom: 16px; }
