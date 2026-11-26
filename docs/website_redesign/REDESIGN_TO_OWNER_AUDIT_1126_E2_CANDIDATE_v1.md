@@ -92,6 +92,30 @@ without the strips: `e2_kandidat_1124\falz_es_en\ohne-streifen-*.png` (360, 375,
 by side for the owner's eye in `falz_es_en\kante_desktop\` (variante-1 = the sand band, variante-2 = the hero to the fold, built).
 Headroom with the strips rises where the hero was taller than its content (1366 ES 74 → 114, 1440 ES 66 → 99); the table above
 keeps the earlier figures for the other rows, the JSON `fold-es-en-local-49410c1-plus-7-windows.json` has all of them.
+Where the hero runs to the fold the first screen carried no sign that the page goes on (RV6 f243f62; the scroll arrow left with the
+owner's E2 rule), so the picture now dissolves into the next section's ground over its last 72 px, still, no arrow; the caption sits above it.
+
+## 3a. The hero with the owner's text of 17.11. (Copy 36e2e15, the owner's order of 26.11.)
+
+The headline and the subline went back to the owner's text, character for character ("Haz crecer tu inmobiliaria. No tu carga de
+trabajo." and the long subline; EN as in 92f873d). The subline is about half as long again as the E2 line, so the whole first screen was
+measured once more on this build (JSON `fold-es-en-local-hero-1117-text-7-windows.json`, `peek-local-hero-1117-text.json`; pictures
+`e2_kandidat_1124\hero_text_1117\`). Headroom task card · main action, ES | EN:
+
+| Window | With the strips | Without the strips |
+|---|---|---|
+| 360 × 640 | −62 · −152 \| −110 · −200 | 90 · 0 \| 42 · −48 |
+| 375 × 667 | −16 · −106 \| −63 · −153 | 136 · 46 \| 89 · −1 |
+| 390 × 844 | 132 · 40 \| 123 · 31 | 284 · 192 \| 275 · 183 |
+| 414 × 896 | 132 · 40 \| 132 · 40 | 284 · 192 \| 284 · 192 |
+| 1280 × 720 | 132 · 38 \| 89 · −5 | 225 · 131 \| 182 · 88 |
+| 1366 × 768 | 180 · 86 \| 137 · 43 | 273 · 179 \| 230 · 136 |
+| 1440 × 900 | 161 · 67 \| 156 · 62 | 255 · 161 \| 250 · 156 |
+
+**What the longer text costs, stated before anyone measures it:** on the released page the task card is on the first screen at every
+window in both languages; the main action ends under the fold only on the two smallest phones in English (360 × 640: 48 px; 375 × 667:
+1 px). On the preview, with the strips, the English action at 1280 × 720 ends 5 px under the fold and the small phones do not fit. The
+pain line stays whole at 390/414 (peek 160/151 px), no window sliced; R-13 unchanged.
 
 ## 4. The builder's grades (the owner's six criteria; RV6 grades independently)
 
