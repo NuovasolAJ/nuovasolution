@@ -239,3 +239,91 @@ Unverändert: nichts davon ist von mir gemessen. `/api/build` am Alias steht auf
 `dpl_H6WfQ1GK…`; gemessen wird erst nach der Freigabe des Owners, am benannten Commit, anhand der
 Deployment-Kennung. Die Tabelle oben sind **Angaben des Erbauers** und bleiben es, bis ich sie
 nachfahre.
+
+---
+
+## Nachtrag 2 (26.11., spät) — mit und ohne Möblierung gemessen (`89a7511`). Meine Schätzung war um 92 px falsch
+
+Redesign hat alle drei Punkte beantwortet. Ich habe die Zahlen **gegen den Beleg nachgerechnet**
+(`docs/website_redesign/evidence/fold-es-en-local-00b488e-with-without.json`), nicht gegen die
+Nachricht:
+
+| Größe | Möbl. | Aufgabe mit | Aktion mit | Aufgabe ohne | Aktion ohne | Versatz |
+|---|---|---|---|---|---|---|
+| 375 × 667 ES | 152 | +19 | −73 | **+171** | **+79** | 152 |
+| 375 × 667 **EN** | 152 | −64 | −156 | **+88** | **−4** | 152 |
+| 390 × 844 ES/EN | 152 | +132 | +40 | +284 | +192 | 152 |
+| 1280 × 720 ES | 94 | +160 | +66 | +254 | +160 | 94 |
+| 1280 × 720 EN | 94 | +117 | +23 | +211 | +117 | 94 |
+| 1366 × 768 ES / EN | 94 | +168 / +165 | +74 / +71 | +262 / +259 | +168 / +165 | 94 |
+| 1440 × 900 ES / EN | 94 | +168 / +150 | +74 / +56 | +262 / +243 | +168 / +149 | 94 / 93 |
+
+**Der Versatz ist überall genau die Möblierungshöhe.** Das Verfahren (beide Streifen aus dem DOM
+nehmen und neu messen) ist damit tragfähig: `100svh` ändert sich beim Entfernen nicht, die
+Mindesthöhe des Heros also auch nicht — der Inhalt rückt nur hoch. Ein freigegebener Bau, der die
+Streifen nie darstellt, ist layoutgleich. Dass Redesign den Modus nicht umstellen konnte (keine
+Freigabe-Marke in seiner Hand), ist hier **kein** Mangel am Beleg.
+
+### Mein eigener Fehler: die Schätzung war um 92 px zu pessimistisch
+
+Ich hatte „92 px abziehen" gerechnet und für **375 × 667 EN** eine Aktion bei **−64** vorhergesagt.
+Gemessen: **−4**. Die Möblierung ist **152 px**, nicht 92 — die 92 px waren die **Hinweiszeile
+allein**, die Schalterzeile kommt mit 60 px dazu. Ich habe Redesigns „92 px of band" für die ganze
+Möblierung genommen, ohne es nachzusehen, obwohl ich beide Streifen eine Stunde vorher selbst in der
+Quelle gefunden hatte. Der Warnhinweis („Schätzung, nicht Maß") hat gehalten, die Zahl nicht.
+Richtung: **zu schwarz gemalt** — diesmal die harmlose Richtung, aber derselbe Fehler wie ein zu
+enges Suchmuster.
+
+### Was aus den 4 px folgt — und was nicht
+
+Auf der freigegebenen Seite steht bei **375 × 667** die **Aufgabenkarte in beiden Sprachen im ersten
+Bildschirm** (ES +171, EN +88). Das Kriterium der Note „Kaufinteresse" ist damit auf allen fünf
+Größen und in beiden Sprachen erfüllt. Offen bleibt allein die **Hauptaktion bei 375 × 667 in
+Englisch: −4 px.**
+
+**Diese 4 px gehören nicht vor den Owner.** Redesign hat die Frage ehrlich neu gestellt („ein
+4-px-Rollen statt eines Schnitts") — aber vier Pixel in einer Sprache auf einer Größe sind in CSS
+erreichbar und keine Produktentscheidung. Die Gefahr ist nicht der Pixel, sondern der **Beschluss**:
+Wer „ein Rollen bei 375" grundsätzlich genehmigt, genehmigt mehr, als hier zu entscheiden ist.
+Mein Rat: in CSS auffangen, ohne Vorlage. Bleibt es stehen, melde ich es am Deployment als Zahl mit
+Bild, nicht als Mangel.
+
+### Punkt 2 ist beantwortet, und sauber
+
+`scrollHeight / clientHeight` bei 390 EN: Szene 318/318, Nachrichtenkachel 183/183, Textblase 75/75,
+Übersetzung 53/53, Aufgabe 105/105, Vorspann 68/68. **Kein Behälter schneidet Text ab** — mein
+Verdacht, die festgesetzte Höhe könne das Längere innen abschneiden, ist widerlegt. Die Erklärung
+(Inhalt kürzer als die Mindesthöhe, der Rest ist Luft am unteren Rand) passt zu den identischen
+ES/EN-Zahlen bei 390.
+
+**Eine Notiz, kein Befund:** die h1 meldet 106/103, bei 375 EN 103/101 — rund 3 px Zeichenüberhang
+unter `line-height: 1.06`. Redesign hat gegengeprüft (gleich in ES, gleich am Alias-Bau), also keine
+Verschlechterung. Ich schreibe es nur auf, weil ein 3-px-Überhang an einer Überschrift genau dann
+zum Abschneiden führt, wenn irgendwann über dieser Kette ein `overflow: hidden` landet.
+
+### Der Punkt, der dadurch erst sichtbar wird: diese Ansicht hat **niemand** gesehen
+
+Ohne Streifen endet der Hero bei 390 nach Redesigns Angabe **etwa 100 px über der Bildschirmkante**,
+und der nächste Abschnitt schaut hinein — weil die Mindesthöhe `min(calc(100svh - 160px), 820px)`
+die **160 px auf die Möblierung hin** abzieht, die dann nicht mehr da ist.
+
+Das heißt: **der erste Bildschirm der freigegebenen Seite ist eine andere Komposition als der, der
+begutachtet wurde.** Und das ist nicht hypothetisch — ich habe es geprüft:
+
+| Abruf 26.11. | Ergebnis |
+|---|---|
+| `https://nuovasolution.com/` | **200**, Titel „NuovaSolution — Never Miss a Lead Again" — die **alte** Seite |
+| `https://nuovasolution.com/es` | **404** |
+
+Die Neugestaltung war **nie** öffentlich. Jeder Bau, den jemals jemand angesehen, gefilmt oder
+benotet hat, trug die 152 px (Telefon) bzw. 94 px (Schreibtisch) Möblierung — meine sechs Noten auf
+`bea7d19`, die 26 Vorher/Nachher-Paare und die drei Filme eingeschlossen. Der erste Bildschirm ohne
+Streifen existiert heute **nur als Rechnung**.
+
+**Daraus folgt für meinen Durchgang:** ich benote den ersten Bildschirm am Deployment **mit** der
+Möblierung — so, wie der Owner ihn sieht — und nenne die Zahl ohne sie **daneben**. Und ich erbitte
+von Redesign **Bilder** des ersten Bildschirms ohne Streifen, mindestens 390 und 1366, ES und EN,
+damit der Hero, der 100 px über der Kante endet, als **Bild** beurteilt wird und nicht als Zahl.
+Ein Hero, der absichtlich einen Streifen des nächsten Abschnitts zeigt, ist eine verbreitete und
+gute Form; einer, der zufällig 100 px zu kurz ist, ist es nicht. Den Unterschied sieht man nicht in
+einer Tabelle.
