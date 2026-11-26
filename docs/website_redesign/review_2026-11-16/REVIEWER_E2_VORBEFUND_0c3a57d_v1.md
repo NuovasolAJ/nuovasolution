@@ -113,3 +113,46 @@ Redesigns Zahlen (1366 × 768: 13 Tabulatordrücke, dann 198 × 44 bei y 644 üb
 
 **Der Kandidat heißt damit nicht mehr `0c3a57d`.** Redesign benennt genau einen Commit, sobald die
 Freigabe des Owners vorliegt; bis dahin bleibt der Alias auf `bea7d19`.
+
+### R-13-Nachtrag: das Umbauen ist gemessen — und Redesign meldet dabei etwas gegen die eigene Arbeit
+
+Redesign hat den Umbau bei Fokus selbst gemessen (`194c6ec`, Belege in
+`docs/website_redesign/evidence/`): 1366 × 768 kein senkrechtes Rücken, der Verweis steht neben der
+Hauptaktion (644–688). 390 × 844 rollt der Browser 11 px, Aufgabenkarte (581–692) und Hauptaktion
+(734–790) bleiben im ersten Bildschirm. **Mein Punkt 1 ist damit beantwortet**, bestätigt wird er
+am Deployment. Die Entscheidung, beim Umbauen statt beim Überlagern zu bleiben, ist Redesigns
+Gestaltungsentscheidung und begründet (die überlagernde Hälfte läge auf der Kante des
+Vorschaustreifens) — ich widerspreche nicht.
+
+**Wichtiger ist, was Redesign unaufgefordert dazu meldet:**
+
+> „at 375 × 667 the main action ends at **799 of 667** even unfocused, i.e. below the fold on that
+> small phone, unchanged since `0c3a57d` (390 × 844 ends at **836 of 844**)."
+
+Das gehört nicht zu R-13, und streng genommen auch nicht zu F22a — F22a wurde bei 1366 × 768
+erhoben. Es ist aber **dieselbe Klasse**: der erste Bildschirm trägt nicht, was er tragen soll.
+Zwei Zahlen daran:
+
+- **375 × 667** (iPhone SE und ältere kleine Geräte): die Hauptaktion endet **132 px unter** der
+  Kante. Auf dem Telefon wiegt das weniger als am Schreibtisch, weil gerollt wird — aber 375 ist
+  die Breite, auf die der vereinbarte Maßstab die Tippziele festlegt, also eine gemessene Größe in
+  diesem Vorhaben und kein Randfall.
+- **390 × 844: 836 von 844 — acht Pixel Luft.** Das ist kein Bestehen, das ist eine Punktlandung.
+  Eine längere Übersetzung, ein anderer Schriftrückfall oder ein um zehn Pixel höherer
+  Vorschaustreifen schiebt die Aktion hinaus. **Englisch ist in diesen Texten durchweg länger**,
+  und Redesigns Zahl ist eine ES-Messung.
+
+**Was ich daraus messe, und was nicht.** Ich melde hier noch keinen Befund. Das Kriterium der Note
+„Kaufinteresse" lautet „die fertige **Aufgabe** im ersten Bildschirm", nicht „die Aktion" — und wo
+die **Aufgabenkarte** bei 375 × 667 **unfokussiert** steht, sagt Redesigns Nachricht nicht. Genau
+das messe ich:
+
+| zu messen | Breite × Höhe | Sprache |
+|---|---|---|
+| Aufgabenkarte im ersten Bildschirm, unfokussiert | 375 × 667, 390 × 844, 1366 × 768, 1280 × 720, 1440 × 900 | ES **und** EN |
+| Hauptaktion über der Kante, unfokussiert, mit Vorschaustreifen | dieselben | ES und EN |
+| Aufgabenkarte und Hauptaktion, **während** der Tastaturverweis den Fokus hat | 375 × 667, 390 × 844 | ES und EN |
+| Restluft in px, nicht nur „drinnen/draußen" | alle | beide |
+
+Die Restluft nenne ich in Pixeln, weil „drinnen" bei acht Pixeln eine andere Aussage ist als
+„drinnen" bei hundert.
