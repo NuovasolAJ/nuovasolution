@@ -54,6 +54,24 @@ at y = 644 (still above the fold); 390 = 6 presses, 358 × 44 px. Evidence `docs
 `r13-local-34ebc36-plus.json`; pictures `e2_kandidat_1124\r13\`. RV6 measures it again on the deployment. **The candidate for the push is
 therefore the commit named at release, not `0c3a57d`.**
 
+**The first screen in ES and EN (RV6's headroom question, 26.11.):** English runs longer (the translation line under Mila's message, a longer
+sentence) and on the candidate put the main action below the fold at 390 × 844 (46 px) and 1280 × 720 (22 px). Fixed after `0c3a57d`
+(the living picture tight at every width, the phone's slack above the headline gone, the band counted in the phone's minimum height, the
+sentence on two lines in the short desktop window). Headroom under the main action, unfocused, with the preview band, local build
+(`docs/website_redesign/evidence/fold-es-en.mjs`, `fold-es-en-local-194c6ec-plus.json`; pictures `e2_kandidat_1124\falz_es_en\`):
+
+| Window | ES task card | ES main action | EN task card | EN main action |
+|---|---|---|---|---|
+| 390 × 844 | 132 | 40 | 132 | 40 |
+| 1280 × 720 | 160 | 66 | 117 | 23 |
+| 1366 × 768 | 168 | 74 | 165 | 71 |
+| 1440 × 900 | 168 | 74 | 150 | 56 |
+| 375 × 667 | 19 | −73 | −64 | −156 |
+
+**375 × 667 (the SE-sized phone) stays below the fold in both languages** with the band: the band alone takes three lines (92 px) there,
+and the first screen's content (headline, sentence, message, task, action) does not fit in the 515 px that remain. The owner decides whether
+375 × 667 is a required size for the first screen; the content cannot be made to fit it without removing one of its parts.
+
 ## 4. The builder's grades (the owner's six criteria; RV6 grades independently)
 
 | Section | Understanding | Little text | Modern | Premium | Sells | Easy trial | Two references |
