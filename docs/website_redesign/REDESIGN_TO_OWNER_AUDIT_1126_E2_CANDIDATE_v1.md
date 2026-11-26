@@ -70,13 +70,23 @@ and with both removed from the page (what the product shows). Probe v2 `fold-es-
 | 1280 × 720 | 160 · 66 | 117 · 23 | 254 · 160 | 211 · 117 |
 | 1366 × 768 | 168 · 74 | 165 · 71 | 262 · 168 | 259 · 165 |
 | 1440 × 900 | 168 · 74 | 150 · 56 | 262 · 168 | 243 · 149 |
-| 375 × 667 | 19 · −73 | −64 · −156 | 171 · 79 | 88 · −4 |
+| 375 × 667 | 29 · −61 | −52 · −142 | 181 · 91 | 100 · 10 |
+| 360 × 640 | −17 · −107 | −98 · −188 | 135 · 45 | 54 · −36 |
+| 414 × 896 | 132 · 40 | 132 · 40 | 284 · 192 | 284 · 192 |
 
-**What this means for 375 × 667 (the SE-sized phone):** on the preview, with the strips, the first screen does not fit there; on the released
-page the task card sits on the first screen in both languages, and only the English main action ends 4 px under the fold. No part of the
-first screen needs to go for that; the owner decides whether a 4 px scroll for the English action on that phone is acceptable or whether
-375 × 667 must fit with room. The 390 × 844 rows are identical in ES and EN because the phone's minimum height sets the hero's height
-there and the content is shorter than it in both languages; the scene's containers report scrollHeight = clientHeight (no clipped text).
+(after `b8bb2bc` and `49410c1`; the preview marker on the desktop's left edge is removed with the strips; 360 and 414 are the masterprompt's
+phone set, measured on RV6's request; JSON `fold-es-en-local-b8bb2bc-plus-7-windows.json`.)
+
+**What this means for the small phones:** on the preview, with the strips, 375 × 667 and 360 × 640 do not fit; on the released page the task
+card sits on the first screen at every window in both languages, and the main action too, except at 360 × 640 in English (36 px under
+the fold, one short scroll). The 390 × 844 rows are identical in ES and EN because the phone's minimum height sets the hero's height there
+and the content is shorter than it in both languages; the scene's containers report scrollHeight = clientHeight (no clipped text).
+
+**The peek of the next section (RV6 3092143):** on the released desktop page the pain line was cut through its letters at the fold.
+Rule now (`49410c1`): the pain line is either whole on the first screen (390, 414: the whole line and its mark) or starts under the fold
+(desktop: the hero leaves 128 px, the band carries 132 px of top air; short phones: at most 28 px of band). `peek.mjs` reports
+whole / under the fold / sliced per window; result `peek-local-b8bb2bc-plus.json`: no window sliced. Pictures without the strips:
+`e2_kandidat_1124\falz_es_en\ohne-streifen-*.png` (360, 375, 390, 414, 1366; ES and EN).
 
 ## 4. The builder's grades (the owner's six criteria; RV6 grades independently)
 
