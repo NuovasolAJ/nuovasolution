@@ -1,0 +1,188 @@
+[
+  {
+    "viewport": "375x667",
+    "before": {
+      "scrollY": 0,
+      "header": {
+        "top": 0,
+        "bottom": 60,
+        "h": 60
+      },
+      "h1": {
+        "top": 246,
+        "bottom": 351,
+        "h": 105
+      },
+      "task": {
+        "top": 590,
+        "bottom": 701,
+        "h": 111
+      },
+      "main": {
+        "top": 743,
+        "bottom": 799,
+        "h": 56
+      },
+      "trial": {
+        "top": 770,
+        "bottom": 771,
+        "h": 1
+      }
+    },
+    "focused": {
+      "scrollY": 395,
+      "header": {
+        "top": 0,
+        "bottom": 60,
+        "h": 60
+      },
+      "h1": {
+        "top": -149,
+        "bottom": -44,
+        "h": 105
+      },
+      "task": {
+        "top": 195,
+        "bottom": 306,
+        "h": 111
+      },
+      "main": {
+        "top": 348,
+        "bottom": 404,
+        "h": 56
+      },
+      "trial": {
+        "top": 414,
+        "bottom": 458,
+        "h": 44
+      }
+    },
+    "taskInsideWhileFocused": true,
+    "mainInsideWhileFocused": true,
+    "h1BelowHeaderWhileFocused": false
+  },
+  {
+    "viewport": "390x844",
+    "before": {
+      "scrollY": 0,
+      "header": {
+        "top": 0,
+        "bottom": 60,
+        "h": 60
+      },
+      "h1": {
+        "top": 281,
+        "bottom": 389,
+        "h": 108
+      },
+      "task": {
+        "top": 627,
+        "bottom": 738,
+        "h": 111
+      },
+      "main": {
+        "top": 780,
+        "bottom": 836,
+        "h": 56
+      },
+      "trial": {
+        "top": 808,
+        "bottom": 809,
+        "h": 1
+      }
+    },
+    "focused": {
+      "scrollY": 11,
+      "header": {
+        "top": 0,
+        "bottom": 60,
+        "h": 60
+      },
+      "h1": {
+        "top": 235,
+        "bottom": 343,
+        "h": 108
+      },
+      "task": {
+        "top": 581,
+        "bottom": 692,
+        "h": 111
+      },
+      "main": {
+        "top": 734,
+        "bottom": 790,
+        "h": 56
+      },
+      "trial": {
+        "top": 800,
+        "bottom": 844,
+        "h": 44
+      }
+    },
+    "taskInsideWhileFocused": true,
+    "mainInsideWhileFocused": true,
+    "h1BelowHeaderWhileFocused": true
+  },
+  {
+    "viewport": "1366x768",
+    "before": {
+      "scrollY": 0,
+      "header": {
+        "top": 0,
+        "bottom": 72,
+        "h": 72
+      },
+      "h1": {
+        "top": 217,
+        "bottom": 323,
+        "h": 106
+      },
+      "task": {
+        "top": 510,
+        "bottom": 596,
+        "h": 86
+      },
+      "main": {
+        "top": 638,
+        "bottom": 694,
+        "h": 56
+      },
+      "trial": {
+        "top": 665,
+        "bottom": 666,
+        "h": 1
+      }
+    },
+    "focused": {
+      "scrollY": 0,
+      "header": {
+        "top": 0,
+        "bottom": 72,
+        "h": 72
+      },
+      "h1": {
+        "top": 217,
+        "bottom": 323,
+        "h": 106
+      },
+      "task": {
+        "top": 510,
+        "bottom": 596,
+        "h": 86
+      },
+      "main": {
+        "top": 638,
+        "bottom": 694,
+        "h": 56
+      },
+      "trial": {
+        "top": 644,
+        "bottom": 688,
+        "h": 44
+      }
+    },
+    "taskInsideWhileFocused": true,
+    "mainInsideWhileFocused": true,
+    "h1BelowHeaderWhileFocused": true
+  }
+]
