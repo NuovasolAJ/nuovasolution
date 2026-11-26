@@ -327,3 +327,88 @@ damit der Hero, der 100 px über der Kante endet, als **Bild** beurteilt wird un
 Ein Hero, der absichtlich einen Streifen des nächsten Abschnitts zeigt, ist eine verbreitete und
 gute Form; einer, der zufällig 100 px zu kurz ist, ist es nicht. Den Unterschied sieht man nicht in
 einer Tabelle.
+
+---
+
+## Nachtrag 3 (26.11., Bilder angesehen) — `b8bb2bc` nachgerechnet, und zwei Dinge, die nur das Bild zeigt
+
+Die 4 px sind aufgefangen (`b8bb2bc`, enger nur auf dem kurzen Telefon: `max-width: 639px` **und**
+`max-height: 720px`). Gegen den Beleg nachgerechnet
+(`fold-es-en-local-00b488e-plus-short-phone.json`): **375 × 667 ohne Streifen** jetzt Aufgabenkarte
+ES +181 / EN +100, Hauptaktion ES +91 / **EN +10**. Alle übrigen Zeilen unverändert — die Abfrage
+greift wegen `max-height: 720px` nicht bei 390 × 844. Stimmt.
+
+Dann habe ich die sechs Bilder **angesehen**, und genau dafür hatte ich sie erbeten.
+
+### B-1 — die Bilder „ohne Streifen" tragen auf dem Schreibtisch noch Vorschau-Möblierung
+
+Auf `ohne-streifen-1366x768-es.png` und `…-en.png` steht am **linken Rand**, hochkant, weiterhin
+**„⚠ Vista previa, no pública"** bzw. „⚠ Preview, not public".
+
+Das ist der zweite Teil desselben Bauteils: `components/site/environment-ribbon.tsx:39`,
+`data-env-marker`, `fixed bottom-6 left-1.5 … hidden md:inline-flex` — also **nur ab 768 px**,
+deshalb auf dem Telefon nicht zu sehen. Redesigns Sonde entfernt `[data-env]` und
+`[data-preview-switches]`, **nicht** `[data-env-marker]`.
+
+**Für die Zahlen ist das gleichgültig** — das Teil ist `fixed` und nimmt keinen Platz im Fluss. Für
+das **Bild** ist es nicht gleichgültig: wer diese Aufnahme als „die freigegebene Seite" ansieht,
+sieht eine Marke, die dort nie stehen wird. Bitte beim nächsten Satz Bilder mitentfernen.
+
+### B-2 — der Blick auf den nächsten Abschnitt liest sich am Telefon als Absicht, am Schreibtisch als Unfall
+
+Das ist der Unterschied, den ich meinte, und er fällt **anders aus, als Redesign ihn beschreibt**
+(„at 1366 the same with ~130 px … headline fully readable"):
+
+| Größe | was unter der Kante steht | Eindruck |
+|---|---|---|
+| **390 × 844 ES** | die Schmerzzeile **ganz**: „7 de 25 consultas llegaron con la oficina cerrada. ¿Quién les contestó?" **plus** „Semana de ejemplo · datos ficticios" | **Absicht.** Eine vollständige, lesbare Einheit; der Blick zieht nach unten |
+| **1366 × 768 ES** | „7 de 25 consultas llegaron con la" ganz — die **zweite Zeile** („oficina cerrada. ¿Quién les contestó?") ist **waagerecht durchgeschnitten** | **Unfall.** Halbe Buchstaben an der Kante |
+| **1366 × 768 EN** | ebenso: „was closed. Who answered them?" durchgeschnitten | **Unfall** |
+
+Eine angeschnittene Zeile Schrift ist etwas anderes als ein angeschnittener Abschnitt. Am Telefon
+ist der Blick vollständig und wirkt gewollt; am Schreibtisch steht eine halbierte Großschrift auf
+der Kante, und das ist keine Form, die zu „premium" gehört. **Beide Sprachen betroffen.**
+
+Ich melde das als **Gestaltungsbefund zur Entscheidung**, nicht als technischen Mangel: entweder
+der nächste Abschnitt beginnt so weit unten, dass gar nichts hineinschaut, oder so weit oben, dass
+die **ganze** Zeile steht — wie am Telefon. Dazwischen sieht es nach Versehen aus. Die Regel vom
+16.11. („der nächste Abschnitt zeigt sich im ersten Bildschirm") ist in beiden Lösungen erfüllt.
+
+**Am Deployment prüfe ich das am Bild, nicht an der Zahl** — `130 px Blick` ist genau dieselbe Zahl
+für „ganze Zeile" und für „halbe Zeile".
+
+### B-3 — zwei Stellen zum Nachmessen, über dem Foto
+
+Auf allen sechs Bildern stehen zwei kleine Texte **auf dem Lichtbild**, nicht auf einer Fläche:
+„Ejemplo · datos ficticios" (grau, unter der Aufgabenkarte) und „Estás en una visita · 11:40"
+(weiß, unten rechts). Kontrast über einem **Foto** ist der Fall, in dem ein einzelner gerechneter
+Wert nichts aussagt — der Untergrund wechselt unter dem Wort. Ich setze beide auf die Messliste für
+den Durchgang und rechne sie **über mehrere Punkte**, nicht über einen. Noch kein Befund.
+
+### B-4 — das kurze Telefon ist jetzt dicht, und das ist eine Note, keine Zahl
+
+Auf `ohne-streifen-375x667-en.png` beginnt die Überschrift unmittelbar unter der Kopfzeile
+(`padding-top: calc(var(--header-h) + 10px)`), und Überschrift, Vorspann, Nachricht mit
+Übersetzungszeile, Aufgabe und Aktion stehen ohne Luft untereinander. Die 4 px sind damit bezahlt —
+**mit dem Abstand.** Der Maßstab dieses Vorhabens verlangt „großzügige Abstände" und „am Telefon
+muss die Typografie weiterhin hochwertig wirken". Ich melde hier **keinen** Mangel: es ist eng, nicht
+falsch, und 375 × 667 ist das kleinste Gerät im Satz. Ich schreibe nur vorher auf, dass das kurze
+Telefon in meinen Noten **„Modernität/Premium" und „wenig Text"** anders abschneiden kann als 390,
+und dass die Ursache dann diese Kürzung ist — nicht die Gestaltung an sich.
+
+### B-5 — zwei Gerätebreiten aus dem vereinbarten Satz fehlen in der ganzen Tabelle
+
+Der Maßstab (Masterprompt `01270bc`) benennt für das Telefon **390 / 360 / 414**, für den
+Schreibtisch **1440 / 1366**. Gemessen wurde bisher bei **375, 390, 1280, 1366, 1440**.
+
+- **360** ist nicht gemessen und ist **schmaler** als 375 — mehr Umbruch, also der härteste Fall.
+  Typische Höhe 640, damit **unter** `max-height: 720px`, die Kürzung von `b8bb2bc` greift dort
+  also. Ob sie reicht, weiß niemand.
+- **414** ist nicht gemessen (typisch 414 × 896, breit und hoch, vermutlich unkritisch).
+- **375** steht umgekehrt **nicht** im vereinbarten Satz — es ist über den Tippziel-Maßstab
+  hereingekommen und wurde dadurch zur meistbesprochenen Größe des Tages.
+
+Das ist kein Vorwurf: 375 zu messen war richtig. Aber **die Größe, die der Maßstab als Telefon
+nennt und die am ehesten durchfällt, ist nicht dabei.** Ich messe 360 × 640 und 414 × 896 im
+Durchgang in beiden Sprachen, mit und ohne Streifen. Wenn Redesign sie vor der Benennung mitnimmt,
+ist eine etwaige Kürzung eine Zeile statt ein zweiter Durchlauf.
