@@ -60,17 +60,23 @@ sentence) and on the candidate put the main action below the fold at 390 × 844 
 sentence on two lines in the short desktop window). Headroom under the main action, unfocused, with the preview band, local build
 (`docs/website_redesign/evidence/fold-es-en.mjs`, `fold-es-en-local-194c6ec-plus.json`; pictures `e2_kandidat_1124\falz_es_en\`):
 
-| Window | ES task card | ES main action | EN task card | EN main action |
-|---|---|---|---|---|
-| 390 × 844 | 132 | 40 | 132 | 40 |
-| 1280 × 720 | 160 | 66 | 117 | 23 |
-| 1366 × 768 | 168 | 74 | 165 | 71 |
-| 1440 × 900 | 168 | 74 | 150 | 56 |
-| 375 × 667 | 19 | −73 | −64 | −156 |
+Two strips sit above the first screen on the preview only (the environment ribbon and the preview switches; 152 px on the phone, 94 px on
+the desktop); a released build has neither. So every window is measured twice: with the strips (what RV6 and the owner see on the alias)
+and with both removed from the page (what the product shows). Probe v2 `fold-es-en.mjs`, result `fold-es-en-local-00b488e-with-without.json`.
 
-**375 × 667 (the SE-sized phone) stays below the fold in both languages** with the band: the band alone takes three lines (92 px) there,
-and the first screen's content (headline, sentence, message, task, action) does not fit in the 515 px that remain. The owner decides whether
-375 × 667 is a required size for the first screen; the content cannot be made to fit it without removing one of its parts.
+| Window | With the strips: ES task · action | EN task · action | Without: ES task · action | EN task · action |
+|---|---|---|---|---|
+| 390 × 844 | 132 · 40 | 132 · 40 | 284 · 192 | 284 · 192 |
+| 1280 × 720 | 160 · 66 | 117 · 23 | 254 · 160 | 211 · 117 |
+| 1366 × 768 | 168 · 74 | 165 · 71 | 262 · 168 | 259 · 165 |
+| 1440 × 900 | 168 · 74 | 150 · 56 | 262 · 168 | 243 · 149 |
+| 375 × 667 | 19 · −73 | −64 · −156 | 171 · 79 | 88 · −4 |
+
+**What this means for 375 × 667 (the SE-sized phone):** on the preview, with the strips, the first screen does not fit there; on the released
+page the task card sits on the first screen in both languages, and only the English main action ends 4 px under the fold. No part of the
+first screen needs to go for that; the owner decides whether a 4 px scroll for the English action on that phone is acceptable or whether
+375 × 667 must fit with room. The 390 × 844 rows are identical in ES and EN because the phone's minimum height sets the hero's height
+there and the content is shorter than it in both languages; the scene's containers report scrollHeight = clientHeight (no clipped text).
 
 ## 4. The builder's grades (the owner's six criteria; RV6 grades independently)
 
