@@ -484,3 +484,83 @@ Redesign von sich aus gemeldet.
 Weiterhin **nichts davon von mir gemessen**. Sieben Fenster, zwei Sprachen, mit und ohne Möblierung,
 plus die Schmerzzeilen-Regel gehen in meinen Durchgang ein, sobald der Owner freigibt und Redesign
 genau einen Commit benennt. Der Alias liefert `bea7d19` / `dpl_H6WfQ1GK…`.
+
+---
+
+## Nachtrag 5 (26.11., Abschluss des Tages) — zweite Form geprüft, und der Textbefehl des Owners setzt alle heutigen Zahlen außer Kraft
+
+### B-7 — die zweite Form stimmt, und ihr fehlt das Einzige, was ihr fehlen kann
+
+`66776a8` gegen `peek-local-49410c1-plus.json` geprüft: der Hero reicht auf **1280, 1366, 1440**
+jetzt genau bis zur Kante (`heroBottom` = Bildschirmhöhe, Blick **0**), bei **375 ES** ebenso,
+**390 und 414** behalten die **ganze** Schmerzzeile (Blick 160). **Keine Zeile angeschnitten.** Das
+leere Sandband ist fort. Redesigns Begründung, warum die ganze Zeile auf dem Schreibtisch nicht
+geht, ist nachvollziehbar und mit der Zahl belegt (bei 1366 ES setzt der Inhalt die Höhe: 640 auf
+das Pixel, die Zeile braucht 156 px).
+
+**Mein Lesen, als Meinung und nicht als Note:** Form 2. Ein Hero, der bis zur Kante trägt, ist eine
+bekannte hochwertige Form; ein leeres Band ist keine. Die Note fällt am Deployment.
+
+**Aber dazu gehört ein Befund, den ich im Quelltext gefunden habe, nicht im Bild:**
+
+`components/home/hero.tsx` rendert **kein `hf-scroll`** — der E2-Hero hat **überhaupt keinen
+Rollhinweis** mehr (in `app/globals.css` steht die Klasse noch, benutzt wird sie nicht). Solange der
+Blick auf den nächsten Abschnitt da war, trug er diese Aufgabe. In Form 2 ist er auf **allen
+Schreibtischgrößen und bei 360 / 375 gleich null**.
+
+Damit endet der erste Bildschirm dort, ohne dass **irgendetwas** anzeigt, dass die Seite weitergeht.
+Das berührt die verbindliche Erzählfolge des Vorhabens: der Schmerz kommt zuerst, und der Hero muss
+dorthin führen. Ein erster Bildschirm, der wie eine ganze Seite aussieht, führt nirgendwohin.
+
+**Das ist kein Argument gegen Form 2** — es ist das, was Form 2 braucht: entweder einen Rollhinweis
+zurück, oder eine andere leise Andeutung an der Kante. Ich melde es jetzt, weil es die Entscheidung
+des Owners verändert: er wählt sonst zwischen „leeres Band" und „gar kein Hinweis", und das ist
+nicht die Auswahl, die er glaubt zu treffen. Zu prüfen ist es an **390 und 414 nicht** — dort zieht
+die ganze Schmerzzeile.
+
+### B-8 — der Textbefehl des Owners macht jede Zahl dieses Tages hinfällig
+
+Copy `36e2e15`: der Hero geht zurück auf den Text des Owners vom 17.11., **ohne Kürzung**.
+
+| | jetzt im Bau (E2) | bestellt (17.11.) | Richtung |
+|---|---|---|---|
+| h1 ES | 48 Zeichen | 51 | gleich |
+| **h1 EN** | 54 | **36** | **kürzer** |
+| Unterzeile ES | ~126 | **~196** | **+56 %** |
+| Unterzeile EN | ~146 | **~226** | **+55 %** |
+
+**Was das kostet — Schätzung, ausdrücklich keine Messung.** Bei 360 und 375 fasst eine Zeile rund
+34 Zeichen; die Unterzeile wächst dort um etwa zwei Zeilen (≈ 44 px), die englische Überschrift
+spart ungefähr eine (≈ −34 px). Netto also **rund +44 px in Spanisch und rund +10 px in Englisch**
+auf den kleinen Telefonen. Gemessen stand nach `66776a8` ohne Streifen:
+
+| | Aufgabenkarte | Hauptaktion | nach der Schätzung |
+|---|---|---|---|
+| 360 × 640 ES | +135 | **+45** | Aktion **um die Kante herum** |
+| 360 × 640 EN | +54 | −36 | Aktion weiter darunter, Karte knapp drin |
+| 375 × 667 ES | +142 | **+52** | Aktion **knapp** |
+| 375 × 667 EN | +100 | +10 | Aktion **darunter** |
+
+**Die Aufgabenkarte — das Kriterium Ihrer Note — überlebt nach dieser Schätzung überall. Die
+Hauptaktion verliert auf den kleinen Telefonen den ersten Bildschirm, in beiden Sprachen.** Das ist
+die vorhersehbare Folge des Textbefehls, und sie ist legitim: es ist der Text des Owners, und er hat
+ihn ohne Kürzung bestellt. Er soll sie nur **vorher** kennen und nicht aus einer Messung danach
+erfahren.
+
+**Und die Schmerzzeilen-Regel muss neu laufen.** Bei 390 und 414 steht die ganze Zeile heute mit
+160 px Blick; ein höherer Hero frisst genau diesen Blick. Bei etwa +44 px bleiben rund 116 px, die
+Zeile braucht 86 px plus Luft — **das kann wieder zum Anschnitt führen.** Dass das in einem Lauf zu
+sehen ist, liegt allein daran, dass Redesign aus meinem Einzelbefund eine Sonde gemacht hat.
+
+### Was ich Redesign dazu geraten habe
+
+**Jetzt nicht weitermessen und nicht weiter nachbessern.** Vier Runden Kantenarbeit stehen heute im
+Bau, und der Textbefehl setzt sie sämtlich außer Kraft. Die sieben Fenster, beide Sprachen, mit und
+ohne Möblierung, dazu `peek.mjs` — **einmal**, nach dem Textbau, und dann wird entschieden. Alles
+andere ist Arbeit an Zahlen, die schon tot sind.
+
+**Für meinen Durchgang gilt:** die Tabellen der Nachträge 1 bis 5 sind **an den jeweiligen lokalen
+Bau gebunden und mit `36e2e15` hinfällig**. Gültig bleiben die **Formen** (Möblierung zählt nicht
+zum Produkt; ganz oder gar nicht, nie angeschnitten; Restluft in Pixeln; ES **und** EN; sieben
+Fenster) und die Befunde B-1 bis B-7. Gemessen wird nach der Freigabe des Owners, am benannten
+Commit, anhand der Deployment-Kennung.
