@@ -82,11 +82,16 @@ card sits on the first screen at every window in both languages, and the main ac
 the fold, one short scroll). The 390 × 844 rows are identical in ES and EN because the phone's minimum height sets the hero's height there
 and the content is shorter than it in both languages; the scene's containers report scrollHeight = clientHeight (no clipped text).
 
-**The peek of the next section (RV6 3092143):** on the released desktop page the pain line was cut through its letters at the fold.
-Rule now (`49410c1`): the pain line is either whole on the first screen (390, 414: the whole line and its mark) or starts under the fold
-(desktop: the hero leaves 128 px, the band carries 132 px of top air; short phones: at most 28 px of band). `peek.mjs` reports
-whole / under the fold / sliced per window; result `peek-local-b8bb2bc-plus.json`: no window sliced. Pictures without the strips:
-`e2_kandidat_1124\falz_es_en\ohne-streifen-*.png` (360, 375, 390, 414, 1366; ES and EN).
+**The edge to the next section (RV6 3092143, 0f88744):** on the released desktop page the pain line was cut through its letters at the
+fold; the first fix (`49410c1`) left 117–128 px of empty sand band there instead, which is the blank band this build set out to remove.
+The whole line cannot fit on the desktop first screen (the content sets the hero's height at 1280/1366/1440 in both languages). Rule now
+(the commit after `49410c1`): where the line fits it is whole with its mark (390, 414); everywhere else the hero fills the first screen,
+words at the top, the living-room picture to the fold — never a sliced line, never a blank band. `peek.mjs` reports whole / under the
+fold / sliced per window; result `peek-local-49410c1-plus.json`: 390/414 whole, every other window 0 px of peek, none sliced. Pictures
+without the strips: `e2_kandidat_1124\falz_es_en\ohne-streifen-*.png` (360, 375, 390, 414, 1366; ES and EN); the two desktop forms side
+by side for the owner's eye in `falz_es_en\kante_desktop\` (variante-1 = the sand band, variante-2 = the hero to the fold, built).
+Headroom with the strips rises where the hero was taller than its content (1366 ES 74 → 114, 1440 ES 66 → 99); the table above
+keeps the earlier figures for the other rows, the JSON `fold-es-en-local-49410c1-plus-7-windows.json` has all of them.
 
 ## 4. The builder's grades (the owner's six criteria; RV6 grades independently)
 
