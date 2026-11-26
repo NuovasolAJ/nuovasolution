@@ -2186,17 +2186,16 @@ html.js .hf-scene-live .hf-scene-task { animation-name: hf-build; animation-dura
   [data-hero-e2] .hf-scene-msg .hf-scene-translation { margin-bottom: 6px; }
   [data-hero-e2] .hf-scene-task { padding: 8px 14px; }
   [data-hero-e2] .hf-ctas { margin-top: 10px; }
-  /* the hero reaches to 28 px above the fold, so at most the pain band's top air (32 px here) peeks in — never a sliced line */
-  .hf:has([data-hero-e2]) { min-height: calc(100svh - 28px); }
+  /* the hero reaches the fold: the small phone has no room for the pain line, so nothing of the next section is cut or left blank */
+  .hf:has([data-hero-e2]) { min-height: 100svh; }
   .hf:has([data-hero-e2]) .hf-content { padding-bottom: 52px; }
 }
-/* the peek of the next section on the released page (RV6 3092143, 26.11.): on the desktop the first screen ends with the pain band's
-   top — without the preview strips the hero leaves 128 px, and the band's top air is 132 px, so the pain line starts under the fold and
-   is never cut through its letters; where the content sets the hero's height the peek is smaller still. On the phone (390/414) the
-   whole line shows, as before. */
+/* the edge to the next section on the released page (RV6 3092143 and 0f88744, 26.11.): the pain line is whole on the first screen where
+   it fits (390/414: the hero leaves 160 px) and otherwise the hero fills the first screen — never a line cut through its letters, never a
+   blank band. On the desktop the content sets the hero's height at 1280/1366/1440 in both languages, so the whole line cannot fit there;
+   the hero therefore runs to the fold with its words at the top, the living-room picture fills the rest. */
 @media (min-width: 1024px) {
-  .hf:has([data-hero-e2]) { min-height: min(calc(100svh - 128px), 860px); }
-  .pain-inner { padding-top: 132px; }
+  .hf:has([data-hero-e2]) { min-height: 100svh; align-items: flex-start; }
 }
 /* RV6 R-13 (34ebc36): the trial's way on the first screen is clipped for sighted readers (the owner's rule: one action) but stays a
    tab stop — so while it has keyboard focus it appears as the second button (the skip-link pattern); the focus never disappears */
