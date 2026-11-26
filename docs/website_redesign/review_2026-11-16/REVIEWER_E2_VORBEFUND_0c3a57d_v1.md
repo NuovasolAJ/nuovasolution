@@ -74,3 +74,42 @@ Zwei Dinge, die ich ausdrücklich **nicht** melde:
   nicht auf `bea7d19`.
 - **Die Eigenbenotung des Erbauers ist durchgehend 9** (vier Abschnitte × sechs Kriterien). Eine
   gleichförmige Selbstnote trägt wenig Auskunft; meine Noten entstehen unabhängig, wie bisher.
+
+---
+
+## R-13 — behoben an der Quelle (26.11., `6ca52cd`), mit zwei Punkten für die Messung
+
+Redesign nimmt R-13 an und baut das Sprungverweis-Muster richtig ein:
+
+```css
+.hf-cta-trial-kbd { position: absolute; width: 1px; height: 1px; … clip: rect(0,0,0,0); }
+.hf-cta-trial-kbd:focus-visible { position: static; width: auto; height: auto; … display: inline-flex; }
+@media (max-width: 639px) { .hf-cta-trial-kbd:focus-visible { width: 100%; } }
+```
+
+Unfokussiert bleibt alles wie vom Owner verlangt — **eine** sichtbare Aktion im ersten Bildschirm.
+Bei Tastaturfokus wird aus dem Verweis ein echter zweiter Knopf. Der Fokus verschwindet nicht mehr.
+**Der Befund ist damit an der Quelle erledigt**; bestätigt wird er mit echten Tabulatordrücken am
+Deployment, nicht vorher.
+
+### Zwei Punkte, die ich deshalb mitmesse
+
+1. **Das Muster baut um, statt zu überlagern.** Der übliche Sprungverweis bleibt `position:
+   absolute` und fährt nur ein; hier wird er bei Fokus `position: static` und tritt damit in den
+   Textfluss. Unter 640 px wird er zusätzlich `width: 100%`, also ein zweiter Knopf **unter** dem
+   Hauptknopf. Solange er den Fokus hat, rückt alles darunter nach unten. Das ist kein Mangel —
+   es ist eine verbreitete Form und betrifft nur den Augenblick des Fokus. Aber ich messe bei 375
+   und 390, **ob die Aufgabenkarte und die Hauptaktion im ersten Bildschirm bleiben, während der
+   Verweis den Fokus hat.** Bei 1366 × 768 steht er nach Redesigns Messung **neben** der
+   Hauptaktion, dort ist kein senkrechtes Rücken zu erwarten.
+2. **Er wird in meiner Tippziel-Messung als Treffer unter 44 px auftauchen** (1 × 1, solange er
+   nicht fokussiert ist) — wie die Spam-Falle, aber aus einem anderen Grund: abgeschnitten, also
+   für den Finger nicht treffbar, und für die Tastatur jetzt sichtbar und 44 px hoch. Ich werde ihn
+   einordnen und **nicht** als Verstoß melden. Ich schreibe es vorher auf, damit die Zahl „1 unter
+   44 px" später niemanden erschreckt.
+
+Redesigns Zahlen (1366 × 768: 13 Tabulatordrücke, dann 198 × 44 bei y 644 über der Kante; 390:
+6 Drücke, dann 358 × 44) sind **Angaben des Erbauers** und werden von mir am Deployment geprüft.
+
+**Der Kandidat heißt damit nicht mehr `0c3a57d`.** Redesign benennt genau einen Commit, sobald die
+Freigabe des Owners vorliegt; bis dahin bleibt der Alias auf `bea7d19`.
