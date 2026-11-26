@@ -2178,6 +2178,15 @@ html.js .hf-scene-live .hf-scene-task { animation-name: hf-build; animation-dura
   [data-hero-e2] .hf-scene-task { padding: 9px 14px; }
   [data-hero-e2] .hf-ctas { margin-top: 12px; }
 }
+/* the short phone (375 × 667, the SE): without the preview strips the English action ended 4 px under the fold — the picture sits a
+   little tighter there, so the whole first screen fits in both languages on the released page */
+@media (max-width: 639px) and (max-height: 720px) {
+  .hf:has([data-hero-e2]) .hf-content { padding-top: calc(var(--header-h) + 10px); }
+  [data-hero-e2] .hf-scene-msg .hf-scene-text { margin: 6px 12px 6px 14px; }
+  [data-hero-e2] .hf-scene-msg .hf-scene-translation { margin-bottom: 6px; }
+  [data-hero-e2] .hf-scene-task { padding: 8px 14px; }
+  [data-hero-e2] .hf-ctas { margin-top: 10px; }
+}
 /* RV6 R-13 (34ebc36): the trial's way on the first screen is clipped for sighted readers (the owner's rule: one action) but stays a
    tab stop — so while it has keyboard focus it appears as the second button (the skip-link pattern); the focus never disappears */
 .hf-cta-trial-kbd { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
