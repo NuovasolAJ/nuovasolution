@@ -2196,6 +2196,12 @@ html.js .hf-scene-live .hf-scene-task { animation-name: hf-build; animation-dura
    the hero therefore runs to the fold with its words at the top, the living-room picture fills the rest. */
 @media (min-width: 1024px) {
   .hf:has([data-hero-e2]) { min-height: 100svh; align-items: flex-start; }
+  .hf:has([data-hero-e2]) .hf-mark { bottom: 84px; }
+}
+/* RV6 f243f62: where the hero runs to the fold, the first screen needs a quiet sign that the page goes on — the owner's rule allows no
+   arrow, so the picture dissolves into the next section's ground over the last 72 px (still, no motion); the caption moves above it */
+@media (min-width: 1024px), (max-width: 639px) and (max-height: 720px) {
+  .hf:has([data-hero-e2])::after { content: ""; position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; height: 72px; pointer-events: none; background: linear-gradient(to bottom, rgba(246, 246, 248, 0), var(--sand-100)); }
 }
 /* RV6 R-13 (34ebc36): the trial's way on the first screen is clipped for sighted readers (the owner's rule: one action) but stays a
    tab stop — so while it has keyboard focus it appears as the second button (the skip-link pattern); the focus never disappears */

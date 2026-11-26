@@ -26,8 +26,9 @@ export const DIFFERENCES_CONFIRMED_BY_API = false;
 
 export const brief1120 = {
   hero: {
-    h1: T("Mientras enseñas un piso, ¿quién atiende a Mila?", "While you're showing a flat, who's looking after Mila?"),
-    sub: T("NuovaSolution le contesta por WhatsApp al momento, entiende qué busca y te deja la tarea lista: a quién llamar y qué comprobar.", "NuovaSolution answers her on WhatsApp straight away, works out what she's looking for and leaves you the task ready: who to call and what to check."),
+    /* the owner, 26.11. (Copy 36e2e15): the hero goes back to his text of 17.11., character for character, nothing shortened; EN as on 17.11. (92f873d) */
+    h1: T("Haz crecer tu inmobiliaria. No tu carga de trabajo.", "Grow your agency. Not your workload."),
+    sub: T("NuovaSolution capta clientes, responde consultas y hace seguimiento. Reactiva contactos, propone inmuebles y te muestra qué merece tu atención, para que tu negocio avance sin que todo dependa de ti.", "NuovaSolution brings in clients, answers enquiries and follows up. It re-engages past contacts, suggests properties and shows you what deserves your attention, so your business moves forward without everything depending on you."),
     caption: T("Estás en una visita · 11:40", "You're at a viewing · 11:40"),
     cta: T("Ver cómo queda la tarea", "See the finished task"),
     ctaTrial: T("Prueba Essential gratis", "Try Essential free"),
