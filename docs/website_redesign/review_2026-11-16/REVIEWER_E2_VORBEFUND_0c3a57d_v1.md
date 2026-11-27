@@ -766,3 +766,13 @@ de trabajo." braucht **keine** Schlüssel. Das ist ein geschäftliches Ergebnis,
 **V-1 bleibt offen und liegt richtig:** ob die freigegebene öffentliche Seite einen Satz tragen darf,
 dessen erstes Verb an einer Bau-Zeile hängt, entscheiden Audit und der Owner. Die Eintragung ändert
 daran nichts — sie macht die Frage nur sichtbar, statt sie zu verstecken. Das war ihr Zweck.
+
+**Nachtrag 8a (27.11.):** beide Kleinigkeiten behoben (`4e2aed5`), an der Quelle nachgesehen: das
+Feld heißt jetzt `hero.keys` wie überall sonst, trägt `satisfies ClaimKey[]`, `ClaimKey` ist
+importiert, `subKeys` kommt in der Datei **null** Mal mehr vor. Ein umbenannter Schlüssel in
+`claims.ts` lässt damit den Bau scheitern, statt den Nachweis lautlos zu entwerten. **V-2 ist
+vollständig geschlossen.** Offen bleibt allein **V-1** — bei Audit und beim Owner.
+
+**Damit ruht meine Arbeit an diesem Kandidaten.** Gemessen wird nach der Freigabe des Owners, an
+genau dem Commit, den Redesign benennt, anhand der Deployment-Kennung. Bis dahin liefert der Alias
+`bea7d19` / `dpl_H6WfQ1GK…`, und jede Zahl in diesem Bericht ist eine **Angabe des Erbauers**.
