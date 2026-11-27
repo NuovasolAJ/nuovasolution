@@ -14,10 +14,13 @@ allowed, no attribution required (given here anyway), no identifiable people in 
 |---|---|---|---|---|---|
 | A | 29012619 | Beyza Kılıçdere | https://www.pexels.com/photo/bright-modern-living-room-with-soft-white-interiors-29012619/ | white living room, sheer curtains, soft daylight | proposed 24.11. |
 | B | 28586197 | Jonathan Borba | https://www.pexels.com/photo/modern-living-room-with-contemporary-design-28586197/ | open room with a wooden staircase, light wood, bright | proposed 24.11. |
-| C | 35419464 | Peter Vang | https://www.pexels.com/photo/modern-minimalist-living-room-interior-with-neutral-tones-35419464/ | minimalist room, neutral tones, window front | proposed 24.11. |
+| C | 35419464 | Peter Vang | https://www.pexels.com/photo/modern-minimalist-living-room-interior-with-neutral-tones-35419464/ | minimalist room, neutral tones, window front | **chosen by the owner 27.11. (E2), in use** |
 
-Current hero picture: the 3D lane's render `public/media/3d/hero-a-1920.webp` with the film `hero-a.mp4/.webm` (stays until the owner picks).
+The 3D lane's render `public/media/3d/hero-a-*.webp` with the film `hero-a.mp4/.webm` stays in the repository for the later stage
+(the owner's iStock direction 2184806122 for the "Luxus-Rundgang"; nothing bought).
 
 ## Photos in use
 
-none yet.
+| Where | File(s) | Source | Licence | Note |
+|---|---|---|---|---|
+| Home hero background (E2, the owner's decision of 27.11., point 3) | `public/media/photos/hero-c-{960,1280,1920,2560}.webp` (from the 2560 × 1440 Pexels file, WebP q 0.82) | Pexels 35419464, Peter Vang, https://www.pexels.com/photo/modern-minimalist-living-room-interior-with-neutral-tones-35419464/ | Pexels License (free, commercial use, no attribution required; credit given in the picture's caption title) | no identifiable people, no logos; the caption "Estás en una visita · 11:40" names no listing data; the slow drift stays; darkened only behind the words |

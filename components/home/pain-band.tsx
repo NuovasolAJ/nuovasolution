@@ -32,7 +32,7 @@ export function PainBand({ locale }: { locale: Locale }) {
     return () => { io.disconnect(); cancelAnimationFrame(raf); };
   }, [reduce]);
   return (
-    <section ref={ref} aria-label={`${l(w.before)}${l(w.figure)}${l(w.after)}`} className="pain" data-pain data-pain-count={n}>
+    <section ref={ref} id="pain" aria-label={`${l(w.before)}${l(w.figure)}${l(w.after)}`} className="pain" data-pain data-pain-count={n}>
       <div className="container-default pain-inner">
         <p className="pain-line">
           <span>{l(w.before)}</span>

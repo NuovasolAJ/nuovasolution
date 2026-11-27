@@ -162,7 +162,9 @@ export const demoChannels: DemoChannel[] = [
       state: { v: T("Respondida automáticamente · Llamada pendiente", "Answered automatically · Call still to make"), at: 10 },
       priority: { v: T("Alta", "High"), why: T("nombró un inmueble y pide llamada", "named a property and asks for a call"), at: 11 },
       // Copy c683f2f §2: the sub line tells an answered enquiry from personal attention
-      next: { v: T("Llamar a Mila hoy a partir de las 17:00 · Comprobar disponibilidad de la ref. 9895153", "Call Mila today from 5 pm · Check whether ref. 9895153 is available"), sub: T("Mila ya tiene respuesta. La llamada sigue esperando a Marta.", "Mila already has her answer. The call is still waiting for Marta."), at: 12 },
+      // the owner, 27.11. (point 5): in the detailed example the task may name Mila and the flat; the time she gave (turn 3, "a partir de
+      // las 17:00") stays on her record ("Pide"), not in the title; no promise of a confirmed call-back
+      next: { v: T("Llamar a Mila por el piso de Nerja", "Call Mila about the flat in Nerja"), sub: T("Mila ya tiene respuesta. La llamada sigue esperando a Marta.", "Mila already has her answer. The call is still waiting for Marta."), at: 12 },
       taskHead: T("Tarea para Marta", "Task for Marta"),
       note: T("Si nadie coge la tarea en una hora, se lo recordamos a Marta.", "If nobody takes the task within an hour, we remind Marta."),
     },

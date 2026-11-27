@@ -50,6 +50,7 @@ export const home1103 = {
     imageMark: T("Casa de ejemplo ficticia, visualización", "Fictional demo house, visualisation"),
     artCredit: T("Cuadro: Vincent van Gogh, Cypresses (1889), The Metropolitan Museum of Art, dominio público", "Wall painting: Vincent van Gogh, Cypresses (1889), The Metropolitan Museum of Art, public domain"),
     scroll: T("Ver cómo responde", "See how it replies"), // Copy 1108 H-4
+    scrollPain: T("Seguir leyendo", "Keep reading"), // WORKING (Redesign, the owner's scroll hint of 27.11.): the label of the hint to the pain section; Copy may replace it
     brandMoment: T("NuovaSolution", "NuovaSolution"),
   },
 

@@ -4,7 +4,8 @@ import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
 import { brief1120 } from "@/lib/content/brief-1120";
 import type { ClaimView } from "@/lib/claims";
-import { HeroImage } from "./hero-image";
+import { HeroPhoto, HERO_PHOTO_C } from "./hero-image";
+import { ChevronDown } from "lucide-react";
 import { HeroDemo } from "./hero-demo";
 import { PainBand } from "./pain-band";
 import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
@@ -20,7 +21,7 @@ import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
  * on the demo's screens 1-B / 1-C, so the first screen shows only what is needed. What stays from before: the picture, the eyebrow, the
  * pain line under the hero and the demonstration's surfaces.
  */
-const PICTURE = "/media/3d/hero-a-1920.webp";
+const PICTURE = HERO_PHOTO_C.src; // the owner, 27.11.: photo C for E2 (the 3D render stays in the repository for the later stage)
 
 export function Hero({ locale, view }: { locale: Locale; view: ClaimView }) {
   const w = home1103.hero;
@@ -34,7 +35,7 @@ export function Hero({ locale, view }: { locale: Locale; view: ClaimView }) {
   return (
     <>
       <section aria-labelledby="hero-h1" data-hero="film" data-hero-brief="1120" className="hf">
-        <HeroImage alt={l(w.image)} mark={l(b.caption)} credit={l(w.artCredit)} />
+        <HeroPhoto alt={l(w.image)} mark={l(b.caption)} />
         <div className="container-default hf-content">
           <div className="hf-words" data-hero-words data-hero-e2="1124">
             {/* the owner's E2 order of 24.11.: the first screen carries at most the headline, one sentence, one main action and the living
@@ -70,6 +71,9 @@ export function Hero({ locale, view }: { locale: Locale; view: ClaimView }) {
             </div>
           </div>
         </div>
+        {/* the owner, 27.11. (point 2): a quiet, keyboard-reachable scroll hint to the pain section at the foot of the first screen;
+            still (no loop), a chevron, not a drawn arrow; sits on the dissolve edge where the hero runs to the fold (anchored to the section) */}
+        <a href="#pain" className="hf-edge" data-hero-cta="scroll" aria-label={l(w.scrollPain)}><ChevronDown size={20} strokeWidth={2} aria-hidden="true" /></a>
       </section>
       {/* Copy 1113 §1: the pain line as its own band under the picture (the owner keeps it; Copy stage 2 moves it to directly after the first screen); the demonstration rises into the band */}
       <PainBand locale={locale} />

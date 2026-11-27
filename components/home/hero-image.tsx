@@ -50,6 +50,36 @@ export function HeroImage({ alt, mark, credit }: { alt: string; mark: string; cr
   );
 }
 
+/** Photo C: Pexels 35419464 by Peter Vang, Pexels License (commercial use, no attribution required; given anyway). The record lives in docs/website_redesign/FOTOS_LIZENZ_1124_v1.md. */
+export const HERO_PHOTO_C = { src: "/media/photos/hero-c-1920.webp", credit: "Foto: Peter Vang · Pexels 35419464 · Pexels License" };
+
+/**
+ * The hero's picture for E2 (the owner's decision of 27.11., point 3): the free licensed photo C, served as WebP in four widths; the
+ * slow drift of 24 s stays (CSS, still with reduced motion); no film — the 3D lane's loop belongs to the render, not to this photo. The
+ * exposure stays neutral; the picture is darkened only behind the words (the E2 shade in globals.css), not tinted.
+ */
+export function HeroPhoto({ alt, mark }: { alt: string; mark: string }) {
+  return (
+    <div className="hf-media" data-hf-image="c" data-hf-photo="pexels-35419464">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={HERO_PHOTO_C.src}
+        srcSet="/media/photos/hero-c-960.webp 960w, /media/photos/hero-c-1280.webp 1280w, /media/photos/hero-c-1920.webp 1920w, /media/photos/hero-c-2560.webp 2560w"
+        sizes="100vw"
+        alt={alt}
+        width={1920}
+        height={1080}
+        fetchPriority="high"
+        decoding="async"
+        className="hf-image"
+        data-hero-image
+      />
+      <div className="hf-shade" aria-hidden="true" />
+      <p className="hf-mark" data-hero-mark title={HERO_PHOTO_C.credit}>{mark}</p>
+    </div>
+  );
+}
+
 /** The three benefits that appear one after another (CSS delays; static with reduced motion). Quiet lines with a check, no pill boxes (owner 06.11., point 13). */
 export function HeroBenefits({ benefits }: { benefits: string[] }) {
   return (

@@ -1,0 +1,83 @@
+{
+ "edge": {
+  "href": "#pain",
+  "label": "Seguir leyendo",
+  "w": 44,
+  "h": 44,
+  "bottom": 846,
+  "display": "flex",
+  "painId": true
+ },
+ "edgeTab": {
+  "presses": 14,
+  "found": true,
+  "focusVisible": true
+ },
+ "edgeJump": {
+  "scrollY": 766,
+  "painTop": 96
+ },
+ "demoHead": {
+  "bg": "rgb(240, 242, 245)",
+  "nameColor": "rgb(14, 14, 15)",
+  "mark": true,
+  "markColor": "rgb(37, 211, 102)"
+ },
+ "demoEnd": {
+  "titles": [
+   "TareaLlamar a Mila por el piso de NerjaMila ya tiene respuesta. La llamada sigue esperando a Marta.",
+   "Siguiente pasoLlamar a Mila por el piso de NerjaMila ya tiene respuesta. La llamada sigue esperando a Marta.",
+   "Siguiente pasoLlamar a Mila por el piso de NerjaMila ya tiene respuesta. La llamada sigue esperando a Marta."
+  ],
+  "hasOldTitle": false,
+  "hasNew": true
+ },
+ "bar_360x640": {
+  "atAction": {
+   "barState": "hidden",
+   "mainBottom": 632,
+   "barTop": 647,
+   "overlap": false
+  },
+  "atTrialFocus": {
+   "presses": 6,
+   "found": true,
+   "barState": "hidden",
+   "trialBottom": 444,
+   "barTop": 647,
+   "covered": false
+  }
+ },
+ "bar_375x667": {
+  "atAction": {
+   "barState": "hidden",
+   "mainBottom": 659,
+   "barTop": 674,
+   "overlap": false
+  },
+  "atTrialFocus": {
+   "presses": 6,
+   "found": true,
+   "barState": "hidden",
+   "trialBottom": 441,
+   "barTop": 674,
+   "covered": false
+  }
+ },
+ "bar_390x844": {
+  "atAction": {
+   "barState": "hidden",
+   "mainBottom": 804,
+   "barTop": 851,
+   "overlap": false
+  },
+  "atTrialFocus": {
+   "presses": 6,
+   "found": true,
+   "barState": "hidden",
+   "trialBottom": 819,
+   "barTop": 851,
+   "covered": false
+  }
+ }
+}

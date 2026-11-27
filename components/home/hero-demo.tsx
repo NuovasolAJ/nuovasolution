@@ -312,7 +312,8 @@ function ChatSurface({ c, phase, locale }: S) {
           <p className="demo-chat-name">{c.who} <span className="demo-chat-role">· {l(c.role)}</span></p>
           <p className="demo-chat-meta"><span className="demo-online" aria-hidden="true" />{l(ch.status)}</p>
         </div>
-        <Phone size={16} strokeWidth={2} aria-hidden="true" className="demo-chat-tool" />
+        {/* the owner, 27.11. (point 4): the official WhatsApp mark in the channel's green on the neutral head */}
+        <WhatsAppMark size={18} className="demo-chat-tool demo-chat-wa" />
       </div>
       <div className="demo-thread">
         {turns.map((t, i) => (

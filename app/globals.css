@@ -2198,6 +2198,24 @@ html.js .hf-scene-live .hf-scene-task { animation-name: hf-build; animation-dura
   .hf:has([data-hero-e2]) { min-height: 100svh; align-items: flex-start; }
   .hf:has([data-hero-e2]) .hf-mark { bottom: 84px; }
 }
+/* the owner, 27.11. (point 3): photo C is exposed neutrally — darkened only behind the words, no tint over the room */
+.hf:has([data-hero-e2]) .hf-shade { background: linear-gradient(90deg, rgba(12, 12, 14, 0.76) 0%, rgba(12, 12, 14, 0.6) 36%, rgba(12, 12, 14, 0.22) 60%, rgba(12, 12, 14, 0) 84%); }
+@media (max-width: 1023px) { .hf:has([data-hero-e2]) .hf-shade { background: linear-gradient(180deg, rgba(12, 12, 14, 0.6) 0%, rgba(12, 12, 14, 0.64) 50%, rgba(12, 12, 14, 0.72) 100%); } }
+/* the owner, 27.11. (point 4): the WhatsApp heads lose the teal bar — a calm neutral head, dark readable label, the official mark in the
+   channel's green; the bubbles keep the app's tints, the main buttons stay black */
+.hf-scene-msg .hf-scene-label, .demo-chat-head, .at-chat-head { background: #f0f2f5; color: var(--ink-950); }
+.hf-scene-msg .hf-scene-label svg, .at-chat-head svg, .demo-chat-head .demo-chat-wa { color: var(--channel-whatsapp); flex: none; }
+.demo-chat-head .demo-chat-name, .demo-chat-head .demo-chat-role, .demo-chat-head .demo-chat-meta { color: var(--ink-950); }
+.demo-chat-head .demo-chat-role, .demo-chat-head .demo-chat-meta { opacity: 0.72; }
+.demo-chat-head .demo-online { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9); }
+/* the owner, 27.11. (point 2): the quiet scroll hint to the pain section — a 44 px round control at the hero's foot, keyboard-reachable,
+   still; shown where the hero runs to the fold (the same windows as the dissolve); the chevron is a control glyph, not a drawn arrow */
+.hf-edge { display: none; position: absolute; z-index: 2; left: 50%; bottom: 16px; transform: translateX(-50%); width: 44px; height: 44px; border-radius: 999px; align-items: center; justify-content: center; color: var(--ink-950); background: rgba(255, 255, 255, 0.78); border: 1px solid rgba(26, 25, 23, 0.14); backdrop-filter: blur(6px); transition: background-color var(--motion-micro) var(--ease-standard), transform var(--motion-micro) var(--ease-standard); }
+.hf-edge:hover { background: #fff; }
+.hf-edge:active { transform: translateX(-50%) scale(0.96); }
+.hf-edge:focus-visible { outline: 2px solid var(--ink-950); outline-offset: 3px; }
+@media (min-width: 1024px), (max-width: 639px) and (max-height: 720px) { .hf-edge { display: inline-flex; } }
+@media (max-width: 639px) and (max-height: 720px) { .hf-edge { bottom: 6px; width: 40px; height: 40px; } }
 /* RV6 f243f62: where the hero runs to the fold, the first screen needs a quiet sign that the page goes on — the owner's rule allows no
    arrow, so the picture dissolves into the next section's ground over the last 72 px (still, no motion); the caption moves above it */
 @media (min-width: 1024px), (max-width: 639px) and (max-height: 720px) {

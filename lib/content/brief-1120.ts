@@ -47,7 +47,9 @@ export const brief1120 = {
     ] satisfies Bubble[],
     /** Copy batch 1 §1.2 + phone preview 1-A (11cf7a2): the task beside or below it — on the phone the title and ONE line. */
     task: {
-      title: T("Llamar a Mila · Comprobar disponibilidad de la ref. 9895153", "Call Mila · Check whether ref. 9895153 is available"),
+      /* the owner, 27.11. (point 5): the task's title names the flat, not the reference (the reference stays in Mila's enquiry); no time, since
+         the shown enquiry names none; no promise of a confirmed call-back */
+      title: T("Devolver la llamada por el piso de Nerja", "Return the call about the flat in Nerja"),
       line: T("Pide que la llamen · Disponibilidad sin confirmar", "Asks for a call back · Availability not confirmed"),
       fields: [
         { k: T("Busca", "Looking for"), v: T("3 dormitorios en Nerja, hasta 350.000 €", "3 bedrooms in Nerja, up to €350,000") },
