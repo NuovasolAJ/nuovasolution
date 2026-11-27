@@ -21,6 +21,7 @@ import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
  * on the demo's screens 1-B / 1-C, so the first screen shows only what is needed. What stays from before: the picture, the eyebrow, the
  * pain line under the hero and the demonstration's surfaces.
  */
+const HERO_FIT_SCRIPT = `(function(){var s=document.querySelector('section[data-hero="film"]');if(!s)return;var c=s.querySelector('.hf-content');function f(){if(!c||window.innerWidth>=1024){s.removeAttribute('data-hero-fit');return;}var room=window.innerHeight-c.getBoundingClientRect().height;s.setAttribute('data-hero-fit',room>=150?'peek':'edge');}f();window.addEventListener('resize',f);window.addEventListener('load',f);if(document.fonts&&document.fonts.ready){document.fonts.ready.then(f);}})();`;
 const PICTURE = HERO_PHOTO_C.src; // the owner, 27.11.: photo C for E2 (the 3D render stays in the repository for the later stage)
 
 export function Hero({ locale, view, stage = false }: { locale: Locale; view: ClaimView; stage?: boolean }) {
@@ -77,6 +78,10 @@ export function Hero({ locale, view, stage = false }: { locale: Locale; view: Cl
       </section>
       {/* Copy 1113 §1: the pain line as its own band under the picture (the owner keeps it; Copy stage 2 moves it to directly after the first screen); the demonstration rises into the band */}
       <PainBand locale={locale} />
+      {/* RV6 N-5 (39176ea): on the phone the foot of the first screen is a 28 px edge of the next section's ground (CSS default, never a cut
+          line) or — only when the whole pain line and its mark fit under the hero — the 160 px peek with the whole line; this measures the
+          room (window height minus the hero's content) and sets data-hero-fit; re-measured after fonts and on resize; desktop untouched */}
+      <script dangerouslySetInnerHTML={{ __html: HERO_FIT_SCRIPT }} />
       <HeroDemo locale={locale} view={view} />
     </>
   );
