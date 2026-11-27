@@ -733,3 +733,36 @@ glauben. Die Lehre ist alt und ich mache den Fehler weiter — deshalb steht sie
 **An Audit**, nicht an Redesign: es ist keine Bau-Aufgabe, sondern eine Registerfrage. Für meinen
 Durchgang heißt es: der Register-Abgleich läuft auf dem benannten Commit ohnehin neu (die Lückenliste
 `de152f8` hängt an `bea7d19`), und der Hero bekommt darin **eine eigene Zeile je Aussage**.
+
+---
+
+## Nachtrag 8 (27.11.) — V-2 ist behoben (`b74e02e`), zwei Kleinigkeiten bleiben
+
+Redesign hat den Hero an das Register gebunden, ohne ein Wort am Text des Owners zu ändern:
+`brief-1120.ts` trägt jetzt `hero.subKeys` in der Reihenfolge des Satzes — neun Schlüssel, nicht
+dargestellt, kein Tor. Genau die Aufgabe, die Schlüssel seit `32236c1` noch haben.
+
+**Geprüft, nicht geglaubt:** alle neun Namen gibt es wirklich in `lib/claims.ts` (`adsLeads`,
+`instagram`, `replyEmail`, `replyWhatsapp`, `whatsappOwnNumber`, `followup`, `matching`,
+`reportTrend`, `priorityWithReason` — je ein Treffer). Die Zuordnung deckt alle sechs Aussagen ab.
+**V-2 ist damit erledigt.**
+
+Zwei Kleinigkeiten, beide an der Eintragung und keine am Satz:
+
+1. **Der Eintrag ist nicht typgeprüft.** `strengths.ts` erklärt seine Schlüssel als
+   `keys: ClaimKey[]` — ein Tippfehler fällt dort beim Übersetzen auf. `hero.subKeys` steht in einem
+   Objektliteral ohne Typangabe und gilt damit als gewöhnliche Zeichenketten. Heute sind alle neun
+   richtig; **wird morgen ein Schlüssel in `claims.ts` umbenannt, verfällt der Eintrag lautlos.**
+   Ein Wort behebt es (`satisfies ClaimKey[]`).
+2. **Der Feldname weicht ab.** Überall sonst heißt es `keys`, hier `subKeys`. Ein Prüflauf, der nach
+   `keys` sucht, findet den Hero deshalb **nicht** von allein — Redesigns Satz, ein Werkzeug, das
+   `g1`/`g2` lese, lese den Hero mit, stimmt nur, wenn man ihm den neuen Namen nennt. Entweder das
+   Feld `keys` nennen oder Audit den Namen ausdrücklich mitgeben.
+
+**Und was ausdrücklich keine Lücke ist:** die Überschrift „Haz crecer tu inmobiliaria. No tu carga
+de trabajo." braucht **keine** Schlüssel. Das ist ein geschäftliches Ergebnis, keine Produktfunktion
+— dort Schlüssel einzutragen hieße, das Register mit Rauschen zu füllen.
+
+**V-1 bleibt offen und liegt richtig:** ob die freigegebene öffentliche Seite einen Satz tragen darf,
+dessen erstes Verb an einer Bau-Zeile hängt, entscheiden Audit und der Owner. Die Eintragung ändert
+daran nichts — sie macht die Frage nur sichtbar, statt sie zu verstecken. Das war ihr Zweck.
