@@ -158,5 +158,5 @@ sentence is a public promise:
 One proven, one arguable, four Bau. The sentence describes the target state; under the owner's decision 2 of 23.11. the preview shows
 the product at 100 %. Whether the RELEASED public page may carry it is Audit's and the owner's call. The text is from 17.11. (built in
 92f873d); the rule that every rendered sentence is a public promise is from 23.11.; the text returns into a stricter regime than the
-one it left. Redesign's part: the hero's subline now carries these keys at source (`brief-1120.ts` `hero.subKeys`, not rendered, no
+one it left. Redesign's part: the hero's subline now carries these keys at source (`brief-1120.ts` `hero.keys`, typed `ClaimKey[]`, not rendered, no
 gate), so Audit's instrument sees the hero's claims as it sees the cards' (`strengths.ts` g1/g2).

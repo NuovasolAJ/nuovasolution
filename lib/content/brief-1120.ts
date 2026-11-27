@@ -31,8 +31,9 @@ export const brief1120 = {
     sub: T("NuovaSolution capta clientes, responde consultas y hace seguimiento. Reactiva contactos, propone inmuebles y te muestra qué merece tu atención, para que tu negocio avance sin que todo dependa de ti.", "NuovaSolution brings in clients, answers enquiries and follows up. It re-engages past contacts, suggests properties and shows you what deserves your attention, so your business moves forward without everything depending on you."),
     /** RV6 10c0da2 (27.11.): the subline's six claims mapped to Audit's register keys, in the sentence's order, so the instrument that reads
         the cards' keys sees the hero's too — capta clientes · responde consultas · hace seguimiento · reactiva contactos · propone inmuebles ·
-        qué merece tu atención. Not rendered and not a gate (since 32236c1 nothing gates); a record for Audit. */
-    subKeys: ["adsLeads", "instagram", "replyEmail", "replyWhatsapp", "whatsappOwnNumber", "followup", "matching", "reportTrend", "priorityWithReason"],
+        qué merece tu atención. Not rendered and not a gate (since 32236c1 nothing gates); a record for Audit, under the same field name as
+        every other surface and type-checked against claims.ts (RV6 3d4f277). */
+    keys: ["adsLeads", "instagram", "replyEmail", "replyWhatsapp", "whatsappOwnNumber", "followup", "matching", "reportTrend", "priorityWithReason"] satisfies ClaimKey[],
     caption: T("Estás en una visita · 11:40", "You're at a viewing · 11:40"),
     cta: T("Ver cómo queda la tarea", "See the finished task"),
     ctaTrial: T("Prueba Essential gratis", "Try Essential free"),
