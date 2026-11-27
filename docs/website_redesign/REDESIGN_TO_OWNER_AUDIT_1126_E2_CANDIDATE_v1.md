@@ -137,3 +137,5 @@ The grade "easy trial" on the first screen counts the header button and the phon
 ## 6. Skills used (the owner's point 7)
 
 Taken over as Markdown only into `.claude/skills/` (github.com/emilkowalski/skills @ 64eb3de): emil-design-eng, find-animation-opportunities, animate (+RECIPES), choreograph (+RECIPES), review-animations (+STANDARDS), apple-design. Applied: one entrance per container, lead/support/decoration roles, the strong ease-out curve, transform and opacity only, play once, reduced motion as a gentle fade, press feedback on every action.
+
+Durability note (RV6 8c37c9f, 27.11.): at 390 EN the content, not the minimum height, now sets the hero (9 px over the minimum) and the pain line clears the fold by 31 px — the next line added to the hero slices it there first. Measure peek.mjs after any hero text change.
