@@ -207,6 +207,18 @@ Die Funktionsprüfungen sind durchweg sauber: R-12 vollständig, die `{plan}`-Ma
 
 ---
 
+## Nachtrag 1 (27.11., nach Redesigns Antwort)
+
+Redesign bestätigt E-1 bis E-4 als dieselben Befunde, die in `52ed2a0` / `f8d39dc` behoben sind, und bestätigt, dass **E-5 und E-6 nicht abgedeckt waren**. Beide sind jetzt lokal behoben (noch nicht gepusht): der Hinweis ist auch auf dem kurzen Telefon 44 × 44 (`bottom: 4px`), und die Medienregel verlangt zusätzlich `min-height: 650px` — damit behält 375 × 667 den Hinweis (jetzt 10 px innerhalb), und **360 × 640 bekommt ihn gar nicht mehr**, mit der Begründung, dort sei das vom Fenster angeschnittene Bild der Hinweis.
+
+Die Regel geht auf dem Papier auf: 640 < 650 → aus; 667 liegt in [650, 720] → an; 844 und 896 > 720 → aus; ab 1024 px Breite → an. Gemessen wird sie an dem Commit, den der Owner freigibt.
+
+**Was daraus für 360 × 640 folgt, und das gehört dem Owner als eine Tatsache, nicht als zwei:** Dort sitzt die Hauptaktion auf genau 0 — bündig auf der Falz, ohne Reserve — **und einen Hinweis auf das Weiterlesen gibt es dann nicht mehr.** Redesigns Satz „dort ist das angeschnittene Bild der Hinweis" ist eine Gestaltungsannahme, keine Messung; ich kann sie messen (ob unter der Falz Inhalt liegt: ja), aber nicht entscheiden, ob sie trägt. Das ist eine Entscheidung des Owners. Ich halte den Einwand „ein Hinweis 46 px unter der Falz hilft niemandem" für richtig — die Frage ist nicht, ob der alte Zustand besser war, sondern ob 360 ohne Hinweis genügt.
+
+**Mein kurzer Nachlauf am benannten Commit umfasst damit sechs Punkte, nicht fünf:** E-1 bis E-4, die 44 px und die Sichtbarkeitsregel aus E-5/E-6 — und zusätzlich die Falz-Zeilen 360 und 375 als Rückfallprobe. Der Hinweis ist absolut positioniert, eine Änderung an ihm sollte die Falz-Zahlen nicht bewegen; „sollte nicht" ist keine Messung, also wird es eine.
+
+---
+
 *Belege, alle auf `dbd14d8` / `dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1`, Bau-Bindung am Anfang und am Ende jeder Datei:*
 
 *Erster Bildschirm `checks/falz-dbd14d8-1127.json` · die sechs Punkte `checks/sechs-dbd14d8-1127.json` · Nachzug `checks/nach-dbd14d8-1127.json` · Bericht und Ficha `checks/rest-dbd14d8-1127.json` · Matrix und Bestätigungen `checks/matrix-dbd14d8-1127.json` · Kontrast `checks/kontrast-c-dbd14d8-1127.json` (gültig), daneben `kontrast-dbd14d8-1127.json` und `kontrast-b-dbd14d8-1127.json` (meine beiden fehlerhaften Instrumente, absichtlich aufbewahrt) · Tippziele `checks/tippziele-dbd14d8-es-{360,375,390}.json` · Wege und Formulare `checks/wege-dbd14d8-es-390.json` · Sprachwechsel `checks/sprach-dbd14d8-es.json` · R-9 `checks/r9kante-es-390.json` · R-12 `checks/autorun-es-390.json`, `checks/autorun-en-390.json` · Tabulatorfolge `checks/tabreal-es-390.json`.*
