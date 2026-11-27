@@ -2345,3 +2345,11 @@ html.js .hf-scene-live .hf-scene-task { animation-name: hf-build; animation-dura
   .hf:has([data-hero-e2]) .hf-mark { top: auto; bottom: 12px; right: var(--gutter); }
   .hf:has([data-hero-e2]) .hf-content { padding-bottom: 40px; }
 }
+/* the owner's correction of 27.11. (second message): black-and-white stills; the pool finale shows only the pool scene behind the dark
+   glass of the closing panel (its faint couch picture is off here), and the original mark lies in the pool floor — multiplied over the
+   water, slightly softened, so it reads as laid in, not pasted on; the closing button stays a sharp website element above it */
+.tour-img { transform: scale(1.04); }
+[data-tour] .closing-panel::before { display: none; }
+[data-tour] .closing-panel { background: rgba(12, 12, 14, 0.58); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.tour-logo { position: absolute; left: 50%; top: 74%; width: clamp(150px, 24vw, 340px); height: auto; transform: translate(-50%, -50%) perspective(900px) rotateX(16deg); mix-blend-mode: multiply; opacity: 0.66; filter: blur(0.4px); }
+@media (max-width: 639px) { .tour-logo { top: 72%; width: 56vw; } }

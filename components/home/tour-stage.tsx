@@ -20,18 +20,21 @@ import { useEffect, useRef } from "react";
  */
 export type TourScene = { key: string; base: string; alt: string; widths?: number[] };
 
+/** The owner's corrected path (27.11., second message): entrance → through the door → the high hall → the rooms → the stairs → the upper
+ *  floor → the balcony → over the balustrade onto the pool with the logo on its floor. Black-and-white stills (his preferred look). */
 const SCENES: TourScene[] = [
-  { key: "s1", base: "/media/photos/hero-c", alt: "", widths: [960, 1280, 1920, 2560] },
-  { key: "s2", base: "/media/tour/s2-stairs", alt: "" },
-  { key: "s3", base: "/media/tour/s3-landing", alt: "" },
-  { key: "s4", base: "/media/tour/s4-sitting", alt: "" },
-  { key: "s5", base: "/media/tour/s5-study", alt: "" },
-  { key: "s6", base: "/media/tour/s6-gallery", alt: "" },
+  { key: "s1", base: "/media/tour/s1-entrance", alt: "" },
+  { key: "s2", base: "/media/tour/s2-door", alt: "" },
+  { key: "s3", base: "/media/tour/s3-hall", alt: "" },
+  { key: "s4", base: "/media/tour/s4-rooms", alt: "" },
+  { key: "s5", base: "/media/tour/s5-stairs", alt: "" },
+  { key: "s6", base: "/media/tour/s6-upper", alt: "" },
   { key: "s7", base: "/media/tour/s7-balcony", alt: "" },
   { key: "s8", base: "/media/tour/s8-pool", alt: "" },
 ];
 
-/** Which section shows which scene (the owner's table: B1 living room · B2 stairs → landing · B3+B4 sitting room · B5 study · B6 gallery · B7 balcony · B8 pool). */
+/** Which section shows which scene: B1 the entrance (hero text over the facade) · B2 pain = through the door, "Cómo funciona" = the hall ·
+ *  B3+B4 the rooms · B5 the stairs · B6 the upper floor · B7 the balcony (plans, trust, FAQ) · B8 over the balustrade: the pool. */
 const MAP: [string, string][] = [
   [".hf", "s1"],
   ["#pain", "s2"],
@@ -115,12 +118,13 @@ export function TourStage() {
       const curLayer = layers[cur.scene];
       curLayer.style.visibility = "visible";
       curLayer.style.opacity = "1";
-      if (!stills) imgs[cur.scene].style.transform = `scale(${(1.06 - 0.06 * easeOut(progress)).toFixed(4)})`;
+      // the dolly is small (4 %) so the picture stays sharp mid-move on the phone and the desktop
+      if (!stills) imgs[cur.scene].style.transform = `scale(${(1.04 - 0.04 * easeOut(progress)).toFixed(4)})`;
       if (next) {
         const nl = layers[next.scene];
         nl.style.visibility = t > 0 ? "visible" : "hidden";
         nl.style.opacity = String(easeOut(t));
-        if (!stills) imgs[next.scene].style.transform = "scale(1.06)";
+        if (!stills) imgs[next.scene].style.transform = "scale(1.04)";
       }
       el.setAttribute("data-stage-scene", SCENES[cur.scene].key);
       el.setAttribute("data-stage-t", t.toFixed(2));
@@ -149,6 +153,11 @@ export function TourStage() {
             {...(i === 0 ? { src: `${s.base}-1280.webp`, srcSet: srcset(s), fetchPriority: "high" as const } : {})}
           />
           <div className="tour-veil" />
+          {/* the finale: the original mark laid into the pool floor (multiply over the water; in post-production later on the film) */}
+          {s.key === "s8" && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img className="tour-logo" src="/images/logo-icon.png" alt="" decoding="async" loading="lazy" />
+          )}
         </div>
       ))}
     </div>
