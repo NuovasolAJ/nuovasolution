@@ -1,0 +1,45 @@
+[
+ {
+  "path": "/es/rundgang",
+  "firstScreenMs": 1741,
+  "bytesFirstKB": 228,
+  "domContentLoadedMs": 1552,
+  "lcpMs": null,
+  "heroImg": "already",
+  "totalMs": 13504,
+  "bytesTotalKB": 1052,
+  "scenesLoaded": 7,
+  "media": {
+   "/media/photos/hero-c-960.webp": "25 KB",
+   "/_next/static/media/e4af272ccee01ff0-s.p.woff2": "48 KB",
+   "/media/tour/s3-landing-960.webp": "8 KB",
+   "/media/tour/s5-study-960.webp": "29 KB",
+   "/media/tour/s4-sitting-960.webp": "61 KB",
+   "/media/tour/s6-gallery-960.webp": "15 KB",
+   "/media/tour/s7-balcony-960.webp": "65 KB",
+   "/media/3d/living-empty-1200.webp": "39 KB",
+   "/media/3d/living-furnished-1200.webp": "61 KB",
+   "/media/tour/s8-pool-960.webp": "93 KB",
+   "/media/3d/house-ground-loop-poster-1600.webp": "170 KB"
+  }
+ },
+ {
+  "path": "/es",
+  "firstScreenMs": 1717,
+  "bytesFirstKB": 232,
+  "domContentLoadedMs": 1560,
+  "lcpMs": null,
+  "heroImg": "already",
+  "totalMs": 12980,
+  "bytesTotalKB": 889,
+  "scenesLoaded": 0,
+  "media": {
+   "/media/photos/hero-c-960.webp": "25 KB",
+   "/_next/static/media/e4af272ccee01ff0-s.p.woff2": "48 KB",
+   "/media/photos/hero-c-1920.webp": "112 KB",
+   "/media/3d/living-empty-1200.webp": "39 KB",
+   "/media/3d/living-furnished-1200.webp": "61 KB",
+   "/media/3d/house-ground-loop-poster-1600.webp": "170 KB"
+  }
+ }
+]

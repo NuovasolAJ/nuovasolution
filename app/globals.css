@@ -2318,7 +2318,6 @@ html.js .hf-scene-live .hf-scene-task { animation-name: hf-build; animation-dura
 [data-tour] .tour-page { position: relative; z-index: 1; }
 [data-tour] .hf { background: transparent; }
 [data-tour] .hf::after { display: none; }
-[data-tour] .hf-edge { display: inline-flex; }
 [data-tour] .hf-media-stage { position: absolute; inset: 0; pointer-events: none; }
 [data-tour] .pain, [data-tour] .at, [data-tour] .trust { background: transparent; border-top: 0; }
 /* the readable layers: every section's inner container becomes a limestone / glass panel; the hero's words stay on the picture */
@@ -2339,3 +2338,10 @@ html.js .hf-scene-live .hf-scene-task { animation-name: hf-build; animation-dura
 .hf:has([data-hero-e2]) .hf-shade, .tour-scene[data-scene="s1"] .tour-veil { background: linear-gradient(90deg, rgba(12, 12, 14, 0.8) 0%, rgba(12, 12, 14, 0.72) 40%, rgba(12, 12, 14, 0.5) 58%, rgba(12, 12, 14, 0.18) 76%, rgba(12, 12, 14, 0) 92%); }
 @media (max-width: 1023px) { .hf:has([data-hero-e2]) .hf-shade, .tour-scene[data-scene="s1"] .tour-veil { background: linear-gradient(180deg, rgba(12, 12, 14, 0.62) 0%, rgba(12, 12, 14, 0.66) 50%, rgba(12, 12, 14, 0.74) 100%); } }
 .hf:has([data-hero-e2]) .hf-mark { padding: 4px 10px; border-radius: 999px; background: rgba(12, 12, 14, 0.46); color: rgba(248, 246, 241, 0.92); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+/* the caption's capsule darker (4.8:1 for the 13 px line even over white), and on the phone the caption moves from the hero's top — where
+   it stood under the sticky header — to its foot, with a little more room under the action */
+.hf:has([data-hero-e2]) .hf-mark { background: rgba(12, 12, 14, 0.7); } /* 6.9:1 for the caption even over a white pixel */
+@media (max-width: 639px) {
+  .hf:has([data-hero-e2]) .hf-mark { top: auto; bottom: 12px; right: var(--gutter); }
+  .hf:has([data-hero-e2]) .hf-content { padding-bottom: 40px; }
+}
