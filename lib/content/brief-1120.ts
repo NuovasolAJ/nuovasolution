@@ -29,6 +29,10 @@ export const brief1120 = {
     /* the owner, 26.11. (Copy 36e2e15): the hero goes back to his text of 17.11., character for character, nothing shortened; EN as on 17.11. (92f873d) */
     h1: T("Haz crecer tu inmobiliaria. No tu carga de trabajo.", "Grow your agency. Not your workload."),
     sub: T("NuovaSolution capta clientes, responde consultas y hace seguimiento. Reactiva contactos, propone inmuebles y te muestra qué merece tu atención, para que tu negocio avance sin que todo dependa de ti.", "NuovaSolution brings in clients, answers enquiries and follows up. It re-engages past contacts, suggests properties and shows you what deserves your attention, so your business moves forward without everything depending on you."),
+    /** RV6 10c0da2 (27.11.): the subline's six claims mapped to Audit's register keys, in the sentence's order, so the instrument that reads
+        the cards' keys sees the hero's too — capta clientes · responde consultas · hace seguimiento · reactiva contactos · propone inmuebles ·
+        qué merece tu atención. Not rendered and not a gate (since 32236c1 nothing gates); a record for Audit. */
+    subKeys: ["adsLeads", "instagram", "replyEmail", "replyWhatsapp", "whatsappOwnNumber", "followup", "matching", "reportTrend", "priorityWithReason"],
     caption: T("Estás en una visita · 11:40", "You're at a viewing · 11:40"),
     cta: T("Ver cómo queda la tarea", "See the finished task"),
     ctaTrial: T("Prueba Essential gratis", "Try Essential free"),

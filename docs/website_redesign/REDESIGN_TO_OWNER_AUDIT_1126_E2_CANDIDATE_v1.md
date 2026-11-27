@@ -139,3 +139,24 @@ The grade "easy trial" on the first screen counts the header button and the phon
 Taken over as Markdown only into `.claude/skills/` (github.com/emilkowalski/skills @ 64eb3de): emil-design-eng, find-animation-opportunities, animate (+RECIPES), choreograph (+RECIPES), review-animations (+STANDARDS), apple-design. Applied: one entrance per container, lead/support/decoration roles, the strong ease-out curve, transform and opacity only, play once, reduced motion as a gentle fade, press feedback on every action.
 
 Durability note (RV6 8c37c9f, 27.11.): at 390 EN the content, not the minimum height, now sets the hero (9 px over the minimum) and the pain line clears the fold by 31 px — the next line added to the hero slices it there first. Measure peek.mjs after any hero text change.
+
+## 7. For Audit: the restored subline against the register (RV6 10c0da2, Nachtrag 7, 27.11.; source reading, no measurement)
+
+The owner's subline of 17.11. is back on the first screen of every page (baa7c8e). RV6 held its six claims against
+`governance/WEBSITE_VERSPRECHEN_REGISTER_1120_v1.md`, whose preamble says that since 32236c1 nothing gates rendering, so every rendered
+sentence is a public promise:
+
+| Claim | Register rows | State |
+|---|---|---|
+| capta clientes | adsLeads (10), instagram (33) | Bau · Ausnahme Meta / externe Freigabe |
+| responde consultas | replyEmail (1); over WhatsApp replyWhatsapp (3), whatsappOwnNumber (4) | belegt (email, own agency) / Bau |
+| hace seguimiento | followup (27) | Bau · Ausnahme Anwalt |
+| Reactiva contactos | matching (26), followup (27) | Bau |
+| propone inmuebles | matching (26) | Bau (pm_certified = false) |
+| qué merece tu atención | reportTrend (30) by wording; priorityWithReason (12) on a narrower reading | Bau / belegt |
+
+One proven, one arguable, four Bau. The sentence describes the target state; under the owner's decision 2 of 23.11. the preview shows
+the product at 100 %. Whether the RELEASED public page may carry it is Audit's and the owner's call. The text is from 17.11. (built in
+92f873d); the rule that every rendered sentence is a public promise is from 23.11.; the text returns into a stricter regime than the
+one it left. Redesign's part: the hero's subline now carries these keys at source (`brief-1120.ts` `hero.subKeys`, not rendered, no
+gate), so Audit's instrument sees the hero's claims as it sees the cards' (`strengths.ts` g1/g2).
