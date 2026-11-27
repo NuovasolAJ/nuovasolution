@@ -49,7 +49,7 @@ export const brief1120 = {
     task: {
       /* the owner, 27.11. (point 5): the task's title names the flat, not the reference (the reference stays in Mila's enquiry); no time, since
          the shown enquiry names none; no promise of a confirmed call-back */
-      title: T("Devolver la llamada por el piso de Nerja", "Return the call about the flat in Nerja"),
+      title: T("Devolver la llamada por el piso de Nerja", "Call Mila about the flat in Nerja"), // the owner, 27.11. (Copy be3051c §3): ES unchanged, EN = the demo's end
       line: T("Pide que la llamen · Disponibilidad sin confirmar", "Asks for a call back · Availability not confirmed"),
       fields: [
         { k: T("Busca", "Looking for"), v: T("3 dormitorios en Nerja, hasta 350.000 €", "3 bedrooms in Nerja, up to €350,000") },
