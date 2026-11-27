@@ -109,4 +109,28 @@ Nach der Korrektur messe ich **nur noch 375 × 667 in beiden Sprachen**: die dre
 
 ---
 
+## Nachtrag 1 (27.11.) — Redesign nimmt den ersten Weg; mein Nachmessbereich wird größer, nicht kleiner
+
+Redesign hat N-1 bis N-3 als ein Problem genommen und meinen ersten Vorschlag gewählt: Hinweis **und** Auflösekante leben jetzt nur noch auf dem Desktop. Lokal als `272aee8` festgehalten, noch nicht benannt, Deployment noch auf `43d9cce` — gemessen wird also erst nach der nächsten Zeile des Owners.
+
+**Ich hatte geschrieben, ich messe danach „nur noch 375 × 667". Das war zu eng, und ich korrigiere es, bevor jemand mit dieser Zusage plant.** Der Änderung nachgesehen (`git diff 43d9cce..272aee8 -- app/globals.css`), betrifft sie zwei Regeln:
+
+| Regel | vorher | nachher | betrifft von meinen Fenstern |
+|---|---|---|---|
+| Hinweis `.hf-edge` | `min-width:1024` **oder** `max-width:639 und min-height:650 und max-height:720` | nur `min-width:1024` | **375** |
+| Auflösekante `.hf::after` | `min-width:1024` **oder** `max-width:639 und max-height:720` | nur `min-width:1024` | **360 und 375** |
+
+Meine erste Sorge war, das treffe alle Telefone. Es trifft sie nicht: bei 390 × 844 und 414 × 896 war die Auflösekante **nie** an (844 und 896 liegen über 720). Nachgesehen statt behauptet. **Der Nachmessbereich ist damit 360 und 375, beide Sprachen — vier Zeilen statt einer**, und immer noch ein kurzer Lauf.
+
+**Eine Annahme in der Begründung, die ich nachmessen werde, nicht übernehme.** Der Code sagt jetzt: „on the phones the picture cut by the window is the cue". Nach meiner eigenen Messung auf `43d9cce`:
+
+- bei **360 × 640** endet der Hero bei 680 gegen 640 Fensterhöhe — das Bild wird vom Fenster **wirklich angeschnitten**, die Begründung trägt dort;
+- bei **375 × 667** endete der Hero bei **667 von 667**, also **bündig**. Dort wird nichts angeschnitten. Ohne Auflösekante und ohne Hinweis kann der erste Bildschirm bei 375 wie ein fertiges Ende aussehen statt wie eine Fortsetzung.
+
+Das ist eine Messung von `43d9cce`, keine von `272aee8` — die Kante ist nur ein dekoratives Overlay und sollte die Höhe nicht ändern, aber „sollte" ist nach der Erfahrung aus §4 kein Wort, auf das ich etwas setze. Es gehört zu der Frage, die ohnehin beim Owner liegt: **wie der erste Bildschirm auf dem Telefon unten endet.** Diese Frage betrifft jetzt 360 **und** 375.
+
+Redesigns eigene Zahlen zur Unterschrift bei 375 (16,1 / 15,3 ES, 15,8 / 9,2 EN gegen vorher 1,0 / 2,0) lösen N-1 deutlich, wenn sie sich bestätigen. Dass er die beiden Reste — Unterschrift unter der Falz bei 360 in beiden Sprachen und bei 375 EN um 8 px — selbst meldet statt sie wegzulassen, halte ich fest.
+
+---
+
 *Belege, alle auf `43d9cce` / `dpl_B4BAFStBAfPBKVujC1gniS55JoAX`: `checks/nachlauf-43d9cce-1127.json` (Bedingung des Owners, Köpfe, Hinweis und Falz über sieben Fenster, beide Sprachen) · `checks/kontrast-c-43d9cce-1127.json` (E-1/E-2/E-3, vier Driftphasen) · `checks/e1-kapsel-43d9cce.json` (die Kapsel über sechs Fenster, getrennt nach Textfläche und Rundung). Bilder: `shots/43d9cce/ersterschirm-{360,375,390,1366}.png`, `shots/43d9cce/kapsel-375-mit-schrift.png`, `shots/43d9cce/kapsel-390-mit-schrift.png` und die zwei gemessenen Gründe. Sonde: `checks/nachlauf1127.mjs`.*
