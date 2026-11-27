@@ -21,7 +21,9 @@ import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
  * on the demo's screens 1-B / 1-C, so the first screen shows only what is needed. What stays from before: the picture, the eyebrow, the
  * pain line under the hero and the demonstration's surfaces.
  */
-const HERO_FIT_SCRIPT = `(function(){var s=document.querySelector('section[data-hero="film"]');if(!s)return;var c=s.querySelector('.hf-content');function f(){if(!c||window.innerWidth>=1024){s.removeAttribute('data-hero-fit');return;}var room=window.innerHeight-c.getBoundingClientRect().height;s.setAttribute('data-hero-fit',room>=150?'peek':'edge');}f();window.addEventListener('resize',f);window.addEventListener('load',f);if(document.fonts&&document.fonts.ready){document.fonts.ready.then(f);}})();`;
+/* RV6 b9b3984: the room is measured against a 100svh probe element, the same unit the CSS decides with — innerHeight grows when a phone's
+   browser bar collapses mid-scroll and would flip the mode under the visitor; svh does not move */
+const HERO_FIT_SCRIPT = `(function(){var s=document.querySelector('section[data-hero="film"]');if(!s)return;var c=s.querySelector('.hf-content');var p=s.querySelector('.hf-svh');function f(){if(!c||window.innerWidth>=1024){s.removeAttribute('data-hero-fit');return;}var svh=p?p.getBoundingClientRect().height:window.innerHeight;var room=svh-c.getBoundingClientRect().height;s.setAttribute('data-hero-fit',room>=150?'peek':'edge');}f();window.addEventListener('resize',f);window.addEventListener('load',f);if(document.fonts&&document.fonts.ready){document.fonts.ready.then(f);}})();`;
 const PICTURE = HERO_PHOTO_C.src; // the owner, 27.11.: photo C for E2 (the 3D render stays in the repository for the later stage)
 
 export function Hero({ locale, view, stage = false }: { locale: Locale; view: ClaimView; stage?: boolean }) {
@@ -36,6 +38,7 @@ export function Hero({ locale, view, stage = false }: { locale: Locale; view: Cl
   return (
     <>
       <section aria-labelledby="hero-h1" data-hero="film" data-hero-brief="1120" className="hf">
+        <div className="hf-svh" aria-hidden="true" />
         <HeroPhoto alt={l(w.image)} mark={l(b.caption)} stage={stage} />
         <div className="container-default hf-content">
           <div className="hf-words" data-hero-words data-hero-e2="1124">

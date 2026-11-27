@@ -2362,3 +2362,5 @@ html.js .hf-scene-live .hf-scene-task { animation-name: hf-build; animation-dura
 [data-tour] .closing-panel { background: rgba(12, 12, 14, 0.58); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 .tour-logo { position: absolute; left: 50%; top: 74%; width: clamp(150px, 24vw, 340px); height: auto; transform: translate(-50%, -50%) perspective(900px) rotateX(16deg); mix-blend-mode: multiply; opacity: 0.66; filter: blur(0.4px); }
 @media (max-width: 639px) { .tour-logo { top: 72%; width: 56vw; } }
+/* the 100svh probe the hero's fit script measures (RV6 b9b3984): no size in the layout, never visible, never a target */
+.hf-svh { position: absolute; top: 0; left: 0; width: 0; height: 100svh; visibility: hidden; pointer-events: none; }
