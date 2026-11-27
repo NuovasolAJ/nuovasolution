@@ -181,3 +181,5 @@ accepted for E2 are now one (360 × 640 EN, 26 px). Peek: 390/414 the whole pain
 390 6, the link 44 px.
 
 Vercel before the push (CLI, 27.11.): the preview project lists its deployments, the newest four days old, nothing accumulating; cost 0.
+
+**Pushed 27.11. (the owner's line E2-VORSCHAU = JA):** tip `dbd14d8` = `dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1` on the alias (`/api/build`: commit, id, mode stub). ES `https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app/es`, EN `…/en`. RV6 runs the agreed full pass once on this id; Audit carries V-1. No public launch; that needs the owner's own line.
