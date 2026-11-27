@@ -1,0 +1,374 @@
+{
+ "desktop": [
+  {
+   "sel": ".hf",
+   "scene": "s1",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s1:1.00"
+   ],
+   "loaded": 3,
+   "y": 22
+  },
+  {
+   "sel": "#pain",
+   "scene": "s2",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s2:1.00"
+   ],
+   "loaded": 4,
+   "y": 790
+  },
+  {
+   "sel": ".flow",
+   "scene": "s3",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s3:1.00"
+   ],
+   "loaded": 5,
+   "y": 1843
+  },
+  {
+   "sel": "#functions",
+   "scene": "s4",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s4:1.00"
+   ],
+   "loaded": 6,
+   "y": 2780
+  },
+  {
+   "sel": "#strengths",
+   "scene": "s4",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s4:1.00"
+   ],
+   "loaded": 6,
+   "y": 4075
+  },
+  {
+   "sel": "#report",
+   "scene": "s5",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s5:1.00"
+   ],
+   "loaded": 7,
+   "y": 5745
+  },
+  {
+   "sel": "#model-3d",
+   "scene": "s6",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s6:1.00"
+   ],
+   "loaded": 8,
+   "y": 6468
+  },
+  {
+   "sel": "#plans",
+   "scene": "s7",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s7:1.00"
+   ],
+   "loaded": 8,
+   "y": 8047
+  },
+  {
+   "sel": "#start",
+   "scene": "s7",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s7:1.00"
+   ],
+   "loaded": 8,
+   "y": 10242
+  },
+  {
+   "sel": "#faq",
+   "scene": "s7",
+   "t": "0.59",
+   "mode": "film",
+   "shown": [
+    "s7:1.00",
+    "s8:0.93"
+   ],
+   "loaded": 8,
+   "y": 11430
+  },
+  {
+   "sel": ".closing",
+   "scene": "s8",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s8:1.00"
+   ],
+   "loaded": 8,
+   "y": 11841
+  }
+ ],
+ "phone": [
+  {
+   "sel": ".hf",
+   "scene": "s1",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s1:1.00"
+   ],
+   "loaded": 3,
+   "y": 80
+  },
+  {
+   "sel": "#pain",
+   "scene": "s2",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s2:1.00"
+   ],
+   "loaded": 4,
+   "y": 764
+  },
+  {
+   "sel": ".flow",
+   "scene": "s3",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s3:1.00"
+   ],
+   "loaded": 5,
+   "y": 2638
+  },
+  {
+   "sel": "#functions",
+   "scene": "s4",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s4:1.00"
+   ],
+   "loaded": 6,
+   "y": 3408
+  },
+  {
+   "sel": "#strengths",
+   "scene": "s4",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s4:1.00"
+   ],
+   "loaded": 6,
+   "y": 5482
+  },
+  {
+   "sel": "#report",
+   "scene": "s5",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s5:1.00"
+   ],
+   "loaded": 7,
+   "y": 7564
+  },
+  {
+   "sel": "#model-3d",
+   "scene": "s6",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s6:1.00"
+   ],
+   "loaded": 8,
+   "y": 8517
+  },
+  {
+   "sel": "#plans",
+   "scene": "s7",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s7:1.00"
+   ],
+   "loaded": 8,
+   "y": 10260
+  },
+  {
+   "sel": "#start",
+   "scene": "s7",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s7:1.00"
+   ],
+   "loaded": 8,
+   "y": 11969
+  },
+  {
+   "sel": "#faq",
+   "scene": "s7",
+   "t": "0.53",
+   "mode": "film",
+   "shown": [
+    "s7:1.00",
+    "s8:0.89"
+   ],
+   "loaded": 8,
+   "y": 13581
+  },
+  {
+   "sel": ".closing",
+   "scene": "s8",
+   "t": "0.00",
+   "mode": "film",
+   "shown": [
+    "s8:1.00"
+   ],
+   "loaded": 8,
+   "y": 14075
+  }
+ ],
+ "phone-stills": [
+  {
+   "sel": ".hf",
+   "scene": "s1",
+   "t": "0.00",
+   "mode": "stills",
+   "shown": [
+    "s1:1.00"
+   ],
+   "loaded": 3,
+   "y": 80
+  },
+  {
+   "sel": "#pain",
+   "scene": "s2",
+   "t": "0.00",
+   "mode": "stills",
+   "shown": [
+    "s2:1.00"
+   ],
+   "loaded": 4,
+   "y": 764
+  },
+  {
+   "sel": ".flow",
+   "scene": "s3",
+   "t": "0.00",
+   "mode": "stills",
+   "shown": [
+    "s3:1.00"
+   ],
+   "loaded": 5,
+   "y": 2626
+  },
+  {
+   "sel": "#functions",
+   "scene": "s4",
+   "t": "0.00",
+   "mode": "stills",
+   "shown": [
+    "s4:1.00"
+   ],
+   "loaded": 6,
+   "y": 3396
+  },
+  {
+   "sel": "#strengths",
+   "scene": "s4",
+   "t": "0.00",
+   "mode": "stills",
+   "shown": [
+    "s4:1.00"
+   ],
+   "loaded": 6,
+   "y": 5494
+  },
+  {
+   "sel": "#report",
+   "scene": "s5",
+   "t": "0.00",
+   "mode": "stills",
+   "shown": [
+    "s5:1.00"
+   ],
+   "loaded": 7,
+   "y": 7576
+  },
+  {
+   "sel": "#model-3d",
+   "scene": "s6",
+   "t": "0.00",
+   "mode": "stills",
+   "shown": [
+    "s6:1.00"
+   ],
+   "loaded": 8,
+   "y": 8529
+  },
+  {
+   "sel": "#plans",
+   "scene": "s7",
+   "t": "0.00",
+   "mode": "stills",
+   "shown": [
+    "s7:1.00"
+   ],
+   "loaded": 8,
+   "y": 10272
+  },
+  {
+   "sel": "#start",
+   "scene": "s7",
+   "t": "0.00",
+   "mode": "stills",
+   "shown": [
+    "s7:1.00"
+   ],
+   "loaded": 8,
+   "y": 11981
+  },
+  {
+   "sel": "#faq",
+   "scene": "s7",
+   "t": "1.00",
+   "mode": "stills",
+   "shown": [
+    "s7:1.00",
+    "s8:1.00"
+   ],
+   "loaded": 8,
+   "y": 13593
+  },
+  {
+   "sel": ".closing",
+   "scene": "s8",
+   "t": "0.00",
+   "mode": "stills",
+   "shown": [
+    "s8:1.00"
+   ],
+   "loaded": 8,
+   "y": 14087
+  }
+ ]
+}

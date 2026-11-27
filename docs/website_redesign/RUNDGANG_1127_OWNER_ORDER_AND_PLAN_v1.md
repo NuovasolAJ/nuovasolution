@@ -190,3 +190,36 @@ it. Nothing is bought until the owner's line names the provider.
 - The generator and the budget, once the start frames exist.
 - Copy's open point on the hero task title ("Devolver la llamada" says Mila called first; she wrote on WhatsApp; the possible line is the demo's end "Llamar a Mila por el piso de Nerja").
 - The three hero fixes made since the push (wider desktop shade, caption capsule, neutral task-proof head) are local; they reach the alias only with his next push line.
+
+## 8. The owner's correction of the camera path (27.11., second message) → prototype v2 (`890d861`)
+
+**The corrected path, now built:** the first picture is the villa from outside, in front of the entrance, with the hero text over it; on the
+first scroll the camera passes the door into the high entrance hall, sees the adjoining rooms, climbs the stairs, reaches the balcony,
+glides over the balustrade and only then looks down onto the pool, where the original NuovaSolution mark lies in the floor; in the
+final frame the mark and the trial button are visible together. Scene map: B1 entrance (36540391) · B2 pain = the open door (6585752),
+"Cómo funciona" = the high hall with the staircase (36603628) · B3+B4 the rooms (12281845) · B5 the stairs (13181674) · B6 the upper
+floor (7214469) · B7 the balcony over the pool (36025721) · B8 the pool from above (9043974) with the mark composited by CSS
+(multiply over the water, 16°, softened; the closing's dark glass panel above it, its faint couch picture off). All eight stills in
+black and white (the owner's preferred look), dolly reduced to 4 % for sharpness mid-move. Measured (`rundgang-scenes-v2-local.json`):
+every section shows its scene on desktop, phone and in the stills mode. Clips with a stop in the door and on the stairs:
+`rundgang_1127\v2_bw\rundgang-v2-mitschnitt-{desktop,phone}.webm`.
+
+**Honest match against the vision (the owner asked for it at this interim):**
+
+| The vision | The prototype today | Gap |
+|---|---|---|
+| one continuous camera ride I steer with the scroll; stop = hold, back = back | the stage follows the native scroll both ways and holds when it stops | met in behaviour; the ride itself is eight crossfades between stills, not one continuous move |
+| the door frame passes me, the hall opens | a cut from the facade to a picture of open doors, then to a hall | not met: a passing door frame needs film or a frame sequence of ONE space |
+| the same villa from the first to the last picture; the staircase I see when entering is the one I climb later | eight similar places from eight photographers | not met by stills from stock; this is the point that only one 3D model (or one generated film from our own start frames) can meet |
+| the pictures fill the screen, no gallery one under the other | one fixed full-window stage behind the sections | met |
+| the E2 texts and cards appear over the picture, matched to the scene; the camera rests while reading | the sections ride over the stage on panels; within a section the picture only drifts 4 % | met |
+| black-and-white, natural light, deep shadows, fine materials | the stills are converted to black and white | met as a look, not as photography of one house |
+| sharp on phone and desktop, also mid-ride | 960/1280/1920 px files, 4 % dolly | met for stills; a film needs its own check |
+| the pool finale shows only the pool behind the close; the mark in the floor and the trial button visible together | the pool scene alone behind the dark glass panel, the mark below it, the button above | met in the prototype (CSS mark; in the film the mark goes in post, tracked) |
+
+**Redesign's recommendation for the next step:** one continuous 3D model of the villa in Blender from the 3D lane (its answer in §6:
+yes, no cost, our own house) — rendered not only as eight stills but as a frame sequence along the owner's path (entrance → door →
+hall → rooms → stairs → balcony → over the balustrade → pool), which the stage scrubs by scroll exactly as it scrubs the stills today
+(same component, frames instead of scenes). That meets the three unmet rows at once. A generator (Runway / Luma, §6) can add the
+living details later from the 3D frames as start frames; Higgsfield is not assessed yet — Redesign reads its terms and prices and
+brings a concrete recommendation with costs when the 3D frames exist, as the owner asked.
