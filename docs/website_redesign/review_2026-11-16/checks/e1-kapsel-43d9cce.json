@@ -1,0 +1,189 @@
+{
+ "1366x768": {
+  "geo": {
+   "bottom": 684,
+   "vh": 768,
+   "bg": "rgba(12, 12, 14, 0.7)",
+   "color": "rgba(248, 246, 241, 0.92)",
+   "text": "Estás en una visita · 11:40"
+  },
+  "stats": {
+   "textColor": [
+    248,
+    246,
+    241
+   ],
+   "alpha": 0.92,
+   "px": 4928,
+   "bbox": {
+    "min": 1.59,
+    "p05": 8.11,
+    "median": 8.24,
+    "below45": 3.49
+   },
+   "textArea": {
+    "px": 4396,
+    "min": 2.23,
+    "p05": 8.11,
+    "median": 8.24,
+    "below45": 0.09
+   },
+   "sub45_outsideCapsuleCorners": 153,
+   "sub45_insideCapsule": 19,
+   "sub45_insideWorst": 1.59
+  }
+ },
+ "1280x720": {
+  "geo": {
+   "bottom": 636,
+   "vh": 720,
+   "bg": "rgba(12, 12, 14, 0.7)",
+   "color": "rgba(248, 246, 241, 0.92)",
+   "text": "Estás en una visita · 11:40"
+  },
+  "stats": {
+   "textColor": [
+    248,
+    246,
+    241
+   ],
+   "alpha": 0.92,
+   "px": 4928,
+   "bbox": {
+    "min": 1.57,
+    "p05": 8.11,
+    "median": 8.24,
+    "below45": 3.49
+   },
+   "textArea": {
+    "px": 4396,
+    "min": 2.23,
+    "p05": 8.11,
+    "median": 8.24,
+    "below45": 0.09
+   },
+   "sub45_outsideCapsuleCorners": 153,
+   "sub45_insideCapsule": 19,
+   "sub45_insideWorst": 1.59
+  }
+ },
+ "1440x900": {
+  "geo": {
+   "bottom": 816,
+   "vh": 900,
+   "bg": "rgba(12, 12, 14, 0.7)",
+   "color": "rgba(248, 246, 241, 0.92)",
+   "text": "Estás en una visita · 11:40"
+  },
+  "stats": {
+   "textColor": [
+    248,
+    246,
+    241
+   ],
+   "alpha": 0.92,
+   "px": 4928,
+   "bbox": {
+    "min": 1.57,
+    "p05": 7.91,
+    "median": 8.86,
+    "below45": 3.49
+   },
+   "textArea": {
+    "px": 4396,
+    "min": 2.23,
+    "p05": 7.99,
+    "median": 9.08,
+    "below45": 0.09
+   },
+   "sub45_outsideCapsuleCorners": 153,
+   "sub45_insideCapsule": 19,
+   "sub45_insideWorst": 1.57
+  }
+ },
+ "390x844": {
+  "geo": {
+   "bottom": 672,
+   "vh": 844,
+   "bg": "rgba(12, 12, 14, 0.7)",
+   "color": "rgba(248, 246, 241, 0.92)",
+   "text": "Estás en una visita · 11:40"
+  },
+  "stats": {
+   "textColor": [
+    248,
+    246,
+    241
+   ],
+   "alpha": 0.92,
+   "px": 4928,
+   "bbox": {
+    "min": 9.49,
+    "p05": 10.89,
+    "median": 14.45,
+    "below45": 0
+   },
+   "textArea": {
+    "px": 4396,
+    "min": 9.77,
+    "p05": 14.19,
+    "median": 14.53,
+    "below45": 0
+   },
+   "sub45_outsideCapsuleCorners": 0,
+   "sub45_insideCapsule": 0,
+   "sub45_insideWorst": null
+  }
+ },
+ "375x667": {
+  "geo": {
+   "bottom": 655,
+   "vh": 667,
+   "bg": "rgba(12, 12, 14, 0.7)",
+   "color": "rgba(248, 246, 241, 0.92)",
+   "text": "Estás en una visita · 11:40"
+  },
+  "stats": {
+   "textColor": [
+    248,
+    246,
+    241
+   ],
+   "alpha": 0.92,
+   "px": 4928,
+   "bbox": {
+    "min": 1.01,
+    "p05": 1.07,
+    "median": 1.93,
+    "below45": 99.57
+   },
+   "textArea": {
+    "px": 4396,
+    "min": 1.01,
+    "p05": 1.1,
+    "median": 1.99,
+    "below45": 99.98
+   },
+   "sub45_outsideCapsuleCorners": 171,
+   "sub45_insideCapsule": 4736,
+   "sub45_insideWorst": 1.01
+  }
+ },
+ "360x640": {
+  "NOT_MEASURED": "capsule not fully inside the window",
+  "geo": {
+   "x": 168,
+   "y": 640,
+   "w": 176,
+   "h": 28,
+   "bottom": 668,
+   "vh": 640,
+   "fullyInView": false,
+   "color": "rgba(248, 246, 241, 0.92)",
+   "bg": "rgba(12, 12, 14, 0.7)",
+   "radius": "999px",
+   "padding": "4px 10px",
+   "text": "Estás en una visita · 11:40"
+  }
+ }
+}
