@@ -1,0 +1,1386 @@
+{
+ "probe": "kontrast1127c",
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "pin_start": "dbd14d8178dcf67a8a86f2e293b790fcad2f1fdc|dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "when": "2026-11-27T10:28:42.451Z",
+ "samples": [
+  {
+   "viewport": "1366x768",
+   "phase": 0,
+   "furnitureRemoved": 3,
+   "controlOk": false,
+   "control": {
+    "skipped": "not fully in view"
+   },
+   "per": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Estás en una visita · 11:40",
+     "stack": [
+      "hf-mark",
+      "hf-shade",
+      "hf-image",
+      "hf-media"
+     ],
+     "bgMean": [
+      202,
+      192,
+      178
+     ],
+     "min": 1.31,
+     "p05": 1.36,
+     "median": 1.43,
+     "mean": 1.46,
+     "max": 2.01,
+     "below3": 100,
+     "below45": 100
+    },
+    ".hf-scene-mark": {
+     "px": 9792,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Ejemplo · datos ficticios",
+     "stack": [
+      "hf-scene-mark",
+      "hf-scene hf-scene-live",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      63,
+      57,
+      55
+     ],
+     "min": 3.86,
+     "p05": 4.25,
+     "median": 5.23,
+     "mean": 5.16,
+     "max": 6.16,
+     "below3": 0,
+     "below45": 20.4
+    },
+    "h1": {
+     "px": 80560,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "52px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "stack": [
+      "SPAN",
+      "hf-word",
+      "SPAN",
+      "hf-h1"
+     ],
+     "bgMean": [
+      94,
+      93,
+      95
+     ],
+     "min": 2.32,
+     "p05": 2.98,
+     "median": 7.67,
+     "mean": 7.26,
+     "max": 16.91,
+     "below3": 5.2,
+     "below45": 23.6
+    },
+    ".pain-line, .pb-line, #pain p": {
+     "skipped": "not fully in view",
+     "y": 829,
+     "h": 86
+    }
+   }
+  },
+  {
+   "viewport": "1366x768",
+   "phase": 6,
+   "furnitureRemoved": 3,
+   "controlOk": false,
+   "control": {
+    "skipped": "not fully in view"
+   },
+   "per": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Estás en una visita · 11:40",
+     "stack": [
+      "hf-mark",
+      "hf-shade",
+      "hf-image",
+      "hf-media"
+     ],
+     "bgMean": [
+      203,
+      192,
+      177
+     ],
+     "min": 1.31,
+     "p05": 1.36,
+     "median": 1.43,
+     "mean": 1.46,
+     "max": 2.01,
+     "below3": 100,
+     "below45": 100
+    },
+    ".hf-scene-mark": {
+     "px": 9792,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Ejemplo · datos ficticios",
+     "stack": [
+      "hf-scene-mark",
+      "hf-scene hf-scene-live",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      62,
+      56,
+      54
+     ],
+     "min": 3.96,
+     "p05": 4.29,
+     "median": 5.3,
+     "mean": 5.2,
+     "max": 6.22,
+     "below3": 0,
+     "below45": 17.6
+    },
+    "h1": {
+     "px": 80560,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "52px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "stack": [
+      "SPAN",
+      "hf-word",
+      "SPAN",
+      "hf-h1"
+     ],
+     "bgMean": [
+      94,
+      94,
+      96
+     ],
+     "min": 2.29,
+     "p05": 2.9,
+     "median": 7.67,
+     "mean": 7.21,
+     "max": 17.27,
+     "below3": 6.5,
+     "below45": 24.1
+    },
+    ".pain-line, .pb-line, #pain p": {
+     "skipped": "not fully in view",
+     "y": 829,
+     "h": 86
+    }
+   }
+  },
+  {
+   "viewport": "1366x768",
+   "phase": 12,
+   "furnitureRemoved": 3,
+   "controlOk": false,
+   "control": {
+    "skipped": "not fully in view"
+   },
+   "per": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Estás en una visita · 11:40",
+     "stack": [
+      "hf-mark",
+      "hf-shade",
+      "hf-image",
+      "hf-media"
+     ],
+     "bgMean": [
+      203,
+      192,
+      176
+     ],
+     "min": 1.31,
+     "p05": 1.36,
+     "median": 1.43,
+     "mean": 1.46,
+     "max": 1.99,
+     "below3": 100,
+     "below45": 100
+    },
+    ".hf-scene-mark": {
+     "px": 9792,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Ejemplo · datos ficticios",
+     "stack": [
+      "hf-scene-mark",
+      "hf-scene hf-scene-live",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      62,
+      56,
+      53
+     ],
+     "min": 4.07,
+     "p05": 4.3,
+     "median": 5.33,
+     "mean": 5.22,
+     "max": 6.32,
+     "below3": 0,
+     "below45": 15.7
+    },
+    "h1": {
+     "px": 80560,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "52px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "stack": [
+      "SPAN",
+      "hf-word",
+      "SPAN",
+      "hf-h1"
+     ],
+     "bgMean": [
+      95,
+      94,
+      96
+     ],
+     "min": 2.29,
+     "p05": 2.86,
+     "median": 7.68,
+     "mean": 7.18,
+     "max": 17.31,
+     "below3": 7.3,
+     "below45": 24.4
+    },
+    ".pain-line, .pb-line, #pain p": {
+     "skipped": "not fully in view",
+     "y": 829,
+     "h": 86
+    }
+   }
+  },
+  {
+   "viewport": "1366x768",
+   "phase": 18,
+   "furnitureRemoved": 3,
+   "controlOk": false,
+   "control": {
+    "skipped": "not fully in view"
+   },
+   "per": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Estás en una visita · 11:40",
+     "stack": [
+      "hf-mark",
+      "hf-shade",
+      "hf-image",
+      "hf-media"
+     ],
+     "bgMean": [
+      203,
+      192,
+      176
+     ],
+     "min": 1.31,
+     "p05": 1.37,
+     "median": 1.43,
+     "mean": 1.46,
+     "max": 1.95,
+     "below3": 100,
+     "below45": 100
+    },
+    ".hf-scene-mark": {
+     "px": 9792,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Ejemplo · datos ficticios",
+     "stack": [
+      "hf-scene-mark",
+      "hf-scene hf-scene-live",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      62,
+      56,
+      53
+     ],
+     "min": 4.09,
+     "p05": 4.3,
+     "median": 5.34,
+     "mean": 5.23,
+     "max": 6.32,
+     "below3": 0,
+     "below45": 15.6
+    },
+    "h1": {
+     "px": 80560,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "52px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "stack": [
+      "SPAN",
+      "hf-word",
+      "SPAN",
+      "hf-h1"
+     ],
+     "bgMean": [
+      95,
+      94,
+      96
+     ],
+     "min": 2.29,
+     "p05": 2.86,
+     "median": 7.68,
+     "mean": 7.17,
+     "max": 17.13,
+     "below3": 7.4,
+     "below45": 24.4
+    },
+    ".pain-line, .pb-line, #pain p": {
+     "skipped": "not fully in view",
+     "y": 829,
+     "h": 86
+    }
+   }
+  },
+  {
+   "viewport": "390x844",
+   "phase": 0,
+   "furnitureRemoved": 3,
+   "controlOk": true,
+   "control": {
+    "median": 17.88,
+    "min": 1.1
+   },
+   "per": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Estás en una visita · 11:40",
+     "stack": [
+      "flex items-center justify-st",
+      "container-wide relative grid",
+      "fixed inset-x-0 top-0 z-[100",
+      "hf-mark"
+     ],
+     "bgMean": [
+      234,
+      234,
+      235
+     ],
+     "min": 1,
+     "p05": 1.06,
+     "median": 1.09,
+     "mean": 1.16,
+     "max": 5.24,
+     "below3": 98.1,
+     "below45": 98.1
+    },
+    ".hf-scene-mark": {
+     "px": 6444,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Ejemplo · datos ficticios",
+     "stack": [
+      "hf-scene-mark",
+      "hf-scene hf-scene-live",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      56,
+      50,
+      47
+     ],
+     "min": 4.62,
+     "p05": 4.78,
+     "median": 5.56,
+     "mean": 5.54,
+     "max": 6.58,
+     "below3": 0,
+     "below45": 0
+    },
+    "h1": {
+     "px": 36874,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "32.38px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "stack": [
+      "SPAN",
+      "hf-h1",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      81,
+      82,
+      85
+     ],
+     "min": 5.74,
+     "p05": 6.45,
+     "median": 8.01,
+     "mean": 7.86,
+     "max": 9,
+     "below3": 0,
+     "below45": 0
+    },
+    ".pain-line, .pb-line, #pain p": {
+     "px": 30788,
+     "textColor": [
+      14,
+      14,
+      15
+     ],
+     "textAlpha": 1,
+     "fontSize": "24px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "9 de 25 9 de 25 consultas llegaron con la oficina ce",
+     "stack": [
+      "SPAN",
+      "pain-line",
+      "container-default pain-inner",
+      "pain"
+     ],
+     "bgMean": [
+      242,
+      242,
+      244
+     ],
+     "min": 1.1,
+     "p05": 17.88,
+     "median": 17.88,
+     "mean": 17.54,
+     "max": 17.88,
+     "below3": 1.6,
+     "below45": 1.7
+    }
+   }
+  },
+  {
+   "viewport": "390x844",
+   "phase": 6,
+   "furnitureRemoved": 3,
+   "controlOk": true,
+   "control": {
+    "median": 17.88,
+    "min": 1.1
+   },
+   "per": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Estás en una visita · 11:40",
+     "stack": [
+      "flex items-center justify-st",
+      "container-wide relative grid",
+      "fixed inset-x-0 top-0 z-[100",
+      "hf-mark"
+     ],
+     "bgMean": [
+      234,
+      234,
+      235
+     ],
+     "min": 1,
+     "p05": 1.06,
+     "median": 1.09,
+     "mean": 1.16,
+     "max": 5.24,
+     "below3": 98.1,
+     "below45": 98.1
+    },
+    ".hf-scene-mark": {
+     "px": 6444,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Ejemplo · datos ficticios",
+     "stack": [
+      "hf-scene-mark",
+      "hf-scene hf-scene-live",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      56,
+      50,
+      47
+     ],
+     "min": 4.62,
+     "p05": 4.78,
+     "median": 5.54,
+     "mean": 5.54,
+     "max": 6.5,
+     "below3": 0,
+     "below45": 0
+    },
+    "h1": {
+     "px": 36874,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "32.38px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "stack": [
+      "SPAN",
+      "hf-h1",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      81,
+      82,
+      85
+     ],
+     "min": 5.67,
+     "p05": 6.43,
+     "median": 7.97,
+     "mean": 7.82,
+     "max": 12.32,
+     "below3": 0,
+     "below45": 0
+    },
+    ".pain-line, .pb-line, #pain p": {
+     "px": 30788,
+     "textColor": [
+      14,
+      14,
+      15
+     ],
+     "textAlpha": 1,
+     "fontSize": "24px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "9 de 25 9 de 25 consultas llegaron con la oficina ce",
+     "stack": [
+      "SPAN",
+      "pain-line",
+      "container-default pain-inner",
+      "pain"
+     ],
+     "bgMean": [
+      242,
+      242,
+      244
+     ],
+     "min": 1.1,
+     "p05": 17.88,
+     "median": 17.88,
+     "mean": 17.54,
+     "max": 17.88,
+     "below3": 1.6,
+     "below45": 1.7
+    }
+   }
+  },
+  {
+   "viewport": "390x844",
+   "phase": 12,
+   "furnitureRemoved": 3,
+   "controlOk": true,
+   "control": {
+    "median": 17.88,
+    "min": 1.1
+   },
+   "per": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Estás en una visita · 11:40",
+     "stack": [
+      "flex items-center justify-st",
+      "container-wide relative grid",
+      "fixed inset-x-0 top-0 z-[100",
+      "hf-mark"
+     ],
+     "bgMean": [
+      234,
+      234,
+      235
+     ],
+     "min": 1,
+     "p05": 1.06,
+     "median": 1.09,
+     "mean": 1.16,
+     "max": 5.24,
+     "below3": 98.1,
+     "below45": 98.1
+    },
+    ".hf-scene-mark": {
+     "px": 6444,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Ejemplo · datos ficticios",
+     "stack": [
+      "hf-scene-mark",
+      "hf-scene hf-scene-live",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      56,
+      50,
+      47
+     ],
+     "min": 4.57,
+     "p05": 4.78,
+     "median": 5.51,
+     "mean": 5.54,
+     "max": 6.55,
+     "below3": 0,
+     "below45": 0
+    },
+    "h1": {
+     "px": 36874,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "32.38px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "stack": [
+      "SPAN",
+      "hf-h1",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      81,
+      82,
+      85
+     ],
+     "min": 5.66,
+     "p05": 6.39,
+     "median": 7.93,
+     "mean": 7.79,
+     "max": 12.13,
+     "below3": 0,
+     "below45": 0
+    },
+    ".pain-line, .pb-line, #pain p": {
+     "px": 30788,
+     "textColor": [
+      14,
+      14,
+      15
+     ],
+     "textAlpha": 1,
+     "fontSize": "24px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "9 de 25 9 de 25 consultas llegaron con la oficina ce",
+     "stack": [
+      "SPAN",
+      "pain-line",
+      "container-default pain-inner",
+      "pain"
+     ],
+     "bgMean": [
+      242,
+      242,
+      244
+     ],
+     "min": 1.1,
+     "p05": 17.88,
+     "median": 17.88,
+     "mean": 17.54,
+     "max": 17.88,
+     "below3": 1.6,
+     "below45": 1.7
+    }
+   }
+  },
+  {
+   "viewport": "390x844",
+   "phase": 18,
+   "furnitureRemoved": 3,
+   "controlOk": true,
+   "control": {
+    "median": 17.88,
+    "min": 1.1
+   },
+   "per": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Estás en una visita · 11:40",
+     "stack": [
+      "flex items-center justify-st",
+      "container-wide relative grid",
+      "fixed inset-x-0 top-0 z-[100",
+      "hf-mark"
+     ],
+     "bgMean": [
+      234,
+      234,
+      235
+     ],
+     "min": 1,
+     "p05": 1.06,
+     "median": 1.09,
+     "mean": 1.16,
+     "max": 5.24,
+     "below3": 98.1,
+     "below45": 98.1
+    },
+    ".hf-scene-mark": {
+     "px": 6444,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Ejemplo · datos ficticios",
+     "stack": [
+      "hf-scene-mark",
+      "hf-scene hf-scene-live",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      56,
+      50,
+      47
+     ],
+     "min": 4.57,
+     "p05": 4.78,
+     "median": 5.51,
+     "mean": 5.54,
+     "max": 6.53,
+     "below3": 0,
+     "below45": 0
+    },
+    "h1": {
+     "px": 36874,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "32.38px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "stack": [
+      "SPAN",
+      "hf-h1",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      81,
+      82,
+      85
+     ],
+     "min": 5.68,
+     "p05": 6.4,
+     "median": 7.93,
+     "mean": 7.79,
+     "max": 12.49,
+     "below3": 0,
+     "below45": 0
+    },
+    ".pain-line, .pb-line, #pain p": {
+     "px": 30788,
+     "textColor": [
+      14,
+      14,
+      15
+     ],
+     "textAlpha": 1,
+     "fontSize": "24px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "9 de 25 9 de 25 consultas llegaron con la oficina ce",
+     "stack": [
+      "SPAN",
+      "pain-line",
+      "container-default pain-inner",
+      "pain"
+     ],
+     "bgMean": [
+      242,
+      242,
+      244
+     ],
+     "min": 1.1,
+     "p05": 17.88,
+     "median": 17.88,
+     "mean": 17.54,
+     "max": 17.88,
+     "below3": 1.6,
+     "below45": 1.7
+    }
+   }
+  },
+  {
+   "viewport": "360x640",
+   "phase": 0,
+   "furnitureRemoved": 3,
+   "controlOk": false,
+   "control": {
+    "skipped": "not fully in view"
+   },
+   "per": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Estás en una visita · 11:40",
+     "stack": [
+      "flex items-center justify-st",
+      "container-wide relative grid",
+      "fixed inset-x-0 top-0 z-[100",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      234,
+      234,
+      235
+     ],
+     "min": 1,
+     "p05": 1.06,
+     "median": 1.09,
+     "mean": 1.16,
+     "max": 5.24,
+     "below3": 98.1,
+     "below45": 98.1
+    },
+    ".hf-scene-mark": {
+     "px": 5904,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Ejemplo · datos ficticios",
+     "stack": [
+      "hf-scene-mark",
+      "hf-scene hf-scene-live",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      57,
+      51,
+      47
+     ],
+     "min": 4.52,
+     "p05": 4.72,
+     "median": 5.44,
+     "mean": 5.5,
+     "max": 6.6,
+     "below3": 0,
+     "below45": 0
+    },
+    "h1": {
+     "px": 32472,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "31.12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "stack": [
+      "SPAN",
+      "hf-word",
+      "SPAN",
+      "hf-h1"
+     ],
+     "bgMean": [
+      78,
+      78,
+      81
+     ],
+     "min": 5.81,
+     "p05": 6.97,
+     "median": 8.5,
+     "mean": 8.36,
+     "max": 9.51,
+     "below3": 0,
+     "below45": 0
+    },
+    ".pain-line, .pb-line, #pain p": {
+     "skipped": "not fully in view",
+     "y": 725,
+     "h": 86
+    }
+   }
+  },
+  {
+   "viewport": "360x640",
+   "phase": 6,
+   "furnitureRemoved": 3,
+   "controlOk": false,
+   "control": {
+    "skipped": "not fully in view"
+   },
+   "per": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Estás en una visita · 11:40",
+     "stack": [
+      "flex items-center justify-st",
+      "container-wide relative grid",
+      "fixed inset-x-0 top-0 z-[100",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      234,
+      234,
+      235
+     ],
+     "min": 1,
+     "p05": 1.06,
+     "median": 1.09,
+     "mean": 1.16,
+     "max": 5.24,
+     "below3": 98.1,
+     "below45": 98.1
+    },
+    ".hf-scene-mark": {
+     "px": 5904,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Ejemplo · datos ficticios",
+     "stack": [
+      "hf-scene-mark",
+      "hf-scene hf-scene-live",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      57,
+      51,
+      48
+     ],
+     "min": 4.52,
+     "p05": 4.71,
+     "median": 5.43,
+     "mean": 5.49,
+     "max": 6.59,
+     "below3": 0,
+     "below45": 0
+    },
+    "h1": {
+     "px": 32472,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "31.12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "stack": [
+      "SPAN",
+      "hf-word",
+      "SPAN",
+      "hf-h1"
+     ],
+     "bgMean": [
+      78,
+      78,
+      82
+     ],
+     "min": 5.65,
+     "p05": 6.67,
+     "median": 8.42,
+     "mean": 8.27,
+     "max": 9.5,
+     "below3": 0,
+     "below45": 0
+    },
+    ".pain-line, .pb-line, #pain p": {
+     "skipped": "not fully in view",
+     "y": 725,
+     "h": 86
+    }
+   }
+  },
+  {
+   "viewport": "360x640",
+   "phase": 12,
+   "furnitureRemoved": 3,
+   "controlOk": false,
+   "control": {
+    "skipped": "not fully in view"
+   },
+   "per": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Estás en una visita · 11:40",
+     "stack": [
+      "flex items-center justify-st",
+      "container-wide relative grid",
+      "fixed inset-x-0 top-0 z-[100",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      234,
+      234,
+      235
+     ],
+     "min": 1,
+     "p05": 1.06,
+     "median": 1.09,
+     "mean": 1.16,
+     "max": 5.24,
+     "below3": 98.1,
+     "below45": 98.1
+    },
+    ".hf-scene-mark": {
+     "px": 5904,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Ejemplo · datos ficticios",
+     "stack": [
+      "hf-scene-mark",
+      "hf-scene hf-scene-live",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      58,
+      51,
+      48
+     ],
+     "min": 4.53,
+     "p05": 4.68,
+     "median": 5.43,
+     "mean": 5.48,
+     "max": 6.53,
+     "below3": 0,
+     "below45": 0
+    },
+    "h1": {
+     "px": 32472,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "31.12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "stack": [
+      "SPAN",
+      "hf-word",
+      "SPAN",
+      "hf-h1"
+     ],
+     "bgMean": [
+      79,
+      79,
+      82
+     ],
+     "min": 5.57,
+     "p05": 6.56,
+     "median": 8.39,
+     "mean": 8.22,
+     "max": 9.39,
+     "below3": 0,
+     "below45": 0
+    },
+    ".pain-line, .pb-line, #pain p": {
+     "skipped": "not fully in view",
+     "y": 725,
+     "h": 86
+    }
+   }
+  },
+  {
+   "viewport": "360x640",
+   "phase": 18,
+   "furnitureRemoved": 3,
+   "controlOk": false,
+   "control": {
+    "skipped": "not fully in view"
+   },
+   "per": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Estás en una visita · 11:40",
+     "stack": [
+      "flex items-center justify-st",
+      "container-wide relative grid",
+      "fixed inset-x-0 top-0 z-[100",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      234,
+      234,
+      235
+     ],
+     "min": 1,
+     "p05": 1.06,
+     "median": 1.09,
+     "mean": 1.16,
+     "max": 5.24,
+     "below3": 98.1,
+     "below45": 98.1
+    },
+    ".hf-scene-mark": {
+     "px": 5904,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Ejemplo · datos ficticios",
+     "stack": [
+      "hf-scene-mark",
+      "hf-scene hf-scene-live",
+      "hf-words",
+      "container-default hf-content"
+     ],
+     "bgMean": [
+      58,
+      51,
+      48
+     ],
+     "min": 4.53,
+     "p05": 4.68,
+     "median": 5.43,
+     "mean": 5.48,
+     "max": 6.54,
+     "below3": 0,
+     "below45": 0
+    },
+    "h1": {
+     "px": 32472,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "31.12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "stack": [
+      "SPAN",
+      "hf-word",
+      "SPAN",
+      "hf-h1"
+     ],
+     "bgMean": [
+      79,
+      79,
+      82
+     ],
+     "min": 5.57,
+     "p05": 6.55,
+     "median": 8.39,
+     "mean": 8.22,
+     "max": 9.39,
+     "below3": 0,
+     "below45": 0
+    },
+    ".pain-line, .pb-line, #pain p": {
+     "skipped": "not fully in view",
+     "y": 725,
+     "h": 86
+    }
+   }
+  }
+ ],
+ "pin_end": "dbd14d8178dcf67a8a86f2e293b790fcad2f1fdc|dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "pinned": true
+}

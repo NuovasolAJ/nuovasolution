@@ -1,0 +1,100 @@
+{
+ "pin": "dbd14d8/dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "pinEnd": "dbd14d8/dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "locale": "es",
+ "viewport": "390x844",
+ "trialAt": 6,
+ "zeroStops": 0,
+ "seq": [
+  {
+   "none": false,
+   "tag": "a",
+   "label": "Ir al contenido",
+   "href": "#main",
+   "w": 132.8,
+   "h": 48,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "a",
+   "label": "NuovaSolution",
+   "href": "/es",
+   "w": 140,
+   "h": 44,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "button",
+   "label": "Menú",
+   "href": "",
+   "w": 44,
+   "h": 44,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "button",
+   "label": "Solo en la vista previa +",
+   "href": "",
+   "w": 178.6,
+   "h": 44,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "a",
+   "label": "Ver cómo queda la tarea",
+   "href": "#demo",
+   "w": 358,
+   "h": 56,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "a",
+   "label": "Prueba Essential gratis",
+   "href": "/es/contact?interes=trial&plan=essential",
+   "w": 358,
+   "h": 44,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "button",
+   "label": "Repetir demo",
+   "href": "",
+   "w": 44,
+   "h": 44,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "button",
+   "label": "WhatsApp",
+   "href": "",
+   "w": 173,
+   "h": 44,
+   "zero": false,
+   "hiddenAncestor": null
+  },
+  {
+   "none": false,
+   "tag": "a",
+   "label": "Ver qué plan te encaja",
+   "href": "/es#plans",
+   "w": 160.6,
+   "h": 44,
+   "zero": false,
+   "hiddenAncestor": null
+  }
+ ]
+}

@@ -1,0 +1,301 @@
+{
+ "probe": "nach1127",
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "pin_start": "dbd14d8178dcf67a8a86f2e293b790fcad2f1fdc|dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "when": "2026-11-27T09:13:20.863Z",
+ "A": {
+  "es": {
+   "atHeadCount": 1,
+   "atHeads": [
+    {
+     "i": 0,
+     "bg": "rgb(18, 140, 126)",
+     "color": "rgb(255, 255, 255)",
+     "mark": "rgb(37, 211, 102)",
+     "text": "WhatsApp · 11:42"
+    }
+   ],
+   "otherHeads": [
+    {
+     "sel": "hf-scene-label",
+     "bg": "rgb(240, 242, 245)",
+     "color": "rgb(14, 14, 15)"
+    },
+    {
+     "sel": "demo-chat-head",
+     "bg": "rgb(240, 242, 245)",
+     "color": "rgb(14, 14, 15)"
+    }
+   ]
+  },
+  "en": {
+   "atHeadCount": 1,
+   "atHeads": [
+    {
+     "i": 0,
+     "bg": "rgb(18, 140, 126)",
+     "color": "rgb(255, 255, 255)",
+     "mark": "rgb(37, 211, 102)",
+     "text": "WhatsApp · 11:42"
+    }
+   ],
+   "otherHeads": [
+    {
+     "sel": "hf-scene-label",
+     "bg": "rgb(240, 242, 245)",
+     "color": "rgb(14, 14, 15)"
+    },
+    {
+     "sel": "demo-chat-head",
+     "bg": "rgb(240, 242, 245)",
+     "color": "rgb(14, 14, 15)"
+    }
+   ]
+  }
+ },
+ "B": {
+  "360x640": {
+   "with": {
+    "shown": true,
+    "w": 40,
+    "h": 40,
+    "bottom": 838,
+    "vh": 640,
+    "inFold": false,
+    "minSide": 40
+   },
+   "without": {
+    "shown": true,
+    "w": 40,
+    "h": 40,
+    "bottom": 686,
+    "vh": 640,
+    "inFold": false,
+    "minSide": 40
+   },
+   "under44": true
+  },
+  "375x667": {
+   "with": {
+    "shown": true,
+    "w": 40,
+    "h": 40,
+    "bottom": 813,
+    "vh": 667,
+    "inFold": false,
+    "minSide": 40
+   },
+   "without": {
+    "shown": true,
+    "w": 40,
+    "h": 40,
+    "bottom": 661,
+    "vh": 667,
+    "inFold": true,
+    "minSide": 40
+   },
+   "under44": true
+  },
+  "390x844": {
+   "with": {
+    "shown": false,
+    "w": 0,
+    "h": 0,
+    "bottom": 0,
+    "vh": 844,
+    "inFold": false,
+    "minSide": 0
+   },
+   "without": {
+    "shown": false,
+    "w": 0,
+    "h": 0,
+    "bottom": 0,
+    "vh": 844,
+    "inFold": false,
+    "minSide": 0
+   },
+   "under44": false
+  },
+  "414x896": {
+   "with": {
+    "shown": false,
+    "w": 0,
+    "h": 0,
+    "bottom": 0,
+    "vh": 896,
+    "inFold": false,
+    "minSide": 0
+   },
+   "without": {
+    "shown": false,
+    "w": 0,
+    "h": 0,
+    "bottom": 0,
+    "vh": 896,
+    "inFold": false,
+    "minSide": 0
+   },
+   "under44": false
+  },
+  "1280x720": {
+   "with": {
+    "shown": true,
+    "w": 44,
+    "h": 44,
+    "bottom": 798,
+    "vh": 720,
+    "inFold": false,
+    "minSide": 44
+   },
+   "without": {
+    "shown": true,
+    "w": 44,
+    "h": 44,
+    "bottom": 704,
+    "vh": 720,
+    "inFold": true,
+    "minSide": 44
+   },
+   "under44": false
+  },
+  "1366x768": {
+   "with": {
+    "shown": true,
+    "w": 44,
+    "h": 44,
+    "bottom": 846,
+    "vh": 768,
+    "inFold": false,
+    "minSide": 44
+   },
+   "without": {
+    "shown": true,
+    "w": 44,
+    "h": 44,
+    "bottom": 752,
+    "vh": 768,
+    "inFold": true,
+    "minSide": 44
+   },
+   "under44": false
+  },
+  "1440x900": {
+   "with": {
+    "shown": true,
+    "w": 44,
+    "h": 44,
+    "bottom": 978,
+    "vh": 900,
+    "inFold": false,
+    "minSide": 44
+   },
+   "without": {
+    "shown": true,
+    "w": 44,
+    "h": 44,
+    "bottom": 884,
+    "vh": 900,
+    "inFold": true,
+    "minSide": 44
+   },
+   "under44": false
+  }
+ },
+ "C": {
+  "es": {
+   "clicked": true,
+   "inAnyTitle": [],
+   "turnsWithIt": [
+    "Mejor esta tarde, a partir de las 17:00. 11:44"
+   ],
+   "recordWithIt": [],
+   "recordRows": [],
+   "endTitle": "Ver cómo queda la tarea",
+   "endTitleHasTime": false
+  },
+  "en": {
+   "clicked": true,
+   "inAnyTitle": [],
+   "turnsWithIt": [
+    "Mejor esta tarde, a partir de las 17:00. Translation: Better this afternoon, from 5 pm. 11:44"
+   ],
+   "recordWithIt": [],
+   "recordRows": [],
+   "endTitle": "See the finished task",
+   "endTitleHasTime": false
+  }
+ },
+ "D": {
+  "es": {
+   "cardCount": 4,
+   "cards": [
+    {
+     "task": "atender",
+     "sticky": "sticky",
+     "proof": "chat",
+     "lines": "01 Atiende por ti WhatsApp, email y teléfono: cada consulta recibe respuesta y queda en su"
+    },
+    {
+     "task": "captar",
+     "sticky": "sticky",
+     "proof": "record",
+     "lines": "02 Gana nuevos clientes De un comentario, un anuncio o un formulario a una consulta con su"
+    },
+    {
+     "task": "reactivar",
+     "sticky": "sticky",
+     "proof": "match",
+     "lines": "03 Reactiva tus contactos Entra un inmueble que encaja y volvemos a escribir a quien busca"
+    },
+    {
+     "task": "dia",
+     "sticky": "sticky",
+     "proof": "day",
+     "lines": "04 Cada mañana, el día claro Cada persona sabe qué toca hoy, y el lunes ves la semana en u"
+    }
+   ],
+   "reportCards": [
+    "",
+    "",
+    ""
+   ]
+  },
+  "en": {
+   "cardCount": 4,
+   "cards": [
+    {
+     "task": "atender",
+     "sticky": "sticky",
+     "proof": "chat",
+     "lines": "01 Answers for you WhatsApp, email and phone: every enquiry gets a reply and lands on its "
+    },
+    {
+     "task": "captar",
+     "sticky": "sticky",
+     "proof": "record",
+     "lines": "02 Win new clients From a comment, an ad or a form to an enquiry with its own record. How "
+    },
+    {
+     "task": "reactivar",
+     "sticky": "sticky",
+     "proof": "match",
+     "lines": "03 Bring contacts back A listing that fits comes in, and we write again to whoever was loo"
+    },
+    {
+     "task": "dia",
+     "sticky": "sticky",
+     "proof": "day",
+     "lines": "04 Every morning, a clear day Everyone knows what is on today, and on Monday you see the w"
+    }
+   ],
+   "reportCards": [
+    "",
+    "",
+    ""
+   ]
+  }
+ },
+ "pin_end": "dbd14d8178dcf67a8a86f2e293b790fcad2f1fdc|dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "pinned": true
+}

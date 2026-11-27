@@ -1,0 +1,506 @@
+{
+ "probe": "kontrast1127",
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "pin_start": "dbd14d8178dcf67a8a86f2e293b790fcad2f1fdc|dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "when": "2026-11-27T10:08:10.369Z",
+ "samples": [
+  {
+   "viewport": "1366x768",
+   "sel": ".hf-mark",
+   "phase": 0,
+   "text": "Estás en una visita · 11:40",
+   "color": "rgba(248, 246, 241, 0.72)",
+   "fontSize": "13px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 157,
+    "h": 20
+   },
+   "stats": {
+    "px": 3140,
+    "min": 1.06,
+    "p05": 1.06,
+    "median": 1.31,
+    "mean": 1.25,
+    "max": 2.01,
+    "below3": 100,
+    "below45": 100,
+    "textAlpha": 0.72,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  },
+  {
+   "viewport": "1366x768",
+   "sel": ".hf-mark",
+   "phase": 6,
+   "text": "Estás en una visita · 11:40",
+   "color": "rgba(248, 246, 241, 0.72)",
+   "fontSize": "13px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 157,
+    "h": 20
+   },
+   "stats": {
+    "px": 3140,
+    "min": 1.06,
+    "p05": 1.06,
+    "median": 1.32,
+    "mean": 1.25,
+    "max": 1.91,
+    "below3": 100,
+    "below45": 100,
+    "textAlpha": 0.72,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  },
+  {
+   "viewport": "1366x768",
+   "sel": ".hf-mark",
+   "phase": 12,
+   "text": "Estás en una visita · 11:40",
+   "color": "rgba(248, 246, 241, 0.72)",
+   "fontSize": "13px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 157,
+    "h": 20
+   },
+   "stats": {
+    "px": 3140,
+    "min": 1.06,
+    "p05": 1.06,
+    "median": 1.31,
+    "mean": 1.25,
+    "max": 1.91,
+    "below3": 100,
+    "below45": 100,
+    "textAlpha": 0.72,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  },
+  {
+   "viewport": "1366x768",
+   "sel": ".hf-mark",
+   "phase": 18,
+   "text": "Estás en una visita · 11:40",
+   "color": "rgba(248, 246, 241, 0.72)",
+   "fontSize": "13px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 157,
+    "h": 20
+   },
+   "stats": {
+    "px": 3140,
+    "min": 1.06,
+    "p05": 1.06,
+    "median": 1.31,
+    "mean": 1.25,
+    "max": 1.91,
+    "below3": 100,
+    "below45": 100,
+    "textAlpha": 0.72,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  },
+  {
+   "viewport": "1366x768",
+   "sel": ".hf-scene-mark",
+   "phase": 0,
+   "text": "Ejemplo · datos ficticios",
+   "color": "rgba(248, 246, 241, 0.62)",
+   "fontSize": "12px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 544,
+    "h": 18
+   },
+   "stats": {
+    "px": 9792,
+    "min": 3.86,
+    "p05": 4.25,
+    "median": 5.22,
+    "mean": 5.15,
+    "max": 6.15,
+    "below3": 0,
+    "below45": 20.3,
+    "textAlpha": 0.62,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  },
+  {
+   "viewport": "1366x768",
+   "sel": ".hf-scene-mark",
+   "phase": 6,
+   "text": "Ejemplo · datos ficticios",
+   "color": "rgba(248, 246, 241, 0.62)",
+   "fontSize": "12px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 544,
+    "h": 18
+   },
+   "stats": {
+    "px": 9792,
+    "min": 4,
+    "p05": 4.29,
+    "median": 5.29,
+    "mean": 5.19,
+    "max": 6.22,
+    "below3": 0,
+    "below45": 17.9,
+    "textAlpha": 0.62,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  },
+  {
+   "viewport": "1366x768",
+   "sel": ".hf-scene-mark",
+   "phase": 12,
+   "text": "Ejemplo · datos ficticios",
+   "color": "rgba(248, 246, 241, 0.62)",
+   "fontSize": "12px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 544,
+    "h": 18
+   },
+   "stats": {
+    "px": 9792,
+    "min": 4.1,
+    "p05": 4.3,
+    "median": 5.33,
+    "mean": 5.23,
+    "max": 6.27,
+    "below3": 0,
+    "below45": 15.8,
+    "textAlpha": 0.62,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  },
+  {
+   "viewport": "1366x768",
+   "sel": ".hf-scene-mark",
+   "phase": 18,
+   "text": "Ejemplo · datos ficticios",
+   "color": "rgba(248, 246, 241, 0.62)",
+   "fontSize": "12px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 544,
+    "h": 18
+   },
+   "stats": {
+    "px": 9792,
+    "min": 4.04,
+    "p05": 4.3,
+    "median": 5.34,
+    "mean": 5.23,
+    "max": 6.32,
+    "below3": 0,
+    "below45": 15.2,
+    "textAlpha": 0.62,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "sel": ".hf-mark",
+   "phase": 0,
+   "text": "Estás en una visita · 11:40",
+   "color": "rgba(248, 246, 241, 0.72)",
+   "fontSize": "13px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 157,
+    "h": 20
+   },
+   "stats": {
+    "px": 3140,
+    "min": 1,
+    "p05": 1,
+    "median": 1,
+    "mean": 1,
+    "max": 1,
+    "below3": 100,
+    "below45": 100,
+    "textAlpha": 0.72,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "sel": ".hf-mark",
+   "phase": 6,
+   "text": "Estás en una visita · 11:40",
+   "color": "rgba(248, 246, 241, 0.72)",
+   "fontSize": "13px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 157,
+    "h": 20
+   },
+   "stats": {
+    "px": 3140,
+    "min": 1,
+    "p05": 1,
+    "median": 1,
+    "mean": 1,
+    "max": 1,
+    "below3": 100,
+    "below45": 100,
+    "textAlpha": 0.72,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "sel": ".hf-mark",
+   "phase": 12,
+   "text": "Estás en una visita · 11:40",
+   "color": "rgba(248, 246, 241, 0.72)",
+   "fontSize": "13px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 157,
+    "h": 20
+   },
+   "stats": {
+    "px": 3140,
+    "min": 1,
+    "p05": 1,
+    "median": 1,
+    "mean": 1,
+    "max": 1,
+    "below3": 100,
+    "below45": 100,
+    "textAlpha": 0.72,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "sel": ".hf-mark",
+   "phase": 18,
+   "text": "Estás en una visita · 11:40",
+   "color": "rgba(248, 246, 241, 0.72)",
+   "fontSize": "13px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 157,
+    "h": 20
+   },
+   "stats": {
+    "px": 3140,
+    "min": 1,
+    "p05": 1,
+    "median": 1,
+    "mean": 1,
+    "max": 1,
+    "below3": 100,
+    "below45": 100,
+    "textAlpha": 0.72,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "sel": ".hf-scene-mark",
+   "phase": 0,
+   "text": "Ejemplo · datos ficticios",
+   "color": "rgba(248, 246, 241, 0.62)",
+   "fontSize": "12px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 358,
+    "h": 18
+   },
+   "stats": {
+    "px": 6444,
+    "min": 4.62,
+    "p05": 4.78,
+    "median": 5.55,
+    "mean": 5.54,
+    "max": 6.47,
+    "below3": 0,
+    "below45": 0,
+    "textAlpha": 0.62,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "sel": ".hf-scene-mark",
+   "phase": 6,
+   "text": "Ejemplo · datos ficticios",
+   "color": "rgba(248, 246, 241, 0.62)",
+   "fontSize": "12px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 358,
+    "h": 18
+   },
+   "stats": {
+    "px": 6444,
+    "min": 4.62,
+    "p05": 4.78,
+    "median": 5.55,
+    "mean": 5.54,
+    "max": 6.49,
+    "below3": 0,
+    "below45": 0,
+    "textAlpha": 0.62,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "sel": ".hf-scene-mark",
+   "phase": 12,
+   "text": "Ejemplo · datos ficticios",
+   "color": "rgba(248, 246, 241, 0.62)",
+   "fontSize": "12px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 358,
+    "h": 18
+   },
+   "stats": {
+    "px": 6444,
+    "min": 4.57,
+    "p05": 4.78,
+    "median": 5.51,
+    "mean": 5.54,
+    "max": 6.55,
+    "below3": 0,
+    "below45": 0,
+    "textAlpha": 0.62,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "sel": ".hf-scene-mark",
+   "phase": 18,
+   "text": "Ejemplo · datos ficticios",
+   "color": "rgba(248, 246, 241, 0.62)",
+   "fontSize": "12px",
+   "fontWeight": "400",
+   "ownBg": "rgba(0, 0, 0, 0)",
+   "backdrop": "none",
+   "rect": {
+    "w": 358,
+    "h": 18
+   },
+   "stats": {
+    "px": 6444,
+    "min": 4.57,
+    "p05": 4.78,
+    "median": 5.5,
+    "mean": 5.54,
+    "max": 6.53,
+    "below3": 0,
+    "below45": 0,
+    "textAlpha": 0.62,
+    "textColor": [
+     248,
+     246,
+     241
+    ]
+   }
+  }
+ ],
+ "pin_end": "dbd14d8178dcf67a8a86f2e293b790fcad2f1fdc|dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "pinned": true
+}

@@ -1,0 +1,116 @@
+{
+ "probe": "rest1127",
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "pin_start": "dbd14d8178dcf67a8a86f2e293b790fcad2f1fdc|dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "when": "2026-11-27T09:21:04.809Z",
+ "E": {
+  "es": {
+   "view": "target",
+   "declared": "3",
+   "count": 3,
+   "cards": [
+    {
+     "idx": "1",
+     "figure": "9 de 25",
+     "insight": "llegaron con la oficina cerrada. Las 9 recibieron respuesta al llegar.",
+     "next": "QUÉ HACER 2 pedían visita: proponles una fecha a primera hora.",
+     "note": ""
+    },
+    {
+     "idx": "2",
+     "figure": "WhatsApp · 10 de 25",
+     "insight": "es tu canal más fuerte.",
+     "next": "QUÉ HACER Pon tu WhatsApp donde te buscan: anuncios, web y escaparate.",
+     "note": ""
+    },
+    {
+     "idx": "3",
+     "figure": "Portales y anuncios · 4 de 25",
+     "insight": "Compara antes de invertir más.",
+     "next": "QUÉ HACER Pon al lado lo que pagas por portales y anuncios: el informe cuenta las consultas, el gasto lo sabes tú.",
+     "note": "El informe te dice de dónde llega cada consulta. Con eso decides dónde invertir; lo que gastas en anuncios no lo mide."
+    }
+   ],
+   "head": "Agencia de ejemplo · Semana del 26 oct al 1 nov · Demo con datos ficticios",
+   "example": "Datos de ejemplo"
+  },
+  "en": {
+   "view": "target",
+   "declared": "3",
+   "count": 3,
+   "cards": [
+    {
+     "idx": "1",
+     "figure": "9 of 25",
+     "insight": "arrived while the office was closed. All 9 got a reply when they arrived.",
+     "next": "WHAT TO DO 2 asked for a viewing: offer them a date first thing.",
+     "note": ""
+    },
+    {
+     "idx": "2",
+     "figure": "WhatsApp · 10 of 25",
+     "insight": "is your strongest channel.",
+     "next": "WHAT TO DO Put your WhatsApp where people look for you: ads, website and shop window.",
+     "note": ""
+    },
+    {
+     "idx": "3",
+     "figure": "Portals and ads · 4 of 25",
+     "insight": "Compare before you spend more.",
+     "next": "WHAT TO DO Set what you pay for portals and ads beside it: the report counts the enquiries, you know the spend.",
+     "note": "The report tells you where each enquiry comes from. That helps you decide where to invest; it does not measure what you spend on ads."
+    }
+   ],
+   "head": "Example agency · Week of 26 Oct to 1 Nov · Demo with fictional data",
+   "example": "Example data"
+  }
+ },
+ "F": {
+  "es": {
+   "clicked": true,
+   "recordPresent": true,
+   "recordLive": "true",
+   "recordText": "TAREA PARA MARTA WhatsApp · 11:44 TAREA Llamar a Mila por el piso de Nerja Mila ya tiene respuesta. La llamada sigue esperando a Marta. ESTADO Respondida automáticamente · Llamada pendiente BUSCA 3 dormitorios en Nerja, hasta 350.000 € PIDE Que la llamen, hoy a partir de las 17:00 ABIERTO Disponibilidad de la ref. 9895153, sin confirmar LLEGÓ WhatsApp · 11:42 PRIORIDAD Alta · nombró un inmueble y pide llamada Si nadie coge la tarea en una hora, se lo recordamos a Marta.",
+   "recordHasTime": true,
+   "taskTitle": "TAREA Llamar a Mila por el piso de Nerja Mila ya tiene respuesta. La llamada sigue esperando a Marta.",
+   "taskTitleValue": "Llamar a Mila por el piso de Nerja",
+   "taskTitleHasTime": false,
+   "rowsSample": [
+    "TAREA PARA MARTA WhatsApp · 11:44",
+    "TAREA PARA MARTA",
+    "WhatsApp · 11:44",
+    "TAREA Llamar a Mila por el piso de Nerja Mila ya tiene respuesta. La llamada sigue esperando a Marta.",
+    "TAREA",
+    "Llamar a Mila por el piso de Nerja",
+    "Mila ya tiene respuesta. La llamada sigue esperando a Marta.",
+    "ESTADO Respondida automáticamente · Llamada pendiente",
+    "ESTADO Respondida automáticamente · Llamada pendiente",
+    "ESTADO"
+   ]
+  },
+  "en": {
+   "clicked": true,
+   "recordPresent": true,
+   "recordLive": "true",
+   "recordText": "TASK FOR MARTA WhatsApp · 11:44 TASK Call Mila about the flat in Nerja Mila already has her answer. The call is still waiting for Marta. STATE Answered automatically · Call still to make LOOKING FOR 3 bedrooms in Nerja, up to €350,000 ASKS FOR A call, today from 5 pm OPEN Availability of ref. 9895153, not confirmed ARRIVED WhatsApp · 11:42 PRIORITY High · named a property and asks for a call If nobody takes the task within an hour, we remind Marta.",
+   "recordHasTime": true,
+   "taskTitle": "TASK Call Mila about the flat in Nerja Mila already has her answer. The call is still waiting for Marta.",
+   "taskTitleValue": "Call Mila about the flat in Nerja",
+   "taskTitleHasTime": false,
+   "rowsSample": [
+    "TASK FOR MARTA WhatsApp · 11:44",
+    "TASK FOR MARTA",
+    "WhatsApp · 11:44",
+    "TASK Call Mila about the flat in Nerja Mila already has her answer. The call is still waiting for Marta.",
+    "TASK",
+    "Call Mila about the flat in Nerja",
+    "Mila already has her answer. The call is still waiting for Marta.",
+    "STATE Answered automatically · Call still to make",
+    "STATE Answered automatically · Call still to make",
+    "STATE"
+   ]
+  }
+ },
+ "pin_end": "dbd14d8178dcf67a8a86f2e293b790fcad2f1fdc|dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "pinned": true
+}

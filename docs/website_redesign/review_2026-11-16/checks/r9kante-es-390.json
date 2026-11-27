@@ -1,0 +1,73 @@
+{
+ "pin": "dbd14d8/dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "from": "es",
+ "to": "en",
+ "viewport": "390x844",
+ "runs": [
+  {
+   "where": "above",
+   "kind": "language",
+   "via": "/en/contact?plan=essential&interes=trial",
+   "typedValue": "nota R9 arriba Prueba gratuita · 14 días con Essential",
+   "prefill": "Prueba gratuita · 14 días con Essential",
+   "after": {
+    "url": "/en/contact?plan=essential&interes=trial",
+    "interest": "trial",
+    "plan": "essential",
+    "message": "nota R9 arriba Free trial · 14 days on Essential",
+    "agency": "Inmobiliaria RV6"
+   },
+   "noteKept": true,
+   "strayMark": []
+  },
+  {
+   "where": "above",
+   "kind": "way",
+   "via": "/es/contact?interes=demo&plan=growth",
+   "typedValue": "nota R9 arriba Prueba gratuita · 14 días con Essential",
+   "prefill": "Prueba gratuita · 14 días con Essential",
+   "after": {
+    "url": "/es/contact?interes=demo&plan=growth",
+    "interest": "demo",
+    "plan": "growth",
+    "message": "nota R9 arriba Demo · plan Growth",
+    "agency": "Inmobiliaria RV6"
+   },
+   "noteKept": true,
+   "strayMark": []
+  },
+  {
+   "where": "below",
+   "kind": "language",
+   "via": "/en/contact?plan=essential&interes=trial",
+   "typedValue": "Prueba gratuita · 14 días con Essential nota R9 arriba",
+   "prefill": "Prueba gratuita · 14 días con Essential",
+   "after": {
+    "url": "/en/contact?plan=essential&interes=trial",
+    "interest": "trial",
+    "plan": "essential",
+    "message": "Free trial · 14 days on Essential nota R9 arriba",
+    "agency": "Inmobiliaria RV6"
+   },
+   "noteKept": true,
+   "strayMark": []
+  },
+  {
+   "where": "below",
+   "kind": "way",
+   "via": "/es/contact?interes=demo&plan=growth",
+   "typedValue": "Prueba gratuita · 14 días con Essential nota R9 arriba",
+   "prefill": "Prueba gratuita · 14 días con Essential",
+   "after": {
+    "url": "/es/contact?interes=demo&plan=growth",
+    "interest": "demo",
+    "plan": "growth",
+    "message": "Demo · plan Growth nota R9 arriba",
+    "agency": "Inmobiliaria RV6"
+   },
+   "noteKept": true,
+   "strayMark": []
+  }
+ ],
+ "pinEnd": "dbd14d8/dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1"
+}

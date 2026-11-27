@@ -1,0 +1,91 @@
+{
+ "pin": "dbd14d8/dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "locale": "es",
+ "viewport": "390x844",
+ "pages": [
+  {
+   "name": "home",
+   "path": "/",
+   "small": [
+    {
+     "tag": "a",
+     "label": "Prueba Essential gratis",
+     "href": "/es/contact?interes=trial&plan=essential",
+     "w": 1,
+     "h": 1,
+     "display": "block",
+     "pageY": 776
+    }
+   ],
+   "inlineSmall": [],
+   "counted": 55,
+   "inline": 1,
+   "hidden": 33
+  },
+  {
+   "name": "packages",
+   "path": "/packages",
+   "small": [],
+   "inlineSmall": [],
+   "counted": 25,
+   "inline": 0,
+   "hidden": 32
+  },
+  {
+   "name": "contact",
+   "path": "/contact?interes=trial&plan=essential",
+   "small": [
+    {
+     "tag": "input",
+     "label": "",
+     "href": "",
+     "w": 215,
+     "h": 24,
+     "display": "inline-block",
+     "pageY": 1244
+    }
+   ],
+   "inlineSmall": [],
+   "counted": 24,
+   "inline": 1,
+   "hidden": 25
+  },
+  {
+   "name": "platform",
+   "path": "/platform",
+   "small": [],
+   "inlineSmall": [],
+   "counted": 36,
+   "inline": 0,
+   "hidden": 25
+  },
+  {
+   "name": "faq",
+   "path": "/faq",
+   "small": [],
+   "inlineSmall": [],
+   "counted": 56,
+   "inline": 0,
+   "hidden": 25
+  }
+ ],
+ "menu": {
+  "opened": true,
+  "small": [
+   {
+    "tag": "a",
+    "label": "Prueba Essential gratis",
+    "href": "/es/contact?interes=trial&plan=essential",
+    "w": 1,
+    "h": 1,
+    "display": "block",
+    "pageY": 776
+   }
+  ],
+  "inlineSmall": [],
+  "counted": 66,
+  "inline": 1,
+  "hidden": 22
+ },
+ "pinEnd": "dbd14d8/dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1"
+}

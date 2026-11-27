@@ -1,0 +1,186 @@
+{
+ "pin": "dbd14d8/dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "locale": "es",
+ "viewport": "390x844",
+ "cases": [
+  {
+   "reduced": false,
+   "atLoad": {
+    "data-demo": "true",
+    "data-demo-brief": "1120",
+    "data-demo-kind": "chat",
+    "data-demo-channel": "whatsapp",
+    "data-demo-phase": "0",
+    "data-demo-done": "false",
+    "data-demo-auto": "true",
+    "data-demo-run": "0",
+    "data-demo-view": "target",
+    "data-demo-entered": "not-yet"
+   },
+   "onArrival": {
+    "data-demo": "true",
+    "data-demo-brief": "1120",
+    "data-demo-kind": "chat",
+    "data-demo-channel": "whatsapp",
+    "data-demo-phase": "1",
+    "data-demo-done": "false",
+    "data-demo-auto": "true",
+    "data-demo-run": "1",
+    "data-demo-view": "target",
+    "data-demo-entered": "run"
+   },
+   "onArrivalTextLen": 1090,
+   "watch": [
+    {
+     "afterSec": 2,
+     "run": "1",
+     "phase": "2",
+     "done": "false",
+     "entered": "run",
+     "textLen": 1090
+    },
+    {
+     "afterSec": 4,
+     "run": "1",
+     "phase": "4",
+     "done": "false",
+     "entered": "run",
+     "textLen": 1090
+    },
+    {
+     "afterSec": 6,
+     "run": "1",
+     "phase": "5",
+     "done": "false",
+     "entered": "run",
+     "textLen": 1090
+    },
+    {
+     "afterSec": 8,
+     "run": "1",
+     "phase": "10",
+     "done": "false",
+     "entered": "run",
+     "textLen": 1090
+    },
+    {
+     "afterSec": 10,
+     "run": "1",
+     "phase": "12",
+     "done": "true",
+     "entered": "run",
+     "textLen": 1090
+    },
+    {
+     "afterSec": 12,
+     "run": "1",
+     "phase": "12",
+     "done": "true",
+     "entered": "run",
+     "textLen": 1090
+    },
+    {
+     "afterSec": 14,
+     "run": "1",
+     "phase": "12",
+     "done": "true",
+     "entered": "run",
+     "textLen": 1090
+    }
+   ],
+   "started": false,
+   "phaseMoved": true,
+   "textGrew": false
+  },
+  {
+   "reduced": true,
+   "atLoad": {
+    "data-demo": "true",
+    "data-demo-brief": "1120",
+    "data-demo-kind": "chat",
+    "data-demo-channel": "whatsapp",
+    "data-demo-phase": "12",
+    "data-demo-done": "true",
+    "data-demo-auto": "false",
+    "data-demo-run": "0",
+    "data-demo-view": "target",
+    "data-demo-entered": "end"
+   },
+   "onArrival": {
+    "data-demo": "true",
+    "data-demo-brief": "1120",
+    "data-demo-kind": "chat",
+    "data-demo-channel": "whatsapp",
+    "data-demo-phase": "12",
+    "data-demo-done": "true",
+    "data-demo-auto": "false",
+    "data-demo-run": "0",
+    "data-demo-view": "target",
+    "data-demo-entered": "end"
+   },
+   "onArrivalTextLen": 1090,
+   "watch": [
+    {
+     "afterSec": 2,
+     "run": "0",
+     "phase": "12",
+     "done": "true",
+     "entered": "end",
+     "textLen": 1090
+    },
+    {
+     "afterSec": 4,
+     "run": "0",
+     "phase": "12",
+     "done": "true",
+     "entered": "end",
+     "textLen": 1090
+    },
+    {
+     "afterSec": 6,
+     "run": "0",
+     "phase": "12",
+     "done": "true",
+     "entered": "end",
+     "textLen": 1090
+    },
+    {
+     "afterSec": 8,
+     "run": "0",
+     "phase": "12",
+     "done": "true",
+     "entered": "end",
+     "textLen": 1090
+    },
+    {
+     "afterSec": 10,
+     "run": "0",
+     "phase": "12",
+     "done": "true",
+     "entered": "end",
+     "textLen": 1090
+    },
+    {
+     "afterSec": 12,
+     "run": "0",
+     "phase": "12",
+     "done": "true",
+     "entered": "end",
+     "textLen": 1090
+    },
+    {
+     "afterSec": 14,
+     "run": "0",
+     "phase": "12",
+     "done": "true",
+     "entered": "end",
+     "textLen": 1090
+    }
+   ],
+   "started": false,
+   "phaseMoved": false,
+   "textGrew": false
+  }
+ ],
+ "pinEnd": "dbd14d8/dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1"
+}

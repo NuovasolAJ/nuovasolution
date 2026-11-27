@@ -1,0 +1,576 @@
+{
+ "probe": "matrix1127",
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "pin_start": "dbd14d8178dcf67a8a86f2e293b790fcad2f1fdc|dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "when": "2026-11-27T09:58:28.743Z",
+ "heading": {
+  "es_essential": {
+   "heads": [
+    "Habla con una persona.",
+    "Contratar Essential"
+   ],
+   "h": "Habla con una persona.",
+   "selValue": "contract",
+   "selIndex": 3,
+   "options": [
+    {
+     "v": "trial",
+     "t": "Prueba gratuita de Essential"
+    },
+    {
+     "v": "demo",
+     "t": "Demo de Growth"
+    },
+    {
+     "v": "talk",
+     "t": "Enterprise"
+    },
+    {
+     "v": "contract",
+     "t": "Contratar un plan"
+    },
+    {
+     "v": "model3d",
+     "t": "Modelo 3D de un inmueble"
+    },
+    {
+     "v": "other",
+     "t": "Otra consulta"
+    }
+   ],
+   "message": "Contratar Essential",
+   "submit": "Enviar solicitud",
+   "contractNote": "Te enviamos el precio y el contrato por escrito. Firmas solo si te encaja.",
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1517
+  },
+  "es_growth": {
+   "heads": [
+    "Habla con una persona.",
+    "Contratar Growth"
+   ],
+   "h": "Habla con una persona.",
+   "selValue": "contract",
+   "selIndex": 3,
+   "options": [
+    {
+     "v": "trial",
+     "t": "Prueba gratuita de Essential"
+    },
+    {
+     "v": "demo",
+     "t": "Demo de Growth"
+    },
+    {
+     "v": "talk",
+     "t": "Enterprise"
+    },
+    {
+     "v": "contract",
+     "t": "Contratar un plan"
+    },
+    {
+     "v": "model3d",
+     "t": "Modelo 3D de un inmueble"
+    },
+    {
+     "v": "other",
+     "t": "Otra consulta"
+    }
+   ],
+   "message": "Contratar Growth",
+   "submit": "Enviar solicitud",
+   "contractNote": "Te enviamos el precio y el contrato por escrito. Firmas solo si te encaja.",
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1508
+  },
+  "es_enterprise": {
+   "heads": [
+    "Habla con una persona.",
+    "Contratar Enterprise"
+   ],
+   "h": "Habla con una persona.",
+   "selValue": "contract",
+   "selIndex": 3,
+   "options": [
+    {
+     "v": "trial",
+     "t": "Prueba gratuita de Essential"
+    },
+    {
+     "v": "demo",
+     "t": "Demo de Growth"
+    },
+    {
+     "v": "talk",
+     "t": "Enterprise"
+    },
+    {
+     "v": "contract",
+     "t": "Contratar un plan"
+    },
+    {
+     "v": "model3d",
+     "t": "Modelo 3D de un inmueble"
+    },
+    {
+     "v": "other",
+     "t": "Otra consulta"
+    }
+   ],
+   "message": "Contratar Enterprise",
+   "submit": "Enviar solicitud",
+   "contractNote": "Te enviamos el precio y el contrato por escrito. Firmas solo si te encaja.",
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1520
+  },
+  "es_noplan": {
+   "heads": [
+    "Habla con una persona.",
+    "Contratar un plan"
+   ],
+   "h": "Habla con una persona.",
+   "selValue": "contract",
+   "selIndex": 3,
+   "options": [
+    {
+     "v": "trial",
+     "t": "Prueba gratuita de Essential"
+    },
+    {
+     "v": "demo",
+     "t": "Demo de Growth"
+    },
+    {
+     "v": "talk",
+     "t": "Enterprise"
+    },
+    {
+     "v": "contract",
+     "t": "Contratar un plan"
+    },
+    {
+     "v": "model3d",
+     "t": "Modelo 3D de un inmueble"
+    },
+    {
+     "v": "other",
+     "t": "Otra consulta"
+    }
+   ],
+   "message": "",
+   "submit": "Enviar solicitud",
+   "contractNote": "Te enviamos el precio y el contrato por escrito. Firmas solo si te encaja.",
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1481
+  },
+  "es_bogus": {
+   "heads": [
+    "Habla con una persona.",
+    "Contratar un plan"
+   ],
+   "h": "Habla con una persona.",
+   "selValue": "contract",
+   "selIndex": 3,
+   "options": [
+    {
+     "v": "trial",
+     "t": "Prueba gratuita de Essential"
+    },
+    {
+     "v": "demo",
+     "t": "Demo de Growth"
+    },
+    {
+     "v": "talk",
+     "t": "Enterprise"
+    },
+    {
+     "v": "contract",
+     "t": "Contratar un plan"
+    },
+    {
+     "v": "model3d",
+     "t": "Modelo 3D de un inmueble"
+    },
+    {
+     "v": "other",
+     "t": "Otra consulta"
+    }
+   ],
+   "message": "",
+   "submit": "Enviar solicitud",
+   "contractNote": "Te enviamos el precio y el contrato por escrito. Firmas solo si te encaja.",
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1481
+  },
+  "en_essential": {
+   "heads": [
+    "Talk to a person.",
+    "Hire Essential"
+   ],
+   "h": "Talk to a person.",
+   "selValue": "contract",
+   "selIndex": 3,
+   "options": [
+    {
+     "v": "trial",
+     "t": "Free Essential trial"
+    },
+    {
+     "v": "demo",
+     "t": "Growth demo"
+    },
+    {
+     "v": "talk",
+     "t": "Enterprise"
+    },
+    {
+     "v": "contract",
+     "t": "Hire a plan"
+    },
+    {
+     "v": "model3d",
+     "t": "3D model of a property"
+    },
+    {
+     "v": "other",
+     "t": "Something else"
+    }
+   ],
+   "message": "Request the Essential plan",
+   "submit": "Send request",
+   "contractNote": "We send you the price and the contract in writing. You sign only if it suits you.",
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1442
+  },
+  "en_growth": {
+   "heads": [
+    "Talk to a person.",
+    "Hire Growth"
+   ],
+   "h": "Talk to a person.",
+   "selValue": "contract",
+   "selIndex": 3,
+   "options": [
+    {
+     "v": "trial",
+     "t": "Free Essential trial"
+    },
+    {
+     "v": "demo",
+     "t": "Growth demo"
+    },
+    {
+     "v": "talk",
+     "t": "Enterprise"
+    },
+    {
+     "v": "contract",
+     "t": "Hire a plan"
+    },
+    {
+     "v": "model3d",
+     "t": "3D model of a property"
+    },
+    {
+     "v": "other",
+     "t": "Something else"
+    }
+   ],
+   "message": "Request the Growth plan",
+   "submit": "Send request",
+   "contractNote": "We send you the price and the contract in writing. You sign only if it suits you.",
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1433
+  },
+  "en_enterprise": {
+   "heads": [
+    "Talk to a person.",
+    "Hire Enterprise"
+   ],
+   "h": "Talk to a person.",
+   "selValue": "contract",
+   "selIndex": 3,
+   "options": [
+    {
+     "v": "trial",
+     "t": "Free Essential trial"
+    },
+    {
+     "v": "demo",
+     "t": "Growth demo"
+    },
+    {
+     "v": "talk",
+     "t": "Enterprise"
+    },
+    {
+     "v": "contract",
+     "t": "Hire a plan"
+    },
+    {
+     "v": "model3d",
+     "t": "3D model of a property"
+    },
+    {
+     "v": "other",
+     "t": "Something else"
+    }
+   ],
+   "message": "Request the Enterprise plan",
+   "submit": "Send request",
+   "contractNote": "We send you the price and the contract in writing. You sign only if it suits you.",
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1445
+  },
+  "en_noplan": {
+   "heads": [
+    "Talk to a person.",
+    "Hire a plan"
+   ],
+   "h": "Talk to a person.",
+   "selValue": "contract",
+   "selIndex": 3,
+   "options": [
+    {
+     "v": "trial",
+     "t": "Free Essential trial"
+    },
+    {
+     "v": "demo",
+     "t": "Growth demo"
+    },
+    {
+     "v": "talk",
+     "t": "Enterprise"
+    },
+    {
+     "v": "contract",
+     "t": "Hire a plan"
+    },
+    {
+     "v": "model3d",
+     "t": "3D model of a property"
+    },
+    {
+     "v": "other",
+     "t": "Something else"
+    }
+   ],
+   "message": "",
+   "submit": "Send request",
+   "contractNote": "We send you the price and the contract in writing. You sign only if it suits you.",
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1411
+  },
+  "en_bogus": {
+   "heads": [
+    "Talk to a person.",
+    "Hire a plan"
+   ],
+   "h": "Talk to a person.",
+   "selValue": "contract",
+   "selIndex": 3,
+   "options": [
+    {
+     "v": "trial",
+     "t": "Free Essential trial"
+    },
+    {
+     "v": "demo",
+     "t": "Growth demo"
+    },
+    {
+     "v": "talk",
+     "t": "Enterprise"
+    },
+    {
+     "v": "contract",
+     "t": "Hire a plan"
+    },
+    {
+     "v": "model3d",
+     "t": "3D model of a property"
+    },
+    {
+     "v": "other",
+     "t": "Something else"
+    }
+   ],
+   "message": "",
+   "submit": "Send request",
+   "contractNote": "We send you the price and the contract in writing. You sign only if it suits you.",
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1411
+  }
+ },
+ "confirmation": {
+  "es_contratar_growth": {
+   "submitted": true,
+   "filled": {
+    "agency": true,
+    "name": true,
+    "email": true,
+    "honeypotEmpty": true
+   },
+   "present": true,
+   "h": "Gracias. Una persona del equipo te escribe con el precio y el contrato por escrito.",
+   "eyebrow": "",
+   "steps": [
+    "1 Te enviamos el precio y el contrato por escrito.",
+    "2 Lo revisas con calma y vemos contigo cualquier duda.",
+    "3 Firmas solo si te encaja, y preparamos Growth contigo."
+   ],
+   "stepCount": 3,
+   "simulated": true,
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1428
+  },
+  "es_contratar_noplan": {
+   "submitted": true,
+   "filled": {
+    "agency": true,
+    "name": true,
+    "email": true,
+    "honeypotEmpty": true
+   },
+   "present": true,
+   "h": "Gracias. Una persona del equipo te escribe con el precio y el contrato por escrito.",
+   "eyebrow": "",
+   "steps": [
+    "1 Te enviamos el precio y el contrato por escrito.",
+    "2 Lo revisas con calma y vemos contigo cualquier duda.",
+    "3 Firmas solo si te encaja, y preparamos tu plan contigo."
+   ],
+   "stepCount": 3,
+   "simulated": true,
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1402
+  },
+  "en_contratar_growth": {
+   "submitted": true,
+   "filled": {
+    "agency": true,
+    "name": true,
+    "email": true,
+    "honeypotEmpty": true
+   },
+   "present": true,
+   "h": "Thank you. A person from our team will write to you with the price and the contract in writing.",
+   "eyebrow": "",
+   "steps": [
+    "1 We send you the price and the contract in writing.",
+    "2 You read it at your own pace, and we go through any questions with you.",
+    "3 You sign only if it suits you, and we set up Growth with you."
+   ],
+   "stepCount": 3,
+   "simulated": true,
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1427
+  },
+  "en_contratar_noplan": {
+   "submitted": true,
+   "filled": {
+    "agency": true,
+    "name": true,
+    "email": true,
+    "honeypotEmpty": true
+   },
+   "present": true,
+   "h": "Thank you. A person from our team will write to you with the price and the contract in writing.",
+   "eyebrow": "",
+   "steps": [
+    "1 We send you the price and the contract in writing.",
+    "2 You read it at your own pace, and we go through any questions with you.",
+    "3 You sign only if it suits you, and we set up your plan with you."
+   ],
+   "stepCount": 3,
+   "simulated": true,
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1408
+  },
+  "es_trial_essential": {
+   "submitted": true,
+   "filled": {
+    "agency": true,
+    "name": true,
+    "email": true,
+    "honeypotEmpty": true
+   },
+   "present": true,
+   "h": "Gracias. Una persona del equipo te escribe para activar tu prueba de Essential.",
+   "eyebrow": "",
+   "steps": [
+    "1 Te escribimos y acordamos el día.",
+    "2 Conectamos tu buzón y tu WhatsApp contigo.",
+    "3 Empiezan tus 14 días."
+   ],
+   "stepCount": 3,
+   "simulated": true,
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1520
+  },
+  "es_demo_growth": {
+   "submitted": true,
+   "filled": {
+    "agency": true,
+    "name": true,
+    "email": true,
+    "honeypotEmpty": true
+   },
+   "present": true,
+   "h": "Gracias. Una persona del equipo te escribe para acordar el día de la demo.",
+   "eyebrow": "",
+   "steps": [
+    "1 Acordamos el día.",
+    "2 En la demo vemos un caso como los tuyos.",
+    "3 Te enviamos las condiciones por escrito."
+   ],
+   "stepCount": 3,
+   "simulated": true,
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1332
+  },
+  "es_talk_enterprise": {
+   "submitted": true,
+   "filled": {
+    "agency": true,
+    "name": true,
+    "email": true,
+    "honeypotEmpty": true
+   },
+   "present": true,
+   "h": "Gracias. Una persona del equipo te escribe para acordar la conversación.",
+   "eyebrow": "",
+   "steps": [
+    "1 Acordamos el día.",
+    "2 Hablamos de tu equipo y de cómo trabajáis.",
+    "3 Te enviamos una propuesta por escrito."
+   ],
+   "stepCount": 3,
+   "simulated": true,
+   "literalPlan": false,
+   "literalWhere": null,
+   "bodyLen": 1354
+  }
+ },
+ "pin_end": "dbd14d8178dcf67a8a86f2e293b790fcad2f1fdc|dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "pinned": true
+}

@@ -1,0 +1,1290 @@
+{
+ "probe": "kontrast1127b",
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "pin_start": "dbd14d8178dcf67a8a86f2e293b790fcad2f1fdc|dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "when": "2026-11-27T10:10:36.351Z",
+ "samples": [
+  {
+   "viewport": "1366x768",
+   "phase": 0,
+   "controlsOk": false,
+   "controlH1": {
+    "median": 7.66,
+    "min": 2.32
+   },
+   "controlLead": {
+    "median": 5.49,
+    "min": 1.73
+   },
+   "info": {
+    ".hf-mark": {
+     "x": 1147,
+     "y": 758,
+     "w": 156,
+     "h": 20,
+     "color": "rgba(248, 246, 241, 0.72)",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Estás en una visita · 11:40",
+     "inView": false
+    },
+    ".hf-scene-mark": {
+     "x": 76,
+     "y": 594,
+     "w": 544,
+     "h": 18,
+     "color": "rgba(248, 246, 241, 0.62)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Ejemplo · datos ficticios",
+     "inView": true
+    },
+    "h1": {
+     "x": 76,
+     "y": 182,
+     "w": 760,
+     "h": 106,
+     "color": "rgb(255, 255, 255)",
+     "fontSize": "52px",
+     "fontWeight": "560",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "inView": true
+    },
+    ".hf-lead": {
+     "x": 76,
+     "y": 298,
+     "w": 760,
+     "h": 86,
+     "color": "rgba(248, 246, 241, 0.9)",
+     "fontSize": "19px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "NuovaSolution capta clientes, responde consultas y hace segu",
+     "inView": true
+    }
+   },
+   "stats": {
+    ".hf-mark": {
+     "skipped": true,
+     "why": "not fully in view"
+    },
+    ".hf-scene-mark": {
+     "px": 9792,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      63,
+      57,
+      55
+     ],
+     "min": 3.89,
+     "p05": 4.25,
+     "median": 5.22,
+     "mean": 5.15,
+     "max": 6.15,
+     "below3": 0,
+     "below45": 20.4
+    },
+    "h1": {
+     "px": 80560,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "52px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      94,
+      93,
+      95
+     ],
+     "min": 2.32,
+     "p05": 2.99,
+     "median": 7.66,
+     "mean": 7.27,
+     "max": 17.13,
+     "below3": 5.1,
+     "below45": 23.5
+    },
+    ".hf-lead": {
+     "px": 65360,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.9,
+     "fontSize": "19px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      97,
+      101,
+      104
+     ],
+     "min": 1.73,
+     "p05": 2.33,
+     "median": 5.49,
+     "mean": 5.28,
+     "max": 14.49,
+     "below3": 17,
+     "below45": 36.7
+    }
+   },
+   "shot": {
+    "w": 1366,
+    "h": 768
+   },
+   "scale": {
+    "sx": 1,
+    "sy": 1
+   },
+   "CONTROL_FAILED": true
+  },
+  {
+   "viewport": "1366x768",
+   "phase": 6,
+   "controlsOk": false,
+   "controlH1": {
+    "median": 7.67,
+    "min": 2.29
+   },
+   "controlLead": {
+    "median": 5.48,
+    "min": 1.73
+   },
+   "info": {
+    ".hf-mark": {
+     "x": 1147,
+     "y": 758,
+     "w": 156,
+     "h": 20,
+     "color": "rgba(248, 246, 241, 0.72)",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Estás en una visita · 11:40",
+     "inView": false
+    },
+    ".hf-scene-mark": {
+     "x": 76,
+     "y": 594,
+     "w": 544,
+     "h": 18,
+     "color": "rgba(248, 246, 241, 0.62)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Ejemplo · datos ficticios",
+     "inView": true
+    },
+    "h1": {
+     "x": 76,
+     "y": 182,
+     "w": 760,
+     "h": 106,
+     "color": "rgb(255, 255, 255)",
+     "fontSize": "52px",
+     "fontWeight": "560",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "inView": true
+    },
+    ".hf-lead": {
+     "x": 76,
+     "y": 298,
+     "w": 760,
+     "h": 86,
+     "color": "rgba(248, 246, 241, 0.9)",
+     "fontSize": "19px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "NuovaSolution capta clientes, responde consultas y hace segu",
+     "inView": true
+    }
+   },
+   "stats": {
+    ".hf-mark": {
+     "skipped": true,
+     "why": "not fully in view"
+    },
+    ".hf-scene-mark": {
+     "px": 9792,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      62,
+      56,
+      54
+     ],
+     "min": 4,
+     "p05": 4.29,
+     "median": 5.29,
+     "mean": 5.19,
+     "max": 6.22,
+     "below3": 0,
+     "below45": 17.7
+    },
+    "h1": {
+     "px": 80560,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "52px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      94,
+      94,
+      96
+     ],
+     "min": 2.29,
+     "p05": 2.91,
+     "median": 7.67,
+     "mean": 7.22,
+     "max": 16.91,
+     "below3": 6.3,
+     "below45": 24
+    },
+    ".hf-lead": {
+     "px": 65360,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.9,
+     "fontSize": "19px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      97,
+      101,
+      104
+     ],
+     "min": 1.73,
+     "p05": 2.33,
+     "median": 5.48,
+     "mean": 5.28,
+     "max": 14.56,
+     "below3": 16.5,
+     "below45": 36.6
+    }
+   },
+   "shot": {
+    "w": 1366,
+    "h": 768
+   },
+   "scale": {
+    "sx": 1,
+    "sy": 1
+   },
+   "CONTROL_FAILED": true
+  },
+  {
+   "viewport": "1366x768",
+   "phase": 12,
+   "controlsOk": false,
+   "controlH1": {
+    "median": 7.68,
+    "min": 2.29
+   },
+   "controlLead": {
+    "median": 5.48,
+    "min": 1.73
+   },
+   "info": {
+    ".hf-mark": {
+     "x": 1147,
+     "y": 758,
+     "w": 156,
+     "h": 20,
+     "color": "rgba(248, 246, 241, 0.72)",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Estás en una visita · 11:40",
+     "inView": false
+    },
+    ".hf-scene-mark": {
+     "x": 76,
+     "y": 594,
+     "w": 544,
+     "h": 18,
+     "color": "rgba(248, 246, 241, 0.62)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Ejemplo · datos ficticios",
+     "inView": true
+    },
+    "h1": {
+     "x": 76,
+     "y": 182,
+     "w": 760,
+     "h": 106,
+     "color": "rgb(255, 255, 255)",
+     "fontSize": "52px",
+     "fontWeight": "560",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "inView": true
+    },
+    ".hf-lead": {
+     "x": 76,
+     "y": 298,
+     "w": 760,
+     "h": 86,
+     "color": "rgba(248, 246, 241, 0.9)",
+     "fontSize": "19px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "NuovaSolution capta clientes, responde consultas y hace segu",
+     "inView": true
+    }
+   },
+   "stats": {
+    ".hf-mark": {
+     "skipped": true,
+     "why": "not fully in view"
+    },
+    ".hf-scene-mark": {
+     "px": 9792,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      62,
+      56,
+      53
+     ],
+     "min": 4.1,
+     "p05": 4.3,
+     "median": 5.33,
+     "mean": 5.23,
+     "max": 6.3,
+     "below3": 0,
+     "below45": 15.8
+    },
+    "h1": {
+     "px": 80560,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "52px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      95,
+      94,
+      96
+     ],
+     "min": 2.29,
+     "p05": 2.86,
+     "median": 7.68,
+     "mean": 7.18,
+     "max": 17.26,
+     "below3": 7.2,
+     "below45": 24.3
+    },
+    ".hf-lead": {
+     "px": 65360,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.9,
+     "fontSize": "19px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      96,
+      101,
+      104
+     ],
+     "min": 1.73,
+     "p05": 2.33,
+     "median": 5.48,
+     "mean": 5.28,
+     "max": 14.62,
+     "below3": 16.1,
+     "below45": 36.5
+    }
+   },
+   "shot": {
+    "w": 1366,
+    "h": 768
+   },
+   "scale": {
+    "sx": 1,
+    "sy": 1
+   },
+   "CONTROL_FAILED": true
+  },
+  {
+   "viewport": "1366x768",
+   "phase": 18,
+   "controlsOk": false,
+   "controlH1": {
+    "median": 7.68,
+    "min": 2.29
+   },
+   "controlLead": {
+    "median": 5.48,
+    "min": 1.73
+   },
+   "info": {
+    ".hf-mark": {
+     "x": 1147,
+     "y": 758,
+     "w": 156,
+     "h": 20,
+     "color": "rgba(248, 246, 241, 0.72)",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Estás en una visita · 11:40",
+     "inView": false
+    },
+    ".hf-scene-mark": {
+     "x": 76,
+     "y": 594,
+     "w": 544,
+     "h": 18,
+     "color": "rgba(248, 246, 241, 0.62)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Ejemplo · datos ficticios",
+     "inView": true
+    },
+    "h1": {
+     "x": 76,
+     "y": 182,
+     "w": 760,
+     "h": 106,
+     "color": "rgb(255, 255, 255)",
+     "fontSize": "52px",
+     "fontWeight": "560",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "inView": true
+    },
+    ".hf-lead": {
+     "x": 76,
+     "y": 298,
+     "w": 760,
+     "h": 86,
+     "color": "rgba(248, 246, 241, 0.9)",
+     "fontSize": "19px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "NuovaSolution capta clientes, responde consultas y hace segu",
+     "inView": true
+    }
+   },
+   "stats": {
+    ".hf-mark": {
+     "skipped": true,
+     "why": "not fully in view"
+    },
+    ".hf-scene-mark": {
+     "px": 9792,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      62,
+      56,
+      53
+     ],
+     "min": 4.05,
+     "p05": 4.3,
+     "median": 5.34,
+     "mean": 5.23,
+     "max": 6.32,
+     "below3": 0,
+     "below45": 15.2
+    },
+    "h1": {
+     "px": 80560,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "52px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      95,
+      94,
+      96
+     ],
+     "min": 2.29,
+     "p05": 2.86,
+     "median": 7.68,
+     "mean": 7.17,
+     "max": 17.33,
+     "below3": 7.4,
+     "below45": 24.4
+    },
+    ".hf-lead": {
+     "px": 65360,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.9,
+     "fontSize": "19px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      96,
+      101,
+      104
+     ],
+     "min": 1.73,
+     "p05": 2.33,
+     "median": 5.48,
+     "mean": 5.27,
+     "max": 14.65,
+     "below3": 16.1,
+     "below45": 36.4
+    }
+   },
+   "shot": {
+    "w": 1366,
+    "h": 768
+   },
+   "scale": {
+    "sx": 1,
+    "sy": 1
+   },
+   "CONTROL_FAILED": true
+  },
+  {
+   "viewport": "390x844",
+   "phase": 0,
+   "controlsOk": true,
+   "controlH1": {
+    "median": 8.02,
+    "min": 5.67
+   },
+   "controlLead": {
+    "median": 9.54,
+    "min": 5.95
+   },
+   "info": {
+    ".hf-mark": {
+     "x": 218,
+     "y": 166,
+     "w": 156,
+     "h": 20,
+     "color": "rgba(248, 246, 241, 0.72)",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Estás en una visita · 11:40",
+     "inView": true
+    },
+    ".hf-scene-mark": {
+     "x": 16,
+     "y": 718,
+     "w": 358,
+     "h": 18,
+     "color": "rgba(248, 246, 241, 0.62)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Ejemplo · datos ficticios",
+     "inView": true
+    },
+    "h1": {
+     "x": 16,
+     "y": 265,
+     "w": 358,
+     "h": 103,
+     "color": "rgb(255, 255, 255)",
+     "fontSize": "32.38px",
+     "fontWeight": "560",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "inView": true
+    },
+    ".hf-lead": {
+     "x": 16,
+     "y": 378,
+     "w": 358,
+     "h": 113,
+     "color": "rgb(255, 255, 255)",
+     "fontSize": "15px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "NuovaSolution capta clientes, responde consultas y hace segu",
+     "inView": true
+    }
+   },
+   "stats": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      246,
+      246,
+      248
+     ],
+     "min": 1,
+     "p05": 1,
+     "median": 1,
+     "mean": 1,
+     "max": 1,
+     "below3": 100,
+     "below45": 100
+    },
+    ".hf-scene-mark": {
+     "px": 6444,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      56,
+      50,
+      47
+     ],
+     "min": 4.62,
+     "p05": 4.78,
+     "median": 5.56,
+     "mean": 5.54,
+     "max": 6.48,
+     "below3": 0,
+     "below45": 0
+    },
+    "h1": {
+     "px": 36874,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "32.38px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      81,
+      82,
+      85
+     ],
+     "min": 5.67,
+     "p05": 6.46,
+     "median": 8.02,
+     "mean": 7.87,
+     "max": 9,
+     "below3": 0,
+     "below45": 0
+    },
+    ".hf-lead": {
+     "px": 40454,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "15px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      64,
+      69,
+      72
+     ],
+     "min": 5.95,
+     "p05": 7.18,
+     "median": 9.54,
+     "mean": 9.95,
+     "max": 20.17,
+     "below3": 0,
+     "below45": 0
+    }
+   },
+   "shot": {
+    "w": 390,
+    "h": 844
+   },
+   "scale": {
+    "sx": 1,
+    "sy": 1
+   }
+  },
+  {
+   "viewport": "390x844",
+   "phase": 6,
+   "controlsOk": true,
+   "controlH1": {
+    "median": 7.98,
+    "min": 5.73
+   },
+   "controlLead": {
+    "median": 9.59,
+    "min": 5.95
+   },
+   "info": {
+    ".hf-mark": {
+     "x": 218,
+     "y": 166,
+     "w": 156,
+     "h": 20,
+     "color": "rgba(248, 246, 241, 0.72)",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Estás en una visita · 11:40",
+     "inView": true
+    },
+    ".hf-scene-mark": {
+     "x": 16,
+     "y": 718,
+     "w": 358,
+     "h": 18,
+     "color": "rgba(248, 246, 241, 0.62)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Ejemplo · datos ficticios",
+     "inView": true
+    },
+    "h1": {
+     "x": 16,
+     "y": 265,
+     "w": 358,
+     "h": 103,
+     "color": "rgb(255, 255, 255)",
+     "fontSize": "32.38px",
+     "fontWeight": "560",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "inView": true
+    },
+    ".hf-lead": {
+     "x": 16,
+     "y": 378,
+     "w": 358,
+     "h": 113,
+     "color": "rgb(255, 255, 255)",
+     "fontSize": "15px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "NuovaSolution capta clientes, responde consultas y hace segu",
+     "inView": true
+    }
+   },
+   "stats": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      246,
+      246,
+      248
+     ],
+     "min": 1,
+     "p05": 1,
+     "median": 1,
+     "mean": 1,
+     "max": 1,
+     "below3": 100,
+     "below45": 100
+    },
+    ".hf-scene-mark": {
+     "px": 6444,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      56,
+      50,
+      47
+     ],
+     "min": 4.63,
+     "p05": 4.78,
+     "median": 5.55,
+     "mean": 5.54,
+     "max": 6.49,
+     "below3": 0,
+     "below45": 0
+    },
+    "h1": {
+     "px": 36874,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "32.38px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      81,
+      82,
+      85
+     ],
+     "min": 5.73,
+     "p05": 6.43,
+     "median": 7.98,
+     "mean": 7.82,
+     "max": 11.64,
+     "below3": 0,
+     "below45": 0
+    },
+    ".hf-lead": {
+     "px": 40454,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "15px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      64,
+      68,
+      72
+     ],
+     "min": 5.95,
+     "p05": 7.18,
+     "median": 9.59,
+     "mean": 9.97,
+     "max": 19.81,
+     "below3": 0,
+     "below45": 0
+    }
+   },
+   "shot": {
+    "w": 390,
+    "h": 844
+   },
+   "scale": {
+    "sx": 1,
+    "sy": 1
+   }
+  },
+  {
+   "viewport": "390x844",
+   "phase": 12,
+   "controlsOk": true,
+   "controlH1": {
+    "median": 7.94,
+    "min": 5.66
+   },
+   "controlLead": {
+    "median": 9.61,
+    "min": 5.95
+   },
+   "info": {
+    ".hf-mark": {
+     "x": 218,
+     "y": 166,
+     "w": 156,
+     "h": 20,
+     "color": "rgba(248, 246, 241, 0.72)",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Estás en una visita · 11:40",
+     "inView": true
+    },
+    ".hf-scene-mark": {
+     "x": 16,
+     "y": 718,
+     "w": 358,
+     "h": 18,
+     "color": "rgba(248, 246, 241, 0.62)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Ejemplo · datos ficticios",
+     "inView": true
+    },
+    "h1": {
+     "x": 16,
+     "y": 265,
+     "w": 358,
+     "h": 103,
+     "color": "rgb(255, 255, 255)",
+     "fontSize": "32.38px",
+     "fontWeight": "560",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "inView": true
+    },
+    ".hf-lead": {
+     "x": 16,
+     "y": 378,
+     "w": 358,
+     "h": 113,
+     "color": "rgb(255, 255, 255)",
+     "fontSize": "15px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "NuovaSolution capta clientes, responde consultas y hace segu",
+     "inView": true
+    }
+   },
+   "stats": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      246,
+      246,
+      248
+     ],
+     "min": 1,
+     "p05": 1,
+     "median": 1,
+     "mean": 1,
+     "max": 1,
+     "below3": 100,
+     "below45": 100
+    },
+    ".hf-scene-mark": {
+     "px": 6444,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      56,
+      50,
+      47
+     ],
+     "min": 4.56,
+     "p05": 4.78,
+     "median": 5.51,
+     "mean": 5.54,
+     "max": 6.55,
+     "below3": 0,
+     "below45": 0
+    },
+    "h1": {
+     "px": 36874,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "32.38px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      81,
+      82,
+      85
+     ],
+     "min": 5.66,
+     "p05": 6.4,
+     "median": 7.94,
+     "mean": 7.79,
+     "max": 11.47,
+     "below3": 0,
+     "below45": 0
+    },
+    ".hf-lead": {
+     "px": 40454,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "15px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      64,
+      68,
+      72
+     ],
+     "min": 5.95,
+     "p05": 7.19,
+     "median": 9.61,
+     "mean": 9.99,
+     "max": 19.6,
+     "below3": 0,
+     "below45": 0
+    }
+   },
+   "shot": {
+    "w": 390,
+    "h": 844
+   },
+   "scale": {
+    "sx": 1,
+    "sy": 1
+   }
+  },
+  {
+   "viewport": "390x844",
+   "phase": 18,
+   "controlsOk": true,
+   "controlH1": {
+    "median": 7.93,
+    "min": 5.73
+   },
+   "controlLead": {
+    "median": 9.63,
+    "min": 5.95
+   },
+   "info": {
+    ".hf-mark": {
+     "x": 218,
+     "y": 166,
+     "w": 156,
+     "h": 20,
+     "color": "rgba(248, 246, 241, 0.72)",
+     "fontSize": "13px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Estás en una visita · 11:40",
+     "inView": true
+    },
+    ".hf-scene-mark": {
+     "x": 16,
+     "y": 718,
+     "w": 358,
+     "h": 18,
+     "color": "rgba(248, 246, 241, 0.62)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Ejemplo · datos ficticios",
+     "inView": true
+    },
+    "h1": {
+     "x": 16,
+     "y": 265,
+     "w": 358,
+     "h": 103,
+     "color": "rgb(255, 255, 255)",
+     "fontSize": "32.38px",
+     "fontWeight": "560",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+     "inView": true
+    },
+    ".hf-lead": {
+     "x": 16,
+     "y": 378,
+     "w": 358,
+     "h": 113,
+     "color": "rgb(255, 255, 255)",
+     "fontSize": "15px",
+     "fontWeight": "400",
+     "bg": "rgba(0, 0, 0, 0)",
+     "backdrop": "none",
+     "text": "NuovaSolution capta clientes, responde consultas y hace segu",
+     "inView": true
+    }
+   },
+   "stats": {
+    ".hf-mark": {
+     "px": 3120,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.72,
+     "fontSize": "13px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      246,
+      246,
+      248
+     ],
+     "min": 1,
+     "p05": 1,
+     "median": 1,
+     "mean": 1,
+     "max": 1,
+     "below3": 100,
+     "below45": 100
+    },
+    ".hf-scene-mark": {
+     "px": 6444,
+     "textColor": [
+      248,
+      246,
+      241
+     ],
+     "textAlpha": 0.62,
+     "fontSize": "12px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      56,
+      50,
+      47
+     ],
+     "min": 4.57,
+     "p05": 4.78,
+     "median": 5.5,
+     "mean": 5.54,
+     "max": 6.53,
+     "below3": 0,
+     "below45": 0
+    },
+    "h1": {
+     "px": 36874,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "32.38px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      81,
+      82,
+      85
+     ],
+     "min": 5.73,
+     "p05": 6.39,
+     "median": 7.93,
+     "mean": 7.79,
+     "max": 12.11,
+     "below3": 0,
+     "below45": 0
+    },
+    ".hf-lead": {
+     "px": 40454,
+     "textColor": [
+      255,
+      255,
+      255
+     ],
+     "textAlpha": 1,
+     "fontSize": "15px",
+     "ownBg": "rgba(0, 0, 0, 0)",
+     "bgMean": [
+      63,
+      68,
+      72
+     ],
+     "min": 5.95,
+     "p05": 7.19,
+     "median": 9.63,
+     "mean": 9.99,
+     "max": 19.73,
+     "below3": 0,
+     "below45": 0
+    }
+   },
+   "shot": {
+    "w": 390,
+    "h": 844
+   },
+   "scale": {
+    "sx": 1,
+    "sy": 1
+   }
+  }
+ ],
+ "pin_end": "dbd14d8178dcf67a8a86f2e293b790fcad2f1fdc|dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1",
+ "pinned": true
+}

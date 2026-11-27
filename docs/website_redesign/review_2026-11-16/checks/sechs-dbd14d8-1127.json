@@ -1,0 +1,251 @@
+{
+ "probe": "sechs1127",
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "pin_start": "dbd14d8178dcf67a8a86f2e293b790fcad2f1fdc|dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1|preview|stub",
+ "when": "2026-11-27T09:06:55.806Z",
+ "points": {
+  "p1_hero_es": {
+   "h1_ok": true,
+   "sub_ok": true,
+   "h1_got": "Haz crecer tu inmobiliaria. No tu carga de trabajo.",
+   "sub_got": "NuovaSolution capta clientes, responde consultas y hace seguimiento. Reactiva contactos, propone inmuebles y te muestra qué merece tu atención, para que tu negocio avance sin que todo dependa de ti.",
+   "en_past": null
+  },
+  "p3_photo_es": {
+   "photoId": {
+    "id": "c",
+    "photo": "pexels-35419464"
+   },
+   "widths": [
+    "960w",
+    "1280w",
+    "1920w",
+    "2560w"
+   ],
+   "currentSrc": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app/media/photos/hero-c-1920.webp",
+   "fetchPriority": "high",
+   "videoLayer": false,
+   "drift": {
+    "animation": "hf-drift",
+    "dur": "24s"
+   },
+   "shade": {
+    "bg": "linear-gradient(90deg, rgba(12, 12, 14, 0.76), rgba(12, 12, 14, 0.6) 36%, rgba(12, 12, 14, 0.22) 60%, rgba(12, 12, 14, 0) 84%)",
+    "inset": "0px"
+   }
+  },
+  "p5_titles_es": {
+   "heroTaskCard": "TAREA PARA MARTA Devolver la llamada por el piso de Nerja Pide que la llamen · Disponibilidad sin confirmar",
+   "heroTask_ok": true,
+   "heroLabel_ok": false,
+   "titlesWithTime": [],
+   "bodyKeeps1700": true,
+   "milaMsg": "Consulta por WhatsApp · 11:42 Hola, busco un piso de 3 dormitorios en Nerja, hasta 350.000 €. ¿Sigue disponible la ref. 9895153? ¿Me podéis llamar?",
+   "caption": "Estás en una visita · 11:40"
+  },
+  "p6_structure_es": {
+   "tasksCount": 0,
+   "reportCards": 3
+  },
+  "p4_heads_es": {
+   "heroLabel": {
+    "bg": "rgb(240, 242, 245)",
+    "label": "rgb(14, 14, 15)",
+    "mark": "rgb(37, 211, 102)",
+    "text": "Consulta por WhatsApp · 11:42"
+   },
+   "agencyTask": {
+    "bg": "rgb(18, 140, 126)",
+    "label": "rgb(255, 255, 255)",
+    "mark": "rgb(37, 211, 102)",
+    "text": "WhatsApp · 11:42"
+   }
+  },
+  "p1_hero_en": {
+   "h1_ok": true,
+   "sub_ok": true,
+   "h1_got": "Grow your agency. Not your workload.",
+   "sub_got": "NuovaSolution brings in clients, answers enquiries and follows up. It re-engages past contacts, suggests properties and shows you what deserves your attention, so your business moves forward without everything depending on you.",
+   "en_past": true
+  },
+  "p3_photo_en": {
+   "photoId": {
+    "id": "c",
+    "photo": "pexels-35419464"
+   },
+   "widths": [
+    "960w",
+    "1280w",
+    "1920w",
+    "2560w"
+   ],
+   "currentSrc": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app/media/photos/hero-c-1920.webp",
+   "fetchPriority": "high",
+   "videoLayer": false,
+   "drift": {
+    "animation": "hf-drift",
+    "dur": "24s"
+   },
+   "shade": {
+    "bg": "linear-gradient(90deg, rgba(12, 12, 14, 0.76), rgba(12, 12, 14, 0.6) 36%, rgba(12, 12, 14, 0.22) 60%, rgba(12, 12, 14, 0) 84%)",
+    "inset": "0px"
+   }
+  },
+  "p5_titles_en": {
+   "heroTaskCard": "TASK FOR MARTA Return the call about the flat in Nerja Asks for a call back · Availability not confirmed",
+   "heroTask_ok": true,
+   "heroLabel_ok": false,
+   "titlesWithTime": [],
+   "bodyKeeps1700": true,
+   "milaMsg": "Enquiry on WhatsApp · 11:42 Hola, busco un piso de 3 dormitorios en Nerja, hasta 350.000 €. ¿Sigue disponible la ref. 9895153? ¿Me podéis llamar? Translation: Hi, I'm looking for a 3-bedroom flat in Nerja, up to €350,000. Is ref. 9895153 still available? Could you call me?",
+   "caption": "You're at a viewing · 11:40"
+  },
+  "p6_structure_en": {
+   "tasksCount": 0,
+   "reportCards": 3
+  },
+  "p4_heads_en": {
+   "heroLabel": {
+    "bg": "rgb(240, 242, 245)",
+    "label": "rgb(14, 14, 15)",
+    "mark": "rgb(37, 211, 102)",
+    "text": "Enquiry on WhatsApp · 11:42"
+   },
+   "agencyTask": {
+    "bg": "rgb(18, 140, 126)",
+    "label": "rgb(255, 255, 255)",
+    "mark": "rgb(37, 211, 102)",
+    "text": "WhatsApp · 11:42"
+   }
+  },
+  "p2_edge_es_1366": {
+   "geo": {
+    "present": true,
+    "w": 44,
+    "h": 44,
+    "wExact": 44,
+    "hExact": 44,
+    "top": 802,
+    "bottom": 846,
+    "display": "flex",
+    "visibility": "visible",
+    "opacity": "1",
+    "href": "#pain",
+    "label": "Seguir leyendo",
+    "inFold": false,
+    "painId": true,
+    "animation": "none"
+   },
+   "tab": {
+    "presses": 14,
+    "found": true,
+    "focusVisible": true
+   },
+   "jump": {
+    "scrollY": 766,
+    "painTop": 96,
+    "painInView": true,
+    "hash": "#pain"
+   }
+  },
+  "p2_edge_en_1366": {
+   "geo": {
+    "present": true,
+    "w": 44,
+    "h": 44,
+    "wExact": 44,
+    "hExact": 44,
+    "top": 802,
+    "bottom": 846,
+    "display": "flex",
+    "visibility": "visible",
+    "opacity": "1",
+    "href": "#pain",
+    "label": "Keep reading",
+    "inFold": false,
+    "painId": true,
+    "animation": "none"
+   },
+   "tab": {
+    "presses": 14,
+    "found": true,
+    "focusVisible": true
+   },
+   "jump": {
+    "scrollY": 766,
+    "painTop": 96,
+    "painInView": true,
+    "hash": "#pain"
+   }
+  },
+  "p2_edge_es_390": {
+   "geo": {
+    "present": true,
+    "w": 0,
+    "h": 0,
+    "wExact": 0,
+    "hExact": 0,
+    "top": 0,
+    "bottom": 0,
+    "display": "none",
+    "visibility": "visible",
+    "opacity": "1",
+    "href": "#pain",
+    "label": "Seguir leyendo",
+    "inFold": true,
+    "painId": true,
+    "animation": "none"
+   },
+   "tab": {
+    "presses": 40,
+    "found": false,
+    "focusVisible": null
+   },
+   "jump": null
+  },
+  "p2_edge_es_360": {
+   "geo": {
+    "present": true,
+    "w": 40,
+    "h": 40,
+    "wExact": 40,
+    "hExact": 40,
+    "top": 798,
+    "bottom": 838,
+    "display": "flex",
+    "visibility": "visible",
+    "opacity": "1",
+    "href": "#pain",
+    "label": "Seguir leyendo",
+    "inFold": false,
+    "painId": true,
+    "animation": "none"
+   },
+   "tab": {
+    "presses": 7,
+    "found": true,
+    "focusVisible": true
+   },
+   "jump": {
+    "scrollY": 760,
+    "painTop": 84,
+    "painInView": true,
+    "hash": "#pain"
+   }
+  },
+  "p4_demoHead": {
+   "present": true,
+   "clicked": true,
+   "bg": "rgb(240, 242, 245)",
+   "name": "rgb(14, 14, 15)",
+   "role": "rgb(14, 14, 15)",
+   "mark": "rgb(37, 211, 102)",
+   "head": "M Mila · compradora en línea",
+   "endTitle": "",
+   "bodyHasEnd": true,
+   "bodyHasOldTime": false
+  }
+ },
+ "pin_end": "dbd14d8178dcf67a8a86f2e293b790fcad2f1fdc|dpl_Aap3q2WQn2tDU84Rq5xFQuHoZSY1|preview|stub",
+ "pinned": true
+}
