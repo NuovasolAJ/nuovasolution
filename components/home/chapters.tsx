@@ -50,6 +50,24 @@ export function Chapters({ locale, view }: { locale: Locale; view: ClaimView }) 
   }, []);
   const scenesOf = (c: Chapter) => items.filter((it) => it.chapter === c.key);
   const line = (it: (typeof items)[number]) => withChannels(l(it.line(view)), locale, view);
+  /** The area's detail — its line and its scenes — rendered once for both the opened detail and the no-JavaScript copy; `isStatic` only
+   *  marks the list for the CSS net and leaves the inline surface's data mark off (the JavaScript detail carries it for the probes). */
+  const detail = (c: Chapter, scenes: ReturnType<typeof scenesOf>, isStatic: boolean) => (
+    <>
+      <p className="ch-detail-line">{l(c.line(view))}</p>
+      <ol className={cn("ch-scenes", isStatic && "ch-scenes-static")}>
+        {scenes.map((s) => (
+          <li key={s.key} className="ch-scene" data-fn={isStatic ? undefined : s.key}>
+            <div className="ch-scene-words">
+              <h4 className="ch-scene-title">{l(s.title)}</h4>
+              <p className="ch-scene-line">{line(s)}</p>
+            </div>
+            <div className="ch-scene-surface" data-fn-surface-inline={isStatic ? undefined : s.key}><Surface k={s.key as SceneKey} locale={locale} view={view} /></div>
+          </li>
+        ))}
+      </ol>
+    </>
+  );
   // Copy 1113 §2 (16.11.): one sentence and up to four points per area; a point with an open proof leaves the public view
   const copy = home1103.chapterCopy;
   const core = home1103.phoneCore.areas(view); // Copy 441ba1c §10: the phone's core and proof line per area
@@ -92,34 +110,13 @@ export function Chapters({ locale, view }: { locale: Locale; view: ClaimView }) 
               <AnimatePresence initial={false}>
                 {isOpen && (
                   <m.div className="ch-detail" initial={reduce ? false : { opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={reduce ? undefined : { opacity: 0, height: 0, transition: { duration: 0.22 } }} transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}>
-                    <p className="ch-detail-line">{l(c.line(view))}</p>
-                    <ol className="ch-scenes">
-                      {scenes.map((s) => (
-                        <li key={s.key} className="ch-scene" data-fn={s.key}>
-                          <div className="ch-scene-words">
-                            <h4 className="ch-scene-title">{l(s.title)}</h4>
-                            <p className="ch-scene-line">{line(s)}</p>
-                          </div>
-                          <div className="ch-scene-surface" data-fn-surface-inline={s.key}><Surface k={s.key as SceneKey} locale={locale} view={view} /></div>
-                        </li>
-                      ))}
-                    </ol>
+                    {detail(c, scenes, false)}
                   </m.div>
                 )}
               </AnimatePresence>
-              {/* the no-JavaScript copy of the chapter's scenes (hidden while JavaScript runs) */}
-              <noscript>
-                {/* RV6 (27.11.): the area's own line stands here too, so the no-JavaScript copy is the same set of sentences as the opened detail */}
-                <p className="ch-detail-line">{l(c.line(view))}</p>
-                <ol className="ch-scenes ch-scenes-static">
-                  {scenes.map((s) => (
-                    <li key={s.key} className="ch-scene">
-                      <div className="ch-scene-words"><h4 className="ch-scene-title">{l(s.title)}</h4><p className="ch-scene-line">{line(s)}</p></div>
-                      <div className="ch-scene-surface"><Surface k={s.key as SceneKey} locale={locale} view={view} /></div>
-                    </li>
-                  ))}
-                </ol>
-              </noscript>
+              {/* the no-JavaScript copy of the chapter's detail (hidden while JavaScript runs): the SAME render as the opened detail, so the
+                  two cannot drift apart (RV6, 27.11.: equal by construction in both directions, not two arms to keep in step by hand) */}
+              <noscript>{detail(c, scenes, true)}</noscript>
               </div>
               </article>
             );
