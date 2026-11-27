@@ -659,3 +659,77 @@ Freigabe wissen soll — nicht aus der Note danach.
 
 **Nichts davon ist von mir gemessen.** Der Alias liefert weiter `bea7d19` / `dpl_H6WfQ1GK…`.
 Gemessen wird nach der Freigabe des Owners, am benannten Commit, anhand der Deployment-Kennung.
+
+---
+
+## Nachtrag 7 (27.11.) — der zurückgeholte Hero-Satz trägt **sechs Produktversprechen**, und vier davon sind „Bau"
+
+Während nichts messbar ist, habe ich die Stelle geprüft, die der Textbefehl neu geschaffen hat: der
+Satz steht auf dem **ersten Bildschirm jeder Seite** und ist damit die sichtbarste Aussage der
+ganzen Website. **Quelllesung, keine Messung.**
+
+> „NuovaSolution **capta clientes**, **responde consultas** y **hace seguimiento**. **Reactiva
+> contactos**, **propone inmuebles** y **te muestra qué merece tu atención** …"
+
+Der Register-Vorspann (Audit, 23.11.) sagt: seit `32236c1` gibt es kein `publicGate` und keine
+Próximamente-Marken mehr — **„Jede gerenderte Aussage ist damit ein öffentliches Versprechen."**
+Danach gehalten:
+
+| Aussage im Hero | Registerschlüssel | Zeile | Klasse |
+|---|---|---|---|
+| **capta clientes** | `adsLeads`, `instagram` | 10, 33 | **Bau · Ausnahme Meta** / externe Freigabe |
+| **responde consultas** | `replyEmail` | 1 | **belegt** (eigene Agentur, Gmail) |
+| — dieselbe Aussage über WhatsApp | `replyWhatsapp`, `whatsappOwnNumber` | 3, 4 | **Bau** / Bau · Ausnahme Meta |
+| **hace seguimiento** | `followup` | 27 | **Bau · Ausnahme Anwalt** (Prod-Sender inaktiv) |
+| **Reactiva contactos** | `matching` + `followup` | 26, 27 | **Bau** |
+| **propone inmuebles** | `matching` | 26 | **Bau** (`pm_certified = false`) |
+| **qué merece tu atención** | `reportTrend` (wörtlich „lo que pide tu atención") | 30 | **Bau** (erweiterte Stufe leer) |
+| — in der engeren Lesart | `priorityWithReason` | 12 | belegt (eigene Agentur) |
+
+**Von sechs Aussagen ist eine belegt** (Antworten per Mail, eigene Agentur), **eine je nach Lesart
+belegt oder Bau**, und **vier sind Bau** — darunter die **erste**, mit der der Satz anfängt.
+„Captación" ist in Prod nirgends belegt; sie hängt an Zeile 10 (Bau · Meta-Teil) und Zeile 33
+(externe Freigabe, Meta App Review).
+
+### V-2 — der Hero-Satz ist als einziger **nicht** ans Register gebunden
+
+Die vier Agenturkarten weiter unten machen **dieselben** Aussagen und tragen ihre Schlüssel
+ordentlich (`lib/content/strengths.ts`):
+
+```
+g1 "Gana nuevos clientes"   keys: ["adsLeads", "instagram"]
+g2 "Reactiva tus contactos" keys: ["matching", "followup"]
+```
+
+Der Hero in `lib/content/brief-1120.ts` hat an `h1` und `sub` **keine** `keys` — obwohl dieselbe
+Datei das Mittel an anderer Stelle benutzt. Seit `32236c1` steuern die Schlüssel die Darstellung
+nicht mehr; ihre verbliebene Aufgabe ist **Prüfung und Vorlesebeschriftung**. Das heißt: **Audits
+Werkzeug sieht die sichtbarsten Versprechen der Seite nicht.** Die Karten sind erfasst, der Satz
+darüber nicht.
+
+### Was ich ausdrücklich **nicht** sage
+
+Nicht, dass der Satz falsch ist. Er beschreibt den **Zielzustand**, und nach der Entscheidung 2 des
+Owners vom 23.11. zeigt die Vorschau das Produkt zu 100 %. Ob die **freigegebene öffentliche**
+Seite ihn so tragen darf, entscheiden Audit und der Owner — nicht ich. Ich liefere die Zuordnung.
+
+**Und die Zeitfolge gehört dazu, weil sie niemandem einen Vorwurf macht:** Der Text ist vom 17.11.
+und war damals gebaut (`92f873d`). Die Regel, dass **jede** gerenderte Aussage ein öffentliches
+Versprechen ist, stammt vom **23.11.** Der Text kehrt also in eine strengere Ordnung zurück, als er
+verlassen hat. Niemand hat etwas falsch gemacht; die Regel hat sich unter dem Text geändert.
+
+### Mein eigener Fehler, gefunden bevor er in den Bericht kam
+
+Mein erster Durchgang ergab: **„Reactiva contactos hat überhaupt keine Registerzeile"** — „reactiv"
+kommt im ganzen Register **null** Mal vor. Das wäre ein Befund der schärfsten Sorte gewesen und er
+ist **falsch**: die Aussage ist über die Schlüssel `matching` und `followup` (Zeilen 26/27) sehr
+wohl erfasst, nur nicht unter diesem Wort. **Dasselbe Muster wie bei „telefónico" und bei den
+Registerzeilen 31 und 29**: ein enges Suchwort auf einer Bau-Zeile, und ein „nicht gefunden" wird
+zu „nicht vorhanden". Gefunden habe ich es, weil ich die Quelle gelesen habe statt dem Register zu
+glauben. Die Lehre ist alt und ich mache den Fehler weiter — deshalb steht sie hier wieder.
+
+### Wohin das gehört
+
+**An Audit**, nicht an Redesign: es ist keine Bau-Aufgabe, sondern eine Registerfrage. Für meinen
+Durchgang heißt es: der Register-Abgleich läuft auf dem benannten Commit ohnehin neu (die Lückenliste
+`de152f8` hängt an `bea7d19`), und der Hero bekommt darin **eine eigene Zeile je Aussage**.
