@@ -133,4 +133,31 @@ Redesigns eigene Zahlen zur Unterschrift bei 375 (16,1 / 15,3 ES, 15,8 / 9,2 EN 
 
 ---
 
+## Nachtrag 2 (27.11.) — N-5: auf 33 von 124 durchgemessenen Telefonhöhen schneidet die Falz mitten durch eine Textzeile
+
+Redesign hat nachgelegt (lokal `e2dfdb9`): auf dem kurzen Telefon ist die Mindesthöhe des Hero jetzt `calc(100svh - 28px)`, damit vom nächsten Abschnitt ein 28-px-Streifen zu sehen ist — der Hinweis darauf, dass die Seite weitergeht. Die Begründung dazu habe ich an der Quelle geprüft und sie **trägt**: `.pain-inner` bekommt auf dem Telefon `padding-top: 32px` (`globals.css:1858` schlägt `:697`), der Streifen ist 28 px, also zeigt er Grund und die Haarlinie und **keine Schrift**, mit 4 px Luft.
+
+**Aber genau diese Rechnung hängt an der Fensterhöhe — und vier benannte Fenster können nicht zeigen, dass sie überall aufgeht.** Deshalb durchgemessen statt geglaubt: Breiten 360 und 375, Höhen 600 bis 900 in 10-px-Schritten, beide Sprachen, 124 Fenster. Gemessen wurde nicht, ob sich Kästen überlappen, sondern ob die Falz **durch das Rechteck eines Textknotens** läuft — also ob eine Zeile Schrift waagerecht durchgeschnitten wird.
+
+| Breite / Sprache | geschnitten bei (von 31 Höhen) |
+|---|---|
+| 360 ES | **10** — 730, 740, 750, 760, 770, 780, 790, 800, 810, 830 |
+| 360 EN | **9** — 760, 770, 780, 790, 800, 810, 820, 830, 860 |
+| 375 ES | **5** — 730, 740, 750, 760, 790 |
+| 375 EN | **9** — 740, 750, 760, 770, 780, 790, 800, 810, 840 |
+
+**33 von 124 Fenstern, also 27 %.** Beispiele: bei 375 × 740 EN steht „0 of 25" mit 7 von 29 px über der Falz, der Rest ist abgeschnitten; bei 360 × 790 ES liegt die Schmerzzeile mit 28 von 29 px darüber, also fehlt genau die Unterkante der Buchstaben; bei 375 × 790 ES wird die Marke „Semana de ejemplo · datos ficticios" mit 8 von 16 px halbiert.
+
+**Woran es liegt.** Der Streifen des nächsten Abschnitts ist entweder kleiner als dessen Kopfluft (32 px) — dann zeigt er nur Grund, wie es die neue 28-px-Regel absichtlich macht — oder er ist größer, und dann wandert die Falz durch die Schmerzzeile (29 px) und weiter unten durch die Marke (16 px). Heil ist er erst wieder, wenn er alles überspringt. Bei 390 × 844 ist der Streifen 160 px und alles steht ganz; bei Höhen bis 720 macht die neue Regel ihn 28 px. **Dazwischen, zwischen rund 38 und 140 px, liegt die Zone, und dort liegen die üblichen Android-Fenster.**
+
+**Das ist nicht neu und nicht von der Hinweis-Arbeit verursacht** — es steht so auf dem benannten Commit `43d9cce` und hat mit Hinweis und Auflösekante nichts zu tun. Die neue 28-px-Regel hat genau den richtigen Instinkt, deckt aber nur `max-height: 720px`; oberhalb davon entscheidet die andere Regel oder die Inhaltshöhe, und dort sitzen die 33 Fälle. Dass meine vier benannten Fenster alle sauber sind, ist der Grund, warum es bisher niemandem aufgefallen ist: 360 × 640, 375 × 667, 390 × 844 und 414 × 896 liegen alle außerhalb der Zone.
+
+**Richtung, nicht Lösung** (die gehört Redesign): derselbe Gedanke, der die 28 px ergeben hat, muss über den ganzen Höhenbereich halten — der Streifen ist entweder immer kleiner als die Kopfluft, oder immer so groß, dass Zeile, Abstand und Marke vollständig darin stehen. Was dazwischen liegt, schneidet.
+
+Ich nehme N-5 in den kurzen Nachlauf auf. Der Lauf bleibt kurz, weil der Höhenfeger automatisch läuft (`checks/hoehenfeger1127.mjs`, ein Laden je Breite und Sprache, danach nur die Fensterhöhe).
+
+*Eigener Hinweis zur Sorgfalt: in meiner Zusammenfassungszeile im Protokoll stand als Fensterhöhe versehentlich die Zeilenhöhe (29). Die Tabelle oben und die Rohdaten sind richtig; nur jene eine Ausgabezeile war falsch beschriftet.*
+
+---
+
 *Belege, alle auf `43d9cce` / `dpl_B4BAFStBAfPBKVujC1gniS55JoAX`: `checks/nachlauf-43d9cce-1127.json` (Bedingung des Owners, Köpfe, Hinweis und Falz über sieben Fenster, beide Sprachen) · `checks/kontrast-c-43d9cce-1127.json` (E-1/E-2/E-3, vier Driftphasen) · `checks/e1-kapsel-43d9cce.json` (die Kapsel über sechs Fenster, getrennt nach Textfläche und Rundung). Bilder: `shots/43d9cce/ersterschirm-{360,375,390,1366}.png`, `shots/43d9cce/kapsel-375-mit-schrift.png`, `shots/43d9cce/kapsel-390-mit-schrift.png` und die zwei gemessenen Gründe. Sonde: `checks/nachlauf1127.mjs`.*
