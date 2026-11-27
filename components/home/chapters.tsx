@@ -109,6 +109,8 @@ export function Chapters({ locale, view }: { locale: Locale; view: ClaimView }) 
               </AnimatePresence>
               {/* the no-JavaScript copy of the chapter's scenes (hidden while JavaScript runs) */}
               <noscript>
+                {/* RV6 (27.11.): the area's own line stands here too, so the no-JavaScript copy is the same set of sentences as the opened detail */}
+                <p className="ch-detail-line">{l(c.line(view))}</p>
                 <ol className="ch-scenes ch-scenes-static">
                   {scenes.map((s) => (
                     <li key={s.key} className="ch-scene">
