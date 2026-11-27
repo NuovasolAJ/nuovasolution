@@ -62,7 +62,7 @@ export const brief1120 = {
   },
   demo: {
     tabs: { whatsapp: T("WhatsApp", "WhatsApp"), email: T("Email", "Email"), webform: T("Formulario", "Form"), phone: T("Teléfono", "Phone") },
-    invite: T("Elige por dónde te escribe el cliente.", "Pick the channel your client writes on."),
+    invite: T("Elige cómo te contacta el cliente.", "Choose how your client contacts you."), // Copy 920ce7f (the owner's line 27.11.): covers the phone too
     taskLabel: T("Tarea", "Task"),
     /** Copy phone preview 1-C (11cf7a2): the finished task's caption and the one link out of path 1 into path 2. */
     caption: T("Mila ya tiene respuesta. La llamada sigue esperando a Marta.", "Mila already has her answer. The call is still waiting for Marta."),
