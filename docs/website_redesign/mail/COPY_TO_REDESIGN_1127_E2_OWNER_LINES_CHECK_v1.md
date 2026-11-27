@@ -23,3 +23,14 @@
 | `brief-1120.ts` `task.title` | Devolver la llamada por el piso de Nerja / Return the call about the flat in Nerja | **"Devolver la llamada" and "Return the call" mean that Mila called first.** In the scene she did not call. She wrote on WhatsApp at 11:42 and asked for a call ("¿Me podéis llamar?"). The task line itself says "Pide que la llamen". A reader sees a missed call that the chat does not show | **Llamar a Mila por el piso de Nerja / Call Mila about the flat in Nerja**: the same words as the demo's end, so the hero and the demo name the same task in the same way |
 
 **The owner decides.** If he keeps his line, Copy confirms it as it is: it promises no time and no confirmed call. If he takes the possible line, only `task.title` changes.
+
+## 3. The owner's decision, 27.11. (final)
+
+> "Titel der Aufgabe im Hero: „Devolver la llamada por el piso de Nerja". Die EN-Fassung nach deinem Vorschlag."
+
+| Key | ES (final) | EN (final) |
+|---|---|---|
+| `brief-1120.ts` `hero.task.title` | Devolver la llamada por el piso de Nerja (**unchanged**) | **Call Mila about the flat in Nerja** (was "Return the call about the flat in Nerja") |
+
+- **Only the EN changes.** It now has the same words as the demo's end (`home-demo.ts` `next.v` EN).
+- Nothing else changes: `task.line`, `task.fields`, the head, the demo, the hero h1 and sub.
