@@ -58,7 +58,15 @@ export const HERO_PHOTO_C = { src: "/media/photos/hero-c-1920.webp", credit: "Fo
  * slow drift of 24 s stays (CSS, still with reduced motion); no film — the 3D lane's loop belongs to the render, not to this photo. The
  * exposure stays neutral; the picture is darkened only behind the words (the E2 shade in globals.css), not tinted.
  */
-export function HeroPhoto({ alt, mark }: { alt: string; mark: string }) {
+export function HeroPhoto({ alt, mark, stage = false }: { alt: string; mark: string; stage?: boolean }) {
+  // on the Rundgang stage the fixed stage behind the page carries the picture and its shade; the hero keeps only its caption
+  if (stage) {
+    return (
+      <div className="hf-media hf-media-stage" data-hf-image="stage">
+        <p className="hf-mark" data-hero-mark title={HERO_PHOTO_C.credit}>{mark}</p>
+      </div>
+    );
+  }
   return (
     <div className="hf-media" data-hf-image="c" data-hf-photo="pexels-35419464">
       {/* eslint-disable-next-line @next/next/no-img-element */}

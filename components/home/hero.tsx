@@ -23,19 +23,19 @@ import { WhatsAppMark } from "@/components/ui/whatsapp-mark";
  */
 const PICTURE = HERO_PHOTO_C.src; // the owner, 27.11.: photo C for E2 (the 3D render stays in the repository for the later stage)
 
-export function Hero({ locale, view }: { locale: Locale; view: ClaimView }) {
+export function Hero({ locale, view, stage = false }: { locale: Locale; view: ClaimView; stage?: boolean }) {
   const w = home1103.hero;
   const b = brief1120.hero;
   const l = <T,>(x: Record<Locale, T>) => x[locale];
   const p = (path: string) => localePath(locale, path);
   const mila = b.bubbles[0];
-  // the picture is the first paint of the page: preloaded so the largest paint does not wait for it
-  preload(PICTURE, { as: "image" });
+  // the picture is the first paint of the page: preloaded so the largest paint does not wait for it (on the Rundgang stage the stage carries it)
+  if (!stage) preload(PICTURE, { as: "image" });
 
   return (
     <>
       <section aria-labelledby="hero-h1" data-hero="film" data-hero-brief="1120" className="hf">
-        <HeroPhoto alt={l(w.image)} mark={l(b.caption)} />
+        <HeroPhoto alt={l(w.image)} mark={l(b.caption)} stage={stage} />
         <div className="container-default hf-content">
           <div className="hf-words" data-hero-words data-hero-e2="1124">
             {/* the owner's E2 order of 24.11.: the first screen carries at most the headline, one sentence, one main action and the living
