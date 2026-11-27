@@ -1,0 +1,387 @@
+{
+ "probe": "kurzlauf1127",
+ "base": "https://nuovasolution-design-preview-git-we-eeb43f-nuovasolajs-projects.vercel.app",
+ "pin_start": "7a46a59f6733bd4df211d03facf3afc4a8eacb3a|dpl_G44cWgQV64jgPcivJtD2Yix2KJhD|preview|stub",
+ "when": "2026-11-27T13:29:51.788Z",
+ "rows": [
+  {
+   "viewport": "360x640",
+   "locale": "es",
+   "vh": 640,
+   "heroFoot": 680,
+   "peek": -40,
+   "fit": "edge",
+   "taskHead": 90,
+   "mainHead": 0,
+   "hintShown": false,
+   "hintOverMain": 0,
+   "hintOverMark": 0,
+   "markBottom": 668,
+   "markInFold": false,
+   "taskTitle": "Devolver la llamada por el piso de Nerja",
+   "taskTitleLines": 2,
+   "svhProbe": {
+    "h": 640,
+    "w": 0,
+    "vis": "hidden",
+    "pe": "none",
+    "aria": "true"
+   },
+   "docScrollW": 360,
+   "docClientW": 360,
+   "heroScrollH": 685,
+   "heroClientH": 680
+  },
+  {
+   "viewport": "360x640",
+   "locale": "en",
+   "vh": 640,
+   "heroFoot": 706,
+   "peek": -66,
+   "fit": "edge",
+   "taskHead": 64,
+   "mainHead": -26,
+   "hintShown": false,
+   "hintOverMain": 0,
+   "hintOverMark": 0,
+   "markBottom": 694,
+   "markInFold": false,
+   "taskTitle": "Call Mila about the flat in Nerja",
+   "taskTitleLines": 1,
+   "svhProbe": {
+    "h": 640,
+    "w": 0,
+    "vis": "hidden",
+    "pe": "none",
+    "aria": "true"
+   },
+   "docScrollW": 360,
+   "docClientW": 360,
+   "heroScrollH": 712,
+   "heroClientH": 706
+  },
+  {
+   "viewport": "375x667",
+   "locale": "es",
+   "vh": 667,
+   "heroFoot": 639,
+   "peek": 28,
+   "fit": "edge",
+   "taskHead": 158,
+   "mainHead": 68,
+   "hintShown": false,
+   "hintOverMain": 0,
+   "hintOverMark": 0,
+   "markBottom": 627,
+   "markInFold": true,
+   "taskTitle": "Devolver la llamada por el piso de Nerja",
+   "taskTitleLines": 1,
+   "svhProbe": {
+    "h": 667,
+    "w": 0,
+    "vis": "hidden",
+    "pe": "none",
+    "aria": "true"
+   },
+   "docScrollW": 375,
+   "docClientW": 375,
+   "heroScrollH": 644,
+   "heroClientH": 639
+  },
+  {
+   "viewport": "375x667",
+   "locale": "en",
+   "vh": 667,
+   "heroFoot": 687,
+   "peek": -20,
+   "fit": "edge",
+   "taskHead": 110,
+   "mainHead": 20,
+   "hintShown": false,
+   "hintOverMain": 0,
+   "hintOverMark": 0,
+   "markBottom": 675,
+   "markInFold": false,
+   "taskTitle": "Call Mila about the flat in Nerja",
+   "taskTitleLines": 1,
+   "svhProbe": {
+    "h": 667,
+    "w": 0,
+    "vis": "hidden",
+    "pe": "none",
+    "aria": "true"
+   },
+   "docScrollW": 375,
+   "docClientW": 375,
+   "heroScrollH": 692,
+   "heroClientH": 687
+  },
+  {
+   "viewport": "390x844",
+   "locale": "es",
+   "vh": 844,
+   "heroFoot": 684,
+   "peek": 160,
+   "fit": "peek",
+   "taskHead": 292,
+   "mainHead": 200,
+   "hintShown": false,
+   "hintOverMain": 0,
+   "hintOverMark": 0,
+   "markBottom": 672,
+   "markInFold": true,
+   "taskTitle": "Devolver la llamada por el piso de Nerja",
+   "taskTitleLines": 1,
+   "svhProbe": {
+    "h": 844,
+    "w": 0,
+    "vis": "hidden",
+    "pe": "none",
+    "aria": "true"
+   },
+   "docScrollW": 390,
+   "docClientW": 390,
+   "heroScrollH": 689,
+   "heroClientH": 684
+  },
+  {
+   "viewport": "390x844",
+   "locale": "en",
+   "vh": 844,
+   "heroFoot": 684,
+   "peek": 160,
+   "fit": "peek",
+   "taskHead": 292,
+   "mainHead": 200,
+   "hintShown": false,
+   "hintOverMain": 0,
+   "hintOverMark": 0,
+   "markBottom": 672,
+   "markInFold": true,
+   "taskTitle": "Call Mila about the flat in Nerja",
+   "taskTitleLines": 1,
+   "svhProbe": {
+    "h": 844,
+    "w": 0,
+    "vis": "hidden",
+    "pe": "none",
+    "aria": "true"
+   },
+   "docScrollW": 390,
+   "docClientW": 390,
+   "heroScrollH": 689,
+   "heroClientH": 684
+  },
+  {
+   "viewport": "414x896",
+   "locale": "es",
+   "vh": 896,
+   "heroFoot": 736,
+   "peek": 160,
+   "fit": "peek",
+   "taskHead": 292,
+   "mainHead": 200,
+   "hintShown": false,
+   "hintOverMain": 0,
+   "hintOverMark": 0,
+   "markBottom": 724,
+   "markInFold": true,
+   "taskTitle": "Devolver la llamada por el piso de Nerja",
+   "taskTitleLines": 1,
+   "svhProbe": {
+    "h": 896,
+    "w": 0,
+    "vis": "hidden",
+    "pe": "none",
+    "aria": "true"
+   },
+   "docScrollW": 414,
+   "docClientW": 414,
+   "heroScrollH": 742,
+   "heroClientH": 736
+  },
+  {
+   "viewport": "414x896",
+   "locale": "en",
+   "vh": 896,
+   "heroFoot": 736,
+   "peek": 160,
+   "fit": "peek",
+   "taskHead": 292,
+   "mainHead": 200,
+   "hintShown": false,
+   "hintOverMain": 0,
+   "hintOverMark": 0,
+   "markBottom": 724,
+   "markInFold": true,
+   "taskTitle": "Call Mila about the flat in Nerja",
+   "taskTitleLines": 1,
+   "svhProbe": {
+    "h": 896,
+    "w": 0,
+    "vis": "hidden",
+    "pe": "none",
+    "aria": "true"
+   },
+   "docScrollW": 414,
+   "docClientW": 414,
+   "heroScrollH": 742,
+   "heroClientH": 736
+  },
+  {
+   "viewport": "1366x768",
+   "locale": "es",
+   "vh": 768,
+   "heroFoot": 768,
+   "peek": 0,
+   "fit": null,
+   "taskHead": 273,
+   "mainHead": 179,
+   "hintShown": true,
+   "hintOverMain": 0,
+   "hintOverMark": 0,
+   "markBottom": 684,
+   "markInFold": true,
+   "taskTitle": "Devolver la llamada por el piso de Nerja",
+   "taskTitleLines": 1,
+   "svhProbe": {
+    "h": 768,
+    "w": 0,
+    "vis": "hidden",
+    "pe": "none",
+    "aria": "true"
+   },
+   "docScrollW": 1351,
+   "docClientW": 1351,
+   "heroScrollH": 774,
+   "heroClientH": 768
+  },
+  {
+   "viewport": "1366x768",
+   "locale": "en",
+   "vh": 768,
+   "heroFoot": 768,
+   "peek": 0,
+   "fit": null,
+   "taskHead": 230,
+   "mainHead": 136,
+   "hintShown": true,
+   "hintOverMain": 0,
+   "hintOverMark": 0,
+   "markBottom": 684,
+   "markInFold": true,
+   "taskTitle": "Call Mila about the flat in Nerja",
+   "taskTitleLines": 1,
+   "svhProbe": {
+    "h": 768,
+    "w": 0,
+    "vis": "hidden",
+    "pe": "none",
+    "aria": "true"
+   },
+   "docScrollW": 1351,
+   "docClientW": 1351,
+   "heroScrollH": 774,
+   "heroClientH": 768
+  }
+ ],
+ "probeInert": {
+  "svhIsTarget": false,
+  "svhVisibleByAncestorWalk": false,
+  "targetsCounted": 55,
+  "svhAmongTargets": false,
+  "tabStops": 22,
+  "svhEverFocused": false,
+  "zeroSizeStops": 0,
+  "stops": [
+   {
+    "cls": "skip-link t-body-s",
+    "w": 133,
+    "h": 48,
+    "isSvh": false
+   },
+   {
+    "cls": "inline-flex min-h-[44px] items-cen",
+    "w": 140,
+    "h": 44,
+    "isSvh": false
+   },
+   {
+    "cls": "xl:hidden inline-flex h-11 w-11 it",
+    "w": 44,
+    "h": 44,
+    "isSvh": false
+   },
+   {
+    "cls": "hf-cta-main lift",
+    "w": 343,
+    "h": 56,
+    "isSvh": false
+   },
+   {
+    "cls": "hf-cta-trial-kbd",
+    "w": 343,
+    "h": 44,
+    "isSvh": false
+   },
+   {
+    "cls": "demo-replay",
+    "w": 44,
+    "h": 44,
+    "isSvh": false
+   },
+   {
+    "cls": "demo-tab demo-tab-on",
+    "w": 166,
+    "h": 44,
+    "isSvh": false
+   },
+   {
+    "cls": "demo-caption-link",
+    "w": 161,
+    "h": 44,
+    "isSvh": false
+   },
+   {
+    "cls": "ch-more",
+    "w": 135,
+    "h": 44,
+    "isSvh": false
+   },
+   {
+    "cls": "ch-more",
+    "w": 144,
+    "h": 44,
+    "isSvh": false
+   },
+   {
+    "cls": "ch-more",
+    "w": 122,
+    "h": 44,
+    "isSvh": false
+   },
+   {
+    "cls": "at-action",
+    "w": 174,
+    "h": 44,
+    "isSvh": false
+   }
+  ]
+ },
+ "titles": {
+  "es": {
+   "heroTaskTitle": "Devolver la llamada por el piso de Nerja",
+   "demoEndTitle": "Llamar a Mila por el piso de Nerja",
+   "identical": false,
+   "demoBlock": "TAREA Llamar a Mila por el piso de Nerja Mila ya tiene respuesta. La llamada sigue esperando a Marta."
+  },
+  "en": {
+   "heroTaskTitle": "Call Mila about the flat in Nerja",
+   "demoEndTitle": "Call Mila about the flat in Nerja",
+   "identical": true,
+   "demoBlock": "TASK Call Mila about the flat in Nerja Mila already has her answer. The call is still waiting for Marta."
+  }
+ },
+ "pin_end": "7a46a59f6733bd4df211d03facf3afc4a8eacb3a|dpl_G44cWgQV64jgPcivJtD2Yix2KJhD|preview|stub",
+ "pinned": true
+}
