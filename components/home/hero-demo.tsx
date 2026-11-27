@@ -128,9 +128,16 @@ export function HeroDemo({ locale, view = "target" }: { locale: Locale; view?: C
     const ends = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-demo-end]"));
     const onRun = () => { started.current = true; inView.current = true; setAuto(false); run(script); };
     const onEnd = () => { const c = channels.find((x) => x.key === "whatsapp") ?? channels[0]; setChannel(c.key); inView.current = true; showEnd(c); };
+    // the owner, 27.11. (acceptance goal): a detail button leads straight to the example it promises — a link with data-demo-open="<channel>"
+    // opens that channel's finished picture (the form that wins a client, the e-mail, the call) instead of the overview page
+    const opens = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-demo-open]"));
+    // (the link keeps its real href="#demo": without JavaScript the browser lands on the demonstration, which then stands at its end state);
+    // after the jump the focus moves to the opened channel's tab, so the keyboard and the screen reader are told where they landed (RV6)
+    const onOpen = (e: Event) => { const key = (e.currentTarget as HTMLElement).getAttribute("data-demo-open") as DemoChannelKey; const c = channels.find((x) => x.key === key); if (!c) return; setChannel(c.key); inView.current = true; showEnd(c); window.setTimeout(() => tabsRef.current?.querySelector<HTMLButtonElement>(`[data-demo-tab="${c.key}"]`)?.focus({ preventScroll: true }), 80); };
     for (const c of runs) c.addEventListener("click", onRun);
     for (const c of ends) c.addEventListener("click", onEnd);
-    return () => { for (const c of runs) c.removeEventListener("click", onRun); for (const c of ends) c.removeEventListener("click", onEnd); };
+    for (const c of opens) c.addEventListener("click", onOpen);
+    return () => { for (const c of runs) c.removeEventListener("click", onRun); for (const c of ends) c.removeEventListener("click", onEnd); for (const c of opens) c.removeEventListener("click", onOpen); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [run, script, showEnd]);
 

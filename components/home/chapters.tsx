@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { Check, ChevronDown } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
@@ -37,6 +37,17 @@ export function Chapters({ locale, view }: { locale: Locale; view: ClaimView }) 
     if (!opening) return;
     window.setTimeout(() => document.querySelector<HTMLElement>(`[data-chapter-open-button="${key}"]`)?.scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" }), 40);
   };
+  // the owner, 27.11. (acceptance goal): a link elsewhere on the page with data-chapter-jump="<area>" opens that area's scenes directly
+  // (the agency task "Cómo propone inmuebles" lands on "Crece" with "Inmuebles que encajan" open), so no detail button ends on an overview
+  useEffect(() => {
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-chapter-jump]"));
+    // (the link keeps its real href="#functions": without JavaScript every area stands open there anyway); after the jump the focus moves
+    // to the opened area's button (aria-expanded="true"), so the keyboard and the screen reader are told where they landed (RV6)
+    const onJump = (e: Event) => { const key = (e.currentTarget as HTMLElement).getAttribute("data-chapter-jump") as Chapter["key"]; if (!chapters.some((c) => c.key === key)) return; setOpen(key); window.setTimeout(() => { document.querySelector<HTMLElement>(`[data-chapter="${key}"]`)?.scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" }); document.querySelector<HTMLButtonElement>(`[data-chapter-open-button="${key}"]`)?.focus({ preventScroll: true }); }, 60); };
+    for (const a of links) a.addEventListener("click", onJump);
+    return () => { for (const a of links) a.removeEventListener("click", onJump); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const scenesOf = (c: Chapter) => items.filter((it) => it.chapter === c.key);
   const line = (it: (typeof items)[number]) => withChannels(l(it.line(view)), locale, view);
   // Copy 1113 §2 (16.11.): one sentence and up to four points per area; a point with an open proof leaves the public view

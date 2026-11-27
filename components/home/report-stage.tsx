@@ -3,6 +3,7 @@ import { localePath } from "@/lib/i18n/config";
 import { home1103 } from "@/lib/content/home-1103";
 import type { ClaimView } from "@/lib/claims";
 import { Rise } from "@/components/ui/motion";
+import { CompareBlock } from "@/components/report/compare-block";
 
 /**
  * The report on the home page (the owner's E2 order of 24.11., point 5): ONLY the figure, its meaning and the next step — Copy 1113 §4's
@@ -38,6 +39,9 @@ export function ReportStage({ locale, view }: { locale: Locale; view: ClaimView 
                 </li>
               ))}
             </ul>
+            {/* the owner, 27.11. ("where did that statistic go?"): the same week told twice — without and with NuovaSolution — stands on the
+                home sheet again under the three cards (the figures of the example report, Copy §19; no €, no %; gated by its own claims) */}
+            <CompareBlock locale={locale} view={view} id="rep-cmp" />
           </div>
           <div className="rep-foot">
             <p className="rep-foot-note">{l(w.example)}</p>

@@ -223,3 +223,57 @@ hall → rooms → stairs → balcony → over the balustrade → pool), which t
 (same component, frames instead of scenes). That meets the three unmet rows at once. A generator (Runway / Luma, §6) can add the
 living details later from the 3D frames as start frames; Higgsfield is not assessed yet — Redesign reads its terms and prices and
 brings a concrete recommendation with costs when the 3D frames exist, as the owner asked.
+
+## 9. The owner's design round of 27.11. (seven points at 1920 px) and his acceptance goal — built locally, not pushed
+
+The owner's points on the Rundgang at 1920 × 1080 (his screenshots) and what was built (one local round on top of 7a46a59; the alias stays at
+7a46a59 = `dpl_G44cWgQV64jgPcivJtD2Yix2KJhD` until his next line):
+
+| # | The owner | Built | Measured (local, 1920 × 1080 unless noted) |
+|---|---|---|---|
+| 1 | "the house … wirkt total gequetscht die Schrift da" (the line under the 3D steps) | the line under the steps gets air (padding 12/16, 15 px, line-height 1.5), the steps 72 px tall; on the Rundgang the stage is its own panel and the path panel stands 24 px apart | line box 28 → 51 px; the path panel started at the line's edge (8098 = 8098), now 24 px under it |
+| 2 | "report, wo ist diese Statistik hin?" — more drama about how much an agency needs it | the block "Sin / Con NuovaSolution" (the same week told twice; Copy §19; no €, no %; gated by its own claims) stands on the home report's sheet again, under the three cards; on the phone its one text value wraps | sheet 372 → 1033 px tall; the week-told-twice rows with the switch |
+| 3 | the detail buttons all led to the same page (/platform), not premium, no matching picture | card 2 "Cómo capta clientes" → `#demo` with the Form channel at its finished picture (Isabel's valuation form, `data-demo-open="webform"`); card 3 "Cómo propone inmuebles" → `#functions` with the area "Crece" opened and "Inmuebles que encajan" in view (`data-chapter-jump="grow"`); real hrefs stay (no JavaScript: the demonstration at its end state, every area open) | click and Enter on 1920 and 390: channel webform · entered end · done true; chapter-open grow, matching scene shown; focus after the jump on the "Form" tab (selected) / on the area's button (expanded); the wording of the labels is Copy's (920ce7f, built on the owner's word) |
+| 4 | "A day with NuovaSolution" too small; it should make an agent think "it really does all that for me" | the title at heading size (26 px), the six times at 32 px on taller cards | strip 138 → 216 px tall |
+| 5 | the demonstration's white block runs edge to edge while the block under it keeps the page's width | the demonstration sits in the page's 1200 px column (`.demo-wrap`, a plain div); on the home it rises 88 px into the pain band's foot, on the Rundgang it stands under the pain panel | demo 1920 → 1200 px wide at x 360 (1440: 1200 at x 120) |
+| 6 | too much unused area under "See the finished task" | on the Rundgang the first screen's content stands in the middle of the window (the stage carries the villa anyway); the E2 home keeps its measured form to the fold | Rundgang 1920: content 56–1024 (was 0–776, 304 px empty under the action) |
+| 7 | the background is good, but the hero words are small and squeezed, the door bigger than the headline | from 1440 px the words, the living picture and the action grow with the window; at 1440 every value equals the measured one, at 1920 the headline is 88 px (was 68), the sentence 26 (21), the message 17.6 (14.4), the task title 19.5 (16), the action 64 px (56); the headline's line-height 1.05 | h1 139 → 185 px tall, column 680 → 900 px; the fold rows at 1280 and 1366 unchanged (225·131 / 182·88, 273·179 / 230·136), 1440 moves to 219·121 ES / 215·117 EN (was 255·161 / 250·156); the phone rows 360/375/390 unchanged |
+
+Also fixed on the way: the stacked task cards on the Rundgang were 4 % transparent, so the card underneath ghosted through (opaque now).
+
+**The owner's acceptance goal** (27.11., second message): on the first scroll an agent answers three questions from pictures, headings and
+product examples. How the story reads now (`owner_evidence_1117\website_1123\rundgang_1127\v3_feedback\rundgang-v3-geschichte-{desktop,handy}-{en,es}.png`,
+one tall picture per device = the window at nine stops hero → pain → finished task → areas → tasks → day → report → week told twice → plans;
+`evidence/story-sheet.mjs`):
+- *Which enquiry could I miss?* — the first screen (Mila's WhatsApp enquiry at 11:42 while the agent is at a viewing), then the pain band "9 of 25
+  enquiries arrived while the office was closed. Who answered them?".
+- *What does NuovaSolution do for me in this case?* — Marta's finished task on the first screen; the demonstration's finished picture (the
+  conversation W-1…W-4, the record with state, fields, priority and its reason); the four tasks with one proof each; the day strip; the report's
+  three cards and the week told twice (9 → 0 without a reply, 25 → 0 waiting for a person).
+- *How can I try it?* — the header's and the phone bar's "Try Essential", the demonstration's "See which plan fits you", the plans with
+  Essential 14 days free.
+This is the builder's reading; the owner judges it on the pictures. The Rundgang route and the E2 home carry the same changes (the Rundgang
+differs only in the stage, the panels and the centred first screen).
+
+**For RV6 (its own list, 27.11.):** the round changes the HOME in five places (hero type from 1440 px, the demonstration's container, the
+detail-button targets, the report sheet, the day strip); the next named commit takes the desktop rows 1280/1366/1440 both languages, R-12 in
+full, the Tab order and tap targets, the two detail buttons followed to where they land (Enter and Space, the accessible name, the focus after
+the jump, without JavaScript), the report sheet, and the phone rows as regression guard. Measured here before the commit (`evidence/kbd-detail.mjs`,
+1366 × 768 EN): both are anchors with real hrefs and the card's label as name; Enter lands the focus on the "Form" tab (role tab, selected, in the
+window) and on the area's button (aria-expanded true, in the window); without JavaScript the hrefs stand, the demonstration is present at its
+end state and all five "Crece" scenes are visible.
+
+**The skills (the owner's question of 27.11.):** read as Markdown only, from `github.com/emilkowalski/skills` @ 64eb3de, in `.claude/skills/`
+(no npx, no hooks). What each one changed, where to see it, and what only the 3D frames will show:
+
+| Skill (file) | Applied where | See it by scrolling | Works today / only with the 3D frames |
+|---|---|---|---|
+| `apple-design/SKILL.md` — physical, interruptible motion; the scroll owns the position, nothing plays by itself; transitions keep spatial continuity | `tour-stage.tsx`: the stage is scrubbed by the native scroll (stop = hold, back = back), the crossfade zone is the last part of a section (at most 0.7 window), the dolly is 4 % so the picture stays sharp | the door: scroll from the first screen into the pain band — the facade dissolves into the open door over the pain band's height and holds while the line is read; stop mid-way and the mix stays where it is | today the door is a crossfade between two stills (entrance → open door), not one camera passing through a frame; the pass-through itself is only checkable with the frame sequence from 3D |
+| `choreograph/SKILL.md` — what moves, what stays, rest points; one driver, no competing animations | the scene map (`MAP` in `tour-stage.tsx`): one scene per section span, the picture at rest while a panel is read (the dolly eases out to scale 1 by the section's end), the crossfade only across a section edge; the hero's words rise once, then everything stands | stop on any panel (pain, "Cómo funciona", the tasks, the report): the villa behind it is still; move on and only at the panel's lower part does the next room come | rest points work today; with the 3D frames the rest points become real camera stops (the spec to 3D names them per section: 0–8 % entrance … 84–100 % pool) |
+| `animation-performance/SKILL.md` — composite-only properties, no layout per frame, one passive listener + rAF, `will-change` only where it crossfades, stills under reduced motion / Save-Data / slow connection | `tour-stage.tsx` writes only `opacity` and `transform` straight to the layers; no React state per frame; `.tour-scene { will-change: opacity }`; stills mode | the phone: scroll fast up and down — no jump of the page, the picture follows without the panels reflowing; with "reduce motion" on, the pictures only switch. Measured 27.11. on a throttled phone (slow 4G, 4× CPU, production build): first screen 1.7 s / 228 KB, the whole tour 1.05 MB (§5) | works today for stills; the frame sequence adds decode cost per frame, which is the one thing to measure again when the 3D frames exist (frame count × size, decode on the phone) |
+| `emil-design-eng/SKILL.md` — press states, no `transition: all`, origin of motion where it starts | the black buttons' press (scale 0.985), the panels without blur on the phone, the scroll hint still (no loop) | press "See the finished task" or a card's button | today |
+| `find-animation-opportunities/SKILL.md` and `review-animations/SKILL.md` — where motion earns its place and where not | used as checklists: no motion added to the panels, the day strip, the report (they only rise once into view, as before); the pool mark lies still in the water (multiply), it does not shimmer | the finale: the mark in the pool floor stands still, only the scroll moves the camera | today; the water reflection over the mark comes from 3D |
+| `animation-vocabulary/SKILL.md` | the words used with 3D and the owner (crossfade, dolly, scrub, rest point) | — | — |
+| `animate/SKILL.md` + `RECIPES.md` | present in the folder; not used for the Rundgang (the recipes are component animations) | — | not applied |
+
+Nothing of this section is pushed. Status: implementiert und wartet auf unabhängige technische und finale Prüfung.

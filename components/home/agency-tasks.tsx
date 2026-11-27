@@ -62,7 +62,7 @@ function Card({ t, i, locale, mark }: { t: AgencyTask; i: number; locale: Locale
         <p className="at-no tnum" aria-hidden="true">{String(i + 1).padStart(2, "0")}</p>
         <h3 className="at-title">{l(t.title)}</h3>
         <p className="at-line">{l(t.line)}</p>
-        <a href={href} className="at-action" data-task-action={t.key}>{l(t.action.label)}</a>
+        <a href={href} className="at-action" data-task-action={t.key} data-demo-open={t.action.open} data-chapter-jump={t.action.jump}>{l(t.action.label)}</a>
       </div>
       <Proof p={t.proof} locale={locale} mark={mark} />
     </Rise>

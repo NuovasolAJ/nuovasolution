@@ -85,7 +85,11 @@ export function Hero({ locale, view, stage = false }: { locale: Locale; view: Cl
           line) or — only when the whole pain line and its mark fit under the hero — the 160 px peek with the whole line; this measures the
           room (window height minus the hero's content) and sets data-hero-fit; re-measured after fonts and on resize; desktop untouched */}
       <script dangerouslySetInnerHTML={{ __html: HERO_FIT_SCRIPT }} />
-      <HeroDemo locale={locale} view={view} />
+      {/* the owner, 27.11. (feedback on the Rundgang, point 5): the demonstration sits in the same column as every other section — it ran
+          edge to edge on the wide window while the block under it kept the page's width — and rises into the pain band's foot */}
+      <div className="container-default demo-wrap" data-demo-wrap>
+        <HeroDemo locale={locale} view={view} />
+      </div>
     </>
   );
 }

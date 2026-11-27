@@ -2364,3 +2364,56 @@ html.js .hf-scene-live .hf-scene-task { animation-name: hf-build; animation-dura
 @media (max-width: 639px) { .tour-logo { top: 72%; width: 56vw; } }
 /* the 100svh probe the hero's fit script measures (RV6 b9b3984): no size in the layout, never visible, never a target */
 .hf-svh { position: absolute; top: 0; left: 0; width: 0; height: 100svh; visibility: hidden; pointer-events: none; }
+
+/* ================================================================== */
+/* The owner's feedback of 27.11. on the Rundgang at 1920 px and his  */
+/* acceptance goal (three questions on the first scroll): the proofs  */
+/* get visual priority, the page keeps one column, nothing is added   */
+/* that is not already on the page.                                   */
+/* ================================================================== */
+/* 5 the demonstration in the page's column (it ran edge to edge on the wide window; the block under it kept 1200 px); on the home it
+   rises 88 px into the pain band's foot, on the Rundgang it stands under the pain panel */
+.demo-wrap { position: relative; z-index: 2; margin-top: -88px; }
+@media (max-width: 639px) { .demo-wrap { margin-top: -100px; } }
+[data-tour] .demo-wrap { margin-top: 0; }
+/* 6 + 7 the wide window (from 1440 px): the first screen's words, the living picture and the action grow with the window instead of
+   standing at 680 px inside 1920 — at 1440 every value equals the measured one, at 1920 the headline is 88 px, the sentence 26 px, the
+   message 17.6 px; the headline's lines get a little more air (the owner: "gequetscht") */
+@media (min-width: 1440px) {
+  .hf-words { max-width: clamp(680px, 47.2vw, 900px); }
+  .hf-h1 { font-size: clamp(4.25rem, 0.5rem + 4.1667vw, 5.5rem); line-height: 1.05; }
+  .hf-lead { margin-top: 18px; font-size: clamp(1.3125rem, 0.4rem + 1.0417vw, 1.625rem); }
+  [data-hero-e2] .hf-lead { max-width: 46ch; }
+  [data-hero-e2] .hf-scene { max-width: clamp(34rem, 37.8vw, 44rem); margin-top: 18px; gap: 10px; }
+  [data-hero-e2] .hf-scene-msg .hf-scene-text { font-size: clamp(0.9rem, 0.3rem + 0.6667vw, 1.125rem); margin: 10px 14px 10px 16px; padding: 8px 12px; }
+  [data-hero-e2] .hf-scene-msg .hf-scene-label, [data-hero-e2] .hf-scene-sub, [data-hero-e2] .hf-scene-translation, [data-hero-e2] .hf-scene-task .hf-scene-label { font-size: clamp(0.8125rem, 0.4375rem + 0.4167vw, 0.9375rem); }
+  [data-hero-e2] .hf-scene-task { padding: 12px 16px; }
+  [data-hero-e2] .hf-scene-task-title { font-size: clamp(1rem, 0.3333rem + 0.7407vw, 1.25rem); }
+  .hf-ctas { margin-top: 26px; }
+  .hf-cta-main { min-height: clamp(56px, 32px + 1.6667vw, 64px); padding: 12px clamp(28px, 16px + 0.8333vw, 32px); font-size: clamp(1.0625rem, 0.6875rem + 0.4167vw, 1.1875rem); }
+}
+/* on the Rundgang the first screen's content stands in the middle of the window, not at its top with the empty picture under the action
+   (the stage carries the villa anyway; the E2 home keeps its measured form to the fold) */
+@media (min-width: 1024px) { [data-tour] .hf:has([data-hero-e2]) { align-items: center; } [data-tour] .hf:has([data-hero-e2]) .hf-content { padding-bottom: 72px; } }
+/* 1 the 3D stage's line under the steps had no air under it and the path panel started on its edge: air under the line, the steps a
+   little taller, and on the Rundgang the stage and the path stand apart */
+.m3d-under { padding: 12px 4px 16px; font-size: 0.9375rem; line-height: 1.5; }
+.m3d-step { min-height: 72px; padding: 14px 16px; }
+.m3d-step-name { font-size: 0.9375rem; }
+[data-tour] .m3d-track { margin-bottom: 24px; }
+[data-tour] .m3d-frame { background: rgba(250, 249, 246, 0.92); border-radius: 24px; }
+/* 4 "Un día con NuovaSolution" as a moment of its own: the title at heading size, the six times large on their cards */
+.at-day { margin-top: 40px; padding-top: 28px; }
+.at-day-title { font-size: 1.375rem; font-weight: 600; letter-spacing: -0.02em; text-transform: none; color: var(--text-primary); }
+.at-strip { margin-top: 18px; gap: 12px; }
+.at-moment { min-width: 150px; gap: 6px; padding: 16px 18px 14px; border-radius: 16px; }
+.at-moment-time { font-size: 1.625rem; line-height: 1; letter-spacing: -0.02em; }
+.at-moment-text { font-size: 1rem; line-height: 1.4; }
+@media (min-width: 1024px) { .at-day { margin-top: 48px; } .at-day-title { font-size: 1.625rem; } .at-moment { padding: 22px 22px 20px; } .at-moment-time { font-size: 2rem; } .at-moment-text { font-size: 1.0625rem; } }
+/* 2 the week told twice on the home report's sheet, under the three cards */
+.rep-paper .cmpb { padding: 24px 20px 22px; }
+/* on the phone the block's one text value ("whatever someone notes down") kept one line and squeezed the row's name to one word per line:
+   it wraps there (the report page gains the same) */
+@media (max-width: 767px) { .cmpb-v-text .cmpb-v-figure { white-space: normal; max-width: 11ch; text-align: center; } }
+/* the stacked task cards on the Rundgang were 4 % transparent, so the card underneath ghosted through the one on top: opaque */
+[data-tour] .at-stack .at-card { background: #fff; }

@@ -17,7 +17,9 @@ export type TaskProof =
   | { kind: "match"; listing: L; contact: L; answer: L }
   | { kind: "day"; head: L; items: [L, L, L]; foot: L };
 
-export type AgencyTask = { key: string; keys: ClaimKey[]; title: L; line: L; proof: TaskProof; action: { label: L; href: string } };
+/** `open`: the demonstration's channel the action opens at its finished picture; `jump`: the area ("functions" chapter) the action opens — the
+ *  owner, 27.11.: every detail button leads straight to the promised example, not to the overview page */
+export type AgencyTask = { key: string; keys: ClaimKey[]; title: L; line: L; proof: TaskProof; action: { label: L; href: string; open?: "whatsapp" | "email" | "webform" | "phone"; jump?: "attend" | "organise" | "grow" } };
 
 export const agencyTasks = {
   eyebrow: T("Todo lo que hace por tu agencia", "Everything it does for your agency"),
@@ -38,14 +40,14 @@ export const agencyTasks = {
       title: T("Gana nuevos clientes", "Win new clients"), // Copy G-1
       line: T("De un comentario, un anuncio o un formulario a una consulta con su ficha.", "From a comment, an ad or a form to an enquiry with its own record."), // WORKING cut of Copy G-1
       proof: { kind: "record", source: T("Formulario «¿Cuánto vale tu casa?»", "Form \"What is your home worth?\""), fields: [T("Isabel · casa en Mijas", "Isabel · house in Mijas"), T("Propietaria · quiere vender", "Owner · wants to sell"), T("Pide valoración · respondida", "Asks for a valuation · answered")] }, // Copy 4fa1412 A-5
-      action: { label: T("Cómo capta clientes", "How it wins clients"), href: "/platform" },
+      action: { label: T("Cómo capta clientes", "How it wins clients"), href: "#demo", open: "webform" }, // the owner, 27.11.: straight to the form example in the demonstration (was /platform)
     },
     {
       key: "reactivar", keys: ["matching", "followup"],
       title: T("Reactiva tus contactos", "Bring contacts back"), // Copy G-2
       line: T("Entra un inmueble que encaja y volvemos a escribir a quien buscaba algo así, con su permiso.", "A listing that fits comes in, and we write again to whoever was looking for something like it, with their permission."), // Copy 4fa1412 A-6
       proof: { kind: "match", listing: T("Entra: ático en Benalmádena, 275.000 €", "New: penthouse in Benalmádena, €275,000"), contact: T("Javier buscaba en marzo: ático, hasta 280.000 €", "Javier was looking in March: penthouse, up to €280,000"), answer: T("«¿Sigues buscando?» · «Sí, ¿cuándo puedo verlo?»", "\"Still looking?\" · \"Yes, when can I see it?\"") },
-      action: { label: T("Cómo propone inmuebles", "How it suggests listings"), href: "/platform" },
+      action: { label: T("Cómo propone inmuebles", "How it suggests listings"), href: "#functions", jump: "grow" }, // the owner, 27.11.: straight to "Crece" with "Inmuebles que encajan" opened (was /platform)
     },
     {
       key: "dia", keys: ["taskList", "reportInLogin"],
