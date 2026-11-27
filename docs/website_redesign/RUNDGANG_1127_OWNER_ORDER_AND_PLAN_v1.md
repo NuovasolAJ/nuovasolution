@@ -100,3 +100,93 @@ without the film.
 
 - The generator offer (provider, total price, variants, commercial rights) once the start frame exists.
 - Whether the 3D lane renders the villa's start frame and the seven stills (no cost, one house, our own rights) — asked 27.11.
+
+## 5. The local prototype (27.11., commits `52ed2a0` → `f8d39dc`; route `/es/rundgang` · `/en/rundgang`; NOT pushed)
+
+**Status:** implemented locally and waiting for the owner's view; nothing bought, nothing pushed. The E2 home on the alias is untouched.
+
+**What it is.** `components/home/tour-stage.tsx` + `app/[locale]/rundgang/page.tsx`: the eight sections of the E2 home, unchanged
+(content, hero wording, languages, plans, actions), over one fixed stage that carries the villa as seven licensed stills (Pexels
+License; `FOTOS_LIZENZ_1124_v1.md`). The stage shows the scene of the section under the reader and crossfades at the section edge,
+both directions, from the native scroll (one passive listener + rAF, transform and opacity only); within a scene the picture moves
+a little (scale 1.06 → 1.0). No section was moved, no scroll distance added, nothing pinned. The sections sit on light limestone /
+glass panels (blur only on the desktop), the hero keeps its words on the picture, the stage carries the hero's shade; the closing
+stands as its dark panel over the pool. The scroll hint and the dissolve edge from E2 stay where the hero runs to the fold.
+
+| Section | Scene (still) | Pexels |
+|---|---|---|
+| B1 Hero | s1 living room | 35419464 (photo C, as on E2) |
+| B2 pain line | s2 stairs | 13181674 |
+| B2 "Cómo funciona" | s3 landing | 12402496 |
+| B3 chapters + B4 agency tasks | s4 sitting room | 12281845 |
+| B5 report | s5 study | 8004011 |
+| B6 3D | s6 gallery | 7214469 |
+| B7 plans + trust + FAQ | s7 room with pool view (stands in for the balcony) | 36710315 |
+| B8 close | s8 pool from above | 27626169 |
+
+Measured (`rundgang-scenes-local.json`): every section shows its scene on desktop (1366 × 768), on the phone (390 × 844) and in the
+stills mode (reduced motion); the crossfade to the pool runs over the FAQ (t 0.53–0.59 at the FAQ heading).
+
+**Fallbacks.** First scene = first paint (eager, the 960 px file first through srcset); scenes 2–8 load when their section comes within
+two windows (3 pictures loaded on the first screen, 8 at the end); reduced motion / Save-Data / 2g-3g → `data-stage-mode="stills"`,
+no dolly, the scene switches at the edge with a 240 ms fade; a picture that fails is skipped (its sections keep the previous scene);
+the stage takes no pointer events and is `aria-hidden`, so navigation, jump links, keyboard and the phone bar are untouched.
+
+**Loading on a throttled phone** (production build, 390 × 844, slow 4G 1.6 Mbit/s + 150 ms, CPU 4×; `rundgang-throttle-prod-local.json`):
+
+| | first screen (hero + action) | whole page scrolled to the end |
+|---|---|---|
+| `/es/rundgang` | 1.7 s · 228 KB | 13.5 s · 1 052 KB · 7 scenes loaded |
+| `/es` (E2 home) | 1.7 s · 232 KB | 13.0 s · 889 KB |
+
+The seven stills cost 163 KB on the phone (960 px files, 8–93 KB each); the first screen costs nothing extra.
+
+**Text contrast** (`rundgang-contrast-local.json`; the ground sampled behind each hero text block with the text hidden; panels
+composited over white and black): desktop headline 8.7:1 to the mean, 4.0:1 at the lightest pixel; sentence 8.9 / 3.4; caption in its
+capsule 4.5 / 3.2 (capsule since raised to 0.7 → 6.9 over white); example mark 12.5 / 10.3. Phone: headline 8.4 / 6.2, sentence 10.2 /
+6.4. Panels (pain line, plans heading, FAQ heading): 18.4:1 over white, 13.2:1 over black. The one fix from this: the desktop shade now
+reaches further right (the headline's right half ran over the bright wall at 2.0:1 before), and the caption has a dark capsule; both
+apply to the E2 hero too (local, not on the alias).
+
+**Pictures and films** in `C:\Users\Usuario\Desktop\owner_evidence_1117\website_1123\rundgang_1127\`: `rundgang-desktop-01…11-*.png`
+(every section, hero → pool), `rundgang-phone-01…11-*.png`, `rundgang-phone-stills-01…03-*.png` (reduced motion), the two films
+`rundgang-durchlauf-desktop.webm` and `rundgang-durchlauf-phone.webm` (down and part of the way back).
+
+**Skills read** (Markdown only, github.com/emilkowalski/skills @ 64eb3de, in `.claude/skills/`): apple-design, choreograph,
+animation-performance, emil-design-eng, find-animation-opportunities, review-animations, animation-vocabulary. Applied: composite-only
+properties, no state per frame, one driver, scroll-driven not time-driven, stills under reduced motion, no `transition: all`,
+`will-change` only on the crossfading layers.
+
+## 6. The one house: the 3D lane's answer (27.11.) and the generator offer (collected, nothing bought)
+
+**3D (nuova-3d):** yes — the start frame and the seven scene stills (16:9 at 2560 plus a 1080 × 1920 portrait crop each) from one own
+Blender scene, no cost, no stock licence question (Cycles, own GPU, CC0 Poly Haven textures: honed limestone, ivory plaster, brushed
+aluminium as an own material, clear glass, pool water; HDRI morning light from camera right; no people, no lettering). 3D needs: (1) a
+floor-plan draft per floor with measures (rooms, stairs, courtyard with the rectangular pool, balcony) OR the owner's line that 3D
+designs the villa itself (then 3D presents a measured draft before building); (2) the camera per scene = the seven prompts (3D reads
+them); (3) the portrait size (1080 × 1920 proposed) and the target date. Time, rough: 2–3 working days to a first villa, then 8 renders
+of 15–25 min, then one owner's viewing round; start after T7 round 5 is delivered and checked. 3D's recommendation: 3D instead of a
+generator.
+
+**Generators for the film** (official pages read 27.11.; prices change; the owner buys himself):
+
+| Provider | Plan · price | What it buys | Commercial rights as stated |
+|---|---|---|---|
+| Runway (runway.com/pricing) | Standard $15/mo ($12 annual); Pro $35 ($28); Max $95 ($76) | 625 / 2 250 / 9 500 credits; Gen-4.5 = 60 credits per 5 s clip (≈ 52 s / 187 s / 791 s a month); 4K upscaling | Terms 4.4: "The Company does not claim ownership of any of your Inputs or Outputs" and "does not restrict your commercial use of your Outputs"; Runway may train on inputs and outputs |
+| Luma Dream Machine (lumalabs.ai/pricing) | Plus $30/mo ($25 annual); Pro $90 ($75); Ultra $300 ($250) | 10 000 / 40 000 / 150 000 credits; Ray3.2 image-to-video 1080p = 400 credits per 5 s (Plus ≈ 25 clips of 5 s); "Commercial use" listed on Plus | terms page not found from the pricing page (unverified beyond the "Commercial use" line) |
+| Kling AI | membership page is JavaScript-only, prices unverified (third-party sources: ≈ $10 / $37 / $92 / $180 a month) | — | user policy 4.4 "You own all intellectual property rights … in and to the Content", but 4.6: no commercial use of Output without Kling's written permission, and 4.5: Kling branding on output unless permitted; the paid-service terms were not read — NOT usable as stated |
+| Google Veo 3.1 (Google AI Pro / Ultra; Gemini API) | consumer plan prices not readable on the page; API per second (third-party: $0.03–0.40 / s) | Veo in Flow / Photos, US-only notes on the plan page | Gemini API terms: "Google won't claim ownership over that content"; paid tier: no training on prompts; consumer terms not read |
+
+Redesign's reading, not a purchase: for the 30 s film in seven scenes, Runway Standard (≈ 52 s of Gen-4.5 a month) or Luma Plus
+(≈ 125 s of Ray3.2 1080p) would cover one or two attempts per scene; several attempts per scene are normal, so the Pro tiers ($28–75 for
+one month) are the realistic order of magnitude. The start frames must be ours (3D): Pexels files may not be fed to a generator under
+their licence without checking that purpose, and the owner's iStock references may not be transferred at all unless the licence covers
+it. Nothing is bought until the owner's line names the provider.
+
+## 7. Open with the owner
+
+- Look at `/es/rundgang` locally (the dev server on :3180, or the production build on :3179) and at the pictures / films.
+- The one house: 3D's way (his line that 3D designs the villa, or a floor plan from him; the portrait size; the date).
+- The generator and the budget, once the start frames exist.
+- Copy's open point on the hero task title ("Devolver la llamada" says Mila called first; she wrote on WhatsApp; the possible line is the demo's end "Llamar a Mila por el piso de Nerja").
+- The three hero fixes made since the push (wider desktop shade, caption capsule, neutral task-proof head) are local; they reach the alias only with his next push line.
