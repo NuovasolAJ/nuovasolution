@@ -160,3 +160,24 @@ the product at 100 %. Whether the RELEASED public page may carry it is Audit's a
 92f873d); the rule that every rendered sentence is a public promise is from 23.11.; the text returns into a stricter regime than the
 one it left. Redesign's part: the hero's subline now carries these keys at source (`brief-1120.ts` `hero.keys`, typed `ClaimKey[]`, not rendered, no
 gate), so Audit's instrument sees the hero's claims as it sees the cards' (`strengths.ts` g1/g2).
+
+## 8. The owner's decision of 27.11. ("E2-VORSCHAU = JA") → one state, pushed once to the protected preview
+
+Website content commit `54775b8` (the tip pushed carries this document's update on top). The six points:
+
+| Point | Built | Measured on the local build |
+|---|---|---|
+| 1 Hero text of 17.11. incl. "past"; hero → pain → solution | unchanged from `baa7c8e`; the order was already so | — |
+| 2 Form 2 to the edge; a quiet keyboard-reachable scroll hint to the pain section; the fixed phone bar never over the action or its focus | `.hf-edge` (44 × 44, chevron, still, shown where the hero runs to the fold; `#pain` on the pain section) | hint at 1366: 14 Tab presses, focus ring, Enter lands on the pain section; the bar is hidden at the main action and while the trial link holds focus at 360 / 375 / 390 (`e2-final-local-probe.json`) |
+| 3 Photo C, animated background kept, no brown tint, darken only behind the text, black buttons | Pexels 35419464 in four WebP widths (`public/media/photos/hero-c-*.webp`, licence record in `FOTOS_LIZENZ_1124_v1.md`), the 24 s drift kept, no film, a left-side shade only (vertical on the phone) | pictures `e2_kandidat_1124\e2_final_1127\` |
+| 4 WhatsApp heads neutral, dark label, the official green mark | both heads (first screen, demo; also the agency-task proof) `#f0f2f5`, label ink, mark `#25d366`; bubbles keep the app's tints | demo head rgb(240, 242, 245), mark rgb(37, 211, 102) |
+| 5 Hero card title / demo end title, no time in a title, no promised call-back | "Devolver la llamada por el piso de Nerja" / "Return the call about the flat in Nerja"; demo end "Llamar a Mila por el piso de Nerja" / "Call Mila about the flat in Nerja"; the reference stays in Mila's enquiry; the 17:00 stays on her record ("Pide"), where the shown enquiry names it | old title absent, new present (probe) |
+| 6 Stacked tasks, compact report kept; W-10, matrix, score to the next phase; Audit carries V-1 | unchanged | — |
+
+Fold on this state, task card · main action, ES | EN, WITHOUT the preview strips (with them in `fold-es-en-local-e2-final-7-windows.json`):
+360 × 640 90 · 0 | 64 · −26; 375 × 667 142 · 52 | 110 · 20; 390 × 844 284 · 192 | 284 · 192; 414 × 896 284 · 192 | 284 · 192;
+1280 × 720 225 · 131 | 182 · 88; 1366 × 768 273 · 179 | 230 · 136; 1440 × 900 255 · 161 | 250 · 156. The three English edge cases the owner
+accepted for E2 are now one (360 × 640 EN, 26 px). Peek: 390/414 the whole pain line, every other window 0, none sliced. R-13: 1366 13 presses,
+390 6, the link 44 px.
+
+Vercel before the push (CLI, 27.11.): the preview project lists its deployments, the newest four days old, nothing accumulating; cost 0.
