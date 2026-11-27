@@ -564,3 +564,98 @@ Bau gebunden und mit `36e2e15` hinfällig**. Gültig bleiben die **Formen** (Mö
 zum Produkt; ganz oder gar nicht, nie angeschnitten; Restluft in Pixeln; ES **und** EN; sieben
 Fenster) und die Befunde B-1 bis B-7. Gemessen wird nach der Freigabe des Owners, am benannten
 Commit, anhand der Deployment-Kennung.
+
+---
+
+## Nachtrag 6 (27.11.) — der eine Lauf auf dem Text des Owners (`baa7c8e`), nachgerechnet
+
+Der Lauf war schon angestoßen, als mein „jetzt nicht weitermessen" ankam — also ist das **der eine
+Lauf**, den ich wollte, und keine weitere Runde. Alles gegen die drei JSON nachgerechnet.
+
+### Die Zahlen (Restluft in px, Aufgabenkarte · Hauptaktion)
+
+| Größe | **ohne** Streifen ES | **ohne** Streifen EN | mit Streifen ES | mit Streifen EN |
+|---|---|---|---|---|
+| 360 × 640 | +90 · **0** | **+42 · −48** | −62 · −152 | −110 · −200 |
+| 375 × 667 | +136 · +46 | +89 · **−1** | −16 · −106 | −63 · −153 |
+| 390 × 844 | +284 · +192 | +275 · +183 | +132 · +40 | +123 · +31 |
+| 414 × 896 | +284 · +192 | +284 · +192 | +132 · +40 | +132 · +40 |
+| 1280 × 720 | +225 · +131 | +182 · +88 | +132 · +38 | +89 · **−5** |
+| 1366 × 768 | +273 · +179 | +230 · +136 | +180 · +86 | +137 · +43 |
+| 1440 × 900 | +255 · +161 | +250 · +156 | +161 · +67 | +156 · +62 |
+
+**Meine Schätzung von gestern war brauchbar** (+44 px ES / +10 px EN auf den kleinen Telefonen) —
+die Richtung und die betroffenen Fenster stimmen.
+
+**Auf der freigegebenen Seite:** die **Aufgabenkarte steht auf allen sieben Fenstern und in beiden
+Sprachen im ersten Bildschirm** (knappster Wert 360 × 640 EN mit +42). **Das Kriterium Ihrer Note
+ist erfüllt.** Unter die Kante geht allein die **Aktion**, und nur in Englisch auf den zwei
+kleinsten Telefonen: 360 × 640 mit **−48**, 375 × 667 mit **−1**.
+
+**Das eine Pixel bei 375 EN melde ich als Zahl, nicht als Mangel, und rate ausdrücklich davon ab,
+ihm nachzujagen.** Ein Pixel liegt innerhalb dessen, was zwischen Kopflosbetrieb und einem
+wirklichen Telefon ohnehin schwankt — auf dem Gerät kann es drin oder draußen sein. Dafür zu
+kürzen, hieße Abstand gegen Rauschen tauschen.
+
+### Ich korrigiere eine eigene Festlegung von gestern
+
+Ich hatte zugesagt: *„ich benote mit der Möblierung, so wie der Owner es sieht, und nenne die Zahl
+ohne sie daneben."* **Das ist für die Note falsch**, und diese Tabelle zeigt warum: **mit** Streifen
+fällt die Aufgabenkarte bei 360 und 375 in beiden Sprachen unter die Kante — aus einem Grund, den
+das Produkt nicht hat. Eine Note ist eine Aussage über die Seite, die veröffentlicht wird; eine Note
+auf das Gerüst wäre eine Note auf nichts.
+
+**Neu und endgültig: die Note fällt auf der Zahl ohne Möblierung; die Zahl mit Möblierung steht
+daneben, bei jedem Fenster.** Für **Bilder** bleibt es umgekehrt richtig — was der Owner in der
+Vorschau sieht, zeige ich so, wie es dort steht.
+
+Nebenbei: **1280 × 720 EN** geht **nur mit** Streifen um 5 px unter die Kante (ohne: +88). Reine
+Vorschau-Erscheinung, kein Produktmangel.
+
+### B-9 — die leise Kante trägt, und sie trägt genau dort, wo sie gebraucht wird
+
+`ohne-streifen-1366x768-es.png` angesehen: Das Bild löst sich über die letzten 72 px in den Grund
+des nächsten Abschnitts auf — kein Pfeil, keine Bewegung, ein weicher Übergang. Es liest sich als
+„hier geht es weiter" und nicht als Abbruch. **Mein Punkt von gestern ist damit beantwortet.**
+
+Die naheliegende Rückfrage habe ich selbst geprüft: Bei **360 und 375** liegt die Auflösung
+rechnerisch ganz oder überwiegend **unter** der Kante (360 EN: Hero endet bei 740 von 640, die
+Auflösung läge bei 668–740). Dort ist sie also nicht zu sehen — **und das ist in Ordnung**, denn
+dort ist das Bild selbst an der Kante **abgeschnitten**, und ein angeschnittenes Bild sagt von
+allein, dass mehr kommt. Gebraucht wird die Kante dort, wo der Hero **genau** auf der Kante endet,
+also auf dem Schreibtisch — und dort steht sie.
+
+**Die Schmerzzeile hat gehalten:** 390 ES 160 px Blick, 390 EN 151, 414 160/160, alle **ganz**;
+überall sonst 0, **nirgends angeschnitten**. Ein Hinweis zur Haltbarkeit: bei **390 EN** setzt jetzt
+der **Inhalt** die Höhe (9 px über der Mindesthöhe), nicht mehr die Mindesthöhe. Der ganze Satz
+steht dort noch mit 31 px Luft — **jede weitere Textzeile im Hero schneidet ihn an.** Das ist keine
+Kritik, sondern die Stelle, an der es beim nächsten Textwunsch zuerst reißt.
+
+### B-10 — zwei Noten, die der Textbefehl bewegt. Keine Mängel, aber sie gehören vorher gesagt
+
+Der Text ist der des Owners, ausdrücklich ungekürzt bestellt. Ich widerspreche nicht. Zwei Dinge
+werden in meinen Noten aber sichtbar, und zwar in den Kriterien des Owners selbst:
+
+1. **„Wenig Text".** Bei 390 ist die Unterzeile jetzt ein **fünfzeiliger** Absatz unter einer
+   zweizeiligen Überschrift, bevor irgendein Bild kommt. Das ist der dichteste erste Bildschirm,
+   den dieser Bau bisher hatte. Das Kriterium „wenig Text / in zehn Sekunden verständlich" steht
+   dem entgegen.
+2. **Der Schmerz steht nicht mehr im ersten Bildschirm.** Vorher führte die Überschrift ihn selbst
+   („Mientras enseñas un piso, ¿quién atiende a Mila?"). Jetzt ist die Überschrift ein Nutzen
+   („Haz crecer tu inmobiliaria. No tu carga de trabajo."), und der Schmerz liegt allein in der
+   Zeile des nächsten Abschnitts — die **nur bei 390 und 414** im ersten Bildschirm steht. Auf
+   **360, 375 und allen Schreibtischgrößen** enthält der erste Bildschirm damit **keinen Schmerz
+   mehr**. Die verbindliche Erzählfolge des Vorhabens lautet: Schmerz zuerst.
+
+Beides ist eine **Folge einer Entscheidung des Owners**, nicht ein Fehler des Erbauers. Ich melde es,
+weil es in genau den Kriterien auftaucht, nach denen ich benote, und weil der Owner es vor der
+Freigabe wissen soll — nicht aus der Note danach.
+
+### Stand
+
+`R-13` unverändert (1366: 13 Tabulatordrücke, 390: 6, sichtbarer 44-px-Knopf). Belege:
+`fold-es-en-local-hero-1117-text-7-windows.json`, `peek-local-hero-1117-text.json`,
+`r13-local-hero-1117-text.json`; Bilder in `…\e2_kandidat_1124\hero_text_1117\`.
+
+**Nichts davon ist von mir gemessen.** Der Alias liefert weiter `bea7d19` / `dpl_H6WfQ1GK…`.
+Gemessen wird nach der Freigabe des Owners, am benannten Commit, anhand der Deployment-Kennung.
